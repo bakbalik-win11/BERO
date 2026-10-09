@@ -35,6 +35,9 @@ Günlük tik listesi `GUNLUK/YYYY/YYYY-MM-DD.md` altında tutulur; dizin ve otom
 - Ara rapor/günü kapa sırasında HISTORY girdisi, görev raporu eki, pusula ve TODO durumu kontrol edilir. İlgili günlük kutuları ancak her bir kayıt başarıyla yazılıp geri okunarak doğrulanınca işaretlenir.
 - Gün sonu listesi teknik görevin kapandığı anlamına gelmez. Teknik deney yapılmadıysa deney kutusu açık kalır; teknik sonuç yoksa özet bunu açıkça söyler.
 - Günlük dosyaları eklemeli korunur; var olan aynı tarihli dosyanın üzerine otomasyonla yazılmaz.
+- Rutin takip asistanın sorumluluğudur: günlük dosyayı açmak/oluşturmak, yeni tarihli dosyanın indeks bağlantısını kontrol etmek, TODO→görev geçişini kaydetmek, kutuları yalnızca doğrulanmış işlemler için işaretlemek ve GitHub yazımlarını geri okumak.
+- Kullanıcıdan yalnızca teknik kanıt/karar gerekir: gerçek deney koşulları ve ham ölçümler/loglar, derleme sonucu, gerektiğinde donanım veya çalışan yapılandırma değişikliği için açık onay. Kullanıcıdan günlük kayıtları elle yönetmesi veya her adımı hatırlatması beklenmez.
+- Otomasyonun dosyası repoda bulunması çalıştığının kanıtı değildir. İlk başarılı Actions çalıştırması görülene kadar durum “kuruldu, çalışması bekleniyor” olarak belirtilir.
 
 ## Tetikleyici: "ara rapor"
 
