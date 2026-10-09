@@ -71,6 +71,7 @@ jobs:
           sed -i "s/DATE_TOKEN/$DAY/" "$FILE"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$FILE"
+          sed -i "/^En yeni tarih en üstte listelenir\.$/a\\- [$DAY]($YEAR/$DAY.md) — günlük kontrol listesi" GUNLUK/README.md
+          git add "$FILE" GUNLUK/README.md
           git commit -m "GUNLUK: $DAY günlük kontrol listesini oluştur"
           git push
