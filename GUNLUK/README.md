@@ -10,6 +10,10 @@ Bu klasör, her takvim günü için tiklenebilir iş akışı kontrol listesini 
 - Kullanıcıdan yalnızca teknik gerçekler/kanıtlar beklenir: deney koşulları ve ham ölçümler, derleme sonucu, gerektiğinde donanım/yapılandırma değişikliği onayı. Rutin kayıt, bağlantı, indeks ve tik takibi asistanın sorumluluğudur.
 - İlk otomasyon çalışması için [GitHub Actions iş akışı](https://github.com/bakbalik-win11/BERO/actions/workflows/daily-bero-checklist.yml) sayfasından çalıştırma durumu kontrol edilmelidir; GitHub Actions kapalıysa etkinleştirilmelidir.
 
+## Her gün okunacak kısa akış
+
+- [BERO Günlük Açılış ve Kapanış Kartı](BERO_GUNLUK_AKIS.md) — kullanıcı ve asistan için kısa açılış, çalışma ve kapanış kontrolü.
+
 ## Günlükler
 
 En yeni tarih en üstte listelenir.
