@@ -21,6 +21,14 @@ SCT013-030 (30 A / 1 V) ve SCT013-100 (100 A / 1 V) gerilim çıkışlı modelle
 
 **Önerilen başlangıç:** GPIO34, GPIO35, GPIO36 veya GPIO39. Wi-Fi ile ADC okumada ADC1, ADC2'ye göre daha uygun seçimdir. GPIO34–39 pinlerinde dahili pull-up/pull-down yoktur.
 
+### Pull-up / pull-down nedir?
+
+- **Pull-up:** GPIO girişini bir direnç üzerinden 3,3 V seviyesine çeker; girişin varsayılan durumu HIGH (1) olur.
+- **Pull-down:** GPIO girişini bir direnç üzerinden GND seviyesine çeker; girişin varsayılan durumu LOW (0) olur.
+- **Amaç:** Giriş pini boşta kaldığında elektriksel seviyesinin kararsız kalıp rastgele HIGH/LOW okunmasını önlemektir. Direnç değeri devreye göre seçilir.
+- **GPIO34, GPIO35, GPIO36 ve GPIO39'da dahili pull-up/pull-down yoktur.** Bu pinler dijital giriş olarak kullanılacaksa gerekirse harici direnç gerekir. SCT013 analog ölçümünde bu dirençler, sinyali ADC aralığına taşıyan bias devresinin yerine geçmez.
+
+
 ## 3. MCP3208 kullanılıyorsa
 
 SCT sinyali analog ön uç üzerinden MCP3208'in uygun analog girişine bağlanır. ESP32 pinleri bu durumda sensör analog girişini değil, MCP3208 ile SPI haberleşmesini taşır.
