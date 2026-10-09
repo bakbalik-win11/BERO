@@ -99,3 +99,7 @@ Ayrıntılı kayıt politikası: [KAYIT_VE_SUREKLILIK.md](KAYIT_VE_SUREKLILIK.md
 - Bu komutlar yalnızca sohbet yanıtı üretmek anlamına gelmez: uygun olduğunda kaynak kayıtlar ve bu pusula güncellenir; başarısız araç işlemleri açıkça bildirilir.
 
 Komutların ayrıntılı kontrol listesi: [ASISTAN_ISLETIM_PROTOKOLU.md](ASISTAN_ISLETIM_PROTOKOLU.md).
+
+## 10. Tarihli proje geçmişi
+
+Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/](HISTORY/README.md) günlüğü kullanılır. “Ara rapor” ve “günü kapa” komutlarında yalnızca bu pusula güncellenmez; ilgili tarihin HISTORY dosyasına da yeni bir kayıt eklenir. Günlük geçmiş eklemeli tutulur ve eski girdiler silinmez.
