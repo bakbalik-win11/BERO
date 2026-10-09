@@ -5,7 +5,7 @@ Bu klasör, projenin zaman içinde nereden nereye ilerlediğini gösteren tarihl
 ## Kayıt düzeni
 
 - Her çalışma tarihi için ayrı bir dosya kullanılır: `YYYY/YYYY-MM-DD.md`.
-- **Görüntüleme sırası yeninden eskiye doğrudur:** en son tarih ve en son kayıt ilk sırada yer alır. Geçmişe gitmek isteyen daha eski tarihlere doğru ilerler; güncel kayda ulaşmak için dosyanın sonuna inmek gerekmez.
+- **Görüntüleme sırası yeniden eskiye doğrudur:** en son tarih ve en son kayıt ilk sırada yer alır. Geçmişe gitmek isteyen daha eski tarihlere doğru ilerler; güncel kayda ulaşmak için dosyanın sonuna inmek gerekmez.
 - HISTORY ana sayfasında güncel günlükler tarih sırasıyla **azalan** biçimde listelenir. Her günlük dosyasının içinde de yeni kayıtlar en üstte, eski kayıtlar aşağıda tutulur.
 - **Ara rapor** komutunda o günün dosyasına yeni bir ara rapor girdisi en üste eklenir.
 - **Günü kapa** komutunda aynı günün dosyasına gün sonu/kapanış girdisi en üste eklenir; ayrıca pusulanın oturum devir bölümü güncellenir.
@@ -23,3 +23,4 @@ Bu klasör, projenin zaman içinde nereden nereye ilerlediğini gösteren tarihl
 - [Proje Pusulası](../PROJE_PUSULASI.md)
 - [Asistan İşletim Protokolü](../ASISTAN_ISLETIM_PROTOKOLU.md)
 - [Kayıt, Sürümleme ve Süreklilik Politikası](../KAYIT_VE_SUREKLILIK.md)
+- [TODO — Fikir havuzu ve bekleyenler](../TODO/README.md)
