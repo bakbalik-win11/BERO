@@ -28,8 +28,7 @@ Projenin genel çerçevesi, aktif ana hedefi, güncel durumu ve oturumlar arası
 
 ## TODO — fikirler ve bekleyenler
 
-Henüz resmî görev açmaya gerek olmayan fikirleri, tarihleri ve tamamlanma tiklerini takip etmek için [TODO/README.md](TODO/README.md) listesini kullan.
-
+Henüz resmî görev açmaya gerek olmayan fikirleri [TODO/README.md](TODO/README.md) listesinde takip et. Yeni fikirler üstte; tamamlanan veya vazgeçilen fikirler neden/sonuç bilgisiyle sonuçlananlar bölümüne taşınır. Göreve dönüşen fikir, bağlı görev tamamlanana kadar açık kalır.
 ## Asistanın çalışma komutları
 
 “Ara rapor” ve “günü kapa” komutlarında uygulanacak kontrol listesi [ASISTAN_ISLETIM_PROTOKOLU.md](ASISTAN_ISLETIM_PROTOKOLU.md) dosyasında tanımlıdır.
