@@ -6,6 +6,19 @@ Bu belge, ChatGPT'nin Proje BERO çalışmasında kendi uygulaması gereken iş 
 
 Kullanıcı yalnızca teknik soruların yanıtlanmasını değil, projenin sürekliliğinin de korunmasını bekler. Bu nedenle aşağıdaki komutlardan biri verildiğinde ilgili kontrol listesi kendiliğinden uygulanır. Yapılmayan işlem yapılmış, doğrulanmayan sonuç doğrulanmış gibi gösterilmez.
 
+## TODO fikir havuzu kullanımı
+
+TODO listesi [TODO/README.md](TODO/README.md) dosyasında tutulur. Bu liste resmî görevlerin yerine geçmez; henüz görev açılmamış fikirleri ve küçük yapılacakları yakalar.
+
+- Kullanıcı açıkça bir fikri TODO'ya eklememizi istediğinde maddeyi listeye kaydet.
+- Kullanıcı “bunu TODO'ya at”, “aklımıza yaz” veya benzer net bir kayıt isteği verdiğinde fikir maddesini ekle.
+- Bir fikri eklerken ilk kayıt tarihini güvenilir gün bilgisiyle yaz; tarih bilinmiyorsa uydurma.
+- Yeni maddeleri listenin en üstüne ekle. Önceki maddelerin ilk kayıt tarihlerini değiştirme.
+- Tamamlanan maddeyi `[x]` ile işaretle ve tamamlanma tarihini ekle; geçmişi korumak için silme.
+- Bir fikir resmî göreve dönüşürse yeni görev kimliğini ve görev bağlantısını TODO maddesine ekle. TODO maddesini sessizce silme.
+- Fikir konuşmada geçti diye otomatik olarak göreve dönüştürme; TODO'ya kayıt talebi açık değilse bağlama göre karar ver veya gerektiğinde sor.
+- Ara rapor ve günü kapa sırasında TODO'yu kontrol et; bu oturumda eklenen, tamamlanan veya göreve dönüştürülen maddeleri doğru kaydet.
+
 ## Tetikleyici: "ara rapor"
 
 Kullanıcı "ara rapor" dediğinde, o ana kadarki çalışmanın ara durum kaydı hazırlanır.
@@ -61,7 +74,7 @@ Kullanıcı açıkça daha dar bir kapsam belirtirse, o kapsam uygulanır; ancak
 
 ## Zorunlu tarihli geçmiş kaydı
 
-**“Ara rapor” ve “günü kapa” komutlarının ikisinde de HISTORY günlüğüne yazmak zorunludur.** Bu işlem yalnızca pusulayı güncellemekle karşılanmış sayılmaz. Her girdide tarih/saat (saat güvenilir biçimde bilinmiyorsa yalnızca tarih), hedef/görev kimliği, yapılan iş, değişen dosyalar ve commit bağlantıları, doğrulananlar, açık kalanlar ve sıradaki adım bulunur. Günlük dosyası yoksa oluşturulur; varsa eski içerik korunur ve yeni bölüm eklenir. Günlük kaydı GitHub'a başarıyla yazılamazsa kullanıcıya açıkça söylenir.
+**"Ara rapor" ve "günü kapa" komutlarının ikisinde de HISTORY günlüğüne yazmak zorunludur.** Bu işlem yalnızca pusulayı güncellemekle karşılanmış sayılmaz. Her girdide tarih/saat (saat güvenilir biçimde bilinmiyorsa yalnızca tarih), hedef/görev kimliği, yapılan iş, değişen dosyalar ve commit bağlantıları, doğrulananlar, açık kalanlar ve sıradaki adım bulunur. Günlük dosyası yoksa oluşturulur; varsa eski içerik korunur ve yeni bölüm eklenir. Günlük kaydı GitHub'a başarıyla yazılamazsa kullanıcıya açıkça söylenir.
 
 ## HISTORY sıralama kuralı
 
