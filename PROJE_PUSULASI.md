@@ -111,3 +111,12 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 ## 11. TODO — fikir havuzu
 
 [TODO/README.md](TODO/README.md), henüz resmî göreve dönüşmemiş fikirlerin ve küçük yapılacakların ortak listesidir. Yeni fikirler bölümün en üstüne eklenir; ilk kayıt tarihi korunur. Tamamlanan veya vazgeçilen fikirler silinmez, sonuç ve tarihleriyle “Sonuçlananlar” bölümüne taşınır. Bir fikir resmî göreve dönüşürse “Göreve dönüşenler — açık görevler” bölümüne alınır ve bağlı görev tamamlanana kadar açık kalır. Görev tamamlandığında sonuç “Görev tamamlandı” olarak kaydedilir.
+
+
+## 12. Günlük kontrol listesi ve süreklilik
+
+[GUNLUK/README.md](GUNLUK/README.md) günlük tik listesinin dizinidir. Her gün için `GUNLUK/YYYY/YYYY-MM-DD.md` dosyası tutulur; [GitHub Actions iş akışı](.github/workflows/daily-bero-checklist.yml) Türkiye saatiyle yaklaşık 03.05'te yeni günlük dosyası oluşturmaya ayarlanmıştır.
+
+- “Ara rapor” ve “günü kapa” sırasında günlük kontrol listesi, TODO yaşam döngüsü, HISTORY, aktif görev raporu ve bu pusula birlikte gözden geçirilir.
+- Kutular yalnızca ilgili işlem tamamlanıp GitHub kaydı geri okunarak doğrulandığında işaretlenir.
+- Günlük otomasyonun zamanlanmış ilk çalışması henüz doğrulanmış değildir.
