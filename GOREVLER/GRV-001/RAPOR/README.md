@@ -1,12 +1,12 @@
-# GRV-001 — ESP32-D ile SCT-013 Akım Okuması
+# GRV-001 — ESP32-D ile SCT-013 30A/1V Akım Okuması
 
 ## Amaç
 
-ESP32-D kullanarak SCT-013 akım sensöründen ölçüm almak; sinyalin ESP32 tarafından doğru okunabildiğini gözlemlemek ve okuma zincirinin davranışını ölçüm kayıtlarıyla doğrulamak.
+ESP32-D kullanarak SCT-013 30A/1V akım sensöründen ölçüm almak; sinyalin ESP32 tarafından doğru okunabildiğini gözlemlemek ve okuma zincirinin davranışını ölçüm kayıtlarıyla doğrulamak.
 
 ## Kapsam
 
-- ESP32-D ile SCT-013 bağlantısının ve kullanılan donanımın kaydı
+- ESP32-D ile SCT-013 30A/1V bağlantısının ve kullanılan donanımın kaydı
 - Sensör çıkışının ve ADC ham okumalarının gözlemlenmesi
 - Okuma kararlılığının ve örnekleme davranışının incelenmesi
 - Kullanılan dönüşüm/hesaplama adımlarının belgelenmesi
@@ -33,4 +33,4 @@ ESP32-D ile SCT-013 okuma zincirinin davranışının tekrarlanabilir ölçümle
 
 ## Durum
 
-Başlangıç — test sonuçları henüz eklenmedi.
+Açık — TODO’daki ilk fikir 2026-10-09 tarihinde bu göreve dönüştürüldü. Test sonuçları henüz eklenmedi.
