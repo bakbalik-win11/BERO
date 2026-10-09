@@ -32,6 +32,31 @@ Proje BERO, yalnızca çalışan bir sistem üretmeyi değil, ölçülebilir, do
 
 Kayıtların nasıl korunacağı ve projenin oturumlar arasında nasıl sürdürüleceği için [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) dosyasına bak.
 
+## Fikirden tecrübeye ve tekrar kullanıma akış
+
+```text
+TODO / Fikir
+    ↓
+Ana hedef
+    ↓
+Görev
+    ↓
+Alt görevler ve alt görev raporları (gerektiğinde)
+    ↓
+Görev ana raporu: kronolojik basamaklar, deneyler, kanıtlar, sonuçlar ve açık sorular
+    ↓
+Tekrar kullanılabilir teknik tecrübe → ilgili DONANIM / Sensör kaydı
+                                  ↘ kaynak hedef + görev + ilgili alt görev/rapor atfı
+```
+
+- **Görev raporu**, tecrübenin nasıl ve hangi basamaklarda edinildiğinin kaynak izini korur.
+- **DONANIM / Sensör kaydı**, aynı bileşen hakkında farklı hedeflerde biriken ayarları, kod parçalarını, sınırları ve kullanım tecrübelerini bir araya getirir; her kayıt kaynak hedefe ve göreve atıf verir.
+- **Hedefler değişse de teknik kayıtlar birbirinin yerine geçmez.** Farklı hedeflerde oluşan kodlar ve ayarlar ayrı sürüm/kayıt olarak korunur; yeni bilgi eskisini ezmez. Her sürümün koşulu ve doğrulama durumu belirtilir.
+- **Tecrübeyi yeniden kullanırken atfı izle:** donanım/sensör kaydından kaynak hedefe, göreve ve gerekiyorsa alt görev raporuna git; ilgili basamakları okuyup koşulları kontrol et.
+- Bir donanım/sensör kaydında bulunması tek başına doğrulama sayılmaz. Gözlem, öneri, koşullu doğrulama ve doğrulama durumu birbirinden ayrılır.
+
+Ayrıntılı uygulama adımları için [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md) ve [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) dosyalarına bak.
+
 ## Proje pusulası
 
 Projenin genel çerçevesi, aktif ana hedefi, güncel durumu ve oturumlar arası devam notu için [PROJE_PUSULASI.md](PROJE_PUSULASI.md) dosyasını başlangıç noktası olarak kullan.
