@@ -121,3 +121,18 @@ Sohbette yeni bir çalışma ilkesi, karar veya tekrar kullanılabilir teknik de
 - Derleme doğrulaması, gerçek donanım testi ve ölçüm doğrulaması ayrı kanıt türleridir; biri diğerinin yerine geçmez.
 - Bir teknik kural başka donanım/model için de geçerli görünüyorsa, kapsamı ayrı test edilene kadar genelleme yapma. Örneğin ortak yazılım bileşeni kullanılması iki ADC'nin tüm davranışlarının aynı olduğunu kanıtlamaz.
 
+## Tetikleyici: işe başlama veya aradan sonra depoya dönüş — zorunlu
+
+Kullanıcı yeni bir çalışma gününe başlarken, aynı gün içinde ara verip geri döndüğünde veya yeni sohbet/oturumda BERO işine devam ettiğinde, teknik işe geçmeden önce bu başlangıç zincirini uygula. Kullanıcının “başlayalım”, “devam edelim”, “depoya döndüm” gibi ifadeleri tetikleyicidir; açıkça “önceki kayıtlara bakma” derse bu istek kapsamı değiştirebilir.
+
+1. [Proje Pusulası](PROJE_PUSULASI.md) dosyasını oku: son tamamlanan iş, son doğrulanmış durum, açık sorular ve sıradaki somut adım.
+2. [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md) ve [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) içinden çalışılacak konuya uygulanacak kuralları kontrol et.
+3. Aktif ana hedefi ve görev raporunu oku; son görev basamağını, açık işleri ve varsa tarihli ek kayıtları kontrol et.
+4. İlgili kod/MD, donanım veya sensör notları, deney raporları ve son HISTORY kayıtlarını oku. Yeni teknik konuya geçiliyorsa ilgili bileşenin kalıcı bilgisini de ara.
+5. Günlük kontrol listesini kontrol et; gün değiştiyse doğru tarihli dosyayı ve indeksini doğrula. Otomasyonun gerçekten çalıştığı kanıtlanmadıysa çalışıyor varsayma.
+6. Konuşmada daha önce kabul edilmiş ama henüz kalıcı kayda işlenmemiş ilke/karar varsa, uygun belgeye işle; gerekiyorsa kullanıcıdan kararın kapsamını netleştir.
+7. Kayıtlar arasında çelişki varsa sessizce seçim yapma: çelişkiyi belirt, daha yeni ve doğrulanmış kanıtı ayırt et, gerekiyorsa kullanıcıya sor.
+8. Kullanıcıya kısa bir “devam bağlamı” sun: mevcut basamak, son doğrulanmış sonuç, açık soru ve sıradaki tek somut adım. Sonra teknik çalışmaya başla.
+
+**Bu zincir yalnızca yeni gün açılışında değil, her ara dönüşte de uygulanır.** Önceki oturumun bağlamı otomatik olarak hâlâ geçerli varsayılmaz. Bu prosedürün amacı, kayıtları okumadan ileri atlama ve daha önce belirlenmiş ilkeleri unutma riskini azaltmaktır.
+
