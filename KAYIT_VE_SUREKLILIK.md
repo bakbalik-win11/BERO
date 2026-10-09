@@ -29,3 +29,28 @@ Her görev raporunda bağlı ana hedef belirtilir. Ana hedef dosyası görev sı
 ## Bu politikanın amacı
 
 Bir süre ara verilse, yeni bir sohbet açılsa veya başka bir çalışma oturumuna geçilse bile proje; mevcut durum, son doğrulanmış sürüm, yapılan deneyler, elde edilen kanıtlar ve sıradaki adım üzerinden yeniden devam edilebilir olmalıdır.
+
+## İlkelerin ve teknik tecrübenin kalıcılaştırılması
+
+Sohbette ortaya çıkan kalıcı çalışma ilkeleri yalnızca sohbet geçmişinde bırakılmaz. İlkenin türüne göre ana kayıt yeri seçilir:
+- Genel BERO çalışma ilkeleri: `README.md`
+- Kayıt, kod sürümü ve deney geçmişi politikası: bu dosya
+- Asistanın takip edeceği adımlar: `ASISTAN_ISLETIM_PROTOKOLU.md`
+- Güncel durum ve sıradaki adım: `PROJE_PUSULASI.md`
+- Tarihsel karar ve o günkü çalışma izi: `HISTORY/YYYY/YYYY-MM-DD.md`
+- Görev basamakları, deney ve sonuç: ilgili `GOREVLER/GRV-NNN/RAPOR/`
+- Donanıma/sensöre ait yeniden kullanılabilir teknik bilgi: ilgili `DONANIM/` altındaki Markdown notu
+- Belirli doğrulanmış uygulama: koşulları ve test belgesiyle birlikte ilgili donanım kod kütüphanesi
+
+### Basamak ve kod kütüphanesi kuralları
+
+1. Büyük görev içindeki anlamlı basamaklar görev raporunda tarihli/kronolojik olarak izlenir; her küçük işlem için ayrı resmî görev açmak gerekmez.
+2. Her basamak değişiminde ne değiştiği, neden geçildiği, hangi kanıtın elde edildiği, hangi sürümün korunduğu ve hangi soruların açık kaldığı kaydedilir.
+3. Görevde edinilen tekrar kullanılabilir teknik tecrübe ilgili donanım/sensör MD notuna aktarılır ve kaynak görev/deney bağlantısı korunur.
+4. Bir bilginin donanım notunda yer alması onu tek başına doğrulanmış yapmaz. Durum ve kapsam açıkça etiketlenir: öneri, gözlem, koşullu doğrulandı veya doğrulandı.
+5. Her doğrulanmış kod sürümü ayrı ve değişmez bir sürüm olarak tutulur; kodun yanında aynı sürüme ait MD belgesi, test koşulları, kanıt, sınırlar ve kaynak görev bulunur. Yeni sürüm eskisinin üzerine yazmaz.
+6. Derleme, gerçek donanımda çalışma ve ölçüm sonucu ayrı doğrulama seviyeleridir. Yalnızca eldeki kanıtın desteklediği seviye işaretlenir.
+7. Bir modelde veya koşulda doğrulanan kural, test edilmeden diğer modellere/koşullara genellenmez.
+
+Bu kayıt düzeni bir sohbetten diğerine aktarılabilmelidir; uygulamanın doğruluğu yalnızca asistanın hatırlamasına bağlı olmamalıdır.
+
