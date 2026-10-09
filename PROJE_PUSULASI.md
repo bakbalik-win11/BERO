@@ -91,3 +91,11 @@ Yeni karar kaydında tarih, karar, gerekçe ve etkilediği dosyalar belirtilir.
 **Bir sonraki adımı bulurken önceki adımları kaybetme.** Yeni oturumda önce bu pusula, sonra ilgili ana hedef, sonra aktif görev raporu ve en son kod/log kayıtları okunur.
 
 Ayrıntılı kayıt politikası: [KAYIT_VE_SUREKLILIK.md](KAYIT_VE_SUREKLILIK.md).
+
+## 9. Asistanın komut tetikleyicileri
+
+- **“Ara rapor”** verildiğinde [ASISTAN_ISLETIM_PROTOKOLU.md](ASISTAN_ISLETIM_PROTOKOLU.md) içindeki ara rapor kontrol listesi otomatik uygulanır.
+- **“Günü kapa”** verildiğinde ara rapor adımlarına ek olarak gün sonu kaydı ve yeni oturum devri hazırlanır.
+- Bu komutlar yalnızca sohbet yanıtı üretmek anlamına gelmez: uygun olduğunda kaynak kayıtlar ve bu pusula güncellenir; başarısız araç işlemleri açıkça bildirilir.
+
+Komutların ayrıntılı kontrol listesi: [ASISTAN_ISLETIM_PROTOKOLU.md](ASISTAN_ISLETIM_PROTOKOLU.md).
