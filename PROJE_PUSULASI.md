@@ -44,7 +44,7 @@ Bu görevde amaç, ESP32-D ve SCT-013 ile akım okuma davranışını incelemekt
 - GRV-001'in adı ve kapsamı ESP32-D + SCT-013 akım okuması olarak düzeltildi.
 - Görev klasörlerinde RAPOR ve KOD alanları tanımlandı.
 - Kayıt, sürümleme ve süreklilik politikası oluşturuldu.
-- TODO fikir havuzu oluşturuldu; henüz fikir maddesi eklenmedi. Durum akışı artık açık fikir → göreve dönüşen açık kayıt → sonuçlanan kayıt biçiminde tanımlı.
+- TODO fikir havuzu oluşturuldu. İlk fikir — ESP32-D ile SCT-013 30A/1V akım okuma — GRV-001 görevine dönüştürüldü ve TODO'da “Göreve dönüşenler — açık görevler” bölümünde açık `[ ]` olarak tutuluyor. Durum akışı açık fikir → göreve dönüşen açık kayıt → sonuçlanan kayıt biçiminde işliyor.
 - **Deney sonucu veya derleme başarısı bu dosyada varsayılmayacak.** İlgili test kaydı ve kullanıcı doğrulaması bulunmadan kod başarılı/çalışıyor kabul edilmeyecek.
 - GRV-001 henüz sonuçlandırılmış sayılmıyor.
 
@@ -74,10 +74,10 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 
 ### Mevcut devir notu
 
-- **Son tamamlanan iş:** Hedef/görev dizini, süreklilik politikası, HISTORY ve TODO fikir havuzu GitHub'a eklendi; TODO durum geçişleri ve görevle bağlı kapanış kuralı netleştirildi.
-- **Son doğrulanmış teknik sonuç:** Bu yapısal düzenlemeler dışında yeni bir teknik ölçüm/derleme sonucu kaydedilmiş değil.
-- **Açık soru:** GRV-001'de kullanılacak mevcut ESP32-D + SCT-013 kod sürümü, bağlantı ve test koşulları görev kaydında netleştirilmeli.
-- **Sıradaki adım:** Mevcut çalışan kodu ve donanım durumunu tespit ederek GRV-001 testini ölçülebilir bir başlangıç noktasıyla açmak.
+- **Son tamamlanan iş:** İlk TODO fikri, ESP32-D + SCT-013 30A/1V akım okuma olarak GRV-001 görevine bağlandı; TODO, görev raporu ve HISTORY kaydı güncellendi.
+- **Son doğrulanmış teknik sonuç:** Bu güncelleme kayıt/organizasyon işidir; yeni bir teknik ölçüm veya derleme sonucu yok.
+- **Açık soru:** GRV-001 için kullanılacak mevcut ESP32-D kod sürümü, bağlantı düzeni ve test koşulları henüz doğrulanmadı.
+- **Sıradaki adım:** Mevcut çalışan kodu ve donanım/bağlantı durumunu tespit edip test başlangıç koşullarını görev raporuna kaydetmek.
 
 ## 7. Önemli kararların kronolojisi
 
