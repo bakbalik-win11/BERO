@@ -1,0 +1,76 @@
+name: Daily BERO Checklist
+
+on:
+  schedule:
+    # 00:05 UTC = 03:05 in Türkiye (UTC+3)
+    - cron: "5 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  create-daily-checklist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Create today's checklist if missing
+        shell: bash
+        run: |
+          set -euo pipefail
+          DAY="$(TZ=Europe/Istanbul date +%F)"
+          YEAR="$(TZ=Europe/Istanbul date +%Y)"
+          FILE="GUNLUK/$YEAR/$DAY.md"
+          if [ -e "$FILE" ]; then
+            echo "Checklist already exists: $FILE"
+            exit 0
+          fi
+          mkdir -p "GUNLUK/$YEAR"
+          cat > "$FILE" <<'EOF'
+          # BERO Günlük Kontrol Listesi — DATE_TOKEN
+
+          > Bu dosya günlük çalışma takibi içindir; teknik deney geçmişinin yerine geçmez. Kutular yalnızca işlem gerçekten yapıldığında işaretlenir.
+
+          ## Gün başı
+
+          - [ ] Proje pusulasını ve aktif görev raporunu kontrol et.
+          - [ ] Açık TODO maddelerini ve göreve dönüşen fikirlerin bağlı görev durumlarını kontrol et.
+          - [ ] Bugünün tek somut önceliğini belirle.
+
+          ## Gün içi kayıt disiplini
+
+          - [ ] Yeni fikirleri gerekiyorsa TODO'ya ekle; ilk kayıt tarihini koru.
+          - [ ] Fikir göreve dönüştüyse TODO maddesini açık tut; görev kimliği/linki ve durumu ekle.
+          - [ ] Teknik deney yapıldıysa koşulları, kod sürümünü, ham ölçümü ve sonucu kaydet.
+          - [ ] Doğrulanmış sonuçları varsayım ve önerilerden ayrı tut.
+
+          ## Ara rapor / günü kapa
+
+          - [ ] HISTORY günlüğüne yeni kaydı en üste ekle; eski kayıtları koru.
+          - [ ] İlgili görev raporuna gerekli tarihli ek kaydı işle.
+          - [ ] Proje pusulasındaki durum, açık sorular ve sıradaki adımı güncelle.
+          - [ ] TODO durumlarını ve görev bağlantılarını yeniden kontrol et.
+          - [ ] Günlük kontrol listesindeki tamamlanan işleri tikle.
+          - [ ] GitHub yazımlarını geri okuyarak doğrula; başarısız işlemleri açıkça bildir.
+
+          ## Gün sonu devir
+
+          - [ ] Bugün tamamlanan işleri ve değişen kayıtları özetle.
+          - [ ] Son doğrulanmış teknik sonucu belirt; teknik sonuç yoksa bunu açıkça yaz.
+          - [ ] Açık kalan konuları ve sonraki oturumun ilk adımını kaydet.
+          - [ ] Günlük dosyası ve ilgili kayıt bağlantılarını pusulada/raporda kontrol et.
+
+          ## Günün özeti
+
+          - Yapılan iş:
+          - Doğrulanan:
+          - Açık kalan:
+          - Sonraki somut adım:
+          EOF
+          sed -i "s/DATE_TOKEN/$DAY/" "$FILE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$FILE"
+          git commit -m "GUNLUK: $DAY günlük kontrol listesini oluştur"
+          git push
