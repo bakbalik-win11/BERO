@@ -21,3 +21,7 @@ Proje BERO, yalnızca çalışan bir sistem üretmeyi değil, ölçülebilir, do
 *BERO'da hedef yalnızca çalışması değil, neden doğru çalıştığının da bilinmesidir.*
 
 Kayıtların nasıl korunacağı ve projenin oturumlar arasında nasıl sürdürüleceği için [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) dosyasına bak.
+
+## Proje pusulası
+
+Projenin genel çerçevesi, aktif ana hedefi, güncel durumu ve oturumlar arası devam notu için [PROJE_PUSULASI.md](PROJE_PUSULASI.md) dosyasını başlangıç noktası olarak kullan.
