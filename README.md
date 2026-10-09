@@ -57,6 +57,18 @@ Tekrar kullanılabilir teknik tecrübe → ilgili DONANIM / Sensör kaydı
 
 Ayrıntılı uygulama adımları için [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md) ve [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) dosyalarına bak.
 
+## Gelecek aşama: İngilizce sensör sayfaları
+
+BERO'nun Türkçe donanım/sensör kayıtlarında biriken, kaynağı ve koşulları izlenebilir teknik tecrübe olgunlaştıkça İngilizce sensör sayfalarına aktarılacaktır. Amaç yalnızca çeviri değil, başka kişilerin inceleyip yeniden deneyebileceği güvenilir ve evrensel bir teknik bilgi katkısı oluşturmaktır.
+
+- İngilizce sayfalar yalnızca tekrar kullanılabilir ve paylaşılmaya yeterince hazır bilgiyi kapsar.
+- Her bilgi kaynağı olan Türkçe sensör/donanım kaydına ve oradan ilgili hedef, görev ve rapor basamaklarına geri izlenebilir.
+- Farklı hedeflerdeki kod ve ayar varyantları ayrı korunur; birbirinin üzerine yazılmaz.
+- Koşullar, kanıtlar, sınırlar ve doğrulama durumu açıkça belirtilir. Olgunlaşmamış bilgi evrensel gerçek gibi yayımlanmaz.
+- İngilizce sensör sayfaları aylık olarak gözden geçirilir; yeni aktarılabilir bilgi yoksa sırf değişiklik olsun diye güncelleme yapılmaz.
+
+Uygulama sorumluluğu ve kontrol akışı [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md) ve [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) içindedir.
+
 ## Proje pusulası
 
 Projenin genel çerçevesi, aktif ana hedefi, güncel durumu ve oturumlar arası devam notu için [PROJE_PUSULASI.md](PROJE_PUSULASI.md) dosyasını başlangıç noktası olarak kullan.
