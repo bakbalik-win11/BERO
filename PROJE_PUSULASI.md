@@ -92,6 +92,9 @@ Yeni karar kaydında tarih, karar, gerekçe ve etkilediği dosyalar belirtilir.
 
 - **2026-10-09:** Yeni süreklilik ilkesi: anlamlı görev basamakları görev raporunda tarihli izlenecek; tekrar kullanılabilir donanım/sensör tecrübesi kaynak görev ve kanıt bağlantısıyla donanımın Markdown notuna aktarılacak; doğrulanmış kod sürümleri koşulları ve test belgeleriyle ayrı korunacak. İlkenin uygulama ayrıntıları [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md) ve [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) içindedir.
 
+
+- **2026-10-09:** Depoya dönüş/oturum başlatma kuralı: her yeni gün, ara sonrası veya yeni sohbetten devam ederken teknik işe başlamadan önce pusula, protokol, kayıt politikası, aktif görev, ilgili kod/MD ve HISTORY okunacak; günlük kontrol edilecek; çelişkiler açıklanacak ve kısa devam bağlamı çıkarılacak. Ayrıntı: [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md).
+
 ## 8. Süreklilik ilkesi
 
 **Bir sonraki adımı bulurken önceki adımları kaybetme.** Yeni oturumda önce bu pusula, sonra ilgili ana hedef, sonra aktif görev raporu ve en son kod/log kayıtları okunur.
