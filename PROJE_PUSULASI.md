@@ -44,7 +44,7 @@ Bu görevde amaç, ESP32-D ve SCT-013 ile akım okuma davranışını incelemekt
 - GRV-001'in adı ve kapsamı ESP32-D + SCT-013 akım okuması olarak düzeltildi.
 - Görev klasörlerinde RAPOR ve KOD alanları tanımlandı.
 - Kayıt, sürümleme ve süreklilik politikası oluşturuldu.
-- TODO fikir havuzu oluşturuldu; henüz fikir maddesi eklenmedi.
+- TODO fikir havuzu oluşturuldu; henüz fikir maddesi eklenmedi. Durum akışı artık açık fikir → göreve dönüşen açık kayıt → sonuçlanan kayıt biçiminde tanımlı.
 - **Deney sonucu veya derleme başarısı bu dosyada varsayılmayacak.** İlgili test kaydı ve kullanıcı doğrulaması bulunmadan kod başarılı/çalışıyor kabul edilmeyecek.
 - GRV-001 henüz sonuçlandırılmış sayılmıyor.
 
@@ -74,7 +74,7 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 
 ### Mevcut devir notu
 
-- **Son tamamlanan iş:** Hedef/görev dizini, süreklilik politikası, HISTORY ve TODO fikir havuzu GitHub'a eklendi.
+- **Son tamamlanan iş:** Hedef/görev dizini, süreklilik politikası, HISTORY ve TODO fikir havuzu GitHub'a eklendi; TODO durum geçişleri ve görevle bağlı kapanış kuralı netleştirildi.
 - **Son doğrulanmış teknik sonuç:** Bu yapısal düzenlemeler dışında yeni bir teknik ölçüm/derleme sonucu kaydedilmiş değil.
 - **Açık soru:** GRV-001'de kullanılacak mevcut ESP32-D + SCT-013 kod sürümü, bağlantı ve test koşulları görev kaydında netleştirilmeli.
 - **Sıradaki adım:** Mevcut çalışan kodu ve donanım durumunu tespit ederek GRV-001 testini ölçülebilir bir başlangıç noktasıyla açmak.
@@ -84,8 +84,9 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 Bu bölüm **eklemeli kayıt** içindir. Yeni kararlar yeni tarihli maddeler olarak eklenir; eski maddeler sessizce değiştirilmez.
 
 - **2026-10-09:** Ana hedef/görev ilişkisi kuruldu. HDF-001 “Akımı Okuma”; GRV-001 “ESP32-D ile SCT-013 Akım Okuması” olarak tanımlandı.
-- **2026-10-09:** Geçmiş deneyimlerin üzerine yazmama, kod sürümlerini ve raporları koruma, her kod için eşlik eden Markdown belgesi bulundurma ve doğrulanmamış sonuçları doğrulanmış gibi sunmama ilkeleri kayıt altına alındı.
+- **2026-10-09:** Geçmiş deneyimin üzerine yazmama, kod sürümlerini ve raporları koruma, her kod için eşlik eden Markdown belgesi bulundurma ve doğrulanmamış sonuçları doğrulanmış gibi sunmama ilkeleri kayıt altına alındı.
 - **2026-10-09:** Henüz resmî göreve dönüşmemiş fikirler ve küçük yapılacaklar için tarihli, tamamlanma tikli ve yeni maddeleri üstte tutan TODO listesi oluşturuldu.
+- **2026-10-09:** TODO sonuç durumları tanımlandı: “Tamamlandı”, “Vazgeçildi” ve “Göreve dönüştü”. Göreve dönüşen fikir, bağlı resmî görev tamamlanana kadar açık kalacak; sonuçlanmış maddeler ayrı bölüme taşınacak.
 
 Yeni karar kaydında tarih, karar, gerekçe ve etkilediği dosyalar belirtilir.
 
@@ -109,4 +110,4 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 
 ## 11. TODO — fikir havuzu
 
-[TODO/README.md](TODO/README.md), henüz resmî göreve dönüşmemiş fikirlerin ve küçük yapılacakların ortak listesidir. Yeni maddeler en üste girilir; ilk kayıt tarihi korunur; tamamlananlar tiklenir ve silinmez. Çalışmaya başlanacak bir fikir için ayrıca GOREVLER altında resmî görev açılır.
+[TODO/README.md](TODO/README.md), henüz resmî göreve dönüşmemiş fikirlerin ve küçük yapılacakların ortak listesidir. Yeni fikirler bölümün en üstüne eklenir; ilk kayıt tarihi korunur. Tamamlanan veya vazgeçilen fikirler silinmez, sonuç ve tarihleriyle “Sonuçlananlar” bölümüne taşınır. Bir fikir resmî göreve dönüşürse “Göreve dönüşenler — açık görevler” bölümüne alınır ve bağlı görev tamamlanana kadar açık kalır. Görev tamamlandığında sonuç “Görev tamamlandı” olarak kaydedilir.
