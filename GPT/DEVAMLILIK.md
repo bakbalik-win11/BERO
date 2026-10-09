@@ -81,3 +81,10 @@ Bu bölüm önceki testlerden kalan çalışma bağlamıdır; her yeni oturumda 
 - BERO'da MCP3208 için donanım referansı `DONANIM/MCP3208/README.md`, kod ve geçmiş test kaydı `KOD/MCP3208/README.md` altındadır.
 - Önceki SPI testinde CH0 0.000 V raporlanmış; benzer RX desenleri ADC sökülüyken de görülmüş; kök neden hâlâ doğrulanmamıştır. Eski test ayarlarını doğrulanmış çözüm gibi sunma.
 
+## 8. Microchip Support arşivi
+
+- Destek yazışmaları: [GPT/MICROCHIP-SUPPORT/DESTEK-YAZISMALARI.md](MICROCHIP-SUPPORT/DESTEK-YAZISMALARI.md)
+- Asistan için teknik tecrübe ve sonraki test sırası: [GPT/MICROCHIP-SUPPORT/TEKNIK-TECRUBE.md](MICROCHIP-SUPPORT/TEKNIK-TECRUBE.md)
+- Destek yanıtının özellikle vurguladığı başlıklar: statik girişte 2040–2051 kod yayılımı; VREF kaynağı ve bias ağı; CS'nin başlangıç durumu ve fazla saat darbeleri; ham TX/RX ile zero-bit kontrolü; 173 ms örnek aralığının RMS hesabına etkisi; 1 kSPS için anti-aliasing.
+- Destek yazışmasından aktarılan öneriler ile BERO'da fiziksel olarak ölçülüp doğrulanmış sonuçları birbirinden ayrı tut.
+
