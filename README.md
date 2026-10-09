@@ -36,3 +36,7 @@ Henüz resmî görev açmaya gerek olmayan fikirleri [TODO/README.md](TODO/READM
 ## Çalışma geçmişi
 
 Projenin tarih sıralı ilerleyişi için [HISTORY/](HISTORY/README.md) klasörünü kullan. “Ara rapor” ve “günü kapa” komutlarında tarihli günlük kaydı zorunludur.
+
+## Günlük kontrol listesi
+
+Günlük yapılacaklar, ara rapor ve gün sonu adımları tiklenebilir biçimde [GUNLUK/](GUNLUK/README.md) altında izlenir. Yeni günlük dosyası GitHub Actions ile her gün Türkiye saatiyle yaklaşık 03.05'te otomatik oluşturulacak şekilde ayarlanmıştır.
