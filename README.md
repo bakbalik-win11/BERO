@@ -29,3 +29,7 @@ Projenin genel çerçevesi, aktif ana hedefi, güncel durumu ve oturumlar arası
 ## Asistanın çalışma komutları
 
 “Ara rapor” ve “günü kapa” komutlarında uygulanacak kontrol listesi [ASISTAN_ISLETIM_PROTOKOLU.md](ASISTAN_ISLETIM_PROTOKOLU.md) dosyasında tanımlıdır.
+
+## Çalışma geçmişi
+
+Projenin tarih sıralı ilerleyişi için [HISTORY/](HISTORY/README.md) klasörünü kullan. “Ara rapor” ve “günü kapa” komutlarında tarihli günlük kaydı zorunludur.
