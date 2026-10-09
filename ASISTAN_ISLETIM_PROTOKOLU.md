@@ -136,3 +136,4 @@ Kullanıcı yeni bir çalışma gününe başlarken, aynı gün içinde ara veri
 
 **Bu zincir yalnızca yeni gün açılışında değil, her ara dönüşte de uygulanır.** Önceki oturumun bağlamı otomatik olarak hâlâ geçerli varsayılmaz. Bu prosedürün amacı, kayıtları okumadan ileri atlama ve daha önce belirlenmiş ilkeleri unutma riskini azaltmaktır.
 
+Kullanıcı ve asistanın birlikte kullanacağı kısa günlük kontrol kartı: [BERO Günlük Açılış ve Kapanış Kartı](GUNLUK/BERO_GUNLUK_AKIS.md). Bu kart kısa hatırlatma içindir; bu protokol bağlayıcı ayrıntılı akıştır.
