@@ -139,3 +139,18 @@ Kullanıcı yeni bir çalışma gününe başlarken, aynı gün içinde ara veri
 **Bu zincir yalnızca yeni gün açılışında değil, her ara dönüşte de uygulanır.** Önceki oturumun bağlamı otomatik olarak hâlâ geçerli varsayılmaz. Bu prosedürün amacı, kayıtları okumadan ileri atlama ve daha önce belirlenmiş ilkeleri unutma riskini azaltmaktır.
 
 Kullanıcı ve asistanın birlikte kullanacağı kısa günlük kontrol kartı: [BERO Günlük Açılış ve Kapanış Kartı](GUNLUK/BERO_GUNLUK_AKIS.md). Bu kart kısa hatırlatma içindir; bu protokol bağlayıcı ayrıntılı akıştır.
+
+## Sürekli sorumluluk: İngilizce sensör sayfaları
+
+İngilizce sensör/donanım sayfalarının aylık gözden geçirilmesi asistanın sürekli sorumluluğudur. Her gözden geçirmede:
+
+1. README, pusula, bu protokol ve kayıt politikasını; ilgili Türkçe donanım/sensör notlarını ve bunların kaynak hedef/görev/alt görev raporlarını oku.
+2. Yeni edinilmiş bilgiden hangisinin tekrar kullanılabilir ve İngilizce paylaşım için yeterince olgun olduğunu belirle. Henüz kanıtı olmayan veya koşulları belirsiz bilgiyi evrensel gerçek olarak yayımlama.
+3. İngilizce sayfaları Türkçe kaynakla karşılaştır; teknik anlamı, kaynak atıflarını, koşulları, kod sürümlerini, varyantları, sınırları ve doğrulama etiketlerini koru.
+4. Yeni hedefteki ayar/kod farklıysa mevcut örneği ezme; ayrı varyant/sürüm olarak ekle ve hangi hedef/görevden geldiğini bağla.
+5. Gereksiz kopya sayfa oluşturma. Yeni aktarılabilir bilgi yoksa bunu da sonuç olarak bildir; sırf aylık kontrol gerçekleşsin diye içerik değiştirme.
+6. Yapılan değişiklikleri GitHub'dan geri okuyarak doğrula ve HISTORY'ye tarihli kayıt ekle. Güncelleme yapılmadıysa gözden geçirme sonucunu ve açık kalanları HISTORY'ye kaydet.
+7. Kısa raporda incelenen sayfaları, yapılan/değişmeyen işleri, kaynak atıflarını, doğrulama durumunu ve sonraki adımı belirt.
+
+Bu sorumluluk aylık hatırlatmayla takip edilir; asıl içerik ve uygulama kuralları bu protokol ile [Kayıt ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) içindedir.
+
