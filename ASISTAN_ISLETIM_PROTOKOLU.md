@@ -99,3 +99,25 @@ Kullanıcı açıkça daha dar bir kapsam belirtirse, o kapsam uygulanır; ancak
 ## HISTORY sıralama kuralı
 
 HISTORY günlüklerinde **en yeni kayıt en üstte** olmalıdır. Ara rapor veya gün sonu kaydı eklendiğinde yeni bölüm mevcut dosyanın başına eklenir; önceki kayıtlar aşağıda ve değişmeden kalır. HISTORY/README.md içindeki günlük listesi de en yeni tarihten eskiye doğru sıralanır. Kullanıcı geçmişe gitmek isterse aşağı doğru ilerler; güncel kaydı bulmak için dosyanın sonuna inmek zorunda kalmaz.
+
+## Kalıcı ilkeleri yakalama ve uygulama — zorunlu
+
+Sohbette yeni bir çalışma ilkesi, karar veya tekrar kullanılabilir teknik ders ortaya çıktığında, bunu yalnızca konuşmada bırakma.
+
+1. **Sınıflandır:** Genel ve kalıcı çalışma ilkesi ise `README.md` içindeki BERO çalışma prensiplerine; kayıt/sürümleme kuralı ise `KAYIT_VE_SUREKLILIK.md` dosyasına; asistanın yapacağı iş akışı ise bu protokole; tarihsel karar ise `HISTORY/YYYY/YYYY-MM-DD.md` dosyasına işle. Aynı ilkeyi gereksiz yere her belgeye kopyalama; ana kuralı bir yerde tanımla ve diğer belgelerden bağlantı ver.
+2. **Operasyonelleştir:** İlkeyi uygulamak için hangi somut adımın gerektiğini ve hangi kanıtla tamamlandığını yaz. Yalnızca “dikkat et” gibi soyut bir notla yetinme.
+3. **Bağlantı kur:** İlgili ana hedef, görev raporu, deney kaydı, donanım/sensör notu ve kod sürümü arasında bağlantı ver.
+4. **Eski kaydı koru:** Tarihsel kayıtların üzerine yazma. Yapısal/politika belgeleri güncellenebilir; geçmiş deney, karar ve kanıtlar tarihli ek kayıtlarla korunur.
+5. **Doğrula:** GitHub'a yazdıktan sonra ilgili dosyayı geri oku; yazım doğrulanmadan işi tamamlandı diye bildirme.
+6. **Özetle:** Kullanıcıya yeni ilkenin hangi kalıcı kayda işlendiğini ve uygulamada neyi değiştireceğini kısaca bildir.
+
+## Görev basamakları, teknik dersler ve donanım kütüphanesi
+
+- Büyük görev içindeki anlamlı basamaklar görev raporunda tarihli ve kronolojik olarak izlenir. Her küçük işlem ayrı resmî görev olmak zorunda değildir.
+- Basamak değiştiğinde önceki basamağın sonucu, kanıtı, kullanılan kod sürümü ve açık soruları kaybolmadan rapora eklenir.
+- Görevde öğrenilen ve başka görevlerde de işe yarayabilecek donanım/sensör bilgisi, ilgili donanımın kalıcı Markdown notuna aktarılır; görev raporu kaynak deney ve kanıta bağlantı verir.
+- Donanım notuna aktarılmış olmak, bilginin otomatik olarak doğrulanmış olduğu anlamına gelmez. Her bilgi `öneri`, `gözlem`, `koşullu doğrulandı` veya `doğrulandı` gibi açık durum ve koşullarla etiketlenir.
+- Doğrulanmış kodlar tek bir “son kod” dosyasında birleştirilmez. Her sürüm kendi kodu, eşlik eden MD belgesi, donanım/yazılım koşulları, test kanıtı ve sınırlarıyla ayrı saklanır. Önceki sürüm korunur.
+- Derleme doğrulaması, gerçek donanım testi ve ölçüm doğrulaması ayrı kanıt türleridir; biri diğerinin yerine geçmez.
+- Bir teknik kural başka donanım/model için de geçerli görünüyorsa, kapsamı ayrı test edilene kadar genelleme yapma. Örneğin ortak yazılım bileşeni kullanılması iki ADC'nin tüm davranışlarının aynı olduğunu kanıtlamaz.
+
