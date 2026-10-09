@@ -11,7 +11,13 @@ Proje BERO, yalnızca çalışan bir sistem üretmeyi değil, ölçülebilir, do
 5. **Sorunun kaynağını bul.** Belirtiyi geçici olarak gidermek yerine nedenini belirle.
 6. **Doğrulamadan sonraki aşamaya geçme.** Her katmanı bağımsız test et ve sonuçlarını kaydet.
 7. **Başarısız test de veridir.** Sonucu, koşulları ve çıkarımları kayıt altına al; aynı belirsizliği yeniden üretme.
+8. **Geçmiş deneyimin üzerine yazma.** Rapor, log, ölçüm ve kod sürümlerini koru; yeni bulguları yeni sürüm veya ek kayıt olarak ekle.
+9. **Her kodun bir belgesi olsun.** Kodun yanında test koşullarını, doğrulananları, loglardan öğrenilenleri ve açık kalan noktaları anlatan bir .md dosyası tut.
+10. **Doğrulanmış ile varsayılanı ayır.** Derleme, çalışma ve ölçüm kanıtı yoksa sonucu doğrulanmış gibi sunma.
+11. **Yeni görev, yeni kayıt alanı.** Bir görev kapandıktan sonra sonraki görev yeni kimlik ve klasörle başlar; eski görev geçmişi referans olarak kalır.
 
 **Temel ilke:** Önce doğru ölçüm, sonra doğru yorum, en son sistemin tamamlanması.
 
 *BERO'da hedef yalnızca çalışması değil, neden doğru çalıştığının da bilinmesidir.*
+
+Kayıtların nasıl korunacağı ve projenin oturumlar arasında nasıl sürdürüleceği için [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) dosyasına bak.
