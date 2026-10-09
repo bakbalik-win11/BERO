@@ -23,6 +23,9 @@ Proje BERO, yalnızca çalışan bir sistem üretmeyi değil, ölçülebilir, do
 14. **Doğrulanmış kod tek dosyadan ibaret değildir.** Her sürümü kendi koşulları, test belgesi, kanıtları ve sınırlarıyla ayrı sakla. Derleme, donanım testi ve ölçüm doğrulamasını birbirinden ayır.
 15. **İlkeyi sohbet içinde bırakma.** Kalıcı bir ilke ortaya çıktığında uygun ana belgeye kaydet, uygulama adımını tanımla ve yazımı geri okuyarak doğrula. Ayrıntılar için [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md) ve [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) dosyalarına bak.
 
+
+16. **Depoya her dönüşte önce bağlamı oku.** Yeni gün, ara sonrası veya yeni sohbet fark etmez: pusula, aktif görev, ilgili teknik kayıtlar ve uygulanacak ilkeler okunmadan işe dalma. Zorunlu sıra [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md) içindedir.
+
 **Temel ilke:** Önce doğru ölçüm, sonra doğru yorum, en son sistemin tamamlanması.
 
 *BERO'da hedef yalnızca çalışması değil, neden doğru çalıştığının da bilinmesidir.*
