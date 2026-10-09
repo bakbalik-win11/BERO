@@ -9,6 +9,7 @@ Bu dosya, yeni bir çalışma oturumuna veya sohbete geçildiğinde BERO'nun ba�
 - **Ana çerçeve burada:** proje amacı, ana mimari, aktif hedef, güncel durum ve sıradaki adım.
 - **Görev ayrıntıları GOREVLER altında:** test planı, kod sürümleri, ölçümler, loglar ve görev deneyimi.
 - **Ana hedefler HEDEFLER altında:** hedef tanımı, hedefe bağlı görev silsilesi ve hedefin sonuçlandırılması.
+- **Fikir havuzu TODO altında:** henüz resmî göreve dönüşmemiş fikirler ve küçük yapılacaklar.
 - **Kalıcı kararlar ve süreklilik ilkeleri** kendi belgelerinde korunur.
 - Bu belge ayrıntılı kayıtların yerine geçmez; ilgili kayıtlara yönlendirir.
 
@@ -43,6 +44,7 @@ Bu görevde amaç, ESP32-D ve SCT-013 ile akım okuma davranışını incelemekt
 - GRV-001'in adı ve kapsamı ESP32-D + SCT-013 akım okuması olarak düzeltildi.
 - Görev klasörlerinde RAPOR ve KOD alanları tanımlandı.
 - Kayıt, sürümleme ve süreklilik politikası oluşturuldu.
+- TODO fikir havuzu oluşturuldu; henüz fikir maddesi eklenmedi.
 - **Deney sonucu veya derleme başarısı bu dosyada varsayılmayacak.** İlgili test kaydı ve kullanıcı doğrulaması bulunmadan kod başarılı/çalışıyor kabul edilmeyecek.
 - GRV-001 henüz sonuçlandırılmış sayılmıyor.
 
@@ -72,7 +74,7 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 
 ### Mevcut devir notu
 
-- **Son tamamlanan iş:** Hedef/görev dizini ile süreklilik politikası GitHub'a eklendi.
+- **Son tamamlanan iş:** Hedef/görev dizini, süreklilik politikası, HISTORY ve TODO fikir havuzu GitHub'a eklendi.
 - **Son doğrulanmış teknik sonuç:** Bu yapısal düzenlemeler dışında yeni bir teknik ölçüm/derleme sonucu kaydedilmiş değil.
 - **Açık soru:** GRV-001'de kullanılacak mevcut ESP32-D + SCT-013 kod sürümü, bağlantı ve test koşulları görev kaydında netleştirilmeli.
 - **Sıradaki adım:** Mevcut çalışan kodu ve donanım durumunu tespit ederek GRV-001 testini ölçülebilir bir başlangıç noktasıyla açmak.
@@ -83,6 +85,7 @@ Bu bölüm **eklemeli kayıt** içindir. Yeni kararlar yeni tarihli maddeler ola
 
 - **2026-10-09:** Ana hedef/görev ilişkisi kuruldu. HDF-001 “Akımı Okuma”; GRV-001 “ESP32-D ile SCT-013 Akım Okuması” olarak tanımlandı.
 - **2026-10-09:** Geçmiş deneyimlerin üzerine yazmama, kod sürümlerini ve raporları koruma, her kod için eşlik eden Markdown belgesi bulundurma ve doğrulanmamış sonuçları doğrulanmış gibi sunmama ilkeleri kayıt altına alındı.
+- **2026-10-09:** Henüz resmî göreve dönüşmemiş fikirler ve küçük yapılacaklar için tarihli, tamamlanma tikli ve yeni maddeleri üstte tutan TODO listesi oluşturuldu.
 
 Yeni karar kaydında tarih, karar, gerekçe ve etkilediği dosyalar belirtilir.
 
@@ -103,3 +106,7 @@ Komutların ayrıntılı kontrol listesi: [ASISTAN_ISLETIM_PROTOKOLU.md](ASISTAN
 ## 10. Tarihli proje geçmişi
 
 Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/](HISTORY/README.md) günlüğü kullanılır. “Ara rapor” ve “günü kapa” komutlarında yalnızca bu pusula güncellenmez; ilgili tarihin HISTORY dosyasına da yeni bir kayıt eklenir. Günlük geçmiş eklemeli tutulur ve eski girdiler silinmez.
+
+## 11. TODO — fikir havuzu
+
+[TODO/README.md](TODO/README.md), henüz resmî göreve dönüşmemiş fikirlerin ve küçük yapılacakların ortak listesidir. Yeni maddeler en üste girilir; ilk kayıt tarihi korunur; tamamlananlar tiklenir ve silinmez. Çalışmaya başlanacak bir fikir için ayrıca GOREVLER altında resmî görev açılır.
