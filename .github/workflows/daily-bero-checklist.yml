@@ -61,6 +61,12 @@ jobs:
           - [ ] Açık kalan konuları ve sonraki oturumun ilk adımını kaydet.
           - [ ] Günlük dosyası ve ilgili kayıt bağlantılarını pusulada/raporda kontrol et.
 
+          ## Kullanıcıdan beklenen teknik doğrulamalar (yalnızca ilgiliyse)
+
+          - [ ] Deney yapıldıysa gerçek bağlantı/koşul ve ham ölçüm/logları paylaş.
+          - [ ] Kod derlendiyse derleme sonucunu açıkça doğrula.
+          - [ ] Donanım veya çalışan yapılandırma değişikliği gerekiyorsa önceden onay ver.
+
           ## Günün özeti
 
           - Yapılan iş:
