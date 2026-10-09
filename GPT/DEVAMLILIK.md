@@ -72,3 +72,12 @@ Bu bölüm önceki testlerden kalan çalışma bağlamıdır; her yeni oturumda 
 2. Kullanıcının son talebini ve en son doğrulanmış sonucu esas al.
 3. Tek bir küçük, doğrulanabilir adımla ilerle.
 4. İş sonunda yalnızca gerçekten yapılanları ve doğrulananları bildir.
+
+## 7. MCP3204 / MCP3208 adlandırma uyarısı (2026-10-09)
+
+- Üretici ayrımı: MCP3204 = 12 bit, 4 tek uçlu kanal, 14 pinli paket seçenekleri; MCP3208 = 12 bit, 8 tek uçlu kanal, 16 pinli paket seçenekleri. Her ikisi de SPI ADC'dir. Resmî referans: https://www.microchip.com/en-us/product/MCP3204 , https://www.microchip.com/en-us/product/MCP3208 , veri sayfası https://ww1.microchip.com/downloads/en/DeviceDoc/21298E.pdf
+- **Kritik tarihsel not:** BERO'nun önceki ESPHome denemelerinde bileşen/kod adı `mcp3204` olarak geçtiği hâlde yapılandırma 8 kanal (CH0–CH7) okuma amacıyla kullanılmıştı. Bu isim çelişkisini sonraki oturumlarda unutma.
+- Yazılım bileşen adı, fiziksel entegre modelini kanıtlamaz. Gerçek çipin işaretlemesi/pin sayısı, bileşen sürümü ve 8 kanal desteği birbirinden bağımsız doğrulanmalıdır. MCP3204'ün kendisi 8 analog kanal sunmaz.
+- BERO'da MCP3208 için donanım referansı `DONANIM/MCP3208/README.md`, kod ve geçmiş test kaydı `KOD/MCP3208/README.md` altındadır.
+- Önceki SPI testinde CH0 0.000 V raporlanmış; benzer RX desenleri ADC sökülüyken de görülmüş; kök neden hâlâ doğrulanmamıştır. Eski test ayarlarını doğrulanmış çözüm gibi sunma.
+
