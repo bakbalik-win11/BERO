@@ -56,6 +56,13 @@ Her denemede aşağıdakileri birlikte kaydet:
 
 Önce sensör olmadan sabit bir DC girişle CH0, ardından tüm kanallar tek tek doğrulanmalı. Ancak bu aşamalar başarılı olduktan sonra SCT013, örnekleme penceresi ve RMS hesabına geç.
 
+## Kod örnekleri
+
+- [KOD-1 — ESPHome `mcp3204` bileşeni](KOD-1/README.md): Home Assistant için gerilim sensörleri; MCP3204/MCP3208 varyant farkı.
+- [KOD-2 — ESP32 Arduino SPI ham okuma](KOD-2/README.md): SPI komut/yanıt baytları, raw değer ve yaklaşık voltaj; hata ayıklama için.
+
+KOD-1 daha kolay kurulum sağlar fakat ham SPI baytlarını doğrudan göstermez. KOD-2 daha düşük seviyede kontrol ve ham veri sağlar fakat SPI çerçevesi/gerilim hesabı kullanıcı tarafından doğrulanmalıdır. İkisi de BERO donanımında henüz test edilmemiştir.
+
 ## İlgili dosyalar
 
 - [MCP3208 donanım ve üretici referansı](../../DONANIM/MCP3208/README.md)
