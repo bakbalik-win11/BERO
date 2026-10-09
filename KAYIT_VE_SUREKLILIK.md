@@ -54,3 +54,11 @@ Sohbette ortaya çıkan kalıcı çalışma ilkeleri yalnızca sohbet geçmişin
 
 Bu kayıt düzeni bir sohbetten diğerine aktarılabilmelidir; uygulamanın doğruluğu yalnızca asistanın hatırlamasına bağlı olmamalıdır.
 
+## Donanım/sensör tecrübe kütüphanesi ve kaynak atfı
+
+1. Donanım/sensör klasörleri, aynı bileşenle farklı hedeflerde edinilen tekrar kullanılabilir tecrübelerin ortak başvuru yeridir.
+2. Bir tecrübe bu klasörlere taşındığında yalnızca sonuç/ayar/kod parçası değil, kaynak **ana hedef**, **görev** ve gerekiyorsa **alt görev/deney raporu** bağlantıları da eklenir. Böylece kaynağın basamakları ve koşulları yeniden izlenebilir.
+3. Hedefler değişebilir; aynı sensör veya donanım için farklı amaçlarla üretilmiş ayar, kod ve yöntemler birlikte bulunabilir. Bunları tek bir “en yeni” ayara indirgeme veya bir hedefin kaydıyla diğerini ezme. Her varyantı kendi amacı, koşulları, sürümü ve doğrulama durumu ile koru.
+4. Görev ana raporu kronolojik çalışma akışının ve basamakların kaynak kaydıdır. Donanım/sensör notu bu raporun yerine geçmez; teknik tecrübeyi bulmayı ve yeniden kullanmayı kolaylaştırır.
+5. Tecrübe yeniden kullanılırken donanım/sensör kaydındaki atıf üzerinden kaynak rapora dön; hangi hedefte, hangi basamakta ve hangi koşullarda elde edildiğini kontrol et. Yeni kullanım farklı koşullardaysa önceki sonuç otomatik olarak genellenmez.
+
