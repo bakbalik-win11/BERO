@@ -16,15 +16,18 @@ Her görev kendi klasöründe yer alır: GRV-NNN/.
 
 Her görev klasöründe:
 - RAPOR/: görev hedefi, bağlı ana hedef, test planı, bağlantılar, gözlemler, sonuçlar, kararlar ve öğrenilenler.
-- KOD/: göreve ait deney kodu ve test araçları.
+- KOD/: göreve ait deney kodları ve her kod sürümünün yanında bulunan .md teknik kaydı.
 
 Göreve ait tecrübe ve deney kodu burada tutulur. Sensöre veya donanıma özel kalıcı uygulama kodları, ilgili donanım/sensör klasörlerinde tutulmaya devam eder. Görev klasörü deney ve doğrulama geçmişini korur; kalıcı kodun asıl yerini kendiliğinden değiştirmez.
 
-## Kod doğrulama kuralları
+## Geçmişi koruma
 
+- Kapanmış bir görevin raporu ve kod sürümleri üzerine yeni deney yazılmaz.
+- Yeni deney, yeni dosya/sürüm veya yeni görev olarak kaydedilir.
+- Düzeltmeler eski kaydı sessizce değiştirmek yerine ek notla belgelenir.
 - Derleme gerektiren kod, kullanıcı derlemenin başarılı olduğunu doğrulamadan görev klasörüne taşınmaz.
-- Her kod sürümünün yanında, hedefi, donanımı, sürümün işlevini, doğrulananları, test koşullarını/sonuçlarını, loglardan öğrenilenleri, hataları, doğrulanmamış noktaları ve sonraki adımı açıklayan bir .md dosyası bulunur.
 - Ölçüm ve logların göstermediği sonuçlar doğrulanmış gibi yazılmaz.
+- Ayrıntılı kural: [Kayıt, Sürümleme ve Süreklilik Politikası](../KAYIT_VE_SUREKLILIK.md).
 
 ## İlk görev
 
