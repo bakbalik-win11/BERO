@@ -62,3 +62,12 @@ Bu kayıt düzeni bir sohbetten diğerine aktarılabilmelidir; uygulamanın doğ
 4. Görev ana raporu kronolojik çalışma akışının ve basamakların kaynak kaydıdır. Donanım/sensör notu bu raporun yerine geçmez; teknik tecrübeyi bulmayı ve yeniden kullanmayı kolaylaştırır.
 5. Tecrübe yeniden kullanılırken donanım/sensör kaydındaki atıf üzerinden kaynak rapora dön; hangi hedefte, hangi basamakta ve hangi koşullarda elde edildiğini kontrol et. Yeni kullanım farklı koşullardaysa önceki sonuç otomatik olarak genellenmez.
 
+## İngilizce sensör sayfaları ve evrensel bilgi katkısı
+
+1. Türkçe DONANIM/sensör kayıtları, BERO içinde biriken teknik tecrübenin kaynak kayıtlarıdır. İngilizce sayfalar, bu kaynaklardan seçilen ve paylaşılmaya yeterince olgunlaşmış tekrar kullanılabilir bilgiyi daha geniş bir topluluğa sunar.
+2. İngilizce sayfa, kaynak Türkçe kayda ve oradan ilgili ana hedef, görev, alt görev/deney raporu ile basamaklara geri izlenebilir olmalıdır.
+3. Çeviri sırasında teknik anlam, donanım/yazılım sürümü, test koşulları, ölçüm kanıtı, sınırlar ve belirsizlikler korunur. Kaynaktaki gözlem, doğrulanmış genel kural gibi sunulmaz.
+4. Farklı hedeflerden gelen kod/ayar varyantları ayrı sürüm veya ayrı örnek olarak tutulur. İngilizce sayfa bunları tek bir ayara indirgemez ve önceki varyantın üzerine yazmaz.
+5. İngilizce sensör sayfaları ayda bir gözden geçirilir. Yalnızca yeni, anlamlı ve kaynakları doğrulanabilir bilgi olduğunda güncellenir; güncelleme yapılmadığında da inceleme sonucu kaydedilir.
+6. Bu çalışma BERO'nun teknik kayıtlarının yerine geçmez; onlara bağlı, uluslararası okuyucuya yönelik bir bilgi katmanıdır.
+
