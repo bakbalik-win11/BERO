@@ -25,6 +25,17 @@ TODO listesi [TODO/README.md](TODO/README.md) dosyasında tutulur. Bu liste resm
 - Fikir konuşmada geçti diye otomatik olarak göreve dönüştürme; kullanıcı açıkça TODO'ya kayıt talep etmediyse bağlama göre karar ver veya gerektiğinde sor.
 - Ara rapor ve günü kapa sırasında bu oturumda eklenen, tamamlanan, vazgeçilen veya göreve dönüşen maddeleri kontrol et; durumlarını ve bağlantılarını doğru kaydet.
 
+## Günlük kontrol listesi — zorunlu takip
+
+Günlük tik listesi `GUNLUK/YYYY/YYYY-MM-DD.md` altında tutulur; dizin ve otomatik günlük dosyası oluşturma kuralı [GUNLUK/README.md](GUNLUK/README.md) içindedir.
+
+- “Ara rapor” ve “günü kapa” tetiklenince bugünün günlük kontrol listesini aç/oluştur ve kontrol et.
+- Yalnızca gerçekten tamamlanan adımları `[x]` yap. Yapılmayan, atlanan veya doğrulanamayan adımlar `[ ]` kalır; kullanıcıya yapılmış gibi sunulmaz.
+- Fikir göreve dönüştüğünde aynı iş akışında TODO kaydını “Göreve dönüşenler — açık görevler” bölümüne taşı, `[ ]` olarak bırak, görev kimliği/linki ekle; günlük listede fikir→görev kaydı kutusunu ancak bu kayıtlar yazılıp doğrulandıktan sonra işaretle.
+- Ara rapor/günü kapa sırasında HISTORY girdisi, görev raporu eki, pusula ve TODO durumu kontrol edilir. İlgili günlük kutuları ancak her bir kayıt başarıyla yazılıp geri okunarak doğrulanınca işaretlenir.
+- Gün sonu listesi teknik görevin kapandığı anlamına gelmez. Teknik deney yapılmadıysa deney kutusu açık kalır; teknik sonuç yoksa özet bunu açıkça söyler.
+- Günlük dosyaları eklemeli korunur; var olan aynı tarihli dosyanın üzerine otomasyonla yazılmaz.
+
 ## Tetikleyici: "ara rapor"
 
 Kullanıcı "ara rapor" dediğinde, o ana kadarki çalışmanın ara durum kaydı hazırlanır.
