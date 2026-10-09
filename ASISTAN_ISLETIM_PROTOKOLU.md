@@ -12,12 +12,18 @@ TODO listesi [TODO/README.md](TODO/README.md) dosyasında tutulur. Bu liste resm
 
 - Kullanıcı açıkça bir fikri TODO'ya eklememizi istediğinde maddeyi listeye kaydet.
 - Kullanıcı “bunu TODO'ya at”, “aklımıza yaz” veya benzer net bir kayıt isteği verdiğinde fikir maddesini ekle.
-- Bir fikri eklerken ilk kayıt tarihini güvenilir gün bilgisiyle yaz; tarih bilinmiyorsa uydurma.
-- Yeni maddeleri listenin en üstüne ekle. Önceki maddelerin ilk kayıt tarihlerini değiştirme.
-- Tamamlanan maddeyi `[x]` ile işaretle ve tamamlanma tarihini ekle; geçmişi korumak için silme.
-- Bir fikir resmî göreve dönüşürse yeni görev kimliğini ve görev bağlantısını TODO maddesine ekle. TODO maddesini sessizce silme.
-- Fikir konuşmada geçti diye otomatik olarak göreve dönüştürme; TODO'ya kayıt talebi açık değilse bağlama göre karar ver veya gerektiğinde sor.
-- Ara rapor ve günü kapa sırasında TODO'yu kontrol et; bu oturumda eklenen, tamamlanan veya göreve dönüştürülen maddeleri doğru kaydet.
+- Her yeni maddeyi **Açık fikirler** bölümünün en üstüne ekle; ilk kayıt tarihini koru.
+- Her bölüm kendi içinde yeniden eskiye değil, **yeniden eskiye sıralanır**: en yeni kayıt bölümün en üstündedir.
+- Madde durumunu açıkça yönet: `Bekliyor`, `Göreve dönüştü — görev açık`, `Tamamlandı`, `Vazgeçildi` veya `Görev tamamlandı`.
+- `[ ]` sonuçlanmamış madde demektir; `[x]` fikir kaydının sonucu belli olup kapandığını gösterir. Tikin anlamı teknik başarı değildir; sonuç ayrıca yazılır.
+- Normal fikir tamamlandığında `[x]`, sonuç ve sonuç tarihi eklenir; madde **Sonuçlananlar** bölümünün en üstüne taşınır.
+- Fikirden vazgeçilirse madde silinmez: `[x]`, `Sonuç: Vazgeçildi`, tarih ve gerekçe eklenir; **Sonuçlananlar** bölümünün en üstüne taşınır.
+- Fikir resmî göreve dönüştürülünce görev kimliği ve bağlantısını ekle, maddeyi **Göreve dönüşenler — açık görevler** bölümüne taşı; ancak `[ ]` bırak. “Göreve dönüştü” bir ara durumdur, kapanış değildir.
+- **Göreve dönüşen TODO maddesi, bağlı resmî görev tamamlanana kadar açık kalır.** Görev tamamlandığı doğrulanınca `[x]`, `Sonuç: Görev tamamlandı` ve sonuç tarihi eklenir; ardından **Sonuçlananlar** bölümüne taşınır.
+- Görev açılması tek başına tamamlanma kanıtı değildir. Görev bağlantısı veya tamamlanma durumu bilinmiyorsa tahmin etme; açık bırak ve sor.
+- İlk kayıt tarihi hiçbir zaman değiştirilmez. Tarih güvenilir biçimde bilinmiyorsa uydurma.
+- Fikir konuşmada geçti diye otomatik olarak göreve dönüştürme; kullanıcı açıkça TODO'ya kayıt talep etmediyse bağlama göre karar ver veya gerektiğinde sor.
+- Ara rapor ve günü kapa sırasında bu oturumda eklenen, tamamlanan, vazgeçilen veya göreve dönüşen maddeleri kontrol et; durumlarını ve bağlantılarını doğru kaydet.
 
 ## Tetikleyici: "ara rapor"
 
