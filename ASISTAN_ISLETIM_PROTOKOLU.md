@@ -116,6 +116,8 @@ Sohbette yeni bir çalışma ilkesi, karar veya tekrar kullanılabilir teknik de
 - Büyük görev içindeki anlamlı basamaklar görev raporunda tarihli ve kronolojik olarak izlenir. Her küçük işlem ayrı resmî görev olmak zorunda değildir.
 - Basamak değiştiğinde önceki basamağın sonucu, kanıtı, kullanılan kod sürümü ve açık soruları kaybolmadan rapora eklenir.
 - Görevde öğrenilen ve başka görevlerde de işe yarayabilecek donanım/sensör bilgisi, ilgili donanımın kalıcı Markdown notuna aktarılır; görev raporu kaynak deney ve kanıta bağlantı verir.
+- Donanım/sensör notuna aktarırken kaynak **ana hedefi, görevi ve gerekiyorsa alt görev/deney raporunu** açıkça bağla; kullanıcı tecrübeyi yeniden kullandığında bu atıftan kaynak rapordaki ilgili basamaklara ulaşabilmeli.
+- Aynı sensör/donanım farklı hedeflerde farklı ayar, kod parçası veya yöntemler kazandırabilir. Bunları tek bir güncel değer altında birleştirip eskiyi ezme; ayrı varyant/sürüm olarak koşulları ve doğrulama durumlarıyla koru. Donanım/sensör klasörü birikimli tecrübe kütüphanesidir; görev ana raporu ise kaynak iş akışını korur.
 - Donanım notuna aktarılmış olmak, bilginin otomatik olarak doğrulanmış olduğu anlamına gelmez. Her bilgi `öneri`, `gözlem`, `koşullu doğrulandı` veya `doğrulandı` gibi açık durum ve koşullarla etiketlenir.
 - Doğrulanmış kodlar tek bir “son kod” dosyasında birleştirilmez. Her sürüm kendi kodu, eşlik eden MD belgesi, donanım/yazılım koşulları, test kanıtı ve sınırlarıyla ayrı saklanır. Önceki sürüm korunur.
 - Derleme doğrulaması, gerçek donanım testi ve ölçüm doğrulaması ayrı kanıt türleridir; biri diğerinin yerine geçmez.
