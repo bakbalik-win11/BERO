@@ -23,6 +23,12 @@ _Yeni fikirleri bu satırın hemen altına ekle. Henüz sonuçlanmamış maddele
 
 _Bu bölümdeki maddeler **açık kalır**. Görev oluşturulmuş olması fikrin tamamlandığı anlamına gelmez. İlgili resmî görev tamamlanana kadar `[ ]` kalır. En yeni dönüşüm en üstte._
 
+- [ ] **ESP32-D ile SCT-013 30A/1V akım okuma**
+  - Eklenme: 2026-10-09
+  - Sonuç: Göreve dönüştü — görev açık
+  - Görev: [GRV-001 — ESP32-D ile SCT-013 Akım Okuması](../GOREVLER/GRV-001/RAPOR/README.md)
+  - Görev durumu: Açık
+
 ## 3. Sonuçlananlar — en yeni sonuç en üstte
 
 _Tamamlanan, vazgeçilen veya bağlı görevi tamamlanan maddeler buraya taşınır. Her maddede sonuç, sonuç tarihi ve gerekirse gerekçe/bağlantı bulunur._
