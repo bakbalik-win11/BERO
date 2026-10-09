@@ -62,3 +62,7 @@ Kullanıcı açıkça daha dar bir kapsam belirtirse, o kapsam uygulanır; ancak
 ## Zorunlu tarihli geçmiş kaydı
 
 **“Ara rapor” ve “günü kapa” komutlarının ikisinde de HISTORY günlüğüne yazmak zorunludur.** Bu işlem yalnızca pusulayı güncellemekle karşılanmış sayılmaz. Her girdide tarih/saat (saat güvenilir biçimde bilinmiyorsa yalnızca tarih), hedef/görev kimliği, yapılan iş, değişen dosyalar ve commit bağlantıları, doğrulananlar, açık kalanlar ve sıradaki adım bulunur. Günlük dosyası yoksa oluşturulur; varsa eski içerik korunur ve yeni bölüm eklenir. Günlük kaydı GitHub'a başarıyla yazılamazsa kullanıcıya açıkça söylenir.
+
+## HISTORY sıralama kuralı
+
+HISTORY günlüklerinde **en yeni kayıt en üstte** olmalıdır. Ara rapor veya gün sonu kaydı eklendiğinde yeni bölüm mevcut dosyanın başına eklenir; önceki kayıtlar aşağıda ve değişmeden kalır. HISTORY/README.md içindeki günlük listesi de en yeni tarihten eskiye doğru sıralanır. Kullanıcı geçmişe gitmek isterse aşağı doğru ilerler; güncel kaydı bulmak için dosyanın sonuna inmek zorunda kalmaz.
