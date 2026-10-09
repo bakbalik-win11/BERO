@@ -16,6 +16,13 @@ Proje BERO, yalnızca çalışan bir sistem üretmeyi değil, ölçülebilir, do
 10. **Doğrulanmış ile varsayılanı ayır.** Derleme, çalışma ve ölçüm kanıtı yoksa sonucu doğrulanmış gibi sunma.
 11. **Yeni görev, yeni kayıt alanı.** Bir görev kapandıktan sonra sonraki görev yeni kimlik ve klasörle başlar; eski görev geçmişi referans olarak kalır.
 
+
+
+12. **Basamakları görünür tut.** Büyük görev içindeki anlamlı basamakları görev raporunda tarihli olarak izle; her küçük adımı ayrı resmî görev yapmak zorunda değilsin.
+13. **Tecrübeyi kaynağından donanıma taşı.** Görevde edinilen tekrar kullanılabilir teknik bilgiyi ilgili donanım/sensör Markdown notuna aktar ve kaynak görev/deney bağlantısını koru.
+14. **Doğrulanmış kod tek dosyadan ibaret değildir.** Her sürümü kendi koşulları, test belgesi, kanıtları ve sınırlarıyla ayrı sakla. Derleme, donanım testi ve ölçüm doğrulamasını birbirinden ayır.
+15. **İlkeyi sohbet içinde bırakma.** Kalıcı bir ilke ortaya çıktığında uygun ana belgeye kaydet, uygulama adımını tanımla ve yazımı geri okuyarak doğrula. Ayrıntılar için [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md) ve [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) dosyalarına bak.
+
 **Temel ilke:** Önce doğru ölçüm, sonra doğru yorum, en son sistemin tamamlanması.
 
 *BERO'da hedef yalnızca çalışması değil, neden doğru çalıştığının da bilinmesidir.*
