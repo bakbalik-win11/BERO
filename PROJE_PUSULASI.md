@@ -1,0 +1,93 @@
+# Proje BERO — Ana Pusula ve Süreklilik Kaydı
+
+> Bu belge, günlük deney ayrıntılarının yerine geçmez. Projenin genel yönünü, nereden geldiğimizi, şu anda nerede olduğumuzu ve sıradaki adımı takip eden ana çerçevedir.
+
+## 1. Bu belgenin görevi
+
+Bu dosya, yeni bir çalışma oturumuna veya sohbete geçildiğinde BERO'nun bağlamını yeniden kurmak için ilk bakılacak yönlendirme kaydıdır.
+
+- **Ana çerçeve burada:** proje amacı, ana mimari, aktif hedef, güncel durum ve sıradaki adım.
+- **Görev ayrıntıları GOREVLER altında:** test planı, kod sürümleri, ölçümler, loglar ve görev deneyimi.
+- **Ana hedefler HEDEFLER altında:** hedef tanımı, hedefe bağlı görev silsilesi ve hedefin sonuçlandırılması.
+- **Kalıcı kararlar ve süreklilik ilkeleri** kendi belgelerinde korunur.
+- Bu belge ayrıntılı kayıtların yerine geçmez; ilgili kayıtlara yönlendirir.
+
+## 2. BERO'nun genel yönü
+
+Proje BERO, ev otomasyonu ve ölçüm/denetim sistemini modüler, ölçülebilir, doğrulanabilir ve zaman içinde sürdürülebilir biçimde kurmayı hedefler.
+
+Bilinen ana mimari çerçeve:
+- **Home Assistant:** üst seviye otomasyon ve karar katmanı.
+- **Aqara ve mevcut akıllı ev cihazları:** yaşam otomasyonunun mevcut bileşenleri.
+- **ESP32 düğümleri:** özel ölçüm, sensör ve yerel kontrol işleri.
+- **Saha I/O ve haberleşme:** RS485/Modbus ve Ethernet tabanlı modüler bağlantıların araştırılması.
+- **Mini Node yaklaşımı:** işlevleri ayrıştırılmış ve bağımsız doğrulanabilir modüller.
+- **Ölçüm disiplini:** ham veriyi, test koşullarını, yorumu ve doğrulanmış sonucu birbirinden ayırmak.
+
+Bu bölüm ana resmi özetler. Ayrıntılı elektrik, HVAC, donanım ve bağlantı kararları kendi kayıtlarında tutulmalıdır; bu dosya onların yerine geçmez.
+
+## 3. Aktif ana hedef
+
+**[HDF-001 — Akımı Okuma](HEDEFLER/HDF-001-AKIMI-OKUMA/HEDEF.md)**
+
+Hedef: akım ölçüm zincirini çalıştırmak, davranışını ölçümlerle doğrulamak ve kullanılan yöntemi sınırlarıyla birlikte tekrarlanabilir biçimde belgelemek.
+
+Başlangıç görevi:
+- **[GRV-001 — ESP32-D ile SCT-013 Akım Okuması](GOREVLER/GRV-001/RAPOR/README.md)**
+
+Bu görevde amaç, ESP32-D ve SCT-013 ile akım okuma davranışını incelemektir. MCP3208/SPI zamanlama konusu bu görevin kapsamına kendiliğinden eklenmez; gerekirse ayrı görev olarak açılır.
+
+## 4. Şu anki kayıtlı durum
+
+- Hedef/görev yapısı GitHub'da oluşturuldu.
+- GRV-001'in adı ve kapsamı ESP32-D + SCT-013 akım okuması olarak düzeltildi.
+- Görev klasörlerinde RAPOR ve KOD alanları tanımlandı.
+- Kayıt, sürümleme ve süreklilik politikası oluşturuldu.
+- **Deney sonucu veya derleme başarısı bu dosyada varsayılmayacak.** İlgili test kaydı ve kullanıcı doğrulaması bulunmadan kod başarılı/çalışıyor kabul edilmeyecek.
+- GRV-001 henüz sonuçlandırılmış sayılmıyor.
+
+Bu durum bölümü, yeni kanıt elde edildiğinde güncellenebilir bir anlık görüntüdür. Değişiklik önemli bir karar veya önceki durumu etkiliyorsa aşağıdaki kronolojiye ayrıca kayıt eklenir.
+
+## 5. Sıradaki adım
+
+1. GRV-001 için kullanılacak mevcut ESP32-D + SCT-013 kodunu ve donanım/bağlantı durumunu belirlemek; mevcut çalışan sürümü korumak.
+2. Test koşullarını ve ölçüm beklentisini görev raporuna kaydetmek.
+3. Tek değişkenli deneylerle ölçüm almak; ham veriyi ve logları saklamak.
+4. Bulgulara göre sonraki görev gerekip gerekmediğine karar vermek.
+5. Derleme gerektiren kod, kullanıcı başarılı derlemeyi doğrulamadan görev klasörüne taşınmamalıdır.
+6. Ana hedef ancak kabul ölçütleri ve kanıtlar değerlendirildikten sonra kapatılmalıdır.
+
+Bu liste, yeni test sonucu geldikçe güncellenir; sonuçlar önceden varsayılmaz.
+
+## 6. Oturum devri — en son nerede kaldık?
+
+Yeni bir oturuma geçerken bu bölümü kısa ve somut biçimde güncelle:
+- **Son tamamlanan iş:** Hangi belge, kod veya deney tamamlandı?
+- **Son doğrulanmış durum:** Hangi sonuç kullanıcı/ölçüm/log tarafından doğrulandı?
+- **Açık soru:** Hangi belirsizlik hâlâ çözülmedi?
+- **Sıradaki tek adım:** Devam etmek için ilk yapılacak somut işlem nedir?
+- **İlgili kayıtlar:** Görev raporu, kod sürümü, log veya karar bağlantıları.
+
+Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
+
+### Mevcut devir notu
+
+- **Son tamamlanan iş:** Hedef/görev dizini ile süreklilik politikası GitHub'a eklendi.
+- **Son doğrulanmış teknik sonuç:** Bu yapısal düzenlemeler dışında yeni bir teknik ölçüm/derleme sonucu kaydedilmiş değil.
+- **Açık soru:** GRV-001'de kullanılacak mevcut ESP32-D + SCT-013 kod sürümü, bağlantı ve test koşulları görev kaydında netleştirilmeli.
+- **Sıradaki adım:** Mevcut çalışan kodu ve donanım durumunu tespit ederek GRV-001 testini ölçülebilir bir başlangıç noktasıyla açmak.
+
+## 7. Önemli kararların kronolojisi
+
+Bu bölüm **eklemeli kayıt** içindir. Yeni kararlar yeni tarihli maddeler olarak eklenir; eski maddeler sessizce değiştirilmez.
+
+- **2026-10-09:** Ana hedef/görev ilişkisi kuruldu. HDF-001 “Akımı Okuma”; GRV-001 “ESP32-D ile SCT-013 Akım Okuması” olarak tanımlandı.
+- **2026-10-09:** Geçmiş deneyimlerin üzerine yazmama, kod sürümlerini ve raporları koruma, her kod için eşlik eden Markdown belgesi bulundurma ve doğrulanmamış sonuçları doğrulanmış gibi sunmama ilkeleri kayıt altına alındı.
+
+Yeni karar kaydında tarih, karar, gerekçe ve etkilediği dosyalar belirtilir.
+
+## 8. Süreklilik ilkesi
+
+**Bir sonraki adımı bulurken önceki adımları kaybetme.** Yeni oturumda önce bu pusula, sonra ilgili ana hedef, sonra aktif görev raporu ve en son kod/log kayıtları okunur.
+
+Ayrıntılı kayıt politikası: [KAYIT_VE_SUREKLILIK.md](KAYIT_VE_SUREKLILIK.md).
