@@ -1,38 +1,35 @@
-# GRV-001 — ESP32–MCP3208 Ham Veri ve SPI Zamanlama Doğrulaması
+# GRV-001 — ESP32-D ile SCT-013 Akım Okuması
 
 ## Amaç
 
-ESP32'nin MCP3208'den ham ADC verisini doğru ve tekrarlanabilir biçimde okuyabildiğini doğrulamak; özellikle CS, SPI clock, veri çıkış/örnekleme kenarları ve RX zamanlamasını birbirinden ayırarak incelemek.
+ESP32-D kullanarak SCT-013 akım sensöründen ölçüm almak; sinyalin ESP32 tarafından doğru okunabildiğini gözlemlemek ve okuma zincirinin davranışını ölçüm kayıtlarıyla doğrulamak.
 
 ## Kapsam
 
-- Tek kanal ve bilinen/sabit DC girişle başlangıç testi
-- SPI bağlantı ve pin eşlemesinin kaydı
-- CS etkinleşme süresi ve aktarım penceresinin incelenmesi
-- MCP3208 veri çıkış kenarı ile ESP32 örnekleme kenarının doğrulanması
-- Ham RX byte'larının ve 12 bit ADC sonucunun karşılaştırılması
-- Tek değişkenli testler ve sonuçların kaydı
+- ESP32-D ile SCT-013 bağlantısının ve kullanılan donanımın kaydı
+- Sensör çıkışının ve ADC ham okumalarının gözlemlenmesi
+- Okuma kararlılığının ve örnekleme davranışının incelenmesi
+- Kullanılan dönüşüm/hesaplama adımlarının belgelenmesi
+- Deneylerin, sonuçların ve edinilen tecrübenin bu görev altında saklanması
 
-## Kapsam dışı
+## Çalışma yöntemi
 
-- SCT-013 akım kalibrasyonu ve nihai RMS doğruluğu
-- Sensöre/donanıma özel kalıcı uygulama kodunun bu klasöre taşınması
-- Aynı anda birden fazla donanım veya yazılım değişikliği
+1. Test koşullarını ve bağlantıları kaydet.
+2. Beklenen davranışı belirt.
+3. Bir seferde tek değişkeni değiştir.
+4. Ham ölçümleri ve kullanılan kod sürümünü sakla.
+5. Sonucu doğrulandı, elendi veya belirsiz olarak işaretle.
+6. Bir sonraki adımı ölçüm sonucuna göre belirle.
 
-## Test kaydı
+## Kapsam sınırı
 
-Her deney için şunları yaz:
-1. Tarih ve test kimliği
-2. Donanım bağlantısı ve giriş koşulu
-3. Beklenen sonuç
-4. Kullanılan kod/commit
-5. Gerçek ölçüm ve ham veriler
-6. Sonuç: doğrulandı, elendi veya belirsiz
-7. Sonraki adım
+Bu klasör, GRV-001 sırasında geliştirilen deney kodunu ve edinilen tecrübeyi tutar. Sensöre veya donanıma özel kalıcı uygulama kodunun ana yeri ilgili donanım/sensör klasörüdür. Görev kodu, deney ve doğrulama geçmişini korumak için burada tutulur.
+
+MCP3208/SPI zamanlama doğrulaması bu görevin tanımı değildir; gerekirse ayrı bir görev olarak planlanır.
 
 ## Başarı ölçütü
 
-Bilinen giriş koşullarında ham ADC verisinin kararlı ve tekrarlanabilir okunması; CS ve SPI aktarım zamanlamasının açıklanabilir ve kayıtla doğrulanabilir olması.
+ESP32-D ile SCT-013 okuma zincirinin davranışının tekrarlanabilir ölçümlerle gösterilmesi ve kullanılan yöntem, sınırlar ile sonuçların raporlanması.
 
 ## Durum
 
