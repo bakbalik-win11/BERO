@@ -18,6 +18,10 @@ Bu klasör, projenin zaman içinde nereden nereye ilerlediğini gösteren tarihl
 
 - [2026-10-09](2026/2026-10-09.md) — hedef/görev yapısı ve süreklilik sistemi başlangıcı
 
+## Günlük kontrol listesi
+
+- [Günlük tik listeleri](../GUNLUK/README.md) — günlük iş akışı ve kontrol adımlarının takibi
+
 ## İlgili ana kayıtlar
 
 - [Proje Pusulası](../PROJE_PUSULASI.md)
