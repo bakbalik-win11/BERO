@@ -120,3 +120,13 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - “Ara rapor” ve “günü kapa” sırasında günlük kontrol listesi, TODO yaşam döngüsü, HISTORY, aktif görev raporu ve bu pusula birlikte gözden geçirilir.
 - Kutular yalnızca ilgili işlem tamamlanıp GitHub kaydı geri okunarak doğrulandığında işaretlenir.
 - Günlük otomasyonun zamanlanmış ilk çalışması henüz doğrulanmış değildir.
+
+
+## 13. Süreklilik denetimi — 2026-10-09
+
+- **Denetim bulgusu:** Günlük otomasyonun yeni dosyayı `GUNLUK/README.md` indeksine eklememesi düzeltildi.
+- **Asistan sorumluluğu:** Günlük liste, TODO yaşam döngüsü, HISTORY, görev raporu, pusula, bağlantılar ve GitHub geri-okuma doğrulaması.
+- **Kullanıcı sorumluluğu:** Yalnızca teknik kanıt ve kararlar — deney koşulları/ham loglar, derleme sonucu, gerektiğinde donanım veya çalışan yapılandırma değişikliği onayı.
+- **Henüz doğrulanmayan:** GitHub Actions iş akışının gerçek çalıştırması. İlk başarılı çalıştırma görülene kadar günlük otomasyonun çalıştığı varsayılmayacak.
+- **Sıradaki adım:** GitHub Actions durumunu doğrulamak; ardından GRV-001 için mevcut kod, bağlantı ve test koşullarını belirlemek.
+- **Ayrıntılı kayıt:** [HISTORY Kayıt 007](HISTORY/2026/2026-10-09.md).
