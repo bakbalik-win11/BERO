@@ -25,3 +25,7 @@ Kayıtların nasıl korunacağı ve projenin oturumlar arasında nasıl sürdür
 ## Proje pusulası
 
 Projenin genel çerçevesi, aktif ana hedefi, güncel durumu ve oturumlar arası devam notu için [PROJE_PUSULASI.md](PROJE_PUSULASI.md) dosyasını başlangıç noktası olarak kullan.
+
+## Asistanın çalışma komutları
+
+“Ara rapor” ve “günü kapa” komutlarında uygulanacak kontrol listesi [ASISTAN_ISLETIM_PROTOKOLU.md](ASISTAN_ISLETIM_PROTOKOLU.md) dosyasında tanımlıdır.
