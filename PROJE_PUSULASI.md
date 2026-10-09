@@ -90,6 +90,8 @@ Bu bölüm **eklemeli kayıt** içindir. Yeni kararlar yeni tarihli maddeler ola
 
 Yeni karar kaydında tarih, karar, gerekçe ve etkilediği dosyalar belirtilir.
 
+- **2026-10-09:** Yeni süreklilik ilkesi: anlamlı görev basamakları görev raporunda tarihli izlenecek; tekrar kullanılabilir donanım/sensör tecrübesi kaynak görev ve kanıt bağlantısıyla donanımın Markdown notuna aktarılacak; doğrulanmış kod sürümleri koşulları ve test belgeleriyle ayrı korunacak. İlkenin uygulama ayrıntıları [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md) ve [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) içindedir.
+
 ## 8. Süreklilik ilkesi
 
 **Bir sonraki adımı bulurken önceki adımları kaybetme.** Yeni oturumda önce bu pusula, sonra ilgili ana hedef, sonra aktif görev raporu ve en son kod/log kayıtları okunur.
