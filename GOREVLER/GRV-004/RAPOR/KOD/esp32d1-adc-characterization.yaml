@@ -1,0 +1,68 @@
+# PROJE BERO — GRV-004
+# ADC characterization candidate. Existing esp32d1.yaml is not overwritten.
+esphome:
+  name: esp32d1
+  friendly_name: ESP32D1
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+  includes:
+    - adc_character_test.h
+  on_boot:
+    priority: -100
+    then:
+      - delay: 3s
+      - lambda: |-
+          adc_char_test.start();
+
+esp32:
+  variant: esp32
+  toolchain: esp-idf
+  framework:
+    type: esp-idf
+    version: 5.5.5
+    advanced:
+      include_builtin_idf_components:
+        - esp_adc
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+uart:
+  id: pzem_uart
+  tx_pin: GPIO16
+  rx_pin: GPIO17
+  baud_rate: 9600
+  data_bits: 8
+  stop_bits: 1
+  parity: NONE
+
+modbus:
+  id: pzem_modbus
+  uart_id: pzem_uart
+
+sensor:
+  - platform: pzemac
+    modbus_id: pzem_modbus
+    address: 0x01
+    update_interval: 5s
+    voltage:
+      name: "PZEM Gerilim"
+    current:
+      name: "PZEM Akim"
+    power:
+      name: "PZEM Guc"
+    energy:
+      name: "PZEM Enerji"
+    frequency:
+      name: "PZEM Frekans"
+    power_factor:
+      name: "PZEM Guc Faktoru"

@@ -1,0 +1,33 @@
+name: GRV-004 ADC compile validation
+
+on:
+  push:
+    branches:
+      - validate-grv004-adc-dependency
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create build-only Wi-Fi secrets
+        shell: bash
+        run: |
+          cat > "$RUNNER_TEMP/secrets.yaml" <<'EOF'
+          wifi_ssid: "BERO_COMPILE_ONLY"
+          wifi_password: "compile-only-placeholder"
+          EOF
+
+      - name: Compile with ESPHome 2026.9.1
+        shell: bash
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE/GOREVLER/GRV-004/RAPOR/KOD:/config" \
+            -v "$RUNNER_TEMP/secrets.yaml:/config/secrets.yaml:ro" \
+            -w /config \
+            ghcr.io/esphome/esphome:2026.9.1 \
+            compile /config/esp32d1-adc-characterization.yaml
