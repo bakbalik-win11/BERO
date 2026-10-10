@@ -16,6 +16,8 @@ Bu klasör, projenin zaman içinde nereden nereye ilerlediğini gösteren tarihl
 
 ## Günlükler (en yeni en üstte)
 
+- [2026-10-10](2026/2026-10-10.md) — GRV-004 dört kanal ADC deneyi ara raporu
+
 - [2026-10-09](2026/2026-10-09.md) — hedef/görev yapısı ve süreklilik sistemi başlangıcı
 
 ## Günlük kontrol listesi
