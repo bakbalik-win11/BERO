@@ -163,3 +163,13 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Sıradaki adım:** [ALT-GÖREV-04 — ORT/STD hesabını bağımsız doğrulama](GOREVLER/GRV-004/RAPOR/ALT-GOREV-04-ORT-HESABI-20261010.md)
 - **Doğrulama sınırı:** 18 sonuç satırı mevcut; ham örnekler ve her turdaki sayaçlar logda bulunmadığından bağımsız hesap ve 1000 örnek/kanal koşulu henüz doğrulanmadı.
 - **Önceki sürüm koruması:** STD'siz YAML ve önceki log değiştirilmedi.
+
+
+## 2026-10-10 ek güncelleme — ALT-GÖREV-05: PZEM + ADC birleşimi
+
+- **Yeni görev:** [ALT-GÖREV-05 raporu](GOREVLER/GRV-004/RAPOR/ALT-GOREV-05-PZEM-ADC-BIRLESIK-20261010.md)
+- **Yeni YAML adayı:** [PZEM eklenmiş dört kanal MIN/MAX/ORT/STD](GOREVLER/GRV-004/RAPOR/KOD/esp32d1-4ch-1000-min-max-avg-std-pzem-continuous-20261010.yaml)
+- **Eklenen:** PZEM UART GPIO16/17, 9600 baud, Modbus ve gerilim/akım/güç/enerji/frekans/güç faktörü sensörleri (5 s).
+- **Korunan:** `esp32d1` adı, GPIO32 BIAS, GPIO33 1T, GPIO34 2T, GPIO35 3T ve mevcut STD'li ADC hesaplama akışı.
+- **Durum:** Kod adayı ve kayıtlar GitHub'dan geri okunarak kontrol edildi. Derleme ve donanım testi bekliyor; GRV-004 açık.
+- **Sıradaki adım:** Yeni YAML'ı derlemek, sonra PZEM telemetrisiyle ADC_TEST turlarının birlikte çalışmasını doğrulamak.
