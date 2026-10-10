@@ -1,0 +1,25 @@
+INFO ESPHome 2026.9.1
+INFO Loaded validated config cache for esp32d1.yaml, skipping validation.
+INFO Starting log output from 192.168.0.8 using esphome API
+INFO Successfully resolved esp32d1 @ 192.168.0.8 in 0.000s
+INFO Successfully connected to esp32d1 @ 192.168.0.8 in 4.249s
+INFO Successful handshake with esp32d1 @ 192.168.0.8 in 0.013s
+[19:52:19.355][W][app:171]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[19:52:19.355][W][app:198]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[19:52:24.600][W][ADC_TEST:157]: TUR=1 BIAS[min=1.54500 max=1.80000 avg=1.66339] K1[min=1.51400 max=1.77700 avg=1.66171] K2[min=1.58400 max=1.74900 avg=1.66008] K3[min=1.60000 max=1.70000 avg=1.65575]
+[19:52:35.196][W][ADC_TEST:157]: TUR=2 BIAS[min=1.52500 max=1.74800 avg=1.66539] K1[min=1.59100 max=1.84000 avg=1.66415] K2[min=1.56500 max=1.77900 avg=1.66200] K3[min=1.60700 max=1.69900 avg=1.65760]
+[19:52:45.852][W][ADC_TEST:157]: TUR=3 BIAS[min=1.55600 max=1.75200 avg=1.66490] K1[min=1.46500 max=1.76200 avg=1.66323] K2[min=1.59000 max=1.75500 avg=1.66198] K3[min=1.60500 max=1.70700 avg=1.65710]
+[19:52:56.479][W][ADC_TEST:157]: TUR=4 BIAS[min=1.59100 max=1.74400 avg=1.66511] K1[min=1.45300 max=1.82700 avg=1.66312] K2[min=1.51700 max=1.80200 avg=1.66197] K3[min=1.60300 max=1.76900 avg=1.65750]
+[19:53:07.118][W][ADC_TEST:157]: TUR=5 BIAS[min=1.51300 max=1.75700 avg=1.66509] K1[min=1.57300 max=1.75100 avg=1.66364] K2[min=1.63800 max=1.70900 avg=1.66207] K3[min=1.60600 max=1.72200 avg=1.65724]
+[19:53:13.915][W][component:419]: safe_mode took a long time for an operation (68 ms), max is 50 ms
+[19:53:17.808][W][ADC_TEST:157]: TUR=6 BIAS[min=1.62900 max=1.67400 avg=1.66510] K1[min=1.63800 max=1.75700 avg=1.66383] K2[min=1.64100 max=1.68400 avg=1.66201] K3[min=1.63000 max=1.71800 avg=1.65733]
+[19:53:28.413][W][ADC_TEST:157]: TUR=7 BIAS[min=1.58000 max=1.84800 avg=1.66468] K1[min=1.42000 max=1.93900 avg=1.66283] K2[min=1.55100 max=1.88600 avg=1.66134] K3[min=1.60700 max=1.72700 avg=1.65682]
+[19:53:39.054][W][ADC_TEST:157]: TUR=8 BIAS[min=1.63100 max=1.74800 avg=1.66463] K1[min=1.51100 max=1.82800 avg=1.66279] K2[min=1.59600 max=1.85300 avg=1.66137] K3[min=1.62800 max=1.68500 avg=1.65668]
+[19:53:49.676][W][ADC_TEST:157]: TUR=9 BIAS[min=1.59000 max=1.82200 avg=1.66473] K1[min=1.42500 max=1.83800 avg=1.66248] K2[min=1.54500 max=1.72600 avg=1.66118] K3[min=1.59900 max=1.72200 avg=1.65686]
+[19:54:00.308][W][ADC_TEST:157]: TUR=10 BIAS[min=1.55000 max=1.81000 avg=1.66478] K1[min=1.47900 max=1.85800 avg=1.66295] K2[min=1.48700 max=1.71500 avg=1.66093] K3[min=1.59900 max=1.73900 avg=1.65704]
+[19:54:10.931][W][ADC_TEST:157]: TUR=11 BIAS[min=1.55400 max=1.82400 avg=1.66484] K1[min=1.63300 max=1.86800 avg=1.66345] K2[min=1.55200 max=1.72600 avg=1.66144] K3[min=1.55300 max=1.69500 avg=1.65674]
+[19:54:21.531][W][ADC_TEST:157]: TUR=12 BIAS[min=1.52900 max=1.79100 avg=1.66428] K1[min=1.45800 max=1.80000 avg=1.66228] K2[min=1.60600 max=1.74800 avg=1.66129] K3[min=1.58000 max=1.70600 avg=1.65640]
+[19:54:32.121][W][ADC_TEST:157]: TUR=13 BIAS[min=1.55100 max=1.83700 avg=1.66462] K1[min=1.45600 max=1.89500 avg=1.66300] K2[min=1.53700 max=1.79300 avg=1.66092] K3[min=1.57400 max=1.69500 avg=1.65651]
+[19:54:42.764][W][ADC_TEST:157]: TUR=14 BIAS[min=1.57200 max=1.77100 avg=1.66485] K1[min=1.46000 max=1.87700 avg=1.66335] K2[min=1.61100 max=1.77400 avg=1.66186] K3[min=1.61700 max=1.72100 avg=1.65679]
+[19:54:53.419][W][ADC_TEST:157]: TUR=15 BIAS[min=1.65200 max=1.69500 avg=1.66556] K1[min=1.63200 max=1.68600 avg=1.66387] K2[min=1.63700 max=1.68000 avg=1.66203] K3[min=1.63300 max=1.70700 avg=1.65749]
+[19:55:04.103][W][ADC_TEST:157]: TUR=16 BIAS[min=1.65100 max=1.68200 avg=1.66477] K1[min=1.63300 max=1.67300 avg=1.66305] K2[min=1.64300 max=1.72200 avg=1.66153] K3[min=1.59700 max=1.69500 avg=1.65674]
