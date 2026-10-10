@@ -1,0 +1,82 @@
+esphome:
+  name: esp32d1
+  friendly_name: ESP32D1
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+uart:
+  id: pzem_uart
+  tx_pin: GPIO16
+  rx_pin: GPIO17
+  baud_rate: 9600
+  stop_bits: 1
+
+modbus:
+  uart_id: pzem_uart
+
+sensor:
+  # PZEM elektrik ölçümü
+  - platform: pzemac
+    voltage:
+      name: "PZEM Gerilim"
+    current:
+      name: "PZEM Akım"
+    power:
+      name: "PZEM Güç"
+    energy:
+      name: "PZEM Enerji"
+    frequency:
+      name: "PZEM Frekans"
+    power_factor:
+      name: "PZEM Güç Faktörü"
+    update_interval: 5s
+
+  # Fiziksel bias referansı: GPIO32
+  - platform: adc
+    pin: GPIO32
+    name: "BIAS Ham Voltaj"
+    id: bias_ham_voltaj
+    attenuation: 12db
+    update_interval: 1s
+    accuracy_decimals: 3
+
+  # Akım kanalı 1T
+  - platform: adc
+    pin: GPIO33
+    name: "1T Ham Voltaj"
+    id: kanal_1t_ham_voltaj
+    attenuation: 12db
+    update_interval: 1s
+    accuracy_decimals: 3
+
+  # Akım kanalı 2T
+  - platform: adc
+    pin: GPIO34
+    name: "2T Ham Voltaj"
+    id: kanal_2t_ham_voltaj
+    attenuation: 12db
+    accuracy_decimals: 3
+
+  # Akım kanalı 3T
+  - platform: adc
+    pin: GPIO35
+    name: "3T Ham Voltaj"
+    id: kanal_3t_ham_voltaj
+    attenuation: 12db
+    accuracy_decimals: 3
