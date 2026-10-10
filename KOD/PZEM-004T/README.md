@@ -23,3 +23,11 @@ PZEM, SCT013 veya ACS758 gibi ham analog sensör değildir. AC gerilim/akım ör
 Kaynak: https://github.com/mandulaj/PZEM-004T-v30
 
 **Kodlar örnektir; BERO donanımında derlenmiş veya fiziksel olarak test edilmiş olduğu ayrıca belirtilmedikçe test edilmiş kabul edilmemelidir.**
+
+## BERO'da gerçek donanım deneyi
+
+- [BERO deneyi — ESP32D1 + PZEM-004T V3.0](BERO-TEST-ESP32D1-PZEM-V3/)
+  - [Kullanıcının verdiği YAML yapılandırması](BERO-TEST-ESP32D1-PZEM-V3/esp32d1-pzem-v3.yaml)
+  - [2026-10-10 log kanıtı ve hata özeti](BERO-TEST-ESP32D1-PZEM-V3/LOG-2026-10-10.md)
+
+Bu BERO kaydı, internetten alınmış örneklerden ayrı tutulur. YAML logda ESPHome tarafından başlatılmış görünür; aynı logda Modbus yanıt/çerçeve hataları vardır. Bu nedenle kayıt, başarılı ölçüm doğrulaması olarak değil, yüklenmiş yapılandırma ve haberleşme teşhis kanıtı olarak etiketlenmiştir.
