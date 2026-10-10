@@ -1,0 +1,304 @@
+# ============================================================
+# PROJE BERO — GRV-004
+# SÜREKLİ 4 KANAL ADC TESTİ — MIN / MAX / ORT / STD
+# Kullanıcının paylaştığı STD sürümünün arşiv kopyası.
+#
+# GPIO32 = BIAS
+# GPIO33 = 1T
+# GPIO34 = 2T
+# GPIO35 = 3T
+#
+# Her turda kanal başına 1000 örnek.
+# Dört kanal tamamlanınca tek sonuç satırı.
+# İstatistikler sıfırlanır ve yeni tur başlar.
+# PZEM bu deneyde yoktur.
+# ============================================================
+
+esphome:
+  name: esp32d1
+  friendly_name: ESP32D1
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: WARN
+  logs:
+    sensor: NONE
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+# PZEM-004T v3 / PZEMAC — mevcut UART pinleri korunur
+uart:
+  id: pzem_uart
+  tx_pin: GPIO16
+  rx_pin: GPIO17
+  baud_rate: 9600
+  stop_bits: 1
+
+modbus:
+  uart_id: pzem_uart
+
+globals:
+  - id: bias_count
+    type: int
+    restore_value: no
+    initial_value: '0'
+  - id: kanal1_count
+    type: int
+    restore_value: no
+    initial_value: '0'
+  - id: kanal2_count
+    type: int
+    restore_value: no
+    initial_value: '0'
+  - id: kanal3_count
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+  - id: bias_min
+    type: float
+    restore_value: no
+    initial_value: '100.0'
+  - id: bias_max
+    type: float
+    restore_value: no
+    initial_value: '-100.0'
+  - id: bias_sum
+    type: double
+    restore_value: no
+    initial_value: '0.0'
+  - id: bias_sq_sum
+    type: double
+    restore_value: no
+    initial_value: '0.0'
+
+  - id: kanal1_min
+    type: float
+    restore_value: no
+    initial_value: '100.0'
+  - id: kanal1_max
+    type: float
+    restore_value: no
+    initial_value: '-100.0'
+  - id: kanal1_sum
+    type: double
+    restore_value: no
+    initial_value: '0.0'
+  - id: kanal1_sq_sum
+    type: double
+    restore_value: no
+    initial_value: '0.0'
+
+  - id: kanal2_min
+    type: float
+    restore_value: no
+    initial_value: '100.0'
+  - id: kanal2_max
+    type: float
+    restore_value: no
+    initial_value: '-100.0'
+  - id: kanal2_sum
+    type: double
+    restore_value: no
+    initial_value: '0.0'
+  - id: kanal2_sq_sum
+    type: double
+    restore_value: no
+    initial_value: '0.0'
+
+  - id: kanal3_min
+    type: float
+    restore_value: no
+    initial_value: '100.0'
+  - id: kanal3_max
+    type: float
+    restore_value: no
+    initial_value: '-100.0'
+  - id: kanal3_sum
+    type: double
+    restore_value: no
+    initial_value: '0.0'
+  - id: kanal3_sq_sum
+    type: double
+    restore_value: no
+    initial_value: '0.0'
+
+  - id: tur_no
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+script:
+  - id: check_finish
+    mode: single
+    then:
+      - if:
+          condition:
+            lambda: |-
+              return id(bias_count) >= 1000 &&
+                     id(kanal1_count) >= 1000 &&
+                     id(kanal2_count) >= 1000 &&
+                     id(kanal3_count) >= 1000;
+          then:
+            - lambda: |-
+                id(tur_no)++;
+
+                const double bias_avg = id(bias_sum) / id(bias_count);
+                const double k1_avg = id(kanal1_sum) / id(kanal1_count);
+                const double k2_avg = id(kanal2_sum) / id(kanal2_count);
+                const double k3_avg = id(kanal3_sum) / id(kanal3_count);
+
+                double bias_var = id(bias_sq_sum) / id(bias_count) - bias_avg * bias_avg;
+                double k1_var = id(kanal1_sq_sum) / id(kanal1_count) - k1_avg * k1_avg;
+                double k2_var = id(kanal2_sq_sum) / id(kanal2_count) - k2_avg * k2_avg;
+                double k3_var = id(kanal3_sq_sum) / id(kanal3_count) - k3_avg * k3_avg;
+
+                if (bias_var < 0.0) bias_var = 0.0;
+                if (k1_var < 0.0) k1_var = 0.0;
+                if (k2_var < 0.0) k2_var = 0.0;
+                if (k3_var < 0.0) k3_var = 0.0;
+
+                const double bias_std = sqrt(bias_var);
+                const double k1_std = sqrt(k1_var);
+                const double k2_std = sqrt(k2_var);
+                const double k3_std = sqrt(k3_var);
+
+                ESP_LOGW(
+                  "ADC_TEST",
+                  "TUR=%d "
+                  "BIAS[min=%.5f max=%.5f avg=%.5f std=%.6f] "
+                  "K1[min=%.5f max=%.5f avg=%.5f std=%.6f] "
+                  "K2[min=%.5f max=%.5f avg=%.5f std=%.6f] "
+                  "K3[min=%.5f max=%.5f avg=%.5f std=%.6f]",
+                  id(tur_no),
+                  id(bias_min), id(bias_max), bias_avg, bias_std,
+                  id(kanal1_min), id(kanal1_max), k1_avg, k1_std,
+                  id(kanal2_min), id(kanal2_max), k2_avg, k2_std,
+                  id(kanal3_min), id(kanal3_max), k3_avg, k3_std
+                );
+
+                id(bias_count) = 0;
+                id(kanal1_count) = 0;
+                id(kanal2_count) = 0;
+                id(kanal3_count) = 0;
+
+                id(bias_min) = 100.0f;
+                id(kanal1_min) = 100.0f;
+                id(kanal2_min) = 100.0f;
+                id(kanal3_min) = 100.0f;
+
+                id(bias_max) = -100.0f;
+                id(kanal1_max) = -100.0f;
+                id(kanal2_max) = -100.0f;
+                id(kanal3_max) = -100.0f;
+
+                id(bias_sum) = 0.0;
+                id(kanal1_sum) = 0.0;
+                id(kanal2_sum) = 0.0;
+                id(kanal3_sum) = 0.0;
+
+                id(bias_sq_sum) = 0.0;
+                id(kanal1_sq_sum) = 0.0;
+                id(kanal2_sq_sum) = 0.0;
+                id(kanal3_sq_sum) = 0.0;
+
+sensor:
+  # PZEM elektrik ölçümleri — 5 saniyede bir
+  - platform: pzemac
+    voltage:
+      name: "PZEM Gerilim"
+    current:
+      name: "PZEM Akım"
+    power:
+      name: "PZEM Güç"
+    energy:
+      name: "PZEM Enerji"
+    frequency:
+      name: "PZEM Frekans"
+    power_factor:
+      name: "PZEM Güç Faktörü"
+    update_interval: 5s
+
+  # Dört ADC kanalının 1000 örnek/tur MIN-MAX-ORT-STD hesabı
+  - platform: adc
+    pin: GPIO32
+    id: bias_adc
+    internal: true
+    attenuation: 12db
+    update_interval: 10ms
+    on_value:
+      then:
+        - lambda: |-
+            if (id(bias_count) < 1000) {
+              if (x < id(bias_min)) id(bias_min) = x;
+              if (x > id(bias_max)) id(bias_max) = x;
+              id(bias_sum) += x;
+              id(bias_sq_sum) += (double)x * (double)x;
+              id(bias_count)++;
+            }
+        - script.execute: check_finish
+
+  - platform: adc
+    pin: GPIO33
+    id: kanal1_adc
+    internal: true
+    attenuation: 12db
+    update_interval: 10ms
+    on_value:
+      then:
+        - lambda: |-
+            if (id(kanal1_count) < 1000) {
+              if (x < id(kanal1_min)) id(kanal1_min) = x;
+              if (x > id(kanal1_max)) id(kanal1_max) = x;
+              id(kanal1_sum) += x;
+              id(kanal1_sq_sum) += (double)x * (double)x;
+              id(kanal1_count)++;
+            }
+        - script.execute: check_finish
+
+  - platform: adc
+    pin: GPIO34
+    id: kanal2_adc
+    internal: true
+    attenuation: 12db
+    update_interval: 10ms
+    on_value:
+      then:
+        - lambda: |-
+            if (id(kanal2_count) < 1000) {
+              if (x < id(kanal2_min)) id(kanal2_min) = x;
+              if (x > id(kanal2_max)) id(kanal2_max) = x;
+              id(kanal2_sum) += x;
+              id(kanal2_sq_sum) += (double)x * (double)x;
+              id(kanal2_count)++;
+            }
+        - script.execute: check_finish
+
+  - platform: adc
+    pin: GPIO35
+    id: kanal3_adc
+    internal: true
+    attenuation: 12db
+    update_interval: 10ms
+    on_value:
+      then:
+        - lambda: |-
+            if (id(kanal3_count) < 1000) {
+              if (x < id(kanal3_min)) id(kanal3_min) = x;
+              if (x > id(kanal3_max)) id(kanal3_max) = x;
+              id(kanal3_sum) += x;
+              id(kanal3_sq_sum) += (double)x * (double)x;
+              id(kanal3_count)++;
+            }
+        - script.execute: check_finish
