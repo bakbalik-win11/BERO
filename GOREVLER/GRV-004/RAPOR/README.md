@@ -62,3 +62,11 @@ Logda ESP32 rev3.1 için `minimum_chip_revision: "3.1"` ve `sram1_as_iram: true`
 - **BIAS gözlemi:** GPIO32 log aralığı 1.519–1.669 V; son bölümde 1.617 V ve 1.519 V örnekleri var. Sebep henüz belirlenmedi.
 - **1T/2T/3T:** sırasıyla GPIO33, GPIO34, GPIO35; logda ölçüm yayımlandı.
 - **Henüz yapılmadı:** 1000 örnek × 3 kanal hızlı kararlılık testi.
+
+
+## 2026-10-10 — BIAS / 1T / 2T / 3T ham log arşivi
+
+- **Ham log (5.000 satır):** [esp32d1-bias-1t-2t-3t-20261010-raw.txt](LOG/esp32d1-bias-1t-2t-3t-20261010-raw.txt)
+- **YAML anlık görüntüsü:** [esp32d1-bias-1t-2t-3t-user-config-20261010.yaml](KOD/esp32d1-bias-1t-2t-3t-user-config-20261010.yaml)
+- **Kayıt ve analiz notu:** [BIAS-1T-2T-3T-RAW-LOG-20261010.md](BIAS-1T-2T-3T-RAW-LOG-20261010.md)
+- **Doğrulama durumu:** Ham log ve paylaşılan YAML ayrı dosyalar olarak arşivlendi. YAML'ın logu üreten birebir derlenmiş sürüm olduğu doğrulanmadı; bu nedenle kayıt 1000 örnekli hız testi olarak işaretlenmedi.
