@@ -51,3 +51,14 @@ Logda ESP32 rev3.1 için `minimum_chip_revision: "3.1"` ve `sram1_as_iram: true`
 - **Kod:** [esp32d1-bias-1t-2t-3t.yaml](KOD/esp32d1-bias-1t-2t-3t.yaml)
 - **Seviye raporu:** [BIAS + 1T/2T/3T raporu](BIAS-1T-2T-3T.md)
 - **Not:** Bu ayrı bir kayıt dosyasıdır; önceki üç kanal YAML dosyası değiştirilmedi. ESPHome canlı ADC değeri ve 1000×3 hızlı örnekleme sonucu henüz bu rapora eklenmedi.
+
+
+## Sonraki seviye — BIAS + 1T/2T/3T adlandırması (log doğrulandı)
+
+- **Durum:** Kullanıcı tarafından başarılı bildirildi; ESPHome logunda bağlantı, PZEM ve dört ADC sensörünün çalışması görüldü.
+- **Kod:** [esp32d1-bias-1t-2t-3t.yaml](KOD/esp32d1-bias-1t-2t-3t.yaml)
+- **Log ve analiz:** [esp32d1-bias-1t-2t-3t-log.md](LOG/esp32d1-bias-1t-2t-3t-log.md)
+- **Seviye raporu:** [BIAS-1T-2T-3T.md](BIAS-1T-2T-3T.md)
+- **BIAS gözlemi:** GPIO32 log aralığı 1.519–1.669 V; son bölümde 1.617 V ve 1.519 V örnekleri var. Sebep henüz belirlenmedi.
+- **1T/2T/3T:** sırasıyla GPIO33, GPIO34, GPIO35; logda ölçüm yayımlandı.
+- **Henüz yapılmadı:** 1000 örnek × 3 kanal hızlı kararlılık testi.
