@@ -154,3 +154,12 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Sıradaki alt görev:** [ALT-GÖREV-04 — ORT hesabının bağımsız doğrulanması](GOREVLER/GRV-004/RAPOR/ALT-GOREV-04-ORT-HESABI-20261010.md).
 - **Sınır:** Mevcut logda ham örnekler ve sayaçlar yok; dolayısıyla her turun 1000 örnek/kanal içerdiği ve ORT'nin ham veriden bağımsız yeniden üretildiği henüz kanıtlanmadı.
 - **Kayıt disiplini:** Önceki deneylerin üzerine yazılmadı. Yeni YAML snapshot'ı ve log ayrı dosyalar olarak arşivlendi.
+
+## 2026-10-10 ek güncelleme — GRV-004 STD sonuçları
+
+- **Yeni kod snapshot'ı:** [MIN/MAX/ORT/STD YAML](GOREVLER/GRV-004/RAPOR/KOD/esp32d1-4ch-1000-min-max-avg-std-continuous-20261010.yaml)
+- **Yeni log:** [TUR=1..18 STD sonuçları](GOREVLER/GRV-004/RAPOR/LOG/esp32d1-4ch-adc-std-20261010-logs-12.txt)
+- **Rapor:** [ALT-GÖREV-03 STD log raporu](GOREVLER/GRV-004/RAPOR/ALT-GOREV-03-MIN-MAX-ORT-STD-LOG-20261010.md)
+- **Sıradaki adım:** [ALT-GÖREV-04 — ORT/STD hesabını bağımsız doğrulama](GOREVLER/GRV-004/RAPOR/ALT-GOREV-04-ORT-HESABI-20261010.md)
+- **Doğrulama sınırı:** 18 sonuç satırı mevcut; ham örnekler ve her turdaki sayaçlar logda bulunmadığından bağımsız hesap ve 1000 örnek/kanal koşulu henüz doğrulanmadı.
+- **Önceki sürüm koruması:** STD'siz YAML ve önceki log değiştirilmedi.
