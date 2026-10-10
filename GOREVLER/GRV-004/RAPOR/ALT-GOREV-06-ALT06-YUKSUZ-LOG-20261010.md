@@ -57,3 +57,68 @@ Mevcut YAML ve bu log kaydı korunacak. Yaklaşık 150 W yük altında aynı ALT
 
 ### Kod durumu
 Bu rapor yalnızca log ve yorum kaydıdır. ALT06 YAML bu işlem sırasında değiştirilmedi. Derleme başarısı bu logdan çıkarılamaz.
+
+
+---
+
+## Aynı logun devamı — yüksüz devamı ve yaklaşık 150 W yük — 2026-10-10
+
+### Kaynak
+Kullanıcının ikinci log dosyası: `esp32d1-logs (15).txt`. Bu dosya TUR=1–27 ALT06 sonuçlarını ve yük altındaki PZEM güncellemelerini içeriyor. Aşağıda rapora daha önce eklenmemiş TUR=8–27 sonuçları kaydedilmiştir. Böylece yüksüz ve yüklü bölümler aynı görev raporunda tutulur.
+
+### Yüksüz devamı — TUR=8–20
+
+| Tur | PZEM (A) | K1 RMS (V) | K2 RMS (V) | K3 RMS (V) |
+|---:|---:|---:|---:|---:|
+| 8 | 0.028 | 0.016213 | 0.012659 | 0.012104 |
+| 9 | 0.028 | 0.011834 | 0.016316 | 0.012804 |
+| 10 | 0.028 | 0.014963 | 0.013930 | 0.011849 |
+| 11 | 0.028 | 0.012726 | 0.011387 | 0.011201 |
+| 12 | 0.028 | 0.012322 | 0.011741 | 0.010543 |
+| 13 | 0.028 | 0.013460 | 0.012111 | 0.014520 |
+| 14 | 0.028 | 0.017528 | 0.009095 | 0.010994 |
+| 15 | 0.028 | 0.015436 | 0.015408 | 0.016598 |
+| 16 | 0.028 | 0.014640 | 0.015047 | 0.011194 |
+| 17 | 0.028 | 0.012012 | 0.010991 | 0.011988 |
+| 18 | 0.028 | 0.009019 | 0.009124 | 0.009782 |
+| 19 | 0.028 | 0.018212 | 0.014160 | 0.015165 |
+| 20 | 0.028 | 0.013580 | 0.011953 | 0.012475 |
+
+### Yük geçişi ve yaklaşık 150 W bölümü
+
+TUR=21, PZEM'in yükün devreye girdiğini gösterdiği geçiş turudur: 0.338 A / 67.3 W. TUR=22–27 sırasında PZEM yaklaşık 147.6–148.8 W ve 0.650–0.652 A gösterir.
+
+| Tur | PZEM akımı (A) | PZEM güç (W) | K1 RMS (V) | K2 RMS (V) | K3 RMS (V) |
+|---:|---:|---:|---:|---:|---:|
+| 21 — geçiş | 0.338 | 67.3 | 0.033078 | 0.052178 | 0.017943 |
+| 22 | 0.652 | 148.4 | 0.060279 | 0.096495 | 0.025806 |
+| 23 | 0.651 | 147.6 | 0.061477 | 0.096912 | 0.027131 |
+| 24 | 0.650 | 148.0 | 0.061258 | 0.097390 | 0.028674 |
+| 25 | 0.651 | 148.5 | 0.061239 | 0.096445 | 0.028377 |
+| 26 | 0.650 | 148.1 | 0.061167 | 0.096428 | 0.028003 |
+| 27 | 0.651 | 148.5 | 0.062316 | 0.097448 | 0.027686 |
+
+### Ham yük geçişi ve yük altı ALT06 satırları
+
+```text
+[20:40:26.378][W][ALT06:140]: TUR=20 PZEM=0.028A K1_RMS=0.013580V K2_RMS=0.011953V K3_RMS=0.012475V N=1000
+[20:40:36.751][W][ALT06:140]: TUR=21 PZEM=0.338A K1_RMS=0.033078V K2_RMS=0.052178V K3_RMS=0.017943V N=1000
+[20:40:47.138][W][ALT06:140]: TUR=22 PZEM=0.652A K1_RMS=0.060279V K2_RMS=0.096495V K3_RMS=0.025806V N=1000
+[20:40:57.519][W][ALT06:140]: TUR=23 PZEM=0.651A K1_RMS=0.061477V K2_RMS=0.096912V K3_RMS=0.027131V N=1000
+[20:41:07.898][W][ALT06:140]: TUR=24 PZEM=0.650A K1_RMS=0.061258V K2_RMS=0.097390V K3_RMS=0.028674V N=1000
+[20:41:18.275][W][ALT06:140]: TUR=25 PZEM=0.651A K1_RMS=0.061239V K2_RMS=0.096445V K3_RMS=0.028377V N=1000
+[20:41:28.655][W][ALT06:140]: TUR=26 PZEM=0.650A K1_RMS=0.061167V K2_RMS=0.096428V K3_RMS=0.028003V N=1000
+[20:41:39.040][W][ALT06:140]: TUR=27 PZEM=0.651A K1_RMS=0.062316V K2_RMS=0.097448V K3_RMS=0.027686V N=1000
+```
+
+### Karşılaştırmalı yorum
+
+- Yüksüz TUR=1–20'de PZEM akımı 0.028 A iken, yaklaşık 150 W yük altında TUR=22–27'de 0.650–0.652 A ölçülüyor.
+- Yük altındaki RMS değerleri yüksüz gözlenen aralıkların belirgin biçimde üstüne çıkıyor. K1 yaklaşık 0.061–0.062 V, K2 yaklaşık 0.096–0.097 V, K3 yaklaşık 0.026–0.029 V seviyesinde.
+- Yük geçişi TUR=21'de K1/K2/K3 RMS değerleri de ara seviyeye çıkıyor. Bu, yükle ilişkili bir yanıt olduğuna dair ilk güçlü gözlem.
+- Bu sonuçlar, mevcut uygulamanın RMS değerlerinin yükle değişimi yakaladığını destekler; fakat henüz doğrulanmış amper ölçümü veya kalibrasyon değildir.
+- BIAS ve K örnekleri standart ESPHome ADC sensörleriyle ayrı güncellendiğinden eşzamanlılık garanti edilmez. PZEM değeri de ADC penceresiyle tam zaman eşleşmiş kabul edilmemelidir.
+- İkinci dosya TUR=27 satırından sonraki PZEM güncellemeleriyle bitiyor; TUR=28 ve sonrası bu kayda eklenmedi.
+
+### Sonraki adım
+Bu iki yük durumunun aynı raporda kaydı tamamlandı. Mevcut YAML değiştirilmedi. Bir sonraki teknik adım, mümkünse eşzamanlı örnekleme sağlayan ADC okuma düzenine geçmek ve ardından PZEM referansıyla kalibrasyon deneyini planlamaktır.
