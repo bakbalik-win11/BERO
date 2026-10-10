@@ -42,3 +42,12 @@ Logda ESPHome 2026.9.1 derlemesi 2026-10-10 15:56:15 +0300 olarak kayıtlı. Cih
 ## Notlar
 
 Logda ESP32 rev3.1 için `minimum_chip_revision: "3.1"` ve `sram1_as_iram: true` önerileri uyarı olarak görünüyor; bunlar derlemeyi/çalışmayı engellememiştir. Bu aşamada mevcut yapılandırmaya dokunulmamıştır.
+
+
+## Sonraki seviye — BIAS + 1T/2T/3T adlandırması
+
+- **Durum:** Kullanıcı tarafından başarılı olarak bildirildi; bağlantılar OK.
+- **Fiziksel referans:** GPIO32 / BIAS = 1,65 V (multimetre).
+- **Kod:** [esp32d1-bias-1t-2t-3t.yaml](KOD/esp32d1-bias-1t-2t-3t.yaml)
+- **Seviye raporu:** [BIAS + 1T/2T/3T raporu](BIAS-1T-2T-3T.md)
+- **Not:** Bu ayrı bir kayıt dosyasıdır; önceki üç kanal YAML dosyası değiştirilmedi. ESPHome canlı ADC değeri ve 1000×3 hızlı örnekleme sonucu henüz bu rapora eklenmedi.
