@@ -70,3 +70,12 @@ Logda ESP32 rev3.1 için `minimum_chip_revision: "3.1"` ve `sram1_as_iram: true`
 - **YAML anlık görüntüsü:** [esp32d1-bias-1t-2t-3t-user-config-20261010.yaml](KOD/esp32d1-bias-1t-2t-3t-user-config-20261010.yaml)
 - **Kayıt ve analiz notu:** [BIAS-1T-2T-3T-RAW-LOG-20261010.md](BIAS-1T-2T-3T-RAW-LOG-20261010.md)
 - **Doğrulama durumu:** Ham log ve paylaşılan YAML ayrı dosyalar olarak arşivlendi. YAML'ın logu üreten birebir derlenmiş sürüm olduğu doğrulanmadı; bu nedenle kayıt 1000 örnekli hız testi olarak işaretlenmedi.
+
+
+## 2026-10-10 — ALT-GÖREV-03: 4 kanal / 1000 okuma / istatistik hedefi
+
+- **Ara rapor:** [ALT-GÖREV-03 ara raporu](ALT-GOREV-03-ARA-RAPOR-20261010.md)
+- **Son mutabakat:** PZEM yok; GPIO32 BIAS, GPIO33 1T, GPIO34 2T, GPIO35 3T; her kanalda 1000 okuma; kanal başına MIN, MAX, ORTALAMA; tek satır çıktı.
+- **Durum:** Açık. Nihai kodun derleme sonucu, 1000 örnek tamamlanması ve tek satır çıktı henüz doğrulanmadı.
+- **Log notu:** Son yüklenen logda dört ADC kanalı canlı yayın yapıyor ve PZEM satırları görünmüyor. CSV tamamlanma işareti yok.
+- **Kayıt ilkesi:** Önceki YAML ve raporlar korunur; yeni deneme ayrı sürüm olarak kaydedilir.
