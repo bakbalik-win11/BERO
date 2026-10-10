@@ -99,3 +99,13 @@ Logda ESP32 rev3.1 için `minimum_chip_revision: "3.1"` ve `sram1_as_iram: true`
 - **Gözlem:** Logda 18 özet satırı var; her satır dört kanal için MIN, MAX, avg ve std alanlarını içeriyor.
 - **Sınır:** Ham örnekler ve açık sayaç çıktısı olmadığından ORT/STD hesabı ham veriden bağımsız doğrulanamıyor; her turda 1000 örnek/kanal şartı doğrudan kanıtlanmış değil.
 - **Koruma:** STD'siz önceki YAML ve log ayrı sürümler olarak korunmuştur.
+
+
+## 2026-10-10 — ALT-GÖREV-05: PZEM'i aynı ADC koduna ekleme
+
+- **Hedef:** Dört ADC kanalının MIN/MAX/ORT/STD tur hesabını koruyarak PZEM telemetrisini aynı YAML'a eklemek.
+- **Yeni kod adayı:** [PZEM + dört ADC MIN/MAX/ORT/STD](KOD/esp32d1-4ch-1000-min-max-avg-std-pzem-continuous-20261010.yaml)
+- **Görev raporu:** [ALT-GÖREV-05 PZEM + ADC birleşik deneyi](ALT-GOREV-05-PZEM-ADC-BIRLESIK-20261010.md)
+- **PZEM bağlantısı:** UART TX GPIO16, RX GPIO17, 9600 baud; telemetri güncellemesi 5 s.
+- **Koruma:** Önceki YAML snapshot'ları değiştirilmedi; cihaz adı `esp32d1` olarak korundu.
+- **Durum:** Kod adayı hazır; derleme, cihazda PZEM telemetrisi ve ADC tur devamlılığı doğrulaması bekliyor.
