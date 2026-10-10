@@ -35,3 +35,8 @@ Göreve ait tecrübe ve deney kodu burada tutulur. Sensöre veya donanıma özel
 - Bağlı ana hedef: [HDF-001 — Akımı Okuma](../HEDEFLER/HDF-001-AKIMI-OKUMA/HEDEF.md)
 
 Görev numaraları sıralı ilerler: GRV-001, GRV-002, ...
+
+## İkinci görev
+
+- [GRV-002 — ESP32D1 + PZEM-004T V3.0](GRV-002/RAPOR/README.md)
+- Amaç: ESP32D1 üzerinde PZEM-004T V3.0 UART/Modbus yapılandırmasını ve log kanıtını görev bazında saklamak.
