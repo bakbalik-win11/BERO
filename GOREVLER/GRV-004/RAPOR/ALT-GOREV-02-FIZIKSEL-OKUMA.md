@@ -10,3 +10,11 @@
 **Not:** Bu kayıt fiziksel test bilgisidir. Ölçüm cihazı ve ölçüm noktası ayrıntısı ayrıca belirtilmediğinden varsayılmamıştır.
 
 Önceki numaralandırmada bu kayıt GRV-003 altındaydı. Görev sırası düzenlendiği için kayıt GRV-004'e taşındı.
+
+## Sonraki seviye — ESPHome üç kanal canlı okuma
+
+- **Sonuç:** YAML derlenmiş yapılandırma ile cihaza bağlanıldı; PZEM ve üç ADC sensörü logda göründü.
+- **Kod:** [Tam YAML](KOD/esp32d1-pzem-sct-3kanal.yaml)
+- **Log kaydı:** [Bağlantı ve sensör log özeti](LOG/esp32d1-logs.md)
+- **Seviye raporu:** [GRV-004 ana raporu](README.md)
+- **Not:** Bu aşama saniyelik ADC güncellemesidir. 1000 örnek × 3 kanal hızlı kararlılık testi henüz yapılmadı.
