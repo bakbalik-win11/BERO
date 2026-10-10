@@ -32,7 +32,7 @@
 
 ## 3. Son yüklenen logdan gözlenenler
 
-Kaynak: Kullanıcının 2026-10-10 tarihinde yüklediği `esp32d1-logs (8).txt`.
+Kaynak: [Arşivlenmiş ham log](LOG/esp32d1-4ch-adc-20261010-raw.txt) — kullanıcı tarafından 2026-10-10 tarihinde yüklenen `esp32d1-logs (8).txt`.
 
 - ESPHome API bağlantısı başarılı.
 - Dört ADC kanalının tamamı logda değer yayımlıyor.
@@ -48,7 +48,7 @@ Kaynak: Kullanıcının 2026-10-10 tarihinde yüklediği `esp32d1-logs (8).txt`.
 
 ## 5. Kod durumları birbirinden ayrılmalı
 
-- **Ham CSV biriktirme YAML'ı:** Dört kanal için vektörlerde veri ve `millis()` zaman damgası toplama, 1000'er örnekten sonra CSV satırları yazdırma amacı taşıyor. Başarıyla 1000'er örnek tamamladığı bu logla doğrulanmadı.
+- **Ham CSV biriktirme YAML'ı:** [Kullanıcının paylaştığı kod anlık görüntüsü](KOD/esp32d1-4ch-1000-raw-csv-user-snapshot-20261010.yaml). Dört kanal için vektörlerde veri ve `millis()` zaman damgası toplama, 1000'er örnekten sonra CSV satırları yazdırma amacı taşıyor. Başarıyla 1000'er örnek tamamladığı bu logla doğrulanmadı.
 - **MIN/MAX/ORT tek satır testi:** Kullanıcının son onayladığı hedef budur. Bu rapor itibarıyla gerçek cihazda derlenip çalıştığı doğrulanmış nihai kod olarak işaretlenmiyor.
 - Önceki çalışan YAML dosyaları ve kayıtlar değiştirilmemeli; yeni test kodu ayrı sürüm olarak tutulmalı.
 
