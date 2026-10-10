@@ -35,6 +35,12 @@ GRV-004 kapsamındaki ESP32D1 + PZEM + SCT013 birleşik deneyi bu bias/güç yap
 - 3.30 V ölçümünde kullanılan cihazı ve ölçüm noktasını, varsa fotoğraf/log ile ilişkilendirmek.
 - GPIO32/33/34 üzerindeki 1.65 V ölçümlerini ayrı ayrı kayıt altına almak.
 
-## Durum
+## Sonuç ve kapanış
 
-**Fiziksel güç kutusu kuruldu; regüle çıkış 3.30 V olarak ölçüldü.** Bağlantı şeması ve görsel kanıt bu rapora henüz eklenmedi.
+- Trafo bias/güç devresi ayrı bir güç kutusu olarak kuruldu.
+- Kutu taşınabilir yapıdadır.
+- Regüle çıkış fiziksel olarak **3.30 V** ölçüldü.
+- ESP32D1 GPIO32, GPIO33 ve GPIO34 üzerinde 1.65 V okunduğu bilgisi kaydedildi.
+- PZEM ve SCT013 sensörlerinin enerjiyi ESP32'den almadığı kaydedildi.
+
+**Durum: TAMAMLANDI.** Bu görevin kapsamındaki fiziksel güç kutusu ve 3.30 V çıkış ölçümü tamamlandı. Bağlantı şeması/fotoğraf gibi ek belgelerin bulunmaması, bu tamamlanmış fiziksel kurulum görevini açık bırakmıyor; ileride ek kanıt eklenirse kayıt geçmişi korunarak ayrıca işlenebilir.
