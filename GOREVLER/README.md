@@ -44,8 +44,8 @@ Görev numaraları sıralı ilerler: GRV-001, GRV-002, ...
 
 ## Üçüncü görev
 
-- [GRV-003 — Trafo Bias Yapısının Kurulması ve Doğrulanması](GRV-003/RAPOR/README.md)
-- Amaç: SCT013 akım ölçüm zincirinde kullanılan trafo bias yöntemini ayrı görevde belgelemek ve doğrulamak.
+- [GRV-003 — Trafo Bias Yapısının Kurulması ve Doğrulanması](GRV-003/RAPOR/README.md) — **TAMAMLANDI**
+- Sonuç: Ayrı ve taşınabilir güç kutusu kuruldu; regüle çıkış fiziksel olarak 3.30 V ölçüldü. GPIO32/33/34 üzerindeki 1.65 V okumaları da rapora kaydedildi.
 
 ## Dördüncü görev
 
