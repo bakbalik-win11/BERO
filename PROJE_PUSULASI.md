@@ -135,3 +135,13 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Henüz doğrulanmayan:** GitHub Actions iş akışının gerçek çalıştırması. İlk başarılı çalıştırma görülene kadar günlük otomasyonun çalıştığı varsayılmayacak.
 - **Sıradaki adım:** GitHub Actions durumunu doğrulamak; ardından GRV-001 için mevcut kod, bağlantı ve test koşullarını belirlemek.
 - **Ayrıntılı kayıt:** [HISTORY Kayıt 007](HISTORY/2026/2026-10-09.md).
+
+
+## 2026-10-10 güncellemesi — GRV-004 ADC deneyi
+
+- **Son kayıt:** [GRV-004 ara raporu](GOREVLER/GRV-004/RAPOR/ALT-GOREV-03-ARA-RAPOR-20261010.md)
+- **Son doğrulanmış teknik durum:** ESP32D1 API bağlantısı başarılı; GPIO32 BIAS, GPIO33 1T, GPIO34 2T ve GPIO35 3T canlı voltaj yayınlıyor. Son yüklenen log bölümünde PZEM satırı görünmüyor.
+- **Aktif deney hedefi:** PZEM olmadan dört kanalda 1000'er okuma; her kanal için MIN, MAX ve ORTALAMA değerlerini tek satırda üretmek.
+- **Açık noktalar:** Gerçek örnekleme hızı; 1000 okumanın tamamlanması; istatistik satırının üretilmesi; nihai YAML'ın derleme sonucu.
+- **Sıradaki tek adım:** Ara rapor üzerinden hızlı okuma yöntemini ve sade kodu tartışarak netleştirmek.
+- **Durum:** GRV-004 açık; bu güncelleme görev kapanışı veya teknik doğrulama değildir.
