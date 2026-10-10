@@ -145,3 +145,12 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Açık noktalar:** Gerçek örnekleme hızı; 1000 okumanın tamamlanması; istatistik satırının üretilmesi; nihai YAML'ın derleme sonucu.
 - **Sıradaki tek adım:** Ara rapor üzerinden hızlı okuma yöntemini ve sade kodu tartışarak netleştirmek.
 - **Durum:** GRV-004 açık; bu güncelleme görev kapanışı veya teknik doğrulama değildir.
+
+## 2026-10-10 ek güncelleme — GRV-004 sürekli ADC turları
+
+- **Yeni kanıt:** [TUR=1..16 logu](GOREVLER/GRV-004/RAPOR/LOG/esp32d1-4ch-adc-tur-20261010-logs-11.txt) ESPHome API bağlantısını ve 16 sürekli ADC sonuç satırını gösteriyor.
+- **Kod snapshot'ı:** [STD öncesi sürekli MIN/MAX/ORT YAML](GOREVLER/GRV-004/RAPOR/KOD/esp32d1-4ch-1000-min-max-avg-continuous-20261010.yaml).
+- **Ara rapor:** [ALT-GÖREV-03 MIN/MAX/ORT log raporu](GOREVLER/GRV-004/RAPOR/ALT-GOREV-03-MIN-MAX-ORT-LOG-20261010.md).
+- **Sıradaki alt görev:** [ALT-GÖREV-04 — ORT hesabının bağımsız doğrulanması](GOREVLER/GRV-004/RAPOR/ALT-GOREV-04-ORT-HESABI-20261010.md).
+- **Sınır:** Mevcut logda ham örnekler ve sayaçlar yok; dolayısıyla her turun 1000 örnek/kanal içerdiği ve ORT'nin ham veriden bağımsız yeniden üretildiği henüz kanıtlanmadı.
+- **Kayıt disiplini:** Önceki deneylerin üzerine yazılmadı. Yeni YAML snapshot'ı ve log ayrı dosyalar olarak arşivlendi.
