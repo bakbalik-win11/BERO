@@ -122,3 +122,56 @@ TUR=21, PZEM'in yükün devreye girdiğini gösterdiği geçiş turudur: 0.338 A
 
 ### Sonraki adım
 Bu iki yük durumunun aynı raporda kaydı tamamlandı. Mevcut YAML değiştirilmedi. Bir sonraki teknik adım, mümkünse eşzamanlı örnekleme sağlayan ADC okuma düzenine geçmek ve ardından PZEM referansıyla kalibrasyon deneyini planlamaktır.
+
+
+---
+
+## ALT06 — İlk deneysel akım tahmini hesabı (iki çalışma durumu)
+
+### Kullanılan ortalamalar
+
+Hesap, yüksüz TUR=1–20 ve yük altındaki TUR=22–27 ALT06 sonuçlarının aritmetik ortalamalarını kullanır.
+
+| Büyüklük | Yüksüz ortalama | Yaklaşık 150 W ortalama |
+|---|---:|---:|
+| PZEM akımı | 0.028000 A | 0.650833 A |
+| K1 RMS | 0.01412795 V | 0.06128933 V |
+| K2 RMS | 0.01286700 V | 0.09685300 V |
+| K3 RMS | 0.01231810 V | 0.02761283 V |
+
+Akım farkı: `ΔI = 0.65083333 - 0.02800000 = 0.62283333 A`.
+
+### İlk doğrusal tahmin denklemleri
+
+İki ortalama çalışma noktası arasında her kanal için ayrı doğru kuruldu:
+
+```text
+I_K1 = 0.028000 + 13.20643 * (K1_RMS - 0.01412795) A
+I_K2 = 0.028000 +  7.41592 * (K2_RMS - 0.01286700) A
+I_K3 = 0.028000 + 40.72208 * (K3_RMS - 0.01231810) A
+```
+
+RMS değerleri volt cinsindedir; katsayıların birimi A/V'dir. Bu denklemler yalnızca bu deneyin yüksüz ve yaklaşık 150 W ortalama noktalarına dayanan **ön kalibrasyon / doğrusal interpolasyon modelleridir**.
+
+### Yük altı turlarına uygulandığında
+
+| Tur | PZEM (A) | K1 tahmini (A) | K2 tahmini (A) | K3 tahmini (A) |
+|---:|---:|---:|---:|---:|
+| 22 | 0.652 | 0.6375 | 0.6482 | 0.5773 |
+| 23 | 0.651 | 0.6533 | 0.6513 | 0.6312 |
+| 24 | 0.650 | 0.6504 | 0.6548 | 0.6940 |
+| 25 | 0.651 | 0.6502 | 0.6478 | 0.6820 |
+| 26 | 0.650 | 0.6492 | 0.6477 | 0.6667 |
+| 27 | 0.651 | 0.6644 | 0.6552 | 0.6538 |
+
+### Yorum ve sınırlar
+
+- Ortalama iki çalışma noktasıyla kurulan modelin ortalama tahmini, tanımı gereği PZEM'in iki ortalamasını karşılar; bu durum bağımsız doğrulama değildir.
+- Yük altındaki tekil turlarda K1 ve K2 tahminleri PZEM çevresinde daha yakın görünür. K3'ün tahminleri daha fazla saçılır; bu deneyde K3 daha zayıf/oynak bir tahmin adayıdır.
+- Yalnızca iki çalışma durumu kullanıldı: yüksüz ve yaklaşık 148 W. Bu nedenle doğrusal davranışın başka akımlarda geçerli olduğu söylenemez.
+- PZEM'in 5 saniyelik güncellemesi ADC örnek penceresiyle tam senkron değildir; kanal örnekleri ve BIAS da eşzamanlı garanti edilmemektedir.
+- Düşük akımda PZEM'in 0.028 A ve 1.5–1.7 W göstermesi taban noktası olarak kullanıldı; bu, gerçek sıfır akım ölçümü değildir.
+- Denklemler çalışma hipotezidir; doğrulanmış akım ölçer sonucu veya üretim kodu olarak kullanılmamalıdır.
+
+### Sonraki doğrulama
+Mevcut YAML korunacak. Bir sonraki deneyde mümkünse ara yük seviyeleri (ör. yaklaşık 50 W ve 100 W) kaydedilip aynı katsayılarla tahmin hesaplanmalı ve PZEM ile karşılaştırılmalı. Daha güvenilir kalibrasyondan önce eşzamanlı örnekleme sorunu ayrıca çözülmelidir.
