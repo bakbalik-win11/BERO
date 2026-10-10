@@ -89,3 +89,13 @@ Logda ESP32 rev3.1 için `minimum_chip_revision: "3.1"` ve `sram1_as_iram: true`
 - **Kanıt:** 16 sonuç turu logda görünür; her satır dört kanal için MIN/MAX/avg bildirir.
 - **Sınır:** Log ham örnekleri içermediğinden 1000 örnek/kanal/tur veya bilgisayarda bağımsız ORT hesabı tek başına doğrulanamıyor.
 - **Koruma:** Önceki YAML/log kayıtları değiştirilmedi; bu sürüm ayrı snapshot olarak eklendi.
+
+## 2026-10-10 — STD'li sürekli ADC sonuçları
+
+- **Kod:** [MIN/MAX/ORT/STD YAML](KOD/esp32d1-4ch-1000-min-max-avg-std-continuous-20261010.yaml)
+- **Log:** [TUR=1..18](LOG/esp32d1-4ch-adc-std-20261010-logs-12.txt)
+- **Rapor:** [ALT-GÖREV-03 STD log raporu](ALT-GOREV-03-MIN-MAX-ORT-STD-LOG-20261010.md)
+- **Sonraki alt görev:** [ALT-GÖREV-04 — ORT/STD bağımsız doğrulama](ALT-GOREV-04-ORT-HESABI-20261010.md)
+- **Gözlem:** Logda 18 özet satırı var; her satır dört kanal için MIN, MAX, avg ve std alanlarını içeriyor.
+- **Sınır:** Ham örnekler ve açık sayaç çıktısı olmadığından ORT/STD hesabı ham veriden bağımsız doğrulanamıyor; her turda 1000 örnek/kanal şartı doğrudan kanıtlanmış değil.
+- **Koruma:** STD'siz önceki YAML ve log ayrı sürümler olarak korunmuştur.
