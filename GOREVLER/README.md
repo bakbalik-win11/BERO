@@ -40,3 +40,28 @@ Görev numaraları sıralı ilerler: GRV-001, GRV-002, ...
 
 - [GRV-002 — ESP32D1 + PZEM-004T V3.0](GRV-002/RAPOR/README.md)
 - Amaç: ESP32D1 üzerinde PZEM-004T V3.0 UART/Modbus yapılandırmasını ve log kanıtını görev bazında saklamak.
+
+
+## Üçüncü görev
+
+- [GRV-003 — Trafo Bias Yapısının Kurulması ve Doğrulanması](GRV-003/RAPOR/README.md)
+- Amaç: SCT013 akım ölçüm zincirinde kullanılan trafo bias yöntemini ayrı görevde belgelemek ve doğrulamak.
+
+## Dördüncü görev
+
+- [GRV-004 — ESP32D1 + PZEM + SCT013-1T/2T/3T](GRV-004/RAPOR/README.md)
+- Amaç: Bias yapısı ayrı görevde ele alındıktan sonra PZEM ve üç SCT013'ü aynı ESP32D1 deneyinde bir araya getirmek.
+- [Alt Görev 2 — Fiziksel Okuma Notu](GRV-004/RAPOR/ALT-GOREV-02-FIZIKSEL-OKUMA.md)
+
+## Bu görev sırası neden değişti?
+
+GRV-003 ilk olarak birleşik PZEM + SCT013 deneyi olarak düşünülmüştü. SCT013 ölçümünün dayandığı trafo bias yapısının önce ayrı bir görevde açıklanması gerektiği görüldü. Bu nedenle bias çalışması GRV-003 oldu; birleşik sensör deneyi ve ona ait fiziksel okuma kaydı GRV-004'e kaydırıldı. Önceki ölçüm bilgileri silinmedi; yeni görev numarası altında korunarak ilişkilendirildi.
+
+## Yapının çalışma mantığı
+
+- **GOREVLER/README.md:** Görevlerin sırasını ve birbirleriyle ilişkisini gösteren ana dizin.
+- **GRV-NNN/RAPOR/:** Görevin amacı, alt görevleri, fiziksel test notları, sonuçları ve kararları.
+- **GRV-NNN/KOD/:** O göreve ait deney kodları ve kod sürümüne bağlı teknik kayıtlar.
+- **DONANIM / KOD klasörleri:** Donanımın kalıcı referans bilgileri ve yeniden kullanılabilir örnekler; görev klasörleri ise belirli deneyin geçmişini tutar.
+
+Bir görevde ölçülen sonuç, yalnızca kanıtın desteklediği seviyede kaydedilir. Birleşik deneyden önce bağımlı devreyi (bu durumda trafo bias) ayrı görevde ele almak, arıza ayıklamayı ve geçmişi izlemeyi kolaylaştırır.
