@@ -109,3 +109,11 @@ Logda ESP32 rev3.1 için `minimum_chip_revision: "3.1"` ve `sram1_as_iram: true`
 - **PZEM bağlantısı:** UART TX GPIO16, RX GPIO17, 9600 baud; telemetri güncellemesi 5 s.
 - **Koruma:** Önceki YAML snapshot'ları değiştirilmedi; cihaz adı `esp32d1` olarak korundu.
 - **Durum:** Kod adayı hazır; derleme, cihazda PZEM telemetrisi ve ADC tur devamlılığı doğrulaması bekliyor.
+
+
+### ALT-GÖREV-05 güncellemesi — PZEM aynı ADC_TEST satırında
+
+- **Güncel kod adayı:** [PZEM ID'leri + birleşik ADC_TEST logu](KOD/esp32d1-4ch-1000-min-max-avg-std-pzem-log-continuous-20261010.yaml)
+- PZEM sensörlerine ID eklendi; akım, güç ve gerilim ADC turunun aynı `ADC_TEST` satırında raporlanacak.
+- Önceki PZEM+ADC snapshot'ı korundu. Yeni sürüm ayrı dosyadır.
+- Derleme ve cihaz testi bekliyor.
