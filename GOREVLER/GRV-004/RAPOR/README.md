@@ -79,3 +79,13 @@ Logda ESP32 rev3.1 için `minimum_chip_revision: "3.1"` ve `sram1_as_iram: true`
 - **Durum:** Açık. Nihai kodun derleme sonucu, 1000 örnek tamamlanması ve tek satır çıktı henüz doğrulanmadı.
 - **Log notu:** Son yüklenen logda dört ADC kanalı canlı yayın yapıyor ve PZEM satırları görünmüyor. CSV tamamlanma işareti yok.
 - **Kayıt ilkesi:** Önceki YAML ve raporlar korunur; yeni deneme ayrı sürüm olarak kaydedilir.
+
+## 2026-10-10 — Sürekli ADC tur logu (STD öncesi kod)
+
+- **Kod snapshot'ı:** [MIN/MAX/ORT sürekli ölçüm YAML](KOD/esp32d1-4ch-1000-min-max-avg-continuous-20261010.yaml)
+- **Log:** [esp32d1-logs (11).txt — TUR=1..16](LOG/esp32d1-4ch-adc-tur-20261010-logs-11.txt)
+- **Sonuç raporu:** [ALT-GÖREV-03 MIN/MAX/ORT log raporu](ALT-GOREV-03-MIN-MAX-ORT-LOG-20261010.md)
+- **Sonraki alt görev:** [ALT-GÖREV-04 — ORT hesabının bağımsız doğrulanması](ALT-GOREV-04-ORT-HESABI-20261010.md)
+- **Kanıt:** 16 sonuç turu logda görünür; her satır dört kanal için MIN/MAX/avg bildirir.
+- **Sınır:** Log ham örnekleri içermediğinden 1000 örnek/kanal/tur veya bilgisayarda bağımsız ORT hesabı tek başına doğrulanamıyor.
+- **Koruma:** Önceki YAML/log kayıtları değiştirilmedi; bu sürüm ayrı snapshot olarak eklendi.
