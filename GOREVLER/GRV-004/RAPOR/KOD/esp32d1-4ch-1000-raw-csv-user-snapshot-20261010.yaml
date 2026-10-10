@@ -1,0 +1,212 @@
+# PROJE BERO — GRV-004
+# DENEY: ADC SINYAL TANIMA
+# HEDEF: 4 kanaldan 1000'er örnek toplayip ham veriyi disari aktarmak
+# HESAPLAMA: Bilgisayarda
+# PZEM: Bu deneyden gecici olarak cikarildi
+
+esphome:
+  name: esp32d1
+  friendly_name: ESP32D1
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+  on_boot:
+    priority: -100
+    then:
+      - lambda: |-
+          id(bias_data).clear();
+          id(kanal1_data).clear();
+          id(kanal2_data).clear();
+          id(kanal3_data).clear();
+
+          id(bias_time).clear();
+          id(kanal1_time).clear();
+          id(kanal2_time).clear();
+          id(kanal3_time).clear();
+
+          id(bias_count) = 0;
+          id(kanal1_count) = 0;
+          id(kanal2_count) = 0;
+          id(kanal3_count) = 0;
+          id(adc_dumped) = false;
+
+          id(bias_data).reserve(1000);
+          id(kanal1_data).reserve(1000);
+          id(kanal2_data).reserve(1000);
+          id(kanal3_data).reserve(1000);
+
+          id(bias_time).reserve(1000);
+          id(kanal1_time).reserve(1000);
+          id(kanal2_time).reserve(1000);
+          id(kanal3_time).reserve(1000);
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: WARN
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+globals:
+  - id: bias_data
+    type: std::vector<float>
+    restore_value: no
+    initial_value: 'std::vector<float>()'
+
+  - id: kanal1_data
+    type: std::vector<float>
+    restore_value: no
+    initial_value: 'std::vector<float>()'
+
+  - id: kanal2_data
+    type: std::vector<float>
+    restore_value: no
+    initial_value: 'std::vector<float>()'
+
+  - id: kanal3_data
+    type: std::vector<float>
+    restore_value: no
+    initial_value: 'std::vector<float>()'
+
+  - id: bias_time
+    type: std::vector<uint32_t>
+    restore_value: no
+    initial_value: 'std::vector<uint32_t>()'
+
+  - id: kanal1_time
+    type: std::vector<uint32_t>
+    restore_value: no
+    initial_value: 'std::vector<uint32_t>()'
+
+  - id: kanal2_time
+    type: std::vector<uint32_t>
+    restore_value: no
+    initial_value: 'std::vector<uint32_t>()'
+
+  - id: kanal3_time
+    type: std::vector<uint32_t>
+    restore_value: no
+    initial_value: 'std::vector<uint32_t>()'
+
+  - id: bias_count
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+  - id: kanal1_count
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+  - id: kanal2_count
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+  - id: kanal3_count
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+  - id: adc_dumped
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+
+sensor:
+  - platform: adc
+    pin: GPIO32
+    name: "BIAS Ham Voltaj"
+    id: bias_ham_voltaj
+    attenuation: 12db
+    update_interval: 1ms
+    accuracy_decimals: 3
+    on_value:
+      then:
+        - lambda: |-
+            if (id(bias_count) < 1000 && !id(adc_dumped)) {
+              id(bias_data).push_back(x);
+              id(bias_time).push_back(millis());
+              id(bias_count)++;
+            }
+
+            if (!id(adc_dumped) &&
+                id(bias_count) == 1000 &&
+                id(kanal1_count) == 1000 &&
+                id(kanal2_count) == 1000 &&
+                id(kanal3_count) == 1000) {
+              id(adc_dumped) = true;
+
+              ESP_LOGW("ADC_CSV",
+                "index,bias_ms,bias_V,1t_ms,1t_V,2t_ms,2t_V,3t_ms,3t_V");
+
+              for (int i = 0; i < 1000; i++) {
+                ESP_LOGW("ADC_CSV",
+                  "%d,%u,%.5f,%u,%.5f,%u,%.5f,%u,%.5f",
+                  i,
+                  (unsigned) id(bias_time)[i], id(bias_data)[i],
+                  (unsigned) id(kanal1_time)[i], id(kanal1_data)[i],
+                  (unsigned) id(kanal2_time)[i], id(kanal2_data)[i],
+                  (unsigned) id(kanal3_time)[i], id(kanal3_data)[i]);
+              }
+
+              ESP_LOGW("ADC_CSV", "VERI_AKTARIMI_TAMAMLANDI");
+            }
+
+  - platform: adc
+    pin: GPIO33
+    name: "1T Ham Voltaj"
+    id: kanal_1t_ham_voltaj
+    attenuation: 12db
+    update_interval: 1ms
+    accuracy_decimals: 3
+    on_value:
+      then:
+        - lambda: |-
+            if (id(kanal1_count) < 1000 && !id(adc_dumped)) {
+              id(kanal1_data).push_back(x);
+              id(kanal1_time).push_back(millis());
+              id(kanal1_count)++;
+            }
+
+  - platform: adc
+    pin: GPIO34
+    name: "2T Ham Voltaj"
+    id: kanal_2t_ham_voltaj
+    attenuation: 12db
+    update_interval: 1ms
+    accuracy_decimals: 3
+    on_value:
+      then:
+        - lambda: |-
+            if (id(kanal2_count) < 1000 && !id(adc_dumped)) {
+              id(kanal2_data).push_back(x);
+              id(kanal2_time).push_back(millis());
+              id(kanal2_count)++;
+            }
+
+  - platform: adc
+    pin: GPIO35
+    name: "3T Ham Voltaj"
+    id: kanal_3t_ham_voltaj
+    attenuation: 12db
+    update_interval: 1ms
+    accuracy_decimals: 3
+    on_value:
+      then:
+        - lambda: |-
+            if (id(kanal3_count) < 1000 && !id(adc_dumped)) {
+              id(kanal3_data).push_back(x);
+              id(kanal3_time).push_back(millis());
+              id(kanal3_count)++;
+            }
