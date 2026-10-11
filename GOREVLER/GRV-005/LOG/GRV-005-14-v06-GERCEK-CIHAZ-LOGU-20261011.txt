@@ -40,7 +40,7 @@ INFO Successful handshake with esp32d1 @ 192.168.0.8 in 0.022s
 [15:03:18.887][S][sensor]: 'GRV005 PZEM Current' >> 0.028 A
 [15:03:18.887][S][sensor]: 'GRV005 PZEM Power' >> 1.70 W
 [15:03:18.888][S][sensor]: 'GRV005 PZEM PF' >> 0.26
-[15:03:19.880][S][sensor]: 'GRV005 PZEM Current' >> 1.70 W
+[15:03:19.880][S][sensor]: 'GRV005 PZEM Power' >> 1.70 W
 [15:03:19.881][S][sensor]: 'GRV005 PZEM PF' >> 0.26
 [15:03:20.871][S][sensor]: 'GRV005 PZEM Current' >> 0.028 A
 [15:03:20.872][S][sensor]: 'GRV005 PZEM Power' >> 1.70 W
