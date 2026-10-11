@@ -1,7 +1,7 @@
 # GRV-005 — SCT/ADC istatistiksel veri seti ve Python model öğrenme altyapısı
 
 - Tarih: 2026-10-11
-- Durum: Açık; ilk kod taslağı başlatıldı, derleme ve donanım testi yapılmadı.
+- Durum: Açık; GRV-005-01 v01 YAML derlemesi kullanıcı tarafından başarılı bildirildi (2026-10-11); donanım testi bekliyor.
 - Önceki görevlerle ilişki: GRV-004/ALT09 ve ALT10 deneyleri referans olarak korunur; bu görevin dosyaları ve kodları ayrıdır.
 - Amaç: Ham ADC örneklerini kalıcı olarak kaydetmeden, kanal başına 1000 örnekten hesaplanan özellikleri PZEM referans ölçümüyle zaman ilişkisini koruyarak kaydetmek; Python'da akım tahmini modelleri için kaliteli veri seti oluşturmak.
 
@@ -17,11 +17,11 @@
 
 ## Alt görev sırası
 
-- GRV-005-01 — Ölçüm sözleşmesi ve PZEM zaman eşleştirmesi: temel alanlar ve zaman ilişkisi kilitlendi; ilk entegrasyon taslağı başladı.
+- GRV-005-01 — Ölçüm sözleşmesi ve PZEM zaman eşleştirmesi: v01 YAML derlemesi kullanıcı tarafından başarılı bildirildi; 0 A ve sabit değer koşullarındaki on_value davranışı donanımda test edilecek.
 - GRV-005-02 — Özelliklerin kesin tanımları: adc_rms, adc_std, median/yüzdelikler, bias düzeltmesi ve kalite sayımları.
 - GRV-005-03 — PZEM güncelleme davranışı ve zaman farkı kabul aralığı.
 - GRV-005-04 — Nihai CSV şeması ve veri sözlüğü.
-- Sonraki adımlar: yeni ESPHome deneme kodunun derlenmesi, fiziksel PZEM haberleşmesi ve örnekleme/CSV kayıtlarının cihaz loguyla doğrulanması; ardından Python kalite kontrolü ve model karşılaştırması.
+- Sonraki adımlar: YAML'ın cihaza yüklenmesi; fiziksel PZEM haberleşmesi, 0 A davranışı ve on_value tetikleme sıklığının doğrulanması; ardından örnekleme/CSV kayıtlarının cihaz loguyla doğrulanması; ardından Python kalite kontrolü ve model karşılaştırması.
 
 ## İlk kod taslağının sınırları
 
@@ -29,8 +29,9 @@
 
 ## Doğrulama seviyesi
 
-- Kod: taslak
-- Derleme: yapılmadı
+- Kod: v01
+- Derleme: kullanıcı tarafından başarılı bildirildi
 - Cihaza yükleme: yapılmadı
 - PZEM zaman damgası ve ADC istatistikleri: doğrulanmadı
+- 0 A / sabit değer / on_value çevrim sıklığı: donanım testi bekliyor
 - Ölçüm doğruluğu / RMS akım tahmini: doğrulanmadı
