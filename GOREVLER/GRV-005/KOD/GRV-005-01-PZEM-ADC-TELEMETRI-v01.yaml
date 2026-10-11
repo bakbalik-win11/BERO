@@ -1,6 +1,7 @@
-# GRV-005-01 — v01 DRAFT
+# GRV-005-01 — v01
+# Derleme: KULLANICI TARAFINDAN BASARILI BILDIRILDI (2026-10-11).
+# Donanim testi: BEKLIYOR.
 # New experimental file. Do not replace GRV-002/GRV-004 or ALT09/ALT10.
-# Not yet compiled or tested on hardware.
 esphome:
   name: esp32d1
   friendly_name: ESP32D1
