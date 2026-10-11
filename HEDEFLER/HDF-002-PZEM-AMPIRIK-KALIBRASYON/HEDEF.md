@@ -1,60 +1,159 @@
-# HDF-002 — PZEM Referanslı Ampirik Akım Kalibrasyonu
+# HDF-002 — BERO Kümülatif Öğrenme ve Sahaya Geri Besleme Sistemi
 
-**Durum:** Açık — yaklaşım tanımlandı; eşleştirilmiş veri toplama ve modelleme bekliyor.  
+**Durum:** Açık — mimari hedef tanımlandı; ilk uygulama basamağı HA verisini kümülatif biriktirmektir.  
 **Açılış tarihi:** 2026-10-11  
-**Ön koşul:** HDF-001 dondurulmuştur ve tarihsel kanıt olarak korunur. Bu yeni hedef HDF-001'i silmez, yeniden başlatmaz veya onun dosyalarını değiştirmez.
+**Öncelik:** Önce veri havuzu; ardından masaüstü işleme/öğrenme ve ESP'ye geri besleme.  
+**Koruma:** HDF-001 ve ona bağlı tüm kodlar, raporlar, loglar ve deneyler tarihsel kayıt olarak korunur. Mevcut çalışan YAML değiştirilmez.
 
 ## 1. Hedef
 
-Mevcut sensör/ADC ölçüm zincirinin ürettiği veriyi PZEM'in akım ve güç faktörü (PF) okumalarıyla eşleştirerek, sensör verisinden PZEM referansına yaklaşan ampirik bir akım tahmin fonksiyonu öğrenmek. Model önce Python'da kurulup ölçümlerle iyileştirilecek; yalnızca bağımsız doğrulamada kabul ölçütünü karşılarsa ESP32'ye taşınacak ve ESP üzerinde PZEM ile tekrar karşılaştırılacaktır.
+Proje BERO'yu yalnızca bir sensör kalibrasyon deneyi olarak değil, uçtan uca bir **veri toplama → kümülatif veri havuzu → masaüstünde öğrenme → model karşılaştırma → başarı ölçümü → sahaya geri besleme** sistemi olarak kurmak.
 
-Temel model biçimi:
+ESP'nin akım hesaplaması veya model eğitmesi zorunlu değildir. ESP mevcut sensörlerden veri/öznitelik üretip ileten uç cihaz olarak kalabilir. Akım tahmini, model seçimi, davranış öğrenme ve model üretme masaüstü Python tarafında yapılabilir. Başarılı ve ESP'nin uygulayabileceği çıktı varsa parametre/fonksiyon ESP'ye aktarılır; aktarım ve geri okuma doğrulanır.
 
-`PZEM_current = f(sensor_data, bias, optionally_other_justified_features)`
+Sensör tipi veya adı veri havuzunun merkezî anahtarı değildir. Tüm sensör verileri ortak veri düzeninde saklanabilir; eğitim ve model karşılaştırması gerektiğinde sensör, kanal, analog koşullandırma zinciri veya çalışma koşuluna göre ayrı gruplarda yürütülür. Farklı sensörlerin katsayılarının otomatik olarak birbirine aktarılacağı varsayılmaz.
 
-İlk modelde mevcut ADC/sensör özellikleri ve bias birlikte değerlendirilir. Bias'ı baştan yok saymak veya sabit kabul etmek yerine ölçüp veri kümesine koy. Ek özellik (ör. RMS, tepe değer, örnek dağılımı, sıcaklık veya kanal kimliği) ancak ölçülebilir gerekçesi ve veri desteği varsa eklenir.
+## 2. Mimari katmanlar
 
-## 2. Kapsam ve sıra
+### Katman 1 — Home Assistant veri biriktirme
 
-1. **Mevcut kayıtları kullan:** HDF-001 ve GRV-001–GRV-006 içindeki kod, log, CSV, sensör özellikleri, bias bilgisi ve PZEM kayıtlarını incele. Önceki kanıtı yeniden yazma; kullanılabilir veriyi kaynağına atıfla seç. Veri şeması/model için gerekli bir alan yoksa bunu açıkça kaydet.
-2. **Eşleşmiş örnek üret:** Aynı ölçüm penceresi ya da açıkça tanımlanmış yakın zaman aralığı için ADC/sensör özellikleri, bias, kanal/sensör kimliği ve PZEM akımı birlikte kaydedilsin. PZEM PF de aynı örneğe etiket olarak kaydedilsin. Yük ve çalışma koşulları, birimler, zaman damgaları, ölçüm penceresi ve sensör/koşullandırma zinciri korunur.
-3. **Tekrarlı veri topla:** Farklı yük/akım seviyelerini kapsa; her noktada tekrarlar al ve kararlı/kararsız durumu işaretle. Örnek sayısı ve tekrar planı ilk veri incelendikten sonra belirlenir; ölçüm yapılmadan yeterli veri olduğu iddia edilmez.
-4. **Python'da basit modeli kur:** Önce anlaşılır bir global doğrusal/kalibrasyon fonksiyonu gibi basit seçenekleri değerlendir. Hata grafikleri ve artıklar sistematik eğrilik/bölge farkı gösterirse ve her bölge için yeterli bağımsız veri varsa parçalı/bölgesel fonksiyonu değerlendir. Yalnızca eğitim verisini daha iyi uydurması bölgesel model için gerekçe değildir.
-5. **PF'yi ayrı değerlendir:** PZEM PF etiketini ayrı hedef değişken olarak incele. Sensör verisinin PF'yi tahmin etmeye yeterli bilgi taşıyıp taşımadığını bağımsız doğrulamada göster; akım modeli başarılı diye PF başarısı varsayılmaz. PF için kullanılabilir bilgi yoksa veya tahmin kararsızsa bunu sonuç olarak kaydet.
-6. **Bağımsız doğrula:** Model seçimini eğitim verisinde yap; doğrulama verisini model/özellik seçimi için kullanma. Mümkünse ölçüm oturumlarını veya yük noktalarını bütün halde ayır ki aynı koşulun tekrarları eğitim ve doğrulamaya bölünüp sonucu yapay olarak iyileştirmesin. Eğitimde görülmeyen ölçüm/koşullarda sonuçları raporla.
-7. **Kabul kararı ver:** Python tahminlerini PZEM ile eşleştir; nokta bazlı mutlak hata, yüzde hata, MAE/RMSE, sapma eğilimi ve hedef dışındaki örnekleri raporla. Başarı eşiği karşılanmadan ESP'ye aktarım yok.
-8. **ESP32'ye aktar ve karşılaştır:** Kabul edilen formülü ve katsayıları açık, kopyalanabilir kodla ESP32 uygulamasına taşı. ESP cihaz adı mevcut tercih uyarınca `esp32d1` kalır; başka ESP adları kullanıcı istemedikçe değiştirilmez. Yeni kod derleme onayı gelene kadar görev kod klasörüne taşınmaz. Kullanıcı derleme başarısını doğruladıktan sonra cihaz çıktısı PZEM ile aynı koşullarda karşılaştırılır ve sonuç ayrı kayıt edilir.
+**Görev**
+- Home Assistant'ta mevcut olan sensör, ADC öznitelikleri ve referans değerlerini okumaya uygun veri kaynağı oluşturmak.
+- Zaman damgası, entity/sensör kimliği, ölçüm değeri ve birimi korumak.
+- Verileri artımlı ve kümülatif biçimde biriktirmek.
+- Veri kaybı, tekrar kayıt ve boşlukları görünür kılmak.
 
-## 3. Kabul ölçütü — öneri, henüz kullanıcı onayı bekliyor
+**İlk teslimat budur.** İlk adımda mevcut HA verisinin nerede ve hangi entity'lerde bulunduğu envanterlenir; veri toplama/uzun süreli saklama düzeni kurulur. Yeni donanım testi veya YAML değişikliği bu adımın ön koşulu değildir.
 
-- **Akım:** PZEM referansından en fazla ±%10 sapma hedefi önerilir. Ölçüt, bağımsız doğrulama örneklerinde tanımlı geçerli çalışma aralığında değerlendirilir.
-- **Sıfıra yakın akım:** Yüzde hata sıfıra yaklaşırken anlamını kaybeder. Bu nedenle bir mutlak hata eşiği ve/veya sıfır çevresinde deadband ayrıca sayısal olarak belirlenmelidir. Eşik; PZEM çözünürlüğü, sensör gürültüsü ve uygulamanın kabul ettiği en küçük akım dikkate alınarak veri ve kullanıcı kararıyla seçilir. **Bu mutlak eşik şu an belirlenmiş değildir; öneri olarak bekler ve onaylanmadan kesin kabul ölçütü sayılmaz.**
-- **Raporlama:** Yalnızca ortalama yüzde hatayı vermek yeterli değildir. Mutlak hata, yüzde hata (uygulanabildiğinde), MAE/RMSE, en kötü sapma, tekrarlanabilirlik ve tolerans içinde kalan örnek oranı birlikte gösterilir.
-- **PF:** Akımdan ayrı model ve ayrı doğrulama kararı. PF için başarı eşiği veriler görülmeden uydurulmaz; tanımlanması gerekirse gerekçesiyle önerilir ve kullanıcı kararı bekler.
-- **ESP aşaması:** Python'da kabul edilen modelin ESP uygulaması, derleme kanıtı ve cihaz/PZEM karşılaştırması olmadan tamamlandı sayılmaz.
+### Katman 2 — Masaüstüne güvenli aktarım ve arşiv
 
-## 4. Veri ve model kayıt kuralları
+**Görev**
+- HA'daki yeni kayıtları masaüstüne aktarmak.
+- Masaüstünde kalıcı veri havuzuna eklemek.
+- Dosya/ölçüm kimliği veya zaman aralığıyla mükerrer kayıtları önlemek.
+- Aktarımın bütünlüğünü (kayıt sayısı, aralık, alanlar ve mümkünse checksum) doğrulamak.
+- Aktarım doğrulanmadan HA'daki kaynak kayıtları silmemek.
 
-- Ham log ve kaynak CSV'ler değiştirilmeyecek; temizlenmiş/eşleştirilmiş veri yeni dosyaya yazılacak ve kaynak dosyalara iz bırakacak.
-- Her satırda en az kaynak/zaman bilgisi, sensör ve kanal kimliği, ölçüm koşulu, ADC/sensör özellikleri, bias, PZEM akımı ve PZEM PF bulunmalı; eksik değerler sessizce doldurulmamalı.
-- Sensör örnek penceresi ile PZEM okumasının zaman farkı kaydedilmeli. Kararlı olmayan yük değişimlerinde eşleşme geçersiz/ayrı sınıf olarak işaretlenmeli.
-- Katsayılar sensör modeli, ölçüm kanalı ve analog koşullandırma zincirine bağlıdır. SCT-013, ACS712 5A/20A/50A ve ZMCT/ZMCA için aynı yöntem uygulanabilir; **her sensör/ölçüm zinciri ayrı katsayı veya modelle fit edilir.** Bir model diğer sensöre aktarılmış kabul edilmez.
-- ACS712 varyantları ve ZMCT/ZMCA adları/kapsamı envanterdeki gerçek parçayla eşleştirilir; gerilim kazancı, bias, filtreleme, ADC aralığı ve sensör çıkış özelliği belgelenir.
-- Kodun yanında aynı sürüm adına sahip .md bulunur: amaç, veri kaynağı, model/özellikler, koşullar, ölçütler, çalıştırma çıktısı, sonuç, sınırlamalar ve sıradaki adım. Kodlar tam ve kopyalanabilir tutulur.
-- Derleme isteyen kod, kullanıcı derlemenin başarılı olduğunu doğrulamadan görev klasörüne taşınmaz. Bu hedef açılırken henüz yeni kod veya derleme sonucu iddia edilmemektedir.
+Kullanıcının “HA'yı boşalt” isteği, yalnızca aktarımı doğrulanmış ve tekrar alınabilir kayıtların HA çalışma alanından temizlenmesi anlamındadır. Bu işlem tarihsel arşivi silmez. Ham veri masaüstündeki kalıcı arşivde korunur; temizlik sınırı açıkça yapılandırılır ve yanlışlıkla başka HA geçmişini silmez.
 
-## 5. Görev sırası
+Önerilen masaüstü havuzu:
 
-| Görev | Amaç | Durum |
-|---|---|---|
-| [GRV-007 — PZEM etiketli ampirik akım kalibrasyonu](../../GOREVLER/GRV-007/RAPOR/README.md) | Mevcut kanıtları envanterle, sensör/ADC + bias ile PZEM akım/PF okumalarını eşleştir, Python kalibrasyonunu ve bağımsız doğrulamayı yürüt | Açık — kapsam tanımlandı; yeni eşleşmiş ölçüm/model sonucu yok |
+```text
+BERO_DATASET/
+  raw/
+    2026/
+    2027/
+    ...
+  normalized/
+  manifests/
+  models/
+  reports/
+  archive/
+```
 
-GRV-007 içindeki basamaklar; veri envanteri ve şema, eşleşmiş ölçüm, model/özellik seçimi, bağımsız doğrulama, ardından kabul edilirse ESP aktarımı ve PZEM karşılaştırmasıdır. Bir basamakta başarısızlık veya veri yetersizliği, yeni bir sıfırlama sebebi değil kayıtlı bir bulgu ve sonraki karar girdisidir.
+Ham kaynak kayıtları değiştirilmez. Normalleştirilmiş/eşleştirilmiş veri ve model çıktıları ayrı dosyalarda tutulur.
+
+### Katman 3 — Kümülatif eğitim verisi
+
+Masaüstü programı tüm tarihsel veriyi okur; yeni veriler geldikçe veri kümesini genişletir. Mümkün olan öznitelikler arasında ADC RMS, ADC STD, MIN, MAX, RANGE, ortalama/medyan, bias, yüzdelikler ve kaynaktaki diğer ölçülebilir alanlar bulunur.
+
+Mevcutsa PZEM akımı, gücü, voltajı ve PF referans etiketleri zaman/ölçüm penceresiyle eşleştirilir. Eşleşme belirsizliği, zaman farkı ve eksik değerler kaydedilir; sessizce uydurma değer doldurulmaz. PZEM bulunmayan örnekler davranış/anomali öğrenmede yine kullanılabilir, fakat PZEM'e karşı denetimli akım başarısı hesabında etiketli örnek sayılmaz.
+
+Tüm sensörler ortak havuzda tutulur. Eğitim sırasında sensör/kanal/koşullandırma kimliği modele özellik olarak verilebilir veya veriler ayrı modellerle işlenebilir. Hangi yaklaşımın daha iyi olduğu deneyle değerlendirilir.
+
+### Katman 4 — Model yarışması
+
+Tek bir model baştan dayatılmaz. Veri miktarı ve niteliği uygunsa şu seçenekler karşılaştırılabilir:
+- Global doğrusal model / basit kalibrasyon katsayısı
+- Polynomial model
+- Bölgesel veya parçalı (piecewise) k katsayıları/fonksiyonlar
+- Random Forest
+- XGBoost veya benzeri yöntemler (kurulum ve veri desteği uygunsa)
+- Davranış profilleri ve gözetimsiz anomali yöntemleri
+
+Basit model, daha karmaşık modelle aynı veya daha iyi bağımsız sonuç veriyorsa tercih edilir. Bölgesel katsayılar yalnızca eğitim hatasını düşürdüğü için seçilmez; her bölgede yeterli örnek ve bağımsız doğrulama aranır. Sensör bazında ayrı eğitim mümkündür; sensör adlarının ortak havuzda bulunması buna engel değildir.
+
+### Katman 5 — Başarı ölçümü ve seçim
+
+PZEM etiketli akım modelleri için raporlanabilecek ölçütler:
+- MAE
+- RMSE
+- Ortalama sapma/bias
+- Maksimum mutlak hata
+- Yüzde hata (sıfıra yakın değerlerde ayrıca ele alınarak)
+- Tanımlanan tolerans içinde kalan örnek oranı
+
+Ön hedef olarak **akım hatası ≤ %10** değerlendirilebilir; bu, kullanıcı tarafından nihai kabul kuralı olarak ayrıca onaylanana kadar öneri niteliğindedir. Sıfıra yakın akımda yüzde hata yerine belirlenmiş mutlak hata/deadband uygulanır; sayısal eşik veri ve uygulama gereksinimi görülmeden uydurulmaz.
+
+Eğitim ve test verileri ayrılır. Mümkün olduğunda aynı ölçüm oturumu/yük koşulunun tekrarları iki tarafa da dağıtılmaz. Uzun süreli öğrenmede yeni günler/oturumlar üzerinde ayrıca değerlendirme yapılır. Bir haftalık veya daha uzun çalışma süresi mümkündür; süre tek başına başarı kanıtı değildir.
+
+### Katman 6 — Davranış ve risk öğrenme
+
+Akım tahmininden bağımsız bir hedef olarak normal davranış örüntüleri öğrenilebilir:
+- Bilinen çalışma profillerini tanıma (ör. cihazların çalışma döngüleri)
+- Yeni veya alışılmadık örüntüleri işaretleme
+- Anomali puanı üretme
+- Akım tahmini belirsizken de davranışın olağandışı olup olmadığını raporlama
+
+“Bilinmeyen profil” doğrudan “tehlike” demek değildir. Sistem normal/anormal adayını, güven düzeyini ve gerekçeyi ayırır. Elektriksel güvenlik riski hakkında kesin karar, yalnızca profil benzerliğine dayandırılmaz.
+
+### Katman 7 — ESP'ye geri besleme
+
+Masaüstü, karşılaştırma sonucunda uygun bulunan modelin uygulanabilir fonksiyonunu veya katsayılarını ve sürüm/metadata bilgisini üretir. ESP:
+- örnekleri/öznitelikleri toplar ve iletir,
+- kendisine gönderilen desteklenen parametre/fonksiyonu uygular,
+- mümkün olan sonucu/aktif sürümü geri bildirir.
+
+ESP'nin model eğitmesi veya modeller arasında seçim yapması zorunlu değildir. Masaüstü aktarılabilir bir çıktı üretemezse veya ESP tarafındaki uygulama yolu henüz mevcut değilse bu sınır açıkça raporlanır; aktarım gerçekleşmiş gibi gösterilmez. Her aktarımda gönderilen sürüm ve ESP'den geri okunan sürüm/değer karşılaştırılır. Mevcut YAML korunur; ESP tarafındaki uygulama gerekiyorsa ayrı ve yeni kod sürümü olarak hazırlanır, mevcut çalışan dosyanın üzerine yazılmaz.
+
+## 3. İki masaüstü programı
+
+### Program 1 — BERO Data Collector
+
+**Tek işi veri almak ve güvenli biçimde arşivlemektir.**
+- Home Assistant'tan mevcut veriyi/ölçüm entity'lerini okur.
+- Yeni kayıtları masaüstündeki kümülatif havuza ekler.
+- Zaman damgası, entity/sensör kimliği, birim ve değerleri korur.
+- Mükerrer kayıtları ve eksik aralıkları raporlar.
+- Aktarım doğrulanınca yalnızca yapılandırılmış HA çalışma alanını temizleyebilir.
+- Ham masaüstü arşivini silmez veya yeniden yazmaz.
+
+### Program 2 — BERO Trainer
+
+**Tek işi veriyi işlemek, modelleri karşılaştırmak ve aktarılabilir çıktıyı hazırlamaktır.**
+- Kümülatif havuzun tüm uygun verisini okur.
+- Temizleme/eşleştirme adımlarını ayrı türetilmiş dosyalara yazar.
+- Akım/PZEM modellerini ve davranış/anomali modellerini ayrı hedefler olarak değerlendirir.
+- Gerekirse sensör/kanal/bölge bazlı modeller ve k katsayıları üretir.
+- Başarı tablosu, grafikler, hata örnekleri ve model sürüm raporu çıkarır.
+- En iyi doğrulanmış modeli seçer ve ESP'ye aktarılacak dosyayı üretir.
+- ESP'ye aktarım/geri okuma adımının sonucunu kaydeder.
+
+Her iki programın kodu tam ve kopyalanabilir olacak; yanında aynı sürüm adına sahip açıklama .md dosyası bulunacaktır. Programlar masaüstünden çalıştırılabilecek şekilde hazırlanır. Gerekli HA adresi/erişim anahtarı gibi ortam ayarları kod içine sabit sır olarak yazılmaz; yerel yapılandırmadan alınır.
+
+## 4. İlk uygulama sırası
+
+1. **GRV-007 — HA veri kaynağı ve kümülatif biriktirme:** Mevcut HA entity ve kayıt yapısını incele; veri şemasını ve artımlı toplama yolunu belirle. İlk teslimat veri biriktirme olmalıdır.
+2. **GRV-008 — Masaüstü Collector ve güvenli aktarım/temizlik:** Veriyi BERO_DATASET havuzuna al; aktarımı doğrulamadan kaynak çalışma alanını temizleme.
+3. **GRV-009 — Trainer ve model yarışması:** Mevcut tüm veriyi işle; PZEM etiketli akım modellerini ve davranış modellerini ayrı değerlendir; sonuçları kaydet.
+4. **GRV-010 — Model çıktısı ve ESP geri besleme:** Seçilen fonksiyon/katsayıyı yeni sürüm olarak hazırla; desteklenen aktarım yolunu uygula; ESP'den geri okuyup doğrula.
+
+Basamaklar arasında mevcut YAML'ı tekrar tekrar test etmeyi zorunlu kılan bir kapı yoktur. Mevcut kayıtlar önce kullanılır; veri eksikliği yalnızca ilgili alan/sonuç için belirtilir. Yeni fiziksel ölçüm, ancak modelin belirli bir belirsizliği çözmek için gerçekten gerektiği gösterilirse ayrı bir karar olarak ele alınır.
+
+## 5. Kayıt ve koruma ilkeleri
+
+- HDF-001 ve eski görevlerin kodu, logu, raporu ve ölçümü korunur.
+- Ham veri hiçbir zaman normalleştirilmiş veriyle değiştirilmez.
+- Yeni model, katsayılar ve raporlar sürüm/tarih bilgisiyle ayrı saklanır.
+- Sensör isimleri veri havuzunu parçalamak için zorunlu değildir; ancak kaynak entity/kanal kimliği ve fiziksel ölçüm zinciri izlenebilirlik için korunur.
+- Modelin eğitimde iyi sonuç vermesi, sahada doğrulandığı anlamına gelmez.
+- Python'da model kurma, mevcut YAML'ın korunmasına engel değildir.
+- Gerçek HA entity eşlemesi, API/Recorder erişimi ve ESP'nin desteklediği geri besleme yolu mevcut yapı incelenerek belirlenir; bunlar varsayılarak başarılı ilan edilmez.
 
 ## 6. HDF-001 ile ilişki
 
-HDF-001 mevcut “Akımı Okuma” hedefidir. Kullanıcının açık talebiyle HDF-001 **FROZEN / DO NOT DELETE** olarak işaretlenmiştir. Dondurulması; HDF-001 klasörünü, bağlı görevleri, kodları, raporları, logları, geçmişi veya Git kayıtlarını silmek/değiştirmek anlamına gelmez. Bu kayıtlar daha önce deneneni ve eldeki kanıtı gösteren tarihsel temel olarak korunur. HDF-002 ayrı hedeftir ve HDF-001 dosyalarını yeniden kullanıp üzerine yazmaz.
+HDF-001 — Akımı Okuma, geçmiş denemeleri ve kanıtlarıyla birlikte tarihsel temel olarak korunur. HDF-002 onun dosyalarını yeniden başlatmaz veya üzerine yazmaz. HDF-002'nin odağı tek başına bir sensörün doğruluğunu tekrar tekrar sınamak değil, eldeki ve gelecekte birikecek veriden masaüstü öğrenme/karşılaştırma hattı kurmaktır.
 
-## 7. Durum
+## 7. Güncel durum
 
-**Açık — plan ve kabul yaklaşımı kaydedildi.** Eşleşmiş veri üzerinde Python modelinin fit edildiği, ±%10 hedefinin sağlandığı, PF'nin tahmin edilebildiği, kodun derlendiği veya ESP/PZEM karşılaştırmasının yapıldığı iddia edilmemektedir.
+**Açık — hedef mimarisi kaydedildi.** İlk iş HA verisini kümülatif biriktirmektir. Collector, Trainer, model eğitimi veya ESP geri beslemesi henüz bu hedef belgesinde uygulanmış/başarılı olarak iddia edilmemektedir.
