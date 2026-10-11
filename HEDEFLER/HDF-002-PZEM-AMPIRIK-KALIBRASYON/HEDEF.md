@@ -233,3 +233,41 @@ Akım modeli değerlendirmesinde kullanıcının daha önce belirlediği **±%4 
 
 ### İlk somut iş
 Yeni donanım deneyi veya MCP tartışması değil; mevcut USB–Mac veri yakalama çalışmasını temel alarak Mac Mini'de kayıt dosyalarını güvenilir biçimde yazan hattı ilerletmek, ardından aynı arşiv yaklaşımını RS485 Modbus kaynağına uyarlamaktır. Eski kodlar, YAML, loglar ve CSV'ler korunur; yeni sürümler yeni dosya adlarıyla eklenir.
+
+## 11. Mac Mini kalıcı veri deposu — klasör yapısı sabitlendi (2026-10-11)
+
+Mac Mini, Python model çalışmalarından önce güvenilir ve kalıcı veri deposu olarak kurulacaktır. İlk uygulamada aşağıdaki kök klasör yapısı sabit kabul edilir; yeni ihtiyaçlar mevcut klasörlerin anlamını değiştirmek yerine uygun alt klasör veya sürümlü dosya ile karşılanır.
+
+```text
+BERO_DATA/
+  raw/
+  features/
+  models/
+  reports/
+  archive/
+```
+
+### Klasörlerin görevleri
+
+- **raw/** — ESP'lerden veya diğer kaynaklardan alınan ham örnekler ve değiştirilmemiş kaynak kayıtları. Kaynak veri üzerine yazılmaz; yeni kayıtlar yeni dosyalara eklenir.
+- **features/** — 1000 örneklik veya başka tanımlı pencerelerden çıkarılmış RMS, STD, MIN, MAX, RANGE, BIAS ve ileride eklenecek diğer öznitelik kayıtları. Her kayıt kaynak ESP, sensör/kanal, pencere kimliği ve zaman bilgisiyle izlenebilir olmalıdır.
+- **models/** — Python tarafından eğitilen modeller, katsayılar, model sürümleri, eğitim yapılandırması ve modelin hangi veri kümesi/sürümle üretildiğini belirten metadata.
+- **reports/** — veri kalitesi, veri aktarım doğrulaması, eğitim/test sonuçları, hata ölçütleri, karşılaştırmalar ve deney raporları.
+- **archive/** — eski biçimler, kapatılmış veri kümesi anlık görüntüleri ve artık aktif akışta kullanılmayan fakat korunması gereken sürümler. Arşiv, raw kayıtların yerine geçmez ve onları silmek için gerekçe değildir.
+
+### Değişmez veri ilkeleri
+
+1. Kaynaktan alınan ham veri değiştirilmez; temizleme, eşleştirme ve normalleştirme sonuçları ayrı türetilmiş dosyalarda tutulur.
+2. Yeni kayıtlar tarih/saat ve kaynak kimliğiyle benzersiz dosyalara veya güvenli ekleme akışına yazılır; önceki kayıtlar üzerine yazılmaz.
+3. Bir aktarımın tamamlandığı; kayıt sayısı, zaman aralığı, beklenen alanlar ve mümkünse checksum ile doğrulanmadan kaynak çalışma alanı temizlenmez.
+4. Model ve raporlar, kullandıkları veri kümesinin kimliğini/sürümünü belirtir.
+5. Bu yapı ilk veri gelmeden sabitlenmiştir; klasör yapısı değişikliği ancak belgelenmiş bir ihtiyaçla ve geçmiş veriyi taşırken doğrulama yapılarak gerçekleştirilir.
+
+### Uygulama sırası
+
+1. Mac Mini'de `BERO_DATA/` ve beş alt klasörü oluştur.
+2. Mevcut USB–Mac seri yakalama işini yeni, sürümlü bir kodla bu yapıya bağla; eski yakalama kodunu koru.
+3. Sonraki aşamada RS485 Modbus kaynakları için ayrı kayıt adaptörü ekle; iki giriş yöntemi aynı arşiv düzenini kullansın.
+4. Verinin dosyaya güvenilir biçimde yazıldığı ve kayıtların tekrar okunabildiği doğrulandıktan sonra Python analiz/eğitim hattına geç.
+
+Bu klasör düzeni mimari kararıdır; bu belgenin güncellenmiş olması klasörlerin Mac Mini üzerinde oluşturulduğu veya veri yazımının çalıştırılarak doğrulandığı anlamına gelmez.
