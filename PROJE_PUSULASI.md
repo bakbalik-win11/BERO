@@ -226,3 +226,13 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - Beklenen AC RMS toplamı 39.127112; gönderilecek tamsayı 39127.
 - **Sıradaki tek iş:** Depo kök dizininden çalıştır: `GRV006_CSV="GOREVLER/GRV-006/RAPOR/GRV-006-05-LIVE-CSV-20261011.csv" python3 GOREVLER/GRV-006/KOD/GRV-006-04-csv-to-esp-v01.py`.
 - Kullanıcı terminal sonucu paylaşana kadar yeni canlı veri zinciri PASS sayılmaz. Eski CSV ve GRV-005 deneyimleri değiştirilmez.
+
+
+## 2026-10-11 — GRV-006 canlı CSV zinciri PASS
+
+- Yeni canlı log türevli CSV okundu; üç kanal toplamı 39.127112, gönderim değeri 39127.
+- Bağımsız hesap PASS; ESP `192.168.0.9:6053` üzerinden SENT 39127 ve ECHOED 39127.0.
+- **Kanıtlanan:** CSV → Python → bağımsız hesap → ESP → echo zinciri.
+- **Sınır:** CSV ESP'nin doğrudan yazdığı dosya değil, logdan türetildi. Fiziksel akım doğruluğu kanıtlanmadı; `invalid_count=NOT_TRACKED`.
+- **Sıradaki tek iş:** Özgün cihaz/log kaydının otomatik dosyaya alınması yolunu belirle; echo testini tekrarlama.
+- [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md).
