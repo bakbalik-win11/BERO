@@ -16,6 +16,9 @@ Bu klasör, projenin zaman içinde nereden nereye ilerlediğini gösteren tarihl
 
 ## Günlükler (en yeni en üstte)
 
+- [2026-10-12](2026/2026-10-12.md) — HDF-002 hedefi: olay korelasyonu ve iki aşamalı araştırma yönü
+
+
 - [2026-10-11](2026/2026-10-11.md) — GRV-005-14 CSV denemesi ve GRV-005-15 Python QC kapsamı
 
 - [2026-10-10](2026/2026-10-10.md) — GRV-004 dört kanal ADC deneyi ara raporu
