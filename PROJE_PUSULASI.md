@@ -160,3 +160,11 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Son teknik durum:** GRV-005-14 cihazın CSV satırları üretmesini kısmen doğrulamıştır; CSV alan hizası ve ESP→Python→ESP uçtan uca döngüsü tamamlanmış değildir. Bu durum SCT/ESP donanımının arızalı olduğunu veya kullanıcının hatalı olduğunu kanıtlamaz.
 - **Devam edilirse ilk adım:** Yeni test başlatmak değil, GRV-005-16 raporunu kullanıcıyla tartışmak ve mevcut dosya/kod/log kanıtları üzerinden tek bir somut çıktı hedefi seçmektir.
 - **Süreklilik şartı:** Geçmiş deneyimler ve kod sürümleri korunacak; yeni bir sıfırlama varsayılan çözüm olarak kullanılmayacak.
+
+
+## 2026-10-11 — GRV-006-03 derleme/API bağlantısı
+
+- **Son doğrulanan:** Kullanıcı GRV-006-03 v01 aday YAML'ın derlendiğini bildirdi. Paylaşılan ESPHome 2026.9.1 logu firmware derleme zamanını (2026-10-11 18:19:09 +0300), ESP32 rev3.1 bilgisini ve `esp32d1 @ 192.168.0.9` için API bağlantısı/handshake başarısını gösteriyor.
+- **Kayıt:** [GRV-006-03 cihaz logu](GOREVLER/GRV-006/RAPOR/GRV-006-03-v01-CIHAZ-LOGU-20261011.md); [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md); [aday YAML](GOREVLER/GRV-006/KOD/GRV-006-03-v01-ADAY.yaml).
+- **Kanıt sınırı:** Log parçası kesik. Python'dan action çağrısı ve ESP'den geri okuma henüz kanıtlanmadı; bu nedenle GRV-006-03 uçtan uca PASS değildir.
+- **Sıradaki tek adım:** Python istemcisini mevcut API ayarlarıyla çalıştırıp `SENT` ve `ECHOED` değerlerinin eşleşmesini doğrulamak. ESP adı `esp32d1` olarak korunur; GRV-005 geçmişi değişmez.
