@@ -1,0 +1,278 @@
+# ============================================================
+# PROJE BERO — GRV-005-13 v01
+# ESP32D1: 3 ADC kanal + BIAS + PZEM referansi
+# ============================================================
+# Tested by user on ESPHome 2026.9.1, compiled 2026-10-11
+# 11:18:50 +0300. Exact device log is stored separately.
+# PZEM sensor has no uart_id option in this ESPHome version.
+# pzem_update_millis is current on_value time, NOT proven
+# actual Modbus response time. One-shot window only.
+
+esphome:
+  name: esp32d1
+  friendly_name: ESP32D1
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: INFO
+api:
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+uart:
+  id: grv513_pzem_uart
+  tx_pin: GPIO16
+  rx_pin: GPIO17
+  baud_rate: 9600
+  parity: NONE
+  stop_bits: 1
+
+globals:
+  - {id: grv513_pzem_current, type: float, initial_value: '0.0'}
+  - {id: grv513_pzem_power, type: float, initial_value: '0.0'}
+  - {id: grv513_pzem_pf, type: float, initial_value: '0.0'}
+  - {id: grv513_pzem_update_ms, type: uint32_t, initial_value: '0'}
+  - {id: grv513_pzem_current_valid, type: bool, initial_value: 'false'}
+  - {id: grv513_pzem_power_valid, type: bool, initial_value: 'false'}
+  - {id: grv513_pzem_pf_valid, type: bool, initial_value: 'false'}
+
+  - {id: grv513_n0, type: uint32_t, initial_value: '0'}
+  - {id: grv513_n1, type: uint32_t, initial_value: '0'}
+  - {id: grv513_n2, type: uint32_t, initial_value: '0'}
+  - {id: grv513_nb, type: uint32_t, initial_value: '0'}
+  - {id: grv513_z0, type: uint32_t, initial_value: '0'}
+  - {id: grv513_z1, type: uint32_t, initial_value: '0'}
+  - {id: grv513_z2, type: uint32_t, initial_value: '0'}
+  - {id: grv513_zb, type: uint32_t, initial_value: '0'}
+
+  - {id: grv513_s0, type: double, initial_value: '0.0'}
+  - {id: grv513_q0, type: double, initial_value: '0.0'}
+  - {id: grv513_m0, type: double, initial_value: '0.0'}
+  - {id: grv513_m20, type: double, initial_value: '0.0'}
+  - {id: grv513_s1, type: double, initial_value: '0.0'}
+  - {id: grv513_q1, type: double, initial_value: '0.0'}
+  - {id: grv513_m1, type: double, initial_value: '0.0'}
+  - {id: grv513_m21, type: double, initial_value: '0.0'}
+  - {id: grv513_s2, type: double, initial_value: '0.0'}
+  - {id: grv513_q2, type: double, initial_value: '0.0'}
+  - {id: grv513_m2, type: double, initial_value: '0.0'}
+  - {id: grv513_m22, type: double, initial_value: '0.0'}
+  - {id: grv513_sb, type: double, initial_value: '0.0'}
+  - {id: grv513_mb, type: double, initial_value: '0.0'}
+  - {id: grv513_m2b, type: double, initial_value: '0.0'}
+
+  - {id: grv513_window_started, type: bool, initial_value: 'false'}
+  - {id: grv513_reported, type: bool, initial_value: 'false'}
+  - {id: grv513_start_ms, type: uint32_t, initial_value: '0'}
+
+sensor:
+  - platform: pzemac
+    update_interval: 1s
+    current:
+      name: "GRV005 PZEM Current"
+      id: grv513_pzem_current_sensor
+      on_value:
+        then:
+          - lambda: |-
+              if (std::isfinite(x)) {
+                id(grv513_pzem_current) = x;
+                id(grv513_pzem_current_valid) = true;
+                id(grv513_pzem_update_ms) = millis();
+              }
+    power:
+      name: "GRV005 PZEM Power"
+      id: grv513_pzem_power_sensor
+      on_value:
+        then:
+          - lambda: |-
+              if (std::isfinite(x)) {
+                id(grv513_pzem_power) = x;
+                id(grv513_pzem_power_valid) = true;
+              }
+    power_factor:
+      name: "GRV005 PZEM PF"
+      id: grv513_pzem_pf_sensor
+      on_value:
+        then:
+          - lambda: |-
+              if (std::isfinite(x)) {
+                id(grv513_pzem_pf) = x;
+                id(grv513_pzem_pf_valid) = true;
+              }
+
+  - platform: adc
+    pin: GPIO33
+    id: grv513_adc_ch0
+    internal: true
+    attenuation: 12db
+    raw: true
+    update_interval: 10ms
+    on_value:
+      then:
+        - lambda: |-
+            if (!std::isfinite(x) || x < 0.0f || id(grv513_n0) >= 1000) return;
+            if (!id(grv513_window_started)) {
+              id(grv513_start_ms) = millis();
+              id(grv513_window_started) = true;
+            }
+            const double v = x;
+            id(grv513_n0)++;
+            if (v == 0.0) id(grv513_z0)++;
+            id(grv513_s0) += v;
+            id(grv513_q0) += v * v;
+            const double d = v - id(grv513_m0);
+            id(grv513_m0) += d / id(grv513_n0);
+            id(grv513_m20) += d * (v - id(grv513_m0));
+        - script.execute: grv513_maybe_report
+
+  - platform: adc
+    pin: GPIO34
+    id: grv513_adc_ch1
+    internal: true
+    attenuation: 12db
+    raw: true
+    update_interval: 10ms
+    on_value:
+      then:
+        - lambda: |-
+            if (!std::isfinite(x) || x < 0.0f || id(grv513_n1) >= 1000) return;
+            if (!id(grv513_window_started)) {
+              id(grv513_start_ms) = millis();
+              id(grv513_window_started) = true;
+            }
+            const double v = x;
+            id(grv513_n1)++;
+            if (v == 0.0) id(grv513_z1)++;
+            id(grv513_s1) += v;
+            id(grv513_q1) += v * v;
+            const double d = v - id(grv513_m1);
+            id(grv513_m1) += d / id(grv513_n1);
+            id(grv513_m21) += d * (v - id(grv513_m1));
+        - script.execute: grv513_maybe_report
+
+  - platform: adc
+    pin: GPIO35
+    id: grv513_adc_ch2
+    internal: true
+    attenuation: 12db
+    raw: true
+    update_interval: 10ms
+    on_value:
+      then:
+        - lambda: |-
+            if (!std::isfinite(x) || x < 0.0f || id(grv513_n2) >= 1000) return;
+            if (!id(grv513_window_started)) {
+              id(grv513_start_ms) = millis();
+              id(grv513_window_started) = true;
+            }
+            const double v = x;
+            id(grv513_n2)++;
+            if (v == 0.0) id(grv513_z2)++;
+            id(grv513_s2) += v;
+            id(grv513_q2) += v * v;
+            const double d = v - id(grv513_m2);
+            id(grv513_m2) += d / id(grv513_n2);
+            id(grv513_m22) += d * (v - id(grv513_m2));
+        - script.execute: grv513_maybe_report
+
+  - platform: adc
+    pin: GPIO32
+    id: grv513_adc_bias
+    internal: true
+    attenuation: 12db
+    raw: true
+    update_interval: 10ms
+    on_value:
+      then:
+        - lambda: |-
+            if (!std::isfinite(x) || x < 0.0f || id(grv513_nb) >= 1000) return;
+            if (!id(grv513_window_started)) {
+              id(grv513_start_ms) = millis();
+              id(grv513_window_started) = true;
+            }
+            const double v = x;
+            id(grv513_nb)++;
+            if (v == 0.0) id(grv513_zb)++;
+            id(grv513_sb) += v;
+            const double d = v - id(grv513_mb);
+            id(grv513_mb) += d / id(grv513_nb);
+            id(grv513_m2b) += d * (v - id(grv513_mb));
+        - script.execute: grv513_maybe_report
+
+script:
+  - id: grv513_maybe_report
+    mode: single
+    then:
+      - lambda: |-
+          if (id(grv513_reported)) return;
+          if (id(grv513_n0) < 1000 || id(grv513_n1) < 1000 ||
+              id(grv513_n2) < 1000 || id(grv513_nb) < 1000) return;
+
+          id(grv513_reported) = true;
+          const uint32_t end_ms = millis();
+          const uint32_t duration_ms = static_cast<uint32_t>(end_ms - id(grv513_start_ms));
+          const uint32_t center_ms = static_cast<uint32_t>(id(grv513_start_ms) + duration_ms / 2U);
+          const int32_t delta_ms = static_cast<int32_t>(id(grv513_pzem_update_ms) - center_ms);
+
+          const double n0 = id(grv513_n0), n1 = id(grv513_n1);
+          const double n2 = id(grv513_n2), nb = id(grv513_nb);
+          const double mean0 = id(grv513_s0) / n0;
+          const double mean1 = id(grv513_s1) / n1;
+          const double mean2 = id(grv513_s2) / n2;
+          const double bias_mean = id(grv513_sb) / nb;
+          const double raw0 = std::sqrt(id(grv513_q0) / n0);
+          const double raw1 = std::sqrt(id(grv513_q1) / n1);
+          const double raw2 = std::sqrt(id(grv513_q2) / n2);
+          const double std0 = std::sqrt(id(grv513_m20) / (n0 - 1.0));
+          const double std1 = std::sqrt(id(grv513_m21) / (n1 - 1.0));
+          const double std2 = std::sqrt(id(grv513_m22) / (n2 - 1.0));
+
+          const double ac0 = id(grv513_q0) / n0 - 2.0 * bias_mean * mean0 + bias_mean * bias_mean;
+          const double ac1 = id(grv513_q1) / n1 - 2.0 * bias_mean * mean1 + bias_mean * bias_mean;
+          const double ac2 = id(grv513_q2) / n2 - 2.0 * bias_mean * mean2 + bias_mean * bias_mean;
+          const double rms0 = std::sqrt(ac0 > 0.0 ? ac0 : 0.0);
+          const double rms1 = std::sqrt(ac1 > 0.0 ? ac1 : 0.0);
+          const double rms2 = std::sqrt(ac2 > 0.0 ? ac2 : 0.0);
+          const double bias_std = std::sqrt(id(grv513_m2b) / (nb - 1.0));
+
+          if (id(grv513_pzem_current_valid) && id(grv513_pzem_power_valid) &&
+              id(grv513_pzem_pf_valid)) {
+            ESP_LOGI("grv005_window",
+              "channel=CH0-1T sample_count=%u window_start_millis=%u window_end_millis=%u window_center_millis=%u window_duration_ms=%u pzem_update_millis=%u time_delta_ms=%ld invalid_count=NOT_TRACKED zero_count=%u adc_mean=%.6f adc_std=%.6f adc_rms_raw=%.6f bias_mean=%.6f ac_mean_square=%.9f adc_rms_ac=%.6f pzem_current=%.3f pzem_power=%.3f pzem_pf=%.4f",
+              (unsigned)id(grv513_n0), (unsigned)id(grv513_start_ms), (unsigned)end_ms,
+              (unsigned)center_ms, (unsigned)duration_ms, (unsigned)id(grv513_pzem_update_ms),
+              (long)delta_ms, (unsigned)id(grv513_z0), mean0, std0, raw0, bias_mean, ac0, rms0,
+              id(grv513_pzem_current), id(grv513_pzem_power), id(grv513_pzem_pf));
+            ESP_LOGI("grv005_window",
+              "channel=CH1-2T sample_count=%u window_start_millis=%u window_end_millis=%u window_center_millis=%u window_duration_ms=%u pzem_update_millis=%u time_delta_ms=%ld invalid_count=NOT_TRACKED zero_count=%u adc_mean=%.6f adc_std=%.6f adc_rms_raw=%.6f bias_mean=%.6f ac_mean_square=%.9f adc_rms_ac=%.6f pzem_current=%.3f pzem_power=%.3f pzem_pf=%.4f",
+              (unsigned)id(grv513_n1), (unsigned)id(grv513_start_ms), (unsigned)end_ms,
+              (unsigned)center_ms, (unsigned)duration_ms, (unsigned)id(grv513_pzem_update_ms),
+              (long)delta_ms, (unsigned)id(grv513_z1), mean1, std1, raw1, bias_mean, ac1, rms1,
+              id(grv513_pzem_current), id(grv513_pzem_power), id(grv513_pzem_pf));
+            ESP_LOGI("grv005_window",
+              "channel=CH2-3T sample_count=%u window_start_millis=%u window_end_millis=%u window_center_millis=%u window_duration_ms=%u pzem_update_millis=%u time_delta_ms=%ld invalid_count=NOT_TRACKED zero_count=%u adc_mean=%.6f adc_std=%.6f adc_rms_raw=%.6f bias_mean=%.6f ac_mean_square=%.9f adc_rms_ac=%.6f pzem_current=%.3f pzem_power=%.3f pzem_pf=%.4f",
+              (unsigned)id(grv513_n2), (unsigned)id(grv513_start_ms), (unsigned)end_ms,
+              (unsigned)center_ms, (unsigned)duration_ms, (unsigned)id(grv513_pzem_update_ms),
+              (long)delta_ms, (unsigned)id(grv513_z2), mean2, std2, raw2, bias_mean, ac2, rms2,
+              id(grv513_pzem_current), id(grv513_pzem_power), id(grv513_pzem_pf));
+            ESP_LOGI("grv005_window",
+              "channel=BIAS sample_count=%u window_start_millis=%u window_end_millis=%u window_center_millis=%u window_duration_ms=%u pzem_update_millis=%u time_delta_ms=%ld invalid_count=NOT_TRACKED zero_count=%u bias_mean=%.6f bias_std=%.6f pzem_current=%.3f pzem_power=%.3f pzem_pf=%.4f",
+              (unsigned)id(grv513_nb), (unsigned)id(grv513_start_ms), (unsigned)end_ms,
+              (unsigned)center_ms, (unsigned)duration_ms, (unsigned)id(grv513_pzem_update_ms),
+              (long)delta_ms, (unsigned)id(grv513_zb), bias_mean, bias_std,
+              id(grv513_pzem_current), id(grv513_pzem_power), id(grv513_pzem_pf));
+          } else {
+            ESP_LOGW("grv005_window",
+              "PZEM data unavailable at window end: current_valid=%d power_valid=%d pf_valid=%d",
+              id(grv513_pzem_current_valid), id(grv513_pzem_power_valid), id(grv513_pzem_pf_valid));
+          }
