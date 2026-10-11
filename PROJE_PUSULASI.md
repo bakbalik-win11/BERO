@@ -100,6 +100,14 @@ Yeni karar kaydında tarih, karar, gerekçe ve etkilediği dosyalar belirtilir.
 
 - **2026-10-11:** GRV-006 ayrı görev olarak açıldı. Amaç, gerçek veri üretme/yazma/okuma kanıtından başlayarak HA→Mac aktarımı, Python işlemesi, bağımsız teyit ve gerekirse tek iyileştirme turudur. Görev tanımı: [GRV-006](GOREVLER/GRV-006/RAPOR/README.md). Eski görev kayıtları değiştirilmez.
 
+## 2026-10-12 — PZEM V/PF koşullu etiketleme ek kararı
+
+- PZEM verisinde aynı/benzer gerilim ve PF koşullarındaki bölgeler önce işaretlenip gruplanacak.
+- Akım etiketi bağlamından ayrılmayacak: `(I, V, PF)`. SCT karakterine aktarımda V/PF koşulları da korunacak.
+- Benzer V/PF grupları daha basit bir aday `k` incelemesi sağlar; `k` sabit varsayılmayacak ve bağımsız veride sınanacak.
+- V/PF benzerliği tek başına aynı fiziksel olay kanıtı değildir; deney bağlamı ve SCT karakteriyle desteklenmesi gerekir.
+- Ayrıntı: [HDF-002 hedefi](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) · [12 Ekim HISTORY](HISTORY/2026/2026-10-12.md).
+
 ## 2026-10-12 — HDF-002 yöntem kararı ve oturum devri
 
 - **Olgunlaşan yöntem:** Her ölçüm zincirinden önce bağımsız olarak en yüksek kaliteli ham veriyi al; sensörleri Aşama 1'de aynı ESP'de toplamaya çalışma.
