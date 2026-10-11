@@ -244,3 +244,9 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - Amaç: ESP32D1 logunu Mac'te ham dosyaya kaydetmek ve CSV satırlarını otomatik ayırmak; elle kopyalamayı kaldırmak.
 - **Durum:** Kod depoda hazır; fiziksel USB çalıştırması doğrulanmadı. Gerçek cihaz kanıtı olmadan PASS yazılmayacak.
 - **Sıradaki tek iş:** USB seri portta yakalama yapıp CSV kolon hizasını doğrulamak; ESP echo testi tekrar edilmeyecek.
+
+
+## GRV-006 — uygulama için en kısa USB yolu
+
+- [Mac USB kayıt komutları](GOREVLER/GRV-006/KOD/GRV-006-07-MAC-USB-KAYIT-KOMUTU.md) eklendi; [yakalama betiği](GOREVLER/GRV-006/KOD/GRV-006-06-USB-serial-capture-v01.py) mevcut ESP firmware'ini değiştirmez.
+- Sıradaki tek adım: ESP32D1 USB ile Mac'e bağlıyken belgelenen komutları çalıştırmak. Cihazı buradan fiziksel olarak test edemediğim için USB yakalama henüz PASS değildir.
