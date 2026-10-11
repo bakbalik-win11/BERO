@@ -74,10 +74,11 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 
 ### Mevcut devir notu
 
-- **Son tamamlanan iş:** İlk TODO fikri, ESP32-D + SCT-013 30A/1V akım okuma olarak GRV-001 görevine bağlandı; TODO, görev raporu ve HISTORY kaydı güncellendi.
-- **Son doğrulanmış teknik sonuç:** Bu güncelleme kayıt/organizasyon işidir; yeni bir teknik ölçüm veya derleme sonucu yok.
-- **Açık soru:** GRV-001 için kullanılacak mevcut ESP32-D kod sürümü, bağlantı düzeni ve test koşulları henüz doğrulanmadı.
-- **Sıradaki adım:** Mevcut çalışan kodu ve donanım/bağlantı durumunu tespit edip test başlangıç koşullarını görev raporuna kaydetmek.
+- **Son tamamlanan iş:** GRV-006 — Python veri kümesi ve Home Assistant aktarım zinciri görevi açıldı: [görev tanımı](GOREVLER/GRV-006/RAPOR/README.md).
+- **Son doğrulanmış teknik sonuç:** Bu işlem yalnızca görev tanımı ve kayıt güncellemesidir; henüz veri dosyası yazılmadı/okunmadı, HA kaydı oluşturulmadı ve teknik test yapılmadı.
+- **Açık soru:** Copilot ile üretilecek en küçük deterministik veri kümesinin şeması ve beklenen sonucu GRV-006-01 kapsamında belirlenecek.
+- **Sıradaki tek adım:** Önce gerçek veri dosyasını üretip aynı dosyayı yeniden okuyarak içeriğini ve beklenen sonucu doğrulamak. Sonra HA kayıt/okuma aşamasına geçmek.
+- **Çalışma sınırı:** GRV-005 geçmişi korunur; GRV-006 ayrı görevdir. Mac kopyası doğrulanmadan HA geçici kaydı silinmez. Gereksiz test döngüsü açılmaz.
 
 ## 7. Önemli kararların kronolojisi
 
@@ -94,6 +95,8 @@ Yeni karar kaydında tarih, karar, gerekçe ve etkilediği dosyalar belirtilir.
 
 
 - **2026-10-09:** Depoya dönüş/oturum başlatma kuralı: her yeni gün, ara sonrası veya yeni sohbetten devam ederken teknik işe başlamadan önce pusula, protokol, kayıt politikası, aktif görev, ilgili kod/MD ve HISTORY okunacak; günlük kontrol edilecek; çelişkiler açıklanacak ve kısa devam bağlamı çıkarılacak. Ayrıntı: [Asistan İşletim Protokolü](ASISTAN_ISLETIM_PROTOKOLU.md).
+
+- **2026-10-11:** GRV-006 ayrı görev olarak açıldı. Amaç, gerçek veri üretme/yazma/okuma kanıtından başlayarak HA→Mac aktarımı, Python işlemesi, bağımsız teyit ve gerekirse tek iyileştirme turudur. Görev tanımı: [GRV-006](GOREVLER/GRV-006/RAPOR/README.md). Eski görev kayıtları değiştirilmez.
 
 ## 8. Süreklilik ilkesi
 
