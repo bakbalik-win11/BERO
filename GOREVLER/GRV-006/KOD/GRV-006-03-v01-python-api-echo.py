@@ -71,7 +71,7 @@ async def main() -> int:
         print("RESULT: FAIL — sent value differs from ESP echo")
         return 1
     finally:
-        client.disconnect()
+        await client.disconnect()
 
 if __name__ == "__main__":
     try:
