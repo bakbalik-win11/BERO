@@ -198,3 +198,10 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Kanıt sınırı:** Kullanılan CSV geçmişte kaydedilmiş örnek veridir; yeni canlı SCT ölçümü ve fiziksel doğruluk kanıtı değildir. `invalid_count=NOT_TRACKED`; GRV-006'nın bütün kapsamı tamamlanmış değildir.
 - **Sıradaki tek adım:** Kullanıcının çalıştırdığı `grv006_csv_to_esp.py` betiğini depoya ve görev raporuna kaydet; aynı echo testini tekrarlama.
 - **İlgili kayıt:** [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md), [HISTORY](HISTORY/2026/2026-10-11.md).
+
+
+## GRV-006 — sonraki adım
+
+- Kullanıcının çalıştırdığı CSV→Python→ESP echo betiği depoya ayrı dosya ve MD olarak eklendi: [Python](GOREVLER/GRV-006/KOD/GRV-006-04-csv-to-esp-v01.py), [MD](GOREVLER/GRV-006/KOD/GRV-006-04-csv-to-esp-v01.md).
+- Önceki PASS, eski kaydedilmiş CSV'ye aittir.
+- **Sıradaki tek adım:** Yeni canlı cihaz CSV'siyle aynı akışı çalıştırmak; eski örnek CSV'yi yeniden deneyerek vakit kaybetmemek.
