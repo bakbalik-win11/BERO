@@ -253,3 +253,12 @@ Kanıt sınırı: CSV, kullanıcının paylaştığı cihaz logundan türetilmi�
 - Girdi: [canlı logdan türetilen CSV](GRV-006-05-LIVE-CSV-20261011.csv)
 - Betik: [CSV → ESP Python](../KOD/GRV-006-04-csv-to-esp-v01.py)
 - Köken notu: [CSV açıklaması](GRV-006-05-LIVE-CSV-20261011.md)
+
+
+## 16. GRV-006-06 — USB seri log yakalama aracı hazırlandı
+
+- Betik: [USB seri yakalama](../KOD/GRV-006-06-USB-serial-capture-v01.py); kullanım notu: [MD](../KOD/GRV-006-06-USB-serial-capture-v01.md).
+- Amaç: ESP32D1'in USB seri logunu Mac'te ham `.log` dosyasına kaydetmek ve firmware'in CSV başlık/satırlarını ayrı CSV'ye çıkarmak; elle log kopyalama adımını azaltmak.
+- Ham log korunur. Başlık parçaları eksikse CSV oluşturulmuş sayılmaz; sütun sayısı tutmayan satırlar atlanır ve uyarı verilir.
+- Betik depoya eklendi; burada fiziksel USB bağlantısı olmadığı için cihaz üzerinde çalıştırma doğrulanmadı. Bu yüzden bu aşamaya PASS denmiyor.
+- **Sonraki gerçek adım:** Mac'te `--list` ile portu bulup betiği USB bağlıyken çalıştırmak. Sonra çıkan ham log/CSV'nin sütun hizasını kontrol etmek. ESP echo deneyi tekrarlanmayacak.
