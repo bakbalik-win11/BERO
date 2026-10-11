@@ -1,6 +1,6 @@
 # ============================================================
 # PROJE BERO
-# GRV-006-03 v01 — ADAY KOD / DERLENMEDI
+# GRV-006-03 v01 — DERLENDI / CIHAZ API BAGLANTISI GORULDU
 # Turetilen kaynak: GRV-005-14 v06 (orijinal dosya degistirilmedi)
 # ============================================================
 #
@@ -18,9 +18,11 @@
 # - pzem_update_millis gerçek Modbus yanıt zamanı değildir.
 # - Otomatik tekrar ve CSV dosyasına yazma yoktur.
 #
-# DURUM:
-# Bu aday henuz derlenmedi veya cihaza yuklenmedi.
-# PZEM zaman damgası, akım, güç ve PF rapor başında snapshot alınır.
+# DURUM (2026-10-11 kullanici logu):
+# ESPHome 2026.9.1 derleme bilgisi ve esp32d1 @ 192.168.0.9 API
+# baglantisi/handshake goruldu. Bu, action echo testinin PASS oldugu
+# anlamina gelmez; Python -> ESP -> geri okuma henuz loglanmadi.
+# PZEM zaman damgasi, akim, guc ve PF rapor basinda snapshot alinir.
 # ============================================================
 
 esphome:
