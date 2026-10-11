@@ -236,3 +236,11 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Sınır:** CSV ESP'nin doğrudan yazdığı dosya değil, logdan türetildi. Fiziksel akım doğruluğu kanıtlanmadı; `invalid_count=NOT_TRACKED`.
 - **Sıradaki tek iş:** Özgün cihaz/log kaydının otomatik dosyaya alınması yolunu belirle; echo testini tekrarlama.
 - [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md).
+
+
+## 2026-10-11 — GRV-006 USB canlı kayıt yolu hazırlandı
+
+- USB seri log yakalama betiği ve kullanım notu eklendi: [Python](GOREVLER/GRV-006/KOD/GRV-006-06-USB-serial-capture-v01.py), [MD](GOREVLER/GRV-006/KOD/GRV-006-06-USB-serial-capture-v01.md).
+- Amaç: ESP32D1 logunu Mac'te ham dosyaya kaydetmek ve CSV satırlarını otomatik ayırmak; elle kopyalamayı kaldırmak.
+- **Durum:** Kod depoda hazır; fiziksel USB çalıştırması doğrulanmadı. Gerçek cihaz kanıtı olmadan PASS yazılmayacak.
+- **Sıradaki tek iş:** USB seri portta yakalama yapıp CSV kolon hizasını doğrulamak; ESP echo testi tekrar edilmeyecek.
