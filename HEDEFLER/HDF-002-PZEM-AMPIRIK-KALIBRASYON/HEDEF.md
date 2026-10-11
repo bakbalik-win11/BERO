@@ -9,13 +9,22 @@
 
 Proje BERO'yu yalnızca bir sensör kalibrasyon deneyi olarak değil, uçtan uca bir **veri toplama → kümülatif veri havuzu → masaüstünde öğrenme → model karşılaştırma → başarı ölçümü → sahaya geri besleme** sistemi olarak kurmak.
 
-ESP'nin akım hesaplaması veya model eğitmesi zorunlu değildir. ESP mevcut sensörlerden veri/öznitelik üretip ileten uç cihaz olarak kalabilir. Akım tahmini, model seçimi, davranış öğrenme ve model üretme masaüstü Python tarafında yapılabilir. Başarılı ve ESP'nin uygulayabileceği çıktı varsa parametre/fonksiyon ESP'ye aktarılır; aktarım ve geri okuma doğrulanır.
+ESP'nin görevi sensörden mümkün olduğunca hızlı örnek almak, her ölçüm penceresinde (başlangıç hedefi 1000 örnek) RMS, STD, MIN, MAX, RANGE, BIAS ve uygun diğer öznitelikleri çıkarmak ve bu öznitelikleri HA'ya göndermektir. **1000 ham örneğin kendisi normal akışta HA'ya gönderilmek zorunda değildir; temel veri ürünü öznitelik kaydıdır.** Ham örnekler yalnızca ayrı bir tanılama/deney gerektiğinde saklanabilir. ESP akım hesaplamaz, kalibrasyon yapmaz, model seçmez, bölgesel k üretmez ve öğrenmez. Akım tahmini, model seçimi, davranış öğrenme ve model üretme masaüstü Python tarafında yapılır. Başarılı ve ESP'nin uygulayabileceği çıktı varsa parametre/fonksiyon ESP'ye aktarılır; aktarım ve geri okuma doğrulanır.
 
 Sensör tipi veya adı veri havuzunun merkezî anahtarı değildir. Tüm sensör verileri ortak veri düzeninde saklanabilir; eğitim ve model karşılaştırması gerektiğinde sensör, kanal, analog koşullandırma zinciri veya çalışma koşuluna göre ayrı gruplarda yürütülür. Farklı sensörlerin katsayılarının otomatik olarak birbirine aktarılacağı varsayılmaz.
 
 ## 2. Mimari katmanlar
 
-### Katman 1 — Home Assistant veri biriktirme
+### Katman 1 — ESP öznitelik üretimi
+
+- Sensörlerden hızlı örnekleme yap.
+- Başlangıç ölçüm penceresi hedefi 1000 örnektir.
+- Pencere başına RMS, STD, MIN, MAX, RANGE, BIAS ve mevcut diğer anlamlı öznitelikleri üret.
+- Özniteliklerle birlikte zaman damgası, pencere süresi, kanal/entity kimliği ve geçerli örnek sayısı gibi kalite alanlarını ilet.
+- Normal akışta 1000 ham örneği saklamak zorunlu değildir; öznitelik kaydı saklanır.
+- Akım hesaplama, kalibrasyon ve model seçimi ESP'nin görevi değildir.
+
+### Katman 2 — Home Assistant veri biriktirme
 
 **Görev**
 - Home Assistant'ta mevcut olan sensör, ADC öznitelikleri ve referans değerlerini okumaya uygun veri kaynağı oluşturmak.
@@ -25,7 +34,7 @@ Sensör tipi veya adı veri havuzunun merkezî anahtarı değildir. Tüm sensör
 
 **İlk teslimat budur.** İlk adımda mevcut HA verisinin nerede ve hangi entity'lerde bulunduğu envanterlenir; veri toplama/uzun süreli saklama düzeni kurulur. Yeni donanım testi veya YAML değişikliği bu adımın ön koşulu değildir.
 
-### Katman 2 — Masaüstüne güvenli aktarım ve arşiv
+### Katman 3 — Masaüstüne güvenli aktarım ve arşiv
 
 **Görev**
 - HA'daki yeni kayıtları masaüstüne aktarmak.
@@ -53,7 +62,7 @@ BERO_DATASET/
 
 Ham kaynak kayıtları değiştirilmez. Normalleştirilmiş/eşleştirilmiş veri ve model çıktıları ayrı dosyalarda tutulur.
 
-### Katman 3 — Kümülatif eğitim verisi
+### Katman 4 — Kümülatif eğitim verisi
 
 Masaüstü programı tüm tarihsel veriyi okur; yeni veriler geldikçe veri kümesini genişletir. Mümkün olan öznitelikler arasında ADC RMS, ADC STD, MIN, MAX, RANGE, ortalama/medyan, bias, yüzdelikler ve kaynaktaki diğer ölçülebilir alanlar bulunur.
 
@@ -61,7 +70,7 @@ Mevcutsa PZEM akımı, gücü, voltajı ve PF referans etiketleri zaman/ölçüm
 
 Tüm sensörler ortak havuzda tutulur. Eğitim sırasında sensör/kanal/koşullandırma kimliği modele özellik olarak verilebilir veya veriler ayrı modellerle işlenebilir. Hangi yaklaşımın daha iyi olduğu deneyle değerlendirilir.
 
-### Katman 4 — Model yarışması
+### Katman 5 — Model yarışması
 
 Tek bir model baştan dayatılmaz. Veri miktarı ve niteliği uygunsa şu seçenekler karşılaştırılabilir:
 - Global doğrusal model / basit kalibrasyon katsayısı
@@ -73,7 +82,7 @@ Tek bir model baştan dayatılmaz. Veri miktarı ve niteliği uygunsa şu seçen
 
 Basit model, daha karmaşık modelle aynı veya daha iyi bağımsız sonuç veriyorsa tercih edilir. Bölgesel katsayılar yalnızca eğitim hatasını düşürdüğü için seçilmez; her bölgede yeterli örnek ve bağımsız doğrulama aranır. Sensör bazında ayrı eğitim mümkündür; sensör adlarının ortak havuzda bulunması buna engel değildir.
 
-### Katman 5 — Başarı ölçümü ve seçim
+### Katman 6 — Başarı ölçümü ve seçim
 
 PZEM etiketli akım modelleri için raporlanabilecek ölçütler:
 - MAE
@@ -87,7 +96,7 @@ PZEM etiketli akım modelleri için raporlanabilecek ölçütler:
 
 Eğitim ve test verileri ayrılır. Mümkün olduğunda aynı ölçüm oturumu/yük koşulunun tekrarları iki tarafa da dağıtılmaz. Uzun süreli öğrenmede yeni günler/oturumlar üzerinde ayrıca değerlendirme yapılır. Bir haftalık veya daha uzun çalışma süresi mümkündür; süre tek başına başarı kanıtı değildir.
 
-### Katman 6 — Davranış ve risk öğrenme
+### Katman 7 — Davranış ve risk öğrenme
 
 Akım tahmininden bağımsız bir hedef olarak normal davranış örüntüleri öğrenilebilir:
 - Bilinen çalışma profillerini tanıma (ör. cihazların çalışma döngüleri)
@@ -97,7 +106,7 @@ Akım tahmininden bağımsız bir hedef olarak normal davranış örüntüleri �
 
 “Bilinmeyen profil” doğrudan “tehlike” demek değildir. Sistem normal/anormal adayını, güven düzeyini ve gerekçeyi ayırır. Elektriksel güvenlik riski hakkında kesin karar, yalnızca profil benzerliğine dayandırılmaz.
 
-### Katman 7 — ESP'ye geri besleme
+### Katman 8 — ESP'ye geri besleme
 
 Masaüstü, karşılaştırma sonucunda uygun bulunan modelin uygulanabilir fonksiyonunu veya katsayılarını ve sürüm/metadata bilgisini üretir. ESP:
 - örnekleri/öznitelikleri toplar ve iletir,
@@ -111,7 +120,7 @@ ESP'nin model eğitmesi veya modeller arasında seçim yapması zorunlu değildi
 ### Program 1 — BERO Data Collector
 
 **Tek işi veri almak ve güvenli biçimde arşivlemektir.**
-- Home Assistant'tan mevcut veriyi/ölçüm entity'lerini okur.
+- Home Assistant'ta birikmiş sensör özniteliklerini ve mevcut PZEM referanslarını okur.
 - Yeni kayıtları masaüstündeki kümülatif havuza ekler.
 - Zaman damgası, entity/sensör kimliği, birim ve değerleri korur.
 - Mükerrer kayıtları ve eksik aralıkları raporlar.
@@ -129,11 +138,11 @@ ESP'nin model eğitmesi veya modeller arasında seçim yapması zorunlu değildi
 - En iyi doğrulanmış modeli seçer ve ESP'ye aktarılacak dosyayı üretir.
 - ESP'ye aktarım/geri okuma adımının sonucunu kaydeder.
 
-Her iki programın kodu tam ve kopyalanabilir olacak; yanında aynı sürüm adına sahip açıklama .md dosyası bulunacaktır. Programlar masaüstünden çalıştırılabilecek şekilde hazırlanır. Gerekli HA adresi/erişim anahtarı gibi ortam ayarları kod içine sabit sır olarak yazılmaz; yerel yapılandırmadan alınır.
+Trainer, yeni veri geldikçe yeniden çalıştırılabilir; istenirse uzun süreli/planlı çalışma ile bir gün, bir hafta veya daha uzun dönem boyunca yeni veriyi kümülatif havuza ekleyip modelleri yeniden karşılaştırabilir. Eğitim süresi kendi başına başarı kanıtı değildir. Her iki programın kodu tam ve kopyalanabilir olacak; yanında aynı sürüm adına sahip açıklama .md dosyası bulunacaktır. Programlar masaüstünden çalıştırılabilecek şekilde hazırlanır. Gerekli HA adresi/erişim anahtarı gibi ortam ayarları kod içine sabit sır olarak yazılmaz; yerel yapılandırmadan alınır.
 
 ## 4. İlk uygulama sırası
 
-1. **GRV-007 — HA veri kaynağı ve kümülatif biriktirme:** Mevcut HA entity ve kayıt yapısını incele; veri şemasını ve artımlı toplama yolunu belirle. İlk teslimat veri biriktirme olmalıdır.
+1. **GRV-007 — ESP öznitelikleri ve HA veri biriktirme:** Mevcut ESP'nin ürettiği 1000 örnek pencere özelliklerini ve HA entity/kayıt yapısını incele; ham örnek yerine öznitelik kayıtlarının kümülatif birikmesini esas al. İlk teslimat veri biriktirme olmalıdır.
 2. **GRV-008 — Masaüstü Collector ve güvenli aktarım/temizlik:** Veriyi BERO_DATASET havuzuna al; aktarımı doğrulamadan kaynak çalışma alanını temizleme.
 3. **GRV-009 — Trainer ve model yarışması:** Mevcut tüm veriyi işle; PZEM etiketli akım modellerini ve davranış modellerini ayrı değerlendir; sonuçları kaydet.
 4. **GRV-010 — Model çıktısı ve ESP geri besleme:** Seçilen fonksiyon/katsayıyı yeni sürüm olarak hazırla; desteklenen aktarım yolunu uygula; ESP'den geri okuyup doğrula.
@@ -157,3 +166,18 @@ HDF-001 — Akımı Okuma, geçmiş denemeleri ve kanıtlarıyla birlikte tarihs
 ## 7. Güncel durum
 
 **Açık — hedef mimarisi kaydedildi.** İlk iş HA verisini kümülatif biriktirmektir. Collector, Trainer, model eğitimi veya ESP geri beslemesi henüz bu hedef belgesinde uygulanmış/başarılı olarak iddia edilmemektedir.
+
+
+## 8. Öznitelik odaklı veri ilkesi (2026-10-11 ek açıklama)
+
+Veri zincirinin standart ürünü 1000 ham ADC örneği değil, o pencereden çıkarılan anlamlı özniteliklerdir. Temel akış:
+
+```text
+Sensör → ESP → 1000 örnek → öznitelikler (RMS, STD, MIN, MAX, RANGE, BIAS, ...)
+       → Home Assistant → kümülatif veri gölü → Python → öğrenme/model yarışması
+       → başarı ölçümü → sonuç/model çıktısı → gerekiyorsa ESP'ye geri besleme
+```
+
+Özniteliklerin hangi sensörden geldiği kayıtta izlenebilir olmalıdır; ancak sensör adı, tüm veriyi ortak havuzda saklamaya engel değildir. Python bütün geçmiş veriyi birlikte okuyabilir; ardından bütünleşik veya sensör/kanal bazında modelleri karşılaştırabilir. Örnek rapor satırları (ör. “RMS MAE %18; RMS+STD %11; RMS+STD+RANGE %7”) yalnızca rapor biçimini anlatan örneklerdir, ölçülmüş BERO sonuçları değildir.
+
+Hedefin merkezi sensör modelini kanıtlamak için sürekli aynı test döngüsünü tekrarlamak değil; mevcut özniteliklerden başlayarak modelleri fiilen denemek ve yalnızca sonuçların gösterdiği belirsizliklerde ölçüm zincirini tekrar incelemektir.
