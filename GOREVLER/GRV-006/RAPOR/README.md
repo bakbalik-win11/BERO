@@ -205,3 +205,17 @@ Paylaşılan ADC özetleri:
 **Önemli sınır:** Logda CSV başlıkları ve dört satır görünmesi, ADC örnekleme/raporlama yolunun çalıştığını doğrular. Bu tek başına sensörün fiziksel akım doğruluğunu kanıtlamaz. Ayrıca paylaşılan log parçasında `grv006_set_value` çağrısı veya yeni ESP echo sonucu yok; bu nedenle birleşik kodun API echo bölümü bu logla ayrıca doğrulanmış sayılmaz. PZEM alanlarının CSV kolon hizası QC ile ayrıca kontrol edilmelidir.
 
 **Sıradaki tek adım:** Bu dört satırı yeni ve ayrı bir GRV-006 canlı CSV dosyasına dönüştürüp Python→bağımsız kontrol→ESP echo betiğini bu yeni dosyayla çalıştırmak. Önceki tarihsel CSV korunacak.
+
+
+## 14. GRV-006-05 — yeni canlı log CSV'si hazırlandı (2026-10-11)
+
+- Ayrı CSV: [GRV-006-05 canlı CSV](GRV-006-05-LIVE-CSV-20261011.csv).
+- Kaynak notu: [CSV köken ve durum notu](GRV-006-05-LIVE-CSV-20261011.md).
+- Dosya, kullanıcının paylaştığı GRV-006-05 ESPHome logundan ayrıştırıldı; ESP'nin doğrudan yazdığı özgün dosya değildir.
+- Python betiğinin okuması gereken alanlar doğrulandı: `channel_id` ve `adc_rms_ac`; BIAS satırının `adc_rms_ac` alanı boş bırakıldı.
+- Beklenen kanal değerleri: CH0-1T=12.111068, CH1-2T=14.469792, CH2-3T=12.546252.
+- Beklenen toplam=39.127112; ×1000 ve yuvarlama sonucu gönderilecek değer=39127.
+- **Henüz PASS değil:** Bu yeni CSV ile Mac mini betik çıktısı ve ESP geri okuması henüz alınmadı.
+- **Sıradaki tek adım:** Depo kök dizininde aşağıdaki komutu çalıştırıp çıktıyı kaydet:
+  `GRV006_CSV="GOREVLER/GRV-006/RAPOR/GRV-006-05-LIVE-CSV-20261011.csv" python3 GOREVLER/GRV-006/KOD/GRV-006-04-csv-to-esp-v01.py`
+- Tarihsel CSV ve önceki kodlar korunmuştur.
