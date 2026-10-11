@@ -187,3 +187,14 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Kanıt sınırı:** Bu, SCT akım ölçüm doğruluğunu veya GRV-006'nın bütün hedefinin tamamlandığını kanıtlamaz.
 - **Sıradaki yön:** Echo yolunu sabit kabul et ve GRV-006'nın Python veri işleme/bağımsız doğrulama basamaklarına dön; aynı testi sebepsiz tekrarlama.
 - **Kayıtlar:** [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md), [Python istemcisi](GOREVLER/GRV-006/KOD/GRV-006-03-v01-python-api-echo.py), [HISTORY](HISTORY/2026/2026-10-11.md).
+
+
+## 2026-10-11 — GRV-006 CSV → Python → ESP echo sonucu
+
+- **Son doğrulanan:** Kullanıcı Mac mini üzerinde CSV işleme betiğini çalıştırdı. CSV'den üç kanalın `adc_rms_ac` değerleri okundu ve toplam `37.085439` bulundu.
+- ×1000 ve yuvarlama sonucu `37085`; bağımsız yeniden okuma hesabı da `37085` verdi.
+- ESP `192.168.0.9:6053` üzerinden bağlandı; `SENT: 37085`, `ECHOED: 37085.0`; `RESULT: PASS — CSV processed value returned by ESP`.
+- **Sonuç:** Bu örnek CSV için dosya okuma → Python işleme → bağımsız kontrol → ESP'ye gönderme → geri okuma zinciri PASS.
+- **Kanıt sınırı:** Kullanılan CSV geçmişte kaydedilmiş örnek veridir; yeni canlı SCT ölçümü ve fiziksel doğruluk kanıtı değildir. `invalid_count=NOT_TRACKED`; GRV-006'nın bütün kapsamı tamamlanmış değildir.
+- **Sıradaki tek adım:** Kullanıcının çalıştırdığı `grv006_csv_to_esp.py` betiğini depoya ve görev raporuna kaydet; aynı echo testini tekrarlama.
+- **İlgili kayıt:** [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md), [HISTORY](HISTORY/2026/2026-10-11.md).
