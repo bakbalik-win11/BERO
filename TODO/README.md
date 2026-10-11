@@ -19,6 +19,12 @@
 
 _Yeni fikirleri bu satırın hemen altına ekle. Henüz sonuçlanmamış maddeler burada kalır._
 
+- [ ] **GRV-005-15 — Python CSV Kalite Kontrolü**
+  - Eklenme: 2026-10-11
+  - Sonuç: Göreve dönüştü — görev açık
+  - Görev: [GRV-005-15 — Python QC kapsamı](../GOREVLER/GRV-005/RAPOR/GRV-005-15-PYTHON-QC-KAPSAM-VE-PASS-OLCUTLERI-20261011.md)
+  - Görev durumu: Kapsam tanımlandı; Python kodu ve testler bekliyor
+
 
 - [ ] **Sistem kararlılığı doğrulandıktan sonra tüm SCT'lerle bilinen yük karşılaştırma testi (kalibrasyon benzeri)**
   - Eklenme: 2026-10-11
