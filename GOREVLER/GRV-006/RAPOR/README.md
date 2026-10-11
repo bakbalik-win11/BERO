@@ -232,3 +232,24 @@ Kullanıcının Mac mini Terminal çıktısı:
 - Sonuç: PASS — CSV processed value returned by ESP.
 
 Kanıt sınırı: CSV, kullanıcının paylaştığı cihaz logundan türetilmiştir; ESP'nin doğrudan yazdığı özgün dosya değildir. invalid_count=NOT_TRACKED. Bu sonuç fiziksel akım doğruluğunu veya GRV-006'nın tüm kapsamını kanıtlamaz.
+
+
+## 15. GRV-006-05 — canlı log CSV → Python → ESP echo PASS (2026-10-11)
+
+**Kullanıcı terminal kanıtı:**
+- `CSV_READ: PASS` — yeni canlı logdan türetilen CSV'den 4 satır okundu.
+- CH0-1T=12.111068, CH1-2T=14.469792, CH2-3T=12.546252.
+- Toplam=39.127112; ölçeklenmiş/yuvarlanmış gönderim=39127.
+- `INDEPENDENT_CHECK: PASS (39127)`.
+- `CONNECTED: 192.168.0.9:6053`; `SENT: 39127`; `ECHOED: 39127.0`.
+- `RESULT: PASS — CSV processed value returned by ESP`.
+
+**Bu adımda kanıtlanan:** Yeni logdan ayrı CSV hazırlanması, Python'ın bu dosyayı okuması, üç kanal değerini işlemesi, dosyayı yeniden okuyarak sonucu bağımsız hesapla kontrol etmesi, ESP'ye göndermesi ve eşleşen değeri geri okuması.
+
+**Sınırlar:** CSV, ESPHome logundan türetildi; ESP'nin kendisinin doğrudan dosyaya yazdığı özgün dosya değildir. `invalid_count=NOT_TRACKED`. Fiziksel SCT akım doğruluğu kanıtlanmadı.
+
+**GRV-006 durumu:** Kısmi başarı; görev tamamen kapanmadı. Geriye kalan fark, ölçüm kaydının cihazdan otomatik ve özgün bir dosya olarak alınması/yazılmasıdır. Mevcut ESPHome YAML yalnızca loga CSV biçimli satırlar yazar; cihaz üzerinde dosyaya yazma özelliği yoktur. Bu nedenle bir sonraki iş, log satırlarını dosyaya kaydetme yolunu belirlemek ve dosya kökenini doğrulamaktır. Aynı Python→ESP echo testi tekrar edilmeyecek.
+
+- Girdi: [canlı logdan türetilen CSV](GRV-006-05-LIVE-CSV-20261011.csv)
+- Betik: [CSV → ESP Python](../KOD/GRV-006-04-csv-to-esp-v01.py)
+- Köken notu: [CSV açıklaması](GRV-006-05-LIVE-CSV-20261011.md)
