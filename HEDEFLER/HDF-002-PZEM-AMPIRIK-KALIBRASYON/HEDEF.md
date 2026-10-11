@@ -195,3 +195,41 @@ BERO mimarisinde iki ayrı uç cihaz rolü bulunabilir:
 Bu iki rol birbirini dışlamaz. HA, öznitelik ESP'sinden gelen özellikleri, formül ESP'sinin akım sonucunu ve varsa PZEM referansını birlikte biriktirir. Python bunları zaman ve kaynak kimliğiyle eşleştirerek hem model öğreniminde hem karşılaştırmada kullanabilir. Formül ESP'sinin akım sonucu tek başına referans/ground truth kabul edilmez; PZEM referansı varsa ayrı etiket olarak korunur.
 
 Öznitelik ESP'si için başarı, öğrenmeye elverişli ve kaliteli veri üretmesidir; formül ESP'si için başarı, hesapladığı akımın bağımsız referansa yakınlığıdır. Bu iki başarı ölçütü ayrı raporlanır.
+
+## 10. İlk uygulama için güncel karar — paketlenmiş öznitelik ve ham veri ayrımı (2026-10-11)
+
+Bu bölüm, önceki olası mimari seçenekleri ilk uygulama sırası açısından netleştirir. **MCP'li/MCP'siz zincirlerin hangisinin daha iyi olduğuna karar vermek sonraya bırakılır.** Önce mevcut ESP'ler ve Mac Mini arasındaki veri toplama hattı çalıştırılır; yeni bir MCP karşılaştırma döngüsü açılmaz.
+
+### ESP32-D1 — öznitelik paketini üret ve gönder
+- Hızlı ve sağlıklı örnekleme yapar.
+- Başlangıçta 1000 örneklik pencerelerden RMS, STD, MIN, MAX, RANGE, BIAS ve desteklenen diğer öznitelikleri çıkarır.
+- Pencere sonuçlarını kimlik, sıra numarası, zaman bilgisi ve örnek sayısıyla paketler.
+- Paketi RS485 Modbus üzerinden Mac Mini'ye sunar.
+- Bu rolde ham örneklerin tamamını sürekli aktarmak zorunda değildir.
+
+### ESP32-D2 — ham örnekleri üret ve gönder
+- Kendi ADC zincirinden ham örnek pencerelerini toplar.
+- Ham kayıtları mümkün olduğunca kayıpsız ve sıra bilgisi korunmuş biçimde Mac Mini'ye aktarılabilir hâle getirir.
+- Ham örnekler, daha sonra RMS dışındaki öznitelikleri veya yeni analiz yöntemlerini denemek için tarihsel arşivde korunur.
+- Ham pencere ile aynı döneme ait öznitelik/PZEM kayıtları varsa zaman ve kaynak bilgisiyle eşleştirilebilir.
+
+D1 ve D2'nin bu görevleri ilk veri hattını kurmak için seçilmiş **iş bölümü**dür; MCP'nin nihai olarak kullanılacağı veya eleneceği kararı değildir. Gerekirse roller ileride değiştirilebilir; geçmiş dosyalar ve kayıtlar değiştirilmez.
+
+### ESP32-E — diğer sensörler ve ayrı deney hattı
+- ACS ve diğer sensörlerden veri toplayarak paralel veri/model deneylerine katılabilir.
+- E'nin daha sonra Python tarafından seçilmiş ve bağımsız veride doğrulanmış bir akım fonksiyonunu uygulaması mümkündür; ilk veri toplama basamağının ön koşulu değildir.
+
+### Mac Mini — ortak veri merkezi
+Üç ESP, RS485 Modbus hattında ayrı cihaz adresleriyle çalışır; Mac Mini master olarak cihazları sorgular ve kayıtları dosyalara yazar. Her kayıt en azından kaynak ESP, fiziksel sensör/kanal, sıra numarası, zaman bilgisi ve veri türünü belirtmelidir. Modbus üzerinden taşınan pencere/öznitelik kayıtlarıyla ham örnek kayıtları ayrı sınıflarda saklanır. PZEM kendi ölçüm zamanıyla ayrı kaynak olarak kaydedilebilir; yalnızca HA'ya yakın zamanda yazılması aynı anda ölçüldüğünü kanıtlamaz.
+
+Önerilen arşiv sınıfları:
+- **Öznitelik akışı:** sürekli ve daha küçük kayıtlar.
+- **Ham örnek akışı:** D2'nin ham pencereleri ve ileride belirlenen seyrek tanılama pencereleri.
+- **Referans akışı:** PZEM değerleri ve kendi zaman damgaları.
+- **Model/sonuç geçmişi:** eğitim verisi sürümleri, model sürümleri, metrikler ve raporlar.
+
+### Başarı ölçütü
+Akım modeli değerlendirmesinde kullanıcının daha önce belirlediği **±%4 kabul bandı** korunur. Önceki bölümde geçen %10 değeri bu ölçütün yerine geçmez; ±%4 nihai değerlendirme bandı olarak esas alınır. Sıfıra yakın akımda yüzde sapmanın matematiksel olarak anlamlı olmadığı bölge için ayrı bir mutlak hata/deadband kuralı ancak açıkça tanımlanarak eklenebilir; mevcut ±%4 ölçütü sessizce değiştirilmez.
+
+### İlk somut iş
+Yeni donanım deneyi veya MCP tartışması değil; mevcut USB–Mac veri yakalama çalışmasını temel alarak Mac Mini'de kayıt dosyalarını güvenilir biçimde yazan hattı ilerletmek, ardından aynı arşiv yaklaşımını RS485 Modbus kaynağına uyarlamaktır. Eski kodlar, YAML, loglar ve CSV'ler korunur; yeni sürümler yeni dosya adlarıyla eklenir.
