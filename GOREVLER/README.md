@@ -26,7 +26,8 @@ Göreve ait tecrübe ve deney kodu burada tutulur. Sensöre veya donanıma özel
 - [GRV-005-01 ilk PZEM zaman damgası log incelemesi](GRV-005/RAPOR/GRV-005-01-LOG-ILK-GOZLEM-20261011.md)
 - [GRV-005-01 kapanış raporu](GRV-005/RAPOR/GRV-005-01-KAPANIS-20261011.md)
 - [GRV-005-02 ADC özellik tanımları](GRV-005/RAPOR/GRV-005-02-OZELLIK-TANIMLARI-20261011.md)
-- [GRV-005-02 teknik öneri v01 — kullanıcı onayı bekliyor](GRV-005/RAPOR/GRV-005-02-OZELLIK-TANIMLARI-ONERI-v01-20261011.md)
+- [GRV-005-02 teknik öneri v01](GRV-005/RAPOR/GRV-005-02-OZELLIK-TANIMLARI-ONERI-v01-20261011.md)
+- [GRV-005-02 Copilot değerlendirmesiyle birleştirilmiş öneri v02](GRV-005/RAPOR/GRV-005-02-OZELLIK-TANIMLARI-ONERI-v02-20261011.md)
 - [İlk kod taslağı ve test kaydı](GRV-005/KOD/GRV-005-01-PZEM-ADC-TELEMETRI-v01.md)
 - Amaç: Her ADC kanalı için 1000 örnekten istatistikler üretmek, ölçüm penceresini zaman damgalarıyla tanımlamak ve PZEM referansını zaman uyumunu izleyerek veri setine bağlamak. Python'da regresyon/ML öncesi yüksek kaliteli, izlenebilir veri oluşturmak.
 - Durum: GRV-005-01 gözlem hedefiyle kapatıldı; prototip kendi tüketimini ölçtüğü için gerçek 0 A testi uygulanabilir değil. Sabit 0.028 A altında yaklaşık 5 saniyelik güncelleme ve millis yenilenmesi gözlendi. Sıradaki: GRV-005-02 ADC özellik tanımları.
