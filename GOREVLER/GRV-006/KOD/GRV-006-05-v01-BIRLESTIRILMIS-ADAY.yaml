@@ -214,6 +214,13 @@ globals:
     initial_value: '0'
 
 sensor:
+  # GRV-006 geri okuma sensörü; GRV-005 ölçüm zincirinden bağımsızdır.
+  - platform: template
+    name: "GRV006 Echo Value"
+    id: grv006_received_value
+    update_interval: never
+    accuracy_decimals: 0
+
   - platform: pzemac
     update_interval: 1s
     current:
@@ -527,11 +534,3 @@ script:
                 ESP_LOGW("grv514_csv",
                   "CSV rows not emitted: PZEM valid flags current=%d power=%d pf=%d",
                   id(grv514_pc_ok), id(grv514_pp_ok), id(grv514_pf_ok));
-
-# GRV-006 geri okuma sensörü; GRV-005 ölçüm zincirinden bağımsızdır.
-sensor:
-  - platform: template
-    name: "GRV006 Echo Value"
-    id: grv006_received_value
-    update_interval: never
-    accuracy_decimals: 0
