@@ -1,65 +1,71 @@
 #!/usr/bin/env python3
 """GRV-006-03: send one integer through ESPHome Native API and verify echoed state.
 
-Requires: Python 3.10+ and aioesphomeapi.
-Install: python3 -m pip install aioesphomeapi
-Set ESPHOME_ADDRESS, ESPHOME_NOISE_PSK if the device is configured for encryption,
-and ESPHOME_PASSWORD if API password authentication is configured.
-This script intentionally does not assume credentials or trigger an OTA update.
+Requires Python 3.10+ and aioesphomeapi.
+Install in a virtual environment: python3 -m pip install aioesphomeapi
+
+Environment:
+  ESPHOME_ADDRESS       device IP/hostname (default 192.168.0.8)
+  ESPHOME_PORT          Native API port (default 6053)
+  ESPHOME_NOISE_PSK     API encryption key, if encryption is enabled
+  GRV006_VALUE          integer to send (default 120)
+
+ESPHome 2026.1+ no longer supports API password authentication; this script
+uses the optional encryption key and does not embed credentials.
 """
 import asyncio
 import os
 import sys
-from aioesphomeapi import APIClient
+import aioesphomeapi
 
 ADDRESS = os.environ.get("ESPHOME_ADDRESS", "192.168.0.8")
 PORT = int(os.environ.get("ESPHOME_PORT", "6053"))
 VALUE = int(os.environ.get("GRV006_VALUE", "120"))
-PASSWORD = os.environ.get("ESPHOME_PASSWORD", "")
-NOISE_PSK = os.environ.get("ESPHOME_NOISE_PSK", "")
+NOISE_PSK = os.environ.get("ESPHOME_NOISE_PSK") or None
+ECHO_NAME = "GRV006 Echo Value"
+ACTION_NAME = "grv006_set_value"
 
-async def main():
-    client = APIClient(
-        ADDRESS, PORT,
-        password=PASSWORD,
-        noise_psk=NOISE_PSK or None,
-    )
+async def main() -> int:
+    client = aioesphomeapi.APIClient(ADDRESS, PORT, noise_psk=NOISE_PSK)
     try:
         await client.connect(login=True)
         print(f"CONNECTED: {ADDRESS}:{PORT}")
-        states = {}
-        ready = asyncio.Event()
+        entities, services = await client.list_entities_services()
+
+        echo_entity = next((e for e in entities if getattr(e, "name", "") == ECHO_NAME), None)
+        action = next((s for s in services if getattr(s, "name", "") == ACTION_NAME), None)
+
+        if echo_entity is None:
+            print(f"RESULT: ERROR — entity not found: {ECHO_NAME}")
+            return 2
+        if action is None:
+            print(f"RESULT: ERROR — action not found: {ACTION_NAME}")
+            return 2
+
+        echo_value = {"value": None}
+        changed = asyncio.Event()
 
         def on_state(state):
-            states[state.key] = state
-            if getattr(state, "name", "") == "GRV006 Echo Value":
-                ready.set()
+            if getattr(state, "key", None) == echo_entity.key:
+                echo_value["value"] = getattr(state, "state", None)
+                changed.set()
 
         client.subscribe_states(on_state)
-        # API user actions are represented by the service-call API.
-        # Service name is the action id declared in the candidate YAML.
-        await client.execute_service(
-            "grv006_set_value",
-            {"value": VALUE},
-        )
+        # Give the initial state subscription a moment to deliver the state,
+        # then issue the action through the UserService descriptor discovered above.
+        await asyncio.sleep(0.5)
+        changed.clear()
+        await client.execute_service(action, {"value": VALUE})
         try:
-            await asyncio.wait_for(ready.wait(), timeout=10)
+            await asyncio.wait_for(changed.wait(), timeout=10)
         except asyncio.TimeoutError:
-            # Some API versions deliver the state before/after service response;
-            # report clearly rather than claiming a pass.
-            pass
+            print("RESULT: INCONCLUSIVE — action sent but echo state update not received")
+            return 3
 
-        echoed = None
-        for state in states.values():
-            if getattr(state, "name", "") == "GRV006 Echo Value":
-                echoed = getattr(state, "state", None)
-                break
-        if echoed is None:
-            print("RESULT: INCONCLUSIVE — service called but echo state not observed")
-            return 2
+        echoed = echo_value["value"]
         print(f"SENT: {VALUE}")
         print(f"ECHOED: {echoed}")
-        if int(float(echoed)) == VALUE:
+        if echoed is not None and int(float(echoed)) == VALUE:
             print("RESULT: PASS — sent value equals ESP echo")
             return 0
         print("RESULT: FAIL — sent value differs from ESP echo")
