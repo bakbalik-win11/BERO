@@ -1,7 +1,7 @@
 # GRV-005 — SCT/ADC istatistiksel veri seti ve Python model öğrenme altyapısı
 
 - Tarih: 2026-10-11
-- Durum: Açık; GRV-005-01 v01 derlendi ve cihaza yüklendi. İlk PZEM zaman damgası logu incelendi; sabit 0.028 A koşulunda yaklaşık 5 saniyelik güncelleme ve millis yenilenmesi gözlendi. Gerçek 0 A ve Modbus yanıtı/on_value bire bir eşleşmesi test bekliyor.
+- Durum: GRV-005 açık; GRV-005-01 gözlem hedefi bakımından kapatıldı. Prototip kendi tüketimini ölçtüğü için gerçek 0 A testi uygulanabilir değil; 0.028 A mevcut pratik taban değeridir. Her başarılı Modbus yanıtı ile on_value arasında bire bir eşleşme doğrulanmış değildir. GRV-005-02 özellik tanımları aşamasında.
 - Önceki görevlerle ilişki: GRV-004/ALT09 ve ALT10 deneyleri referans olarak korunur; bu görevin dosyaları ve kodları ayrıdır.
 - Amaç: Ham ADC örneklerini kalıcı olarak kaydetmeden, kanal başına 1000 örnekten hesaplanan özellikleri PZEM referans ölçümüyle zaman ilişkisini koruyarak kaydetmek; Python'da akım tahmini modelleri için kaliteli veri seti oluşturmak.
 
@@ -17,11 +17,11 @@
 
 ## Alt görev sırası
 
-- GRV-005-01 — Ölçüm sözleşmesi ve PZEM zaman eşleştirmesi: v01 YAML derlendi/yüklendi. İlk log sabit 0.028 A değerinde on_value zaman işaretinin yaklaşık 5 saniyede bir yenilendiğini gösteriyor. [İlk log incelemesi](GRV-005-01-LOG-ILK-GOZLEM-20261011.md). Gerçek 0 A ve başarılı Modbus yanıtı ile bire bir eşleşme açık.
-- GRV-005-02 — Özelliklerin kesin tanımları: adc_rms, adc_std, median/yüzdelikler, bias düzeltmesi ve kalite sayımları.
+- GRV-005-01 — **Kapatıldı (gözlem hedefi tamamlandı).** [Kapanış raporu](GRV-005-01-KAPANIS-20261011.md); [ilk log incelemesi](GRV-005-01-LOG-ILK-GOZLEM-20261011.md). Gerçek 0 A testi prototipin kendi tüketimi nedeniyle uygulanabilir değil. Her başarılı Modbus yanıtı ile on_value bire bir eşleşmesi doğrulanmış sayılmıyor.
+- GRV-005-02 — **Sıradaki alt görev:** ADC özelliklerinin kesin tanımları. [Alt görev kapsamı](GRV-005-02-OZELLIK-TANIMLARI-20261011.md): adc_rms, adc_std, median/yüzdelikler, bias düzeltmesi, zero_count ve invalid_count.
 - GRV-005-03 — PZEM güncelleme davranışı ve zaman farkı kabul aralığı.
 - GRV-005-04 — Nihai CSV şeması ve veri sözlüğü.
-- Sonraki adımlar: gerçek 0 A koşulunda güncellemeyi doğrulamak; başarılı Modbus yanıtı ile on_value sayısını bağımsız gözlemle karşılaştırmak; sonra ADC örnekleme/CSV aşamasına geçmek ve Python kalite kontrolü/model karşılaştırmasını yapmak.
+- Sonraki adımlar: GRV-005-02'de özelliklerin matematiksel tanımlarını kilitlemek; ardından GRV-005-03 zaman hizalaması ve GRV-005-04 CSV şemasına geçmek. Modbus yanıtı/on_value bire bir eşleşmesi ancak ayrıca gerek duyulursa ayrı bir tanılama deneyi olarak açılacak.
 
 ## İlk kod taslağının sınırları
 
@@ -33,7 +33,7 @@
 - Derleme: kullanıcı tarafından başarılı bildirildi
 - Cihaza yükleme: logda çalışan cihaz doğrulandı
 - PZEM zaman işareti: sabit 0.028 A altında yaklaşık 5 saniyelik yenilenme gözlendi
-- Gerçek 0 A: test bekliyor
+- Gerçek 0 A: prototipin kendi tüketimi nedeniyle uygulanabilir değil; 0.028 A bu düzenekte pratik taban değeridir
 - Başarılı Modbus yanıtı ile on_value bire bir eşleşmesi: bağımsız olarak doğrulanmadı
 - ADC istatistikleri ve RMS akım tahmini: bu logda doğrulanmadı
 - Ölçüm doğruluğu / RMS akım tahmini: doğrulanmadı
