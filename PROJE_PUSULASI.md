@@ -74,11 +74,11 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 
 ### Mevcut devir notu
 
-- **Son tamamlanan iş:** GRV-006 — Python veri kümesi ve Home Assistant aktarım zinciri görevi açıldı: [görev tanımı](GOREVLER/GRV-006/RAPOR/README.md).
-- **Son doğrulanmış teknik sonuç:** Bu işlem yalnızca görev tanımı ve kayıt güncellemesidir; henüz veri dosyası yazılmadı/okunmadı, HA kaydı oluşturulmadı ve teknik test yapılmadı.
-- **Açık soru:** Copilot ile üretilecek en küçük deterministik veri kümesinin şeması ve beklenen sonucu GRV-006-01 kapsamında belirlenecek.
-- **Sıradaki tek adım:** Önce gerçek veri dosyasını üretip aynı dosyayı yeniden okuyarak içeriğini ve beklenen sonucu doğrulamak. Sonra HA kayıt/okuma aşamasına geçmek.
-- **Çalışma sınırı:** GRV-005 geçmişi korunur; GRV-006 ayrı görevdir. Mac kopyası doğrulanmadan HA geçici kaydı silinmez. Gereksiz test döngüsü açılmaz.
+- **Son tamamlanan iş:** GRV-006 görev tanımı hedefe göre düzeltildi: [Veri al → Python ile işle → ESP'ye geri gönder ve teyit et](GOREVLER/GRV-006/RAPOR/README.md).
+- **Son doğrulanmış teknik sonuç:** Yalnızca görev tanımı depoya yazıldı; teknik akış henüz çalıştırılmadı. Dosya yazma/yeniden okuma, Python işlemesi, bağımsız teyit ve Python→ESP→geri okuma kanıtı yok.
+- **Açık soru:** Depodaki mevcut kod ve arayüzlerden Python ile ESP arasında sonuç gönderip geri okuma için hangi mevcut yol kullanılabilir?
+- **Sıradaki tek adım:** Önce depodaki mevcut dosya/kod/logları inceleyip en küçük veri örneğiyle gerçek dosyaya yazma ve aynı dosyayı yeniden okuma sonucunu üretmek.
+- **Çalışma sınırı:** GRV-005 geçmişi korunur; HA aktarım zinciri zorunlu ara adım değildir. Yeni test/ara katman, mevcut kanıtın yetersizliği açıkça gösterilmeden eklenmez.
 
 ## 7. Önemli kararların kronolojisi
 
