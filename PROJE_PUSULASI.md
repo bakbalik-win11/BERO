@@ -205,3 +205,15 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - Kullanıcının çalıştırdığı CSV→Python→ESP echo betiği depoya ayrı dosya ve MD olarak eklendi: [Python](GOREVLER/GRV-006/KOD/GRV-006-04-csv-to-esp-v01.py), [MD](GOREVLER/GRV-006/KOD/GRV-006-04-csv-to-esp-v01.md).
 - Önceki PASS, eski kaydedilmiş CSV'ye aittir.
 - **Sıradaki tek adım:** Yeni canlı cihaz CSV'siyle aynı akışı çalıştırmak; eski örnek CSV'yi yeniden deneyerek vakit kaybetmemek.
+
+
+## 2026-10-11 — GRV-006-05 ADC raporu logda görüldü
+
+- Kullanıcı birleşik GRV-006-05 kodunun derlendiğini ve ESPHome cihaz logunu paylaştı.
+- Firmware: ESPHome 2026.9.1, derleme 18:49:28 +0300; `esp32d1` API bağlantısı başarılı.
+- Dört ADC satırı oluştu: CH0-1T, CH1-2T, CH2-3T, BIAS; her satırda 1000 örnek.
+- AC RMS sonuçları: CH0 12.111068, CH1 14.469792, CH2 12.546252.
+- **Doğrulanan:** ADC örnek toplama ve raporlama satırlarının loga çıkması.
+- **Henüz doğrulanmayan:** CSV kolon hizasının QC kontrolü, yeni canlı CSV üzerinden Python→ESP→geri okuma ve fiziksel akım doğruluğu.
+- **Sıradaki tek adım:** Yeni log satırlarını ayrı canlı CSV dosyasına kaydet ve mevcut CSV→Python→ESP echo betiğini bu dosyayla çalıştır. Eski CSV korunacak.
+- **Kayıtlar:** [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md), [birleşik YAML](GOREVLER/GRV-006/KOD/GRV-006-05-v01-BIRLESTIRILMIS-ADAY.yaml).
