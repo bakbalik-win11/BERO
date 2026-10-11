@@ -95,7 +95,20 @@ Depodaki mevcut ESP arayüzünü incele; Python'dan sonucu gönder, ESP'den geri
 
 İlk kanıt; dosyanın gerçekten yazılması, aynı dosyanın yeniden açılması ve beklenen değerlerin eşleşmesidir. Bu kanıt gösterilmeden HA taşıma zinciri, yeni QC altyapısı veya ek kontrol döngüsü başlatılmaz.
 
-## 7. Başlangıç durumu ve geçmiş kapsam notu
+## 7. GRV-006-01 — ilk gerçek dosya akışı (2026-10-11)
+
+**Durum:** İlk basamak için yerel çalıştırma kanıtı alındı; veri açıkça sentetiktir.
+
+- Kod: [GRV-006-01 Python](../KOD/GRV-006-01-file-roundtrip-v01.py)
+- Kod açıklaması ve çıktı: [GRV-006-01 MD](../KOD/GRV-006-01-file-roundtrip-v01.md)
+- Ham CSV: [ham veri](../KOD/GRV-006-01-ham-veri.csv)
+- İşlenmiş CSV: [işlenmiş veri](../KOD/GRV-006-01-islenmis-veri.csv)
+- Kanıt: dosya yazıldı; aynı dosya yeniden açıldı; üç satır okundu; her değer ikiyle çarpılarak ayrı dosyaya yazıldı; işlenmiş dosya yeniden açıldı; bağımsız beklenen toplam 120 ile okunan toplam 120 eşleşti.
+- **Sonuç:** GRV-006-01'in dosya yazma/okuma ve Python işleme alt basamağı PASS.
+- **Sınır:** Sentetik örnek veridir. ESP'ye veri gönderimi/geri okuma, sensör doğruluğu ve gerçek SCT verisi henüz kanıtlanmadı.
+- **Sonraki tek adım:** Depodaki mevcut ESP kodu ve arayüzünü inceleyerek Python→ESP→geri okuma için mevcut ve uygun yolun ne olduğunu belirlemek; kullanıcıya rastgele yeni test yaptırmamak.
+
+## 8. Başlangıç durumu ve geçmiş kapsam notu
 
 Bu görev tanımı hedefe uygunluk için 2026-10-11 tarihinde netleştirilmiştir. Önceki sürümde HA'ya kaydetme, HA'dan Mac'e taşıma ve geçici kaydı silme adımları zorunlu tutulmuştu. Bunlar kullanıcının asıl hedefinin önüne geçen gereksiz ara adımlar olabileceğinden zorunlu kabul ölçütü olmaktan çıkarılmıştır. Eski karar HISTORY'de korunur; bu güncel görev tanımı onu sessizce yok saymaz, kapsamı açıkça düzeltir.
 
