@@ -6,7 +6,7 @@ Bu klasör, Proje BERO'nun ana hedeflerine bağlı görevleri ve görev bazında
 
 - Ana hedef: HDF-NNN — istenen üst düzey sonuç ve tamamlanma ölçütleri.
 - Görev: GRV-NNN — o sonuca katkı sağlayan sınırlı çalışma ve doğrulama adımı.
-- Görev numaraları kronolojik olarak artar; bu görünümde yeni/açık çalışmalar üstte, tamamlanan görevler altta gösterilir.
+- Görev numaraları kronolojik olarak artar; yeni/açık çalışmalar üstte, tamamlanan görevler altta gösterilir.
 
 ## Görev düzeni
 
@@ -18,6 +18,14 @@ Her görev kendi klasöründe yer alır: GRV-NNN/.
 Göreve ait tecrübe ve deney kodu burada tutulur. Sensöre veya donanıma özel kalıcı uygulama kodları, ilgili donanım/sensör klasörlerinde tutulmaya devam eder. Görev klasörü deney ve doğrulama geçmişini korur; kalıcı kodun asıl yerini kendiliğinden değiştirmez.
 
 ## Açık / çalışma sırasındaki görevler
+
+### GRV-005 — SCT/ADC istatistiksel veri seti ve Python model öğrenme altyapısı
+
+- [Görev raporu](GRV-005/RAPOR/README.md)
+- [GRV-005-01 kilitlenen ölçüm kararları](GRV-005/RAPOR/GRV-005-01-KARARLAR-20261011.md)
+- [İlk kod taslağı ve test kaydı](GRV-005/KOD/GRV-005-01-PZEM-ADC-TELEMETRI-v01.md)
+- Amaç: Her ADC kanalı için 1000 örnekten istatistikler üretmek, ölçüm penceresini zaman damgalarıyla tanımlamak ve PZEM referansını zaman uyumunu izleyerek veri setine bağlamak. Python'da regresyon/ML öncesi yüksek kaliteli, izlenebilir veri oluşturmak.
+- Durum: İlk kodlama aşaması; derleme ve donanım doğrulaması bekliyor.
 
 ### GRV-004 — ESP32D1 + PZEM + SCT013-1T/2T/3T
 
