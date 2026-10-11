@@ -142,11 +142,11 @@ Kanıt:
 
 **Yorum:** Gönderilen tamsayı 120, ESP echo sensöründen 120.0 olarak geri okundu. Sayısal değerler eşit; gösterim biçiminin tam sayı/ondalıklı olması sonucu değiştirmiyor.
 
-**Düzeltme notu:** İlk çalıştırma başarılı sonuçtan sonra `RuntimeWarning: coroutine 'APIClient.disconnect' was never awaited` verdi. Bu, veri eşleşmesinden ayrı bir kaynak kapatma uyarısıdır. Python istemci kodunda kapatma çağrısı `await client.disconnect()` olarak düzeltildi. Bu düzeltme henüz kullanıcı cihazında tekrar çalıştırılıp doğrulanmadı.
+**Düzeltme notu:** İlk çalıştırma başarılı sonuçtan sonra `RuntimeWarning: coroutine 'APIClient.disconnect' was never awaited` verdi. Bu, veri eşleşmesinden ayrı bir kaynak kapatma uyarısıdır. Python istemci kodunda kapatma çağrısı `await client.disconnect()` olarak düzeltildi. Kullanıcı düzeltilmiş dosyayı yeniden çalıştırdı; aynı PASS çıktısı geldi ve bu kez RuntimeWarning görünmedi.
 
 - Python istemcisi: [GRV-006-03 Python API echo](../KOD/GRV-006-03-v01-python-api-echo.py)
 - Aday YAML: [GRV-006-03 v01](../KOD/GRV-006-03-v01-ADAY.yaml)
 
 **Sınır:** Bu sonuç API üzerinden bir tamsayının ESP'ye gönderilip echo sensöründen geri okunmasını doğrular. SCT akım ölçüm doğruluğunu, gerçek sensör verisinin işlenmesini veya tüm GRV-006 hedefinin tamamlandığını kanıtlamaz.
 
-**Sıradaki tek adım:** Düzeltilmiş Python dosyasını yeniden çalıştırıp aynı PASS çıktısının kaynak kapatma uyarısı olmadan geldiğini doğrulamak.
+**Yeniden çalıştırma sonucu (2026-10-11):** Kullanıcı düzeltilmiş dosyayı tekrar çalıştırdı ve `CONNECTED: 192.168.0.9:6053`, `SENT: 120`, `ECHOED: 120.0`, `RESULT: PASS` çıktısını aldı. `APIClient.disconnect` RuntimeWarning'i görünmedi.\n\n**GRV-006-03 alt sonucu:** Python → ESP → Python echo PASS; kapatma uyarısının düzeltildiği kullanıcı çıktısıyla doğrulandı. Bu sonuç yalnızca Native API echo yolunu doğrular; SCT ölçüm doğruluğunu veya GRV-006'nın tüm hedefinin tamamlandığını kanıtlamaz.\n\n**Sıradaki yön:** Echo deneyini sebepsiz yere tekrarlama; GRV-006'nın veri dosyası, Python işlemesi ve bağımsız doğrulama adımlarına dön.
