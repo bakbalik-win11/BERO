@@ -18,7 +18,7 @@
 ## Alt görev sırası
 
 - GRV-005-01 — **Kapatıldı (gözlem hedefi tamamlandı).** [Kapanış raporu](GRV-005-01-KAPANIS-20261011.md); [ilk log incelemesi](GRV-005-01-LOG-ILK-GOZLEM-20261011.md). Gerçek 0 A testi prototipin kendi tüketimi nedeniyle uygulanabilir değil. Her başarılı Modbus yanıtı ile on_value bire bir eşleşmesi doğrulanmış sayılmıyor.
-- GRV-005-02 — **Aktif alt görev:** ADC özelliklerinin kesin tanımları. [Alt görev kapsamı](GRV-005-02-OZELLIK-TANIMLARI-20261011.md) ve [teknik öneri v01](GRV-005-02-OZELLIK-TANIMLARI-ONERI-v01-20261011.md). Öneri kullanıcı onayı bekliyor; henüz kodlama yok.
+- GRV-005-02 — **Aktif alt görev:** ADC özelliklerinin kesin tanımları. [Alt görev kapsamı](GRV-005-02-OZELLIK-TANIMLARI-20261011.md) ve [teknik öneri v01](GRV-005-02-OZELLIK-TANIMLARI-ONERI-v01-20261011.md), [Copilot değerlendirmesiyle birleştirilmiş öneri v02](GRV-005-02-OZELLIK-TANIMLARI-ONERI-v02-20261011.md). v02'de sample_count/invalid_count ayrımı, örnek standart sapması, iki RMS alanı ve yüzdelik adlandırması netleştirildi. Nihai karar öncesi gözden geçirme sürüyor; henüz kodlama yok.
 - GRV-005-03 — PZEM güncelleme davranışı ve zaman farkı kabul aralığı.
 - GRV-005-04 — Nihai CSV şeması ve veri sözlüğü.
 - Sonraki adımlar: GRV-005-02'de özelliklerin matematiksel tanımlarını kilitlemek; ardından GRV-005-03 zaman hizalaması ve GRV-005-04 CSV şemasına geçmek. Modbus yanıtı/on_value bire bir eşleşmesi ancak ayrıca gerek duyulursa ayrı bir tanılama deneyi olarak açılacak.
