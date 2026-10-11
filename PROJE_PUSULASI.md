@@ -74,12 +74,12 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 
 ### Mevcut devir notu
 
-- **Son tamamlanan iş:** GRV-005-14 v06 gerçek cihaz logu ve değerlendirmesi kaydedildi; GRV-005-15 QC ölçütlerine göre v06 satırlarının bağımsız kontrolü 14/14 PASS olarak raporlandı.
-- **Son doğrulanmış teknik durum:** `esp32d1` / ESPHome 2026.9.1 logunda dört kanal için 1000 örnekli CSV satırları var; başlık ve satırlar 41 alan; PZEM snapshot değerleri satırlar arasında tutarlı. Bu, fiziksel ölçüm doğruluğu veya uçtan uca ESP→Python→ESP başarısı değildir.
-- **Açık soru:** Depodaki QC scripti doğrudan çalıştırıldığında aynı CSV için aynı sonucu veriyor mu?
-- **Sıradaki tek adım:** `GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv` dosyasını `GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py` ile doğrudan çalıştır; terminal çıktısını ve scriptin gerçek sonucunu yeni tarihli kayıt olarak sakla.
-- **İlgili kayıtlar:** [v06 YAML](GOREVLER/GRV-005/KOD/GRV-005-14-v06-CALISAN-KOD.yaml), [v06 cihaz logu](GOREVLER/GRV-005/LOG/GRV-005-14-v06-GERCEK-CIHAZ-LOGU-20261011.txt), [v06 değerlendirme](GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-LOG-DEGERLENDIRME-20261011.md), [QC sonucu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-SONUCU-20261011.md), [günlük geçmiş](HISTORY/2026/2026-10-11.md).
-- **Kullanıcı durumu:** Kullanıcı yorulduğu için oturuma ara verildi. Devamda bu kayıtlar okunacak; aynı bilgiler tekrar istenmeyecek, sıfırlama veya yeni deney varsayılan adım olmayacak.
+- **Son tamamlanan iş:** GRV-005-14 v06 cihaz logu ve v06 QC CSV girdisi depoda mevcut; QC ölçütlerine göre bağımsız kontrolde 14/14 PASS raporlandı.
+- **Son gerçek doğrulama adımı:** Depodaki `GRV-005-15-PYTHON-QC-v02.py` ve CSV GitHub'dan geri okundu. Bu oturumun yürütme ortamına dosyaları yerel olarak aktarıp çalıştırmak mümkün olmadı; dolayısıyla scriptin doğrudan çalıştırılması **bekliyor**.
+- **Açık ayrım:** 14/14 bağımsız kontrol sonucu doğrudan script çalıştırmasının sonucu değildir.
+- **Sıradaki tek adım:** Python erişimi olan yerel ortamda şu komutu çalıştırıp gerçek stdout ve exit code'u kaydet: `python3 GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv`.
+- **İlgili kayıtlar:** [QC scripti](GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py), [QC CSV](GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv), [bağımsız QC raporu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-SONUCU-20261011.md), [doğrudan çalıştırma durumu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-DOGRUDAN-CALISTIRMA-SONUCU-20261011.md), [HISTORY](HISTORY/2026/2026-10-11.md).
+- **Çalışma sınırı:** Yeni firmware/donanım deneyi açma; v06 ve önceki kayıtların üzerine yazma.
 
 
 ## 7. Önemli kararların kronolojisi
