@@ -23,9 +23,10 @@ Göreve ait tecrübe ve deney kodu burada tutulur. Sensöre veya donanıma özel
 
 - [Görev raporu](GRV-005/RAPOR/README.md)
 - [GRV-005-01 kilitlenen ölçüm kararları](GRV-005/RAPOR/GRV-005-01-KARARLAR-20261011.md)
+- [GRV-005-01 ilk PZEM zaman damgası log incelemesi](GRV-005/RAPOR/GRV-005-01-LOG-ILK-GOZLEM-20261011.md)
 - [İlk kod taslağı ve test kaydı](GRV-005/KOD/GRV-005-01-PZEM-ADC-TELEMETRI-v01.md)
 - Amaç: Her ADC kanalı için 1000 örnekten istatistikler üretmek, ölçüm penceresini zaman damgalarıyla tanımlamak ve PZEM referansını zaman uyumunu izleyerek veri setine bağlamak. Python'da regresyon/ML öncesi yüksek kaliteli, izlenebilir veri oluşturmak.
-- Durum: İlk kodlama aşaması; derleme ve donanım doğrulaması bekliyor.
+- Durum: İlk YAML derlendi ve cihaz logu incelendi; sabit 0.028 A koşulunda yaklaşık 5 saniyelik güncelleme gözlendi. Gerçek 0 A ve Modbus yanıtı/on_value eşleşmesi doğrulaması bekliyor.
 
 ### GRV-004 — ESP32D1 + PZEM + SCT013-1T/2T/3T
 
