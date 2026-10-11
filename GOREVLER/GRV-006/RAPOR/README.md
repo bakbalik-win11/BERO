@@ -269,3 +269,9 @@ Kanıt sınırı: CSV, kullanıcının paylaştığı cihaz logundan türetilmi�
 - **Ölçüm doğruluğu:** Bu görevde doğrulanmadı; ADC RMS değerleri amper kalibrasyonu sayılmaz.
 - **Karar:** Aynı echo testini tekrarlama. İkinci aynı ESP de mevcutsa kaynak cihazın UART/USB logunu köprülemek teorik olarak mümkün, ancak yeni firmware ve kablolama gerektirir; yalnızca dosya yakalamak için Mac'e mevcut ESP'yi doğrudan USB ile bağlamak daha az parçalı çözümdür. Bu yüzden ikinci ESP yolu zorunlu yapılmadı.
 - **Gerçek durum:** GRV-006 yazılım işleme/echo bölümü tamam; otomatik log dosyası üretimi ve fiziksel akım doğruluğu açık sınırlar olarak kalıyor. Bunlar kanıtlanmadan görev bütünüyle kapalı sayılmaz.
+
+
+## 18. GRV-006-07 — Mac için kısa USB çalıştırma notu
+
+- [Kısa Mac USB kayıt komutları](../KOD/GRV-006-07-MAC-USB-KAYIT-KOMUTU.md) eklendi. ESP firmware'i değiştirmez; pyserial kurar, portu listeler ve seri yakalama betiğini çalıştırır.
+- **Sonraki uygulama adımı:** Kullanıcı ESP32D1'i USB ile Mac'e bağlayıp nottaki komutları çalıştırır. Gerçek port listesi ve CSV kolon sayısı yalnızca cihaz çıktısıyla doğrulanabilir.
