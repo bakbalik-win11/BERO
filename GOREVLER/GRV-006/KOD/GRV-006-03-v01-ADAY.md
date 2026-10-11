@@ -3,7 +3,7 @@
 **Durum (2026-10-11):** Kullanıcının paylaştığı ESPHome logunda derleme bilgisi (`ESPHome 2026.9.1`, compiled 2026-10-11 18:19:09 +0300) ve `esp32d1 @ 192.168.0.9` API bağlantısı/handshake görülüyor. Python eylem çağrısı ve geri okuma henüz doğrulanmadı. Çalışan v06 dosyası değiştirilmedi.
 
 ## Hedef ve ekipman
-- ESP: mevcut `esp32d1`, IP kaydı GRV-004 raporundaki `192.168.0.8` (ağ adresi değişmiş olabilir).
+- ESP: mevcut `esp32d1`, son kullanıcı logunda `192.168.0.9`. Python varsayılan adresi de bu loga göre güncellendi.
 - ESPHome Native API, TCP 6053.
 - Python 3.10+ ve `aioesphomeapi`.
 - Deneme değeri 120; sentetik test değeridir, sensör ölçümü değildir.
