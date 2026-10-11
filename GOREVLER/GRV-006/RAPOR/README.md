@@ -207,7 +207,7 @@ Paylaşılan ADC özetleri:
 **Sıradaki tek adım:** Bu dört satırı yeni ve ayrı bir GRV-006 canlı CSV dosyasına dönüştürüp Python→bağımsız kontrol→ESP echo betiğini bu yeni dosyayla çalıştırmak. Önceki tarihsel CSV korunacak.
 
 
-## 14. GRV-006-05 — yeni canlı log CSV'si hazırlandı (2026-10-11)
+## 14. GRV-006-05 — yeni canlı log CSV'si hazırlandı (2026-10-11; tarihsel hazırlık kaydı)
 
 - Ayrı CSV: [GRV-006-05 canlı CSV](GRV-006-05-LIVE-CSV-20261011.csv).
 - Kaynak notu: [CSV köken ve durum notu](GRV-006-05-LIVE-CSV-20261011.md).
@@ -215,9 +215,7 @@ Paylaşılan ADC özetleri:
 - Python betiğinin okuması gereken alanlar doğrulandı: `channel_id` ve `adc_rms_ac`; BIAS satırının `adc_rms_ac` alanı boş bırakıldı.
 - Beklenen kanal değerleri: CH0-1T=12.111068, CH1-2T=14.469792, CH2-3T=12.546252.
 - Beklenen toplam=39.127112; ×1000 ve yuvarlama sonucu gönderilecek değer=39127.
-- **Henüz PASS değil:** Bu yeni CSV ile Mac mini betik çıktısı ve ESP geri okuması henüz alınmadı.
-- **Sıradaki tek adım:** Depo kök dizininde aşağıdaki komutu çalıştırıp çıktıyı kaydet:
-  `GRV006_CSV="GOREVLER/GRV-006/RAPOR/GRV-006-05-LIVE-CSV-20261011.csv" python3 GOREVLER/GRV-006/KOD/GRV-006-04-csv-to-esp-v01.py`
+- **Bu bölüm hazırlık anındaki durumun tarihsel kaydıdır.** Sonraki bölümde aynı dosya için kullanıcı terminalinden PASS kanıtı geldi.
 - Tarihsel CSV ve önceki kodlar korunmuştur.
 
 
@@ -234,7 +232,7 @@ Kullanıcının Mac mini Terminal çıktısı:
 Kanıt sınırı: CSV, kullanıcının paylaştığı cihaz logundan türetilmiştir; ESP'nin doğrudan yazdığı özgün dosya değildir. invalid_count=NOT_TRACKED. Bu sonuç fiziksel akım doğruluğunu veya GRV-006'nın tüm kapsamını kanıtlamaz.
 
 
-## 15. GRV-006-05 — canlı log CSV → Python → ESP echo PASS (2026-10-11)
+## 16. GRV-006-05 — canlı log CSV → Python → ESP echo PASS (2026-10-11)
 
 **Kullanıcı terminal kanıtı:**
 - `CSV_READ: PASS` — yeni canlı logdan türetilen CSV'den 4 satır okundu.
@@ -255,10 +253,19 @@ Kanıt sınırı: CSV, kullanıcının paylaştığı cihaz logundan türetilmi�
 - Köken notu: [CSV açıklaması](GRV-006-05-LIVE-CSV-20261011.md)
 
 
-## 16. GRV-006-06 — USB seri log yakalama aracı hazırlandı
+## 17. GRV-006-06 — USB seri log yakalama aracı hazırlandı
 
 - Betik: [USB seri yakalama](../KOD/GRV-006-06-USB-serial-capture-v01.py); kullanım notu: [MD](../KOD/GRV-006-06-USB-serial-capture-v01.md).
 - Amaç: ESP32D1'in USB seri logunu Mac'te ham `.log` dosyasına kaydetmek ve firmware'in CSV başlık/satırlarını ayrı CSV'ye çıkarmak; elle log kopyalama adımını azaltmak.
 - Ham log korunur. Başlık parçaları eksikse CSV oluşturulmuş sayılmaz; sütun sayısı tutmayan satırlar atlanır ve uyarı verilir.
 - Betik depoya eklendi; burada fiziksel USB bağlantısı olmadığı için cihaz üzerinde çalıştırma doğrulanmadı. Bu yüzden bu aşamaya PASS denmiyor.
 - **Sonraki gerçek adım:** Mac'te `--list` ile portu bulup betiği USB bağlıyken çalıştırmak. Sonra çıkan ham log/CSV'nin sütun hizasını kontrol etmek. ESP echo deneyi tekrarlanmayacak.
+
+
+## GRV-006 mevcut kapanış özeti
+
+- **Yazılım veri zinciri:** PASS — kullanıcı terminal kanıtıyla CSV okuma, Python hesaplama, bağımsız yeniden hesap, ESP'ye gönderme ve echo geri okuma doğrulandı.
+- **Otomatik kaynak yakalama:** Hazırlandı ama fiziksel USB veya ikinci ESP üzerinden burada çalıştırılamadığı için doğrulanmış değil.
+- **Ölçüm doğruluğu:** Bu görevde doğrulanmadı; ADC RMS değerleri amper kalibrasyonu sayılmaz.
+- **Karar:** Aynı echo testini tekrarlama. İkinci aynı ESP de mevcutsa kaynak cihazın UART/USB logunu köprülemek teorik olarak mümkün, ancak yeni firmware ve kablolama gerektirir; yalnızca dosya yakalamak için Mac'e mevcut ESP'yi doğrudan USB ile bağlamak daha az parçalı çözümdür. Bu yüzden ikinci ESP yolu zorunlu yapılmadı.
+- **Gerçek durum:** GRV-006 yazılım işleme/echo bölümü tamam; otomatik log dosyası üretimi ve fiziksel akım doğruluğu açık sınırlar olarak kalıyor. Bunlar kanıtlanmadan görev bütünüyle kapalı sayılmaz.
