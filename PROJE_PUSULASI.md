@@ -217,3 +217,12 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Henüz doğrulanmayan:** CSV kolon hizasının QC kontrolü, yeni canlı CSV üzerinden Python→ESP→geri okuma ve fiziksel akım doğruluğu.
 - **Sıradaki tek adım:** Yeni log satırlarını ayrı canlı CSV dosyasına kaydet ve mevcut CSV→Python→ESP echo betiğini bu dosyayla çalıştır. Eski CSV korunacak.
 - **Kayıtlar:** [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md), [birleşik YAML](GOREVLER/GRV-006/KOD/GRV-006-05-v01-BIRLESTIRILMIS-ADAY.yaml).
+
+
+## 2026-10-11 — GRV-006-05 canlı CSV ve sıradaki çalıştırma
+
+- Yeni ayrı dosya: [canlı logdan türetilen CSV](GOREVLER/GRV-006/RAPOR/GRV-006-05-LIVE-CSV-20261011.csv); [köken notu](GOREVLER/GRV-006/RAPOR/GRV-006-05-LIVE-CSV-20261011.md).
+- Kaynak, kullanıcı tarafından paylaşılan ESPHome logudur; ESP'nin doğrudan diske yazdığı özgün CSV değildir.
+- Beklenen AC RMS toplamı 39.127112; gönderilecek tamsayı 39127.
+- **Sıradaki tek iş:** Depo kök dizininden çalıştır: `GRV006_CSV="GOREVLER/GRV-006/RAPOR/GRV-006-05-LIVE-CSV-20261011.csv" python3 GOREVLER/GRV-006/KOD/GRV-006-04-csv-to-esp-v01.py`.
+- Kullanıcı terminal sonucu paylaşana kadar yeni canlı veri zinciri PASS sayılmaz. Eski CSV ve GRV-005 deneyimleri değiştirilmez.
