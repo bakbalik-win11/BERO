@@ -40,6 +40,10 @@ Bunlar planlanan deney örnekleridir; tamamlanmış veya başarılı deneyler ol
 
 ### 2.3 Eşleştirme ve etiketleme
 
+**İlk eşleştirme filtresi PZEM tarafında gerilim (V) ve güç faktörünün (PF) aynı veya deney toleransı içinde benzer olduğu bölgeleri işaretlemektir.** Bu bölgelerde PZEM akım etiketi tek başına tutulmaz; akım etiketi ilgili V ve PF bilgileriyle birlikte taşınır: `(I, V, PF)`. Böylece SCT karakteriyle ilişkilendirilen etiket, hangi gerilim ve PF koşullarında geçerli olduğuna dair bağlamını kaybetmez.
+
+Bu alt kümeler, sabit/benzer V ve PF koşullarında daha basit bir aday `k` ilişkisini incelemeyi sağlar. `k`'nın sabit olduğu önceden kabul edilmez; her V/PF grubu içinde verilerle hesaplanır ve bağımsız veride sınanır. Farklı V veya PF koşullarındaki bölgeler, gerekçesiz biçimde aynı kümeye karıştırılmaz.
+
 İki akışın ilk işlemesi ayrı yürütülür:
 
 - **PZEM akışı:** Kararlı/anlamlı bölgeler belirlenir ve uygun bölgelere ölçülen akım değeri etiketi verilir.
@@ -57,7 +61,7 @@ Python tarafı:
 - Aday fonksiyonları karşılaştırır.
 - Eğitim/model seçimi için kullanılan verilerden ayrı tutulan örneklerle bağımsız doğrulama yapar.
 
-Örnek olarak PZEM'de 1,50 A civarında bir bölge ve sensör akışında belirli bir ham örüntü görülebilir. Bunların aynı fiziksel duruma ait olduğu deney bağlamıyla desteklenmelidir; örnek değerler açıklama amaçlıdır, BERO ölçüm sonucu değildir.
+Örnek olarak PZEM'de belirli V ve PF koşullarında 1,50 A civarında bir bölge bulunabilir. Etiket yalnızca `1,50 A` değildir; `(1,50 A, V, PF)` bağlamıyla korunur. Bu bölge ile SCT ham örüntüsünün aynı fiziksel duruma ait olduğu deney bağlamıyla desteklenmelidir; örnek değerler açıklama amaçlıdır, BERO ölçüm sonucu değildir.
 
 PZEM, eğitim ve doğrulama aşamasında referanstır. Nihai amaç, doğrulanmış bir modelin çalışma sırasında sensör verisinden akım tahmin edebilmesidir.
 
@@ -103,11 +107,11 @@ Bu, önerilen klasör düzenidir; belgenin yazılması Mac üzerinde klasörleri
 2. Bias ve seçilen sensör kanallarından, her ölçüm zincirini ilk aşamada bağımsız tutarak ham veri topla; her kanalın mümkün olan en yüksek sağlıklı hızını ölç. Dört kanalın birlikte okunmasının hızı düşürüp düşürmediğini, gerekirse kanal/ESP'leri teker teker çalıştırarak karşılaştır.
 3. Kanal başına ve toplam örnekleme hızını, zamanlama kararlılığını ve örnek kaybını kaydet; hızın doğrulandığına dair ölçüm olmadan iddiada bulunma.
 4. Veriyi uygun yerde biriktir (Mac veya Home Assistant üzerinden); ham kaynakları koru.
-5. Aynı fiziksel olayı temsil eden bölgeleri Python ile eşleştir; geçerli eşleşmeleri etiketle.
+5. Önce PZEM'de aynı/benzer gerilim ve PF koşullarındaki bölgeleri grupla; akım etiketini `(I, V, PF)` olarak koru. Ardından deney bağlamıyla desteklenen SCT karakter bölgeleriyle Python üzerinden eşleştir.
 6. Eşleştirilmiş veri kümesinden özellikleri ve aday `f(X)` ilişkilerini araştır; bağımsız verilerle doğrula.
 7. Aşama 1 tamamlanıp ölçüm karakteri anlaşıldıktan sonra donanım sadeleştirmesi/birleştirmesini ayrıca değerlendir.
 8. Daha sonra ölçüm hızı ve paketleme yöntemini gerçek hayatı yakalama, veri kaybı ve kaynak kullanımı açısından karşılaştır; ilk aşamada ölçülen ham okuma hızı sonuçlarını temel al.
 
 ## 7. Kısa yön özeti
 
-**Önce her ölçüm zincirinden bağımsız, kaliteli ham veri al; PZEM bölgelerini akım etiketiyle, SCT bölgelerini sinyal karakteriyle tanımla; fiziksel olarak desteklenen karakter/bölgeleri korele ederek `I = f(X)` ilişkisini araştır. Sonra donanımı sadeleştir ve ölçüm hızı/paketlemeyi seç.** Paket senkronizasyonu olay korelasyonunun ön koşulu değildir; paketleme ikinci aşamanın araştırma konusudur.
+**Önce her ölçüm zincirinden bağımsız, kaliteli ham veri al; PZEM'de aynı/benzer V ve PF bölgelerini işaretle ve akım etiketini `(I, V, PF)` olarak taşı; SCT bölgelerini sinyal karakteriyle tanımla; fiziksel olarak desteklenen bölgeleri korele ederek önce uygun koşul gruplarında aday `k`, ardından gerekirse `I = f(X)` ilişkisini araştır. Sonra donanımı sadeleştir ve ölçüm hızı/paketlemeyi seç.** Paket senkronizasyonu olay korelasyonunun ön koşulu değildir; paketleme ikinci aşamanın araştırma konusudur.
