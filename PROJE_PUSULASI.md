@@ -74,12 +74,12 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 
 ### Mevcut devir notu
 
-- **Son tamamlanan iş:** GRV-005-14 v06 cihaz logu ve v06 QC CSV girdisi depoda mevcut; QC ölçütlerine göre bağımsız kontrolde 14/14 PASS raporlandı.
-- **Son gerçek doğrulama adımı:** Depodaki `GRV-005-15-PYTHON-QC-v02.py` ve CSV GitHub'dan geri okundu. Bu oturumun yürütme ortamına dosyaları yerel olarak aktarıp çalıştırmak mümkün olmadı; dolayısıyla scriptin doğrudan çalıştırılması **bekliyor**.
-- **Açık ayrım:** 14/14 bağımsız kontrol sonucu doğrudan script çalıştırmasının sonucu değildir.
-- **Sıradaki tek adım:** Python erişimi olan yerel ortamda şu komutu çalıştırıp gerçek stdout ve exit code'u kaydet: `python3 GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv`.
-- **İlgili kayıtlar:** [QC scripti](GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py), [QC CSV](GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv), [bağımsız QC raporu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-SONUCU-20261011.md), [doğrudan çalıştırma durumu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-DOGRUDAN-CALISTIRMA-SONUCU-20261011.md), [HISTORY](HISTORY/2026/2026-10-11.md).
-- **Çalışma sınırı:** Yeni firmware/donanım deneyi açma; v06 ve önceki kayıtların üzerine yazma.
+- **Son tamamlanan iş:** GRV-005-14 v06 cihaz logu/CSV'si üzerinde GRV-005-15 Python QC v02, kullanıcının Mac mini bilgisayarında doğrudan çalıştırıldı; Terminal çıktısı `RESULT: PASS (14/14 checks)` gösterdi.
+- **Kanıt sınırı:** Kullanıcının paylaştığı terminal çıktısında exit code ayrıca kaydedilmedi. PASS, CSV'nin yapısal QC ölçütlerini karşıladığını gösterir; fiziksel ölçüm doğruluğunu kanıtlamaz.
+- **Açık nokta:** `invalid_count` alanı girdide `NOT_TRACKED`; örnek geçerlilik takibi ayrı değerlendirilmiş sayılmaz.
+- **Sıradaki tek adım:** Yeni firmware/donanım deneyi açmadan GRV-005 görevindeki asıl sonraki hedefi ve GRV-006 kapsamıyla ilişkisini mevcut raporlardan belirlemek. QC doğrudan çalıştırma adımı görünür çıktıya göre tamamlandı.
+- **İlgili kayıtlar:** [QC scripti](GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py), [QC CSV](GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv), [bağımsız QC raporu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-SONUCU-20261011.md), [doğrudan çalıştırma sonucu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-DOGRUDAN-CALISTIRMA-SONUCU-20261011.md), [HISTORY](HISTORY/2026/2026-10-11.md).
+- **Çalışma sınırı:** v06 ve önceki kayıtların üzerine yazma; kullanıcı ESP adı tercihini koru: `esp32d1`.
 
 
 ## 7. Önemli kararların kronolojisi
