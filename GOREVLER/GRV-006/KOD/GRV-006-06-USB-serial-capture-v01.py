@@ -29,7 +29,7 @@ except ImportError:
 
 DEFAULT_BAUD = 115200
 HEADER_MARKER = re.compile(r"CSV_HEADER_PART_([12])\|(.*)$")
-PAYLOAD_MARKER = re.compile(r"\]:\s?(.*)$")
+PAYLOAD_MARKER = re.compile(r"\]:\s?(.*)$")\nANSI_ESCAPE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
 DATA_START = re.compile(r"^esp32d1_\d+_\d+,")
 
 
@@ -44,7 +44,7 @@ def available_ports() -> None:
 
 def payload_of(line: str) -> str:
     match = PAYLOAD_MARKER.search(line)
-    return match.group(1).strip() if match else line.strip()
+    payload = match.group(1) if match else line\n    return ANSI_ESCAPE.sub("", payload).strip()
 
 
 def main() -> int:
