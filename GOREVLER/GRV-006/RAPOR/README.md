@@ -182,3 +182,26 @@ Kanıtlanan çıktı:
 - Açıklama: [GRV-006-04 MD](../KOD/GRV-006-04-csv-to-esp-v01.md).
 - Önceki PASS sonucu korunur; betik depoya alındı diye yeni bir test yapılmış sayılmaz.
 - **Sıradaki tek adım:** Aynı veri zincirini yeni bir canlı cihaz CSV'sinde çalıştırmak. Eski 2026-10-11 örnek CSV tekrar kullanılmayacak.
+
+
+## 13. GRV-006-05 — birleşik ADC + API echo kodu derlendi (2026-10-11)
+
+**Durum:** Kullanıcı derleme/cihaz logunu paylaştı; ADC rapor satırları gerçekten oluştu.
+
+- Kod: [GRV-006-05 birleşik aday YAML](../KOD/GRV-006-05-v01-BIRLESTIRILMIS-ADAY.yaml)
+- Kod notu: [GRV-006-05 MD](../KOD/GRV-006-05-v01-BIRLESTIRILMIS-ADAY.md)
+- ESPHome: 2026.9.1
+- Firmware derleme zamanı: 2026-10-11 18:49:28 +0300
+- Cihaz: `esp32d1`, ESP32 rev3.1; API bağlantısı ve handshake başarılı.
+- PZEM logu: yaklaşık 0.028 A, 1.5–1.8 W, PF 0.24–0.27 aralığında değişti.
+- Dört ADC rapor satırı 18:54:07 civarında üretildi; her satır `sample_count=1000`, `invalid_count=NOT_TRACKED`.
+
+Paylaşılan ADC özetleri:
+- CH0-1T: mean 1863.755000, std 12.037520, min 1829, max 2097, raw RMS 1863.793834, AC RMS 12.111068.
+- CH1-2T: mean 1861.695000, std 14.060500, min 1559, max 2032, raw RMS 1861.748042, AC RMS 14.469792.
+- CH2-3T: mean 1855.842000, std 8.426627, min 1765, max 1905, raw RMS 1855.861112, AC RMS 12.546252.
+- BIAS: mean 1865.141000, std 8.812422, min 1765, max 2023.
+
+**Önemli sınır:** Logda CSV başlıkları ve dört satır görünmesi, ADC örnekleme/raporlama yolunun çalıştığını doğrular. Bu tek başına sensörün fiziksel akım doğruluğunu kanıtlamaz. Ayrıca paylaşılan log parçasında `grv006_set_value` çağrısı veya yeni ESP echo sonucu yok; bu nedenle birleşik kodun API echo bölümü bu logla ayrıca doğrulanmış sayılmaz. PZEM alanlarının CSV kolon hizası QC ile ayrıca kontrol edilmelidir.
+
+**Sıradaki tek adım:** Bu dört satırı yeni ve ayrı bir GRV-006 canlı CSV dosyasına dönüştürüp Python→bağımsız kontrol→ESP echo betiğini bu yeni dosyayla çalıştırmak. Önceki tarihsel CSV korunacak.
