@@ -145,3 +145,13 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Açık noktalar:** Gerçek örnekleme hızı; 1000 okumanın tamamlanması; istatistik satırının üretilmesi; nihai YAML'ın derleme sonucu.
 - **Sıradaki tek adım:** Ara rapor üzerinden hızlı okuma yöntemini ve sade kodu tartışarak netleştirmek.
 - **Durum:** GRV-004 açık; bu güncelleme görev kapanışı veya teknik doğrulama değildir.
+
+
+## 2026-10-11 — Ara sonrası devam notu
+
+- **Kullanıcı durumu:** Üç kez sıfırlama sonrası ilerleme göremediğini ve devam edip etmeyeceğinden emin olmadığını belirterek ara verdi. Kullanıcıdan yeni test, komut veya sıfırlama istenmeyecek.
+- **Asıl hedefin yeniden ifadesi:** Veri al → Python ile işle → sonucu doğrula → iyileştir. Hedef, soyut bir kontrol zinciri kurmak değil, görünür ve kanıtlanabilir veri işleme sonucudur.
+- **Asistan yaklaşımının değerlendirmesi:** [GRV-005-16 ara raporu](GOREVLER/GRV-005/RAPOR/GRV-005-16-ARA-RAPOR-YAKLASIM-DEGERLENDIRMESI-20261011.md) okunmadan yeni teknik işe başlanmamalıdır.
+- **Son teknik durum:** GRV-005-14 cihazın CSV satırları üretmesini kısmen doğrulamıştır; CSV alan hizası ve ESP→Python→ESP uçtan uca döngüsü tamamlanmış değildir. Bu durum SCT/ESP donanımının arızalı olduğunu veya kullanıcının hatalı olduğunu kanıtlamaz.
+- **Devam edilirse ilk adım:** Yeni test başlatmak değil, GRV-005-16 raporunu kullanıcıyla tartışmak ve mevcut dosya/kod/log kanıtları üzerinden tek bir somut çıktı hedefi seçmektir.
+- **Süreklilik şartı:** Geçmiş deneyimler ve kod sürümleri korunacak; yeni bir sıfırlama varsayılan çözüm olarak kullanılmayacak.
