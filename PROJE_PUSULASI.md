@@ -177,3 +177,13 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Kanıt sınırı:** API echo akışı doğrulandı; gerçek SCT verisi, ölçüm doğruluğu ve GRV-006'nın bütün aşamaları tamamlanmış sayılmaz.
 - **Sıradaki tek adım:** Düzeltilmiş Python dosyasını bir kez daha çalıştırıp PASS sonucunu ve uyarısız kapanışı teyit etmek.
 - **İlgili kayıtlar:** [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md), [Python istemcisi](GOREVLER/GRV-006/KOD/GRV-006-03-v01-python-api-echo.py), [günlük HISTORY](HISTORY/2026/2026-10-11.md).
+
+
+## 2026-10-11 — GRV-006-03 kapanış düzeltmesi doğrulandı
+
+- Kullanıcı düzeltilmiş Python API echo istemcisini yeniden çalıştırdı: `SENT: 120`, `ECHOED: 120.0`, `RESULT: PASS`.
+- Önceki `APIClient.disconnect` RuntimeWarning'i yeni çıktıda yok; düzeltme kullanıcı çalıştırmasıyla doğrulandı.
+- **GRV-006-03 alt sonucu:** Python → ESP → Python echo PASS.
+- **Kanıt sınırı:** Bu, SCT akım ölçüm doğruluğunu veya GRV-006'nın bütün hedefinin tamamlandığını kanıtlamaz.
+- **Sıradaki yön:** Echo yolunu sabit kabul et ve GRV-006'nın Python veri işleme/bağımsız doğrulama basamaklarına dön; aynı testi sebepsiz tekrarlama.
+- **Kayıtlar:** [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md), [Python istemcisi](GOREVLER/GRV-006/KOD/GRV-006-03-v01-python-api-echo.py), [HISTORY](HISTORY/2026/2026-10-11.md).
