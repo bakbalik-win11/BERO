@@ -219,3 +219,16 @@ Paylaşılan ADC özetleri:
 - **Sıradaki tek adım:** Depo kök dizininde aşağıdaki komutu çalıştırıp çıktıyı kaydet:
   `GRV006_CSV="GOREVLER/GRV-006/RAPOR/GRV-006-05-LIVE-CSV-20261011.csv" python3 GOREVLER/GRV-006/KOD/GRV-006-04-csv-to-esp-v01.py`
 - Tarihsel CSV ve önceki kodlar korunmuştur.
+
+
+## 15. GRV-006-05 — yeni canlı CSV ile Python → ESP echo PASS (2026-10-11)
+
+Kullanıcının Mac mini Terminal çıktısı:
+- Yeni [canlı CSV](GRV-006-05-LIVE-CSV-20261011.csv) okundu; 4 satır bulundu.
+- AC RMS: CH0-1T=12.111068, CH1-2T=14.469792, CH2-3T=12.546252.
+- Toplam=39.127112; gönderilen tamsayı=39127.
+- Bağımsız kontrol=PASS (39127).
+- ESP 192.168.0.9:6053; SENT=39127; ECHOED=39127.0.
+- Sonuç: PASS — CSV processed value returned by ESP.
+
+Kanıt sınırı: CSV, kullanıcının paylaştığı cihaz logundan türetilmiştir; ESP'nin doğrudan yazdığı özgün dosya değildir. invalid_count=NOT_TRACKED. Bu sonuç fiziksel akım doğruluğunu veya GRV-006'nın tüm kapsamını kanıtlamaz.
