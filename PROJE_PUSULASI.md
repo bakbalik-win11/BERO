@@ -268,3 +268,14 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 
 - [Mac USB kayıt komutları](GOREVLER/GRV-006/KOD/GRV-006-07-MAC-USB-KAYIT-KOMUTU.md) eklendi; [yakalama betiği](GOREVLER/GRV-006/KOD/GRV-006-06-USB-serial-capture-v01.py) mevcut ESP firmware'ini değiştirmez.
 - Sıradaki tek adım: ESP32D1 USB ile Mac'e bağlıyken belgelenen komutları çalıştırmak. Cihazı buradan fiziksel olarak test edemediğim için USB yakalama henüz PASS değildir.
+
+
+## 2026-10-12 — Oturum devri: yayın zamanı ≠ fiziksel ölçüm zamanı
+
+- **Yeni araştırma hipotezi (kanıtlanmadı):** Bazı tutarsızlıklar sensör arızasından değil, PZEM paket yayın zamanını SCT/MCP örnekleme zamanıyla aynı fiziksel anmış gibi eşitlemekten kaynaklanıyor olabilir.
+- PZEM yayın anı, değerlerin temsil ettiği ölçüm aralığını veya fiziksel durumu tek başına açıklamaz. İç ölçüm/güncelleme davranışı henüz doğrulanmadı.
+- **Sıradaki ilk iş:** Analizörle MCP sıfırlarını incele; sıfırların kaynağını ölçmeden arıza ilan etme.
+- Önce SCT/MCP ve PZEM zincirlerini ayrı ayrı değerlendir; ardından deney koşullarıyla desteklenen kararlı bölgeleri ilişkilendir. Zaman bilgisi korunsun ama tek başına eşleşme kanıtı sayılmasın.
+- PZEM etiketleri akım ile birlikte V ve PF bağlamını taşısın: (I, V, PF). Benzer V/PF aynı fiziksel olay veya aynı sinyal niteliği demek değildir.
+- **Kanıt sınırı:** Bu oturumda yeni donanım deneyi yapılmadı. Sensörlerin sağlam olduğu, MCP sıfırlarının nedeni veya hipotezin doğruluğu kanıtlanmış değil.
+- Ayrıntı: [2026-10-12 gün sonu kaydı](HISTORY/2026/2026-10-12.md); [Elma-armut yöntem notu](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/NOTLAR/YONTEM_NOTU-ELMA-ARMUT-SAYI-NITELIK.md).
