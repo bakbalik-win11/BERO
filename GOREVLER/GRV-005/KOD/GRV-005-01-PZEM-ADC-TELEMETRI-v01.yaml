@@ -55,7 +55,6 @@ time:
 
 sensor:
   - platform: pzemac
-    id: pzem_device
     voltage:
       name: "PZEM Gerilim"
     current:
