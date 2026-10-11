@@ -18,9 +18,13 @@ Evrensel tek bir `k` katsayısı varsayılmaz. Aday ilişki önce `I = f(X)`, ve
 
 İlk deneylerde kapsam küçük tutulur: **bias ve bir veya iki sensör kanalı**. Ham sensör verileri ile PZEM referans ölçümleri ayrı kaynaklardan toplanır; ham kayıtlar değiştirilmeden korunur.
 
+**Okuma hızı ilk önceliktir:** Dört kanal okunacak diye ölçüm döngüsünün gereksiz yere yavaşlamasına izin verilmez. Seçilen kanalların her biri mümkün olan en yüksek *sağlıklı ve sürdürülebilir* örnekleme hızında okunmaya çalışılır. Dört kanalı birlikte okumak hızı düşürüyorsa, kanalların veya ESP'lerin ayrı ayrı çalıştırıldığı deneyler de yapılır. Kanal başına ve toplam örnekleme hızı, zamanlama kararlılığı ve örnek kaybı ölçülür; hız varsayılmaz, ölçülür. Gerekirse ESP'ler teker teker sınanır. Bu, doğrulanmış mevcut performans değil, test edilecek hedef gereksinimidir.
+
 PZEM okuması sensör örnekleme yolunu yavaşlatmamak veya etkilememek için ayrı yürütülür. Bunun için ayrı bir ESP veya başka bir bağımsız okuma yolu kullanılabilir. Kaç ESP kullanılacağı şimdiden sabitlenmez; birden fazla mini ESP'nin aynı sensöre bakması da deney tasarımına göre değerlendirilebilir.
 
 Mac'e doğrudan bağlantı sayısı pratik bir sınır oluşturabilir. Gerekirse veriler Home Assistant'a aktarılır, saklanır ve daha sonra Python/Mac tarafında birleştirilip eşleştirilir. **Mac'in gerçek zamanlı eşleştirme noktası olması şart değildir.** Home Assistant ile Mac arasındaki nihai veri taşıma mimarisi henüz kesinleşmiş değildir.
+
+Her ölçüm zinciri ilk olarak kendi başına en yüksek sağlıklı okuma hızına ulaşmaya çalışır. Birden fazla kanalı/ESP'yi birlikte çalıştırmanın ölçüm hızını düşürüp düşürmediği ayrıca test edilir; dört kanalı okuma uğruna örnekleme yolunu yavaşlatmak kabul edilen bir varsayım değildir. Gerekirse ölçüm zincirleri teker teker çalıştırılır ve bağımsız ham kayıtlar toplanır.
 
 Paket senkronizasyonu ve milisaniye düzeyinde saat eşitlemesi bu aşamanın hedefi değildir. Kayıt zamanı varsa korunur; fakat eşleştirme aynı fiziksel olayı temsil etme kanıtına ve deney bağlamına dayanır. Bölgelerin sürelerinin eşit olması gerekmez. Eşleşme güvenilir biçimde kurulamıyorsa veri zorla eşleştirilmez.
 
@@ -86,11 +90,12 @@ Bu, önerilen klasör düzenidir; belgenin yazılması Mac üzerinde klasörleri
 ## 6. Çalışma sırası
 
 1. PZEM referansını ayrı ve sensör örneklemesini etkilemeyecek şekilde kaydet.
-2. Bias ve bir/iki sensör kanalından ham veri topla; kısa ve uzun deneyleri kaydet.
-3. Veriyi uygun yerde biriktir (Mac veya Home Assistant üzerinden); ham kaynakları koru.
-4. Aynı fiziksel olayı temsil eden bölgeleri Python ile eşleştir; geçerli eşleşmeleri etiketle.
-5. Eşleştirilmiş veri kümesinden özellikleri ve aday `f(X)` ilişkilerini araştır; bağımsız verilerle doğrula.
-6. Ancak bundan sonra ölçüm hızı ve paketleme yöntemini gerçek hayatı yakalama, veri kaybı ve kaynak kullanımı açısından test et.
+2. Bias ve seçilen sensör kanallarından ham veri topla; her kanalın mümkün olan en yüksek sağlıklı hızını ölç. Dört kanalın birlikte okunmasının hızı düşürüp düşürmediğini, gerekirse kanal/ESP'leri teker teker çalıştırarak karşılaştır.
+3. Kanal başına ve toplam örnekleme hızını, zamanlama kararlılığını ve örnek kaybını kaydet; hızın doğrulandığına dair ölçüm olmadan iddiada bulunma.
+4. Veriyi uygun yerde biriktir (Mac veya Home Assistant üzerinden); ham kaynakları koru.
+5. Aynı fiziksel olayı temsil eden bölgeleri Python ile eşleştir; geçerli eşleşmeleri etiketle.
+6. Eşleştirilmiş veri kümesinden özellikleri ve aday `f(X)` ilişkilerini araştır; bağımsız verilerle doğrula.
+7. Daha sonra ölçüm hızı ve paketleme yöntemini gerçek hayatı yakalama, veri kaybı ve kaynak kullanımı açısından karşılaştır; ilk aşamada ölçülen ham okuma hızı sonuçlarını temel al.
 
 ## 7. Kısa yön özeti
 
