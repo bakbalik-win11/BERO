@@ -17,6 +17,7 @@ Bu klasör, her takvim günü için tiklenebilir iş akışı kontrol listesini 
 ## Günlükler
 
 En yeni tarih en üstte listelenir.
+- [2026-10-11](2026/2026-10-11.md) — günlük kontrol listesi
 - [2026-10-10](2026/2026-10-10.md) — günlük kontrol listesi
 
 - [2026-10-09](2026/2026-10-09.md) — ilk günlük kontrol listesi
