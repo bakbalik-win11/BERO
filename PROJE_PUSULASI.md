@@ -74,11 +74,11 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 
 ### Mevcut devir notu
 
-- **Son tamamlanan iş:** GRV-005-14 v06 cihaz logu/CSV'si üzerinde GRV-005-15 Python QC v02, kullanıcının Mac mini bilgisayarında doğrudan çalıştırıldı; Terminal çıktısı `RESULT: PASS (14/14 checks)` gösterdi.
-- **Kanıt sınırı:** Kullanıcının paylaştığı terminal çıktısında exit code ayrıca kaydedilmedi. PASS, CSV'nin yapısal QC ölçütlerini karşıladığını gösterir; fiziksel ölçüm doğruluğunu kanıtlamaz.
-- **Açık nokta:** `invalid_count` alanı girdide `NOT_TRACKED`; örnek geçerlilik takibi ayrı değerlendirilmiş sayılmaz.
-- **Sıradaki tek adım:** Yeni firmware/donanım deneyi açmadan GRV-005 görevindeki asıl sonraki hedefi ve GRV-006 kapsamıyla ilişkisini mevcut raporlardan belirlemek. QC doğrudan çalıştırma adımı görünür çıktıya göre tamamlandı.
-- **İlgili kayıtlar:** [QC scripti](GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py), [QC CSV](GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv), [bağımsız QC raporu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-SONUCU-20261011.md), [doğrudan çalıştırma sonucu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-DOGRUDAN-CALISTIRMA-SONUCU-20261011.md), [HISTORY](HISTORY/2026/2026-10-11.md).
+- **Son tamamlanan işler:** GRV-005-15 QC v02, kullanıcının Mac mini bilgisayarında v06 CSV üzerinde çalıştırıldı; görünür Terminal çıktısı `RESULT: PASS (14/14 checks)` gösterdi. Ardından GRV-006-01 ilk dosya akışı asistan ortamında gerçekten çalıştırıldı.
+- **GRV-006-01 kanıtı:** Sentetik ham CSV dosyası yazıldı ve yeniden okundu; üç satır Python ile dönüştürülerek ayrı çıktı dosyasına yazıldı ve yeniden okundu. Bağımsız hesaplanan toplam 120, çıktı dosyasından okunan toplam 120 ile eşleşti.
+- **Kanıt sınırı:** GRV-005 Terminal çıktısında exit code ayrıca kaydedilmedi; QC yapısal uygunluğu gösterir, fiziksel ölçüm doğruluğunu kanıtlamaz. GRV-006-01 sentetik veri kullandı; ESP haberleşmesi henüz yapılmadı.
+- **Sıradaki tek adım:** Depodaki mevcut ESP kodu ve haberleşme arayüzünü inceleyerek Python→ESP→geri okuma yolunu belirlemek; yeni haberleşme yöntemi varsaymamak.
+- **İlgili kayıtlar:** [GRV-005 doğrudan QC sonucu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-DOGRUDAN-CALISTIRMA-SONUCU-20261011.md), [GRV-006 Python kodu](GOREVLER/GRV-006/KOD/GRV-006-01-file-roundtrip-v01.py), [GRV-006 sonuç MD](GOREVLER/GRV-006/KOD/GRV-006-01-file-roundtrip-v01.md), [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md), [HISTORY](HISTORY/2026/2026-10-11.md).
 - **Çalışma sınırı:** v06 ve önceki kayıtların üzerine yazma; kullanıcı ESP adı tercihini koru: `esp32d1`.
 
 
