@@ -13,7 +13,7 @@ Bu klasör, Proje BERO'daki **ana hedefleri** tanımlar. Ana hedef, birbiriyle i
 ## Ana hedefler
 
 - [HDF-001 — Akımı Okuma](HDF-001-AKIMI-OKUMA/HEDEF.md) — tarihsel temel olarak korunur; eski kod ve deney kayıtları silinmez.
-- [HDF-002 — BERO Kümülatif Öğrenme ve Sahaya Geri Besleme Sistemi](HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) — açık; ilk iş HA verisini kümülatif biriktirmek, ardından masaüstü Collector/Trainer hattı ve ESP'ye geri besleme.
+- [HDF-002 — Ölçüm Karakterini Öğrenmek ve Gerçek Hayatı Yakalamak](HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) — açık; önce ham veride aynı fiziksel olayı temsil eden bölgeleri PZEM referansıyla eşleştirip Python ile ilişkiyi öğrenmek, daha sonra ölçüm hızı ve paketlemeyi seçmek.
 
 Ana hedef klasörleri HDF-NNN-KISA-AD biçiminde adlandırılır.
 
