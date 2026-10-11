@@ -168,3 +168,12 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Kayıt:** [GRV-006-03 cihaz logu](GOREVLER/GRV-006/RAPOR/GRV-006-03-v01-CIHAZ-LOGU-20261011.md); [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md); [aday YAML](GOREVLER/GRV-006/KOD/GRV-006-03-v01-ADAY.yaml).
 - **Kanıt sınırı:** Log parçası kesik. Python'dan action çağrısı ve ESP'den geri okuma henüz kanıtlanmadı; bu nedenle GRV-006-03 uçtan uca PASS değildir.
 - **Sıradaki tek adım:** Python istemcisini mevcut API ayarlarıyla çalıştırıp `SENT` ve `ECHOED` değerlerinin eşleşmesini doğrulamak. ESP adı `esp32d1` olarak korunur; GRV-005 geçmişi değişmez.
+
+
+## 2026-10-11 — GRV-006-03 Python → ESP → Python echo sonucu
+
+- **Son doğrulanan teknik sonuç:** Kullanıcının Mac mini çıktısı `CONNECTED: 192.168.0.9:6053`, `SENT: 120`, `ECHOED: 120.0`, `RESULT: PASS` gösterdi. Python'dan ESP'ye gönderilen değer ESP echo sensöründen geri okundu ve eşleşti.
+- **Açık küçük düzeltme:** İlk çalıştırma sonunda `APIClient.disconnect` asenkron kapatma uyarısı çıktı. Depodaki Python istemcisi `await client.disconnect()` şeklinde düzeltildi; yeniden çalıştırma ile uyarısız kapanış henüz doğrulanmadı.
+- **Kanıt sınırı:** API echo akışı doğrulandı; gerçek SCT verisi, ölçüm doğruluğu ve GRV-006'nın bütün aşamaları tamamlanmış sayılmaz.
+- **Sıradaki tek adım:** Düzeltilmiş Python dosyasını bir kez daha çalıştırıp PASS sonucunu ve uyarısız kapanışı teyit etmek.
+- **İlgili kayıtlar:** [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md), [Python istemcisi](GOREVLER/GRV-006/KOD/GRV-006-03-v01-python-api-echo.py), [günlük HISTORY](HISTORY/2026/2026-10-11.md).
