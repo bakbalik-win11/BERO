@@ -9,13 +9,15 @@
 
 Proje BERO'yu yalnızca bir sensör kalibrasyon deneyi olarak değil, uçtan uca bir **veri toplama → kümülatif veri havuzu → masaüstünde öğrenme → model karşılaştırma → başarı ölçümü → sahaya geri besleme** sistemi olarak kurmak.
 
-ESP'nin görevi sensörden mümkün olduğunca hızlı örnek almak, her ölçüm penceresinde (başlangıç hedefi 1000 örnek) RMS, STD, MIN, MAX, RANGE, BIAS ve uygun diğer öznitelikleri çıkarmak ve bu öznitelikleri HA'ya göndermektir. **1000 ham örneğin kendisi normal akışta HA'ya gönderilmek zorunda değildir; temel veri ürünü öznitelik kaydıdır.** Ham örnekler yalnızca ayrı bir tanılama/deney gerektiğinde saklanabilir. ESP akım hesaplamaz, kalibrasyon yapmaz, model seçmez, bölgesel k üretmez ve öğrenmez. Akım tahmini, model seçimi, davranış öğrenme ve model üretme masaüstü Python tarafında yapılır. Başarılı ve ESP'nin uygulayabileceği çıktı varsa parametre/fonksiyon ESP'ye aktarılır; aktarım ve geri okuma doğrulanır.
+**Öznitelik/veri ESP'si:** Sensörden mümkün olan en kaliteli sinyali, Python'ın sonradan öğrenebilmesi için en uygun veri biçiminde toplar; pencere başına RMS, STD, MIN, MAX, RANGE, BIAS ve elde edilebilen diğer öznitelikleri HA'ya gönderir. Başlangıç penceresi 1000 örnektir; kalite için uygun örnekleme hızı ve pencere süresi deneyimle değil, mevcut sinyal/veri kayıtları üzerinden değerlendirilir. **1000 ham örneğin kendisi normal akışta HA'ya gönderilmek zorunda değildir; temel veri ürünü öznitelik kaydıdır.** Ham örnekler yalnızca tanılama gerektiğinde ayrı tutulabilir. Bu ESP akım hesaplamaz, kalibrasyon yapmaz, model seçmez, bölgesel k üretmez ve öğrenmez. Python masaüstü tarafı veriden öğrenir ve modeller üretir. Başarılı ve uygulanabilir çıktı varsa parametre/fonksiyon bir ESP'ye geri aktarılabilir; aktarım ve geri okuma doğrulanır.
+
+**Akım ölçen ESP:** Ayrı bir ESP, kendi örnekleme/hesaplama hızında klasik veya kalibre edilmiş formüllerle akımı hesaplayabilir ve hesaplanan akımı HA'ya ayrı bir ölçüm olarak gönderebilir. Bu ESP'nin işi öğrenme değildir; formülü uygular. Python'ın öğrendiği modelle aynı şey olduğu varsayılmaz. İki ESP'nin sonuçları HA/Python tarafında karşılaştırılabilir.
 
 Sensör tipi veya adı veri havuzunun merkezî anahtarı değildir. Tüm sensör verileri ortak veri düzeninde saklanabilir; eğitim ve model karşılaştırması gerektiğinde sensör, kanal, analog koşullandırma zinciri veya çalışma koşuluna göre ayrı gruplarda yürütülür. Farklı sensörlerin katsayılarının otomatik olarak birbirine aktarılacağı varsayılmaz.
 
 ## 2. Mimari katmanlar
 
-### Katman 1 — ESP öznitelik üretimi
+### Katman 1A — Öznitelik/veri ESP'si
 
 - Sensörlerden hızlı örnekleme yap.
 - Başlangıç ölçüm penceresi hedefi 1000 örnektir.
@@ -181,3 +183,15 @@ Sensör → ESP → 1000 örnek → öznitelikler (RMS, STD, MIN, MAX, RANGE, BI
 Özniteliklerin hangi sensörden geldiği kayıtta izlenebilir olmalıdır; ancak sensör adı, tüm veriyi ortak havuzda saklamaya engel değildir. Python bütün geçmiş veriyi birlikte okuyabilir; ardından bütünleşik veya sensör/kanal bazında modelleri karşılaştırabilir. Örnek rapor satırları (ör. “RMS MAE %18; RMS+STD %11; RMS+STD+RANGE %7”) yalnızca rapor biçimini anlatan örneklerdir, ölçülmüş BERO sonuçları değildir.
 
 Hedefin merkezi sensör modelini kanıtlamak için sürekli aynı test döngüsünü tekrarlamak değil; mevcut özniteliklerden başlayarak modelleri fiilen denemek ve yalnızca sonuçların gösterdiği belirsizliklerde ölçüm zincirini tekrar incelemektir.
+
+
+## 9. İki ESP rolünü birbirinden ayırma (2026-10-11 ek karar)
+
+BERO mimarisinde iki ayrı uç cihaz rolü bulunabilir:
+
+1. **Öznitelik/veri ESP'si:** Sinyal kalitesini ve öğrenme için uygun öznitelik üretimini önceler. Pencere örneklerini alır, öznitelikleri çıkarır ve HA'ya iletir. Akım hesaplamak zorunda değildir. Masaüstü Python bu veriden kalibrasyon ve davranış modellerini öğrenir.
+2. **Formülle akım ölçen ESP:** Ayrı bir cihaz olarak klasik veya kalibre edilmiş formüllerle akımı hesaplayabilir; örnekleme hızı ve hesaplama yöntemi öznitelik ESP'sinden farklı/yavaş olabilir. Sonucu HA'ya ayrı bir entity/ölçüm olarak yazar.
+
+Bu iki rol birbirini dışlamaz. HA, öznitelik ESP'sinden gelen özellikleri, formül ESP'sinin akım sonucunu ve varsa PZEM referansını birlikte biriktirir. Python bunları zaman ve kaynak kimliğiyle eşleştirerek hem model öğreniminde hem karşılaştırmada kullanabilir. Formül ESP'sinin akım sonucu tek başına referans/ground truth kabul edilmez; PZEM referansı varsa ayrı etiket olarak korunur.
+
+Öznitelik ESP'si için başarı, öğrenmeye elverişli ve kaliteli veri üretmesidir; formül ESP'si için başarı, hesapladığı akımın bağımsız referansa yakınlığıdır. Bu iki başarı ölçütü ayrı raporlanır.
