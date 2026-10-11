@@ -113,3 +113,18 @@ Depodaki mevcut ESP arayüzünü incele; Python'dan sonucu gönder, ESP'den geri
 Bu görev tanımı hedefe uygunluk için 2026-10-11 tarihinde netleştirilmiştir. Önceki sürümde HA'ya kaydetme, HA'dan Mac'e taşıma ve geçici kaydı silme adımları zorunlu tutulmuştu. Bunlar kullanıcının asıl hedefinin önüne geçen gereksiz ara adımlar olabileceğinden zorunlu kabul ölçütü olmaktan çıkarılmıştır. Eski karar HISTORY'de korunur; bu güncel görev tanımı onu sessizce yok saymaz, kapsamı açıkça düzeltir.
 
 **Teknik başlangıç durumu:** Henüz uçtan uca başarı kanıtı yoktur. Dosya yazma/okuma, Python işleme, bağımsız doğrulama ve Python→ESP→geri okuma adımlarının hiçbiri bu kayıtla tamamlanmış sayılmaz.
+
+
+## 9. GRV-006-03 — derleme ve cihaz API bağlantısı (2026-10-11)
+
+**Durum:** Derleme kullanıcı tarafından doğrulandı; ESPHome API bağlantısı logda görüldü. Python → ESP → geri okuma henüz tamamlanmadı.
+
+- Aday YAML: [GRV-006-03 v01](../KOD/GRV-006-03-v01-ADAY.yaml)
+- Python istemcisi (aday): [GRV-006-03 Python API echo](../KOD/GRV-006-03-v01-python-api-echo.py)
+- Kod notu: [GRV-006-03 aday MD](../KOD/GRV-006-03-v01-ADAY.md)
+- Kullanıcının logu: [GRV-006-03 cihaz logu](GRV-006-03-v01-CIHAZ-LOGU-20261011.md)
+- Görünen sonuç: ESPHome 2026.9.1; firmware compiled on 2026-10-11 18:19:09 +0300; ESP32 rev3.1; cihaz `esp32d1 @ 192.168.0.9`; API resolve, connect ve handshake başarılı.
+- Logda görünen uyarılar: `minimum_chip_revision: "3.1"` ve `sram1_as_iram: true` önerileri. Bunlar görünen bölümde derleme hatası değil.
+- Log metni kullanıcı tarafından `[18:23:17.784]` satırından sonra kesilmiş; devamı uydurulmadı.
+- **Kabul edilmeyen sonuç:** Python eylem çağrısı ve echo geri okuması. `SENT`, `ECHOED` ve `RESULT: PASS` çıktıları henüz yok.
+- **Sıradaki tek adım:** Python adayını, kullanılan API şifreleme ayarıyla çalıştırıp gönderilen değerin ESP'den geri okunduğunu kanıtlamak. Bu tamamlanana kadar alt görev uçtan uca PASS sayılmayacak.
