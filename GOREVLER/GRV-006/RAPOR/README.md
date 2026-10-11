@@ -275,3 +275,19 @@ Kanıt sınırı: CSV, kullanıcının paylaştığı cihaz logundan türetilmi�
 
 - [Kısa Mac USB kayıt komutları](../KOD/GRV-006-07-MAC-USB-KAYIT-KOMUTU.md) eklendi. ESP firmware'i değiştirmez; pyserial kurar, portu listeler ve seri yakalama betiğini çalıştırır.
 - **Sonraki uygulama adımı:** Kullanıcı ESP32D1'i USB ile Mac'e bağlayıp nottaki komutları çalıştırır. Gerçek port listesi ve CSV kolon sayısı yalnızca cihaz çıktısıyla doğrulanabilir.
+
+
+## 19. GRV-006-06 — USB seri yakalama ve CSV doğrulama PASS (2026-10-11)
+
+**Kullanıcı Mac mini Terminal kanıtı:**
+- Port: `/dev/cu.usbserial-0001` — CP2102 USB-to-UART; ESP `esp32d1`, ESPHome 2026.9.1, 115200 baud.
+- Ham log kaydedildi: `GRV-006-06-USB-20261011-192412.log`.
+- CSV oluşturuldu: `GRV-006-06-USB-20261011-192412.csv`.
+- Yakalama çıktısı: `CSV_SAVED`, `CSV_ROWS: 4`, `CAPTURE_COMPLETE`.
+- Bağımsız CSV kontrolü: `HEADER_COLUMNS: 41`, `DATA_ROWS: 4`, `ROW_WIDTHS: [41, 41, 41, 41, 41]`; kanal sırası `CH0-1T`, `CH1-2T`, `CH2-3T`, `BIAS`; `RESULT: PASS`.
+
+**Sonuç:** USB seri log → ham log → ayrıştırılmış CSV → sütun/satır/kanal yapısal kontrolü bu örnekte PASS.
+
+**Sınırlar:** Bu, CSV yapısının doğru yakalandığını doğrular; fiziksel akım doğruluğunu, amper kalibrasyonunu veya `invalid_count` izlenebilirliğini kanıtlamaz. ESP firmware'i değiştirilmedi. Tarihsel kayıtlar korunmuştur.
+
+**GRV-006 sonraki durum:** Otomatik USB yakalama yolu cihaz üzerinde doğrulandı. Fiziksel akım doğruluğu ayrı bir doğrulama olarak açık kalır.
