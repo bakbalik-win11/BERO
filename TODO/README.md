@@ -19,6 +19,14 @@
 
 _Yeni fikirleri bu satırın hemen altına ekle. Henüz sonuçlanmamış maddeler burada kalır._
 
+
+- [ ] **Sistem kararlılığı doğrulandıktan sonra tüm SCT'lerle bilinen yük karşılaştırma testi (kalibrasyon benzeri)**
+  - Eklenme: 2026-10-11
+  - Açıklama: ESP32D1/ADC ölçüm zincirinin kararlılığı doğrulandıktan sonra bilinen ve mümkünse bağımsız ölçümle doğrulanmış bir yük altında tüm SCT sensörlerini sırayla kontrol et. Her sensörün ham/RMS ölçümünü aynı koşullarda kaydet; sensörler ve kanallar arasındaki farkları karşılaştır. Özellikle **3T** kanalındaki şüpheyi araştır; sensör, analog giriş devresi, bağlantı ve yazılım/kanal eşleşmesi olasılıklarını birbirinden ayır.
+  - Sınır: Bu aşamada kalibrasyon katsayısı uygulama veya sensörün hatalı olduğuna karar verme yok; önce karşılaştırmalı veri topla. Yük, akım ve referans ölçüm koşullarını rapora yaz.
+  - Başlama koşulu: Sistem kararlılığı doğrulanmış olacak.
+  - Sonuç: Bekliyor
+
 ## 2. Göreve dönüşenler — açık görevler
 
 _Bu bölümdeki maddeler **açık kalır**. Görev oluşturulmuş olması fikrin tamamlandığı anlamına gelmez. İlgili resmî görev tamamlanana kadar `[ ]` kalır. En yeni dönüşüm en üstte._
