@@ -28,3 +28,13 @@
 2. ESP32 GPIO'larına 5 V uygulanmamalıdır. PZEM arayüz kartının çıkış seviyesi/izolasyonu doğrulanmadan bağlantı yapılmamalıdır.
 3. PZEM bileşeninin 5 saniyelik güncellemesi ADC penceresiyle otomatik eşzamanlı değildir. time_delta_ms yalnızca zaman yakınlığını ölçer; ölçüm pencerelerinin aynı fiziksel dönemi kapsadığını tek başına garanti etmez.
 4. Bu rapor kodun başarılı derlendiğini veya akım ölçtüğünü iddia etmez.
+
+
+## Ek durum kaydı — 2026-10-11 (önceki metni silmeden)
+
+- Kullanıcı başarılı derlemeyi bildirdi; sağlanan logda `esp32d1` cihazına API üzerinden bağlanıldığı ve PZEM sensörlerinin çalıştığı görülüyor.
+- İlk log incelemesi: akım 0.028 A sabit görünürken `pzem_update_millis` yaklaşık 5 saniyede bir yenilendi.
+- Prototip kendi tüketimini de ölçtüğünden gerçek 0 A koşulu bu düzenekte oluşturulamıyor. 0.028 A, bu prototip için pratik taban değeridir; gerçek sıfır akım olarak yorumlanmamalıdır.
+- GRV-005-01, PZEM sensör yayınına eşlik eden zaman işaretinin yenilenmesini gözlemleme hedefi bakımından kapatıldı. Her başarılı Modbus yanıtı ile `on_value` arasında bire bir ilişki bu logla kanıtlanmadı.
+- YAML bu aşamada yalnızca PZEM zaman işareti tanılama iskeletidir; 1000 örnekli ADC penceresi, RMS/istatistikler ve CSV kaydı uygulanmış değildir.
+- Ayrıntı: [GRV-005-01 kapanış raporu](../RAPOR/GRV-005-01-KAPANIS-20261011.md).
