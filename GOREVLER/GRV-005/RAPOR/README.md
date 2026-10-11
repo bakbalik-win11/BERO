@@ -20,10 +20,10 @@
 - GRV-005-01 — **Kapatıldı (gözlem hedefi tamamlandı).** [Kapanış raporu](GRV-005-01-KAPANIS-20261011.md); [ilk log incelemesi](GRV-005-01-LOG-ILK-GOZLEM-20261011.md). Gerçek 0 A testi prototipin kendi tüketimi nedeniyle uygulanabilir değil. Her başarılı Modbus yanıtı ile on_value bire bir eşleşmesi doğrulanmış sayılmıyor.
 - GRV-005-02 — **Tanım aşaması kapatıldı.** [Kilitlenen kararlar](GRV-005-02-KARARLAR-20261011.md); önceki öneriler [v01](GRV-005-02-OZELLIK-TANIMLARI-ONERI-v01-20261011.md) ve [v02](GRV-005-02-OZELLIK-TANIMLARI-ONERI-v02-20261011.md) tarihçe olarak korunur. Kodlama henüz başlamadı.
 - GRV-005-03 — **Zaman sözleşmesi tanım aşaması tamamlandı.** [İlk kapsam kaydı](GRV-005-03-ZAMAN-HIZALAMASI-20261011.md); [kilitlenen kararlar](GRV-005-03-KARARLAR-20261011.md). Monotonik ve duvar saati alanları ayrıldı; time_delta_ms işaretli tutulacak, kabul eşiği ve cihaz tarafı alignment_quality oluşturulmayacak. Uygulama henüz yapılmadı.
-- GRV-005-04 — **Sıradaki alt görev:** CSV satır yapısı ve veri sözlüğü.
+- GRV-005-04 — **CSV şeması önerisi hazır; gözden geçirme bekliyor.** [Şema ve veri sözlüğü](GRV-005-04-CSV-SCHEMASI-20261011.md). Satır mantığı: bir kanalın bir penceresi + en yakın PZEM referansı. Kodlama başlamadı.
 - GRV-005-03 — PZEM/ADC zaman hizalaması ve time_delta_ms sözleşmesi.
 - GRV-005-04 — Nihai CSV şeması ve veri sözlüğü.
-- Sonraki adımlar: GRV-005-02'de özelliklerin matematiksel tanımlarını kilitlemek; ardından GRV-005-03 zaman hizalaması ve GRV-005-04 CSV şemasına geçmek. Modbus yanıtı/on_value bire bir eşleşmesi ancak ayrıca gerek duyulursa ayrı bir tanılama deneyi olarak açılacak.
+- Sonraki adımlar: GRV-005-04 CSV şemasını gözden geçirip kilitlemek; sonra yeni bir uygulama alt görevi açarak kodlama planını yapmak. Modbus yanıtı/on_value bire bir eşleşmesi ancak ayrıca gerek duyulursa ayrı bir tanılama deneyi olarak açılacak.
 
 ## İlk kod taslağının sınırları
 
