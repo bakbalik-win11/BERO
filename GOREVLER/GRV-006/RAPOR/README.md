@@ -150,3 +150,27 @@ Kanıt:
 **Sınır:** Bu sonuç API üzerinden bir tamsayının ESP'ye gönderilip echo sensöründen geri okunmasını doğrular. SCT akım ölçüm doğruluğunu, gerçek sensör verisinin işlenmesini veya tüm GRV-006 hedefinin tamamlandığını kanıtlamaz.
 
 **Yeniden çalıştırma sonucu (2026-10-11):** Kullanıcı düzeltilmiş dosyayı tekrar çalıştırdı ve `CONNECTED: 192.168.0.9:6053`, `SENT: 120`, `ECHOED: 120.0`, `RESULT: PASS` çıktısını aldı. `APIClient.disconnect` RuntimeWarning'i görünmedi.\n\n**GRV-006-03 alt sonucu:** Python → ESP → Python echo PASS; kapatma uyarısının düzeltildiği kullanıcı çıktısıyla doğrulandı. Bu sonuç yalnızca Native API echo yolunu doğrular; SCT ölçüm doğruluğunu veya GRV-006'nın tüm hedefinin tamamlandığını kanıtlamaz.\n\n**Sıradaki yön:** Echo deneyini sebepsiz yere tekrarlama; GRV-006'nın veri dosyası, Python işlemesi ve bağımsız doğrulama adımlarına dön.
+
+
+## 11. GRV-006 — CSV işleme → ESP echo (2026-10-11)
+
+**Durum:** Kullanıcının Mac mini Terminal çıktısında uçtan uca veri aktarımı PASS.
+
+Kanıtlanan çıktı:
+- `CSV_READ: PASS` — CSV'den 4 satır okundu.
+- Kullanılan kanallar: CH0-1T=`15.038437`, CH1-2T=`9.631619`, CH2-3T=`12.415383`.
+- `PROCESSED_SUM: 37.085439`.
+- `SEND_INTEGER: 37085` — toplam × 1000, en yakın tamsayıya yuvarlandı.
+- `INDEPENDENT_CHECK: PASS (37085)`.
+- `CONNECTED: 192.168.0.9:6053`.
+- `SENT: 37085`, `ECHOED: 37085.0`.
+- `RESULT: PASS — CSV processed value returned by ESP`.
+
+**Sonuç:** Bu çalıştırmada CSV dosyası okundu, üç kanalın `adc_rms_ac` değerleri Python ile toplandı, toplam 1000 ile çarpılarak tamsayıya dönüştürüldü, bağımsız yeniden okuma/hesapla kontrol edildi ve ESP'ye gönderilen değer geri okundu. Gönderilen ve dönen değer eşleşti.
+
+**Kanıt sınırı:** CSV, daha önce kaydedilmiş GRV-005-14 v06 örnek verisidir; bu çalışma yeni bir canlı SCT ölçümü üretmez ve fiziksel akım doğruluğunu kanıtlamaz. `invalid_count` değeri `NOT_TRACKED` olduğundan geçersiz örnek sayısı bu veriden doğrulanamaz. Görev GRV-006'nın tüm kapsamı tamamlanmış sayılmaz; ancak CSV→Python işleme→bağımsız kontrol→ESP→geri okuma zinciri bu örnek için PASS.
+
+- Python kodu: [CSV → ESP echo](../KOD/GRV-006-03-v01-python-api-echo.py) ve kullanıcıda çalıştırılan [GRV-006 CSV → ESP betiği](../KOD/GRV-006-CSV-ESP-BETIK.md) (çalıştırılan dosya depoya ayrıca kaydedilmelidir).
+- Girdi: [GRV-005-14 v06 QC CSV](../../GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv).
+
+**Sıradaki adım:** Çalıştırılan `grv006_csv_to_esp.py` betiğini ve bu sonuç kaydını depoya koy; ardından gerçek, yeni bir ölçüm CSV'si mevcut olduğunda aynı akışı ona uygula. Echo testini tekrar etmeye gerek yok.
