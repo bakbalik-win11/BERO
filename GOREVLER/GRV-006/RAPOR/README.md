@@ -1,78 +1,102 @@
-# GRV-006 — Python Veri Kümesi ve Home Assistant Üzerinden Veri Aktarım Zinciri
+# GRV-006 — Veri Al, Python ile İşle, ESP'ye Geri Gönder ve Teyit Et
 
-**Durum:** Açık — görev tanımı oluşturuldu; kodlama ve deney henüz yapılmadı.  
+**Durum:** Açık — hedef ve kabul ölçütleri netleştirildi; uçtan uca uygulama henüz kanıtlanmadı.  
 **Açılış tarihi:** 2026-10-11  
-**Öncelik:** Önce veri dosyası üretme/okuma zincirini kanıtlamak; SCT ölçüm doğruluğunu bu görevin ilk kabul ölçütü yapmamak.
+**Kapsam düzeltmesi:** 2026-10-11  
+**Öncelik:** Gerçek veri dosyasıyla görünür sonuç üretmek. Rapor, QC veya öz-test üretmek bu görevin teknik ilerlemesi sayılmaz.
 
-## 1. Amaç
+## 1. Tek cümlelik hedef
 
-Copilot ile Python'a verilecek bir veri kümesini üreten kodu hazırlamak, çıktıyı Home Assistant (HA) tarafında kaydetmek ve verinin HA'dan Mac'e taşınmasını uçtan uca doğrulamak. Mac'te veri işlenecek, tekrar okunacak, sonuç bağımsız olarak kontrol edilecek ve iyileştirilmiş sonuç yeniden işlenerek karşılaştırılacaktır.
+**Veriyi al → dosyaya yaz → aynı dosyayı yeniden oku → Python ile işle → sonucu bağımsız doğrula → işlenmiş sonucu ESP'ye geri gönder → ESP'den geri okuyup teyit et.**
 
-Bu görev, önceki GRV-005 çalışmalarının yerine geçmez ve onların kayıtlarını değiştirmez. Yeni, ayrı bir görevdir. GRV-005'teki paket kontrolü veya QC öz-testinin geçmesi bu görevin başarı kanıtı sayılmaz.
+Bu görev, kullanıcının doğrudan ifade ettiği hedefi esas alır. GRV-005 geçmişini ve kayıtlarını değiştirmez. SCT/akım ölçümünün elektriksel doğruluğu bu veri alışverişi görevinin ilk kabul ölçütü değildir.
 
-## 2. Kullanıcının tarif ettiği akış
+## 2. En küçük uygulanabilir akış
 
-1. **Veri üretimi:** Copilot ile Python'a verilecek açık, küçük ve tanımlı bir data seti üret.
-2. **Üretici kod:** Veri kümesini belirli bir şemayla dosyaya/çıktıya yazan kodu oluştur.
-3. **HA kaydı:** Üretilen veriyi Home Assistant üzerinde sakla. Kaydedilen içeriğin gerçekten mevcut olduğunu, kaydın kendisini okuyarak doğrula.
-4. **HA → Mac aktarımı:** Sonraki adımda veriyi HA'dan Mac'e al; Mac'e başarıyla kaydedilip okunduğu doğrulanmadan HA'daki kopyayı silme. Başarılı doğrulama sonrasında, görev kapsamı gereği HA'daki geçici kopyayı sil ve silindiğini ayrıca doğrula.
-5. **Mac okuma testi:** Mac'teki dosyayı yeniden aç; şema, satır/sütun sayısı, veri türleri ve beklenen değerleri doğrula.
-6. **Python işlemesi:** Veriyi Python ile işle. İşleme öncesi ve sonrası veriyi ayrı dosya/çıktı olarak koru; kaynak verinin üzerine yazma.
-7. **Bağımsız teyit:** En az bir beklenen sonuç, ana işleme fonksiyonundan bağımsız bir yöntemle elle hesaplanabilir/denetlenebilir olmalı.
-8. **İyileştirme turu:** İlk sonuç ve bağımsız kontrol karşılaştırıldıktan sonra gerekliyse tek bir somut iyileştirme yap. Aynı veri üzerinde tekrar çalıştır ve farkı ölç.
-9. **Durdurma kararı:** İyileştirme ölçülebilir bir fayda sağlamıyorsa yeni döngü açma. Ek döngü yalnızca açık bir hata, karşılanmamış kabul ölçütü veya ölçülebilir iyileştirme hedefi varsa gerekçelendirilir.
+### Aşama 1 — Veriyi al ve dosyaya yaz
+- Mevcut kayıtlarda bulunan gerçek ve kullanılabilir veri kaynağını önce incele.
+- Veri kaynağı bu ilk prova için uygun değilse küçük, deterministik bir örnek veri kümesi kullanılabilir; bunun sentetik olduğu açıkça yazılır.
+- Veriyi gerçek bir dosyaya yaz.
+- Dosyanın varlığını, boyutunu ve içeriğini kontrol et.
 
-## 3. İlk veri kümesi için sınırlar
+**Kabul kanıtı:** Üretilmiş dosya ve dosyadan okunmuş gerçek içerik.
 
-- İlk deneme küçük, sentetik ve deterministik bir veri kümesi olabilir; donanım ölçümü gerektirmez.
-- Şema, birim, veri türleri, beklenen satır sayısı ve beklenen işlem sonucu görev raporunda açıkça yazılmalıdır.
-- Ham veri, işlenmiş veri ve doğrulama sonucu birbirinden ayrı tutulmalıdır.
-- Zaman damgası veya sıra numarası gibi alanlar gerekiyorsa biçimleri sabitlenmelidir.
-- Veri kaynağı, aktarım yönü ve dosya yolu her aşamada görünür olmalıdır.
-- Bir test aracının kendi öz-testi, gerçek dosyanın yazılıp tekrar okunduğunun kanıtı değildir.
+### Aşama 2 — Aynı dosyayı yeniden oku
+- Aynı dosyayı yeniden aç; bellekteki ilk değişkeni tekrar göstermekle yetinme.
+- Kayıt sayısını, alanları ve değerleri doğrula.
+- Beklenen değerlerle okunan değerleri karşılaştır.
+
+**Kabul kanıtı:** Dosyadan tekrar okunmuş veri ve açık eşleşme sonucu.
+
+### Aşama 3 — Python ile işle
+- Okunan veriye tek ve açıkça tanımlanmış bir işlem uygula.
+- Ham dosyayı koru; işlenmiş sonucu ayrı bir dosyaya veya açık çıktıya yaz.
+- İşlenmiş sonucu da yeniden oku.
+
+**Kabul kanıtı:** Kaynak ve işlenmiş çıktı ayrı ayrı mevcut; işlem sonucu dosyadan yeniden okunabiliyor.
+
+### Aşama 4 — Bağımsız doğrulama
+- En az bir beklenen sonucu ana işleme fonksiyonundan bağımsız bir hesapla doğrula.
+- Örneğin küçük veri kümesinde toplam, ortalama veya bilinen dönüşüm sonucu elle kontrol edilebilir.
+- Yalnızca aynı kodun kendi PASS mesajını bağımsız doğrulama sayma.
+
+**Kabul kanıtı:** Beklenen değer, Python sonucu ve bağımsız kontrol yan yana gösterilmiş; eşleşme veya fark açıkça kaydedilmiş.
+
+### Aşama 5 — İşlenmiş sonucu ESP'ye geri gönder ve teyit et
+- Projede hâlihazırda kullanılan ESP haberleşme arayüzünü ve kodunu mevcut depodan inceleyerek belirle; yeni arayüz varsayma.
+- Python'dan işlenmiş sonucu ESP'ye gönder.
+- ESP'nin aldığı değeri görünür biçimde geri yayımla veya yanıtla.
+- Geri okunan değeri Python'ın gönderdiği değerle karşılaştır.
+
+**Kabul kanıtı:** Gönderilen değer, ESP'nin geri bildirdiği değer ve karşılaştırma sonucu aynı kayıtta bulunur. Haberleşme yöntemi henüz mevcut koddan belirlenemiyorsa yalnızca bu belirsizlik raporlanır; kullanıcıya rastgele yeni testler yaptırılmaz.
+
+## 3. Sıra ve kapsam sınırları
+
+1. Önce dosya yazma/okuma ve Python işlemesi tamamlanır; ardından ESP'ye geri gönderme aşamasına geçilir.
+2. Her aşamada yalnızca bir somut sonuç hedeflenir. Aşama kanıtlanmadan yeni kontrol katmanı eklenmez.
+3. İlk prova için sentetik veri kullanılabilir; bu, gerçek SCT ölçümünün doğrulandığı anlamına gelmez.
+4. Mevcut gerçek log ve kodlar önce depodan incelenir. Kullanıcıdan daha önce verdiği dosya, komut veya sonuçları tekrar isteme.
+5. Home Assistant, veri aktarımının mevcut ESP arayüzünü kullanmak için gerçekten gerekli olduğu kanıtlanmadıkça bu görevin zorunlu ara durağı değildir. HA üzerinden kayıt, Mac'e kopyalama, geçici kopya silme gibi işler asıl hedefi geciktirecekse bu görevden çıkarılır.
+6. Paket kontrolü, QC öz-testi, ek şema veya rapor tek başına ilerleme değildir. Yalnızca gerçek veri akışındaki belirli bir hatayı teşhis etmek için gerekiyorsa kullanılır.
+7. Kod veya dosya üretilmeden, gerçek çıktı okunmadan ve karşılaştırılmadan PASS denmez.
+8. Geçmiş görevler, kodlar, loglar ve deneyimler silinmez veya üzerine yazılmaz.
 
 ## 4. Kabul ölçütleri
 
-- [ ] Üretici kod çalıştırılmış ve gerçek bir çıktı dosyası/HA kaydı oluşmuştur.
-- [ ] Oluşan veri, aynı kaynaktan yeniden okunmuş; şema ve kayıt sayısı doğrulanmıştır.
-- [ ] HA'da kayıt bulunduğu doğrudan okunarak gösterilmiştir.
-- [ ] Veri HA'dan Mac'e aktarılmış, Mac'te yeniden açılmış ve içerik eşleşmesi doğrulanmıştır.
-- [ ] Mac kopyası doğrulanmadan HA kopyası silinmemiştir.
-- [ ] Mac'te dosya okuma, Python işleme ve işlenmiş sonucu yeniden okuma testleri geçmiştir.
-- [ ] En az bir işlenmiş sonuç bağımsız olarak doğrulanmıştır.
-- [ ] İlk sonuç ile varsa iyileştirilmiş sonuç ölçülebilir biçimde karşılaştırılmıştır.
-- [ ] Sonuçlar, komutlar ve dosyalar raporlanmıştır; yalnızca öz-test çıktısı başarı kanıtı olarak sunulmamıştır.
+- [ ] Veri kaynağı belirlenmiş ve kaynağın gerçek mi sentetik mi olduğu açıklanmış.
+- [ ] Gerçek bir veri dosyası oluşturulmuş.
+- [ ] Aynı dosya yeniden açılıp içeriği doğrulanmış.
+- [ ] Python işlemesi uygulanmış; ham ve işlenmiş çıktılar ayrı korunmuş.
+- [ ] İşlenmiş çıktı yeniden okunmuş.
+- [ ] En az bir sonuç bağımsız yöntemle doğrulanmış.
+- [ ] Python'dan işlenmiş sonuç ESP'ye gönderilmiş.
+- [ ] ESP'nin geri bildirdiği sonuç okunmuş ve gönderilen değerle karşılaştırılmış.
+- [ ] Her kabul maddesinin kanıtı dosya/çıktı/log bağlantısıyla kaydedilmiş.
 
-## 5. Görev sırası ve sınırlar
+Bir madde yalnızca planlandıysa veya kod yazıldıysa işaretlenmez. Bu dosyanın güncellenmesi görev başarısı değildir.
 
-### GRV-006-01 — Veri kümesi ve üretici kod
-Copilot için açık görev tanımı hazırla; küçük veri kümesini ve beklenen sonuçları belirle; kodun dosya/çıktı üretmesini sağla. Önce yerel yazma ve aynı dosyayı okuma kanıtlanır. Ardından aynı veri HA'ya kaydedilir ve HA'dan okunarak doğrulanır.
+## 5. Alt görev sırası
 
-### GRV-006-02 — HA'dan Mac'e taşıma ve temizleme
-HA'daki kaydı Mac'e aktar. Mac dosyasını yeniden açıp içerik eşleşmesini doğrula. Ancak bu doğrulamadan sonra HA'daki geçici kaydı sil ve silinme durumunu kontrol et.
+### GRV-006-01 — Dosya yazma, yeniden okuma ve Python işleme
+Tek küçük veri kümesiyle dosyayı oluştur, aynı dosyayı tekrar aç, Python ile işle ve işlenmiş sonucu yeniden oku. Bağımsız beklenen sonucu önceden tanımla.
 
-### GRV-006-03 — Mac'te işleme ve bağımsız teyit
-Mac'te veriyi Python ile işle; sonucu ayrı çıktı olarak kaydet ve tekrar oku. Beklenen sonucu bağımsız hesapla/kontrol et.
+### GRV-006-02 — Bağımsız sonuç doğrulaması
+Python sonucunu ikinci ve basit bir hesapla karşılaştır. Fark varsa yalnızca farkın kaynağını mevcut dosya ve kod üzerinden incele.
 
-### GRV-006-04 — Tek iyileştirme ve durdurma kararı
-Gerekliyse bir iyileştirme uygula ve önce/sonra sonuçlarını kıyasla. Ek döngü gerekip gerekmediğini kanıta göre kararlaştır; sırf süreci sürdürmek için yeni kontrol üretme.
+### GRV-006-03 — Python → ESP → geri okuma
+Depodaki mevcut ESP arayüzünü incele; Python'dan sonucu gönder, ESP'den geri oku ve eşitliği kanıtla. Yeni haberleşme katmanı ancak mevcut seçeneklerin uygun olmadığı gösterilirse değerlendirilir.
 
-Alt görevler ayrı kanıt ve rapor gerektirebilir; fakat sırf klasör/rapor üretmek ilerleme sayılmaz. İlk öncelik çalışan veri akışıdır.
+### GRV-006-04 — Sonuç ve tek gerekli iyileştirme
+İlk uçtan uca sonuçları kaydet. Yalnızca açık hata veya ölçülebilir fayda varsa bir iyileştirme yap; yoksa dur.
 
-## 6. Çalışma ilkeleri
+## 6. İlk yapılacak somut iş
 
-- Kullanıcı test elemanı değildir; gereksiz komutları ve sonucu olmayan teşhis döngülerini kullanıcıya yükleme.
-- Bir sonraki adıma geçmeden önce mevcut adımın somut çıktısını göster.
-- Hata durumunda yeni testler eklemeden önce mevcut dosya, kod ve gerçek çıktı incelenir.
-- Aynı testi gerekçesiz tekrarlama; önceki kanıtı yeniden kullan.
-- Eski görev ve deneyim kayıtlarının üzerine yazma. Bu görev ayrı tutulur.
-- Donanım/SCT arızası varsayma; bu görev öncelikle veri üretme, taşıma, okuma ve işleme zincirini sınar.
-- Durum etiketleri: **Tanımlandı**, **Çalışılıyor**, **Kanıtlandı**, **Engellendi**. Kodun yazılmış olması tek başına **Kanıtlandı** anlamına gelmez.
+**Yeni komut veya cihaz testi istemeden, depodaki mevcut dosya/kod/logları incele ve ilk aşama için kullanılabilecek en küçük veri örneğini seç.** Ardından tek bir dosyaya yazıp aynı dosyadan okuyan ve sonucu görünür biçimde karşılaştıran tam, anlaşılır bir Python örneği hazırla.
 
-## 7. İlk yapılacak somut iş
+İlk kanıt; dosyanın gerçekten yazılması, aynı dosyanın yeniden açılması ve beklenen değerlerin eşleşmesidir. Bu kanıt gösterilmeden HA taşıma zinciri, yeni QC altyapısı veya ek kontrol döngüsü başlatılmaz.
 
-Copilot'a verilecek üretici kod görevini, veri şemasını ve bağımsız beklenen sonucu tek bir küçük örnek üzerinde netleştir. İlk kanıt: dosyanın gerçekten yazılması, aynı dosyanın tekrar açılması ve içerik/sonuç doğrulamasıdır. Bu kanıt olmadan paket kontrolü, ek test altyapısı veya yeni döngü ekleme.
+## 7. Başlangıç durumu ve geçmiş kapsam notu
 
-## 8. Başlangıç durumu
+Bu görev tanımı hedefe uygunluk için 2026-10-11 tarihinde netleştirilmiştir. Önceki sürümde HA'ya kaydetme, HA'dan Mac'e taşıma ve geçici kaydı silme adımları zorunlu tutulmuştu. Bunlar kullanıcının asıl hedefinin önüne geçen gereksiz ara adımlar olabileceğinden zorunlu kabul ölçütü olmaktan çıkarılmıştır. Eski karar HISTORY'de korunur; bu güncel görev tanımı onu sessizce yok saymaz, kapsamı açıkça düzeltir.
 
-Bu dosya yalnızca görev tanımıdır. Henüz kod üretildiği, HA kaydı oluşturulduğu, Mac'e aktarım yapıldığı veya herhangi bir testin geçtiği iddia edilmemektedir.
+**Teknik başlangıç durumu:** Henüz uçtan uca başarı kanıtı yoktur. Dosya yazma/okuma, Python işleme, bağımsız doğrulama ve Python→ESP→geri okuma adımlarının hiçbiri bu kayıtla tamamlanmış sayılmaz.
