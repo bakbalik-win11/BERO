@@ -74,11 +74,13 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 
 ### Mevcut devir notu
 
-- **Son tamamlanan iş:** GRV-006 görev tanımı hedefe göre düzeltildi: [Veri al → Python ile işle → ESP'ye geri gönder ve teyit et](GOREVLER/GRV-006/RAPOR/README.md).
-- **Son doğrulanmış teknik sonuç:** Yalnızca görev tanımı depoya yazıldı; teknik akış henüz çalıştırılmadı. Dosya yazma/yeniden okuma, Python işlemesi, bağımsız teyit ve Python→ESP→geri okuma kanıtı yok.
-- **Açık soru:** Depodaki mevcut kod ve arayüzlerden Python ile ESP arasında sonuç gönderip geri okuma için hangi mevcut yol kullanılabilir?
-- **Sıradaki tek adım:** Önce depodaki mevcut dosya/kod/logları inceleyip en küçük veri örneğiyle gerçek dosyaya yazma ve aynı dosyayı yeniden okuma sonucunu üretmek.
-- **Çalışma sınırı:** GRV-005 geçmişi korunur; HA aktarım zinciri zorunlu ara adım değildir. Yeni test/ara katman, mevcut kanıtın yetersizliği açıkça gösterilmeden eklenmez.
+- **Son tamamlanan iş:** GRV-005-14 v06 gerçek cihaz logu ve değerlendirmesi kaydedildi; GRV-005-15 QC ölçütlerine göre v06 satırlarının bağımsız kontrolü 14/14 PASS olarak raporlandı.
+- **Son doğrulanmış teknik durum:** `esp32d1` / ESPHome 2026.9.1 logunda dört kanal için 1000 örnekli CSV satırları var; başlık ve satırlar 41 alan; PZEM snapshot değerleri satırlar arasında tutarlı. Bu, fiziksel ölçüm doğruluğu veya uçtan uca ESP→Python→ESP başarısı değildir.
+- **Açık soru:** Depodaki QC scripti doğrudan çalıştırıldığında aynı CSV için aynı sonucu veriyor mu?
+- **Sıradaki tek adım:** `GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv` dosyasını `GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py` ile doğrudan çalıştır; terminal çıktısını ve scriptin gerçek sonucunu yeni tarihli kayıt olarak sakla.
+- **İlgili kayıtlar:** [v06 YAML](GOREVLER/GRV-005/KOD/GRV-005-14-v06-CALISAN-KOD.yaml), [v06 cihaz logu](GOREVLER/GRV-005/LOG/GRV-005-14-v06-GERCEK-CIHAZ-LOGU-20261011.txt), [v06 değerlendirme](GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-LOG-DEGERLENDIRME-20261011.md), [QC sonucu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-SONUCU-20261011.md), [günlük geçmiş](HISTORY/2026/2026-10-11.md).
+- **Kullanıcı durumu:** Kullanıcı yorulduğu için oturuma ara verildi. Devamda bu kayıtlar okunacak; aynı bilgiler tekrar istenmeyecek, sıfırlama veya yeni deney varsayılan adım olmayacak.
+
 
 ## 7. Önemli kararların kronolojisi
 
