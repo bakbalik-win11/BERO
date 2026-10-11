@@ -291,3 +291,21 @@ Kanıt sınırı: CSV, kullanıcının paylaştığı cihaz logundan türetilmi�
 **Sınırlar:** Bu, CSV yapısının doğru yakalandığını doğrular; fiziksel akım doğruluğunu, amper kalibrasyonunu veya `invalid_count` izlenebilirliğini kanıtlamaz. ESP firmware'i değiştirilmedi. Tarihsel kayıtlar korunmuştur.
 
 **GRV-006 sonraki durum:** Otomatik USB yakalama yolu cihaz üzerinde doğrulandı. Fiziksel akım doğruluğu ayrı bir doğrulama olarak açık kalır.
+
+
+## 20. GRV-006-05 v02 — Tekrarlı ölçüm canlı logu (2026-10-11)
+
+**Kullanıcı tarafından paylaşılan ESP32D1 OTA logu:** ESPHome 2026.9.1; ESP32 rev3.1; derleme zamanı 2026-10-11 19:38:15 +0300. Cihaza API bağlantısı başarılı.
+
+**Canlı kanıt:**
+- İlk ölçüm raporu: başlık parçaları ve dört satır (CH0-1T, CH1-2T, CH2-3T, BIAS) 19:40:10.746–19:40:10.874 arasında üretildi.
+- NEXT_MEASUREMENT_READY 19:40:10.972'de görüldü.
+- İkinci rapor: başlık parçaları ve dört kanal satırı 19:40:21.000–19:40:21.105 arasında yeniden üretildi.
+- İkinci rapor sonrasında NEXT_MEASUREMENT_READY 19:40:21.227'de görüldü; PZEM ölçümleri akmaya devam etti.
+- Her ölçüm grubunda dört kanal için sample_count=1000 ve invalid_count=NOT_TRACKED raporlandı.
+
+**Sonuç:** Tek seferlik raporlamadan tekrarlı raporlamaya geçiş, paylaşılan canlı OTA logunda iki ardışık ölçüm grubu ile gözlendi. Bu kanıt, tekrarlı rapor akışının çalıştığını destekler.
+
+**Açık teknik notlar:** Logdaki window_duration_ms yaklaşık 10060 ms; ADC update_interval: 10ms ayarı ile örnekleme davranışı ayrıca incelenmelidir. invalid_count izlenmiyor. ADC RMS değerleri ham ADC sayımlarıdır; amper kalibrasyonu veya fiziksel akım doğruluğu kanıtlanmış değildir. ESPHome derleme uyarıları minimum çip revizyonu/SRAM1 ayarları hakkındadır; logda derleme veya bağlantı hatası görünmüyor.
+
+**Görev durumu:** Tekrarlı CSV rapor üretimi için canlı kanıt alındı. Fiziksel ölçüm doğruluğu ve örnekleme zamanlamasının doğrulanması açık.
