@@ -2,7 +2,7 @@
 
 **Durum:** Açık — yeni araştırma yaklaşımı tanımlandı; deney sonuçları henüz üretilmiş sayılmaz.  
 **Güncelleme:** 2026-10-12  
-**Ana ilke:** Önce aynı fiziksel olayı temsil eden ölçüm bölgelerini eşleştirip ilişkiyi öğren; daha sonra ölçüm hızı ve paketleme yöntemini belirle.
+**Ana ilke:** Önce her ölçüm zincirinden bağımsız olarak mümkün olan en yüksek kaliteli ham veriyi al ve ölçüm karakterini öğren; fiziksel olarak desteklenen bölgeler arasında ilişki kur; donanım sadeleştirmesi ve paket optimizasyonunu daha sonraki aşamaya bırak.
 
 > **Geçmişi koruma:** Bu hedefin önceki sürümleri ve kararları Git geçmişinde korunur. Bu yeni sürüm, eski mimariyi sessizce silmek yerine aktif araştırma yönünü değiştirir. Önceki test kayıtları, kodlar ve ölçümler tarihsel kanıt olarak kalır.
 
@@ -17,6 +17,8 @@ Evrensel tek bir `k` katsayısı varsayılmaz. Aday ilişki önce `I = f(X)`, ve
 ### 2.1 Ham veri ve ölçüm kaynakları
 
 İlk deneylerde kapsam küçük tutulur: **bias ve bir veya iki sensör kanalı**. Ham sensör verileri ile PZEM referans ölçümleri ayrı kaynaklardan toplanır; ham kayıtlar değiştirilmeden korunur.
+
+**Öncelik, sensörleri aynı ESP'de toplamak değil, her ölçüm zincirinin kendi ham verisini en yüksek kalitede elde etmektir.** Aşama 1'de sensör kanallarını tek ESP'de birleştirmeye çalışmayız. Dört kanal gereksinimi, dört kanalın aynı ESP'de okunması gerektiği anlamına gelmez; bir zincirde kanal sayısı ölçüm hızını gereksiz düşürüyorsa kanallar/zincirler bağımsız sınanır. Donanım sadeleştirmesi, birleştirme ve paket optimizasyonu Aşama 1'in işi değildir.
 
 **Okuma hızı ilk önceliktir:** Dört kanal okunacak diye ölçüm döngüsünün gereksiz yere yavaşlamasına izin verilmez. Seçilen kanalların her biri mümkün olan en yüksek *sağlıklı ve sürdürülebilir* örnekleme hızında okunmaya çalışılır. Dört kanalı birlikte okumak hızı düşürüyorsa, kanalların veya ESP'lerin ayrı ayrı çalıştırıldığı deneyler de yapılır. Kanal başına ve toplam örnekleme hızı, zamanlama kararlılığı ve örnek kaybı ölçülür; hız varsayılmaz, ölçülür. Gerekirse ESP'ler teker teker sınanır. Bu, doğrulanmış mevcut performans değil, test edilecek hedef gereksinimidir.
 
@@ -38,6 +40,14 @@ Bunlar planlanan deney örnekleridir; tamamlanmış veya başarılı deneyler ol
 
 ### 2.3 Eşleştirme ve etiketleme
 
+İki akışın ilk işlemesi ayrı yürütülür:
+
+- **PZEM akışı:** Kararlı/anlamlı bölgeler belirlenir ve uygun bölgelere ölçülen akım değeri etiketi verilir.
+- **SCT akışı:** Ham örüntüler ve karakteristik özellikler çıkarılır; bu aşamada PZEM etiketi varsayılmaz.
+- **Python korelasyonu:** PZEM etiketli bölgeler ile SCT karakter bölgeleri, aynı fiziksel durumu temsil ettiklerine dair deney koşulları ve kayıtlarla destek varsa ilişkilendirilir. Böylece PZEM akım etiketi, desteklenen SCT karakter bölgesine aktarılabilir ve aday `I = f(X)` ilişkisi öğrenilebilir.
+
+**Öncelik paket/zaman senkronizasyonu değil, karakter ve bölge korelasyonudur.** Bununla birlikte zaman bilgisi yardımcı kanıt olarak korunabilir; sayısal benzerlik tek başına aynı fiziksel durumu kanıtlamaz. Fiziksel eşleşme yeterince desteklenmiyorsa etiket zorla aktarılmaz.
+
 Mühendislik tarafı fiziksel olayı seçer, deney koşullarını kaydeder, veriyi temizler ve aynı fiziksel olayı temsil ettiği desteklenen bölgeleri etiketler.
 
 Python tarafı:
@@ -51,9 +61,9 @@ Python tarafı:
 
 PZEM, eğitim ve doğrulama aşamasında referanstır. Nihai amaç, doğrulanmış bir modelin çalışma sırasında sensör verisinden akım tahmin edebilmesidir.
 
-## 3. Aşama 2 — Ölçüm hızı ve paketlemeyle gerçek hayatı yakalamak
+## 3. Aşama 2 — Ölçüm hızı, donanım sadeleştirmesi ve paketlemeyle gerçek hayatı yakalamak
 
-**Paketleme birinci aşamanın kapsamı değildir.** İkinci aşamada, fiziksel olayları kaçırmadan yakalamaya uygun ölçüm hızı ve veriyi güvenilir taşıyacak paketleme yöntemi deneylerle seçilir.
+Aşama 1'de her zincirin ham veri kalitesi ve karakteri anlaşılmadan donanım sadeleştirmesi/birleştirmesi yapılmaz. **Paketleme ve paket optimizasyonu da birinci aşamanın kapsamı değildir.** İkinci aşamada, fiziksel olayları kaçırmadan yakalamaya uygun ölçüm hızı ve veriyi güvenilir taşıyacak paketleme yöntemi deneylerle seçilir.
 
 - **Ölçüm hızı:** Kısa süreli değişimleri ve uzun süreli davranışı yeterince yakalayacak örnekleme hızını bul.
 - **Paket boyutu/yöntemi:** Sabit boyutlu ve değişime duyarlı seçenekleri karşılaştır.
@@ -89,14 +99,15 @@ Bu, önerilen klasör düzenidir; belgenin yazılması Mac üzerinde klasörleri
 
 ## 6. Çalışma sırası
 
-1. PZEM referansını ayrı ve sensör örneklemesini etkilemeyecek şekilde kaydet.
-2. Bias ve seçilen sensör kanallarından ham veri topla; her kanalın mümkün olan en yüksek sağlıklı hızını ölç. Dört kanalın birlikte okunmasının hızı düşürüp düşürmediğini, gerekirse kanal/ESP'leri teker teker çalıştırarak karşılaştır.
+1. PZEM referansını ayrı ve sensör örneklemesini etkilemeyecek şekilde kaydet; PZEM kararlı bölgelerini akım etiketiyle işaretle.
+2. Bias ve seçilen sensör kanallarından, her ölçüm zincirini ilk aşamada bağımsız tutarak ham veri topla; her kanalın mümkün olan en yüksek sağlıklı hızını ölç. Dört kanalın birlikte okunmasının hızı düşürüp düşürmediğini, gerekirse kanal/ESP'leri teker teker çalıştırarak karşılaştır.
 3. Kanal başına ve toplam örnekleme hızını, zamanlama kararlılığını ve örnek kaybını kaydet; hızın doğrulandığına dair ölçüm olmadan iddiada bulunma.
 4. Veriyi uygun yerde biriktir (Mac veya Home Assistant üzerinden); ham kaynakları koru.
 5. Aynı fiziksel olayı temsil eden bölgeleri Python ile eşleştir; geçerli eşleşmeleri etiketle.
 6. Eşleştirilmiş veri kümesinden özellikleri ve aday `f(X)` ilişkilerini araştır; bağımsız verilerle doğrula.
-7. Daha sonra ölçüm hızı ve paketleme yöntemini gerçek hayatı yakalama, veri kaybı ve kaynak kullanımı açısından karşılaştır; ilk aşamada ölçülen ham okuma hızı sonuçlarını temel al.
+7. Aşama 1 tamamlanıp ölçüm karakteri anlaşıldıktan sonra donanım sadeleştirmesi/birleştirmesini ayrıca değerlendir.
+8. Daha sonra ölçüm hızı ve paketleme yöntemini gerçek hayatı yakalama, veri kaybı ve kaynak kullanımı açısından karşılaştır; ilk aşamada ölçülen ham okuma hızı sonuçlarını temel al.
 
 ## 7. Kısa yön özeti
 
-**Önce ölçümün fiziksel olayla ilişkisini öğren. Sonra gerçek hayattaki değişimleri hangi hızda ölçüp nasıl paketleyeceğini seç.** Paketleme, olay korelasyonunun ön koşulu değildir; ikinci aşamanın araştırma konusudur.
+**Önce her ölçüm zincirinden bağımsız, kaliteli ham veri al; PZEM bölgelerini akım etiketiyle, SCT bölgelerini sinyal karakteriyle tanımla; fiziksel olarak desteklenen karakter/bölgeleri korele ederek `I = f(X)` ilişkisini araştır. Sonra donanımı sadeleştir ve ölçüm hızı/paketlemeyi seç.** Paket senkronizasyonu olay korelasyonunun ön koşulu değildir; paketleme ikinci aşamanın araştırma konusudur.
