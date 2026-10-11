@@ -100,6 +100,16 @@ Yeni karar kaydında tarih, karar, gerekçe ve etkilediği dosyalar belirtilir.
 
 - **2026-10-11:** GRV-006 ayrı görev olarak açıldı. Amaç, gerçek veri üretme/yazma/okuma kanıtından başlayarak HA→Mac aktarımı, Python işlemesi, bağımsız teyit ve gerekirse tek iyileştirme turudur. Görev tanımı: [GRV-006](GOREVLER/GRV-006/RAPOR/README.md). Eski görev kayıtları değiştirilmez.
 
+## 2026-10-12 — HDF-002 yöntem kararı ve oturum devri
+
+- **Olgunlaşan yöntem:** Her ölçüm zincirinden önce bağımsız olarak en yüksek kaliteli ham veriyi al; sensörleri Aşama 1'de aynı ESP'de toplamaya çalışma.
+- **PZEM/SCT ayrımı:** PZEM kararlı bölgeleri akım etiketi alır; SCT bölgeleri sinyal karakteriyle tanımlanır. Python, deney bağlamının aynı fiziksel durumu desteklediği bölgeleri korele eder ve etiketi uygun SCT karakter bölgesine aktararak aday `I = f(X)` ilişkisini araştırır.
+- **Eşleştirme sınırı:** Paket/zaman senkronizasyonu ön koşul değil; zaman yardımcı kanıt olabilir. Sayısal benzerlik tek başına eşleşme değildir. Ham kayıtlar ve deney metadatası korunur.
+- **Aşama sınırı:** Donanım sadeleştirmesi/birleştirmesi ve paket optimizasyonu, bağımsız ham verinin karakteri anlaşıldıktan sonraki aşamadır.
+- **Doğrulanmış durum:** Bu bir yöntem kararıdır; yeni deney veya performans doğrulaması değildir.
+- **Sıradaki ilk adım:** Bağımsız ölçüm zincirlerinin ham veri ve kayıt yollarını belirlemek; PZEM okumasını sensör örneklemesinden ayırmak.
+- **Ayrıntı:** [HDF-002 hedefi](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) · [2026-10-12 gün sonu kaydı](HISTORY/2026/2026-10-12.md).
+
 ## 8. Süreklilik ilkesi
 
 **Bir sonraki adımı bulurken önceki adımları kaybetme.** Yeni oturumda önce bu pusula, sonra ilgili ana hedef, sonra aktif görev raporu ve en son kod/log kayıtları okunur.
