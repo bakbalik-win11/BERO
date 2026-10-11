@@ -174,3 +174,11 @@ Kanıtlanan çıktı:
 - Girdi: [GRV-005-14 v06 QC CSV](../../GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv).
 
 **Sıradaki adım:** Çalıştırılan `grv006_csv_to_esp.py` betiğini ve bu sonuç kaydını depoya koy; ardından gerçek, yeni bir ölçüm CSV'si mevcut olduğunda aynı akışı ona uygula. Echo testini tekrar etmeye gerek yok.
+
+
+## 12. Çalıştırılan betiğin depoya alınması ve sonraki adım
+
+- Kullanıcının başarılı çalıştırdığı CSV→Python→ESP betiği yeni, ayrı dosya olarak kaydedildi: [GRV-006-04 Python](../KOD/GRV-006-04-csv-to-esp-v01.py).
+- Açıklama: [GRV-006-04 MD](../KOD/GRV-006-04-csv-to-esp-v01.md).
+- Önceki PASS sonucu korunur; betik depoya alındı diye yeni bir test yapılmış sayılmaz.
+- **Sıradaki tek adım:** Aynı veri zincirini yeni bir canlı cihaz CSV'sinde çalıştırmak. Eski 2026-10-11 örnek CSV tekrar kullanılmayacak.
