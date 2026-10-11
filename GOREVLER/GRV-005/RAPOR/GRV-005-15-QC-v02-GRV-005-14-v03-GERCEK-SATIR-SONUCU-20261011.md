@@ -1,4 +1,4 @@
-# PROJE BERO — GRV-005-15 QC v02 / GRV-005-14 v03 Gerçek Satır Testi
+# PROJE BERO — GRV-005-15 QC v02 Kurallarıyla GRV-005-14 v03 Gerçek Satır Testi
 
 **Tarih:** 2026-10-11  
 **Kaynak:** Kullanıcının paylaştığı ESPHome 2026.9.1 gerçek cihaz logu  
@@ -7,13 +7,13 @@
 
 ## Yöntem ve önemli sınırlama
 
-Logdan alınan dört gerçek veri satırı, GRV-005-15 Python QC v02'nin 41 alanlı şemasıyla bir kontrol CSV'sine yerleştirilerek aynı 14 doğrulama kuralına göre değerlendirildi.
+Logdan alınan dört gerçek veri satırı, GRV-005-15 Python QC v02'de tanımlı 14 kontrol kuralının eşdeğer mantığıyla bir Python kontrolünde değerlendirildi. Bu rapor, depodaki QC v02 betiğinin dosyaya karşı doğrudan CLI çalıştırıldığı iddiasında bulunmaz.
 
-**Başlık uyarısı:** Kullanıcının paylaştığı logdaki başlık satırı `pz` bölümünde kesiliyor. Bu nedenle test CSV'sinde QC v02'nin beklediği kanonik 41 alanlı başlık kullanıldı. Başlık kontrolü bu düzenlenmiş test CSV'sinde PASS görünse de, bu sonuç gerçek cihazın başlık satırının eksiksiz loglandığını kanıtlamaz. Dört veri satırı ise kullanıcı logundan alındı ve ayrı ayrı 41 alan olarak sayıldı.
+**Başlık uyarısı:** Kullanıcının paylaştığı logdaki başlık satırı `pz` bölümünde kesiliyor. Kontrol CSV'sinde beklenen kanonik 41 alanlı başlık kullanıldı. Bu nedenle başlık eşleşmesi kontrol CSV'si için PASS olsa da, gerçek cihaz başlığının eksiksiz loglandığını kanıtlamaz. Dört veri satırı kullanıcı logundan alındı ve ayrı ayrı 41 alan olarak sayıldı.
 
 ## Sonuç
 
-- Kontrol CSV'si üzerinde QC v02 kurallarının tamamı: **14/14 PASS**.
+- QC v02'nin 14 kontrol kuralının eşdeğer mantığıyla kontrol CSV'si: **14/14 PASS**.
 - Gerçek cihazdan alınan dört satırın alan sayısı: **4/4 satırda 41 alan**.
 - Kanalların her biri bir kez mevcut: **PASS**.
 - Tüm satırlarda ortak ve boş olmayan measurement_id: `esp32d1_245_001` — **PASS**.
@@ -38,7 +38,8 @@ PZEM için kaydedilen `pzem_update_millis` değeri, sensörün `on_value` anınd
 ## Durum
 
 **GRV-005-14 v03 CSV satır alan kontrolü: PASS.**  
-**GRV-005-15 QC v02 kontrol CSV'si: 14/14 PASS.**  
+**QC v02 kurallarıyla eşdeğer kontrol: 14/14 PASS.**  
+**Depodaki QC v02 betiğinin doğrudan çalıştırılması: bu adımda yapılmadı.**  
 **Gerçek cihaz başlığının eksiksizliği: bu log dökümünden doğrulanamadı.**  
 **ADC zamanlama uyarısının incelenmesi: açık iş.**
 
