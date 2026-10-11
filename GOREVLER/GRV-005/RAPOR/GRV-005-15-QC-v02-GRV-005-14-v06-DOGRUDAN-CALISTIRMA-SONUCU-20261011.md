@@ -1,33 +1,58 @@
 # PROJE BERO — GRV-005-15 doğrudan çalıştırma sonucu — v06 CSV
 
-**Durum:** Çalıştırma doğrulaması bekliyor  
-**Girdi CSV:** `GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv`  
-**Script:** `GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py`
+**Durum:** PASS — gerçek yerel çalıştırmada 14/14 kontrol başarılı  
+**Çalıştırma ortamı:** Kullanıcının Mac mini bilgisayarı, macOS Terminal, `python3`  
+**Girdi CSV:** `GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv` (masaüstündeki kopya)  
+**Script:** `GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py` (depodaki scriptin masaüstündeki kopyası)
 
-## Neden henüz sonuç yazılmadı?
+## Gerçek çalıştırma kanıtı
 
-Bu oturumda GitHub'daki script ve CSV içeriği geri okundu. Ancak bu çalışma ortamında GitHub'dan indirilen dosyaları doğrudan çalıştıracak dosya aktarımı/çalıştırma bağlantısı bulunmadığından, **depo scriptinin gerçek doğrudan çalıştırılması tamamlanamadı**. Bu rapor PASS veya FAIL iddiası taşımaz.
-
-Önceki raporda yer alan **14/14 PASS**, aynı QC ölçütlerini bağımsız uygulamayla kontrol etmenin sonucudur; doğrudan script çalıştırma sonucu değildir. Bu iki kanıt türü birbirine karıştırılmayacaktır.
-
-## Depodan geri okuma kontrolleri
-
-- Script dosyası bulundu: `GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py`
-- Script blob SHA: `1c455032af877e8898c6043a9bab97c8a38e7746`
-- CSV girdisi bulundu: `GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv`
-- CSV blob SHA: `a71c03adb10cb8ba5264f7f8f1abb486900d0183`
-- CSV başlığında 41 alan ve dört veri satırı olduğu içerikten kontrol edildi.
-
-## Sıradaki tek adım
-
-Script ve CSV'yi çalıştırılabilir bir ortama indirip şu komutu çalıştır:
+Kullanıcı aşağıdaki komutu Terminal'de çalıştırdı:
 
 ```bash
-python3 GOREVLER/GRV-005/KOD/GRV-005-15-PYTHON-QC-v02.py GOREVLER/GRV-005/RAPOR/GRV-005-14-v06-QC-GIRDİSİ-20261011.csv
+python3 "$(find . -maxdepth 1 -name 'GRV-005-15-PYTHON-QC-v02.py' -print -quit)" "$(find . -maxdepth 1 -name 'GRV-005-14-v06-QC-GIR*20261011.csv' -print -quit)"
 ```
 
-Sonra gerçek terminal çıktısını bu rapora ekle. Scriptin exit code değeri 0 ve tüm 14 kontrol PASS ise doğrudan çalıştırma doğrulaması PASS sayılır. Aksi hâlde gerçek başarısız sonuç korunur ve neden incelenir. Sentetik öz-test bunun yerine geçmez.
+Terminal'in bildirdiği dosya: `GRV-005-14-v06-QC-GIRDİSİ-20261011.csv`.
 
-## Sınır
+Gerçek terminal çıktısının son satırları:
 
-Bu rapor yalnızca çalıştırma doğrulama adımının açık durumunu kaydeder. Firmware, CSV girdisi ve önceki bağımsız QC raporu değiştirilmemiştir.
+```text
+PASS | BIAS row's own ADC summary aligns with bias_* fields — BIAS row found
+PASS | No unnamed overflow columns — CSV parser detected no extra fields
+RESULT: PASS (14/14 checks)
+NOTE: PASS is structural QC only; it is not proof of physical measurement accuracy.
+```
+
+Kullanıcı çıktıyı sohbet içinde paylaştı. Görünen çıktıda 14 kontrolün tamamı PASS. **Shell exit code ayrıca kaydedilmedi**; bu nedenle rapor yalnızca görünür program çıktısına dayanır, exit code=0 iddiasında bulunmaz.
+
+## Kontrol kapsamı ve sonuç
+
+- Başlık tam 41 alan; beklenen alan sayısıyla eşleşiyor.
+- Tam dört veri satırı var ve her satır 41 alan içeriyor.
+- CH0-1T, CH1-2T, CH2-3T ve BIAS birer kez bulunuyor.
+- Tüm satırlar ortak `measurement_id=esp32d1_235_001` değerini taşıyor.
+- Her satırda 1000 geçerli örnek bildiriliyor.
+- Pencere süresi, pencere merkezi ve zaman farkı aritmetiği geçiyor.
+- 33 sayısal alan beklenen türlere ayrıştırılıyor.
+- Üç akım kanalında ham RMS alanı dolu.
+- Alanlarda baştaki/sondaki boşluk ve fazladan sütun yok.
+- ADC min/max/range ilişkisi geçiyor.
+- PZEM akım/güç/PF alanlarının varlığı kontrolü geçiyor; fiziksel doğruluk iddiası değildir.
+- BIAS satırındaki ADC özeti ile bias_* alanları uyumlu.
+
+## Yorum ve sınırlar
+
+Bu sonuç, depodaki QC v02 betiğinin kullanıcı Mac'inde gerçek CSV kopyasına karşı doğrudan çalıştırıldığını ve görünür çıktıda **14/14 PASS** verdiğini kanıtlar. Önceki bağımsız 14/14 değerlendirmesinden ayrı bir kanıt olarak kaydedilmiştir.
+
+Bu, CSV'nin yapısal QC ölçütlerini karşıladığını gösterir; fiziksel akım ölçüm doğruluğunu, kalibrasyonu veya donanım zincirinin mutlak doğruluğunu kanıtlamaz. `invalid_count` alanı bu girdide `NOT_TRACKED` olarak göründüğünden, örneklerin geçerlilik takibi ayrıca ele alınmış sayılmaz.
+
+## Kaynak dosya kimlikleri
+
+Çalıştırmadan önce depodan geri okunan dosyalar:
+- Script blob SHA: `1c455032af877e8898c6043a9bab97c8a38e7746`
+- CSV blob SHA: `a71c03adb10cb8ba5264f7f8f1abb486900d0183`
+
+## Sonraki adım
+
+GRV-005-15'in bu doğrudan çalıştırma adımı tamamlandı. Yeni firmware/donanım deneyi açmadan önce mevcut kayıtlar korunmalı ve görevdeki sonraki somut hedef belirlenmeli. v06 YAML, ham cihaz logu ve CSV girdisi değiştirilmedi.
