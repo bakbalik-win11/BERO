@@ -5,7 +5,7 @@ Requires Python 3.10+ and aioesphomeapi.
 Install in a virtual environment: python3 -m pip install aioesphomeapi
 
 Environment:
-  ESPHOME_ADDRESS       device IP/hostname (default 192.168.0.8)
+  ESPHOME_ADDRESS       device IP/hostname (default 192.168.0.9)
   ESPHOME_PORT          Native API port (default 6053)
   ESPHOME_NOISE_PSK     API encryption key, if encryption is enabled
   GRV006_VALUE          integer to send (default 120)
@@ -18,7 +18,7 @@ import os
 import sys
 import aioesphomeapi
 
-ADDRESS = os.environ.get("ESPHOME_ADDRESS", "192.168.0.8")
+ADDRESS = os.environ.get("ESPHOME_ADDRESS", "192.168.0.9")
 PORT = int(os.environ.get("ESPHOME_PORT", "6053"))
 VALUE = int(os.environ.get("GRV006_VALUE", "120"))
 NOISE_PSK = os.environ.get("ESPHOME_NOISE_PSK") or None
