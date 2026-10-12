@@ -590,7 +590,6 @@ Sensörlerin çıkış/kanal özellikleri farklı olabilir. Bu farklar ayrı kay
 ### PZEM'in rolü ve hariç tutulan modül
 
 - Hedef 1'de kullanılan PZEM, Hedef 2'de referans/doğrulama cihazı olarak kullanılacaktır; hızlı ham örnekleme kaynağı değildir ve sensör okuma döngüsünü yavaşlatmamalıdır.
-- Kullanıcının belirttiği eski/yanmış PZEM modülü bu gerçek sensör deneylerine karıştırılmayacaktır. Önce gerçek akım sensörleriyle ilerlenir.
 - PZEM ile sensör kayıtları, birebir paket senkronizasyonu varsayılmadan, aynı fiziksel olayı temsil ettiği gerekçelendirilen alanlar üzerinden daha sonra eşleştirilir.
 
 ### Bu oturumun kanıt durumu ve sonraki adım
