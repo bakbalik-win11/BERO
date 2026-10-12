@@ -334,3 +334,11 @@ Bu bölüm, pusuladaki eski yöntem özetleriyle çelişirse güncel karar olara
 - **Bağımsız doğrulama:** Aynı kayıt içindeki benzer/türev bölgeler eğitim ve test arasında sızıntı oluşturmayacak biçimde ayrılır; paketleme/model seçimi başka bölgelerde doğrulanır.
 - **Kanıt sınırı:** Bunlar plan/yöntem kararlarıdır; testlerin yapıldığı, en iyi paketlemenin bulunduğu veya başarılı taklit/akım hesabı elde edildiği anlamına gelmez. Ayrıntı: [HDF-002 güncel yöntem kararı](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) ve [2026-10-12 geçmiş kaydı](HISTORY/2026/2026-10-12.md).
 
+## 2026-10-12 — Netleştirme: eğitim ESP'si canlı veri ve paket boyu
+
+- Eğitim ESP'sinin temel değerlendirmesi, canlı SCT ham verisi ve ESP çıktısının aynı fiziksel olay sırasında alınan PZEM referansıyla karşılaştırılmasıdır.
+- Etiketli sabit fiziksel alanlar eğitim/parametre seçimi için kullanılır; veri akışlarının veya paket boylarının birbirine eşitlenmesi gerekmez.
+- Özellikle paket boyu/pencere uzunluğu; örnek kaybı, veri bütünlüğü, akım hesabı, gecikme ve tekrarlanabilirlik üzerindeki etkileriyle araştırılır.
+- Bir canlı koşulda başarı, o koşul için kanıttır; farklı yük ve akım koşullarına genellenebilirlik ayrıca bağımsız alanlarda doğrulanır.
+- Bu, yöntem netleştirmesidir; canlı eğitim veya başarılı paket boyu testi yapıldığı iddia edilmez. Ayrıntı: [HDF-002 hedefi](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md).
+
