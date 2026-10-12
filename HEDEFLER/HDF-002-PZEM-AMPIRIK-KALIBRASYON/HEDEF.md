@@ -558,3 +558,47 @@ Kullanıcı fotoğrafla elindeki kartı tanımladı: **5 V 2 Kanal Solid State R
 
 **Kanıt sınırı:** Fotoğraf ürünün iki kanallı SSR kartı olduğunu destekler; yük tarafının elektriksel uygunluğu ve gerçek klape uygulaması henüz test edilmemiştir.
 
+
+
+---
+
+## 2026-10-12 — Hedef 2 kapsam netleştirmesi: gerçek sensörler ve prototip sınırları
+
+Bu tarihli ek, HDF-002'nin önceki planlarını ve deney geçmişini silmez. Hedef 2'nin sensör kalibrasyonu kapsamını ve mevcut prototip için kullanıcı tarafından netleştirilen sınırları açıklar.
+
+### Kalibre edilecek gerçek sensörler
+
+Hedef 2 yalnızca SCT kalibrasyonu değildir. Aynı temel okuma tekniği ve eşlenmiş alan yaklaşımı kullanılarak aşağıdaki sensörlerin ölçüm karakterleri ayrı ayrı incelenecek ve kalibrasyonları yapılacaktır:
+
+- SCT013
+- SANEC ACS758LCB 50 A — çift çıkış/kanal yapısı fiziksel modül üzerinden doğrulanıp doğru kaydedilecek; çıkış işlevi varsayılmayacak.
+- Ayzek ZMCT103C 5 A tek fazlı akım sensörü
+- ACS 5 A
+- ACS 20 A
+
+Sensörlerin çıkış/kanal özellikleri farklı olabilir. Bu farklar ayrı kaydedilir; bir sensörün katsayısı veya davranışı diğerine otomatik aktarılmaz.
+
+### Mevcut prototip için açık sınırlar
+
+- Kullanıcı okuma tekniğinin belli olduğunu ve eşlenmiş alan yaklaşımının kullanılacağını belirtti. Mevcut yöntemi yeniden tasarlamaya veya gereksiz yere tartışmaya açmaya çalışma.
+- Bu prototipin okuma zincirinde bias yoktur. Okumaya bias ekleyen devre veya bias işlemi varsayma. Bu açıklama, geçmişte kaydedilmiş BIAS deneylerini silmez veya geriye dönük değiştirmez; o kayıtlar kendi koşullarıyla korunur.
+- Mevcut prototipte MCP yoktur. MCP3204/MCP3208'i bu prototipe ekleme veya kod/bağlantı önerisine varsayılan olarak katma.
+- Kullanıcı 1T, 2T, 3T ve 4T ESP yazılımlarının zaten yazıldığını belirtti. Yeniden mimari kurmak yerine depodaki mevcut dosyaları esas al; ESP adlarını ve çalışan kodları kullanıcı açıkça istemedikçe değiştirme.
+- Deneylerde gerekirse SCT–ESP için ham okuma YAML'ları kullanılabilir. Önce doğru mevcut YAML/kod sürümü ve hedef ESP doğrulanır; kod karışıklığı varsa yeni kod üretmeden önce kaynak kayıt okunur.
+- Hızlı ham okuma ile Home Assistant'a taşıma farklı işlerdir. HA/Wi-Fi aktarımı örnekleme döngüsünü yavaşlatmamalı; veri kaybı, zamanlama, throughput ve bellek/CPU etkisi ölçümle doğrulanmalıdır.
+
+### PZEM'in rolü ve hariç tutulan modül
+
+- Hedef 1'de kullanılan PZEM, Hedef 2'de referans/doğrulama cihazı olarak kullanılacaktır; hızlı ham örnekleme kaynağı değildir ve sensör okuma döngüsünü yavaşlatmamalıdır.
+- Kullanıcının belirttiği eski/yanmış PZEM modülü bu gerçek sensör deneylerine karıştırılmayacaktır. Önce gerçek akım sensörleriyle ilerlenir.
+- PZEM ile sensör kayıtları, birebir paket senkronizasyonu varsayılmadan, aynı fiziksel olayı temsil ettiği gerekçelendirilen alanlar üzerinden daha sonra eşleştirilir.
+
+### Bu oturumun kanıt durumu ve sonraki adım
+
+Bugün yeni fiziksel deney, derleme doğrulaması veya kalibrasyon sonucu üretilmedi. Bu kayıt kapsam ve çalışma sırası netleştirmesidir; sensörlerin kalibre edildiği veya ölçüm başarısı elde edildiği anlamına gelmez.
+
+**Sonraki somut adım:** Prototipin fiziksel sökme-takma/kurulum işine devam etmek; mevcut 1T/2T/3T/4T yazılımlarını doğru ESP'lerle eşleştirmek; gerekirse mevcut SCT–ESP ham okuma YAML'ıyla ham veri üretimini doğrulamak. Bundan sonra Hedef 2 sensörlerini aynı deney çerçevesinde ayrı ayrı karakterize etmek ve kalibre etmek.
+
+### Süreklilik dersi
+
+Açılışta güncel Pusula, Asistan İşletim Protokolü, ilgili HDF-002 hedefi, son HISTORY ve günlük kontrol listesi okunmadan teknik yönlendirme yapılmamalıdır. ESP sayısı/adı, MCP varlığı, bias ve PZEM rolü konusunda tahmin yürütmek doğrudan YAML/koda ve fiziksel kuruluma hata taşıyabilir. Kayıt doğrulanamıyorsa bunu açıkça belirt; doğrulanmış gibi davranma.
