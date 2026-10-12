@@ -32,6 +32,7 @@ _Yeni fikirleri bu satırın hemen altına ekle. Henüz sonuçlanmamış maddele
   - Sınır: Bu aşamada kalibrasyon katsayısı uygulama veya sensörün hatalı olduğuna karar verme yok; önce karşılaştırmalı veri topla. Yük, akım ve referans ölçüm koşullarını rapora yaz.
   - Başlama koşulu: Sistem kararlılığı doğrulanmış olacak.
   - Sonuç: Bekliyor
+  - Kapsam notu (2026-10-12): Bu açık fikir, sistem kararlılığı sonrası yapılacak SCT'ler arası karşılaştırmaya özeldir; durumu ve başlama koşulu değişmedi. HDF-002'nin daha geniş gerçek sensör kalibrasyon kapsamı ayrıca [HDF-002 hedefinde](../HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) kayıtlıdır: SCT013, SANEC ACS758LCB 50 A, Ayzek ZMCT103C 5 A, ACS 5 A ve ACS 20 A. Bu kapsam notu deney yapıldığı veya kalibrasyonun tamamlandığı anlamına gelmez.
 
 ## 2. Göreve dönüşenler — açık görevler
 
