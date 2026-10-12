@@ -353,3 +353,18 @@ Paket boyu/pencereleme ve hesaplama seçimi; ham veriyi yakalama, örnek kaybı,
 
 ### Kanıt sınırı
 Bu bölüm yöntem kararını açıklar; eğitim veya testin yapıldığı, herhangi bir paket boyunun başarılı olduğu iddia edilmez.
+
+## 2026-10-12 — Kritik aşama ayrımı: eğitim PZEM'i, test PZEM'i ve canlı saha ESP'si
+
+Bu bölüm, önceki açıklamalardaki rol karışıklığını önlemek için aşama sırasını açıklar.
+
+1. **Eğitim PZEM'i ve olay eşlemeli eğitim alanları:** Eğitim için aynı fiziksel olaya karşılık gelen SCT ve eğitim PZEM alanları belirlenir/etiketlenir. Eşleme olay temellidir; alan uzunlukları aynı olmak zorunda değildir.
+2. **Ham SCT verisinde F(x):** İlk F(x) çalışması paketlenmemiş ham SCT verisi üzerinde yapılır. Bu aşamada canlı sistemin paketlenmiş veri seçimi henüz zorunlu kılınmaz.
+3. **Test PZEM'iyle zaman eşlemeli değerlendirme:** Ham SCT verisinden elde edilen F(x) çıktısı, test aşamasındaki PZEM referansıyla zaman ilişkisi üzerinden karşılaştırılır. Eğitimde kullanılan PZEM ile testte kullanılan PZEM'in rolleri ayrıdır; test sonucu eğitim verisine uyumdan ayrı değerlendirilir.
+4. **Paketleme seçimi:** Test kanıtları görüldükten sonra, canlı kullanım için paketleme/pencereleme yöntemi ve kullanılacak veri aralığı hakkında karar verilir. Paketlenmiş verinin seçimi bu karar kapısındadır; F(x)'in ilk ham veri sınamasıyla karıştırılmaz.
+5. **Canlı saha ESP'si:** Seçilen paketleme yöntemi canlı SCT akışına uygulanır. Saha ESP'si canlı ölçümü paketlenmiş/işlenmiş veriden hesaplar; canlı PZEM referansıyla karşılaştırılarak gerçek kullanım başarısı değerlendirilir.
+
+**Ayrımın özü:** eğitimde olay eşleme → ham veride F(x) → test PZEM'iyle zaman eşlemeli sınama → paketleme kararı → paketlenmiş canlı veriyle saha ölçümü ve PZEM karşılaştırması.
+
+Bu bir yöntem/akış kararıdır. Aşamaların çalıştırıldığı, paketlemenin seçildiği veya doğruluk hedefinin sağlandığı iddia edilmez.
+
