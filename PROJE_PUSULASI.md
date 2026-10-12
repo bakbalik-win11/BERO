@@ -376,7 +376,7 @@ Bu bölüm, pusuladaki eski yöntem özetleriyle çelişirse güncel karar olara
 - Hedef 2 kapsamı: SCT013, SANEC ACS758LCB 50 A (çift çıkış/kanal yapısı doğrulanacak), Ayzek ZMCT103C 5 A tek faz, ACS 5 A ve ACS 20 A. Yalnızca SCT ile sınırlı değil.
 - Mevcut prototipte MCP yok, okumada bias yok. Geçmiş MCP/BIAS deneyleri silinmez; yalnızca bu prototipe varsayımla taşınmaz.
 - 1T, 2T, 3T ve 4T ESP yazılımları zaten hazır; adları ve kodları kullanıcı istemedikçe değiştirilmez.
-- Hedef 1'deki PZEM Hedef 2 için referans/doğrulama cihazıdır; hızlı örnekleme kaynağı değildir. Eski/yanmış PZEM modülü bu gerçek sensör deneylerine dahil değildir.
+- Hedef 1'deki PZEM Hedef 2 için referans/doğrulama cihazıdır; hızlı örnekleme kaynağı değildir.
 - Hızlı ham okuma ile HA aktarımı ayrı değerlendirilir; aktarım örnekleme döngüsünü yavaşlatmamalıdır.
 - **Son doğrulanmış teknik sonuç:** Bu oturumda yeni fiziksel deney/derleme/kalibrasyon sonucu yok. Güncellenenler kapsam ve devir kayıtlarıdır.
 - **Açık iş:** Prototipi fiziksel olarak kur; mevcut 1T/2T/3T/4T kodlarını doğru ESP'lerle eşleştir; gerekirse depodaki SCT–ESP ham okuma YAML'ını doğrula.
