@@ -377,7 +377,7 @@ Bu bölüm, önceki yöntem kararlarına ek olarak altı aşamanın görev ayrı
 - **P3 — İlk F(x):** Eşleştirilmiş/etiketlenmiş fakat paketlenmemiş veriden F(x) üretir.
 - **P4 — F(x) doğrulaması:** Hâlâ eşleştirilmiş veriyi kullanır; P3 formülleriyle hesaplama yaparak P3'ün doğruluğunu sınar.
 - **P5 — Paketleme araştırması:** Ham SCT verisini farklı paketleme/pencereleme yöntemleriyle işler; oluşan çıktı ve F(x) sonuçlarını zaman eşlemesiyle ham PZEM verisine karşılaştırır. Ana araştırma paket boyu/pencere seçiminin etkisidir.
-- **P6 — Canlı saha doğrulaması:** P5'te seçilen F(x) ve paketleme yöntemiyle çalışan ESP, canlı SCT verisinden akım üretir; bu çıktı canlı PZEM referansıyla karşılaştırılır.
+- **P6 — Canlı saha doğrulaması:** P5'te geliştirilen/seçilen F(x) ve paketleme yöntemiyle çalışan ESP, canlı SCT verisinden akım üretir; bu çıktı canlı PZEM referansıyla karşılaştırılır.
 
 ### P6 sonrası döngü
 
