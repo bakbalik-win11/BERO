@@ -1,117 +1,145 @@
 # HDF-002 — Ölçüm Karakterini Öğrenmek ve Gerçek Hayatı Yakalamak
 
-**Durum:** Açık — yeni araştırma yaklaşımı tanımlandı; deney sonuçları henüz üretilmiş sayılmaz.  
-**Güncelleme:** 2026-10-12  
-**Ana ilke:** Önce her ölçüm zincirinden bağımsız olarak mümkün olan en yüksek kaliteli ham veriyi al ve ölçüm karakterini öğren; fiziksel olarak desteklenen bölgeler arasında ilişki kur; donanım sadeleştirmesi ve paket optimizasyonunu daha sonraki aşamaya bırak.
+**Durum:** Açık — yöntem ve süreç tanımlandı; yeni deney veya model başarısı iddia edilmiyor.  
+**Güncelleme:** 2026-10-12
 
-> **Geçmişi koruma:** Bu hedefin önceki sürümleri ve kararları Git geçmişinde korunur. Bu yeni sürüm, eski mimariyi sessizce silmek yerine aktif araştırma yönünü değiştirir. Önceki test kayıtları, kodlar ve ölçümler tarihsel kanıt olarak kalır.
+**Aktif hedef:** Kaliteli SCT ham verisi üretmek; ayrı PZEM akışıyla aynı fiziksel yük durumunu temsil eden kararlı bölgeleri eşleştirmek; çok sayıda farklı akımda doğru etiketli veri oluşturmak; formülü sınav ESP'sinde gerçek referansla değerlendirmek.
 
-## 1. Hedef
+> **Süreklilik:** HDF-001/GRV-001 geçmiş çalışmadır. Mevcut kod, log ve deney tecrübesi kullanılacak; aynı testler sırf yeniden yapmak için tekrarlanmayacaktır. Eski dosyalar ve kayıtlar korunur. HDF-002 yeni bir başlangıç veya sıfırlama değildir.
 
-Her ölçüm zincirinin fiziksel olaylara verdiği karakteristik cevabı öğrenmek. Aynı fiziksel olayı temsil eden iki ayrı veri akışındaki kararlı veya anlamlı kısa bölgeleri eşleştirmek, eşleştirilmiş veri kümesi oluşturmak ve Python ile veriler arasındaki en güçlü, doğrulanabilir ilişkiyi araştırmak.
+## 1. Ana ilke: hızlı ama kaliteli ham okuma
 
-Evrensel tek bir `k` katsayısı varsayılmaz. Aday ilişki önce `I = f(X)`, veriler katkı gösterirse `I = f(X, Bias, V, PF)` gibi daha geniş biçimde sınanabilir. Amaç en karmaşık modeli değil, yeni ve bağımsız verilerde de çalışan en sade ilişkiyi bulmaktır.
+Öncelik, SCT akım dalgasını hızlı, düzenli ve gerçeği temsil edecek kalitede okumaktır. Kalite; hızlı örnekleme sırasında dalga biçimini bozmamak, yapay sıçramaları gerçek sinyalden ayırmaya elverişli olmak, zamanlama düzenini ve ham örnekleri korumaktır. En yüksek örnek sayısı tek başına başarı ölçütü değildir.
 
-## 2. Aşama 1 — Ölçüm karakterini öğrenmek
+Önce depodaki mevcut HDF-001 kodları, logları ve deney tecrübesi incelenir. Mevcut kanıt yeterliyse tekrar deney yapılmaz. Yalnızca mevcut kayıtlarla cevaplanamayan zorunlu bir soru varsa küçük bir ek doğrulama düşünülür. Kullanıcı gereksiz testlerle boğulmaz.
 
-### 2.1 Ham veri ve ölçüm kaynakları
+## 2. Ölçüm mimarisi
 
-İlk deneylerde kapsam küçük tutulur: **bias ve bir veya iki sensör kanalı**. Ham sensör verileri ile PZEM referans ölçümleri ayrı kaynaklardan toplanır; ham kayıtlar değiştirilmeden korunur.
+### 2.1 SCT-ESP
 
-**Öncelik, sensörleri aynı ESP'de toplamak değil, her ölçüm zincirinin kendi ham verisini en yüksek kalitede elde etmektir.** Aşama 1'de sensör kanallarını tek ESP'de birleştirmeye çalışmayız. Dört kanal gereksinimi, dört kanalın aynı ESP'de okunması gerektiği anlamına gelmez; bir zincirde kanal sayısı ölçüm hızını gereksiz düşürüyorsa kanallar/zincirler bağımsız sınanır. Donanım sadeleştirmesi, birleştirme ve paket optimizasyonu Aşama 1'in işi değildir.
+- Bir ESP32-D, bir SCT-013 ölçüm zincirinden sorumludur.
+- Görevi SCT sinyalini mümkün olan en hızlı, kaliteli ve sürdürülebilir biçimde okumak ve ham örnekleri Home Assistant'a (HA) aktarmaktır.
+- ESP üzerinde akım/RMS hesabı, korelasyon, etiketleme veya model üretimi yapılmaz.
+- Örnekleme döngüsü Wi-Fi/HA aktarım hızına bağlanmaz. Aktarım örnekleme zamanlamasını bozmamalı ve ham örnek kaybettirmemelidir.
+- Sırf sıçrama görünümünü azaltmak için gerçek dalgalanmayı veya dalga şeklini silecek filtreleme yapılmaz.
 
-**Okuma hızı ilk önceliktir:** Dört kanal okunacak diye ölçüm döngüsünün gereksiz yere yavaşlamasına izin verilmez. Seçilen kanalların her biri mümkün olan en yüksek *sağlıklı ve sürdürülebilir* örnekleme hızında okunmaya çalışılır. Dört kanalı birlikte okumak hızı düşürüyorsa, kanalların veya ESP'lerin ayrı ayrı çalıştırıldığı deneyler de yapılır. Kanal başına ve toplam örnekleme hızı, zamanlama kararlılığı ve örnek kaybı ölçülür; hız varsayılmaz, ölçülür. Gerekirse ESP'ler teker teker sınanır. Bu, doğrulanmış mevcut performans değil, test edilecek hedef gereksinimidir.
+### 2.2 Bias
 
-PZEM okuması sensör örnekleme yolunu yavaşlatmamak veya etkilememek için ayrı yürütülür. Bunun için ayrı bir ESP veya başka bir bağımsız okuma yolu kullanılabilir. Kaç ESP kullanılacağı şimdiden sabitlenmez; birden fazla mini ESP'nin aynı sensöre bakması da deney tasarımına göre değerlendirilebilir.
+Bias, akım hesabında ve sonraki F(X) formülünde gerekli bir girdidir. Bu nedenle SCT ham verisiyle doğru ilişki korunarak kaydedilir.
 
-Mac'e doğrudan bağlantı sayısı pratik bir sınır oluşturabilir. Gerekirse veriler Home Assistant'a aktarılır, saklanır ve daha sonra Python/Mac tarafında birleştirilip eşleştirilir. **Mac'in gerçek zamanlı eşleştirme noktası olması şart değildir.** Home Assistant ile Mac arasındaki nihai veri taşıma mimarisi henüz kesinleşmiş değildir.
+- Hedef düzen, SCT ve ona ait bias bilgisinin aynı ESP/ölçüm zincirinde okunup aynı kayıt akışıyla ilişkilendirilmesidir.
+- Bias ölçümü SCT örneklemesini bozuyorsa öncelik SCT dalgasının kaliteli örneklenmesidir; mevcut donanım ve kodun desteklediği en yalın senkron kayıt yöntemi seçilir.
+- Her SCT örneğinde bias ADC okumasının mutlaka tekrarlanacağı veya bias'ın değişmez olduğu varsayılmaz. Gerekli zaman ilişkisi korunur; gereksiz test serisi açılmaz.
 
-Her ölçüm zinciri ilk olarak kendi başına en yüksek sağlıklı okuma hızına ulaşmaya çalışır. Birden fazla kanalı/ESP'yi birlikte çalıştırmanın ölçüm hızını düşürüp düşürmediği ayrıca test edilir; dört kanalı okuma uğruna örnekleme yolunu yavaşlatmak kabul edilen bir varsayım değildir. Gerekirse ölçüm zincirleri teker teker çalıştırılır ve bağımsız ham kayıtlar toplanır.
+### 2.3 PZEM-ESP
 
-Paket senkronizasyonu ve milisaniye düzeyinde saat eşitlemesi bu aşamanın hedefi değildir. Kayıt zamanı varsa korunur; fakat eşleştirme aynı fiziksel olayı temsil etme kanıtına ve deney bağlamına dayanır. Bölgelerin sürelerinin eşit olması gerekmez. Eşleşme güvenilir biçimde kurulamıyorsa veri zorla eşleştirilmez.
+- PZEM ayrı bir ESP/bağımsız okuma zincirinde çalışır.
+- Bu ESP yalnızca PZEM'in kendi ürettiği ölçüm verilerini okur ve HA'ya aktarır.
+- PZEM'in kendi ölçüm/güncelleme hızını SCT hızına yetiştirmeye çalışmak hedef değildir.
+- PZEM akımı, gerilim (V) ve güç faktörü (PF) birlikte korunur.
+- PZEM verisinin yayın anı, içerdiği ölçümün kesin fiziksel zamanı sayılmaz.
+- PZEM zinciri SCT örnekleme hızını sınırlamaz.
 
-### 2.2 Deney sınıfları
+## 3. HA → masaüstü Python → Mac arşivi
 
-- **Kısa, kontrollü deney:** Örneğin 150 W akkor lamba tek başına çalışır.
-- **Uzun deney:** Örneğin Fan 1 bir gece boyunca çalışır; uzun dönemli kararlı bölgeler ve zaman içindeki değişimler gözlenir.
-- **Karma deney:** Akkor lamba ve fan birlikte çalışır; karma yük davranışı ayrı etiketlenir.
+1. SCT-ESP ve PZEM-ESP verileri HA'da birikir.
+2. Masaüstündeki Python-A yeni verileri HA'dan alır ve aktarım bütünlüğünü doğrular.
+3. Veri Mac'te kalıcı olarak yazılıp yeniden okunarak doğrulanmadan HA'daki kopya silinmez.
+4. Doğrulanmış kayıtlar Mac arşivine alınır. Ham kaynak kayıtları değiştirilmez.
+5. Sonraki süreçler bu arşiv üzerinde çalışır. Ham veri, bölgeler, etiketli veri, modeller ve doğrulama sonuçları ayrı saklanır.
 
-Bunlar planlanan deney örnekleridir; tamamlanmış veya başarılı deneyler olarak kabul edilmez. Her deneyin fiziksel koşulu, kaynak cihazı/kanalı ve mevcut kayıt bilgileri saklanır. Ham veriler, temizlenmiş veriler ve eşleştirilmiş bölgeler ayrı tutulur. Tekil yük verileri karma yük davranışının basit toplamı olarak önceden varsayılmaz.
+Mantıksal arşiv bölümleri: raw (değiştirilmemiş ham veri), validated (aktarımı doğrulanmış kayıt), regions (işaretli bölgeler), labeled (eşleştirilmiş/etiketlenmiş veri), models (sürümlü formüller), validation (sınav sonuçları), reports (raporlar). Bu tanım, klasörlerin kurulduğu veya aktarımın çalıştığı anlamına gelmez.
 
-### 2.3 Eşleştirme ve etiketleme
+## 4. Python süreçleri
 
-**İlk eşleştirme filtresi PZEM tarafında gerilim (V) ve güç faktörünün (PF) aynı veya deney toleransı içinde benzer olduğu bölgeleri işaretlemektir.** Bu bölgelerde PZEM akım etiketi tek başına tutulmaz; akım etiketi ilgili V ve PF bilgileriyle birlikte taşınır: `(I, V, PF)`. Böylece SCT karakteriyle ilişkilendirilen etiket, hangi gerilim ve PF koşullarında geçerli olduğuna dair bağlamını kaybetmez.
+### Python-A — aktarım ve arşivleme
+HA'dan yeni veriyi alır; kayıt bütünlüğünü kontrol eder; Mac'e yazar ve yeniden okuyarak doğrular; ancak bundan sonra HA'daki aktarılmış kopyayı siler. Ham kaydı değiştirmez.
 
-Bu alt kümeler, sabit/benzer V ve PF koşullarında daha basit bir aday `k` ilişkisini incelemeyi sağlar. `k`'nın sabit olduğu önceden kabul edilmez; her V/PF grubu içinde verilerle hesaplanır ve bağımsız veride sınanır. Farklı V veya PF koşullarındaki bölgeler, gerekçesiz biçimde aynı kümeye karıştırılmaz.
+### Python-B — eş bölge işaretleme ve etiketleme
+- SCT ve PZEM akışlarını önce ayrı ayrı inceler.
+- Her akışta kendi karakterine göre kararlı bölgeleri belirler.
+- Aynı fiziksel yük durumuna karşılık gelen bölgeleri deney bağlamı ve yük durumu bilgisiyle eşleştirir.
+- Amaç zaman damgalarını birebir eşlemek değil, aynı fiziksel durumu temsil eden eş bölgeleri işaretlemektir. Zaman bilgisi yardımcı kanıt olarak korunabilir; tek başına eşleşme kanıtı değildir.
+- PZEM akım etiketi, ilgili V ve PF bilgileriyle birlikte SCT bölgesine aktarılır; bias bilgisi SCT verisiyle ilişkilendirilir.
+- Yükün açılma/kapanma geçişleri eğitim verisine alınmaz; yalnızca kararlı bölgeler kullanılır.
+- Eşleşmesi güvenilir olmayan bölge zorla etiketlenmez.
+- Ham veri değiştirilmez; bölgeler ve etiketler ayrı kaydedilir.
 
-İki akışın ilk işlemesi ayrı yürütülür:
+### Python-C — birikimli model ve parametre analizi
+- Her çalıştırmada önceki etiketli veri kümesini ve yeni doğrulanmış etiketleri okur.
+- Birikimli veri kümesini korur; eski etiketler kaybolmaz.
+- SCT karakteri, bias, V ve PF parametrelerinin katkısını inceler.
+- Önce basit ilişki/katsayıyı, yeterli değilse daha kapsamlı I = F(SCT, Bias, V, PF) adayını araştırır.
+- Modeli eğitimde kullanılmamış bağımsız bölgelerle sınar.
+- Model sürümü, veri kümesi sürümü, parametreler ve doğrulama sonuçları kaydedilir; yeni model eskisinin üzerine yazılmaz.
+- Model üretiminin bir hafta sürmesi sorun değildir; önemli olan veri ve doğrulama kalitesidir.
 
-- **PZEM akışı:** Kararlı/anlamlı bölgeler belirlenir ve uygun bölgelere ölçülen akım değeri etiketi verilir.
-- **SCT akışı:** Ham örüntüler ve karakteristik özellikler çıkarılır; bu aşamada PZEM etiketi varsayılmaz.
-- **Python korelasyonu:** PZEM etiketli bölgeler ile SCT karakter bölgeleri, aynı fiziksel durumu temsil ettiklerine dair deney koşulları ve kayıtlarla destek varsa ilişkilendirilir. Böylece PZEM akım etiketi, desteklenen SCT karakter bölgesine aktarılabilir ve aday `I = f(X)` ilişkisi öğrenilebilir.
+## 5. Eş bölgeler ve doğru etiket
 
-**Öncelik paket/zaman senkronizasyonu değil, karakter ve bölge korelasyonudur.** Bununla birlikte zaman bilgisi yardımcı kanıt olarak korunabilir; sayısal benzerlik tek başına aynı fiziksel durumu kanıtlamaz. Fiziksel eşleşme yeterince desteklenmiyorsa etiket zorla aktarılmaz.
+Eşleştirme zaman eşlemesi değil, eş bölge işaretlemesidir. Aynı fiziksel yük durumu deney bağlamıyla desteklenmelidir. Kararlı bölgelerin sürelerinin eşit olması veya zaman damgalarının çakışması gerekmez.
 
-Mühendislik tarafı fiziksel olayı seçer, deney koşullarını kaydeder, veriyi temizler ve aynı fiziksel olayı temsil ettiği desteklenen bölgeleri etiketler.
+Kararlı bölge ölçütleri gerçek veriden çıkarılır; kanıtlanmamış tolerans veya pencere değerleri uydurulmaz. SCT örneklerinin birebir aynı olması beklenmez; bölgenin seviyesi ve dalgalanma karakteri birlikte değerlendirilebilir.
 
-Python tarafı:
-- İki veri akışında karşılık gelen bölgeleri arar.
-- Korelasyonu ve anlamlı özellikleri inceler.
-- Bias, gerilim ve PF gibi aday parametrelerin katkısını değerlendirir.
-- Aday fonksiyonları karşılaştırır.
-- Eğitim/model seçimi için kullanılan verilerden ayrı tutulan örneklerle bağımsız doğrulama yapar.
+Her etiket mümkün olduğunca şu bağlamı korur:
+- deney/yük durumu ve bilinen yük koşulu;
+- kaynak cihaz/kanal;
+- SCT ham veri aralığı ve ona ait bias bilgisi;
+- PZEM akım etiketi, V ve PF;
+- varsa zaman bilgisi;
+- bölge seçimi ve eşleştirme gerekçesi.
 
-Örnek olarak PZEM'de belirli V ve PF koşullarında 1,50 A civarında bir bölge bulunabilir. Etiket yalnızca `1,50 A` değildir; `(1,50 A, V, PF)` bağlamıyla korunur. Bu bölge ile SCT ham örüntüsünün aynı fiziksel duruma ait olduğu deney bağlamıyla desteklenmelidir; örnek değerler açıklama amaçlıdır, BERO ölçüm sonucu değildir.
+Öncelik, çok sayıda farklı akım seviyesinde doğru etiketlenmiş bölgeler oluşturmaktır. Aynı akım seviyesindeki tekrarlar da tutarlılık için saklanır. Nominal yükün her seferinde aynı akımı çektiği varsayılmaz; etiket ölçülen referans değerinden gelir.
 
-PZEM, eğitim ve doğrulama aşamasında referanstır. Nihai amaç, doğrulanmış bir modelin çalışma sırasında sensör verisinden akım tahmin edebilmesidir.
+## 6. Formül ve kabul hedefi
 
-## 3. Aşama 2 — Ölçüm hızı, donanım sadeleştirmesi ve paketlemeyle gerçek hayatı yakalamak
+Araştırılan ilişki:
 
-Aşama 1'de her zincirin ham veri kalitesi ve karakteri anlaşılmadan donanım sadeleştirmesi/birleştirmesi yapılmaz. **Paketleme ve paket optimizasyonu da birinci aşamanın kapsamı değildir.** İkinci aşamada, fiziksel olayları kaçırmadan yakalamaya uygun ölçüm hızı ve veriyi güvenilir taşıyacak paketleme yöntemi deneylerle seçilir.
+    I_tahmin = F(SCT_karakteri, Bias, V, PF)
 
-- **Ölçüm hızı:** Kısa süreli değişimleri ve uzun süreli davranışı yeterince yakalayacak örnekleme hızını bul.
-- **Paket boyutu/yöntemi:** Sabit boyutlu ve değişime duyarlı seçenekleri karşılaştır.
-- **Aktarım:** Veri kaybı, aktarım süresi/throughput, bellek ve işlemci yükünü ölç.
-- **Gerçek hayat temsili:** Kısa geçişlerin ve uzun kararlı bölgelerin seçilen hız ve paketleme ile korunup korunmadığını değerlendir.
+Bu başlangıç hipotezidir; tüm parametrelerin mutlaka gerekli olduğu veya evrensel tek formül bulunacağı önceden kabul edilmez. Aşırı öğrenme başlı başına yasak değildir; pratik hedef, sınavda kabul edilebilir doğruluğa ulaşmaktır. Yine de eğitim verisine ezber uyum ile bağımsız veride başarıyı ayırmak için kullanılmamış bölgelerle doğrulama yapılır.
 
-Ölçüm hızı örneklerin hangi sıklıkta alındığını; paketleme ise alınan örneklerin nasıl gruplanıp taşındığını belirler. İki değişken ayrı ayrı incelenir ve sonra birlikte doğrulanır. En yüksek hız veya en büyük paket kendiliğinden en iyi seçenek sayılmaz.
+Pratik kabul hedefi yaklaşık ±%4 bağıl akım sapmasıdır. Sıfıra yakın akımda bağıl hata anlamsızlaşabileceğinden ayrıca mutlak amper hata ölçütü gerekir. PZEM referansının kendi hatası da sonuçların yorumunda korunur.
 
-## 4. Veri koruma
+## 7. Sınav ESP'si ve PZEM korelasyonu
 
-Ham kaynak kayıtları üzerine yazılmaz. Temizlenmiş veriler, eşleştirilmiş bölgeler, özellikler, modeller ve raporlar ayrı saklanır. Kayıtlar mümkün olduğunca deney kimliği, yük sınıfı, kaynak cihaz/kanal, bölge kimliği ve mevcut zaman bilgisiyle izlenebilir olmalıdır.
+Uygun model sınav ESP'sine yüklenir. Sınav ESP'si SCT ve ilgili bias girdisinden akım tahmini üretir; PZEM ayrı ESP'sinde çalışır. Python, tahmin ile PZEM verisini aynı fiziksel duruma ait kararlı eş bölgeler üzerinden karşılaştırır.
 
-Önerilen arşiv düzeni:
+Korelasyonla birlikte bağıl/ mutlak hata, ortalama sapma ve akım aralığına göre hata incelenir. Yüksek korelasyon tek başına doğru akım ölçümü kanıtı değildir; tahmin sürekli fazla veya eksik olabilir.
 
-```text
-BERO_DATA/
-  raw/
-  features/
-  models/
-  reports/
-  archive/
-```
+**Ek fiziksel test otomatik olarak şart değildir.** Önce mevcut ham arşivdeki, model kurulurken kullanılmamış uygun bölgeler değerlendirilir. Arşiv soruyu güvenilir biçimde cevaplayabiliyorsa yeni test yapılmaz. Veri yetersizse yalnızca eksik kanıtı sağlayacak en küçük doğrulama düşünülür.
 
-Bu, önerilen klasör düzenidir; belgenin yazılması Mac üzerinde klasörlerin oluşturulduğu veya veri aktarımının doğrulandığı anlamına gelmez. Kaynak veriler aktarım bütünlüğü doğrulanmadan silinmez.
+## 8. Süreç sırası
 
-## 5. Tamamlanma ölçütleri
+1. HDF-001'deki mevcut SCT kodu/logları ve tecrübeyi kullan; aynı testleri baştan yapma.
+2. SCT için hızlı, kaliteli ve dalgayı temsil eden ham okuma yolunu esas al; bias ilişkisini aynı zincirde koru.
+3. PZEM'i ayrı ESP'de kendi hızında tut.
+4. Her iki ham akışı HA'da biriktir.
+5. Python-A veriyi alıp doğrulasın; Mac kopyası doğrulanınca HA kopyasını silsin.
+6. Ham arşivi koru; Python-B kararlı eş bölgeleri fiziksel yük durumuna göre eşleştirip etiketlesin.
+7. Python-C birikimli etiketli veriden parametreleri ve en sade işe yarar formülü araştırsın.
+8. Model sürümlerini kaydet; uygun modeli sınav ESP'sine yükle.
+9. Sınav ESP'si tahmini ile PZEM'i eş bölgelerde karşılaştır; korelasyon ve hata raporu çıkar.
+10. Yeni veri geldikçe modeli yeniden üret; ham veriyi ve model geçmişini koru.
 
-**Aşama 1:** Ham veriler ve deney bağlamı korunmuş; aynı fiziksel olayı temsil eden bölgeler gerekçeli biçimde eşleştirilmiş; yeniden kullanılabilir eşleştirilmiş veri kümesi oluşturulmuş; aday fonksiyon bağımsız verilerle sınanmış olmalıdır.
+## 9. Çalışma sınırları
 
-**Aşama 2:** Kısa ve uzun süreli fiziksel davranışlar yeterince yakalanmış; veri aktarımı ve kayıp ölçülmüş; ölçüm hızı ile paketleme seçenekleri karşılaştırılarak uygun yapı seçilmiş olmalıdır.
+- HDF-001 deneylerini baştan tekrarlamak varsayılan iş değildir.
+- ESP'ler ölçüm okur; etiketleme, korelasyon ve model üretimi masaüstü Python tarafındadır. Sınav ESP'si yüklenen formülü çalıştırıp tahmin üretir.
+- PZEM'in ölçüm hızı SCT'ye uydurulmaz.
+- Birebir zaman damgası veya paket senkronizasyonu eş bölge eşleştirmenin ön koşulu değildir.
+- Ham kaynak dosyaların üzerine yazılmaz; HA kopyası Mac'teki kalıcı kopya doğrulanınca silinir.
+- Yeni test, aktarım, model veya başarı gerçekleşmiş gibi gösterilmez.
+- Donanım sadeleştirmesi ve paket optimizasyonu, kaliteli ham veri ve eş bölge/model süreci anlaşılmadan öncelik kazanmaz.
 
-Ölçüm veya doğrulama kanıtı olmadan hiçbir test başarılı ilan edilmez.
+## 10. Tamamlanma ölçütleri
 
-## 6. Çalışma sırası
+HDF-002'nin başarılı sayılması için:
+1. SCT dalgasını hızlı ve kaliteli temsil eden mevcut/iyileştirilmiş okuma yöntemi kanıtla tanımlanmalı.
+2. SCT ve bias doğru ilişkilendirilmeli; PZEM akışı bağımsız kalmalı.
+3. Ham veri HA'dan Mac'e bütünlük doğrulamasıyla aktarılmalı ve arşiv korunmalı.
+4. Kararlı eş bölgeler gerekçeli biçimde eşleştirilmeli ve farklı akım seviyelerinde doğru etiketlenmeli.
+5. Parametre katkıları incelenmeli ve formül/model sürümlenmeli.
+6. Sınav ESP'si tahmini PZEM ile eş bölgelerde karşılaştırılmalı; korelasyon ve hata raporlanmalı.
+7. Yaklaşık ±%4 hedefinin hangi koşullarda sağlandığı veya sağlanmadığı gösterilmeli.
 
-1. PZEM referansını ayrı ve sensör örneklemesini etkilemeyecek şekilde kaydet; PZEM kararlı bölgelerini akım etiketiyle işaretle.
-2. Bias ve seçilen sensör kanallarından, her ölçüm zincirini ilk aşamada bağımsız tutarak ham veri topla; her kanalın mümkün olan en yüksek sağlıklı hızını ölç. Dört kanalın birlikte okunmasının hızı düşürüp düşürmediğini, gerekirse kanal/ESP'leri teker teker çalıştırarak karşılaştır.
-3. Kanal başına ve toplam örnekleme hızını, zamanlama kararlılığını ve örnek kaybını kaydet; hızın doğrulandığına dair ölçüm olmadan iddiada bulunma.
-4. Veriyi uygun yerde biriktir (Mac veya Home Assistant üzerinden); ham kaynakları koru.
-5. Önce PZEM'de aynı/benzer gerilim ve PF koşullarındaki bölgeleri grupla; akım etiketini `(I, V, PF)` olarak koru. Ardından deney bağlamıyla desteklenen SCT karakter bölgeleriyle Python üzerinden eşleştir.
-6. Eşleştirilmiş veri kümesinden özellikleri ve aday `f(X)` ilişkilerini araştır; bağımsız verilerle doğrula.
-7. Aşama 1 tamamlanıp ölçüm karakteri anlaşıldıktan sonra donanım sadeleştirmesi/birleştirmesini ayrıca değerlendir.
-8. Daha sonra ölçüm hızı ve paketleme yöntemini gerçek hayatı yakalama, veri kaybı ve kaynak kullanımı açısından karşılaştır; ilk aşamada ölçülen ham okuma hızı sonuçlarını temel al.
-
-## 7. Kısa yön özeti
-
-**Önce her ölçüm zincirinden bağımsız, kaliteli ham veri al; PZEM'de aynı/benzer V ve PF bölgelerini işaretle ve akım etiketini `(I, V, PF)` olarak taşı; SCT bölgelerini sinyal karakteriyle tanımla; fiziksel olarak desteklenen bölgeleri korele ederek önce uygun koşul gruplarında aday `k`, ardından gerekirse `I = f(X)` ilişkisini araştır. Sonra donanımı sadeleştir ve ölçüm hızı/paketlemeyi seç.** Paket senkronizasyonu olay korelasyonunun ön koşulu değildir; paketleme ikinci aşamanın araştırma konusudur.
+**Kanıt sınırı:** Bu belge hedef ve süreç mimarisini kaydeder. Yeni ölçüm, aktarım, model, ESP yüklemesi veya ±%4 başarısı gerçekleştiğini iddia etmez.
