@@ -222,3 +222,66 @@ HDF-002 ancak şu kanıtlar elde edildiğinde tamamlanmış sayılır:
 9. Yeni verilerle model iyileştirme döngüsü sürümlü, geri alınabilir ve doğrulamaya bağlı biçimde çalışmalı.
 
 **Kanıt sınırı:** Bu belge HDF-002'nin güncellenmiş hedefini ve tasarlanan iş akışını tanımlar. Donanım kurulumunun, veri hattının, Python programlarının, modelin veya sürekli iyileştirme döngüsünün tamamlandığını; ayrıca ±%4 başarım elde edildiğini iddia etmez.
+
+
+---
+
+## 2026-10-12 — Güncel yöntem kararı: önce etiketli veri, sonra optimum paket ve F(x)
+
+**Bu bölüm, HDF-002 içindeki önceki taslak akışlarda paket optimizasyonunun zamanlamasıyla ilgili ifadelerle çelişirse güncel ve geçerli yöntem kararını belirtir.** Önceki kayıtlar silinmez; bu kararın gerekçesi ve geçmişi korunur.
+
+### Hedef 1'den devralınan durum
+
+HDF-001'de ESP veri okuma yeteneklerini inceleyen işe yarar testler yapıldı. Bu testlerden öğrenilenler HDF-002'de kullanılabilir. HDF-001'in dondurulması, veri okuma testlerinin tamamının başarısız olduğu anlamına gelmez; başarısız kalan bölüm, zaman odaklı eşleştirme üzerinden F(x) hesaplamaya geçme yaklaşımıdır.
+
+MCP/SCT tarafındaki entegre veya işlenmiş çıktı, ham SCT davranışının doğrudan aynısı değildir. Ölçüm zinciri örnekleme, kümülasyon/entegrasyon ve matematiksel işlem uygulamış olabilir. PZEM'in çıktısı da kendi ölçüm zincirinin hesaplanmış sonucudur. Bu iki çıktıyı yalnızca zaman damgalarına göre eşlemek, aynı fiziksel akım olayını temsil ettiklerini kanıtlamaz. Son testlerde istatistiklerin beklenen biçimde tutturulamaması bu yöntemin temel varsayımını sorgulamamıza neden oldu.
+
+### HDF-002'nin ilk kazanımı: aynı akım alanından etiketlenmiş veri hazırlamak
+
+HDF-002'nin ilk önceliği F(x) hesaplamak veya en yüksek örnekleme hızını seçmek değildir. İlk öncelik, **aynı fiziksel akım alanını/olayını temsil eden SCT bölgelerini belirlemek ve bunları PZEM'in sabit referans alanlarıyla gerekçeli biçimde etiketleyerek korunmuş bir veri kümesi hazırlamaktır.**
+
+- PZEM tarafındaki akım değeri, gerilim ve güç faktörü bağlamıyla birlikte `(I, V, PF)` olarak korunur.
+- SCT tarafındaki ham dalga, BIAS bilgisi, cihaz/kanal kimliği ve deney koşulları korunur.
+- Zaman damgaları yardımcı bağlamdır; eşleşmenin tek ölçütü değildir.
+- Benzer V/PF tek başına aynı fiziksel akım olayı olduğunu kanıtlamaz. Eşleştirme deney/yük durumu ve ölçüm bölgelerinin temsil ettiği fiziksel koşulla gerekçelendirilmelidir.
+- Etiketi güvenilir biçimde atanamayan bölge zorla etiketlenmez.
+- Ham kaynak veriler değiştirilmez; ham veri, aday bölgeler, etiketli veri ve türetilmiş veri ayrı tutulur.
+
+Bu etiketli veri kümesi, F(x) henüz başarılı olmasa bile başlı başına bir kazanımdır ve sonraki paket/model deneylerinde yeniden kullanılacaktır.
+
+### Yeni ara adım: Python ile optimum paketi seçmek
+
+Etiketli veri hazırlandıktan sonra yeni bir Python adımı devreye girer. Bu kod, farklı paket/pencere/okuma seçeneklerini **aynı akım alanına ait etiketlenmiş veri üzerinde** değerlendirir ve sonraki paket testleri için gerekçeli aday veya optimum paket seçimini üretir.
+
+Değerlendirme yalnızca örnek sayısına veya istatistiksel kararlılığa dayanmaz. Uygun olduğu ölçüde şunlar raporlanır:
+
+- etiketli akım alanını temsil etme kalitesi;
+- aynı olay içindeki tekrarların tutarlılığı;
+- örnek kaybı, zamanlama düzeni ve paket bütünlüğü;
+- paket/özellik seçimiyle hesaplanan akım hatası ve yanlılık;
+- akım seviyesine ve deney koşuluna göre sonuçlar;
+- karar vermeye yetecek etiketli veri olup olmadığı.
+
+En düşük değişkenlik tek başına en doğru akım tahmini anlamına gelmez. Yeterli kanıt yoksa kod kesin optimum ilan etmek yerine adayları ve eksik kanıtı raporlar.
+
+### Güncellenmiş sıra
+
+1. **Ham veri ve ölçüm karakteri:** HDF-001'deki işe yarar okuma kodları, loglar ve deneyim tekrar test yapmadan incelenir; mevcut kanıt yeterliyse tekrar edilmez.
+2. **Aynı akım alanını belirle ve etiketle:** SCT/BIAS bölgelerini, PZEM'in sabit `(I, V, PF)` referans alanları ve deney bağlamıyla eşleştir. Güvenilir etiketli veri kümesini oluştur ve koru.
+3. **Python — optimum paket adayı seçimi:** Etiketli veri üzerinde paket/pencere/okuma alternatiflerini karşılaştır; ölçütleri ve karar gerekçesini kaydet.
+4. **Paket testleri:** Seçilen paketleri etiketlenmiş veri üzerinde test et. Paket testleri kaldırılmamıştır; doğru veri temelinin sonrasına taşınmıştır.
+5. **F(x) hesaplama:** Etiketli veriden bir veya daha fazla basit F(x) adayı üret ve gerçek akım tahmini hesapla.
+6. **Hata analizi ve iyileştirme:** Tahminleri PZEM referansıyla aynı akım olayları/alanları üzerinde karşılaştır. Hata görünür olduktan sonra model ve paket seçimini iyileştir.
+7. **Bağımsız doğrulama ve saha ESP'si:** Aynı fiziksel olayın türev kayıtlarını eğitim ve testte karıştırmadan bağımsız değerlendirme yap; doğrulanmış modeli ancak onaylı sürüm olarak ESP'ye taşı.
+
+### Çalışma felsefesi
+
+**Hedef 1:** ESP'nin veri okuma yeteneklerini sınamak ve işe yarar teknik bilgiyi edinmek. Veri okuma deneyimleri korunmuştur; ancak eski zaman merkezli F(x) yöntemi dondurulmuştur.
+
+**Hedef 2:** Felsefeyi etiketlenmiş veriye kaydırmak. Önce elmayı elmayla eşleştir; aynı akım alanından etiketli veri hazırla. Sonra optimum paketi seç, paket testlerini yap, F(x)'i hesapla ve hatayı ölç.
+
+**Çalışma döngüsü:** Etiketle → paket seç → paketleri test et → F(x) hesapla → hatayı gör → iyileştir.
+
+### Kanıt sınırı
+
+Bu kayıt yöntem ve iş akışı kararıdır. Etiketli veri kümesinin hazır olduğunu, optimum paketin bulunduğunu, paket testlerinin geçtiğini, F(x)'in başarılı olduğunu veya ±%4 hedefinin sağlandığını iddia etmez.
