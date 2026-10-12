@@ -544,3 +544,17 @@ Kullanıcının paylaştığı donanım: **5 V, 2 kanallı Solid State Röle (SS
 
 **Kanıt sınırı:** Fotoğraf kartın iki kanallı olduğunu ve kontrol terminallerinin etiketlerini gösterir; yük gerilimi/akımı, izolasyon ve P4-Pico ile doğrudan uyumluluk henüz doğrulanmış değildir.
 
+---
+
+## SSR klape kontrolü — eldeki 5 V iki kanallı kart
+
+Kullanıcı fotoğrafla elindeki kartı tanımladı: **5 V 2 Kanal Solid State Röle Kartı**. Bu kart klape SSR kontrolünde kullanılacak; yeni kart satın alma gereği yoktur.
+
+- İlk görevde yalnızca **bir kanal** kullanılacak; ikinci kanal kullanılmayacak.
+- Başlangıç deney çevrimi: **55 saniye açık, 5 saniye kapalı**.
+- Bu çevrim ilk deney ayarıdır; optimum çalışma veya güvenli çevrim olduğu henüz kanıtlanmış değildir.
+- SSR kontrolü, nihai saha ESP'si adayı ESP32-P4-Pico mimarisinde ele alınacaktır.
+- Kartın kontrol girişleri, yükün gerilim/akım sınırları, izolasyon ve klapenin güvenli açılma-kapanma davranışı uygulama öncesinde doğrulanmalıdır.
+
+**Kanıt sınırı:** Fotoğraf ürünün iki kanallı SSR kartı olduğunu destekler; yük tarafının elektriksel uygunluğu ve gerçek klape uygulaması henüz test edilmemiştir.
+
