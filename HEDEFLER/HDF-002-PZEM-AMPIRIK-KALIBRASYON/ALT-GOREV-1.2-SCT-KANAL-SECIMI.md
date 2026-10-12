@@ -51,3 +51,11 @@ SSR için 55 saniye açık + 5 saniye kapalı döngüsü başlangıç zamanlama 
 
 **Kanıt sınırı:** Bu bir araştırma sorusudur; ayrı modellerin ya da tek ortak modelin üstünlüğü henüz kanıtlanmamıştır.
 
+### İleri mimari araştırması — ESP32-P4-Pico
+
+ESP32-P4-Pico, HDF-002 sonrasında BERO'nun nihai saha akım ölçüm ESP'si adayı olarak kaydedilir. 1T/2T/4T ile yapılan üç ayrı ölçüm zinciri araştırma/veri üretme aşamasında kalır; bunlardan elde edilen kanıtlar P4-Pico'da kullanılacak model mimarisini belirlemeye yardımcı olur.
+
+Araştırılacak seçenek: kanal/sarım kimliklerine göre ayrı K/F(x) modelleri çalıştırmak mı, yoksa ortak F(x) kullanmak mı? P4-Pico'nun GPIO ve ölçüm giriş eşlemesi, ADC bağlantısı ve gerçek örnekleme performansı ayrıca doğrulanır. GPIO'ların fiziksel sarım sayısını değiştirdiği varsayılmaz; üç modelin GPIO'larla farklı sarım yapılandırmalarını yönetmesi şu an için bir mimari fikirdir.
+
+**Kanıt sınırı:** P4-Pico'nun nihai saha kartı olarak seçimi yön olarak kaydedilmiştir; uygunluk, bağlantı ve çalışma başarısı henüz test edilmemiştir.
+
