@@ -39,3 +39,15 @@ SSR için 55 saniye açık + 5 saniye kapalı döngüsü başlangıç zamanlama 
 
 **Kanıt sınırı:** Bu karar prototipin montajının, hesaplamanın veya kalibrasyonun tamamlandığını göstermez.
 
+### Araştırma sorusu — ayrı model mi, ortak F(x) mi?
+
+Üç ölçüm ESP'sinin her biri için ayrı kalibrasyon/model eğitimi yapmak mı gerekir, yoksa 1T/2T/4T kanal kimlikleri korunarak tek bir ortak (F(x)) bütün ilgili bölgelerde yeterli olabilir mi? Bu karar önceden verilmeyecek.
+
+- Her kanalın ham verisi ve kendi BIAS kaydı ayrı tutulur; sarım sayısına göre ön bölme yapılmaz.
+- Kanal bazlı K/F(x) adayları ile ortak F(x), aynı türde PZEM ile eşleştirilmiş kayıtlar ve bağımsız test ölçütleriyle karşılaştırılır.
+- Düşük/değişken akım (ör. bilgisayar masası) ve farklı/yüksek yük koşulları (ör. tost makinesi) ayrı bağlamlar olarak değerlendirilir.
+- Ortalama hata yanında hata dağılımı, mutlak amper hatası ve tekrarlanabilirlik raporlanır.
+- K katsayısı yalnızca ipucudur; tek başına en iyi sarımı veya model mimarisini seçmez.
+
+**Kanıt sınırı:** Bu bir araştırma sorusudur; ayrı modellerin ya da tek ortak modelin üstünlüğü henüz kanıtlanmamıştır.
+
