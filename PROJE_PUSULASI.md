@@ -286,3 +286,24 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - **Düzeltme:** Aktif hedef HDF-002'dir. HDF-001/GRV-001 önceki çalışma geçmişidir; tekrar başa dönülmeyecek. HDF-002, önceki saplanmayı ve sıfırlama döngüsünü tekrarlamadan ölçüm karakterini öğrenmek için açılmıştır.
 - MCP sıfırları varmış gibi varsayılmayacak; kullanıcı açıkça “sıfır yok” dedi. Bu akşamın planı MCP etrafında kurulmayacak.
 - Bir sonraki plan HDF-002'nin gerçek durumundan ve mevcut kod/donanım kayıtlarından türetilecek.
+
+
+---
+
+## 2026-10-12 — HDF-002 güncel süreç kararı
+
+**Aktif hedef:** [HDF-002 — Ölçüm Karakterini Öğrenmek ve Gerçek Hayatı Yakalamak](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md)
+
+- HDF-001/GRV-001 geçmiş tecrübesi başlangıç noktasıdır; kod ve loglar kullanılacak, aynı testler gereksiz yere tekrarlanmayacaktır.
+- SCT-ESP hızlı, düzenli ve dalgayı doğru temsil eden kaliteli ham veriyi okur; ESP analiz/formül üretmez. Bias bilgisi aynı SCT ölçüm zinciriyle doğru ilişkilendirilir.
+- PZEM ayrı ESP'de kendi hızında çalışır; SCT örneklemesini yavaşlatmaz.
+- Her iki akış HA'da birikir. Masaüstü Python veriyi alır, Mac'teki kalıcı kopyayı doğrular ve ancak sonra HA kopyasını siler.
+- Ham arşiv değişmez. Ayrı Python süreçleri aktarım/doğrulama, eş bölge işaretleme/etiketleme ve birikimli model üretme görevlerini yürütür.
+- Eşleştirme zaman damgalarının birebir eşitliği değil, aynı fiziksel yük durumunu temsil eden kararlı eş bölgelerdir. Eğitimde yük geçişleri kullanılmaz. PZEM etiketi (I, V, PF) bağlamını, SCT bölgesi kendi bias bilgisini korur.
+- Doğru etiketlenmiş çok sayıda farklı akım seviyesi hedeflenir. Model/formül parametreleri incelenir; uygun model sınav ESP'sine yüklenir ve PZEM ile eş bölgelerde karşılaştırılır.
+- Pratik hedef yaklaşık ±%4 bağıl akım sapmasıdır; sıfıra yakın akım için mutlak hata ölçütü gerekir.
+- Önce mevcut arşivdeki veriler kullanılır. Yeni fiziksel test ancak gerekli kanıt mevcut kayıtlardan elde edilemiyorsa düşünülür.
+
+**Sıradaki tek adım:** HDF-001'deki SCT okuma kodu/loglarını yeniden test yapmadan bulup mevcut kanıtı değerlendirmek; HDF-002 veri akışı için henüz yapılmamış kurulumları başarı gibi göstermemek.
+
+**Durum:** Hedef ve süreç tanımı plan/mimari kararıdır; deney, model veya ±%4 performans doğrulaması değildir.
