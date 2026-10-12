@@ -1,145 +1,224 @@
-# HDF-002 — Ölçüm Karakterini Öğrenmek ve Gerçek Hayatı Yakalamak
+# HDF-002 — Ölçüm Karakterini Öğrenmek, Gerçek Dalgayı Yakalamak ve Akımı ESP'de Hesaplamak
 
-**Durum:** Açık — yöntem ve süreç tanımlandı; yeni deney veya model başarısı iddia edilmiyor.  
-**Güncelleme:** 2026-10-12
+**Durum:** Açık — hedef mimarisi ve çalışma zinciri tanımlanıyor; donanım kurulumunun, yeni deneylerin, model başarısının veya ±%4 doğruluğun tamamlandığı iddia edilmiyor.  
+**Güncelleme:** 2026-10-12  
+**Önceki hedef:** HDF-001 / GRV-001 geçmiş çalışmadır. Mevcut kodlar, loglar ve tecrübeler yeniden kullanılacak; eski kayıtlar silinmeyecek veya üzerine yazılmayacak.
 
-**Aktif hedef:** Kaliteli SCT ham verisi üretmek; ayrı PZEM akışıyla aynı fiziksel yük durumunu temsil eden kararlı bölgeleri eşleştirmek; çok sayıda farklı akımda doğru etiketli veri oluşturmak; formülü sınav ESP'sinde gerçek referansla değerlendirmek.
+## 1. Nihai hedef
 
-> **Süreklilik:** HDF-001/GRV-001 geçmiş çalışmadır. Mevcut kod, log ve deney tecrübesi kullanılacak; aynı testler sırf yeniden yapmak için tekrarlanmayacaktır. Eski dosyalar ve kayıtlar korunur. HDF-002 yeni bir başlangıç veya sıfırlama değildir.
+BERO sahasına taşındığında amaç, **tek bir ESP'nin SCT + BIAS sinyalinden akımı gerçek zamanlı hesaplaması ve hesaplanan akımı Home Assistant'a/sisteme sunmasıdır.** Bu ESP, masaüstünde eğitilmiş ve doğrulanmış bir modelin küçük, sahada çalışabilir karşılığı gibi davranacaktır.
 
-## 1. Ana ilke: hızlı ama kaliteli ham okuma
+Ayrı Modbus PZEM donanımı ölçüm ve doğrulama referansı olarak kalır. Nihai SCT ESP'sinin PZEM'e sürekli bağımlı olması şart değildir. Gerilim (V) ve güç faktörü (PF) gibi PZEM verileri ancak modelin bağımsız testlerdeki başarımını anlamlı ölçüde iyileştirdiği gösterilirse modele girdi olarak eklenir. Öncelik, SCT + BIAS ile yeterli başarımı sağlayan en sade modeldir.
 
-Öncelik, SCT akım dalgasını hızlı, düzenli ve gerçeği temsil edecek kalitede okumaktır. Kalite; hızlı örnekleme sırasında dalga biçimini bozmamak, yapay sıçramaları gerçek sinyalden ayırmaya elverişli olmak, zamanlama düzenini ve ham örnekleri korumaktır. En yüksek örnek sayısı tek başına başarı ölçütü değildir.
+**Pratik hedef:** PZEM referansına göre yaklaşık ±%4 bağıl akım hatasına ulaşmayı araştırmak. Bu bir hedef olup doğrulanmış sonuç değildir. Sıfıra yakın akımda bağıl hata tek başına uygun olmadığından mutlak amper hatası da raporlanır.
 
-Önce depodaki mevcut HDF-001 kodları, logları ve deney tecrübesi incelenir. Mevcut kanıt yeterliyse tekrar deney yapılmaz. Yalnızca mevcut kayıtlarla cevaplanamayan zorunlu bir soru varsa küçük bir ek doğrulama düşünülür. Kullanıcı gereksiz testlerle boğulmaz.
+## 2. Mimari — ayrı görevler, ayrı beslemeler
 
-## 2. Ölçüm mimarisi
+Planlanan ilk altyapı beş ESP işlevinden oluşur:
 
-### 2.1 SCT-ESP
+1. **SCT ölçüm ESP #1:** 1T SCT + kendisine ait BIAS ölçümü.
+2. **SCT ölçüm ESP #2:** 2T SCT + kendisine ait BIAS ölçümü.
+3. **SCT ölçüm ESP #3:** 3T yerine seçilecek/değiştirilecek SCT + kendisine ait BIAS ölçümü.
+4. **PZEM ESP:** Ayrı Modbus PZEM donanımından ölçüm verilerini okur; akım, gerilim ve PF değerlerini HA'ya aktarır.
+5. **Zamanlayıcı/kontrol ESP:** Solid-state röleyi belirlenen sabit aralıklarla açıp kapatır ve kontrol denemelerinin kayıtlarını tutar.
 
-- Bir ESP32-D, bir SCT-013 ölçüm zincirinden sorumludur.
-- Görevi SCT sinyalini mümkün olan en hızlı, kaliteli ve sürdürülebilir biçimde okumak ve ham örnekleri Home Assistant'a (HA) aktarmaktır.
-- ESP üzerinde akım/RMS hesabı, korelasyon, etiketleme veya model üretimi yapılmaz.
-- Örnekleme döngüsü Wi-Fi/HA aktarım hızına bağlanmaz. Aktarım örnekleme zamanlamasını bozmamalı ve ham örnek kaybettirmemelidir.
-- Sırf sıçrama görünümünü azaltmak için gerçek dalgalanmayı veya dalga şeklini silecek filtreleme yapılmaz.
+Bu beşli, başlangıç altyapısı ve veri üretme düzenidir. Nihai hedefin mutlaka beş ESP ile tamamlanması gerekmez; model geliştirme sırasında birden fazla SCT zinciri kullanılabilir, son saha çözümü için tek ölçüm ESP'si hedeflenir.
 
-### 2.2 Bias
+### 2.1 Besleme ve sinyal sınırı
 
-Bias, akım hesabında ve sonraki F(X) formülünde gerekli bir girdidir. Bu nedenle SCT ham verisiyle doğru ilişki korunarak kaydedilir.
+- ESP'lerin beslemeleri ölçüm kanallarından beslenmeyecektir; ESP beslemesi ve analog ölçüm kanalı ayrı işlevlerdir.
+- SCT/BIAS/ADC devresinin gerektirdiği sinyal referansı ve GND bağlantıları elektriksel tasarımda doğru biçimde kurulacaktır. Beslemeleri ayırmak, sinyal referansını gelişigüzel kaldırmak anlamına gelmez.
+- PZEM kendi ayrı donanım ve okuma zincirinde kalır.
+- Solid-state rölenin anahtarladığı devre ve elektriksel sınırlar fiziksel bağlantı aşamasında açıkça kaydedilir. Rölenin aç/kapa yapması ESP ölçüm zamanlamasının yerine geçmez; yalnızca planlanan kontrol/kayıt penceresini veya tasarımda belirlenen devreyi yönetir.
+- Her donanım değişikliği, bağlantı koşulları ve ölçüm sonuçları tarihli deneme kaydıyla belgelenir.
 
-- Hedef düzen, SCT ve ona ait bias bilgisinin aynı ESP/ölçüm zincirinde okunup aynı kayıt akışıyla ilişkilendirilmesidir.
-- Bias ölçümü SCT örneklemesini bozuyorsa öncelik SCT dalgasının kaliteli örneklenmesidir; mevcut donanım ve kodun desteklediği en yalın senkron kayıt yöntemi seçilir.
-- Her SCT örneğinde bias ADC okumasının mutlaka tekrarlanacağı veya bias'ın değişmez olduğu varsayılmaz. Gerekli zaman ilişkisi korunur; gereksiz test serisi açılmaz.
+## 3. Görev 1 — Fiziksel altyapı ve deneme kayıtları
 
-### 2.3 PZEM-ESP
+İlk iş; üç SCT + BIAS ölçüm zincirini, ayrı PZEM okuma zincirini ve sabit aralıkla çalışan solid-state röle kontrolünü fiziksel olarak kurmak ve kayıt altına almaktır.
 
-- PZEM ayrı bir ESP/bağımsız okuma zincirinde çalışır.
-- Bu ESP yalnızca PZEM'in kendi ürettiği ölçüm verilerini okur ve HA'ya aktarır.
-- PZEM'in kendi ölçüm/güncelleme hızını SCT hızına yetiştirmeye çalışmak hedef değildir.
-- PZEM akımı, gerilim (V) ve güç faktörü (PF) birlikte korunur.
-- PZEM verisinin yayın anı, içerdiği ölçümün kesin fiziksel zamanı sayılmaz.
-- PZEM zinciri SCT örnekleme hızını sınırlamaz.
+- Beslemeler ve sinyal bağlantıları ayrı ayrı kontrol edilir.
+- Her ESP'nin hangi sensör/kanala bağlı olduğu açıkça kaydedilir.
+- Kullanılan kod sürümü, derleme sonucu, gerçek cihaz logları, ölçülen değerler, hata ve değişiklikler deneme kaydına eklenir.
+- Başarısız denemeler de saklanır; önceki çalışan kodun üzerine yazılmaz.
+- Bu aşama tamamlandı diye dalga kalitesi veya akım doğruluğu varsayılmaz.
 
-## 3. HA → masaüstü Python → Mac arşivi
+## 4. Görev 2 — En kaliteli SCT dalga okuma yöntemi
 
-1. SCT-ESP ve PZEM-ESP verileri HA'da birikir.
-2. Masaüstündeki Python-A yeni verileri HA'dan alır ve aktarım bütünlüğünü doğrular.
-3. Veri Mac'te kalıcı olarak yazılıp yeniden okunarak doğrulanmadan HA'daki kopya silinmez.
-4. Doğrulanmış kayıtlar Mac arşivine alınır. Ham kaynak kayıtları değiştirilmez.
-5. Sonraki süreçler bu arşiv üzerinde çalışır. Ham veri, bölgeler, etiketli veri, modeller ve doğrulama sonuçları ayrı saklanır.
+Amaç, yalnızca çok sayıda örnek üretmek değil, SCT dalgasının biçimini, genliğini ve değişimini doğru temsil eden kaliteli ham veri elde etmektir.
 
-Mantıksal arşiv bölümleri: raw (değiştirilmemiş ham veri), validated (aktarımı doğrulanmış kayıt), regions (işaretli bölgeler), labeled (eşleştirilmiş/etiketlenmiş veri), models (sürümlü formüller), validation (sınav sonuçları), reports (raporlar). Bu tanım, klasörlerin kurulduğu veya aktarımın çalıştığı anlamına gelmez.
+İncelenecek noktalar:
 
-## 4. Python süreçleri
+- Dalga biçimini ve tepe noktalarını temsil etmeye yeterli gerçek örnekleme hızı.
+- Örnekler arası zaman aralığı ve zamanlama düzenliliği.
+- ADC çözünürlüğü, gürültü, kırpılma/saturasyon ve analog giriş devresinin etkisi.
+- SCT ile BIAS verisinin ilişkisinin korunması.
+- Wi-Fi/HA aktarımının örnekleme döngüsünü bozmaması ve örnek kaybına neden olmaması.
+- Gerçek örnekleme hızı ve veri kaybı ölçülmeden update_interval ayarının gerçekleşmiş örnekleme hızı sayılmaması.
 
-### Python-A — aktarım ve arşivleme
-HA'dan yeni veriyi alır; kayıt bütünlüğünü kontrol eder; Mac'e yazar ve yeniden okuyarak doğrular; ancak bundan sonra HA'daki aktarılmış kopyayı siler. Ham kaydı değiştirmez.
+Önce GRV-004, GRV-005 ve HDF-001/GRV-001 içindeki kodlar, loglar ve deney tecrübeleri okunur. Var olan kanıt yeterliyse aynı deney tekrarlanmaz. Gerekirse yalnızca mevcut kayıtlarla yanıtlanamayan soruya yönelik küçük doğrulama yapılır.
 
-### Python-B — eş bölge işaretleme ve etiketleme
-- SCT ve PZEM akışlarını önce ayrı ayrı inceler.
-- Her akışta kendi karakterine göre kararlı bölgeleri belirler.
-- Aynı fiziksel yük durumuna karşılık gelen bölgeleri deney bağlamı ve yük durumu bilgisiyle eşleştirir.
-- Amaç zaman damgalarını birebir eşlemek değil, aynı fiziksel durumu temsil eden eş bölgeleri işaretlemektir. Zaman bilgisi yardımcı kanıt olarak korunabilir; tek başına eşleşme kanıtı değildir.
-- PZEM akım etiketi, ilgili V ve PF bilgileriyle birlikte SCT bölgesine aktarılır; bias bilgisi SCT verisiyle ilişkilendirilir.
-- Yükün açılma/kapanma geçişleri eğitim verisine alınmaz; yalnızca kararlı bölgeler kullanılır.
-- Eşleşmesi güvenilir olmayan bölge zorla etiketlenmez.
-- Ham veri değiştirilmez; bölgeler ve etiketler ayrı kaydedilir.
+Tercih edilen veri yolu: SCT ve BIAS ham örneklerini düzenli toplamak, örnek sırasını ve zaman bilgisini korumak, veriyi paketler hâlinde HA'ya aktarmak. Standart ESPHome ADC güncelleme aralığı tek başına kaliteli ve düzenli dalga örneklemesini kanıtlamaz. Ham ADC kodu ile voltaj çıktısı birbirinden açıkça ayrılır.
 
-### Python-C — birikimli model ve parametre analizi
-- Her çalıştırmada önceki etiketli veri kümesini ve yeni doğrulanmış etiketleri okur.
-- Birikimli veri kümesini korur; eski etiketler kaybolmaz.
-- SCT karakteri, bias, V ve PF parametrelerinin katkısını inceler.
-- Önce basit ilişki/katsayıyı, yeterli değilse daha kapsamlı I = F(SCT, Bias, V, PF) adayını araştırır.
-- Modeli eğitimde kullanılmamış bağımsız bölgelerle sınar.
-- Model sürümü, veri kümesi sürümü, parametreler ve doğrulama sonuçları kaydedilir; yeni model eskisinin üzerine yazılmaz.
-- Model üretiminin bir hafta sürmesi sorun değildir; önemli olan veri ve doğrulama kalitesidir.
+## 5. HA, ham veri ve masaüstüne güvenli aktarım
 
-## 5. Eş bölgeler ve doğru etiket
+SCT ölçüm ESP'leri ve PZEM ESP verileri Home Assistant'a aktarılır. HA, yüksek hızlı dalganın tek tek sensör geçmişi kayıtlarına zorla dönüştürüldüğü varsayılan çözüm değildir; ham örneklerin uygun paketleme ve saklama yolu ayrıca doğrulanır.
 
-Eşleştirme zaman eşlemesi değil, eş bölge işaretlemesidir. Aynı fiziksel yük durumu deney bağlamıyla desteklenmelidir. Kararlı bölgelerin sürelerinin eşit olması veya zaman damgalarının çakışması gerekmez.
+Ham veri, değiştirilmemiş kaynak kayıt olarak korunur. Mantıksal arşiv bölümleri:
+- raw: değiştirilmemiş ham SCT/BIAS ve PZEM kayıtları;
+- validated: aktarım bütünlüğü kontrol edilmiş kayıtlar;
+- regions: dalga içindeki aday/kararlı bölgelerin sınırları ve özellikleri;
+- labeled: onaylanmış etiketli bölgeler;
+- datasets: birleştirilmiş, sürümlü veri kümeleri;
+- models: formül/model sürümleri ve parametreleri;
+- validation: bağımsız test ve PZEM karşılaştırma sonuçları;
+- reports: işlem günlükleri ve raporlar.
 
-Kararlı bölge ölçütleri gerçek veriden çıkarılır; kanıtlanmamış tolerans veya pencere değerleri uydurulmaz. SCT örneklerinin birebir aynı olması beklenmez; bölgenin seviyesi ve dalgalanma karakteri birlikte değerlendirilebilir.
+Bu isimler hedef arşiv düzenini anlatır; klasörlerin veya aktarımın çalışır durumda kurulduğu anlamına gelmez.
 
-Her etiket mümkün olduğunca şu bağlamı korur:
-- deney/yük durumu ve bilinen yük koşulu;
-- kaynak cihaz/kanal;
-- SCT ham veri aralığı ve ona ait bias bilgisi;
-- PZEM akım etiketi, V ve PF;
-- varsa zaman bilgisi;
-- bölge seçimi ve eşleştirme gerekçesi.
+## 6. Python 1 — HA'dan masaüstüne taşıma, doğrulama ve güvenli silme
 
-Öncelik, çok sayıda farklı akım seviyesinde doğru etiketlenmiş bölgeler oluşturmaktır. Aynı akım seviyesindeki tekrarlar da tutarlılık için saklanır. Nominal yükün her seferinde aynı akımı çektiği varsayılmaz; etiket ölçülen referans değerinden gelir.
+Python 1 masaüstünde tıkla-çalıştır biçiminde çalışır.
 
-## 6. Formül ve kabul hedefi
+1. HA'da yeni oluşan verileri bulur ve alır.
+2. Aktarım kapsamını, dosya yapısını, satır/kayıt sayılarını ve mümkün olduğunda sağlama toplamını kontrol eder.
+3. Veriyi masaüstündeki/Mac'teki kalıcı arşive yazar.
+4. Yazılan dosyayı yeniden okuyarak kaydın gerçekten mevcut ve bütün olduğunu doğrular.
+5. Ancak bu doğrulama başarılı olunca, yalnızca doğrulanan aktarım kapsamındaki HA kopyasını siler.
+6. Aktarım, doğrulama veya kalıcı yazma başarısız olursa kaynak veriyi silmez; hata ve işlem sonucu raporlanır.
+7. Yeniden çalıştırma durumunda aynı kayıtların kontrolsüz çoğaltılmasını ve henüz aktarılmamış kayıtların silinmesini önler.
 
-Araştırılan ilişki:
+Ham kaynak kaydı değiştirilmez. Python 1 akım hesaplamaz veya bölgeleri etiketlemez; güvenilir veri taşıma ve arşivleme sorumluluğunu üstlenir.
 
-    I_tahmin = F(SCT_karakteri, Bias, V, PF)
+## 7. Python 2 — SCT dalgasında kararlı bölgeleri bulma ve etiketleme
 
-Bu başlangıç hipotezidir; tüm parametrelerin mutlaka gerekli olduğu veya evrensel tek formül bulunacağı önceden kabul edilmez. Aşırı öğrenme başlı başına yasak değildir; pratik hedef, sınavda kabul edilebilir doğruluğa ulaşmaktır. Yine de eğitim verisine ezber uyum ile bağımsız veride başarıyı ayırmak için kullanılmamış bölgelerle doğrulama yapılır.
+Python 2 masaüstünde tıkla-çalıştır biçiminde çalışır. Görevi, SCT dalga kaydından kararlı akım bölgelerini bulmak ve güvenilir referansla etiketlemektir.
 
-Pratik kabul hedefi yaklaşık ±%4 bağıl akım sapmasıdır. Sıfıra yakın akımda bağıl hata anlamsızlaşabileceğinden ayrıca mutlak amper hata ölçütü gerekir. PZEM referansının kendi hatası da sonuçların yorumunda korunur.
+### 7.1 Aç/kapa pencereleri ve kararlı bölge
 
-## 7. Sınav ESP'si ve PZEM korelasyonu
+Sabit aralıklarla aç/kapa kontrolü, kayıt pencereleri üretmek için kullanılabilir. Buradaki amaç PZEM ile zaman damgası eşlemek değildir. Kayıt penceresinin içindeki SCT dalgasından kararlı genlik bölgeleri seçilir; yük açılma/kapanma geçişleri model eğitimine alınmaz.
 
-Uygun model sınav ESP'sine yüklenir. Sınav ESP'si SCT ve ilgili bias girdisinden akım tahmini üretir; PZEM ayrı ESP'sinde çalışır. Python, tahmin ile PZEM verisini aynı fiziksel duruma ait kararlı eş bölgeler üzerinden karşılaştırır.
+Pencerenin uzunluğu, dalganın kalitesi ve kararlı bölgeyi bulmaya yetecek veriyle belirlenir. 1000 örnek gibi sabit bir örnek sayısı nihai hedef değildir.
 
-Korelasyonla birlikte bağıl/ mutlak hata, ortalama sapma ve akım aralığına göre hata incelenir. Yüksek korelasyon tek başına doğru akım ölçümü kanıtı değildir; tahmin sürekli fazla veya eksik olabilir.
+### 7.2 “Aynı akım/genlik” kararını verme
 
-**Ek fiziksel test otomatik olarak şart değildir.** Önce mevcut ham arşivdeki, model kurulurken kullanılmamış uygun bölgeler değerlendirilir. Arşiv soruyu güvenilir biçimde cevaplayabiliyorsa yeni test yapılmaz. Veri yetersizse yalnızca eksik kanıtı sağlayacak en küçük doğrulama düşünülür.
+Hangi SCT genlik veya dalga özelliği aralığının aynı akım seviyesini temsil edeceği baştan keyfî bir sabit olarak seçilmez. Python 2, gerçek etiketli kayıtlarla aşağıdaki adayları değerlendirmeye uygun veri üretir:
 
-## 8. Süreç sırası
+- BIAS ilişkisi korunmuş AC RMS;
+- tepe ve tepe-tepe genliği;
+- dalga şekli ve kararlılık ölçüleri;
+- zaman içinde genlik değişimi ve gürültü;
+- yeterli örnek olduğunda farklı pencerelerdeki özelliklerin tutarlılığı.
 
-1. HDF-001'deki mevcut SCT kodu/logları ve tecrübeyi kullan; aynı testleri baştan yapma.
-2. SCT için hızlı, kaliteli ve dalgayı temsil eden ham okuma yolunu esas al; bias ilişkisini aynı zincirde koru.
-3. PZEM'i ayrı ESP'de kendi hızında tut.
-4. Her iki ham akışı HA'da biriktir.
-5. Python-A veriyi alıp doğrulasın; Mac kopyası doğrulanınca HA kopyasını silsin.
-6. Ham arşivi koru; Python-B kararlı eş bölgeleri fiziksel yük durumuna göre eşleştirip etiketlesin.
-7. Python-C birikimli etiketli veriden parametreleri ve en sade işe yarar formülü araştırsın.
-8. Model sürümlerini kaydet; uygun modeli sınav ESP'sine yükle.
-9. Sınav ESP'si tahmini ile PZEM'i eş bölgelerde karşılaştır; korelasyon ve hata raporu çıkar.
-10. Yeni veri geldikçe modeli yeniden üret; ham veriyi ve model geçmişini koru.
+Bunların hepsinin nihai modele girmesi şart değildir. Bunlar, hangi ölçünün farklı kayıtlar arasında kararlı bölgeyi en iyi temsil ettiğini incelemek için aday özelliklerdir.
 
-## 9. Çalışma sınırları
+### 7.3 Etiketleme
 
-- HDF-001 deneylerini baştan tekrarlamak varsayılan iş değildir.
-- ESP'ler ölçüm okur; etiketleme, korelasyon ve model üretimi masaüstü Python tarafındadır. Sınav ESP'si yüklenen formülü çalıştırıp tahmin üretir.
-- PZEM'in ölçüm hızı SCT'ye uydurulmaz.
-- Birebir zaman damgası veya paket senkronizasyonu eş bölge eşleştirmenin ön koşulu değildir.
-- Ham kaynak dosyaların üzerine yazılmaz; HA kopyası Mac'teki kalıcı kopya doğrulanınca silinir.
-- Yeni test, aktarım, model veya başarı gerçekleşmiş gibi gösterilmez.
-- Donanım sadeleştirmesi ve paket optimizasyonu, kaliteli ham veri ve eş bölge/model süreci anlaşılmadan öncelik kazanmaz.
+- SCT ve BIAS ham kaydı korunur; bölgeler ve etiketler ayrı dosyalara yazılır.
+- PZEM ayrı Modbus donanımından gelen referans akımı sağlar; V ve PF bilgileri de korunur.
+- Etiketleme, birebir aynı zaman damgalarını aramak yerine deney/yük durumu ve kararlı bölge bağlamına dayanır.
+- Zaman bilgisi yardımcı kayıt olabilir; tek başına aynı fiziksel durumu kanıtlamaz.
+- Eşleşmesi/etiketi güvenilir olmayan bölge zorla etiketlenmez.
+- Aynı nominal yükün her seferinde aynı akımı çektiği varsayılmaz; mevcut PZEM referansı ve kayıt bağlamı kullanılır.
 
-## 10. Tamamlanma ölçütleri
+Python 2'nin çıktısı; bölge başlangıç/bitiş bilgisi, SCT/BIAS kaynak kaydı, çıkarılan özellikler, atanan PZEM etiketi (I, ayrıca varsa V ve PF), etiketleme gerekçesi ve güven/kalite notudur. Eşik ve toleranslar kanıt olmadan uydurulmaz; kayıtlı veri üzerinden geliştirilir.
 
-HDF-002'nin başarılı sayılması için:
-1. SCT dalgasını hızlı ve kaliteli temsil eden mevcut/iyileştirilmiş okuma yöntemi kanıtla tanımlanmalı.
-2. SCT ve bias doğru ilişkilendirilmeli; PZEM akışı bağımsız kalmalı.
-3. Ham veri HA'dan Mac'e bütünlük doğrulamasıyla aktarılmalı ve arşiv korunmalı.
-4. Kararlı eş bölgeler gerekçeli biçimde eşleştirilmeli ve farklı akım seviyelerinde doğru etiketlenmeli.
-5. Parametre katkıları incelenmeli ve formül/model sürümlenmeli.
-6. Sınav ESP'si tahmini PZEM ile eş bölgelerde karşılaştırılmalı; korelasyon ve hata raporlanmalı.
-7. Yaklaşık ±%4 hedefinin hangi koşullarda sağlandığı veya sağlanmadığı gösterilmeli.
+## 8. Python 3 — Gelen kayıtları birleştirme, geçmişi koruma ve F(x) arama
 
-**Kanıt sınırı:** Bu belge hedef ve süreç mimarisini kaydeder. Yeni ölçüm, aktarım, model, ESP yüklemesi veya ±%4 başarısı gerçekleştiğini iddia etmez.
+Python 3 de masaüstünde tek tıkla çalışır.
+
+1. Python 2'nin bıraktığı gelen kayıt klasörünü tarar.
+2. Dosya şeması, zorunlu alanlar, etiketler, kayıt kimlikleri ve tekrar kayıtları kontrol eder.
+3. Geçerli yeni kayıtları birleştirilmiş veri kümesine ekler.
+4. Yeni kayıtların ana veri kümesine başarıyla eklendiğini ve sonuç dosyasının okunabildiğini doğrular.
+5. Ancak bundan sonra gelen klasördeki işlenmiş kayıtları arşivler veya klasörü boşaltır. Hata durumunda kaynak kayıtları korur.
+6. Yeni etiketli veriyi geçmişteki doğrulanmış veriyle birleştirir; eski ham veri, etiketler, veri kümeleri ve modellerin üzerine kontrolsüz yazmaz.
+7. Birikimli veriyle yeni F(x) adaylarını araştırır ve mevcut aktif modelle karşılaştırır.
+
+### 8.1 Tek bir formül türüne bağlı kalmama
+
+Karşılaştırılabilecek model aileleri arasında şunlar bulunur:
+
+- doğrusal modeller;
+- parçalı doğrusal modeller;
+- bölge/aralık tabanlı formüller;
+- uygun olduğunda polinom modeller;
+- veri miktarı ve doğrulama sonuçları destekliyorsa başka hafif modeller.
+
+Araştırılan ilişki başlangıçta I_tahmin = F(SCT_özellikleri, BIAS, V, PF) biçimindedir. BIAS, V veya PF'nin mutlaka gerekli olduğu baştan kabul edilmez. Gerekli girdiler bağımsız testlerle seçilir. Amaç, eğitim verisine ezber yapan en karmaşık formül değil, yeni kayıtlarda da iyi çalışan en sade yeterli modeldir.
+
+Python 3 her çalıştırmada veri kümesi sürümünü, kullanılan özellikleri, model adaylarını, parametreleri, doğrulama sonuçlarını ve seçilen adayı raporlar. Yeni model eskisinin üzerine yazılmaz.
+
+## 9. Python 4 — Yapay zekâ ile eğitim, ham veriden test ve sürekli iyileştirme
+
+Python 4 masaüstünde tıkla-çalıştır biçiminde çalışır. BERO'ya taşındığında da düzenli aralıklarla yeni doğrulanmış veriyi inceleyerek model geliştirme sürecinin devam etmesi hedeflenir.
+
+- Mevcut F(x) modelinin hangi veri ve koşullarda başarılı/başarısız olduğunu inceler.
+- Uygun makine öğrenmesi yöntemleriyle alternatifler eğitir; basit doğrusal/parçalı modellerle karşılaştırmayı sürdürür.
+- Python 2'nin etiketleme sürecinden geçen ham SCT + BIAS kayıtlarını, etiketli kararlı bölgelerle karşılaştırır.
+- Eğitimde kullanılan kayıtları bağımsız test diye sunmaz. Veri kaynağı ve model sürümü izlenir; mümkün olduğunda ayrı kayıt oturumları veya bağımsız bölgeler test için ayrılır.
+- Aynı fiziksel bölgenin türev kayıtlarının eğitim ve test tarafına sızması engellenir.
+- Tahmin hatası, akım seviyesine göre hata, kararlılık, veri kapsamı ve model karmaşıklığı raporlanır.
+- Python 3'ün formül adaylarıyla Python 4'ün AI adayları aynı bağımsız test ölçütleri üzerinden karşılaştırılır.
+- Yeni veri geldiğinde eğitim/analiz tekrarlanabilir; her model ve rapor ayrı sürüm olarak saklanır.
+
+**Sürekli iyileştirme ilkesi:** Python 4 sürekli analiz ve yeni model adayı üretimi yapabilir. Ancak sahadaki ESP modeli kontrolsüz biçimde kendi kendine değiştirilmez. Yeni model önce bağımsız testten geçer, mevcut modelle karşılaştırılır, sürümü ve geri dönüş yolu kaydedilir; ardından onaylı dağıtım ile ESP'ye aktarılır.
+
+## 10. Modelin ESP'de çalıştırılması ve PZEM ile başarım
+
+Geliştirme sırasında farklı SCT ESP'leri ve ayrı PZEM ESP'si veri üretmek için kullanılabilir. Nihai saha çözümünde hedef, **tek bir SCT ESP'sinin seçilmiş öğrenilmiş modeli çalıştırıp akım (A) üretmesi** ve bu sonucu sisteme/HA'ya vermesidir.
+
+Model, masaüstünde eğitilir ve ESP'nin hesaplama/bellek sınırlarına uygun bir biçime dönüştürülür. ESP ham dalgadan gerekli özellikleri çıkarır, seçilen modeli çalıştırır ve akım tahminini üretir. Etiketleme, kapsamlı model araması ve eğitim ESP'de yapılmaz.
+
+Ayrı Modbus PZEM doğrulama referansı olarak kalır. V/PF'nin nihai ESP tarafından Modbus üzerinden ayrıca okunması ancak doğrulama, bu girdilerin gerekli olduğunu gösterirse değerlendirilir; başlangıçta zorunlu değildir.
+
+Başarım raporu en azından şunları kapsar:
+- tahmin edilen akım ve PZEM referansı;
+- mutlak amper hatası ve uygun koşullarda bağıl yüzde hata;
+- MAE ve RMSE;
+- farklı akım seviyelerindeki hata dağılımı;
+- kararlı bölge ve geçiş koşullarının ayrımı;
+- ±%4 hedefinin hangi aralıklarda karşılandığı/karşılanmadığı;
+- PZEM referansının kendi ölçüm sınırları ve veri yetersizliği notları.
+
+Yüksek korelasyon tek başına doğru akım ölçümü anlamına gelmez; sürekli fazla/eksik ölçüm ayrıca görülmelidir. Eğitim başarımı saha başarımı olarak sunulmaz.
+
+## 11. Güncel model döngüsü
+
+Saha ve masaüstü arasındaki planlanan gelişim döngüsü:
+
+1. ESP'ler SCT + BIAS dalgasını, ayrı PZEM ESP'si de PZEM ölçümlerini toplar.
+2. Veriler HA'da birikir.
+3. Python 1 doğrular, arşivler ve ancak kalıcı kopya doğrulandıktan sonra HA kopyasını siler.
+4. Python 2 ham SCT kayıtlarından kararlı bölgeleri bulur ve güvenilir PZEM referansıyla etiketler.
+5. Python 3 yeni etiketleri geçmiş veriyle birleştirir, F(x) adaylarını yeniden arar ve model sürümlerini kaydeder.
+6. Python 4 alternatif AI modellerini eğitir, ham veri/etiketli bölge üzerinden bağımsız test yapar ve iyileşmeyi raporlar.
+7. Seçilen model sınav ESP'sine yüklenir; ayrı PZEM ile karşılaştırılır.
+8. Başarımı doğrulanmış model onaylı sürüm olarak saha ESP'sine dağıtılır.
+9. Yeni saha verisi geldikçe döngü tekrarlanır; önceki model, veri ve raporlar korunur.
+
+## 12. Kayıt, güvenlik ve çalışma disiplini
+
+- HDF-001/GRV-001 ve GRV-004/GRV-005 içindeki geçmiş kod, log ve tecrübeler korunur; gereksiz tekrar yapılmaz.
+- ESP adları kullanıcı istemedikçe değiştirilmez; mevcut ad esp32d1 korunur.
+- Her kod sürümünün yanında hedefi, kullanılan donanımı, yapılan işi, deneme koşullarını, logları, doğrulananları ve açık kalan noktaları anlatan bir .md kaydı bulunur.
+- Derleme, cihazda çalışma, veri aktarımı, dalga kalitesi ve akım doğruluğu farklı doğrulama seviyeleridir; biri diğerinin kanıtı sayılmaz.
+- Kullanıcı tarafından doğrulanmamış derleme veya donanım sonucu başarılı olarak yazılmaz.
+- Ham veri ve geçmiş model sürümleri silinmez veya üzerine yazılmaz.
+- Otomatik silme yalnızca kalıcı kopyanın doğrulanması ve aktarım kapsamının net olması sonrasında yapılır.
+- Yeni fiziksel test, mevcut kayıtlar soruyu yanıtlamadığında ve eksik kanıtı sağlamak için gerekli olduğunda düşünülür; kullanıcı gereksiz testlerle boğulmaz.
+
+## 13. Tamamlanma ölçütleri
+
+HDF-002 ancak şu kanıtlar elde edildiğinde tamamlanmış sayılır:
+
+1. Üç SCT + BIAS ölçüm zinciri, ayrı PZEM zinciri ve röle kontrol altyapısı koşullarıyla kaydedilmiş olmalı.
+2. SCT dalgasını kaliteli ve düzenli temsil eden okuma yöntemi gerçek kayıtlarla değerlendirilmiş olmalı.
+3. Ham veri HA'dan masaüstü/Mac arşivine bütünlük doğrulamasıyla taşınmalı; doğrulanmadan kaynak silinmemeli.
+4. Python 2 kararlı SCT bölgelerini bulup güvenilir referanslarla gerekçeli biçimde etiketlemeli; geçiş bölgeleri eğitim dışında tutulmalı.
+5. Python 3 birikimli veri kümesini koruyarak doğrusal, parçalı, bölge tabanlı ve uygun diğer F(x) adaylarını karşılaştırmalı.
+6. Python 4 alternatif AI modellerini eğitmeli ve veri sızıntısı olmadan bağımsız test sonuçları üretmeli.
+7. Seçilen model tek saha ESP'sinde akım (A) üretmeli ve sonucu sisteme/HA'ya aktarabilmeli.
+8. Ayrı Modbus PZEM referansına göre hata raporu üretilmeli; yaklaşık ±%4 hedefinin hangi koşullarda sağlandığı veya sağlanmadığı gösterilmeli.
+9. Yeni verilerle model iyileştirme döngüsü sürümlü, geri alınabilir ve doğrulamaya bağlı biçimde çalışmalı.
+
+**Kanıt sınırı:** Bu belge HDF-002'nin güncellenmiş hedefini ve tasarlanan iş akışını tanımlar. Donanım kurulumunun, veri hattının, Python programlarının, modelin veya sürekli iyileştirme döngüsünün tamamlandığını; ayrıca ±%4 başarım elde edildiğini iddia etmez.
