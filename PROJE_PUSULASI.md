@@ -348,3 +348,13 @@ Bu bölüm, pusuladaki eski yöntem özetleriyle çelişirse güncel karar olara
 - **Değerlendirme:** ESP ham SCT verisinden zaman/örnek aralığı bilgisi olan bir çıktı üretir. Bu çıktı, zaman eşlemesiyle o sıradaki PZEM çıktısıyla karşılaştırılır ve hata ölçülür.
 - Bu iki eşleme amacı karıştırılmaz: eğitim etiketlemesi olay temellidir; ESP çıktısının PZEM referansıyla değerlendirilmesi zaman temelli yapılır.
 - Ana araştırma değişkenleri paket boyu/pencereleme, örnek kaybı, çıktı gecikmesi, veri bütünlüğü, tekrar edilebilirlik ve akım hatasıdır. Bu yöntem kaydı test başarısı iddiası değildir.
+
+## 2026-10-12 — Aşama rolleri: eğitim PZEM'i, test PZEM'i, canlı saha ESP'si
+
+- **Eğitim:** Eğitim PZEM'iyle aynı fiziksel olaya ait SCT/PZEM alanları olay temelli eşleştirilir ve etiketlenir.
+- **İlk F(x):** Paketlenmemiş ham SCT verisi üzerinde çalışır; bu noktada canlı paketleme kararı henüz verilmiş değildir.
+- **Test:** Ham veriden üretilen F(x) çıktısı test PZEM'iyle zaman ilişkisi üzerinden karşılaştırılır. Eğitim PZEM'i ve test PZEM'i farklı aşama rollerindedir.
+- **Paketleme karar kapısı:** Test kanıtından sonra canlı kullanımda uygulanacak paketleme/pencereleme ve veri seçimi belirlenir.
+- **Canlı saha ESP'si:** Seçilen yöntemle canlı SCT verisini paketleyip/işleyerek ölçüm üretir; bu çıktı canlı PZEM referansıyla karşılaştırılır.
+- Bu sıra yöntem kararıdır; test başarısı veya paketleme seçimi gerçekleşmiş gibi gösterilmez. Ayrıntı: [HDF-002 hedefi](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md).
+
