@@ -368,3 +368,22 @@ Bu bölüm, önceki açıklamalardaki rol karışıklığını önlemek için a�
 
 Bu bir yöntem/akış kararıdır. Aşamaların çalıştırıldığı, paketlemenin seçildiği veya doğruluk hedefinin sağlandığı iddia edilmez.
 
+## 2026-10-12 — P1–P6 iş bölümü ve canlı doğrulama döngüsü
+
+Bu bölüm, önceki yöntem kararlarına ek olarak altı aşamanın görev ayrımını kaydeder; eski kayıtları silmez.
+
+- **P1 — Aktarım:** Veriyi Home Assistant'tan alır, taşır; hedefe güvenli aktarım doğrulandıktan sonra kaynakta siler.
+- **P2 — Olay eşleme ve etiketleme:** PZEM ve SCT akışlarında aynı fiziksel olaya karşılık gelen alanları bulur ve etiketler. Eğitim eşlemesi zaman eşitlemesi değil, olay eşlemesidir.
+- **P3 — İlk F(x):** Eşleştirilmiş/etiketlenmiş fakat paketlenmemiş veriden F(x) üretir.
+- **P4 — F(x) doğrulaması:** Hâlâ eşleştirilmiş veriyi kullanır; P3 formülleriyle hesaplama yaparak P3'ün doğruluğunu sınar.
+- **P5 — Paketleme araştırması:** Ham SCT verisini farklı paketleme/pencereleme yöntemleriyle işler; oluşan çıktı ve F(x) sonuçlarını zaman eşlemesiyle ham PZEM verisine karşılaştırır. Ana araştırma paket boyu/pencere seçiminin etkisidir.
+- **P6 — Canlı saha doğrulaması:** P5'te seçilen F(x) ve paketleme yöntemiyle çalışan ESP, canlı SCT verisinden akım üretir; bu çıktı canlı PZEM referansıyla karşılaştırılır.
+
+### P6 sonrası döngü
+
+Canlı PZEM karşılaştırması hedeflenen başarıyı göstermiyorsa, sonuçlar kanıt olarak kaydedilir ve hangi katmanın sorunlu olduğuna göre geri dönüş yapılır. **P4'e dönüş olası bir döngüdür, ancak otomatik veya kesin karar değildir:** hata analizi formülün/hesaplamanın güvenilirliğini sorgulatıyorsa P3–P4'e; paket boyu, örnek kaybı veya pencereleme sorunu gösteriyorsa P5'e dönülür. Sorun etiket/olay eşlemesindeyse P2 yeniden incelenir. Başarılı sonuçlar da bağımsız koşullarda doğrulanır.
+
+### Kanıt sınırı
+
+Bu kayıt görev ayrımını ve olası geri besleme döngüsünü tanımlar. P1–P6'nın tamamlandığı, bir F(x) veya paketlemenin başarılı olduğu ya da canlı doğrulamanın geçtiği iddia edilmez.
+
