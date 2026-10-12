@@ -285,3 +285,33 @@ En düşük değişkenlik tek başına en doğru akım tahmini anlamına gelmez.
 ### Kanıt sınırı
 
 Bu kayıt yöntem ve iş akışı kararıdır. Etiketli veri kümesinin hazır olduğunu, optimum paketin bulunduğunu, paket testlerinin geçtiğini, F(x)'in başarılı olduğunu veya ±%4 hedefinin sağlandığını iddia etmez.
+
+## 2026-10-12 — Yeni yöntem kararı: fiziksel alan eşleme ve kayıtlı ham veriyle ESP paketleme testi
+
+### Temel düşünce: tek fiziksel olay, iki ölçüm resmi
+
+Gerçek hayatta bir fiziksel akım/yük olayı vardır. PZEM bu olayı kendi ölçüm penceresi, paketleme ve iç hesaplama zinciriyle; SCT ise kendi ölçüm penceresi ve örnekleriyle temsil eder. Bu iki temsilin paket boylarının, örnek sayılarının, güncelleme zamanlarının veya işlem adımlarının aynı olması beklenmez.
+
+Bu nedenle bütün akışları veya paketleri birebir eşitlemek hedef değildir. PZEM'in iç matematiğini baştan sona çözmek de ilk eşleme adımının ön koşulu değildir. Gerekli olan, PZEM çıktısının neyi temsil ettiğini ve karşılaştırılan fiziksel alanın uygunluğunu değerlendirecek kadar bağlamı bilmektir.
+
+### Aşama 1 — Sabit fiziksel alanları işaretleme ve gerçek hatayı görme
+
+1. PZEM ve SCT kayıtlarında aynı fiziksel çalışma olayına karşılık geldiği savunulabilir, karşılaştırılabilir/sabit alanları belirle ve etiketle.
+2. PZEM referansını kendi alanına, SCT ham verisini kendi alanına bağla. Alanların süreleri ve boyları farklı kalabilir; sırf boyları farklı diye veri zorla yeniden örneklenmez veya kesilip eşitlenmez.
+3. SCT verisinden hesaplanan akımı ilgili PZEM referansıyla karşılaştır; gerçek akım hatasını ve hangi koşullarda büyüdüğünü ölç.
+4. Yalnızca zaman yakınlığı veya V/PF benzerliği, tek başına aynı fiziksel olayın kanıtı sayılmaz. Eşleşme belirsizse zorla etiketleme yapma.
+
+### Aşama 2 — Kayıtlı ham veriyle ESP çıktısını eşleyerek paketlemeyi iyileştirme
+
+Bu aşamada aynı kayıtlı SCT ham verisi tekrar kullanılabilir. Ham örneklerin zaman/indeks bilgileri, ESP'nin bu örneklerden ürettiği çıktılarla ilişkilendirilir; böylece her çıktının hangi örnek aralığından ve hangi paketleme/hesaplama yolundan geldiği incelenir.
+
+- Aynı ham kayıt üzerinde farklı paketleme/pencereleme ve hesaplama adaylarını karşılaştır.
+- Paketleme değişikliğinin veri kaybı, örnek bütünlüğü, zamanlama, tekrar edilebilirlik ve akım tahmini üzerindeki etkisini ölç.
+- Kayıtlı veriden üretilen ESP çıktısı ile ham örnek aralığı arasındaki eşleme, PZEM ve SCT akışlarının tümünü aynı uzunluğa getirmek anlamına gelmez.
+- Amaç, PZEM'in iç algoritmasını birebir kopyalamak değil; SCT ham verisinden, aynı fiziksel olaylarda PZEM'in akım referansına ve gerçek akıma yaklaşan bir çıktı üretip üretemediğimizi sınamaktır. Bu, “PZEM'in iç algoritması çözüldü” iddiası değildir.
+- Aynı kayıttan türetilen komşu/benzer bölgeler eğitim ve bağımsız test kümelerine sızıntı yaratacak şekilde dağıtılmamalıdır. Paketleme/model seçimi sonrasında ayrı veri bölgelerinde bağımsız doğrulama yapılır.
+
+### Sınırlar ve kanıt durumu
+
+Bu bölüm yeni bir yöntem kararıdır. Henüz sabit alanların etiketlendiği, ham örnek–ESP çıktı eşlemesinin kurulduğu, en iyi paketlemenin bulunduğu veya PZEM benzeri çıktının başarılı olduğu iddia edilmez. Testler yapıldıkça gözlem, veri/kod sürümü, koşullar ve sonuçlar ayrı kayıtlarla eklenir; ham veriler ve eski deney kayıtları korunur.
+
