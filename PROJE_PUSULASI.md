@@ -323,3 +323,14 @@ Bu bölüm, pusuladaki eski yöntem özetleriyle çelişirse güncel karar olara
 - **Sınırlar:** V/PF benzerliği tek başına aynı fiziksel olay kanıtı değildir; zaman damgası tek başına eşleştirme değildir; etiket güvenilir değilse zorla atanmaz. Ham veri ve eski deney kayıtları korunur.
 - **Kanıt durumu:** Bu, yöntem kararıdır. Etiketli veri kümesi, optimum paket, başarılı F(x) veya ±%4 doğruluk elde edildiği iddia edilmez.
 - **Ayrıntı:** [HDF-001 dondurulma gerekçesi](HEDEFLER/HDF-001-AKIMI-OKUMA/HEDEF.md) · [HDF-002 güncel yöntem kararı](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) · [Günlük geçmiş](HISTORY/2026/2026-10-12.md)
+
+## 2026-10-12 — HDF-002 ek yöntem kararı: iki ölçüm resmi ve kayıtlı veriyle ESP testi
+
+- **Fiziksel temel:** Gerçek hayatta tek bir fiziksel olay vardır; PZEM ve SCT bu olayı kendi ölçüm pencereleri ve işlem zincirleriyle farklı biçimde temsil eder.
+- **Akışları eşitleme yok:** Tüm verileri veya paketleri birebir eşitlemek, boylarını aynı yapmak hedef değildir. Karşılaştırılabilir sabit fiziksel alanlar işaretlenir; alan boyları farklı kalabilir.
+- **Aşama 1:** Bu alanlarda PZEM referansı ile SCT verisi ilişkilendirilir ve SCT'den hesaplanan akımın gerçek hatası ölçülür. Zaman yakınlığı tek başına fiziksel olay eşleşmesi sayılmaz.
+- **Aşama 2 — kayıtlı ham veriyle ESP testi:** Ham SCT örneklerinin zaman/indeksleri, bu örneklerden üretilen ESP çıktılarıyla eşleştirilir. Aynı kayıt üzerinde paketleme/pencereleme ve hesaplama adayları karşılaştırılarak veri kaybı, zamanlama, bütünlük, tekrarlanabilirlik ve akım tahmini değerlendirilir.
+- **PZEM'in iç matematiği:** İlk adımda PZEM'i bütünüyle tersine mühendislikle çözmek şart koşulmaz. Hedef PZEM algoritmasını birebir kopyalamak değil; SCT ham verisinden gerçek akıma ve PZEM referansına yaklaşan çıktıyı sınamaktır.
+- **Bağımsız doğrulama:** Aynı kayıt içindeki benzer/türev bölgeler eğitim ve test arasında sızıntı oluşturmayacak biçimde ayrılır; paketleme/model seçimi başka bölgelerde doğrulanır.
+- **Kanıt sınırı:** Bunlar plan/yöntem kararlarıdır; testlerin yapıldığı, en iyi paketlemenin bulunduğu veya başarılı taklit/akım hesabı elde edildiği anlamına gelmez. Ayrıntı: [HDF-002 güncel yöntem kararı](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) ve [2026-10-12 geçmiş kaydı](HISTORY/2026/2026-10-12.md).
+
