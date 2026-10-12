@@ -455,3 +455,36 @@ Bu süreler başlangıç adayıdır; optimum oldukları veya beş saniyenin büt
 - Mevcut ESP adları, kodlar, loglar ve performans sonuçları kullanıcı istemedikçe değiştirilmez veya üzerine yazılmaz.
 
 **Kanıt sınırı:** Bu ek, ilk görevin güncel prototip düzenini ve SSR zamanlama adayını kaydeder. Fiziksel düzenlemenin yapıldığını, SSR kodunun yazılıp denendiğini, üç SCT zincirinin veri topladığını veya sıfır akım davranışının doğrulandığını iddia etmez.
+
+---
+
+## 2026-10-12 — Yeni karar: kanal kimliği korunur, sarım sayısına göre ön bölme yapılmaz
+
+**Karar:** 1T, 2T ve 4T adları SCT kanalının kimliğini ve fiziksel yapılandırmasını belirtir; hesaplama öncesinde ölçümü sarım sayısına bölme talimatı değildir.
+
+### Veri isimlendirmesi ve izlenebilirlik
+
+- Her SCT kaydında kanal/sensör kimliği açıkça taşınır: `1T`, `2T` veya `4T`.
+- Kaydın hangi ESP'den geldiği ve hangi BIAS ölçümüyle ilişkili olduğu ayrıca korunur. Önerilen mantıksal alanlar: `channel_id`, `esp_id`, `bias_id`, zaman/örnek bilgisi ve ham veri kaydı.
+- Kalibrasyon parametreleri de kanal kimliğiyle ilişkilendirilir; 1T verisine 2T veya 4T katsayısı uygulanamaz.
+- Ham SCT/BIAS kayıtları değiştirilmez; hesaplanmış ve kalibre edilmiş sonuçlar ayrı alanlarda/sürümlerde tutulur.
+
+### Hesaplama kararı
+
+- BIAS düzeltmesinden sonra ölçüm, sırf 1T/2T/4T olduğu için önceden sarım sayısına bölünmeyecektir.
+- Her kanalın verisi PZEM referansıyla eşleştirilmiş deneylerden kalibre edilir. Önce kanalın kendi ölçüm karakteri korunur; sonra kanal bazlı (K) katsayısı değerlendirilir.
+- (K), sarım sayısının doğrudan fiziksel karşılığı veya sarım sayısının en iyi olduğunun kanıtı değildir. Yalnızca o kanalın verisi ile PZEM referansı arasındaki ampirik ilişki hakkında ipucu sağlayabilir.
+- Tek bir (K) katsayısının farklı akım seviyelerinde yeterli olup olmadığı deneyle sınanır. Yetmezse daha genel kanal bazlı (F(x)) değerlendirilir.
+- Bu kararla fiziksel olarak en iyi sarım sayısı seçilmiş olmaz. 1T/2T/4T verileri karşılaştırılarak hangi yapılandırmanın daha uygun olduğu ancak veri kalitesi, hata ve bağımsız doğrulama sonuçlarıyla değerlendirilebilir.
+
+### İlgili görev adımları
+
+- **Görev 1 / Alt Görev 1.2:** Kanal adları ve mevcut SCT eşlemesi korunur; hesaplamada ön bölme yapılmaması prototip kararına eklenir.
+- **Alt Görev 1.1:** Her kanalın kendi BIAS kaydı doğru kanal kimliğiyle ilişkilendirilir.
+- **P1:** Arşivde ham kayıtların ve kanal kimliklerinin kayıpsız taşınması doğrulanır.
+- **P2:** SCT bölgeleri, doğru kanal/ESP/BIAS kimliğiyle fiziksel olay ve PZEM referansına eşlenir.
+- **P3–P4:** Ön bölme olmadan ham/BIAS-düzeltilmiş kanal verisinden ilk (F(x)) ve doğrulaması yapılır; kanal bazlı (K) yalnızca aday başlangıçtır.
+- **P5–P6:** Paketleme ve canlı saha doğrulamasında aynı kanal kimliği ve kalibrasyon sürümü korunur.
+
+**Kanıt sınırı:** Bu bir yöntem ve veri şeması kararıdır. Bölmenin hataya neden olduğu henüz deneyle kanıtlanmış değildir; aynı şekilde tek bir (K)'nın yeterli olduğu veya herhangi bir sarım sayısının en iyi olduğu da söylenemez. Ön bölme yapmamak, ölçüm zincirinin gerçek davranışını kalibrasyon öncesinde varsayımla değiştirmemek için seçilmiştir.
+
