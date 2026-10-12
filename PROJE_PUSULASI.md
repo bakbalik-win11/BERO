@@ -342,3 +342,9 @@ Bu bölüm, pusuladaki eski yöntem özetleriyle çelişirse güncel karar olara
 - Bir canlı koşulda başarı, o koşul için kanıttır; farklı yük ve akım koşullarına genellenebilirlik ayrıca bağımsız alanlarda doğrulanır.
 - Bu, yöntem netleştirmesidir; canlı eğitim veya başarılı paket boyu testi yapıldığı iddia edilmez. Ayrıntı: [HDF-002 hedefi](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md).
 
+## 2026-10-12 — Eğitim ve değerlendirmede iki ayrı eşleme
+
+- **Eğitim:** Zaman eşitlemesi değil, olay eşitlemesi. PZEM ve SCT verilerinde aynı fiziksel olaya karşılık gelen alanlar belirlenip etiketlenir; alan boyları eşit olmak zorunda değildir. Eğitim ESP'si bu olay-eşlemeli alanlardan öğrenir/parametre seçer.
+- **Değerlendirme:** ESP ham SCT verisinden zaman/örnek aralığı bilgisi olan bir çıktı üretir. Bu çıktı, zaman eşlemesiyle o sıradaki PZEM çıktısıyla karşılaştırılır ve hata ölçülür.
+- Bu iki eşleme amacı karıştırılmaz: eğitim etiketlemesi olay temellidir; ESP çıktısının PZEM referansıyla değerlendirilmesi zaman temelli yapılır.
+- Ana araştırma değişkenleri paket boyu/pencereleme, örnek kaybı, çıktı gecikmesi, veri bütünlüğü, tekrar edilebilirlik ve akım hatasıdır. Bu yöntem kaydı test başarısı iddiası değildir.
