@@ -488,3 +488,27 @@ Bu süreler başlangıç adayıdır; optimum oldukları veya beş saniyenin büt
 
 **Kanıt sınırı:** Bu bir yöntem ve veri şeması kararıdır. Bölmenin hataya neden olduğu henüz deneyle kanıtlanmış değildir; aynı şekilde tek bir (K)'nın yeterli olduğu veya herhangi bir sarım sayısının en iyi olduğu da söylenemez. Ön bölme yapmamak, ölçüm zincirinin gerçek davranışını kalibrasyon öncesinde varsayımla değiştirmemek için seçilmiştir.
 
+---
+
+## Araştırma sorusu — kanal bazlı mı, ortak F(x) mi?
+
+Üç SCT ölçüm zinciri ayrı ESP'lerde çalışacaktır: ESP32D #1 → 1T, ESP32D #2 → 2T, ESP32E → 4T. Bu nedenle yalnızca sensörlerin ham veri toplaması değil, **her kanal için ayrı kalibrasyon/model eğitimi yapmanın gerekip gerekmediği** de araştırılacaktır.
+
+### Açık soru
+
+- Her kanalın kendi verisiyle ayrı (K) veya (F_{	ext{kanal}}(x)) modeli mi daha iyi sonuç verir?
+- Üç kanalın kimliği ve fiziksel farkları korunarak, yeterli verilerle tek bir ortak (F(x)) modeli kurulabilir mi?
+- Ortak model bütün akım bölgelerinde ve farklı yük koşullarında yeterli mi, yoksa bazı bölgelerde kanal bazlı model mi gerekir?
+
+### Araştırma yöntemi
+
+1. Her ESP'nin ham SCT + kendi BIAS verisi ayrı kanal kimliğiyle kaydedilir; sarım sayısına göre ön bölme yapılmaz.
+2. PZEM ile güvenilir biçimde eşleştirilen aynı fiziksel olay/bölgeler etiketlenir.
+3. Kanal bazlı K ve F(x) adayları ile ortak F(x) adayı aynı karşılaştırılabilir veri ve bağımsız test ölçütleriyle değerlendirilir.
+4. Bilgisayar masası gibi düşük/değişken akım koşulları ile tost makinesi gibi farklı yük ve akım koşulları ayrı bağlamlar olarak raporlanır; tek bir yükteki başarı tüm BERO koşullarına genellenmez.
+5. Hata ortalaması yanında mutlak amper hatası, hata dağılımı, tekrarlanabilirlik ve akım aralığına göre başarım incelenir. Eğitimde kullanılan kayıtlar bağımsız test sonucu olarak sunulmaz.
+
+(K) katsayıları, kanalın ölçeği ve ölçüm davranışı hakkında ipucu sağlayabilir; tek başına en iyi sarımı, ayrı model gereksinimini veya ortak (F(x))'in yeterliliğini kanıtlamaz. Nihai tercih veriye ve bağımsız doğrulamaya dayanacaktır.
+
+**Kanıt sınırı:** Bu açık araştırma sorusudur. Henüz üç modelin ayrı eğitilmesi, ortak modelin denenmesi veya herhangi bir modelin bütün akım bölgelerinde geçerli olduğunun gösterilmesi söz konusu değildir.
+
