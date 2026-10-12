@@ -13,7 +13,7 @@ Bu klasör, Proje BERO'daki **ana hedefleri** tanımlar. Ana hedef, birbiriyle i
 ## Ana hedefler
 
 - [HDF-001 — Akımı Okuma](HDF-001-AKIMI-OKUMA/HEDEF.md) — tarihsel temel olarak korunur; eski kod ve deney kayıtları silinmez.
-- [HDF-002 — Ölçüm Karakterini Öğrenmek ve Gerçek Hayatı Yakalamak](HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) — açık; önce ham veride aynı fiziksel olayı temsil eden bölgeleri PZEM referansıyla eşleştirip Python ile ilişkiyi öğrenmek, daha sonra ölçüm hızı ve paketlemeyi seçmek.
+- [HDF-002 — Ölçüm Karakterini Öğrenmek, Gerçek Dalgayı Yakalamak ve Akımı ESP'de Hesaplamak](HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) — açık. Üç SCT+BIAS ölçüm zinciri, ayrı Modbus PZEM zinciri ve sabit aralıklı solid-state röle kontrolüyle altyapıyı kurmak; kaliteli ham dalgayı HA'ya taşımak; masaüstü Python 1–4 ile güvenli arşiv, kararlı bölge etiketleme, birikimli F(x) arama, AI modeli eğitimi ve bağımsız doğrulama yapmak. Nihai hedef, doğrulanmış modeli tek saha ESP'sinde çalıştırıp akımı sisteme sunmak ve yeni verilerle kontrollü biçimde iyileştirmektir. Bu maddeler hedef kapsamıdır; gerçekleşmiş test veya doğruluk sonucu iddiası değildir.
 
 Ana hedef klasörleri HDF-NNN-KISA-AD biçiminde adlandırılır.
 
