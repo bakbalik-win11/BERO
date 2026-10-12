@@ -12,8 +12,8 @@ Bu klasör, Proje BERO'daki **ana hedefleri** tanımlar. Ana hedef, birbiriyle i
 
 ## Ana hedefler
 
-- [HDF-001 — Akımı Okuma](HDF-001-AKIMI-OKUMA/HEDEF.md) — tarihsel temel olarak korunur; eski kod ve deney kayıtları silinmez.
-- [HDF-002 — Ölçüm Karakterini Öğrenmek, Gerçek Dalgayı Yakalamak ve Akımı ESP'de Hesaplamak](HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) — açık. Üç SCT+BIAS ölçüm zinciri, ayrı Modbus PZEM zinciri ve sabit aralıklı solid-state röle kontrolüyle altyapıyı kurmak; kaliteli ham dalgayı HA'ya taşımak; masaüstü Python 1–4 ile güvenli arşiv, kararlı bölge etiketleme, birikimli F(x) arama, AI modeli eğitimi ve bağımsız doğrulama yapmak. Nihai hedef, doğrulanmış modeli tek saha ESP'sinde çalıştırıp akımı sisteme sunmak ve yeni verilerle kontrollü biçimde iyileştirmektir. Bu maddeler hedef kapsamıdır; gerçekleşmiş test veya doğruluk sonucu iddiası değildir.
+- [HDF-001 — Akımı Okuma](HDF-001-AKIMI-OKUMA/HEDEF.md) — **donduruldu / yarım kaldı**. ESP veri okuma testlerinden işe yarar deneyim kazanıldı ve korunuyor; zaman odaklı, farklı ölçüm zincirlerinin işlenmiş çıktısını doğrudan eşleyen F(x) yaklaşımı güvenilir akım hesabına götürmedi.
+- [HDF-002 — Ölçüm Karakterini Öğrenmek, Gerçek Dalgayı Yakalamak ve Akımı ESP'de Hesaplamak](HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) — açık. Güncel ilk kazanım, aynı fiziksel akım alanını temsil eden SCT bölgelerini PZEM'in sabit (I, V, PF) referans alanları ve deney bağlamıyla etiketlenmiş veri kümesine dönüştürmektir. Ardından Python ile etiketli veriden optimum paket adayı seçilecek, paket testleri yapılacak, F(x) hesaplanıp hata analiz edilecek. Hedefin ilerleyen aşamaları güvenli arşiv, bağımsız doğrulama ve onaylı modelin tek saha ESP'sinde çalıştırılmasını kapsar. Bunlar planlanan iş akışıdır; gerçekleşmiş test veya doğruluk sonucu iddiası değildir.
 
 Ana hedef klasörleri HDF-NNN-KISA-AD biçiminde adlandırılır.
 
