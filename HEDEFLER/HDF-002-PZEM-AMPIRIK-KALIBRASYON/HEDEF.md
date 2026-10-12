@@ -333,3 +333,23 @@ Bu nedenle PZEM'in iç algoritmasını tamamen çözmek şart koşulmaz. PZEM'in
 
 Bu netleştirme testlerin yapıldığı veya herhangi bir paket boyunun başarılı bulunduğu anlamına gelmez. Canlı eğitim, ham veri–ESP çıktısı–PZEM referansı birlikte kaydedilip hata ölçüldüğünde değerlendirilmiş sayılacaktır.
 
+## 2026-10-12 — Kesin ayrım: eğitimde olay eşleme, değerlendirmede zaman eşleme
+
+Önceki eğitim ESP'si anlatımını bu ayrımla netleştir:
+
+### A. Eğitim verisini oluşturma: olay eşleme
+- Eğitim için PZEM ve SCT akışları yalnızca zaman damgalarına göre eşleştirilmez.
+- Önce iki ölçüm resminde aynı fiziksel olaya karşılık gelen alanlar belirlenir ve etiketlenir. Alanların uzunlukları/paket boyları farklı kalabilir; amaç olayın eşleşmesidir.
+- Eğitim ESP'si, bu olay-eşlemeli/etiketli alanlardan öğrenir veya paketleme-hesaplama parametrelerini seçer.
+
+### B. Eğitimden sonra değerlendirme: zaman eşleme
+- Eğitimden sonra ESP, ham SCT verisini işler ve kendi zaman bilgisiyle çıktı üretir.
+- Üretilen her ESP çıktısı, çıktının temsil ettiği örnek aralığı/pencere ve üretim zamanı kaydedilerek izlenir.
+- Bu çıktı, değerlendirme sırasında zaman eşlemesiyle o sırada alınan PZEM çıktısıyla karşılaştırılır; hata ölçülür.
+- Bu zaman eşlemesi, eğitim etiketlemesinin yerine geçmez. Eğitimde olay eşleme, değerlendirmede ESP çıktısı–PZEM zaman eşlemesi iki farklı amaçtır.
+
+### Araştırılan ana değişken
+Paket boyu/pencereleme ve hesaplama seçimi; ham veriyi yakalama, örnek kaybı, çıktı gecikmesi, veri bütünlüğü, tekrar edilebilirlik ve PZEM'e göre akım hatası üzerindeki etkileriyle sınanır.
+
+### Kanıt sınırı
+Bu bölüm yöntem kararını açıklar; eğitim veya testin yapıldığı, herhangi bir paket boyunun başarılı olduğu iddia edilmez.
