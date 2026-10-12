@@ -12,3 +12,10 @@ Her SCT kanalının BIAS değerini kendi ölçüm zincirinde ayrıca ölçmek, m
 **Alt görev çıktısı:** Üç SCT kanalı için SCT + kendi BIAS ölçüm yolunu gösteren güncel bağlantı kaydı, fiziksel modifikasyon notları ve doğrulama soruları.
 
 **Kanıt sınırı:** Bu alt görev planlanmıştır. Modifikasyonun yapıldığı veya üç kanalda BIAS ölçümünün çalıştığı henüz iddia edilmez.
+
+### Ek veri kimliği kuralı
+
+Her BIAS ölçümü kendi SCT kanal kimliğiyle açıkça ilişkilendirilir: `1T` → ilgili BIAS, `2T` → ilgili BIAS, `4T` → ilgili BIAS. Kayıtlarda `channel_id`, `esp_id` ve `bias_id` birbirinden ayrı tutulur; başka kanalın BIAS değeri sessizce kullanılmaz. BIAS düzeltmesinden sonra veriler sarım sayısına göre önceden bölünmez; kalibrasyon kararı ham kayıtlar korunarak ayrı aşamada değerlendirilir.
+
+Bu ek, fiziksel BIAS modifikasyonunun yapıldığı veya çalıştığının doğrulandığı anlamına gelmez.
+
