@@ -512,3 +512,24 @@ Bu süreler başlangıç adayıdır; optimum oldukları veya beş saniyenin büt
 
 **Kanıt sınırı:** Bu açık araştırma sorusudur. Henüz üç modelin ayrı eğitilmesi, ortak modelin denenmesi veya herhangi bir modelin bütün akım bölgelerinde geçerli olduğunun gösterilmesi söz konusu değildir.
 
+---
+
+## Mimari kararı adayı — ESP32-P4-Pico nihai saha ESP'si
+
+Kullanıcının mimari yönü: eldeki **ESP32-P4-Pico**, HDF-002 araştırmaları tamamlandıktan sonra BERO'nun nihai saha akım ölçüm ESP'si adayı olacaktır. Bu kart, seçilen/ doğrulanan hesaplama yöntemini sahada çalıştıracak ve akım sonucunu sisteme/HA'ya aktaracaktır. Bu yön unutulmaması için hedefe kaydedilmiştir; henüz donanım uygunluğu ve nihai uygulama doğrulanmış değildir.
+
+### Üç SCT yapılandırmasıyla ilişki
+
+- Araştırma aşamasında üç bağımsız ölçüm zinciri korunur: ESP32D #1 → 1T, ESP32D #2 → 2T, ESP32E → 4T.
+- Bu üç zincir, farklı sarım yapılandırmalarının davranışını ve ayrı kanal modelleriyle ortak (F(x)) modelinin yeterliliğini araştırmak için veri üretir.
+- Araştırma sonrasında P4-Pico üzerinde kanal/sarım yapılandırmalarına göre uygun hesaplama modelini seçme veya birden fazla modeli çalıştırma olasılığı değerlendirilecektir.
+- P4-Pico'nun GPIO/kanal eşlemesi, ölçüm girişleri, ADC bağlantısı ve gerekli sinyal koşullandırması donanım tasarımında ayrıca doğrulanmalıdır. GPIO kullanımı tek başına üç SCT ölçümünün doğru ve eşzamanlı okunacağını garanti etmez.
+- “Üç modelin GPIO'larla farklı sarımları yönetmesi” mevcut bir donanım sonucu değil, araştırılacak mimari fikirdir. Burada GPIO'ların sensör verisini seçmek/okumak için mi yoksa başka bir kontrol için mi kullanılacağı bağlantı tasarımında netleştirilecektir; fiziksel sarım değişiminin GPIO ile yapıldığı varsayılmayacaktır.
+- Sarım sayısına göre ön bölme yapılmaması, kanal kimliklerinin korunması ve K'nın yalnızca ampirik ipucu sayılması kararları geçerliliğini korur.
+
+### Karar kapısı
+
+P4-Pico nihai saha kartı olarak sabitlenmeden önce mevcut ESP32D/ESP32E performans kanıtları korunur; P4-Pico'nun gerçek örnekleme hızı, zamanlama kararlılığı, veri kaybı, ADC/ölçüm zinciri uyumu, model çalıştırma ve HA aktarımı doğrulanır. Yeterli kanıt varsa mevcut testler gereksiz yere tekrarlanmaz.
+
+**Kanıt sınırı:** Bu bir mimari yön ve araştırma planıdır. P4-Pico üzerinde üç SCT'nin bağlandığı, üç modelin çalıştırıldığı veya GPIO düzeninin doğrulandığı iddia edilmez.
+
