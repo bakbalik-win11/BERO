@@ -358,3 +358,12 @@ Bu bölüm, pusuladaki eski yöntem özetleriyle çelişirse güncel karar olara
 - **Canlı saha ESP'si:** Seçilen yöntemle canlı SCT verisini paketleyip/işleyerek ölçüm üretir; bu çıktı canlı PZEM referansıyla karşılaştırılır.
 - Bu sıra yöntem kararıdır; test başarısı veya paketleme seçimi gerçekleşmiş gibi gösterilmez. Ayrıntı: [HDF-002 hedefi](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md).
 
+## 2026-10-12 — HDF-002 P1–P6 iş bölümü
+
+- **P1:** HA'dan veriyi alır/taşır; güvenli aktarım doğrulanınca kaynaktan siler.
+- **P2:** Aynı fiziksel olaya ait PZEM–SCT alanlarını eşleştirir ve etiketler (olay eşlemesi).
+- **P3:** Eşleştirilmiş fakat paketlenmemiş veriden F(x) üretir.
+- **P4:** Eşleştirilmiş veride P3 formüllerinin doğruluğunu sınar.
+- **P5:** Ham SCT verisini farklı paketleme/pencereleme yöntemleriyle işler; çıktıyı zaman eşlemesiyle ham PZEM verisine karşılaştırır.
+- **P6:** P5'te seçilen F(x)/paketleme yöntemiyle çalışan ESP'yi canlı SCT ve canlı PZEM karşılaştırmasıyla doğrular.
+- **Geri besleme:** P6 başarısızsa doğrudan P4'e dönmek zorunlu değildir. Hata analizine göre formül için P3–P4, paketleme için P5, olay/etiket sorunu için P2 yeniden ele alınır. Bu bir yöntem planıdır; başarı iddiası değildir.
