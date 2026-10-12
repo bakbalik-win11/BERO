@@ -315,3 +315,21 @@ Bu aşamada aynı kayıtlı SCT ham verisi tekrar kullanılabilir. Ham örnekler
 
 Bu bölüm yeni bir yöntem kararıdır. Henüz sabit alanların etiketlendiği, ham örnek–ESP çıktı eşlemesinin kurulduğu, en iyi paketlemenin bulunduğu veya PZEM benzeri çıktının başarılı olduğu iddia edilmez. Testler yapıldıkça gözlem, veri/kod sürümü, koşullar ve sonuçlar ayrı kayıtlarla eklenir; ham veriler ve eski deney kayıtları korunur.
 
+## 2026-10-12 — Netleştirme: eğitim ESP'si canlı veride, paket boyu odaklı sınama
+
+Önceki “kayıtlı ham veriyle ESP çıktısını eşleme” anlatımına ek olarak, eğitim ESP'sinin asıl sınaması şu şekilde netleştirilmiştir: **Eğitim ESP'si canlı SCT verisini kullanarak etiketli alanlardan öğrenme/eğitim yaparken, başarısı ham SCT verisi ve aynı fiziksel olay sırasında alınan PZEM verisi karşılaştırılarak değerlendirilecektir.** Bu aşamada ana araştırma konusu, özellikle paket boyu/pencere uzunluğu ve bunların örnek yakalama, veri kaybı, hesaplama çıktısı ve gecikme üzerindeki etkisidir.
+
+### Canlı eğitim ve değerlendirme akışı
+
+1. Fiziksel yük/akım olayı sürerken SCT ham örnekleri, ESP'nin ürettiği paket/hesaplama çıktısı ve PZEM'in o sırada raporladığı referans birlikte kaydedilir.
+2. Etiketli sabit fiziksel alanlar, eğitim ESP'sinin hangi alanlardan öğrenmesi/parametre seçmesi gerektiğini belirtir; bütün veri akışlarının uzunluklarını eşitleme gerektirmez.
+3. Paket boyu/pencereleme adayları, aynı koşulda yakalanan ham veri ve ESP çıktılarıyla incelenir. Paket boyunun veri kaybı, örnek bütünlüğü, hesaplanan akım, gecikme ve tekrar edilebilirlik üzerindeki etkisi ölçülür.
+4. Başarı, yalnızca eğitim verisine uyumla değil; aynı anda kaydedilen PZEM referansına karşı hata ve görülmemiş fiziksel alanlarda yapılan doğrulamayla değerlendirilir.
+5. Bir canlı koşulda başarılı sonuç, o koşulda yöntemin işe yaradığını gösterir; farklı yük/akım koşullarına genellenebilirlik için ayrıca bağımsız doğrulama gerekir.
+
+Bu nedenle PZEM'in iç algoritmasını tamamen çözmek şart koşulmaz. PZEM'in eşzamanlı referans çıktısı karşılaştırma için kullanılır; asıl geliştirme hedefi SCT ham verisini uygun paketleme ve hesaplamayla akım çıktısına dönüştürmektir.
+
+### Kanıt sınırı
+
+Bu netleştirme testlerin yapıldığı veya herhangi bir paket boyunun başarılı bulunduğu anlamına gelmez. Canlı eğitim, ham veri–ESP çıktısı–PZEM referansı birlikte kaydedilip hata ölçüldüğünde değerlendirilmiş sayılacaktır.
+
