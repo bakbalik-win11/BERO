@@ -533,3 +533,14 @@ P4-Pico nihai saha kartı olarak sabitlenmeden önce mevcut ESP32D/ESP32E perfor
 
 **Kanıt sınırı:** Bu bir mimari yön ve araştırma planıdır. P4-Pico üzerinde üç SCT'nin bağlandığı, üç modelin çalıştırıldığı veya GPIO düzeninin doğrulandığı iddia edilmez.
 
+### SSR kartı ve saha kontrolü — mimari güncelleme
+
+Kullanıcının paylaştığı donanım: **5 V, 2 kanallı Solid State Röle (SSR) kartı**. Güncel mimari yönünde bu röle kartının da nihai saha ESP'si adayı ESP32-P4-Pico tarafından kontrol edilmesi değerlendirilecektir.
+
+- Kart üzerinde iki kontrol kanalı (CH1 ve CH2) bulunuyor; fotoğrafta kontrol tarafında DC+ ve DC- bağlantıları da görülüyor.
+- P4-Pico'nun GPIO eşlemesi, kontrol girişlerinin elektriksel uyumu ve röle kartının yük tarafı sınırları bağlantı şeması/datasheet üzerinden doğrulanmalıdır.
+- Önceden ayrı SSR ESP'si için düşünülen düzen bu mimari güncellemesiyle yeniden değerlendirmeye açılmıştır; ayrı SSR ESP'sinin hâlâ gerekli olduğu varsayılmayacaktır.
+- İki kanalın hangi yükleri yöneteceği, açma-kapama çevrimi ve güvenli başlangıç/yeniden başlatma davranışı ayrıca belirlenecek ve test edilecektir.
+
+**Kanıt sınırı:** Fotoğraf kartın iki kanallı olduğunu ve kontrol terminallerinin etiketlerini gösterir; yük gerilimi/akımı, izolasyon ve P4-Pico ile doğrudan uyumluluk henüz doğrulanmış değildir.
+
