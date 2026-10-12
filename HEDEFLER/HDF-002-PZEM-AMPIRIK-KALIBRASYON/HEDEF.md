@@ -416,3 +416,42 @@ flowchart TD
 
 **Kanıt sınırı:** Bu şema planı gösterir. Aşamaların yapıldığı, bir paketlemenin seçildiği veya akım doğruluğunun sağlandığı anlamına gelmez.
 
+
+
+## 2026-10-12 — Görev 1 ek kararı: prototipi yeniden düzenleme
+
+Bu karar, HDF-002'nin **Görev 1 — Fiziksel altyapı ve deneme kayıtları** bölümüne ek açıklamadır. Önceki kodlar, ölçüm deneyimleri ve kararlar korunur; bu ekleme yeni prototip düzenini tanımlar. Henüz donanımın yeniden düzenlendiği veya yeni kodun çalıştırıldığı iddia edilmez.
+
+### İlk iş: mevcut prototipi yeni görev ayrımına göre düzenlemek
+
+İlk adım doğrudan üç SCT için yeni kod yazmak değil, mevcut prototipin görevlerini birbirinden ayırmaktır. Daha önce performansı sınanmış iki ESP32D ve bir ESP32E, üç bağımsız SCT + BIAS ölçüm zincirinde kullanılacaktır. Sınanmış ESP performansını gereksiz yere baştan sınamak yerine mevcut kod, kayıt ve deneyimler korunarak yeniden kullanılacaktır.
+
+Planlanan görev ayrımı:
+
+1. **ESP32D #1:** Kendi SCT sensörünü ve BIAS sinyalini okur.
+2. **ESP32D #2:** Kendi SCT sensörünü ve BIAS sinyalini okur.
+3. **ESP32E:** Kendi SCT sensörünü ve BIAS sinyalini okur.
+4. **PZEM ESP:** Yalnızca kendi PZEM cihazını okur. Diğer ESP'leri okumaz ve SCT ESP'lerine ölçüm verisi sağlayan bir merkez olarak kullanılmaz.
+5. **SSR kontrol ESP'si:** Solid-state röleyi ayrı bir görev olarak yönetir; SCT ölçüm ESP'lerinin örnekleme ve veri toplama görevini üstlenmez.
+
+Bu düzen, beş ayrı işlevin mantıksal olarak ayrılmasıdır. SSR kontrol ESP'sinin fiziksel olarak hangi kart olacağı ve mevcut donanım sayısına nasıl dahil edileceği prototip envanteri düzenlenirken kaydedilecektir; henüz ek bir kartın mevcut olduğu varsayılmaz.
+
+### SSR için başlangıç zamanlama adayı
+
+İlk deneme için araştırılacak zamanlama **55 saniye SSR açık + 5 saniye SSR kapalı**, toplam 60 saniyelik döngüdür.
+
+- 55 saniyelik açık pencere: yük çalışırken SCT ve PZEM kayıtlarını toplamak.
+- 5 saniyelik kapalı pencere: yük kesildikten sonraki davranışı kaydetmek.
+- Döngü tekrarlandığında her açma/kapama geçişinin zamanı ve deney koşulu kayıtta tutulur.
+
+Bu süreler başlangıç adayıdır; optimum oldukları veya beş saniyenin bütün geçişleri değerlendirmeye yettiği henüz doğrulanmış değildir. SSR kontrol kodunda başlangıç/yeniden başlama davranışı ve güvenli çıkış durumu açıkça belirlenir. SSR'nin anahtarladığı yük ve elektriksel sınırlar bağlantıdan önce doğrulanır.
+
+### Ölçüm ve veri ilkeleri
+
+- Her SCT zinciri kendi SCT + BIAS verisini bağımsız üretir; cihaz/kanal kimliği, kod sürümü ve örnek zaman bilgileri korunur.
+- PZEM'in kendi okuması ayrı referans akışıdır; diğer ESP'lerin zamanlamasını yönetmez.
+- İlk hedef, ham SCT + BIAS verisini güvenilir biçimde toplamak ve prototip görevlerini ayırmaktır; bu adımda F(x) başarısı veya akım doğruluğu varsayılmaz.
+- Yük yokken sıfır akım davranışı prototipin gereksinimidir. Bunun PZEM okumasında, SCT hesaplamasında veya her ikisinde nasıl ele alınacağı sonraki tasarım kararıdır; uygulama yöntemi henüz belirlenmemiştir.
+- Mevcut ESP adları, kodlar, loglar ve performans sonuçları kullanıcı istemedikçe değiştirilmez veya üzerine yazılmaz.
+
+**Kanıt sınırı:** Bu ek, ilk görevin güncel prototip düzenini ve SSR zamanlama adayını kaydeder. Fiziksel düzenlemenin yapıldığını, SSR kodunun yazılıp denendiğini, üç SCT zincirinin veri topladığını veya sıfır akım davranışının doğrulandığını iddia etmez.
