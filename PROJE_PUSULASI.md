@@ -29,14 +29,13 @@ Bu bölüm ana resmi özetler. Ayrıntılı elektrik, HVAC, donanım ve bağlant
 
 ## 3. Aktif ana hedef
 
-**[HDF-001 — Akımı Okuma](HEDEFLER/HDF-001-AKIMI-OKUMA/HEDEF.md)**
+**[HDF-002 — Ölçüm Karakterini Öğrenmek ve Gerçek Hayatı Yakalamak](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md)**
 
-Hedef: akım ölçüm zincirini çalıştırmak, davranışını ölçümlerle doğrulamak ve kullanılan yöntemi sınırlarıyla birlikte tekrarlanabilir biçimde belgelemek.
+**Aktif çalışma HDF-002'dir.** HDF-001/GRV-001 önceki çalışmanın geçmişidir; kullanıcı üç kez başa dönmek istemediği için yeni araştırma hedefi HDF-002 altında kuruldu. HDF-001'e geri dönülmeyecek veya eski görev geçmişi silinmeyecek; HDF-002 yeni aktif hedef olarak sürdürülecek.
 
-Başlangıç görevi:
-- **[GRV-001 — ESP32-D ile SCT-013 Akım Okuması](GOREVLER/GRV-001/RAPOR/README.md)**
+HDF-002'nin odağı: ölçüm zincirlerinin davranışını ayrı ayrı anlamak, ham veriyi korumak ve PZEM paket yayın anını fiziksel ölçüm anı saymadan, deney koşullarıyla desteklenen bölgeler arasında ilişki araştırmak. V/PF bağlamı korunur; deneyle desteklenmeyen eşleştirme yapılmaz.
 
-Bu görevde amaç, ESP32-D ve SCT-013 ile akım okuma davranışını incelemektir. MCP3208/SPI zamanlama konusu bu görevin kapsamına kendiliğinden eklenmez; gerekirse ayrı görev olarak açılır.
+**Sıradaki iş:** HDF-002 araştırma çerçevesinde, mevcut gerçek donanım ve kod durumunu depodaki ilgili görev/kayıtlardan doğrula; sonra planlanan deneyde neyin gözleneceğini netleştir. MCP, mevcut aktif hedefin varsayılan başlangıç noktası değildir.
 
 ## 4. Şu anki kayıtlı durum
 
@@ -52,14 +51,14 @@ Bu durum bölümü, yeni kanıt elde edildiğinde güncellenebilir bir anlık g�
 
 ## 5. Sıradaki adım
 
-1. GRV-001 için kullanılacak mevcut ESP32-D + SCT-013 kodunu ve donanım/bağlantı durumunu belirlemek; mevcut çalışan sürümü korumak.
-2. Test koşullarını ve ölçüm beklentisini görev raporuna kaydetmek.
-3. Tek değişkenli deneylerle ölçüm almak; ham veriyi ve logları saklamak.
-4. Bulgulara göre sonraki görev gerekip gerekmediğine karar vermek.
-5. Derleme gerektiren kod, kullanıcı başarılı derlemeyi doğrulamadan görev klasörüne taşınmamalıdır.
-6. Ana hedef ancak kabul ölçütleri ve kanıtlar değerlendirildikten sonra kapatılmalıdır.
+1. **HDF-002'de kal; hedefi yeniden HDF-001'e döndürme ve projeyi sıfırlama.**
+2. HDF-002'nin kayıtlı araştırma yönünü uygula: ölçüm zincirlerini kendi davranışları açısından ayır, ham veriyi ve koşulları koru.
+3. PZEM paket yayın zamanını fiziksel ölçüm anı sayma; zaman bilgisi varsa yardımcı bağlam olarak tut.
+4. PZEM tarafında akım etiketiyle birlikte V ve PF koşullarını koru; bölgeleri ancak fiziksel/deneysel bağlam destekliyorsa ilişkilendir.
+5. Bu akşamki somut deney adımını mevcut donanım/kod kaydını doğruladıktan sonra seç. MCP veya sıfır sorunu varmış gibi varsayma; kullanıcı son mesajında MCP sıfırları olmadığını açıkça belirtti.
+6. Sonuçları kanıtla kaydet; doğrulanmamış hipotezleri sonuç gibi yazma.
 
-Bu liste, yeni test sonucu geldikçe güncellenir; sonuçlar önceden varsayılmaz.
+Bu liste HDF-002'nin devamını sağlar; önceki görev geçmişini silmez ve projeyi baştan başlatmaz.
 
 ## 6. Oturum devri — en son nerede kaldık?
 
@@ -279,3 +278,11 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 - PZEM etiketleri akım ile birlikte V ve PF bağlamını taşısın: (I, V, PF). Benzer V/PF aynı fiziksel olay veya aynı sinyal niteliği demek değildir.
 - **Kanıt sınırı:** Bu oturumda yeni donanım deneyi yapılmadı. Sensörlerin sağlam olduğu, MCP sıfırlarının nedeni veya hipotezin doğruluğu kanıtlanmış değil.
 - Ayrıntı: [2026-10-12 gün sonu kaydı](HISTORY/2026/2026-10-12.md); [Elma-armut yöntem notu](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/NOTLAR/YONTEM_NOTU-ELMA-ARMUT-SAYI-NITELIK.md).
+
+
+## 2026-10-12 — Aktif hedef düzeltmesi
+
+- Önceki pusula görüntüsünde HDF-001/GRV-001 hâlâ aktif hedef gibi görünüyordu; bu, güncel çalışma durumunu yanlış yönlendiriyordu.
+- **Düzeltme:** Aktif hedef HDF-002'dir. HDF-001/GRV-001 önceki çalışma geçmişidir; tekrar başa dönülmeyecek. HDF-002, önceki saplanmayı ve sıfırlama döngüsünü tekrarlamadan ölçüm karakterini öğrenmek için açılmıştır.
+- MCP sıfırları varmış gibi varsayılmayacak; kullanıcı açıkça “sıfır yok” dedi. Bu akşamın planı MCP etrafında kurulmayacak.
+- Bir sonraki plan HDF-002'nin gerçek durumundan ve mevcut kod/donanım kayıtlarından türetilecek.
