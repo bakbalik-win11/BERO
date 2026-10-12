@@ -367,3 +367,19 @@ Bu bölüm, pusuladaki eski yöntem özetleriyle çelişirse güncel karar olara
 - **P5:** Ham SCT verisini farklı paketleme/pencereleme yöntemleriyle işler; çıktıyı zaman eşlemesiyle ham PZEM verisine karşılaştırır.
 - **P6:** P5'te geliştirilen/seçilen F(x) ve paketleme yöntemiyle çalışan ESP'yi canlı SCT ve canlı PZEM karşılaştırmasıyla doğrular.
 - **Geri besleme:** P6 başarısızsa doğrudan P4'e dönmek zorunlu değildir. Hata analizine göre formül için P3–P4, paketleme için P5, olay/etiket sorunu için P2 yeniden ele alınır. Bu bir yöntem planıdır; başarı iddiası değildir.
+
+
+## 2026-10-12 — Oturum devri: HDF-002 gerçek sensör kapsamı
+
+**Aktif yön:** Önce prototipin fiziksel sökme-takma/kurulum işi; sonra Hedef 2 gerçek sensör verileri ve kalibrasyon.
+
+- Hedef 2 kapsamı: SCT013, SANEC ACS758LCB 50 A (çift çıkış/kanal yapısı doğrulanacak), Ayzek ZMCT103C 5 A tek faz, ACS 5 A ve ACS 20 A. Yalnızca SCT ile sınırlı değil.
+- Mevcut prototipte MCP yok, okumada bias yok. Geçmiş MCP/BIAS deneyleri silinmez; yalnızca bu prototipe varsayımla taşınmaz.
+- 1T, 2T, 3T ve 4T ESP yazılımları zaten hazır; adları ve kodları kullanıcı istemedikçe değiştirilmez.
+- Hedef 1'deki PZEM Hedef 2 için referans/doğrulama cihazıdır; hızlı örnekleme kaynağı değildir. Eski/yanmış PZEM modülü bu gerçek sensör deneylerine dahil değildir.
+- Hızlı ham okuma ile HA aktarımı ayrı değerlendirilir; aktarım örnekleme döngüsünü yavaşlatmamalıdır.
+- **Son doğrulanmış teknik sonuç:** Bu oturumda yeni fiziksel deney/derleme/kalibrasyon sonucu yok. Güncellenenler kapsam ve devir kayıtlarıdır.
+- **Açık iş:** Prototipi fiziksel olarak kur; mevcut 1T/2T/3T/4T kodlarını doğru ESP'lerle eşleştir; gerekirse depodaki SCT–ESP ham okuma YAML'ını doğrula.
+- **Sonraki tek adım:** Prototipin sökme-takma/kurulumuna devam etmek. Donanım veya kod önerisinden önce doğru kayıt ve sürümü kontrol et.
+
+Ayrıntı: [HDF-002 hedefi](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) · [2026-10-12 HISTORY](HISTORY/2026/2026-10-12.md).
