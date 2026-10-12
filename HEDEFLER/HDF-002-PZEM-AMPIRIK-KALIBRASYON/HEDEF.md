@@ -387,3 +387,32 @@ Canlı PZEM karşılaştırması hedeflenen başarıyı göstermiyorsa, sonuçla
 
 Bu kayıt görev ayrımını ve olası geri besleme döngüsünü tanımlar. P1–P6'nın tamamlandığı, bir F(x) veya paketlemenin başarılı olduğu ya da canlı doğrulamanın geçtiği iddia edilmez.
 
+## 2026-10-12 — HDF-002 güncel P1–P6 döngü şeması
+
+**Bu şema, HDF-002'nin güncel P1–P6 akışını tek görünümde özetler.** Önceki ayrıntılı bölümler ve tarihli kararlar geçmiş olarak korunur. P1–P6 akışı ile daha eski Python 1–4 taslakları arasında görev adlandırması/iş sırası farklılıkları görüldüğünde, bu tarihli P1–P6 özeti güncel deney akışı olarak okunmalıdır; eski metinler sessizce silinmemiştir.
+
+```mermaid
+flowchart TD
+    P1["P1 — HA verisini al ve taşı<br/>Kalıcı kopyayı doğrula, sonra kaynaktan sil"]
+    P2["P2 — OLAY EŞLEME<br/>Aynı fiziksel olayı temsil eden SCT/PZEM alanlarını etiketle"]
+    P3["P3 — HAM, PAKETLENMEMİŞ SCT<br/>Eşleştirilmiş alanlardan F(x) üret"]
+    P4["P4 — EŞLEŞTİRİLMİŞ VERİ<br/>P3 formülünü doğrula"]
+    P5["P5 — PAKETLEME ARAŞTIRMASI<br/>Ham SCT + farklı paket/pencere + F(x)<br/>Çıktıyı zaman eşlemesiyle ham PZEM'e karşılaştır"]
+    P6["P6 — CANLI SAHA ESP'Sİ<br/>P5'te seçilen F(x) + paketleme<br/>Canlı SCT çıktısını canlı PZEM ile karşılaştır"]
+
+    P1 --> P2 --> P3 --> P4 --> P5 --> P6
+    P6 -. "Hata analizi: formül/hesaplama" .-> P4
+    P6 -. "Hata analizi: paket/pencere" .-> P5
+    P6 -. "Hata analizi: olay/etiket" .-> P2
+```
+
+### Şemanın okunması
+
+- **Eğitim/etiketleme (P2):** Zaman damgalarını zorla eşitlemek değil, aynı fiziksel olaya ait alanları bulmak. Alanların boyları farklı kalabilir.
+- **İlk formül (P3–P4):** F(x), eşleştirilmiş ve paketlenmemiş veride geliştirilip sınanır.
+- **Paketleme kararı (P5):** Ham SCT üzerinde farklı paket/pencere yöntemleri denenir; F(x) çıktısı ham PZEM referansıyla zaman ilişkisi üzerinden değerlendirilir.
+- **Canlı doğrulama (P6):** ESP artık P5'te seçilen F(x) ve paketleme ile canlı SCT ölçümü üretir; canlı PZEM ile karşılaştırılır.
+- **Geri dönüş:** P6 sonucu başarısızsa doğrudan ve körlemesine P4'e dönülmez. Hata analizinin işaret ettiği katmana (P2, P4 veya P5) dönülür; P4'e dönüş olası yollardan biridir.
+
+**Kanıt sınırı:** Bu şema planı gösterir. Aşamaların yapıldığı, bir paketlemenin seçildiği veya akım doğruluğunun sağlandığı anlamına gelmez.
+
