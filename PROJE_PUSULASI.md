@@ -307,3 +307,19 @@ Projenin nereden nereye ilerlediğini tarih sırasıyla görmek için [HISTORY/]
 **Sıradaki tek adım:** HDF-001'deki SCT okuma kodu/loglarını yeniden test yapmadan bulup mevcut kanıtı değerlendirmek; HDF-002 veri akışı için henüz yapılmamış kurulumları başarı gibi göstermemek.
 
 **Durum:** Hedef ve süreç tanımı plan/mimari kararıdır; deney, model veya ±%4 performans doğrulaması değildir.
+
+
+---
+
+## 2026-10-12 — Güncel yöntem ayrımı: HDF-001 donduruldu, HDF-002 etiketli veri merkezli
+
+Bu bölüm, pusuladaki eski yöntem özetleriyle çelişirse güncel karar olarak izlenir. Önceki kayıtlar silinmez.
+
+- **HDF-001 durumu:** Donduruldu / yarım kaldı. ESP'nin veri okuma yetenekleri için yapılan işe yarar testler ve bunlardan öğrenilenler korunur; uygun olanlar HDF-002'de yeniden kullanılır.
+- **Dondurma nedeni:** MCP/SCT ölçüm zincirinin entegre/işlenmiş çıktısı ham SCT davranışıyla aynı türden veri değildir. PZEM de kendi örnekleme ve hesaplama zincirinin çıktısını verir. Bu iki çıktıyı yalnızca zaman damgalarına göre eşleştirmek, aynı fiziksel akım olayını temsil ettiklerini kanıtlamaz. Son testlerde istatistiklerin beklenen şekilde tutturulamaması, eski F(x) yaklaşımının temel varsayımını sorgulattı. Başarısız olan bütün veri okuma deneyleri değil, bu verilerden F(x)'e geçmek için kullanılan zaman merkezli eşleştirme felsefesidir.
+- **HDF-002 ilk kazanımı:** Aynı fiziksel akım alanını/olayını temsil eden SCT bölgelerini PZEM'in sabit `(I, V, PF)` alanları ve deney bağlamıyla etiketlenmiş veri kümesine dönüştürmek.
+- **Yeni ara Python adımı:** Etiketli veri üzerinden optimum paket/pencere/okuma adayını seçmek; sonrasında paket testlerini etiketlenmiş veriyle yürütmek.
+- **Yeni sıra:** Aynı akım alanını belirle ve etiketle → optimum paket adayı seç → etiketli veride paket testleri → F(x) hesapla → hatayı ölç → iyileştir.
+- **Sınırlar:** V/PF benzerliği tek başına aynı fiziksel olay kanıtı değildir; zaman damgası tek başına eşleştirme değildir; etiket güvenilir değilse zorla atanmaz. Ham veri ve eski deney kayıtları korunur.
+- **Kanıt durumu:** Bu, yöntem kararıdır. Etiketli veri kümesi, optimum paket, başarılı F(x) veya ±%4 doğruluk elde edildiği iddia edilmez.
+- **Ayrıntı:** [HDF-001 dondurulma gerekçesi](HEDEFLER/HDF-001-AKIMI-OKUMA/HEDEF.md) · [HDF-002 güncel yöntem kararı](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) · [Günlük geçmiş](HISTORY/2026/2026-10-12.md)
