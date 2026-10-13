@@ -73,13 +73,13 @@ Bir sonuç doğrulanmadıysa “bekliyor” yaz; tahminle doldurma.
 
 ### Mevcut devir notu
 
-- **Son tamamlanan işler:** GRV-005-15 QC v02, kullanıcının Mac mini bilgisayarında v06 CSV üzerinde çalıştırıldı; görünür Terminal çıktısı `RESULT: PASS (14/14 checks)` gösterdi. Ardından GRV-006-01 ilk dosya akışı asistan ortamında gerçekten çalıştırıldı.
-- **GRV-006-01 kanıtı:** Sentetik ham CSV dosyası yazıldı ve yeniden okundu; üç satır Python ile dönüştürülerek ayrı çıktı dosyasına yazıldı ve yeniden okundu. Bağımsız hesaplanan toplam 120, çıktı dosyasından okunan toplam 120 ile eşleşti.
-- **Kanıt sınırı:** GRV-005 Terminal çıktısında exit code ayrıca kaydedilmedi; QC yapısal uygunluğu gösterir, fiziksel ölçüm doğruluğunu kanıtlamaz. GRV-006-01 sentetik veri kullandı; ESP haberleşmesi henüz yapılmadı.
-- **Sıradaki tek adım:** Depodaki mevcut ESP kodu ve haberleşme arayüzünü inceleyerek Python→ESP→geri okuma yolunu belirlemek; yeni haberleşme yöntemi varsaymamak.
-- **İlgili kayıtlar:** [GRV-005 doğrudan QC sonucu](GOREVLER/GRV-005/RAPOR/GRV-005-15-QC-v02-GRV-005-14-v06-DOGRUDAN-CALISTIRMA-SONUCU-20261011.md), [GRV-006 Python kodu](GOREVLER/GRV-006/KOD/GRV-006-01-file-roundtrip-v01.py), [GRV-006 sonuç MD](GOREVLER/GRV-006/KOD/GRV-006-01-file-roundtrip-v01.md), [GRV-006 raporu](GOREVLER/GRV-006/RAPOR/README.md), [HISTORY](HISTORY/2026/2026-10-11.md).
-- **Çalışma sınırı:** v06 ve önceki kayıtların üzerine yazma; kullanıcı ESP adı tercihini koru: `esp32d1`.
-
+- **Ana hedef durumu:** HDF-002 aktif ana hedef olmaya devam eder. Bu oturumda GRV-Freeze-1 / GRV-008.2 ilk ham dalga görünürlüğü için aday test paketi hazırlandı; HDF-001/GRV-001'e geri dönülmedi.
+- **Son tamamlanan iş:** GRV-008.2 için akşam test raporu, ESP32-WROOM aday firmware'i, Mac Mini Python alıcısı ve her iki kodun MD açıklamaları hazırlandı. Yerel paket kullanıcıya verildi. Rapor ve HISTORY GitHub'a yazılıp geri okunarak doğrulandı.
+- **Son doğrulanmış teknik durum:** Python dosyası `py_compile` kontrolünden geçti; Python frame formatı ve C++ yapısının hesaplanan boyutu 4.040 bayt. Bu yalnızca sözdizimi ve format hesabıdır; ESP derlemesi/seri bağlantı/fiziksel test doğrulanmadı.
+- **Açık teknik nokta:** Firmware `startMicros` ve `endMicros` değerlerini DMA callback zamanlarından alıyor; bunlar gerçek ilk/son örnek zaman damgaları değil. Mevcut süre hesabı 100 ms hedefini PASS/FAIL olarak doğrulayamaz. Bu sınır görev raporuna eklendi.
+- **Açık testler:** ESP32-WROOM derlemesi, firmware yükleme, TEST-001 (sensör bağlı/yük yok, 100 frame), ham CSV ve ilk beş frame grafiği; ardından TEST-002 ve TEST-003.
+- **Sıradaki tek adım:** Akşam önce GRV-008.2 adayını ESP32-WROOM hedefi için derle ve logu sakla. Derleme geçerse TEST-001 ile 100 frame topla. Derleme veya donanım sonucu gelmeden PASS yazma.
+- **İlgili kayıtlar:** [GRV-Freeze-1 akşam test raporu](GOREVLER/GRV-008/RAPOR/GRV-008-FREEZE-1-AKSAM-TEST-RAPORU.md) · [2026-10-13 HISTORY](HISTORY/2026/2026-10-13.md).
 
 ## 7. Önemli kararların kronolojisi
 
@@ -116,6 +116,16 @@ Yeni karar kaydında tarih, karar, gerekçe ve etkilediği dosyalar belirtilir.
 - **Doğrulanmış durum:** Bu bir yöntem kararıdır; yeni deney veya performans doğrulaması değildir.
 - **Sıradaki ilk adım:** Bağımsız ölçüm zincirlerinin ham veri ve kayıt yollarını belirlemek; PZEM okumasını sensör örneklemesinden ayırmak.
 - **Ayrıntı:** [HDF-002 hedefi](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) · [2026-10-12 gün sonu kaydı](HISTORY/2026/2026-10-12.md).
+
+
+## 2026-10-13 — GRV-Freeze-1 / GRV-008.2 oturum devri
+
+- Mimariye yeni özellik eklemeyi durdurup ilk ham SCT/BIAS grafiğine ulaşma kararı alındı.
+- Kodlar yalnızca yerel test paketi olarak hazırlandı; derleme onayı öncesinde repo `KOD` alanına taşınmadı.
+- Python sözdizimi ve 4.040 bayt frame formatı kontrol edildi; ESP derlemesi ve fiziksel veri testi yapılmadı.
+- Frame callback zamanları gerçek örnek sınırları olmadığından 100 ms hedefi henüz doğrulanabilir metrik değildir.
+- Sıradaki adım: ESP32-WROOM için derleme, ardından başarılıysa TEST-001 / 100 frame ve ilk grafik.
+- Ayrıntı: [GRV-Freeze-1 raporu](GOREVLER/GRV-008/RAPOR/GRV-008-FREEZE-1-AKSAM-TEST-RAPORU.md) · [2026-10-13 HISTORY](HISTORY/2026/2026-10-13.md).
 
 ## 8. Süreklilik ilkesi
 
