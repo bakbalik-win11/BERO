@@ -75,3 +75,12 @@ Bu raporla birlikte hazırlanan tam aday dosyalar:
 Bu iki dosya bu raporun yerel ekleri olarak verilir. Test/derleme onayı öncesinde repo `KOD` alanına eklenmez.
 
 **Kayıt ilkesi:** Bu bir hazırlık raporudur, PASS raporu değildir. Gerçek test sonuçları yeni ve tarihli rapora yazılacak; geçmiş deneylerin üzerine yazılmayacaktır.
+
+
+## 2026-10-13 gün sonu teknik inceleme eki
+
+- Python alıcı dosyası için `python3 -m py_compile` başarılı oldu. Bu yalnızca Python sözdizimini doğrular; seri bağlantı veya ESP donanımını doğrulamaz.
+- Python frame formatı ve C++ `DataFrame` yapısının hesaplanan boyutu 4.040 bayttır; paket boyu tutarlıdır.
+- **Açık teknik sınırlama:** Firmware `startMicros` değerini ilk DMA callback anından, `endMicros` değerini son DMA callback anından alıyor. Bu değerler gerçek ilk/son örnek zaman damgaları değildir; 10 DMA bloğunun tüm fiziksel kayıt süresini doğrudan ölçmez. Bu nedenle 100.000 µs hedefi bu iki alanla PASS/FAIL ölçütü olarak kullanılmayacak. İlk dalga grafiği ve ham frame bütünlüğü öncelikli; zamanlama metriği daha sonra ayrı ve açık bir düzeltmeyle ele alınacak.
+- Kod ve eşlik eden MD dosyaları kullanıcı için yerel test paketi olarak tutuldu; derleme onayı olmadan depo `KOD` alanına taşınmadı.
+- Derleme, seri aktarım, 100 frame ve fiziksel sensör testleri hâlâ bekliyor.
