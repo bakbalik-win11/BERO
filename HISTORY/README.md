@@ -16,6 +16,8 @@ Bu klasör, projenin zaman içinde nereden nereye ilerlediğini gösteren tarihl
 
 ## Günlükler (en yeni en üstte)
 
+- [2026-10-13](2026/2026-10-13.md) — GRV-Freeze-1 / GRV-008.2 akşam test hazırlığı ve oturum devri
+
 - [2026-10-12](2026/2026-10-12.md) — HDF-002 hedefi: olay korelasyonu ve iki aşamalı araştırma yönü
 
 
