@@ -77,3 +77,43 @@ Kontroller henüz çalıştırılmış veya başarılı olarak işaretlenmiş de
 Bu belge bir plan ve ön test kontrol listesidir; fiziksel test, derleme başarısı veya veri kayıpsızlığı kanıtı değildir. Sonuçlar, kullanılan kod sürümü ve gerçek loglarla ayrı bir tarihli raporda tutulacaktır. Önceki görev ve deney kayıtları değiştirilmez.
 
 **Sabit kapsam:** Bu görev, yalnızca GRV Veri Motoru ön testidir. 1T/2T/4T eşzamanlama ayrı bir step olarak kalır.
+
+## 8. Ara rapor — Python Masaüstü İlişki Atlası (öneri)
+
+**Durum:** PLAN / ARAŞTIRMA ÖNERİSİ — uygulama ve veri doğrulaması yapılmadı.
+
+Python 3'ün ilk işi model eğitmek olmayacak. Önce masaüstünde çalıştırılabilecek bir **İlişki Atlası** hazırlanması önerilir. Amaç, SCT'den çıkarılan her özelliğin PZEM etiketleriyle nasıl ilişkili olduğunu görsel olarak incelemek ve tek bir f(X) varsayımını peşinen kabul etmemektir.
+
+### İlk grafikler
+
+- SCT RMS → PZEM akım
+- SCT Peak → PZEM akım
+- SCT Peak-Peak → PZEM akım
+- SCT StdDev → PZEM akım
+- BIAS → ölçüm hatası (hata tanımı ve işareti ayrıca belgelenir)
+- Veri mevcut olduğunda SCT özellikleri → PZEM PF, güç ve gerilim etiketleri
+
+Her grafik üzerinde, veri yeterliyse:
+- gözlenen veri noktaları;
+- Pearson korelasyonu (r);
+- doğrusal uyum için R²;
+- trend çizgisi.
+
+Doğrusal olmayan ilişki ihtimali görülürse, uygun trend eğrileri sonraki aşamada ayrıca karşılaştırılır. R² ve korelasyon tek başına nedensellik veya modelin genelleme başarısını kanıtlamaz. Aynı veriyle hem ilişki keşfi hem de nihai başarı iddiası yapılmamalıdır.
+
+### Veri ilkeleri
+
+- Ham kayıtlar değiştirilmez; özellik tabloları ve grafikler ayrı çıktılardır.
+- PZEM ve SCT sabit alan kırpıcılarından gelen aralıklar zaman bilgisiyle eşleştirilir.
+- Eşleştirme, kararlı alanların zaman örtüşmesi ve PZEM güncelleme gecikmesi dikkate alınarak yapılır.
+- Her noktanın kaynak kayıt/çerçeve kimliği korunur; 55 saniye açık + 5 saniye kapalı deney çerçeveleri birbirine karıştırılmaz.
+- İlişki Atlası model eğitmez; yalnızca veriyi görünür kılar ve sonraki modelleme kararlarına dayanak oluşturur.
+
+### Olası ayrı ilişkiler
+
+- Akım = f(SCT özellikleri)
+- PF = g(dalga biçimi özellikleri)
+- Güç = h(akım, PF, gerilim)
+
+Bunlar doğrulanmış sonuç değil, veriyle sınanacak hipotezlerdir. Masaüstü Python uygulamasının kapsamı, mevcut CSV/özellik verileri ve zaman eşleştirmesi netleştikten sonra ayrı alt görevde belirlenecektir.
+
