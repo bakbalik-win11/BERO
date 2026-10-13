@@ -78,11 +78,11 @@ Bu belge bir plan ve ön test kontrol listesidir; fiziksel test, derleme başar�
 
 **Sabit kapsam:** Bu görev, yalnızca GRV Veri Motoru ön testidir. 1T/2T/4T eşzamanlama ayrı bir step olarak kalır.
 
-## 8. Ara rapor — Python Masaüstü İlişki Atlası (öneri)
+## 8. Python 3 — Masaüstü İlişki Atlası (ara rapor / öneri)
 
 **Durum:** PLAN / ARAŞTIRMA ÖNERİSİ — uygulama ve veri doğrulaması yapılmadı.
 
-Python 3'ün ilk işi model eğitmek olmayacak. Önce masaüstünde çalıştırılabilecek bir **İlişki Atlası** hazırlanması önerilir. Amaç, SCT'den çıkarılan her özelliğin PZEM etiketleriyle nasıl ilişkili olduğunu görsel olarak incelemek ve tek bir f(X) varsayımını peşinen kabul etmemektir.
+**Numaralandırma kararı:** Bu çalışma Python 3 olarak konumlandırılır: masaüstünde çalıştırılacak **İlişki Atlası**. Model eğitimi bu görevin kapsamına alınmaz; ayrı sonraki aşama olarak Python 4'te kalır. Amaç, SCT'den çıkarılan her özelliğin PZEM etiketleriyle nasıl ilişkili olduğunu görsel olarak incelemek ve tek bir f(X) varsayımını peşinen kabul etmemektir.
 
 ### İlk grafikler
 
