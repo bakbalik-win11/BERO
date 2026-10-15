@@ -4,7 +4,7 @@
 
 **Durum:** Açık — donanım ayrıntıları kullanıcı tarafından aşamalı olarak verilecek.  
 **Alt Görev 1:** ✅ Tamamlandı — ESP32 cihazlarının Home Assistant/ESPHome tarafına tanıtılması.  
-**Kanıt:** 2026-10-15 tarihinde paylaşılan ekran görüntüsünde `ESP32D1` çevrimiçi (`Online`) görünüyor. Bu kanıt ESP32D1'in erişilebilir olduğunu gösterir; ölçüm kanalları, BIAS, örnekleme ve veri doğruluğu henüz doğrulanmış sayılmaz.  
+**Kanıt:** 2026-10-15 tarihinde paylaşılan Home Assistant/ESPHome cihaz bilgisi ekran görüntüsünde `ESP32D1` çevrimiçi (`Device Online`) görünüyor. Cihaz bilgileri aşağıda kaydedilmiştir. Bu kanıt ağ üzerinden erişilebilirliği gösterir; ölçüm kanalları, BIAS, örnekleme ve veri doğruluğu henüz doğrulanmış sayılmaz.  
 **Kanıt durumu:** Alt Görev 1 tamamlandı. Fiziksel test donanımının bütünü, ölçüm bağlantıları, derleme ve veri testleri henüz tamamlanmış/PASS olarak kaydedilmedi.
 
 ## 1. Geçici donanım planı
@@ -28,6 +28,22 @@ PZEM modeli/bağlantısı, SSR tipi, kontrol pini, yükün elektriksel özellikl
 ## 2. Alt görevler ve kurulum aşamaları
 
 ### Alt Görev 1 — ESP'leri Home Assistant'a tanıtma
+
+#### ESP32D1 — cihaz bilgileri (2026-10-15)
+
+| Alan | Ekranda görülen değer |
+|---|---|
+| Cihaz adı | `ESP32D1` |
+| Yapılandırma dosyası | `esp32d1.yaml` |
+| Durum | `Device Online` |
+| Hostname | `esp32d1.local` |
+| IP adresi | `192.168.0.13` |
+| MAC adresi | `70:4B:CA:48:0B:9C` |
+| Platform | `esp32` |
+| Build Size | `171.4 MB` (arayüzde gösterildiği şekliyle; doğrulanmadı) |
+| API şifrelemesi | `Not encrypted` |
+
+**Depo kontrolü:** ESP32D1 için temel ESPHome yapılandırması `GOREVLER/HDF1/HDF1-GRV-001/KOD/ESP32D1.yaml` konumunda mevcut. Önceki deneylere ait ayrı YAML dosyaları ve loglar da HDF1 görevlerinde bulunuyor. Bunlar farklı deney yapılandırmalarıdır; bu kayıt, hangisinin şu anda cihaza yüklü olduğunu kanıtlamaz.
 
 - [x] ESP32D1 Home Assistant/ESPHome arayüzünde çevrimiçi görünüyor.
 - [ ] ESP32D2 ve ESP32E1'in aynı şekilde tanıtılması ve durumlarının kaydedilmesi.
