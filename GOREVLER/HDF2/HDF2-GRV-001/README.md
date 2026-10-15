@@ -17,13 +17,14 @@
 
 Bu ESP'lerle **1T, 2T ve 4T olarak adlandırılan üç kanalda ölçüm** ve **BIAS okuması** yapılacak. Kanal dağılımı, sensör bağlantıları, pinler, örnekleme düzeni ve görev paylaşımı kullanıcı ayrıntıları verdikçe netleştirilecek. Bu aşamada bu konularda varsayım yapılmayacak.
 
-### B. Yük kontrolü ve referans ölçüm grubu
-Ayrı bir ESP üzerinde:
-- PZEM ölçümü
-- Bir kanallı Solid State Relay (SSR) kontrolü
-- Yük zamanlaması: **55 saniye açık, 5 saniye kapalı**, tekrarlı döngü
+### B. Referans ölçüm grubu
+- Ayrı ESP: `ESP32-WR1-PZEM` — PZEM Modbus ölçümü ve referans akım/PF verisi.
 
-PZEM modeli/bağlantısı, SSR tipi, kontrol pini, yükün elektriksel özellikleri, zamanlama başlangıcı ve ölçüm kayıtlarının nasıl ilişkilendirileceği daha sonra netleştirilecek.
+### C. Yük kontrolü ve tetikleme grubu
+- Ayrı ESP: `ESP32-C3-SSR` — iki kanallı SSR modülünün kontrolü; zaman dalgası/ortak tetikleme sonraki aşamada ele alınacak.
+- **55 saniye açık / 5 saniye kapalı** döngü önceki taslakta yer almıştı; SSR testi sırasında kullanıcıyla doğrulanmadan uygulanmış kabul edilmeyecek.
+
+PZEM ve SSR işlevleri ayrı ESP'lerde tutulur. SSR'nin kesin modeli, GPIO/polarite, yük sınırları ve zamanlama davranışı henüz doğrulanmadı.
 
 ## 2. Alt görevler ve kurulum aşamaları
 
@@ -49,6 +50,7 @@ PZEM modeli/bağlantısı, SSR tipi, kontrol pini, yükün elektriksel özellikl
 - [x] ESP32D2 Home Assistant/ESPHome arayüzünde çevrimiçi; cihaz bilgileri Alt Görev 2 altında kaydedildi.
 - [x] ESP32E1 Home Assistant/ESPHome arayüzünde çevrimiçi görünüyor; cihaz bilgileri Alt Görev 3 altında kaydedildi.
 - [x] ESP32-WR1-PZEM Home Assistant/ESPHome arayüzünde çevrimiçi görünüyor; cihaz bilgileri Alt Görev 4 altında kaydedildi.
+- [x] ESP32-C3-SSR Home Assistant/ESPHome arayüzünde çevrimiçi görünüyor; cihaz bilgileri Alt Görev 5 altında kaydedildi.
 - **Sınır:** Bu alt görev yalnızca cihazların sisteme tanıtılmasını kapsar; sensör okuması veya deney kabulü değildir.
 
 ### Alt Görev 2 — ESP32D2'yi Home Assistant'a tanıtma
@@ -108,11 +110,39 @@ PZEM modeli/bağlantısı, SSR tipi, kontrol pini, yükün elektriksel özellikl
 
 **Sınır:** Cihazın çevrimiçi görünmesi PZEM bağlantısının, ölçüm değerlerinin veya Home Assistant sensörlerinin çalıştığını kanıtlamaz.
 
+
+### Alt Görev 5 — ESP32-C3-SSR'yi Home Assistant'a tanıtma
+
+#### ESP32-C3-SSR — cihaz bilgileri (2026-10-15)
+
+| Alan | Ekranda görülen değer |
+|---|---|
+| Cihaz adı | `ESP32-C3-SSR` |
+| Yapılandırma dosyası | `esp32-c3-ssr.yaml` |
+| Durum | `Device Online` |
+| Hostname | `esp32-c3-ssr.local` |
+| IP adresi | `192.168.0.88` |
+| MAC adresi | `90:64:9B:E8:6C:04` |
+| Platform | `esp32` |
+| Build Size | `177.4 MB` (arayüzde gösterildiği şekliyle; doğrulanmış firmware boyutu olarak kabul edilmez) |
+| API şifrelemesi | `Not encrypted` |
+
+**Planlanan rol:** SSR röle kontrolü; sonraki aşamada zaman dalgası/ortak tetikleme işlevi değerlendirilmesi.
+
+**Donanım notu:** Kullanıcının paylaştığı fotoğrafta iki kanallı SSR modülü ve `VCC`, `DC-`, `CH1`, `CH2` kontrol işaretleri görülüyor. Modülün tam modeli, giriş polaritesi/aktif seviyesi, ESP GPIO eşlemesi ve yük tarafı değerleri henüz doğrulanmadı.
+
+**Durum sınırı:** ESPHome ekranı yalnızca cihazın çevrimiçi olduğunu doğrular. Bu kayıt SSR'nin açılıp kapandığını, yükü anahtarladığını veya zamanlamanın çalıştığını kanıtlamaz.
+
+- [x] ESP32-C3-SSR cihaz tanıtımı ve ağ bilgileri kaydedildi.
+- [ ] Mevcut `esp32-c3-ssr.yaml` incelenecek; cihaz adı değiştirilmeden mevcut GPIO/kod yapısı belirlenecek.
+- [ ] SSR kontrol çıkışı, yük tarafı enerjilendirilmeden uygun kontrol koşullarında doğrulanacak.
+- [ ] Röle kontrolü doğrulandıktan sonra zaman dalgası/ortak tetikleme ayrı adım olarak ele alınacak.
+
 ### Sonraki kurulum adımları
 
 1. Kullanılacak tüm ESP'leri ve ilgili donanımı envantere kaydet.
 2. Üç ESP'li akım ölçüm grubunun 1T/2T/4T ve BIAS bağlantılarını kullanıcı tarafından verilecek ayrıntılara göre kur.
-3. PZEM + tek kanallı SSR grubunu ayrı ESP üzerinde kur.
+3. PZEM referans ölçüm ESP'sini ve SSR kontrol ESP'sini ayrı ayrı doğrula.
 4. Besleme, GND/referans, sinyal kabloları, seri bağlantı ve gerekiyorsa izolasyon gereksinimlerini kontrol et.
 5. Bağlantı şeması/fotoğrafı ve ilk kontrolleri RAPOR/LOG altında kaydet.
 6. Her ESP'yi ayrı ayrı doğrula; bir ESP'nin sonucu diğer ESP'nin doğrulaması sayılmayacak.
@@ -131,7 +161,7 @@ PZEM modeli/bağlantısı, SSR tipi, kontrol pini, yükün elektriksel özellikl
 
 - [ ] ESP32D1, ESP32D2 ve ESP32E1 donanımları tanımlanmış.
 - [ ] 1T, 2T, 4T ve BIAS bağlantıları kullanıcı ayrıntılarıyla netleştirilip kaydedilmiş.
-- [ ] Ayrı PZEM + SSR ESP'si ve 55 s açık / 5 s kapalı döngüsü belgelenmiş.
+- [ ] Ayrı PZEM referans ESP'si ve SSR kontrol ESP'si belgelenmiş; zamanlama döngüsü ayrıca doğrulanmış.
 - [ ] Besleme, referans/GND, sinyal bağlantıları ve yük tarafı güvenlik kontrolleri kaydedilmiş.
 - [ ] Kurulum fotoğrafı veya eşdeğer bağlantı kaydı eklenmiş.
 - [ ] Her ESP için bağımsız doğrulama planı hazırlanmış.
