@@ -46,9 +46,28 @@ PZEM modeli/bağlantısı, SSR tipi, kontrol pini, yükün elektriksel özellikl
 **Depo kontrolü:** ESP32D1 için temel ESPHome yapılandırması `GOREVLER/HDF1/HDF1-GRV-001/KOD/ESP32D1.yaml` konumunda mevcut. Önceki deneylere ait ayrı YAML dosyaları ve loglar da HDF1 görevlerinde bulunuyor. Bunlar farklı deney yapılandırmalarıdır; bu kayıt, hangisinin şu anda cihaza yüklü olduğunu kanıtlamaz.
 
 - [x] ESP32D1 Home Assistant/ESPHome arayüzünde çevrimiçi görünüyor.
-- [ ] ESP32D2 ve ESP32E1'in aynı şekilde tanıtılması ve durumlarının kaydedilmesi.
+- [x] ESP32D2 Home Assistant/ESPHome arayüzünde çevrimiçi; cihaz bilgileri Alt Görev 2 altında kaydedildi.
+- [ ] ESP32E1'in tanıtılması ve durumunun kaydedilmesi.
 - [ ] PZEM + SSR için kullanılacak ayrı ESP'nin tanıtılması.
 - **Sınır:** Bu alt görev yalnızca cihazların sisteme tanıtılmasını kapsar; sensör okuması veya deney kabulü değildir.
+
+### Alt Görev 2 — ESP32D2'yi Home Assistant'a tanıtma
+
+#### ESP32D2 — cihaz bilgileri (2026-10-15)
+
+| Alan | Ekranda görülen değer |
+|---|---|
+| Cihaz adı | `ESP32D2` |
+| Yapılandırma dosyası | `esphome-web-5cf4e4.yaml` |
+| Durum | `Device Online` |
+| Ek durum | `Modified` |
+| Hostname | `esphome-web-5cf4e4.local` |
+| IP adresi | `192.168.0.50` |
+| MAC adresi | `E0:8C:FE:5C:F4:E4` |
+| Platform | `esp32` |
+| API şifrelemesi | `Not encrypted` |
+
+**İlk kurulum notu:** ESP32D2 çevrimiçi görünse de `Modified` etiketi var ve yapılandırma dosyası genel `esphome-web` adı taşıyor. Bu nedenle cihazın Home Assistant/ESPHome arayüzünde görünmesi kaydedildi; BERO'ya özel YAML'ın yüklü olduğu veya ölçüm yazılımının çalıştığı sonucuna varılmadı. Önceki paylaşılan logda ESPHome API bağlantısı başarılıydı; bu da yalnızca ağ/API erişimini doğrular. ESP32D2'nin sorunlu olduğuna ilişkin teşhis bu ekranla konulamaz.
 
 ### Sonraki kurulum adımları
 
