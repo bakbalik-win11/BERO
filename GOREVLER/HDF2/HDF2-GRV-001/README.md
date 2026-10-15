@@ -47,8 +47,8 @@ PZEM modeli/bağlantısı, SSR tipi, kontrol pini, yükün elektriksel özellikl
 
 - [x] ESP32D1 Home Assistant/ESPHome arayüzünde çevrimiçi görünüyor.
 - [x] ESP32D2 Home Assistant/ESPHome arayüzünde çevrimiçi; cihaz bilgileri Alt Görev 2 altında kaydedildi.
-- [ ] ESP32E1'in tanıtılması ve durumunun kaydedilmesi.
-- [ ] PZEM + SSR için kullanılacak ayrı ESP'nin tanıtılması.
+- [x] ESP32E1 Home Assistant/ESPHome arayüzünde çevrimiçi görünüyor; cihaz bilgileri Alt Görev 3 altında kaydedildi.
+- [x] ESP32-WR1-PZEM Home Assistant/ESPHome arayüzünde çevrimiçi görünüyor; cihaz bilgileri Alt Görev 4 altında kaydedildi.
 - **Sınır:** Bu alt görev yalnızca cihazların sisteme tanıtılmasını kapsar; sensör okuması veya deney kabulü değildir.
 
 ### Alt Görev 2 — ESP32D2'yi Home Assistant'a tanıtma
@@ -68,6 +68,45 @@ PZEM modeli/bağlantısı, SSR tipi, kontrol pini, yükün elektriksel özellikl
 | API şifrelemesi | `Not encrypted` |
 
 **İlk kurulum notu:** ESP32D2 çevrimiçi görünse de `Modified` etiketi var ve yapılandırma dosyası genel `esphome-web` adı taşıyor. Bu nedenle cihazın Home Assistant/ESPHome arayüzünde görünmesi kaydedildi; BERO'ya özel YAML'ın yüklü olduğu veya ölçüm yazılımının çalıştığı sonucuna varılmadı. Önceki paylaşılan logda ESPHome API bağlantısı başarılıydı; bu da yalnızca ağ/API erişimini doğrular. ESP32D2'nin sorunlu olduğuna ilişkin teşhis bu ekranla konulamaz.
+
+
+### Alt Görev 3 — ESP32E1'i Home Assistant'a tanıtma
+
+#### ESP32E1 — cihaz bilgileri (2026-10-15)
+
+| Alan | Ekranda görülen değer |
+|---|---|
+| Cihaz adı | `ESP32E1` |
+| Yapılandırma dosyası | `esphome-web-9e07c4.yaml` |
+| Durum | `Device Online` |
+| Hostname | `esphome-web-9e07c4.local` |
+| IP adresi | `192.168.0.56` |
+| MAC adresi | `68:09:47:9E:07:C4` |
+| Platform | `esp32` |
+| Build Size | `137.8 MB` (arayüzde gösterildiği şekliyle; doğrulanmadı) |
+| API şifrelemesi | `Not encrypted` |
+
+**Sınır:** Bu kayıt yalnızca cihazın çevrimiçi görünmesini belgeler; BERO'ya özel yazılım, ölçüm veya veri doğrulaması anlamına gelmez.
+
+### Alt Görev 4 — ESP32-WR1-PZEM'i Home Assistant'a tanıtma
+
+#### ESP32-WR1-PZEM — cihaz bilgileri (2026-10-15)
+
+| Alan | Ekranda görülen değer |
+|---|---|
+| Cihaz adı | `ESP32-WR1-PZEM` |
+| Yapılandırma dosyası | `esphome-web-2a35cc.yaml` |
+| Durum | `Device Online` |
+| Hostname | `esphome-web-2a35cc.local` |
+| IP adresi | `192.168.0.52` |
+| MAC adresi | `20:50:0D:2A:35:CC` |
+| Platform | `esp32` |
+| Build Size | `137.8 MB` (arayüzde gösterildiği şekliyle; doğrulanmadı) |
+| API şifrelemesi | `Not encrypted` |
+
+**Planlanan rol:** PZEM ölçümünü Home Assistant'a aktarmak. Önceki görev taslağında PZEM ile tek kanallı SSR kontrolünün aynı ayrı ESP üzerinde olması düşünülmüştü; kullanıcı görev dağılımını netleştirene kadar SSR ve ortak zaman tetikleyicisinin bu cihaza atanmış olduğu varsayılmayacak.
+
+**Sınır:** Cihazın çevrimiçi görünmesi PZEM bağlantısının, ölçüm değerlerinin veya Home Assistant sensörlerinin çalıştığını kanıtlamaz.
 
 ### Sonraki kurulum adımları
 
