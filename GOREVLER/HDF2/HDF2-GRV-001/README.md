@@ -1,43 +1,63 @@
 # HDF2-GRV-001 — Hedef 2 Test Donanımının Kurulması
 
-**Amaç:** Hedef 2 kapsamında kullanılacak test donanımını fiziksel olarak kurmak, bağlantılarını düzenlemek ve ilk veri toplama testine hazır olduğunu belgelemek.
+**Amaç:** Hedef 2 test donanımını fiziksel olarak kurmak, bağlantıları doğrulamak ve veri toplama deneylerine hazır hâle getirmek.
 
-**Durum:** Açık — donanım kurulumu ve kontroller bekleniyor.  
-**Kanıt durumu:** Klasör ve görev tanımı oluşturuldu; fiziksel kurulum veya testin yapıldığı iddia edilmiyor.
+**Durum:** Açık — donanım ayrıntıları kullanıcı tarafından aşamalı olarak verilecek.  
+**Kanıt durumu:** Donanım planı tanımlanmaya başladı; fiziksel kurulum, derleme veya test PASS sonucu henüz kaydedilmedi.
 
-## Görev kapsamı
+## 1. Geçici donanım planı
 
-1. Testte kullanılacak donanımı masada belirlemek ve envanterini kaydetmek.
-2. ESP32-WROOM tabanlı test düzeneğini, SCT sinyal girişini ve BIAS ölçüm noktasını hazırlamak.
-3. Mevcut GRV-008.2 adayındaki bağlantı planıyla fiziksel bağlantıları karşılaştırmak: SCT ADC GPIO34, BIAS ADC GPIO35.
-4. Besleme, ortak referans/GND, USB-seri bağlantısı ve kablo düzenini kontrol etmek.
-5. Enerji vermeden önce bağlantıları gözden geçirmek; ilk enerjilendirmede anormal ısınma, kısa devre ve beklenmeyen davranış olmadığını kontrol etmek.
-6. Kullanılan donanımın fotoğrafını/bağlantı notlarını ve kontrol sonuçlarını RAPOR/LOG altında kaydetmek.
-7. Donanım hazır olduğunda bir sonraki aşama olan mevcut kodun derlenmesi ve TEST-001'e geçiş için hazır olma kararını vermek.
+### A. Akım ölçüm grubu
+Ölçüm donanımında şu üç ESP kullanılacak:
+- ESP32D1
+- ESP32D2
+- ESP32E1
 
-## Sınırlar
+Bu ESP'lerle **1T, 2T ve 4T olarak adlandırılan üç kanalda ölçüm** ve **BIAS okuması** yapılacak. Kanal dağılımı, sensör bağlantıları, pinler, örnekleme düzeni ve görev paylaşımı kullanıcı ayrıntıları verdikçe netleştirilecek. Bu aşamada bu konularda varsayım yapılmayacak.
 
-- Bu görev yeni bir örnekleme mimarisi veya yeni kod geliştirme görevi değildir.
-- GRV-Freeze-1 gereği, önce mevcut aday ve test hattı kullanılacaktır.
-- GRV-008.2 adayının derlenmiş olduğu varsayılmayacaktır.
-- Fiziksel donanım kurulumu tamamlanmadan veya kanıtı kaydedilmeden PASS verilmeyecektir.
-- Henüz gerçek akım/yük testi yapılmış gibi rapor yazılmayacaktır.
+### B. Yük kontrolü ve referans ölçüm grubu
+Ayrı bir ESP üzerinde:
+- PZEM ölçümü
+- Bir kanallı Solid State Relay (SSR) kontrolü
+- Yük zamanlaması: **55 saniye açık, 5 saniye kapalı**, tekrarlı döngü
 
-## Kabul ölçütleri
+PZEM modeli/bağlantısı, SSR tipi, kontrol pini, yükün elektriksel özellikleri, zamanlama başlangıcı ve ölçüm kayıtlarının nasıl ilişkilendirileceği daha sonra netleştirilecek.
 
-- [ ] Kullanılan donanım ve kablolar listelenmiş.
-- [ ] SCT ve BIAS bağlantıları GPIO34/GPIO35 planıyla karşılaştırılıp kaydedilmiş.
-- [ ] Besleme ve GND/referans bağlantıları kontrol edilmiş.
-- [ ] USB-seri bağlantısı ve Mac Mini tarafındaki port tespiti için hazırlık yapılmış.
+## 2. Kurulum aşamaları
+
+1. Kullanılacak tüm ESP'leri ve ilgili donanımı envantere kaydet.
+2. Üç ESP'li akım ölçüm grubunun 1T/2T/4T ve BIAS bağlantılarını kullanıcı tarafından verilecek ayrıntılara göre kur.
+3. PZEM + tek kanallı SSR grubunu ayrı ESP üzerinde kur.
+4. Besleme, GND/referans, sinyal kabloları, seri bağlantı ve gerekiyorsa izolasyon gereksinimlerini kontrol et.
+5. Bağlantı şeması/fotoğrafı ve ilk kontrolleri RAPOR/LOG altında kaydet.
+6. Her ESP'yi ayrı ayrı doğrula; bir ESP'nin sonucu diğer ESP'nin doğrulaması sayılmayacak.
+7. Kurulum tamamlanınca yazılım derleme ve kontrollü test adımlarını ayrı kabul ölçütleriyle yürüt.
+
+## 3. Güvenli çalışma ve sınırlar
+
+- Bu kayıt bir **donanım kurulum planıdır**; test yapılmış veya kod hazır anlamına gelmez.
+- Kullanıcı ayrıntıları gelmeden GPIO, ADC kanalı, örnekleme frekansı, sensör tipi, PZEM modeli veya SSR kontrol devresi belirlenmiş sayılmayacak.
+- Şebeke/yük tarafı bağlantıları, SSR'nin yük ve gerilim sınıfı ile uygun izolasyon/koruma doğrulanmadan enerjilendirilmeyecek.
+- GRV-Freeze-1 çalışma kısıtı korunacak: önce donanım ve mevcut test hattı; gereksiz yeni kod/mimari tasarımı yok.
+- Ham kayıtlar korunacak; eski deneylerin üzerine yazılmayacak.
+- Kurulum, derleme, yükleme ve veri testi ayrı aşamalar olarak raporlanacak.
+
+## 4. Kabul ölçütleri
+
+- [ ] ESP32D1, ESP32D2 ve ESP32E1 donanımları tanımlanmış.
+- [ ] 1T, 2T, 4T ve BIAS bağlantıları kullanıcı ayrıntılarıyla netleştirilip kaydedilmiş.
+- [ ] Ayrı PZEM + SSR ESP'si ve 55 s açık / 5 s kapalı döngüsü belgelenmiş.
+- [ ] Besleme, referans/GND, sinyal bağlantıları ve yük tarafı güvenlik kontrolleri kaydedilmiş.
 - [ ] Kurulum fotoğrafı veya eşdeğer bağlantı kaydı eklenmiş.
-- [ ] Açık kalan riskler ve sonraki adım raporlanmış.
+- [ ] Her ESP için bağımsız doğrulama planı hazırlanmış.
+- [ ] Açık kalan noktalar ve sonraki adım raporlanmış.
 
-## Klasörler
+## 5. Klasörler
 
-- `KOD/` — mevcut aday kodun referansı ve kodla ilgili notlar; bu görevde yeni kod üretmek için değil.
-- `RAPOR/` — donanım kurulum raporu ve kontrol listesi.
-- `LOG/` — kurulum sırasında alınan gerçek kayıtlar.
+- `KOD/` — bu görevin yazılım referansları ve ileride doğrulanmış kodlar
+- `RAPOR/` — donanım planı, bağlantı şemaları ve kontrol raporları
+- `LOG/` — ham cihaz kayıtları ve gerçek test çıktıları
 
-## Sonraki adım
+## 6. Sonraki adım
 
-Donanım kurulumunu ve bağlantı kontrollerini kaydet. Ardından mevcut `GRV-008.2_candidate.ino` dosyasını ESP32-WROOM hedefi için derle. Derleme PASS olmadan cihaza yükleme veya fiziksel veri testi yapıldığını belirtme.
+Kullanıcı 1T/2T/4T, BIAS ve PZEM/SSR donanımının ayrıntılarını verecek. Bu ayrıntılar gelene kadar pin veya devre varsayımı yapılmayacak; görev donanım kurulumuna odaklı kalacak.
