@@ -3,7 +3,9 @@
 **Amaç:** Hedef 2 test donanımını fiziksel olarak kurmak, bağlantıları doğrulamak ve veri toplama deneylerine hazır hâle getirmek.
 
 **Durum:** Açık — donanım ayrıntıları kullanıcı tarafından aşamalı olarak verilecek.  
-**Kanıt durumu:** Donanım planı tanımlanmaya başladı; fiziksel kurulum, derleme veya test PASS sonucu henüz kaydedilmedi.
+**Alt Görev 1:** ✅ Tamamlandı — ESP32 cihazlarının Home Assistant/ESPHome tarafına tanıtılması.  
+**Kanıt:** 2026-10-15 tarihinde paylaşılan ekran görüntüsünde `ESP32D1` çevrimiçi (`Online`) görünüyor. Bu kanıt ESP32D1'in erişilebilir olduğunu gösterir; ölçüm kanalları, BIAS, örnekleme ve veri doğruluğu henüz doğrulanmış sayılmaz.  
+**Kanıt durumu:** Alt Görev 1 tamamlandı. Fiziksel test donanımının bütünü, ölçüm bağlantıları, derleme ve veri testleri henüz tamamlanmış/PASS olarak kaydedilmedi.
 
 ## 1. Geçici donanım planı
 
@@ -23,7 +25,16 @@ Ayrı bir ESP üzerinde:
 
 PZEM modeli/bağlantısı, SSR tipi, kontrol pini, yükün elektriksel özellikleri, zamanlama başlangıcı ve ölçüm kayıtlarının nasıl ilişkilendirileceği daha sonra netleştirilecek.
 
-## 2. Kurulum aşamaları
+## 2. Alt görevler ve kurulum aşamaları
+
+### Alt Görev 1 — ESP'leri Home Assistant'a tanıtma
+
+- [x] ESP32D1 Home Assistant/ESPHome arayüzünde çevrimiçi görünüyor.
+- [ ] ESP32D2 ve ESP32E1'in aynı şekilde tanıtılması ve durumlarının kaydedilmesi.
+- [ ] PZEM + SSR için kullanılacak ayrı ESP'nin tanıtılması.
+- **Sınır:** Bu alt görev yalnızca cihazların sisteme tanıtılmasını kapsar; sensör okuması veya deney kabulü değildir.
+
+### Sonraki kurulum adımları
 
 1. Kullanılacak tüm ESP'leri ve ilgili donanımı envantere kaydet.
 2. Üç ESP'li akım ölçüm grubunun 1T/2T/4T ve BIAS bağlantılarını kullanıcı tarafından verilecek ayrıntılara göre kur.
