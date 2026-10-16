@@ -57,3 +57,12 @@ Alt Görev 1'in kod, log ve raporları KOD-LOG-RAPOR/ klasöründe tutulur. Kull
 
 - [KOD-LOG-RAPOR klasörü](KOD-LOG-RAPOR/README.md)
 - [İlerleme raporu](KOD-LOG-RAPOR/RAPOR/ALT-GOREV-001-ILERLEME-RAPORU.md)
+
+
+## Önceden hazırlanmış kod adayı
+
+2026-10-13 tarihli çalışma kaydındaki GRV-008.2 ESP32 ADC Continuous/DMA adayı ve Python alıcısı yeni kod yazılmadan KOD-LOG-RAPOR/KOD/ altına kopyalandı. İlk adım sıfırdan kod üretmek değil, bu adayın derlemesini ve protokol uyumunu kontrol etmektir. Derleme/fiziksel test henüz yapılmadı.
+
+- [ESP32 aday kodu](KOD-LOG-RAPOR/KOD/GRV-008.2_candidate.ino)
+- [Python alıcısı](KOD-LOG-RAPOR/KOD/grv008_test_receiver.py)
+- [İlerleme raporu](KOD-LOG-RAPOR/RAPOR/ALT-GOREV-001-ILERLEME-RAPORU.md)
