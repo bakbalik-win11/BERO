@@ -393,3 +393,15 @@ Bu bölüm, pusuladaki eski yöntem özetleriyle çelişirse güncel karar olara
 - **Sonraki tek adım:** Prototipin sökme-takma/kurulumuna devam etmek. Donanım veya kod önerisinden önce doğru kayıt ve sürümü kontrol et.
 
 Ayrıntı: [HDF-002 hedefi](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) · [2026-10-12 HISTORY](HISTORY/2026/2026-10-12.md).
+
+
+## 2026-10-16 — HDF-002 / GRV-001 DS3231 ve olay kimliği planı
+
+- **Aktif hedef:** HDF-002 değişmedi. Bu kayıt, ESP32-C3-SSR üzerinde DS3231 saat doğrulamasından başlayıp ortak olay kimliği dağıtımına giden altyapı adımlarını tanımlar; HDF-001'e geri dönüş değildir.
+- **Sabit sıra:** (1) ESP32-C3 + DS3231 RTC testi; (2) DS3231 çalışırken mevcut SSR 40 s ON / 20 s OFF çevriminin doğrulanması; (3) merkezi `package_id` + `start_timestamp`; (4) aynı kimliğin D1/D2/E1'e dağıtılması.
+- **Zaman ayrımı:** DS3231 takvim zamanı olay başlangıcını tarihlendirir; yüksek hızlı örnekleme zamanı ve örnek indeksi ölçüm ESP'sinde ayrıca tutulur. Fiziksel tetik olay bildirir, paket metadata'sını taşımaz.
+- **Mevcut donanım/kod durumu:** ESPHome cihazı `esphome-web-0424f4` / `ESP32-C3-SSR`; SSR GPIO6, aktif-low. 40/20 çevrimi paylaşılan YAML'da mevcut, fakat bu oturumda yeni derleme veya fiziksel test yapılmadı.
+- **RTC durumu:** `time: platform: ds3231` derleme hatası verdi. `ds1307` platformı önerildi ancak henüz derlenip doğrulanmadı. GPIO0=SDA ve GPIO1=SCL öneri olarak duruyor; kartta pin uygunluğu teyit edilmeden bağlantı başarıyla kurulmuş sayılmayacak.
+- **Sıradaki tek adım:** Mevcut ESPHome sürümünde DS3231'i okumak için desteklenen bileşeni doğrula; yalnızca RTC test YAML'ını hazırla. I²C cihaz taraması, doğru tarih-saat ve yeniden başlatma sonrası saat korunması doğrulanmadan SSR aşamasına geçme.
+- **Kanıt sınırı:** Bu oturumda donanım bağlantısı, derleme, RTC okuması, SSR testi veya metadata dağıtımı doğrulanmadı.
+- **Ayrıntılı kayıt:** [HDF-002 hedefi](HEDEFLER/HDF-002-PZEM-AMPIRIK-KALIBRASYON/HEDEF.md) · [2026-10-16 HISTORY](HISTORY/2026/2026-10-16.md).
