@@ -93,7 +93,7 @@ switch:
     name: "BERO SSR Kontrol"
     pin:
       number: GPIO6
-      inverted: false
+      inverted: true
     restore_mode: ALWAYS_OFF
 
 globals:
