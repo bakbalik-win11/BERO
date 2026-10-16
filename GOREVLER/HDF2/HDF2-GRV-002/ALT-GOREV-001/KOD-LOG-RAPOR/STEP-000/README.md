@@ -47,3 +47,11 @@ Kullanıcının verdiği YAML ve ESPHome logu STEP-000 altında ESP adıyla arş
 - Rapor: [ESP32-C3-SSR-TEST-RAPORU-2026-10-16.md](./ESP32-C3-SSR/ESP32-C3-SSR-TEST-RAPORU-2026-10-16.md)
 
 **Sonuç:** Kullanıcı fiziksel ON/OFF uyumunu gözle gördüğünü bildirdi. Logda zaman damgalı ON/OFF olayları ve UDP gönderim kayıtları mevcut. DS3231 iletişim/yazma hatası ile ON sırasındaki GPIO geri okuma uyuşmazlığı raporlandı; kullanıcı kararıyla şimdilik beklemede. UDP alıcı teyidi ve Home Assistant geçmişinde kalıcı kayıt henüz bu logla kanıtlanmış değil. YAML değiştirilmedi; bu rapor bir PASS/derleme beyanı değildir.
+
+
+## 2026-10-16 — İki ESP'nin Home Assistant'a ayrı bağlanması
+
+- Plan ve doğrulama listesi: [STEP-000-HA-IKI-ESP-BAGLANTI-PLANI-2026-10-16.md](./STEP-000-HA-IKI-ESP-BAGLANTI-PLANI-2026-10-16.md)
+- PZEM ESP: `192.168.0.52` — YAML içinde `api:` mevcut; ESPHome logunda API bağlantısı ve PZEM ölçümleri görülüyor.
+- SSR ESP: `192.168.0.111` — YAML içinde `api:` mevcut; ESPHome logunda API bağlantısı görülüyor.
+- **Durum:** HA arayüzünde ayrı cihazlar ve entity güncellemeleri henüz doğrulanmadı. Bu nedenle bağlantı işi tamamlandı/PASS olarak işaretlenmedi.
