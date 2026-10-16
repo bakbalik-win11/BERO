@@ -1,0 +1,188 @@
+# PROJE BERO — ESP32-WR1-PZEM
+# PZEM ölçümü + ESP-SSR UDP olay alıcısı
+#
+# PZEM UART:
+#   TX = GPIO17
+#   RX = GPIO16
+#   Baud = 9600
+#
+# UDP:
+#   Port = 4210
+#   Beklenen mesaj:
+#   BERO_EVT,BOOT_ID=XXXXXXXX,EVENT_ID=N,STATE=ON|OFF
+#
+# Durum:
+#   Kod henüz derlenip doğrulanmadı.
+#   Alıcı mesajları yalnızca loglar; henüz CSV kaydı yapmaz.
+
+esphome:
+  name: esphome-web-2a35cc
+  friendly_name: ESP32-WR1-PZEM
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+# PZEM-004T UART / Modbus
+uart:
+  id: pzem_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 9600
+  stop_bits: 1
+
+modbus:
+  uart_id: pzem_uart
+
+# Mevcut PZEM ölçümleri korunuyor
+sensor:
+  - platform: pzemac
+    voltage:
+      name: "PZEM Gerilim"
+    current:
+      name: "PZEM Akım"
+    power:
+      name: "PZEM Güç"
+    energy:
+      name: "PZEM Enerji"
+    frequency:
+      name: "PZEM Frekans"
+    power_factor:
+      name: "PZEM Güç Faktörü"
+    update_interval: 5s
+
+# ESP-SSR UDP olay alıcısı
+interval:
+  - interval: 100ms
+    then:
+      - lambda: |-
+          #include "lwip/sockets.h"
+          #include "lwip/inet.h"
+          #include <fcntl.h>
+          #include <unistd.h>
+          #include <errno.h>
+
+          static int udp_rx_sock = -1;
+          static uint32_t last_socket_attempt_ms = 0;
+
+          // Soket açılamazsa en fazla 5 saniyede bir tekrar dene.
+          if (udp_rx_sock < 0 &&
+              (last_socket_attempt_ms == 0 ||
+               millis() - last_socket_attempt_ms >= 5000)) {
+
+            last_socket_attempt_ms = millis();
+
+            udp_rx_sock = ::socket(
+              AF_INET, SOCK_DGRAM, IPPROTO_UDP
+            );
+
+            if (udp_rx_sock >= 0) {
+              int reuse = 1;
+
+              setsockopt(
+                udp_rx_sock,
+                SOL_SOCKET,
+                SO_REUSEADDR,
+                &reuse,
+                sizeof(reuse)
+              );
+
+              struct sockaddr_in local_address = {};
+              local_address.sin_family = AF_INET;
+              local_address.sin_port = htons(4210);
+              local_address.sin_addr.s_addr = htonl(INADDR_ANY);
+
+              if (bind(
+                    udp_rx_sock,
+                    (struct sockaddr *)&local_address,
+                    sizeof(local_address)
+                  ) != 0) {
+
+                ESP_LOGE(
+                  "bero_udp",
+                  "UDP_BIND_FAILED errno=%d",
+                  errno
+                );
+
+                close(udp_rx_sock);
+                udp_rx_sock = -1;
+
+              } else {
+                // Alıcı beklerken PZEM sorgularını bloke etme.
+                int flags = fcntl(udp_rx_sock, F_GETFL, 0);
+
+                if (flags >= 0) {
+                  fcntl(
+                    udp_rx_sock,
+                    F_SETFL,
+                    flags | O_NONBLOCK
+                  );
+                }
+
+                ESP_LOGI(
+                  "bero_udp",
+                  "UDP_LISTENING port=4210"
+                );
+              }
+
+            } else {
+              ESP_LOGE(
+                "bero_udp",
+                "UDP_SOCKET_CREATE_FAILED errno=%d",
+                errno
+              );
+            }
+          }
+
+          // Her döngüde en fazla bir datagram oku.
+          if (udp_rx_sock >= 0) {
+            char packet[160];
+
+            struct sockaddr_in sender = {};
+            socklen_t sender_len = sizeof(sender);
+
+            int received = recvfrom(
+              udp_rx_sock,
+              packet,
+              sizeof(packet) - 1,
+              0,
+              (struct sockaddr *)&sender,
+              &sender_len
+            );
+
+            if (received > 0) {
+              packet[received] = '\0';
+
+              ESP_LOGI(
+                "bero_udp",
+                "UDP_EVENT_RECEIVED from=%s payload=%s",
+                inet_ntoa(sender.sin_addr),
+                packet
+              );
+
+            } else if (
+              received < 0 &&
+              errno != EWOULDBLOCK &&
+              errno != EAGAIN
+            ) {
+              ESP_LOGW(
+                "bero_udp",
+                "UDP_RECEIVE_FAILED errno=%d",
+                errno
+              );
+            }
+          }
