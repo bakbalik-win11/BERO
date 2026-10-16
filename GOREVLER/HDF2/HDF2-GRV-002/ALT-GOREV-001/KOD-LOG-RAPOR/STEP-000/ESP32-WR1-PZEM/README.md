@@ -6,12 +6,11 @@ Bu klasör ESP32-WR1-PZEM cihazına ait kod, log ve rapor kayıtları için olu�
 
 - [ESPHome YAML — esphome-web-2a35cc.yaml](./esphome-web-2a35cc.yaml)
 - [ESP32-WR1-PZEM logu — 2026-10-16](./ESP32-WR1-PZEM-LOG-2026-10-16.txt)
-- Test raporları
+- [Teknik inceleme ve test raporu — 2026-10-16](./ESP32-WR1-PZEM-TEST-RAPORU-2026-10-16.md)
 
 ## Mevcut durum
 
-- YAML dosyası kullanıcı tarafından sağlanan haliyle kaydedildi.
-- Bu logda ESPHome 2026.9.1 cihazla bağlantı kuruyor; PZEM ölçümleri okunuyor.
-- UDP alıcısı, ESP32-C3-SSR cihazından gelen olayları alıyor ve logluyor.
-- UDP olayları henüz CSV'ye kaydedilmiyor.
-- Kaydedilen log dosyasının sonu, kullanıcı tarafından sağlanan metinde tek başına "S" karakteriyle bitiyor; kaynak bu haliyle korunmuştur.
+- Log, ESPHome 2026.9.1 firmware'i çalıştıran cihazla bağlantıyı ve PZEM ölçüm okumalarını gösteriyor.
+- ESP32-C3-SSR'den gelen UDP EVENT_ID 18 (OFF), 19 (ON) ve 20 (OFF) olayları alıcıda loglanmış.
+- PZEM ölçümleri ile UDP olayları henüz zaman damgalı CSV kaydında birleştirilmiyor.
+- Logun gönderilen kopyası son satırda tek başına "S" karakteriyle bitiyor; kaynak metin değiştirilmeden korunmuştur.
