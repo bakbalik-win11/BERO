@@ -110,7 +110,7 @@ interval:
               0, (struct sockaddr *)&sender, &sender_len);
 
             if (received > 0) {
-              packet[received] = '\\0';
+              packet[received] = '\0';
               ESP_LOGI("bero_udp", "UDP_EVENT_RECEIVED from=%s payload=%s",
                 inet_ntoa(sender.sin_addr), packet);
             } else if (received < 0 && errno != EWOULDBLOCK &&
