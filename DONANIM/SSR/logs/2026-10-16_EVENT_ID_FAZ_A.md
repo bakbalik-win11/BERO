@@ -20,7 +20,7 @@ Dosya: `DONANIM/DS3231/examples/ds3231_ssr_40on_20off.yaml`
 - Derleme yapılmadı; ESP'ye yüklenmedi; donanım üzerinde test edilmedi.
 - Bu nedenle Faz A henüz çalışma zamanı açısından PASS değildir.
 - `BOOT_ID` rastgele 32 bit değerdir; çakışma olasılığı düşüktür ama matematiksel olarak sıfır değildir.
-- Bu aşamada olay yalnızca SSR ESP'nin loguna yazılır; PZEM'e gönderilmiyor.
+- UDP yayın/alıcı kodu eklendi (aşağıdaki dosyalar). Bu değişiklikler henüz derlenmedi, ESP'lere yüklenmedi ve gerçek ağda test edilmedi.
 
 ## Devam adımı
 1. YAML'ı ESPHome ile derle.
@@ -58,4 +58,4 @@ Karar tarihi: 2026-10-16
 SCT örneklerine EVENT_ID yazılmayacaksa, Python olayları SCT verisiyle zaman damgası ve olayın geçerli olduğu zaman aralığı üzerinden eşleştirir. Cihazların saatlerinin aynı doğrulukta olduğu varsayılmamalı; Mac Mini alım zamanı ve cihaz zaman damgalarının farkı ayrıca ölçülüp belgelenmelidir.
 
 ## Durum
-Bu bölüm mimari kararı kaydeder. PZEM YAML dosyası depoda arşivlendi. UDP yayını/alımı ve Python eşleştirmesi henüz uygulanmış veya test edilmiş değildir.
+UDP yayın/alıcı kodu depoya eklendi. UDP haberleşmesi gerçek cihazlarda henüz doğrulanmadı; Python log eşleştirmesi henüz uygulanmadı.
