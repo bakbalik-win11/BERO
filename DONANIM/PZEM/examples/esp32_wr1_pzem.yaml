@@ -1,0 +1,53 @@
+# PROJE BERO — ESP32-WR1-PZEM
+# Kaynak: mevcut PZEM ESPHome yapılandırması
+# Donanım: ESP32-WROOM, PZEM-004T / PZEM AC
+# UART: TX GPIO17, RX GPIO16, 9600 baud
+# Not: Bu dosyaya olay UDP alıcısı henüz eklenmedi.
+
+esphome:
+  name: esphome-web-2a35cc
+  friendly_name: ESP32-WR1-PZEM
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+uart:
+  id: pzem_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 9600
+  stop_bits: 1
+
+modbus:
+  uart_id: pzem_uart
+
+sensor:
+  - platform: pzemac
+    voltage:
+      name: "PZEM Gerilim"
+    current:
+      name: "PZEM Akım"
+    power:
+      name: "PZEM Güç"
+    energy:
+      name: "PZEM Enerji"
+    frequency:
+      name: "PZEM Frekans"
+    power_factor:
+      name: "PZEM Güç Faktörü"
+    update_interval: 5s
