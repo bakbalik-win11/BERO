@@ -3,42 +3,35 @@
 **ESPHome:** 2026.9.1  
 **Cihaz:** ESP32-C3 rev0.4, tek çekirdek  
 **Derleme zamanı:** 2026-10-16 13:36:45 +0300  
-**Log bağlantı zamanı:** 13:41:00 (+03:00)  
-**Cihaz IP:** 192.168.0.111  
-**Wi-Fi:** AKFISH — bağlı  
-**Firmware OTA:** ESPHome API üzerinden log bağlantısı başarılı
+**Log bağlantı zamanı:** 13:41 (+03:00)  
+**Cihaz IP:** 192.168.0.111
 
-## Ara kod
-Birleşik DS3231 + NTP + SSR 40 s ON / 20 s OFF YAML:
+## İlk derleme ve çalışma gözlemi
+- Firmware derlenmiş ve ESPHome API bağlantısı başarılı.
+- I²C: SDA GPIO0, SCL GPIO1, 50 kHz; bus recovery başarılı.
+- Tarama `0x57` ve `0x68` adreslerini bulmuş.
+- SSR switch GPIO6, `restore_mode: ALWAYS_OFF`.
+- Wi-Fi bağlı; NTP zamanı geçerli.
+- RTC metin sensörü 13:41:00, 13:41:05 ve 13:41:10 değerlerini; NTP sensörü 13:41:01, 13:41:06 ve 13:41:11 değerlerini raporlamış.
+
+## Önemli DS3231 uyarısı
+Başlangıçta `Communication with DS3231 failed!` ve `ds3231.time is marked FAILED: unspecified` logları görülmüş. Sonraki RTC metin sensörü geçerli zaman raporlamış. Bu çelişki henüz çözülmedi. I²C taramasında `0x68` bulunması tek başına register haberleşmesinin sağlıklı olduğunu kanıtlamaz.
+
+## Copilot incelemesi sonrası kod değişikliği
+Birleşik YAML dosyası güncellendi:
 [ds3231_ssr_40on_20off.yaml](../examples/ds3231_ssr_40on_20off.yaml)
 
-Bu kayıt, kullanıcının 2026-10-16 tarihinde gönderdiği derleme/çalışma loguna ve o sırada depoda bulunan YAML dosyasına dayanır. Log, kodun derlenip cihaza yüklendiğini ve API üzerinden erişildiğini destekler; fiziksel SSR anahtarlamasının doğrulandığını göstermez.
+Yeni olay logları:
+- `COMMAND_ON` / `COMMAND_OFF`: yazılım komutunu belirtir.
+- `GPIO_ON_CONFIRMED` / `GPIO_OFF_CONFIRMED`: GPIO6 pad seviyesinin okunup beklenen lojik seviyeye eşleştiğini belirtir.
+- `GPIO_ON_READBACK_MISMATCH` / `GPIO_OFF_READBACK_MISMATCH`: okunan seviyenin beklenen seviyeden farklı olduğunu belirtir.
+- Olay zaman damgasında öncelik RTC, sonra NTP; ikisi de geçersizse `SOURCE=NONE`.
 
-## Doğrulananlar
-- ESPHome 2026.9.1 firmware derlenmiş: `2026-10-16 13:36:45 +0300`.
-- API bağlantısı ve handshake başarılı.
-- ESP32-C3 rev0.4 olarak tanımlanmış.
-- I²C: SDA GPIO0, SCL GPIO1, 50 kHz; bus recovery başarılı.
-- I²C taramasında `0x57` ve `0x68` bulunmuş.
-- SSR switch yapılandırması GPIO6, `restore_mode: ALWAYS_OFF`.
-- Wi-Fi bağlı, IP `192.168.0.111`.
-- NTP saati geçerli; `2026-10-16 13:41:00` raporlanmış.
-- DS3231 RTC metin sensörü `13:41:00`, `13:41:05`, `13:41:10` değerlerini raporlamış.
-- NTP metin sensörü `13:41:01`, `13:41:06`, `13:41:11` değerlerini raporlamış.
+**Not:** GPIO pad geri okuması, SSR giriş LED'inin veya yük çıkışının fiziksel çalıştığını kanıtlamaz. Bunun için bağımsız fiziksel gözlem/ölçüm gerekir.
 
-## Hata / dikkat noktası
-Başlangıçta DS3231 sürücüsü şu hatayı vermiş:
-`Communication with DS3231 failed!`
-`ds3231.time is marked FAILED: unspecified`
-
-Buna rağmen sonraki RTC metin sensörü geçerli ve ilerleyen saat değerleri raporlamış. Bu çelişkili gözlem ayrı olarak araştırılmalı; yalnızca I²C taramasında `0x68` bulunması DS3231 register haberleşmesinin bütünüyle sağlıklı olduğunu kanıtlamaz.
-
-## Henüz kanıtlanmayanlar
-- DS3231'e NTP saati yazma işleminin gerçekten başarılı olduğu (logda yalnızca komutun çağrılması/başlatılması görülürse yeterli kanıt sayılmaz).
-- Wi-Fi kapalıyken RTC'nin bağımsız zaman tutması.
-- GPIO6'nın elektriksel seviyesinin ölçülmesi.
-- SSR giriş LED'inin yanıp sönmesi.
-- SSR yük çıkışının ve bağlı yükün 40 s ON / 20 s OFF çevriminde fiziksel olarak anahtarlanması.
-
-## Sonraki adım
-Önce RTC haberleşme hatası ile geçerli görünen RTC sensör değerleri arasındaki farkı incele. Ardından loglarda `COMMAND_ON/OFF`, GPIO geri okuma ve fiziksel çıkış ölçümünü ayrı kanıt seviyeleri olarak kaydet. Fiziksel test yapılmadan SSR testi PASS olarak işaretlenmeyecek.
+## Test durumu
+- İlk firmware derlemesi ve API bağlantısı: PASS.
+- Yeni zaman damgalı olay/GPIO geri okuma revizyonu: depoya kaydedildi; henüz yeniden derlenip doğrulanmadı.
+- DS3231 yazma işleminin gerçekten başarılı olması: doğrulanmadı.
+- Wi-Fi kapalı RTC testi: doğrulanmadı.
+- SSR LED/yük tarafı fiziksel çevrim testi: bekliyor.
