@@ -157,3 +157,26 @@ DMA callback başlangıç/bitiş zamanları, ilk ve son fiziksel ADC örneğinin
 
 **Durum notu:** Kaynak raporda derleme, ESP'ye yükleme, 100 frame yakalama, fiziksel sensör testi, CSV ve grafik sonuçları beklemede olarak işaretlenmişti. Bu plan güncellemesi bu testlerin yapıldığını iddia etmez.
 
+
+
+## 10. Alt Görev 1 — Tek ESP ile dalgayı en yüksek güvenilir hızda yakalama ve çizme
+
+**Alt görev:** `HDF2-GRV-002/ALT-GOREV-001`  
+**Durum:** AÇIK — uygulama, derleme ve fiziksel test bekliyor.
+
+İlk hedef üç ESP'yi aynı anda çalıştırmak değil; önce **tek bir ESP32-WROOM üzerinde** SCT ve BIAS ham sinyallerini mümkün olan en yüksek, kararlı ve doğrulanabilir örnekleme hızında yakalayıp Mac'e aktarmak ve dalgayı çizdirmektir. Maksimum hız, kodda yazılı hedef sayı ile değil, gerçek kayıt, örnek kaybı kontrolleri ve ölçülmüş zamanlama ile belirlenecektir.
+
+Alt görev sırası:
+1. Tek ESP üzerinde dahili ADC sürekli örnekleme altyapısını çalıştır; MCP3208 kullanma.
+2. SCT ve BIAS ham örneklerini mümkünse ortak zaman tabanında kaydet; örnek sırasını ve kanal eşleşmesini koru.
+3. Güvenilir bir başlangıç hızında kayıt al, ardından hız basamaklarını yükselterek cihazın kararlı yakalayabildiği en yüksek hızı bul.
+4. Her hızda gerçek örnek sayısını, örnek aralığı/zamanlama kanıtını, frame bütünlüğünü ve DMA/kuyruk taşmalarını kaydet.
+5. Ham veriyi Mac'e aktar, CSV olarak sakla ve ham SCT ile BIAS dalgalarını zamana karşı çiz. Bu alt görevde RMS, kalibrasyon veya akım hesabı hedeflenmez.
+6. En yüksek hızda dalga biçimi yeterince temsil ediliyor ve kayıp olmadığı gösteriliyorsa sonucu raporla; değilse daha düşük güvenilir hızı seç.
+7. Tek ESP aşaması doğrulanmadan çoklu ESP mimarisine geçme.
+
+**Sonraki aşama (bu alt görevin dışında):** Tek ESP ile yakalama/çizme doğrulandıktan sonra 1T, 2T ve 4T ölçüm yapısını üç ESP ile kurmak; kanalların eşzamanlamasını ayrı görevde ele almak.
+
+**Başarı ölçütleri:** Derleme ve cihaza yükleme kaydı; gerçek örnekleme hızı ölçümü; beklenen örnek sayısı ve sırasının korunması; sıfır açıklanamayan overflow/kayıp; Mac'te açılabilir ham kayıt; SCT ve BIAS dalga grafikleri; kullanılan kod ve logların sürümle birlikte kaydı.
+
+**Sınır:** 10 kHz yalnızca mevcut başlangıç referansıdır; otomatik olarak en yüksek veya en iyi hız kabul edilmez. Fiziksel kayıtla doğrulanmadan hiçbir hız PASS sayılmaz.
