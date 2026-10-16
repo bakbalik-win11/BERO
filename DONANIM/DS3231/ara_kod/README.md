@@ -37,3 +37,14 @@ ESP32-C3 SuperMini üzerinde DS3231 RTC ile NTP zamanını karşılaştırmak, N
 - Donanım arızası ve sürücü hatası arasında henüz karar verilmedi.
 - GPIO yazılım durumu fiziksel SSR çıkışının kanıtı değildir.
 - Yeni testler derlenip çalıştırılmadan başarılı kabul edilmez.
+
+
+## Son aşama kaydı — 2026-10-16 (13:58–14:00 logu)
+
+- Son OTA firmware derleme zamanı logda 13:56:50 +0300 olarak görünüyor.
+- NTP senkronizasyonu başarılı; DS3231 başlatma hatası ve register 0x00 yazma hatası devam ediyor.
+- SSR yazılım döngüsü olayları üretiyor; ON aşamasında `GPIO_ON_READBACK_MISMATCH` görülüyor.
+- **Bir sonraki iş:** GPIO6 lojik geri okuma mantığını `inverted: true` ile karşılaştır; ardından DS3231 harici bileşeninin init/read/write kaynak kodunu incele.
+- **Değiştirmeden koru:** SSR 40 s ON / 20 s OFF döngüsü ve mevcut pin eşlemesi (SDA GPIO0, SCL GPIO1, SSR GPIO6).
+- **Henüz doğrulanmadı:** RTC'ye başarılı yazma, DS3231'in bağımsız zaman okuması ve SSR'nin fiziksel çıkış/yük anahtarlaması.
+- Bu kayıt güncellemesi firmware'i derlemez veya cihaza yüklemez; donanım testi yapılmadı.
