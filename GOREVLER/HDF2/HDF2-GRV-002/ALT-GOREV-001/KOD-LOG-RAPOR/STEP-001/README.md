@@ -45,3 +45,9 @@ STEP-001'in bu yeni çalışma hedefi ve tasarım notları rapora kaydedildi:
 Amaç: ESP32D1 dahili ADC'siyle 10 kHz'de, 1.000 örnek/tampon (hedef 100 ms) alırken iki RAM tamponunu dönüşümlü kullanmak; dolan tamponu Mac'te Python alıcısına binary olarak aktarmak. İlk deneyde MCP3208 kullanılmayacak.
 
 Bu ek hedef için kod henüz hazırlanmış, derlenmiş veya fiziksel olarak test edilmiş sayılmaz. Mevcut GRV-008.2 adayını ve Python alıcısını inceleyip hedef kart/API uyumu doğrulanacak. Tampon taşması, frame sıra numarası ve veri doğrulaması tasarıma dahil edilecek. Rapor başarı ölçütleri ve sıradaki işleri içerir.
+
+
+## 2026-10-16 — STEP-002 devam kaydı
+Yeni inceleme raporu: [STEP-002-GRV-008.3-KOD-INCELEME-2026-10-16.md](RAPOR/STEP-002-GRV-008.3-KOD-INCELEME-2026-10-16.md).  
+Yeni aday kod: [GRV-008.3_candidate_safety_patch.ino](../KOD/GRV-008.3_candidate_safety_patch.ino).  
+Durum: **AÇIK**. Callback alanı ve veri kaybında kısmi frame'i atma koruması düzeltildi; derleme ve fiziksel test henüz yapılmadı.
