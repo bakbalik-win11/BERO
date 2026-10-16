@@ -220,6 +220,7 @@ interval:
           } else {
             id(ssr_cycle_start_ms) = now_ms;
 
+            emit_shared_event("ON");
             log_event("COMMAND_ON");
             id(ssr_control).turn_on();
 
