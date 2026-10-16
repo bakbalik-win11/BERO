@@ -35,3 +35,35 @@ Yeni olay logları:
 - DS3231 yazma işleminin gerçekten başarılı olması: doğrulanmadı.
 - Wi-Fi kapalı RTC testi: doğrulanmadı.
 - SSR LED/yük tarafı fiziksel çevrim testi: bekliyor.
+
+
+## İkinci derleme ve çalışma kaydı — 2026-10-16 13:50–13:52 (+03:00)
+**Derleme zamanı:** 2026-10-16 13:49:02 +0300  
+**ESPHome:** 2026.9.1  
+**Cihaz:** ESP32-C3 rev0.4, IP 192.168.0.111  
+**YAML lojik ayarı:** Kullanıcının SSR ON/OFF davranışının ters olduğunu bildirmesi üzerine `inverted: true` denenmiş.
+
+### Gözlemler
+- Firmware açıldı ve API bağlantısı başarılı.
+- I²C taraması `0x57` ve `0x68` adreslerini buldu.
+- Başlangıçta `Communication with DS3231 failed!` ve `ds3231.time is marked FAILED: unspecified` hataları tekrarlandı.
+- NTP senkronizasyonu gerçekleşti.
+- NTP'den RTC'ye yazma komutu sırasında `I2C write failed at register 0x00` hatası tekrarlandı. `RTC_WRITE_COMMAND_SENT` yalnızca eylemin çağrıldığını gösterir; yazma başarısı değildir.
+- RTC ve NTP metin sensörleri saniyeler ilerleyen zaman değerleri gösterdi. Bu, RTC'nin bağımsız olarak doğru zamanı koruduğunu veya yazma işleminin başarılı olduğunu tek başına kanıtlamaz.
+- Olay logları `COMMAND_OFF` / `SWITCH_STATE_OFF` ve ardından `COMMAND_ON` / `SWITCH_STATE_ON` gösterdi. Yazılım zamanlayıcısı çalışıyor.
+- Bu log parçasında GPIO pad geri okuma olayları görünmüyor. SSR'nin fiziksel giriş/çıkış davranışının `inverted: true` ile düzeldiği kanıtlanmadı.
+
+### Güncel değerlendirme
+| Test | Durum |
+|---|---|
+| ESPHome derleme/açılış | PASS |
+| I²C taramasında 0x68 | Görüldü |
+| RTC zaman metin sensörü | Geçerli ve ilerleyen değerler gözlendi; bağımsız RTC doğrulaması değil |
+| NTP senkronizasyonu | PASS |
+| DS3231'e yazma | FAIL — register 0x00 I²C yazma hatası |
+| 40 s ON / 20 s OFF yazılım zamanlayıcısı | Loglarda çalışıyor |
+| Ters lojik ile fiziksel SSR doğrulaması | Bekliyor |
+| Pilin güç kesilince saati koruması | Test edilmedi |
+
+### Sonraki adım
+SSR zamanlayıcısını değiştirmeden DS3231 external component kaynak kodundaki başlatma/okuma/yazma yolları incelenecek. Öncelik, `Communication with DS3231 failed` ile `I2C write failed at register 0x00` mesajlarının aynı sürücüde neden üretildiğini belirlemek. Donanım arızası veya sürücü hatası henüz kesinleşmedi.
