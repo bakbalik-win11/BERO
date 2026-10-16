@@ -1,3 +1,8 @@
+# SON LOG GÜNCELLEMESİ (2026-10-16 13:58–14:00):
+# NTP sync OK; DS3231 init FAILED; I2C write register 0x00 FAILED.
+# SSR cycle events continue; GPIO_ON_READBACK_MISMATCH observed.
+# Next: inspect inverted GPIO6 readback logic and external DS3231 component source.
+# Latest runtime evidence is documented in ../logs/2026-10-16_ESP32-C3-SSR_Build_Runtime_Log.md.
 # PROJE BERO — HDF-002 / DEVAM KODU
 # HEDEF:
 # 1) NTP zamanını alıp DS3231'e yazma davranışını gözlemlemek.
