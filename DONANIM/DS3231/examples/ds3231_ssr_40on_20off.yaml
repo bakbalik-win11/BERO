@@ -136,6 +136,9 @@ interval:
     then:
       - lambda: |-
           #include "driver/gpio.h"
+          #include "lwip/sockets.h"
+          #include "lwip/inet.h"
+          #include <errno.h>
 
           // RTC varsa olay zamanında RTC kullan; yoksa NTP; ikisi de yoksa NONE.
           auto log_event = [&](const char *event) {
@@ -161,6 +164,41 @@ interval:
           // Faz A: ortak olay kimliği. Her ON/OFF durum geçişinde bir kez artırılır.
           auto emit_shared_event = [&](const char *state) {
             id(bero_event_id)++;
+
+            // UDP broadcast: ESP-SSR -> PZEM ESP, port 4210.
+            // Keep this payload simple so it is easy to inspect in logs.
+            char packet[128];
+            snprintf(packet, sizeof(packet),
+              "BERO_EVT,BOOT_ID=%08X,EVENT_ID=%u,STATE=%s",
+              (unsigned int) id(bero_boot_id),
+              (unsigned int) id(bero_event_id), state);
+
+            static int udp_sock = -1;
+            if (udp_sock < 0) {
+              udp_sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+              if (udp_sock >= 0) {
+                int broadcast_enable = 1;
+                setsockopt(udp_sock, SOL_SOCKET, SO_BROADCAST,
+                  &broadcast_enable, sizeof(broadcast_enable));
+              } else {
+                ESP_LOGW("bero_udp", "UDP_SOCKET_CREATE_FAILED errno=%d", errno);
+              }
+            }
+
+            if (udp_sock >= 0) {
+              struct sockaddr_in destination = {};
+              destination.sin_family = AF_INET;
+              destination.sin_port = htons(4210);
+              destination.sin_addr.s_addr = inet_addr("255.255.255.255");
+              int sent = sendto(udp_sock, packet, strlen(packet), 0,
+                (struct sockaddr *)&destination, sizeof(destination));
+              if (sent >= 0) {
+                ESP_LOGI("bero_udp", "UDP_EVENT_SENT %s", packet);
+              } else {
+                ESP_LOGW("bero_udp", "UDP_SEND_FAILED errno=%d", errno);
+              }
+            }
+
             ESP_LOGI("bero_event",
               "BERO_SHARED_EVENT BOOT_ID=%08X EVENT_ID=%u STATE=%s",
               (unsigned int) id(bero_boot_id),
