@@ -59,3 +59,19 @@ SCT örneklerine EVENT_ID yazılmayacaksa, Python olayları SCT verisiyle zaman 
 
 ## Durum
 UDP yayın/alıcı kodu depoya eklendi. UDP haberleşmesi gerçek cihazlarda henüz doğrulanmadı; Python log eşleştirmesi henüz uygulanmadı.
+
+
+## Gerçek cihaz testi — 2026-10-16
+
+Kullanıcının paylaştığı ESPHome OTA loguna göre, UDP eklenmiş SSR firmware'i **derlenmiş ve cihaza yüklenmiş; cihaz API üzerinden erişilebilir**.
+
+- Derleme zamanı: 2026-10-16 14:49:09 +0300 (ESPHome 2026.9.1).
+- UDP gönderim çağrıları loglanmış: `BOOT_ID=AF39B8E4`, `EVENT_ID=2 STATE=OFF`, `EVENT_ID=3 STATE=ON`, `EVENT_ID=4 STATE=OFF`.
+- Bu kayıtlar gönderici tarafında UDP gönderiminin çağrıldığını gösterir; PZEM alıcısına teslimat henüz doğrulanmadı.
+- NTP senkronizasyonu başarılı.
+- DS3231 hâlâ hata veriyor: `Communication with DS3231 failed!` ve `I2C write failed at register 0x00`.
+- ON sırasında `GPIO_ON_READBACK_MISMATCH` var; fiziksel SSR çıkışı henüz doğrulanmış değil.
+
+Ayrıntılı kanıt ve gerçek log satırları: [2026-10-16 ESP32-C3-SSR UDP çalışma zamanı testi](./2026-10-16_ESP32-C3-SSR_UDP_RUNTIME_TEST.md).
+
+**Güncel durum:** SSR gönderici derleme ve çalışma zamanı açısından doğrulandı; UDP alıcı teslimatı, fiziksel SSR çıkışı ve DS3231 sorunu açık işlerdir.
