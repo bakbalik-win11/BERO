@@ -33,3 +33,6 @@ Kayıt düzeni ve step dizini mevcut.
 ## Çalışma kaydı
 Her tamamlanan işin tarihi, kullanılan kod sürümü, test sonucu ve kanıt bağlantısı aşağıya alt alta eklenecek. Step ancak kapanış ölçütü kanıtlandığında kapatılacak.
 
+## 2026-10-16 — PZEM / SSR / Home Assistant kayıtlarının doğrulanması
+
+Öncelik, yüksek hızlı USB/ham veri testlerine geçmeden önce mevcut çalışan PZEM–SSR–Home Assistant zincirinin gerçek durumunu kanıtlamaktır. Kullanıcının sağlayacağı mevcut ESPHome YAML dosyaları ve loglar esas alınarak (1) PZEM ölçümlerinin Home Assistant'a ulaşıp güncellendiği, (2) SSR açma/kapama olaylarının nerede üretildiği ve nasıl kaydedildiği, (3) bu iki veri akışının ayrı ayrı zaman damgasıyla tutulup tutulmadığı, (4) SSR olayları ile PZEM ölçümlerinin aynı deney/olay kimliğiyle ilişkilendirilmeye uygunluğu ve (5) mevcut kayıtların kanıt olarak saklanması incelenecektir. Eksik kanıtlar varsayımla tamamlanmayacak; çalışan kodlar görülmeden değiştirilmeyecek. Gerekirse yalnızca doğrulanan eksik için kod değişikliği yapılacak; ilgili YAML/kod sürümü, test logu ve sonuç raporu STEP-000 altında saklanacaktır. Şu anki durum: YAML ve loglar kullanıcı tarafından henüz bu inceleme için sunulmadı; doğrulama yapılmış veya PASS alınmış sayılmaz.
