@@ -1,7 +1,7 @@
 # Proje BERO — DS3231 + SSR Birleşik Test Kodu
 # Donanım: ESP32-C3 SuperMini, DS3231 (I2C), SSR kontrol GPIO6
 # SSR test çevrimi: 40 saniye AÇIK / 20 saniye KAPALI
-# Not: GPIO komutu, SSR yük çıkışının fiziksel olarak anahtarladığını tek başına kanıtlamaz.
+# Loglar COMMAND ile GPIO pad geri okumasını ayırır. GPIO geri okuması SSR yük çıkışını kanıtlamaz.
 
 esphome:
   name: esphome-web-0424f4
@@ -110,34 +110,89 @@ interval:
   - interval: 1s
     then:
       - lambda: |-
-          // Çevrim millis() ile yürür; DS3231/NTP saatini etkilemez.
-          // Açılışta çıkış OFF başlar, ilk 1 saniyelik kontrolde çevrim başlatılır.
+          #include "driver/gpio.h"
+
+          // RTC varsa olay zamanında RTC kullan; yoksa NTP; ikisi de yoksa NONE.
+          auto log_event = [&](const char *event) {
+            auto rtc = id(rtc_time).now();
+            auto ntp = id(ntp_time).now();
+
+            if (rtc.is_valid()) {
+              ESP_LOGI("bero_event",
+                "TIME=%04d-%02d-%02d %02d:%02d:%02d SOURCE=RTC EVENT=%s",
+                rtc.year, rtc.month, rtc.day_of_month,
+                rtc.hour, rtc.minute, rtc.second, event);
+            } else if (ntp.is_valid()) {
+              ESP_LOGI("bero_event",
+                "TIME=%04d-%02d-%02d %02d:%02d:%02d SOURCE=NTP EVENT=%s",
+                ntp.year, ntp.month, ntp.day_of_month,
+                ntp.hour, ntp.minute, ntp.second, event);
+            } else {
+              ESP_LOGW("bero_event",
+                "TIME=UNAVAILABLE SOURCE=NONE EVENT=%s", event);
+            }
+          };
+
+          // Çevrim millis() ile ilerler; duvar saati senkronizasyonundan bağımsızdır.
           const uint32_t now_ms = millis();
 
           if (!id(ssr_cycle_initialized)) {
             id(ssr_cycle_start_ms) = now_ms;
             id(ssr_cycle_initialized) = true;
+
+            log_event("COMMAND_ON");
             id(ssr_control).turn_on();
-            ESP_LOGI("bero_ssr", "SSR_CYCLE_START: ON phase (40 s)");
+
+            const int gpio_level = gpio_get_level(GPIO_NUM_6);
+            if (gpio_level == 1) {
+              log_event("GPIO_ON_CONFIRMED");
+            } else {
+              log_event("GPIO_ON_READBACK_MISMATCH");
+            }
+            log_event("CYCLE_START_ON_40S");
             return;
           }
 
-          const uint32_t elapsed_s = (now_ms - id(ssr_cycle_start_ms)) / 1000;
+          const uint32_t elapsed_s =
+            (now_ms - id(ssr_cycle_start_ms)) / 1000;
 
           if (elapsed_s < 40) {
             if (!id(ssr_control).state) {
+              log_event("COMMAND_ON");
               id(ssr_control).turn_on();
-              ESP_LOGI("bero_ssr", "SSR_STATE: ON");
+
+              const int gpio_level = gpio_get_level(GPIO_NUM_6);
+              if (gpio_level == 1) {
+                log_event("GPIO_ON_CONFIRMED");
+              } else {
+                log_event("GPIO_ON_READBACK_MISMATCH");
+              }
             }
           } else if (elapsed_s < 60) {
             if (id(ssr_control).state) {
+              log_event("COMMAND_OFF");
               id(ssr_control).turn_off();
-              ESP_LOGI("bero_ssr", "SSR_STATE: OFF (20 s phase)");
+
+              const int gpio_level = gpio_get_level(GPIO_NUM_6);
+              if (gpio_level == 0) {
+                log_event("GPIO_OFF_CONFIRMED");
+              } else {
+                log_event("GPIO_OFF_READBACK_MISMATCH");
+              }
             }
           } else {
             id(ssr_cycle_start_ms) = now_ms;
+
+            log_event("COMMAND_ON");
             id(ssr_control).turn_on();
-            ESP_LOGI("bero_ssr", "SSR_CYCLE_RESTART: ON phase (40 s)");
+
+            const int gpio_level = gpio_get_level(GPIO_NUM_6);
+            if (gpio_level == 1) {
+              log_event("GPIO_ON_CONFIRMED");
+            } else {
+              log_event("GPIO_ON_READBACK_MISMATCH");
+            }
+            log_event("CYCLE_RESTART_ON_40S");
           }
 
 text_sensor:
