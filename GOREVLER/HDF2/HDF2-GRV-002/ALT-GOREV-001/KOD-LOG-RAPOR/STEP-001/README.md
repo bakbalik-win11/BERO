@@ -36,3 +36,12 @@ Derleme sonucu ve kullanılan sürümler kaydedilmiş; başarılı derleme kanı
 ## Çalışma kaydı
 Her tamamlanan işin tarihi, kullanılan kod sürümü, test sonucu ve kanıt bağlantısı aşağıya alt alta eklenecek. Step ancak kapanış ölçütü kanıtlandığında kapatılacak.
 
+
+## Ek çalışma hedefi — ESP32D1 çift tamponlu osiloskop (2026-10-16)
+
+STEP-001'in bu yeni çalışma hedefi ve tasarım notları rapora kaydedildi:
+[`RAPOR/STEP-001-ESP32D1-CIFT-TAMPONLU-OSILOSKOP-AMACI-2026-10-16.md`](RAPOR/STEP-001-ESP32D1-CIFT-TAMPONLU-OSILOSKOP-AMACI-2026-10-16.md).
+
+Amaç: ESP32D1 dahili ADC'siyle 10 kHz'de, 1.000 örnek/tampon (hedef 100 ms) alırken iki RAM tamponunu dönüşümlü kullanmak; dolan tamponu Mac'te Python alıcısına binary olarak aktarmak. İlk deneyde MCP3208 kullanılmayacak.
+
+Bu ek hedef için kod henüz hazırlanmış, derlenmiş veya fiziksel olarak test edilmiş sayılmaz. Mevcut GRV-008.2 adayını ve Python alıcısını inceleyip hedef kart/API uyumu doğrulanacak. Tampon taşması, frame sıra numarası ve veri doğrulaması tasarıma dahil edilecek. Rapor başarı ölçütleri ve sıradaki işleri içerir.
