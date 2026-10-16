@@ -2,7 +2,8 @@
 # Kaynak: mevcut PZEM ESPHome yapılandırması
 # Donanım: ESP32-WROOM, PZEM-004T / PZEM AC
 # UART: TX GPIO17, RX GPIO16, 9600 baud
-# Not: Bu dosyaya olay UDP alıcısı henüz eklenmedi.
+# Durum: ESPHome 2026.9.1 ile derlendi ve ESP32-WR1-PZEM'e OTA yüklendi.
+# UDP alıcı port 4210; gerçek SSR olay teslimatı logda doğrulandı.
 
 esphome:
   name: esphome-web-2a35cc
@@ -72,7 +73,7 @@ interval:
               (last_socket_attempt_ms == 0 ||
                millis() - last_socket_attempt_ms >= 5000)) {
             last_socket_attempt_ms = millis();
-            udp_rx_sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+            udp_rx_sock = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 
             if (udp_rx_sock >= 0) {
               int reuse = 1;
