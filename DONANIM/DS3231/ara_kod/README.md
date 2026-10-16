@@ -48,3 +48,11 @@ ESP32-C3 SuperMini üzerinde DS3231 RTC ile NTP zamanını karşılaştırmak, N
 - **Değiştirmeden koru:** SSR 40 s ON / 20 s OFF döngüsü ve mevcut pin eşlemesi (SDA GPIO0, SCL GPIO1, SSR GPIO6).
 - **Henüz doğrulanmadı:** RTC'ye başarılı yazma, DS3231'in bağımsız zaman okuması ve SSR'nin fiziksel çıkış/yük anahtarlaması.
 - Bu kayıt güncellemesi firmware'i derlemez veya cihaza yüklemez; donanım testi yapılmadı.
+
+
+## Yeni log değerlendirmesi — 2026-10-16, OTA 14:04:57
+
+- Yeni çalışma da aynı temel sonucu verdi: NTP sync başarılı, DS3231 bileşen iletişimi FAILED ve register 0x00 yazması başarısız.
+- RTC isimli text sensor ilerleyen saat gösteriyor ama bu, gerçek DS3231 register okumasının başarılı olduğunu kanıtlamıyor.
+- SSR yazılım döngüsü OFF/ON olayları üretiyor; ON sırasında `GPIO_ON_READBACK_MISMATCH` tekrarlandı.
+- Sıradaki işlem: önce GPIO6 geri okuma mantığını incele; ardından harici DS3231 bileşeninin init/read/write kaynak kodunu analiz et. Döngü 40 s ON / 20 s OFF olarak korunsun.
