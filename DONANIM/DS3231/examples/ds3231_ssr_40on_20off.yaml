@@ -1,0 +1,194 @@
+# Proje BERO — DS3231 + SSR Birleşik Test Kodu
+# Donanım: ESP32-C3 SuperMini, DS3231 (I2C), SSR kontrol GPIO6
+# SSR test çevrimi: 40 saniye AÇIK / 20 saniye KAPALI
+# Not: GPIO komutu, SSR yük çıkışının fiziksel olarak anahtarladığını tek başına kanıtlamaz.
+
+esphome:
+  name: esphome-web-0424f4
+  friendly_name: ESP32-C3-SSR
+  name_add_mac_suffix: false
+  on_boot:
+    - priority: -100
+      then:
+        - switch.turn_off: ssr_control
+        - lambda: |-
+            auto rtc_now = id(rtc_time).now();
+            auto ntp_now = id(ntp_time).now();
+
+            if (rtc_now.is_valid()) {
+              ESP_LOGI("bero_boot_test",
+                "BERO_BOOT_RTC_VALID: %04d-%02d-%02d %02d:%02d:%02d",
+                rtc_now.year, rtc_now.month, rtc_now.day_of_month,
+                rtc_now.hour, rtc_now.minute, rtc_now.second);
+            } else {
+              ESP_LOGW("bero_boot_test", "BERO_BOOT_RTC_INVALID");
+            }
+
+            if (ntp_now.is_valid()) {
+              ESP_LOGI("bero_boot_test",
+                "BERO_BOOT_NTP_VALID_AT_BOOT: %04d-%02d-%02d %02d:%02d:%02d",
+                ntp_now.year, ntp_now.month, ntp_now.day_of_month,
+                ntp_now.hour, ntp_now.minute, ntp_now.second);
+            } else {
+              ESP_LOGI("bero_boot_test", "BERO_BOOT_NTP_INVALID_AT_BOOT: waiting for NTP sync");
+            }
+
+esp32:
+  variant: esp32c3
+  framework:
+    type: esp-idf
+
+external_components:
+  - source: github://andrewbackway/esphome-ds3231@main
+    components: [ds3231]
+    refresh: 1d
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+i2c:
+  id: bus_a
+  sda: GPIO0
+  scl: GPIO1
+  scan: true
+  frequency: 50kHz
+
+time:
+  - platform: sntp
+    id: ntp_time
+    timezone: Europe/Istanbul
+    servers:
+      - time.google.com
+      - time.cloudflare.com
+      - 0.pool.ntp.org
+    on_time_sync:
+      then:
+        - logger.log:
+            level: INFO
+            format: "BERO_NTP_SYNC_OK: NTP time synchronized."
+        - ds3231.write_time: rtc_time
+        - logger.log:
+            level: INFO
+            format: "BERO_RTC_WRITE_COMMAND_SENT: DS3231 write action called."
+
+  - platform: ds3231
+    id: rtc_time
+    i2c_id: bus_a
+    address: 0x68
+    update_interval: 10s
+    timezone: Europe/Istanbul
+
+switch:
+  - platform: gpio
+    id: ssr_control
+    name: "BERO SSR Kontrol"
+    pin:
+      number: GPIO6
+      inverted: false
+    restore_mode: ALWAYS_OFF
+
+globals:
+  - id: ssr_cycle_start_ms
+    type: uint32_t
+    restore_value: no
+    initial_value: '0'
+  - id: ssr_cycle_initialized
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+
+interval:
+  - interval: 1s
+    then:
+      - lambda: |-
+          // Çevrim millis() ile yürür; DS3231/NTP saatini etkilemez.
+          // Açılışta çıkış OFF başlar, ilk 1 saniyelik kontrolde çevrim başlatılır.
+          const uint32_t now_ms = millis();
+
+          if (!id(ssr_cycle_initialized)) {
+            id(ssr_cycle_start_ms) = now_ms;
+            id(ssr_cycle_initialized) = true;
+            id(ssr_control).turn_on();
+            ESP_LOGI("bero_ssr", "SSR_CYCLE_START: ON phase (40 s)");
+            return;
+          }
+
+          const uint32_t elapsed_s = (now_ms - id(ssr_cycle_start_ms)) / 1000;
+
+          if (elapsed_s < 40) {
+            if (!id(ssr_control).state) {
+              id(ssr_control).turn_on();
+              ESP_LOGI("bero_ssr", "SSR_STATE: ON");
+            }
+          } else if (elapsed_s < 60) {
+            if (id(ssr_control).state) {
+              id(ssr_control).turn_off();
+              ESP_LOGI("bero_ssr", "SSR_STATE: OFF (20 s phase)");
+            }
+          } else {
+            id(ssr_cycle_start_ms) = now_ms;
+            id(ssr_control).turn_on();
+            ESP_LOGI("bero_ssr", "SSR_CYCLE_RESTART: ON phase (40 s)");
+          }
+
+text_sensor:
+  - platform: template
+    name: "BERO NTP Saat"
+    update_interval: 5s
+    lambda: |-
+      auto now = id(ntp_time).now();
+      if (!now.is_valid()) {
+        ESP_LOGW("ntp_test", "NTP_TIME_INVALID");
+        return {"NTP_TIME_INVALID"};
+      }
+      char buffer[24];
+      snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d %02d:%02d:%02d",
+        now.year, now.month, now.day_of_month, now.hour, now.minute, now.second);
+      ESP_LOGI("ntp_test", "NTP_TIME: %s", buffer);
+      return {buffer};
+
+  - platform: template
+    name: "BERO DS3231 RTC Saat"
+    update_interval: 5s
+    lambda: |-
+      auto now = id(rtc_time).now();
+      if (!now.is_valid()) {
+        ESP_LOGW("rtc_test", "RTC_TIME_INVALID");
+        return {"RTC_TIME_INVALID"};
+      }
+      char buffer[24];
+      snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d %02d:%02d:%02d",
+        now.year, now.month, now.day_of_month, now.hour, now.minute, now.second);
+      ESP_LOGI("rtc_test", "RTC_TIME: %s", buffer);
+      return {buffer};
+
+button:
+  - platform: template
+    name: "BERO DS3231 Saati NTP'den Yaz"
+    on_press:
+      then:
+        - if:
+            condition:
+              time.has_time:
+                id: ntp_time
+            then:
+              - logger.log:
+                  level: INFO
+                  format: "BERO_MANUAL_RTC_WRITE_START"
+              - ds3231.write_time: rtc_time
+              - logger.log:
+                  level: INFO
+                  format: "BERO_MANUAL_RTC_WRITE_COMMAND_SENT"
+            else:
+              - logger.log:
+                  level: WARN
+                  format: "BERO_MANUAL_RTC_WRITE_ABORTED: NTP time invalid."
