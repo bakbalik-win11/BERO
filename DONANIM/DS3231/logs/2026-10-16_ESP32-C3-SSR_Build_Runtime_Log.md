@@ -104,3 +104,41 @@ SSR zamanlayıcısını değiştirmeden DS3231 external component kaynak kodunda
 4. SSR fiziksel davranışını yazılım logundan ayrı olarak güvenli biçimde doğrula.
 
 **Kayıt sınırı:** Bu kayıt, kullanıcının sağladığı logda görülenleri ve henüz doğrulanmamış olasılıkları ayırır. Bu güncelleme sırasında firmware yeniden derlenmedi ve fiziksel SSR testi yapılmadı.
+
+
+## Üçüncü çalışma kaydı — OTA derlemesi 14:04:57, log 14:06:39–14:07:46
+
+**Kaynak:** Kullanıcının paylaştığı ESPHome çalışma logu. Cihaz ESP32-C3 rev0.4; ESPHome 2026.9.1; IP 192.168.0.111.
+
+### Gözlemler
+- API bağlantısı ve cihaz açılışı başarılı; güvenli mod sayacı sıfırlanmış.
+- I²C bus recovery başarılı; tarama 0x57 ve 0x68 adreslerini bulmuş.
+- DS3231 bileşeni yine `Communication with DS3231 failed!` ve `ds3231.time is marked FAILED` hatalarını vermiş.
+- NTP zamanı 14:07:05'te senkronize olmuş (`BERO_NTP_SYNC_OK`).
+- Aynı anda DS3231'e yazma denemesi `I2C write failed at register 0x00` hatası vermiş. Sonraki `BERO_RTC_WRITE_COMMAND_SENT` satırı başarı teyidi değil.
+- NTP sensörü 14:06:40'tan 14:07:45'e kadar ilerliyor.
+- RTC adlı sensör de 14:06:41'den 14:07:46'ya kadar ilerleyen saat değerleri gösteriyor; ancak DS3231 bileşeni FAILED olduğundan bu değerlerin gerçek RTC register'larından başarıyla okunduğu sonucuna varılamaz.
+- SSR yazılımı 14:07:14'te OFF komutu ve `GPIO_OFF_CONFIRMED` kaydı vermiş.
+- 14:07:34'te ON komutu ve `GPIO_ON_READBACK_MISMATCH` kaydı oluşmuş; switch durumu daha sonra ON olarak yayınlanmış.
+- Wi-Fi bağlı; RSSI yaklaşık -74 dBm. Bu logdaki DS3231 register hatasının sebebini tek başına açıklamaz.
+
+### Aşama durumu
+| Test | Sonuç |
+|---|---|
+| Firmware / API açılışı | Başarılı |
+| I²C adres taraması | 0x57 ve 0x68 bulundu |
+| DS3231 bileşen iletişimi | Başarısız |
+| NTP senkronizasyonu | Başarılı |
+| RTC yazma | Başarısız, register 0x00 |
+| RTC sensörü ilerleyen değer üretiyor | Evet; kaynağın gerçek DS3231 okuması olduğu doğrulanmadı |
+| SSR yazılım ON/OFF olayları | Üretiliyor |
+| GPIO6 ON geri okuma | Uyuşmazlık |
+| Fiziksel SSR/yük anahtarlaması | Bu logla doğrulanamaz |
+
+### Devam noktası
+1. GPIO6 mantıksal switch durumu ile fiziksel pin seviyesi karşılaştırmasını incele. `inverted: true` durumunda ON komutu için HIGH bekleyen mevcut kontrol yanlış sınıflandırma yapabilir; bu bir hipotezdir.
+2. Harici `andrewbackway/esphome-ds3231` bileşeninin kaynak kodunda init, register 0x00 yazma ve zaman okuma yollarını incele.
+3. RTC başarısını ancak DS3231 register okuması ve yazma sonrası bağımsız geri okuma ile doğrula.
+4. SSR çıkışını yazılım GPIO logundan ayrı, güvenli ve uygun ölçümle doğrula.
+
+**Bu kayıt güncellemesi firmware'i derlemedi/yüklemedi ve fiziksel test yapmadı.**
