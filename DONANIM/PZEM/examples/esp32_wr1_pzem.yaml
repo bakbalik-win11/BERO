@@ -60,7 +60,7 @@ interval:
       - lambda: |-
           #include "lwip/sockets.h"
           #include "lwip/inet.h"
-          #include "lwip/fcntl.h"
+          #include <fcntl.h>
           #include <unistd.h>
           #include <errno.h>
 
