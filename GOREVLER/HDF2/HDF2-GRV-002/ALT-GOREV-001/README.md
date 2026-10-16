@@ -49,3 +49,11 @@ DMA callback'lerinin başlangıç ve bitiş zamanları, ilk ve son ADC örnekler
 Bu alt görev tamamlanıp tek ESP zinciri doğrulandıktan sonra ayrı bir alt görev açılır: üç ESP ile 1T, 2T ve 4T ölçüm yapısının kurulması ve eşzamanlama testleri. Bu görev çoklu ESP kurulumunu kapsamına almaz.
 
 **Şu anki devam noktası:** Tek ESP için ADC yakalama yolunu seçmek ve ilk ham kaydı almak. Derleme veya fiziksel test sonucu henüz yok.
+
+
+## Kayıt ve ilerleme takibi
+
+Alt Görev 1'in kod, log ve raporları KOD-LOG-RAPOR/ klasöründe tutulur. Kullanıcı “sakla” dediğinde ilgili step'in kodu/logu/raporu bu alana eklenir; ilerleme raporundaki durum, kanıt ve kesin devam noktası güncellenir. Eski sürümler korunur, test kanıtı olmadan PASS yazılmaz.
+
+- [KOD-LOG-RAPOR klasörü](KOD-LOG-RAPOR/README.md)
+- [İlerleme raporu](KOD-LOG-RAPOR/RAPOR/ALT-GOREV-001-ILERLEME-RAPORU.md)
