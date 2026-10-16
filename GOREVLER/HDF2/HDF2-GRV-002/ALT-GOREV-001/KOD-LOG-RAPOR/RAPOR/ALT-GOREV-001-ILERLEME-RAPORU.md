@@ -9,7 +9,7 @@
 | Step | İş | Durum | Kanıt |
 |---|---|---|---|
 | STEP-000 | Alt görevi ve kayıt düzenini oluşturma | TAMAM | Bu klasör ve ana görev README'si |
-| STEP-001 | ADC yakalama yöntemi/kod adayı seçimi ve derleme | BEKLİYOR | Henüz kayıt yok |
+| STEP-001 | Önceki GRV-008.2 aday kodunu bulma ve depoya alma | KOD ADAYI KAYDEDİLDİ; DERLEME BEKLİYOR | KOD/GRV-008.2_candidate.ino ve Python alıcısı; derleme/test kanıtı yok |
 | STEP-002 | Tek ESP'den ham SCT/BIAS örneklerini yakalama | BEKLİYOR | Henüz kayıt yok |
 | STEP-003 | Ham veriyi Mac'e aktarma ve bütünlük kontrolü | BEKLİYOR | Henüz kayıt yok |
 | STEP-004 | SCT ve BIAS dalgalarını çizme | BEKLİYOR | Henüz grafik yok |
@@ -37,3 +37,19 @@
 **STEP-001:** ESP32-WROOM dahili ADC sürekli örnekleme yöntemi ve mevcut kod adayı incelenecek. Kod derlenmeden veya fiziksel test yapılmadan başarı işaretlenmeyecek.
 
 Her yeni “sakla” talebinde bu rapor ilerleme durumuyla güncellenecek ve yeni kod/log/rapor sürümleri bu klasöre eklenecek.
+
+
+## 2026-10-16 — Önceden hazırlanmış GRV-008.2 kod adayları bulundu
+
+Kullanıcının 2026-10-13 tarihli önceki çalışma kaydında yer alan ESP32-WROOM ADC Continuous/DMA kodu ve Python alıcısı Alt Görev 1'in KOD klasörüne kopyalandı. Yeni kod yazılmadı; adaylar yeniden kullanılmak üzere korunuyor.
+
+- ESP kodu: `KOD/GRV-008.2_candidate.ino`
+- ESP kod açıklaması: `KOD/GRV-008.2_candidate.md`
+- Python alıcısı: `KOD/grv008_test_receiver.py`
+- Python açıklaması: `KOD/grv008_test_receiver.md`
+
+**Durum:** Aday kodlar kaydedildi. Henüz derleme, cihaza yükleme, TEST-001/100 frame veya gerçek dalga grafiği yapılmadı. Bu nedenle hiçbir test PASS değil.
+
+**Teknik kontrol noktaları:** Arduino-ESP32 sürümüne göre API/derleme; frame boyu ve Python struct uyumu; callback zaman damgalarının gerçek örnekleme aralığını kanıtlamaması; gerçek Mac seri portunun ayarlanması.
+
+**Kesin devam noktası:** Mevcut GRV-008.2 adayını yeni kod yazmadan incele, ESP32-WROOM hedefinde derle; derleme başarılıysa TEST-001'e geçip sensör bağlı/yük kapalı koşulunda 100 frame al.
