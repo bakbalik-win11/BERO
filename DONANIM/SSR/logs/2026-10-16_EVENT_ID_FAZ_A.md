@@ -75,3 +75,12 @@ Kullanıcının paylaştığı ESPHome OTA loguna göre, UDP eklenmiş SSR firmw
 Ayrıntılı kanıt ve gerçek log satırları: [2026-10-16 ESP32-C3-SSR UDP çalışma zamanı testi](./2026-10-16_ESP32-C3-SSR_UDP_RUNTIME_TEST.md).
 
 **Güncel durum:** SSR gönderici derleme ve çalışma zamanı açısından doğrulandı; UDP alıcı teslimatı, fiziksel SSR çıkışı ve DS3231 sorunu açık işlerdir.
+
+
+## PZEM alıcı gerçek cihaz testi — 2026-10-16
+
+Kullanıcının paylaştığı ESP32-WR1-PZEM OTA logu UDP olay teslimatını doğruluyor. PZEM firmware'i ESPHome 2026.9.1 ile 2026-10-16 14:56:56 +0300 tarihinde derlenmiş; cihaz 192.168.0.52 adresinde erişilebilir. Gönderici 192.168.0.111'den UDP port 4210'a gelen EVENT_ID 22–33 olayları, sabit BOOT_ID=AF39B8E4 ile alıcı logunda görülüyor. ON/OFF durumları PZEM ölçüm değişimleriyle zamansal olarak örtüşüyor.
+
+Ayrıntılı kayıt: [ESP32-WR1-PZEM UDP çalışma zamanı testi](../PZEM/logs/2026-10-16_ESP32-WR1-PZEM_UDP_RUNTIME_TEST.md).
+
+**Güncel Faz A durumu:** SSR olay üretimi/gönderimi ve PZEM UDP alımı gerçek cihazda doğrulandı. Mac Mini tarafında log kaydı/eşleştirme henüz yapılmadı. DS3231 I2C hatası ve fiziksel SSR çıkış geri okuma uyumsuzluğu ayrı açık işlerdir.
