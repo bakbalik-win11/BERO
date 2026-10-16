@@ -1,0 +1,207 @@
+Logs - ESP32-WR1-PZEM
+OTA
+INFO ESPHome 2026.9.1
+INFO Loaded validated config cache for esphome-web-2a35cc.yaml, skipping validation.
+INFO Starting log output from 192.168.0.52 using esphome API
+INFO Successfully resolved esphome-web-2a35cc @ 192.168.0.52 in 0.000s
+INFO Successfully connected to esphome-web-2a35cc @ 192.168.0.52 in 0.117s
+INFO Successful handshake with esphome-web-2a35cc @ 192.168.0.52 in 0.012s
+[18:31:31.202][I][app:151]: ESPHome version 2026.9.1 compiled on 2026-10-16 14:56:56 +0300
+[18:31:31.202][I][app:158]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[18:31:31.202][W][app:171]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[18:31:31.203][W][app:198]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[18:31:31.207][C][logger:216]: Logger:
+[18:31:31.207][C][logger:216]:   Max Level: DEBUG
+[18:31:31.207][C][logger:216]:   Initial Level: DEBUG
+[18:31:31.415][C][logger:223]:   Log Baud Rate: 115200
+[18:31:31.415][C][logger:223]:   Hardware UART: UART0
+[18:31:31.415][C][logger:232]:   Task Log Buffer Size: 768 bytes
+[18:31:31.419][C][uart:254]: UART Bus 1:
+[18:31:31.419][C][uart:131]:   TX Pin: GPIO17
+[18:31:31.419][C][uart:131]:   RX Pin: GPIO16
+[18:31:31.420][C][uart:259]:   RX Buffer Size: 256
+[18:31:31.420][C][uart:259]:   RX Full Threshold: 8
+[18:31:31.420][C][uart:268]:   Baud Rate: 9600 baud
+[18:31:31.420][C][uart:268]:   Data Bits: 8
+[18:31:31.420][C][uart:268]:   Parity: NONE
+[18:31:31.420][C][uart:268]:   Stop bits: 1
+[18:31:31.420][C][uart:268]:   Wake on data RX: ENABLED
+[18:31:31.420][C][modbus:849]: Modbus:
+[18:31:31.420][C][modbus:849]:   Send Wait Time: 2000 ms
+[18:31:31.420][C][modbus:849]:   Turnaround Time: 600 ms
+[18:31:31.420][C][modbus:849]:   Frame Delay: 3646 us
+[18:31:31.420][C][modbus:849]:   Long Rx Buffer Delay: 8334 us
+[18:31:31.420][C][modbus:849]:   Bits Per Character: 10
+[18:31:31.420][C][modbus:849]:   Rx Detect Latency: 2083 us
+[18:31:31.421][C][pzemac:068]: PZEMAC:
+[18:31:31.421][C][pzemac:068]:   Address: 0x01
+[18:31:31.422][C][pzemac:017]: Voltage 'PZEM Gerilim'
+[18:31:31.422][C][pzemac:017]:   State Class: 'measurement'
+[18:31:31.422][C][pzemac:017]:   Unit of Measurement: 'V'
+[18:31:31.422][C][pzemac:017]:   Accuracy Decimals: 1
+[18:31:31.422][C][pzemac:165]:   Device Class: 'voltage'
+[18:31:31.422][C][pzemac:017]: Current 'PZEM Akım'
+[18:31:31.422][C][pzemac:017]:   State Class: 'measurement'
+[18:31:31.422][C][pzemac:017]:   Unit of Measurement: 'A'
+[18:31:31.422][C][pzemac:017]: Accuracy Decimals: 3
+[18:31:31.423][C][pzemac:165]:   Device Class: 'current'
+[18:31:31.423][C][pzemac:017]: Power 'PZEM Güç'
+[18:31:31.423][C][pzemac:017]:   State Class: 'measurement'
+[18:31:31.423][C][pzemac:017]:   Unit of Measurement: 'W'
+[18:31:31.423][C][pzemac:017]: Accuracy Decimals: 2
+[18:31:31.424][C][pzemac:165]:   Device Class: 'power'
+[18:31:31.424][C][pzemac:017]: Energy 'PZEM Enerji'
+[18:31:31.424][C][pzemac:017]:   State Class: 'total_increasing'
+[18:31:31.424][C][pzemac:017]:   Unit of Measurement: 'Wh'
+[18:31:31.424][C][pzemac:017]: Accuracy Decimals: 0
+[18:31:31.424][C][pzemac:165]:   Device Class: 'energy'
+[18:31:31.425][C][pzemac:017]: Frequency 'PZEM Frekans'
+[18:31:31.425][C][pzemac:017]:   State Class: 'measurement'
+[18:31:31.425][C][pzemac:017]:   Unit of Measurement: 'Hz'
+[18:31:31.425][C][pzemac:017]: Accuracy Decimals: 1
+[18:31:31.425][C][pzemac:165]:   Device Class: 'frequency'
+[18:31:31.425][C][pzemac:156]:   Icon: 'mdi:current-ac'
+[18:31:31.426][C][pzemac:017]: Power Factor 'PZEM Güç Faktörü'
+[18:31:31.426][C][pzemac:017]:   State Class: 'measurement'
+[18:31:31.426][C][pzemac:017]:   Unit of Measurement: ''
+[18:31:31.426][C][pzemac:017]: Accuracy Decimals: 2
+[18:31:31.426][C][pzemac:165]: Device Class: 'power_factor'
+[18:31:31.427][C][network:050]: Network:
+[18:31:31.427][C][network:050]:   TCP send buffer: 5760 bytes
+[18:31:31.430][C][wifi:1582]: WiFi:
+[18:31:31.430][C][wifi:1582]:   Local MAC: 20:50:0D:2A:35:CC
+[18:31:31.430][C][wifi:1582]:   Connected: YES
+[18:31:31.430][C][wifi:1286]: IP Address: 192.168.0.52
+[18:31:31.431][C][wifi:1297]: SSID: 'AKFISH'
+[18:31:31.431][C][wifi:1297]: BSSID: 3C:64:CF:5C:81:73
+[18:31:31.431][C][wifi:1297]: Hostname: 'esphome-web-2a35cc'
+[18:31:31.431][C][wifi:1297]: Signal strength: -63 dB ▂▄▆█
+[18:31:31.431][C][wifi:1297]: Channel: 2
+[18:31:31.431][C][wifi:1297]: Subnet: 255.255.255.0
+[18:31:31.431][C][wifi:1297]: Gateway: 192.168.0.1
+[18:31:31.431][C][wifi:1297]: DNS1: 192.168.0.1
+[18:31:31.431][C][wifi:1297]: DNS2: 0.0.0.0
+[18:31:31.475][C][esphome.ota:125]: Over-The-Air updates:
+[18:31:31.475][C][esphome.ota:125]: Address: esphome-web-2a35cc.local:3232
+[18:31:31.475][C][esphome.ota:125]: Version: 2
+[18:31:31.483][C][safe_mode:058]: Safe Mode:
+[18:31:31.483][C][safe_mode:058]: Successful after: 60s
+[18:31:31.483][C][safe_mode:058]: Invoke after: 10 attempts
+[18:31:31.483][C][safe_mode:058]: Duration: 300s
+[18:31:31.483][C][safe_mode:079]: Bootloader rollback: support unknown
+[18:31:31.484][C][api:293]: Server:
+[18:31:31.484][C][api:293]: Address: esphome-web-2a35cc.local:6053
+[18:31:31.484][C][api:293]: Listen backlog: 4
+[18:31:31.484][C][api:293]: Max connections: 5
+[18:31:31.484][C][api:305]: Noise encryption: NO
+[18:31:31.548][C][mdns:259]: mDNS:
+[18:31:31.548][C][mdns:259]: Hostname: esphome-web-2a35cc
+[18:31:33.001][S][sensor]: 'PZEM Gerilim' >> 226.9 V
+[18:31:33.001][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:31:33.002][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:31:33.002][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:31:33.002][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:31:33.003][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:31:38.001][S][sensor]: 'PZEM Gerilim' >> 226.7 V
+[18:31:38.001][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:31:38.001][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:31:38.002][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:31:38.002][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:31:38.002][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:31:42.983][S][sensor]: 'PZEM Gerilim' >> 226.8 V
+[18:31:42.984][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:31:42.984][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:31:42.985][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:31:42.985][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:31:42.985][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:31:47.374][I][safe_mode:154]: Boot seems successful; resetting boot loop counter
+[18:31:47.999][S][sensor]: 'PZEM Gerilim' >> 226.8 V
+[18:31:48.000][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:31:48.000][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:31:48.000][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:31:48.000][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:31:48.001][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:31:50.365][D][preferences:254]: Writing 1 items: 0 cached, 1 written, 0 failed
+[18:31:52.303][I][bero_udp:171]: UDP_EVENT_RECEIVED from=192.168.0.111 payload=BERO_EVT,BOOT_ID=D1A97EBE,EVENT_ID=18,STATE=OFF
+[18:31:52.979][S][sensor]: 'PZEM Gerilim' >> 226.6 V
+[18:31:52.980][S][sensor]: 'PZEM Akım' >> 0.029 A
+[18:31:52.980][S][sensor]: 'PZEM Güç' >> 4.00 W
+[18:31:52.981][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:31:52.981][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:31:52.981][S][sensor]: 'PZEM Güç Faktörü' >> 0.61
+[18:31:58.047][S][sensor]: 'PZEM Gerilim' >> 226.8 V
+[18:31:58.048][S][sensor]: 'PZEM Akım' >> 0.000 A
+[18:31:58.048][S][sensor]: 'PZEM Güç' >> 0.00 W
+[18:31:58.048][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:31:58.049][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:31:58.049][S][sensor]: 'PZEM Güç Faktörü' >> 0.00
+[18:32:02.979][S][sensor]: 'PZEM Gerilim' >> 226.9 V
+[18:32:02.980][S][sensor]: 'PZEM Akım' >> 0.000 A
+[18:32:02.980][S][sensor]: 'PZEM Güç' >> 0.00 W
+[18:32:02.981][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:32:02.982][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:02.982][S][sensor]: 'PZEM Güç Faktörü' >> 0.00
+[18:32:07.989][S][sensor]: 'PZEM Gerilim' >> 226.5 V
+[18:32:07.990][S][sensor]: 'PZEM Akım' >> 0.000 A
+[18:32:07.990][S][sensor]: 'PZEM Güç' >> 0.00 W
+[18:32:07.991][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:32:07.991][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:07.991][S][sensor]: 'PZEM Güç Faktörü' >> 0.00
+[18:32:12.291][I][bero_udp:171]: UDP_EVENT_RECEIVED from=192.168.0.111 payload=BERO_EVT,BOOT_ID=D1A97EBE,EVENT_ID=19,STATE=ON
+[18:32:13.001][S][sensor]: 'PZEM Gerilim' >> 226.6 V
+[18:32:13.001][S][sensor]: 'PZEM Akım' >> 0.000 A
+[18:32:13.001][S][sensor]: 'PZEM Güç' >> 0.00 W
+[18:32:13.002][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:32:13.003][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:13.003][S][sensor]: 'PZEM Güç Faktörü' >> 0.00
+[18:32:17.979][S][sensor]: 'PZEM Gerilim' >> 226.3 V
+[18:32:17.980][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:32:17.980][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:32:17.981][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:32:17.981][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:17.982][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:32:22.987][S][sensor]: 'PZEM Gerilim' >> 226.4 V
+[18:32:22.988][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:32:22.988][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:32:22.988][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:32:22.989][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:22.989][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:32:28.059][S][sensor]: 'PZEM Gerilim' >> 226.5 V
+[18:32:28.060][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:32:28.060][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:32:28.060][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:32:28.061][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:28.061][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:32:32.995][S][sensor]: 'PZEM Gerilim' >> 226.4 V
+[18:32:32.996][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:32:32.996][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:32:32.997][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:32:32.997][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:32.998][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:32:37.987][S][sensor]: 'PZEM Gerilim' >> 226.6 V
+[18:32:37.988][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:32:37.989][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:32:37.989][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:32:37.990][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:37.990][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:32:42.976][S][sensor]: 'PZEM Gerilim' >> 226.1 V
+[18:32:42.976][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:32:42.977][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:32:42.977][S][sensor]: 'PZEM Enerji' >> 10637 Wh
+[18:32:42.977][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:42.978][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:32:47.989][S][sensor]: 'PZEM Gerilim' >> 226.1 V
+[18:32:47.990][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:32:47.990][S][sensor]: 'PZEM Güç' >> 7.80 W
+[18:32:47.990][S][sensor]: 'PZEM Enerji' >> 10638 Wh
+[18:32:47.991][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:47.991][S][sensor]: 'PZEM Güç Faktörü' >> 0.66
+[18:32:52.188][I][bero_udp:171]: UDP_EVENT_RECEIVED from=192.168.0.111 payload=BERO_EVT,BOOT_ID=D1A97EBE,EVENT_ID=20,STATE=OFF
+[18:32:52.989][S][sensor]: 'PZEM Gerilim' >> 226.2 V
+[18:32:52.989][S][sensor]: 'PZEM Akım' >> 0.052 A
+[18:32:52.989][S][sensor]: 'PZEM Güç' >> 7.70 W
+[18:32:52.990][S][sensor]: 'PZEM Enerji' >> 10638 Wh
+[18:32:52.990][S][sensor]: 'PZEM Frekans' >> 50.0 Hz
+[18:32:52.990][S][sensor]: 'PZEM Güç Faktörü' >> 0.65
+
+S
