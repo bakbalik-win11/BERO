@@ -117,3 +117,43 @@ Doğrusal olmayan ilişki ihtimali görülürse, uygun trend eğrileri sonraki a
 
 Bunlar doğrulanmış sonuç değil, veriyle sınanacak hipotezlerdir. Masaüstü Python uygulamasının kapsamı, mevcut CSV/özellik verileri ve zaman eşleştirmesi netleştikten sonra ayrı alt görevde belirlenecektir.
 
+
+
+## 9. GRV-008 Freeze-1 kaydından alınan teknik katkılar
+
+**Kaynak:** HDF2-GRV-003 içindeki `GRV-008-FREEZE-1-AKSAM-TEST-RAPORU.md` (2026-10-13). Bu bölüm yalnızca GRV-002 ön testine doğrudan katkı veren ham yakalama/aktarım ayrıntılarını devralır. Kaynak raporun tüm kapsamı GRV-002'ye taşınmış sayılmaz.
+
+### 9.1 Donanım ve ham kayıt çerçevesi
+
+- ESP32-WROOM dahili ADC kullanılacak; MCP3208 bu deneyin dışında.
+- Aday girişler: GPIO34 / ADC1_CH6 = SCT, GPIO35 / ADC1_CH7 = BIAS. Fiziksel kablolama test öncesinde doğrulanmalı.
+- Hedef: her kanal için 10 kHz; her frame 1.000 SCT + 1.000 BIAS örneği.
+- Ham veriye bu aşamada RMS, BIAS çıkarma, filtreleme, kalibrasyon veya akım hesabı uygulanmaz.
+- 1T/2T/4T eşzamanlama bu görevin kapsamı dışındadır.
+
+### 9.2 Binary frame bütünlüğü
+
+Kaynak raporda tanımlanan aday protokol: 9 adet uint32 başlık (36 bayt) + 2.000 adet uint16 örnek (4.000 bayt) + uint32 bitiş işareti (4 bayt) = toplam **4.040 bayt**. Python alıcısı toplam boyu ve son `0xCAFEBABE` marker'ını doğrulamalıdır. Seri akışta başlangıç marker'ı parçalı gelebileceği için marker aramasında son 3 bayt korunmalıdır.
+
+Bu protokol GRV-002 için devralınan tasarım referansıdır; firmware derlemesi ve gerçek cihazdan aktarım doğrulanmadan çalışıyor kabul edilmez.
+
+### 9.3 Tampon sahipliği ve kayıp göstergeleri
+
+- ADC/DMA yazma tamponu ile USB aktarımına verilen tamponun sahipliği ayrılmalı; aktarım bitmeden aynı tampon yeniden kullanılmamalıdır.
+- Ham tampon havuzu/kuyrukları ve frame kuyruğu kullanılıyorsa kuyruk taşmaları sessizce yok sayılmamalı; DMA overflow, ham kuyruk taşması ve frame kuyruğu taşması ayrı sayaçlarla raporlanmalıdır.
+- Örnek indeksi, SCT ve BIAS örnek çiftinin ikisi de hazır olduğunda ilerlemelidir.
+- Çift tampon tasarımı tek başına kayıpsızlığı kanıtlamaz; örnek sayısı, sıra, frame marker'ı ve taşma sayaçları gerçek kayıtta kontrol edilmelidir.
+
+### 9.4 Zamanlama konusunda kritik sınır
+
+DMA callback başlangıç/bitiş zamanları, ilk ve son fiziksel ADC örneğinin zaman damgası ile aynı şey değildir. Bu yüzden yalnızca callback zamanlarından hesaplanan frame süresi, 10 kHz örnek aralığını veya 100 ms gerçek kayıt süresini kanıtlamaz. Hedef hız tanımlanmış olması da ölçüm kanıtı değildir. Zamanlama ayrı ve güvenilir bir yöntemle doğrulanana kadar sonuç **bekliyor** kalır.
+
+### 9.5 Test sırası ve kanıt
+
+1. Önce sensör bağlı, yük yok koşulunda 100 frame almayı hedefle.
+2. Frame sayısı/ID, marker, örnek sayısı ve sıra, frame süresi, BIAS ham değer istatistikleri ve taşma sayaçlarını kaydet.
+3. Ham CSV'yi Mac üzerinde yeniden okuyup bütünlüğünü kontrol et; ilk beş frame grafiğini yalnızca ham ADC count olarak üret.
+4. Sonraki yük testlerini ancak güvenli bağlantı ve temel ham kayıt doğrulandıktan sonra ayrı test adımları olarak uygula.
+
+**Durum notu:** Kaynak raporda derleme, ESP'ye yükleme, 100 frame yakalama, fiziksel sensör testi, CSV ve grafik sonuçları beklemede olarak işaretlenmişti. Bu plan güncellemesi bu testlerin yapıldığını iddia etmez.
+
