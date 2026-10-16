@@ -57,3 +57,8 @@ Kullanıcının 2026-10-13 tarihli önceki çalışma kaydında yer alan ESP32-W
 **Teknik kontrol noktaları:** Arduino-ESP32 sürümüne göre API/derleme; frame boyu ve Python struct uyumu; callback zaman damgalarının gerçek örnekleme aralığını kanıtlamaması; gerçek Mac seri portunun ayarlanması.
 
 **Kesin devam noktası:** Mevcut GRV-008.2 adayını yeni kod yazmadan incele, ESP32-WROOM hedefinde derle; derleme başarılıysa TEST-001'e geçip sensör bağlı/yük kapalı koşulunda 100 frame al.
+
+
+## Step klasörleri içindeki çalışma düzeni
+
+Her step'in README dosyasına amaç, planlanan işler, tamamlanan işler ve kapanış ölçütü yazıldı. İlerleme oldukça tamamlanan işler aynı dosyada alt alta eklenecek; ilgili kod, log ve rapor dosyaları step'in KOD/LOG/RAPOR altına konacak. Bir step ancak kapanış ölçütü kanıtla karşılandığında kapatılacak.
