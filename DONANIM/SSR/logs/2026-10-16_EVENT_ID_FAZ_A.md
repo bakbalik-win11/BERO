@@ -49,7 +49,7 @@ Karar tarihi: 2026-10-16
 
 ## Önerilen minimum prototip sırası
 1. ESP-SSR: BOOT_ID/EVENT_ID/STATE üretimini logda doğrula.
-2. ESP-SSR -> PZEM ESP: olay mesajı aktarımını ekle ve alıcı logunda doğrula.
+2. ESP-SSR -> PZEM ESP: UDP olay mesajı aktarımını ekle; mevcut PZEM ölçümlerini koru ve alıcı logunda doğrula.
 3. Mac Mini: iki bağımsız logu Python ile eşleştir.
 4. Ancak bu üç adım doğrulandıktan sonra 1T, 2T ve 4T ham veri akışlarını ayrı ayrı sisteme dahil et.
 5. MCP gerekliliğini sonuçlara ve ölçüm kalitesine göre daha sonra değerlendir.
@@ -58,4 +58,4 @@ Karar tarihi: 2026-10-16
 SCT örneklerine EVENT_ID yazılmayacaksa, Python olayları SCT verisiyle zaman damgası ve olayın geçerli olduğu zaman aralığı üzerinden eşleştirir. Cihazların saatlerinin aynı doğrulukta olduğu varsayılmamalı; Mac Mini alım zamanı ve cihaz zaman damgalarının farkı ayrıca ölçülüp belgelenmelidir.
 
 ## Durum
-Bu bölüm mimari kararı kaydeder; UDP yayını/alımı ve Python eşleştirmesi henüz uygulanmış veya test edilmiş değildir.
+Bu bölüm mimari kararı kaydeder. PZEM YAML dosyası depoda arşivlendi. UDP yayını/alımı ve Python eşleştirmesi henüz uygulanmış veya test edilmiş değildir.
