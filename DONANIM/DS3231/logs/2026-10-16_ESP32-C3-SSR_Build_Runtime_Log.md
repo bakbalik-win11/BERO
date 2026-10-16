@@ -67,3 +67,40 @@ Yeni olay logları:
 
 ### Sonraki adım
 SSR zamanlayıcısını değiştirmeden DS3231 external component kaynak kodundaki başlatma/okuma/yazma yolları incelenecek. Öncelik, `Communication with DS3231 failed` ile `I2C write failed at register 0x00` mesajlarının aynı sürücüde neden üretildiğini belirlemek. Donanım arızası veya sürücü hatası henüz kesinleşmedi.
+
+
+## İkinci çalışma kaydı — 2026-10-16 13:58–14:00
+
+**Kaynak:** Kullanıcının sağladığı ESPHome OTA çalışma logu. Firmware derleme zamanı: 13:56:50 +0300. Cihaz: ESP32-C3 rev0.4, ESPHome 2026.9.1.
+
+### Gözlenen sonuçlar
+- ESPHome API bağlantısı başarılı; cihaz açılışı başarılı.
+- I²C bus recovery başarılı; taramada 0x57 ve 0x68 adresleri bulundu.
+- DS3231 bileşeni başlatılırken `Communication with DS3231 failed!` hatası ve `ds3231.time is marked FAILED` kaydı oluştu.
+- NTP senkronizasyonu başarılı: `BERO_NTP_SYNC_OK`.
+- NTP'den RTC'ye yazma denemesi başarısız: `I2C write failed at register 0x00`.
+- `BERO_RTC_WRITE_COMMAND_SENT` yalnızca yazma eyleminin çağrıldığını bildirir; RTC'ye yazmanın başarılı olduğunun teyidi değildir.
+- `RTC_TIME` ve `NTP_TIME` metin kayıtları ilerliyor. Ancak bu tek başına RTC zamanının bağımsız olarak DS3231 donanımından okunduğunu kanıtlamaz.
+- SSR yazılım döngüsü OFF ve ON olaylarını üretmeye devam ediyor.
+- OFF aşamasında `GPIO_OFF_CONFIRMED`; ON aşamasında `GPIO_ON_READBACK_MISMATCH` kaydı görüldü.
+- GPIO geri okuması, SSR çıkışının veya bağlı yükün fiziksel olarak anahtarladığını kanıtlamaz.
+
+### Aşama değerlendirmesi
+| Kontrol | Sonuç |
+|---|---|
+| ESPHome açılışı / API | Başarılı |
+| I²C taramasında 0x68 görülmesi | Başarılı; yalnızca adres taraması |
+| DS3231 bileşen başlangıcı | Hata |
+| NTP senkronizasyonu | Başarılı |
+| DS3231'e saat yazma | Başarısız; register 0x00 yazma hatası |
+| 40 s ON / 20 s OFF yazılım olayları | Çalışıyor |
+| GPIO ON geri okuması | Uyuşmazlık |
+| SSR fiziksel çıkış/yük doğrulaması | Henüz yapılmadı |
+
+### Sonraki adım
+1. Birleşik YAML'daki GPIO6 geri okuma/karşılaştırma mantığını `inverted: true` davranışına göre incele. Mantıksal switch durumu ile fiziksel GPIO seviyesi ayrı ayrı loglansın; ON/OFF çevrim süreleri değiştirilmesin.
+2. `andrewbackway/esphome-ds3231` harici bileşeninin başlatma, register okuma ve register yazma kodunu incele. Başlangıç iletişim hatası ile 0x00 yazma hatasının kök nedeni henüz belirlenmedi.
+3. RTC'nin bağımsız okunduğunu ve NTP yazmasının başarılı olduğunu varsayma; açık bir okuma/teyit testi tasarla.
+4. SSR fiziksel davranışını yazılım logundan ayrı olarak güvenli biçimde doğrula.
+
+**Kayıt sınırı:** Bu kayıt, kullanıcının sağladığı logda görülenleri ve henüz doğrulanmamış olasılıkları ayırır. Bu güncelleme sırasında firmware yeniden derlenmedi ve fiziksel SSR testi yapılmadı.
