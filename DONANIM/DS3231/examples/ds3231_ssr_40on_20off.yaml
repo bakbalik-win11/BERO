@@ -1,7 +1,13 @@
-# Proje BERO — DS3231 + SSR Birleşik Test Kodu
-# Donanım: ESP32-C3 SuperMini, DS3231 (I2C), SSR kontrol GPIO6
-# SSR test çevrimi: 40 saniye AÇIK / 20 saniye KAPALI
-# Loglar COMMAND ile GPIO pad geri okumasını ayırır. GPIO geri okuması SSR yük çıkışını kanıtlamaz.
+# PROJE BERO — HDF-002 / DEVAM KODU
+# HEDEF:
+# 1) NTP zamanını alıp DS3231'e yazma davranışını gözlemlemek.
+# 2) RTC/NTP saatlerini ve olayları zaman damgalı loglamak.
+# 3) SSR kontrol çevrimini 40 s ON / 20 s OFF sürdürmek.
+# DONANIM: ESP32-C3 SuperMini, DS3231 I2C (0x68), SSR GPIO6.
+# I2C: SDA GPIO0, SCL GPIO1, 50 kHz. ESPHome 2026.9.1 / ESP-IDF.
+# SSR lojik denemesi: inverted: true (fiziksel doğrulama henüz yok).
+# SINIR: RTC write hatası devam ediyor; COMMAND_SENT başarı teyidi değildir.
+# GPIO pad geri okuması SSR'nin yük çıkışını kanıtlamaz.
 
 esphome:
   name: esphome-web-0424f4
