@@ -23,6 +23,12 @@ esphome:
       then:
         - switch.turn_off: ssr_control
         - lambda: |-
+            // Faz A: bu açılışa özel kimlik. Bu, RTC zamanından bağımsızdır.
+            id(bero_boot_id) = esp_random();
+            id(bero_event_id) = 0;
+            ESP_LOGI("bero_event", "BERO_BOOT_ID=%08X EVENT_ID_START=0",
+              (unsigned int) id(bero_boot_id));
+
             auto rtc_now = id(rtc_time).now();
             auto ntp_now = id(ntp_time).now();
 
@@ -108,6 +114,14 @@ switch:
     restore_mode: ALWAYS_OFF
 
 globals:
+  - id: bero_boot_id
+    type: uint32_t
+    restore_value: no
+    initial_value: '0'
+  - id: bero_event_id
+    type: uint32_t
+    restore_value: no
+    initial_value: '0'
   - id: ssr_cycle_start_ms
     type: uint32_t
     restore_value: no
@@ -144,6 +158,15 @@ interval:
             }
           };
 
+          // Faz A: ortak olay kimliği. Her ON/OFF durum geçişinde bir kez artırılır.
+          auto emit_shared_event = [&](const char *state) {
+            id(bero_event_id)++;
+            ESP_LOGI("bero_event",
+              "BERO_SHARED_EVENT BOOT_ID=%08X EVENT_ID=%u STATE=%s",
+              (unsigned int) id(bero_boot_id),
+              (unsigned int) id(bero_event_id), state);
+          };
+
           // Çevrim millis() ile ilerler; duvar saati senkronizasyonundan bağımsızdır.
           const uint32_t now_ms = millis();
 
@@ -151,6 +174,7 @@ interval:
             id(ssr_cycle_start_ms) = now_ms;
             id(ssr_cycle_initialized) = true;
 
+            emit_shared_event("ON");
             log_event("COMMAND_ON");
             id(ssr_control).turn_on();
 
@@ -169,6 +193,7 @@ interval:
 
           if (elapsed_s < 40) {
             if (!id(ssr_control).state) {
+              emit_shared_event("ON");
               log_event("COMMAND_ON");
               id(ssr_control).turn_on();
 
@@ -181,6 +206,7 @@ interval:
             }
           } else if (elapsed_s < 60) {
             if (id(ssr_control).state) {
+              emit_shared_event("OFF");
               log_event("COMMAND_OFF");
               id(ssr_control).turn_off();
 
