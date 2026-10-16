@@ -51,3 +51,70 @@ sensor:
     power_factor:
       name: "PZEM Güç Faktörü"
     update_interval: 5s
+
+# Faz A: UDP event receiver from ESP-SSR.
+# Same Wi-Fi/LAN required; listen on UDP port 4210.
+interval:
+  - interval: 100ms
+    then:
+      - lambda: |-
+          #include "lwip/sockets.h"
+          #include "lwip/inet.h"
+          #include "lwip/fcntl.h"
+          #include <unistd.h>
+          #include <errno.h>
+
+          static int udp_rx_sock = -1;
+          static uint32_t last_socket_attempt_ms = 0;
+
+          // Retry socket creation at most once every 5 seconds.
+          if (udp_rx_sock < 0 &&
+              (last_socket_attempt_ms == 0 ||
+               millis() - last_socket_attempt_ms >= 5000)) {
+            last_socket_attempt_ms = millis();
+            udp_rx_sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+
+            if (udp_rx_sock >= 0) {
+              int reuse = 1;
+              setsockopt(udp_rx_sock, SOL_SOCKET, SO_REUSEADDR,
+                &reuse, sizeof(reuse));
+
+              struct sockaddr_in local_address = {};
+              local_address.sin_family = AF_INET;
+              local_address.sin_port = htons(4210);
+              local_address.sin_addr.s_addr = htonl(INADDR_ANY);
+
+              if (bind(udp_rx_sock, (struct sockaddr *)&local_address,
+                       sizeof(local_address)) != 0) {
+                ESP_LOGE("bero_udp", "UDP_BIND_FAILED errno=%d", errno);
+                close(udp_rx_sock);
+                udp_rx_sock = -1;
+              } else {
+                // Non-blocking receive: PZEM polling must not be held up.
+                int flags = fcntl(udp_rx_sock, F_GETFL, 0);
+                if (flags >= 0) {
+                  fcntl(udp_rx_sock, F_SETFL, flags | O_NONBLOCK);
+                }
+                ESP_LOGI("bero_udp", "UDP_LISTENING port=4210");
+              }
+            } else {
+              ESP_LOGE("bero_udp", "UDP_SOCKET_CREATE_FAILED errno=%d", errno);
+            }
+          }
+
+          if (udp_rx_sock >= 0) {
+            char packet[160];
+            struct sockaddr_in sender = {};
+            socklen_t sender_len = sizeof(sender);
+            int received = recvfrom(udp_rx_sock, packet, sizeof(packet) - 1,
+              0, (struct sockaddr *)&sender, &sender_len);
+
+            if (received > 0) {
+              packet[received] = '\\0';
+              ESP_LOGI("bero_udp", "UDP_EVENT_RECEIVED from=%s payload=%s",
+                inet_ntoa(sender.sin_addr), packet);
+            } else if (received < 0 && errno != EWOULDBLOCK &&
+                       errno != EAGAIN) {
+              ESP_LOGW("bero_udp", "UDP_RECEIVE_FAILED errno=%d", errno);
+            }
+          }
