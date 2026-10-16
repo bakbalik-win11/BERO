@@ -35,3 +35,27 @@ BERO_SHARED_EVENT BOOT_ID=XXXXXXXX EVENT_ID=1 STATE=ON
 BERO_SHARED_EVENT BOOT_ID=XXXXXXXX EVENT_ID=2 STATE=OFF
 ```
 Yukarıdaki satırlar örnektir; gerçek test çıktısı değildir.
+
+
+## Mimari kararı — SCT ölçüm ESP'leri olay dinlemeyecek
+Karar tarihi: 2026-10-16
+
+- ESP-SSR yalnızca `BOOT_ID`, `EVENT_ID`, `STATE` olaylarını üretir/yayınlar.
+- PZEM ESP kendi PZEM ölçümünü sürdürürken olay mesajlarını da dinler.
+- 1T / 2T / 4T ESP'lerine ilk aşamada olay dinleme, UDP alma veya EVENT_ID işleme eklenmez.
+- SCT ESP'leri yüksek hızlı ham veri toplama işine odaklanır; kendi kayıtlarına yerel timestamp, raw ve bias verileri yazılır.
+- Mac Mini'deki Python, SSR olay kayıtlarını ve ölçüm loglarını sonradan zaman aralıklarına göre eşleştirir.
+- Böylece olay ilişkilendirmesi, yüksek hızlı SCT örnekleme döngüsüne ek yük getirmez.
+
+## Önerilen minimum prototip sırası
+1. ESP-SSR: BOOT_ID/EVENT_ID/STATE üretimini logda doğrula.
+2. ESP-SSR -> PZEM ESP: olay mesajı aktarımını ekle ve alıcı logunda doğrula.
+3. Mac Mini: iki bağımsız logu Python ile eşleştir.
+4. Ancak bu üç adım doğrulandıktan sonra 1T, 2T ve 4T ham veri akışlarını ayrı ayrı sisteme dahil et.
+5. MCP gerekliliğini sonuçlara ve ölçüm kalitesine göre daha sonra değerlendir.
+
+## Veri eşleştirme uyarısı
+SCT örneklerine EVENT_ID yazılmayacaksa, Python olayları SCT verisiyle zaman damgası ve olayın geçerli olduğu zaman aralığı üzerinden eşleştirir. Cihazların saatlerinin aynı doğrulukta olduğu varsayılmamalı; Mac Mini alım zamanı ve cihaz zaman damgalarının farkı ayrıca ölçülüp belgelenmelidir.
+
+## Durum
+Bu bölüm mimari kararı kaydeder; UDP yayını/alımı ve Python eşleştirmesi henüz uygulanmış veya test edilmiş değildir.
