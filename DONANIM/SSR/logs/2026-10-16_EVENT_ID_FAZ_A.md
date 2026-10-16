@@ -26,7 +26,7 @@ Dosya: `DONANIM/DS3231/examples/ds3231_ssr_40on_20off.yaml`
 1. YAML'ı ESPHome ile derle.
 2. Cihazda en az bir ON ve bir OFF geçişini gözle.
 3. Logdaki BOOT_ID'nin aynı açılış boyunca sabit, EVENT_ID'nin ardışık ve STATE'in ON/OFF olduğunu doğrula.
-4. Ardından PZEM ESP'nin gerçek firmware dosyasını inceleyip iki cihaz arasında olay taşıma yöntemini seç. BERO deposunda PZEM kodu araması bu çalışma sırasında sonuç vermedi; mevcut kodun depo dışında olma ihtimali var.
+4. PZEM ESPHome yapılandırması kullanıcı tarafından sağlandı ve `DONANIM/PZEM/examples/esp32_wr1_pzem.yaml` konumuna kaydedildi. UART GPIO17/GPIO16, 9600 baud ve `pzemac` sensörleri korunuyor. UDP olay alıcısı henüz eklenmedi.
 
 ## Kabul ölçütü
 En az şu iki ardışık kaydın gerçek cihaz logunda görülmesi:
