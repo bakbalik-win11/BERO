@@ -54,4 +54,32 @@ Kullanıcının verdiği YAML ve ESPHome logu STEP-000 altında ESP adıyla arş
 - Plan ve doğrulama listesi: [STEP-000-HA-IKI-ESP-BAGLANTI-PLANI-2026-10-16.md](./STEP-000-HA-IKI-ESP-BAGLANTI-PLANI-2026-10-16.md)
 - PZEM ESP: `192.168.0.52` — YAML içinde `api:` mevcut; ESPHome logunda API bağlantısı ve PZEM ölçümleri görülüyor.
 - SSR ESP: `192.168.0.111` — YAML içinde `api:` mevcut; ESPHome logunda API bağlantısı görülüyor.
-- **Durum:** HA arayüzünde ayrı cihazlar ve entity güncellemeleri henüz doğrulanmadı. Bu nedenle bağlantı işi tamamlandı/PASS olarak işaretlenmedi.
+- **İlk kayıt durumu:** HA arayüzünde ayrı cihazlar ve entity güncellemeleri o sırada henüz doğrulanmamıştı.
+
+
+## 2026-10-16 — Home Assistant veri akışı doğrulandı
+
+Kullanıcının Home Assistant ekran görüntüleri ve dışa aktardığı geçmiş CSV dosyaları incelendi.
+
+### ESP32-WR1-PZEM
+- Home Assistant cihaz sayfasında PZEM Gerilim, Akım, Güç, Enerji, Frekans ve Güç Faktörü sensörleri değerleriyle göründü.
+- Örnek cihaz ekranı değerleri: Gerilim 227,2 V; Akım 0,000 A; Güç 0,00 W; Enerji 10.638 Wh; Frekans 49,9 Hz; Güç Faktörü 0,00.
+- Home Assistant geçmiş CSV'sinde gerilim ölçümlerinin zaman damgalı kayıtları görüldü.
+- Lamba açıldıktan sonraki CSV'de sıfır olmayan akım ve güç örnekleri de bulundu; yaklaşık 0,051 A ve 7,7 W örnekleri görüldü.
+- Bu kanıtlar PZEM ölçümlerinin HA'ya ulaştığını ve en azından bazı sensörlerin geçmişe kaydedildiğini doğrular.
+- Sensörlerin kayıt sayıları farklıydı. Bunun nedeni kesinleştirilmedi; sıfır değerlerin kaydedilmediği varsayımı kanıtlanmış değildir.
+
+### ESP32-C3-SSR
+- Home Assistant cihaz sayfasında `BERO SSR Kontrol` anahtarı, `BERO NTP Saat` ve `BERO DS3231 RTC Saat` varlıkları göründü.
+- Ekran görüntüsünde SSR kontrol durumu `Kapalı` olarak, NTP ve RTC saatleri güncel zaman değerleriyle görünüyordu.
+- Cihazın etkinlik alanında zaman damgalı saat güncellemeleri ve SSR kontrol durumuna ait kayıtlar görüldü.
+- Bu, SSR cihazının HA'da temsil edildiğini ve ilgili varlıkların veri sunduğunu doğrular. UDP olay paketlerinin HA'da ayrı ve kalıcı olay kayıtları olarak tutulduğu henüz doğrulanmadı.
+
+### Sonuç ve kapanış
+**Doğrulanan:** İki ESP de HA'da ayrı cihaz olarak kayıtlıdır; PZEM ölçümleri HA'ya ulaşıyor ve geçmişte kayıtlar mevcut; SSR kontrolü ile saat varlıkları HA'da görünür ve güncellenmektedir.
+
+**Açık kalan:** PZEM sensörlerinin neden farklı sayıda geçmiş kaydı ürettiğinin açıklanması; SSR UDP olaylarının HA'da ayrı kalıcı olay kaydına dönüştürülmesi ve PZEM ölçümleriyle zaman/deney kimliği üzerinden eşleştirilmesi.
+
+**Kod değişikliği:** Yapılmadı. Mevcut çalışan firmware ve cihaz adları korunmuştur.
+
+**Sonraki çalışma:** STEP-000'daki mevcut sistem doğrulaması tamamlandı. Üç okuma ESP'si için sonraki adıma geçilebilir; STEP-001'in klasör/başlık yapısı repo içinde ayrıca kontrol edilerek devam noktası netleştirilmelidir.
