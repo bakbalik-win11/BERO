@@ -1,4 +1,4 @@
-# HDF-002 — Alt Görev 1.1
+# HDF-001 — Alt Görev 1.1
 ## Kanal başına BIAS ölçümü ve prototip modifikasyonu
 
 Her SCT kanalının BIAS değerini kendi ölçüm zincirinde ayrıca ölçmek, mevcut prototipte yapılacak yeni bir tasarım değişikliğidir. Bu nedenle ayrı bir donanım modifikasyonu ve doğrulama alt görevi olarak izlenecektir.
