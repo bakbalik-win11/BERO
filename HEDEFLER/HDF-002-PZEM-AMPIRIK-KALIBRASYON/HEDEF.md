@@ -1,4 +1,4 @@
-# HDF-002 — Ölçüm Karakterini Öğrenmek, Gerçek Dalgayı Yakalamak ve Akımı ESP'de Hesaplamak
+# HDF-001 — Ölçüm Karakterini Öğrenmek, Gerçek Dalgayı Yakalamak ve Akımı ESP'de Hesaplamak
 
 **Durum:** Açık — hedef mimarisi ve çalışma zinciri tanımlanıyor; donanım kurulumunun, yeni deneylerin, model başarısının veya ±%4 doğruluğun tamamlandığı iddia edilmiyor.  
 **Güncelleme:** 2026-10-12  
