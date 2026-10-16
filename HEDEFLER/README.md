@@ -16,4 +16,3 @@ Bu klasör, Proje BERO'daki **ana hedefleri** tanımlar. Ana hedef, birbiriyle i
 
 Ana hedef klasörleri HDF-NNN-KISA-AD biçiminde adlandırılır.
 
-Kayıtların korunması için [Kayıt, Sürümleme ve Süreklilik Politikası](../KAYIT_VE_SUREKLILIK.md) uygulanır.
