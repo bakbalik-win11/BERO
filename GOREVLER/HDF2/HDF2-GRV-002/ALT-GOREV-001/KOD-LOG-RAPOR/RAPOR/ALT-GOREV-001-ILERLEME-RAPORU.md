@@ -1,6 +1,10 @@
 # HDF2-GRV-002 / Alt Görev 1 — İlerleme Raporu
 
-**Son güncelleme:** 2026-10-16  
+**Son güncelleme:** 2026-10-16
+
+## Step klasör yapısı
+
+Her step için ayrı kayıt klasörü açıldı: [STEP-000](../STEP-000/README.md), [STEP-001](../STEP-001/README.md), [STEP-002](../STEP-002/README.md), [STEP-003](../STEP-003/README.md), [STEP-004](../STEP-004/README.md), [STEP-005](../STEP-005/README.md). Her step'in kodu, logu ve raporu ilgili step klasörünün altındaki KOD/LOG/RAPOR düzeninde saklanacaktır; ortak mevcut aday kodlar ana KOD klasöründe korunur.  
 **Durum:** AÇIK — ilk gerçek ham kayıt bekleniyor  
 **Hedef:** Tek ESP32-WROOM ile SCT ve BIAS sinyallerini en yüksek güvenilir hızda yakalamak, ham veriyi Mac'e aktarmak ve dalgaları çizmek.
 
