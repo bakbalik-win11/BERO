@@ -154,3 +154,18 @@ Kullanıcı ve asistanın birlikte kullanacağı kısa günlük kontrol kartı: 
 
 Bu sorumluluk aylık hatırlatmayla takip edilir; asıl içerik ve uygulama kuralları bu protokol ile [Kayıt ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) içindedir.
 
+## Zorunlu kayıt kapısı — her çalışma basamağında
+
+Bu bölüm, [Kayıt, Sürümleme ve Süreklilik Politikası](KAYIT_VE_SUREKLILIK.md) kurallarını günlük uygulamaya dönüştürür.
+
+1. **Kayıt talebi verildiğinde önce dosyayı yaz, sonra konuş.** “Kaydettim”, “depoya işlendi” veya “doğruladım” denmeden önce gerçek GitHub yazımı başarıyla tamamlanmış olmalıdır.
+2. **Her anlamlı basamak tek bir kayıt paketiyle izlenir:** basamak numarası/tarih, amaç, kullanılan donanım, kodun tam dosya yolu ve sürümü, eşlik eden MD, gerçek log/ölçüm dosyası veya açıkça “henüz yok” durumu, derleme sonucu, fiziksel test sonucu, çıkarım, belirsizlikler ve sonraki adım.
+3. **Görev raporu kronolojik kaynak kayıttır.** Basamak sonucu rapora tarihli ek olarak eklenir; eski sonuç metni sessizce değiştirilmez. Kod ve loglar ilgili görev altındaki KOD/ ve LOG/ alanlarında sürümlü tutulur; klasör yapısı farklıysa var olan görev düzeni izlenir, yeni bir paralel yapı gelişigüzel açılmaz.
+4. **Önceki kaynak bulunmadan yeniden üretme.** Kullanıcının önceki sohbetlerde paylaştığı kod, osiloskop örneği, ham log veya ölçümden söz ediliyorsa önce erişilebilir sohbet/ek/depo kaynakları aranır. Bulunamıyorsa bulunamadığı açıkça yazılır; tahmini bir kod eski kodun yerine konmaz.
+5. **GitHub yazımından sonra geri okuma zorunludur.** Her dosya için tam yol ve bağlantı kontrol edilir. Geri okuma başarısızsa “kaydedildi ve doğrulandı” denmez; hata ve kalan iş açıkça bildirilir.
+6. **Çok dosyalı işlerde dosyalar tek tek doğrulanır.** Bir raporun kaydı, kodun veya logun kaydedildiği anlamına gelmez. Her dosyanın kendi sonucu ve bağlantısı olmalıdır.
+7. **Test seviyesi ayrı yazılır:** KAYITLANDI, DERLENDİ, DONANIMDA ÇALIŞTI, ÖLÇÜMLE DOĞRULANDI birbirinin yerine kullanılmaz. Yalnızca kanıtlanan seviyeler işaretlenir.
+8. **Yanlış/boş kayıt silinerek gizlenmez.** Düzeltme gerekiyorsa yeni tarihli ek veya açıklayıcı commit ile neyin yanlış olduğu, neyin düzeltildiği ve hangi kanıtın bulunduğu belirtilir. Önceki iz korunur.
+9. **Basamak kapanışında kullanıcıya somut teslimat gösterilir:** GitHub bağlantıları, kod sürümü, log/kanıt bağlantısı, doğrulama seviyesi ve sıradaki tek adım. Yalnızca indeks/boş şablon oluşturmak, kod ve log kaydının yerine geçmez.
+10. **Kayıt eksiği işin kendisidir.** Daha önce kaydedildiği söylenen bir dosya bulunamazsa önce kurtarma/iz sürme yapılır. Yeni teknik basamağa geçmeden önce bu açık kullanıcıya net biçimde bildirilir; eksik kanıt tamamlanmış gibi sunulmaz.
+
