@@ -601,3 +601,41 @@ Bugün yeni fiziksel deney, derleme doğrulaması veya kalibrasyon sonucu üreti
 ### Süreklilik dersi
 
 Açılışta güncel Pusula, Asistan İşletim Protokolü, ilgili HDF-002 hedefi, son HISTORY ve günlük kontrol listesi okunmadan teknik yönlendirme yapılmamalıdır. ESP sayısı/adı, MCP varlığı, bias ve PZEM rolü konusunda tahmin yürütmek doğrudan YAML/koda ve fiziksel kuruluma hata taşıyabilir. Kayıt doğrulanamıyorsa bunu açıkça belirt; doğrulanmış gibi davranma.
+
+
+---
+
+## 2026-10-16 — GRV-001 / DS3231 saat ve SSR kontrolcüsü için aşamalı plan
+
+**Kayıt türü:** Kullanıcıyla netleştirilen uygulama sırası ve mimari kararı.  
+**Durum:** Plan kaydıdır. DS3231 bağlantısı, ESPHome derlemesi, RTC okuması ve SSR'nin fiziksel davranışı henüz doğrulanmadı.
+
+### Temel mimari
+
+- DS3231, kontrolcüde paket başlangıcının takvim tarih-saatini belirlemek için kullanılacak; yüksek hızlı örnekleme zamanlayıcısı olarak kullanılmayacak.
+- ESP32-C3 kontrolcü daha sonraki aşamada ortak `package_id` ve `start_timestamp` üretip fiziksel tetik verecek.
+- Fiziksel tetik bir olayı bildirir; `package_id`, zaman damgası, paket türü ve örnekleme hedefi gibi metadata ayrı bir veri yolundan dağıtılmalıdır.
+- D1/D2/E1 kendi örnek sırasını ve yerel örnekleme zamanlamasını kaydeder. DS3231 takvim zamanı tek başına mikro saniyelik örnek zamanını kanıtlamaz.
+- PZEM verisi aynı fiziksel olay için referans bağlamı olarak tutulabilir; yalnızca zaman yakınlığı veya paket kimliği aynı ölçüm penceresini kanıtlamaz.
+
+### Uygulama kapıları
+
+1. **Aşama 1 — ESP32-C3 + DS3231:** RTC I²C üzerinden bulunuyor mu, tarih-saat doğru mu, ESP yeniden başlatıldığında RTC saati korunuyor mu? Saatin korunması RTC'nin kendi beslemesine ve doğru ilk ayarına bağlıdır.
+2. **Aşama 2 — DS3231 + SSR:** Mevcut GPIO6, aktif-low ayarı ve 40 saniye ON / 20 saniye OFF çevrimi değiştirilmeden çalışıyor mu? Log ve fiziksel çıkış ayrı doğrulanır.
+3. **Aşama 3 — paket üretimi:** Kontrolcü `package_id` ve `start_timestamp` üretir; kimlik benzersizliği ve saat formatı logla doğrulanır. Örnek biçim: `20261016-203015-000123` (yalnızca örnek).
+4. **Aşama 4 — dağıtım:** D1, D2 ve E1 aynı `package_id` değerini alır ve ham verilerini aynı olay kimliğiyle kaydeder. Metadata veri yolu ayrıca tasarlanıp test edilir.
+
+### Mevcut ESP32-C3-SSR durumu
+
+- Mevcut ESPHome adı: `esphome-web-0424f4`; friendly name: `ESP32-C3-SSR`.
+- SSR çıkışı: GPIO6, `inverted: true`, `restore_mode: ALWAYS_OFF`.
+- Mevcut interval taslağı: 60 saniyede bir çevrim başlatır; SSR'yi 40 saniye açık, sonra kapalı tutar. Bu davranış bu oturumda fiziksel olarak test edilmedi.
+- DS3231 için GPIO0=SDA ve GPIO1=SCL önerildi; bağlantı yapılmadan önce kart pin uygunluğu ve mevcut kullanımlar teyit edilmeli.
+- `time: platform: ds3231` derlemede `Platform not found: 'time.ds3231'` hatası verdi. Sonraki taslakta `ds1307` platformı önerilmiş olsa da bu sürüm de henüz derlenmedi. ESPHome sürümündeki destek ve gerçek saat okuması doğrulanmadan çalışan kod olarak kabul edilmeyecek.
+- Kod başlarında hedef, donanım, pin tablosu, mevcut davranış, test durumu ve açık noktalar açıklama olarak yer alacak. Kullanıcıya eksiksiz YAML verilecek; doğrulanmayan başarı yazılmayacak.
+
+### Sıradaki tek adım
+
+Önce DS3231'in mevcut ESPHome sürümüyle desteklenen bileşenini doğrula ve yalnızca Aşama 1 için en küçük YAML'ı hazırla. GPIO0/1 bağlantısı ve I²C taramasında beklenen `0x68` adresi kontrol edilsin; sonra tarih-saat okuması ve RTC'nin güç/yeniden başlatma davranışı sınansın. Bu doğrulamalar bitmeden SSR kodunu değiştirme veya paket dağıtımına geçme.
+
+**Kanıt sınırı:** Bu kayıt mimariyi ve test sırasını sabitler; bağlantının yapıldığını, kodun derlendiğini, RTC'nin çalıştığını veya SSR'nin doğrulandığını iddia etmez.
