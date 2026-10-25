@@ -4,10 +4,10 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 
 ## 2026-10-26 — Oturum kapanış protokolünün eklenmesi
 
-- **Durum:** HAZIRLANDI; bu PR ile inceleniyor.
+- **Durum:** DOĞRULANDI; PR birleştirilmesi bekleniyor.
 - **Hedef ve kabul ölçütü:** Oturum başlangıcını/kapanışını görünür yapmak ve eksik durum günlüğünü PR denetimiyle yakalamak.
-- **Yapılan:** SESSION_PROTOCOL.md, oturum şablonu, değişen durum kaydı ve GitHub Actions denetimi eklendi. Fiziksel donanım veya deney durumunda değişiklik yapılmadı.
-- **Doğrulama:** Bu kayıt ve dosya değişiklikleri PR'da incelenecek. GitHub Actions sonucu henüz teyit edilmedi; başarılı çalıştığı iddia edilmiyor.
-- **Açık kalanlar:** PR üzerinde ilk workflow çalışmasını gözlemle; gerekiyorsa düzelt. Deneyler hâlâ yapılmadı.
-- **Sonraki adım:** Workflow başarılı olduktan sonra PR'ı gözden geçirip birleştir; ardından donanım envanterini doğrula.
-- **Kanıt:** Bu PR ve Action sonucu eklendiğinde bağlantısı burada güncellenecek.
+- **Yapılan:** SESSION_PROTOCOL.md, HISTORY şablonu/günlüğü, güncel STATUS/ROADMAP ve GitHub Actions denetimi eklendi. Fiziksel donanım veya deney durumunda değişiklik yapılmadı.
+- **Doğrulama:** GitHub Actions oturum kapanış kontrolü PR #2 üzerinde başarılı çalıştı: https://github.com/bakbalik-win11/BERO/actions/runs/40234585403
+- **Açık kalanlar:** Protokol PR'ı henüz main'e birleştirilmedi. Donanım ve deneyler hâlâ yapılmadı.
+- **Sonraki adım:** PR #2'yi birleştir; sonraki proje değişikliğinde kontrolün tekrar çalıştığını izle; ardından donanım envanterini doğrula.
+- **Kanıt:** PR: https://github.com/bakbalik-win11/BERO/pull/2 ; workflow run: https://github.com/bakbalik-win11/BERO/actions/runs/40234585403
