@@ -3,7 +3,7 @@
 **Son güncelleme:** 2026-10-26  
 **Aktif faz:** Faz 0 — hazırlık ve güvenlik  
 **Deney durumu:** YAPILMADI  
-**Çalışma protokolü:** SESSION_PROTOCOL.md eklendi. PR #2 birleştirildi; GitHub Actions oturum kapanış kontrolü başarılı. [Kontrol sonucu](https://github.com/bakbalik-win11/BERO/actions/runs/40234658507).
+**Çalışma protokolü:** SESSION_PROTOCOL.md ve [gün sonu kontrol listesi](GUN_SONU_KONTROLU.md) main dalında. PR #2 ve PR #3 birleştirildi; [otomatik kapanış kontrolü başarılı](https://github.com/bakbalik-win11/BERO/actions/runs/40234658507). İlk tarihli günlük girdisindeki 'PR #2 birleştirilmedi' cümlesi artık güncel değildir; en yeni günlük düzeltmesine bakın.
 
 ## Mevcut bilgi
 - BERO içinde SCT013-100A-1V, SCT013-30A-1V, PZEM-004T, ESP32-WROOM-32D ve MCP3208 bileşen kayıtları var.
