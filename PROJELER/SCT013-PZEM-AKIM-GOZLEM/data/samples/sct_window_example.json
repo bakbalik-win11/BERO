@@ -1,0 +1,15 @@
+{
+  "timestamp_start_ms": 0,
+  "timestamp_end_ms": 200,
+  "sample_rate_actual_hz": 2000,
+  "sample_count": 400,
+  "sct_current_rms_A": null,
+  "adc_mean_raw": 2047.6,
+  "adc_min_raw": 1830,
+  "adc_max_raw": 2264,
+  "clipped_sample_count": 0,
+  "calibration_id": null,
+  "record_status": "calibration_missing",
+  "event_tag": "steady",
+  "synthetic_example": true
+}

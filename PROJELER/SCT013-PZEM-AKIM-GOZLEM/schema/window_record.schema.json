@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SCT window record",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "timestamp_start_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "timestamp_end_ms": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sample_rate_actual_hz": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "sample_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sct_current_rms_A": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "adc_mean_raw": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "adc_min_raw": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "adc_max_raw": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "clipped_sample_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "calibration_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "record_status": {
+      "enum": [
+        "ok",
+        "calibration_missing",
+        "clipped",
+        "acquisition_error",
+        "invalid"
+      ]
+    },
+    "event_tag": {
+      "enum": [
+        "steady",
+        "transition_or_settling",
+        "unknown"
+      ]
+    },
+    "synthetic_example": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "timestamp_start_ms",
+    "timestamp_end_ms",
+    "sample_rate_actual_hz",
+    "sample_count",
+    "sct_current_rms_A",
+    "clipped_sample_count",
+    "calibration_id",
+    "record_status",
+    "event_tag"
+  ]
+}

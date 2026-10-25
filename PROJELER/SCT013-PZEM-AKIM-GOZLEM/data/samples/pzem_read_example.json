@@ -1,0 +1,15 @@
+{
+  "requested_at_ms": 1000,
+  "response_received_at_ms": 1120,
+  "read_duration_ms": 120,
+  "read_status": "ok",
+  "voltage_V": 230.1,
+  "current_A": 1.22,
+  "active_power_W": 260,
+  "energy_Wh": 12345,
+  "frequency_Hz": 50,
+  "power_factor": 0.92,
+  "anomaly_flags": [],
+  "raw_error": null,
+  "synthetic_example": true
+}

@@ -1,0 +1,25 @@
+# Veri alanları sözlüğü
+
+## SCT pencere kaydı
+| Alan | Durum | Açıklama |
+|---|---|---|
+| timestamp_start_ms / timestamp_end_ms | Zorunlu | Aynı monotonik saat alanında pencere sınırları |
+| sample_rate_actual_hz | Zorunlu | Gerçek gözlenen örnekleme hızı |
+| sample_count | Zorunlu | Örneklere giren örnek sayısı |
+| sct_current_rms_A | Zorunlu, geçerliyse | Ofset giderilmiş/kalibre edilmiş AC RMS |
+| adc_mean_raw, adc_min_raw, adc_max_raw | Önerilen | Bias, dinamik aralık ve clipping teşhisi |
+| clipped_sample_count | Zorunlu | ADC sınırına çarpan örnek sayısı |
+| calibration_id | Zorunlu | Kullanılan kalibrasyon revizyonu |
+| record_status | Zorunlu | ok, calibration_missing, clipped, acquisition_error, invalid |
+| event_tag | Önerilen | steady, transition_or_settling, unknown |
+
+## PZEM okuması
+| Alan | Durum | Açıklama |
+|---|---|---|
+| requested_at_ms / response_received_at_ms | Zorunlu | İstek ve yanıt zamanı |
+| read_duration_ms | Yanıt varsa zorunlu | İstek/yanıt süresi |
+| read_status | Zorunlu | ok, timeout, transport_error, parse_error, invalid_measurement |
+| V/I/P/E/frequency/PF alanları | Başarılı okumada | PZEM'in bildirdiği sayısal değerler |
+| anomaly_flags / raw_error | Önerilen | Hata ve şüpheli durum ayrıntısı |
+
+PZEM'in iç ölçüm zamanı bilinmiyorsa yanıt zamanını o zamanın tam karşılığı gibi sunma.
