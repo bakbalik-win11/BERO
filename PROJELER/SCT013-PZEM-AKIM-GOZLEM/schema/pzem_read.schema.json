@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PZEM read record",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "requested_at_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "response_received_at_ms": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "read_duration_ms": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "read_status": {
+      "enum": [
+        "ok",
+        "timeout",
+        "transport_error",
+        "parse_error",
+        "invalid_measurement"
+      ]
+    },
+    "voltage_V": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "current_A": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "active_power_W": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "energy_Wh": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "frequency_Hz": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "power_factor": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "anomaly_flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "raw_error": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "synthetic_example": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "requested_at_ms",
+    "response_received_at_ms",
+    "read_duration_ms",
+    "read_status",
+    "voltage_V",
+    "current_A",
+    "active_power_W",
+    "energy_Wh",
+    "frequency_Hz",
+    "power_factor",
+    "anomaly_flags",
+    "synthetic_example"
+  ]
+}

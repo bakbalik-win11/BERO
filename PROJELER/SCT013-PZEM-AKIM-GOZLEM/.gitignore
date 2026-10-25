@@ -1,0 +1,10 @@
+# Yerel ham ölçümler
+data/raw/
+data/event-captures/
+experiments/**/data/raw/
+*.scope.csv
+
+# Analiz yan ürünleri
+analysis/notebooks/.ipynb_checkpoints/
+__pycache__/
+.DS_Store

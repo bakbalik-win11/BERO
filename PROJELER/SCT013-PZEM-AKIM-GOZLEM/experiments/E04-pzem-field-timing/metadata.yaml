@@ -1,0 +1,18 @@
+experiment_id: E04-pzem-field-timing
+title: "PZEM alan zamanlaması"
+status: not_started
+date_start_utc: null
+date_end_utc: null
+operator: null
+sct_model: null
+pzem_model: null
+mcu_model: null
+adc_model: null
+sample_rate_target_hz: 2000
+window_ms: 200
+pzem_poll_interval_ms: 1000
+calibration_id: null
+reference_meter: null
+load_description: null
+data_paths: []
+notes: "Deney henüz yapılmadı."
