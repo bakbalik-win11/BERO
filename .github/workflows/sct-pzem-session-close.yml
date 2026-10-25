@@ -1,0 +1,26 @@
+name: SCT-PZEM session close check
+
+on:
+  pull_request:
+    paths:
+      - "PROJELER/SCT013-PZEM-AKIM-GOZLEM/**"
+      - ".github/workflows/sct-pzem-session-close.yml"
+      - "scripts/check_sct_pzem_session_close.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  session-close:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository with history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check session closure artifacts
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before || github.sha }}
+        run: python3 scripts/check_sct_pzem_session_close.py

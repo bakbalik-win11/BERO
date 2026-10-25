@@ -1,8 +1,9 @@
 # Proje durumu
 
-**Son güncelleme:** 2026-10-25  
+**Son güncelleme:** 2026-10-26  
 **Aktif faz:** Faz 0 — hazırlık ve güvenlik  
-**Deney durumu:** YAPILMADI
+**Deney durumu:** YAPILMADI  
+**Yönetim protokolü:** SESSION_PROTOCOL.md ve HISTORY/SESSION_LOG.md bu PR ile ekleniyor; GitHub kontrolü birleştirme ve ilk başarılı Action çalışmasından sonra teyit edilecek.
 
 ## Mevcut bilgi
 - BERO içinde SCT013-100A-1V, SCT013-30A-1V, PZEM-004T, ESP32-WROOM-32D ve MCP3208 bileşen kayıtları var.
@@ -24,5 +25,6 @@
 - Kullanılacak SCT ve PZEM varyantları/etiketleri bu proje için doğrulanmadı.
 - Analog ön uç ve ADC ayarları fiziksel olarak doğrulanmadı.
 - E01–E06 deneylerinin hiçbiri tamamlanmadı.
+- Yeni oturum protokolünün CI denetimi henüz bu PR üzerinde çalıştırılıp doğrulanmadı.
 
-Firmware ve analiz uygulaması henüz eklenmedi. Bu depo entegrasyonu dokümantasyon ve deney altyapısını kurar.
+Firmware ve analiz uygulaması henüz eklenmedi. Deney/kalibrasyon sonuçları yapılmadı olarak kalır.
