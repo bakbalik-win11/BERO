@@ -1,6 +1,8 @@
 # Proje çalışma protokolü
 
 ## Oturum başlangıcı — atlanamaz
+Kullanıcı için kısa kontrol listesi: [Gün sonu kontrolü](GUN_SONU_KONTROLU.md). Kullanıcıdan teknik diff/JSON/test ayrıntılarını kendi başına denetlemesini bekleme; gerekli kanıtları asistan sunmalı.
+
 1. Mevcut GitHub `main` dalını ve son commit'i kontrol et.
 2. Bu dosyayı, `STATUS.md`, `ROADMAP.md`, `docs/open-questions.md` ve ilgili görev/deney dosyasını bu oturumda gerçekten oku.
 3. Bir önceki durum kaydıyla depodaki gerçek dosya/PR durumunu karşılaştır.
@@ -53,7 +55,7 @@ Her anlamlı depo işi için başlamadan önce hedefi, dosya/alan kapsamını, k
 Ayrıntılı adımlar [SESSION_PROTOCOL.md](SESSION_PROTOCOL.md) içindedir. Her anlamlı depo çalışmasında:
 1. Gerçek değişiklikleri ve Git farkını incele.
 2. İlgili testleri/bağlantıları/şemaları doğrula; çalıştırılmayan testleri belirt.
-3. `STATUS.md` ve gerektiğinde `ROADMAP.md)/görev dosyalarını güncelle.
+3. `STATUS.md` ve gerektiğinde `ROADMAP.md` / görev dosyalarını güncelle.
 4. `HISTORY/SESSION_LOG.md` dosyasına [şablona](HISTORY/SESSION_TEMPLATE.md) uygun oturum kaydı ekle.
 5. Dal, commit, PR ve doğrulama kanıtlarını kontrol et.
 6. Bir koşul tamamlanmadıysa durumu tamamlandı gösterme; açıkça ENGELLENDİ veya DEVAM EDİYOR olarak bırak.

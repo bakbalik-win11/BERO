@@ -14,6 +14,9 @@ Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölç
 
 Bu kayıtlar BERO'nun donanım kaynaklarıdır. Bu projede kullanılacak fiziksel sensör, ADC, MCU, burden/bias yapısı ve PZEM varyantı envanterde doğrulanana kadar kesinleşmiş sayılmaz.
 
+## Gün sonu kontrolü
+Teknik ayrıntıları tek tek incelemek zorunda değilsiniz. [Gün sonu kontrol listesini](GUN_SONU_KONTROLU.md) izleyin; asistan her madde için doğrudan kanıt bağlantıları vermelidir.
+
 ## İlk okunacak dosyalar
 1. [AGENTS.md](AGENTS.md) — çalışma protokolü.
 2. [STATUS.md](STATUS.md) — mevcut durum ve sıradaki işler.

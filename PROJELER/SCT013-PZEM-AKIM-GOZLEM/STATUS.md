@@ -3,7 +3,7 @@
 **Son güncelleme:** 2026-10-26  
 **Aktif faz:** Faz 0 — hazırlık ve güvenlik  
 **Deney durumu:** YAPILMADI  
-**Yönetim protokolü:** SESSION_PROTOCOL.md ve HISTORY/SESSION_LOG.md eklendi. GitHub Actions kontrolü PR #2 üzerinde başarılı çalıştı; sonraki proje PR'larında durum ve oturum kaydı değişikliklerini denetler.
+**Çalışma protokolü:** SESSION_PROTOCOL.md eklendi. PR #2 birleştirildi; GitHub Actions oturum kapanış kontrolü başarılı. [Kontrol sonucu](https://github.com/bakbalik-win11/BERO/actions/runs/40234658507).
 
 ## Mevcut bilgi
 - BERO içinde SCT013-100A-1V, SCT013-30A-1V, PZEM-004T, ESP32-WROOM-32D ve MCP3208 bileşen kayıtları var.
