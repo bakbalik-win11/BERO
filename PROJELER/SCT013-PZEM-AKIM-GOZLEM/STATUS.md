@@ -3,7 +3,7 @@
 **Son güncelleme:** 2026-10-26  
 **Aktif faz:** Faz 0 — hazırlık ve güvenlik  
 **Aktif görev:** [T001 — Fiziksel donanım envanteri](tasks/T001-hardware-inventory.md)  
-**Klasör rehberi:** [KLASOR_REHBERI.md](KLASOR_REHBERI.md)  
+**Klasör rehberi:** [KLASOR_REHBERI.md](KLASOR_REHBERI.md) — kısa Türkçe klasör karşılıkları listesi eklendi.  
 **Deney durumu:** YAPILMADI  
 **Çalışma protokolü:** SESSION_PROTOCOL.md ve [gün sonu kontrol listesi](GUN_SONU_KONTROLU.md) main dalında. PR #2 ve PR #3 birleştirildi; [otomatik kapanış kontrolü başarılı](https://github.com/bakbalik-win11/BERO/actions/runs/40234658507). İlk tarihli günlük girdisindeki 'PR #2 birleştirilmedi' cümlesi artık güncel değildir; en yeni günlük düzeltmesine bakın.
 
