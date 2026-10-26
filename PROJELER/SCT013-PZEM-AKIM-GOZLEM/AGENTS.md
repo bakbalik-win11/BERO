@@ -41,6 +41,12 @@ Etiketsiz teknik iddia yazma.
 
 Yalnızca dosyanın var olması ya da bir komutun başarılı dönmesi işi **TAMAMLANDI** yapmaz.
 
+## Görev kartları
+- İş sırası ve bağımlılıklar [tasks/README.md](tasks/README.md) içinde tutulur.
+- Bir oturumda yalnızca STATUS.md içindeki **Aktif görev** üzerinde çalış. Kapsam dışı fikirleri mevcut işe ekleme; sonraki uygun görev veya açık soru olarak kaydet.
+- Görev kartının durumunu ancak kanıt destekliyorsa güncelle. Yazılmış belge, fiziksel donanımın doğrulandığı anlamına gelmez.
+- Kabul ölçütleri karşılanmadan ROADMAP.md kutusunu veya karar kapısını işaretleme.
+
 ## Görev sözleşmesi
 Her anlamlı depo işi için başlamadan önce hedefi, dosya/alan kapsamını, kabul ölçütlerini ve doğrulama yöntemini tanımla. Çalışma sonunda her kabul ölçütünü tek tek sonuçlandır: geçti, kaldı veya uygulanamadı. Başarısız/çalıştırılmayan testi başarılı olarak sunma.
 
