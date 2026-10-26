@@ -3,7 +3,7 @@
 ## Amaç
 SCT-013 benzeri akım trafosundan ADC örnekleri toplamak, pencere bazlı istatistikler üretmek ve bunları PZEM'in bildirdiği akım, gerilim ve PF değerleriyle zaman damgalı şekilde karşılaştırmak.
 
-Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölçüm sistemi geliştirme projesi değildir.
+Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölçüm sistemi değildir.
 
 ## BERO içindeki ilgili donanım kayıtları
 - [SCT013-100A-1V](../../DONANIM/SCT013-100A-1V/README.md)
@@ -21,8 +21,9 @@ Teknik ayrıntıları tek tek incelemek zorunda değilsiniz. [Gün sonu kontrol 
 1. [AGENTS.md](AGENTS.md) — çalışma protokolü.
 2. [STATUS.md](STATUS.md) — mevcut durum ve sıradaki işler.
 3. [ROADMAP.md](ROADMAP.md) — fazlar ve kabul ölçütleri.
-4. [Açık sorular](docs/open-questions.md) — deneyle doğrulanacak konular.
-5. [Kapsam](docs/00-scope.md) — hedefler ve kapsam dışı konular.
+4. [Görev kartları](tasks/README.md) — sıradaki tek işi, bağımlılıkları ve kabul ölçütlerini takip et.
+5. [Açık sorular](docs/open-questions.md) — deneyle doğrulanacak konular.
+6. [Kapsam](docs/00-scope.md) — hedefler ve kapsam dışı konular.
 
 ## Başlangıç tasarım değerleri
 - SCT örnekleme hızı: 2 kS/s.

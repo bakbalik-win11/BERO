@@ -3,8 +3,8 @@
 ## Oturum başlangıcı — atlanamaz
 Kullanıcı için kısa kontrol listesi: [Gün sonu kontrolü](GUN_SONU_KONTROLU.md). Kullanıcıdan teknik diff/JSON/test ayrıntılarını kendi başına denetlemesini bekleme; gerekli kanıtları asistan sunmalı.
 
-1. Mevcut GitHub `main` dalını ve son commit'i kontrol et.
-2. Bu dosyayı, `STATUS.md`, `ROADMAP.md`, `docs/open-questions.md` ve ilgili görev/deney dosyasını bu oturumda gerçekten oku.
+1. Mevcut GitHub main dalını ve son commit'i kontrol et.
+2. Bu dosyayı, STATUS.md, ROADMAP.md, docs/open-questions.md ve ilgili görev/deney dosyasını bu oturumda gerçekten oku.
 3. Bir önceki durum kaydıyla depodaki gerçek dosya/PR durumunu karşılaştır.
 4. Kullanıcıya işin başlangıç durumunu, hedefini ve kabul ölçütünü kısa biçimde belirt.
 5. Bu dosyalar okunamadıysa okumuş gibi davranma; bunu engel olarak belirt.
@@ -39,7 +39,13 @@ Etiketsiz teknik iddia yazma.
 - **TAMAMLANDI:** bütün kabul ölçütleri karşılanmış ve sonuç kanıtla doğrulanmış.
 - **ENGELLENDİ:** gereken erişim, donanım, karar veya test yok.
 
-Yalnızca dosyanın var olması ya da bir komutun başarılı dönmesi işi **TAMAMLANDI** yapmaz.
+Yalnızca dosyanın var olması ya da bir komutun başarılı dönmesi işi TAMAMLANDI yapmaz.
+
+## Görev kartları
+- İş sırası ve bağımlılıklar tasks/README.md içinde tutulur.
+- Bir oturumda yalnızca STATUS.md içindeki **Aktif görev** üzerinde çalış. Kapsam dışı fikirleri mevcut işe ekleme; sonraki uygun görev veya açık soru olarak kaydet.
+- Görev kartının durumunu ancak kanıt destekliyorsa güncelle. Yazılmış belge, fiziksel donanımın doğrulandığı anlamına gelmez.
+- Kabul ölçütleri karşılanmadan ROADMAP.md kutusunu veya karar kapısını işaretleme.
 
 ## Görev sözleşmesi
 Her anlamlı depo işi için başlamadan önce hedefi, dosya/alan kapsamını, kabul ölçütlerini ve doğrulama yöntemini tanımla. Çalışma sonunda her kabul ölçütünü tek tek sonuçlandır: geçti, kaldı veya uygulanamadı. Başarısız/çalıştırılmayan testi başarılı olarak sunma.
@@ -52,11 +58,11 @@ Her anlamlı depo işi için başlamadan önce hedefi, dosya/alan kapsamını, k
 - Karar değişirse yeni ADR aç; eski kararın tarihçesini silme.
 
 ## Oturum sonu — depo işi için zorunlu
-Ayrıntılı adımlar [SESSION_PROTOCOL.md](SESSION_PROTOCOL.md) içindedir. Her anlamlı depo çalışmasında:
+Ayrıntılı adımlar SESSION_PROTOCOL.md içindedir. Her anlamlı depo çalışmasında:
 1. Gerçek değişiklikleri ve Git farkını incele.
 2. İlgili testleri/bağlantıları/şemaları doğrula; çalıştırılmayan testleri belirt.
-3. `STATUS.md` ve gerektiğinde `ROADMAP.md` / görev dosyalarını güncelle.
-4. `HISTORY/SESSION_LOG.md` dosyasına [şablona](HISTORY/SESSION_TEMPLATE.md) uygun oturum kaydı ekle.
+3. STATUS.md ve gerektiğinde ROADMAP.md / görev dosyalarını güncelle.
+4. HISTORY/SESSION_LOG.md dosyasına şablona uygun oturum kaydı ekle.
 5. Dal, commit, PR ve doğrulama kanıtlarını kontrol et.
 6. Bir koşul tamamlanmadıysa durumu tamamlandı gösterme; açıkça ENGELLENDİ veya DEVAM EDİYOR olarak bırak.
 

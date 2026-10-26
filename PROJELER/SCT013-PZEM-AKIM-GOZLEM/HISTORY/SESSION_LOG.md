@@ -29,5 +29,15 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Yapılan:** Önceki tarihli kayıt silinmedi. Bu düzeltme, söz konusu cümlenin yalnızca o kayıt hazırlanırken geçerli olduğunu; PR #2 birleştirildikten sonra güncelliğini yitirdiğini açıkça belirtir. Güncel durum için STATUS.md ve en yeni tarihli günlük kaydı esas alınmalıdır.
 - **Doğrulama:** PR #2 birleştirildi: https://github.com/bakbalik-win11/BERO/pull/2 . Oturum kapanış kontrolü başarılı: https://github.com/bakbalik-win11/BERO/actions/runs/40234658507 . Gün sonu kontrol listesi PR #3 ile main'e alındı: https://github.com/bakbalik-win11/BERO/pull/3.
 - **Açık kalanlar:** Donanım envanteri, kalibrasyon ve E01–E06 deneyleri yapılmadı. Otomatik kontrol, kayıt yapısını denetler; deney doğruluğunu garanti etmez.
-- **Sonraki adım:** Gün sonunda [GUN_SONU_KONTROLU.md](../GUN_SONU_KONTROLU.md) listesini kullan; sonraki teknik iş olarak donanım envanterini doldur.
-- **Kanıt:** [STATUS.md](../STATUS.md), [gün sonu kontrolü](../GUN_SONU_KONTROLU.md), PR #2, PR #3 ve [PR #4 kontrol sekmesi](https://github.com/bakbalik-win11/BERO/pull/4/checks).
+- **Sonraki adım:** Gün sonunda GUN_SONU_KONTROLU.md listesini kullan; sonraki teknik iş olarak donanım envanterini doldur.
+- **Kanıt:** STATUS.md, gün sonu kontrolü, PR #2, PR #3 ve PR #4 kontrol sekmesi: https://github.com/bakbalik-win11/BERO/pull/4/checks.
+
+## 2026-10-26 — Arşiv incelemesi ve görev kartlarının eklenmesi
+
+- **Durum:** UYGULANDI; PR doğrulaması bekleniyor.
+- **Hedef ve kabul ölçütü:** Mevcut yol haritasındaki ilk altı işi açık bağımlılıkları ve kanıtlanabilir kabul ölçütleri olan görev kartlarına dönüştürmek; deney veya donanım doğrulaması yapıldığı izlenimini vermemek.
+- **Yapılan:** tasks/ altında T001–T006 kartları, sıralama tablosu ve şablon eklendi. STATUS.md içindeki aktif görev T001 olarak belirlendi; ROADMAP.md ve README.md ilgili kartlara bağlandı. Kullanıcının tek seferde bir somut göreve odaklanması ve bilinmeyen bilgilerin tahminle doldurulmaması kuralı eklendi.
+- **Doğrulama:** Bu PR için GitHub Actions kapanış kontrolü çalıştırılacak. Donanım envanteri, güvenlik onayı, kalibrasyon ve E01–E06 deneyleri bu değişiklik kapsamında yapılmadı.
+- **Açık kalanlar:** Görev kartlarının sahada uygulanması; ilk somut görev T001.
+- **Sonraki adım:** PR birleştirilmeden önce değişen dosyaları ve otomatik kontrol sonucunu gözden geçir; sonrasında T001 için fiziksel donanım etiketlerini/kanıtlarını topla.
+- **Kanıt:** PR ve kontrol bağlantıları bu kaydın sonraki doğrulama güncellemesinde eklenecek.
