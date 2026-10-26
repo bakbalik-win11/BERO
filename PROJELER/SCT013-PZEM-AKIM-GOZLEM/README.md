@@ -3,7 +3,7 @@
 ## Amaç
 SCT-013 benzeri akım trafosundan ADC örnekleri toplamak, pencere bazlı istatistikler üretmek ve bunları PZEM'in bildirdiği akım, gerilim ve PF değerleriyle zaman damgalı şekilde karşılaştırmak.
 
-Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölçüm sistemi değildir.
+Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölçüm sistemi geliştirme projesi değildir.
 
 ## BERO içindeki ilgili donanım kayıtları
 - [SCT013-100A-1V](../../DONANIM/SCT013-100A-1V/README.md)
