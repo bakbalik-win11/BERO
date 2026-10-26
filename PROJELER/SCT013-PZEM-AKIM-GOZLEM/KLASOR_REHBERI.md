@@ -11,6 +11,22 @@ Bu nedenle:
 - **Türkçe ad:** Klasörün veya dosyanın amacını kolayca anlaman için açıklamasıdır.
 - Yeni dosya bağlantısı verirken asistan her zaman gerçek GitHub yolunu da paylaşmalıdır.
 
+## Kısa Türkçe karşılık listesi
+
+Klasör listesini okurken şu karşılıkları kullan:
+
+- `HISTORY` - Geçmiş ve oturum kayıtları
+- `analysis` - Analiz
+- `calibration` - Kalibrasyon
+- `data` - Veri ve ölçüm kayıtları
+- `docs` - Teknik belgeler
+- `experiments` - Deneyler
+- `hardware` - Donanım
+- `schema` - Veri şemaları
+- `tasks` - Görev kartları
+
+Bu açıklamalar Türkçe rehber niteliğindedir; klasörlerin GitHub'daki gerçek adları ve bağlantıları aynı kalır.
+
 ## 1. Klasörlerin genel şeması
 
 ```text
