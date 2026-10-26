@@ -17,6 +17,9 @@ Bu kayıtlar BERO'nun donanım kaynaklarıdır. Bu projede kullanılacak fizikse
 ## Gün sonu kontrolü
 Teknik ayrıntıları tek tek incelemek zorunda değilsiniz. [Gün sonu kontrol listesini](GUN_SONU_KONTROLU.md) izleyin; asistan her madde için doğrudan kanıt bağlantıları vermelidir.
 
+## Klasör rehberi
+Klasör ve dosyaların Türkçe karşılıkları ile hangi sırayla kullanılacakları için [Klasör Rehberi](KLASOR_REHBERI.md) dosyasını açın. İngilizce yollar, mevcut bağlantılar bozulmasın diye korunmuştur.
+
 ## İlk okunacak dosyalar
 1. [AGENTS.md](AGENTS.md) — çalışma protokolü.
 2. [STATUS.md](STATUS.md) — mevcut durum ve sıradaki işler.
