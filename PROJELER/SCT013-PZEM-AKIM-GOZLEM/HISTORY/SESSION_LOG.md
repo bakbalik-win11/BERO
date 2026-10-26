@@ -44,10 +44,10 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 
 ## 2026-10-26 — Türkçe klasör rehberinin eklenmesi
 
-- **Durum:** UYGULANDI; PR oluşturulması ve otomatik kontrol bekleniyor.
+- **Durum:** UYGULANDI; PR #6 açık, otomatik kontrol sonucu bekleniyor.
 - **Hedef ve kabul ölçütü:** Mevcut klasör adlarının Türkçe karşılıklarını ve amaçlarını tek bir rehberde açıklamak; var olan teknik yolları, bağlantıları ve otomasyon kurallarını bozmamak.
 - **Yapılan:** KLASOR_REHBERI.md eklendi; README.md ve STATUS.md üzerinden erişim bağlantısı verildi. İngilizce klasör yolları korundu. Fiziksel donanım, kalibrasyon veya deney durumunda değişiklik yapılmadı.
-- **Doğrulama:** Rehberin yolları ve dosya adları main dalındaki ağaçla karşılaştırıldı. PR ve otomatik kontrol bağlantıları oluşturulduktan sonra buraya eklenecek.
-- **Açık kalanlar:** PR ve otomatik kontrol sonucunun doğrulanması.
+- **Doğrulama:** PR #6 kontrol sekmesi: https://github.com/bakbalik-win11/BERO/pull/6/checks. Rehberin yolları ve dosya adları main dalındaki ağaçla karşılaştırıldı.
+- **Açık kalanlar:** Otomatik kapanış kontrolünün nihai sonucunun görülmesi.
 - **Sonraki adım:** PR kontrolünün geçtiğini doğrula; sonra aynı T001 görevine devam et.
-- **Kanıt:** PR açıldıktan ve kontrol çalıştıktan sonra eklenecek.
+- **Kanıt:** PR #6: https://github.com/bakbalik-win11/BERO/pull/6 ; kontrol sekmesi: https://github.com/bakbalik-win11/BERO/pull/6/checks.
