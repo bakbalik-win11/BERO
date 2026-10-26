@@ -41,3 +41,13 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Görev kartlarının sahada uygulanması; ilk somut görev T001. PR'ın son durumu PR #5 üzerinden izlenir.
 - **Sonraki adım:** T001 için fiziksel donanım etiketlerini/kanıtlarını topla.
 - **Kanıt:** PR #5: https://github.com/bakbalik-win11/BERO/pull/5 ; kontrol sekmesi: https://github.com/bakbalik-win11/BERO/pull/5/checks.
+
+## 2026-10-26 — Türkçe klasör rehberinin eklenmesi
+
+- **Durum:** UYGULANDI; PR oluşturulması ve otomatik kontrol bekleniyor.
+- **Hedef ve kabul ölçütü:** Mevcut klasör adlarının Türkçe karşılıklarını ve amaçlarını tek bir rehberde açıklamak; var olan teknik yolları, bağlantıları ve otomasyon kurallarını bozmamak.
+- **Yapılan:** KLASOR_REHBERI.md eklendi; README.md ve STATUS.md üzerinden erişim bağlantısı verildi. İngilizce klasör yolları korundu. Fiziksel donanım, kalibrasyon veya deney durumunda değişiklik yapılmadı.
+- **Doğrulama:** Rehberin yolları ve dosya adları main dalındaki ağaçla karşılaştırıldı. PR ve otomatik kontrol bağlantıları oluşturulduktan sonra buraya eklenecek.
+- **Açık kalanlar:** PR ve otomatik kontrol sonucunun doğrulanması.
+- **Sonraki adım:** PR kontrolünün geçtiğini doğrula; sonra aynı T001 görevine devam et.
+- **Kanıt:** PR açıldıktan ve kontrol çalıştıktan sonra eklenecek.
