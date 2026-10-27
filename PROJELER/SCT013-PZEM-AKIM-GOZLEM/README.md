@@ -12,7 +12,16 @@ Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölç
 - [ESP32-WROOM-32D](../../DONANIM/ESP32-WROOM-32D/README.md)
 - [MCP3208 ADC](../../DONANIM/MCP3208/README.md)
 
-Bu kayıtlar BERO'nun donanım kaynaklarıdır. Bu projede kullanılacak fiziksel sensör, ADC, MCU, burden/bias yapısı ve PZEM varyantı envanterde doğrulanana kadar kesinleşmiş sayılmaz.
+## Bu projeye kopyalanan donanım referansları
+Teknik açıklamalar ve önceki BERO test notları, aynı işi yeniden yazmadan kullanabilmek için proje klasörüne de kopyalandı:
+- [SCT013-100A-1V referans kopyası](hardware/references/SCT013-100A-1V.md)
+- [SCT013-30A-1V referans kopyası](hardware/references/SCT013-30A-1V.md)
+- [PZEM-004T V3.0 referans kopyası](hardware/references/PZEM-004T-V3.0.md)
+- [Kopyaların kaynakları ve kullanım notu](hardware/references/README.md)
+
+Kopyaların kaynağı olan `DONANIM/` belgeleri korunur ve asıl teknik kayıttır. Kopya belgelerdeki tarihsel test notları yeni proje için yeni deney veya kalibrasyon sonucu sayılmaz.
+
+Bu kayıtlar BERO'nun donanım kaynaklarıdır. Bu projede hangi fiziksel SCT varyantının seçildiği, PZEM'in 10 A / 100 A varyantı ve CT'si, ayrıca MCU/ADC ve analog ön uç envanterde proje özelinde kaydedilmelidir. Genel teknik özellikleri tekrar yazmak yerine mevcut referans dosyalarına bağlantı verilir.
 
 ## Gün sonu kontrolü
 Teknik ayrıntıları tek tek incelemek zorunda değilsiniz. [Gün sonu kontrol listesini](GUN_SONU_KONTROLU.md) izleyin; asistan her madde için doğrudan kanıt bağlantıları vermelidir.
