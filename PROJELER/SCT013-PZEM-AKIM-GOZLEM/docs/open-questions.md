@@ -6,15 +6,15 @@ Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konul
 2. SCT013-030 AC sinyali tamamlanmış yaklaşık 1,65 V bias orta noktasına hangi bağlantı/kuplaj elemanıyla eklenecek?
 3. 8 kanallı hazır karttaki kanal başına direnç/bias ağı ve analog filtre değerleri ile ADC girişinin güvenli maksimum aralığı nedir? Nihai bağlantı kanıtı kaydı eksik.
 4. SAMM Market 5 V 2 kanallı SSR kartının hangi iki AC yükü anahtarlayacağı ve hangi ESP32 GPIO'larının kullanılacağı nedir? Ürün sayfasındaki LOW/HIGH eşikleri ile “low-level trigger” notu tutarsız olabildiğinden kontrol mantığı düşük gerilimde doğrulanmalı; giriş akımı ve kanal başına termal/sürekli yük sınırları ayrıca teyit edilmeli.
-5. DS3231 breakout kartının gerçek modeli/revizyonu nedir; SDA/SCL pinleri ve I²C pull-up gerilimi nedir? Yedek pil türü ve kartta şarj devresi olup olmadığı da doğrulanmalı.
-6. DS3231'in saati ilk kurulumda nasıl ayarlanacak: manuel başlangıç mı, ağ erişimi varsa NTP eşitlemesi mi? Saat dilimi ve UTC/yerel zamanın kayıtlarda nasıl temsil edileceği belirlenmeli.
 7. PZEM'in iç ölçüm/ortalama penceresi nedir; V, I, P ve PF aynı anda mı yenileniyor? Bunlar deneyle ölçülecek.
 8. Hangi akımın altında PZEM, bağımsız referansa göre kabul edilemez sapma/kararsızlık gösteriyor?
 9. 1 kS/s, 2 kS/s ve 2,5 kS/s seçenekleri arasında hedef yüklerde anlamlı performans farkı var mı?
 10. 200 ms pencere kararlı yükte tekrarlanabilir mi; çevrime senkron pencere gerekli mi?
-11. True-RMS referans cihazı nedir ve en az üç kontrollü yük seviyesi hangi yüklerle sağlanacak?
 
 **Karara bağlandı; yeniden sorulmayacak:**
+- Referans karşılaştırma cihazı: kullanıcı fotoğrafıyla gösterilen UNI-T UT200B+ True RMS pens ampermetre. Kalibrasyon/izlenebilirlik durumu bilinmiyor; bu, modelin kaydedilmesine engel değil.
+- DS3231: kullanıcı beyanı — RTC kodu çalıştı, güç kesilip yeniden verildikten sonra saat korundu; iki modülde de 2032 tipi pil var. Bu test ve pil bilgisi tekrar istenmeyecek.
+- Deney yükleri önceden sabitlenmeyecek; kullanıcı her testte kullandığı yükü ve koşulları beyan edecek.
 - Öncelikli sensör: SCT013-030 (30 A / 1 V).
 - Kullanıcı stok bildirimi: 7 adet SCT013 30 A / 1 V ve 10 adet SCT013 100 A / 1 V; ikisi de jack çıkışlı. Jack yuvaları mevcut.
 - Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı bulunan bir analog arayüz kartı** hazırladı. Bu ilk aşamada harici ADC kullanılmayacak; SCT sinyali jack yuvası ve breadboard üzerindeki bias devresi üzerinden ESP32'nin ADC destekli GPIO girişinden okunacak. Bu, ESP32'nin dahili ADC'sinin kullanılması demektir. MCP3208 fiziksel olarak mevcut; ileriki aşama için ayrıldı. İlk aşamada kullanılmayacak. Kartın kanal şeması veya elektriksel değerleri doğrulanmış sayılmaz.
