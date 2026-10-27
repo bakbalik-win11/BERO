@@ -24,7 +24,10 @@
 - SAMM Market 5 V, 2 kanallı SSR kartı; DS3231 RTC.
 - Masaüstü 5 V / 1,8 A güç kaynağı; lamba test yükü.
 - Jack yuvaları ve bağlantı/ölçüm parçaları mevcut.
-- Önceden hazırlanmış 8 kanallı kart: her kanalda ayrı bias ve direnç ağı. Kullanıcının tarifine göre SCT fişi dişi jack'e takılır, sinyal breadboard üzerindeki bias devresinden ESP32 GPIO bacağına gider. İlk aşamada ayrı/harici ADC entegresi yok; analog okuma ESP32'nin dahili ADC'si üzerinden, ADC destekli GPIO'dan yapılacak. Kullanılacak GPIO numarası henüz belirtilmedi.
+- Önceden hazırlanmış 8 kanallı kart: her kanalda ayrı bias ve direnç ağı. Kullanıcının tarifine göre SCT fişi dişi jack'e takılır, sinyal breadboard üzerindeki bias devresinden ESP32 GPIO bacağına gider. İlk aşamada ayrı/harici ADC entegresi yok; analog okuma ESP32'nin dahili ADC'si üzerinden, ADC destekli GPIO'dan yapılacak. MCP3208 fiziksel olarak mevcut; ileriki aşama için ayrıldı, ilk aşamada kullanılmayacak. Kullanılacak GPIO numarası henüz belirtilmedi.
+
+## İlerleme ilkesi
+İşi en küçük anlamlı birimlere böl ve teker teker ilerle. Sonraki aşamaya ait donanım (MCP3208) envantere yazılır ancak mevcut aşamanın kapsamına taşınmaz. Bir sonraki adımı ancak o anki küçük birimin kabul ölçütü karşılandıktan sonra başlat.
 - Bias üretim alt devresi önceki proje kayıtlarında kullanıcı onayıyla tamamlandı sayılıyor. Bu, SCT AC sinyalinin bias noktasına kuplajının da doğrulandığı anlamına gelmez.
 
 ## Kalan proje-özel işler
