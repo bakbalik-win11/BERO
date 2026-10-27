@@ -12,12 +12,13 @@
 - [SSR donanım referansı](../hardware/references/SSR.md)
 - [DS3231 RTC referansı](../hardware/references/DS3231.md)
 - [Referans indeksi](../hardware/references/README.md)
+- Üretici veri sayfaları: [ESP32-WROOM-32D/32U](https://documentation.espressif.com/esp32-wroom-32d_esp32-wroom-32u_datasheet_en.html), [ESP32-WROOM-32E/32UE](https://documentation.espressif.com/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.html), [ESP32-WROOM-32](https://documentation.espressif.com/esp32-wroom-32_datasheet_en.html), [ESP32-C3-MINI-1/1U modül veri sayfası](https://documentation.espressif.com/esp32-c3-mini-1_mini-1u_datasheet_en.html). Kartın geliştirme kartı şeması/pinout'u ayrıca doğrulanmadan yalnızca modül veri sayfasına göre pin ataması yapılmayacak.
 - [T001 kullanıcı envanteri](../docs/inventory/T001-fiziksel-donanim-envanteri.md)
 
 Önceden var olan genel teknik özellikleri tekrar yazma; mevcut kaynaklardan yararlan.
 
 ## Kaydedilen bilgiler
-- Kullanıcı tarafından belirtilen kart envanteri: 1 × ESP32-C3 SuperMini (SSR kontrolü/zamanlama), 1 × ESP32-WROOM-32E ve 2 × ESP32-WROOM-32D (SCT ham örnekleme düğümleri). Kullanıcı 1 adet ESP32-WROOM-32E kart fotoğrafını da sağladı. Bu kart dağılımında kullanıcı beyanı esastır. Kullanıcı ESP32-WROOM-32D kart fotoğrafını ve ESP32-C3 Super Mini kartının arka yüz fotoğrafını sağladı; görseller envanter notlarına işlendi ve tekrar istenmeyecek.
+- Kullanıcı tarafından belirtilen kart envanteri: 1 × ESP32-C3 SuperMini (SSR kontrolü/zamanlama), 1 × ESP32-WROOM-32E ve 2 × ESP32-WROOM-32D (SCT ham örnekleme düğümleri). Kullanıcı 1 adet ESP32-WROOM-32E kart fotoğrafını da sağladı. Bu kart dağılımında kullanıcı beyanı esastır. Kullanıcı ESP32-WROOM-32D, ESP32-C3 Super Mini arka yüzü, ESP32-WROOM-32E ve ESP32-WROOM-32 tabanlı geliştirme kartlarının fotoğraflarını sağladı. Görsel referanslar kayda alındı; tekrar istenmeyecek.
 - SCT013 30 A / 1 V: 7 adet; jack çıkışlı.
 - SCT013 100 A / 1 V: 10 adet; jack çıkışlı.
 - PZEM-004T V3.0.
