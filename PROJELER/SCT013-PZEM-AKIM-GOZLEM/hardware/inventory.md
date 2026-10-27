@@ -45,10 +45,9 @@ Kaynak [DONANIM/SSR/README.md](../../../DONANIM/SSR/README.md) ve kopyası [SSR.
 
 ## Kalan proje-özel bilgiler
 
-1. PZEM-004T V3.0 modülünün 10 A dahili şönt veya 100 A harici CT varyantı; harici CT modeli varsa etiketi.
-2. Kullanılacak ESP32 modülü ve geliştirme kartı/revizyonu; kullanılacak ADC modeli ve VREF kaynağı.
-3. SCT'nin AC sinyalinin tamamlanmış yaklaşık 1,65 V bias noktasına kuplaj yöntemi; analog ön uç burden/filtre ve güvenli ADC giriş aralığı.
-4. True-RMS referans cihazı ve en az üç kontrollü yük seviyesi.
+1. Kullanılacak ESP32 modülü ve geliştirme kartı/revizyonu; kullanılacak ADC modeli ve VREF kaynağı.
+2. SCT'nin AC sinyalinin tamamlanmış yaklaşık 1,65 V bias noktasına kuplaj yöntemi; analog ön uç burden/filtre ve güvenli ADC giriş aralığı.
+3. True-RMS referans cihazı ve en az üç kontrollü yük seviyesi.
 
 ## Kayıt kuralları
 - Önceki BERO teknik belgelerindeki ürün bilgilerini tekrar yazmak yerine ilgili referansa bağlan.

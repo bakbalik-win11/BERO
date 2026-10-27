@@ -36,12 +36,12 @@
 - [ ] G3 — Faz 6 sonunda: örnekleme hızı hedef yüklerde ölçülmüş metriklerle gerekçelendirilmiş.
 
 ## Sıradaki işler
-1. [ ] [T001 — Donanım envanteri](tasks/T001-hardware-inventory.md): PZEM varyantı/CT, gerçek MCU/ADC ve kalan analog ön uç bağlantılarını netleştir. Bias üretim alt devresi tamamlandı.
+1. [ ] [T001 — Donanım envanteri](tasks/T001-hardware-inventory.md): seçilecek ESP32 kartını ve ADC/VREF'i, SCT'nin bias noktasına kuplajını ve analog ön uç değerlerini netleştir. PZEM/PZCT-02 bilgisi tamamlandı; bias üretim alt devresi tamamlandı.
 2. [ ] [T002 — Güvenlik kontrolü](tasks/T002-safety-checklist.md): şebeke bağlantısı öncesi yetkin kişi incelemesi.
 3. [ ] [T003 — Referans ve hata hedefi](tasks/T003-reference-and-error-target.md): referans cihazı, en az üç yük seviyesi ve ölçüm öncesi kabul hedefi.
 
 ## Açık engeller
-- PZEM'in UART arayüzü seçilecek MCU ile bağlanırken lojik gerilim uyumu ve izolasyon düzeni doğrulanmalı.
+- PZEM için mevcut BERO kaydı ve bağlı PZCT-02 (0–100 A) bilgisi kaydedildi. MCU bağlantısında UART lojik seviyesi ve izolasyon düzeni uygulama öncesinde doğrulanmalı.
 - Projede kullanılacak ESP32 varyantı/kartı, gerçek ADC ve VREF.
 - SCT AC sinyalinin tamamlanmış 1,65 V bias noktasına nasıl kuplaj yaptığı ve analog ön uç değerleri.
 - SSR projede kullanılacaksa tam model, giriş/çıkış türü ve yük kapasitesi.
