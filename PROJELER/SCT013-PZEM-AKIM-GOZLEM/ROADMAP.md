@@ -3,13 +3,13 @@
 Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutular yalnız depoda kanıt olduğunda işaretlenir.
 
 ## Faz 0 — Hazırlık ve güvenlik
-- [ ] 0.1 Fiziksel SCT varyantı, PZEM modeli/CT'si, MCU, ADC, burden/bias ve VREF'i belgeleyin. — [T001](tasks/T001-hardware-inventory.md)
+- [x] 0.1 Fiziksel envanter ve kullanıcı tarafından bildirilen hazır bias alt devresini kaydet. — [T001](tasks/T001-hardware-inventory.md)
   - **Mevcut kayıt:** Kullanıcı 7 adet SCT013 30 A / 1 V, 10 adet SCT013 100 A / 1 V, jack yuvaları, masaüstü 5 V / 1,8 A güç kaynağı, lamba yükü ve 8 kanallı ayrı bias/dirençli arayüz kartının hazır olduğunu bildirdi. Ayrıntılar [envanterde](hardware/inventory.md) ve [T001 envanter notunda](docs/inventory/T001-fiziksel-donanim-envanteri.md).
-  - **Bitti sayılır:** gerçek etiketler/fiziksel ölçümler envanterde kayıtlı; kullanılacak ADC/VREF ve SCT kuplajı gibi kalan proje-özel bağlantı bilgileri kanıta bağlanmış.
+  - **Kapanış:** kullanıcı tarafından bildirilen envanter ve bias alt devresi kaydedildi. Elektriksel kuplaj/ADC aralığı T004 kapsamındadır; bu T001'i açık tutmaz.
 - [ ] 0.2 220–240 V güvenlik kontrolleri. — [T002](tasks/T002-safety-checklist.md)
   - **Bitti sayılır:** kontrol listesi yetkin kişi tarafından incelendi.
-- [ ] 0.3 True-RMS referans cihazı ve üç rezistif yük seviyesi hazırlayın. — [T003](tasks/T003-reference-and-error-target.md)
-  - **Bitti sayılır:** referans ve yük kimlikleri kayıtlı.
+- [ ] 0.3 True-RMS karşılaştırma cihazını ve ölçüm hata hedefini kaydet. — [T003](tasks/T003-reference-and-error-target.md)
+  - **Bitti sayılır:** UT200B+ referans cihazı kaydedilmiş; hata hedefi kullanıcı onayıyla belirlenmiş. Kullanılacak yükler ilgili test sırasında kullanıcı tarafından beyan edilir.
 
 ## Faz 1 — SCT analog ön uç
 - [ ] 1.1 Burden/bias ve ADC aralık payını doğrula. — [T004](tasks/T004-analog-frontend.md)
