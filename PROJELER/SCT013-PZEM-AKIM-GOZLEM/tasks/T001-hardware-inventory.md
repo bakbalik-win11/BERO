@@ -25,7 +25,7 @@
 - SAMM Market 5 V, 2 kanallı SSR kartı; DS3231 RTC.
 - Masaüstü 5 V / 1,8 A güç kaynağı; lamba test yükü.
 - Jack yuvaları ve bağlantı/ölçüm parçaları mevcut.
-- Önceden hazırlanmış 8 kanallı kart: her kanalda ayrı bias ve direnç ağı. Kullanıcının tarifine göre SCT fişi dişi jack'e takılır, sinyal bias devresi üzerinden ESP32 GPIO bacağına gider. İlk aşamada harici ADC entegresi kullanılmayacak; analog okuma ESP32'nin dahili ADC'si üzerinden, ADC destekli GPIO'dan yapılacak. MCP3208 fiziksel olarak mevcut; ileriki aşama için ayrıldı, ilk aşamada kullanılmayacak. Seçilecek kartın GPIO numarası henüz proje kaydında kesinleştirilmedi.
+- Önceden hazırlanmış 8 kanallı kart: her kanalda ayrı bias ve direnç ağı. Kullanıcının tarifine göre SCT dişi jack'e bağlanır; sensör dönüş sinyali jack üzerinden analog arayüze ve oradan ESP32 kartına gider. Bu aşamada ayrı/harici ADC kullanılmayacak. MCP3208 fiziksel olarak mevcut olsa da sonraki aşamaya ayrılmıştır. GPIO numarası firmware/pin planlama aşamasında belirlenecek.
 - Kullanıcı kararı: SCT okumaları için 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E ayrı hızlı örnekleme kanalları olarak kullanılacak. Bu aşamanın çıktısı akım/RMS hesabı değil, sensörün ham/anlık gerilim okumaları ile SSR-zamanlayıcı düğümünden gelen paket bilgisinin birlikte yazdırılmasıdır. 1, 2 ve 4 sarım testleri aynı hat üzerinde ayrı ayrı yapılacak.
 
 ## İlerleme ilkesi
@@ -34,14 +34,14 @@
 
 ## Kalan proje-özel işler
 1. Kullanıcının açıkladığı bağlantı yolunu kaydet: SCT013 dişi jack yuvasına bağlanır; sensör dönüş sinyali dişi jack üzerinden 8 kanallı analog arayüze ve oradan ESP32 ADC girişine gider. Elektriksel bias kuplaj topolojisinin (hangi sinyal hattının bias orta noktasına nasıl bağlandığı), kanal direnç/filtre değerlerinin ve güvenli ADC aralığının kanıtla belgelenmesi hâlâ gerekir. Ölçülmeyen değerleri tahmin etme.
-2. ADC model/revizyonu ve VREF kaynağı/değeri bilinmiyor olarak açık bırak; ilk aşamada ESP32 dahili ADC planı var, MCP3208 seçilmiş sayılmaz. Dahili ADC’ye harici ADC VREF alanı uygulama.
-3. ADC destekli GPIO numarası, pin eşlemesi ve firmware attenuation/ADC yapılandırmasını firmware/pin planlama aşamasına bırak; bunları T001’in eksik işi olarak kullanıcıya sorma.
+2. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. Harici ADC modeli/revizyonu veya VREF seçimi T001 kapsamına alınmayacak.
+3. GPIO numarası ve pin eşlemesi firmware/pin planlama aşamasına bırakılacak; bunları T001’in eksik işi olarak kullanıcıya sorma.
 4. True-RMS referans cihazı ve en az üç kontrollü yük seviyesini [T003](T003-reference-and-error-target.md) altında ele al.
 5. SSR için iki AC yükü ve GPIO eşlemesini sonraki güvenli test planında kaydet; tetik mantığını düşük gerilimli testte doğrula. Ürün kimliği İzmo9659 / MP02637; tekil SSR parça kodu doğrulanmış değil.
 6. DS3231 breakout pinleri, pull-up gerilimi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemini kablolama öncesi doğrula; hızlı örnekleme zamanlamasını RTC takvim okumalarından bağımsız tut.
 
 ## Kabul ölçütü
-Fiziksel envanter ve hazır analog kart kaydı mevcut kaynaklara bağlanmalı; SCT'nin dişi jack üzerinden analog karta ve oradan ESP32 ADC'ye giden bağlantı yolu kaydedilmiştir. ADC modeli/revizyonu ve VREF bilgisi, bias orta noktasına elektriksel kuplajın ayrıntısı, kanal direnç/filtre değerleri ve güvenli ADC aralığı bilinen kanıta göre kaydedilmeli; bilinmeyenler açıkça işaretlenmelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez.
+Fiziksel envanter ve hazır analog kart kaydı mevcut kaynaklara bağlanmalı; SCT'nin dişi jack üzerinden analog karta ve oradan ESP32 ADC'ye giden bağlantı yolu kaydedilmiştir. Bu aşamada harici ADC/VREF seçimi yapılmayacak; bias orta noktasına elektriksel kuplajın ayrıntısı, kanal direnç/filtre değerleri ve güvenli ADC giriş aralığı bilinen kanıta göre kaydedilmeli; bilinmeyenler açıkça işaretlenmelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez.
 
 ## Güvenlik
 Bu görev dokümantasyon ve görsel incelemedir. Şebeke bağlantısını sökme, kabloyu ayırma veya sisteme enerji verme.
