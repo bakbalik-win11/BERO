@@ -33,7 +33,6 @@
 - Bias üretim alt devresi önceki proje kayıtlarında kullanıcı onayıyla tamamlandı sayılıyor. Bu, SCT AC sinyalinin bias noktasına kuplajının da doğrulandığı anlamına gelmez.
 
 ## Kalan proje-özel işler
-0. Hızlı örnekleme çıktısının kapsamını sabitle: sensör ham/anlık gerilim örnekleri ve zamanlayıcı paket bilgisi yazdırılacak; bu aşamada akım/RMS hesabı yapılmayacak.
 1. Hazır fiziksel envanter ve 8 kanallı analog arayüz kartı kaydını koru; T001’in kalan işi olan SCT AC kuplaj yöntemi, kanal direnç/filtre değerleri ve güvenli ADC aralığını mevcut kanıtla belgele. Ölçülmeyen değerleri tahmin etme.
 2. ADC model/revizyonu ve VREF kaynağı/değeri bilinmiyor olarak açık bırak; ilk aşamada ESP32 dahili ADC planı var, MCP3208 seçilmiş sayılmaz. Dahili ADC’ye harici ADC VREF alanı uygulama.
 3. ADC destekli GPIO numarası, pin eşlemesi ve firmware attenuation/ADC yapılandırmasını firmware/pin planlama aşamasına bırak; bunları T001’in eksik işi olarak kullanıcıya sorma.
@@ -42,7 +41,7 @@
 6. DS3231 breakout pinleri, pull-up gerilimi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemini kablolama öncesi doğrula; hızlı örnekleme zamanlamasını RTC takvim okumalarından bağımsız tut.
 
 ## Kabul ölçütü
-Fiziksel envanter, seçilen kart/ADC pini ve analog bağlantı bilgileri bilinen kanıta bağlanmalı; bilinmeyenler açıkça işaretlenmelidir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez.
+Fiziksel envanter ve hazır analog kart kaydı mevcut kaynaklara bağlanmalı; ADC modeli/revizyonu ve VREF bilgisi ile SCT AC kuplajı, kanal direnç/filtre değerleri ve güvenli ADC aralığı bilinen kanıta göre kaydedilmeli, bilinmeyenler açıkça işaretlenmelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez.
 
 ## Güvenlik
 Bu görev dokümantasyon ve görsel incelemedir. Şebeke bağlantısını sökme, kabloyu ayırma veya sisteme enerji verme.
