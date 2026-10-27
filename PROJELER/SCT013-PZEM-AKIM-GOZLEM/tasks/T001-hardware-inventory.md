@@ -26,12 +26,14 @@
 - Masaüstü 5 V / 1,8 A güç kaynağı; lamba test yükü.
 - Jack yuvaları ve bağlantı/ölçüm parçaları mevcut.
 - Önceden hazırlanmış 8 kanallı kart: her kanalda ayrı bias ve direnç ağı. Kullanıcının tarifine göre SCT fişi dişi jack'e takılır, sinyal bias devresi üzerinden ESP32 GPIO bacağına gider. İlk aşamada harici ADC entegresi kullanılmayacak; analog okuma ESP32'nin dahili ADC'si üzerinden, ADC destekli GPIO'dan yapılacak. MCP3208 fiziksel olarak mevcut; ileriki aşama için ayrıldı, ilk aşamada kullanılmayacak. Seçilecek kartın GPIO numarası henüz proje kaydında kesinleştirilmedi.
+- Kullanıcı kararı: SCT okumaları için 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E ayrı hızlı örnekleme kanalları olarak kullanılacak. Bu aşamanın çıktısı akım/RMS hesabı değil, sensörün ham/anlık gerilim okumaları ile SSR-zamanlayıcı düğümünden gelen paket bilgisinin birlikte yazdırılmasıdır. 1, 2 ve 4 sarım testleri aynı hat üzerinde ayrı ayrı yapılacak.
 
 ## İlerleme ilkesi
 İşi en küçük anlamlı birimlere böl ve teker teker ilerle. Sonraki aşamaya ait donanım (MCP3208) envantere yazılır ancak mevcut aşamanın kapsamına taşınmaz. Bir sonraki adımı ancak o anki küçük birimin kabul ölçütü karşılandıktan sonra başlat.
 - Bias üretim alt devresi önceki proje kayıtlarında kullanıcı onayıyla tamamlandı sayılıyor. Bu, SCT AC sinyalinin bias noktasına kuplajının da doğrulandığı anlamına gelmez.
 
 ## Kalan proje-özel işler
+0. Hızlı örnekleme çıktısının kapsamını sabitle: sensör ham/anlık gerilim örnekleri ve zamanlayıcı paket bilgisi yazdırılacak; bu aşamada akım/RMS hesabı yapılmayacak.
 1. SCT analog örneklemesi için stoktaki ESP32 kartlarından hangisinin seçildiğini ve fiziksel kart revizyonunu, mevcut fotoğraf/etiket kanıtıyla eşleştir.
 2. Seçilen kartın dahili ADC kanalını/GPIO numarasını ve bu girişin izin verilen aralığını üretici pin/teknik belgesiyle doğrula.
 3. ADC giriş referans/attenuation yapılandırmasını kaydet; ESP32 dahili ADC kullanılırken harici ADC'ye ait VREF alanı uygulanmaz.
