@@ -4,7 +4,7 @@
 **Aktif faz:** Faz 0 — hazırlık ve güvenlik  
 **Aktif görev:** [T001 — Fiziksel donanım envanteri](tasks/T001-hardware-inventory.md)  
 **SCT önceliği:** SCT013-030 (30 A / 1 V) — kullanıcı kararı.  
-**Bias alt devresi:** RN130421 6 V / 2,0 VA trafo, KBU6M 6 A / 1000 V köprü doğrultucu ve L78L33 TO-92 korunaklı kutuda; 2 × 10 kΩ ile yaklaşık 1,65 V bias bölücü ayrı breadboardda. Bunlar kullanıcı beyanıdır; filtre kondansatörleri ve SCT sinyalinin bias noktasına bağlantısı henüz kayıtlı değil.  
+**Bias alt devresi:** Korunaklı kutuda RN130421 6 V / 2,0 VA trafo → KBU6M köprü doğrultucu → 2200 µF / 35 V elektrolitik filtre kondansatörü → L78L33 TO-92. Ayrı breadboardda 2 × 10 kΩ bölücü ve bias orta noktasından GND'ye 104 kodlu (100 nF) seramik kondansatör var. Yerleşim kullanıcı beyanıdır.  
 **Stok bildirimi:** 7 adet SCT013-030; 10 adet SCT013-100A-1V; 10 adet 100 nF / 50 V seramik kondansatör. **Adetler kullanıcı bildirimidir; bağımsız sayım yapılmadı.**  
 **Donanım referansları:** [SCT/PZEM referans kopyaları](hardware/references/README.md) proje klasörüne alındı; kaynak `DONANIM/` belgeleri korunuyor.  
 **Son oturum kaydı:** [HISTORY/SESSION_LOG.md](HISTORY/SESSION_LOG.md), PR #8 aktarımı ve başarılı kapanış kontrolüyle güncellendi.  
@@ -16,7 +16,7 @@
 - SCT ve PZEM teknik Markdown belgelerinin kopyaları [hardware/references/](hardware/references/README.md) altında bulunur; genel teknik özellikler baştan yazılmayacaktır.
 - Bu proje için öncelikli SCT varyantı SCT013-030 (30 A / 1 V) olarak belirlendi. SCT013-100A-1V alternatif stokta kalır; adetler kullanıcı bildirimi olarak kaydedildi.
 - 100 nF / 50 V seramik kondansatörden 10 adet bulunduğu bildirildi. Bu stok bilgisi kondansatörün belirli bir devre düğümünde kullanılacağını veya analog filtre tasarımının kesinleştiğini göstermez.
-- Kullanıcının tarif ettiği “bias trafosu” kutusunda RN130421 (6 V AC / 2 VA) trafo, KBU6M (6 A / 1000 V) köprü doğrultucu ve L78L33 (TO-92) regülatör bulunuyor. İki adet 10 kΩ dirençle oluşturulan yaklaşık 1,65 V bias bölücü ayrı breadboardda. Filtre kondansatörlerinin değer/yeri ve SCT sinyalinin bias düğümüne bağlantısı henüz kaydedilmedi.
+- Kullanıcının tarif ettiği “bias trafosu” kutusunda RN130421 (6 V AC / 2 VA), KBU6M köprü doğrultucu, köprü sonrası 2200 µF / 35 V elektrolitik kondansatör ve L78L33 (TO-92) bulunuyor. Ayrı breadboardda iki adet 10 kΩ direnç, yaklaşık 1,65 V bias orta noktası ve orta noktadan GND'ye bağlı 104 kodlu (100 nF) seramik kondansatör var. L78L33 çevresindeki ilave bypass kondansatörleri ve SCT sinyalinin bias düğümüne giriş bağlantısı henüz belgelenmedi.
 - Önceki kayıtlar tarihsel teknik açıklamalar ve test notlarıdır; yeni projedeki fiziksel konfigürasyonu, yeni deney veya kalibrasyon sonucunu tek başına doğrulamaz.
 - Başlangıç ayarları: 2 kS/s, nominal 200 ms pencere, yaklaşık 1 s PZEM sorgusu.
 - PZEM'in iç ölçüm penceresi ve bu modüldeki gecikmesi doğrulanmadı.
