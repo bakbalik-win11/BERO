@@ -12,7 +12,7 @@ Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konul
 10. 200 ms pencere kararlı yükte tekrarlanabilir mi; çevrime senkron pencere gerekli mi?
 
 **Karara bağlandı; yeniden sorulmayacak:**
-- Referans karşılaştırma cihazı: kullanıcı fotoğrafıyla gösterilen UNI-T UT200B+ True RMS pens ampermetre. Kalibrasyon/izlenebilirlik durumu bilinmiyor; bu, modelin kaydedilmesine engel değil.
+- Eğitim/etiket referansı PZEM-004T V3.0'dır. Açık kalan konu, SCT modelinin PZEM okumalarını değerlendirmek için kullanılacak hata ölçütleri ve kararlı alan koşullarıdır.
 - DS3231: kullanıcı beyanı — RTC kodu çalıştı, güç kesilip yeniden verildikten sonra saat korundu; iki modülde de 2032 tipi pil var. Bu test ve pil bilgisi tekrar istenmeyecek.
 - Deney yükleri önceden sabitlenmeyecek; kullanıcı her testte kullandığı yükü ve koşulları beyan edecek.
 - Öncelikli sensör: SCT013-030 (30 A / 1 V).
