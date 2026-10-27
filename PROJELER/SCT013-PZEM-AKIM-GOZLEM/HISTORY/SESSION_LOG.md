@@ -294,3 +294,14 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Kullanıcı düzeltmesi:** 8 kanallı analog arayüz kartı yoktur. Mevcut devre breadboard üzerindeki bias alt devresidir.
 - **Yapılan:** Güncel proje belgelerindeki 8 kanallı kart ve kanal başına ayrı bias/direnç ağı iddiaları kaldırıldı. Güncel donanım tarifi 2 × 10 kΩ dirençli orta nokta ve orta noktadan GND'ye 104 (100 nF) kondansatörlü breadboard bias devresi olarak düzeltildi. Bu aşamada harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır.
 - **Not:** Bu günlükteki önceki satırlar tarihsel kayıt olarak kalır; güncel donanım durumu değildir.
+
+
+## 2026-10-27 — Gün 1: depo hafızası, fikirden göreve ilerleme ve kullanıcı beyanı ilkesi
+
+- **Durum:** UYGULANDI; değiştirilen dosyalar GitHub'dan yeniden okunarak doğrulandı.
+- **Hedef:** Sohbet geçmişine bağımlılığı azaltmak; proje hafızasını depoda tutmak; fikirleri erkenden göreve zorlamadan aşamalı ilerleme düzenini korumak.
+- **Yapılan:** Kişisel çalışma/iletişim notları kök dizindeki `KISISEL_NOTLAR.md` dosyasına eklendi. Mükerrer `tasks/TASK-001-hardware-inventory.md` kaldırıldı; `tasks/T001-hardware-inventory.md` esas kayıt olarak bırakıldı. `ILKELER.md` içine kullanıcının bir işi yaptığını veya tamamladığını açıkça bildirmesi halinde bunun proje kaydında tamamlanmış kabul edilmesi ve aynı işi gereksiz yere tekrar istememe ilkesi eklendi. T001, T002 ve STATUS metinleri bu anlayışla sadeleştirildi.
+- **Doğrulama:** `KISISEL_NOTLAR.md`, `ILKELER.md`, T001, T002 ve STATUS GitHub'dan yeniden okundu. Eski TASK-001 dosyasının artık bulunmadığı ve ROADMAP/görev indeksinde eski dosya adına referans olmadığı kontrol edildi. İlgili commitler: mükerrer dosyanın kaldırılması `69fcc53330dd9db16c001d1e761fc9745ec94af4`; kullanıcı beyanı ilkesi ve kayıt güncellemeleri `80a8362b2fd7916fa201a3d7a2d9c6f4cd7e44e2`, `a35dd953d43e95b3927589e2a2b6526dff542a2b`, `c4eb17ba58f460bf09c801693af3e351f032d3e8`, `a291c519741f793c5f968e652ae24b138ffa7bf9`.
+- **Açık kalanlar:** Bu kayıt, tüm deponun baştan sona kapsamlı tutarlılık denetiminin yapıldığı anlamına gelmez. Sohbet bağlamından bağımsız devam edebilmek için her yeni oturumda protokoldeki gibi güncel depo kaynakları okunup karşılaştırılmalıdır.
+- **Sonraki adım:** Her anlamlı yeni bilgi ortaya çıktığında doğru dosyaya anında kaydet; oturum sonunda ilgili görev, STATUS, ROADMAP ve günlük kayıtlarının birbiriyle uyumunu kontrol et.
+- **Kanıt:** [Kişisel notlar](../../KISISEL_NOTLAR.md); [proje ilkeleri](../ILKELER.md); [T001](../tasks/T001-hardware-inventory.md); [T002](../tasks/T002-safety-checklist.md); [STATUS](../STATUS.md); [ROADMAP](../ROADMAP.md).
