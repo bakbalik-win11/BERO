@@ -6,7 +6,7 @@
 **Öncelikli SCT:** SCT013-030 (30 A / 1 V)  
 **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); CT modeli kullanıcı tarafından **PZCT-02 (0–100 A)** olarak belirtildi ve PZEM'e bağlı olduğu fotoğrafta gösterildi. Yapılandırma 100 A harici CT'li PZEM düzenidir.  
 **Bias üretim alt devresi:** **TAMAMLANDI — kullanıcı onayı.** RN130421 6 V / 2,0 VA + KBU6M köprü + 2200 µF / 35 V filtre kondansatörü + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) seramik kondansatör. Bağımsız ölçüm raporu bu kayda eklenmedi.  
-**SSR:** Mevcut BERO SSR referansı projeye kopyalandı; fiziksel model kaynak kayıtta da doğrulanmamış.  
+**SSR:** Dört kanallı OMRON SSR kartı proje donanımına dahil edildi (kullanıcı bilgisi). Fototriyak izolasyon, zero-cross; giriş LOW 0–0,5 V / belirsiz 0,5–2,5 V / HIGH 2,5–20 V; çıkış kanal başına 75–264 VAC, bildirilen 0,1–2 A. Tam SSR model kodu okunmadı.  
 **Deney durumu:** YAPILMADI.
 
 ## Bildirilen stok
@@ -27,7 +27,7 @@
 - Bias üretim alt devresi, kullanıcının tamamlandı onayıyla kapatıldı. SCT sinyalinin 1,65 V noktasına kuplajı ana analog ön uç bağlantısıdır; bu ayrı konudur.
 - PZEM donanım kaydı mevcut BERO belgesinden kullanılıyor. Bağlı CT, kullanıcı tarafından PZCT-02 (0–100 A) olarak tanımlandı; bu proje 100 A harici CT düzeni olarak kaydedildi.
 - İlk aşamada kullanılacak dört ESP32 geliştirme kartı belirlendi: 2× WROOM-32D, 1× WROOM-32E ve 1× genel ESP-WROOM-32 NodeMCU ESP32 Bluetooth. Genel kartın PCB revizyonu görselden kesinleşmedi.
-- SSR kaynak klasörü var ve proje kopyası eklendi; gerçek SSR modeli, giriş/çıkış türü ve yük kapasitesi doğrulanmadı.
+- Dört kanallı SSR kartının kullanıcı tarafından verilen elektriksel sınırları kaydedildi; tam röle model kodu, giriş akım gereksinimi ve kanal eşzamanlı yük/termal sınırları ayrıca doğrulanacak.
 - Başlangıç tasarım değerleri: 2 kS/s, nominal 200 ms SCT penceresi ve yaklaşık 1 s PZEM sorgusu. Bunlar deneyle doğrulanmış sonuç değildir.
 
 ## Karar kapıları
@@ -44,7 +44,7 @@
 - PZEM için mevcut BERO kaydı ve bağlı PZCT-02 (0–100 A) bilgisi kaydedildi. MCU bağlantısında UART lojik seviyesi ve izolasyon düzeni uygulama öncesinde doğrulanmalı.
 - Fiziksel ADC modeli ve VREF kaynağı/değeri; genel NodeMCU kartının tam PCB revizyonu kablolama öncesinde görsel/üretici bilgisiyle doğrulanmalı.
 - SCT AC sinyalinin tamamlanmış 1,65 V bias noktasına nasıl kuplaj yaptığı ve analog ön uç değerleri.
-- SSR projede kullanılacaksa tam model, giriş/çıkış türü ve yük kapasitesi.
+- SSR kontrol GPIO'su, görevlendirilecek yükler ve test öncesi giriş/çıkış davranışının güvenli doğrulaması.
 - True-RMS referans cihazı, kontrollü yük kimlikleri ve E01–E06 deneyleri.
 
 Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
