@@ -25,7 +25,7 @@ Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 
 | ID | Görev | Faz | Durum | Bağımlılık |
 |---|---|---:|---|---|
-| T001 | Fiziksel donanım envanteri | 0.1 | DEVAM EDİYOR — stok ve 8 kanallı bias kartı kaydedildi; ADC/VREF ve SCT kuplaj ayrıntıları açık | — |
+| T001 | Fiziksel donanım envanteri | 0.1 | TAMAMLANDI — kullanıcı beyanındaki stok, kart rolleri ve bias devresi kaydedildi; kalan analog tasarım ayrıntıları sonraki görevlere ait | — |
 | T002 | Güvenlik kontrolü | 0.2 | PLANLANDI | T001 |
 | T003 | Referans cihazı, yükler ve hata hedefi | 0.3 | PLANLANDI | T001 |
 | T004 | Analog ön uç | 1.1 | PLANLANDI | T002, T003 |
