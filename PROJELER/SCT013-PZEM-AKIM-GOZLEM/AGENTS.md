@@ -9,6 +9,11 @@ Kullanıcı için kısa kontrol listesi: [Gün sonu kontrolü](GUN_SONU_KONTROLU
 4. Kullanıcıya işin başlangıç durumunu, hedefini ve kabul ölçütünü kısa biçimde belirt.
 5. Bu dosyalar okunamadıysa okumuş gibi davranma; bunu engel olarak belirt.
 
+## Depo tutarlılığı ve kullanıcı önceliği
+- Depo kayıtları kullanıcı için kritik çalışma çıktısıdır. Anlamlı bir değişiklikte yalnız ana dosyayı değil, o bilgiye bağlı görev kartı, `STATUS.md`, `ROADMAP.md`, `docs/open-questions.md`, ilgili envanter/teknik belge ve `HISTORY/SESSION_LOG.md` kayıtlarını da kontrol et.
+- Her dosyayı gereksiz yere değiştirme; ancak ilgili dosyalarda durum/bağlantı/karar tutarsızlığı varsa aynı oturumda düzelt.
+- Başarıyı yalnızca commit cevabına dayanarak raporlama: yazılan dosyaları yeniden oku, commit SHA'larını ve bağlantıları doğrula; yapılmayan fiziksel testleri açıkça ayır.
+
 ## Kapsam
 Proje, SCT ADC edinimi, akım özellikleri çıkarımı ve PZEM okumalarıyla zaman eşleştirmesidir. PF hesabı, FFT/THD, harmonik çözümleme, güç kalitesi analizi veya enerji analizörü geliştirme işi önermeyin.
 
