@@ -35,3 +35,6 @@ Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 
 ## Kart açma
 Yeni görev için _template.md dosyasını kopyala; bir sonraki T numarasını kullan, bağımlılıkları ve ölçülebilir kabul koşulunu yaz. Yeni kart eklendiğinde bu tabloyu, ROADMAP.md ve gerekiyorsa STATUS.md'yi güncelle.
+
+## Fikir havuzu
+Henüz göreve dönüştürülmemiş veya önceliği değişebilecek fikirler [IDEA_BACKLOG.md](../IDEA_BACKLOG.md) içinde tutulur. Fikirler bu listede korunur; yalnızca seçilip uygulanmaya hazır olduğunda görev listesine alınır. Fikir ID'si görev açıldıktan sonra da korunur.
