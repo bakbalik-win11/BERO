@@ -7,7 +7,7 @@
 
 ## Yapılacak
 1. Kullanılabilir True-RMS referans ampermetrenin marka/modelini ve kalibrasyon/izlenebilirlik durumunu kaydet.
-2. Planlanan yüklerin tipini, etiket gücünü ve güvenli kullanım koşullarını kaydet; lamba dâhil en az üç kontrollü akım seviyesi için aday senaryo belirle. Yüklerin değerlerini ölçüm/etiket kanıtı olmadan doldurma.
+2. Kullanıcının bildirdiği deney yüklerini kaydet: 100 W ve 150 W ampuller ana deney yükleri; ayrıca farklı güç faktörü (PF) karakteristiği için 5 W LED ampul kullanılacak. Bunlar etiket gücü/ kullanıcı bildirimi olarak kaydedilmiştir; gerçek güç, akım ve PF ölçümle doğrulanmalıdır. Bu yüklerle en az üç kontrollü akım seviyesi ve güvenli kullanım koşulları planlanmalı.
 3. Hedef kullanım amacına göre SCT–referans hata sınırını ve diğer gerekli kabul ölçütlerini tanımlamak için gerekçeli seçenekler hazırla.
 4. Asistan, hedefleri sessizce tahmin etmemeli: önerilen sayısal hedefi dayanağı ve ödünleşimleriyle açıklamalı; kullanıcı onayından sonra docs/00-scope.md ve gerekiyorsa yeni ADR'ye yazmalı.
 5. Hedefler ölçüm sonuçları görüldükten sonra geriye dönük değiştirilmemeli. Değişiklik gerekirse gerekçesi yeni bir karar kaydında açıklanmalı.
