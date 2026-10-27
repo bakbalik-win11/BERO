@@ -58,7 +58,7 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 | PZEM ve CT | PZEM-004T için [mevcut BERO donanım kaydı](../../../DONANIM/PZEM-004T/README.md) esas alınır; bağlı CT modeli kullanıcı beyanıyla PZCT-02 (0–100 A) | Bu projede yeniden donanım belgesi açma veya CT modelini tekrar sorma; entegrasyon sırasında UART lojik seviyesi ve izolasyon gereksinimlerini kontrol et |
 | DS3231 | RTC referansı mevcut | Breakout revizyonu, SDA/SCL pinleri, pull-up seviyesi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemi doğrulanmalı |
 | SSR | SAMM Market 5 V, 2 kanal, İzmo9659 / MP02637 | İki AC yük, GPIO eşlemesi, tetik mantığı ve termal sınırlar güvenli biçimde doğrulanmalı |
-| Referans cihaz | Model kaydı henüz yok | T003 kapsamında True-RMS referans cihazının marka/modeli ve kalibrasyon/izlenebilirlik durumu kaydedilmeli |
+| Referans cihaz | UNI-T UT200B+ True RMS pens ampermetre; kullanıcı tarafından fotoğrafla gösterildi | Fotoğraftaki model/True RMS ibaresi görsel olarak tanımlandı. Kalibrasyon/izlenebilirlik durumu bilinmiyor; ölçüm doğruluğu bağımsız olarak doğrulanmış sayılmaz. T003’te bu sınırlama kaydedilmeli |
 | Yükler | 100 W ve 150 W ampuller ana deney yükleri; 5 W LED ampul farklı PF karakteristiği için | T003 kapsamında yüklerin gerçek güç/akımı ve LED'in PF'si ölçülmeli; üç kontrollü akım seviyesi ve güvenli kullanım koşulları netleştirilmeli |
 
 ## Kayıt kuralları
@@ -66,6 +66,7 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 - Önceki test notları yalnız kendi kayıt kapsamları için kanıttır; yeni deney veya kalibrasyon sonucu gibi sunulmaz.
 - Kullanıcı tarafından bildirilen stokları kullanıcı bildirimi olarak etiketle.
 - Bu projede ölçülmemiş değerleri ölçülmüş gibi yazma.
+- Kullanıcı fotoğrafında UNI-T UT200B+ pens ampermetre görülüyor; ön panelinde True RMS ibaresi var. Akım karşılaştırma cihazı olarak kullanılacak. Kalibrasyon/izlenebilirlik durumu ve cihazın doğruluk sınırları ayrıca doğrulanmadı.
 - Kullanıcının sağladığı fotoğraflar: ESP32-WROOM-32D metal kalkanlı geliştirme kartı ve ESP32-C3 Super Mini kartının arka yüzü. Görseller metin envanterinde referans olarak kaydedildi; dosyaların kendisi GitHub'a resim dosyası olarak yüklenmedi.
 
 
