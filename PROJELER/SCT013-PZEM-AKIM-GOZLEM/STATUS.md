@@ -23,7 +23,7 @@
 | ESP32 ölçüm düğümü | 1 | Kullanıcı bildirimi / önceki PZEM düğümü |
 | PZEM-004T | V3.0 | Kullanıcı bildirimi |
 | Masaüstü güç kaynağı | 5 V / 1,8 A | Kullanıcı bildirimi |
-| Test yükü | Lamba | Kullanıcı bildirimi |
+| Test yükleri | 100 W ve 150 W ampuller ana deney yükleri; 5 W LED ampul farklı PF için | Kullanıcı bildirimi; gerçek güç, akım ve PF ölçümle doğrulanacak |
 | 8 kanallı analog arayüz | Kanal başına ayrı bias ve direnç ağı | Kullanıcı bildirimi; önceden hazırlanmış |
 | Jack yuvaları ve bağlantı/ölçüm parçaları | Tam takım mevcut | Kullanıcı bildirimi |
 
@@ -50,6 +50,6 @@
 - SCT AC sinyalinin tamamlanmış 1,65 V bias noktasına kuplajı, kanal direnç/filtre değerleri ve güvenli ADC aralığı.
 - DS3231 breakout revizyonu, I²C pinleri/pull-up gerilimi, yedek pil türü ve ilk saat ayarlama yöntemi.
 - SSR'nin hangi iki AC yükü anahtarlayacağı, GPIO eşlemesi ve giriş mantığının düşük gerilimde doğrulanması.
-- T003 için True-RMS referans cihazı marka/modeli, kalibrasyon/izlenebilirlik durumu, en az üç kontrollü yük seviyesi ve E01–E06 deneyleri.
+- T003 için True-RMS referans cihazı marka/modeli, kalibrasyon/izlenebilirlik durumu, 100 W ve 150 W ana ampul yükleri, 5 W LED yüküyle PF karşılaştırması, en az üç kontrollü yük seviyesi ve E01–E06 deneyleri.
 
 Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
