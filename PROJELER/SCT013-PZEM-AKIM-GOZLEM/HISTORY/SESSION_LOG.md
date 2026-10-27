@@ -242,3 +242,8 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Dokümantasyon:** T003, donanım envanteri, STATUS ve ROADMAP bu karara göre güncellendi. Geçmiş kayıtlardaki alternatif cihaz notları bu karara göre sadeleştirildi.
 
 - **Karar düzeltmesi:** Önceki oturum notlarında adı geçen alternatif pens ampermetre adayı proje referansı değildir. Kullanıcının netleştirdiği üzere PZEM, SCT verisini etiketleme/eğitme için temel referanstır; proje hedefinde True RMS cihaz şartı bulunmaz.
+
+
+## 2026-10-27 — T003 kapsamının daraltılması
+- **Kullanıcı kararı:** PZEM kararlı anlarını gözlemleme, SCT kararlı an istatistiklerini çıkarma ve bu alanları eşleştirme T003 işi değildir; bunlar ayrı görev/deney kapsamında ele alınacaktır.
+- **Yapılan:** T003 yalnız PZEM'e göre model kabul hata hedefini tanımlayacak şekilde düzenlendi. Görev indeksi, STATUS, ROADMAP ve açık sorular aynı kapsamla eşitlendi.
