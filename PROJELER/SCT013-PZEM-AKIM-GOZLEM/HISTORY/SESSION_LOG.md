@@ -191,3 +191,14 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Gerçekte kullanılacak ADC modeli/revizyonu ve VREF; SCT AC sinyalinin bias noktasına kuplajı; kanal başına direnç/filtre değerleri ve güvenli ADC aralığı. Referans cihazı/yük seviyeleri T003 kapsamındadır.
 - **Sonraki adım:** Önce mevcut BERO kayıtlarından ADC/MCU seçeneklerini kontrol et; kullanıcıyı bilinen stok veya hazır kart ayrıntılarını yeniden vermeye zorlama. Kalan gerçek proje-özel kararları birer birer ele al.
 - **Kanıt:** [T001 envanter özeti](../docs/inventory/T001-fiziksel-donanim-envanteri.md); [ana donanım envanteri](../hardware/inventory.md); [aktif görev](../tasks/T001-hardware-inventory.md); [STATUS](../STATUS.md); [ROADMAP](../ROADMAP.md); [açık sorular](../docs/open-questions.md).
+
+
+## 2026-10-27 — Depo tutarlılığı kuralının çalışma protokolüne eklenmesi
+
+- **Durum:** UYGULANDI.
+- **Hedef ve kabul ölçütü:** Depo bilgilerinin kullanıcı için kritik olduğu önceliğini kalıcı proje çalışma kuralına dönüştürmek; ilgili belgeleri çapraz kontrol etme ve commit sonrası yeniden okuma yükümlülüğünü açıkça belirtmek.
+- **Yapılan:** AGENTS.md içine depo tutarlılığı ve kullanıcı önceliği bölümü eklendi. İlgili görev, durum, yol haritası, açık sorular, envanter/teknik belgeler ve oturum günlüğünün aynı iş kapsamında kontrol edilmesi kuralı yazıldı.
+- **Doğrulama:** AGENTS.md güncellemesi GitHub tarafından commit edildi: `67d5392e52650a8b496e6f4a864de135f4a4e2bb`.
+- **Açık kalanlar:** Kullanıcı hesabındaki ChatGPT Memory kapalı olduğundan bu tercihi kişisel belleğe kaydetmek mümkün değil; kullanıcı isterse Settings → Personalization → Memory üzerinden etkinleştirebilir.
+- **Sonraki adım:** Bu projede her anlamlı depo oturumunda yeni çalışma kuralını uygula ve kullanıcıya commit/kanıt bağlantılarını ver.
+- **Kanıt:** [AGENTS.md](../AGENTS.md); [depo çalışma protokolü](../SESSION_PROTOCOL.md).
