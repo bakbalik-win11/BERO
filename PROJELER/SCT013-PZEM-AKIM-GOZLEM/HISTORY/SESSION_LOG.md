@@ -62,3 +62,14 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Değişikliklerin ana dala birleştirilmesi ve otomatik oturum kapanış kontrolünün sonucu.
 - **Sonraki adım:** PR kontrolünün başarılı olduğunu doğrulayıp değişikliği main dalına al.
 - **Kanıt:** [Klasör rehberi](../KLASOR_REHBERI.md); [değişiklik dalı](https://github.com/bakbalik-win11/BERO/tree/docs/turkce-klasor-etiketleri).
+
+
+## 2026-10-27 — Önceki SCT/PZEM Markdown kayıtlarının projeye alınması
+
+- **Durum:** UYGULANDI; PR ve oturum kapanış kontrolü bekleniyor.
+- **Hedef ve kabul ölçütü:** Önceki BERO donanım çalışmalarındaki SCT013-100A-1V, SCT013-30A-1V ve PZEM-004T V3.0 Markdown kayıtlarını yeni projede tekrar araştırma/yazma gerektirmeden kullanmak; kaynakları korumak ve proje-özel eksikleri ayrı göstermek.
+- **Yapılan:** Üç donanım README'si `hardware/references/` altına kaynak yolu ve kopya tarihi belirtilerek aktarıldı. Referans dizin indeksi ve proje README bağlantıları eklendi. `hardware/inventory.md`, T001, `STATUS.md` ve `docs/open-questions.md` genel donanım bilgisini yeniden toplamak yerine mevcut referansları kullanacak ve yalnızca bu projeye özgü seçim/eksikleri kaydedecek şekilde güncellendi.
+- **Doğrulama:** Kopyalar, `DONANIM/` altındaki kaynak Markdown içeriklerinden oluşturuldu. Önceki test notları geçmiş kayıt olarak işaretlendi; yeni deney veya kalibrasyon sonucu üretilmedi. PR kapanış kontrolü ve bağlantı kontrolü bekleniyor.
+- **Açık kalanlar:** Bu projede kullanılacak SCT varyantı; PZEM'in 10 A/100 A seçeneği ve CT modeli; gerçek MCU/ADC, VREF/bias/analog ön uç; referans cihazı ve yük senaryoları.
+- **Sonraki adım:** PR kontrolünü doğrula ve değişikliği `main` dalına al. Ardından T001'i sadece proje-özel eksikleri kapatmak için sürdür.
+- **Kanıt:** [Proje referans indeksi](../hardware/references/README.md); [güncel envanter](../hardware/inventory.md); [T001](../tasks/T001-hardware-inventory.md); [çalışma dalı](https://github.com/bakbalik-win11/BERO/tree/docs/import-hardware-reference-md).
