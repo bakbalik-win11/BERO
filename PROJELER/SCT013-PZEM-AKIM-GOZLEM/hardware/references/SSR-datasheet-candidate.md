@@ -1,17 +1,27 @@
-# SSR Veri Sayfası — Model Eşleştirmesi Bekliyor
+# SSR — Ürün sayfası ve veri sayfası eşleştirmesi
 
-> **Proje referans kopyası — 2026-10-27.** Kaynak: [`DONANIM/SSR/datasheets/README.md`](../../../../DONANIM/SSR/datasheets/README.md). Kaynak belge asıl kayıttır.
+> **Proje referans kopyası.** Asıl kayıt: [`DONANIM/SSR/datasheets/README.md`](../../../../DONANIM/SSR/datasheets/README.md).
 
-## Kullanıcı tarafından bildirilen mevcut modül
+## Satın alınan kart
 
-Mevcut kart dört kanallıdır; kullanıcı üretici bilgisini OMRON olarak verdi. Bildirilen özellikler: fototriyak izolasyonu, zero-cross, 0–0,5 V LOW, 0,5–2,5 V belirsiz bölge, 2,5–20 V HIGH; kanal başına 75–264 V AC ve 0,1–2 A; nominal yük 100–240 V AC (50/60 Hz).
+Kullanıcının verdiği satın alma kaynağı: [SAMM Market — 5V 2 Kanal Solid State Röle Kartı](https://market.samm.com/5v-2-kanal-solid-state-role-karti).
 
-Bu oturumdaki fotoğraf kart üzerindeki SSR gövdelerinin tam model kodunu güvenilir biçimde okumaya yetmiyor. Bu nedenle henüz tek ve kesin bir üretici veri sayfası ile eşleşme yapılmadı.
+- Tedarikçi kodu: İzmo9659
+- SAMM SKU: MP02637
+- Kart: 5 V DC, 2 kanal
+- Ürün sayfasında belirtilen çıkış: kanal başına 75–264 V AC, 0,1–2 A; nominal 100–240 V AC
+- OMRON, fototriyak izolasyon ve zero-cross nitelikleri ürün sayfasında verilir.
 
-## Olası karşılaştırma kaynağı: Omron G3MB serisi
+**Kanal sayısı düzeltmesi:** Önceki proje belgelerinde kullanılan “4 kanallı SSR” ifadesi yanlıştı. Satın alınan ürün 2 kanallıdır.
+
+## Tam SSR parça kodu
+
+SAMM ürün sayfası kart üzerindeki SSR entegresinin tam model numarasını belirtmiyor. Fotoğraftaki yazı da güvenilir eşleştirme için yeterince net değil. Bu yüzden aşağıdaki üretici ailesi yalnız karşılaştırma amacı taşır.
 
 [Omron G3MB serisi veri sayfası (PDF)](https://www.omronkft.hu/pdf_en/g3mb.pdf)
 
-Omron G3MB ailesinde modele göre giriş ve çıkış değerleri değişir. G3MB-202P'nin 2 A sınıfı özellikleri bu kartın tam modelinin G3MB-202P olduğunu kanıtlamaz.
+G3MB-202P'nin 5 V kontrol girişli, zero-cross ve 2 A / 100–240 V AC sınıfı olması özellikler bakımından benzerlik gösterir; ancak fiziksel karttaki parçanın kesin olarak G3MB-202P olduğu henüz kanıtlanmamıştır.
 
-**Durum:** Kullanıcı tarafından sağlanan teknik değerler envanterde kaydedildi; kesin model/veri sayfası eşleştirmesi hâlâ bekliyor.
+## Kontrol girişindeki belirsizlik
+
+Ürün sayfasında LOW/HIGH gerilim eşikleri verilirken ayrıca “low level trigger” ifadesi bulunur. Kontrol girişinin gerçek mantığı önce şebekeden tamamen bağımsız, düşük gerilimli masa testinde doğrulanmalıdır. Kartın 5 V beslemesi, ESP32 GPIO'sunun 5 V toleranslı olduğu anlamına gelmez.

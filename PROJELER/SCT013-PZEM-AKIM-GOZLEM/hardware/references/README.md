@@ -6,7 +6,7 @@ Bu klasör, önceki BERO donanım çalışmalarındaki teknik Markdown belgeleri
 - [SCT013-30A-1V — 30 A / 1 V](SCT013-30A-1V.md)
 - [PZEM-004T V3.0 — AC ölçüm modülü](PZEM-004T-V3.0.md)
 - [SSR — donanım referansı](SSR.md)
-- [SSR — aday veri sayfası / model doğrulaması notu](SSR-datasheet-candidate.md)
+- [SSR — ürün sayfası ve model eşleştirme notu](SSR-datasheet-candidate.md)
 - [DS3231 — RTC donanım referansı](DS3231.md)
 - [DS3231 — resmî veri sayfası bağlantısı](DS3231-datasheet.md)
 
@@ -21,6 +21,6 @@ Bu klasör, önceki BERO donanım çalışmalarındaki teknik Markdown belgeleri
 
 Kaynak belgeler asıl kayıttır. Kopyalar önceki bilgileri proje içinde erişilebilir yapar; kopyanın varlığı fiziksel seçimi, yeni deney veya kalibrasyon sonucunu doğrulamaz. Kaynak metinler değişirse kopyalar eşitlenmelidir.
 
-**SSR notu:** Kullanıcı dört kanallı OMRON SSR kartı için giriş/çıkış değerlerini bildirdi. Kart üzerindeki tam SSR model kodu fotoğraftan okunamadığından Omron G3MB veri sayfası yalnız karşılaştırma kaynağıdır; kesin parça eşleşmesi değildir.
+**SSR notu:** Kullanıcının satın alma bağlantısı 5 V, 2 kanallı SAMM Market kartını tanımlar (tedarikçi kodu İzmo9659, SKU MP02637). Ürün sayfası özellikleri envantere kaydedildi. Kart üzerindeki gerçek SSR entegrenin tam model kodu doğrulanmadığından Omron G3MB veri sayfası yalnız karşılaştırma kaynağıdır; kesin parça eşleşmesi değildir.
 
 **DS3231 notu:** Teknik referans önceki BERO donanım belgesinden kopyalandı ve Analog Devices resmî veri sayfasıyla desteklendi. Önceki ESP32-C3 SDA/SCL pinleri bu projeye otomatik taşınmaz; yeni pin planı ve breakout pil/pull-up devresi ayrıca doğrulanmalıdır.

@@ -1,38 +1,42 @@
 # SSR — Donanım Referansı
 
-> **Proje referans kopyası — 2026-10-27.** Kaynak: [`DONANIM/SSR/README.md`](../../../../DONANIM/SSR/README.md). Kaynak belge asıl kayıttır.
-> Aşağıdaki özellikler kullanıcı tarafından sağlanan modül açıklamasına dayanır; fiziksel test veya kesin model kodu eşleştirmesi yapılmadı.
+> **Proje referans kopyası.** Asıl kayıt: [`DONANIM/SSR/README.md`](../../../../DONANIM/SSR/README.md).
+> Satın alma kaynağı: [SAMM Market 5 V 2 Kanal SSR](https://market.samm.com/5v-2-kanal-solid-state-role-karti).
 
-Bu kayıt, BERO'da bulunan dört kanallı SSR kartını tanımlar. Eski ESP32-C3 test düzeneğine ilişkin kontrolcü bilgileri tarihsel nottur; yeni proje için GPIO seçimi henüz yapılmadı.
+## Ürün kimliği ve kaynak
 
-## Modül ve elektriksel bilgiler
+- **Satın alma kaynağı (kullanıcı beyanı):** [SAMM Market — 5V 2 Kanal Solid State Röle Kartı](https://market.samm.com/5v-2-kanal-solid-state-role-karti)
+- **Ürün adı:** 5V 2 Kanal Solid State Röle Kartı
+- **Tedarikçi kodu:** İzmo9659
+- **SAMM SKU:** MP02637
+- **Kartta bildirilen SSR üreticisi:** OMRON
+- **Kanal sayısı:** **2** (önceki kayıtlardaki “4 kanal” ifadesi hatalıydı; ürün sayfasıyla düzeltildi.)
 
-Aşağıdaki değerler kullanıcının verdiği modül bilgileri ve fotoğraf açıklamasıdır; bu oturumda bağımsız elektriksel test yapılmamıştır.
+Özellikler SAMM Market ürün sayfasından alınmıştır. Satın alınan fiziksel kart üzerinde parça kodu/markalama ayrıca okunarak eşleştirilmediği için tekil SSR entegresinin kesin model kodu (ör. G3MB-202P) doğrulanmış sayılmaz.
 
-- **Kanal sayısı:** 4
-- **Üretici işareti/beyanı:** OMRON
-- **İzolasyon:** Fototriyak
-- **Anahtarlama:** Zero-cross
-- **Kontrol girişi — LOW:** 0–0,5 V (SSR kapalı)
-- **Kontrol girişi — belirsiz bölge:** 0,5–2,5 V
-- **Kontrol girişi — HIGH:** 2,5–20 V (SSR açık)
-- **Çıkış yük gerilimi (kanal başına):** 75–264 V AC, 50/60 Hz
-- **Nominal çıkış yükü:** 100–240 V AC, 50/60 Hz
-- **Yük akımı (kanal başına, bildirilen):** 0,1–2 A
-- **Yük tipi:** Genel amaçlı
+## Ürün sayfasında yayımlanan özellikler
 
-Kart fotoğrafındaki SSR gövdelerinin tam model kodu güvenilir biçimde okunamadığından G3MB-202P gibi belirli bir model kesinleştirilmemiştir. Omron G3MB serisi veri sayfası şimdilik yalnızca olası karşılaştırma kaynağıdır; fiziksel modelle eşleştiği varsayılmamalıdır.
+- **Kart beslemesi:** 5 V DC; iki kanal da açıkken toplam 160 mA olarak belirtilmiş.
+- **Kanal başına çıkış:** 75–264 V AC, 50/60 Hz.
+- **Kanal başına bildirilen yük akımı:** 0,1–2 A.
+- **Nominal çıkış yükü:** 100–240 V AC, 50/60 Hz.
+- **Yük tipi:** Genel amaçlı AC.
+- **DC yük anahtarlama:** Uygun değil; ürün sayfası yalnız AC yük için olduğunu belirtiyor.
+- **İzolasyon:** Fototriyak.
+- **Anahtarlama:** Zero-cross.
+- **Giriş gerilimi açıklaması:** 0–0,5 V LOW (SSR kapalı), 0,5–2,5 V belirsiz bölge, 2,5–20 V HIGH (SSR açık).
+- **Ek tetikleme notu:** Aynı ürün sayfasında “low level trigger” ifadesi de var. Bu açıklama, yukarıdaki LOW=kapalı/HIGH=açık gerilim açıklamasıyla çelişebildiğinden girişin gerçek aktif seviyesi masa üzerinde düşük gerilimle doğrulanmadan kabul edilmemeli.
 
-## Önceki BERO test düzeneği
+## Bu projedeki durum
 
-- Önceki notlarda kontrolcü ESP32-C3 olarak geçer.
-- Önceki notlarda SSR kontrol pini GPIO6 olarak belirtilmiştir.
-- Bu tarihsel pin notu, yeni projede GPIO6 kullanılacağı veya SSR çıkışının çalıştığının kanıtı değildir.
+Kart proje donanım listesine dahil edildi; kullanılacak çıkış kanalları, yükler ve ESP32 GPIO'ları henüz belirlenmedi. Ürün sayfasındaki 2 A/kanal değeri, termal koşullar ve PCB yapısı doğrulanmadan sürekli akım garantisi gibi yorumlanmamalı.
 
-## Kullanım ve güvenlik notları
+Önceki BERO ESP32-C3 test kaydında GPIO6 geçer; bu tarihsel bilgi bu projedeki GPIO seçimi değildir.
 
-- 0,5–2,5 V kontrol giriş aralığı belirtilen belirsiz bölgedir; girişin bu aralıkta kalmasına izin verilmemelidir.
-- Bildirilen 2 A/kanal değeri, kart üzerindeki soğutma, PCB yolları, ortam sıcaklığı ve eşzamanlı kanal kullanımı değerlendirilmeden sürekli çalışma garantisi olarak yorumlanmamalıdır.
-- Şebeke gerilimi bulunan çıkış tarafını MCU, USB, breadboard ve düşük gerilimli kablolardan fiziksel olarak ayır; uygun muhafaza, sigorta ve izolasyon düzeni kullan.
-- Şebeke bağlantısı ve yük testleri yetkin kişi tarafından, enerji kesilerek ve uygun ölçüm/güvenlik ekipmanıyla yapılmalıdır.
-- SSR'nin giriş akım gereksinimi, aktif seviyesi ve gerçek çıkış davranışı yük bağlanmadan önce kontrollü düşük gerilim testi ve ilgili model/veri sayfası ile doğrulanmalıdır.
+## Güvenlik ve bağlantı öncesi kontrol
+
+- ESP32 GPIO'su doğrudan 5 V seviyesine çekilmemeli. Kartın beslemesi ile kontrol girişinin elektriksel sınırlarını ayır; 5 V besleme, girişe mutlaka 5 V uygulanması gerektiği anlamına gelmez.
+- Giriş tetik mantığı ve her kanala ait LED davranışı önce düşük gerilimli testle doğrulansın.
+- Yalnız AC yük anahtarlanmalı; DC yük kullanımı bu modül için uygun değildir.
+- Şebeke gerilimli çıkışlar MCU/USB/breadboard tarafından fiziksel olarak ayrılmalı; uygun sigorta, muhafaza, yalıtım aralıkları ve yetkin kişi kontrolü sağlanmalı.
+- Kanal başına 2 A değeri, tüm kanalların aynı anda bu akımla sürekli çalışabileceğine dair bağımsız doğrulama değildir.
