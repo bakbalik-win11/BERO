@@ -253,3 +253,10 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Kullanıcı kararı:** PZEM akım okumasına göre ±%4 bağıl sapma yeterlidir. Python, geçerli PZEM referansı sıfırdan farklı olduğunda bağıl sapmayı hesaplayacak; sapma %4 veya altındaysa `OK`, üzerindeyse `OUT_OF_RANGE` verecek.
 - **Kapsam sınırı:** PZEM kararlı anlarını gözlemleme, SCT kararlı an istatistiklerini çıkarma ve alan eşleştirme T003 dışında, ilgili görev/deneylerde kalır.
 - **Yapılan:** T003 TAMAMLANDI yapıldı; görev indeksi, proje kapsamı, STATUS, ROADMAP, açık sorular ve hedef mimari aynı kararla güncellendi. Aktif görev T004 oldu.
+
+
+## 2026-10-27 — 8 kanallı arayüz kaydının düzeltilmesi
+
+- **Kullanıcı düzeltmesi:** 8 kanallı analog arayüz kartı yoktur. Mevcut devre breadboard üzerindeki bias alt devresidir.
+- **Yapılan:** Güncel proje belgelerindeki 8 kanallı kart ve kanal başına ayrı bias/direnç ağı iddiaları kaldırıldı. Güncel donanım tarifi 2 × 10 kΩ dirençli orta nokta ve orta noktadan GND'ye 104 (100 nF) kondansatörlü breadboard bias devresi olarak düzeltildi. Bu aşamada harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır.
+- **Not:** Bu günlükteki önceki satırlar tarihsel kayıt olarak kalır; güncel donanım durumu değildir.
