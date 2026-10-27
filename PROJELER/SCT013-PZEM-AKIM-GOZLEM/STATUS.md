@@ -7,6 +7,7 @@
 **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); CT modeli kullanıcı tarafından **PZCT-02 (0–100 A)** olarak belirtildi ve PZEM'e bağlı olduğu fotoğrafta gösterildi. Yapılandırma 100 A harici CT'li PZEM düzenidir.  
 **Bias üretim alt devresi:** **TAMAMLANDI — kullanıcı onayı.** RN130421 6 V / 2,0 VA + KBU6M köprü + 2200 µF / 35 V filtre kondansatörü + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) seramik kondansatör. Bağımsız ölçüm raporu bu kayda eklenmedi.  
 **SSR:** Dört kanallı OMRON SSR kartı proje donanımına dahil edildi (kullanıcı bilgisi). Fototriyak izolasyon, zero-cross; giriş LOW 0–0,5 V / belirsiz 0,5–2,5 V / HIGH 2,5–20 V; çıkış kanal başına 75–264 VAC, bildirilen 0,1–2 A. Tam SSR model kodu okunmadı.  
+**RTC:** DS3231 kullanılacak; teknik özellikler üretici veri sayfasıyla kontrol edildi ve [proje referansına](hardware/references/DS3231.md) kopyalandı. Gerçek breakout revizyonu, I²C pinleri, pull-up seviyesi ve yedek pil düzeni henüz doğrulanmadı.  
 **Deney durumu:** YAPILMADI.
 
 ## Bildirilen stok
@@ -23,11 +24,12 @@
 **Not:** Stok miktarları bağımsız fiziksel sayım değildir. PZEM fotoğrafı mevcut donanım/CT bağlantısını göstermek içindi; kaynak kayıt zaten `DONANIM/PZEM-004T` altında bulunduğundan fotoğrafı ayrıca depoya kopyalamak gerekmiyor.
 
 ## Mevcut bilgi
-- BERO'daki SCT, PZEM, ESP32-WROOM-32D, MCP3208 ve SSR teknik kaynakları proje referanslarına bağlandı.
+- BERO'daki SCT, PZEM, ESP32-WROOM-32D, MCP3208, SSR ve DS3231 teknik kaynakları proje referanslarına bağlandı.
 - Bias üretim alt devresi, kullanıcının tamamlandı onayıyla kapatıldı. SCT sinyalinin 1,65 V noktasına kuplajı ana analog ön uç bağlantısıdır; bu ayrı konudur.
 - PZEM donanım kaydı mevcut BERO belgesinden kullanılıyor. Bağlı CT, kullanıcı tarafından PZCT-02 (0–100 A) olarak tanımlandı; bu proje 100 A harici CT düzeni olarak kaydedildi.
 - İlk aşamada kullanılacak dört ESP32 geliştirme kartı belirlendi: 2× WROOM-32D, 1× WROOM-32E ve 1× genel ESP-WROOM-32 NodeMCU ESP32 Bluetooth. Genel kartın PCB revizyonu görselden kesinleşmedi.
 - Dört kanallı SSR kartının kullanıcı tarafından verilen elektriksel sınırları kaydedildi; tam röle model kodu, giriş akım gereksinimi ve kanal eşzamanlı yük/termal sınırları ayrıca doğrulanacak.
+- DS3231 ölçüm/olay kayıtlarına takvim zamanı sağlamak için seçildi. BERO'da önceki RTC/NTP okuma örneği var; bu yeni projede pil yedeği veya kesinti testi yapılmış sayılmaz.
 - Başlangıç tasarım değerleri: 2 kS/s, nominal 200 ms SCT penceresi ve yaklaşık 1 s PZEM sorgusu. Bunlar deneyle doğrulanmış sonuç değildir.
 
 ## Karar kapıları
@@ -43,6 +45,7 @@
 ## Açık engeller
 - PZEM için mevcut BERO kaydı ve bağlı PZCT-02 (0–100 A) bilgisi kaydedildi. MCU bağlantısında UART lojik seviyesi ve izolasyon düzeni uygulama öncesinde doğrulanmalı.
 - Fiziksel ADC modeli ve VREF kaynağı/değeri; genel NodeMCU kartının tam PCB revizyonu kablolama öncesinde görsel/üretici bilgisiyle doğrulanmalı.
+- DS3231 breakout revizyonu, I²C pinleri/pull-up gerilimi, yedek pil türü ve ilk saat ayarlama yöntemi belirlenmeli.
 - SCT AC sinyalinin tamamlanmış 1,65 V bias noktasına nasıl kuplaj yaptığı ve analog ön uç değerleri.
 - SSR kontrol GPIO'su, görevlendirilecek yükler ve test öncesi giriş/çıkış davranışının güvenli doğrulaması.
 - True-RMS referans cihazı, kontrollü yük kimlikleri ve E01–E06 deneyleri.

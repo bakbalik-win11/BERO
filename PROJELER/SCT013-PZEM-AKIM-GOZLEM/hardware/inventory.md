@@ -14,6 +14,7 @@
 | ESP32-WROOM-32E geliştirme kartı | **1 adet** | Kullanıcı bildirimi ve fotoğraf; bağımsız sayım yapılmadı. |
 | ESP-WROOM-32 tabanlı NodeMCU ESP32 Bluetooth geliştirme kartı | **1 adet** | Kullanıcı bildirimi ve görsel. Tam kart üreticisi/PCB revizyonu okunmuyor; önceki WROOM-32S satırı bununla değiştirildi. |
 | SSR kartı | **1 adet mevcut dört kanallı kart** | Kullanıcı tarafından OMRON olarak tanımlandı; fotoğraf paylaşıldı. Adet kullanıcı bildirimi/görsel, bağımsız sayım yapılmadı. |
+| DS3231 RTC | **Projede kullanılacak** | Kullanıcı kararı; teknik referans mevcut BERO kaydından kopyalandı. Bu projedeki fiziksel modül revizyonu/adedi ayrıca doğrulanmadı. |
 
 Stok adetleri kullanıcı tarafından bildirilmiştir; bağımsız fiziksel sayım gibi sunulmaz.
 
@@ -25,6 +26,7 @@ Stok adetleri kullanıcı tarafından bildirilmiştir; bağımsız fiziksel say�
 | PZEM ve CT | [Ana BERO kaydı](../../../DONANIM/PZEM-004T/README.md); [proje içi referans kopyası](references/PZEM-004T-V3.0.md) | PZEM-004T V3.0; kullanıcı CT modelini **PZCT-02 (0–100 A)** olarak belirtti. Fotoğrafta bu CT'nin PZEM'e bağlı olduğu gösterildi. Bu, 100 A harici CT düzenidir. | Donanım kimliği ve CT modeli belirlendi. MCU bağlantısı yapılırken UART lojik seviyesi/izolasyon gereksinimleri kontrol edilecek. Fotoğrafı ayrıca depoya kopyalamak gerekmiyor. |
 | ESP32 / MCU | [ESP32-WROOM-32D teknik kaydı](../../../DONANIM/ESP32-WROOM-32D/README.md) | **İlk aşama için 4 kart:** 2× WROOM-32D, 1× WROOM-32E, 1× genel ESP-WROOM-32 NodeMCU ESP32 Bluetooth. Kullanıcı kararı; bağımsız sayım yapılmadı. | Kartların görev/firmware rolünü belirle. Genel NodeMCU kartının tam PCB revizyonu ve pin etiketleri kablolama öncesi doğrulansın. |
 | ADC | [MCP3208 BERO kaydı](../../../DONANIM/MCP3208/README.md) | BERO'da ADC referansı var; bu projede fiziksel ADC ve VREF'in kullanımı henüz doğrulanmadı. | Gerçek ADC modelini/revizyonunu ve VREF kaynağını kaydet. |
+| DS3231 RTC | [Proje içi teknik kopya](references/DS3231.md); [resmî veri sayfası bağlantısı](references/DS3231-datasheet.md) | Takvim/saat bilgisi ve olay/ölçüm kayıtlarına mutlak zaman damgası sağlamak için kullanılacak. | Modül revizyonu, besleme, I²C SDA/SCL pinleri, pull-up seviyesi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemi doğrulanmalı. Hassas 200 ms pencereler ESP32 zamanlayıcısıyla yürütülmeli. |
 | Bias üretim alt devresi | Aşağıdaki “Bias trafosu” bölümü | **TAMAMLANDI — kullanıcı onayı.** | Yeni parça bilgisi beklenmiyor; SCT sinyalinin bias noktasına kuplajı analog ön uç entegrasyonunda ele alınacak. |
 | SSR | [SSR donanım referansı](references/SSR.md); [model eşleştirme notu](references/SSR-datasheet-candidate.md) | Proje donanımına dahil edilen 4 kanallı OMRON kartı. Kullanıcı bilgisi: fototriyak, zero-cross; LOW 0–0,5 V / belirsiz 0,5–2,5 V / HIGH 2,5–20 V; kanal başına 75–264 VAC ve 0,1–2 A; nominal 100–240 VAC. | Tam model kodu, giriş akımı, aynı anda kanal kullanımının/ısınmanın sınırları, kontrol GPIO'su ve test yükleri doğrulanmalı. |
 | Referans cihaz | True-RMS ampermetre | Bu projeye ait model/kalibrasyon durumu kayıtlı değil. | T003 kapsamında belirle. |

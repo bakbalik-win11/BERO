@@ -10,6 +10,7 @@ Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölç
 - **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); proje içi teknik kopyası [PZEM-004T V3.0](hardware/references/PZEM-004T-V3.0.md). Kullanıcı CT modelini **PZCT-02 (0–100 A)** olarak belirtti ve görüntü, bu CT'nin PZEM'e bağlı olduğunu göstermek içindi. Bu, 100 A harici CT'li PZEM düzenidir; fotoğraf yeni bir donanım referansı oluşturmak için paylaşılmadı.
 - **Bias üretim alt devresi:** Kullanıcı onayıyla tamamlandı sayılıyor. Ayrıntılar [donanım envanterinde](hardware/inventory.md) yer alır.
 - **SSR:** Proje donanımına mevcut dört kanallı SSR kartı dahil edildi. Kullanıcı bilgisi: OMRON, fototriyak izolasyon, zero-cross, giriş LOW 0–0,5 V / belirsiz 0,5–2,5 V / HIGH 2,5–20 V; kanal başına 75–264 VAC, bildirilen 0,1–2 A, nominal yük 100–240 VAC. Tam model kodu fotoğraftan okunmadı. Ayrıntılar [SSR referansında](hardware/references/SSR.md); G3MB veri sayfası hâlâ yalnız aday karşılaştırmadır.
+- **RTC:** DS3231, ölçüm ve olay kayıtlarına takvim/saat zaman damgası eklemek için kullanılacak. [Proje içi DS3231 referansı](hardware/references/DS3231.md); resmî veri sayfası bağlantısı [burada](hardware/references/DS3231-datasheet.md).
 
 ## İlk aşamada kullanılacak ESP32 kartları
 - **2 adet ESP32-WROOM-32D geliştirme kartı**
@@ -27,7 +28,7 @@ Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölç
 - [SSR](../../DONANIM/SSR/README.md)
 
 ## Projeye kopyalanan referanslar
-Teknik açıklamaları yeniden yazmamak için ilgili Markdown dosyaları [hardware/references/](hardware/references/README.md) altında bulunur. Kaynak `DONANIM/` dosyaları asıl kayıttır; kopyaların varlığı yeni deney veya kalibrasyon yapıldığı anlamına gelmez.
+Teknik açıklamaları yeniden yazmamak için ilgili Markdown dosyaları [hardware/references/](hardware/references/README.md) altında bulunur. DS3231 kaydı da önceki BERO donanım belgesinden kopyalandı ve üreticinin resmî veri sayfasıyla desteklendi. Kaynak `DONANIM/` dosyaları asıl kayıttır; kopyaların varlığı yeni deney veya kalibrasyon yapıldığı anlamına gelmez.
 
 ## İlk okunacak dosyalar
 1. [AGENTS.md](AGENTS.md) — çalışma protokolü.
