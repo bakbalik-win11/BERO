@@ -12,6 +12,11 @@
 **RTC:** İki DS3231 modülünde de 2032 tipi pil bulunduğu kullanıcı beyanıdır. Kullanıcı RTC kodunun çalıştığını ve güç kesilip yeniden verildikten sonra saatin korunduğunu daha önce test ettiğini bildirdi. Bu beyanlar esas alınır; test tekrar istenmeyecek. Yüksek hızlı örnekleme zamanlaması ESP32 monoton zamanlayıcısına aittir.  
 **Deney durumu:** Donanım henüz kurulmadı; E01–E06 deneyleri ve kalibrasyon YAPILMADI. T005/E01'de hatta akım yokken ADC verisi zaman grafiğinde incelenecek. 30 saniye asgari başlangıç referansıdır, üst sınır değildir; daha uzun, hatta saatler süren kayıt seçeneği açık, kesin süre belirlenmedi. PZEM ve diğer ESP kartları ölçülen hattan beslenmez; beslemeleri ayrıdır.
 
+## Oturum sürekliliği
+- Yeni oturumda başlangıç protokolü uygulanır: güncel main/son commit kontrol edilir; AGENTS, STATUS, ROADMAP, open-questions, ilgili görev/deney ve son günlük kaydı okunup karşılaştırılır.
+- Başlangıç raporunda okunan kaynaklar, mevcut durum, hedef ve kabul koşulları kısaca belirtilir. Önceden kaydedilmiş bilgiler depoda aranıp kontrol edilmeden kullanıcıdan tekrar istenmez.
+- Kullanıcı beyanı, üretici belgesi, hipotez, hesap ve ölçüm sonucu ayrı tutulur; commit sonrası dosyalar yeniden okunur, test/CI çalışmadıysa açıkça yazılır.
+
 ## Bildirilen stok
 
 | Bileşen | Adet / özellik | Kaynak |
