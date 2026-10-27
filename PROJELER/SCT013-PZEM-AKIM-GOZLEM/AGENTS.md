@@ -82,3 +82,10 @@ Bu protokol bir sohbetin kendi kendine başlamasını garanti etmez. Yeni oturum
 - Kanıt yoksa başarı iddiası yazma.
 - Depoda değişiklik yapıldıysa kullanıcıya kesin yolları ve PR/commit bağlantısını ver.
 - Yalnız yerel dosya hazırlandıysa uzak depoya aktarılmış gibi sunma.
+
+## Orantılı doğrulama
+- Bu hobi projesinde laboratuvar veya endüstriyel sertifikasyon düzeyinde testler varsayılan değildir.
+- Somut sorun, güvenlik gereği veya görev kabul ölçütü gerektirmedikçe ayrıntılı tolerans/hata bütçesi, ADC doğrusallık ya da clipping marjı testleri ekleme.
+- Normal test sırasında belirgin anormallik görülürse yalnız ilgili noktayı incele ve kaydet.
+- Kabul ölçütleri karşılandıysa yeni şartlar uydurup görevi tekrar açma.
+- Temel güvenlik önlemlerini koru; yapılmayan kontrolü yapılmış gibi yazma.
