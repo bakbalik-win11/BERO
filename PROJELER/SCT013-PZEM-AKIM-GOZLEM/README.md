@@ -13,6 +13,7 @@ Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölç
 - **SSR:** [SAMM Market 5 V 2 Kanal SSR kartı](https://market.samm.com/5v-2-kanal-solid-state-role-karti) (tedarikçi kodu İzmo9659, SKU MP02637) proje donanımına dahil edildi. OMRON, fototriyak izolasyon ve zero-cross; kanal başına 75–264 VAC ve 0,1–2 A (ürün sayfası değerleri). Kart üzerindeki SSR'nin tekil parça kodu doğrulanmadı. Girişin LOW/HIGH açıklamasıyla “low-level trigger” notu çelişebildiğinden gerçek kontrol mantığı düşük gerilim testiyle doğrulanmalı. Ayrıntılar [SSR referansında](hardware/references/SSR.md).
 - **RTC:** DS3231, ölçüm ve olay kayıtlarına takvim/saat zaman damgası eklemek için kullanılacak. [Proje içi DS3231 referansı](hardware/references/DS3231.md); resmî veri sayfası bağlantısı [burada](hardware/references/DS3231-datasheet.md).
 - **Güç ve test:** Kullanıcı masaüstü 5 V / 1,8 A güç kaynağı, lamba test yükü ve bağlantı/ölçüm parçalarının mevcut olduğunu bildirdi.
+- **Güvenlik kontrolü:** T002 kontrol listesi kullanıcı beyanına göre tamamlandı ve depoya işlendi; bu kayıt asistanın bağımsız fiziksel güvenlik doğrulaması değildir. [Kontrol listesi](hardware/safety-checklist.md).
 
 ## İlk aşamada kullanılacak ESP32 kartları
 - **2 adet ESP32-WROOM-32D geliştirme kartı**
