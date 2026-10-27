@@ -2,6 +2,20 @@
 
 Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonunda yeni kayıt eklenir; eski kayıtlar korunur.
 
+## 2026-10-27 — Oturum sürekliliği ve bilgi kaynağı kurallarının güçlendirilmesi
+
+- **Durum:** UYGULANDI; değiştirilen dosyalar GitHub'dan yeniden okunarak doğrulandı.
+- **Hedef ve kabul ölçütü:** Yeni çalışma günlerinde proje bağlamının tekrar kurulmasını kolaylaştırmak; başlangıç kanıtını görünür kılmak; bilinen bilgilerin gereksiz yere yeniden sorulmasını ve kullanıcı beyanlarının bağımsız ölçüm gibi sunulmasını önlemek.
+- **Yapılan:**
+  - `AGENTS.md` başlangıç adımlarına okunan kaynakları ve branch/commit bilgisini raporlama, önceki bilgileri depoda arama ve yalnız eksik/çelişkili alanı sorma kuralları eklendi.
+  - `AGENTS.md` kanıt kuralları kullanıcı beyanı/raporu, üretici belgesi, hipotez, hesap ve ölçülmüş sonuç ayrımını açıklaştırdı.
+  - `SESSION_PROTOCOL.md` başlangıç ve kapanış kontrol listelerine kaynak/commit görünürlüğü, tekrar soru sormadan önce depo taraması ve kanıt etiketlerinin doğru kullanımı eklendi.
+  - `STATUS.md` içine oturum sürekliliği kuralları özeti eklendi.
+- **Doğrulama:** Üç dosya güncellendikten sonra GitHub'dan yeniden okunacak ve içerik kontrol edilecek. Bu değişiklik yalnızca çalışma protokolünü güçlendirir; CI/PR kontrolünün çalıştığı veya donanımın test edildiği anlamına gelmez.
+- **Açık kalanlar:** Otomatik PR/CI kontrolü bu işlem kapsamında çalıştırılmadı.
+- **Sonraki adım:** Her anlamlı oturumda güncel depo kayıtlarını okuyup karşılaştırarak bu kuralları uygulamak.
+- **Kanıt:** [AGENTS.md](../AGENTS.md); [SESSION_PROTOCOL.md](../SESSION_PROTOCOL.md); [STATUS.md](../STATUS.md).
+
 ## 2026-10-27 — Gün sonu incelemesi, T004 kapanışı ve T005 planının eşitlenmesi
 
 - **Durum:** UYGULANDI; değiştirilen proje kayıtları GitHub'dan yeniden okunarak doğrulandı. Fiziksel deney yapılmadı.
