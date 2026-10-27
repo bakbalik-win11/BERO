@@ -1,6 +1,6 @@
 # T001 — Fiziksel donanım envanteri
 
-- **Durum:** DEVAM EDİYOR — fiziksel stok ve hazır analog kart bilgileri kaydedildi; analog ön uç elektriksel ayrıntıları açık. GPIO/pin numarası firmware ve pin planlama aşamasında belirlenecek; T001’de pin seçimi istenmiyor.
+- **Durum:** DEVAM EDİYOR — fiziksel stok ve breadboard üzerinde hazırlanmış bias alt devresinin kullanıcı tarafından bildirilen yapısı kaydedildi. Bu aşamada 8 kanallı analog kart söz konusu değil. GPIO/pin numarası firmware ve pin planlama aşamasında belirlenecek; T001’de pin seçimi istenmiyor.
 - **Faz:** 0.1
 - **Bağımlılık:** Yok
 - **Hedef:** Önceki BERO kayıtlarını yeniden toplatmadan kullanmak; seçilmiş donanımı, kullanıcı tarafından bildirilen stokları ve kalan proje-özel bilgileri kaydetmek.
@@ -25,7 +25,7 @@
 - SAMM Market 5 V, 2 kanallı SSR kartı; DS3231 RTC.
 - Masaüstü 5 V / 1,8 A güç kaynağı; lamba test yükü.
 - Jack yuvaları ve bağlantı/ölçüm parçaları mevcut.
-- Önceden hazırlanmış 8 kanallı kart: her kanalda ayrı bias ve direnç ağı. Kullanıcının tarifine göre SCT dişi jack'e bağlanır; sensör dönüş sinyali jack üzerinden analog arayüze ve oradan ESP32 kartına gider. Bu aşamada ayrı/harici ADC kullanılmayacak. MCP3208 fiziksel olarak mevcut olsa da sonraki aşamaya ayrılmıştır. GPIO numarası firmware/pin planlama aşamasında belirlenecek.
+- Breadboard üzerinde hazırlanmış bias alt devresi: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta oluşturulur; sensör bu bias orta noktasına bağlanır. Orta nokta ile GND arasına “104” kodlu kondansatör (100 nF) bağlanır. Bu aşamada 8 kanallı analog kart söz konusu değil. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. GPIO numarası bu aşamada istenmiyor.
 - Kullanıcı kararı: SCT okumaları için 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E ayrı hızlı örnekleme kanalları olarak kullanılacak. Bu aşamanın çıktısı akım/RMS hesabı değil, sensörün ham/anlık gerilim okumaları ile SSR-zamanlayıcı düğümünden gelen paket bilgisinin birlikte yazdırılmasıdır. 1, 2 ve 4 sarım testleri aynı hat üzerinde ayrı ayrı yapılacak.
 
 ## İlerleme ilkesi
@@ -33,14 +33,14 @@
 - Bias üretim alt devresi önceki proje kayıtlarında kullanıcı onayıyla tamamlandı sayılıyor. Bu, SCT AC sinyalinin bias noktasına kuplajının da doğrulandığı anlamına gelmez.
 
 ## Kalan proje-özel işler
-1. Kullanıcının açıkladığı bağlantı ve bias ayrıntısı: SCT013 dişi jack yuvasına bağlanır; sensör dönüş sinyali jack üzerinden analog arayüze ve oradan ESP32 kartına gider. Bias orta noktası, 2 adet 10 kΩ 1/4 W metal film dirençle oluşturulur; sensör sinyali bu orta noktaya biaslanır. Aynı orta nokta ile GND arasına “104” kodlu kondansatör (100 nF) bağlanır. Bu değerler kullanıcı tarafından bildirildi. Kanal başına diğer direnç/filtre değerleri ve güvenli giriş aralığı ayrıca belgelenmeli; belirtilmeyen bağlantı ayrıntılarını tahmin etme.
+1. Breadboard üzerindeki bias alt devresi kullanıcı tarafından tarif edildi: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta; sensör bu bias orta noktasına bağlanıyor; orta nokta ile GND arasında “104” kodlu kondansatör (100 nF) var. Şimdilik 8 kanallı analog kart/kanal tasarımı bu görevin parçası değil. Bu tarifin ötesinde başka direnç/filtre elemanları olduğu varsayılmayacak.
 2. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. Harici ADC modeli/revizyonu veya VREF seçimi T001 kapsamına alınmayacak. GPIO/pin numarası da bu aşamada istenmiyor.
 3. True-RMS referans cihazı ve en az üç kontrollü yük seviyesini [T003](T003-reference-and-error-target.md) altında ele al.
 4. SSR için iki AC yükü ve GPIO eşlemesini sonraki güvenli test planında kaydet; tetik mantığını düşük gerilimli testte doğrula. Ürün kimliği İzmo9659 / MP02637; tekil SSR parça kodu doğrulanmış değil.
 5. DS3231 breakout pinleri, pull-up gerilimi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemini kablolama öncesi doğrula; hızlı örnekleme zamanlamasını RTC takvim okumalarından bağımsız tut.
 
 ## Kabul ölçütü
-Fiziksel envanter ve hazır analog kart kaydı mevcut kaynaklara bağlanmalı; SCT'nin dişi jack üzerinden analog karta ve oradan ESP32 ADC'ye giden bağlantı yolu kaydedilmiştir. Bu aşamada harici ADC/VREF seçimi yapılmayacak; bias orta noktasına elektriksel kuplajın ayrıntısı, kanal direnç/filtre değerleri ve güvenli ADC giriş aralığı bilinen kanıta göre kaydedilmeli; bilinmeyenler açıkça işaretlenmelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez.
+Fiziksel envanter ve breadboard bias alt devresinin kullanıcı tarafından tarif edilen yapısı kaydedilmelidir: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta ve orta nokta-GND arasında 104 (100 nF) kondansatör; sensör bu bias noktasına bağlanır. Şimdilik 8 kanallı analog kart/kanal tasarımı kapsamda değildir. Henüz bildirilmemiş ayrıntılar varmış gibi yeni eleman veya değer istenmemelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez.
 
 ## Güvenlik
 Bu görev dokümantasyon ve görsel incelemedir. Şebeke bağlantısını sökme, kabloyu ayırma veya sisteme enerji verme.
