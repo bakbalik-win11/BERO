@@ -4,6 +4,7 @@
 **Aktif faz:** Faz 0 — hazırlık ve güvenlik  
 **Aktif görev:** [T001 — Fiziksel donanım envanteri](tasks/T001-hardware-inventory.md)  
 **SCT önceliği:** SCT013-030 (30 A / 1 V) — kullanıcı kararı.  
+**Bias alt devresi:** Kullanıcı tarafından “bias trafosu” olarak adlandırılıyor: RN130421 6 V / 2,0 VA trafo, L78L33 TO-92 ve 2 × 10 kΩ ile yaklaşık 1,65 V orta nokta. Doğrultma/filtre ayrıntıları henüz net değil.  
 **Stok bildirimi:** 7 adet SCT013-030; 10 adet SCT013-100A-1V; 10 adet 100 nF / 50 V seramik kondansatör. **Adetler kullanıcı bildirimidir; bağımsız sayım yapılmadı.**  
 **Donanım referansları:** [SCT/PZEM referans kopyaları](hardware/references/README.md) proje klasörüne alındı; kaynak `DONANIM/` belgeleri korunuyor.  
 **Son oturum kaydı:** [HISTORY/SESSION_LOG.md](HISTORY/SESSION_LOG.md), PR #8 aktarımı ve başarılı kapanış kontrolüyle güncellendi.  
@@ -15,6 +16,7 @@
 - SCT ve PZEM teknik Markdown belgelerinin kopyaları [hardware/references/](hardware/references/README.md) altında bulunur; genel teknik özellikler baştan yazılmayacaktır.
 - Bu proje için öncelikli SCT varyantı SCT013-030 (30 A / 1 V) olarak belirlendi. SCT013-100A-1V alternatif stokta kalır; adetler kullanıcı bildirimi olarak kaydedildi.
 - 100 nF / 50 V seramik kondansatörden 10 adet bulunduğu bildirildi. Bu stok bilgisi kondansatörün belirli bir devre düğümünde kullanılacağını veya analog filtre tasarımının kesinleştiğini göstermez.
+- Kullanıcının tarif ettiği bias alt devresinde RN130421 (6 V AC / 2 VA) trafo, L78L33 (TO-92) regülatör ve 2 × 10 kΩ direnç bölücü bulunuyor; orta nokta yaklaşık 1,65 V hedefli. Doğrultucu, filtre kondansatörlerinin değer/yeri ve SCT sinyalinin bias düğümüne nasıl bağlandığı henüz kaydedilmedi.
 - Önceki kayıtlar tarihsel teknik açıklamalar ve test notlarıdır; yeni projedeki fiziksel konfigürasyonu, yeni deney veya kalibrasyon sonucunu tek başına doğrulamaz.
 - Başlangıç ayarları: 2 kS/s, nominal 200 ms pencere, yaklaşık 1 s PZEM sorgusu.
 - PZEM'in iç ölçüm penceresi ve bu modüldeki gecikmesi doğrulanmadı.
@@ -25,7 +27,7 @@
 - [ ] G3 — Faz 6 sonunda: örnekleme hızı hedef yüklerde ölçülmüş metriklerle gerekçelendirilmiş.
 
 ## Sıradaki üç iş
-1. [ ] [T001 — Donanım envanteri](tasks/T001-hardware-inventory.md): SCT013-030 önceliğini ve kullanıcı tarafından bildirilen stok adetlerini kaydet; ardından PZEM varyantı/CT, MCU/ADC, analog ön uç ve stok kanıtı gibi yalnızca proje-özel eksikleri tamamla.
+1. [ ] [T001 — Donanım envanteri](tasks/T001-hardware-inventory.md): SCT013-030 seçimini, bias trafosu bileşenlerini ve kullanıcı tarafından bildirilen stokları kaydet; doğrultma/filtre ayrıntıları ile PZEM varyantı/CT ve MCU/ADC gibi proje-özel eksikleri tamamla.
 2. [ ] [T002 — Güvenlik kontrolü](tasks/T002-safety-checklist.md): şebeke bağlantısı öncesi yetkin kişi incelemesi.
 3. [ ] [T003 — Referans ve hata hedefi](tasks/T003-reference-and-error-target.md): referans cihazı, en az üç yük seviyesi ve ölçüm öncesi kabul hedefi.
 
@@ -34,7 +36,8 @@
 ## Açık engeller
 - SCT seçimi artık belirtilmiştir: bu projede öncelik SCT013-030 (30 A / 1 V). Gerçek parçanın fotoğrafı ve stok sayımı henüz depoda kalıcı kanıt olarak kayıtlı değil; adetler kullanıcı bildirimidir.
 - PZEM için ortak V3.0 aile belgesi mevcuttur; bu projenin gerçek modülündeki 10 A/100 A varyantı ve CT modeli henüz kaydedilmedi.
-- MCU/ADC, gerçek bias/VREF, analog ön uç ve kablolama ayrıntıları bu proje için doğrulanmadı.
+- MCU/ADC, VREF ve kablolama ayrıntıları bu proje için doğrulanmadı.
+- Bias trafosu tarif edildi; ancak AC sekonderin doğrultulması/filtrelenmesi ve “şebeke dalgalanmasını aynı motifle biasa yansıtma” niyeti devre şemasıyla henüz netleştirilmedi.
 - 100 nF / 50 V seramik kondansatörün devredeki görevi henüz belirlenmedi.
 - E01–E06 deneylerinin hiçbiri tamamlanmadı.
 
