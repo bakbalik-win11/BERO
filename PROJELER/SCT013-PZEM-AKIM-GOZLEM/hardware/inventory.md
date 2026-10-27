@@ -59,7 +59,7 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 | DS3231 | RTC referansı mevcut | Breakout revizyonu, SDA/SCL pinleri, pull-up seviyesi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemi doğrulanmalı |
 | SSR | SAMM Market 5 V, 2 kanal, İzmo9659 / MP02637 | İki AC yük, GPIO eşlemesi, tetik mantığı ve termal sınırlar güvenli biçimde doğrulanmalı |
 | Referans cihaz | Model kaydı henüz yok | T003 kapsamında True-RMS referans cihazının marka/modeli ve kalibrasyon/izlenebilirlik durumu kaydedilmeli |
-| Yükler | Lamba mevcut; üç kontrollü yük seviyesi henüz tanımlı değil | T003 kapsamında en az üç kontrollü akım seviyesi için yük senaryoları, etiket gücü ve güvenli kullanım koşulları belirlenmeli |
+| Yükler | Lamba mevcut; üç kontrollü yük seviyesi henüz tanımlı değil | T003 kapsamında lamba dâhil en az üç kontrollü akım seviyesi için yük senaryoları, etiket gücü ve güvenli kullanım koşulları belirlenmeli |
 
 ## Kayıt kuralları
 - Önceki BERO teknik belgelerindeki ürün bilgilerini tekrar yazmak yerine ilgili referansa bağlan.
