@@ -58,7 +58,6 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 | PZEM ve CT | PZEM-004T için [mevcut BERO donanım kaydı](../../../DONANIM/PZEM-004T/README.md) esas alınır; bağlı CT modeli kullanıcı beyanıyla PZCT-02 (0–100 A) | Bu projede yeniden donanım belgesi açma veya CT modelini tekrar sorma; entegrasyon sırasında UART lojik seviyesi ve izolasyon gereksinimlerini kontrol et |
 | DS3231 | İki modülde 2032 tipi pil; güç kesintisi sonrası saat koruma testi kullanıcı beyanına göre başarılı | Bu proje aşamasında ek iş yok; proje bağlantısı gerektiğinde pin planı ayrı ele alınır |
 | SSR | SAMM Market 5 V, 2 kanal, İzmo9659 / MP02637 | İki AC yük, GPIO eşlemesi, tetik mantığı ve termal sınırlar güvenli biçimde doğrulanmalı |
-| Referans cihaz | UNI-T UT200B+ True RMS pens ampermetre | Kullanıcı fotoğrafı; kalibrasyon/izlenebilirlik bilgisi mevcut değil |
 | Yükler | Kullanıcı testte kullanılacak ampulü/koşulu test kaydında beyan edecek | Önceden yük seviyesi belirleme şartı yok |
 
 ## Kayıt kuralları
@@ -66,7 +65,6 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 - Önceki test notları yalnız kendi kayıt kapsamları için kanıttır; yeni deney veya kalibrasyon sonucu gibi sunulmaz.
 - Kullanıcı tarafından bildirilen stokları kullanıcı bildirimi olarak etiketle.
 - Bu projede ölçülmemiş değerleri ölçülmüş gibi yazma.
-- Kullanıcı fotoğrafında UNI-T UT200B+ True RMS pens ampermetre görülüyor; akım karşılaştırma cihazı olarak kullanılacak. Kalibrasyon/izlenebilirlik durumu kullanıcı tarafından beyan edilmedi.
 - Kullanıcının sağladığı fotoğraflar: ESP32-WROOM-32D metal kalkanlı geliştirme kartı ve ESP32-C3 Super Mini kartının arka yüzü. Görseller metin envanterinde referans olarak kaydedildi; dosyaların kendisi GitHub'a resim dosyası olarak yüklenmedi.
 
 
