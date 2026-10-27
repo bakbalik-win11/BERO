@@ -1,6 +1,6 @@
 # T001 — Fiziksel donanım envanteri
 
-- **Durum:** DEVAM EDİYOR — fiziksel stok ve kart modellerine ilişkin mevcut kayıtlar işlendi; analog giriş için seçilecek kart/pin ve elektriksel kabul maddeleri açık.
+- **Durum:** DEVAM EDİYOR — fiziksel stok ve hazır analog kart bilgileri kaydedildi; analog ön uç elektriksel ayrıntıları açık. GPIO/pin numarası firmware ve pin planlama aşamasında belirlenecek; T001’de pin seçimi istenmiyor.
 - **Faz:** 0.1
 - **Bağımlılık:** Yok
 - **Hedef:** Önceki BERO kayıtlarını yeniden toplatmadan kullanmak; seçilmiş donanımı, kullanıcı tarafından bildirilen stokları ve kalan proje-özel bilgileri kaydetmek.
@@ -34,13 +34,12 @@
 
 ## Kalan proje-özel işler
 0. Hızlı örnekleme çıktısının kapsamını sabitle: sensör ham/anlık gerilim örnekleri ve zamanlayıcı paket bilgisi yazdırılacak; bu aşamada akım/RMS hesabı yapılmayacak.
-1. SCT analog örneklemesi için stoktaki ESP32 kartlarından hangisinin seçildiğini ve fiziksel kart revizyonunu, mevcut fotoğraf/etiket kanıtıyla eşleştir.
-2. Seçilen kartın dahili ADC kanalını/GPIO numarasını ve bu girişin izin verilen aralığını üretici pin/teknik belgesiyle doğrula.
-3. ADC giriş referans/attenuation yapılandırmasını kaydet; ESP32 dahili ADC kullanılırken harici ADC'ye ait VREF alanı uygulanmaz.
-4. SCT AC sinyalinin bias noktasına kuplaj yöntemini; kanal direnç/filtre değerlerini ve güvenli ADC aralığını analog ön uç kaydına taşı. Ölçülmeyen değerleri tahmin etme.
-5. True-RMS referans cihazı ve üç kontrollü yük seviyesini T003 görevine bağla.
-6. SSR için iki AC yük ve GPIO eşlemesini sonraki güvenli test planında kaydet; tetik mantığını düşük gerilim testinde doğrula.
-7. DS3231 breakout pinleri, pull-up gerilimi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemini kablolama öncesi doğrula.
+1. Hazır fiziksel envanter ve 8 kanallı analog arayüz kartı kaydını koru; T001’in kalan işi olan SCT AC kuplaj yöntemi, kanal direnç/filtre değerleri ve güvenli ADC aralığını mevcut kanıtla belgele. Ölçülmeyen değerleri tahmin etme.
+2. ADC model/revizyonu ve VREF kaynağı/değeri bilinmiyor olarak açık bırak; ilk aşamada ESP32 dahili ADC planı var, MCP3208 seçilmiş sayılmaz. Dahili ADC’ye harici ADC VREF alanı uygulama.
+3. ADC destekli GPIO numarası, pin eşlemesi ve firmware attenuation/ADC yapılandırmasını firmware/pin planlama aşamasına bırak; bunları T001’in eksik işi olarak kullanıcıya sorma.
+4. True-RMS referans cihazı ve en az üç kontrollü yük seviyesini [T003](T003-reference-and-error-target.md) altında ele al.
+5. SSR için iki AC yükü ve GPIO eşlemesini sonraki güvenli test planında kaydet; tetik mantığını düşük gerilimli testte doğrula. Ürün kimliği İzmo9659 / MP02637; tekil SSR parça kodu doğrulanmış değil.
+6. DS3231 breakout pinleri, pull-up gerilimi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemini kablolama öncesi doğrula; hızlı örnekleme zamanlamasını RTC takvim okumalarından bağımsız tut.
 
 ## Kabul ölçütü
 Fiziksel envanter, seçilen kart/ADC pini ve analog bağlantı bilgileri bilinen kanıta bağlanmalı; bilinmeyenler açıkça işaretlenmelidir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez.
