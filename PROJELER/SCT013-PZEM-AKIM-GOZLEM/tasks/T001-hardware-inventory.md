@@ -18,12 +18,12 @@ Genel teknik özellikleri tekrar yazma. Önceden var olan kaynaklardan yararlan;
 ## Yapılan / tamamlanan
 - SCT013-030 (30 A / 1 V) bu projede öncelikli seçim.
 - Kullanıcı bildirimi olarak 7 adet SCT013-030, 10 adet SCT013-100A-1V, 10 adet 100 nF / 50 V seramik kondansatör, 2 adet ESP32-WROOM-32D, 1 adet ESP32-WROOM-32E ve 1 adet ESP32-WROOM-32S kaydedildi.
-- Kullanıcının paylaştığı modül görseli PZEM-004T V3.0 olarak projeye kaydedildi. 10 A / 100 A varyantı ve CT modeli henüz belirlenmedi.
+- PZEM için mevcut BERO donanım kaydı esas alındı; bağlı CT modeli kullanıcı tarafından PZCT-02 (0–100 A) olarak belirtildi.
 - **Temiz yaklaşık 1,65 V bias üretim alt devresi tamamlandı (kullanıcı onayı):** kutuda RN130421 + KBU6M + 2200 µF / 35 V + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) kondansatör.
 - SSR donanım referansı proje referans klasörüne kopyalandı. Fiziksel model doğrulanmadı; projede kullanılması henüz kararlaştırılmadı.
 
 ## Kalan işler
-1. PZEM-004T V3.0'ın 10 A dahili şönt / 100 A harici CT varyantını ve varsa CT modelini mevcut etiket/fotoğrafla belirle. Genel PZEM aile dokümanını tekrar araştırma.
+1. **Tamamlandı:** mevcut [DONANIM/PZEM-004T/README.md](../../../DONANIM/PZEM-004T/README.md) kaydı esas alındı; kullanıcı bağlı CT modelini PZCT-02 (0–100 A) olarak belirtti. Fotoğraf CT'nin bu PZEM'e bağlı olduğunu göstermek içindi. Bu bilgiyi yeniden sorma veya yeni PZEM donanım belgesi açma.
 2. Bu projede kullanılacak ESP32 modülünü ve geliştirme kartı/revizyonunu belirle; 2×D, 1×E, 1×S stok bilgisini yeniden sorma.
 3. Kullanılacak ADC modelini/revizyonunu ve VREF kaynağını kaydet.
 4. SCT sinyalinin tamamlanmış bias orta noktasına hangi bağlantıyla kuplaj yaptığını; burden/analog filtre değerlerini ve güvenli ADC aralığını kaydet.
