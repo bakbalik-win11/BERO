@@ -41,7 +41,7 @@
 - [ ] G3 — örnekleme hızı hedef yüklerde ölçülmüş metriklerle gerekçelendirilmiş.
 
 ## Sıradaki işler
-1. [ ] [T003 — Referans ve hata hedefi](tasks/T003-reference-and-error-target.md): PZEM-004T V3.0 eğitim/etiket referansı; SCT modelinin PZEM okumalarını yakalama ölçütleri belirlenecek. Test yükleri test sırasında kullanıcı tarafından beyan edilecek.
+1. [ ] [T003 — Referans ve hata hedefi](tasks/T003-reference-and-error-target.md): PZEM eğitim referansına göre model kabul hata hedefi belirlenecek. Kararlı alan gözlemi/istatistikleri T003 kapsamı dışındadır. Test yükleri test sırasında kullanıcı tarafından beyan edilecek.
 2. [ ] [T004 — Analog ön uç](tasks/T004-analog-frontend.md): T003 koşulları sağlandıktan sonra bias kuplajı ve güvenli ADC aralığı.
 3. [ ] T005 — E01 gürültü tabanı: T004 tamamlandıktan sonra protokol ve ölçüm.
 
@@ -49,6 +49,6 @@
 - SCT analog kuplajı, kanal direnç/filtre değerleri ve güvenli ADC giriş aralığı belgelenmeli. Kullanılacak kartın ADC GPIO eşlemesi ve firmware ayarları pin planlama/kodlama aşamasında doğrulanmalı; bu T001 kapatma şartı değildir. Genel NodeMCU kartı kullanılacaksa PCB revizyonu kablolama öncesi belirlenmeli.
 - SCT AC sinyalinin tamamlanmış 1,65 V bias noktasına kuplajı, kanal direnç/filtre değerleri ve güvenli ADC aralığı.
 - SSR'nin hangi iki AC yükü anahtarlayacağı, GPIO eşlemesi ve giriş mantığının düşük gerilimde doğrulanması.
-- T003: PZEM, SCT verisini eğitmek/etiketlemek için temel referanstır. test yükleri ilgili test kaydında beyan edilecek.
+- T003: PZEM, SCT verisini eğitmek/etiketlemek için temel referanstır; yalnız model kabul hata hedefi kalmıştır. Kararlı alan gözlemi ve SCT istatistikleri ilgili ayrı görev/deneylerde ele alınır. Test yükleri ilgili test kaydında beyan edilecek.
 
 Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
