@@ -1,12 +1,12 @@
 # T003 — Referans cihazı, yükler ve hata hedefi
 
-- **Durum:** DEVAM EDİYOR — referans cihazının modeli belirlendi; kalibrasyon/izlenebilirlik durumu, yük seviyeleri ve hata kabul hedefi açık.
+- **Durum:** DEVAM EDİYOR — referans cihazının modeli belirlendi; yük seviyeleri ve hata kabul hedefi açık.
 - **Faz:** 0.3
 - **Bağımlılık:** T001; fiziksel deney öncesinde T002
 - **Hedef:** Kalibrasyon için referans ekipmanını ve yük senaryolarını belirlemek, kabul hedeflerini ilk ölçümden önce yazılı olarak kararlaştırmak.
 
 ## Yapılacak
-1. **Referans cihazı belirlendi:** Kullanıcı fotoğrafında UNI-T UT200B+ True RMS pens ampermetre görülüyor. Akım karşılaştırma cihazı olarak kaydedildi. Kalibrasyon/izlenebilirlik durumu bilinmiyor; cihazın bağımsız referans standardı olduğu veya doğruluğunun kalibre edildiği varsayılmayacak.
+1. **Referans cihazı belirlendi:** Kullanıcı fotoğrafında UNI-T UT200B+ True RMS pens ampermetre görülüyor. Akım karşılaştırma cihazı olarak kaydedildi.
 2. Test sırasında kullanılacak yük ve çalışma koşulları kullanıcı tarafından ilgili test kaydında beyan edilecek; T003 kapsamında önceden yük seviyesi belirleme şartı yoktur.
 3. Hedef kullanım amacına göre SCT–referans hata sınırını ve diğer gerekli kabul ölçütlerini tanımlamak için gerekçeli seçenekler hazırla.
 4. Asistan, hedefleri sessizce tahmin etmemeli: önerilen sayısal hedefi dayanağı ve ödünleşimleriyle açıklamalı; kullanıcı onayından sonra docs/00-scope.md ve gerekiyorsa yeni ADR'ye yazmalı.
