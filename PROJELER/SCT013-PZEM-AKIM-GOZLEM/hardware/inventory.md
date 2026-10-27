@@ -27,7 +27,7 @@
 
 Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı bulunan bir kart** hazırlamıştır. Jack yuvaları da mevcuttur. Kullanıcının tarif ettiği bağlantı:
 
-**SCT013 → jack yuvası → ayrı bias/direnç ağı olan 8 kanallı kart → ESP32'nin dahili ADC girişi**
+**Bağlantı tarifi (kullanıcı bildirimi):** SCT013, dişi jack yuvasına takılır; sensörden dönen sinyal dişi jack bağlantısı üzerinden 8 kanallı analog arayüze ve oradan ESP32'nin dahili ADC girişine gider. Kartta her kanalın ayrı bias ve direnç ağı vardır.
 
 İlk aşamada MCP3208 kullanılmayacak; fiziksel olarak mevcut olan MCP3208 ileriki aşama için ayrılmıştır.
 
@@ -54,7 +54,7 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 | MCU | SCT ölçümü için 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E; SSR kontrolü/zamanlama için ayrı ESP32-C3 SuperMini | ADC destekli GPIO ve pin eşlemesi firmware/pin planlama aşamasında, seçilen fiziksel kart ve teknik belgeyle doğrulanacak; T001’de pin numarası şartı değil |
 | Dahili ADC | İlk aşamada ESP32 dahili ADC'si kullanılacak; harici ADC modeli seçilmiş sayılmıyor | Firmware aşamasında, seçilen kart/pin için ADC destekli GPIO, giriş aralığı ve attenuation/ADC yapılandırmasını teknik belgeyle doğrula |
 | Harici ADC | MCP3208 mevcut, ileriki aşamaya ayrıldı | İlk aşamada kullanılmayacak |
-| Analog ön uç | 8 kanal, her kanalda ayrı bias ve direnç ağı; SCT sinyali ESP32 ADC'ye aktarılacak | SCT AC sinyalinin bias noktasına kuplajı, direnç/filtre değerleri ve güvenli ADC aralığı belgelenmeli |
+| Analog ön uç | 8 kanal, her kanalda ayrı bias ve direnç ağı; SCT sinyali ESP32 ADC'ye aktarılacak | Sensör dönüşünün jack üzerinden analog karta/ESP32 ADC'ye gittiği bağlantı yolu kullanıcı tarafından açıklandı. Elektriksel bias kuplaj topolojisi (hangi hat/noktanın bias orta noktasına bağlandığı), direnç/filtre değerleri ve güvenli ADC aralığı ayrıca devre izi/şema/ölçüm kanıtıyla kaydedilmeli |
 | PZEM ve CT | PZEM-004T için [mevcut BERO donanım kaydı](../../../DONANIM/PZEM-004T/README.md) esas alınır; bağlı CT modeli kullanıcı beyanıyla PZCT-02 (0–100 A) | Bu projede yeniden donanım belgesi açma veya CT modelini tekrar sorma; entegrasyon sırasında UART lojik seviyesi ve izolasyon gereksinimlerini kontrol et |
 | DS3231 | RTC referansı mevcut | Breakout revizyonu, SDA/SCL pinleri, pull-up seviyesi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemi doğrulanmalı |
 | SSR | SAMM Market 5 V, 2 kanal, İzmo9659 / MP02637 | İki AC yük, GPIO eşlemesi, tetik mantığı ve termal sınırlar güvenli biçimde doğrulanmalı |
