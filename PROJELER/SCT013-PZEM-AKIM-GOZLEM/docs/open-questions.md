@@ -14,3 +14,7 @@ Hiçbiri cevaplanmış sayılmaz. Deney sonrası sonuç ve kanıt bağlantısı 
 10. PZEM register'larının değişim / tekrar etme dinamikleri birbirine benziyor mu?
 11. Yaklaşık 3 s geçiş etiketi bu modülde yeterli mi?
 12. Stokta bulunduğu bildirilen 100 nF / 50 V seramik kondansatörlerin gerçek şemada kullanılacağı nokta ve görevi nedir? Bu, analog ön uç tasarımı sırasında kararlaştırılmalıdır.
+13. “Bias trafosu”nda RN130421 6 V AC sekonderden L78L33 girişine kadar hangi doğrultucu/diyot ve filtre kondansatörü bulunuyor?
+14. Bias alt devresinde hangi kondansatörün tam değeri, adedi ve konumu nedir? 100 nF seramik stokunun kaç tanesi bu devrede kullanılıyor?
+15. İki 10 kΩ direncin bağlantıları ve ölçülen orta nokta gerilimi nedir? 1,65 V değeri nominal hesap mı, fiziksel ölçüm mü?
+16. SCT sinyalinin 1,65 V bias noktasına nasıl kuplaj yapıldığı ve “şebeke dalgalanmasını aynı motifle yansıtma” hedefinin devrede hangi sinyal yolu ile sağlandığı nedir? L78L33 düzenleme yaptığı için, normal regülasyon koşulunda çıkışın şebeke dalgalanmasını takip ettiği varsayılmamalıdır.
