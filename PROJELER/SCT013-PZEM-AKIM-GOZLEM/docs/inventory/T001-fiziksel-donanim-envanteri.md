@@ -1,6 +1,6 @@
 # T001 — Fiziksel Donanım Envanteri
 
-**Envanter durumu: KAYDEDİLDİ.** Kullanıcı tarafından bildirilen fiziksel stok, kart rolleri ve bias alt devresi kaydedildi. ADC/VREF seçimi ve SCT analog kuplaj doğrulaması T001 envanter görevinin kapsamı dışındadır; ilgili sonraki aşamada ele alınacaktır.
+**Envanter durumu: KAYDEDİLDİ.** Kullanıcı tarafından bildirilen fiziksel stok, kart rolleri ve bias alt devresi kaydedildi. Harici ADC/VREF seçimi ve SCT analog kuplaj doğrulaması T001 envanter görevinin kapsamı dışındadır; bu aşamada ESP32'nin dahili ADC'si kullanılacaktır.
 
 ## 1. Kontrol ve ölçüm donanımı
 
@@ -22,16 +22,15 @@
 | SCT013 100 A / 1 V | 10 | Jack çıkışlı |
 | **Toplam** | **17** | Jack yuvaları mevcut |
 
-## 3. Önceden hazırlanmış analog arayüz kartı
+## 3. Breadboard bias alt devresi
 
-Kullanıcı daha önce **8 kanallı, her kanalı ayrı bias ve direnç ağına sahip bir kart** hazırlamıştır. Bu, SCT013 ölçüm arayüzü için hazırlık bulunduğunu gösterir.
+Kullanıcının bildirdiği mevcut devre breadboard üzerinde hazırlanmış bias alt devresidir:
+- 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta oluşturulur.
+- Orta nokta ile GND arasına “104” kodlu 100 nF kondansatör bağlanmıştır.
+- SCT013 jack üzerinden bu devreye bağlanacaktır.
+- Bu aşamada harici ADC kullanılmayacak; ESP32'nin dahili ADC işlevi kullanılacaktır. MCP3208 sonraki aşamaya ayrılmıştır.
 
-- Kanal sayısı: 8.
-- Her kanalda ayrı bias ve direnç ağı.
-- Jack yuvaları mevcut.
-- Kullanıcının tarif ettiği okuma zinciri: **SCT013 → jack yuvası → ayrı bias/direnç ağı bulunan 8 kanallı kart → ESP32 ADC girişi**.
-- İstenirse MCP serisi harici ADC bağlanabilir; MCP'nin bu projede seçildiği varsayılmıyor.
-- Bağlantı ve ölçüm parçalarının tamamı kullanıcı beyanına göre mevcut.
+8 kanallı analog arayüz kartı mevcut değildir.
 
 ## 4. Bilinmeyen bırakılan teknik ayrıntılar
 
