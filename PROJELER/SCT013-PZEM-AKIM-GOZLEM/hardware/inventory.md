@@ -31,6 +31,10 @@ Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı 
 
 İlk aşamada MCP3208 kullanılmayacak; fiziksel olarak mevcut olan MCP3208 ileriki aşama için ayrılmıştır.
 
+## SCT ölçüm kartı ve test düzeni
+
+Kullanıcı kararı: SCT013 okumaları için **2 × ESP32-WROOM-32D + 1 × ESP32-WROOM-32E** kullanılacak; bu üç kart **üç ayrı ölçüm kanalı** oluşturacak. Testlerde aynı hat üzerinde iletkenin SCT içinden **1 sarım, 2 sarım ve 4 sarım** geçirilmesi ayrı ayrı denenecek. Bu, test düzeni planıdır; henüz ölçüm sonucu veya GPIO eşlemesi değildir. SSR kontrolü ve zamanlama ayrı **ESP32-C3 SuperMini** üzerinde kalır.
+
 ## Önceden hazırlanmış bias üretim alt devresi
 
 **Durum: TAMAMLANDI — kullanıcı onayı.** Mevcut BERO kaydına göre kutu içinde RN130421 6 V AC / 2,0 VA trafo, KBU6M köprü doğrultucu, 2200 µF / 35 V filtre kondansatörü ve L78L33 regülatör; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) kondansatör bulunuyor. Bu, bias üretim alt devresinin hazır olduğu bilgisidir; SCT AC sinyalinin bias noktasına kuplajı ayrıca tanımlanmalıdır. Bağımsız ölçüm raporu bu kayda eklenmemiştir.
