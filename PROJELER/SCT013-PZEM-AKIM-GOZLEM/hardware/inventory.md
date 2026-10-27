@@ -51,15 +51,15 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 | Öğe | Mevcut durum | Kalan adım |
 |---|---|---|
 | SCT | 30 A / 1 V öncelikli; 100 A / 1 V alternatif stok | Kullanılacak kanal/sensör eşlemesini belirle |
-| MCU | SCT ölçümü için 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E; SSR kontrolü/zamanlama için ayrı ESP32-C3 SuperMini | Üç ölçüm kartının her birinde kullanılacak dahili ADC GPIO'sunu doğrula ve kanalları kaydet |
-| Dahili ADC | İlk aşamada ESP32 dahili ADC'si kullanılacak | Seçilen kartın ADC destekli GPIO'sunu ve giriş aralığını doğrula; attenuation/ADC yapılandırmasını kaydet |
+| MCU | SCT ölçümü için 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E; SSR kontrolü/zamanlama için ayrı ESP32-C3 SuperMini | ADC destekli GPIO ve pin eşlemesi firmware/pin planlama aşamasında, seçilen fiziksel kart ve teknik belgeyle doğrulanacak; T001’de pin numarası şartı değil |
+| Dahili ADC | İlk aşamada ESP32 dahili ADC'si kullanılacak; harici ADC modeli seçilmiş sayılmıyor | Firmware aşamasında, seçilen kart/pin için ADC destekli GPIO, giriş aralığı ve attenuation/ADC yapılandırmasını teknik belgeyle doğrula |
 | Harici ADC | MCP3208 mevcut, ileriki aşamaya ayrıldı | İlk aşamada kullanılmayacak |
 | Analog ön uç | 8 kanal, her kanalda ayrı bias ve direnç ağı; SCT sinyali ESP32 ADC'ye aktarılacak | SCT AC sinyalinin bias noktasına kuplajı, direnç/filtre değerleri ve güvenli ADC aralığı belgelenmeli |
-| PZEM ve CT | PZEM-004T V3.0; CT modeli kullanıcı tarafından PZCT-02 (0–100 A) olarak belirtildi | MCU bağlantısında UART lojik seviyesi ve izolasyon gereksinimlerini kontrol et |
+| PZEM ve CT | PZEM-004T için [mevcut BERO donanım kaydı](../../../DONANIM/PZEM-004T/README.md) esas alınır; bağlı CT modeli kullanıcı beyanıyla PZCT-02 (0–100 A) | Bu projede yeniden donanım belgesi açma veya CT modelini tekrar sorma; entegrasyon sırasında UART lojik seviyesi ve izolasyon gereksinimlerini kontrol et |
 | DS3231 | RTC referansı mevcut | Breakout revizyonu, SDA/SCL pinleri, pull-up seviyesi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemi doğrulanmalı |
 | SSR | SAMM Market 5 V, 2 kanal, İzmo9659 / MP02637 | İki AC yük, GPIO eşlemesi, tetik mantığı ve termal sınırlar güvenli biçimde doğrulanmalı |
-| Referans cihaz | Model kaydı yok | T003 kapsamında True-RMS ampermetre ve izlenebilirlik durumu kaydedilmeli |
-| Yükler | Lamba mevcut; diğer kontrollü yük seviyeleri tanımlı değil | T003 kapsamında en az üç kontrollü yük seviyesi belirlenmeli |
+| Referans cihaz | Model kaydı henüz yok | T003 kapsamında True-RMS referans cihazının marka/modeli ve kalibrasyon/izlenebilirlik durumu kaydedilmeli |
+| Yükler | Lamba mevcut; üç kontrollü yük seviyesi henüz tanımlı değil | T003 kapsamında en az üç kontrollü akım seviyesi için yük senaryoları, etiket gücü ve güvenli kullanım koşulları belirlenmeli |
 
 ## Kayıt kuralları
 - Önceki BERO teknik belgelerindeki ürün bilgilerini tekrar yazmak yerine ilgili referansa bağlan.
