@@ -35,3 +35,12 @@ Depoya kayıt yapmak için gün sonu beklenmez. Sohbette yeni bir hedef, karar, 
 - Kullanıcı, anlık kayıt için beklemeye razıdır; hız uğruna kayıt ve doğrulama adımları atlanmaz.
 
 **Kısa kural:** Gelişme olur olmaz depoya işle; gün sonunda sürekliliği kontrol et.
+
+## Öncelik: İstenen kaydı gerçekten yapmak
+
+Kullanıcı bir bilginin depoya kaydedilmesini istediğinde, öncelik açıklama veya yeni kural yazmak değil, istenen kaydı fiilen yapmaktır.
+
+- Bilgiyi uygun mevcut dosyaya ekle veya güncelle; gereksiz yeni belge ve süreç üretme.
+- Yazma işleminden sonra dosyayı yeniden oku ve kaydın bulunduğunu doğrula.
+- Başarısız olursa net biçimde bildir; kayıt yapılmış gibi konuşma.
+- Kullanıcının güveni, uzun vaatlerle değil istenen kayıtların doğru ve doğrulanabilir biçimde yapılmasıyla kazanılır.
