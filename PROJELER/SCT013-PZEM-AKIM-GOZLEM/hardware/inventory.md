@@ -41,7 +41,7 @@ Stok adetleri kullanıcı tarafından bildirilmiştir; bağımsız fiziksel say�
 
 ## SSR kaynak notu
 
-Kaynak [DONANIM/SSR/README.md](../../../DONANIM/SSR/README.md) ve kopyası [SSR.md](references/SSR.md) kontrolcü notunu ESP32-C3 / GPIO6 olarak tanımlar. Ancak bu SSR'nin fiziksel model işareti kaynakta kesinleştirilmemiştir. Omron G3MB yalnızca aday veri sayfasıdır; model etiketi görülmeden kesin referans sayılmaz. SSR, mevcut proje için seçilmiş ana bileşen değil, kullanılabilir BERO donanım referansıdır.
+Kaynak [DONANIM/SSR/README.md](../../../DONANIM/SSR/README.md) içindeki ESP32-C3 / GPIO6 bilgisi önceki test düzeneğine ait tarihsel nottur; bu projede geçerli GPIO olarak alınmaz. Dört kanallı SSR kartı bu projenin donanım listesine dahil edilmiştir. Kullanıcı OMRON markasını ve kartın giriş/çıkış özelliklerini bildirdi; tam röle model kodu fotoğraftan kesin okunmadı. Omron G3MB veri sayfası yalnızca olası karşılaştırma kaynağıdır. Kontrol GPIO'su, kanal ataması ve test yükleri planlama aşamasında belirlenecektir.
 
 ## Kalan proje-özel bilgiler
 
