@@ -33,7 +33,7 @@ Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı 
 
 ## SCT ölçüm kartı ve test düzeni
 
-Kullanıcı kararı: SCT013 okumaları için **2 × ESP32-WROOM-32D + 1 × ESP32-WROOM-32E** kullanılacak; bu üç kart **üç ayrı ölçüm kanalı** oluşturacak. Testlerde aynı hat üzerinde iletkenin SCT içinden **1 sarım, 2 sarım ve 4 sarım** geçirilmesi ayrı ayrı denenecek. Bu, test düzeni planıdır; henüz ölçüm sonucu veya GPIO eşlemesi değildir. SSR kontrolü ve zamanlama ayrı **ESP32-C3 SuperMini** üzerinde kalır.
+Kullanıcı kararı: SCT013 sensör okumaları için **2 × ESP32-WROOM-32D + 1 × ESP32-WROOM-32E** kullanılacak; her kart hızlı örnekleme yapan ayrı bir ölçüm kanalıdır. Amaç bu aşamada akım hesabı/RMS hesabı yapmak değil, sensörün **anlık/ham gerilim okumalarını** hızlı biçimde almak ve bunları SSR-zamanlayıcı düğümünden gelen paket bilgisiyle birlikte yazdırmaktır. Testlerde aynı hatta iletkenin SCT içinden **1 sarım, 2 sarım ve 4 sarım** geçirilmesi ayrı ayrı denenecek. Bu, test düzeni planıdır; henüz ölçüm sonucu veya GPIO eşlemesi değildir. SSR kontrolü ve zamanlama ayrı **ESP32-C3 SuperMini** üzerinde kalır; ölçüm çıktısında zamanlayıcıdan gelen paket bilgisiyle ilişki kurulacaktır.
 
 ## Önceden hazırlanmış bias üretim alt devresi
 
