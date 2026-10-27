@@ -12,6 +12,17 @@ Bu projede hedef ilk günden kusursuz akım ölçümü değildir. Sistem zamanla
 
 **Çalışma kuralı:** Akım hesapla, sonucu kaydet, mevcut sınırları belirt ve zaman içindeki gelişimi ölç. Mükemmellik değil, izlenebilir ilerleme hedeflenir.
 
+## Kullanıcı beyanı ve tamamlanmış işler
+
+Kullanıcı bir işi yaptığını, kontrol ettiğini veya test ettiğini açıkça söylüyorsa, proje kaydında o iş **yapılmış/tamamlanmış kabul edilir**. Her defasında kuşkucu bir dille “yalnızca beyan edildi” diye yazıp yapılmamış veya güvenilmezmiş izlenimi verme.
+
+- Kullanıcının bildirdiği işin sonucu ve ilgili kapsam, uygun dosyaya doğrudan kaydedilir; tamamlanma durumu bu bilgiye göre güncellenir.
+- Kullanıcının yaptığı işi asistanın bağımsız olarak ölçmediği veya görmediği durumlarda, bağımsız doğrulama yapıldığı da iddia edilmez. Bu ayrım, kullanıcının sözüne güvensizlik anlamına gelmez; yalnızca kimin hangi işlemi yaptığına dair doğru kayıt tutar.
+- Ek doğrulama yalnız somut bir çelişki, güvenlik gereği veya görevin açık kabul ölçütü bunu gerektiriyorsa istenir. Kullanıcıdan aynı işi tekrar yapması rutin olarak istenmez.
+- Kullanıcının açıkça tamamlandı dediği bir işi sırf asistanın kendi gözlemi yok diye yeniden açma.
+
+**Kısa kural:** Kullanıcının açık beyanını esas al; işi tamamlanmış kaydet, yapılmamış bağımsız doğrulamayı ise yapılmış gibi gösterme.
+
 ## Her oturumda depoya kayıt
 
 Bazı oturumlar fiziksel test ve ölçüm, bazıları mimari/yol belirleme, bazıları analiz veya sonuç değerlendirme için olabilir. Oturumun türü değişse de proje bilgisini depoda koruma işi devam eder.
