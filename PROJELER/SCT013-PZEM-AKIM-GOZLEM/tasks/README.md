@@ -31,6 +31,7 @@ Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 | T004 | Analog ön uç | 1.1 | TAMAMLANDI — SCT jack/bias devresi ve dahili ADC yaklaşımı belgelendi; laboratuvar düzeyinde ölçüm şartı yok | T002, T003 |
 | T005 | E01 gürültü tabanı | 1.2 | PLANLANDI — donanım kurulumu bekleniyor; yüksüz ADC verisi zaman grafiğinde incelenecek, kayıt süresi 30 saniyeden uzun olabilir | T004 |
 | T006 | SCT kalibrasyonu | 1.3 | PLANLANDI | T005 |
+| T007 | Python program mimarisini kullanıcı hedeflerine göre tanımla | 3–7 | DEVAM EDİYOR — ayrı mimari belgesi açıldı; program sayısı ve sorumluluklar sonraki açıklamalarla doldurulacak | HA→PC aktarım hedefi, PZEM/SCT analiz ve etiketleme hedefi |
 
 ## Kart açma
 Yeni görev için _template.md dosyasını kopyala; bir sonraki T numarasını kullan, bağımlılıkları ve ölçülebilir kabul koşulunu yaz. Yeni kart eklendiğinde bu tabloyu, ROADMAP.md ve gerekiyorsa STATUS.md'yi güncelle.
