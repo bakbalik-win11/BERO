@@ -8,7 +8,7 @@ SCT-013 benzeri CT'den ADC örnekleri toplayıp özet akım özellikleri çıkar
 - Güç kalitesi ölçmek.
 - SCT verisinden PF veya faz açısı hesaplamak.
 - FFT, THD veya harmonik analiz.
-- PZEM'i kusursuz veya sertifikalı ground truth kabul etmek.
+- PZEM'i kusursuz veya sertifikalı ölçüm standardı kabul etmek; PZEM okumaları bu projede SCT verisini etiketlemek/eğitmek için temel referanstır. Modelin başarısı PZEM'e uyum üzerinden değerlendirilir, mutlak ölçüm doğruluğu iddiası değildir.
 
 PZEM'in kendi PF çıktısı kayıt alanıdır; SCT'den PF hesaplanmayacaktır.
 
