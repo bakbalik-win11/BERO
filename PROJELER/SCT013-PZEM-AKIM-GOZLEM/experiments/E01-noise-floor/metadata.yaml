@@ -11,8 +11,13 @@ adc_model: null
 sample_rate_target_hz: 2000
 window_ms: 200
 pzem_poll_interval_ms: 1000
+planned_min_duration_seconds: 30
+planned_total_duration: "undecided; may be extended to hours"
+supply_arrangement: "PZEM and measurement/control ESP boards are not powered from the measured line; independent supplies"
+line_current_condition: "no current through measured line; confirm and record at experiment time"
+plotting: "graph ADC values over time while line current is zero"
 calibration_id: null
 reference_meter: null
-load_description: null
+load_description: "no load current during E01"
 data_paths: []
-notes: "Deney henüz yapılmadı."
+notes: "Hardware is not assembled yet. No measurement has been performed. Duration beyond 30 seconds is possible but not decided."
