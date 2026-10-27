@@ -29,7 +29,7 @@
 
 ## Bu projedeki durum
 
-Kart proje donanım listesine dahil edildi; kullanılacak çıkış kanalları, yükler ve ESP32 GPIO'ları henüz belirlenmedi. Ürün sayfasındaki 2 A/kanal değeri, termal koşullar ve PCB yapısı doğrulanmadan sürekli akım garantisi gibi yorumlanmamalı.
+Kart proje donanım listesine dahil edildi; iki AC yük, kullanılacak çıkış kanalları ve ESP32 GPIO'ları henüz belirlenmedi. Ürün kimliği İzmo9659 / MP02637 olarak kayıtlıdır; kart üzerindeki tekil SSR parça kodu okunamadığından bilinmiyor kabul edilir. Ürün sayfasındaki 2 A/kanal değeri, termal koşullar ve PCB yapısı doğrulanmadan sürekli akım garantisi gibi yorumlanmamalı.
 
 Önceki BERO ESP32-C3 test kaydında GPIO6 geçer; bu tarihsel bilgi bu projedeki GPIO seçimi değildir.
 
