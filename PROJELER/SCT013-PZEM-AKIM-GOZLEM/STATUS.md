@@ -2,7 +2,7 @@
 
 **Son güncelleme:** 2026-10-27  
 **Aktif faz:** Faz 0 — hazırlık ve güvenlik  
-**Aktif görev:** [T002 — Güvenlik kontrolü](tasks/T002-safety-checklist.md) — PLANLANDI. [T001 — Fiziksel donanım envanteri](tasks/T001-hardware-inventory.md) kullanıcı beyanındaki envanter ve bias alt devresi kaydedilerek kapatıldı.  
+**Aktif görev:** [T003 — Referans cihazı ve hata hedefi](tasks/T003-reference-and-error-target.md) — DEVAM EDİYOR. T001 envanter ve T002 güvenlik kontrolü kullanıcı beyanlarıyla kaydedilip kapatıldı; T002 fiziksel kontrolleri asistan tarafından bağımsız doğrulanmadı.  
 **Öncelikli SCT:** SCT013-030 (30 A / 1 V)  
 **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); CT modeli kullanıcı tarafından PZCT-02 (0–100 A) olarak belirtildi.  
 **Bias üretim alt devresi:** TAMAMLANDI — kullanıcı onayı. RN130421 + KBU6M + 2200 µF / 35 V + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) kondansatör. Bağımsız ölçüm raporu bu kayda eklenmedi.  
@@ -41,9 +41,9 @@
 - [ ] G3 — örnekleme hızı hedef yüklerde ölçülmüş metriklerle gerekçelendirilmiş.
 
 ## Sıradaki işler
-1. [ ] [T002 — Güvenlik kontrolü](tasks/T002-safety-checklist.md): şebeke bağlantısı öncesi güvenlik kontrol listesi; yalnız gerçek kontrol/kanıt varsa işaretlenecek.
-2. [ ] [T003 — Referans ve hata hedefi](tasks/T003-reference-and-error-target.md): UNI-T UT200B+ kaydı mevcut; hata kabul hedefi gerekçesiyle belirlenip kullanıcı onayına sunulacak. Test yükleri test sırasında kullanıcı tarafından beyan edilecek.
-3. [ ] [T004 — Analog ön uç](tasks/T004-analog-frontend.md): T002/T003 koşulları sağlandıktan sonra bias kuplajı ve güvenli ADC aralığı.
+1. [ ] [T003 — Referans ve hata hedefi](tasks/T003-reference-and-error-target.md): UNI-T UT200B+ kaydı mevcut; hata kabul hedefi gerekçesiyle belirlenip kullanıcı onayına sunulacak. Test yükleri test sırasında kullanıcı tarafından beyan edilecek.
+2. [ ] [T004 — Analog ön uç](tasks/T004-analog-frontend.md): T003 koşulları sağlandıktan sonra bias kuplajı ve güvenli ADC aralığı.
+3. [ ] T005 — E01 gürültü tabanı: T004 tamamlandıktan sonra protokol ve ölçüm.
 
 ## Açık engeller
 - SCT analog kuplajı, kanal direnç/filtre değerleri ve güvenli ADC giriş aralığı belgelenmeli. Kullanılacak kartın ADC GPIO eşlemesi ve firmware ayarları pin planlama/kodlama aşamasında doğrulanmalı; bu T001 kapatma şartı değildir. Genel NodeMCU kartı kullanılacaksa PCB revizyonu kablolama öncesi belirlenmeli.
