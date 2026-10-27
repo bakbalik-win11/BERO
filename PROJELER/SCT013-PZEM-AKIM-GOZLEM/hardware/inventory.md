@@ -9,7 +9,7 @@
 | SCT013-030 stok | 7 adet, 30 A / 1 V, jack çıkışlı | Kullanıcı bildirimi |
 | SCT013-100A-1V stok | 10 adet, 100 A / 1 V, jack çıkışlı | Kullanıcı bildirimi |
 | Jack yuvaları | Mevcut | Kullanıcı bildirimi |
-| ESP32-C3 SuperMini | 1 adet | Önceki SSR kontrol düğümünde kullanıldı; kullanıcı tüm parçaların elinde olduğunu bildirdi |
+| ESP32-C3 SuperMini | 1 adet | Kullanıcının bu turda paylaştığı fotoğraf kartı ESP32-C3 SuperMini olarak tanımlıyor; kullanıcı SSR kontrolü ve zamanlama kodunun bu karta ait olduğunu belirtti |
 | ESP32-WROOM-32D tabanlı kart/modül | 2 adet | BERO envanter kaydı; bu projede SCT ADC için seçilen kart olduğu henüz belirtilmedi |
 | ESP32-WROOM-32E tabanlı kart/modül | 1 adet | BERO envanter kaydı; bu projede SCT ADC için seçilen kart olduğu henüz belirtilmedi |
 | Genel ESP-WROOM-32 tabanlı NodeMCU ESP32 kartı | 1 adet | BERO envanter kaydı; kart üreticisi/revizyonu ve fotoğrafla eşleşmesi proje kaydında net değil |
