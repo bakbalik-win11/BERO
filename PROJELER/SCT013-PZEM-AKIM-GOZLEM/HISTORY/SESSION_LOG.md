@@ -235,3 +235,8 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Paket bilgisinin PZEM ve SCT örneklerine nasıl ulaştırılacağı; kararlı alan algoritması/istatistik eşikleri; etiket şeması; (f(x)) biçimi, referans ölçüm ve doğrulama ölçütleri. ADR-003/ADR-006 mevcut durumlarıyla otomatik olarak değiştirilmedi.
 - **Sonraki adım:** Kullanıcı T001 kapsamında mimariyi anlatmaya devam ederken hedefi dinle; algoritma, paket alım mimarisi veya model biçimi konusunda erken karar verme. Uygulama ve deneyleri mevcutmuş gibi kaydetme.
 - **Kanıt:** [Hedef mimari notu](../docs/architecture/sct-pzem-labeling-and-calibration.md); [STATUS](../STATUS.md); [arşivlenmiş BERO Markdown derlemesi](https://github.com/bakbalik-win11/BERO/blob/09775fe58f608cf31161c8a04636c6836b24f03d/PROJELER/SCT013-PZEM-AKIM-GOZLEM/docs/decisions/ADR-003-pzem-as-slow-label.md).
+
+
+## 2026-10-27 — Eğitim referansının PZEM olarak netleştirilmesi
+- **Kullanıcı kararı:** Projenin referansı PZEM'dir; hedef SCT verisini PZEM okumalarıyla etiketleyerek/eğiterek model oluşturmaktır. UNI-T UT200B+ ve True RMS gereksinimi bu projeden çıkarılacaktır.
+- **Dokümantasyon:** T003, donanım envanteri, STATUS ve ROADMAP bu karara göre güncellendi. Kalan proje dosyalarında eski UNI-T/True RMS atıfları için tarama sürüyor.
