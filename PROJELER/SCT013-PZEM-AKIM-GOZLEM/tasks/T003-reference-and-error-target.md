@@ -1,19 +1,19 @@
 # T003 — Referans cihazı, yükler ve hata hedefi
 
-- **Durum:** DEVAM EDİYOR — referans cihazının modeli belirlendi; yük seviyeleri ve hata kabul hedefi açık.
+- **Durum:** DEVAM EDİYOR — PZEM-004T V3.0 temel eğitim/etiket kaynağı olarak belirlendi; hata değerlendirme ölçütleri açık.
 - **Faz:** 0.3
 - **Bağımlılık:** T001; fiziksel deney öncesinde T002
-- **Hedef:** Kalibrasyon için referans ekipmanını ve yük senaryolarını belirlemek, kabul hedeflerini ilk ölçümden önce yazılı olarak kararlaştırmak.
+- **Hedef:** PZEM ölçümlerini SCT verisini etiketlemek/eğitmek için temel almak; karşılaştırma ve model değerlendirme ölçütlerini tanımlamak.
 
 ## Yapılacak
-1. **Referans cihazı belirlendi:** Kullanıcı fotoğrafında UNI-T UT200B+ True RMS pens ampermetre görülüyor. Akım karşılaştırma cihazı olarak kaydedildi.
+1. **Eğitim/etiket kaynağı:** Projenin temel referansı mevcut PZEM-004T V3.0 düzenidir. PZEM'in akım okumaları, SCT verisinin paket bağlamı ve kararlılık ölçütleriyle eşleştirilerek eğitim/etiketleme amacıyla kullanılacaktır.
 2. Test sırasında kullanılacak yük ve çalışma koşulları kullanıcı tarafından ilgili test kaydında beyan edilecek; T003 kapsamında önceden yük seviyesi belirleme şartı yoktur.
-3. Hedef kullanım amacına göre SCT–referans hata sınırını ve diğer gerekli kabul ölçütlerini tanımlamak için gerekçeli seçenekler hazırla.
-4. Asistan, hedefleri sessizce tahmin etmemeli: önerilen sayısal hedefi dayanağı ve ödünleşimleriyle açıklamalı; kullanıcı onayından sonra docs/00-scope.md ve gerekiyorsa yeni ADR'ye yazmalı.
+3. SCT modelinin PZEM okumalarını ne ölçüde yakaladığını değerlendirmek için MAE/RMSE gibi hata ölçütleri ve kararlı alan eşleştirme koşulları öner.
+4. True RMS pens ampermetre kullanımı proje şartı değildir. PZEM, bu projenin eğitim/etiket referansıdır; bağımsız, kusursuz ölçüm standardı olduğu varsayılmayacaktır.
 5. Hedefler ölçüm sonuçları görüldükten sonra geriye dönük değiştirilmemeli. Değişiklik gerekirse gerekçesi yeni bir karar kaydında açıklanmalı.
 
 ## Kabul ölçütü
-Referans cihazı tanımlıdır; test koşulları ilgili test kaydında kullanıcı beyanıyla belirtilir. Sayısal kabul hedefleri ilk ölçümden önce gerekçesiyle kaydedilmiştir; hedef belirlenemiyorsa kart ENGELLENDİ kalır ve neden açıklanır.
+PZEM'in eğitim/etiket referansı rolü ve SCT modelini değerlendirme ölçütleri dokümante edilmiştir. Test yükleri ilgili test kaydında belirtilir; True RMS pens ampermetre şartı yoktur.
 
 ## Çıktı / dokunulacak dosyalar
 - hardware/inventory.md
