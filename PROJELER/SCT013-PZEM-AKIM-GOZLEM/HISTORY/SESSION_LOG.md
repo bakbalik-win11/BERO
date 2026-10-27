@@ -66,10 +66,10 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 
 ## 2026-10-27 — Önceki SCT/PZEM Markdown kayıtlarının projeye alınması
 
-- **Durum:** UYGULANDI; [PR #8](https://github.com/bakbalik-win11/BERO/pull/8) açık, otomatik kontrol sonucu bekleniyor.
+- **Durum:** UYGULANDI ve doğrulandı; [PR #8](https://github.com/bakbalik-win11/BERO/pull/8) birleştirildi.
 - **Hedef ve kabul ölçütü:** Önceki BERO donanım çalışmalarındaki SCT013-100A-1V, SCT013-30A-1V ve PZEM-004T V3.0 Markdown kayıtlarını yeni projede tekrar araştırma/yazma gerektirmeden kullanmak; kaynakları korumak ve proje-özel eksikleri ayrı göstermek.
 - **Yapılan:** Üç donanım README'si `hardware/references/` altına kaynak yolu ve kopya tarihi belirtilerek aktarıldı. Referans dizin indeksi ve proje README bağlantıları eklendi. `hardware/inventory.md`, T001, `STATUS.md` ve `docs/open-questions.md` genel donanım bilgisini yeniden toplamak yerine mevcut referansları kullanacak ve yalnızca bu projeye özgü seçim/eksikleri kaydedecek şekilde güncellendi.
-- **Doğrulama:** Kopyalar, `DONANIM/` altındaki kaynak Markdown içeriklerinden oluşturuldu. Önceki test notları geçmiş kayıt olarak işaretlendi; yeni deney veya kalibrasyon sonucu üretilmedi. PR kapanış kontrolü [PR #8 Checks](https://github.com/bakbalik-win11/BERO/pull/8/checks) üzerinden doğrulanacak.
+- **Doğrulama:** Üç kopya kaynak `DONANIM/` Markdown içerikleriyle karşılaştırıldı ve proje bağlantıları yeniden okundu. [PR #8 Checks](https://github.com/bakbalik-win11/BERO/pull/8/checks) oturum-kapanış kontrolü başarılı oldu. PR #8, `ff2938fe2cacecda047053c010ea871601f4c369` birleştirme commit'i ile `main` dalına alındı. Yeni deney veya kalibrasyon sonucu üretilmedi.
 - **Açık kalanlar:** Bu projede kullanılacak SCT varyantı; PZEM'in 10 A/100 A seçeneği ve CT modeli; gerçek MCU/ADC, VREF/bias/analog ön uç; referans cihazı ve yük senaryoları.
-- **Sonraki adım:** PR kontrolünü doğrula ve değişikliği `main` dalına al. Ardından T001'i sadece proje-özel eksikleri kapatmak için sürdür.
-- **Kanıt:** [Proje referans indeksi](../hardware/references/README.md); [güncel envanter](../hardware/inventory.md); [T001](../tasks/T001-hardware-inventory.md); [çalışma dalı](https://github.com/bakbalik-win11/BERO/tree/docs/import-hardware-reference-md).
+- **Sonraki adım:** T001'i sadece proje-özel eksikleri kapatmak için sürdür.
+- **Kanıt:** [Proje referans indeksi](../hardware/references/README.md); [güncel envanter](../hardware/inventory.md); [T001](../tasks/T001-hardware-inventory.md); [PR #8](https://github.com/bakbalik-win11/BERO/pull/8); [birleştirme commit'i](https://github.com/bakbalik-win11/BERO/commit/ff2938fe2cacecda047053c010ea871601f4c369).
