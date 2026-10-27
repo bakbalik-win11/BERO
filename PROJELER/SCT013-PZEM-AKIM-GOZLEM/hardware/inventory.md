@@ -10,8 +10,8 @@
 | SCT013-100A-1V stok | 10 adet, 100 A / 1 V, jack çıkışlı | Kullanıcı bildirimi |
 | Jack yuvaları | Mevcut | Kullanıcı bildirimi |
 | ESP32-C3 SuperMini | 1 adet | Kullanıcının bu turda paylaştığı fotoğraf kartı ESP32-C3 SuperMini olarak tanımlıyor; kullanıcı SSR kontrolü ve zamanlama kodunun bu karta ait olduğunu belirtti |
-| ESP32-WROOM-32D tabanlı kart/modül | 2 adet | Kullanıcı fotoğrafında ESP32-WROOM-32D metal kalkanlı kart görsel olarak eşleştirildi; bu kartın SCT ADC için seçildiği henüz belirtilmedi |
-| ESP32-WROOM-32E tabanlı kart/modül | 1 adet | BERO envanter kaydı; bu projede SCT ADC için seçilen kart olduğu henüz belirtilmedi |
+| ESP32-WROOM-32D tabanlı kart/modül | 2 adet | Kullanıcı fotoğrafında ESP32-WROOM-32D metal kalkanlı kart görsel olarak eşleştirildi; kullanıcı bu iki kartı SCT013 ölçümünde kullanacağını belirtti |
+| ESP32-WROOM-32E tabanlı kart/modül | 1 adet | Kullanıcı bu kartı da SCT013 ölçümünde kullanacağını belirtti |
 | Genel ESP-WROOM-32 tabanlı NodeMCU ESP32 kartı | 1 adet | BERO envanter kaydı; kart üreticisi/revizyonu ve fotoğrafla eşleşmesi proje kaydında net değil |
 | ESP32 ölçüm düğümü | 1 adet | Önceki PZEM ölçüm düğümünde kullanıldı; fiziksel kart modeli yukarıdaki stoktan kesin eşleştirilmedi |
 | PZEM-004T | V3.0 | Kullanıcı bildirimi; ayrıntı için [mevcut BERO kaydı](../../../DONANIM/PZEM-004T/README.md) |
@@ -40,7 +40,7 @@ Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı 
 | Öğe | Mevcut durum | Kalan adım |
 |---|---|---|
 | SCT | 30 A / 1 V öncelikli; 100 A / 1 V alternatif stok | Kullanılacak kanal/sensör eşlemesini belirle |
-| MCU | 2 × WROOM-32D, 1 × WROOM-32E, 1 × genel NodeMCU ESP32; ayrıca ESP32-C3 SuperMini SSR düğümü | SCT ADC için kullanılacak fiziksel kartı fotoğraf/etiket ve PCB revizyonuyla eşleştir |
+| MCU | SCT ölçümü için 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E; SSR kontrolü/zamanlama için ayrı ESP32-C3 SuperMini | Üç ölçüm kartının her birinde kullanılacak dahili ADC GPIO'sunu doğrula ve kanalları kaydet |
 | Dahili ADC | İlk aşamada ESP32 dahili ADC'si kullanılacak | Seçilen kartın ADC destekli GPIO'sunu ve giriş aralığını doğrula; attenuation/ADC yapılandırmasını kaydet |
 | Harici ADC | MCP3208 mevcut, ileriki aşamaya ayrıldı | İlk aşamada kullanılmayacak |
 | Analog ön uç | 8 kanal, her kanalda ayrı bias ve direnç ağı; SCT sinyali ESP32 ADC'ye aktarılacak | SCT AC sinyalinin bias noktasına kuplajı, direnç/filtre değerleri ve güvenli ADC aralığı belgelenmeli |
