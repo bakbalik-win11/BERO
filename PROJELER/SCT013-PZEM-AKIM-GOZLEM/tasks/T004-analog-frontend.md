@@ -1,22 +1,22 @@
 # T004 — Analog ön uç
 
-- **Durum:** PLANLANDI
+- **Durum:** TAMAMLANDI
 - **Faz:** 1.1
 - **Bağımlılık:** T002 ve T003
 - **Hedef:** Kullanılan SCT bağlantısını ve breadboard bias devresini hobi projesi için yeterli ayrıntıda kaydetmek.
 
-## Yapılacak
-1. hardware/frontend.md içinde kullanılan SCT modelini/çıkış türünü ve mevcut breadboard bias devresini kaydet.
-2. Bias seviyesi yaklaşık **1,65 V** kabul edilir. Kullanıcı bu seviyeyi yaygın ve tecrübeyle bilinen bir uygulama olarak belirtti; bias seviyesini ayrıca ölçüp doğrulamak bu aşamanın şartı değildir.
-3. Testler başladığında bias, SCT ham ölçümünden ayrı bir kanal/kayıt alanı olarak kaydedilecek. Bu, yazılım ve veri kaydı aşamasında yapılır; T004 ön koşulu değildir.
-4. Bu aşamada ESP32'nin dahili ADC'si kullanılacak; harici ADC ve MCP3208 sonraki aşamaya ayrılmıştır. ADC çözünürlüğü ve VREF kaydı bu görevin şartı değildir.
-5. Belirgin bağlantı sorunu görülürse not et. Beklenen maksimum sinyal, clipping payı, toleranslar ve ADC giriş aralığı için laboratuvar düzeyinde hesap/ölçüm bu görevin kapanış şartı değildir.
+## Tamamlananlar
+- `hardware/frontend.md` içinde mevcut breadboard bias devresi ve ESP32 dahili ADC yaklaşımı belgelendi.
+- Bias seviyesi yaklaşık **1,65 V** kabul edildi. Bu aşamada ayrıca ölçülüp doğrulanması gerekmiyor.
+- Bias'ın testler başladığında SCT ham ölçümünden ayrı bir kanal/kayıt alanı olarak tutulacağı not edildi. Bu, yazılım ve veri kaydı aşamasında yapılacak; T004 ön koşulu değil.
+- Envanterdeki SCT013-030 ve SCT013-100A-1V modelleri belgelendi. Kullanılacak model test bazında belirtilecek; tüm testler için tek model önceden sabitlenmedi.
+- ESP32'nin dahili ADC'si kullanılacak; harici ADC ve MCP3208 sonraki aşamaya ayrıldı.
 
 ## Kabul ölçütü
-Kullanılan SCT modeli ve breadboard bias devresi kaydedilmiş, bias'ın testlerde ayrı kanal/kayıt alanı olarak tutulacağı not edilmiş olmalıdır. Laboratuvar düzeyinde bias ölçümü veya ADC aralığı/clipping hesabı gerekmiyor.
+Hobi projesi için mevcut bias devresi, ADC yaklaşımı ve eldeki SCT modelleri belgelendi. Laboratuvar düzeyinde bias ölçümü, ADC aralığı/clipping hesabı, tolerans analizi veya gürültü ölçümü bu görevin kapanış şartı değildir.
 
 ## Çıktı
-- hardware/frontend.md
+- `hardware/frontend.md`
 
 ## Güvenlik
-Hobi düzeyinde temel elektrik güvenliği ve sağduyulu bağlantı kontrolü uygulanır. Enerjili devrede bağlantı değiştirme veya açık iletkenlere dokunma.
+Hobi düzeyinde temel elektrik güvenliği ve sağduyulu bağlantı kontrolü uygulanır. Enerjili devrede bağlantı değiştirilmez ve açık iletkenlere dokunulmaz.
