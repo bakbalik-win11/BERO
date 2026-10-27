@@ -27,7 +27,7 @@ Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 |---|---|---:|---|---|
 | T001 | Fiziksel donanım envanteri | 0.1 | TAMAMLANDI — kullanıcı beyanındaki stok, kart rolleri ve bias devresi kaydedildi; kalan analog tasarım ayrıntıları sonraki görevlere ait | — |
 | T002 | Güvenlik kontrolü | 0.2 | TAMAMLANDI — kullanıcı tüm kontrol maddelerini tamamladığını beyan etti; fiziksel durum bağımsız doğrulanmadı | T001 |
-| T003 | Referans cihazı ve hata hedefi | 0.3 | DEVAM EDİYOR — PZEM eğitim referansına göre model hata hedefi belirlenecek | T001 |
+| T003 | PZEM tabanlı model hata hedefi | 0.3 | TAMAMLANDI — ±%4 bağıl sapma; Python'da geçerli örnekler için OK kararı | T001 |
 | T004 | Analog ön uç | 1.1 | PLANLANDI | T002, T003 |
 | T005 | E01 gürültü tabanı | 1.2 | PLANLANDI | T004 |
 | T006 | SCT kalibrasyonu | 1.3 | PLANLANDI | T005 |
