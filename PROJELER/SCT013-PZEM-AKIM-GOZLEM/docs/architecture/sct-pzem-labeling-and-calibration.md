@@ -33,6 +33,7 @@
 3. Bulunan fonksiyonu yalnızca modelin çıkarıldığı kararlı örneklerde değil, çok sayıda paket ve olay içeren ham veri akışında da dene.
 4. Hataları, yanlış etiketleri, geçiş davranışını ve veri kalitesini incele; gerekirse kararlılık algoritmasını, istatistiksel eşikleri veya fonksiyon biçimini iyileştir.
 5. Sonuçları ayrı doğrulama verisi ve açık hata ölçütleriyle raporla. Deney yapılmadan model başarısı veya doğruluk iddia etme.
+6. **Kabul hedefi (T003):** Python'da model tahmini geçerli PZEM akımından en fazla ±%4 bağıl sapıyorsa `OK` sayılır (`abs(prediction - pzem_current) / abs(pzem_current) <= 0.04`). Tam %4 sınır içindedir. Geçersiz PZEM okumaları ve sıfır referans akımı yüzdeyle sınıflandırılmaz; ayrı geçersiz/hesaplanamaz durum olarak tutulur.
 
 ## Sarım deneyleri
 
