@@ -180,3 +180,14 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Hangi iki AC yükün anahtarlanacağı, kontrol GPIO'ları, tetik mantığı, giriş akımı ve termal sınırlar.
 - **Sonraki adım:** İki kanalın yüklerini belirle; sonra düşük gerilimli giriş mantığı testini planla.
 - **Kanıt:** [SAMM Market ürün sayfası](https://market.samm.com/5v-2-kanal-solid-state-role-karti); [SSR kaynak kaydı](../../../DONANIM/SSR/README.md); [proje envanteri](../hardware/inventory.md); [açık sorular](../docs/open-questions.md).
+
+
+## 2026-10-27 — T001 stok ve 8 kanallı analog arayüz bilgilerinin eşitlenmesi
+
+- **Durum:** UYGULANDI; envanter ve proje yönlendirme dosyaları ana dala commit edildi. Teknik kabul maddeleri açık olduğundan T001 henüz TAMAMLANDI değil.
+- **Hedef ve kabul ölçütü:** Kullanıcının bildirdiği tüm T001 donanım ayrıntılarını tek bir yerde bırakmayıp ana envanter, görev kartı, proje durumu, yol haritası, açık sorular ve analog ön uç notları arasında tutarlı biçimde kaydetmek; bilinmeyen elektriksel ayrıntıları uydurmamak.
+- **Yapılan:** T001 kullanıcı envanter notu oluşturuldu/güncellendi; 7 adet SCT013 30 A / 1 V, 10 adet SCT013 100 A / 1 V, jack yuvaları, masaüstü 5 V / 1,8 A güç kaynağı, lamba test yükü ve bağlantı parçalarının mevcut olduğu kaydedildi. Kullanıcının önceden hazırladığı 8 kanallı, kanal başına ayrı bias/direnç ağı olan kart ve isteğe bağlı MCP ADC bilgisi işlendi. T001 görev kartı, tasks/README, STATUS, ROADMAP, hardware/inventory, docs/open-questions, hardware/frontend ve proje README tutarlılaştırıldı.
+- **Doğrulama:** Her değişiklik GitHub Contents API üzerinden commit sonucu döndürdü. Commitler: T001 envanter notu `1d12b7b`; görev kartı `b2f6faf`; görev listesi `34b8163`; STATUS `74fa8f5`; ana envanter `42a00d5`; ROADMAP `4b5a5bc`; açık sorular `7148525`; analog ön uç `357d966`; README `aae2126`. Bu oturumda fiziksel elektriksel ölçüm, donanım testi veya deney çalıştırılmadı.
+- **Açık kalanlar:** Gerçekte kullanılacak ADC modeli/revizyonu ve VREF; SCT AC sinyalinin bias noktasına kuplajı; kanal başına direnç/filtre değerleri ve güvenli ADC aralığı. Referans cihazı/yük seviyeleri T003 kapsamındadır.
+- **Sonraki adım:** Önce mevcut BERO kayıtlarından ADC/MCU seçeneklerini kontrol et; kullanıcıyı bilinen stok veya hazır kart ayrıntılarını yeniden vermeye zorlama. Kalan gerçek proje-özel kararları birer birer ele al.
+- **Kanıt:** [T001 envanter özeti](../docs/inventory/T001-fiziksel-donanim-envanteri.md); [ana donanım envanteri](../hardware/inventory.md); [aktif görev](../tasks/T001-hardware-inventory.md); [STATUS](../STATUS.md); [ROADMAP](../ROADMAP.md); [açık sorular](../docs/open-questions.md).
