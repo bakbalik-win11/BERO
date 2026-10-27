@@ -2,6 +2,17 @@
 
 Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonunda yeni kayıt eklenir; eski kayıtlar korunur.
 
+## 2026-10-27 — T002 güvenlik kontrolünün kapatılması
+
+- **Durum:** UYGULANDI; güncellenen dosyalar GitHub'dan yeniden okunarak doğrulandı.
+- **Hedef ve kabul ölçütü:** Kullanıcının T002'yi okuyup tüm kontrolleri tamamladığı beyanını görev kaydına işlemek; görev indeksi, kontrol listesi, yol haritası ve proje durumunu eşitlemek.
+- **Yapılan:** Kullanıcı beyanına göre hardware/safety-checklist.md maddeleri işaretlendi. T002 kartı ve görev indeksi TAMAMLANDI yapıldı. ROADMAP.md Faz 0.2 işaretlendi; STATUS.md aktif görevi T003 yaptı; README.md güvenlik kaydına bağlantı eklendi.
+- **Doğrulama:** Güncellenen dosyalar GitHub'dan yeniden okundu. Kontrol listesindeki durum, T002 kartı, görev indeksi, ROADMAP ve STATUS birbirleriyle tutarlı hale getirildi.
+- **Açık kalanlar:** Kontrollerin tamamlandığı kullanıcı beyanıdır; asistan fiziksel kurulumu bağımsız incelemedi. Kontrolü yapan kişinin yetkin rolü ayrıca kaydedilmedi. Bu nedenle fiziksel güvenliğin bağımsız doğrulandığı iddia edilmiyor. T003'te hata kabul hedefi açık; T004 analog ön uç çalışması henüz başlamadı.
+- **Sonraki adım:** T003 kapsamında UT200B+ referans cihazı için ölçüm hata kabul hedefi seçeneklerini dayanak ve ödünleşimleriyle hazırlamak; kullanıcı onayıyla kaydetmek.
+- **Kanıt:** [T002](../tasks/T002-safety-checklist.md), [kontrol listesi](../hardware/safety-checklist.md), [görev indeksi](../tasks/README.md), [ROADMAP](../ROADMAP.md), [STATUS](../STATUS.md).
+
+
 ## 2026-10-27 — T001 kapanışı ve depo tutarlılık düzeltmesi
 
 - **Durum:** UYGULANDI ve depo kayıtları yeniden okunarak doğrulandı.
