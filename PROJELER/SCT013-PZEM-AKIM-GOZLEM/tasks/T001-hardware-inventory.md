@@ -11,6 +11,8 @@
 - [PZEM-004T V3.0](../hardware/references/PZEM-004T-V3.0.md)
 - [SSR donanım referansı](../hardware/references/SSR.md)
 - [SSR aday veri sayfası notu](../hardware/references/SSR-datasheet-candidate.md)
+- [DS3231 RTC referansı](../hardware/references/DS3231.md)
+- [DS3231 resmî veri sayfası bağlantısı](../hardware/references/DS3231-datasheet.md)
 - [Referans indeksi](../hardware/references/README.md)
 
 Genel teknik özellikleri tekrar yazma. Önceden var olan kaynaklardan yararlan; proje için verilmiş kararları yeniden sorma.
