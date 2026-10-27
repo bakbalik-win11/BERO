@@ -33,12 +33,11 @@
 - Bias üretim alt devresi önceki proje kayıtlarında kullanıcı onayıyla tamamlandı sayılıyor. Bu, SCT AC sinyalinin bias noktasına kuplajının da doğrulandığı anlamına gelmez.
 
 ## Kalan proje-özel işler
-1. Kullanıcının açıkladığı bağlantı yolunu kaydet: SCT013 dişi jack yuvasına bağlanır; sensör dönüş sinyali dişi jack üzerinden 8 kanallı analog arayüze ve oradan ESP32 ADC girişine gider. Elektriksel bias kuplaj topolojisinin (hangi sinyal hattının bias orta noktasına nasıl bağlandığı), kanal direnç/filtre değerlerinin ve güvenli ADC aralığının kanıtla belgelenmesi hâlâ gerekir. Ölçülmeyen değerleri tahmin etme.
-2. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. Harici ADC modeli/revizyonu veya VREF seçimi T001 kapsamına alınmayacak.
-3. GPIO numarası ve pin eşlemesi firmware/pin planlama aşamasına bırakılacak; bunları T001’in eksik işi olarak kullanıcıya sorma.
-4. True-RMS referans cihazı ve en az üç kontrollü yük seviyesini [T003](T003-reference-and-error-target.md) altında ele al.
-5. SSR için iki AC yükü ve GPIO eşlemesini sonraki güvenli test planında kaydet; tetik mantığını düşük gerilimli testte doğrula. Ürün kimliği İzmo9659 / MP02637; tekil SSR parça kodu doğrulanmış değil.
-6. DS3231 breakout pinleri, pull-up gerilimi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemini kablolama öncesi doğrula; hızlı örnekleme zamanlamasını RTC takvim okumalarından bağımsız tut.
+1. Kullanıcının açıkladığı bağlantı yolunu kaydet: SCT013 dişi jack yuvasına bağlanır; sensör dönüş sinyali dişi jack üzerinden 8 kanallı analog arayüze ve oradan ESP32 kartına gider. Elektriksel bias kuplaj topolojisinin (hangi sinyal hattının bias orta noktasına nasıl bağlandığı), kanal direnç/filtre değerlerinin ve güvenli giriş aralığının kanıtla belgelenmesi hâlâ gerekir. Ölçülmeyen değerleri tahmin etme.
+2. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. Harici ADC modeli/revizyonu veya VREF seçimi T001 kapsamına alınmayacak. GPIO/pin numarası da bu aşamada istenmiyor.
+3. True-RMS referans cihazı ve en az üç kontrollü yük seviyesini [T003](T003-reference-and-error-target.md) altında ele al.
+4. SSR için iki AC yükü ve GPIO eşlemesini sonraki güvenli test planında kaydet; tetik mantığını düşük gerilimli testte doğrula. Ürün kimliği İzmo9659 / MP02637; tekil SSR parça kodu doğrulanmış değil.
+5. DS3231 breakout pinleri, pull-up gerilimi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemini kablolama öncesi doğrula; hızlı örnekleme zamanlamasını RTC takvim okumalarından bağımsız tut.
 
 ## Kabul ölçütü
 Fiziksel envanter ve hazır analog kart kaydı mevcut kaynaklara bağlanmalı; SCT'nin dişi jack üzerinden analog karta ve oradan ESP32 ADC'ye giden bağlantı yolu kaydedilmiştir. Bu aşamada harici ADC/VREF seçimi yapılmayacak; bias orta noktasına elektriksel kuplajın ayrıntısı, kanal direnç/filtre değerleri ve güvenli ADC giriş aralığı bilinen kanıta göre kaydedilmeli; bilinmeyenler açıkça işaretlenmelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez.
