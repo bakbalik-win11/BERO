@@ -170,3 +170,13 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Gerçek breakout kart revizyonu, pil ve olası şarj devresi, I²C pull-up seviyesi ve SDA/SCL pinleri; ilk saat ayarlama yöntemi ve saat dilimi. ADC/VREF ve SCT analog ön uç kararları da açık.
 - **Sonraki adım:** DS3231 modülünün pin ve pil devresini doğrula; I²C pinlerini seçilen ESP32 kartının pin planına göre belirle.
 - **Kanıt:** [DS3231 proje referansı](../hardware/references/DS3231.md); [resmî veri sayfası](https://www.analog.com/media/en/technical-documentation/data-sheets/ds3231.pdf); [güncel envanter](../hardware/inventory.md); [açık sorular](../docs/open-questions.md).
+
+## 2026-10-27 — Satın alma bağlantısıyla SSR kanal sayısının düzeltilmesi
+
+- **Durum:** UYGULANDI; PR ve otomatik kapanış kontrolü bekleniyor.
+- **Hedef ve kabul ölçütü:** Kullanıcının gerçek ürün bağlantısını esas alarak önceki yanlış dört-kanal kaydını düzeltmek ve elektriksel özellikleri satıcı sayfasına bağlamak.
+- **Yapılan:** Kullanıcının verdiği [SAMM Market 5V 2 Kanal Solid State Röle Kartı](https://market.samm.com/5v-2-kanal-solid-state-role-karti) satın alma kaynağı olarak kaydedildi. Ürün adı, tedarikçi kodu İzmo9659, SKU MP02637 ve 2 kanal bilgisi işlendi. Satıcı sayfasındaki 5 V DC / iki kanal açıkken 160 mA, giriş gerilim açıklaması, 75–264 VAC ve 0,1–2 A/kanal, nominal 100–240 VAC, fototriyak ve zero-cross bilgileri kaydedildi. Kaynak `DONANIM/SSR/` dosyaları ve proje referansları 2 kanallı ürünle eşitlendi.
+- **Doğrulama:** Ürün sayfası kaynak alındı. Sayfada “low level trigger” ifadesi ile LOW=kapalı/HIGH=açık gerilim açıklaması olası bir belirsizlik oluşturuyor; kontrol girişinin gerçek mantığı düşük gerilimli, şebekeden bağımsız masa testinde doğrulanmadan GPIO davranışı kesin kabul edilmeyecek. Fiziksel SSR entegresinin tekil model kodu doğrulanmadı.
+- **Açık kalanlar:** Hangi iki AC yükün anahtarlanacağı, kontrol GPIO'ları, tetik mantığı, giriş akımı ve termal sınırlar.
+- **Sonraki adım:** İki kanalın yüklerini belirle; sonra düşük gerilimli giriş mantığı testini planla.
+- **Kanıt:** [SAMM Market ürün sayfası](https://market.samm.com/5v-2-kanal-solid-state-role-karti); [SSR kaynak kaydı](../../../DONANIM/SSR/README.md); [proje envanteri](../hardware/inventory.md); [açık sorular](../docs/open-questions.md).
