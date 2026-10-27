@@ -24,3 +24,14 @@ Bazı oturumlar fiziksel test ve ölçüm, bazıları mimari/yol belirleme, baz�
 - Her depoya yazma işleminden sonra dosyayı yeniden okuyarak kaydın gerçekten oluştuğunu kontrol et. Başarısız olursa bunu açıkça bildir; kaydedildiğini söyleme.
 
 **Kısa kural:** Test günü de, planlama günü de, analiz günü de — ortaya çıkan bilgi depoya işlenir.
+
+## Anlık kayıt ve gün sonu süreklilik kontrolü
+
+Depoya kayıt yapmak için gün sonu beklenmez. Sohbette yeni bir hedef, karar, fikir, görev, test sonucu veya öğrenim ortaya çıktığında uygun depodaki kayıt aynı çalışma akışı içinde güncellenir.
+
+- Anlık kayıt: yeni bilgi geldiğinde uygun mimari, fikir havuzu, görev kartı, durum veya sonuç belgesi güncellenir; yazma işlemi ardından dosya yeniden okunarak doğrulanır.
+- Gün sonu kontrolü: anlık kayıtların yerine geçmez. Gün sonunda belgeler arası süreklilik gözden geçirilir; durumlar, görev bağlantıları, açık kalan işler ve sonuç kayıtları birbiriyle tutarlı hale getirilir.
+- Kayıt başarısız olursa başarısızlık açıkça bildirilir; bilgi sessizce bekletilmez ve kaydedilmiş gibi gösterilmez.
+- Kullanıcı, anlık kayıt için beklemeye razıdır; hız uğruna kayıt ve doğrulama adımları atlanmaz.
+
+**Kısa kural:** Gelişme olur olmaz depoya işle; gün sonunda sürekliliği kontrol et.
