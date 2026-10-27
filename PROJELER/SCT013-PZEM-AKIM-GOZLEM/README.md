@@ -9,14 +9,14 @@ Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölç
 - **Öncelikli SCT:** [SCT013-030 — 30 A / 1 V](hardware/references/SCT013-30A-1V.md).
 - **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); proje içi teknik kopyası [PZEM-004T V3.0](hardware/references/PZEM-004T-V3.0.md). Kullanıcı CT modelini **PZCT-02 (0–100 A)** olarak belirtti ve görüntü, bu CT'nin PZEM'e bağlı olduğunu göstermek içindi. Bu, 100 A harici CT'li PZEM düzenidir; fotoğraf yeni bir donanım referansı oluşturmak için paylaşılmadı.
 - **Bias üretim alt devresi:** Kullanıcı onayıyla tamamlandı sayılıyor. Ayrıntılar [donanım envanterinde](hardware/inventory.md) yer alır.
-- **SSR:** [Mevcut BERO SSR donanım kaydı](hardware/references/SSR.md) ve [aday veri sayfası notu](hardware/references/SSR-datasheet-candidate.md) aktarıldı. Fiziksel SSR'nin tam modeli doğrulanmış değil; bu kayıt projede kullanım kararı değildir.
+- **SSR:** Proje donanımına mevcut dört kanallı SSR kartı dahil edildi. Kullanıcı bilgisi: OMRON, fototriyak izolasyon, zero-cross, giriş LOW 0–0,5 V / belirsiz 0,5–2,5 V / HIGH 2,5–20 V; kanal başına 75–264 VAC, bildirilen 0,1–2 A, nominal yük 100–240 VAC. Tam model kodu fotoğraftan okunmadı. Ayrıntılar [SSR referansında](hardware/references/SSR.md); G3MB veri sayfası hâlâ yalnız aday karşılaştırmadır.
 
-## Bildirilen geliştirme modülü stoku
-- 2 adet ESP32-WROOM-32D
-- 1 adet ESP32-WROOM-32E
-- 1 adet ESP32-WROOM-32S
+## İlk aşamada kullanılacak ESP32 kartları
+- **2 adet ESP32-WROOM-32D geliştirme kartı**
+- **1 adet ESP32-WROOM-32E geliştirme kartı**
+- **1 adet ESP-WROOM-32 tabanlı NodeMCU ESP32 Bluetooth geliştirme kartı** (fotoğrafta bu adla tanımlanıyor; kart üreticisi/PCB revizyonu henüz okunmuyor)
 
-Adetler kullanıcı bildirimi olarak kaydedilmiştir; bağımsız fiziksel sayım yapılmadı. Projede kullanılacak gerçek modül/kart ayrıca seçilecek. Mevcut [ESP32-WROOM-32D teknik kaydı](../../DONANIM/ESP32-WROOM-32D/README.md) referans olarak korunur.
+**İlk aşama toplamı: 4 ESP32 geliştirme kartı.** Bu dağılım kullanıcı tarafından belirtildi ve görsellerle desteklendi; bağımsız fiziksel sayım yapılmadı. Önceki `ESP32-WROOM-32S × 1` satırı, kullanıcının son düzeltmesi doğrultusunda genel ESP-WROOM-32 NodeMCU kartı olarak değiştirildi. Mevcut [ESP32-WROOM-32D teknik kaydı](../../DONANIM/ESP32-WROOM-32D/README.md) referans olarak korunur. Dört kartın ilk aşamadaki rolleri ve ortak ADC arayüzü yazılım/bağlantı planında ayrıştırılacak.
 
 ## Önceki BERO donanım kayıtları
 - [SCT013-100A-1V](../../DONANIM/SCT013-100A-1V/README.md)

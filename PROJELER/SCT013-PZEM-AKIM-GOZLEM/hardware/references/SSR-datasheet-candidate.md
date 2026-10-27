@@ -1,13 +1,17 @@
-# SSR Veri Sayfası — Model Doğrulaması Gerekli
+# SSR Veri Sayfası — Model Eşleştirmesi Bekliyor
 
-> **Proje referans kopyası — 2026-10-27.** Kaynak: [`DONANIM/SSR/datasheets/README.md`](../../../../DONANIM/SSR/datasheets/README.md). Kaynak `DONANIM/` belgesi asıl kayıttır.
-> Bu kopya, mevcut donanım notlarının bu projede erişilebilir olması içindir; önceki test düzeneğinin bu projeye bağlandığı veya SSR modelinin doğrulandığı anlamına gelmez.
+> **Proje referans kopyası — 2026-10-27.** Kaynak: [`DONANIM/SSR/datasheets/README.md`](../../../../DONANIM/SSR/datasheets/README.md). Kaynak belge asıl kayıttır.
 
+## Kullanıcı tarafından bildirilen mevcut modül
 
-## Aday üretici veri sayfası: Omron G3MB serisi
+Mevcut kart dört kanallıdır; kullanıcı üretici bilgisini OMRON olarak verdi. Bildirilen özellikler: fototriyak izolasyonu, zero-cross, 0–0,5 V LOW, 0,5–2,5 V belirsiz bölge, 2,5–20 V HIGH; kanal başına 75–264 V AC ve 0,1–2 A; nominal yük 100–240 V AC (50/60 Hz).
 
-[Omron resmî G3MB serisi veri sayfası (PDF)](https://www.omronkft.hu/pdf_en/g3mb.pdf)
+Bu oturumdaki fotoğraf kart üzerindeki SSR gövdelerinin tam model kodunu güvenilir biçimde okumaya yetmiyor. Bu nedenle henüz tek ve kesin bir üretici veri sayfası ile eşleşme yapılmadı.
 
-Bu belge, Omron G3MB serisinin bazı SSR modellerini kapsar. Kaynak, G3MB-202P ailesinde modele göre giriş sürme gerilimi ve çıkış özelliklerinin değişebildiğini belirtir. G3MB-202P örneği için kaynakta 100–240 VAC çıkış yükünde 2 A sınıfı belirtilir; bu değer farklı SSR'lere uygulanamaz.
+## Olası karşılaştırma kaynağı: Omron G3MB serisi
 
-**Önemli:** Proje BERO'daki fiziksel SSR'nin tam model numarası henüz doğrulanmadı. Bu yüzden bu bağlantı geçici/aday referanstır; parçanın kesin veri sayfası olarak kullanılmamalıdır. SSR üzerindeki yazının fotoğrafı veya model numarasıyla eşleştirme yapılmalıdır.
+[Omron G3MB serisi veri sayfası (PDF)](https://www.omronkft.hu/pdf_en/g3mb.pdf)
+
+Omron G3MB ailesinde modele göre giriş ve çıkış değerleri değişir. G3MB-202P'nin 2 A sınıfı özellikleri bu kartın tam modelinin G3MB-202P olduğunu kanıtlamaz.
+
+**Durum:** Kullanıcı tarafından sağlanan teknik değerler envanterde kaydedildi; kesin model/veri sayfası eşleştirmesi hâlâ bekliyor.

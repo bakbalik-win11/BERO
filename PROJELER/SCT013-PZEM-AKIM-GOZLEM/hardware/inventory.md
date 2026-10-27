@@ -10,10 +10,10 @@
 | SCT013-030 stok | **7 adet** | Kullanıcı bildirimi; bağımsız sayım yapılmadı. Paylaşılan fotoğrafta SCT013 30 A / 1 V etiketi görülüyordu; fotoğraf bu sohbette, henüz depoda değil. |
 | SCT013-100A-1V stok | **10 adet** | Kullanıcı bildirimi; alternatif stok. |
 | 100 nF / 50 V seramik kondansatör | **10 adet bildirilmiş stok; 1 adet bias bölücüsünde kullanılıyor** | Kullanıcı bildirimi. Breadboarddaki kondansatör üzerindeki işaret 104 olarak düzeltildi; 104 = 100 nF. Kalan stok fiziksel olarak sayılmadı. |
-| ESP32-WROOM-32D | **2 adet** | Kullanıcı bildirimi; teknik referans [burada](../../../DONANIM/ESP32-WROOM-32D/README.md). |
-| ESP32-WROOM-32E | **1 adet** | Kullanıcı bildirimi; bu varyant için mevcut depoda proje-özel referans bağlantısı yok. |
-| ESP32-WROOM-32S | **1 adet** | Kullanıcı bildirimi; bu varyant için mevcut depoda proje-özel referans bağlantısı yok. |
-| SSR | **Mevcut BERO SSR donanım kaydı referans alındı** | Fiziksel SSR modeli kaynak kayıtta kesinleştirilmemiş. Projede kullanılacağına dair karar henüz yok. |
+| ESP32-WROOM-32D geliştirme kartı | **2 adet** | Kullanıcı bildirimi ve fotoğraflar; teknik referans [burada](../../../DONANIM/ESP32-WROOM-32D/README.md). Bağımsız sayım yapılmadı. |
+| ESP32-WROOM-32E geliştirme kartı | **1 adet** | Kullanıcı bildirimi ve fotoğraf; bağımsız sayım yapılmadı. |
+| ESP-WROOM-32 tabanlı NodeMCU ESP32 Bluetooth geliştirme kartı | **1 adet** | Kullanıcı bildirimi ve görsel. Tam kart üreticisi/PCB revizyonu okunmuyor; önceki WROOM-32S satırı bununla değiştirildi. |
+| SSR kartı | **1 adet mevcut dört kanallı kart** | Kullanıcı tarafından OMRON olarak tanımlandı; fotoğraf paylaşıldı. Adet kullanıcı bildirimi/görsel, bağımsız sayım yapılmadı. |
 
 Stok adetleri kullanıcı tarafından bildirilmiştir; bağımsız fiziksel sayım gibi sunulmaz.
 
@@ -23,10 +23,10 @@ Stok adetleri kullanıcı tarafından bildirilmiştir; bağımsız fiziksel say�
 |---|---|---|---|
 | SCT | [SCT013-30A-1V](references/SCT013-30A-1V.md); [SCT013-100A-1V](references/SCT013-100A-1V.md) | SCT013-030 (30 A / 1 V) öncelikli; 100 A / 1 V alternatif stok. | Genel model bilgisi hazır; fiziksel fotoğrafı depoya arşivlemek isteğe bağlı kanıt düzenlemesi. |
 | PZEM ve CT | [Ana BERO kaydı](../../../DONANIM/PZEM-004T/README.md); [proje içi referans kopyası](references/PZEM-004T-V3.0.md) | PZEM-004T V3.0; kullanıcı CT modelini **PZCT-02 (0–100 A)** olarak belirtti. Fotoğrafta bu CT'nin PZEM'e bağlı olduğu gösterildi. Bu, 100 A harici CT düzenidir. | Donanım kimliği ve CT modeli belirlendi. MCU bağlantısı yapılırken UART lojik seviyesi/izolasyon gereksinimleri kontrol edilecek. Fotoğrafı ayrıca depoya kopyalamak gerekmiyor. |
-| ESP32 / MCU | [ESP32-WROOM-32D teknik kaydı](../../../DONANIM/ESP32-WROOM-32D/README.md) | Stok bildirimi: D × 2, E × 1, S × 1. Projede kullanılacak modül/kart henüz seçilmedi. | Seçilecek fiziksel kart ve revizyon ile pinout/board kimliğini kaydet. |
+| ESP32 / MCU | [ESP32-WROOM-32D teknik kaydı](../../../DONANIM/ESP32-WROOM-32D/README.md) | **İlk aşama için 4 kart:** 2× WROOM-32D, 1× WROOM-32E, 1× genel ESP-WROOM-32 NodeMCU ESP32 Bluetooth. Kullanıcı kararı; bağımsız sayım yapılmadı. | Kartların görev/firmware rolünü belirle. Genel NodeMCU kartının tam PCB revizyonu ve pin etiketleri kablolama öncesi doğrulansın. |
 | ADC | [MCP3208 BERO kaydı](../../../DONANIM/MCP3208/README.md) | BERO'da ADC referansı var; bu projede fiziksel ADC ve VREF'in kullanımı henüz doğrulanmadı. | Gerçek ADC modelini/revizyonunu ve VREF kaynağını kaydet. |
 | Bias üretim alt devresi | Aşağıdaki “Bias trafosu” bölümü | **TAMAMLANDI — kullanıcı onayı.** | Yeni parça bilgisi beklenmiyor; SCT sinyalinin bias noktasına kuplajı analog ön uç entegrasyonunda ele alınacak. |
-| SSR | [SSR donanım referansı](references/SSR.md); [aday veri sayfası notu](references/SSR-datasheet-candidate.md) | Referans mevcut; fiziksel model ve bu projede kullanılma kararı doğrulanmadı. | Kullanılacaksa tam model etiketi, AC/DC yük türü, giriş sürme değeri ve kapasite doğrulanmalı. |
+| SSR | [SSR donanım referansı](references/SSR.md); [model eşleştirme notu](references/SSR-datasheet-candidate.md) | Proje donanımına dahil edilen 4 kanallı OMRON kartı. Kullanıcı bilgisi: fototriyak, zero-cross; LOW 0–0,5 V / belirsiz 0,5–2,5 V / HIGH 2,5–20 V; kanal başına 75–264 VAC ve 0,1–2 A; nominal 100–240 VAC. | Tam model kodu, giriş akımı, aynı anda kanal kullanımının/ısınmanın sınırları, kontrol GPIO'su ve test yükleri doğrulanmalı. |
 | Referans cihaz | True-RMS ampermetre | Bu projeye ait model/kalibrasyon durumu kayıtlı değil. | T003 kapsamında belirle. |
 | Yükler | Rezistif / diğer kontrollü yükler | Üç akım seviyesine karşılık gelen yük kimlikleri kayıtlı değil. | T003 kapsamında belirle. |
 
@@ -41,7 +41,7 @@ Stok adetleri kullanıcı tarafından bildirilmiştir; bağımsız fiziksel say�
 
 ## SSR kaynak notu
 
-Kaynak [DONANIM/SSR/README.md](../../../DONANIM/SSR/README.md) ve kopyası [SSR.md](references/SSR.md) kontrolcü notunu ESP32-C3 / GPIO6 olarak tanımlar. Ancak bu SSR'nin fiziksel model işareti kaynakta kesinleştirilmemiştir. Omron G3MB yalnızca aday veri sayfasıdır; model etiketi görülmeden kesin referans sayılmaz. SSR, mevcut proje için seçilmiş ana bileşen değil, kullanılabilir BERO donanım referansıdır.
+Kaynak [DONANIM/SSR/README.md](../../../DONANIM/SSR/README.md) içindeki ESP32-C3 / GPIO6 bilgisi önceki test düzeneğine ait tarihsel nottur; bu projede geçerli GPIO olarak alınmaz. Dört kanallı SSR kartı bu projenin donanım listesine dahil edilmiştir. Kullanıcı OMRON markasını ve kartın giriş/çıkış özelliklerini bildirdi; tam röle model kodu fotoğraftan kesin okunmadı. Omron G3MB veri sayfası yalnızca olası karşılaştırma kaynağıdır. Kontrol GPIO'su, kanal ataması ve test yükleri planlama aşamasında belirlenecektir.
 
 ## Kalan proje-özel bilgiler
 

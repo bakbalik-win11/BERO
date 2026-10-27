@@ -1,9 +1,15 @@
-# SSR Veri Sayfası — Model Doğrulaması Gerekli
+# SSR Veri Sayfası — Model Eşleştirmesi Bekliyor
 
-## Aday üretici veri sayfası: Omron G3MB serisi
+## Kullanıcı tarafından bildirilen mevcut modül
 
-[Omron resmî G3MB serisi veri sayfası (PDF)](https://www.omronkft.hu/pdf_en/g3mb.pdf)
+Mevcut kart dört kanallıdır; kullanıcı üretici bilgisini OMRON olarak verdi. Bildirilen özellikler: fototriyak izolasyonu, zero-cross, 0–0,5 V LOW, 0,5–2,5 V belirsiz bölge, 2,5–20 V HIGH; kanal başına 75–264 V AC ve 0,1–2 A; nominal yük 100–240 V AC (50/60 Hz).
 
-Bu belge, Omron G3MB serisinin bazı SSR modellerini kapsar. Kaynak, G3MB-202P ailesinde modele göre giriş sürme gerilimi ve çıkış özelliklerinin değişebildiğini belirtir. G3MB-202P örneği için kaynakta 100–240 VAC çıkış yükünde 2 A sınıfı belirtilir; bu değer farklı SSR'lere uygulanamaz.
+Bu oturumdaki fotoğraf kart üzerindeki SSR gövdelerinin tam model kodunu güvenilir biçimde okumaya yetmiyor. Bu nedenle henüz tek ve kesin bir üretici veri sayfası ile eşleşme yapılmadı.
 
-**Önemli:** Proje BERO'daki fiziksel SSR'nin tam model numarası henüz doğrulanmadı. Bu yüzden bu bağlantı geçici/aday referanstır; parçanın kesin veri sayfası olarak kullanılmamalıdır. SSR üzerindeki yazının fotoğrafı veya model numarasıyla eşleştirme yapılmalıdır.
+## Olası karşılaştırma kaynağı: Omron G3MB serisi
+
+[Omron G3MB serisi veri sayfası (PDF)](https://www.omronkft.hu/pdf_en/g3mb.pdf)
+
+Omron G3MB ailesinde modele göre giriş ve çıkış değerleri değişir. G3MB-202P'nin 2 A sınıfı özellikleri bu kartın tam modelinin G3MB-202P olduğunu kanıtlamaz.
+
+**Durum:** Kullanıcı tarafından sağlanan teknik değerler envanterde kaydedildi; kesin model/veri sayfası eşleştirmesi hâlâ bekliyor.

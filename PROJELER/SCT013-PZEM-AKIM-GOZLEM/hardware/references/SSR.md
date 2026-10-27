@@ -1,26 +1,38 @@
 # SSR — Donanım Referansı
 
-> **Proje referans kopyası — 2026-10-27.** Kaynak: [`DONANIM/SSR/README.md`](../../../../DONANIM/SSR/README.md). Kaynak `DONANIM/` belgesi asıl kayıttır.
-> Bu kopya, mevcut donanım notlarının bu projede erişilebilir olması içindir; önceki test düzeneğinin bu projeye bağlandığı veya SSR modelinin doğrulandığı anlamına gelmez.
+> **Proje referans kopyası — 2026-10-27.** Kaynak: [`DONANIM/SSR/README.md`](../../../../DONANIM/SSR/README.md). Kaynak belge asıl kayıttır.
+> Aşağıdaki özellikler kullanıcı tarafından sağlanan modül açıklamasına dayanır; fiziksel test veya kesin model kodu eşleştirmesi yapılmadı.
 
+Bu kayıt, BERO'da bulunan dört kanallı SSR kartını tanımlar. Eski ESP32-C3 test düzeneğine ilişkin kontrolcü bilgileri tarihsel nottur; yeni proje için GPIO seçimi henüz yapılmadı.
 
-Proje BERO'da ESP32-C3-SSR test düzeneğinde kullanılan SSR için kayıt klasörü.
+## Modül ve elektriksel bilgiler
 
-## Mevcut proje bilgisi
+Aşağıdaki değerler kullanıcının verdiği modül bilgileri ve fotoğraf açıklamasıdır; bu oturumda bağımsız elektriksel test yapılmamıştır.
 
-- Kontrolcü: ESP32-C3
-- Proje notlarında SSR kontrol pini: GPIO6
-- GPIO6 yapılandırması, SSR'nin fiziksel çıkışının veya yükün gerçekten anahtarladığını tek başına doğrulamaz.
-- Mevcut sohbet kayıtlarında SSR'nin üzerindeki üretici/model işareti kesin olarak belirlenmedi.
+- **Kanal sayısı:** 4
+- **Üretici işareti/beyanı:** OMRON
+- **İzolasyon:** Fototriyak
+- **Anahtarlama:** Zero-cross
+- **Kontrol girişi — LOW:** 0–0,5 V (SSR kapalı)
+- **Kontrol girişi — belirsiz bölge:** 0,5–2,5 V
+- **Kontrol girişi — HIGH:** 2,5–20 V (SSR açık)
+- **Çıkış yük gerilimi (kanal başına):** 75–264 V AC, 50/60 Hz
+- **Nominal çıkış yükü:** 100–240 V AC, 50/60 Hz
+- **Yük akımı (kanal başına, bildirilen):** 0,1–2 A
+- **Yük tipi:** Genel amaçlı
 
-## Veri sayfası durumu
+Kart fotoğrafındaki SSR gövdelerinin tam model kodu güvenilir biçimde okunamadığından G3MB-202P gibi belirli bir model kesinleştirilmemiştir. Omron G3MB serisi veri sayfası şimdilik yalnızca olası karşılaştırma kaynağıdır; fiziksel modelle eşleştiği varsayılmamalıdır.
 
-`datasheets/README.md` içinde üretici Omron'un G3MB serisi için resmî veri sayfası bağlantısı bulunur. **G3MB yalnızca aday referanstır; SSR üzerindeki model numarası doğrulanmadan bu veri sayfası donanımın kesin veri sayfası sayılmamalıdır.**
+## Önceki BERO test düzeneği
 
-SSR'nin üzerindeki model/etiket fotoğrafı veya tam model numarası elde edildiğinde bu klasördeki veri sayfası kesinleştirilmeli.
+- Önceki notlarda kontrolcü ESP32-C3 olarak geçer.
+- Önceki notlarda SSR kontrol pini GPIO6 olarak belirtilmiştir.
+- Bu tarihsel pin notu, yeni projede GPIO6 kullanılacağı veya SSR çıkışının çalıştığının kanıtı değildir.
 
-## Güvenlik ve doğrulama
+## Kullanım ve güvenlik notları
 
-- SSR giriş gerilimi, çıkış türü (AC/DC), yük gerilimi ve akım kapasitesi model numarasından doğrulanmalıdır.
-- ESP GPIO durumunun değişmesi, SSR çıkışının veya yükün değiştiğini kanıtlamaz.
-- Şebeke gerilimiyle yapılan testler uygun izolasyon ve güvenlik önlemleriyle gerçekleştirilmelidir.
+- 0,5–2,5 V kontrol giriş aralığı belirtilen belirsiz bölgedir; girişin bu aralıkta kalmasına izin verilmemelidir.
+- Bildirilen 2 A/kanal değeri, kart üzerindeki soğutma, PCB yolları, ortam sıcaklığı ve eşzamanlı kanal kullanımı değerlendirilmeden sürekli çalışma garantisi olarak yorumlanmamalıdır.
+- Şebeke gerilimi bulunan çıkış tarafını MCU, USB, breadboard ve düşük gerilimli kablolardan fiziksel olarak ayır; uygun muhafaza, sigorta ve izolasyon düzeni kullan.
+- Şebeke bağlantısı ve yük testleri yetkin kişi tarafından, enerji kesilerek ve uygun ölçüm/güvenlik ekipmanıyla yapılmalıdır.
+- SSR'nin giriş akım gereksinimi, aktif seviyesi ve gerçek çıkış davranışı yük bağlanmadan önce kontrollü düşük gerilim testi ve ilgili model/veri sayfası ile doğrulanmalıdır.
