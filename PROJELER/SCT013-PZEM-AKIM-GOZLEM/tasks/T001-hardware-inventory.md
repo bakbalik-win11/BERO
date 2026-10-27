@@ -22,7 +22,7 @@ Genel teknik özellikleri tekrar yazma. Önceden var olan kaynaklardan yararlan;
 - Kullanıcı bildirimi olarak 7 adet SCT013-030, 10 adet SCT013-100A-1V ve 10 adet 100 nF / 50 V seramik kondansatör kaydedildi. İlk aşama planı dört ESP32 geliştirme kartıdır: 2× WROOM-32D, 1× WROOM-32E ve 1× genel ESP-WROOM-32 NodeMCU ESP32 Bluetooth; son kartın PCB revizyonu görselden kesinleşmedi.
 - PZEM için mevcut BERO donanım kaydı esas alındı; bağlı CT modeli kullanıcı tarafından PZCT-02 (0–100 A) olarak belirtildi.
 - **Temiz yaklaşık 1,65 V bias üretim alt devresi tamamlandı (kullanıcı onayı):** kutuda RN130421 + KBU6M + 2200 µF / 35 V + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) kondansatör.
-- Dört kanallı SSR kartı proje donanımına dahil edildi. Kullanıcı tarafından OMRON olarak tanımlandı; verilen giriş/çıkış sınırları kaydedildi. Tam röle model kodu ve giriş akımı henüz doğrulanmadı.
+- SAMM Market 5 V 2 kanallı SSR kartı proje donanımına dahil edildi (tedarikçi kodu İzmo9659, SKU MP02637). Satıcı sayfasındaki sınırlar kaydedildi; giriş mantığı ve tekil SSR model kodu hâlâ doğrulanacak.
 - DS3231 RTC projede kullanılacak bileşen olarak kaydedildi. Önceki BERO DS3231 referansı kopyalandı, Analog Devices resmî veri sayfası bağlantısı eklendi; mevcut ESP32-C3 pinleri bu projede seçilmiş kabul edilmedi.
 
 ## Kalan işler
@@ -30,7 +30,7 @@ Genel teknik özellikleri tekrar yazma. Önceden var olan kaynaklardan yararlan;
 2. Kullanılacak ADC modelini/revizyonunu ve VREF kaynağını kaydet; MCP3208'in bu düzeneğe seçildiğini varsayma.
 3. SCT sinyalinin tamamlanmış bias orta noktasına hangi bağlantıyla kuplaj yaptığını; burden/analog filtre değerlerini ve güvenli ADC aralığını kaydet.
 4. True-RMS referans cihazı ve üç kontrollü yük düzeyini T003 görevine bağla.
-5. SSR tam model kodunu mümkünse üst yüzey yazısından doğrula; kontrol GPIO'su ve test yüklerini belirle. Kullanıcı tarafından verilen elektriksel değerleri kesin model veri sayfası gibi sunma.
+5. SSR için iki AC yükü ve kontrol GPIO'larını belirle; giriş tetik mantığını düşük gerilimli testle doğrula. Ürün kodu İzmo9659 / MP02637 olarak tanımlandı; kart üzerindeki tekil SSR model kodu hâlâ okunamadı.
 6. DS3231 breakout pinlerini, pull-up gerilimini, yedek pil/şarj devresini ve ilk saat ayarlama yöntemini doğrula; yüksek çözünürlüklü örnekleme zamanlamasını RTC takvim okumalarından bağımsız tut.
 
 ## Kabul ölçütü
