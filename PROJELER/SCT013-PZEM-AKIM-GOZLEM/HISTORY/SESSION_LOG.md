@@ -239,6 +239,6 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 
 ## 2026-10-27 — Eğitim referansının PZEM olarak netleştirilmesi
 - **Kullanıcı kararı:** Projenin referansı PZEM'dir; hedef SCT verisini PZEM okumalarıyla etiketleyerek/eğiterek model oluşturmaktır. önceki pens ampermetre adayı ve True RMS gereksinimi bu projeden çıkarılacaktır.
-- **Dokümantasyon:** T003, donanım envanteri, STATUS ve ROADMAP bu karara göre güncellendi. Kalan proje dosyalarında eski UNI-T/True RMS atıfları için tarama sürüyor.
+- **Dokümantasyon:** T003, donanım envanteri, STATUS ve ROADMAP bu karara göre güncellendi. Geçmiş kayıtlardaki alternatif cihaz notları bu karara göre sadeleştirildi.
 
 - **Karar düzeltmesi:** Önceki oturum notlarında adı geçen alternatif pens ampermetre adayı proje referansı değildir. Kullanıcının netleştirdiği üzere PZEM, SCT verisini etiketleme/eğitme için temel referanstır; proje hedefinde True RMS cihaz şartı bulunmaz.
