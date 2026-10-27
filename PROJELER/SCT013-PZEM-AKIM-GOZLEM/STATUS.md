@@ -2,7 +2,7 @@
 
 **Son güncelleme:** 2026-10-27  
 **Aktif faz:** Faz 0 — hazırlık ve güvenlik  
-**Aktif görev:** [T003 — Referans cihazı ve hata hedefi](tasks/T003-reference-and-error-target.md) — DEVAM EDİYOR. T001 envanter ve T002 güvenlik kontrolü kullanıcı beyanlarıyla kaydedilip kapatıldı; T002 fiziksel kontrolleri asistan tarafından bağımsız doğrulanmadı.  
+**Aktif görev:** [T004 — Analog ön uç](tasks/T004-analog-frontend.md) — PLANLANDI. T003, PZEM'e göre ±%4 bağıl sapma ve Python `OK` karar kuralı belirlenerek kapatıldı. T001 envanter ve T002 güvenlik kontrolü kullanıcı beyanlarıyla kaydedilip kapatıldı; T002 fiziksel kontrolleri asistan tarafından bağımsız doğrulanmadı.  
 **Öncelikli SCT:** SCT013-030 (30 A / 1 V)  
 **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); CT modeli kullanıcı tarafından PZCT-02 (0–100 A) olarak belirtildi.  
 **Bias üretim alt devresi:** TAMAMLANDI — kullanıcı onayı. RN130421 + KBU6M + 2200 µF / 35 V + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) kondansatör. Bağımsız ölçüm raporu bu kayda eklenmedi.  
@@ -41,14 +41,14 @@
 - [ ] G3 — örnekleme hızı hedef yüklerde ölçülmüş metriklerle gerekçelendirilmiş.
 
 ## Sıradaki işler
-1. [ ] [T003 — Referans ve hata hedefi](tasks/T003-reference-and-error-target.md): PZEM eğitim referansına göre model kabul hata hedefi belirlenecek. Kararlı alan gözlemi/istatistikleri T003 kapsamı dışındadır. Test yükleri test sırasında kullanıcı tarafından beyan edilecek.
-2. [ ] [T004 — Analog ön uç](tasks/T004-analog-frontend.md): T003 koşulları sağlandıktan sonra bias kuplajı ve güvenli ADC aralığı.
+1. [x] [T003 — PZEM tabanlı model hata hedefi](tasks/T003-reference-and-error-target.md): ±%4 bağıl sapma; Python geçerli örneklerde `OK` kararı verir.
+2. [ ] [T004 — Analog ön uç](tasks/T004-analog-frontend.md): bias kuplajı ve güvenli ADC aralığı.
 3. [ ] T005 — E01 gürültü tabanı: T004 tamamlandıktan sonra protokol ve ölçüm.
 
 ## Açık engeller
 - SCT analog kuplajı, kanal direnç/filtre değerleri ve güvenli ADC giriş aralığı belgelenmeli. Kullanılacak kartın ADC GPIO eşlemesi ve firmware ayarları pin planlama/kodlama aşamasında doğrulanmalı; bu T001 kapatma şartı değildir. Genel NodeMCU kartı kullanılacaksa PCB revizyonu kablolama öncesi belirlenmeli.
 - SCT AC sinyalinin tamamlanmış 1,65 V bias noktasına kuplajı, kanal direnç/filtre değerleri ve güvenli ADC aralığı.
 - SSR'nin hangi iki AC yükü anahtarlayacağı, GPIO eşlemesi ve giriş mantığının düşük gerilimde doğrulanması.
-- T003: PZEM, SCT verisini eğitmek/etiketlemek için temel referanstır; yalnız model kabul hata hedefi kalmıştır. Kararlı alan gözlemi ve SCT istatistikleri ilgili ayrı görev/deneylerde ele alınır. Test yükleri ilgili test kaydında beyan edilecek.
+- T003 TAMAMLANDI: model tahmini geçerli PZEM akımından ±%4 bağıl sapma içindeyse Python sonucu `OK` işaretler. Kararlı alan gözlemi ve SCT istatistikleri ayrı görev/deneylerde ele alınır. Test yükleri ilgili test kaydında beyan edilecek.
 
 Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
