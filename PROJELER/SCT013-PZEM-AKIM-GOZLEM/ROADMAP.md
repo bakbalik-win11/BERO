@@ -6,8 +6,8 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 - [x] 0.1 Fiziksel envanter ve kullanıcı tarafından bildirilen hazır bias alt devresini kaydet. — [T001](tasks/T001-hardware-inventory.md)
   - **Mevcut kayıt:** Kullanıcı 7 adet SCT013 30 A / 1 V, 10 adet SCT013 100 A / 1 V, jack yuvaları, masaüstü 5 V / 1,8 A güç kaynağı, lamba yükü ve 8 kanallı ayrı bias/dirençli arayüz kartının hazır olduğunu bildirdi. Ayrıntılar [envanterde](hardware/inventory.md) ve [T001 envanter notunda](docs/inventory/T001-fiziksel-donanim-envanteri.md).
   - **Kapanış:** kullanıcı tarafından bildirilen envanter ve bias alt devresi kaydedildi. Elektriksel kuplaj/ADC aralığı T004 kapsamındadır; bu T001'i açık tutmaz.
-- [ ] 0.2 220–240 V güvenlik kontrolleri. — [T002](tasks/T002-safety-checklist.md)
-  - **Bitti sayılır:** kontrol listesi yetkin kişi tarafından incelendi.
+- [x] 0.2 220–240 V güvenlik kontrolleri. — [T002](tasks/T002-safety-checklist.md)
+  - **Kapanış:** kullanıcı 2026-10-27 tarihinde listedeki tüm kontrolleri tamamladığını beyan etti. Kapanış kullanıcı beyanına dayanır; asistanın bağımsız fiziksel doğrulaması değildir.
 - [ ] 0.3 True-RMS karşılaştırma cihazını ve ölçüm hata hedefini kaydet. — [T003](tasks/T003-reference-and-error-target.md)
   - **Bitti sayılır:** UT200B+ referans cihazı kaydedilmiş; hata hedefi kullanıcı onayıyla belirlenmiş. Kullanılacak yükler ilgili test sırasında kullanıcı tarafından beyan edilir.
 
