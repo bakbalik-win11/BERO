@@ -2,6 +2,17 @@
 
 Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonunda yeni kayıt eklenir; eski kayıtlar korunur.
 
+## 2026-10-27 — T001 kapanışı ve depo tutarlılık düzeltmesi
+
+- **Durum:** UYGULANDI ve depo kayıtları yeniden okunarak doğrulandı.
+- **Hedef ve kabul ölçütü:** T001'i kullanıcı beyanlarını esas alarak kapatmak; aynı işi yeniden istemeye yol açan eski durumları, açık soruları ve yol haritası kayıtlarını birbiriyle uyumlu hale getirmek.
+- **Yapılan:** T001 görev kartı TAMAMLANDI durumuna getirildi. Kullanıcının beyan ettiği envanter/bias devresi T001 kapsamında kabul edildi; GPIO, harici ADC ve analog kuplaj ayrıntıları sonraki ilgili görevlere bırakıldı. T002 aktif görev yapıldı. Görev indeksi, ROADMAP, STATUS, açık sorular ve donanım envanteri güncellendi. UNI-T UT200B+ True RMS pens ampermetre referans cihazı olarak kaydedildi. DS3231 için kullanıcının çalışan kod, güç kesilip yeniden verildiğinde saat koruma testi ve iki modülde 2032 tipi pil beyanı kaydedildi. Test yüklerinin önceden belirlenmesi şartı kaldırıldı; yükler test sırasında kullanıcı tarafından beyan edilecek.
+- **Doğrulama:** Güncellenen T001, envanter, STATUS, ROADMAP, görev indeksi ve açık sorular dosyaları GitHub'dan yeniden okundu. T001 durumu TAMAMLANDI; kalan işler bölümünde tekrar eden bias maddesi yok. Bu oturumda fiziksel elektriksel test yapılmadı; kullanıcı tarafından bildirilen testler kullanıcı beyanı olarak kaydedildi.
+- **Açık kalanlar:** SCT fotoğraflarının gerçek dosya olarak GitHub'a eklenmesi ayrıca çözülmeli; şu anki metin referansları resim dosyalarının depoda bulunduğu anlamına gelmez. T002 güvenlik incelemesi, T003 hata hedefi ve sonraki analog ön uç/deney çalışmaları henüz yapılmadı.
+- **Sonraki adım:** T002 güvenlik kontrolünü, gerçek kontrol maddelerini kullanıcı adına varsaymadan ve yalnızca mevcut kanıta dayanarak ele almak.
+- **Kanıt:** [T001](../tasks/T001-hardware-inventory.md), [STATUS](../STATUS.md), [ROADMAP](../ROADMAP.md), [envanter](../hardware/inventory.md), [açık sorular](../docs/open-questions.md).
+
+
 ## 2026-10-26 — Oturum kapanış protokolünün eklenmesi
 
 - **Durum:** DOĞRULANDI; PR birleştirilmesi bekleniyor.
