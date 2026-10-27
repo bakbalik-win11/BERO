@@ -16,7 +16,7 @@
 | ESP32 ölçüm düğümü | 1 adet | Önceki PZEM ölçüm düğümünde kullanıldı; fiziksel kart modeli yukarıdaki stoktan kesin eşleştirilmedi |
 | PZEM-004T | V3.0 | Kullanıcı bildirimi; ayrıntı için [mevcut BERO kaydı](../../../DONANIM/PZEM-004T/README.md) |
 | SSR kartı | SAMM Market 5 V, 2 kanal | Tedarikçi kodu İzmo9659, SKU MP02637; kart üzerindeki SSR'nin tam kodu ayrıca doğrulanmalı |
-| RTC | DS3231 | Mevcut BERO referansı kullanılıyor; fiziksel breakout ayrıntıları ayrıca doğrulanmalı |
+| RTC | 2 × DS3231 modülü; her birinde 2032 tipi pil | Kullanıcı beyanı: kod çalıştı; güç kesilip yeniden verildikten sonra saat korundu |
 | Güç kaynağı | Masaüstü 5 V / 1,8 A | Kullanıcı bildirimi |
 | Test yükleri | 100 W ve 150 W ampuller (ana deney yükleri); 5 W LED ampul (farklı PF karakteristiğini sınamak için) | Kullanıcı bildirimi; etiket gücü kaydedildi, gerçek güç/akım/PF ölçümle doğrulanacak |
 | Bağlantı ve ölçüm parçaları | Tam takım mevcut | Kullanıcı bildirimi |
@@ -56,17 +56,17 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 | Harici ADC | MCP3208 mevcut, ileriki aşamaya ayrıldı | İlk aşamada kullanılmayacak |
 | Analog ön uç | 8 kanal, her kanalda ayrı bias ve direnç ağı; SCT sinyali ESP32 ADC'ye aktarılacak | Sensör dönüşünün jack üzerinden analog karta ve oradan ESP32 kartına gittiği bağlantı yolu kullanıcı tarafından açıklandı; bu aşamada ayrı/harici ADC yok. Elektriksel bias kuplaj topolojisi (hangi hat/noktanın bias orta noktasına bağlandığı), direnç/filtre değerleri ve güvenli ADC aralığı ayrıca devre izi/şema/ölçüm kanıtıyla kaydedilmeli |
 | PZEM ve CT | PZEM-004T için [mevcut BERO donanım kaydı](../../../DONANIM/PZEM-004T/README.md) esas alınır; bağlı CT modeli kullanıcı beyanıyla PZCT-02 (0–100 A) | Bu projede yeniden donanım belgesi açma veya CT modelini tekrar sorma; entegrasyon sırasında UART lojik seviyesi ve izolasyon gereksinimlerini kontrol et |
-| DS3231 | RTC referansı mevcut | Breakout revizyonu, SDA/SCL pinleri, pull-up seviyesi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemi doğrulanmalı |
+| DS3231 | İki modülde 2032 tipi pil; güç kesintisi sonrası saat koruma testi kullanıcı beyanına göre başarılı | Bu proje aşamasında ek iş yok; proje bağlantısı gerektiğinde pin planı ayrı ele alınır |
 | SSR | SAMM Market 5 V, 2 kanal, İzmo9659 / MP02637 | İki AC yük, GPIO eşlemesi, tetik mantığı ve termal sınırlar güvenli biçimde doğrulanmalı |
-| Referans cihaz | UNI-T UT200B+ True RMS pens ampermetre; kullanıcı tarafından fotoğrafla gösterildi | Fotoğraftaki model/True RMS ibaresi görsel olarak tanımlandı. Kalibrasyon/izlenebilirlik durumu bilinmiyor; ölçüm doğruluğu bağımsız olarak doğrulanmış sayılmaz. T003’te bu sınırlama kaydedilmeli |
-| Yükler | 100 W ve 150 W ampuller ana deney yükleri; 5 W LED ampul farklı PF karakteristiği için | T003 kapsamında yüklerin gerçek güç/akımı ve LED'in PF'si ölçülmeli; üç kontrollü akım seviyesi ve güvenli kullanım koşulları netleştirilmeli |
+| Referans cihaz | UNI-T UT200B+ True RMS pens ampermetre | Kullanıcı fotoğrafı; kalibrasyon/izlenebilirlik bilgisi mevcut değil |
+| Yükler | Kullanıcı testte kullanılacak ampulü/koşulu test kaydında beyan edecek | Önceden yük seviyesi belirleme şartı yok |
 
 ## Kayıt kuralları
 - Önceki BERO teknik belgelerindeki ürün bilgilerini tekrar yazmak yerine ilgili referansa bağlan.
 - Önceki test notları yalnız kendi kayıt kapsamları için kanıttır; yeni deney veya kalibrasyon sonucu gibi sunulmaz.
 - Kullanıcı tarafından bildirilen stokları kullanıcı bildirimi olarak etiketle.
 - Bu projede ölçülmemiş değerleri ölçülmüş gibi yazma.
-- Kullanıcı fotoğrafında UNI-T UT200B+ pens ampermetre görülüyor; ön panelinde True RMS ibaresi var. Akım karşılaştırma cihazı olarak kullanılacak. Kalibrasyon/izlenebilirlik durumu ve cihazın doğruluk sınırları ayrıca doğrulanmadı.
+- Kullanıcı fotoğrafında UNI-T UT200B+ True RMS pens ampermetre görülüyor; akım karşılaştırma cihazı olarak kullanılacak. Kalibrasyon/izlenebilirlik durumu kullanıcı tarafından beyan edilmedi.
 - Kullanıcının sağladığı fotoğraflar: ESP32-WROOM-32D metal kalkanlı geliştirme kartı ve ESP32-C3 Super Mini kartının arka yüzü. Görseller metin envanterinde referans olarak kaydedildi; dosyaların kendisi GitHub'a resim dosyası olarak yüklenmedi.
 
 
