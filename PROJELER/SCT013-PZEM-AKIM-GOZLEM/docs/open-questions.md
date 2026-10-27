@@ -2,7 +2,7 @@
 
 Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konulardır. Genel donanım bilgileri [referans klasöründe](../hardware/references/README.md) ve ana BERO `DONANIM/` belgelerinde mevcuttur.
 
-1. Bu projede kullanılacak ADC hangisi ve VREF kaynağı/değeri nedir? BERO'da MCP3208 referansı var, ancak bu projedeki fiziksel düzeneğe seçildiği henüz doğrulanmadı.
+1. İlk aşamada kullanılacak ESP32 kartında SCT sinyalinin okunacağı ADC destekli GPIO numarası nedir? Harici ADC kullanılmayacak; analog örnekleme ESP32'nin dahili ADC işleviyle yapılacak. Seçilen kartın pin yeteneği ve güvenli giriş aralığı doğrulanmalı.
 2. SCT013-030 AC sinyali tamamlanmış yaklaşık 1,65 V bias orta noktasına hangi bağlantı/kuplaj elemanıyla eklenecek?
 3. 8 kanallı hazır karttaki kanal başına direnç/bias ağı ve analog filtre değerleri ile ADC girişinin güvenli maksimum aralığı nedir? Nihai bağlantı kanıtı kaydı eksik.
 4. SAMM Market 5 V 2 kanallı SSR kartının hangi iki AC yükü anahtarlayacağı ve hangi ESP32 GPIO'larının kullanılacağı nedir? Ürün sayfasındaki LOW/HIGH eşikleri ile “low-level trigger” notu tutarsız olabildiğinden kontrol mantığı düşük gerilimde doğrulanmalı; giriş akımı ve kanal başına termal/sürekli yük sınırları ayrıca teyit edilmeli.
@@ -17,8 +17,7 @@ Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konul
 **Karara bağlandı; yeniden sorulmayacak:**
 - Öncelikli sensör: SCT013-030 (30 A / 1 V).
 - Kullanıcı stok bildirimi: 7 adet SCT013 30 A / 1 V ve 10 adet SCT013 100 A / 1 V; ikisi de jack çıkışlı. Jack yuvaları mevcut.
-- Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı bulunan bir analog arayüz kartı** hazırladı. SCT sinyali jack yuvasından bu karta ve bias uygulanmış olarak ESP32 ADC girişine gider. Bu bir hazırlık bilgisi; kartın kanal şeması veya elektriksel değerleri doğrulanmış sayılmaz.
-- İstenirse MCP serisi harici ADC bağlanabilir. MCP3208 için BERO referansı mevcut olmakla birlikte, bu projede kullanımı seçilmiş değildir.
+- Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı bulunan bir analog arayüz kartı** hazırladı. Bu ilk aşamada harici ADC kullanılmayacak; SCT sinyali jack yuvası ve breadboard üzerindeki bias devresi üzerinden ESP32'nin ADC destekli GPIO girişinden okunacak. Bu, ESP32'nin dahili ADC'sinin kullanılması demektir. Harici MCP serisi ADC şu an seçilmedi ve ilk aşama için gerekli kabul edilmiyor. Kartın kanal şeması veya elektriksel değerleri doğrulanmış sayılmaz.
 - PZEM kaydı: mevcut [DONANIM/PZEM-004T/README.md](../../../DONANIM/PZEM-004T/README.md) esas alınır.
 - Bağlı CT: PZCT-02, 0–100 A; kullanıcı tarafından model olarak belirtildi ve PZEM'e bağlı olduğu fotoğrafta gösterildi. Bu, 100 A harici CT'li yapılandırmadır.
 - İlk aşamada kullanılacak ESP32 kartları: 2× WROOM-32D, 1× WROOM-32E ve 1× genel ESP-WROOM-32 NodeMCU ESP32 Bluetooth.
