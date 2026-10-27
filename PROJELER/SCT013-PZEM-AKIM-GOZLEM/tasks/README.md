@@ -1,31 +1,31 @@
 # Görev kartları
 
-Görev kartları yol haritasındaki işi küçük, kabul ölçütü belli adımlara böler. **ROADMAP.md** genel fazları, **STATUS.md** ise o anki durumu gösterir.
+Görev kartları yol haritasındaki işi küçük, kabul ölçütü belli adımlara böler. **ROADMAP.md** genel fazları, **STATUS.md** ise güncel durumu gösterir.
 
 ## Çalışma kuralı
-- Bir oturumda **STATUS.md içindeki tek aktif göreve** odaklan.
+- Bir oturumda STATUS.md içindeki tek aktif göreve odaklan.
 - Yeni bir fikir çıkarsa mevcut görevi bölme; açık soruya veya uygun sonraki göreve not et.
 - Bir kartın durumu, kanıtın gösterdiği seviyeyi aşamaz.
-- Kullanıcıdan elektriksel/teknik ayrıntıları kendi başına değerlendirmesini bekleme. Gerekli kanıtı asistan bulmalı veya hangi fiziksel kanıtın gerektiğini açıkça söylemeli.
-- Fiziksel olarak görülmeyen bileşen “doğrulandı” sayılmaz. Bilinmeyen alanları tahminle doldurma.
+- Kullanıcıdan teknik ayrıntıları kendi başına değerlendirmesini bekleme. Gerekli kanıtı asistan bulmalı veya hangi fiziksel kanıtın gerektiğini açıkça söylemeli.
+- Fiziksel olarak görülmeyen bileşen doğrulandı sayılmaz. Bilinmeyen alanları tahminle doldurma.
 - 220–240 V AC tarafında çalışma ve güvenlik onayı yetkin kişi sorumluluğundadır. Güvenlik kontrolü bitmeden şebeke bağlantısı/deneyi başlatılmaz.
 
 ## Durum sözlüğü
-Durumlar AGENTS.md ile aynıdır:
 - **PLANLANDI:** hedef ve kabul koşulu belirlendi.
 - **HAZIRLANDI:** taslak veya plan hazır.
 - **UYGULANDI:** çıktı hedef dosyaya/ortama işlendi.
 - **DOĞRULANDI:** ilgili kontroller ve kanıt gözden geçirildi.
 - **TAMAMLANDI:** kabul ölçütlerinin tamamı kanıtla karşılandı.
 - **ENGELLENDİ:** gereken erişim, donanım, karar veya test eksik.
+- **DEVAM EDİYOR:** iş başladı ancak kabul ölçütlerinin tamamı karşılanmadı.
 
-Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz; kartın kendi kabul ölçütü uygulanır.
+Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 
 ## Sıra ve bağımlılıklar
 
 | ID | Görev | Faz | Durum | Bağımlılık |
 |---|---|---:|---|---|
-| T001 | Fiziksel donanım envanteri | 0.1 | PLANLANDI | — |
+| T001 | Fiziksel donanım envanteri | 0.1 | DEVAM EDİYOR — stok ve 8 kanallı bias kartı kaydedildi; ADC/VREF ve SCT kuplaj ayrıntıları açık | — |
 | T002 | Güvenlik kontrolü | 0.2 | PLANLANDI | T001 |
 | T003 | Referans cihazı, yükler ve hata hedefi | 0.3 | PLANLANDI | T001 |
 | T004 | Analog ön uç | 1.1 | PLANLANDI | T002, T003 |
