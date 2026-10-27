@@ -8,8 +8,8 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
   - **Kapanış:** kullanıcı tarafından bildirilen envanter ve bias alt devresi kaydedildi. Elektriksel kuplaj/ADC aralığı T004 kapsamındadır; bu T001'i açık tutmaz.
 - [x] 0.2 220–240 V güvenlik kontrolleri. — [T002](tasks/T002-safety-checklist.md)
   - **Kapanış:** kullanıcı 2026-10-27 tarihinde listedeki tüm kontrolleri tamamladığını beyan etti. Kapanış kullanıcı beyanına dayanır; asistanın bağımsız fiziksel doğrulaması değildir.
-- [ ] 0.3 PZEM'e göre model kabul hata hedefini tanımla. — [T003](tasks/T003-reference-and-error-target.md)
-  - **Bitti sayılır:** PZEM'e göre model kabul hata hedefi gerekçesiyle tanımlanmış. Kullanılacak yükler ilgili test sırasında kullanıcı tarafından beyan edilir.
+- [x] 0.3 PZEM'e göre model kabul hata hedefini tanımla. — [T003](tasks/T003-reference-and-error-target.md) — [T003](tasks/T003-reference-and-error-target.md)
+  - **Bitti sayılır:** PZEM'e göre ±%4 bağıl sapma hedefi ve Python `OK` karar kuralı tanımlanmış. Kullanılacak yükler ilgili test sırasında kullanıcı tarafından beyan edilir.
 
 ## Faz 1 — SCT analog ön uç
 - [ ] 1.1 Burden/bias ve ADC aralık payını doğrula. — [T004](tasks/T004-analog-frontend.md)
