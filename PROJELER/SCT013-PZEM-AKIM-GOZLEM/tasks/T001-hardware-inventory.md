@@ -17,12 +17,12 @@
 Önceden var olan genel teknik özellikleri tekrar yazma; mevcut kaynaklardan yararlan.
 
 ## Kaydedilen bilgiler
-- Kullanıcı tarafından belirtilen kart envanteri: 1 × ESP32-C3 SuperMini (SSR kontrolü/zamanlama), 1 × ESP32-WROOM-32E ve 2 × ESP32-WROOM-32D (SCT ham örnekleme düğümleri). Bu kart dağılımı kullanıcı beyanı esas alınarak kaydedildi; kart fotoğrafları kodlama aşamasında sağlanacak.
+- Kullanıcı tarafından belirtilen kart envanteri: 1 × ESP32-C3 SuperMini (SSR kontrolü/zamanlama), 1 × ESP32-WROOM-32E ve 2 × ESP32-WROOM-32D (SCT ham örnekleme düğümleri). Bu kart dağılımında kullanıcı beyanı esastır. Kullanıcı ESP32-WROOM-32D kart fotoğrafını ve ESP32-C3 Super Mini kartının arka yüz fotoğrafını sağladı; görseller envanter notlarına işlendi ve tekrar istenmeyecek.
 - SCT013 30 A / 1 V: 7 adet; jack çıkışlı.
 - SCT013 100 A / 1 V: 10 adet; jack çıkışlı.
 - PZEM-004T V3.0.
 - ESP32-C3 SuperMini SSR kontrol düğümü ve ayrı ESP32 PZEM ölçüm düğümü.
-- BERO envanter kayıtlarında bulunan ESP32 kart/modül stoku: 2 × ESP32-WROOM-32D, 1 × ESP32-WROOM-32E ve 1 × genel ESP-WROOM-32 tabanlı NodeMCU ESP32 kartı. Kullanıcı tarafından sağlanan fotoğrafta ESP32-WROOM-32D metal kalkanlı geliştirme kartı görülüyor; bu görsel kart türü için referans olarak kabul edildi. Kart dağılımında kullanıcı beyanı esastır; diğer fotoğraflar kodlama aşamasında sağlanacak.
+- BERO envanter kayıtlarında bulunan ESP32 kart/modül stoku: 2 × ESP32-WROOM-32D, 1 × ESP32-WROOM-32E ve 1 × genel ESP-WROOM-32 tabanlı NodeMCU ESP32 kartı. Kullanıcı tarafından sağlanan fotoğrafta ESP32-WROOM-32D metal kalkanlı geliştirme kartı görülüyor; ayrıca ESP32-C3 Super Mini kartının arka yüz fotoğrafı da sağlandı. Görseller envanter notlarına işlendi. Kart dağılımında kullanıcı beyanı esastır; fotoğraflar tekrar istenmeyecek.
 - SAMM Market 5 V, 2 kanallı SSR kartı; DS3231 RTC.
 - Masaüstü 5 V / 1,8 A güç kaynağı; lamba test yükü.
 - Jack yuvaları ve bağlantı/ölçüm parçaları mevcut.
