@@ -56,3 +56,9 @@ Aynı iletkenin SCT içinden geçirilme sayısı ayrı deneylerde 1 sarım, 2 sa
 ## Kayıt ilkesi
 
 Bu belge kullanıcının açıkladığı hedefi kaydeder. Henüz yazılmamış SCT firmware'ini, yapılmamış deneyleri, belirlenmemiş algoritmaları veya doğrulanmamış kalibrasyon sonuçlarını mevcutmuş gibi göstermez.
+
+## HA'dan PC'ye veri aktarımı
+
+Veriler Home Assistant'ta toplandıktan sonra ayrı bir Python aktarım programı HA'dan kayıtları alıp PC'de saklayacaktır. Kararlılık analizi ve etiketleme de PC üzerinde çalışan Python programlarında yapılacaktır. PZEM akışı ile üç SCT kanalının kararlılık analizi ayrı yürütülecek; deneylerle geliştirilen kriterler kullanılarak etiketler üretilecektir. Aç/kapa olay paketleri verilerle ilişkilendirilecektir.
+
+Bu bölüm hedef mimariyi tanımlar; aktarım ve analiz kodlarının uygulandığı anlamına gelmez.
