@@ -8,6 +8,8 @@ Kullanıcı için kısa kontrol listesi: [Gün sonu kontrolü](GUN_SONU_KONTROLU
 3. Bir önceki durum kaydıyla depodaki gerçek dosya/PR durumunu karşılaştır.
 4. Kullanıcıya işin başlangıç durumunu, hedefini ve kabul ölçütünü kısa biçimde belirt.
 5. Bu dosyalar okunamadıysa okumuş gibi davranma; bunu engel olarak belirt.
+6. Başlangıç raporunda okunan dosyaları, aktif görevi, son günlük girdisini ve karşılaştırılan dal/commit bilgisini kısa kanıtla belirt.
+7. Daha önce cevaplanmış bilgi için soru sormadan önce envanter, teknik belge, görev kartı, açık sorular ve günlükte ara; kayıtla çelişki varsa önce farkı çöz.
 
 ## Depo tutarlılığı ve kullanıcı önceliği
 - Depo kayıtları kullanıcı için kritik çalışma çıktısıdır. Anlamlı bir değişiklikte yalnız ana dosyayı değil, o bilgiye bağlı görev kartı, `STATUS.md`, `ROADMAP.md`, `docs/open-questions.md`, ilgili envanter/teknik belge ve `HISTORY/SESSION_LOG.md` kayıtlarını da kontrol et.
@@ -25,7 +27,9 @@ Proje, SCT ADC edinimi, akım özellikleri çıkarımı ve PZEM okumalarıyla za
 - Birden fazla RMS penceresini doğrudan aritmetik ortalamayla birleştirme; örnek sayısı biliniyorsa kareler üzerinden birleştir.
 - Her SCT pencere kaydında calibration_id bulunmalı. Kalibrasyon yapılmadıysa uydurma kimlik üretme.
 - İstenen örnekleme hızı ile ölçülen gerçek hızı ayrı kaydet.
-- Üretici belgesi, kullanıcı raporu, hipotez ve bu projede ölçülen sonucu birbirinden ayır.
+- Üretici belgesi, kullanıcı beyanı/raporu, hipotez, hesap ve bu projede ölçülen sonucu birbirinden ayır.
+- Kullanıcının açıkça verdiği proje bilgilerini uygun kaynak etiketiyle kaydet; bağımsız doğrulanmadıysa ölçüm/bağımsız doğrulama gibi sunma.
+- Daha önce kaydedilmiş ve hâlâ geçerli kullanıcı bilgilerini tekrar isteme; yalnız gerçekten eksik veya çelişkili alanı sor.
 
 ## Kanıt etiketleri
 - **ÖLÇÜLDÜ:** Bu proje protokolü ve veri kaydıyla gösterilmiş sonuç.
