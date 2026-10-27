@@ -67,3 +67,12 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 - Kullanıcı tarafından bildirilen stokları kullanıcı bildirimi olarak etiketle.
 - Bu projede ölçülmemiş değerleri ölçülmüş gibi yazma.
 - Kullanıcının sağladığı fotoğraflar: ESP32-WROOM-32D metal kalkanlı geliştirme kartı ve ESP32-C3 Super Mini kartının arka yüzü. Görseller metin envanterinde referans olarak kaydedildi; dosyaların kendisi GitHub'a resim dosyası olarak yüklenmedi.
+
+
+### ESP32 üretici veri sayfaları
+- [ESP32-WROOM-32D/32U datasheet — Espressif](https://documentation.espressif.com/esp32-wroom-32d_esp32-wroom-32u_datasheet_en.html)
+- [ESP32-WROOM-32E/32UE datasheet — Espressif](https://documentation.espressif.com/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.html)
+- [ESP32-WROOM-32 datasheet — Espressif](https://documentation.espressif.com/esp32-wroom-32_datasheet_en.html)
+- [ESP32-C3-MINI-1/1U module datasheet — Espressif](https://documentation.espressif.com/esp32-c3-mini-1_mini-1u_datasheet_en.html)
+
+Pin planı notu: Modül datasheet'i, geliştirme kartındaki başlık/pad etiketleriyle aynı şey değildir. Kodlama öncesinde her kartın pinout/şeması ayrı doğrulanacak; yalnızca benzer görünen kartlara bakarak GPIO eşlemesi kopyalanmayacak.
