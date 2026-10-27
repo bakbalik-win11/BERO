@@ -1,6 +1,6 @@
 # Fiziksel donanım envanteri
 
-**Durum: KISMEN HAZIR.** Kullanıcı tarafından bildirilen fiziksel stok, ESP32 kart/modül çeşitleri, güç kaynağı, test yükü ve önceden hazırlanmış 8 kanallı bias/direnç kartı kaydedildi. T001 kart dağılımında kullanıcı beyanı esas alınır. Kullanıcının sağladığı fotoğrafta ESP32-WROOM-32D metal kalkanlı geliştirme kartı görsel olarak tanımlandı; diğer kart fotoğrafları kodlama aşamasında sağlanacak.
+**Durum: KISMEN HAZIR.** Kullanıcı tarafından bildirilen fiziksel stok, ESP32 kart/modül çeşitleri, güç kaynağı, test yükü ve önceden hazırlanmış 8 kanallı bias/direnç kartı kaydedildi. T001 kart dağılımında kullanıcı beyanı esas alınır. Kullanıcının sağladığı fotoğraflarda ESP32-WROOM-32D metal kalkanlı geliştirme kartı ve ESP32-C3 Super Mini kartının arka yüzü görsel olarak tanımlandı. Fotoğraflar bu kayda işlendi; tekrar istenmeyecek.
 
 ## Stok ve seçimler
 
@@ -66,4 +66,4 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 - Önceki test notları yalnız kendi kayıt kapsamları için kanıttır; yeni deney veya kalibrasyon sonucu gibi sunulmaz.
 - Kullanıcı tarafından bildirilen stokları kullanıcı bildirimi olarak etiketle.
 - Bu projede ölçülmemiş değerleri ölçülmüş gibi yazma.
-- Kullanıcının sağladığı fotoğrafta ESP32-WROOM-32D metal kalkanlı geliştirme kartı görsel olarak tanımlandı. Bu görselin repo içine ayrı bir resim dosyası olarak yüklenmesi bu güncellemede yapılmadı; metin kaydında görsel referans olarak işlendi.
+- Kullanıcının sağladığı fotoğraflar: ESP32-WROOM-32D metal kalkanlı geliştirme kartı ve ESP32-C3 Super Mini kartının arka yüzü. Görseller metin envanterinde referans olarak kaydedildi; dosyaların kendisi GitHub'a resim dosyası olarak yüklenmedi.
