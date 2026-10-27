@@ -33,7 +33,7 @@
 - Bias üretim alt devresi önceki proje kayıtlarında kullanıcı onayıyla tamamlandı sayılıyor. Bu, SCT AC sinyalinin bias noktasına kuplajının da doğrulandığı anlamına gelmez.
 
 ## Kalan proje-özel işler
-1. Kullanıcının açıkladığı bağlantı yolunu kaydet: SCT013 dişi jack yuvasına bağlanır; sensör dönüş sinyali dişi jack üzerinden 8 kanallı analog arayüze ve oradan ESP32 kartına gider. Elektriksel bias kuplaj topolojisinin (hangi sinyal hattının bias orta noktasına nasıl bağlandığı), kanal direnç/filtre değerlerinin ve güvenli giriş aralığının kanıtla belgelenmesi hâlâ gerekir. Ölçülmeyen değerleri tahmin etme.
+1. Kullanıcının açıkladığı bağlantı ve bias ayrıntısı: SCT013 dişi jack yuvasına bağlanır; sensör dönüş sinyali jack üzerinden analog arayüze ve oradan ESP32 kartına gider. Bias orta noktası, 2 adet 10 kΩ 1/4 W metal film dirençle oluşturulur; sensör sinyali bu orta noktaya biaslanır. Aynı orta nokta ile GND arasına “104” kodlu kondansatör (100 nF) bağlanır. Bu değerler kullanıcı tarafından bildirildi. Kanal başına diğer direnç/filtre değerleri ve güvenli giriş aralığı ayrıca belgelenmeli; belirtilmeyen bağlantı ayrıntılarını tahmin etme.
 2. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. Harici ADC modeli/revizyonu veya VREF seçimi T001 kapsamına alınmayacak. GPIO/pin numarası da bu aşamada istenmiyor.
 3. True-RMS referans cihazı ve en az üç kontrollü yük seviyesini [T003](T003-reference-and-error-target.md) altında ele al.
 4. SSR için iki AC yükü ve GPIO eşlemesini sonraki güvenli test planında kaydet; tetik mantığını düşük gerilimli testte doğrula. Ürün kimliği İzmo9659 / MP02637; tekil SSR parça kodu doğrulanmış değil.
