@@ -37,7 +37,6 @@
 ## Kalan proje-özel işler
 1. Breadboard üzerindeki bias alt devresi kullanıcı tarafından tarif edildi: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta; sensör bu bias orta noktasına bağlanıyor; orta nokta ile GND arasında “104” kodlu kondansatör (100 nF) var. Şimdilik 8 kanallı analog kart/kanal tasarımı bu görevin parçası değil. Bu tarifin ötesinde başka direnç/filtre elemanları olduğu varsayılmayacak.
 2. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. Harici ADC modeli/revizyonu veya VREF seçimi T001 kapsamına alınmayacak. GPIO/pin numarası da bu aşamada istenmiyor.
-3. True-RMS referans cihazı ve en az üç kontrollü yük seviyesini [T003](T003-reference-and-error-target.md) altında ele al.
 4. SSR için iki AC yükü ve GPIO eşlemesini sonraki güvenli test planında kaydet; tetik mantığını düşük gerilimli testte doğrula. Ürün kimliği İzmo9659 / MP02637; tekil SSR parça kodu doğrulanmış değil.
 5. DS3231 breakout pinleri, pull-up gerilimi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemini kablolama öncesi doğrula; hızlı örnekleme zamanlamasını RTC takvim okumalarından bağımsız tut.
 
