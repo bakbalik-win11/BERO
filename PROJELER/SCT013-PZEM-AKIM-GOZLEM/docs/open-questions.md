@@ -1,20 +1,17 @@
 # Açık sorular
 
-Hiçbiri cevaplanmış sayılmaz. Deney sonrası sonuç ve kanıt bağlantısı ekleyin. Genel donanım özellikleri `hardware/references/` altında; aşağıdaki sorular bu projede henüz cevaplanmamış proje-özel bilgileri veya deneyle ölçülmesi gereken davranışları listeler.
+Aşağıdaki sorular yalnız bu projede henüz cevaplanmamış proje-özel konulardır. Genel SCT/PZEM/SSR bilgileri [referans klasöründe](../hardware/references/README.md) mevcuttur.
 
-1. PZEM'in iç ölçüm/ortalama penceresi nedir? Yaklaşık 2 s tahmini doğrulanmış üretici bilgisi değildir.
-2. V, I, P ve PF aynı anda mı yenileniyor?
-3. Sensör önceliği belirlenmiştir: SCT013-030 (30 A / 1 V) ilk tercih. Kullanılacak fiziksel ünitenin etiket fotoğrafı ve stok kaydının kanıt bağlantısı `hardware/photos/` içine alınacak mı? Bu oturumdaki görsel henüz depo dosyası değildir.
-4. Bu projedeki fiziksel PZEM'in 10 A / 100 A varyantı ve varsa CT etiketi/sınıfı nedir? Genel PZEM-004T V3.0 kaydı bu fiziksel varyantı tek başına doğrulamaz.
-5. Hangi akımın altında PZEM, bağımsız referansa göre kabul edilemez sapma/kararsızlık gösteriyor?
-6. 1 kS/s hedef yüklerde RMS ve olay algılaması için yeterli mi?
-7. 2 ile 2,5 kS/s arasında anlamlı iyileşme var mı?
-8. 200 ms pencere kararlı yükte tekrarlanabilir mi; çevrime senkron pencere gerekli mi?
-9. Gerçek ADC ve analog ön uç nedir? Burden, bias, VREF ve maksimum güvenli aralık ölçüldü mü?
-10. PZEM register'larının değişim / tekrar etme dinamikleri birbirine benziyor mu?
-11. Yaklaşık 3 s geçiş etiketi bu modülde yeterli mi?
-12. Stokta bulunduğu bildirilen 100 nF / 50 V seramik kondansatörlerin gerçek şemada kullanılacağı nokta ve görevi nedir? Bu, analog ön uç tasarımı sırasında kararlaştırılmalıdır.
-13. “Bias trafosu”nda RN130421 6 V AC sekonderinden sonra KBU6M (6 A / 1000 V) köprü doğrultucu, L78L33 TO-92 regülatör ve korunaklı kutu olduğu kullanıcı tarafından bildirildi. Köprü sonrası filtre kondansatörünün değeri/konumu ve regülatör bypass kondansatörleri nelerdir?
-14. Bias trafosu kutusu ve ayrı breadboardda hangi kondansatörlerin tam değeri, adedi ve konumu nedir? 100 nF seramik stokunun kaç tanesi bu devrede kullanılıyor?
-15. İki 10 kΩ direncin ayrı breadboarddaki besleme/GND bağlantıları nedir? 1,65 V orta nokta değeri nominal hesap mı, fiziksel ölçüm mü?
-16. SCT sinyalinin 1,65 V bias noktasına nasıl kuplaj yapıldığı ve “şebeke dalgalanmasını aynı motifle yansıtma” hedefinin devrede hangi sinyal yolu ile sağlandığı nedir? L78L33 düzenleme yaptığı için, normal regülasyon koşulunda çıkışın şebeke dalgalanmasını takip ettiği varsayılmamalıdır.
+1. PZEM-004T V3.0 modülü 10 A dahili şöntlü varyant mı, yoksa 100 A harici CT'li varyant mı? Harici CT varsa modeli nedir? Fotoğraf modül kimliğini PZEM-004T V3.0 olarak kaydetmeye yeterli; varyantı tek başına netleştirmiyor.
+2. Bu projede hangi ESP32 modülü ve hangi geliştirme kartı/revizyonu kullanılacak? Bildirilen stok: 2×WROOM-32D, 1×WROOM-32E, 1×WROOM-32S.
+3. Bu projede kullanılacak ADC hangisi ve VREF kaynağı/değeri nedir? BERO'da MCP3208 referansı var, ancak bu proje düzeneğine seçildiği henüz doğrulanmadı.
+4. SCT'nin AC sinyali, tamamlanmış yaklaşık 1,65 V bias orta noktasına hangi bağlantı/kuplaj elemanıyla ekleniyor? Bu, bias üretiminin tamamlanmasından ayrı analog ön uç bağlantısıdır.
+5. Burden/analog filtre değerleri ile ADC girişinin güvenli maksimum aralığı nedir? Bu projedeki fiziksel devreye ait kanıt kaydı eksik.
+6. PZEM'in iç ölçüm/ortalama penceresi nedir; V, I, P ve PF aynı anda mı yenileniyor? Bunlar deneyle ölçülecek.
+7. Hangi akımın altında PZEM, bağımsız referansa göre kabul edilemez sapma/kararsızlık gösteriyor?
+8. 1 kS/s, 2 kS/s ve 2,5 kS/s seçenekleri arasında hedef yüklerde anlamlı performans farkı var mı?
+9. 200 ms pencere kararlı yükte tekrarlanabilir mi; çevrime senkron pencere gerekli mi?
+10. True-RMS referans cihazı nedir ve en az üç kontrollü yük seviyesi hangi yüklerle sağlanacak?
+11. BERO SSR bu projede kullanılacak mı? Kullanılacaksa üzerindeki tam model, giriş sürme gereksinimi, AC/DC çıkışı, yük gerilimi ve akım kapasitesi ne? Kaynak kayıtta model kesinleşmediği için Omron G3MB yalnız aday referanstır.
+
+**Tamamlandı ve yeniden sorulmayacak:** Temiz yaklaşık 1,65 V bias üretim alt devresi kullanıcı onayıyla tamamlandı. Kayıtlı zincir: RN130421 6 V / 2 VA → KBU6M köprü → 2200 µF / 35 V → L78L33; ayrı breadboardda 2×10 kΩ ve orta noktadan GND'ye 104 kodlu 100 nF seramik. Bağımsız ölçüm raporu yoksa 1,650 V'nin ölçülmüş sonucu olduğu iddia edilmeyecek.

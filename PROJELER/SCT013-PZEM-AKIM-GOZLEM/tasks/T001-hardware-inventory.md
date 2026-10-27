@@ -1,36 +1,42 @@
 # T001 — Fiziksel donanım envanteri
 
-- **Durum:** PLANLANDI
+- **Durum:** DEVAM EDİYOR
 - **Faz:** 0.1
 - **Bağımlılık:** Yok
-- **Hedef:** Önceki BERO donanım kayıtlarını tekrar yazmadan kullanarak bu projede seçilen gerçek konfigürasyonu ve yalnızca eksik kalan proje-özel bilgileri kaydetmek.
+- **Hedef:** Önceki BERO kayıtlarını yeniden toplatmadan kullanmak; seçilmiş donanımı, kullanıcı tarafından bildirilen stokları ve yalnızca kalan proje-özel bilgileri kaydetmek.
 
 ## Önceden mevcut referanslar
-- [SCT013-100A-1V teknik kayıt ve geçmiş notlar](../hardware/references/SCT013-100A-1V.md)
-- [SCT013-30A-1V teknik kayıt ve geçmiş notlar](../hardware/references/SCT013-30A-1V.md)
-- [PZEM-004T V3.0 teknik kayıt ve geçmiş haberleşme notu](../hardware/references/PZEM-004T-V3.0.md)
-- [Referans kopyalarının kaynakları ve kullanım notu](../hardware/references/README.md)
+- [SCT013-100A-1V](../hardware/references/SCT013-100A-1V.md)
+- [SCT013-30A-1V](../hardware/references/SCT013-30A-1V.md)
+- [PZEM-004T V3.0](../hardware/references/PZEM-004T-V3.0.md)
+- [SSR donanım referansı](../hardware/references/SSR.md)
+- [SSR aday veri sayfası notu](../hardware/references/SSR-datasheet-candidate.md)
+- [Referans indeksi](../hardware/references/README.md)
 
-Bu belgelerdeki genel teknik özellikleri yeniden yazma. Kaynak veya önceki proje kaydı mevcut bir bilgiyi gerçekten doğruluyorsa envanterde dosya/kanıt bağlantısını kullan. Genel ürün belgesi, yeni projede hangi fiziksel parçanın kullanıldığını tek başına göstermez.
+Genel teknik özellikleri tekrar yazma. Önceden var olan kaynaklardan yararlan; proje için verilmiş kararları yeniden sorma.
 
-## Yapılacak
-1. **Sensör önceliği belirlenmiştir:** bu projede önce SCT013-030 (30 A / 1 V) kullanılacak. SCT013-100A-1V stokta alternatif olarak kalacak. Yeniden sensör seçimi sorma; kullanıcı tarafından bildirilen stok miktarlarını `hardware/inventory.md` içinde kaynak türüyle birlikte tut. Bu oturumdaki sensör görseli depo içinde kalıcı fotoğraf dosyası değildir; T001 tamamlanmadan önce gerçek parçayı gösteren kanıt varsa onu bağla, yoksa fotoğrafı `hardware/photos/` altına ekle.
-2. PZEM referans belgesini kullan. Bu projedeki modülün 10 A dahili şöntlü mü yoksa 100 A harici CT'li mi olduğunu ve harici CT modelini mevcut kayıtlarla doğrula. Eksikse bilinmiyor olarak işaretle; genel kılavuzu tekrar araştırma.
-3. MCU kartı ile ADC modelini/revizyonunu ve VREF değerini mevcut BERO kayıtlarından bu fiziksel düzeneğe kadar izlenebiliyor mu diye kontrol et. Proje için kanıt yoksa bilinmiyor olarak bırak.
-4. Burden, bias bölücüsü, filtre ve kablolama değerlerini önceki devre kaydı varsa ona bağla; bu kurulumun farklı olabileceği durumda ölçülmemiş değerleri aktarma.
-5. “Bias trafosu” alt devresini envantere kaydet: RN130421 6 V AC / 2,0 VA trafo + KBU6M 6 A / 1000 V köprü doğrultucu + L78L33 TO-92 korunaklı kutuda; 2 × 10 kΩ ile yaklaşık 1,65 V bias bölücü ayrı breadboardda. Bu yerleşim kullanıcı beyanıdır; fiziksel şema/fotoğrafla doğrulanmış gibi sunma.
-6. KBU6M köprüsünden L78L33 girişine kadar kullanılan filtre kondansatörünün değerini/konumunu ve regülatör giriş/çıkış bypass kondansatörlerini varsa kaydet. Ardından 3,3 V/GND’nin ayrı breadboarddaki bölücüye nasıl taşındığını ve SCT sinyalinin bias düğümüne hangi bağlantıyla eklendiğini netleştir. “Şebeke dalgalanmasını biasa aynı motifle yansıtma” niyetini, şema ve ölçüm olmadan doğrulanmış sonuç olarak yazma.
-7. Stokta bulunduğu bildirilen 100 nF / 50 V seramik kondansatörlerin adedini envanterde tut. Gerçek devrede yeri ve amacı belirlenmeden analog filtre veya bypass elemanı olarak atanmış sayma.
-8. True-RMS referans cihazını ve en az üç yük seviyesi adayını kaydetmek için mevcut önceki kayıtları kullan; bilgi yoksa bunu T003'e bırak.
-9. `hardware/inventory.md` içindeki her alan için kanıt yolu ve doğrulama tarihini yaz. Bulunamayan alanı “BİLİNMİYOR” veya “HENÜZ BULUNAMADI” diye işaretle ve sıradaki kanıt adımını belirt.
+## Yapılan / tamamlanan
+- SCT013-030 (30 A / 1 V) bu projede öncelikli seçim.
+- Kullanıcı bildirimi olarak 7 adet SCT013-030, 10 adet SCT013-100A-1V, 10 adet 100 nF / 50 V seramik kondansatör, 2 adet ESP32-WROOM-32D, 1 adet ESP32-WROOM-32E ve 1 adet ESP32-WROOM-32S kaydedildi.
+- Kullanıcının paylaştığı modül görseli PZEM-004T V3.0 olarak projeye kaydedildi. 10 A / 100 A varyantı ve CT modeli henüz belirlenmedi.
+- **Temiz yaklaşık 1,65 V bias üretim alt devresi tamamlandı (kullanıcı onayı):** kutuda RN130421 + KBU6M + 2200 µF / 35 V + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) kondansatör.
+- SSR donanım referansı proje referans klasörüne kopyalandı. Fiziksel model doğrulanmadı; projede kullanılması henüz kararlaştırılmadı.
+
+## Kalan işler
+1. PZEM-004T V3.0'ın 10 A dahili şönt / 100 A harici CT varyantını ve varsa CT modelini mevcut etiket/fotoğrafla belirle. Genel PZEM aile dokümanını tekrar araştırma.
+2. Bu projede kullanılacak ESP32 modülünü ve geliştirme kartı/revizyonunu belirle; 2×D, 1×E, 1×S stok bilgisini yeniden sorma.
+3. Kullanılacak ADC modelini/revizyonunu ve VREF kaynağını kaydet.
+4. SCT sinyalinin tamamlanmış bias orta noktasına hangi bağlantıyla kuplaj yaptığını; burden/analog filtre değerlerini ve güvenli ADC aralığını kaydet.
+5. True-RMS referans cihazı ve üç kontrollü yük düzeyini T003 görevine bağla.
+6. SSR bu projede kullanılacaksa model etiketini doğrula; kullanılmayacaksa yalnız mevcut BERO referansı olarak bırak.
 
 ## Kabul ölçütü
-Her envanter satırı ya önceki/var olan kanıta bağlanmıştır ya da neden hâlâ bilinmediği ve sıradaki somut kanıt adımı açıkça yazılmıştır. Kullanıcı tarafından bildirilen parça değerleri/yerleşimi, tam şema veya ölçüm kanıtı olmadan fiziksel bağlantı ve performans doğrulaması sayılmaz.
+Her satır ya bilinen kanıt/referansa bağlanmış olmalı ya da yalnız gerçekten karara bağlanmamış proje-özel bir konu olarak kalmalı. Bildirilen stok miktarları fiziksel sayım gibi sunulmaz; tamamlandı denilen bias kurulumuna tekrar bileşen soruları yöneltilmez.
 
-## Çıktı / dokunulacak dosyalar
-- hardware/inventory.md
-- Gerekiyorsa hardware/photos/
-- Gerekirse docs/open-questions.md
+## Çıktılar
+- `hardware/inventory.md`
+- Gerekiyorsa `hardware/photos/`
+- `docs/open-questions.md`
 
 ## Güvenlik
-Bu görev yalnızca mevcut kayıt incelemesi ve görsel envanter işidir. Şebeke bağlantısını sökme, kabloyu ayırma veya sisteme enerji verme.
+Bu görev dokümantasyon ve görsel incelemedir. Şebeke bağlantısını sökme, kabloyu ayırma veya sisteme enerji verme.
