@@ -7,7 +7,7 @@ Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölç
 
 ## Bu projede seçilen / tanımlanan donanım
 - **Öncelikli SCT:** [SCT013-030 — 30 A / 1 V](hardware/references/SCT013-30A-1V.md).
-- **PZEM:** Kullanıcının paylaştığı modül görseli PZEM-004T V3.0 olarak projeye kaydedildi. 10 A dahili şönt / 100 A harici CT varyantı ve CT modeli ayrıca belirlenmelidir.
+- **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); proje içi teknik kopyası [PZEM-004T V3.0](hardware/references/PZEM-004T-V3.0.md). Kullanıcı CT modelini **PZCT-02 (0–100 A)** olarak belirtti ve görüntü, bu CT'nin PZEM'e bağlı olduğunu göstermek içindi. Bu, 100 A harici CT'li PZEM düzenidir; fotoğraf yeni bir donanım referansı oluşturmak için paylaşılmadı.
 - **Bias üretim alt devresi:** Kullanıcı onayıyla tamamlandı sayılıyor. Ayrıntılar [donanım envanterinde](hardware/inventory.md) yer alır.
 - **SSR:** [Mevcut BERO SSR donanım kaydı](hardware/references/SSR.md) ve [aday veri sayfası notu](hardware/references/SSR-datasheet-candidate.md) aktarıldı. Fiziksel SSR'nin tam modeli doğrulanmış değil; bu kayıt projede kullanım kararı değildir.
 
