@@ -17,4 +17,4 @@ Bu klasör, önceki BERO donanım çalışmalarındaki teknik Markdown belgeleri
 
 Kaynak belgeler asıl kayıttır. Kopyalar önceki bilgileri proje içinde erişilebilir yapar; kopyanın varlığı fiziksel seçimi, yeni deney veya kalibrasyon sonucunu doğrulamaz. Kaynak metinler değişirse kopyalar eşitlenmelidir.
 
-**SSR uyarısı:** Kaynak kayıtta fiziksel SSR'nin tam modeli doğrulanmamıştır. Omron G3MB bağlantısı aday referanstır; gerçek parça üzerindeki model numarası doğrulanmadan bu veri sayfası kesin belge olarak kullanılmamalıdır.
+**SSR notu:** Kullanıcı dört kanallı OMRON SSR kartı için giriş/çıkış değerlerini bildirdi. Kart üzerindeki tam SSR model kodu fotoğraftan okunamadığından Omron G3MB veri sayfası yalnız karşılaştırma kaynağıdır; kesin parça eşleşmesi değildir.
