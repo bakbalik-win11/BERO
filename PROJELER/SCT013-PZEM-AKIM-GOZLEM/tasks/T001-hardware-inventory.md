@@ -1,9 +1,9 @@
 # T001 — Fiziksel donanım envanteri
 
-- **Durum:** TAMAMLANDI — kullanıcı tarafından bildirilen fiziksel envanter ve breadboard bias alt devresi kaydedildi. GPIO/pin numarası ve firmware ADC yapılandırması bu görevin kapsamında değil.
+- **Durum:** TAMAMLANDI — fiziksel envanter ve breadboard bias alt devresi kaydedildi. Kullanıcının bildirdiği stoklar ve kurulum bilgileri proje için esas alınır. GPIO/pin numarası ve firmware ADC yapılandırması bu görevin kapsamında değil.
 - **Faz:** 0.1
 - **Bağımlılık:** Yok
-- **Hedef:** Önceki BERO kayıtlarını yeniden toplatmadan kullanmak; seçilmiş donanımı, kullanıcı tarafından bildirilen stokları ve kalan proje-özel bilgileri kaydetmek.
+- **Hedef:** Önceki BERO kayıtlarını yeniden toplatmadan kullanmak; seçilmiş donanımı, mevcut stokları ve kalan proje-özel bilgileri kaydetmek.
 
 ## Önceden mevcut referanslar
 - [SCT013-100A-1V](../hardware/references/SCT013-100A-1V.md)
@@ -18,12 +18,12 @@
 Önceden var olan genel teknik özellikleri tekrar yazma; mevcut kaynaklardan yararlan.
 
 ## Kaydedilen bilgiler
-- Kullanıcı tarafından belirtilen kart envanteri: 1 × ESP32-C3 SuperMini (SSR kontrolü/zamanlama), 1 × ESP32-WROOM-32E ve 2 × ESP32-WROOM-32D (SCT ham örnekleme düğümleri). Kullanıcı 1 adet ESP32-WROOM-32E kart fotoğrafını da sağladı. Bu kart dağılımında kullanıcı beyanı esastır. Kullanıcı ESP32-WROOM-32D, ESP32-C3 Super Mini arka yüzü, ESP32-WROOM-32E ve ESP32-WROOM-32 tabanlı geliştirme kartlarının fotoğraflarını sağladı. Görsel referanslar kayda alındı; tekrar istenmeyecek.
+- Kart envanteri: 1 × ESP32-C3 SuperMini (SSR kontrolü/zamanlama), 1 × ESP32-WROOM-32E ve 2 × ESP32-WROOM-32D (SCT ham örnekleme düğümleri). Kullanıcı 1 adet ESP32-WROOM-32E kart fotoğrafını da sağladı. Kullanıcı ESP32-WROOM-32D, ESP32-C3 Super Mini arka yüzü, ESP32-WROOM-32E ve ESP32-WROOM-32 tabanlı geliştirme kartlarının fotoğraflarını sağladı. Görsel referanslar kayda alındı; tekrar istenmeyecek.
 - SCT013 30 A / 1 V: 7 adet; jack çıkışlı.
 - SCT013 100 A / 1 V: 10 adet; jack çıkışlı.
 - PZEM-004T V3.0.
 - ESP32-C3 SuperMini SSR kontrol düğümü ve ayrı ESP32 PZEM ölçüm düğümü.
-- BERO envanter kayıtlarında bulunan ESP32 kart/modül stoku: 2 × ESP32-WROOM-32D, 1 × ESP32-WROOM-32E ve 1 × genel ESP-WROOM-32 tabanlı NodeMCU ESP32 kartı. Kullanıcı tarafından sağlanan fotoğrafta ESP32-WROOM-32D metal kalkanlı geliştirme kartı görülüyor; ayrıca ESP32-C3 Super Mini kartının arka yüz fotoğrafı da sağlandı. Görseller envanter notlarına işlendi. Kart dağılımında kullanıcı beyanı esastır; fotoğraflar tekrar istenmeyecek.
+- BERO envanter kayıtlarında bulunan ESP32 kart/modül stoku: 2 × ESP32-WROOM-32D, 1 × ESP32-WROOM-32E ve 1 × genel ESP-WROOM-32 tabanlı NodeMCU ESP32 kartı. Kullanıcı tarafından sağlanan fotoğrafta ESP32-WROOM-32D metal kalkanlı geliştirme kartı görülüyor; ayrıca ESP32-C3 Super Mini kartının arka yüz fotoğrafı da sağlandı. Görseller envanter notlarına işlendi. Kart dağılımında kullanıcının verdiği bilgiler esas alınır; fotoğraflar tekrar istenmeyecek.
 - SAMM Market 5 V, 2 kanallı SSR kartı; DS3231 RTC.
 - Masaüstü 5 V / 1,8 A güç kaynağı; lamba test yükü.
 - Jack yuvaları ve bağlantı/ölçüm parçaları mevcut.
@@ -32,16 +32,16 @@
 
 ## İlerleme ilkesi
 İşi en küçük anlamlı birimlere böl ve teker teker ilerle. Sonraki aşamaya ait donanım (MCP3208) envantere yazılır ancak mevcut aşamanın kapsamına taşınmaz. Bir sonraki adımı ancak o anki küçük birimin kabul ölçütü karşılandıktan sonra başlat.
-- Bias üretim alt devresi önceki proje kayıtlarında kullanıcı onayıyla tamamlandı sayılıyor. Bu, SCT AC sinyalinin bias noktasına kuplajının da doğrulandığı anlamına gelmez.
-- DS3231 için kullanıcı beyanı: RTC kodu çalıştı; güç kesilip yeniden verildiğinde saat tutma testi daha önce yapıldı. İki modülde de 2032 tipi pil takılı olduğu kullanıcı tarafından bildirildi. Bu beyanlar mevcut proje kaydına işlendi; yeni bir test istenmiyor.
+- Bias üretim alt devresi kullanıcı tarafından hazırlanmış ve tamamlanmış olarak kaydedilmiştir. Bu, SCT AC sinyalinin bias noktasına kuplajının ayrıca test edildiği anlamına gelmez.
+- DS3231 için kullanıcı RTC kodunun çalıştığını ve güç kesilip yeniden verildiğinde saat tutma testinin yapıldığını bildirdi. İki modülde de 2032 tipi pil bulunuyor. Bu kayıt esas alınır; test tekrar istenmeyecek.
 
 ## Kapsam dışı / sonraki aşamalar
 - Harici ADC (MCP3208) ve VREF seçimi sonraki aşamaya ayrılmıştır.
 - GPIO/pin eşlemesi ve firmware ADC yapılandırması firmware/pin planlama aşamasında ele alınacaktır.
-- Bias alt devresinin kullanıcı tarafından bildirilen envanter tarifi kaydedilmiştir; elektriksel kuplaj doğrulaması bu envanter görevinin kabul şartı değildir.
+- Bias alt devresinin mevcut yapısı kaydedilmiştir; SCT sinyalinin elektriksel kuplaj doğrulaması bu envanter görevinin kabul şartı değildir.
 
 ## Kabul ölçütü
-Fiziksel envanter ve breadboard bias alt devresinin kullanıcı tarafından tarif edilen yapısı kaydedilmelidir: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta ve orta nokta-GND arasında 104 (100 nF) kondansatör; sensör bu bias noktasına bağlanır. Henüz bildirilmemiş ayrıntılar varmış gibi yeni eleman veya değer istenmemelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez. Kullanıcı beyanları fiziksel envanter kaydı olarak kabul edilmiştir.
+Fiziksel envanter ve breadboard bias alt devresinin yapısı kaydedilmelidir: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta ve orta nokta-GND arasında 104 (100 nF) kondansatör; sensör bu bias noktasına bağlanır. Bildirilen stoklar ve kurulum bilgileri envanter kaydı için esas alınır; kullanıcıdan tekrar tekrar aynı ayrıntıları vermesi istenmez. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Envanter kaydı, SCT sinyal kuplajının veya deney sonuçlarının ayrıca test edildiği anlamına gelmez.
 
 ## Güvenlik
 Bu görev dokümantasyon ve görsel incelemedir. Şebeke bağlantısını sökme, kabloyu ayırma veya sisteme enerji verme.
