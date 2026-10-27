@@ -6,10 +6,10 @@
 **Öncelikli SCT:** SCT013-030 (30 A / 1 V)  
 **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); CT modeli kullanıcı tarafından PZCT-02 (0–100 A) olarak belirtildi.  
 **Bias üretim alt devresi:** TAMAMLANDI — kullanıcı onayı. RN130421 + KBU6M + 2200 µF / 35 V + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) kondansatör. Bağımsız ölçüm raporu bu kayda eklenmedi.  
-**SCT analog arayüz kartı:** Kullanıcı daha önce 8 kanallı, her kanalı ayrı bias ve direnç ağı bulunan bir kart hazırladı. SCT dişi jack ve breadboard bias devresi üzerinden ESP32 GPIO bacağından okunacak. İlk aşamada harici ADC yok; analog okuma ESP32'nin dahili ADC'si ile yapılacak. MCP3208 mevcut, ileriki aşama için ayrıldı. GPIO numarası henüz belirtilmedi.  
+**SCT analog arayüz kartı:** Kullanıcı daha önce 8 kanallı, her kanalı ayrı bias ve direnç ağı bulunan bir kart hazırladı. İlk aşama için ESP32 dahili ADC planlanıyor; MCP3208 mevcut olsa da seçilmiş değil ve sonraki aşamaya ayrılmış durumda. SCT AC sinyalinin bias noktasına kuplajı, direnç/filtre değerleri ve güvenli ADC aralığı açık. GPIO/pin numarası firmware/pin planlama aşamasında belirlenecek; T001’de pin seçimi şartı değil.  
 **SCT/PZEM etiketleme ve kalibrasyon hedefi:** [Hedef mimari notu](docs/architecture/sct-pzem-labeling-and-calibration.md) — zaman damgası/sabit süre odaklı değil, paket bağlamı ve PZEM/SCT kararlı alanlarını algoritma-istatistikle belirleyip etiketleme; Python'da etiketli SCT verisiyle sensör başına katsayı/`f(x)` modeli çıkarma; ardından modeli çok paketli ham akışta sınayıp gerekirse iyileştirme. Firmware, algoritma ve deneyler henüz yapılmadı.  
 **SSR:** SAMM Market 5 V, 2 kanallı kart; tedarikçi kodu İzmo9659, SKU MP02637. Giriş mantığı ve kart üzerindeki SSR'nin tam kodu doğrulanmalı.  
-**RTC:** DS3231 kullanılacak; gerçek breakout revizyonu, I²C pinleri, pull-up seviyesi ve yedek pil düzeni henüz doğrulanmadı.  
+**RTC:** DS3231 kullanılacak; breakout revizyonu, SDA/SCL pinleri, pull-up gerilimi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemi henüz doğrulanmadı. Yüksek çözünürlüklü örnekleme aralıkları ESP32 monoton zamanlayıcısıyla yürütülecek; RTC yalnız takvim/saat kaynağıdır.  
 **Deney durumu:** YAPILMADI.
 
 ## Bildirilen stok
@@ -41,15 +41,15 @@
 - [ ] G3 — örnekleme hızı hedef yüklerde ölçülmüş metriklerle gerekçelendirilmiş.
 
 ## Sıradaki işler
-1. [ ] T001: SCT hızlı örnekleme amacı netleştirildi: 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E ayrı kanallarda ham/anlık sensör gerilimlerini okuyacak; SSR-zamanlayıcı düğümünden gelen paket bilgisiyle birlikte yazdırılacak. Bu aşamada akım/RMS hesabı yapılmayacak. Dahili ADC GPIO'ları ve analog kuplaj ayrıntıları hâlâ doğrulanmalı.
+1. [ ] T001: SCT hızlı örnekleme amacı netleştirildi: 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E ayrı kanallarda ham/anlık sensör gerilimlerini okuyacak; SSR-zamanlayıcı düğümünden gelen paket bilgisiyle birlikte yazdırılacak. Bu aşamada akım/RMS hesabı yapılmayacak. T001’de kalan analog ön uç bilgileri kuplaj, direnç/filtre değerleri ve güvenli ADC aralığıdır; GPIO/pin seçimi firmware aşamasına bırakılır.
 2. [ ] [T002 — Güvenlik kontrolü](tasks/T002-safety-checklist.md): şebeke bağlantısı öncesi yetkin kişi incelemesi.
 3. [ ] [T003 — Referans ve hata hedefi](tasks/T003-reference-and-error-target.md): referans cihazı, en az üç yük seviyesi ve ölçüm öncesi kabul hedefi.
 
 ## Açık engeller
-- Üç SCT örnekleme kartının dahili ADC GPIO eşlemesi ve her girişin güvenli aralığı doğrulanmalı; genel NodeMCU kartının tam PCB revizyonu, kullanılacaksa kablolama öncesinde doğrulanmalı.
+- SCT analog kuplajı, kanal direnç/filtre değerleri ve güvenli ADC giriş aralığı belgelenmeli. Kullanılacak kartın ADC GPIO eşlemesi ve firmware ayarları pin planlama/kodlama aşamasında doğrulanmalı; bu T001 kapatma şartı değildir. Genel NodeMCU kartı kullanılacaksa PCB revizyonu kablolama öncesi belirlenmeli.
 - SCT AC sinyalinin tamamlanmış 1,65 V bias noktasına kuplajı, kanal direnç/filtre değerleri ve güvenli ADC aralığı.
 - DS3231 breakout revizyonu, I²C pinleri/pull-up gerilimi, yedek pil türü ve ilk saat ayarlama yöntemi.
 - SSR'nin hangi iki AC yükü anahtarlayacağı, GPIO eşlemesi ve giriş mantığının düşük gerilimde doğrulanması.
-- True-RMS referans cihazı, kontrollü yük kimlikleri ve E01–E06 deneyleri.
+- T003 için True-RMS referans cihazı marka/modeli, kalibrasyon/izlenebilirlik durumu, en az üç kontrollü yük seviyesi ve E01–E06 deneyleri.
 
 Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
