@@ -17,7 +17,7 @@
 Önceden var olan genel teknik özellikleri tekrar yazma; mevcut kaynaklardan yararlan.
 
 ## Kaydedilen bilgiler
-- Kullanıcı tarafından belirtilen kart envanteri: 1 × ESP32-C3 SuperMini (SSR kontrolü/zamanlama), 1 × ESP32-WROOM-32E ve 2 × ESP32-WROOM-32D (SCT ham örnekleme düğümleri). Bu kart dağılımında kullanıcı beyanı esastır. Kullanıcı ESP32-WROOM-32D kart fotoğrafını ve ESP32-C3 Super Mini kartının arka yüz fotoğrafını sağladı; görseller envanter notlarına işlendi ve tekrar istenmeyecek.
+- Kullanıcı tarafından belirtilen kart envanteri: 1 × ESP32-C3 SuperMini (SSR kontrolü/zamanlama), 1 × ESP32-WROOM-32E ve 2 × ESP32-WROOM-32D (SCT ham örnekleme düğümleri). Kullanıcı 1 adet ESP32-WROOM-32E kart fotoğrafını da sağladı. Bu kart dağılımında kullanıcı beyanı esastır. Kullanıcı ESP32-WROOM-32D kart fotoğrafını ve ESP32-C3 Super Mini kartının arka yüz fotoğrafını sağladı; görseller envanter notlarına işlendi ve tekrar istenmeyecek.
 - SCT013 30 A / 1 V: 7 adet; jack çıkışlı.
 - SCT013 100 A / 1 V: 10 adet; jack çıkışlı.
 - PZEM-004T V3.0.
