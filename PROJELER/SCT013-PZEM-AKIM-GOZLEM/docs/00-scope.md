@@ -21,6 +21,11 @@ PZEM'in kendi PF çıktısı kayıt alanıdır; SCT'den PF hesaplanmayacaktır.
 
 Bunlar tasarım başlangıçlarıdır; bu donanımda deneysel doğrulamaları henüz yapılmadı.
 
+## Model değerlendirme kabul hedefi
+- Python'da model tahmini, karşılık gelen geçerli PZEM akım okumasından ±%4 bağıl sapma içindeyse `OK` olarak sınıflandırılır: `abs(prediction - pzem_current) / abs(pzem_current) <= 0.04`.
+- Tam %4 sapma kabul edilir. Geçersiz PZEM okumaları ve sıfır referans akımı bu yüzde kuralıyla sınıflandırılmaz; ayrı durum olarak tutulur.
+- Bu ölçüt modelin PZEM'e uyumunu ifade eder, mutlak ölçüm doğruluğu garantisi değildir.
+
 ## Başarı ölçütleri
 1. Fiziksel donanım zinciri ve calibration_id belgelenmiş.
 2. Gerçek örnekleme hızı, sample_count, pencere süresi ve clipping ölçülmüş.
