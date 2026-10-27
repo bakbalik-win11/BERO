@@ -1,16 +1,30 @@
-# SCT analog ön uç kontrolü
+# SCT analog ön uç
 
-**Durum: Ölçüm yapılmadı; breadboard bias alt devresi kullanıcı beyanıyla mevcut.** SCT013 jack üzerinden bu devreye bağlanacak ve ESP32'nin dahili ADC işleviyle okunacaktır. Bu aşamada harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır.
+**Durum: Hobi projesi için temel bağlantı ve bias yapısı belgelendi.** SCT013 jack üzerinden bias devresine bağlanacak ve ESP32'nin dahili ADC'siyle okunacaktır. Bu aşamada harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır.
 
-Breadboard bias alt devresi kullanıcı beyanına göre iki adet 10 kΩ dirençle orta nokta oluşturur; orta nokta ile GND arasına 104 kodlu (100 nF) kondansatör bağlanmıştır. Bu kayıt, SCT AC sinyalinin bias noktasına kuplaj yönteminin doğrulandığı anlamına gelmez.
+## Mevcut bias devresi
 
-Kaydedilecek / değerlendirilecek konular:
-- Kullanılacak SCT model kodu ve çıkış türü.
-- SCT modelinde dahili burden olup olmadığı; harici burden varsa değeri ve gücü.
-- SCT AC sinyalinin breadboard bias devresinden ESP32 ADC girişine kuplaj yöntemi.
-- Kullanılan analog filtre ve ek direnç değerleri (varsa).
-- ESP32 ADC girişindeki DC seviyesi, beklenen maksimum sinyal ve güvenli giriş aralığı.
-- Yüksüz ADC ortalaması, min/max ve gürültü metriği.
-- En yüksek planlanan akımda clipping durumu.
+Kullanıcı beyanına göre breadboard üzerinde:
+- İki adet 10 kΩ dirençle oluşturulmuş orta nokta.
+- Orta nokta ile GND arasında 104 kodlu, 100 nF kondansatör.
+- Bias seviyesi yaklaşık **1,65 V** kabul edilir; bu aşamada ayrıca ölçülüp doğrulanması istenmiyor.
 
-SCT013-100A-1V gerilim çıkışlı varyant ile SCT013-000 akım çıkışlı varyant aynı değildir. Ölçülmemiş değerler ölçülmüş gibi yazılmayacaktır.
+Bu kayıt, SCT AC sinyalinin bias noktasına kuplaj ayrıntılarının ölçümle doğrulandığı anlamına gelmez. Belirgin bir bağlantı sorunu normal kullanım sırasında görülürse not edilir; bu görev için laboratuvar düzeyinde doğrulama gerekmez.
+
+## Eldeki SCT modelleri
+
+- **SCT013-030:** Envanterde bulunan model; testte kullanıldığında test kaydına bu model kodu yazılır.
+- **SCT013-100A-1V:** Envanterde bulunan gerilim çıkışlı model; testte kullanıldığında test kaydına bu model kodu yazılır.
+
+Bu modellerin çıkış türleri aynı kabul edilmez. Hangi modelin kullanılacağı test bazında belirtilir; henüz tek bir model tüm testler için sabitlenmemiştir. Test sırasında kullanılan model ve bağlantı bilgisi kayıtla eşleştirilmelidir.
+
+## Bu aşamanın kapsamı
+
+- ESP32 dahili ADC kullanılacak; MCP3208 sonraki aşamadadır.
+- Bias ayrı bir kanal/kayıt alanı olarak ileride yazılım ve veri kaydı aşamasında tutulacaktır; bu T004 ön koşulu değildir.
+- ADC maksimum giriş aralığı, clipping payı, bias toleransı, yüksüz gürültü istatistiği veya en yüksek akımda clipping için laboratuvar düzeyinde hesap/ölçüm T004 kapanış şartı değildir.
+- Ölçülmemiş değerler ölçülmüş gibi yazılmaz.
+
+## Temel güvenlik
+
+Hobi düzeyinde temel elektrik güvenliği ve sağduyulu bağlantı kontrolü uygulanır. Enerjili devrede bağlantı değiştirilmez ve açık iletkenlere dokunulmaz.
