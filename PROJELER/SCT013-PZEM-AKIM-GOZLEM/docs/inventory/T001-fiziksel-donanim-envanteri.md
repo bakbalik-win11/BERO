@@ -1,6 +1,6 @@
 # T001 — Fiziksel Donanım Envanteri
 
-**Envanter durumu:** Kullanıcı tarafından bildirilen fiziksel stok ve hazır kart bilgileri kaydedildi. **Görev kartının kapanışı**, proje görev kartındaki kabul ölçütleri nedeniyle ADC/VREF ve SCT analog kuplaj bilgileri başka ilgili kayıtlara taşındıktan/doğrulandıktan sonra yapılacaktır.
+**Envanter durumu: KAYDEDİLDİ.** Kullanıcı tarafından bildirilen fiziksel stok, kart rolleri ve bias alt devresi kaydedildi. ADC/VREF seçimi ve SCT analog kuplaj doğrulaması T001 envanter görevinin kapsamı dışındadır; ilgili sonraki aşamada ele alınacaktır.
 
 ## 1. Kontrol ve ölçüm donanımı
 
