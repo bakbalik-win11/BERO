@@ -1,6 +1,6 @@
 # Fiziksel donanım envanteri
 
-**Durum: KISMEN HAZIR.** Kullanıcı tarafından bildirilen fiziksel stok, ESP32 kart/modül çeşitleri, güç kaynağı, test yükü ve önceden hazırlanmış 8 kanallı bias/direnç kartı kaydedildi. T001 kart dağılımında kullanıcı beyanı esas alınır. Kullanıcının sağladığı fotoğraflarda ESP32-WROOM-32D metal kalkanlı geliştirme kartı ve ESP32-C3 Super Mini kartının arka yüzü görsel olarak tanımlandı. Fotoğraflar bu kayda işlendi; tekrar istenmeyecek.
+**Durum: KISMEN HAZIR.** Kullanıcı tarafından bildirilen fiziksel stok, ESP32 kart/modül çeşitleri, güç kaynağı, test yükü ve breadboard bias alt devresi kaydedildi. T001 kart dağılımında kullanıcı beyanı esas alınır. Kullanıcının sağladığı fotoğraflarda ESP32-WROOM-32D metal kalkanlı geliştirme kartı ve ESP32-C3 Super Mini kartının arka yüzü görsel olarak tanımlandı. Fotoğraflar bu kayda işlendi; tekrar istenmeyecek.
 
 ## Stok ve seçimler
 
@@ -25,12 +25,9 @@
 
 ## Hazır analog arayüz kartı
 
-Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı bulunan bir kart** hazırlamıştır. Jack yuvaları da mevcuttur. Kullanıcının tarif ettiği bağlantı:
+Breadboard bias alt devresi kullanıcı beyanına göre 2 × 10 kΩ dirençle orta nokta oluşturur ve orta noktadan GND'ye 104 (100 nF) kondansatör bağlanmıştır.
 
-**Bağlantı tarifi (kullanıcı bildirimi):** SCT013 dişi jack yuvasına bağlanır; sensör dönüş sinyali dişi jack üzerinden 8 kanallı analog arayüze, oradan ESP32'ye gider. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. Kartta her kanalın ayrı bias ve direnç ağı vardır.
-
-İlk aşamada MCP3208 kullanılmayacak; fiziksel olarak mevcut olan MCP3208 ileriki aşama için ayrılmıştır.
-
+**Bağlantı tarifi (kullanıcı bildirimi):** SCT013 jack üzerinden breadboard bias devresine bağlanır; okuma ESP32'nin dahili ADC'siyle yapılır. 8 kanallı analog arayüz kartı mevcut değildir. Harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır.
 ## SCT ölçüm kartı ve test düzeni
 
 Kullanıcı kararı ve hedef mimari:
@@ -54,7 +51,7 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 | MCU | SCT ölçümü için 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E; SSR kontrolü/zamanlama için ayrı ESP32-C3 SuperMini | ADC destekli GPIO ve pin eşlemesi firmware/pin planlama aşamasında, seçilen fiziksel kart ve teknik belgeyle doğrulanacak; T001’de pin numarası şartı değil |
 | ADC | Bu aşamada ayrı/harici ADC kullanılmayacak; sinyal ESP32 kartına gider | MCP3208 mevcut olsa da sonraki aşamaya ayrılmıştır; bu görevde harici ADC modeli/revizyonu veya harici VREF seçimi yapılmayacak |
 | Harici ADC | MCP3208 mevcut, ileriki aşamaya ayrıldı | İlk aşamada kullanılmayacak |
-| Analog ön uç | 8 kanal, her kanalda ayrı bias ve direnç ağı; SCT sinyali ESP32 ADC'ye aktarılacak | Sensör dönüşünün jack üzerinden analog karta ve oradan ESP32 kartına gittiği bağlantı yolu kullanıcı tarafından açıklandı; bu aşamada ayrı/harici ADC yok. Elektriksel bias kuplaj topolojisi (hangi hat/noktanın bias orta noktasına bağlandığı), direnç/filtre değerleri ve güvenli ADC aralığı ayrıca devre izi/şema/ölçüm kanıtıyla kaydedilmeli |
+| Analog ön uç | Breadboard bias alt devresi; SCT sinyali ESP32 dahili ADC'sine aktarılacak | Sensör dönüşünün jack üzerinden analog karta ve oradan ESP32 kartına gittiği bağlantı yolu kullanıcı tarafından açıklandı; bu aşamada ayrı/harici ADC yok. Elektriksel bias kuplaj topolojisi (hangi hat/noktanın bias orta noktasına bağlandığı), direnç/filtre değerleri ve güvenli ADC aralığı ayrıca devre izi/şema/ölçüm kanıtıyla kaydedilmeli |
 | PZEM ve CT | PZEM-004T için [mevcut BERO donanım kaydı](../../../DONANIM/PZEM-004T/README.md) esas alınır; bağlı CT modeli kullanıcı beyanıyla PZCT-02 (0–100 A) | Bu projede yeniden donanım belgesi açma veya CT modelini tekrar sorma; entegrasyon sırasında UART lojik seviyesi ve izolasyon gereksinimlerini kontrol et |
 | DS3231 | İki modülde 2032 tipi pil; güç kesintisi sonrası saat koruma testi kullanıcı beyanına göre başarılı | Bu proje aşamasında ek iş yok; proje bağlantısı gerektiğinde pin planı ayrı ele alınır |
 | SSR | SAMM Market 5 V, 2 kanal, İzmo9659 / MP02637 | İki AC yük, GPIO eşlemesi, tetik mantığı ve termal sınırlar güvenli biçimde doğrulanmalı |
