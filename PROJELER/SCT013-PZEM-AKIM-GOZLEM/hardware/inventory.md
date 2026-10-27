@@ -10,9 +10,9 @@
 | SCT013-030 stok | **7 adet** | Kullanıcı bildirimi; bağımsız sayım yapılmadı. Paylaşılan fotoğrafta SCT013 30 A / 1 V etiketi görülüyordu; fotoğraf bu sohbette, henüz depoda değil. |
 | SCT013-100A-1V stok | **10 adet** | Kullanıcı bildirimi; alternatif stok. |
 | 100 nF / 50 V seramik kondansatör | **10 adet bildirilmiş stok; 1 adet bias bölücüsünde kullanılıyor** | Kullanıcı bildirimi. Breadboarddaki kondansatör üzerindeki işaret 104 olarak düzeltildi; 104 = 100 nF. Kalan stok fiziksel olarak sayılmadı. |
-| ESP32-WROOM-32D | **2 adet** | Kullanıcı bildirimi; teknik referans [burada](../../../DONANIM/ESP32-WROOM-32D/README.md). |
-| ESP32-WROOM-32E | **1 adet** | Kullanıcı bildirimi; bu varyant için mevcut depoda proje-özel referans bağlantısı yok. |
-| ESP32-WROOM-32S | **1 adet** | Kullanıcı bildirimi; bu varyant için mevcut depoda proje-özel referans bağlantısı yok. |
+| ESP32-WROOM-32D geliştirme kartı | **2 adet** | Kullanıcı bildirimi ve fotoğraflar; teknik referans [burada](../../../DONANIM/ESP32-WROOM-32D/README.md). Bağımsız sayım yapılmadı. |
+| ESP32-WROOM-32E geliştirme kartı | **1 adet** | Kullanıcı bildirimi ve fotoğraf; bağımsız sayım yapılmadı. |
+| ESP-WROOM-32 tabanlı NodeMCU ESP32 Bluetooth geliştirme kartı | **1 adet** | Kullanıcı bildirimi ve görsel. Tam kart üreticisi/PCB revizyonu okunmuyor; önceki WROOM-32S satırı bununla değiştirildi. |
 | SSR | **Mevcut BERO SSR donanım kaydı referans alındı** | Fiziksel SSR modeli kaynak kayıtta kesinleştirilmemiş. Projede kullanılacağına dair karar henüz yok. |
 
 Stok adetleri kullanıcı tarafından bildirilmiştir; bağımsız fiziksel sayım gibi sunulmaz.
@@ -23,7 +23,7 @@ Stok adetleri kullanıcı tarafından bildirilmiştir; bağımsız fiziksel say�
 |---|---|---|---|
 | SCT | [SCT013-30A-1V](references/SCT013-30A-1V.md); [SCT013-100A-1V](references/SCT013-100A-1V.md) | SCT013-030 (30 A / 1 V) öncelikli; 100 A / 1 V alternatif stok. | Genel model bilgisi hazır; fiziksel fotoğrafı depoya arşivlemek isteğe bağlı kanıt düzenlemesi. |
 | PZEM ve CT | [Ana BERO kaydı](../../../DONANIM/PZEM-004T/README.md); [proje içi referans kopyası](references/PZEM-004T-V3.0.md) | PZEM-004T V3.0; kullanıcı CT modelini **PZCT-02 (0–100 A)** olarak belirtti. Fotoğrafta bu CT'nin PZEM'e bağlı olduğu gösterildi. Bu, 100 A harici CT düzenidir. | Donanım kimliği ve CT modeli belirlendi. MCU bağlantısı yapılırken UART lojik seviyesi/izolasyon gereksinimleri kontrol edilecek. Fotoğrafı ayrıca depoya kopyalamak gerekmiyor. |
-| ESP32 / MCU | [ESP32-WROOM-32D teknik kaydı](../../../DONANIM/ESP32-WROOM-32D/README.md) | Stok bildirimi: D × 2, E × 1, S × 1. Projede kullanılacak modül/kart henüz seçilmedi. | Seçilecek fiziksel kart ve revizyon ile pinout/board kimliğini kaydet. |
+| ESP32 / MCU | [ESP32-WROOM-32D teknik kaydı](../../../DONANIM/ESP32-WROOM-32D/README.md) | **İlk aşama için 4 kart:** 2× WROOM-32D, 1× WROOM-32E, 1× genel ESP-WROOM-32 NodeMCU ESP32 Bluetooth. Kullanıcı kararı; bağımsız sayım yapılmadı. | Kartların görev/firmware rolünü belirle. Genel NodeMCU kartının tam PCB revizyonu ve pin etiketleri kablolama öncesi doğrulansın. |
 | ADC | [MCP3208 BERO kaydı](../../../DONANIM/MCP3208/README.md) | BERO'da ADC referansı var; bu projede fiziksel ADC ve VREF'in kullanımı henüz doğrulanmadı. | Gerçek ADC modelini/revizyonunu ve VREF kaynağını kaydet. |
 | Bias üretim alt devresi | Aşağıdaki “Bias trafosu” bölümü | **TAMAMLANDI — kullanıcı onayı.** | Yeni parça bilgisi beklenmiyor; SCT sinyalinin bias noktasına kuplajı analog ön uç entegrasyonunda ele alınacak. |
 | SSR | [SSR donanım referansı](references/SSR.md); [aday veri sayfası notu](references/SSR-datasheet-candidate.md) | Referans mevcut; fiziksel model ve bu projede kullanılma kararı doğrulanmadı. | Kullanılacaksa tam model etiketi, AC/DC yük türü, giriş sürme değeri ve kapasite doğrulanmalı. |
