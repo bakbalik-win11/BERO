@@ -1,6 +1,6 @@
 # T001 — Fiziksel donanım envanteri
 
-- **Durum:** DEVAM EDİYOR — fiziksel stok ve breadboard üzerinde hazırlanmış bias alt devresinin kullanıcı tarafından bildirilen yapısı kaydedildi. Bu aşamada 8 kanallı analog kart söz konusu değil. GPIO/pin numarası firmware ve pin planlama aşamasında belirlenecek; T001’de pin seçimi istenmiyor.
+- **Durum:** TAMAMLANDI — kullanıcı tarafından bildirilen fiziksel envanter ve breadboard bias alt devresi kaydedildi. GPIO/pin numarası ve firmware ADC yapılandırması bu görevin kapsamında değil.
 - **Faz:** 0.1
 - **Bağımlılık:** Yok
 - **Hedef:** Önceki BERO kayıtlarını yeniden toplatmadan kullanmak; seçilmiş donanımı, kullanıcı tarafından bildirilen stokları ve kalan proje-özel bilgileri kaydetmek.
@@ -35,12 +35,13 @@
 - Bias üretim alt devresi önceki proje kayıtlarında kullanıcı onayıyla tamamlandı sayılıyor. Bu, SCT AC sinyalinin bias noktasına kuplajının da doğrulandığı anlamına gelmez.
 - DS3231 için kullanıcı beyanı: RTC kodu çalıştı; güç kesilip yeniden verildiğinde saat tutma testi daha önce yapıldı. İki modülde de 2032 tipi pil takılı olduğu kullanıcı tarafından bildirildi. Bu beyanlar mevcut proje kaydına işlendi; yeni bir test istenmiyor.
 
-## Kalan proje-özel işler
-1. Breadboard üzerindeki bias alt devresi kullanıcı tarafından tarif edildi: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta; sensör bu bias orta noktasına bağlanıyor; orta nokta ile GND arasında “104” kodlu kondansatör (100 nF) var. Şimdilik 8 kanallı analog kart/kanal tasarımı bu görevin parçası değil. Bu tarifin ötesinde başka direnç/filtre elemanları olduğu varsayılmayacak.
-2. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. Harici ADC modeli/revizyonu veya VREF seçimi T001 kapsamına alınmayacak. GPIO/pin numarası da bu aşamada istenmiyor.
+## Kapsam dışı / sonraki aşamalar
+- Harici ADC (MCP3208) ve VREF seçimi sonraki aşamaya ayrılmıştır.
+- GPIO/pin eşlemesi ve firmware ADC yapılandırması firmware/pin planlama aşamasında ele alınacaktır.
+- Bias alt devresinin kullanıcı tarafından bildirilen envanter tarifi kaydedilmiştir; elektriksel kuplaj doğrulaması bu envanter görevinin kabul şartı değildir.
 
 ## Kabul ölçütü
-Fiziksel envanter ve breadboard bias alt devresinin kullanıcı tarafından tarif edilen yapısı kaydedilmelidir: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta ve orta nokta-GND arasında 104 (100 nF) kondansatör; sensör bu bias noktasına bağlanır. Şimdilik 8 kanallı analog kart/kanal tasarımı kapsamda değildir. Henüz bildirilmemiş ayrıntılar varmış gibi yeni eleman veya değer istenmemelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez.
+Fiziksel envanter ve breadboard bias alt devresinin kullanıcı tarafından tarif edilen yapısı kaydedilmelidir: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta ve orta nokta-GND arasında 104 (100 nF) kondansatör; sensör bu bias noktasına bağlanır. Şimdilik 8 kanallı analog kart/kanal tasarımı kapsamda değildir. Henüz bildirilmemiş ayrıntılar varmış gibi yeni eleman veya değer istenmemelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez. Kullanıcı beyanları fiziksel envanter kaydı olarak kabul edilmiştir.
 
 ## Güvenlik
 Bu görev dokümantasyon ve görsel incelemedir. Şebeke bağlantısını sökme, kabloyu ayırma veya sisteme enerji verme.
