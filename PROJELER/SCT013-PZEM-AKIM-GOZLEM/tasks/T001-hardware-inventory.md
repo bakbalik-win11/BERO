@@ -27,7 +27,7 @@
 - SAMM Market 5 V, 2 kanallı SSR kartı; DS3231 RTC.
 - Masaüstü 5 V / 1,8 A güç kaynağı; lamba test yükü.
 - Jack yuvaları ve bağlantı/ölçüm parçaları mevcut.
-- Breadboard üzerinde hazırlanmış bias alt devresi: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta oluşturulur; sensör bu bias orta noktasına bağlanır. Orta nokta ile GND arasına “104” kodlu kondansatör (100 nF) bağlanır. Bu aşamada 8 kanallı analog kart söz konusu değil. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. GPIO numarası bu aşamada istenmiyor.
+- Breadboard üzerinde hazırlanmış bias alt devresi: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta oluşturulur; sensör bu bias orta noktasına bağlanır. Orta nokta ile GND arasına “104” kodlu kondansatör (100 nF) bağlanır. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. GPIO numarası bu aşamada istenmiyor.
 - Kullanıcı kararı: SCT okumaları için 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E ayrı hızlı örnekleme kanalları olarak kullanılacak. Bu aşamanın çıktısı akım/RMS hesabı değil, sensörün ham/anlık gerilim okumaları ile SSR-zamanlayıcı düğümünden gelen paket bilgisinin birlikte yazdırılmasıdır. 1, 2 ve 4 sarım testleri aynı hat üzerinde ayrı ayrı yapılacak.
 
 ## İlerleme ilkesi
@@ -41,7 +41,7 @@
 - Bias alt devresinin kullanıcı tarafından bildirilen envanter tarifi kaydedilmiştir; elektriksel kuplaj doğrulaması bu envanter görevinin kabul şartı değildir.
 
 ## Kabul ölçütü
-Fiziksel envanter ve breadboard bias alt devresinin kullanıcı tarafından tarif edilen yapısı kaydedilmelidir: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta ve orta nokta-GND arasında 104 (100 nF) kondansatör; sensör bu bias noktasına bağlanır. Şimdilik 8 kanallı analog kart/kanal tasarımı kapsamda değildir. Henüz bildirilmemiş ayrıntılar varmış gibi yeni eleman veya değer istenmemelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez. Kullanıcı beyanları fiziksel envanter kaydı olarak kabul edilmiştir.
+Fiziksel envanter ve breadboard bias alt devresinin kullanıcı tarafından tarif edilen yapısı kaydedilmelidir: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta ve orta nokta-GND arasında 104 (100 nF) kondansatör; sensör bu bias noktasına bağlanır. Henüz bildirilmemiş ayrıntılar varmış gibi yeni eleman veya değer istenmemelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez. Kullanıcı beyanları fiziksel envanter kaydı olarak kabul edilmiştir.
 
 ## Güvenlik
 Bu görev dokümantasyon ve görsel incelemedir. Şebeke bağlantısını sökme, kabloyu ayırma veya sisteme enerji verme.
