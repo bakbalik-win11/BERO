@@ -7,7 +7,7 @@ Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölç
 
 ## Bu projede seçilen / tanımlanan donanım
 - **Öncelikli SCT:** [SCT013-030 — 30 A / 1 V](hardware/references/SCT013-30A-1V.md). Kullanıcı stok bildirimi: 7 adet 30 A / 1 V ve 10 adet 100 A / 1 V; ikisi de jack çıkışlı.
-- **Hazır SCT analog arayüz:** Kullanıcı daha önce 8 kanallı, her kanalı ayrı bias ve direnç ağı bulunan bir kart hazırladı; jack yuvaları mevcut. SCT sinyali bu arayüz üzerinden ESP32 ADC girişinden okunacak. İstenirse MCP serisi ADC bağlanabilir; bu projede MCP modeli seçilmiş sayılmaz. Teknik belirsizlikler [analog ön uç kaydında](hardware/frontend.md), envanter ise [burada](hardware/inventory.md) yer alır.
+- **SCT/bias devresi:** Mevcut devre breadboard üzerinde hazırlanmış bias alt devresidir (2 × 10 kΩ, orta nokta ve orta noktadan GND'ye 104/100 nF kondansatör). SCT013 jack üzerinden bu devreye bağlanıp ESP32'nin dahili ADC'siyle okunacak. 8 kanallı analog arayüz kartı mevcut değildir; MCP3208 sonraki aşamaya ayrılmıştır. Ayrıntılar [analog ön uç kaydında](hardware/frontend.md) ve [envanterde](hardware/inventory.md).
 - **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); proje içi teknik kopyası [PZEM-004T V3.0](hardware/references/PZEM-004T-V3.0.md). Kullanıcı CT modelini **PZCT-02 (0–100 A)** olarak belirtti ve görüntü, bu CT'nin PZEM'e bağlı olduğunu göstermek içindi. Bu, 100 A harici CT'li PZEM düzenidir; fotoğraf yeni bir donanım referansı oluşturmak için paylaşılmadı.
 - **Bias üretim alt devresi:** Kullanıcı onayıyla tamamlandı sayılıyor. Ayrıntılar [donanım envanterinde](hardware/inventory.md) yer alır.
 - **SSR:** [SAMM Market 5 V 2 Kanal SSR kartı](https://market.samm.com/5v-2-kanal-solid-state-role-karti) (tedarikçi kodu İzmo9659, SKU MP02637) proje donanımına dahil edildi. OMRON, fototriyak izolasyon ve zero-cross; kanal başına 75–264 VAC ve 0,1–2 A (ürün sayfası değerleri). Kart üzerindeki SSR'nin tekil parça kodu doğrulanmadı. Girişin LOW/HIGH açıklamasıyla “low-level trigger” notu çelişebildiğinden gerçek kontrol mantığı düşük gerilim testiyle doğrulanmalı. Ayrıntılar [SSR referansında](hardware/references/SSR.md).
@@ -40,7 +40,7 @@ Teknik açıklamaları yeniden yazmamak için ilgili Markdown dosyaları [hardwa
 4. [Görev kartları](tasks/README.md) — aktif iş ve bağımlılıklar.
 5. [Açık sorular](docs/open-questions.md) — gerçekten cevap bekleyen konular.
 6. [Fiziksel donanım envanteri](hardware/inventory.md) — seçilen modüller ve bias alt devresi.
-7. [T001 kullanıcı envanter özeti](docs/inventory/T001-fiziksel-donanim-envanteri.md) — bildirilen stoklar ve hazır 8 kanallı arayüz kartı.
+7. [T001 kullanıcı envanter özeti](docs/inventory/T001-fiziksel-donanim-envanteri.md) — bildirilen stoklar ve breadboard bias alt devresi.
 
 ## Başlangıç tasarım değerleri
 - SCT örnekleme hızı: 2 kS/s.
