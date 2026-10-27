@@ -40,12 +40,12 @@
 - [ ] G3 — örnekleme hızı hedef yüklerde ölçülmüş metriklerle gerekçelendirilmiş.
 
 ## Sıradaki işler
-1. [ ] T001: fiziksel stok ve 8 kanallı kart kaydedildi. Gerçekte kullanılacak ADC/VREF ve SCT'nin bias noktasına kuplaj yöntemi hâlâ belirlenmeli; bu nedenle görev kartı henüz TAMAMLANDI değil.
+1. [ ] T001: SCT hızlı örnekleme amacı netleştirildi: 2 × ESP32-WROOM-32D ve 1 × ESP32-WROOM-32E ayrı kanallarda ham/anlık sensör gerilimlerini okuyacak; SSR-zamanlayıcı düğümünden gelen paket bilgisiyle birlikte yazdırılacak. Bu aşamada akım/RMS hesabı yapılmayacak. Dahili ADC GPIO'ları ve analog kuplaj ayrıntıları hâlâ doğrulanmalı.
 2. [ ] [T002 — Güvenlik kontrolü](tasks/T002-safety-checklist.md): şebeke bağlantısı öncesi yetkin kişi incelemesi.
 3. [ ] [T003 — Referans ve hata hedefi](tasks/T003-reference-and-error-target.md): referans cihazı, en az üç yük seviyesi ve ölçüm öncesi kabul hedefi.
 
 ## Açık engeller
-- Fiziksel ADC modeli ve VREF kaynağı/değeri; genel NodeMCU kartının tam PCB revizyonu kablolama öncesinde doğrulanmalı.
+- Üç SCT örnekleme kartının dahili ADC GPIO eşlemesi ve her girişin güvenli aralığı doğrulanmalı; genel NodeMCU kartının tam PCB revizyonu, kullanılacaksa kablolama öncesinde doğrulanmalı.
 - SCT AC sinyalinin tamamlanmış 1,65 V bias noktasına kuplajı, kanal direnç/filtre değerleri ve güvenli ADC aralığı.
 - DS3231 breakout revizyonu, I²C pinleri/pull-up gerilimi, yedek pil türü ve ilk saat ayarlama yöntemi.
 - SSR'nin hangi iki AC yükü anahtarlayacağı, GPIO eşlemesi ve giriş mantığının düşük gerilimde doğrulanması.
