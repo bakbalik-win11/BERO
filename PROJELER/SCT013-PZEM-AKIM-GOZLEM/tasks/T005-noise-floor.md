@@ -3,18 +3,24 @@
 - **Durum:** PLANLANDI
 - **Faz:** 1.2
 - **Bağımlılık:** T004
-- **Hedef:** Önceden yazılmış bir protokolle yüksüz ADC ofsetini ve gürültü tabanını ölçmek.
+- **Hedef:** Hatta akım yokken ADC ofsetini, gürültü tabanını ve zaman içindeki değişimi ölçüp grafiklemek.
+
+## Mevcut durum
+- Donanım henüz kurulmadı; fiziksel deney ve ölçüm yapılmadı.
+- PZEM ve diğer ESP kartları ölçülen hattan beslenmiyor; bağımsız besleme düzeni deney kaydında korunacak.
+- 30 saniye yalnızca asgari başlangıç süresidir, üst sınır değildir. Daha uzun, hatta saatler süren kayıt düşünülebilir; kesin süre henüz belirlenmedi.
 
 ## Yapılacak
-1. experiments/E01-noise-floor/protocol.md içindeki düzenek, örnekleme, süre ve kabul ölçütlerini gerçek donanıma göre doldur.
-2. Deneyden önce güç/bağlantı güvenliğini ve kalibrasyon gereksinimini kontrol et.
-3. Deneyi protokole göre yap; mümkün değilse sonuç üretme ve engeli kaydet.
-4. metadata.yaml içinde firmware/donanım kimliklerini ve yapılandırmayı yaz.
-5. results.md içinde ölçülen ofset, gürültü metriği, veri yolu ve gözlemleri yaz; ham veriye bağ ver.
-6. Gürültü tabanından çıkarılabilecek düşük akım sınırını hipotez olarak ayır; tek deneyle genelleme yapma.
+1. experiments/E01-noise-floor/protocol.md içindeki düzenek ve örnekleme ayarlarını kurulan gerçek donanıma göre kesinleştir.
+2. Donanım kurulduktan sonra bağlantı/güvenlik kontrolünü yap ve hatta akım olmadığını deney kaydına geçir.
+3. Sabit ayarlarda ADC verisi al; ham veriyi sakla ve zaman ekseninde grafikle.
+4. sample_count, ortalama, min/max ve ofset giderilmiş gürültü RMS değerini hesapla.
+5. metadata.yaml içinde gerçek firmware/donanım kimliklerini, besleme düzenini, örnekleme ayarlarını ve gerçek süreyi yaz.
+6. results.md içinde grafiklere ve ham veriye bağlantı ver. Ölçüm yapılana kadar sonuç üretme.
+7. Gürültü tabanından çıkarılabilecek düşük akım sınırını hipotez olarak ayır; tek deneyle genelleme yapma.
 
 ## Kabul ölçütü
-Protokol, metadata, ham/veri çıktısı ve sonuç birbiriyle bağlanabilir; ölçülmeyen sonuç yoktur. Sonuçların yokluğu açıkça YAPILMADI olarak kalır.
+Protokol, metadata, ham veri, grafik ve sonuç birbiriyle bağlanabilir; ölçülmeyen sonuç yoktur. Deney yapılmadığı sürece sonuç durumu açıkça YAPILMADI olarak kalır.
 
 ## Çıktı / dokunulacak dosyalar
 - experiments/E01-noise-floor/
