@@ -118,3 +118,14 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Köprü sonrası filtre kondansatörü ve regülatör bypass kapasiteleri/konumları; regülatör çıkışı ile ayrı breadboard arasındaki +3,3 V/GND bağlantısı; SCT sinyalinin 1,65 V bias noktasına kuplajı; 1,65 V değerinin ölçüm kanıtı.
 - **Sonraki adım:** Bu bağlantıları varsa mevcut şema veya fotoğrafla belgelemek; şebeke tarafını açmadan ilerlemek.
 - **Kanıt:** [Donanım envanteri](../hardware/inventory.md); [T001](../tasks/T001-hardware-inventory.md); [açık sorular](../docs/open-questions.md); [Vishay KBU6M ailesi veri sayfası](https://www.vishay.com/doc/?98732=).
+
+
+## 2026-10-27 — Bias filtre kondansatörlerinin değer ve konumlarının tamamlanması
+
+- **Durum:** UYGULANDI; PR ve otomatik kapanış kontrolü bekleniyor.
+- **Hedef ve kabul ölçütü:** Kullanıcının verdiği son değerleri envantere eklemek ve artık belirtilmiş olan kondansatör değerlerini “bilinmiyor” olarak bırakmamak.
+- **Yapılan:** Bias trafosu kutusunda KBU6M köprü doğrultucu sonrasında, L78L33 öncesinde 2200 µF / 35 V elektrolitik kondansatör olduğu kaydedildi. Ayrı breadboarddaki bias orta noktasından GND'ye 104 kodlu seramik kondansatör bağlandığı kaydedildi; kullanıcı işareti 102'den 104'e düzeltti. 104 değeri 100 nF olarak işlendi. Stokta bildirilen 10 adet 100 nF / 50 V seramikten birinin devrede kullanıldığı not edildi; kalan stok sayılmadı.
+- **Doğrulama:** STATUS, envanter, T001 ve açık sorular karşılaştırıldı. Kapasitans değerleri artık kullanıcı bildirimiyle kayıtta; fiziksel şema/fotoğraf veya ölçüm sunulmadığı için bağlantının bağımsız doğrulaması iddia edilmedi.
+- **Açık kalanlar:** L78L33 çevresinde ilave bypass kondansatörü olup olmadığı; 3,3 V/GND'nin breadboarda nasıl taşındığı; SCT sinyalinin 1,65 V bias noktasına giriş bağlantısı; 1,65 V'nin fiziksel ölçüm olup olmadığı.
+- **Sonraki adım:** PR kapanış kontrolünü doğrula; envanterde kalan yalnızca gerçek bağlantı/ölçüm kanıtlarını tamamla.
+- **Kanıt:** [Donanım envanteri](../hardware/inventory.md); [T001](../tasks/T001-hardware-inventory.md); [açık sorular](../docs/open-questions.md); [PR dalı](https://github.com/bakbalik-win11/BERO/tree/docs/record-2200uf-bias-filter).
