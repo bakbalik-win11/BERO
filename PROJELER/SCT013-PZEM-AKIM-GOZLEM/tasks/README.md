@@ -26,7 +26,7 @@ Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 | ID | Görev | Faz | Durum | Bağımlılık |
 |---|---|---:|---|---|
 | T001 | Fiziksel donanım envanteri | 0.1 | TAMAMLANDI — kullanıcı beyanındaki stok, kart rolleri ve bias devresi kaydedildi; kalan analog tasarım ayrıntıları sonraki görevlere ait | — |
-| T002 | Güvenlik kontrolü | 0.2 | PLANLANDI | T001 |
+| T002 | Güvenlik kontrolü | 0.2 | TAMAMLANDI — kullanıcı tüm kontrol maddelerini tamamladığını beyan etti; fiziksel durum bağımsız doğrulanmadı | T001 |
 | T003 | Referans cihazı ve hata hedefi | 0.3 | DEVAM EDİYOR — UNI-T UT200B+ kaydedildi; hata kabul hedefi henüz belirlenmedi | T001 |
 | T004 | Analog ön uç | 1.1 | PLANLANDI | T002, T003 |
 | T005 | E01 gürültü tabanı | 1.2 | PLANLANDI | T004 |
