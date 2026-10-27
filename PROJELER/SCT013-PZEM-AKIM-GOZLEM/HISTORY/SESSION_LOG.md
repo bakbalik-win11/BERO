@@ -2,6 +2,26 @@
 
 Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonunda yeni kayıt eklenir; eski kayıtlar korunur.
 
+## 2026-10-27 — Gün sonu incelemesi, T004 kapanışı ve T005 planının eşitlenmesi
+
+- **Durum:** UYGULANDI; değiştirilen proje kayıtları GitHub'dan yeniden okunarak doğrulandı. Fiziksel deney yapılmadı.
+- **Hedef ve kabul ölçütü:** Gün sonu kontrolü ve oturum protokolünü uygulamak; bugünkü gerçek çalışmayı kaydetmek; T004 durumunu görev indeksi, STATUS ve ROADMAP ile eşitlemek; kullanıcının donanım kurulumunun henüz yapılmadığı ve T005'in 30 saniyeden uzun sürebileceği bilgisini E01 kayıtlarına işlemek.
+- **Yapılan:**
+  - T004 görev kartı `TAMAMLANDI` olarak kaydedildi. Hobi kapsamındaki belge çıktısı tamamlandı; bu, fiziksel kurulumun veya elektriksel ölçümün yapıldığı anlamına gelmez.
+  - `hardware/frontend.md` SCT dişi jack bağlantısı, breadboard bias alt devresi (2 × 10 kΩ, orta nokta ve GND'ye 100 nF), yaklaşık 1,65 V bias kabulü, SCT013-030 ve SCT013-100A-1V modelleri ve ESP32 dahili ADC yaklaşımıyla eşitlendi.
+  - T005 ve E01 protokol/metadata kayıtlarına şu kullanıcı bilgileri eklendi: donanım henüz kurulmadı; PZEM ve diğer ESP kartları ölçülen hattan beslenmiyor; hatta akım yokken ADC verisi zaman grafiğinde incelenecek; 30 saniye üst sınır değil, daha uzun ve gerekirse saatler süren kayıt mümkün ama süre kesinleşmedi.
+  - `STATUS.md`, `ROADMAP.md`, `tasks/README.md` ve `docs/open-questions.md` T004/T005 durumuyla tutarlı olacak şekilde güncellendi. SCT jack–bias bağlantısını yeniden soran açık maddeler kaldırıldı; pin eşlemesi sonraki firmware/pin planlama işine bırakıldı.
+- **Doğrulama:** Güncellenen T004, `hardware/frontend.md`, T005, E01 `protocol.md`, E01 `metadata.yaml`, `STATUS.md`, `ROADMAP.md`, `tasks/README.md` ve `docs/open-questions.md` dosyaları GitHub'dan yeniden okundu. Dosya durumları birbirine göre kontrol edildi. Bu oturumda fiziksel donanım kurulmadı, ADC verisi alınmadı, grafik üretilmedi ve otomatik PR kontrolü çalıştırılmadı.
+- **Açık kalanlar:** T005/E01 fiziksel kurulum ve veri toplama bekliyor. SCT için kullanılacak model test bazında kayda yazılacak. ADC GPIO/pin planı firmware aşamasında belirlenecek. SSR yük/GPIO/trigger ayrıntıları açık.
+- **Sonraki adım:** Donanım kurulduğunda hatta akım yokken ADC ham verisini topla; gerçek kayıt süresini ve yapılandırmayı metadata'ya yaz; zaman grafiği, örnek sayısı, ortalama, min/max ve ofset giderilmiş gürültü RMS'ini üret.
+- **Kanıt:**
+  - [T004 görev kartı](../tasks/T004-analog-frontend.md)
+  - [Analog ön uç kaydı](../hardware/frontend.md)
+  - [T005 görev kartı](../tasks/T005-noise-floor.md)
+  - [E01 protokolü](../experiments/E01-noise-floor/protocol.md)
+  - [E01 metadata](../experiments/E01-noise-floor/metadata.yaml)
+  - [STATUS](../STATUS.md), [ROADMAP](../ROADMAP.md), [görev indeksi](../tasks/README.md), [açık sorular](../docs/open-questions.md)
+
 ## 2026-10-27 — T002 güvenlik kontrolünün kapatılması
 
 - **Durum:** UYGULANDI; güncellenen dosyalar GitHub'dan yeniden okunarak doğrulandı.
