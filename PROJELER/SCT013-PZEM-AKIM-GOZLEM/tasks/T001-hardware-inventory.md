@@ -33,11 +33,11 @@
 ## İlerleme ilkesi
 İşi en küçük anlamlı birimlere böl ve teker teker ilerle. Sonraki aşamaya ait donanım (MCP3208) envantere yazılır ancak mevcut aşamanın kapsamına taşınmaz. Bir sonraki adımı ancak o anki küçük birimin kabul ölçütü karşılandıktan sonra başlat.
 - Bias üretim alt devresi önceki proje kayıtlarında kullanıcı onayıyla tamamlandı sayılıyor. Bu, SCT AC sinyalinin bias noktasına kuplajının da doğrulandığı anlamına gelmez.
+- DS3231 için kullanıcı beyanı: RTC kodu çalıştı; güç kesilip yeniden verildiğinde saat tutma testi daha önce yapıldı. Bu beyan mevcut proje kaydına işlendi; yeni bir test istenmiyor.
 
 ## Kalan proje-özel işler
 1. Breadboard üzerindeki bias alt devresi kullanıcı tarafından tarif edildi: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta; sensör bu bias orta noktasına bağlanıyor; orta nokta ile GND arasında “104” kodlu kondansatör (100 nF) var. Şimdilik 8 kanallı analog kart/kanal tasarımı bu görevin parçası değil. Bu tarifin ötesinde başka direnç/filtre elemanları olduğu varsayılmayacak.
 2. Bu aşamada ayrı/harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır. Harici ADC modeli/revizyonu veya VREF seçimi T001 kapsamına alınmayacak. GPIO/pin numarası da bu aşamada istenmiyor.
-5. DS3231 breakout pinleri, pull-up gerilimi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemini kablolama öncesi doğrula; hızlı örnekleme zamanlamasını RTC takvim okumalarından bağımsız tut.
 
 ## Kabul ölçütü
 Fiziksel envanter ve breadboard bias alt devresinin kullanıcı tarafından tarif edilen yapısı kaydedilmelidir: 2 adet 10 kΩ, 1/4 W metal film dirençle orta nokta ve orta nokta-GND arasında 104 (100 nF) kondansatör; sensör bu bias noktasına bağlanır. Şimdilik 8 kanallı analog kart/kanal tasarımı kapsamda değildir. Henüz bildirilmemiş ayrıntılar varmış gibi yeni eleman veya değer istenmemelidir. GPIO numarası, pin eşlemesi ve firmware ADC yapılandırması T001 kabul şartı değildir; firmware/pin planlama aşamasına aittir. Stok sayıları kullanıcı bildirimi olarak sunulur. Envanterin yazılması tek başına elektriksel doğrulama veya deney tamamlandığı anlamına gelmez.
