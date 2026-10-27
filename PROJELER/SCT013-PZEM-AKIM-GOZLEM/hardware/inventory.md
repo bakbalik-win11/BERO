@@ -33,7 +33,14 @@ Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı 
 
 ## SCT ölçüm kartı ve test düzeni
 
-Kullanıcı kararı: SCT013 sensör okumaları için **2 × ESP32-WROOM-32D + 1 × ESP32-WROOM-32E** kullanılacak; her kart hızlı örnekleme yapan ayrı bir ölçüm kanalıdır. Amaç bu aşamada akım hesabı/RMS hesabı yapmak değil, sensörün **anlık/ham gerilim okumalarını** hızlı biçimde almak ve bunları SSR-zamanlayıcı düğümünden gelen paket bilgisiyle birlikte yazdırmaktır. Testlerde aynı hatta iletkenin SCT içinden **1 sarım, 2 sarım ve 4 sarım** geçirilmesi ayrı ayrı denenecek. Bu, test düzeni planıdır; henüz ölçüm sonucu veya GPIO eşlemesi değildir. SSR kontrolü ve zamanlama ayrı **ESP32-C3 SuperMini** üzerinde kalır; ölçüm çıktısında zamanlayıcıdan gelen paket bilgisiyle ilişki kurulacaktır.
+Kullanıcı kararı ve hedef mimari:
+
+- **Zamanlayıcı/olay üreticisi:** ESP32-C3 SuperMini, SSR yükünü açıp kapatır ve her geçiş için olay/paket bilgisi üretir. Mevcut ADR-006 tasarım kaydında 40 s ON / 20 s OFF, UDP broadcast port 4210 ve `BERO_EVT,BOOT_ID=XXXXXXXX,EVENT_ID=N,STATE=ON|OFF` biçimi tanımlıdır.
+- **Üç hızlı örnekleme düğümü:** 2 × ESP32-WROOM-32D + 1 × ESP32-WROOM-32E. Her biri SCT013 sensöründen ham/anlık gerilim örneklerini hızlı biçimde alır; bu aşamada akım veya RMS hesabı yapmaz.
+- **Çıktı hedefi:** Her örnekleme düğümü sensör gerilim örneklerini zamanlayıcıdan gelen olay/paket bilgisiyle birlikte yazdırır; böylece örnekler SSR'nin ON/OFF olayına bağlanabilir. Paket alımı/teslimi ve örnekleme zamanlaması testle doğrulanmalıdır.
+- **Sarım testleri:** Aynı hatta iletkenin SCT içinden 1, 2 ve 4 sarım geçirilmesi ayrı ayrı denenir.
+
+Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi değildir.
 
 ## Önceden hazırlanmış bias üretim alt devresi
 
