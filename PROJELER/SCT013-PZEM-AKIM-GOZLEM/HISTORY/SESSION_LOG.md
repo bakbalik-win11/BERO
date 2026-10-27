@@ -247,3 +247,9 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 ## 2026-10-27 — T003 kapsamının daraltılması
 - **Kullanıcı kararı:** PZEM kararlı anlarını gözlemleme, SCT kararlı an istatistiklerini çıkarma ve bu alanları eşleştirme T003 işi değildir; bunlar ayrı görev/deney kapsamında ele alınacaktır.
 - **Yapılan:** T003 yalnız PZEM'e göre model kabul hata hedefini tanımlayacak şekilde düzenlendi. Görev indeksi, STATUS, ROADMAP ve açık sorular aynı kapsamla eşitlendi.
+
+
+## 2026-10-27 — T003 model kabul hedefinin belirlenmesi
+- **Kullanıcı kararı:** PZEM akım okumasına göre ±%4 bağıl sapma yeterlidir. Python, geçerli PZEM referansı sıfırdan farklı olduğunda bağıl sapmayı hesaplayacak; sapma %4 veya altındaysa `OK`, üzerindeyse `OUT_OF_RANGE` verecek.
+- **Kapsam sınırı:** PZEM kararlı anlarını gözlemleme, SCT kararlı an istatistiklerini çıkarma ve alan eşleştirme T003 dışında, ilgili görev/deneylerde kalır.
+- **Yapılan:** T003 TAMAMLANDI yapıldı; görev indeksi, proje kapsamı, STATUS, ROADMAP, açık sorular ve hedef mimari aynı kararla güncellendi. Aktif görev T004 oldu.
