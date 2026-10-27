@@ -17,7 +17,7 @@ Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konul
 **Karara bağlandı; yeniden sorulmayacak:**
 - Öncelikli sensör: SCT013-030 (30 A / 1 V).
 - Kullanıcı stok bildirimi: 7 adet SCT013 30 A / 1 V ve 10 adet SCT013 100 A / 1 V; ikisi de jack çıkışlı. Jack yuvaları mevcut.
-- Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı bulunan bir analog arayüz kartı** hazırladı. Bu ilk aşamada harici ADC kullanılmayacak; SCT sinyali jack yuvası ve breadboard üzerindeki bias devresi üzerinden ESP32'nin ADC destekli GPIO girişinden okunacak. Bu, ESP32'nin dahili ADC'sinin kullanılması demektir. Harici MCP serisi ADC şu an seçilmedi ve ilk aşama için gerekli kabul edilmiyor. Kartın kanal şeması veya elektriksel değerleri doğrulanmış sayılmaz.
+- Kullanıcı daha önce **8 kanallı, her kanalında ayrı bias ve direnç ağı bulunan bir analog arayüz kartı** hazırladı. Bu ilk aşamada harici ADC kullanılmayacak; SCT sinyali jack yuvası ve breadboard üzerindeki bias devresi üzerinden ESP32'nin ADC destekli GPIO girişinden okunacak. Bu, ESP32'nin dahili ADC'sinin kullanılması demektir. MCP3208 fiziksel olarak mevcut; ileriki aşama için ayrıldı. İlk aşamada kullanılmayacak. Kartın kanal şeması veya elektriksel değerleri doğrulanmış sayılmaz.
 - PZEM kaydı: mevcut [DONANIM/PZEM-004T/README.md](../../../DONANIM/PZEM-004T/README.md) esas alınır.
 - Bağlı CT: PZCT-02, 0–100 A; kullanıcı tarafından model olarak belirtildi ve PZEM'e bağlı olduğu fotoğrafta gösterildi. Bu, 100 A harici CT'li yapılandırmadır.
 - İlk aşamada kullanılacak ESP32 kartları: 2× WROOM-32D, 1× WROOM-32E ve 1× genel ESP-WROOM-32 NodeMCU ESP32 Bluetooth.
