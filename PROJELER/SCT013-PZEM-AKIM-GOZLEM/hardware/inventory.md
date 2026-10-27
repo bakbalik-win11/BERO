@@ -18,7 +18,7 @@
 | SSR kartı | SAMM Market 5 V, 2 kanal | Tedarikçi kodu İzmo9659, SKU MP02637; kart üzerindeki SSR'nin tam kodu ayrıca doğrulanmalı |
 | RTC | DS3231 | Mevcut BERO referansı kullanılıyor; fiziksel breakout ayrıntıları ayrıca doğrulanmalı |
 | Güç kaynağı | Masaüstü 5 V / 1,8 A | Kullanıcı bildirimi |
-| Test yükü | Lamba | Kullanıcı bildirimi |
+| Test yükleri | 100 W ve 150 W ampuller (ana deney yükleri); 5 W LED ampul (farklı PF karakteristiğini sınamak için) | Kullanıcı bildirimi; etiket gücü kaydedildi, gerçek güç/akım/PF ölçümle doğrulanacak |
 | Bağlantı ve ölçüm parçaları | Tam takım mevcut | Kullanıcı bildirimi |
 
 **Toplam SCT013: 17 adet.** Bu adetler kullanıcı bildirimi olup bağımsız fiziksel sayım değildir.
@@ -59,7 +59,7 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 | DS3231 | RTC referansı mevcut | Breakout revizyonu, SDA/SCL pinleri, pull-up seviyesi, yedek pil/şarj devresi ve ilk saat ayarlama yöntemi doğrulanmalı |
 | SSR | SAMM Market 5 V, 2 kanal, İzmo9659 / MP02637 | İki AC yük, GPIO eşlemesi, tetik mantığı ve termal sınırlar güvenli biçimde doğrulanmalı |
 | Referans cihaz | Model kaydı henüz yok | T003 kapsamında True-RMS referans cihazının marka/modeli ve kalibrasyon/izlenebilirlik durumu kaydedilmeli |
-| Yükler | Lamba mevcut; üç kontrollü yük seviyesi henüz tanımlı değil | T003 kapsamında lamba dâhil en az üç kontrollü akım seviyesi için yük senaryoları, etiket gücü ve güvenli kullanım koşulları belirlenmeli |
+| Yükler | 100 W ve 150 W ampuller ana deney yükleri; 5 W LED ampul farklı PF karakteristiği için | T003 kapsamında yüklerin gerçek güç/akımı ve LED'in PF'si ölçülmeli; üç kontrollü akım seviyesi ve güvenli kullanım koşulları netleştirilmeli |
 
 ## Kayıt kuralları
 - Önceki BERO teknik belgelerindeki ürün bilgilerini tekrar yazmak yerine ilgili referansa bağlan.
