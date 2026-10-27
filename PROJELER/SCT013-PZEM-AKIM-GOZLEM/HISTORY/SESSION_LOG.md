@@ -202,3 +202,14 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Kullanıcı hesabındaki ChatGPT Memory kapalı olduğundan bu tercihi kişisel belleğe kaydetmek mümkün değil; kullanıcı isterse Settings → Personalization → Memory üzerinden etkinleştirebilir.
 - **Sonraki adım:** Bu projede her anlamlı depo oturumunda yeni çalışma kuralını uygula ve kullanıcıya commit/kanıt bağlantılarını ver.
 - **Kanıt:** [AGENTS.md](../AGENTS.md); [depo çalışma protokolü](../SESSION_PROTOCOL.md).
+
+
+## 2026-10-27 — SCT/PZEM kararlı alan etiketleme ve model doğrulama hedefinin netleştirilmesi
+
+- **Durum:** Hedef mimari ve proje notları güncellendi; firmware, algoritma ve deneyler yapılmadı.
+- **Hedef ve kabul ölçütü:** Kullanıcının açıkladığı yöntemi eski zaman-temelli önerilerden ayırarak kaydetmek: PZEM entegrasyonu ile paket bağlamını kullanıp SCT/PZEM kararlı alanlarını belirlemek, etiketli SCT verisiyle Python'da kalibrasyon modeli çıkarmak ve modeli çok paketli ham veride sınayıp gerekirse iyileştirmek.
+- **Yapılan:** `docs/architecture/sct-pzem-labeling-and-calibration.md` hedef mimari notu ayrıntılandırıldı. Temel yöntemin salt zaman damgası veya sabit olay-sonrası süre olmadığı; paket bağlamı ve kararlılık algoritması/istatistikleriyle alan etiketleme olduğu açıklandı. Kalibrasyon döngüsüne bulunan (f(x)) fonksiyonunu çok paketli ham akışta deneme ve sonuçlara göre iyileştirme adımları eklendi. STATUS.md'deki hedef özeti de düzeltildi.
+- **Doğrulama:** GitHub dosya güncellemeleri commit sonuçları döndürdü. Mimari notu commit'i [1edc9a7](https://github.com/bakbalik-win11/BERO/commit/1edc9a7e81eb8c5decd12cfb29cec7deb500ef22); STATUS güncellemesi [e12e711](https://github.com/bakbalik-win11/BERO/commit/e12e711b41dcadb14dee927233838251f1a050c4). Önceki arşivlenmiş teknik raporlar ve Markdown derlemesi incelendi; bu belgelerdeki yaklaşık 3 s geçiş maskesi eski başlangıç önerisi olarak ele alındı, nihai etiketleme kuralı yapılmadı.
+- **Açık kalanlar:** Paket bilgisinin PZEM ve SCT örneklerine nasıl ulaştırılacağı; kararlı alan algoritması/istatistik eşikleri; etiket şeması; (f(x)) biçimi, referans ölçüm ve doğrulama ölçütleri. ADR-003/ADR-006 mevcut durumlarıyla otomatik olarak değiştirilmedi.
+- **Sonraki adım:** Kullanıcı T001 kapsamında mimariyi anlatmaya devam ederken hedefi dinle; algoritma, paket alım mimarisi veya model biçimi konusunda erken karar verme. Uygulama ve deneyleri mevcutmuş gibi kaydetme.
+- **Kanıt:** [Hedef mimari notu](../docs/architecture/sct-pzem-labeling-and-calibration.md); [STATUS](../STATUS.md); [arşivlenmiş BERO Markdown derlemesi](https://github.com/bakbalik-win11/BERO/blob/09775fe58f608cf31161c8a04636c6836b24f03d/PROJELER/SCT013-PZEM-AKIM-GOZLEM/docs/decisions/ADR-003-pzem-as-slow-label.md).
