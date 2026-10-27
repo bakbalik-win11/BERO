@@ -1,41 +1,41 @@
 # SCT-013 + PZEM akım gözlem sistemi
 
 ## Amaç
-SCT-013 benzeri akım trafosundan ADC örnekleri toplamak, pencere bazlı istatistikler üretmek ve bunları PZEM'in bildirdiği akım, gerilim ve PF değerleriyle zaman damgalı şekilde karşılaştırmak.
+SCT-013 akım trafosundan ADC örnekleri toplamak, pencere bazlı akım istatistikleri üretmek ve bunları PZEM'in bildirdiği ölçümlerle zaman damgalı şekilde karşılaştırmak.
 
 Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölçüm sistemi geliştirme projesi değildir.
 
-## BERO içindeki ilgili donanım kayıtları
+## Bu projede seçilen / tanımlanan donanım
+- **Öncelikli SCT:** [SCT013-030 — 30 A / 1 V](hardware/references/SCT013-30A-1V.md).
+- **PZEM:** Kullanıcının paylaştığı modül görseli PZEM-004T V3.0 olarak projeye kaydedildi. 10 A dahili şönt / 100 A harici CT varyantı ve CT modeli ayrıca belirlenmelidir.
+- **Bias üretim alt devresi:** Kullanıcı onayıyla tamamlandı sayılıyor. Ayrıntılar [donanım envanterinde](hardware/inventory.md) yer alır.
+- **SSR:** [Mevcut BERO SSR donanım kaydı](hardware/references/SSR.md) ve [aday veri sayfası notu](hardware/references/SSR-datasheet-candidate.md) aktarıldı. Fiziksel SSR'nin tam modeli doğrulanmış değil; bu kayıt projede kullanım kararı değildir.
+
+## Bildirilen geliştirme modülü stoku
+- 2 adet ESP32-WROOM-32D
+- 1 adet ESP32-WROOM-32E
+- 1 adet ESP32-WROOM-32S
+
+Adetler kullanıcı bildirimi olarak kaydedilmiştir; bağımsız fiziksel sayım yapılmadı. Projede kullanılacak gerçek modül/kart ayrıca seçilecek. Mevcut [ESP32-WROOM-32D teknik kaydı](../../DONANIM/ESP32-WROOM-32D/README.md) referans olarak korunur.
+
+## Önceki BERO donanım kayıtları
 - [SCT013-100A-1V](../../DONANIM/SCT013-100A-1V/README.md)
 - [SCT013-30A-1V](../../DONANIM/SCT013-30A-1V/README.md)
 - [PZEM-004T](../../DONANIM/PZEM-004T/README.md)
 - [ESP32-WROOM-32D](../../DONANIM/ESP32-WROOM-32D/README.md)
 - [MCP3208 ADC](../../DONANIM/MCP3208/README.md)
+- [SSR](../../DONANIM/SSR/README.md)
 
-## Bu projeye kopyalanan donanım referansları
-Teknik açıklamalar ve önceki BERO test notları, aynı işi yeniden yazmadan kullanabilmek için proje klasörüne de kopyalandı:
-- [SCT013-100A-1V referans kopyası](hardware/references/SCT013-100A-1V.md)
-- [SCT013-30A-1V referans kopyası](hardware/references/SCT013-30A-1V.md)
-- [PZEM-004T V3.0 referans kopyası](hardware/references/PZEM-004T-V3.0.md)
-- [Kopyaların kaynakları ve kullanım notu](hardware/references/README.md)
-
-Kopyaların kaynağı olan `DONANIM/` belgeleri korunur ve asıl teknik kayıttır. Kopya belgelerdeki tarihsel test notları yeni proje için yeni deney veya kalibrasyon sonucu sayılmaz.
-
-Bu kayıtlar BERO'nun donanım kaynaklarıdır. Bu projede hangi fiziksel SCT varyantının seçildiği, PZEM'in 10 A / 100 A varyantı ve CT'si, ayrıca MCU/ADC ve analog ön uç envanterde proje özelinde kaydedilmelidir. Genel teknik özellikleri tekrar yazmak yerine mevcut referans dosyalarına bağlantı verilir.
-
-## Gün sonu kontrolü
-Teknik ayrıntıları tek tek incelemek zorunda değilsiniz. [Gün sonu kontrol listesini](GUN_SONU_KONTROLU.md) izleyin; asistan her madde için doğrudan kanıt bağlantıları vermelidir.
-
-## Klasör rehberi
-Klasör ve dosyaların Türkçe karşılıkları ile hangi sırayla kullanılacakları için [Klasör Rehberi](KLASOR_REHBERI.md) dosyasını açın. İngilizce yollar, mevcut bağlantılar bozulmasın diye korunmuştur.
+## Projeye kopyalanan referanslar
+Teknik açıklamaları yeniden yazmamak için ilgili Markdown dosyaları [hardware/references/](hardware/references/README.md) altında bulunur. Kaynak `DONANIM/` dosyaları asıl kayıttır; kopyaların varlığı yeni deney veya kalibrasyon yapıldığı anlamına gelmez.
 
 ## İlk okunacak dosyalar
 1. [AGENTS.md](AGENTS.md) — çalışma protokolü.
-2. [STATUS.md](STATUS.md) — mevcut durum ve sıradaki işler.
+2. [STATUS.md](STATUS.md) — güncel durum ve sıradaki işler.
 3. [ROADMAP.md](ROADMAP.md) — fazlar ve kabul ölçütleri.
-4. [Görev kartları](tasks/README.md) — sıradaki tek işi, bağımlılıkları ve kabul ölçütlerini takip et.
-5. [Açık sorular](docs/open-questions.md) — deneyle doğrulanacak konular.
-6. [Kapsam](docs/00-scope.md) — hedefler ve kapsam dışı konular.
+4. [Görev kartları](tasks/README.md) — aktif iş ve bağımlılıklar.
+5. [Açık sorular](docs/open-questions.md) — gerçekten cevap bekleyen konular.
+6. [Fiziksel donanım envanteri](hardware/inventory.md) — seçilen modüller ve bias alt devresi.
 
 ## Başlangıç tasarım değerleri
 - SCT örnekleme hızı: 2 kS/s.
@@ -43,7 +43,7 @@ Klasör ve dosyaların Türkçe karşılıkları ile hangi sırayla kullanılaca
 - PZEM sorgusu: yaklaşık 1 s başlangıç aralığı.
 - Yük geçişi etiketi: yaklaşık 3 s başlangıç süresi.
 
-Bunlar bu donanımda doğrulanmış sonuçlar değil, deneylerle gözden geçirilecek tasarım başlangıçlarıdır.
+Bunlar deneylerle gözden geçirilecek başlangıç değerleridir; doğrulanmış sonuç değildir.
 
 ## Deney durumu
-Bu proje kapsamında fiziksel deney sonucu henüz üretilmedi. Deney tamamlanana kadar results.md dosyaları YAPILMADI durumunu koruyacaktır.
+Bu projede henüz E01–E06 deney sonucu veya kalibrasyon sonucu üretilmedi. Deney tamamlanana kadar sonuç kayıtları YAPILMADI durumunu korur.
