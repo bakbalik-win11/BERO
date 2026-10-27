@@ -6,7 +6,7 @@
 **Öncelikli SCT:** SCT013-030 (30 A / 1 V)  
 **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); CT modeli kullanıcı tarafından PZCT-02 (0–100 A) olarak belirtildi.  
 **Bias üretim alt devresi:** TAMAMLANDI — kullanıcı onayı. RN130421 + KBU6M + 2200 µF / 35 V + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) kondansatör. Bağımsız ölçüm raporu bu kayda eklenmedi.  
-**SCT analog arayüz kartı:** Kullanıcı daha önce 8 kanallı, her kanalı ayrı bias ve direnç ağı bulunan bir kart hazırladı. Jack yuvaları mevcut; sinyal ESP32 ADC girişinden okunuyor. İstenirse MCP serisi ADC bağlanabilir; seçilmiş model varsayılmıyor.  
+**SCT analog arayüz kartı:** Kullanıcı daha önce 8 kanallı, her kanalı ayrı bias ve direnç ağı bulunan bir kart hazırladı. SCT dişi jack ve breadboard bias devresi üzerinden ESP32 GPIO bacağından okunacak. İlk aşamada harici ADC yok; analog okuma ESP32'nin dahili ADC'si ile yapılacak. GPIO numarası henüz belirtilmedi.  
 **SSR:** SAMM Market 5 V, 2 kanallı kart; tedarikçi kodu İzmo9659, SKU MP02637. Giriş mantığı ve kart üzerindeki SSR'nin tam kodu doğrulanmalı.  
 **RTC:** DS3231 kullanılacak; gerçek breakout revizyonu, I²C pinleri, pull-up seviyesi ve yedek pil düzeni henüz doğrulanmadı.  
 **Deney durumu:** YAPILMADI.
