@@ -14,7 +14,7 @@ Hiçbiri cevaplanmış sayılmaz. Deney sonrası sonuç ve kanıt bağlantısı 
 10. PZEM register'larının değişim / tekrar etme dinamikleri birbirine benziyor mu?
 11. Yaklaşık 3 s geçiş etiketi bu modülde yeterli mi?
 12. Stokta bulunduğu bildirilen 100 nF / 50 V seramik kondansatörlerin gerçek şemada kullanılacağı nokta ve görevi nedir? Bu, analog ön uç tasarımı sırasında kararlaştırılmalıdır.
-13. “Bias trafosu”nda RN130421 6 V AC sekonderinden sonra KBU6M (6 A / 1000 V) köprü doğrultucu, L78L33 TO-92 regülatör ve korunaklı kutu olduğu kullanıcı tarafından bildirildi. Köprü sonrası filtre kondansatörünün değeri/konumu ve regülatör bypass kondansatörleri nelerdir?
-14. Bias trafosu kutusu ve ayrı breadboardda hangi kondansatörlerin tam değeri, adedi ve konumu nedir? 100 nF seramik stokunun kaç tanesi bu devrede kullanılıyor?
+13. “Bias trafosu”nda RN130421 6 V AC sekonderinden sonra KBU6M köprü doğrultucu, köprü sonrasında 2200 µF / 35 V elektrolitik filtre kondansatörü ve L78L33 TO-92 regülatörün korunaklı kutuda olduğu kullanıcı tarafından bildirildi. L78L33 çevresinde ayrıca bypass kondansatörü var mı?
+14. Kullanılan seramik işareti 104 olarak düzeltildi; bu 100 nF anlamına gelir. Bir kondansatörün ayrı breadboardda bias orta noktasından GND'ye bağlı olduğu bildirildi. Kullanım sonrası kalan stok adedi ayrıca sayılmadı.
 15. İki 10 kΩ direncin ayrı breadboarddaki besleme/GND bağlantıları nedir? 1,65 V orta nokta değeri nominal hesap mı, fiziksel ölçüm mü?
 16. SCT sinyalinin 1,65 V bias noktasına nasıl kuplaj yapıldığı ve “şebeke dalgalanmasını aynı motifle yansıtma” hedefinin devrede hangi sinyal yolu ile sağlandığı nedir? L78L33 düzenleme yaptığı için, normal regülasyon koşulunda çıkışın şebeke dalgalanmasını takip ettiği varsayılmamalıdır.
