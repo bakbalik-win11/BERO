@@ -7,4 +7,4 @@
 5. PZEM'i SCT eğitiminde referans veya kalibrasyon standardı say. 
 6. Düşük akım farkının tamamını SCT'ye yükleme; PZEM alt sınırı, çözünürlüğü ve tekrarlanabilirliği de sınanmalı.
 7. V, I, P ve PF'nin aynı yanıtta dönmesi, içeride aynı anda yenilendiklerini kanıtlamaz. Alan bazlı değişim zamanları ayrı loglanmalı.
-8. PZEM PF değeri yalnız veri alanıdır; SCT'den PF/aktif güç hesaplanmaz.(B  u proje kapsamında)
+8. PZEM PF değeri yalnız veri alanıdır; SCT'den PF/aktif güç hesaplanmaz.(Bu proje kapsamında)
