@@ -14,6 +14,7 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 ## Faz 1 — SCT analog ön uç
 - [x] 1.1 Mevcut SCT jack bağlantısını, breadboard bias alt devresini ve ESP32 dahili ADC yaklaşımını hobi projesi kapsamında belgele. — [T004](tasks/T004-analog-frontend.md)
   - **Kapanış:** Kullanılan SCT modelleri ve jack çıkışı, 2 × 10 kΩ orta nokta, orta noktadan GND'ye 100 nF kondansatör, yaklaşık 1,65 V bias kabulü ve dahili ADC yaklaşımı kaydedildi. Laboratuvar düzeyinde bias/ADC aralığı/clipping ölçümü bu görevin şartı değil.
+- [ ] Ön adım E00A — paketleme öncesi ham dalga gözlemi: bias-only → SCT yüksüz → 100 W ampul; farklı hızlarda ham grafik, yavaş oynatma ve temel istatistikler. [E00A protokolü](experiments/E00A-raw-waveform-observation/protocol.md). Bu adım E00/E01 ve aktarım mimarisi kararından önce gelir.
 - [ ] 1.2a SCT bağlı değilken bias noktasını ADC ile oku; `analogRead()` ham sayısı ve `analogReadMilliVolts()` çıktısını voltmetreyle karşılaştır. — [E00 protokolü](experiments/E00-bias-adc-baseline/protocol.md)
 - [ ] 1.2b SCT bağlıyken ve ölçülen hatta akım yokken aynı iki ADC okumasını karşılaştır.
 - [ ] 1.2c Uzun yüksüz ADC kaydı, zaman grafiği ve gürültü özeti. — [T005](tasks/T005-noise-floor.md)
@@ -76,7 +77,7 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 
 ## 2026-10-29 — Kaynak doküman incelemesi
 
-SCT013-030 teknik raporu ve CT satürasyonu notu mevcut donanım referanslarına işlendi. Bu belge incelemesi deney/kalibrasyon sonucu değildir ve faz/karar kapısı durumlarını değiştirmez. Sonraki somut iş hâlâ T005/E01 yüksüz ofset ve gürültü tabanı ölçümüdür. E01 öncesi mevcut 100 nF'ye paralel 10 µF orta nokta kondansatörü önerisi [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) ile kaydedildi; fiziksel uygulama ve ölçüm bekleniyor.
+SCT013-030 teknik raporu ve CT satürasyonu notu mevcut donanım referanslarına işlendi. Bu belge incelemesi deney/kalibrasyon sonucu değildir ve faz/karar kapısı durumlarını değiştirmez. Sonraki somut iş önce E00A ham sinyal gözlemidir; ardından T005/E00-E01 yüksüz ofset ve gürültü tabanı hazırlığı gelir. E01 öncesi mevcut 100 nF'ye paralel 10 µF orta nokta kondansatörü önerisi [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) ile kaydedildi; fiziksel uygulama ve ölçüm bekleniyor.
 
 
 ## 2026-10-29 — E07 SCT kararlılık basamak testi planı
