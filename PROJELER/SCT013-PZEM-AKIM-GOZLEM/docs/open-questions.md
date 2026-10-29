@@ -2,7 +2,7 @@
 
 Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konulardır. Genel donanım bilgileri [referans klasöründe](../hardware/references/README.md) ve ana BERO `DONANIM/` belgelerinde mevcuttur.
 
-1. İlk aşamada kullanılacak ESP32 kartında SCT sinyalinin okunacağı ADC destekli GPIO numarası nedir? Harici ADC kullanılmayacak; dahili ADC pin eşlemesi firmware/pin planlama aşamasında seçilecek.
+1. İlk uygulama adayı envanterdeki klasik ESP32-WROOM-32D ve GPIO34 (ADC1_CH6) olarak belirlendi. Ölçüm öncesinde gerçek geliştirme kartının modeli/işaretleri ve pinout'u doğrulanmalı; kart farklıysa GPIO yeniden seçilmeli. Bu karar fiziksel bağlantının yapıldığı veya GPIO'nun doğrulandığı anlamına gelmez.
 2. SAMM Market 5 V 2 kanallı SSR kartının hangi iki AC yükü anahtarlayacağı ve hangi ESP32 GPIO'larının kullanılacağı nedir? Ürün sayfasındaki LOW/HIGH eşikleri ile “low-level trigger” notu tutarsız olabildiğinden kontrol mantığı düşük gerilimde doğrulanmalı; giriş akımı ve kanal başına termal/sürekli yük sınırları ayrıca teyit edilmeli.
 3. PZEM'in iç ölçüm/ortalama penceresi nedir; V, I, P ve PF aynı anda mı yenileniyor? Bunlar deneyle ölçülecek.
 4. Hangi düşük akım aralığında PZEM referans okumaları kararsızlaşıyor veya SCT modelinin PZEM'e göre bağıl sapması ±%4 hedefini karşılamıyor? Bu proje için bağımsız referans cihazı şartı yoktur.
@@ -27,6 +27,15 @@ Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konul
 - Temiz yaklaşık 1,65 V bias üretim alt devresi kullanıcı onayıyla tamamlandı: RN130421 6 V / 2 VA → KBU6M köprü → 2200 µF / 35 V → L78L33; ayrı breadboardda 2×10 kΩ ve orta noktadan GND'ye 104 kodlu 100 nF seramik. Bağımsız ölçüm raporu yoksa 1,650 V'nin cihazla ölçüldüğü iddia edilmeyecek.
 
 Açık kalan pin/SSR/ölçüm soruları, fiziksel parçaların eksik olduğu anlamına gelmez; sonraki pin planlama ve deney aşamalarında ele alınacak proje-özel kararlardır.
+
+## E00A öncesi açık teknik kapı
+
+- [ ] Kullanılacak fiziksel geliştirme kartının WROOM-32D tabanlı olduğu ve GPIO34'ün ilgili kartta doğru pine çıktığı pinout üzerinden doğrulandı.
+- [ ] Bias orta noktasındaki mevcut 100 nF'ye paralel 10 µF, ADR-007'ye göre fiziksel olarak eklendi; Vmid/GND bağlantısı ve elektrolitik polaritesi gözle kontrol edildi.
+- [ ] E00A ham kayıt CSV biçimi (`sample_index,adc_raw`) ve `data/raw/E00A/` yerel kayıt yolu hazır; hedef hız ile gerçekleşen hızın ayrı kaydedileceği biliniyor.
+- [ ] Fiziksel bağlantı, gerçek kart/GPIO, fiilî kondansatör düzeni ve firmware sürümü E00A LOG'una kaydedilecek.
+
+Bu kapılar belge düzenlemesiyle tamamlanmış sayılmaz. PZEM zaman damgası/logging entegrasyonu E00A'nın ham ADC gözlemi için ön koşul değildir; PZEM/SCT etiketleme aşamasında ayrıca ele alınır.
 
 ## 2026-10-29 belge incelemesinden sonra
 
