@@ -5,9 +5,10 @@
 ## Şu an nerede?
 
 - **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı.
-- **İlk sıradaki adım:** E00A — ham ADC kaydı ve temel istatistikler.
+- **Depo güvenlik kapısı:** AÇIK — tutarlılık denetimi bitmeden deney başlatılmaz.
+- **İlk teknik deney (denetim sonrası):** E00A — ham ADC kaydı ve temel istatistikler.
 - **E00A durumu:** PLANLANDI; firmware, fiziksel kayıt ve ölçüm henüz yapılmadı.
-- **E00A koşulları:** bias-only → SCT bağlı/yüksüz → SCT bağlı/100 W akkor; ilk geçişte tek ESP32, hedef 2 kS/s, koşul başına yaklaşık 1 saniye.
+- **E00A koşulları:** bias-only → SCT bağlı/yüksüz → SCT bağlı/100 W akkor; ilk geçişte tek ESP32, hedef 2 kS/s, koşul başına yaklaşık 1 saniye. ADR-007'deki 10 µF + mevcut 100 nF bias düzeni ilk SCT bağlantılı koşuldan önce planlandı; fiziksel uygulama henüz yok.
 - **Sonraki adımlar:** E00 bias ADC karşılaştırması → T005 / E01 yüksüz temel okuma ve gürültü tabanı.
 - **Temel kural:** Her adımda HEDEF / LOG / SONUÇ; deney kodunda açıklamalar ve açıklamalı YAML.
 
