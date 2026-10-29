@@ -463,3 +463,12 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Depodaki tüm deney protokolleri/metadata dosyaları ve Markdown bağlantılarının tam denetimi sürüyor; bu değişiklikler tam denetimin bittiği anlamına gelmez.
 - **Sonraki adım:** Deney belgeleri arasında YAML şeması, sonuç kayıtları ve kabul ölçütlerini karşılaştırmak; kırık bağlantıları topluca doğrulamak.
 - **Kanıt:** [Proje README](../README.md); [ROADMAP](../ROADMAP.md); [Açık sorular](../docs/open-questions.md).
+
+## 2026-10-29 — Deney şablonları ve YAML rollerinin netleştirilmesi
+
+- **HEDEF:** Yeni deney belgelerinin tutarlı, gereksiz laboratuvar varsayımlarından arınmış ve HEDEF / LOG / SONUÇ düzenine uygun başlamasını sağlamak.
+- **LOG:** Genel protokol şablonundan zorunlu VREF ve referans cihazı alanları çıkarıldı; deneyle ilgili olmayan alanların yalnız gerektiğinde kullanılması belirtildi. Sonuç şablonu HEDEF / LOG / SONUÇ düzenine geçirildi. Metadata şablonunda varsayılan 2 kS/s, 200 ms, 1 s polling gibi deney yapılmadan kesinleşmiş sayılabilecek değerler null yapıldı. E00 metadata'sındaki sabit ADC çözünürlüğü ve referans cihazı alanları kaldırıldı. E00A README'sinde metadata.yaml ile experiment.yaml rollerinin farkı açıklandı.
+- **SONUÇ:** Beş dosya GitHub'dan yeniden okunarak yazılan içerikle eşleştiği doğrulandı. Firmware derlemesi, fiziksel deney, YAML parser veya CI çalıştırılmadı.
+- **Açık kalanlar:** E01–E08 metadata/protokol dosyalarında eski şablon alanlarının anlamı, güncel kararlarla uyumu ve dosyalar arası bağlantılar incelenmeye devam ediyor.
+- **Sonraki adım:** Deney metadata dosyalarını ortak alanlar ve yanlış varsayımlar açısından taramak; deney sonuç şablonlarının HEDEF / LOG / SONUÇ standardıyla uyumunu karşılaştırmak.
+- **Kanıt:** [Protokol şablonu](../experiments/_template/protocol.md); [sonuç şablonu](../experiments/_template/results.md); [metadata şablonu](../experiments/_template/metadata.yaml); [E00 metadata](../experiments/E00-bias-adc-baseline/metadata.yaml); [E00A README](../experiments/E00A-raw-waveform-observation/README.md).
