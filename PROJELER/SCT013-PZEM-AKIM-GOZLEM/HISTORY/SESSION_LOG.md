@@ -543,3 +543,13 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Gerçek ESP32 kartı ve ADC GPIO'su seçilip pinout ile doğrulanacak; ADR-007'de planlanan 10 µF kondansatörün fiziksel kurulumu teyit edilecek; E00A firmware ve kayıt hazırlığı yapılacak.
 - **Sonraki adım:** Deney hazırlıklarını mevcut sıraya göre sürdür; fiziksel olarak bilinmeyenleri varsayımla kapatma.
 - **Kanıt:** [STATUS](../STATUS.md); [Görev indeksi](../tasks/README.md); [ROADMAP](../ROADMAP.md); [Açık sorular](../docs/open-questions.md); [Alan sözlüğü](../schema/FIELDS.md); [Copilot raporu kullanıcı tarafından sağlandı].
+
+
+## 2026-10-29 — Copilot denetimi sonrası E00A hazırlık kapısı netleştirildi
+
+- **Değerlendirme:** Copilot raporundaki temel ayrım doğru: belge tutarlılığı denetiminin tamamlanması fiziksel deney hazırlığının tamamlandığı anlamına gelmez. T001–T004 durumları kendi kayıtlı kapsamlarıyla okunmalıdır; T001/T002 kullanıcı beyanına, T003 karar belgelemesine, T004 ön uç belgelemesine dayanır ve hiçbiri E00A'nın fiziksel/firmware doğrulaması değildir.
+- **Yeni açıklık:** STATUS belgesinde belge denetimi ile fiziksel hazırlık ayrı durumlar olarak ifade edildi. E00A için ham CSV formatı ve yerel dosya yolları belirlendi: `sample_index,adc_raw`; gerçekleşen ortalama hız `sample_count / elapsed_seconds` üzerinden hesaplanacak. Tek tek örnek zaman damgaları ilk geçişte zorunlu değil.
+- **Donanım adayı:** Envanterdeki klasik ESP32-WROOM-32D ve GPIO34 (ADC1_CH6) ilk uygulama adayı olarak yazıldı. Bu bir tasarım adayıdır; gerçek geliştirme kartı ve dışarı çıkarılmış pin eşleşmesi fiziksel olarak doğrulanmadan kablo bağlanmayacak. Kart farklıysa GPIO yeniden seçilecek.
+- **ADR-007:** Mevcut 100 nF ile planlanan paralel 10 µF fiziksel olarak hâlâ ayrıdır. 10 µF eklenmeden ve gerçek bağlantı LOG'a geçirilmeden ilk SCT bağlantılı koşul başlatılmaz.
+- **Kapsam düzeltmesi:** PZEM zaman damgası/logging entegrasyonu E00A'nın ham ADC gözlemi için ön koşul değildir; bu, ileride PZEM/SCT etiketleme işinde ele alınır. E00A'da gerçek kart/GPIO, fiilî bias düzeni, firmware sürümü, kayıt süresi, örnek sayısı ve ham dosya yolu kaydedilecektir.
+- **Doğrulama sınırı:** Bu değişiklikler yalnızca depo plan/dokümantasyonudur. Firmware yazılmadı veya derlenmedi; YAML/JSON Schema doğrulayıcısı, CI ve fiziksel ölçüm bu oturumda çalıştırılmadı. GPIO34 ve kondansatör düzeni fiziksel olarak doğrulanmış sayılmaz.
