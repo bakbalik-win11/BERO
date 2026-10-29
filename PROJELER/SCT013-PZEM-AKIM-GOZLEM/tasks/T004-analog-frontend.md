@@ -1,6 +1,6 @@
 # T004 — Analog ön uç
 
-- **Durum:** TAMAMLANDI
+- **Durum:** TAMAMLANDI — belgeleme kapsamı. Fiziksel analog davranış, ADC pin eşlemesi ve ölçüm sonuçları bu kartla doğrulanmış sayılmaz.
 - **Faz:** 1.1
 - **Bağımlılık:** T002 ve T003
 - **Hedef:** Kullanılan SCT bağlantısını ve breadboard bias devresini hobi projesi için yeterli ayrıntıda kaydetmek.
