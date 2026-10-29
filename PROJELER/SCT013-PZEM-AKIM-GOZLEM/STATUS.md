@@ -1,6 +1,6 @@
 # Proje durumu
 
-**Genel görünüm:** [İlerleme ağacı — PROGRESS_TREE.md](PROGRESS_TREE.md). Depoyu baştan sona okumadan genel resmi görmek için önce bu ağaca, ardından bu dosyadaki güncel duruma bak.
+**Genel görünüm:** [İlerleme ağacı — PROGRESS_TREE.md](PROGRESS_TREE.md). Deneylerin nedenini, kod/kanıt durumunu ve sonraki karar kapısını izlemek için [Deney ve karar izleme defteri](EXPERIMENT_LEDGER.md) kullanılır. Depoyu baştan sona okumadan genel resmi görmek için önce ilerleme ağacına, ardından bu dosyadaki güncel duruma bak.
 
 **Son güncelleme:** 2026-10-29 — Copilot bağımsız değerlendirmesi karşılaştırıldı; belge denetimi ve E00A ön koşulları netleştirildi  
 **Belge denetimi:** TAMAMLANDI — temel durum/karar dosyaları, deney sırası, hedef alan sözlüğü ve 87 Markdown dosyasındaki göreli bağlantı hedefleri kontrol edildi; bulunan tek kırık göreli bağlantı düzeltildi. Bu yalnızca depo belgelerinin denetimidir; fiziksel veya yazılım doğrulaması değildir. **Fiziksel deney hazırlığı:** BEKLEMEDE — seçilecek kart/GPIO gerçek kart üzerindeki pinout ile eşleştirilmeli, ADR-007'deki 10 µF değişikliği fiilen uygulanıp kayda geçirilmeli, ham kayıt formatı ve yerel dosya yolu kullanılmalıdır. JSON Schema validator, YAML parser, firmware derlemesi, CI ve fiziksel test bu turda çalıştırılmadı. İlk teknik deney E00A olarak korunuyor.  
