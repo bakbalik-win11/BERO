@@ -2,6 +2,18 @@
 
 Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonunda yeni kayıt eklenir; eski kayıtlar korunur.
 
+## 2026-10-29 — SCT013-030 raporu ve CT satürasyon notunun BERO'ya işlenmesi
+
+- **Durum:** UYGULANDI — teknik notlar ilgili dosyalara işlendi; oturum günlüğü bu kayıtla eşitlendi.
+- **Hedef ve kabul ölçütü:** Kullanıcının sağladığı iki belgeyi mevcut BERO kayıtlarıyla karşılaştırıp SCT013-030 teknik bilgisini doğru konumlara eklemek; genel önerileri proje kararı/deney sonucu gibi göstermemek; mevcut bias kondansatörünü sessizce değiştirmemek.
+- **Yapılan:** Ana SCT013-030 kaydı, proje içi referans kopyası, donanım envanteri, analog ön uç, STATUS, ROADMAP, görev indeksi, açık sorular, T005/E01 kartı ve E01 protokol/metadata kaydı güncellendi.
+- **Kaynaklardan alınan bilgiler:** Nominal 30 A RMS → yaklaşık 1 V RMS, nominal oran 30 A/V (yaklaşık 33,33 mV/A), gerilim çıkışlı modelde dahili burden ve genel CT satürasyon riskleri.
+- **Kondansatör ayrımı:** Rapor örnekte 10 µF öneriyor; BERO'daki mevcut fiziksel devre kaydı 104 (100 nF). Bu fark değişiklik kararı olmadan kapatılmadı ve sonraki adım olarak ayrıldı.
+- **Doğrulama:** Dosya güncelleme çağrıları commit SHA'ları döndürdü. Bu yazım sırasında bütün dosyaların commit sonrası yeniden okuma denetimi henüz yapılmadı; otomatik PR/CI kontrolü çalıştırılmadı. Fiziksel test, ADC örneklemesi, firmware derlemesi veya kalibrasyon yapılmadı.
+- **Açık kalanlar:** Değiştirilen bütün dosyaların tekrar okunması ve bağlantı/metadata tutarlılığının kontrolü; kondansatör seçiminin ayrı teknik incelemesi.
+- **Sonraki adım:** Dosyaları GitHub'dan yeniden okuyarak içeriği ve main durumunu doğrula. Ardından yalnız kondansatörün devredeki rolünü ve seçimini mevcut bağlantı üzerinden ele al.
+- **Kanıt:** [Ana SCT013-030 kaydı](https://github.com/bakbalik-win11/BERO/blob/main/DONANIM/SCT013-30A-1V/README.md); [proje referansı](https://github.com/bakbalik-win11/BERO/blob/main/PROJELER/SCT013-PZEM-AKIM-GOZLEM/hardware/references/SCT013-30A-1V.md); [analog ön uç](https://github.com/bakbalik-win11/BERO/blob/main/PROJELER/SCT013-PZEM-AKIM-GOZLEM/hardware/frontend.md); [STATUS](https://github.com/bakbalik-win11/BERO/blob/main/PROJELER/SCT013-PZEM-AKIM-GOZLEM/STATUS.md); [E01 protokolü](https://github.com/bakbalik-win11/BERO/blob/main/PROJELER/SCT013-PZEM-AKIM-GOZLEM/experiments/E01-noise-floor/protocol.md).
+
 ## 2026-10-27 — Oturum sürekliliği ve bilgi kaynağı kurallarının güçlendirilmesi
 
 - **Durum:** UYGULANDI; değiştirilen dosyalar GitHub'dan yeniden okunarak doğrulandı.
