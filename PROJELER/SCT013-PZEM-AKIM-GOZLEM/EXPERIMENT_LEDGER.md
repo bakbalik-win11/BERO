@@ -56,3 +56,19 @@ Her yeni kod dosyası için:
 - **YORUMLANDI:** sonuç ve sınırlamalar kanıta dayalı olarak yazıldı.
 
 Bu durumlar birbirinin yerine kullanılamaz. Önceki kararlar silinmez; karar değişirse eski gerekçe ve değişiklik nedeni tarihçede korunur.
+
+## Kapsam düzeltmesi — kullanıcının asıl ilk hedefi (2026-10-29)
+
+**Öncelik:** Kullanıcı önce akım formülü/kalibrasyon yapmak değil, SCT013 → ESP32 dahili ADC hattında ne okunduğunu görmek ve anlamak istiyor.
+
+İlk öğrenme soruları:
+1. ADC'den hangi ham sayılar okunuyor?
+2. Ham örnekleri bilgisayarda görselleştirebiliyor muyuz?
+3. Bir kayıt/paket sinyal davranışını temsil etmeye yeterli mi; kayıt sırasında belirgin bilgi kaybı var mı?
+4. Gözlemden çıkan bir sonraki soru nedir?
+
+**Kapsam dışı — ilk ham gözlem aşamasında:** PZEM karşılaştırması, akım formülü/kalibrasyon, MCP3208, enerji analizi ve gereksiz karmaşık edinim mimarisi. Bunlar sırf proje dosyalarında geçtiği için ilk adıma eklenmez; ancak ileride somut bir soru gerektirirse yeniden ele alınabilir.
+
+**İlk aşama başarı ölçütü:** Gerçek ESP32 ADC ham örneklerini kaydedebilmek, bunları bilgisayarda görselleştirebilmek ve seçilen kayıt/paketin neyi gösterdiğini ve neleri kanıtlamadığını açıklayabilmek. Bu aşamada ham ADC sayıları amper değeri değildir; akım hesaplandığı veya kalibre edildiği iddia edilmez.
+
+**Durum:** Bu, kapsam ve öncelik düzeltmesidir; bugün firmware yazılmadı, kart çalıştırılmadı ve ölçüm yapılmadı. Mevcut E00A protokolü uygulanmaya başlamadan önce bu hedefe göre sadeleştirilip uyumlu hâle getirilecek.
