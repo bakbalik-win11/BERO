@@ -25,8 +25,8 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 - [ ] 2.1 Gerçek örnekleme hızını ve sapmayı ölç.
 - [ ] 2.2 2 kS/s ve nominal 200 ms penceresini dene.
 - [ ] 2.3 RMS, ADC ortalaması, min/max, örnek sayısı ve clipping sayaçlarını üret.
-- [ ] E07 için aynı pencereden RMS, Peak, Peak-to-Peak, ortalama, standart sapma ve min/max özetlerini üret; hedef örnekleme hızı ile ölçülen gerçek hızı ayrı kaydet.
-  - **Bitti sayılır:** kararlı yükte pencere değişkenliği raporlanmış; SCT kararlılık yaklaşımı eldeki veriye göre değerlendirilmiş.
+- [ ] E08 için aynı pencereden bias çıkarılmış RMS, mutlak Peak, Peak-to-Peak ve yardımcı istatistikleri üret; hedef örnekleme hızı ile ölçülen gerçek hızı ayrı kaydet.
+  - **Bitti sayılır:** yüksüz ve yük altındaki pencere değişkenliği raporlanmış; hız ve kablo turu etkileri karşılaştırılmış; sonraki karar eldeki veriyle gerekçelendirilmiş.
 
 ## Faz 3 — PZEM edinim
 - [ ] 3.1 Yaklaşık 1 s sorgu başlangıcı; istek/yanıt zamanları ve read_status kaydı.
@@ -50,8 +50,9 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 - [ ] 6.2 E04: PZEM alanlarının değişim zamanı.
 - [ ] 6.3 E05: aynı yükte 1 / 2 / 2,5 kS/s; opsiyonel 500 S/s.
 - [ ] 6.4 E01, E02, E06: gürültü, kararlı yük ve farklı yük tipleri.
-- [ ] E07: üç tur basamaklı SCT gözlemi; her turda boşta → 100 W akkor → 150 W akkor → 8,5 W LED; tur başına hedef hız sırasıyla 1 / 2 / 2,5 kS/s.
-  - **Bitti sayılır:** her deneyin protokolü, metadata'sı, verisi ve sonucu mevcut.
+- [ ] E07: önceki, henüz uygulanmamış SCT gözlem planı; güncel uygulama planı olarak kullanılmayacak. Ayrıntı için E07 protokolündeki E08 bağlantısına bak.
+- [ ] E08: yüksüz uzun okuma → 100 W akkor tam matris → 150 W akkor ve 8,5 W LED aynı matris → aç-kapa testi. [E08 genel açıklaması](experiments/E08-sct-characterization/README.md) ve aşama belgeleri esas alınır.
+  - **Bitti sayılır:** her aşamanın amacı ve koşulları kaydedilmiş; gerçek hız, pencere istatistikleri ve kablo turu belirtilmiş; sonuçlar ve açık kalan sorular raporlanmış. Fiziksel deney henüz yapılmadı.
 
 ## Faz 7 — Analiz ve karar
 - [ ] 7.1 Kararlı aralıkta SCT–PZEM farkı, pencere değişkenliği, olay gecikmesi ve clipping.
