@@ -9,9 +9,9 @@
 - **Deney başlangıcı:** BEKLEMEDE — gerçek ESP32 kart/GPIO ve fiziksel bağlantı kontrolü gerekiyor; bu belge denetimi fiziksel test veya firmware doğrulaması değildir.
 - **İlk teknik deney (denetim sonrası):** E00A — ham ADC kaydı ve temel istatistikler.
 - **E00A durumu:** PLANLANDI; firmware, fiziksel kayıt ve ölçüm henüz yapılmadı.
-- **E00A koşulları:** bias-only → SCT bağlı/yüksüz → SCT bağlı/100 W akkor; ilk geçişte tek ESP32, hedef 2 kS/s, koşul başına yaklaşık 1 saniye. ADR-007'deki 10 µF + mevcut 100 nF bias düzeni ilk SCT bağlantılı koşuldan önce planlandı; fiziksel uygulama henüz yok.
+- **E00A ilk hedefi:** ESP32 dahili ADC ham sayılarını oku, kaydet ve bilgisayarda görselleştir; kaydın/paketin sinyali ne ölçüde temsil ettiğini gözlemle. PZEM, akım formülü/kalibrasyon ve MCP3208 bu ilk adımın kapsamında değil. Donanım bağlantısı öncesi gerçek kart/pinout ve bias düzeni kontrol edilir.
 - **Sonraki adımlar:** E00 bias ADC karşılaştırması → T005 / E01 yüksüz temel okuma ve gürültü tabanı.
-- **Temel kural:** Her adımda HEDEF / LOG / SONUÇ; deney kodunda açıklamalar ve açıklamalı YAML.
+- **Temel kural:** Her adımda NEDEN / HEDEF / KOD / LOG / GÖRSELLEŞTİRME / SONUÇ; deney kodunda açıklamalar ve açıklamalı YAML.
 
 Güncel ayrıntı ve durum için [STATUS.md](STATUS.md) esas alınır.
 
