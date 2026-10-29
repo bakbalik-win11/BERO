@@ -62,7 +62,7 @@ Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
 
 - Kullanıcının sağladığı SCT013_30A_1V_ESP32_Raporu.docx ve ct-akım-trafosu-satürasyonu.txt okundu.
 - SCT013-030 nominal oranı, gerilim çıkışlı modelde dahili burden bilgisi ve genel satürasyon riskleri donanım referanslarına eklendi.
-- [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) kapsamında, E01 öncesi bias orta noktasındaki mevcut 100 nF kondansatörün 10 µF ile değiştirilmesi önerildi. Fiziksel değişiklik ve sonuç ölçümü henüz yapılmadı; ADC GPIO'suna ek 100 nF kararı verilmedi.
+- [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) kapsamında, E01 öncesi bias orta noktasındaki mevcut 100 nF kondansatöre paralel 10 µF elektrolitik kondansatör eklenmesi önerildi. Fiziksel değişiklik ve sonuç ölçümü henüz yapılmadı; ADC GPIO'suna ek 100 nF kararı verilmedi.
 - Rapordaki genel ESP32/ADS1115/RMS örnek kodları BERO firmware'i olarak alınmadı.
 - Fiziksel ölçüm, ADC okuması, firmware testi ve kalibrasyon yapılmadı.
 
@@ -70,5 +70,5 @@ Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
 ## Bias kondansatörü — aktif donanım notu
 
 - Mevcut kayıtlı devrede bias orta noktasından GND'ye 104 (100 nF) bulunur.
-- [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) 10 kΩ + 10 kΩ bölücü ve 50 Hz SCT sinyali için orta noktada 10 µF kullanılmasını önerir. Değişiklik E01 öncesinde uygulanmalı ve fiziksel olarak yapılana kadar tamamlandı sayılmamalıdır.
+- [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) 10 kΩ + 10 kΩ bölücü ve 50 Hz SCT sinyali için orta noktadaki mevcut 100 nF'ye paralel 10 µF eklenmesini önerir. Değişiklik E01 öncesinde uygulanmalı ve fiziksel olarak yapılana kadar tamamlandı sayılmamalıdır.
 - ADC pinine ayrıca 100 nF eklenmesi opsiyoneldir; ilk E01 ölçümünde aynı anda ikinci değişken eklememek için şimdilik planlanmadı.
