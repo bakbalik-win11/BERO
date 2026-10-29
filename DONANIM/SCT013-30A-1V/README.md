@@ -72,3 +72,19 @@ Bu sensör şebeke iletkeninin etrafına takılır; kelepçeyi açıp kapatırke
 - OpenEnergyMonitor SCT-013 ailesi açıklaması: https://community.openenergymonitor.org/t/about-split-core-cts-sct-013-family/481
 
 > Üretici dokümanlarının bazı kopyalarında tablo alanları eksik veya çeviri hatalı olabilir. Fiziksel sensörün etiketi ve tam model kodu birincil doğrulamadır.
+
+## 9. BERO için ek teknik notlar — 2026-10-29
+
+Kaynaklar: kullanıcı tarafından sağlanan SCT013_30A_1V_ESP32_Raporu.docx (14 sayfa) ve ct-akım-trafosu-satürasyonu.txt. Aşağıdaki bilgiler kaynak raporu/hesabı özetler; BERO'da fiziksel ölçüm yapıldığı anlamına gelmez.
+
+- SCT013-030 nominal ilişkisi 30 A AC RMS girişte yaklaşık 1 V AC RMS çıkıştır. Nominal dönüşüm yaklaşık 30 A/V, yani 33,33 mV/A'dır. Sinüzoidal 1 V RMS için tepe değer yaklaşık 1,414 V'tur. Gerçek sensör ve analog zincir bu notla kalibre edilmiş sayılmaz.
+- Gerilim çıkışlı SCT013-030 içinde burden direnci bulunur; ek burden direnci normalde eklenmez.
+- AC çıkış tek beslemeli ADC'ye doğrudan uygulanamaz; BERO'nun mevcut bias devresi ve fiilî sinyal kuplajı esas alınır.
+- Rapordaki ESP32 ADC attenuation/doğrusallık ve RMS örnekleri genel uygulama bilgisidir; BERO'ya firmware olarak aktarılmamıştır. İlk aşama planı dahili ESP32 ADC'dir; MCP3208 sonraya bırakılmıştır.
+- Satürasyon belgesi aşırı primer akımı, sekonder burden ve DC ofseti gibi genel CT risklerini anlatır. BERO'da satürasyon gözlendiğine dair ölçüm yoktur.
+- Kullanıcı tarafından bildirilen stok: 7 adet SCT013-030; bu kayıt bağımsız fiziksel sayım değildir.
+
+### Kaynaklar
+- YHDC ürün ailesi: https://en.yhdc.com/product/SCT013-401.html
+- SCT013-030 veri sayfası kopyası: https://naylampmechatronics.com/img/cms/000154/SCT013-030-0-30A-0-1V.pdf
+- Seeed Studio SCT013 veri sayfası: https://files.seeedstudio.com/wiki/AC_Current_Sensor/Datasheet_of_SCT013.pdf
