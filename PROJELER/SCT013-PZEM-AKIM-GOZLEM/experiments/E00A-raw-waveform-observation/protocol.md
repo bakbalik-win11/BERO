@@ -34,3 +34,9 @@
 
 ## Durum
 PLANLANDI. Fiziksel ölçüm ve yazılım uygulaması yapılmadı.
+
+
+## Her adımın kaydı: HEDEF / LOG / SONUÇ
+- **HEDEF:** Adımın cevaplayacağı soru ve kabul koşulu.
+- **LOG:** Gerçek bağlantı/koşul, hedef hız, geçen süre, örnek sayısı, ham dosya yolu, hesaplanan istatistikler, gözlemler ve protokolden sapmalar. Yapılmayan işlem de açıkça yazılır.
+- **SONUÇ:** Yalnız kaydın desteklediği yorum, belirsizlikler ve bir sonraki adıma geçme gerekçesi. Ölçüm yoksa sonuç uydurulmaz; ölçülmediği belirtilir.
