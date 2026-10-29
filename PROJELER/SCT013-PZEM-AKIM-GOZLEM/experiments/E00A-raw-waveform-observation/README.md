@@ -1,7 +1,7 @@
 # E00A — Ham sinyal kaydı ve temel istatistikler
 
 ## Amaç
-Paketleme veya sürekli veri aktarım mimarisine karar vermeden önce SCT girişindeki ham ADC örneklerinden işe yarar, anlaşılır bir ilk sonuç çıkarmak. Öncelik canlı osiloskop görüntüsü değil; farklı donanım koşullarının temel istatistiklerle karşılaştırılmasıdır. Grafik, istatistiklerin açıklayamadığı durumları incelemek için yardımcı çıktıdır.
+İlk olarak ESP32 dahili ADC'sinden gerçekte ne okunduğunu görmek: ham örnekleri kaydetmek ve bilgisayarda zaman grafiğiyle görselleştirmek. Grafik bu adımın temel inceleme aracıdır; istatistikler grafiği tamamlar ve koşullar arasındaki farkı özetler. Paketleme veya sürekli veri aktarım mimarisi hakkında karar vermek için önce kaydın sinyali nasıl temsil ettiğini gözlemleyeceğiz.
 
 Bu bir laboratuvar doğrulama deneyi değildir. Amaç, “SCT devreye girince ham ADC verisinde ne değişiyor?” sorusuna basit bir yanıt bulmaktır.
 
@@ -20,7 +20,7 @@ Bu bir laboratuvar doğrulama deneyi değildir. Amaç, “SCT devreye girince ha
 - Ortalama, minimum, maksimum, tepe-tepe aralığı ve standart sapma.
 - Hedef örnekleme hızı, gerçek kayıt süresi, örnek sayısı ve mümkünse yaklaşık gerçekleşen örnekleme hızı.
 - Koşulları kıyaslayan kısa bir istatistik tablosu.
-- İsteğe bağlı tanı grafiği: ADC değeri-zaman. Yalnızca beklenmeyen istatistikleri, kırpılma belirtilerini, sıçramaları veya bozuk/kopuk örnekleri araştırmak için kullanılır; sürekli canlı grafik zorunlu değildir.
+- ADC ham değeri-zaman grafiği: her koşulun kaydını bilgisayarda görselleştir. Bu, sinyalin şeklini ve kayıt içindeki değişimleri incelemek için temel çıktıdır; canlı osiloskop arayüzü zorunlu değildir.
 
 Bu istatistikler ham ADC değerlerini tanımlar; tek başlarına amper ölçümü veya gürültünün kesin ölçümü değildir. Standart sapma hem gürültüden hem gerçek AC sinyalinden etkilenebilir.
 
@@ -28,7 +28,7 @@ Bu istatistikler ham ADC değerlerini tanımlar; tek başlarına amper ölçüm�
 Beklenen örnek sayısı yaklaşık olarak hedef hız × gerçek kayıt süresidir. Okunan sayı ile karşılaştırılır. Bu ilk kontrol, zamanlama aralıklarının kusursuz olduğunu veya hiç örnek kaybolmadığını kanıtlamaz. Belirgin fark görülürse önce nedenini araştırırız.
 
 ## Karar
-İlk soru, bias-only, SCT yüksüz ve yük altındaki koşulların istatistiklerinde anlamlı fark olup olmadığıdır. Grafik yalnızca yorumlamaya yardımcı olur. Örnekleme hızlarını geniş kapsamlı karşılaştırma, yavaş oynatma, üç ESP32 eşzamanlama, DMA veya çift buffer bu ilk adımın kabul koşulu değildir.
+İlk soru, ham kaydın bilgisayarda nasıl göründüğü ve bias-only, SCT yüksüz ve yük altındaki koşulların grafikleri ile istatistiklerinin nasıl farklılaştığıdır. Grafik temel inceleme çıktısıdır. Örnekleme hızlarını geniş kapsamlı karşılaştırma, yavaş oynatma, üç ESP32 eşzamanlama, DMA veya çift buffer bu ilk adımın kabul koşulu değildir.
 
 İlk kayıtlardan sonra basit edinim ve aktarım yeterliyse karmaşık mimari kurmayız. Yetersizliği gösteren kanıt varsa sonraki deneyi o soruya göre seçeriz.
 
