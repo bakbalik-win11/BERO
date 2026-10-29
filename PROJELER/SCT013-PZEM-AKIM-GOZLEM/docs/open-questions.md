@@ -5,7 +5,7 @@ Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konul
 1. İlk aşamada kullanılacak ESP32 kartında SCT sinyalinin okunacağı ADC destekli GPIO numarası nedir? Harici ADC kullanılmayacak; dahili ADC pin eşlemesi firmware/pin planlama aşamasında seçilecek.
 2. SAMM Market 5 V 2 kanallı SSR kartının hangi iki AC yükü anahtarlayacağı ve hangi ESP32 GPIO'larının kullanılacağı nedir? Ürün sayfasındaki LOW/HIGH eşikleri ile “low-level trigger” notu tutarsız olabildiğinden kontrol mantığı düşük gerilimde doğrulanmalı; giriş akımı ve kanal başına termal/sürekli yük sınırları ayrıca teyit edilmeli.
 3. PZEM'in iç ölçüm/ortalama penceresi nedir; V, I, P ve PF aynı anda mı yenileniyor? Bunlar deneyle ölçülecek.
-4. Hangi akımın altında PZEM, bağımsız referansa göre kabul edilemez sapma/kararsızlık gösteriyor?
+4. Hangi düşük akım aralığında PZEM referans okumaları kararsızlaşıyor veya SCT modelinin PZEM'e göre bağıl sapması ±%4 hedefini karşılamıyor? Bu proje için bağımsız referans cihazı şartı yoktur.
 5. 1 kS/s, 2 kS/s ve 2,5 kS/s seçenekleri arasında hedef yüklerde anlamlı performans farkı var mı?
 6. 200 ms pencere kararlı yükte tekrarlanabilir mi; çevrime senkron pencere gerekli mi?
 7. E00A'nın ilk geçişinde bias-only, SCT yüksüz ve 100 W yük koşullarının temel istatistikleri nasıl farklılaşıyor; ilk kayıtlardan sonra farklı örnekleme hızlarını veya daha karmaşık aktarımı denemek için somut bir neden oluşuyor mu?
