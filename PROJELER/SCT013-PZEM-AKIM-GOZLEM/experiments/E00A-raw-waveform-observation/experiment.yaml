@@ -16,9 +16,9 @@ hedef:
     - "Mean, min, max, peak-to-peak ve standart sapmanın karşılaştırılması"
 
 donanim:
-  kart: "ESP32 — tam kart modeli doğrulanacak"
+  kart: "İlk uygulama adayı: klasik ESP32-WROOM-32D; fiziksel kart işareti/pinout ölçüm öncesi doğrulanacak"
   adc: "ESP32 dahili ADC"
-  gpio: null # Ölçüm öncesinde kullanılan ADC GPIO doğrulanıp yazılacak.
+  gpio: 34 # Aday GPIO34 / ADC1_CH6; yalnız klasik ESP32 pinout’u doğrulanırsa kullanılacak.
   sensor: "SCT-013-030, 30A/1V"
   bias: "Mevcut 2 x 10 kOhm bölücü ve 100 nF; ADR-007 uyarınca ilk SCT bağlantılı koşuldan önce 10 uF paralel eklenmesi planlandı; fiziksel uygulama ölçüm öncesinde doğrulanacak"
 
@@ -27,6 +27,11 @@ ornekleme:
   planlanan_kayit_s: 1 # Her koşul için yaklaşık 1 saniye.
   ham_veri_kaydet: true
   ham_veri_git'e_ekle: false # Ham örnekler varsayılan olarak yerel tutulur.
+  csv_sutunlari: "sample_index,adc_raw"
+  yerel_dosya_yollari:
+    - "data/raw/E00A/bias_only.csv"
+    - "data/raw/E00A/sct_yuksuz.csv"
+    - "data/raw/E00A/100w_akkor.csv"
 
 kosullar:
   - id: "A"
@@ -57,8 +62,8 @@ ciktilar:
     - "yaklasik_gercek_ornekleme_hizi_hz"
 
 log:
-  gercek_kart_modeli: null
-  gercek_gpio: null
+  gercek_kart_modeli: null # Fiziksel kart görülüp doğrulanınca doldur.
+  gercek_gpio: null # Gerçek bağlantı doğrulanınca doldur; aday GPIO34 tek başına kanıt değildir.
   firmware_surumu_veya_commit: null
   kosul_kayitlari: []
   sapmalar_ve_gozlemler: []
