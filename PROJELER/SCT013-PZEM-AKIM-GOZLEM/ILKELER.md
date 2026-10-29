@@ -1,5 +1,15 @@
 # Proje İlkeleri
 
+## En yüksek öncelik: depoyu ve proje hafızasını korumak
+Kullanıcının önceliği açıktır: **Depo, projenin teknik başarısından daha önemlidir; amaç yalnızca projeyi başarmak değil, proje bilgisini ve geçmişini kaybetmemektir.** Bu nedenle kararlar, deney koşulları, fikirler, sonuçlar, açık sorular ve sonraki adımlar depoda izlenebilir biçimde korunur.
+
+- Yeni bilgi ortaya çıktığında uygun depo kaydı aynı çalışma akışında güncellenir; gün sonuna bırakılmaz.
+- Her anlamlı değişiklikten sonra dosya yeniden okunarak yazım doğrulanır.
+- Geçmiş kararlar sessizce silinmez; karar değişikliği gerekçesi ve geçmişiyle kaydedilir.
+- Depoya yazma veya doğrulama başarısızsa durum açıkça bildirilir; kaydedilmiş gibi davranılmaz.
+- Teknik ilerleme uğruna proje hafızası, kayıt tutarlılığı veya geri izlenebilirlik riske atılmaz.
+
+
 ## Mükemmel akım hedef değil
 
 Bu projede hedef ilk günden kusursuz akım ölçümü değildir. Sistem zamanla, deneylerden ve kaydedilen sonuçlardan öğrenerek iyileştirilecektir.
