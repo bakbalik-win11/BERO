@@ -563,3 +563,12 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Doğrulama sınırı:** Depo dosyaları GitHub'a yazıldı; fiziksel test, firmware derlemesi, YAML parser, CI veya otomatik bağlantı testi bu değişiklik kapsamında çalıştırılmadı.
 - **Sonraki adım:** Tek aktif teknik basamak E00A olarak kalır. Fiziksel deney günü geldiğinde önce kart/pinout ve bias kurulumunu doğrula; ardından yalnız bu basamağın kodunu ve ölçüm kaydını oluştur. Daha sonraki deneyleri erkenden kodlama.
 - **Kanıt:** [Deney ve karar izleme defteri](../EXPERIMENT_LEDGER.md); [STATUS](../STATUS.md); [İlerleme ağacı](../PROGRESS_TREE.md).
+
+## 2026-10-29 — İlk hedef kapsamı düzeltildi: ham ADC'yi gör ve anla
+
+- **Kullanıcının netleştirdiği amaç:** SCT013'ten ESP32 ADC'sine gelen veride ne okunduğunu görmek, veriyi bilgisayarda görselleştirmek ve kayıt/paketin sinyali temsil etmeye yeterli olup olmadığını anlamak.
+- **Öncelik:** İlk adımda gerçek ham ADC örneklerini oku → yerel dosyaya kaydet → bilgisayarda grafiğe dök → kaydın neyi gösterdiğini ve sınırlamalarını açıkla.
+- **Kapsam dışı:** PZEM karşılaştırması, akım formülü/kalibrasyon ve MCP3208 bu ilk ham gözlem adımına eklenmeyecek. Daha sonra ancak somut bir soru gerektirirse ele alınır.
+- **Depo güncellemesi:** `EXPERIMENT_LEDGER.md`, `STATUS.md` ve `PROGRESS_TREE.md` bu önceliğe göre güncellendi.
+- **Durum:** Yalnızca dokümantasyon güncellendi. Firmware oluşturulmadı, derlenmedi ve fiziksel ölçüm yapılmadı.
+- **Sonraki adım:** E00A protokolünü bu hedefle uyumlu, tek bir basit kayıt/görselleştirme adımı olacak şekilde sadeleştirmek; ardından gerçek kart/pinout doğrulamasından sonra uygulamak.
