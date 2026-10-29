@@ -72,3 +72,16 @@ Bu durumlar birbirinin yerine kullanılamaz. Önceki kararlar silinmez; karar de
 **İlk aşama başarı ölçütü:** Gerçek ESP32 ADC ham örneklerini kaydedebilmek, bunları bilgisayarda görselleştirebilmek ve seçilen kayıt/paketin neyi gösterdiğini ve neleri kanıtlamadığını açıklayabilmek. Bu aşamada ham ADC sayıları amper değeri değildir; akım hesaplandığı veya kalibre edildiği iddia edilmez.
 
 **Durum:** Bu, kapsam ve öncelik düzeltmesidir; bugün firmware yazılmadı, kart çalıştırılmadı ve ölçüm yapılmadı. Mevcut E00A protokolü uygulanmaya başlamadan önce bu hedefe göre sadeleştirilip uyumlu hâle getirilecek.
+
+
+## Proje felsefesi düzeltmesi — kişisel veri kümesi ve aşırı öğrenme (2026-10-29)
+
+Kullanıcının açıkladığı hedef: BERO piyasaya sürülecek evrensel bir akım ölçer değil; evdeki sınırlı aygıt ve yüklerden zamanla büyüyen birleşik veri kümesi üzerinde öğrenen kişisel bir modeldir. Modelin eğitim verisinde çok iyi sonuç vermesi, hatta aşırı öğrenme (overfitting), bu proje için otomatik bir kusur veya başarısızlık sayılmaz. Amaç gözlenen ev içi aygıtlara uyumu zamanla geliştirmektir.
+
+Yeni kayıtlar, etiketler, analizler ve model sürümleri izlenebilir biçimde korunacak; yeni model sonuçları önceki sürümlerle karşılaştırılacaktır. Eğitim sonucu, birleşik etiketli veri kümesi sonucu, varsa ayrılmış kayıt sonucu ve etiketsiz kayıtların davranış incelemesi birbirinden ayrı raporlanır. Bu ayrım ticari sertifikasyon amacı taşımaz; model gelişimini dürüstçe izlemek içindir.
+
+Daha önce görülmemiş veya olağan dışı yüksek akımlı bir yükün (ör. ev tamiratında kullanılan kaynak makinesi) ADC aralığını aşması, doygunluk oluşturması veya modelin tahmin üretememesi kabul edilebilir. Her yükü ölçmek proje şartı değildir. Böyle bir olayın doygunluk/başarısızlık davranışı kayıt altına alınabilir; ölçülmeyen akım için değer uydurulmaz.
+
+Ayrıntılı ve kalıcı yaklaşım: [BERO proje felsefesi](docs/project-philosophy.md).
+
+**Durum:** Felsefe ve plan dokümantasyonu güncellendi; model kodu, akım hesabı, fiziksel ölçüm veya doğrulama yapılmadı.
