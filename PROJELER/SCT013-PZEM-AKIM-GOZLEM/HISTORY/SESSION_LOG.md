@@ -392,3 +392,11 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Kapsam sınırı:** 1 ve 2,5 kS/s ek kayıtları, yavaş oynatma, üç ESP32'yi eşzamanlama, DMA ve çift buffer ilk aşamanın şartı değil. İlk istatistikler bir soruyu cevapsız bırakırsa sonraki deney buna göre tasarlanacak. Bu karar daha sonraki örnekleme hızı deneyini iptal etmez.
 - **Depoda güncellenenler:** E00A README/protocol/metadata/results; deney indeksi; STATUS; ROADMAP; proje README; görev indeksi; açık sorular; bu oturum günlüğü.
 - **Doğrulama sınırı:** Bu kayıt bir plan değişikliğini belgelemektedir. Fiziksel kurulum, firmware derleme, örnekleme veya ölçüm yapılmadı.
+
+
+## 2026-10-29 — Her adımda HEDEF / LOG / SONUÇ kuralı
+
+- **Kullanıcı kararı:** BERO'daki her çalışma ve deney adımında hedef, yapılan işin kaydı (log) ve sonuç düzenli tutulacak.
+- **Kural:** HEDEF, cevaplanacak soru ve kabul ölçütüdür. LOG, gerçekte yapılan işlem, ayarlar, süre/örnek sayısı, ham veri yolu, gözlemler ve sapmalardır. SONUÇ, kanıtın desteklediği yorum, sınırlamalar ve sonraki adımdır. İşlem yapılmadıysa açıkça yazılır; veri yokken sonuç uydurulmaz.
+- **Depoya eklenen:** AGENTS.md çalışma protokolü, E00A protocol.md ve results.md bu standarda göre güncellendi.
+- **Doğrulama sınırı:** Bu bir dokümantasyon/iş akışı kararıdır. Donanım deneyi veya firmware testi yapılmadı.
