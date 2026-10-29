@@ -1,6 +1,6 @@
 # T007 — Python program mimarisini kullanıcı hedeflerine göre tanımla
 
-- **Durum:** DEVAM EDİYOR — hedef mimari taslağı var; program sayısı, modül sınırları, veri aktarımı ve veri sözleşmeleri karara bağlanmadı.
+- **Durum:** BEKLEMEDE — taslak korunuyor; E00A/E00/E01 edinim sonuçları ve gerçek HA→PC veri akışı netleşene kadar aktif çalışma değil.
 - **Faz:** 3–7 (PZEM edinimi, kayıt şeması, hizalama ve analiz hazırlığı)
 - **Bağımlılık:** E00A/E00/E01 temel edinim sonuçları, kullanıcı tarafından açıklanan Home Assistant → PC veri akışı hedefi
 - **Hedef:** Python tarafında yapılacak işlerin sınırlarını ve bağımlılıklarını, gerçek ölçüm verisi ve kullanıcı hedefleriyle uyumlu olacak şekilde aşamalı olarak tanımlamak; erken ve kanıtsız mimari varsayımlar üretmemek.
