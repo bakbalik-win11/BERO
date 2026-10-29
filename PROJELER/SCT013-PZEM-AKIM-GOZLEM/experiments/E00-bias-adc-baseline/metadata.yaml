@@ -6,7 +6,6 @@ date_end_utc: null
 mcu_model: null
 arduino_esp32_version: null
 adc_gpio: null
-adc_resolution_bits: 12
 adc_attenuation: null
 sct_connected: false
 voltmeter_bias_reading_v: null
