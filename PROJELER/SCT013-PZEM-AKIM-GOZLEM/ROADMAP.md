@@ -14,7 +14,9 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 ## Faz 1 — SCT analog ön uç
 - [x] 1.1 Mevcut SCT jack bağlantısını, breadboard bias alt devresini ve ESP32 dahili ADC yaklaşımını hobi projesi kapsamında belgele. — [T004](tasks/T004-analog-frontend.md)
   - **Kapanış:** Kullanılan SCT modelleri ve jack çıkışı, 2 × 10 kΩ orta nokta, orta noktadan GND'ye 100 nF kondansatör, yaklaşık 1,65 V bias kabulü ve dahili ADC yaklaşımı kaydedildi. Laboratuvar düzeyinde bias/ADC aralığı/clipping ölçümü bu görevin şartı değil.
-- [ ] 1.2 Hatta akım yokken ADC ofseti ve gürültü tabanını ölçüp zaman grafiğinde incele. — [T005](tasks/T005-noise-floor.md)
+- [ ] 1.2a SCT bağlı değilken bias noktasını ADC ile oku; `analogRead()` ham sayısı ve `analogReadMilliVolts()` çıktısını voltmetreyle karşılaştır. — [E00 protokolü](experiments/E00-bias-adc-baseline/protocol.md)
+- [ ] 1.2b SCT bağlıyken ve ölçülen hatta akım yokken aynı iki ADC okumasını karşılaştır.
+- [ ] 1.2c Uzun yüksüz ADC kaydı, zaman grafiği ve gürültü özeti. — [T005](tasks/T005-noise-floor.md)
   - **Başlangıç:** Donanım henüz kurulmadı. PZEM ve ESP kartları ölçülen hattan beslenmiyor. 30 saniye asgari başlangıç referansı; kayıt daha uzun, gerekirse saatler sürebilir. Kesin süre deney sırasında belirlenecek.
 - [ ] 1.3 En az üç seviyede kalibrasyon yap. — [T006](tasks/T006-calibration.md)
   - **Bitti sayılır:** önceden belirlenmiş hata hedefi sağlanmış; clipping yok; calibration_id kayıtlı.
