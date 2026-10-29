@@ -3,7 +3,7 @@
 ## Ön koşullar
 - Kullanılacak ESP32 kartı ve ADC GPIO'su gerçek kart envanterinden doğrulanmalı; pin numarası varsayılmamalı.
 - Ölçüm girişine şebeke gerilimi bağlanmaz. Bias-only ve SCT yüksüz adımlarında fiziksel bağlantı güvenli biçimde kontrol edilir.
-- Bias orta noktası mevcut proje bağlantısına göre kullanılır; henüz uygulanmamış donanım önerileri tamamlanmış sayılmaz.
+- Bias orta noktası için [ADR-007](../../docs/decisions/ADR-007-bias-midpoint-capacitor.md) kapsamında mevcut 100 nF'ye paralel 10 µF eklenmesi planlanmıştır. Bu değişiklik E00A'nın ilk SCT bağlantılı koşulundan önce uygulanmalı; fiziksel olarak yapılana kadar tamamlandı sayılmaz. Gerçek kurulum, kayda başlamadan kontrol edilip LOG'a yazılır. Üç koşul aynı bias düzeniyle kaydedilmelidir.
 - Bu ilk adımda bir ESP32 ve 2 kS/s hedefi yeterlidir. 2 kS/s doğrulanmış sonuç değil, mevcut başlangıç değeridir.
 
 ## Her adım için zorunlu kayıt: HEDEF → LOG → SONUÇ
