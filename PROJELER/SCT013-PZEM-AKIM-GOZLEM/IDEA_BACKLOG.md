@@ -27,6 +27,9 @@
 | I002 | Home Assistant'taki verileri PC'ye taşıyacak Python aktarım akışını tanımlamak | — | FİKİR | Veri HA'da toplanacak, PC'ye aktarılacak ve PC'de işlenecek. Uygulama ayrıntıları sonraki açıklamalarla netleşecek. | T007 ile ilişkili |
 | I003 | PZEM akışı ve üç SCT kanalının kararlı alanlarını deneylerle geliştirilecek kriterlerle Python'da etiketlemek | — | FİKİR | Kabul kriteri ve etikette tutulacak alanlar henüz kararlaştırılmadı. | — |
 
+
+| I004 | Tek sayfalık ilerleme ağacı oluşturmak: fazlar, görevler, deneyler, durumlar ve sıradaki adımı tek görünümde bağlamak | — | DEĞERLENDİRİLİYOR | Kullanıcı proje geçmişini kaybetmemeyi önceliyor; mevcut STATUS/ROADMAP/görev/deney listelerini tekrar eden ikinci bir sistem kurmadan tek bakışta gezinmeyi kolaylaştırmak. | — |
+
 ## Öncelik / karar geçmişi
 
 Henüz kayıtlı bir öncelik değişikliği yok.
