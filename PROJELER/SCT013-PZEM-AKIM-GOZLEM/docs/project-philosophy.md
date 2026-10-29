@@ -48,3 +48,14 @@ Yeni modelin sonuçları önceki model sürümüyle karşılaştırılır. Rapor
 BERO küçük ve aşamalı ilerler. İlk hedef ham ADC verisini görmek ve bilgisayarda görselleştirmektir. Sonraki kararlar gözlenen veriye göre verilir; model, katsayı, karmaşık aktarım veya ilave donanım ilk adıma peşinen eklenmez.
 
 Bu belge proje yaklaşımını açıklar; model eğitimi, akım hesaplama, fiziksel ölçüm veya doğrulama yapıldığı anlamına gelmez.
+
+
+## Uzun vadeli yön: göreve özel, değiştirilebilir ESP sistemleri
+
+BERO'nun daha geniş vizyonu tek bir akım ölçerle sınırlı değildir. İleride MCP ailesi, Modbus modülleri, farklı ESP32 kartları (ESP32-P4 dahil olasılıklar) ve farklı sensörler bir araya getirilerek belirli bir işi başarıyla yapan özelleşmiş düğümler kurulabilir. Örneğin bir düğüm akım sinyalini okuyup özellik/model üzerinden tahmin üretebilir; PZEM referans ölçümleri başka bir akışta etiketleme ve öğrenme verisi sağlayabilir. Uygun bir aşamaya gelindiğinde, yeterince tanımlanmış ve kontrol edilmiş öğrenme verisinden model/katsayılar güncellenebilir.
+
+Aynı yaklaşım gelecekte başka ev içi görevlerine de uyarlanabilir: çamaşır makinesinde ses örüntüsünden “su alma başladı” durumunu algılamak veya su akış sensörüyle “boşaltma başladı” olayını belirlemek gibi. Bunlar örnek fikirlerdir; seçilmiş tasarım, mevcut görev veya doğrulanmış yetenek değildir.
+
+Bu vizyonun ortak ilkesi, donanımın ve sensörlerin göreve göre değişebilmesi; her düğümün belirli bir işi, o işin verisi ve açıkça tanımlanmış başarı ölçütleriyle yerine getirmesidir. Bütün sensörleri, modülleri ve modelleri ilk sürümde birleştirmek hedeflenmez. Her görev küçük bir kanıtlı basamakla başlatılır; gerekli donanım ve yazılım, gerçek ihtiyaç ortaya çıktıkça seçilir.
+
+**Aktif ilk adım değişmez:** ESP32 dahili ADC'den ham örnekleri okumak, kaydetmek ve bilgisayarda görselleştirmek. MCP/Modbus/P4 entegrasyonu, akım tahmini, PZEM ile etiketleme ve kendi kendini yeniden eğitme hattı uzun vadeli vizyondur; şu anda uygulanmış değildir.
