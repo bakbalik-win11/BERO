@@ -39,6 +39,10 @@ Yeni görev için _template.md dosyasını kopyala; bir sonraki T numarasını k
 ## Fikir havuzu
 Henüz göreve dönüştürülmemiş veya önceliği değişebilecek fikirler [IDEA_BACKLOG.md](../IDEA_BACKLOG.md) içinde tutulur. Fikirler bu listede korunur; yalnızca seçilip uygulanmaya hazır olduğunda görev listesine alınır. Fikir ID'si görev açıldıktan sonra da korunur.
 
+## 2026-10-29 — Paketleme öncesi E00A ham sinyal gözlemi eklendi
+
+Kullanıcı kararıyla E00A, mevcut E00/E01 ve veri paketleme kararından önce gelecek şekilde eklendi. Amaç ham ADC dalgasını bias-only, SCT yüksüz ve 100 W ampul koşullarında farklı örnekleme hızlarında kaydetmek; PC'de yavaş oynatmak ve ortalama/min/max/peak-to-peak/standart sapma gibi temel istatistikleri karşılaştırmak. İlk aşamada çift buffer, DMA veya laboratuvar düzeyinde veri kaybı analizi zorunlu değil. E00A sonuçları basit aktarımın yeterli olup olmadığına karar vermek için kullanılacak. Henüz ölçüm yapılmadı.
+
 ## 2026-10-29 — İlk ADC öğrenme testi eklendi
 
 E00, SCT bağlı olmadan bias orta noktasını dahili ADC ile okuyan ilk adım olarak eklendi. Aynı örnek döngüsünde `analogRead()` ham sayısı ve `analogReadMilliVolts()` çıktısı karşılaştırılacak. Ardından SCT bağlı fakat akım yok durumu, daha sonra uzun E01 gürültü kaydı gelecek. Henüz fiziksel test yapılmadı.
