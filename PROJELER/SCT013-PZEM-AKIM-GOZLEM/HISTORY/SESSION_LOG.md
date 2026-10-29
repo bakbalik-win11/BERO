@@ -582,3 +582,14 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Depo değişiklikleri:** [Proje felsefesi](../docs/project-philosophy.md) oluşturuldu; README, STATUS, PROGRESS_TREE ve EXPERIMENT_LEDGER bağlantı/notları güncellendi.
 - **Doğrulama:** Yeni belgeler yeniden okunarak kontrol edilecek. Bu çalışma yalnızca plan/felsefe dokümantasyonudur; Python/model kodu yazılmadı, firmware derlenmedi ve fiziksel ölçüm yapılmadı.
 - **Sonraki adım:** E00A ilk ham ADC gözlemi olarak kalır. Gerçek veriler geldikçe Python görevleri, model eğitimi ve geçmiş sürümlerle karşılaştırma somut veri biçimlerine göre tasarlanır.
+
+
+## 2026-10-29 — BERO uzun vadeli yönü genişletildi
+
+Kullanıcı, BERO'nun tek bir akım ölçerle sınırlı olmadığını açıkladı. İleride eldeki MCP/Modbus modülleri ve olası ESP32-P4 dahil farklı ESP32 kartları görevlerine göre kullanılabilir. Akım verisini okuma/tahmin etme ve PZEM referansıyla etiketleme bir olası görev hattıdır. Başka örnek fikirler, çamaşır makinesi sesinden su alma olayını veya su akış sensöründen boşaltma olayını algılamaktır.
+
+Bunlar uzun vadeli vizyon ve örnek fikirlerdir; uygulanmış mimari veya doğrulanmış özellik değildir. Ortak ilke, sensörleri ve donanımı göreve göre değişebilen, belirli işi kendi verisi ve başarı ölçütleriyle yapan özelleşmiş ESP tabanlı sistemlerdir.
+
+**Aktif adım değişmedi:** E00A ile ESP32 dahili ADC ham örneklerini oku, kaydet ve bilgisayarda görselleştir. Bu adım MCP/Modbus/P4 entegrasyonu veya model geliştirmesiyle genişletilmeyecek.
+
+Ayrıntı: [Proje felsefesi](../docs/project-philosophy.md). Dokümantasyon güncellendi; firmware, Python/model kodu veya fiziksel ölçüm yapılmadı.
