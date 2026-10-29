@@ -8,6 +8,7 @@ Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konul
 4. Hangi akımın altında PZEM, bağımsız referansa göre kabul edilemez sapma/kararsızlık gösteriyor?
 5. 1 kS/s, 2 kS/s ve 2,5 kS/s seçenekleri arasında hedef yüklerde anlamlı performans farkı var mı?
 6. 200 ms pencere kararlı yükte tekrarlanabilir mi; çevrime senkron pencere gerekli mi?
+7. E08 sonuçlarında RMS, mutlak Peak ve Peak-to-Peak yöntemlerinin kendi pencere değişkenliği ve tekrar edilebilirliği, örnekleme hızı ve 1/2/4 kablo turuna göre nasıl karşılaştırılacak? Eşik veya gerekli pencere sayısı önceden seçilmeyecek; veri görüldükten sonra karar verilecek.
 
 **Karara bağlandı; yeniden sorulmayacak:**
 - Eğitim/etiket referansı PZEM-004T V3.0'dır. Modelin geçerli PZEM akım okumasına göre ±%4 bağıl sapma içinde olması Python'da `OK` sayılır. Kararlı alan gözlemi ve SCT istatistikleri ayrı görev/deney konusudur.
@@ -30,3 +31,8 @@ Açık kalan pin/SSR/ölçüm soruları, fiziksel parçaların eksik olduğu anl
 
 - [ADR-007](decisions/ADR-007-bias-midpoint-capacitor.md) sonucunda, 2 × 10 kΩ bias bölücüsünün orta noktasına, mevcut 100 nF kondansatöre paralel 10 µF eklenmesi E01 öncesi önerildi. Fiziksel değişiklik henüz yapılmış sayılmaz; mevcut devrenin belgelenen değeri 104 (100 nF) olarak korunur. ADC pinine ayrıca 100 nF eklenmesi kararlaştırılmadı.
 - Satürasyon belgesi genel CT risklerini anlatır; BERO'da satürasyon oluştuğuna dair ölçüm yoktur.
+
+
+## E08 — güncel deney kapsamı
+
+E08'de PZEM veya başka ESP'nin ortalama akımı varsa yalnız genel deney koşulu notudur; SCT pencereleriyle zaman eşleştirmesi yapılmaz. Bu, proje genelindeki daha sonraki PZEM/SCT etiketleme hedefini kaldırmaz; yalnız E08'in kapsamını sınırlar. Güncel sıra ve her aşamanın gerekçesi [E08 genel açıklamasında](../experiments/E08-sct-characterization/README.md) kayıtlıdır. Fiziksel ölçüm yapılmadı.
