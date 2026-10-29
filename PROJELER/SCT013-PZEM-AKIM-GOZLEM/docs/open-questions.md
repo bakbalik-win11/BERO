@@ -28,5 +28,5 @@ Açık kalan pin/SSR/ölçüm soruları, fiziksel parçaların eksik olduğu anl
 
 ## 2026-10-29 belge incelemesinden sonra
 
-- SCT013-030 raporundaki 10 µF kondansatör örneği, BERO'daki 104 (100 nF) kondansatörün yerine otomatik geçirilmedi. Kondansatör seçimi/değeri ayrı teknik incelemede ele alınacak; mevcut devre değiştirilmiş sayılmayacak.
+- [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md) sonucunda, 2 × 10 kΩ bias bölücüsünün orta noktasında 10 µF kullanılması E01 öncesi önerildi. Fiziksel değişiklik henüz yapılmış sayılmaz; mevcut devrenin belgelenen değeri 104 (100 nF) olarak korunur. ADC pinine ayrıca 100 nF eklenmesi kararlaştırılmadı.
 - Satürasyon belgesi genel CT risklerini anlatır; BERO'da satürasyon oluştuğuna dair ölçüm yoktur.
