@@ -1,18 +1,23 @@
-experiment_id: E00
-title: "Template - rename this experiment"
-status: not_started
-date_start_utc: null
-date_end_utc: null
+# Genel deney metadata şablonu.
+# Yalnız ilgili alanları gerçek deneyde doldur; planlanan değerleri ölçülmüş sonuç gibi yazma.
+experiment_id: "REPLACE_WITH_ID"
+title: "REPLACE_WITH_TITLE"
+status: planned
+date_start: null
+date_end: null
 operator: null
 sct_model: null
 pzem_model: null
 mcu_model: null
 adc_model: null
-sample_rate_target_hz: 2000
-window_ms: 200
-pzem_poll_interval_ms: 1000
+sample_rate_target_hz: null
+sample_rate_actual_hz: null
+window_ms: null
+pzem_poll_interval_ms: null
 calibration_id: null
-reference_meter: null
 load_description: null
+supply_arrangement: null
 data_paths: []
-notes: "Template only; no measurements taken."
+notes:
+  - "Template only; no measurements taken."
+  - "No external True-RMS/reference meter is mandatory for this project."
