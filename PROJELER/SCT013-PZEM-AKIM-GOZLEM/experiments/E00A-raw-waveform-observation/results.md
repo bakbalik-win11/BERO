@@ -16,3 +16,22 @@
 - Paketleme/buffer kararı ve gerekçesi:
 
 Ölçüm yapılmadan sonuç veya kabul kararı yazılmaz. Ham veri varsayılan olarak Git'e eklenmez.
+
+
+## HEDEF / LOG / SONUÇ
+
+### HEDEF
+Bias-only, SCT yüksüz ve 100 W akkor koşullarında temel ADC istatistiklerini ve gerçekleşen örnekleme davranışını karşılaştırmak. İlk geçiş 2 kS/s hedefinde yaklaşık 1 saniyelik kayıtlardır.
+
+### LOG
+- Gerçek ESP32 kartı ve ADC GPIO:
+- Firmware sürümü/commit:
+- Her koşulun ham kayıt ve metadata yolu:
+- Geçen süre, örnek sayısı ve hesaplanan istatistikler:
+- Hatalar, gözlemler ve protokolden sapmalar:
+- Fiziksel test veya yazılım testi yapılmadıysa açıkça belirt:
+
+### SONUÇ
+- Verinin desteklediği sonuç:
+- Belirsizlikler ve cevaplanmamış sorular:
+- Sonraki adım ve gerekçesi:
