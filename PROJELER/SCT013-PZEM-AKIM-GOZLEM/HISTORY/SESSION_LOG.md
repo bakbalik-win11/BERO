@@ -454,3 +454,12 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Depodaki bütün dosyaların içerik ve bağlantı denetimi henüz tamamlanmadı. Kalan deney metadata/protokol dosyalarında eski alanlar, adlandırma farklılıkları ve başka çelişkiler için tarama sürdürülmeli.
 - **Sonraki adım:** Değiştirilen dosyaları GitHub'dan yeniden okuyup içeriklerini doğrula; ardından proje içindeki Markdown/YAML bağlantılarını ve karar ifadelerini tarayarak kalan bulguları düzelt.
 - **Kanıt:** [Kalibrasyon prosedürü](../calibration/PROCEDURE.md), [T006](../tasks/T006-calibration.md), [E02](../experiments/E02-resistive-steady/protocol.md), [STATUS](../STATUS.md), [ROADMAP](../ROADMAP.md), [İlerleme ağacı](../PROGRESS_TREE.md), [Deney indeksi](../experiments/README.md), [E00 sonuç kaydı](../experiments/E00-bias-adc-baseline/results.md).
+
+## 2026-10-29 — Tutarlılık denetimi: eski etiket ve kalibrasyon ifadeleri
+
+- **HEDEF:** PZEM'in proje içi referans olduğu, sabit 3 saniyenin nihai etiket kuralı olmadığı ve bağımsız True-RMS referans cihazının zorunlu tutulmadığı kararlarını ana belgelerle eşitlemek.
+- **LOG:** Proje README'sindeki “3 s başlangıç süresi” ifadesi deney verisiyle kararlı/geçiş alanı belirleme ilkesiyle değiştirildi. ROADMAP'teki “en az üç seviyede kalibrasyon” maddesi, PZEM referanslı model değerlendirmesi ve eğitim/değerlendirme ayrımıyla netleştirildi. Açık sorulardaki “bağımsız referans” ifadesi PZEM'e göre düşük akım kararlılığı ve ±%4 sapma sorusuna dönüştürüldü.
+- **SONUÇ:** Üç belgedeki güncel karar ifadeleri yazım sonrası yeniden okunarak doğrulandı. Fiziksel deney, firmware derlemesi ve CI çalıştırılmadı.
+- **Açık kalanlar:** Depodaki tüm deney protokolleri/metadata dosyaları ve Markdown bağlantılarının tam denetimi sürüyor; bu değişiklikler tam denetimin bittiği anlamına gelmez.
+- **Sonraki adım:** Deney belgeleri arasında YAML şeması, sonuç kayıtları ve kabul ölçütlerini karşılaştırmak; kırık bağlantıları topluca doğrulamak.
+- **Kanıt:** [Proje README](../README.md); [ROADMAP](../ROADMAP.md); [Açık sorular](../docs/open-questions.md).
