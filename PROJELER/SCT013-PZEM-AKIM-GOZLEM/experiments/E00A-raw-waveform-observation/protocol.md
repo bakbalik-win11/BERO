@@ -25,10 +25,10 @@
 5. Ham örnekleri değiştirmeden yerel dosyada sakla. Ham veri varsayılan olarak Git'e eklenmez.
 6. Her kayıt için ortalama, minimum, maksimum, tepe-tepe aralığı ve standart sapma hesapla. Sonuçları koşullara göre tek tabloda karşılaştır.
 7. Beklenen örnek sayısını hedef hız × gerçek kayıt süresi ile yaklaşık hesapla ve okunan örnek sayısıyla karşılaştır.
-8. İstatistikleri açıklamak veya şüpheli bir durumu kontrol etmek gerekiyorsa kayıttan ADC-zaman grafiği üret. Sürekli canlı grafik, yavaş oynatma ve gelişmiş osiloskop arayüzü zorunlu değildir.
+8. Her koşulun ham ADC örneklerini bilgisayarda ADC-değer/zaman grafiğinde görselleştir. Bu grafik ilk incelemenin temel çıktısıdır; canlı grafik veya gelişmiş osiloskop arayüzü zorunlu değildir. Grafiğin yanında istatistikleri karşılaştır ve kaydın neyi gösterdiğini/sınırlamalarını yaz.
 
 ## Yorumlama
-- İlk amaç dalga grafiği üretmek değil, üç koşulun temel istatistiklerini karşılaştırmaktır.
+- İlk amaç ham ADC örneklerini kaydetmek ve bilgisayarda görselleştirmektir; istatistikler grafiğin yorumlanmasına ve üç koşulun karşılaştırılmasına yardımcı olur.
 - Ortalama, min/max, tepe-tepe aralığı ve standart sapma ham ADC değerlerinin tanımlayıcı istatistikleridir; doğrudan akım ölçümü değildir.
 - Standart sapma yalnız gürültüyü ölçmez; yükün oluşturduğu gerçek AC sinyal de bu değeri artırabilir.
 - Örnek sayısının hedefle eşleşmesi, örnekleme aralıklarının kusursuz olduğunu veya hiç örnek kaybolmadığını kanıtlamaz.
