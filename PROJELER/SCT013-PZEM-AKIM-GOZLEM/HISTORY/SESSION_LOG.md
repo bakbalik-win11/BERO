@@ -362,3 +362,14 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Bu kayıt, tüm deponun baştan sona kapsamlı tutarlılık denetiminin yapıldığı anlamına gelmez. Sohbet bağlamından bağımsız devam edebilmek için her yeni oturumda protokoldeki gibi güncel depo kaynakları okunup karşılaştırılmalıdır.
 - **Sonraki adım:** Her anlamlı yeni bilgi ortaya çıktığında doğru dosyaya anında kaydet; oturum sonunda ilgili görev, STATUS, ROADMAP ve günlük kayıtlarının birbiriyle uyumunu kontrol et.
 - **Kanıt:** [Kişisel notlar](../../KISISEL_NOTLAR.md); [proje ilkeleri](../ILKELER.md); [T001](../tasks/T001-hardware-inventory.md); [T002](../tasks/T002-safety-checklist.md); [STATUS](../STATUS.md); [ROADMAP](../ROADMAP.md).
+
+
+## 2026-10-29 — E08 planının depo genelinde eşitlenmesi
+
+- **Kullanıcı kararı:** SCT'yi tanıma deneyleri şu sırayla yapılacak: (1) yüksüz uzun okuma, (2) 100 W akkor ampulde hız × kablo turu karşılaştırması, (3) aynı karşılaştırmanın 150 W akkor ve 8,5 W LED'de tekrarı, (4) ardından aç-kapa davranışı.
+- **Karşılaştırma kapsamı:** Hedef hızlar 1/2/2,5 kS/s; iletken turu 1/2/4; aynı örnek penceresinden bias çıkarılmış RMS, mutlak Peak ve Peak-to-Peak. Ortalama, standart sapma, min/max, örnek sayısı ve gerçekleşen örnekleme hızı da kaydedilecek. PZEM veya başka ESP ortalama akımı varsa yalnız genel koşul notu; E08'de SCT pencereleriyle zaman eşleştirmesi yapılmayacak.
+- **Gerekçe:** Yüksüz kayıt temel gürültü/bias davranışını; 100 W matrisi hız ve tur etkilerini; 150 W ve LED karşılaştırması yük türü/seviyesi etkisini; aç-kapa testi geçiş ve kararlı görünen bölgeleri anlamak için planlandı. Kararlılık eşiği, gereken pencere sayısı ve kesin kayıt süresi önceden belirlenmeyecek.
+- **Depoda yapılanlar:** E08 açıklaması, protokolü, metadata'sı, sonuç şablonu ve dört aşama gerekçe dosyası eklendi. `experiments/README.md`, `STATUS.md`, `ROADMAP.md`, proje `README.md`, `docs/open-questions.md` ve `tasks/README.md` E08 kapsamı/bağlantılarıyla eşitlendi. E07 protokolü/metadata/results dosyalarına E08 güncel planına yönlendirme eklendi; E07 geçmişteki uygulanmamış tasarım olarak korunuyor.
+- **Aktif iş sırası:** T005 ve E00/E01 yüksüz temel ADC ölçüm hazırlığı hâlâ sıradaki iş; E08 planlandı fakat uygulanmadı.
+- **Doğrulama:** E08 dosyaları, deney indeksi ve ana durum belgeleri GitHub'dan yeniden okundu; aşama bağlantıları kontrol edilip README'deki dosya yolları düzeltildi. Fiziksel donanım kurulumu, firmware derlemesi, test veya ölçüm yapılmadı.
+- **Kanıt:** [E08 açıklaması](../experiments/E08-sct-characterization/README.md), [protokol](../experiments/E08-sct-characterization/protocol.md), [STATUS](../STATUS.md), [ROADMAP](../ROADMAP.md), [açık sorular](../docs/open-questions.md).
