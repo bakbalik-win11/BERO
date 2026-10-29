@@ -40,15 +40,16 @@ BERO — SCT013 + PZEM gözlem sistemi
 │   ├── Okuma zamanları ve alanlar
 │   └── Geçersiz okumaların işlenmesi
 │
-├── 4. Zaman hizalama ve kararlı alanlar
-│   └── SCT/PZEM akışlarını karşılaştırılabilir hâle getirme
+├── 4. Kararlı alanların belirlenmesi ve akış ilişkisi
+│   └── Deney/istatistik temelli alan seçimi; sabit zaman maskesi nihai kural değil
 │
 ├── 5. Veri şeması ve kayıt
 │   └── Özet kayıtlar + gerektiğinde kısa ham olay kesitleri
 │
 ├── 6. Deneyler
 │   ├── E03–E06: PZEM davranışı, hız ve yük senaryoları
-│   └── E08: SCT karakterizasyonu için güncel plan
+│   ├── E07: önceki uygulanmamış plan (tarihçe)
+│   └── E08: güncel SCT karakterizasyon planı (T005/E00/E01 sonrasında)
 │
 ├── 7. Python analizi ve etiketleme
 │   └── Kararlı bölgeleri belirleme, PZEM'i eğitim referansı olarak kullanma
@@ -86,3 +87,10 @@ Faz 2–8, yol haritasındaki daha sonraki iş alanlarıdır; bu görünüm onla
 - **HEDEF:** Depoyu baştan sona okumadan genel ilerlemeyi ve doğru ayrıntı dosyasını bulabilmek.
 - **LOG:** Bu navigasyon ağacı mevcut STATUS, ROADMAP, görev listesi, deney indeksi ve fikir havuzuna dayanarak oluşturuldu.
 - **SONUÇ:** İlk sürüm genel yön bulma içindir; durum değiştikçe STATUS.md ile birlikte güncellenecek. Fiziksel deney veya firmware testi bu dosya nedeniyle yapılmış sayılmaz.
+
+
+## Denetim notu — 2026-10-29
+- PZEM, eğitim/değerlendirme referans akışıdır; kusursuz ground truth veya bağımsız True-RMS standardı olarak kabul edilmez.
+- Kalibrasyon/model kabul hedefi T003'teki ±%4 PZEM-referans sapmasıdır; bağımsız mutlak doğruluk iddiası değildir.
+- Sabit 3 saniyelik geçiş maskesi nihai etiketleme kuralı değildir. Kararlı alan ölçütleri deney ve analizle geliştirilecektir.
+- Güncel sıra: E00A → E00/T005/E01 temel okumaları → E08 karakterizasyonu. E07 tarihsel/uygulanmamış plandır.
