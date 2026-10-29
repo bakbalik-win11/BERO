@@ -8,6 +8,7 @@ Her deneyde protocol.md, metadata.yaml ve results.md bulunur. Ham veri varsayıl
 - E04 — PZEM alanlarının değişim zamanları
 - E05 — Örnekleme hızı karşılaştırması
 - E06 — Yük senaryoları / clipping
-- [E07 — SCT kararlılık gözlemi: basamaklı yükler ve örnekleme hızı](E07-sct-stability-step-tests/protocol.md) — üç tur; her turda boşta, 100 W, 150 W ve 8,5 W LED; örnekleme hızı turdan tura 1 / 2 / 2,5 kS/s hedefleriyle değişir.
+- [E07 — SCT kararlılık gözlemi: basamaklı yükler ve örnekleme hızı](E07-sct-stability-step-tests/protocol.md) — önceki basamaklı gözlem planı.
+- [E08 — SCT sinyalini tanıma](E08-sct-characterization/README.md) — yüksüz uzun okuma; 100 W ile hız × tur matrisi; 150 W ve 8,5 W LED karşılaştırması; ardından aç-kapa davranışı.
 
-E00–E07 deneyleri plan/protokol düzeyindedir; E07 dahil hiçbir fiziksel deneyin sonucu henüz yok.
+E00–E08 deneyleri plan/protokol düzeyindedir; fiziksel ölçüm sonuçları henüz yok.
