@@ -64,6 +64,8 @@ Faz 2–8, yol haritasındaki daha sonraki iş alanlarıdır; bu görünüm onla
 
 ## Depoda nereye bakılır?
 
+| Deneyin nedenini, uygulama kodunu ve kanıtını birlikte izlemek | [EXPERIMENT_LEDGER.md](EXPERIMENT_LEDGER.md) |
+
 | İhtiyacın | İlk bakılacak dosya |
 |---|---|
 | Nerede kaldık, sıradaki iş ne? | [STATUS.md](STATUS.md) |
