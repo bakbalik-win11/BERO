@@ -1,6 +1,6 @@
 # Proje durumu
 
-**Genel görünüm:** [İlerleme ağacı — PROGRESS_TREE.md](PROGRESS_TREE.md). Deneylerin nedenini, kod/kanıt durumunu ve sonraki karar kapısını izlemek için [Deney ve karar izleme defteri](EXPERIMENT_LEDGER.md) kullanılır. Depoyu baştan sona okumadan genel resmi görmek için önce ilerleme ağacına, ardından bu dosyadaki güncel duruma bak.
+**Genel görünüm:** [İlerleme ağacı — PROGRESS_TREE.md](PROGRESS_TREE.md). Deneylerin nedenini, kod/kanıt durumunu ve sonraki karar kapısını izlemek için [Deney ve karar izleme defteri](EXPERIMENT_LEDGER.md) kullanılır. Projenin kişisel veri kümesi, model öğrenimi ve kabul edilebilir sınırlarına ilişkin yaklaşım [proje felsefesinde](docs/project-philosophy.md) kayıtlıdır. Depoyu baştan sona okumadan genel resmi görmek için önce ilerleme ağacına, ardından bu dosyadaki güncel duruma bak.
 
 **Son güncelleme:** 2026-10-29 — İlk hedef netleştirildi: SCT ham ADC verisini oku, kaydet ve görselleştir; PZEM/akım formülü/MCP3208 ilk aşamanın kapsamı değil  
 **Belge denetimi:** TAMAMLANDI — temel durum/karar dosyaları, deney sırası, hedef alan sözlüğü ve 87 Markdown dosyasındaki göreli bağlantı hedefleri kontrol edildi; bulunan tek kırık göreli bağlantı düzeltildi. Bu yalnızca depo belgelerinin denetimidir; fiziksel veya yazılım doğrulaması değildir. **Fiziksel deney hazırlığı:** BEKLEMEDE — seçilecek kart/GPIO gerçek kart üzerindeki pinout ile eşleştirilmeli, ADR-007'deki 10 µF değişikliği fiilen uygulanıp kayda geçirilmeli, ham kayıt formatı ve yerel dosya yolu kullanılmalıdır. JSON Schema validator, YAML parser, firmware derlemesi, CI ve fiziksel test bu turda çalıştırılmadı. İlk teknik deney E00A olarak korunuyor.  
@@ -95,3 +95,10 @@ E00 protokolü: [Bias-only ADC baseline](experiments/E00-bias-adc-baseline/proto
 Kullanıcıyla mutabık kalınan sıra E08 olarak kaydedildi: (1) SCT yüksüz uzun okuma ile temel gürültü/bias davranışı, (2) 100 W akkor ile 1/2/4 kablo turu × 1/2/2,5 kS/s matrisi, (3) aynı matrisin 150 W akkor ve 8,5 W LED'de tekrarı, (4) sonuçlar görüldükten sonra aç-kapa ve kararlı görünen bölgelerin incelenmesi. Her pencerenin aynı örneklerinden bias çıkarılmış RMS, mutlak Peak ve Peak-to-Peak hesaplanır; yardımcı istatistikler ve gerçekleşen örnekleme hızı kaydedilir. PZEM/başka ESP ortalama akımı varsa genel koşul notudur; SCT ile zaman eşleştirmesi yapılmaz. Kararlılık eşiği, pencere sayısı ve kesin kayıt süresi önceden belirlenmez.
 
 [E08 açıklaması](experiments/E08-sct-characterization/README.md) · [Protokol](experiments/E08-sct-characterization/protocol.md). E08 planlandı; fiziksel ölçüm yapılmadı. Aktif sıradaki iş hâlâ T005/E00-E01 yüksüz temel ölçüm hazırlığıdır; E08 bunun ardından uygulanacak.
+
+
+## Model yaklaşımı — kapsam notu (2026-10-29)
+
+BERO piyasaya sürülecek evrensel bir akım ölçer değildir. Evdeki sınırlı aygıt ve yüklerden zamanla büyüyen birleşik veri kümesi üzerinde öğrenen kişisel model hedeflenir. Eğitim kümesinde çok iyi sonuç veya aşırı öğrenme otomatik başarısızlık sayılmaz; hedef mevcut ev içi veri kümesine uyumu geliştirmektir. Eğitim sonucu, birleşik etiketli veri kümesi sonucu ve varsa eğitimde kullanılmamış kayıt sonucu ayrı raporlanır; bu ayrım ticari genelleme sertifikası için değil, gelişimi izlemek içindir.
+
+Daha önce görülmemiş veya çok yüksek akımlı bir yükün ADC aralığını aşması, doygunluk oluşturması ya da modelin anlamlı tahmin üretememesi kabul edilebilir. Her yükü ölçmek şart değildir; bu durumlar kaydedilir ve ölçülmeyen akım için değer uydurulmaz. Ayrıntı: [proje felsefesi](docs/project-philosophy.md). Bu değişiklik yalnızca dokümantasyondur; model kodu ve fiziksel ölçüm yoktur.
