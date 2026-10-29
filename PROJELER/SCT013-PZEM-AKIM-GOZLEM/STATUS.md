@@ -2,7 +2,7 @@
 
 **Son güncelleme:** 2026-10-29  
 **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı  
-**Sıradaki iş:** Önce [E00A — Ham sinyal gözlemi ve örnekleme hızı](experiments/E00A-raw-waveform-observation/README.md) (PLANLANDI); ardından [E00 — Bias ADC karşılaştırması](experiments/E00-bias-adc-baseline/protocol.md) ve [T005 — ADC temel okumaları ve E01 gürültü tabanı](tasks/T005-noise-floor.md). E00A, paketleme kararından önce ham dalgayı farklı hızlarda görme ve temel istatistikleri karşılaştırma adımıdır. T005 — PLANLANDI. İlk önce SCT bağlamadan bias noktasında `analogRead()` ham sayısı ile `analogReadMilliVolts()` karşılaştırılacak; sonra SCT bağlıyken akım yok durumunda aynı iki okuma yapılacak; uzun E01 gürültü kaydı daha sonraya bırakıldı. T003, PZEM'e göre ±%4 bağıl sapma ve Python `OK` karar kuralı belirlenerek kapatıldı. T001 envanter ve T002 güvenlik kontrolü, kullanıcının tamamladığını bildirdiği bilgiler esas alınarak kaydedilip kapatıldı.  
+**Sıradaki iş:** Önce [E00A — Ham sinyal kaydı ve temel istatistikler](experiments/E00A-raw-waveform-observation/README.md) (PLANLANDI); ardından [E00 — Bias ADC karşılaştırması](experiments/E00-bias-adc-baseline/protocol.md) ve [T005 — ADC temel okumaları ve E01 gürültü tabanı](tasks/T005-noise-floor.md). E00A'nın ana çıktısı üç koşulun temel istatistik karşılaştırmasıdır; ilk geçişte tek ESP32 ve 2 kS/s başlangıç hızı kullanılır, grafik yalnız gerektiğinde tanı aracıdır. T005 — PLANLANDI. İlk önce SCT bağlamadan bias noktasında `analogRead()` ham sayısı ile `analogReadMilliVolts()` karşılaştırılacak; sonra SCT bağlıyken akım yok durumunda aynı iki okuma yapılacak; uzun E01 gürültü kaydı daha sonraya bırakıldı. T003, PZEM'e göre ±%4 bağıl sapma ve Python `OK` karar kuralı belirlenerek kapatıldı. T001 envanter ve T002 güvenlik kontrolü, kullanıcının tamamladığını bildirdiği bilgiler esas alınarak kaydedilip kapatıldı.  
 **Öncelikli SCT:** SCT013-030 (30 A / 1 V)  
 **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); CT modeli kullanıcı tarafından PZCT-02 (0–100 A) olarak belirtildi.  
 **Bias üretim alt devresi:** TAMAMLANDI — kullanıcı onayı. RN130421 + KBU6M + 2200 µF / 35 V + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) kondansatör. Bağımsız ölçüm raporu bu kayda eklenmedi.  
@@ -58,6 +58,10 @@
 - T003 TAMAMLANDI: model tahmini geçerli PZEM akımından ±%4 bağıl sapma içindeyse Python sonucu `OK` işaretler. Kararlı alan gözlemi ve SCT istatistikleri ayrı görev/deneylerde ele alınır. Test yükleri ilgili test kaydında beyan edilecek.
 
 Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi. E07 protokolü eklendi; kararlılık eşiği/pencere sayısı henüz belirlenmedi ve fiziksel test yapılmadı.
+
+## Öncelikli ilk deney — E00A (2026-10-29)
+
+E00A, E00/E01 hazırlığından önce gelir. İlk geçişte tek ESP32 ile bias-only, SCT yüksüz ve 100 W akkor koşullarında yaklaşık 1 saniyelik ham kayıt alınır; 2 kS/s başlangıç hedefi kullanılır. Ortalama, min/max, tepe-tepe aralığı, standart sapma, gerçek süre ve örnek sayısı ana çıktılardır. Grafik yalnızca istatistikleri yorumlamak veya şüpheli örnekleri incelemek için üretilir. Farklı hızlar, üç ESP32 eşzamanlaması, yavaş oynatma, DMA veya çift buffer ilk kabul koşulu değildir. Fiziksel ölçüm yapılmadı.
 
 ## İlk test sıralaması — 2026-10-29
 
