@@ -27,3 +27,8 @@ source_documents:
   - "SCT013_30A_1V_ESP32_Raporu.docx (kullanıcı tarafından sağlanan genel teknik rapor; fiziksel test değildir)"
   - "ct-akım-trafosu-satürasyonu.txt (genel CT satürasyon riski notu; BERO'da satürasyon gözlenmiş değildir)"
 analog_frontend_change_from_source_review: false
+bias_divider_resistors: "2 x 10 kOhm; reported midpoint approximately 1.65 V"
+bias_midpoint_capacitor_currently_reported: "100 nF (104) to GND; reported pre-change configuration"
+bias_midpoint_capacitor_planned_for_E01: "10 uF to GND per ADR-007; physical implementation pending"
+adc_pin_shunt_capacitor_planned_for_initial_E01: false
+bias_capacitor_decision: "ADR-007 recommendation documented; record actual installed value at test time"
