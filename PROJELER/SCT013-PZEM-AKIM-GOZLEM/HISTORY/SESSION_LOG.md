@@ -1,5 +1,17 @@
 # Oturum günlüğü
 
+## 2026-10-29 — E07 SCT kararlılık basamak testi planlandı
+
+- **Durum:** UYGULANDI — deney protokolü ve bağlı proje durum kayıtları depoya yazıldı; fiziksel deney yapılmadı.
+- **Hedef ve kabul ölçütü:** Yalnız SCT sinyalinden kararlı bölgeleri belirlemeye yönelik sınırlı bir deney planını kaydetmek. Kararlılık eşiği ve gereken pencere sayısı deney sonuçlarından çıkarılacak; önceden varsayılmayacak.
+- **Yapılan:** E07 protokolü, metadata ve boş sonuç kaydı oluşturuldu. Üç tur tanımlandı; her turda boşta, 100 W akkor, 150 W akkor ve 8,5 W LED basamakları var. Örnekleme hızı turdan tura 1 / 2 / 2,5 kS/s hedefleriyle değişecek. Her 200 ms başlangıç penceresinde aynı örneklerden RMS, Peak, Peak-to-Peak ve yardımcı istatistikler hesaplanıp Python'da analiz edilecek.
+- **Kapsam sınırı:** Bu deney PZEM ile kararlı alan eşleştirmeyi hedeflemez. Üç turdan sonra eldeki veri değerlendirilir; yalnız önemli ve cevapsız bir soru varsa yeni deney önerilir.
+- **Doğrulama:** E07 protokolü, metadata ve results dosyaları GitHub'a yazıldı. Bu oturumda donanım kurulmadı, firmware derlenmedi, örnek alınmadı ve fiziksel ölçüm yapılmadı. STATUS, ROADMAP ve deney indeksi E07 bağlantısıyla güncellendi.
+- **Açık kalanlar:** ESP32 kartı/ADC GPIO'su ve fiziksel örnekleme uygulaması donanım/firmware aşamasında seçilecek. Gerçek örnekleme hızı ölçülecek. Kararlılık eşiği ve ardışık pencere sayısı sonuçlardan çıkarılacak.
+- **Sonraki adım:** Mevcut temel ADC ve yüksüz hazırlık sırasını tamamla; E07'yi kodlamadan önce bu protokolü esas al.
+- **Kanıt:** [E07 protokolü](../experiments/E07-sct-stability-step-tests/protocol.md); [E07 metadata](../experiments/E07-sct-stability-step-tests/metadata.yaml); [E07 sonuç kaydı](../experiments/E07-sct-stability-step-tests/results.md); [STATUS](../STATUS.md); [ROADMAP](../ROADMAP.md).
+
+
 ## 2026-10-29 — İlk deney SCT bağlanmadan ADC API'lerini karşılaştırmak
 
 - **Durum:** PLAN UYGULANDI; fiziksel deney yapılmadı.
