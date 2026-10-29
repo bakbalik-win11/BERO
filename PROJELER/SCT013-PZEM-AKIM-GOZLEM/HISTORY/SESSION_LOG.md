@@ -435,3 +435,22 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **HEDEF:** Kullanıcının deponun bütün dosyalarını okumak zorunda kalmadan BERO'nun genel yapısını, mevcut fazını ve sıradaki adımını kabaca görebilmesini sağlamak.
 - **LOG:** `PROGRESS_TREE.md` oluşturuldu. Fazlar, tamamlanan hazırlık işleri, E00A'nın sıradaki deney olması ve sonraki ana alanlar özetlendi. STATUS.md'ye ağaç bağlantısı eklendi; AGENTS.md'ye aktif durum değiştikçe ağacı STATUS ile birlikte güncel tutma kuralı eklendi.
 - **SONUÇ:** Ağaç genel bakış/navigasyon içindir; görev ve deney belgelerinin yerine geçmez. Yazılan dosyalar yeniden okunarak doğrulanacak. Fiziksel deney veya firmware testi yapılmadı.
+
+
+## 2026-10-29 — Depo bütünlüğü denetimi ve tutarlılık düzeltmeleri
+
+- **HEDEF:** Depo, projenin teknik başarısından daha öncelikli olduğu için aktif kararları, deney sırasını, görev durumlarını ve yönlendirme bağlantılarını tutarlı tutmak; eksik kayıtları tamamlamak.
+- **LOG — yapılan değişiklikler:**
+  - `calibration/PROCEDURE.md` ve `tasks/T006-calibration.md`, PZEM'in eğitim/değerlendirme referans akışı olduğu, True-RMS referans cihazının zorunlu olmadığı ve ±%4 hedefinin PZEM'e göre uyumu ifade ettiği şekilde güncellendi.
+  - `experiments/E02-resistive-steady/protocol.md` aynı referans ve kararlı alan yaklaşımıyla güncellendi.
+  - `ROADMAP.md` içindeki yinelenen T003 bağlantısı kaldırıldı; olaydan sonra sabit 3 saniye etiketleme maddesi, deney verisiyle kararlı/geçiş alanı belirleme ilkesiyle değiştirildi.
+  - `STATUS.md` eski E07 sonraki iş maddesi E08'in güncel plan olduğu şekilde düzeltildi; G1 açıklaması PZEM'e uyum hedefi olarak netleştirildi.
+  - `PROGRESS_TREE.md` güncel deney sırası ve sabit zaman maskesinin nihai etiket kuralı olmadığı bilgisiyle güncellendi.
+  - `IDEA_BACKLOG.md` içindeki I004, oluşturulmuş `PROGRESS_TREE.md` dosyasına bağlı olarak GÖREVE ALINDI durumuna getirildi.
+  - `AGENTS.md` içindeki yinelenen HEDEF/LOG/SONUÇ bölümü tekilleştirildi.
+  - E00 için eksik `results.md` oluşturuldu ve deney indeksine bağlandı. Dosya açıkça ölçüm yapılmadığını belirtiyor.
+  - E08 Aşama 1 için yinelenen ayrıntı dosyası, tek esas belge olan `stage-01-no-load.md` dosyasına yönlendirildi; geçmiş dosya silinmedi.
+- **SONUÇ:** Belirtilen dosyalar GitHub'a yazıldı. Bu çalışma yalnızca belge/bağlantı tutarlılığı düzenlemesidir; firmware derlenmedi, fiziksel donanım kurulmadı, deney/ölçüm yapılmadı ve otomatik kontrol/CI çalıştırılmadı.
+- **Açık kalanlar:** Depodaki bütün dosyaların içerik ve bağlantı denetimi henüz tamamlanmadı. Kalan deney metadata/protokol dosyalarında eski alanlar, adlandırma farklılıkları ve başka çelişkiler için tarama sürdürülmeli.
+- **Sonraki adım:** Değiştirilen dosyaları GitHub'dan yeniden okuyup içeriklerini doğrula; ardından proje içindeki Markdown/YAML bağlantılarını ve karar ifadelerini tarayarak kalan bulguları düzelt.
+- **Kanıt:** [Kalibrasyon prosedürü](../calibration/PROCEDURE.md), [T006](../tasks/T006-calibration.md), [E02](../experiments/E02-resistive-steady/protocol.md), [STATUS](../STATUS.md), [ROADMAP](../ROADMAP.md), [İlerleme ağacı](../PROGRESS_TREE.md), [Deney indeksi](../experiments/README.md), [E00 sonuç kaydı](../experiments/E00-bias-adc-baseline/results.md).
