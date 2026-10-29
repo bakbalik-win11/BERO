@@ -9,7 +9,7 @@
 - Bias orta noktası ile GND arasına **10 µF elektrolitik kondansatör, mevcut 104 (100 nF) seramikle paralel** bağlanmasını öneriyoruz. Elektrolitik kullanılırsa pozitif uç Vmid'e, negatif uç GND'ye bağlanır. Gerilim değeri bu düşük bias seviyesini güvenli biçimde karşılamalı; 6,3 V veya üzeri sınıf uygundur.
 - Mevcut 104 kodlu 100 nF kondansatör yerinde kalır. E00A'nın ilk SCT bağlantılı koşulundan önce 10 µF kondansatör aynı Vmid ve GND noktalarına eklenerek paralel bağlanır. Böylece E00A, E00 ve E01 boyunca aynı planlanan bias orta noktası düzeni korunur. Fiziksel olarak kurulana kadar bu yalnızca plandır.
 - 104 (100 nF), bias orta noktası ile GND arasında 10 µF ile paralel kalacaktır. ADC pinine ayrıca bir 100 nF bağlamak ayrı ve **opsiyonel** bir yüksek frekans/ADC gürültü azaltma seçeneğidir. GPIO henüz seçilmediği ve bu kondansatör ölçüm bant genişliğini etkileyebileceği için otomatik olarak eklenmeyecek; ilk ölçümlerden ve gerçek bağlantı planından sonra değerlendirilecektir.
-- Bu, ölçülmüş performans sonucu değildir. E01 öncesi fiziksel uygulama ve ardından kayıt alınması beklenmektedir.
+- Bu, ölçülmüş performans sonucu değildir. İlk SCT bağlantılı ölçüm E00A'dan önce fiziksel uygulama yapılması ve ardından kayıt alınması beklenmektedir.
 
 ## Hesap ve gerekçe
 
