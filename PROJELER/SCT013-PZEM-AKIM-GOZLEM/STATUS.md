@@ -2,7 +2,8 @@
 
 **Genel görünüm:** [İlerleme ağacı — PROGRESS_TREE.md](PROGRESS_TREE.md). Depoyu baştan sona okumadan genel resmi görmek için önce bu ağaca, ardından bu dosyadaki güncel duruma bak.
 
-**Son güncelleme:** 2026-10-29 — depo tutarlılığı denetimi  
+**Son güncelleme:** 2026-10-29 — depo tutarlılığı denetimi sürüyor  
+**Depo güvenlik kapısı:** AÇIK — denetim bitmeden deney başlatılmayacak. İlk teknik deney E00A olarak korunuyor; önce dosya/karar/bağlantı tutarlılığı ve kayıt şeması denetimi tamamlanacak. Bu denetim fiziksel test veya firmware doğrulaması değildir.  
 **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı  
 **Sıradaki iş:** Önce [E00A — Ham sinyal kaydı ve temel istatistikler](experiments/E00A-raw-waveform-observation/README.md) (PLANLANDI); ardından [E00 — Bias ADC karşılaştırması](experiments/E00-bias-adc-baseline/protocol.md) ve [T005 — ADC temel okumaları ve E01 gürültü tabanı](tasks/T005-noise-floor.md). E00A'nın ana çıktısı üç koşulun temel istatistik karşılaştırmasıdır; ilk geçişte tek ESP32 ve 2 kS/s başlangıç hızı kullanılır, grafik yalnız gerektiğinde tanı aracıdır. T005 — PLANLANDI. İlk önce SCT bağlamadan bias noktasında `analogRead()` ham sayısı ile `analogReadMilliVolts()` karşılaştırılacak; sonra SCT bağlıyken akım yok durumunda aynı iki okuma yapılacak; uzun E01 gürültü kaydı daha sonraya bırakıldı. T003, PZEM'e göre ±%4 bağıl sapma ve Python `OK` karar kuralı belirlenerek kapatıldı. T001 envanter ve T002 güvenlik kontrolü, kullanıcının tamamladığını bildirdiği bilgiler esas alınarak kaydedilip kapatıldı.  
 **Öncelikli SCT:** SCT013-030 (30 A / 1 V)  
@@ -31,7 +32,7 @@
 | PZEM-004T | V3.0 | Kullanıcı bildirimi |
 | Masaüstü güç kaynağı | 5 V / 1,8 A | Kullanıcı bildirimi |
 | Test yükleri | 100 W ve 150 W ampuller ana deney yükleri; 5 W LED ampul farklı PF için | Planlanan test yükleri; gerçek güç, akım ve PF ilgili testte ölçülecek |
-| Breadboard bias alt devresi | Mevcut kayıt: 2 × 10 kΩ, orta nokta ve GND'ye 104 (100 nF); E01 öncesi 10 µF önerisi ADR-007'de | Mevcut durum kullanıcı bildirimi; değişiklik bekliyor |
+| Breadboard bias alt devresi | Mevcut kayıt: 2 × 10 kΩ, orta nokta ve GND'ye 104 (100 nF); ADR-007 uyarınca ilk SCT bağlantılı ölçümden önce paralel 10 µF planı | Mevcut durum kullanıcı bildirimi; değişiklik bekliyor |
 | Jack yuvaları ve bağlantı/ölçüm parçaları | Tam takım mevcut | Kullanıcı bildirimi |
 
 ## Mevcut bilgi
@@ -77,7 +78,7 @@ E00 protokolü: [Bias-only ADC baseline](experiments/E00-bias-adc-baseline/proto
 
 - Kullanıcının sağladığı SCT013_30A_1V_ESP32_Raporu.docx ve ct-akım-trafosu-satürasyonu.txt okundu.
 - SCT013-030 nominal oranı, gerilim çıkışlı modelde dahili burden bilgisi ve genel satürasyon riskleri donanım referanslarına eklendi.
-- [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) kapsamında, E01 öncesi bias orta noktasındaki mevcut 100 nF kondansatöre paralel 10 µF elektrolitik kondansatör eklenmesi önerildi. Fiziksel değişiklik ve sonuç ölçümü henüz yapılmadı; ADC GPIO'suna ek 100 nF kararı verilmedi.
+- [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) kapsamında mevcut 100 nF kondansatöre paralel 10 µF eklenmesi, E00A'nın ilk SCT bağlantılı koşulundan önce planlandı. Fiziksel değişiklik ve sonuç ölçümü henüz yapılmadı; ADC GPIO'suna ek 100 nF kararı verilmedi.
 - Rapordaki genel ESP32/ADS1115/RMS örnek kodları BERO firmware'i olarak alınmadı.
 - Fiziksel ölçüm, ADC okuması, firmware testi ve kalibrasyon yapılmadı.
 
@@ -85,7 +86,7 @@ E00 protokolü: [Bias-only ADC baseline](experiments/E00-bias-adc-baseline/proto
 ## Bias kondansatörü — aktif donanım notu
 
 - Mevcut kayıtlı devrede bias orta noktasından GND'ye 104 (100 nF) bulunur.
-- [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) 10 kΩ + 10 kΩ bölücü ve 50 Hz SCT sinyali için orta noktadaki mevcut 100 nF'ye paralel 10 µF eklenmesini önerir. Değişiklik E01 öncesinde uygulanmalı ve fiziksel olarak yapılana kadar tamamlandı sayılmamalıdır.
+- [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) 10 kΩ + 10 kΩ bölücü ve 50 Hz SCT sinyali için orta noktadaki mevcut 100 nF'ye paralel 10 µF eklenmesini önerir. Değişiklik E00A'nın ilk SCT bağlantılı koşulundan önce planlanmıştır; fiziksel olarak yapılana kadar tamamlandı sayılmaz.
 - ADC pinine ayrıca 100 nF eklenmesi opsiyoneldir; ilk E01 ölçümünde aynı anda ikinci değişken eklememek için şimdilik planlanmadı.
 
 
