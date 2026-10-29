@@ -68,3 +68,7 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 - [ ] Her anlamlı depo oturumunda başlangıç/kapanış protokolünü uygula.
   - **Bitti sayılır:** oturum günlüğü ve STATUS güncellenmiş, ilgili testler çalıştırılmış, doğrulama kanıtı eklenmiş ve PR üzerindeki oturum kapanış kontrolü başarılı.
   - **Sınır:** CI yalnızca kayıt ve süreç alanlarını denetler; ölçüm doğruluğunu veya yeni sohbetin otomatik başlamasını garanti etmez.
+
+## 2026-10-29 — Kaynak doküman incelemesi
+
+SCT013-030 teknik raporu ve CT satürasyonu notu mevcut donanım referanslarına işlendi. Bu belge incelemesi deney/kalibrasyon sonucu değildir ve faz/karar kapısı durumlarını değiştirmez. Sonraki somut iş hâlâ T005/E01 yüksüz ofset ve gürültü tabanı ölçümüdür. Kondansatör değeri ayrıca ele alınana kadar mevcut 104 (100 nF) olarak kayıtlı kalır.
