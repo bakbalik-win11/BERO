@@ -31,7 +31,7 @@ Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 | T004 | Analog ön uç | 1.1 | TAMAMLANDI — belgeleme kapsamı tamamlandı; fiziksel analog davranış ve GPIO eşlemesi doğrulanmış değil | T002, T003 |
 | T005 | ADC temel okumaları ve E01 gürültü tabanı | 1.2 | PLANLANDI — önce SCT bağlı değilken ham ADC ve mV API'leri; sonra SCT bağlı ve akım yok; uzun E01 kaydı daha sonra | T004 |
 | T006 | SCT kalibrasyonu | 1.3 | PLANLANDI | T005 |
-| T007 | Python program mimarisini kullanıcı hedeflerine göre tanımla | 3–7 | DEVAM EDİYOR — ayrı mimari belgesi açıldı; program sayısı ve sorumluluklar sonraki açıklamalarla doldurulacak | HA→PC aktarım hedefi, PZEM/SCT analiz ve etiketleme hedefi |
+| [T007](T007-python-architecture.md) | Python program mimarisini kullanıcı hedeflerine göre tanımla | 3–7 | DEVAM EDİYOR — mimari taslak var; program sayısı, aktarım ve veri sözleşmeleri açık | HA→PC aktarım hedefi, PZEM/SCT analiz ve etiketleme hedefi |
 
 ## Kart açma
 Yeni görev için _template.md dosyasını kopyala; bir sonraki T numarasını kullan, bağımlılıkları ve ölçülebilir kabul koşulunu yaz. Yeni kart eklendiğinde bu tabloyu, ROADMAP.md ve gerekiyorsa STATUS.md'yi güncelle.
