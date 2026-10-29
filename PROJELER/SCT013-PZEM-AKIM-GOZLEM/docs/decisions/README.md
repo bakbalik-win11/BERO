@@ -5,5 +5,6 @@
 - [ADR-003 — PZEM yavaş referans akışı](ADR-003-pzem-as-slow-label.md)
 - [ADR-004 — Sürekli ham veri yok](ADR-004-no-continuous-raw.md)
 - [ADR-005 — Geçersiz okumalar](ADR-005-invalid-readings.md)
+- [ADR-007 — Bias orta noktası kondansatörü](ADR-007-bias-midpoint-capacitor.md)
 
 ADR durumları kararın başlangıç niteliğini korur. Deneyle doğrulanmamış kararları ölçüm sonucu gibi göstermeyin.
