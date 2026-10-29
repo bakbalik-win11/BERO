@@ -1,4 +1,4 @@
-# T005 — E01 gürültü tabanı
+# T005 — ADC temel okumaları ve E01 gürültü tabanı
 
 - **Durum:** PLANLANDI
 - **Faz:** 1.2
@@ -10,14 +10,12 @@
 - PZEM ve diğer ESP kartları ölçülen hattan beslenmiyor; bağımsız besleme düzeni deney kaydında korunacak.
 - 30 saniye yalnızca asgari başlangıç süresidir, üst sınır değildir. Daha uzun, hatta saatler süren kayıt düşünülebilir; kesin süre henüz belirlenmedi.
 
-## Yapılacak
-1. experiments/E01-noise-floor/protocol.md içindeki düzenek ve örnekleme ayarlarını kurulan gerçek donanıma göre kesinleştir.
-2. Donanım kurulduktan sonra bağlantı/güvenlik kontrolünü yap ve hatta akım olmadığını deney kaydına geçir.
-3. Sabit ayarlarda ADC verisi al; ham veriyi sakla ve zaman ekseninde grafikle.
-4. sample_count, ortalama, min/max ve ofset giderilmiş gürültü RMS değerini hesapla.
-5. metadata.yaml içinde gerçek firmware/donanım kimliklerini, besleme düzenini, örnekleme ayarlarını ve gerçek süreyi yaz.
-6. results.md içinde grafiklere ve ham veriye bağlantı ver. Ölçüm yapılana kadar sonuç üretme.
-7. Gürültü tabanından çıkarılabilecek düşük akım sınırını hipotez olarak ayır; tek deneyle genelleme yapma.
+## Sıralama — SCT bağlamadan başlayarak
+1. **İlk test: E00 — bias-only ADC okuması.** SCT bağlı değilken bias noktasını ADC GPIO'suna bağla; aynı döngüde `analogRead()` ham sayısını ve `analogReadMilliVolts()` sonucunu yazdır. Voltmetre okumasıyla karşılaştır. Protokol: [E00](../experiments/E00-bias-adc-baseline/protocol.md).
+2. **İkinci test: SCT bağlı, akım yok.** E00 çalıştıktan sonra SCT'yi bias/ADC düzenine bağla; ölçülen hatta akım yokken iki API'nin sonuçlarını tekrar kaydet. Bu, E01 gürültü tabanının başlangıç koşuludur.
+3. **Sonraki aşama: uzun yüksüz kayıt ve analiz.** [E01 protokolü](../experiments/E01-noise-floor/protocol.md) içindeki 30 saniye veya daha uzun zaman serisi, grafik, ortalama, min/max ve ofset çıkarılmış gürültü RMS analizi bu iki temel karşılaştırmadan sonra yapılacak.
+4. Her aşamada gerçek kart modeli, ADC GPIO, attenuation ayarı, besleme ve fiilî kondansatör düzenini kaydet.
+5. Ölçülmeyen sonuç üretme; düşük akım sınırını hipotez olarak ayır ve tek deneyle genelleme yapma.
 
 ## Kabul ölçütü
 Protokol, metadata, ham veri, grafik ve sonuç birbiriyle bağlanabilir; ölçülmeyen sonuç yoktur. Deney yapılmadığı sürece sonuç durumu açıkça YAPILMADI olarak kalır.
