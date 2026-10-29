@@ -56,6 +56,14 @@ Yalnızca dosyanın var olması ya da bir komutun başarılı dönmesi işi **TA
 - Görev kartının durumunu ancak kanıt destekliyorsa güncelle. Yazılmış belge, fiziksel donanımın doğrulandığı anlamına gelmez.
 - Kabul ölçütleri karşılanmadan ROADMAP.md kutusunu veya karar kapısını işaretleme.
 
+## Her adımın kayıt standardı — zorunlu
+Her anlamlı çalışma/deney adımı için aynı üçlü korunur:
+1. **HEDEF:** Bu adımda hangi soruyu cevaplayacağız, neden yapıyoruz ve başarıyı ne gösterecek?
+2. **LOG:** Gerçekte ne yapıldı; kullanılan donanım/yazılım ve ayarlar nelerdi; hangi ham kayıtlar, zamanlar, örnek sayıları ve gözlemler elde edildi? Yapılmayan işlem açıkça belirtilir.
+3. **SONUÇ:** Kanıt ne gösteriyor, hangi sınırlamalar var ve bir sonraki adım ne olacak? Veri yoksa sonuç uydurulmaz; sonuç “henüz ölçülmedi” olarak kaydedilir.
+
+Bu üçlü deney protokolünde ve sonuç kaydında görünür olmalı; anlamlı depo çalışması sonunda oturum günlüğüne de hedef, yapılan iş, doğrulama ve açık kalanlar eklenir. Her yeni adımın hedefi ve önceki adımın sonucu görülmeden bir sonraki karmaşık adıma geçilmez. Kullanıcıya oturum sonunda hedef/log/sonuç özeti verilir.
+
 ## Görev sözleşmesi
 Her anlamlı depo işi için başlamadan önce hedefi, dosya/alan kapsamını, kabul ölçütlerini ve doğrulama yöntemini tanımla. Çalışma sonunda her kabul ölçütünü tek tek sonuçlandır: geçti, kaldı veya uygulanamadı. Başarısız/çalıştırılmayan testi başarılı olarak sunma.
 
