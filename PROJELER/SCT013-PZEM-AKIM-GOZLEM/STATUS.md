@@ -2,7 +2,7 @@
 
 **Genel görünüm:** [İlerleme ağacı — PROGRESS_TREE.md](PROGRESS_TREE.md). Depoyu baştan sona okumadan genel resmi görmek için önce bu ağaca, ardından bu dosyadaki güncel duruma bak.
 
-**Son güncelleme:** 2026-10-29  
+**Son güncelleme:** 2026-10-29 — depo tutarlılığı denetimi  
 **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı  
 **Sıradaki iş:** Önce [E00A — Ham sinyal kaydı ve temel istatistikler](experiments/E00A-raw-waveform-observation/README.md) (PLANLANDI); ardından [E00 — Bias ADC karşılaştırması](experiments/E00-bias-adc-baseline/protocol.md) ve [T005 — ADC temel okumaları ve E01 gürültü tabanı](tasks/T005-noise-floor.md). E00A'nın ana çıktısı üç koşulun temel istatistik karşılaştırmasıdır; ilk geçişte tek ESP32 ve 2 kS/s başlangıç hızı kullanılır, grafik yalnız gerektiğinde tanı aracıdır. T005 — PLANLANDI. İlk önce SCT bağlamadan bias noktasında `analogRead()` ham sayısı ile `analogReadMilliVolts()` karşılaştırılacak; sonra SCT bağlıyken akım yok durumunda aynı iki okuma yapılacak; uzun E01 gürültü kaydı daha sonraya bırakıldı. T003, PZEM'e göre ±%4 bağıl sapma ve Python `OK` karar kuralı belirlenerek kapatıldı. T001 envanter ve T002 güvenlik kontrolü, kullanıcının tamamladığını bildirdiği bilgiler esas alınarak kaydedilip kapatıldı.  
 **Öncelikli SCT:** SCT013-030 (30 A / 1 V)  
@@ -43,7 +43,7 @@
 - Deneyler ve kalibrasyon sonuçları henüz eklenmedi.
 
 ## Karar kapıları
-- [ ] G1 — SCT RMS kalibrasyonu hata hedefinde ve clipping yok.
+- [ ] G1 — SCT modeli PZEM referans akışına göre önceden belirlenen ±%4 hedefinde değerlendirildi; veri, sınırlamalar ve clipping durumu kaydedildi. Bu, bağımsız mutlak doğruluk kanıtı değildir.
 - [ ] G2 — PZEM okuma durumu izleniyor; geçersiz okumalar özetlerden dışlanıyor.
 - [ ] G3 — örnekleme hızı hedef yüklerde ölçülmüş metriklerle gerekçelendirilmiş.
 
@@ -51,7 +51,7 @@
 1. [x] [T003 — PZEM tabanlı model hata hedefi](tasks/T003-reference-and-error-target.md): ±%4 bağıl sapma; Python geçerli örneklerde `OK` kararı verir.
 2. [x] [T004 — Analog ön uç](tasks/T004-analog-frontend.md): mevcut jack/bias bağlantısı, SCT modelleri ve ESP32 dahili ADC yaklaşımı belgelendi.
 3. [ ] [T005 — E01 gürültü tabanı](tasks/T005-noise-floor.md): donanım kurulduktan sonra yüksüz ADC verisini toplama ve grafikleme.
-4. E00/E01 ve edinim temeli sonrası [E07 SCT kararlılık basamak testi](experiments/E07-sct-stability-step-tests/protocol.md): üç turda dört durum; her turda farklı hedef örnekleme hızı.
+4. E00/E01 temel okumaları sonrasında [E08 SCT karakterizasyon planı](experiments/E08-sct-characterization/README.md) uygulanacak; E07 önceki, uygulanmamış plan olarak korunur.
 
 ## Açık engeller
 - Donanım henüz kurulmadı. Gerçek bağlantı kurulurken SCT jack–breadboard bias bağlantısı ve ESP32 ADC pini uygulanacak donanımla eşleştirilecek; firmware/pin planlama aşamasında GPIO seçimi yapılacak. T004 kapsamında laboratuvar düzeyinde ADC aralığı/clipping hesabı istenmiyor.
