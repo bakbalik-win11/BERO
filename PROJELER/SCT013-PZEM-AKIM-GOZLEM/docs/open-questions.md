@@ -25,3 +25,8 @@ Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konul
 - Temiz yaklaşık 1,65 V bias üretim alt devresi kullanıcı onayıyla tamamlandı: RN130421 6 V / 2 VA → KBU6M köprü → 2200 µF / 35 V → L78L33; ayrı breadboardda 2×10 kΩ ve orta noktadan GND'ye 104 kodlu 100 nF seramik. Bağımsız ölçüm raporu yoksa 1,650 V'nin cihazla ölçüldüğü iddia edilmeyecek.
 
 Açık kalan pin/SSR/ölçüm soruları, fiziksel parçaların eksik olduğu anlamına gelmez; sonraki pin planlama ve deney aşamalarında ele alınacak proje-özel kararlardır.
+
+## 2026-10-29 belge incelemesinden sonra
+
+- SCT013-030 raporundaki 10 µF kondansatör örneği, BERO'daki 104 (100 nF) kondansatörün yerine otomatik geçirilmedi. Kondansatör seçimi/değeri ayrı teknik incelemede ele alınacak; mevcut devre değiştirilmiş sayılmayacak.
+- Satürasyon belgesi genel CT risklerini anlatır; BERO'da satürasyon oluştuğuna dair ölçüm yoktur.
