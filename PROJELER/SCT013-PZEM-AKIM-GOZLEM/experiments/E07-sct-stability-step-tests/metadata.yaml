@@ -1,6 +1,6 @@
 experiment_id: E07-sct-stability-step-tests
 title: "SCT kararlılık gözlemi: basamaklı yükler ve örnekleme hızı"
-status: planned
+status: historical_plan_not_run
 date_start_utc: null
 date_end_utc: null
 operator: null
@@ -33,4 +33,4 @@ stability_threshold: null
 required_consecutive_windows: null
 calibration_id: null
 data_paths: []
-notes: "Yalnız SCT kararlılık bölgelerini inceleme. PZEM eşleştirmesi bu deneyin hedefi değil. Kararlılık eşiği ve pencere sayısı sonuçlardan çıkarılacak; plan üç turla sınırlı. Fiziksel deney yapılmadı."
+notes: "Önceki SCT gözlem planı; fiziksel deney yapılmadı. Güncel kapsamlı karakterizasyon sırası E08 dosyalarında tutulur. E07 ile E08 sonuçları birbiriyle karıştırılmamalıdır."
