@@ -1,10 +1,16 @@
 # E00A — Protokol: ham sinyal kaydı ve temel istatistikler
 
 ## Ön koşullar
-- Kullanılacak ESP32 kartı ve ADC GPIO'su gerçek kart envanterinden doğrulanmalı; pin numarası varsayılmamalı.
+- İlk uygulama adayı envanterdeki klasik ESP32-WROOM-32D kartı ve GPIO34 (ADC1_CH6, giriş-only) olarak belirlenmiştir. Bu henüz fiziksel doğrulama değildir: kullanılacak geliştirme kartının üzerindeki model/işaret ve pinout, kablo bağlamadan önce eşleştirilmelidir. Kart farklıysa GPIO34 varsayılmayacak; uygun ADC1 GPIO yeniden seçilip buraya ve `experiment.yaml` dosyasına yazılacaktır.
 - Ölçüm girişine şebeke gerilimi bağlanmaz. Bias-only ve SCT yüksüz adımlarında fiziksel bağlantı güvenli biçimde kontrol edilir.
 - Bias orta noktası için [ADR-007](../../docs/decisions/ADR-007-bias-midpoint-capacitor.md) kapsamında mevcut 100 nF'ye paralel 10 µF eklenmesi planlanmıştır. Bu değişiklik E00A'nın ilk SCT bağlantılı koşulundan önce uygulanmalı; fiziksel olarak yapılana kadar tamamlandı sayılmaz. Gerçek kurulum, kayda başlamadan kontrol edilip LOG'a yazılır. Üç koşul aynı bias düzeniyle kaydedilmelidir.
 - Bu ilk adımda bir ESP32 ve 2 kS/s hedefi yeterlidir. 2 kS/s doğrulanmış sonuç değil, mevcut başlangıç değeridir.
+
+## Ham kayıt biçimi ve dosya yolu
+- Her koşul için yerel CSV dosyası: `data/raw/E00A/bias_only.csv`, `data/raw/E00A/sct_yuksuz.csv`, `data/raw/E00A/100w_akkor.csv`. Ham dosyalar varsayılan olarak Git'e eklenmez.
+- CSV sütunları: `sample_index,adc_raw`; her satır bir ham ADC örneğidir. `sample_index` sıfırdan başlar, `adc_raw` ise dönüştürülmemiş ADC ham sayısıdır. Ham dosyaya amper veya mV değeri yazılmaz.
+- Her koşulun hedef hızı, gerçek geçen süresi, örnek sayısı ve firmware sürümü/commit'i `results.md` LOG alanına yazılır. Yaklaşık gerçekleşen hız `sample_count / elapsed_seconds` olarak hesaplanır; hedef hızla aynı olduğu varsayılmaz.
+- İlk uygulamada her örneğe zaman damgası eklemek zorunlu değildir; örnek başına zaman damgasının örnekleme yükü yaratabileceği için toplam edinim süresi ölçülür. Bu nedenle bu format tek tek örnek aralıklarının kusursuzluğunu kanıtlamaz.
 
 ## Her adım için zorunlu kayıt: HEDEF → LOG → SONUÇ
 - **HEDEF:** Adımın cevaplayacağı soru ve ölçülebilir kabul koşulu.
