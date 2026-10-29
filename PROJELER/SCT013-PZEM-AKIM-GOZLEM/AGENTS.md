@@ -111,3 +111,16 @@ Bu üç bölüm ilgili deney protokolü/sonuç kaydında ve oturum günlüğünd
 
 ## Deney koşulları için açıklamalı YAML
 Her deney için, deney koşulları ve yapılandırma parametreleri uygunsa açıklamalı bir YAML dosyasında tutulur. YAML; deney kimliği/durumu, HEDEF, donanım ve bağlantı bilgileri, planlanan örnekleme ve kayıt ayarları, koşul listesi, kaydedilecek çıktılar ile LOG/SONUÇ alanlarını içerebilir. Her parametreye kısa açıklama eklenir; bilinmeyen değerler tahmin edilmez, `null` veya açık bir “henüz belirlenmedi” notuyla gösterilir. Planlanan ayarlar ile gerçekte kullanılan ayarlar birbirinden ayrılır. YAML tek başına ölçüm kanıtı değildir; gerçek çalışma LOG'a, yorum SONUÇ'a kaydedilir. Firmware bu YAML'ı gerçekten okumuyorsa YAML'ın kod tarafından otomatik uygulandığı iddia edilmez.
+
+
+## Deney YAML ve kod koşulları — atlanamaz
+Bu, BERO için zorunlu çalışma kuralıdır; kullanıcı yeniden hatırlatmasa da her ilgili adımda uygulanır.
+
+1. Deney kodu/firmware'i hazırlamadan önce deney koşullarını açıklamalı bir `experiment.yaml` dosyasında tanımla veya mevcut dosyayı güncelle.
+2. YAML en azından deney kimliği ve hedefi, donanım/bağlantı, pinler (bilinmiyorsa açıkça belirtilir), planlanan ayarlar, her deney koşulu, kaydedilecek çıktılar ve durum alanlarını içersin. Her önemli alanın yanında ne anlama geldiğini açıklayan yorum bulunsun.
+3. Kodun başında veya ilgili yapılandırma bölümünde deney kimliği, hangi YAML/koşullara karşılık geldiği, kullanılan gerçek ayarlar ve deneyin amacı açıklansın. Kod YAML'ı çalışma anında okumuyorsa YAML'dan otomatik yapılandırılıyor gibi gösterilmesin; kod ve YAML arasındaki eşleşme açıkça belgelenir.
+4. Planlanan ayarlar ile gerçekten kullanılan ayarları karıştırma. Gerçek kart/GPIO, örnekleme hızı, süre ve bağlantı durumu doğrulanmadıysa uydurma; bilinmeyen alanı `null` veya “henüz belirlenmedi” olarak bırak.
+5. Her adımda **HEDEF / LOG / SONUÇ** zorunludur. LOG'a gerçekten yapılan işlemi, koşulları, ham veri yolunu ve sapmaları yaz; SONUÇ'a yalnız kanıtın desteklediği yorumu ekle. Deney yapılmadıysa bunu açıkça belirt.
+6. Her anlamlı değişiklikte YAML, kod açıklamaları, deney protokolü/sonuç kaydı ve oturum günlüğü arasında tutarlılığı kontrol et. Yazılan dosyaları yeniden oku.
+
+Bu kuralın amacı yalnızca dokümantasyon üretmek değil; kodun hangi deney koşulunda çalıştığını anlaşılır ve yeniden kurulabilir kılmaktır. Uygun YAML veya HEDEF/LOG/SONUÇ kaydı olmadan deney kodu işi tamamlanmış sayılmaz.
