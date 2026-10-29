@@ -79,4 +79,8 @@ Pin planı notu: Modül datasheet'i, geliştirme kartındaki başlık/pad etiket
 - **Çıkış tipi:** Gerilim çıkışlı; dahili burden direnci bulunur. Ek burden direnci mevcut tasarımın varsayılan parçası değildir.
 - **Satürasyon:** CT satürasyonu genel teknik risk olarak kayda alındı. BERO'da satürasyon ölçülmüş değildir.
 - **Belge ayrımı:** ESP32 ADC, RMS, kalibrasyon ve örnek kodları genel kaynak bilgisidir. BERO'nun dahili ADC/T005 planı bu rapordaki kodlarla değiştirilmedi.
-- **Kondansatör:** Kaynak rapor 10 µF örneği verse de mevcut kullanıcı bildirimi bias orta noktasından GND'ye bağlı 104 (100 nF) kondansatördür. Değer değiştirme kararı bu güncellemeyle verilmemiştir.
+- **Kondansatör:** Mevcut fiziksel devre kaydı orta noktadan GND'ye bağlı 104 (100 nF) kondansatördür. E01 öncesi, 10 µF ile değiştirilmesi [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md) kapsamında önerildi; fiziksel değişiklik yapılmış sayılmaz.
+
+## Bias orta noktası — sonraki kurulum notu
+
+Mevcut envanter bildirimi, iki 10 kΩ direnç orta noktasından GND'ye bağlı 104 (100 nF) kondansatör içeriyor. E01 kurulumu öncesi, [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md) uyarınca bunun 10 µF ile değiştirilmesi planlanmıştır. Envanter, değişiklik fiziksel olarak yapılana kadar mevcut parçayı 100 nF olarak tutar. ADC pinine ikinci bir kondansatör eklenmesi şu an kararlaştırılmamıştır.
