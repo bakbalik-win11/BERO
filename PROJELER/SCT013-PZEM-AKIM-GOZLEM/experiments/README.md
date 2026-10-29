@@ -8,5 +8,6 @@ Her deneyde protocol.md, metadata.yaml ve results.md bulunur. Ham veri varsayıl
 - E04 — PZEM alanlarının değişim zamanları
 - E05 — Örnekleme hızı karşılaştırması
 - E06 — Yük senaryoları / clipping
+- [E07 — SCT kararlılık gözlemi: basamaklı yükler ve örnekleme hızı](E07-sct-stability-step-tests/protocol.md) — üç tur; her turda boşta, 100 W, 150 W ve 8,5 W LED; örnekleme hızı turdan tura 1 / 2 / 2,5 kS/s hedefleriyle değişir.
 
-Henüz hiçbir deney tamamlanmadı.
+E00–E07 deneyleri plan/protokol düzeyindedir; E07 dahil hiçbir fiziksel deneyin sonucu henüz yok.
