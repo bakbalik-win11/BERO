@@ -428,3 +428,10 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **HEDEF:** Projenin genel ilerlemesini, tamamlanan işleri, aktif adımı ve sıradaki işi tek bakışta anlaşılır kılmak; proje hafızasının kaybolma riskini azaltmak.
 - **LOG:** Kullanıcı depo yapısında ilerleme ağacı gerekip gerekmediğini sordu. Mevcut STATUS.md, ROADMAP.md, tasks/README.md ve experiments/README.md incelendi. I004 fikri IDEA_BACKLOG.md'ye eklendi.
 - **SONUÇ:** Öneri, mevcut kayıtların yerine geçen ikinci bir görev sistemi değil; bunlara bağlantı veren kısa bir gezinme/ilerleme görünümü oluşturmak. Henüz ayrı ağaç dosyası oluşturulmadı; fikir değerlendirme aşamasında.
+
+
+## 2026-10-29 — Genel ilerleme ağacı oluşturuldu
+
+- **HEDEF:** Kullanıcının deponun bütün dosyalarını okumak zorunda kalmadan BERO'nun genel yapısını, mevcut fazını ve sıradaki adımını kabaca görebilmesini sağlamak.
+- **LOG:** `PROGRESS_TREE.md` oluşturuldu. Fazlar, tamamlanan hazırlık işleri, E00A'nın sıradaki deney olması ve sonraki ana alanlar özetlendi. STATUS.md'ye ağaç bağlantısı eklendi; AGENTS.md'ye aktif durum değiştikçe ağacı STATUS ile birlikte güncel tutma kuralı eklendi.
+- **SONUÇ:** Ağaç genel bakış/navigasyon içindir; görev ve deney belgelerinin yerine geçmez. Yazılan dosyalar yeniden okunarak doğrulanacak. Fiziksel deney veya firmware testi yapılmadı.
