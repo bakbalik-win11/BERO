@@ -26,5 +26,6 @@ Bu belge, ileride üretilecek PZEM okuma kayıtları ve SCT pencere kayıtları 
 | read_status | Zorunlu | ok, timeout, transport_error, parse_error, invalid_measurement |
 | V/I/P/E/frequency/PF alanları | Başarılı okumada | PZEM'in bildirdiği sayısal değerler |
 | anomaly_flags / raw_error | Önerilen | Hata ve şüpheli durum ayrıntısı |
+| synthetic_example | Şema örneklerinde kullanılan işaret; JSON Schema'da zorunlu | Örnek/sentetik kayıtları gerçek ölçüm verisinden ayırır |
 
-PZEM'in iç ölçüm zamanı bilinmiyorsa yanıt zamanını o zamanın tam karşılığı gibi sunma.
+PZEM'in iç ölçüm zamanı bilinmiyorsa yanıt zamanını o zamanın tam karşılığı gibi sunma. `synthetic_example` alanı şemada zorunludur; gerçek veri kaydı uygulandığında değeri açıkça `false`, sentetik örneklerde `true` olmalıdır.
