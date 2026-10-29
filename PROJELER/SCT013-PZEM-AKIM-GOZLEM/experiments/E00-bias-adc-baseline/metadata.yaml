@@ -1,0 +1,17 @@
+experiment_id: E00-bias-adc-baseline
+title: "Bias noktasını ADC ile okuma; SCT bağlı değil"
+status: not_started
+date_start_utc: null
+date_end_utc: null
+mcu_model: null
+arduino_esp32_version: null
+adc_gpio: null
+adc_resolution_bits: 12
+adc_attenuation: null
+sct_connected: false
+voltmeter_bias_reading_v: null
+analog_read_raw_samples_path: null
+analog_read_millivolts_samples_path: null
+planned_min_duration_seconds: 30
+data_paths: []
+notes: "SCT bağlanmadan iki ADC API'si karşılaştırılacak. Ölçüm yapılmadı. 1.65 V ve 2048 yalnız örnek varsayımı/ideal teorik hesap; gerçek sonuç değildir."
