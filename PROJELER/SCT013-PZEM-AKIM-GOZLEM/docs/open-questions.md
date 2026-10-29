@@ -30,7 +30,7 @@ Açık kalan pin/SSR/ölçüm soruları, fiziksel parçaların eksik olduğu anl
 
 ## 2026-10-29 belge incelemesinden sonra
 
-- [ADR-007](decisions/ADR-007-bias-midpoint-capacitor.md) sonucunda, 2 × 10 kΩ bias bölücüsünün orta noktasına, mevcut 100 nF kondansatöre paralel 10 µF eklenmesi E01 öncesi önerildi. Fiziksel değişiklik henüz yapılmış sayılmaz; mevcut devrenin belgelenen değeri 104 (100 nF) olarak korunur. ADC pinine ayrıca 100 nF eklenmesi kararlaştırılmadı.
+- [ADR-007](decisions/ADR-007-bias-midpoint-capacitor.md) sonucunda, 2 × 10 kΩ bias bölücüsünün orta noktasına mevcut 100 nF kondansatöre paralel 10 µF eklenmesi ilk SCT bağlantılı ölçümden (E00A) önce planlandı. Fiziksel değişiklik henüz yapılmış sayılmaz; mevcut devrenin belgelenen değeri 104 (100 nF) olarak korunur. ADC pinine ayrıca 100 nF eklenmesi kararlaştırılmadı.
 - Satürasyon belgesi genel CT risklerini anlatır; BERO'da satürasyon oluştuğuna dair ölçüm yoktur.
 
 
