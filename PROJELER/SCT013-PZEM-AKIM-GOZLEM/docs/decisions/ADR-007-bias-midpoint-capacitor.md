@@ -6,9 +6,9 @@
 
 ## Karar
 
-- Bias orta noktası ile GND arasındaki ana bypass kondansatörü için **10 µF** kullanılmasını öneriyoruz. Polarize elektrolitik kullanılırsa pozitif uç Vmid'e, negatif uç GND'ye bağlanır. Gerilim değeri bu düşük bias seviyesini güvenli biçimde karşılamalı; pratikte en az 6,3 V sınıfı uygundur.
-- Mevcut 104 kodlu 100 nF kondansatör tek başına 50 Hz bias kararlılığı için 10 µF ile eşdeğer değildir. Bu nedenle E01 ölçüm düzeneği kurulurken orta noktadaki 100 nF'nin yerine 10 µF takılması planlanır.
-- 100 nF'nin ADC pinine GND'ye bağlanması ayrı ve **opsiyonel** bir yüksek frekans/ADC gürültü azaltma seçeneğidir. GPIO henüz seçilmediği ve bu kondansatör ölçüm bant genişliğini etkileyebileceği için otomatik olarak eklenmeyecek; ilk ölçümlerden ve gerçek bağlantı planından sonra değerlendirilecektir.
+- Bias orta noktası ile GND arasına **10 µF elektrolitik kondansatör, mevcut 104 (100 nF) seramikle paralel** bağlanmasını öneriyoruz. Elektrolitik kullanılırsa pozitif uç Vmid'e, negatif uç GND'ye bağlanır. Gerilim değeri bu düşük bias seviyesini güvenli biçimde karşılamalı; 6,3 V veya üzeri sınıf uygundur.
+- Mevcut 104 kodlu 100 nF kondansatör yerinde kalır. E01 ölçüm düzeneği kurulurken 10 µF kondansatör aynı Vmid ve GND noktalarına eklenerek paralel bağlanır. Böylece orta noktada her iki kondansatör bulunur.
+- 104 (100 nF), bias orta noktası ile GND arasında 10 µF ile paralel kalacaktır. ADC pinine ayrıca bir 100 nF bağlamak ayrı ve **opsiyonel** bir yüksek frekans/ADC gürültü azaltma seçeneğidir. GPIO henüz seçilmediği ve bu kondansatör ölçüm bant genişliğini etkileyebileceği için otomatik olarak eklenmeyecek; ilk ölçümlerden ve gerçek bağlantı planından sonra değerlendirilecektir.
 - Bu, ölçülmüş performans sonucu değildir. E01 öncesi fiziksel uygulama ve ardından kayıt alınması beklenmektedir.
 
 ## Hesap ve gerekçe
@@ -36,7 +36,7 @@ Espressif ESP-IDF ADC kılavuzu, kullanım senaryosuna bağlı olarak ADC giriş
 ## E01 öncesi uygulanacaklar
 
 1. Enerji bağlantıları yapılmadan önce mevcut breadboard düzeninde 104 kondansatörün gerçekten bias orta noktasından GND'ye bağlı olduğunu doğrula.
-2. Bu kondansatörü 10 µF ile değiştir; polariteyi kontrol et.
+2. Mevcut 104 kondansatörü çıkarmadan, aynı Vmid ve GND noktalarına 10 µF elektrolitik kondansatör ekle. Elektrolitiğin pozitif ucunu Vmid'e, negatif ucunu GND'ye bağla.
 3. ADC pinine ilave 100 nF eklemeyi bu ilk değişiklikle aynı anda yapma; önce düzenek ve ölçüm yapılandırmasını sabit tut.
 4. Fiziksel kurulumda kullanılan kondansatör değerini E01 metadata'sına kaydet.
 5. E01 yüksüz ADC verisini zaman grafiğinde incele. Kondansatör değişikliğiyle gürültünün mutlaka azalacağı varsayılmayacak; sonuç veriden değerlendirilecek.
