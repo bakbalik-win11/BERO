@@ -29,7 +29,7 @@
 | PZEM-004T | V3.0 | Kullanıcı bildirimi |
 | Masaüstü güç kaynağı | 5 V / 1,8 A | Kullanıcı bildirimi |
 | Test yükleri | 100 W ve 150 W ampuller ana deney yükleri; 5 W LED ampul farklı PF için | Planlanan test yükleri; gerçek güç, akım ve PF ilgili testte ölçülecek |
-| Breadboard bias alt devresi | 2 × 10 kΩ, orta nokta; orta noktadan GND'ye 104 (100 nF) | Hazır olarak kaydedildi |
+| Breadboard bias alt devresi | Mevcut kayıt: 2 × 10 kΩ, orta nokta ve GND'ye 104 (100 nF); E01 öncesi 10 µF önerisi ADR-007'de | Mevcut durum kullanıcı bildirimi; değişiklik bekliyor |
 | Jack yuvaları ve bağlantı/ölçüm parçaları | Tam takım mevcut | Kullanıcı bildirimi |
 
 ## Mevcut bilgi
@@ -62,6 +62,13 @@ Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
 
 - Kullanıcının sağladığı SCT013_30A_1V_ESP32_Raporu.docx ve ct-akım-trafosu-satürasyonu.txt okundu.
 - SCT013-030 nominal oranı, gerilim çıkışlı modelde dahili burden bilgisi ve genel satürasyon riskleri donanım referanslarına eklendi.
-- Raporun 10 µF bias kondansatörü örneği mevcut BERO 100 nF parçasıyla karıştırılmadı. Kondansatör konusu açık; değişiklik kararı alınmadı.
+- [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) kapsamında, E01 öncesi bias orta noktasındaki mevcut 100 nF kondansatörün 10 µF ile değiştirilmesi önerildi. Fiziksel değişiklik ve sonuç ölçümü henüz yapılmadı; ADC GPIO'suna ek 100 nF kararı verilmedi.
 - Rapordaki genel ESP32/ADS1115/RMS örnek kodları BERO firmware'i olarak alınmadı.
 - Fiziksel ölçüm, ADC okuması, firmware testi ve kalibrasyon yapılmadı.
+
+
+## Bias kondansatörü — aktif donanım notu
+
+- Mevcut kayıtlı devrede bias orta noktasından GND'ye 104 (100 nF) bulunur.
+- [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) 10 kΩ + 10 kΩ bölücü ve 50 Hz SCT sinyali için orta noktada 10 µF kullanılmasını önerir. Değişiklik E01 öncesinde uygulanmalı ve fiziksel olarak yapılana kadar tamamlandı sayılmamalıdır.
+- ADC pinine ayrıca 100 nF eklenmesi opsiyoneldir; ilk E01 ölçümünde aynı anda ikinci değişken eklememek için şimdilik planlanmadı.
