@@ -46,7 +46,7 @@ Teknik açıklamaları yeniden yazmamak için ilgili Markdown dosyaları [hardwa
 - SCT örnekleme hızı: 2 kS/s.
 - SCT özet penceresi: nominal 200 ms (50 Hz'de nominal 10 çevrim).
 - PZEM sorgusu: yaklaşık 1 s başlangıç aralığı.
-- Yük geçişi etiketi: yaklaşık 3 s başlangıç süresi.
+- Yük geçişi için kararlı/geçiş alanları: deney verisi ve istatistiksel ölçütlerle belirlenecek; yaklaşık 3 s yalnızca geçmiş bir hipotezdir, nihai etiket kuralı değildir.
 
 Bunlar deneylerle gözden geçirilecek başlangıç değerleridir; doğrulanmış sonuç değildir.
 
