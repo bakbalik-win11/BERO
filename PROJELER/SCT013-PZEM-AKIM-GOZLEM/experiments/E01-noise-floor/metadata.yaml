@@ -21,3 +21,9 @@ reference_meter: null
 load_description: "no load current during E01"
 data_paths: []
 notes: "Hardware is not assembled yet. No measurement has been performed. Duration beyond 30 seconds is possible but not decided."
+
+source_review_date: "2026-10-29"
+source_documents:
+  - "SCT013_30A_1V_ESP32_Raporu.docx (kullanıcı tarafından sağlanan genel teknik rapor; fiziksel test değildir)"
+  - "ct-akım-trafosu-satürasyonu.txt (genel CT satürasyon riski notu; BERO'da satürasyon gözlenmiş değildir)"
+analog_frontend_change_from_source_review: false
