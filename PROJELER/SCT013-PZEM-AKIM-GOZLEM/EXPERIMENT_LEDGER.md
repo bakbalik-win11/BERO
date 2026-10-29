@@ -85,3 +85,16 @@ Daha önce görülmemiş veya olağan dışı yüksek akımlı bir yükün (ör.
 Ayrıntılı ve kalıcı yaklaşım: [BERO proje felsefesi](docs/project-philosophy.md).
 
 **Durum:** Felsefe ve plan dokümantasyonu güncellendi; model kodu, akım hesabı, fiziksel ölçüm veya doğrulama yapılmadı.
+
+
+## Uzun vadeli vizyonun genişletilmesi (2026-10-29)
+
+BERO'nun yönü tek bir akım ölçerle sınırlı değildir. Kullanıcı, eldeki MCP ve Modbus modülleri ile farklı ESP32 seçeneklerinin (ileride ESP32-P4 dahil olabilir) göreve göre kullanılabileceğini; akım okuma/tahmin, PZEM referansıyla etiketleme ve yeterli veriye dayalı model/katsayı güncelleme hattının gelecekte kurulabileceğini belirtti. Bu, henüz uygulanmış mimari değil, uzun vadeli vizyondur.
+
+Daha ileri örnek fikirler: çamaşır makinesinde ses örüntüsünden su alma başlangıcını algılamak veya su akış sensöründen boşaltma olayını belirlemek. Bunlar seçilmiş görev veya doğrulanmış özellik değildir; farklı sensör ve donanımla belirli bir işi başarıyla yapan özelleşmiş ESP düğümleri fikrini anlatır.
+
+**Ortak ilke:** Donanım/sensör göreve göre değişebilir; her düğümün başarısı kendi görev verisi ve açık kabul ölçütleriyle değerlendirilir. İlk adıma tüm donanım ve görevleri eklemiyoruz.
+
+**Aktif basamak değişmedi:** E00A ile ESP32 dahili ADC ham örneklerini oku, kaydet ve bilgisayarda görselleştir. MCP/Modbus/P4 entegrasyonu, akım tahmini, PZEM etiketleme ve kendini yeniden eğiten veri hattı gelecekteki işlerdir.
+
+Ayrıntı: [Proje felsefesi](docs/project-philosophy.md).
