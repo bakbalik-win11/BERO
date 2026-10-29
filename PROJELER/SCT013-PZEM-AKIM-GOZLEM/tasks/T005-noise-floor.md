@@ -28,4 +28,4 @@ Protokol, metadata, ham veri, grafik ve sonuç birbiriyle bağlanabilir; ölçü
 
 ## 2026-10-29 kaynak raporu notu
 
-SCT013-030 raporu nominal oranı 30 A/V olarak verir. Bu değer T005/E01 yüksüz gürültü ölçümünün sonucu veya yerine geçmez. E01 mevcut bias devresiyle yapılacak; kondansatör değişikliği ayrı karar olmadan bu göreve eklenmeyecek.
+SCT013-030 raporu nominal oranı 30 A/V olarak verir. Bu değer T005/E01 yüksüz gürültü ölçümünün sonucu veya yerine geçmez. [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md) uyarınca ölçümden önce orta noktadaki mevcut 100 nF'nin 10 µF ile değiştirilmesi önerilmiştir. Fiziksel değişikliği uygula ve metadata'ya fiilî değeri yaz; değişiklik uygulanmadıysa sonucu bu karar uygulanmış gibi raporlama. ADC pinine ayrıca 100 nF ekleme bu ilk deneyin kapsamına dahil değildir.
