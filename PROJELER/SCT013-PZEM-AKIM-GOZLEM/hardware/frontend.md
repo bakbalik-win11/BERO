@@ -6,7 +6,8 @@
 
 Kullanıcı beyanına göre breadboard üzerinde:
 - İki adet 10 kΩ dirençle oluşturulmuş orta nokta.
-- Orta nokta ile GND arasında 104 kodlu, 100 nF kondansatör.
+- **Mevcut kayıtlı durum:** orta nokta ile GND arasında 104 kodlu, 100 nF kondansatör.
+- **E01 öncesi plan:** [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md) uyarınca orta noktada 10 µF bypass kullanılması önerilir; fiziksel değişiklik henüz yapılmadı.
 - Bias seviyesi yaklaşık **1,65 V** kabul edilir; bu aşamada ayrıca ölçülüp doğrulanması istenmiyor.
 
 Bu kayıt, SCT AC sinyalinin bias noktasına kuplaj ayrıntılarının ölçümle doğrulandığı anlamına gelmez. Belirgin bir bağlantı sorunu normal kullanım sırasında görülürse not edilir; bu görev için laboratuvar düzeyinde doğrulama gerekmez.
@@ -35,6 +36,10 @@ Kullanıcının sağladığı SCT013-030 raporu ve CT satürasyonu metni genel t
 
 - SCT013-030 nominali 30 A AC RMS → yaklaşık 1 V AC RMS; nominal oran 30 A/V (yaklaşık 33,33 mV/A).
 - Gerilim çıkışlı modelde dahili burden direnci vardır; ek burden eklenmesi önerilmez.
-- Raporun 2 × 10 kΩ + 10 µF örneği BERO'nun devresine otomatik aktarılmamalıdır. Mevcut breadboard bilgisi 2 × 10 kΩ ve orta noktadan GND'ye 104 (100 nF) kondansatördür. Kondansatör konusu ayrıca ele alınacak; bileşen değişikliği kararı alınmadı.
+- BERO devresinde 2 × 10 kΩ bölücünün orta noktasında 100 nF yerine 10 µF kullanılması, 50 Hz'de daha düşük AC empedans sağladığı için [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md) kapsamında önerildi. Fiziksel değişiklik ve ölçüm bekleniyor.
 - Satürasyon genel CT riskidir; BERO'da kanıtlanmış arıza değildir.
 - Raporun ESP32/ADS1115/RMS örnek kodları BERO firmware'i değildir. Dahili ADC ve T005/E01 kapsamı korunur.
+
+## Bias kondansatörü kararı
+
+Mevcut fiziksel kayıt 104 (100 nF) kondansatörü gösterir. E01 öncesi önerilen değişiklik, bu orta nokta kondansatörünü 10 µF ile değiştirmektir. ADC GPIO'suna ayrıca 100 nF eklemek zorunlu değildir ve ilk E01 düzenine dahil edilmemiştir; kaynak empedansı/bant genişliği etkisi ayrıca değerlendirilir. Ayrıntı ve kaynaklar: [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md).
