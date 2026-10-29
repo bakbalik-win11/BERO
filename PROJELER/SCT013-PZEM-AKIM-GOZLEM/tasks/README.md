@@ -31,7 +31,7 @@ Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 | T004 | Analog ön uç | 1.1 | TAMAMLANDI — belgeleme kapsamı tamamlandı; fiziksel analog davranış ve GPIO eşlemesi doğrulanmış değil | T002, T003 |
 | T005 | ADC temel okumaları ve E01 gürültü tabanı | 1.2 | PLANLANDI — önce SCT bağlı değilken ham ADC ve mV API'leri; sonra SCT bağlı ve akım yok; uzun E01 kaydı daha sonra | T004 |
 | T006 | SCT kalibrasyonu | 1.3 | PLANLANDI | T005 |
-| [T007](T007-python-architecture.md) | Python program mimarisini kullanıcı hedeflerine göre tanımla | 3–7 | DEVAM EDİYOR — mimari taslak var; program sayısı, aktarım ve veri sözleşmeleri açık | HA→PC aktarım hedefi, PZEM/SCT analiz ve etiketleme hedefi |
+| [T007](T007-python-architecture.md) | Python program mimarisini kullanıcı hedeflerine göre tanımla | 3–7 | BEKLEMEDE — taslak korunuyor; E00A/E00/E01 verisi ve gerçek aktarım gereksinimi bekleniyor | E00A/E00/E01 temel edinim sonuçları, HA→PC aktarım hedefi |
 
 ## Kart açma
 Yeni görev için _template.md dosyasını kopyala; bir sonraki T numarasını kullan, bağımlılıkları ve ölçülebilir kabul koşulunu yaz. Yeni kart eklendiğinde bu tabloyu, ROADMAP.md ve gerekiyorsa STATUS.md'yi güncelle.
@@ -60,3 +60,8 @@ E08, görev indeksinde aktif görevin yerini almaz. T005/E00-E01 yüksüz temel 
 ## 2026-10-29 — E00A ilk geçişi sadeleştirildi
 
 Kullanıcının değerlendirmesiyle E00A'nın ilk geçişi grafik merkezli olmaktan çıkarılıp istatistik merkezli hâle getirildi. İlk kayıtlar tek ESP32 ile 2 kS/s başlangıç hedefinde bias-only, SCT yüksüz ve 100 W akkor koşullarında yaklaşık 1 saniye alınacak. Ortalama, min/max, tepe-tepe aralığı, standart sapma, örnek sayısı, süre ve gerçekleşen hız karşılaştırılacak. Grafik yalnız gerektiğinde tanı için üretilecek. Üç hızın tamamını her koşulda denemek, üç ESP32'yi eşzamanlamak, yavaş oynatma, DMA veya çift buffer zorunlu değil. Bunlar ancak ilk veriler somut bir ihtiyaç gösterirse ele alınacak. Fiziksel deney yapılmadı.
+
+
+## 2026-10-29 — Gün sonu kapsam ve sıra düzeltmesi
+
+Önceki E00A sadeleştirme notundaki “grafik merkezli olmaktan çıkarılıp istatistik merkezli” ifadesi güncel kullanıcı hedefini doğru yansıtmıyordu. E00A'nın ilk amacı ham ADC örneklerini kaydetmek ve bilgisayarda zaman grafiğinde görmektir; istatistikler grafiği tamamlar. Bu yüzden E00A aktif ilk adım olarak kalır. T007'nin mimari taslağı korunur ancak gerçek edinim ve aktarım verileri oluşana kadar BEKLEMEDE'dir. Firmware, ölçüm veya Python uygulaması bu düzeltmeyle yapılmış sayılmaz.
