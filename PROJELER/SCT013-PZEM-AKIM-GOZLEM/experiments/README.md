@@ -3,7 +3,7 @@
 Her deneyde protocol.md, metadata.yaml ve results.md bulunur. Ham veri varsayılan olarak Git'e eklenmez; yerel raw klasöründe tutulur, küçük sentetik örnekler samples altında saklanır.
 
 - [E00A — Ham sinyal kaydı ve temel istatistikler](E00A-raw-waveform-observation/README.md) — paketleme öncesi bias-only, SCT yüksüz ve 100 W ampul koşullarında tek ESP32 ile 2 kS/s başlangıç kaydı; temel istatistikler ana çıktı, grafik yalnız tanı aracı.
-- [E00 — Bias noktasını ADC ile okuma](E00-bias-adc-baseline/protocol.md) — SCT bağlı değilken ham ADC ve mV API'lerini karşılaştırma; E00A'dan sonra.
+- [E00 — Bias noktasını ADC ile okuma](E00-bias-adc-baseline/protocol.md) — SCT bağlı değilken ham ADC ve mV API'lerini karşılaştırma; E00A'dan sonra. [Sonuç kaydı](E00-bias-adc-baseline/results.md) (henüz ölçülmedi).
 - E01 — Yüksüz ofset ve gürültü tabanı
 - E02 — Kararlı rezistif yük ve pencere değişkenliği
 - E03 — PZEM adım yanıtı / yerleşme süresi
