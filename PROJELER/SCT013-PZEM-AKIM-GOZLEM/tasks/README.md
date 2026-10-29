@@ -46,3 +46,8 @@ E00, SCT bağlı olmadan bias orta noktasını dahili ADC ile okuyan ilk adım o
 ## 2026-10-29 — Kaynak raporu incelemesi
 
 SCT013-030 raporu ve CT satürasyonu notu genel teknik referans olarak değerlendirildi. Bu belge incelemesi T005 durumunu değiştirmez; fiziksel ölçüm yapılmadı. Aktif görev T005/E01 olarak kalır.
+
+
+## 2026-10-29 — E08 planı
+
+E08, görev indeksinde aktif görevin yerini almaz. T005/E00-E01 yüksüz temel ölçüm hazırlığı tamamlanmadan E08 uygulamasına geçilmeyecek. E08'in amacı ve aşamaları [E08 genel açıklamasında](../experiments/E08-sct-characterization/README.md) yer alır. Fiziksel ölçüm yapılmadığı için E08 sonuçları tamamlandı olarak işaretlenmez.
