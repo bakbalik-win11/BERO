@@ -8,7 +8,7 @@ Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konul
 4. Hangi akımın altında PZEM, bağımsız referansa göre kabul edilemez sapma/kararsızlık gösteriyor?
 5. 1 kS/s, 2 kS/s ve 2,5 kS/s seçenekleri arasında hedef yüklerde anlamlı performans farkı var mı?
 6. 200 ms pencere kararlı yükte tekrarlanabilir mi; çevrime senkron pencere gerekli mi?
-7. E00A'da farklı örnekleme hızlarında ham dalga görünümü ve temel istatistikler anlamlı biçimde değişiyor mu; basit PC aktarımı yeterli mi, yoksa daha karmaşık buffer yapısına ihtiyaç var mı?
+7. E00A'nın ilk geçişinde bias-only, SCT yüksüz ve 100 W yük koşullarının temel istatistikleri nasıl farklılaşıyor; ilk kayıtlardan sonra farklı örnekleme hızlarını veya daha karmaşık aktarımı denemek için somut bir neden oluşuyor mu?
 8. E08 sonuçlarında RMS, mutlak Peak ve Peak-to-Peak yöntemlerinin kendi pencere değişkenliği ve tekrar edilebilirliği, örnekleme hızı ve 1/2/4 kablo turuna göre nasıl karşılaştırılacak? Eşik veya gerekli pencere sayısı önceden seçilmeyecek; veri görüldükten sonra karar verilecek.
 
 **Karara bağlandı; yeniden sorulmayacak:**
