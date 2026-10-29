@@ -2,6 +2,18 @@
 
 Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonunda yeni kayıt eklenir; eski kayıtlar korunur.
 
+## 2026-10-29 — Bias orta noktası kondansatörünün kaynaklarla değerlendirilmesi
+
+- **Durum:** UYGULANDI — ADR ve bağlı proje kayıtları güncellendi; fiziksel devre değişikliği bekliyor.
+- **Hedef ve kabul ölçütü:** 10 nF / 100 nF / 10 µF seçeneklerinin 50 Hz'deki etkisini, BERO'nun 2 × 10 kΩ bias bölücüsü ve ESP32 ADC yaklaşımı bağlamında değerlendirmek; ilk E01 düzenine uygulanabilir bir öneri kaydetmek.
+- **Değerlendirme:** Kapasitif reaktans Xc = 1/(2πfC). 50 Hz'de 10 nF ≈ 318 kΩ, 100 nF ≈ 31,8 kΩ, 10 µF ≈ 318 Ω. Eşit 10 kΩ bölücünün Thevenin direnci yaklaşık 5 kΩ olduğundan, 10 µF orta noktayı 50 Hz bileşenine karşı çok daha düşük empedansla referanslar. 100 nF her devrede 'yanlış' değildir; fakat burada tek başına 10 µF kadar güçlü 50 Hz bypass sağlamaz.
+- **Karar:** [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md) oluşturuldu. E01 öncesi mevcut orta nokta 100 nF kondansatörünün 10 µF ile değiştirilmesi önerildi. ADC GPIO'suna ayrıca 100 nF bağlanması opsiyonel bırakıldı ve ilk E01 kurulumuna alınmadı; etkisi kaynak empedansı/bant genişliğine bağlıdır.
+- **Kaynaklar:** [OpenEnergyMonitor CT sensörü arayüzü](https://docs.openenergymonitor.org/electricity-monitoring/ct-sensors/interface-with-arduino.html) 10 µF değerini ve düşük AC reaktans hedefini destekler. [Espressif ADC kılavuzu](https://docs.espressif.com/projects/esp-idf/en/v4.4.8/esp32/api-reference/peripherals/adc.html) ADC pad'inde 100 nF kondansatörün senaryoya bağlı gürültü azaltma seçeneği olduğunu ve örneklemenin de yardımcı olabileceğini belirtir; bu, gürültünün sıfırlanacağı veya her kurulumda 100 nF zorunlu olduğu anlamına gelmez.
+- **Depo değişiklikleri:** ADR-007 ve ADR indeksi; hardware/frontend.md, hardware/inventory.md, STATUS.md, ROADMAP.md, T005 kartı, E01 protokolü/metadata ve açık sorular güncellendi. Eski 'henüz karar verilmedi' ifadeleri güncel öneriyle uzlaştırıldı.
+- **Doğrulama ve sınırlar:** Dokümantasyon commit'leri oluştu. Son doğrulama için main dalındaki değişmiş dosyalar yeniden okunacak. Kondansatör fiziksel olarak değiştirilmedi; E01 verisi alınmadı; gürültü seviyesinde düşüş ölçülmedi. GPIO34 bu kararla seçilmiş değil.
+- **Sonraki adım:** E01 kurulumundan önce mevcut kondansatörü 10 µF olarak değiştirip polaritesini kontrol et; fiziksel olarak kullanılan değeri metadata'ya yaz. ADC pinine ek 100 nF'ı aynı anda ekleme. Daha sonra E01 ölçümünü al.
+- **Kanıt:** [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md); [analog ön uç](../hardware/frontend.md); [STATUS](../STATUS.md); [E01 protokolü](../experiments/E01-noise-floor/protocol.md); [E01 metadata](../experiments/E01-noise-floor/metadata.yaml).
+
 ## 2026-10-29 — SCT013-030 raporu ve CT satürasyon notunun BERO'ya işlenmesi
 
 - **Durum:** UYGULANDI — teknik notlar ilgili dosyalara işlendi; oturum günlüğü bu kayıtla eşitlendi.
