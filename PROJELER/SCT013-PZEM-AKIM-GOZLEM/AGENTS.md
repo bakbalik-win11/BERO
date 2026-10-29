@@ -1,5 +1,17 @@
 # Proje çalışma protokolü
 
+## En yüksek öncelik: depo sürekliliği ve kaybolmama
+Kullanıcının açık önceliği: **Depo, projenin teknik başarısından daha önemlidir; kullanıcı proje bilgisini ve geçmişini kaybetmek istemiyor.** Bu nedenle depo sürekliliğini hiçbir deney, kodlama veya teknik ilerleme uğruna feda etme.
+
+- Her oturumun başında depo talimatlarını ve güncel durum/günlük kayıtlarını oku; mevcut kayıtları anlamadan işe başlama.
+- Her yeni karar, fikir, deney koşulu, sonuç, açık soru veya iş sırası değişikliğini aynı çalışma akışında uygun dosyaya kaydet.
+- Var olan kayıtları gelişigüzel silme veya geçmiş kararları sessizce üzerine yazma; gerektiğinde değişikliği tarihçede koru.
+- Depo yazımı başarısızsa bunu açıkça söyle ve kayıt doğrulanana kadar “kaydedildi” deme.
+- Her yazımdan sonra dosyayı yeniden oku; ilişkili dosyalarda tutarsızlık varsa düzelt veya açıkça kaydet.
+- Kod/deney çalışması yapılamasa bile alınan karar ve sıradaki adım depoda korunur.
+
+Bu öncelik, aşağıdaki oturum başlangıcı ve oturum sonu adımlarının önünde gelir; **hiçbir oturumda atlanmaz**.
+
 ## Oturum başlangıcı — atlanamaz
 Kullanıcı için kısa kontrol listesi: [Gün sonu kontrolü](GUN_SONU_KONTROLU.md). Kullanıcıdan teknik diff/JSON/test ayrıntılarını kendi başına denetlemesini bekleme; gerekli kanıtları asistan sunmalı.
 
