@@ -1,5 +1,7 @@
 # Proje durumu
 
+**Uzun vadeli yön:** Tek bir akım ölçerle sınırlı olmayan, göreve göre sensör ve donanımı değişebilen ESP tabanlı sistemler; model/katsayı öğrenimi ve ileride başka görevler için örüntü algılama. Bu vizyon [proje felsefesinde](docs/project-philosophy.md) açıklanır; mevcut aktif iş E00A ham ADC gözlemidir.
+
 **Genel görünüm:** [İlerleme ağacı — PROGRESS_TREE.md](PROGRESS_TREE.md). Deneylerin nedenini, kod/kanıt durumunu ve sonraki karar kapısını izlemek için [Deney ve karar izleme defteri](EXPERIMENT_LEDGER.md) kullanılır. Projenin kişisel veri kümesi, model öğrenimi ve kabul edilebilir sınırlarına ilişkin yaklaşım [proje felsefesinde](docs/project-philosophy.md) kayıtlıdır. Depoyu baştan sona okumadan genel resmi görmek için önce ilerleme ağacına, ardından bu dosyadaki güncel duruma bak.
 
 **Son güncelleme:** 2026-10-29 — İlk hedef netleştirildi: SCT ham ADC verisini oku, kaydet ve görselleştir; PZEM/akım formülü/MCP3208 ilk aşamanın kapsamı değil  
