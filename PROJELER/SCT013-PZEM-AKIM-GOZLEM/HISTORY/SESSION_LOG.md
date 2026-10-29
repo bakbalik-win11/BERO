@@ -407,3 +407,10 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **HEDEF:** Deney kodunun/firmware'inin hangi deney koşullarını temsil ettiğini açıkça belgelemek ve aynı koşulları daha sonra yeniden kurmayı kolaylaştırmak.
 - **LOG:** Kullanıcı, açıklamalı YAML dosyalarının da eklenmesini ve kodların deney koşullarını içermesini istedi. E00A için `experiment.yaml` planlandı; genel çalışma kuralı, E00A README/protocol/results bağlantıları eklendi.
 - **SONUÇ:** YAML deneyin planlanan koşullarını ve açıklamalarını kayıt altına alır. Firmware YAML'ı gerçekten okumadığı sürece bu dosya otomatik çalışma ayarı değildir. Henüz firmware yazılmadı, derlenmedi ve fiziksel ölçüm yapılmadı.
+
+
+## 2026-10-29 — YAML ve kod koşullarının atlanamaz proje kuralı
+
+- **HEDEF:** Deney kodlarının hangi deney koşullarında çalıştığını her zaman anlaşılır kılmak ve bu gerekliliği kalıcı depo kuralına dönüştürmek.
+- **LOG:** Kullanıcının açık talebi doğrultusunda AGENTS.md'ye atlanamaz uygulama maddeleri eklendi; ILKELER.md'ye kalıcı proje ilkesi eklendi. Deney YAML'ı, kod içi açıklamalar, protokol, sonuç ve oturum günlüğünün tutarlı tutulması şartı yazıldı.
+- **SONUÇ:** Bundan sonra deney kodu hazırlama işinde açıklamalı YAML ve kodun deney koşullarını açıklayan yorumları zorunludur; her adımda HEDEF / LOG / SONUÇ tutulur. Bu oturumda yalnızca kural belgelendi; firmware veya fiziksel deney yapılmadı.
