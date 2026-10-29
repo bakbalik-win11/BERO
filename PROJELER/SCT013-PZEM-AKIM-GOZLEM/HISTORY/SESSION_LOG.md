@@ -414,3 +414,10 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **HEDEF:** Deney kodlarının hangi deney koşullarında çalıştığını her zaman anlaşılır kılmak ve bu gerekliliği kalıcı depo kuralına dönüştürmek.
 - **LOG:** Kullanıcının açık talebi doğrultusunda AGENTS.md'ye atlanamaz uygulama maddeleri eklendi; ILKELER.md'ye kalıcı proje ilkesi eklendi. Deney YAML'ı, kod içi açıklamalar, protokol, sonuç ve oturum günlüğünün tutarlı tutulması şartı yazıldı.
 - **SONUÇ:** Bundan sonra deney kodu hazırlama işinde açıklamalı YAML ve kodun deney koşullarını açıklayan yorumları zorunludur; her adımda HEDEF / LOG / SONUÇ tutulur. Bu oturumda yalnızca kural belgelendi; firmware veya fiziksel deney yapılmadı.
+
+
+## 2026-10-29 — Depo sürekliliği kullanıcı önceliği
+
+- **HEDEF:** Proje bilgisinin ve önceki kararların kaybolmamasını BERO'nun en üst çalışma önceliği olarak kaydetmek.
+- **LOG:** Kullanıcı, deponun proje başarısından daha önemli olduğunu ve kaybolmak istemediğini belirtti. AGENTS.md'nin oturum başlangıcına ve ILKELER.md'nin başına açık öncelik kuralı eklendi.
+- **SONUÇ:** Her oturumda önce mevcut depo bağlamı okunacak; yeni kararlar aynı çalışma akışında kaydedilecek; yazılan dosyalar yeniden okunarak doğrulanacak. Teknik çalışma yapılamasa bile alınan karar ve sonraki adım korunacak. Bu kayıt bir süreç kuralıdır; fiziksel deney yapılmadı.
