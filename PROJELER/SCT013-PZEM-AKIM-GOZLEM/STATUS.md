@@ -10,7 +10,7 @@
 **SCT/PZEM etiketleme ve kalibrasyon hedefi:** [Hedef mimari notu](docs/architecture/sct-pzem-labeling-and-calibration.md) — zaman damgası/sabit süre odaklı değil, paket bağlamı ve PZEM/SCT kararlı alanlarını algoritma-istatistikle belirleyip etiketleme; Python'da etiketli SCT verisiyle sensör başına katsayı/`f(x)` modeli çıkarma; ardından modeli çok paketli ham akışta sınayıp gerekirse iyileştirme. Firmware, algoritma ve deneyler henüz yapılmadı.  
 **SSR:** SAMM Market 5 V, 2 kanallı kart; tedarikçi kodu İzmo9659, SKU MP02637. Giriş mantığı ve kart üzerindeki SSR'nin tam kodu doğrulanmalı.  
 **RTC:** İki DS3231 modülünde de 2032 tipi pil bulunuyor. RTC kodunun çalıştığı ve güç kesilip yeniden verildikten sonra saatin korunduğu daha önce test edildi; bu bilgi esas alınır ve test tekrar istenmeyecek. Yüksek hızlı örnekleme zamanlaması ESP32 monoton zamanlayıcısına aittir.  
-**Deney durumu:** Donanım henüz kurulmadı; E00 bias-only ADC karşılaştırması, E01–E06 deneyleri ve kalibrasyon YAPILMADI. T005/E01'de hatta akım yokken ADC verisi zaman grafiğinde incelenecek. 30 saniye asgari başlangıç referansıdır, üst sınır değildir; daha uzun, hatta saatler süren kayıt seçeneği açık, kesin süre belirlenmedi. PZEM ve diğer ESP kartları ölçülen hattan beslenmez; beslemeleri ayrıdır.
+**Deney durumu:** Donanım henüz kurulmadı; E00 bias-only ADC karşılaştırması, E01–E07 deneyleri ve kalibrasyon YAPILMADI. [E07 SCT kararlılık basamak testi](experiments/E07-sct-stability-step-tests/protocol.md) planlandı: üç tur; her tur boşta, 100 W, 150 W ve 8,5 W LED basamaklarını içerir; örnekleme hızı turlar arasında 1 / 2 / 2,5 kS/s hedefleriyle değişir. Kararlılık eşiği ve gereken ardışık pencere sayısı sonuçlardan çıkarılacak, önceden sabitlenmeyecek. Bu çalışma PZEM alan eşleştirmesi değil, yalnız SCT verisinden kararlı bölgeleri belirleme hazırlığıdır. T005/E01'de hatta akım yokken ADC verisi zaman grafiğinde incelenecek. 30 saniye asgari başlangıç referansıdır, üst sınır değildir; daha uzun, hatta saatler süren kayıt seçeneği açık, kesin süre belirlenmedi. PZEM ve diğer ESP kartları ölçülen hattan beslenmez; beslemeleri ayrıdır.
 
 ## Oturum sürekliliği
 - Yeni oturumda başlangıç protokolü uygulanır: güncel main/son commit kontrol edilir; AGENTS, STATUS, ROADMAP, open-questions, ilgili görev/deney ve son günlük kaydı okunup karşılaştırılır.
@@ -49,6 +49,7 @@
 1. [x] [T003 — PZEM tabanlı model hata hedefi](tasks/T003-reference-and-error-target.md): ±%4 bağıl sapma; Python geçerli örneklerde `OK` kararı verir.
 2. [x] [T004 — Analog ön uç](tasks/T004-analog-frontend.md): mevcut jack/bias bağlantısı, SCT modelleri ve ESP32 dahili ADC yaklaşımı belgelendi.
 3. [ ] [T005 — E01 gürültü tabanı](tasks/T005-noise-floor.md): donanım kurulduktan sonra yüksüz ADC verisini toplama ve grafikleme.
+4. E00/E01 ve edinim temeli sonrası [E07 SCT kararlılık basamak testi](experiments/E07-sct-stability-step-tests/protocol.md): üç turda dört durum; her turda farklı hedef örnekleme hızı.
 
 ## Açık engeller
 - Donanım henüz kurulmadı. Gerçek bağlantı kurulurken SCT jack–breadboard bias bağlantısı ve ESP32 ADC pini uygulanacak donanımla eşleştirilecek; firmware/pin planlama aşamasında GPIO seçimi yapılacak. T004 kapsamında laboratuvar düzeyinde ADC aralığı/clipping hesabı istenmiyor.
@@ -56,7 +57,7 @@
 - SSR'nin hangi iki AC yükü anahtarlayacağı, GPIO eşlemesi ve giriş mantığının düşük gerilimde doğrulanması.
 - T003 TAMAMLANDI: model tahmini geçerli PZEM akımından ±%4 bağıl sapma içindeyse Python sonucu `OK` işaretler. Kararlı alan gözlemi ve SCT istatistikleri ayrı görev/deneylerde ele alınır. Test yükleri ilgili test kaydında beyan edilecek.
 
-Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
+Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi. E07 protokolü eklendi; kararlılık eşiği/pencere sayısı henüz belirlenmedi ve fiziksel test yapılmadı.
 
 ## İlk test sıralaması — 2026-10-29
 
