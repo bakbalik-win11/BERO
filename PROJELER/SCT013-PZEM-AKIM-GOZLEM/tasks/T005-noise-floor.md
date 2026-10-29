@@ -25,3 +25,7 @@ Protokol, metadata, ham veri, grafik ve sonuç birbiriyle bağlanabilir; ölçü
 ## Çıktı / dokunulacak dosyalar
 - experiments/E01-noise-floor/
 - İlgili veri ve doğrulama kayıtları
+
+## 2026-10-29 kaynak raporu notu
+
+SCT013-030 raporu nominal oranı 30 A/V olarak verir. Bu değer T005/E01 yüksüz gürültü ölçümünün sonucu veya yerine geçmez. E01 mevcut bias devresiyle yapılacak; kondansatör değişikliği ayrı karar olmadan bu göreve eklenmeyecek.
