@@ -1,5 +1,5 @@
 experiment_id: E00A
-title: Ham sinyal gözlemi ve örnekleme hızı karşılaştırması
+title: Ham sinyal kaydı ve temel istatistikler
 status: planned
 date: 2026-10-29
 hardware:
@@ -9,16 +9,20 @@ conditions:
   - bias_only_without_SCT
   - SCT_connected_no_load
   - SCT_connected_100W_incandescent
-target_sample_rates_sps: [1000, 2000, 2500]
+initial_target_sample_rate_sps: 2000
+target_record_duration_s: 1
 outputs:
-  - raw_adc_samples
-  - waveform_plot_vs_time
-  - slow_playback
+  - raw_adc_samples_saved_locally
   - mean_min_max_peak_to_peak_standard_deviation
   - target_rate_elapsed_duration_sample_count
   - approximate_actual_sample_rate
+  - condition_comparison_summary
+  - optional_diagnostic_waveform_plot
 notes:
-  - Sample rates are comparison candidates, not validated requirements.
+  - Initial pass uses one ESP32 and one target rate; 2 kS/s is a starting value, not a validated requirement.
+  - Statistics are descriptive raw ADC features, not current measurements; standard deviation includes both noise and signal variation.
+  - Plotting is diagnostic, not the primary output; continuous live plotting and slow playback are not required.
+  - Compare 1 and 2.5 kS/s later only if the first results raise a concrete question.
   - No current conversion, RMS current, power factor, or harmonic analysis in this experiment.
-  - Complex buffering/DMA is deferred until simple acquisition proves insufficient.
+  - Complex buffering, DMA, and multi-ESP synchronization are deferred until evidence shows they are needed.
   - No physical measurements or firmware tests have been performed.
