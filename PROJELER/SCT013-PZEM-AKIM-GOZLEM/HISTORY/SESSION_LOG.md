@@ -2,6 +2,16 @@
 
 Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonunda yeni kayıt eklenir; eski kayıtlar korunur.
 
+## 2026-10-29 — Paralel bias kondansatörlerinin görevleri ve bağlantı şeması
+
+- **Durum:** DOKÜMANTASYON GÜNCELLENDİ; fiziksel kurulum ve E01 ölçümü yapılmadı.
+- **İnceleme:** Kullanıcının açıklamasındaki 10 µF'nin 50 Hz'de düşük empedanslı baypas sağlaması ve 104 (100 nF)'ün daha yüksek frekanslarda tamamlayıcı olabilmesi teknik olarak makul; ancak paraziti tamamen yok ettiği iddiası desteklenmiyor.
+- **Karar:** Mevcut 104 yerinde kalacak; 10 µF elektrolitik Vmid–GND arasına paralel eklenecek. Elektrolitik pozitif uç Vmid, negatif uç GND.
+- **Şema düzeltmesi:** ADR-007'ye iki SCT çıkış ucunu da gösteren bağlantı notu eklendi: uç A bias düğümüne, uç B seçilecek ESP32 ADC pinine. GPIO34 her ESP32 kartında yoktur; ESP32-C3'te GPIO34 bulunmaz. BERO'nun ADC pini henüz seçilmedi.
+- **Sınırlar:** Kondansatörlerin fiziksel etkisi ölçülmedi. Wi-Fi/Bluetooth/röle parazitlerinin tamamen giderileceği veya ADC gürültüsünün sıfırlanacağı iddia edilmiyor.
+- **Değiştirilen dosyalar:** [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md), [analog ön uç](../hardware/frontend.md).
+- **Sonraki adım:** Fiziksel düzenekte paralel bağlantıyı kur, gerçek ADC pinini kart modeline göre doğrula ve E01 yüksüz ölçümünü kaydet.
+
 ## 2026-10-29 — Bias orta noktası kondansatörünün kaynaklarla değerlendirilmesi
 
 - **Durum:** UYGULANDI — ADR ve bağlı proje kayıtları güncellendi; fiziksel devre değişikliği bekliyor.
