@@ -472,3 +472,12 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** E01–E08 metadata/protokol dosyalarında eski şablon alanlarının anlamı, güncel kararlarla uyumu ve dosyalar arası bağlantılar incelenmeye devam ediyor.
 - **Sonraki adım:** Deney metadata dosyalarını ortak alanlar ve yanlış varsayımlar açısından taramak; deney sonuç şablonlarının HEDEF / LOG / SONUÇ standardıyla uyumunu karşılaştırmak.
 - **Kanıt:** [Protokol şablonu](../experiments/_template/protocol.md); [sonuç şablonu](../experiments/_template/results.md); [metadata şablonu](../experiments/_template/metadata.yaml); [E00 metadata](../experiments/E00-bias-adc-baseline/metadata.yaml); [E00A README](../experiments/E00A-raw-waveform-observation/README.md).
+
+## 2026-10-29 — Deney sonuç kayıtlarının ortak yapıya alınması
+
+- **HEDEF:** E01–E08 sonuç dosyalarında, deney yapılmamış olsa bile durumun ve sonraki adımın tutarlı biçimde kaydedilmesini sağlamak.
+- **LOG:** E01, E02, E03, E04, E05, E06, E07 ve E08 sonuç kayıtlarına HEDEF / LOG / SONUÇ bölümü eklendi. E07'nin tarihsel ve uygulanmamış plan olduğu korunurken fiziksel ölçüm/derleme yapılmadığı açıkça belirtildi.
+- **SONUÇ:** Sekiz sonuç dosyasının her biri GitHub'dan yeniden okunarak ortak bölümlerin bulunduğu doğrulandı. Fiziksel deney, firmware derlemesi, YAML doğrulaması veya CI çalıştırması yapılmadı.
+- **Açık kalanlar:** Metadata dosyalarındaki eski ortak alanlar ve planlanmış değerlerin anlamı; protokol–metadata–results arasındaki bağlantılar; Markdown bağlantılarının tüm depoda doğrulanması.
+- **Sonraki adım:** Metadata dosyalarını güncel proje kararlarına göre taramak; ardından bağlantı denetimi ve durum kayıtlarının çapraz kontrolünü tamamlamak.
+- **Kanıt:** [E01 sonuçları](../experiments/E01-noise-floor/results.md); [E06 sonuçları](../experiments/E06-load-scenarios/results.md); [E08 sonuçları](../experiments/E08-sct-characterization/results.md); diğer E02–E05 ve E07 sonuç dosyaları aynı klasörlerdedir.
