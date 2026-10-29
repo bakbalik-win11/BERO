@@ -373,3 +373,13 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Aktif iş sırası:** T005 ve E00/E01 yüksüz temel ADC ölçüm hazırlığı hâlâ sıradaki iş; E08 planlandı fakat uygulanmadı.
 - **Doğrulama:** E08 dosyaları, deney indeksi ve ana durum belgeleri GitHub'dan yeniden okundu; aşama bağlantıları kontrol edilip README'deki dosya yolları düzeltildi. Fiziksel donanım kurulumu, firmware derlemesi, test veya ölçüm yapılmadı.
 - **Kanıt:** [E08 açıklaması](../experiments/E08-sct-characterization/README.md), [protokol](../experiments/E08-sct-characterization/protocol.md), [STATUS](../STATUS.md), [ROADMAP](../ROADMAP.md), [açık sorular](../docs/open-questions.md).
+
+
+## 2026-10-29 — E00A ham sinyal gözlemi paketleme öncesine alındı
+
+- **Kullanıcı kararı:** Paketleme/aktarımı tasarlamadan önce ham SCT sinyalini görmek; kaydı PC'de yavaş oynatmak ve farklı örnekleme hızlarında hem dalgayı hem temel istatistikleri karşılaştırmak. Bu, sonraki deneylerden önce yapılacak eğitici bir gözlem adımıdır.
+- **Deney koşulları:** (1) SCT olmadan bias-only, (2) SCT bağlı ve yüksüz, (3) SCT bağlı 100 W akkor ampul. Başlangıç karşılaştırma hızları 1, 2 ve 2,5 kS/s; gerçek hız kaydedilecek. Her kayıt için ham ADC-zaman grafiği, yavaş oynatma, ortalama, min/max, peak-to-peak, standart sapma, örnek sayısı ve süre incelenecek. Akım hesabı bu deneyin amacı değil.
+- **Mimari kararı:** Çift buffer, DMA, her örneğe zaman damgası ve ayrıntılı veri kaybı ölçümü şimdilik zorunlu değil. Basit aktarım yeterli değilse E00A gözlemlerinden sonra karar verilecek. PC'de yavaş oynatma örnekleme hızını düşürmez; yalnız görüntüleme hızıdır.
+- **Depo değişiklikleri:** `experiments/E00A-raw-waveform-observation/` README, protocol, metadata ve results eklendi. Deney indeksi, proje README, STATUS, ROADMAP, tasks README ve open-questions E00A'yı mevcut E00/E01 ve paketleme kararından önce konumlandıracak şekilde güncellendi.
+- **Durum/doğrulama:** Plan depoya kaydedildi; fiziksel ölçüm, firmware geliştirme/derleme ve grafik üretimi yapılmadı. E00A henüz uygulanmadı.
+- **Kanıt:** [E00A açıklaması](../experiments/E00A-raw-waveform-observation/README.md), [protokol](../experiments/E00A-raw-waveform-observation/protocol.md), [STATUS](../STATUS.md), [ROADMAP](../ROADMAP.md).
