@@ -29,6 +29,31 @@ Eşit 10 kΩ dirençli bölücünün bias noktasından görülen Thevenin direnc
 
 Bu hesaplar ideal bileşenler içindir; gerçek devrede kablo, SCT çıkışı, besleme, bağlantı topolojisi ve ADC girişi de sonucu etkiler. “Sıfır empedans”, “sanal toprak hiç oynamaz” veya “gürültü tamamen sıfırlanır” denmemelidir.
 
+## İki kondansatörün paralel kullanım gerekçesi
+
+- **10 µF elektrolitik:** 50 Hz'de yaklaşık 318 Ω kapasitif reaktansla bias orta noktasına düşük empedanslı bir AC dönüş yolu sağlar. Bu, sanal referansın AC açısından daha kararlı olmasına yardımcı olur; ideal sıfır empedans veya hiç dalgalanmama garantisi değildir.
+- **104 / 100 nF seramik:** 50 Hz'de yaklaşık 31,8 kΩ reaktans gösterir; bu nedenle 50 Hz için 10 µF'nin yerini tutmaz. Daha yüksek frekanslarda empedansı düşerek, fiziksel yerleşim ve parazit dönüş yolu uygunsa, elektrolitik kondansatöre tamamlayıcı bypass sağlayabilir.
+- Wi-Fi/Bluetooth veya röle kaynaklı parazitin tümünü ortadan kaldırdığı iddia edilmez. Etki; parazitin kuplaj yoluna, kondansatörlerin ve GND yolunun fiziksel yerleşimine ve ADC örnekleme düzenine bağlıdır.
+
+## Bağlantı topolojisi
+
+```text
+3V3
+ |
+ R1 10 kΩ
+ |
+ +------ Vmid ≈ 1.65 V ------ SCT013 çıkış ucu A
+ |          |        |
+ R2 10 kΩ  +|       104 / 100 nF
+ |         10 µF     |
+ |          |        |
+ +----------+--------+------ GND
+
+SCT013 çıkış ucu B ---------------- ESP32 ADC pini
+```
+
+Bu şema, 10 µF ve 104'ün **aynı Vmid–GND düğümlerine paralel** bağlanmasını gösterir. SCT'nin ikinci çıkış ucu ADC girişine gider; bu bağlantı gerçek kartın pin planı doğrulandıktan sonra yapılmalıdır. GPIO34 yalnızca klasik ESP32 ailesindeki uygun kartlarda kullanılabilir; ESP32-C3'te GPIO34 bulunmaz. BERO için ADC GPIO seçimi bu ADR ile kesinleştirilmiş değildir.
+
 ## 100 nF ADC giriş kondansatörü hakkında
 
 Espressif ESP-IDF ADC kılavuzu, kullanım senaryosuna bağlı olarak ADC giriş pad'ine 100 nF bypass kondansatörü eklenebileceğini ve çoklu örneklemenin de gürültüyü azaltmaya yardımcı olabileceğini belirtir. Bu, bütün devrelerde zorunlu olduğu veya gürültüyü sıfırladığı anlamına gelmez. Kondansatörün ADC düğümündeki kaynak empedansıyla oluşturduğu RC filtresi, BERO'nun 2 kS/s edinim hedefiyle birlikte düşünülmelidir.
