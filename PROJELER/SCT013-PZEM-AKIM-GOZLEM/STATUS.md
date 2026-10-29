@@ -1,6 +1,6 @@
 # Proje durumu
 
-**Son güncelleme:** 2026-10-27  
+**Son güncelleme:** 2026-10-29  
 **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı  
 **Aktif görev:** [T005 — E01 gürültü tabanı](tasks/T005-noise-floor.md) — PLANLANDI. T004 hobi projesine uygun belge kapsamıyla tamamlandı; T005 için donanımın kurulması ve yüksüz veri toplama bekleniyor. T003, PZEM'e göre ±%4 bağıl sapma ve Python `OK` karar kuralı belirlenerek kapatıldı. T001 envanter ve T002 güvenlik kontrolü, kullanıcının tamamladığını bildirdiği bilgiler esas alınarak kaydedilip kapatıldı.  
 **Öncelikli SCT:** SCT013-030 (30 A / 1 V)  
@@ -57,3 +57,11 @@
 - T003 TAMAMLANDI: model tahmini geçerli PZEM akımından ±%4 bağıl sapma içindeyse Python sonucu `OK` işaretler. Kararlı alan gözlemi ve SCT istatistikleri ayrı görev/deneylerde ele alınır. Test yükleri ilgili test kaydında beyan edilecek.
 
 Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
+
+## 2026-10-29 belge incelemesi
+
+- Kullanıcının sağladığı SCT013_30A_1V_ESP32_Raporu.docx ve ct-akım-trafosu-satürasyonu.txt okundu.
+- SCT013-030 nominal oranı, gerilim çıkışlı modelde dahili burden bilgisi ve genel satürasyon riskleri donanım referanslarına eklendi.
+- Raporun 10 µF bias kondansatörü örneği mevcut BERO 100 nF parçasıyla karıştırılmadı. Kondansatör konusu açık; değişiklik kararı alınmadı.
+- Rapordaki genel ESP32/ADS1115/RMS örnek kodları BERO firmware'i olarak alınmadı.
+- Fiziksel ölçüm, ADC okuması, firmware testi ve kalibrasyon yapılmadı.
