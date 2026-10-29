@@ -23,6 +23,9 @@ Kullanıcı için kısa kontrol listesi: [Gün sonu kontrolü](GUN_SONU_KONTROLU
 6. Başlangıç raporunda okunan dosyaları, aktif görevi, son günlük girdisini ve karşılaştırılan dal/commit bilgisini kısa kanıtla belirt.
 7. Daha önce cevaplanmış bilgi için soru sormadan önce envanter, teknik belge, görev kartı, açık sorular ve günlükte ara; kayıtla çelişki varsa önce farkı çöz.
 
+## İlerleme ağacını güncel tutma — zorunlu
+`PROGRESS_TREE.md`, kullanıcının depoyu baştan sona okumadan genel resmi görebilmesi için ana navigasyon ağacıdır. Aktif faz, sıradaki adım veya iş durumu değiştiğinde `STATUS.md` ile birlikte kontrol edilip gerekiyorsa güncellenir. Ağaca ayrıntılı teknik metin kopyalanmaz; ilgili görev, deney ve karar belgelerine bağlantı verilir. Her değişiklikten sonra dosya yeniden okunarak bağlantılar ve durumlar doğrulanır.
+
 ## Depo tutarlılığı ve kullanıcı önceliği
 - Depo kayıtları kullanıcı için kritik çalışma çıktısıdır. Anlamlı bir değişiklikte yalnız ana dosyayı değil, o bilgiye bağlı görev kartı, `STATUS.md`, `ROADMAP.md`, `docs/open-questions.md`, ilgili envanter/teknik belge ve `HISTORY/SESSION_LOG.md` kayıtlarını da kontrol et.
 - Her dosyayı gereksiz yere değiştirme; ancak ilgili dosyalarda durum/bağlantı/karar tutarsızlığı varsa aynı oturumda düzelt.
