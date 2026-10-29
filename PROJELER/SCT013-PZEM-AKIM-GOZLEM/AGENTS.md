@@ -97,3 +97,13 @@ Bu protokol bir sohbetin kendi kendine başlamasını garanti etmez. Yeni oturum
 - Normal test sırasında belirgin anormallik görülürse yalnız ilgili noktayı incele ve kaydet.
 - Kabul ölçütleri karşılandıysa yeni şartlar uydurup görevi tekrar açma.
 - Temel güvenlik önlemlerini koru; yapılmayan kontrolü yapılmış gibi yazma.
+
+
+## Her adımın kaydı
+Her anlamlı çalışma veya deney adımında üç bölüm bulunmalı:
+
+1. **HEDEF:** Hangi soruya cevap aranıyor ve kabul ölçütü nedir?
+2. **LOG:** Gerçekte ne yapıldı; donanım/yazılım ayarları, süre, örnek sayısı, ham kayıt yolu, gözlemler ve sapmalar nelerdir? Yapılmayan işlem açıkça belirtilir.
+3. **SONUÇ:** Kanıt neyi destekliyor, hangi belirsizlikler kaldı ve sıradaki adım nedir? Ölçüm yapılmadıysa sonuç uydurulmaz; henüz ölçülmediği yazılır.
+
+Bu üç bölüm ilgili deney protokolü/sonuç kaydında ve oturum günlüğünde yer alır. Önceki adımın sonucu değerlendirilmeden gereksiz karmaşıklığa geçilmez. Oturum sonunda kullanıcıya hedef, log ve sonuç özeti verilir.
