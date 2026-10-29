@@ -55,3 +55,8 @@ SCT013-030 raporu ve CT satürasyonu notu genel teknik referans olarak değerlen
 ## 2026-10-29 — E08 planı
 
 E08, görev indeksinde aktif görevin yerini almaz. T005/E00-E01 yüksüz temel ölçüm hazırlığı tamamlanmadan E08 uygulamasına geçilmeyecek. E08'in amacı ve aşamaları [E08 genel açıklamasında](../experiments/E08-sct-characterization/README.md) yer alır. Fiziksel ölçüm yapılmadığı için E08 sonuçları tamamlandı olarak işaretlenmez.
+
+
+## 2026-10-29 — E00A ilk geçişi sadeleştirildi
+
+Kullanıcının değerlendirmesiyle E00A'nın ilk geçişi grafik merkezli olmaktan çıkarılıp istatistik merkezli hâle getirildi. İlk kayıtlar tek ESP32 ile 2 kS/s başlangıç hedefinde bias-only, SCT yüksüz ve 100 W akkor koşullarında yaklaşık 1 saniye alınacak. Ortalama, min/max, tepe-tepe aralığı, standart sapma, örnek sayısı, süre ve gerçekleşen hız karşılaştırılacak. Grafik yalnız gerektiğinde tanı için üretilecek. Üç hızın tamamını her koşulda denemek, üç ESP32'yi eşzamanlamak, yavaş oynatma, DMA veya çift buffer zorunlu değil. Bunlar ancak ilk veriler somut bir ihtiyaç gösterirse ele alınacak. Fiziksel deney yapılmadı.
