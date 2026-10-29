@@ -6,6 +6,11 @@
 - Bias orta noktası mevcut proje bağlantısına göre kullanılır; henüz uygulanmamış donanım önerileri tamamlanmış sayılmaz.
 - Bu ilk adımda bir ESP32 ve 2 kS/s hedefi yeterlidir. 2 kS/s doğrulanmış sonuç değil, mevcut başlangıç değeridir.
 
+## Her adım için zorunlu kayıt: HEDEF → LOG → SONUÇ
+- **HEDEF:** Adımın cevaplayacağı soru ve ölçülebilir kabul koşulu.
+- **LOG:** Gerçek bağlantı/koşul, hedef hız, kayıt başlangıç-bitiş bilgisi veya geçen süre, örnek sayısı, ham dosya yolu ve hesaplanan istatistikler. Yapılmayan işlem de açıkça yazılır.
+- **SONUÇ:** Yalnız kaydın desteklediği yorum, belirsizlikler ve bir sonraki adıma geçme gerekçesi. Ölçüm yoksa “sonuç yok/ölçülmedi” yazılır.
+
 ## Adımlar
 1. **Bias-only:** SCT jack'i bağlı değilken ham ADC örneklerini yaklaşık 1 saniye kaydet.
 2. **SCT yüksüz:** SCT'yi bağla, ölçülen hatta akım olmadığını doğrula ve aynı şekilde kayıt al.
