@@ -1,13 +1,13 @@
 # ADR-007: Bias orta noktası kondansatörü
 
-- **Durum:** E01 öncesi öneri kabul edildi; fiziksel değişiklik ve ölçüm henüz yapılmadı.
+- **Durum:** İlk SCT bağlantılı ölçümden (E00A) önce uygulanması planlandı; fiziksel değişiklik ve ölçüm henüz yapılmadı.
 - **Tarih:** 2026-10-29
 - **Kapsam:** 2 × 10 kΩ bölücüyle yaklaşık 1,65 V bias üreten ve SCT013-030 sinyalinin bu bias çevresinde ESP32 dahili ADC'sine uygulanacağı tarif edilen devre.
 
 ## Karar
 
 - Bias orta noktası ile GND arasına **10 µF elektrolitik kondansatör, mevcut 104 (100 nF) seramikle paralel** bağlanmasını öneriyoruz. Elektrolitik kullanılırsa pozitif uç Vmid'e, negatif uç GND'ye bağlanır. Gerilim değeri bu düşük bias seviyesini güvenli biçimde karşılamalı; 6,3 V veya üzeri sınıf uygundur.
-- Mevcut 104 kodlu 100 nF kondansatör yerinde kalır. E01 ölçüm düzeneği kurulurken 10 µF kondansatör aynı Vmid ve GND noktalarına eklenerek paralel bağlanır. Böylece orta noktada her iki kondansatör bulunur.
+- Mevcut 104 kodlu 100 nF kondansatör yerinde kalır. E00A'nın ilk SCT bağlantılı koşulundan önce 10 µF kondansatör aynı Vmid ve GND noktalarına eklenerek paralel bağlanır. Böylece E00A, E00 ve E01 boyunca aynı planlanan bias orta noktası düzeni korunur. Fiziksel olarak kurulana kadar bu yalnızca plandır.
 - 104 (100 nF), bias orta noktası ile GND arasında 10 µF ile paralel kalacaktır. ADC pinine ayrıca bir 100 nF bağlamak ayrı ve **opsiyonel** bir yüksek frekans/ADC gürültü azaltma seçeneğidir. GPIO henüz seçilmediği ve bu kondansatör ölçüm bant genişliğini etkileyebileceği için otomatik olarak eklenmeyecek; ilk ölçümlerden ve gerçek bağlantı planından sonra değerlendirilecektir.
 - Bu, ölçülmüş performans sonucu değildir. E01 öncesi fiziksel uygulama ve ardından kayıt alınması beklenmektedir.
 
@@ -58,13 +58,13 @@ Bu şema, 10 µF ve 104'ün **aynı Vmid–GND düğümlerine paralel** bağlanm
 
 Espressif ESP-IDF ADC kılavuzu, kullanım senaryosuna bağlı olarak ADC giriş pad'ine 100 nF bypass kondansatörü eklenebileceğini ve çoklu örneklemenin de gürültüyü azaltmaya yardımcı olabileceğini belirtir. Bu, bütün devrelerde zorunlu olduğu veya gürültüyü sıfırladığı anlamına gelmez. Kondansatörün ADC düğümündeki kaynak empedansıyla oluşturduğu RC filtresi, BERO'nun 2 kS/s edinim hedefiyle birlikte düşünülmelidir.
 
-## E01 öncesi uygulanacaklar
+## E00A öncesi uygulanacaklar
 
 1. Enerji bağlantıları yapılmadan önce mevcut breadboard düzeninde 104 kondansatörün gerçekten bias orta noktasından GND'ye bağlı olduğunu doğrula.
 2. Mevcut 104 kondansatörü çıkarmadan, aynı Vmid ve GND noktalarına 10 µF elektrolitik kondansatör ekle. Elektrolitiğin pozitif ucunu Vmid'e, negatif ucunu GND'ye bağla.
 3. ADC pinine ilave 100 nF eklemeyi bu ilk değişiklikle aynı anda yapma; önce düzenek ve ölçüm yapılandırmasını sabit tut.
-4. Fiziksel kurulumda kullanılan kondansatör değerini E01 metadata'sına kaydet.
-5. E01 yüksüz ADC verisini zaman grafiğinde incele. Kondansatör değişikliğiyle gürültünün mutlaka azalacağı varsayılmayacak; sonuç veriden değerlendirilecek.
+4. Fiziksel kurulumda kullanılan kondansatör değerini E00A, E00 ve E01 kayıtlarında fiilî düzen olarak belirt; planlanan değer ile gerçekten kurulan değeri ayır.
+5. İlk E00A/E00/E01 kayıtlarında kondansatör değişikliğiyle gürültünün mutlaka azalacağı varsayılmayacak; etkisi yalnız veriler desteklediği ölçüde değerlendirilecek.
 
 ## Kaynaklar
 
