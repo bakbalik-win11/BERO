@@ -55,3 +55,9 @@ Kullanıcı bir bilginin depoya kaydedilmesini istediğinde, öncelik açıklama
 - Yazma işleminden sonra dosyayı yeniden oku ve kaydın bulunduğunu doğrula.
 - Başarısız olursa net biçimde bildir; kayıt yapılmış gibi konuşma.
 - Kullanıcının güveni, uzun vaatlerle değil istenen kayıtların doğru ve doğrulanabilir biçimde yapılmasıyla kazanılır.
+
+
+## Deney kodu koşulsuz açıklanmalı
+BERO'da deney kodu/firmware'i, hangi deneyin hangi koşullarını uyguladığını kendi içinde açıklamalıdır. Her deneyin planlanan koşulları açıklamalı YAML dosyasında tutulur; kodun başında deney kimliği, amacı, bağlantı/koşul varsayımları ve kullanılan ayarlar belirtilir. Kod YAML dosyasını otomatik okumuyorsa bu açıkça yazılır. Planlanan ve gerçekten kullanılan değerler ayrılır; bilinmeyen değerler tahmin edilmez.
+
+Her anlamlı adımda **HEDEF / LOG / SONUÇ** kaydı zorunludur. Bu kural kullanıcı tekrar hatırlatmasa da uygulanır. YAML, kod açıklamaları, protokol, sonuç kaydı ve oturum günlüğü birbiriyle tutarlı olmalı; değişiklik sonrası dosyalar yeniden okunarak doğrulanmalıdır. Bu gereklilik atlanmışsa iş tamamlanmış sayılmaz.
