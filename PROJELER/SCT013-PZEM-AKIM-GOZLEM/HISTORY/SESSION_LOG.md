@@ -1,5 +1,16 @@
 # Oturum günlüğü
 
+## 2026-10-29 — İlk deney SCT bağlanmadan ADC API'lerini karşılaştırmak
+
+- **Durum:** PLAN UYGULANDI; fiziksel deney yapılmadı.
+- **Kullanıcı hedefi:** Testlere temel basamaktan başlamak ve iki fonksiyonun farkını gözlemleyerek anlamak.
+- **Sıra:** (1) SCT bağlı değilken bias orta noktası ADC GPIO'suna; aynı döngüde `analogRead()` ham sayısı ve `analogReadMilliVolts()` mV çıktısı, voltmetre karşılaştırmasıyla kaydedilecek. (2) SCT bağlanıp ölçülen hatta akım yokken aynı iki okuma tekrarlanacak. (3) Daha sonra E01 uzun yüksüz kayıt, grafik ve gürültü analizi.
+- **Ham ADC açıklaması:** 12 bit için nominal ham aralık 0–4095. İdeal ve doğrusal 0–3,3 V varsayımıyla 1,65 V → 1,65/3,3×4095 ≈ 2048; bu yalnız teorik örnektir. Gerçek ESP32 ham değeri ölçümle gelir; model, attenuation ve ADC doğrusal olmaması nedeniyle 2048 olmak zorunda değildir. `analogReadMilliVolts()` kalibrasyon destekli tahmindir, hassas voltmetre garantisi değildir.
+- **Depoya eklenenler:** [E00 protokolü](../experiments/E00-bias-adc-baseline/protocol.md), [E00 metadata](../experiments/E00-bias-adc-baseline/metadata.yaml); T005, STATUS, ROADMAP ve görev indeksi yeni sıraya göre güncellendi.
+- **Sonraki adım:** Gerçek ESP32 kart modeli ve ADC GPIO'sunu mevcut envanterden/pin planından doğrula; kodda pin/attenuation seçimini ondan sonra kesinleştir. Ölçüm yapılmadan sonuç yazma.
+- **Doğrulama sınırı:** Dosyalar GitHub'a yazıldı; fiziksel kurulum, firmware derleme/çalıştırma ve ölçüm yapılmadı.
+
+
 Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonunda yeni kayıt eklenir; eski kayıtlar korunur.
 
 ## 2026-10-29 — Paralel bias kondansatörlerinin görevleri ve bağlantı şeması
