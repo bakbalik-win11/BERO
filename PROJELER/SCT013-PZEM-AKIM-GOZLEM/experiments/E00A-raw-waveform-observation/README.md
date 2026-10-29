@@ -1,33 +1,36 @@
-# E00A — Ham sinyal gözlemi ve örnekleme hızı
+# E00A — Ham sinyal kaydı ve temel istatistikler
 
 ## Amaç
-Paketleme veya sürekli veri aktarım mimarisine karar vermeden önce SCT girişindeki ham ADC sinyalini görmek, aynı kayıtları PC'de yavaş oynatmak ve farklı örnekleme hızlarında dalga biçimi ile temel istatistiklerin nasıl değiştiğini öğrenmek.
+Paketleme veya sürekli veri aktarım mimarisine karar vermeden önce SCT girişindeki ham ADC örneklerinden işe yarar, anlaşılır bir ilk sonuç çıkarmak. Öncelik canlı osiloskop görüntüsü değil; farklı donanım koşullarının temel istatistiklerle karşılaştırılmasıdır. Grafik, istatistiklerin açıklayamadığı durumları incelemek için yardımcı çıktıdır.
 
-Bu bir laboratuvar doğrulama deneyi değildir. Amaç, “SCT'den neler geliyor?” sorusuna basit ve gözlemlenebilir bir cevap bulmaktır.
+Bu bir laboratuvar doğrulama deneyi değildir. Amaç, “SCT devreye girince ham ADC verisinde ne değişiyor?” sorusuna basit bir yanıt bulmaktır.
 
-## Neden paketlemeden önce?
-Önce sinyalin ne kadar örnekleme hızına ihtiyaç duyduğunu ve farklı hızlarda görünüm/istatistiklerin anlamlı biçimde değişip değişmediğini göreceğiz. Sonra basit aktarımın yeterli olup olmadığına karar veririz. Çift buffer, DMA veya daha karmaşık aktarım düzeni şimdiden şart koşulmaz.
+## Kapsam ve sıra
+Üç koşul, aynı kayıt yaklaşımıyla karşılaştırılır:
+1. **Bias-only:** SCT bağlı değil.
+2. **SCT yüksüz:** SCT bağlı, ölçülen iletkenden akım geçmiyor.
+3. **100 W akkor:** SCT bağlı, ampul açık.
 
-## Aşamalar
-1. **Bias-only:** SCT bağlı değilken ADC ham değerlerini kaydet.
-2. **SCT yüksüz:** SCT bağlı, ölçülen hattan akım yokken kaydet.
-3. **100 W akkor:** SCT bağlı ve ampul açıkken kaydet.
-4. Her durumu mümkün olan birkaç örnekleme hızıyla karşılaştır; başlangıç adayları 1, 2 ve 2,5 kS/s'dir. Bunlar kesin gereksinim değil, karşılaştırma noktalarıdır.
+İlk denemede yalnızca **2 kS/s hedef örnekleme hızı** kullanılır. Bu, BERO için daha önce seçilen başlangıç değeridir; bu deneyde hızın en iyisi olduğu varsayılmaz. Her koşul için yaklaşık 1 saniyelik ham kayıt hedeflenir. Gerçek süre ve örnek sayısı kaydedilir; süre/hedef hızdan beklenen örnek sayısı ile basitçe karşılaştırılır.
+
+İlk sonuçlar alındıktan sonra örnekleme hızını karşılaştırmanın belirli bir soruya yanıt vereceği görülürse 1 ve 2,5 kS/s kayıtları eklenebilir. İlk denemede üç hızı her koşulda tekrarlamak veya üç ESP32'yi eşzamanlamak zorunlu değildir.
 
 ## Her kayıttan üretilecek çıktılar
-- PC'de ham ADC değeri-zaman grafiği.
-- Kaydedilmiş veriyi yavaş oynatma, durdurma ve yakınlaştırma.
-- Ortalama, minimum, maksimum, peak-to-peak ve standart sapma.
-- Hedef örnekleme hızı, geçen kayıt süresi ve toplanan örnek sayısı.
-- Mümkünse gerçekleşen örnekleme hızı; hedef değerle aynı olduğu varsayılmaz.
+- Ham ADC örneklerinin yerel dosyaya kaydı; veri varsayılan olarak Git'e eklenmez.
+- Ortalama, minimum, maksimum, tepe-tepe aralığı ve standart sapma.
+- Hedef örnekleme hızı, gerçek kayıt süresi, örnek sayısı ve mümkünse yaklaşık gerçekleşen örnekleme hızı.
+- Koşulları kıyaslayan kısa bir istatistik tablosu.
+- İsteğe bağlı tanı grafiği: ADC değeri-zaman. Yalnızca beklenmeyen istatistikleri, kırpılma belirtilerini, sıçramaları veya bozuk/kopuk örnekleri araştırmak için kullanılır; sürekli canlı grafik zorunlu değildir.
 
-Akım (A), RMS akım, güç faktörü veya harmonik hesaplamak bu deneyin amacı değildir. İstatistikler ham ADC değerleri üzerinden tanımlayıcıdır; bunlar tek başına akım ölçümü değildir.
+Bu istatistikler ham ADC değerlerini tanımlar; tek başlarına amper ölçümü veya gürültünün kesin ölçümü değildir. Standart sapma hem gürültüden hem gerçek AC sinyalinden etkilenebilir.
 
 ## Basit örnek sayısı kontrolü
-Beklenen örnek sayısı yaklaşık olarak hedef hız × gerçek kayıt süresidir. Okunan sayıyla karşılaştırılır. İlk aşamada ayrıntılı kayıp analizi, her örneğe zaman damgası, DMA veya karmaşık buffer sistemi kurmak hedeflenmez. Sayı belirgin biçimde düşükse önce nedeni anlamaya çalışırız.
+Beklenen örnek sayısı yaklaşık olarak hedef hız × gerçek kayıt süresidir. Okunan sayı ile karşılaştırılır. Bu ilk kontrol, zamanlama aralıklarının kusursuz olduğunu veya hiç örnek kaybolmadığını kanıtlamaz. Belirgin fark görülürse önce nedenini araştırırız.
 
 ## Karar
-Grafik ve temel istatistikler farklı hızlarda yeterince benzer ve veri toplama basitçe çalışıyorsa daha karmaşık aktarım mimarisi kurmayız. Hız farkı dalga/istatistikleri anlamlı değiştiriyorsa veya basit aktarım yetişmiyorsa sonraki adımı eldeki kayda göre seçeriz.
+İlk soru, bias-only, SCT yüksüz ve yük altındaki koşulların istatistiklerinde anlamlı fark olup olmadığıdır. Grafik yalnızca yorumlamaya yardımcı olur. Örnekleme hızlarını geniş kapsamlı karşılaştırma, yavaş oynatma, üç ESP32 eşzamanlama, DMA veya çift buffer bu ilk adımın kabul koşulu değildir.
+
+İlk kayıtlardan sonra basit edinim ve aktarım yeterliyse karmaşık mimari kurmayız. Yetersizliği gösteren kanıt varsa sonraki deneyi o soruya göre seçeriz.
 
 ## Durum
 PLANLANDI. Firmware, kayıt, grafik ve fiziksel ölçüm henüz yapılmadı.
