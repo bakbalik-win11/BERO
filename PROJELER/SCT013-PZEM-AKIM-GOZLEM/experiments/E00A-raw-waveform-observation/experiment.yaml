@@ -20,7 +20,7 @@ donanim:
   adc: "ESP32 dahili ADC"
   gpio: null # Ölçüm öncesinde kullanılan ADC GPIO doğrulanıp yazılacak.
   sensor: "SCT-013-030, 30A/1V"
-  bias: "Mevcut bias devresi; ölçüm öncesinde bağlantı kontrol edilecek"
+  bias: "Mevcut 2 x 10 kOhm bölücü ve 100 nF; ADR-007 uyarınca ilk SCT bağlantılı koşuldan önce 10 uF paralel eklenmesi planlandı; fiziksel uygulama ölçüm öncesinde doğrulanacak"
 
 ornekleme:
   hedef_hz: 2000 # Başlangıç hedefidir; doğrulanmış performans sonucu değildir.
