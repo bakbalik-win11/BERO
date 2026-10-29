@@ -40,3 +40,7 @@ PLANLANDI. Fiziksel ölçüm ve yazılım uygulaması yapılmadı.
 - **HEDEF:** Adımın cevaplayacağı soru ve kabul koşulu.
 - **LOG:** Gerçek bağlantı/koşul, hedef hız, geçen süre, örnek sayısı, ham dosya yolu, hesaplanan istatistikler, gözlemler ve protokolden sapmalar. Yapılmayan işlem de açıkça yazılır.
 - **SONUÇ:** Yalnız kaydın desteklediği yorum, belirsizlikler ve bir sonraki adıma geçme gerekçesi. Ölçüm yoksa sonuç uydurulmaz; ölçülmediği belirtilir.
+
+
+## YAML yapılandırması
+Deneyin planlanan koşulları [experiment.yaml](experiment.yaml) dosyasında açıklamalı olarak tutulur. YAML'daki hedef değerler planı temsil eder; gerçekleşen süre, örnek sayısı, gerçek örnekleme hızı, donanım bağlantısı ve sapmalar LOG'a yazılır. Firmware YAML dosyasını okumadığı sürece bu dosya çalışma zamanındaki ayarları değiştirmez.
