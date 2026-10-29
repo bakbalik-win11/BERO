@@ -1,6 +1,6 @@
 # T001 — Fiziksel donanım envanteri
 
-- **Durum:** TAMAMLANDI — fiziksel envanter ve breadboard bias alt devresi kaydedildi. Kullanıcının bildirdiği stoklar ve kurulum bilgileri proje için esas alınır. GPIO/pin numarası ve firmware ADC yapılandırması bu görevin kapsamında değil.
+- **Durum:** TAMAMLANDI — envanter belgeleme kapsamı tamamlandı; donanım listesi ve breadboard bias alt devresi kullanıcı beyanına dayanarak kaydedildi. Bu durum tüm fiziksel bağlantıların bağımsız olarak doğrulandığı anlamına gelmez. GPIO/pin numarası ve firmware ADC yapılandırması bu görevin kapsamında değil.
 - **Faz:** 0.1
 - **Bağımlılık:** Yok
 - **Hedef:** Önceki BERO kayıtlarını yeniden toplatmadan kullanmak; seçilmiş donanımı, mevcut stokları ve kalan proje-özel bilgileri kaydetmek.
