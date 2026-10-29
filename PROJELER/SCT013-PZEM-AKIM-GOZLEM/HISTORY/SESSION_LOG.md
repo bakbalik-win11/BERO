@@ -421,3 +421,10 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **HEDEF:** Proje bilgisinin ve önceki kararların kaybolmamasını BERO'nun en üst çalışma önceliği olarak kaydetmek.
 - **LOG:** Kullanıcı, deponun proje başarısından daha önemli olduğunu ve kaybolmak istemediğini belirtti. AGENTS.md'nin oturum başlangıcına ve ILKELER.md'nin başına açık öncelik kuralı eklendi.
 - **SONUÇ:** Her oturumda önce mevcut depo bağlamı okunacak; yeni kararlar aynı çalışma akışında kaydedilecek; yazılan dosyalar yeniden okunarak doğrulanacak. Teknik çalışma yapılamasa bile alınan karar ve sonraki adım korunacak. Bu kayıt bir süreç kuralıdır; fiziksel deney yapılmadı.
+
+
+## 2026-10-29 — İlerleme ağacı fikri
+
+- **HEDEF:** Projenin genel ilerlemesini, tamamlanan işleri, aktif adımı ve sıradaki işi tek bakışta anlaşılır kılmak; proje hafızasının kaybolma riskini azaltmak.
+- **LOG:** Kullanıcı depo yapısında ilerleme ağacı gerekip gerekmediğini sordu. Mevcut STATUS.md, ROADMAP.md, tasks/README.md ve experiments/README.md incelendi. I004 fikri IDEA_BACKLOG.md'ye eklendi.
+- **SONUÇ:** Öneri, mevcut kayıtların yerine geçen ikinci bir görev sistemi değil; bunlara bağlantı veren kısa bir gezinme/ilerleme görünümü oluşturmak. Henüz ayrı ağaç dosyası oluşturulmadı; fikir değerlendirme aşamasında.
