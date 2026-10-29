@@ -24,7 +24,7 @@ Bu belge, ileride üretilecek PZEM okuma kayıtları ve SCT pencere kayıtları 
 | requested_at_ms / response_received_at_ms | Zorunlu | İstek ve yanıt zamanı |
 | read_duration_ms | Yanıt varsa zorunlu | İstek/yanıt süresi |
 | read_status | Zorunlu | ok, timeout, transport_error, parse_error, invalid_measurement |
-| V/I/P/E/frequency/PF alanları | Başarılı okumada | PZEM'in bildirdiği sayısal değerler |
+| `voltage_V`, `current_A`, `active_power_W`, `energy_Wh`, `frequency_Hz`, `power_factor` | Başarılı okumada alanlar; JSON Schema'da nullable | PZEM'in bildirdiği sayısal değerler; şemadaki adlar kod ve kayıtlarla aynen eşleşmelidir |
 | anomaly_flags / raw_error | Önerilen | Hata ve şüpheli durum ayrıntısı |
 | synthetic_example | Şema örneklerinde kullanılan işaret; JSON Schema'da zorunlu | Örnek/sentetik kayıtları gerçek ölçüm verisinden ayırır |
 
