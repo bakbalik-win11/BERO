@@ -553,3 +553,13 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **ADR-007:** Mevcut 100 nF ile planlanan paralel 10 µF fiziksel olarak hâlâ ayrıdır. 10 µF eklenmeden ve gerçek bağlantı LOG'a geçirilmeden ilk SCT bağlantılı koşul başlatılmaz.
 - **Kapsam düzeltmesi:** PZEM zaman damgası/logging entegrasyonu E00A'nın ham ADC gözlemi için ön koşul değildir; bu, ileride PZEM/SCT etiketleme işinde ele alınır. E00A'da gerçek kart/GPIO, fiilî bias düzeni, firmware sürümü, kayıt süresi, örnek sayısı ve ham dosya yolu kaydedilecektir.
 - **Doğrulama sınırı:** Bu değişiklikler yalnızca depo plan/dokümantasyonudur. Firmware yazılmadı veya derlenmedi; YAML/JSON Schema doğrulayıcısı, CI ve fiziksel ölçüm bu oturumda çalıştırılmadı. GPIO34 ve kondansatör düzeni fiziksel olarak doğrulanmış sayılmaz.
+
+## 2026-10-29 — Deney ve karar izlenebilirliği güçlendirildi
+
+- **Neden:** Kullanıcı önceki çalışmalarda deney kodlarını ve kod/karar gerekçelerini bulmakta zorlandığını belirtti. Bu oturumun amacı deney yapmak değil, depoda her basamağın nedenini, uygulamasını, kanıtını ve sonraki kararını izlenebilir kılmaktır.
+- **Karar:** `EXPERIMENT_LEDGER.md` oluşturuldu. Her deney için “neden, soru/hipotez, karar gerekçesi, gerçek uygulama, kanıt, sonuç, sonraki basamak” bağını tarif eder.
+- **Kod ve sonuç ayrımı:** Henüz oluşturulmamış firmware dosyası için yol uydurulmayacak. Protokol/YAML dosyasının varlığı kodun çalıştığını göstermez. Planlandı, kodlandı, derlendi, çalıştırıldı, ölçüldü ve yorumlandı durumları ayrı tutulacak.
+- **Gezinme:** Proje `README.md`, `PROGRESS_TREE.md` ve `STATUS.md` üzerinden yeni izleme defterine bağlantı eklendi.
+- **Doğrulama sınırı:** Depo dosyaları GitHub'a yazıldı; fiziksel test, firmware derlemesi, YAML parser, CI veya otomatik bağlantı testi bu değişiklik kapsamında çalıştırılmadı.
+- **Sonraki adım:** Tek aktif teknik basamak E00A olarak kalır. Fiziksel deney günü geldiğinde önce kart/pinout ve bias kurulumunu doğrula; ardından yalnız bu basamağın kodunu ve ölçüm kaydını oluştur. Daha sonraki deneyleri erkenden kodlama.
+- **Kanıt:** [Deney ve karar izleme defteri](../EXPERIMENT_LEDGER.md); [STATUS](../STATUS.md); [İlerleme ağacı](../PROGRESS_TREE.md).
