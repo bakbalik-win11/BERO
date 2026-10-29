@@ -24,4 +24,4 @@ Donanım ve yazılım kimlikleri, gerçek ölçüm süresi, ham veri ve grafik/�
 
 ## Kaynak raporuyla kapsam ayrımı (2026-10-29)
 
-SCT013-030 raporunda ESP32 ADC, RMS ve kalibrasyon için genel örnekler vardır. E01 bunları uygulama görevi değildir: amaç mevcut BERO analog ön uçta, hatta akım yokken ofset/gürültü davranışını kaydetmektir. Bu oturumda fiziksel ölçüm yapılmadı ve kaynak rapordaki 10 µF önerisi devre değişikliğine dönüştürülmedi.
+SCT013-030 raporunda ESP32 ADC, RMS ve kalibrasyon için genel örnekler vardır. E01 bunları uygulama görevi değildir: amaç, kurulan BERO analog ön uçta hatta akım yokken ofset/gürültü davranışını kaydetmektir. [ADR-007](../../docs/decisions/ADR-007-bias-midpoint-capacitor.md) uyarınca 10 kΩ + 10 kΩ bölücünün orta noktasında 10 µF kullanılması önerilir; fiziksel değişiklik henüz doğrulanmadığından kurulumda gerçek değer metadata'ya yazılmalıdır. ADC GPIO'suna ilave 100 nF ilk E01 kurulumunda önerilmiyor; önce tek değişkenle ölçüm alınacak.
