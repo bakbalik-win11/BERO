@@ -1,0 +1,24 @@
+experiment_id: E00A
+title: Ham sinyal gözlemi ve örnekleme hızı karşılaştırması
+status: planned
+date: 2026-10-29
+hardware:
+  sensor: SCT013-030 (30 A / 1 V), primary sensor
+  acquisition: ESP32 internal ADC; exact board and GPIO not selected
+conditions:
+  - bias_only_without_SCT
+  - SCT_connected_no_load
+  - SCT_connected_100W_incandescent
+target_sample_rates_sps: [1000, 2000, 2500]
+outputs:
+  - raw_adc_samples
+  - waveform_plot_vs_time
+  - slow_playback
+  - mean_min_max_peak_to_peak_standard_deviation
+  - target_rate_elapsed_duration_sample_count
+  - approximate_actual_sample_rate
+notes:
+  - Sample rates are comparison candidates, not validated requirements.
+  - No current conversion, RMS current, power factor, or harmonic analysis in this experiment.
+  - Complex buffering/DMA is deferred until simple acquisition proves insufficient.
+  - No physical measurements or firmware tests have been performed.
