@@ -400,3 +400,10 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Kural:** HEDEF, cevaplanacak soru ve kabul ölçütüdür. LOG, gerçekte yapılan işlem, ayarlar, süre/örnek sayısı, ham veri yolu, gözlemler ve sapmalardır. SONUÇ, kanıtın desteklediği yorum, sınırlamalar ve sonraki adımdır. İşlem yapılmadıysa açıkça yazılır; veri yokken sonuç uydurulmaz.
 - **Depoya eklenen:** AGENTS.md çalışma protokolü, E00A protocol.md ve results.md bu standarda göre güncellendi.
 - **Doğrulama sınırı:** Bu bir dokümantasyon/iş akışı kararıdır. Donanım deneyi veya firmware testi yapılmadı.
+
+
+## 2026-10-29 — Deney koşullarının açıklamalı YAML ile kaydı
+
+- **HEDEF:** Deney kodunun/firmware'inin hangi deney koşullarını temsil ettiğini açıkça belgelemek ve aynı koşulları daha sonra yeniden kurmayı kolaylaştırmak.
+- **LOG:** Kullanıcı, açıklamalı YAML dosyalarının da eklenmesini ve kodların deney koşullarını içermesini istedi. E00A için `experiment.yaml` planlandı; genel çalışma kuralı, E00A README/protocol/results bağlantıları eklendi.
+- **SONUÇ:** YAML deneyin planlanan koşullarını ve açıklamalarını kayıt altına alır. Firmware YAML'ı gerçekten okumadığı sürece bu dosya otomatik çalışma ayarı değildir. Henüz firmware yazılmadı, derlenmedi ve fiziksel ölçüm yapılmadı.
