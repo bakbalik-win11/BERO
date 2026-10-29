@@ -29,6 +29,6 @@ source_documents:
 analog_frontend_change_from_source_review: false
 bias_divider_resistors: "2 x 10 kOhm; reported midpoint approximately 1.65 V"
 bias_midpoint_capacitor_currently_reported: "100 nF (104) to GND; reported pre-change configuration"
-bias_midpoint_capacitor_planned_for_E01: "10 uF to GND per ADR-007; physical implementation pending"
+bias_midpoint_capacitor_planned_for_E01: "Add 10 uF electrolytic in parallel with existing 100 nF (104), both from Vmid to GND; physical implementation pending"
 adc_pin_shunt_capacitor_planned_for_initial_E01: false
-bias_capacitor_decision: "ADR-007 recommendation documented; record actual installed value at test time"
+bias_capacitor_decision: "ADR-007 recommends parallel 10 uF electrolytic + existing 100 nF (104) at Vmid-GND; record actual installed configuration at test time"
