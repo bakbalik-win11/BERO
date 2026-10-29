@@ -1,18 +1,23 @@
-# Sonuçlar
+# Deney sonuç kaydı — şablon
 
-**Durum: YAPILMADI.** Deney çalıştırılmadan sonuç veya ölçüm sayısı eklenmez.
+**Durum:** PLANLANDI / YAPILMADI
 
-## Gerçekleşen prosedür
-YAPILMADI.
+## HEDEF
+Bu deney hangi soruyu cevaplayacak ve kabul ölçütü nedir?
 
-## Veriler
-Henüz veri yok.
+## LOG
+- Gerçekleşen prosedür:
+- Gerçek donanım/yazılım ve ayarlar:
+- Başlangıç/bitiş zamanı veya gerçek süre (ilgiliyse):
+- Örnek sayısı / gerçek örnekleme hızı (ilgiliyse):
+- Ham veri ve kanıt dosyalarının yolu:
+- Sapmalar, hatalar ve gözlemler:
+- Yapılmayan işlemler:
 
-## Sonuç / yorum
-Henüz sonuç yok.
+## SONUÇ
+- Kanıtın desteklediği sonuç:
+- Belirsizlikler ve sınırlar:
+- Kabul ölçütü karşılandı mı; kanıtı:
+- Sonraki adım ve gerekçesi:
 
-## Sapmalar / sorunlar
-Henüz kayıt yok.
-
-## Kanıt dosyaları
-Henüz yok.
+**Kural:** Veri veya test kanıtı yoksa sonuç uydurulmaz; durum PLANLANDI / YAPILMADI olarak kalır. Ham veri varsayılan olarak Git'e eklenmez.
