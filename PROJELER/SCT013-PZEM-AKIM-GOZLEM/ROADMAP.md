@@ -71,4 +71,4 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 
 ## 2026-10-29 — Kaynak doküman incelemesi
 
-SCT013-030 teknik raporu ve CT satürasyonu notu mevcut donanım referanslarına işlendi. Bu belge incelemesi deney/kalibrasyon sonucu değildir ve faz/karar kapısı durumlarını değiştirmez. Sonraki somut iş hâlâ T005/E01 yüksüz ofset ve gürültü tabanı ölçümüdür. E01 öncesi 10 µF orta nokta kondansatörü önerisi [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) ile kaydedildi; fiziksel uygulama ve ölçüm bekleniyor.
+SCT013-030 teknik raporu ve CT satürasyonu notu mevcut donanım referanslarına işlendi. Bu belge incelemesi deney/kalibrasyon sonucu değildir ve faz/karar kapısı durumlarını değiştirmez. Sonraki somut iş hâlâ T005/E01 yüksüz ofset ve gürültü tabanı ölçümüdür. E01 öncesi mevcut 100 nF'ye paralel 10 µF orta nokta kondansatörü önerisi [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) ile kaydedildi; fiziksel uygulama ve ölçüm bekleniyor.
