@@ -17,7 +17,6 @@ supply_arrangement: "PZEM and measurement/control ESP boards are not powered fro
 line_current_condition: "no current through measured line; confirm and record at experiment time"
 plotting: "graph ADC values over time while line current is zero"
 calibration_id: null
-reference_meter: null
 load_description: "no load current during E01"
 data_paths: []
 notes: "Hardware is not assembled yet. No measurement has been performed. Duration beyond 30 seconds is possible but not decided."
