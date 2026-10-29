@@ -34,3 +34,7 @@ Beklenen örnek sayısı yaklaşık olarak hedef hız × gerçek kayıt süresid
 
 ## Durum
 PLANLANDI. Firmware, kayıt, grafik ve fiziksel ölçüm henüz yapılmadı.
+
+
+## Deney koşullarının YAML kaydı
+[E00A açıklamalı yapılandırma dosyası](experiment.yaml), deneyin planlanan koşullarını tek yerde toplar. Bu dosya şu anda dokümantasyon/plan kaydıdır; firmware tarafından otomatik okunmaz. Gerçekte kullanılan kart, GPIO ve ayarlar ölçüm öncesi doğrulanıp LOG'a yazılmalıdır.
