@@ -85,3 +85,8 @@ E07, yalnız SCT sinyalinden kararlı bölgeleri belirleme yaklaşımını incel
 **Kararlılık ilkesi:** “Henüz kararlılık eşiği veya gereken pencere sayısı belirlemeyelim. Bunlar deney sonuçlarından çıkarmamız gereken kararlar; baştan varsaymamız gereken değerler değil.” Bu deney için eşik veya ardışık pencere sayısı önceden belirlenmeyecek. Üç tur sonunda mevcut verinin yeterliliği değerlendirilecek; sırf daha fazla test mümkün diye yeni tur eklenmeyecek.
 
 E07 protokolü: [protocol.md](experiments/E07-sct-stability-step-tests/protocol.md). Donanım kurulumu ve ölçüm yapılmadı.
+
+
+## 2026-10-29 — E08 SCT karakterizasyonu
+
+E08, E07'den ayrı olarak hız, hesaplama yöntemi ve iletken tur sayısının etkilerini aynı karşılaştırma düzeninde incelemek için planlandı. Aşamalar ve her aşamanın gerekçesi [E08 açıklamasında](experiments/E08-sct-characterization/README.md) ve aşama notlarında bulunur. Sıra: yüksüz uzun okuma → 100 W akkor tam matris → 150 W akkor ve 8,5 W LED aynı matris → aç-kapa testi. Hız hedefleri 1/2/2,5 kS/s; kablo turları 1/2/4; hesaplamalar bias çıkarılmış RMS, mutlak Peak ve Peak-to-Peak. Dış cihaz ortalama akımı yalnız genel not olabilir; zaman eşleştirmesi yapılmaz. Kararlılık eşiği ve pencere sayısı sonuçlardan çıkarılacak. E08 planlandı; ölçüm yapılmadı. T005/E00-E01 hazırlığı hâlâ önce gelir.
