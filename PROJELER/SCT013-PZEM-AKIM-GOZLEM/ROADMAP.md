@@ -14,7 +14,7 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 ## Faz 1 — SCT analog ön uç
 - [x] 1.1 Mevcut SCT jack bağlantısını, breadboard bias alt devresini ve ESP32 dahili ADC yaklaşımını hobi projesi kapsamında belgele. — [T004](tasks/T004-analog-frontend.md)
   - **Kapanış:** Kullanılan SCT modelleri ve jack çıkışı, 2 × 10 kΩ orta nokta, orta noktadan GND'ye 100 nF kondansatör, yaklaşık 1,65 V bias kabulü ve dahili ADC yaklaşımı kaydedildi. Laboratuvar düzeyinde bias/ADC aralığı/clipping ölçümü bu görevin şartı değil.
-- [ ] Ön adım E00A — paketleme öncesi ham dalga gözlemi: bias-only → SCT yüksüz → 100 W ampul; farklı hızlarda ham grafik, yavaş oynatma ve temel istatistikler. [E00A protokolü](experiments/E00A-raw-waveform-observation/protocol.md). Bu adım E00/E01 ve aktarım mimarisi kararından önce gelir.
+- [ ] Ön adım E00A — paketleme öncesi ham kayıt ve temel istatistikler: bias-only → SCT yüksüz → 100 W ampul; tek ESP32, ilk geçişte 2 kS/s hedefi, her koşul için yaklaşık 1 saniyelik kayıt. Ortalama, min/max, tepe-tepe aralığı, standart sapma, örnek sayısı ve gerçekleşen hız ana çıktılardır; grafik yalnız tanı için kullanılır. [E00A protokolü](experiments/E00A-raw-waveform-observation/protocol.md). Bu adım E00/E01 ve aktarım mimarisi kararından önce gelir. Daha fazla hız veya çoklu ESP32 ancak sonuçlar gerektirirse ele alınır.
 - [ ] 1.2a SCT bağlı değilken bias noktasını ADC ile oku; `analogRead()` ham sayısı ve `analogReadMilliVolts()` çıktısını voltmetreyle karşılaştır. — [E00 protokolü](experiments/E00-bias-adc-baseline/protocol.md)
 - [ ] 1.2b SCT bağlıyken ve ölçülen hatta akım yokken aynı iki ADC okumasını karşılaştır.
 - [ ] 1.2c Uzun yüksüz ADC kaydı, zaman grafiği ve gürültü özeti. — [T005](tasks/T005-noise-floor.md)
@@ -74,6 +74,10 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 - [ ] Her anlamlı depo oturumunda başlangıç/kapanış protokolünü uygula.
   - **Bitti sayılır:** oturum günlüğü ve STATUS güncellenmiş, ilgili testler çalıştırılmış, doğrulama kanıtı eklenmiş ve PR üzerindeki oturum kapanış kontrolü başarılı.
   - **Sınır:** CI yalnızca kayıt ve süreç alanlarını denetler; ölçüm doğruluğunu veya yeni sohbetin otomatik başlamasını garanti etmez.
+
+## 2026-10-29 — E00A kapsamı sadeleştirildi
+
+E00A'nın amacı korunarak ilk geçiş sadeleştirildi. Öncelik canlı/akıcı grafik değil, üç donanım koşulundan alınan ham kayıtların temel istatistiklerini karşılaştırmaktır. İlk geçişte tek ESP32, 2 kS/s başlangıç hedefi ve yaklaşık 1 saniyelik kayıt kullanılır. Grafik yardımcı tanı çıktısıdır. 1/2,5 kS/s tam matrisi, yavaş oynatma ve üç ESP32 eşzamanlaması ilk aşamanın kabul koşulundan çıkarıldı; istatistikler yeni bir soru doğurursa sonraki deney seçilir.
 
 ## 2026-10-29 — Kaynak doküman incelemesi
 
