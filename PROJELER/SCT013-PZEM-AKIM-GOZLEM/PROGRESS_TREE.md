@@ -5,7 +5,8 @@
 ## Şu an nerede?
 
 - **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı.
-- **Depo güvenlik kapısı:** AÇIK — tutarlılık denetimi bitmeden deney başlatılmaz.
+- **Depo belge tutarlılığı denetimi:** TAMAMLANDI; 87 Markdown dosyasındaki göreli bağlantı hedefleri kontrol edildi ve bulunan tek kırık bağlantı düzeltildi.
+- **Deney başlangıcı:** BEKLEMEDE — gerçek ESP32 kart/GPIO ve fiziksel bağlantı kontrolü gerekiyor; bu belge denetimi fiziksel test veya firmware doğrulaması değildir.
 - **İlk teknik deney (denetim sonrası):** E00A — ham ADC kaydı ve temel istatistikler.
 - **E00A durumu:** PLANLANDI; firmware, fiziksel kayıt ve ölçüm henüz yapılmadı.
 - **E00A koşulları:** bias-only → SCT bağlı/yüksüz → SCT bağlı/100 W akkor; ilk geçişte tek ESP32, hedef 2 kS/s, koşul başına yaklaşık 1 saniye. ADR-007'deki 10 µF + mevcut 100 nF bias düzeni ilk SCT bağlantılı koşuldan önce planlandı; fiziksel uygulama henüz yok.
