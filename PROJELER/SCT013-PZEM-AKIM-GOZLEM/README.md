@@ -39,8 +39,9 @@ Teknik açıklamaları yeniden yazmamak için ilgili Markdown dosyaları [hardwa
 3. [ROADMAP.md](ROADMAP.md) — fazlar ve kabul ölçütleri.
 4. [Görev kartları](tasks/README.md) — aktif iş ve bağımlılıklar.
 5. [Açık sorular](docs/open-questions.md) — gerçekten cevap bekleyen konular.
-6. [Fiziksel donanım envanteri](hardware/inventory.md) — seçilen modüller ve bias alt devresi.
-7. [T001 kullanıcı envanter özeti](docs/inventory/T001-fiziksel-donanim-envanteri.md) — bildirilen stoklar ve breadboard bias alt devresi.
+6. [Deney ve karar izleme defteri](EXPERIMENT_LEDGER.md) — her basamağın nedenini, kod/kanıt durumunu ve sonraki karar kapısını izler.
+7. [Fiziksel donanım envanteri](hardware/inventory.md) — seçilen modüller ve bias alt devresi.
+8. [T001 kullanıcı envanter özeti](docs/inventory/T001-fiziksel-donanim-envanteri.md) — bildirilen stoklar ve breadboard bias alt devresi.
 
 ## Başlangıç tasarım değerleri
 - SCT örnekleme hızı: 2 kS/s.
