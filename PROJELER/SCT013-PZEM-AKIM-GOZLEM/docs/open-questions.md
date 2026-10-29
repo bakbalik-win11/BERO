@@ -8,7 +8,8 @@ Aşağıdaki sorular yalnız bu projede hâlâ cevaplanmamış proje-özel konul
 4. Hangi akımın altında PZEM, bağımsız referansa göre kabul edilemez sapma/kararsızlık gösteriyor?
 5. 1 kS/s, 2 kS/s ve 2,5 kS/s seçenekleri arasında hedef yüklerde anlamlı performans farkı var mı?
 6. 200 ms pencere kararlı yükte tekrarlanabilir mi; çevrime senkron pencere gerekli mi?
-7. E08 sonuçlarında RMS, mutlak Peak ve Peak-to-Peak yöntemlerinin kendi pencere değişkenliği ve tekrar edilebilirliği, örnekleme hızı ve 1/2/4 kablo turuna göre nasıl karşılaştırılacak? Eşik veya gerekli pencere sayısı önceden seçilmeyecek; veri görüldükten sonra karar verilecek.
+7. E00A'da farklı örnekleme hızlarında ham dalga görünümü ve temel istatistikler anlamlı biçimde değişiyor mu; basit PC aktarımı yeterli mi, yoksa daha karmaşık buffer yapısına ihtiyaç var mı?
+8. E08 sonuçlarında RMS, mutlak Peak ve Peak-to-Peak yöntemlerinin kendi pencere değişkenliği ve tekrar edilebilirliği, örnekleme hızı ve 1/2/4 kablo turuna göre nasıl karşılaştırılacak? Eşik veya gerekli pencere sayısı önceden seçilmeyecek; veri görüldükten sonra karar verilecek.
 
 **Karara bağlandı; yeniden sorulmayacak:**
 - Eğitim/etiket referansı PZEM-004T V3.0'dır. Modelin geçerli PZEM akım okumasına göre ±%4 bağıl sapma içinde olması Python'da `OK` sayılır. Kararlı alan gözlemi ve SCT istatistikleri ayrı görev/deney konusudur.
