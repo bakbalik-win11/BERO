@@ -383,3 +383,12 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Depo değişiklikleri:** `experiments/E00A-raw-waveform-observation/` README, protocol, metadata ve results eklendi. Deney indeksi, proje README, STATUS, ROADMAP, tasks README ve open-questions E00A'yı mevcut E00/E01 ve paketleme kararından önce konumlandıracak şekilde güncellendi.
 - **Durum/doğrulama:** Plan depoya kaydedildi; fiziksel ölçüm, firmware geliştirme/derleme ve grafik üretimi yapılmadı. E00A henüz uygulanmadı.
 - **Kanıt:** [E00A açıklaması](../experiments/E00A-raw-waveform-observation/README.md), [protokol](../experiments/E00A-raw-waveform-observation/protocol.md), [STATUS](../STATUS.md), [ROADMAP](../ROADMAP.md).
+
+
+## 2026-10-29 — E00A ilk geçişinin istatistik merkezli sadeleştirilmesi
+
+- **Kullanıcı kararı:** Grafik görmek tek başına yeterli çıktı değil; deneyin anlamlı sonuç üretmesi öncelikli. İlk geçişte üç koşulun istatistikleri karşılaştırılsın; grafik gerektiğinde açıklayıcı/tanı aracı olsun.
+- **Güncellenen plan:** Bias-only, SCT yüksüz ve 100 W akkor koşullarında tek ESP32 ile yaklaşık 1 saniyelik ham kayıt; ilk hedef 2 kS/s. Ortalama, min/max, tepe-tepe aralığı, standart sapma, örnek sayısı, kayıt süresi ve yaklaşık gerçekleşen hız karşılaştırılacak. Ham kayıtlar yerelde saklanacak.
+- **Kapsam sınırı:** 1 ve 2,5 kS/s ek kayıtları, yavaş oynatma, üç ESP32'yi eşzamanlama, DMA ve çift buffer ilk aşamanın şartı değil. İlk istatistikler bir soruyu cevapsız bırakırsa sonraki deney buna göre tasarlanacak. Bu karar daha sonraki örnekleme hızı deneyini iptal etmez.
+- **Depoda güncellenenler:** E00A README/protocol/metadata/results; deney indeksi; STATUS; ROADMAP; proje README; görev indeksi; açık sorular; bu oturum günlüğü.
+- **Doğrulama sınırı:** Bu kayıt bir plan değişikliğini belgelemektedir. Fiziksel kurulum, firmware derleme, örnekleme veya ölçüm yapılmadı.
