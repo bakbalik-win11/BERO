@@ -25,7 +25,8 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 - [ ] 2.1 Gerçek örnekleme hızını ve sapmayı ölç.
 - [ ] 2.2 2 kS/s ve nominal 200 ms penceresini dene.
 - [ ] 2.3 RMS, ADC ortalaması, min/max, örnek sayısı ve clipping sayaçlarını üret.
-  - **Bitti sayılır:** kararlı yükte pencere değişkenliği raporlanmış.
+- [ ] E07 için aynı pencereden RMS, Peak, Peak-to-Peak, ortalama, standart sapma ve min/max özetlerini üret; hedef örnekleme hızı ile ölçülen gerçek hızı ayrı kaydet.
+  - **Bitti sayılır:** kararlı yükte pencere değişkenliği raporlanmış; SCT kararlılık yaklaşımı eldeki veriye göre değerlendirilmiş.
 
 ## Faz 3 — PZEM edinim
 - [ ] 3.1 Yaklaşık 1 s sorgu başlangıcı; istek/yanıt zamanları ve read_status kaydı.
@@ -49,6 +50,7 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 - [ ] 6.2 E04: PZEM alanlarının değişim zamanı.
 - [ ] 6.3 E05: aynı yükte 1 / 2 / 2,5 kS/s; opsiyonel 500 S/s.
 - [ ] 6.4 E01, E02, E06: gürültü, kararlı yük ve farklı yük tipleri.
+- [ ] E07: üç tur basamaklı SCT gözlemi; her turda boşta → 100 W akkor → 150 W akkor → 8,5 W LED; tur başına hedef hız sırasıyla 1 / 2 / 2,5 kS/s.
   - **Bitti sayılır:** her deneyin protokolü, metadata'sı, verisi ve sonucu mevcut.
 
 ## Faz 7 — Analiz ve karar
@@ -74,3 +76,12 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 ## 2026-10-29 — Kaynak doküman incelemesi
 
 SCT013-030 teknik raporu ve CT satürasyonu notu mevcut donanım referanslarına işlendi. Bu belge incelemesi deney/kalibrasyon sonucu değildir ve faz/karar kapısı durumlarını değiştirmez. Sonraki somut iş hâlâ T005/E01 yüksüz ofset ve gürültü tabanı ölçümüdür. E01 öncesi mevcut 100 nF'ye paralel 10 µF orta nokta kondansatörü önerisi [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) ile kaydedildi; fiziksel uygulama ve ölçüm bekleniyor.
+
+
+## 2026-10-29 — E07 SCT kararlılık basamak testi planı
+
+E07, yalnız SCT sinyalinden kararlı bölgeleri belirleme yaklaşımını incelemek için eklendi; PZEM alan eşleştirmesi bu deneyin amacı değildir. Üç turla sınırlandı. Her turda boşta, 100 W akkor, 150 W akkor ve 8,5 W LED basamakları uygulanacak; hedef örnekleme hızı turlar arasında 1, 2 ve 2,5 kS/s olarak değişecek. İlk pencere varsayımı 200 ms'dir. Aynı örneklerden RMS, Peak, Peak-to-Peak ve yardımcı dalga istatistikleri çıkarılıp Python'da analiz edilecek.
+
+**Kararlılık ilkesi:** “Henüz kararlılık eşiği veya gereken pencere sayısı belirlemeyelim. Bunlar deney sonuçlarından çıkarmamız gereken kararlar; baştan varsaymamız gereken değerler değil.” Bu deney için eşik veya ardışık pencere sayısı önceden belirlenmeyecek. Üç tur sonunda mevcut verinin yeterliliği değerlendirilecek; sırf daha fazla test mümkün diye yeni tur eklenmeyecek.
+
+E07 protokolü: [protocol.md](experiments/E07-sct-stability-step-tests/protocol.md). Donanım kurulumu ve ölçüm yapılmadı.
