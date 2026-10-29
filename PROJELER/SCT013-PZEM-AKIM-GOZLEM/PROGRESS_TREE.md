@@ -65,6 +65,7 @@ Faz 2–8, yol haritasındaki daha sonraki iş alanlarıdır; bu görünüm onla
 ## Depoda nereye bakılır?
 
 | Deneyin nedenini, uygulama kodunu ve kanıtını birlikte izlemek | [EXPERIMENT_LEDGER.md](EXPERIMENT_LEDGER.md) |
+| Modelin amacı, veri kümesi yaklaşımı ve kabul edilebilir sınırlar | [docs/project-philosophy.md](docs/project-philosophy.md) |
 
 | İhtiyacın | İlk bakılacak dosya |
 |---|---|
