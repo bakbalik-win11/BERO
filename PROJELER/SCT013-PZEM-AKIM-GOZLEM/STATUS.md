@@ -1,5 +1,7 @@
 # Proje durumu
 
+**Genel görünüm:** [İlerleme ağacı — PROGRESS_TREE.md](PROGRESS_TREE.md). Depoyu baştan sona okumadan genel resmi görmek için önce bu ağaca, ardından bu dosyadaki güncel duruma bak.
+
 **Son güncelleme:** 2026-10-29  
 **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı  
 **Sıradaki iş:** Önce [E00A — Ham sinyal kaydı ve temel istatistikler](experiments/E00A-raw-waveform-observation/README.md) (PLANLANDI); ardından [E00 — Bias ADC karşılaştırması](experiments/E00-bias-adc-baseline/protocol.md) ve [T005 — ADC temel okumaları ve E01 gürültü tabanı](tasks/T005-noise-floor.md). E00A'nın ana çıktısı üç koşulun temel istatistik karşılaştırmasıdır; ilk geçişte tek ESP32 ve 2 kS/s başlangıç hızı kullanılır, grafik yalnız gerektiğinde tanı aracıdır. T005 — PLANLANDI. İlk önce SCT bağlamadan bias noktasında `analogRead()` ham sayısı ile `analogReadMilliVolts()` karşılaştırılacak; sonra SCT bağlıyken akım yok durumunda aynı iki okuma yapılacak; uzun E01 gürültü kaydı daha sonraya bırakıldı. T003, PZEM'e göre ±%4 bağıl sapma ve Python `OK` karar kuralı belirlenerek kapatıldı. T001 envanter ve T002 güvenlik kontrolü, kullanıcının tamamladığını bildirdiği bilgiler esas alınarak kaydedilip kapatıldı.  
