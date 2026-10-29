@@ -1,18 +1,24 @@
-# Deney şablonu
+# Deney protokolü — şablon
 
-## Amaç
-Hangi soruya cevap verilecek?
+## HEDEF
+- Hangi soruyu cevaplayacağız?
+- Neden bu deney gerekiyor?
+- Kabul ölçütü nedir?
 
 ## Kanıt / hipotez
-Kaynak bilgisi ile test edilecek hipotezi ayır.
+Üretici belgesi, kullanıcı beyanı, önceki deney sonucu ve test edilecek hipotezi birbirinden ayır. Bilinmeyenleri varsayımla doldurma.
 
-## Donanım ve güvenlik
-- SCT/PZEM modeli:
-- MCU/ADC:
-- Analog ön uç / VREF:
-- Referans cihaz:
+## Donanım ve düzenek
+- SCT/PZEM modeli (deneyle ilgiliyse):
+- MCU ve kartın tam modeli:
+- Kullanılacak ADC/giriş ve GPIO (ilgiliyse):
+- Analog ön uç ve gerçek kurulum durumu:
+- Güç düzeni:
 - Güvenlik kontrolü:
-- calibration_id:
+- calibration_id (yalnız ilgili kayıt/model kullanılıyorsa):
+
+## Planlanan ayarlar
+Ayarları deneyden önce yaz. Hedef değer ile ölçülen gerçek değeri ayrı tut. YAML yapılandırmasının firmware tarafından otomatik okunup okunmadığını açıkça belirt.
 
 ## Prosedür
 1. 
@@ -20,7 +26,13 @@ Kaynak bilgisi ile test edilecek hipotezi ayır.
 3. 
 
 ## Kaydedilecek alanlar
-Zaman damgaları, gerçek örnekleme hızı, sample_count, SCT RMS, PZEM read_status/alanları, yük durumu ve anomaly flags.
+Yalnız bu deneyin sorusunu cevaplamak için gerekli alanları listele. Gerçek süre, örnek sayısı, gerçekleşen örnekleme hızı, ham veri yolu ve sapmalar gerekiyorsa belirtilir.
 
 ## Kabul ölçütü
-Deneyden önce yazılır; sonuca göre geriye dönük değiştirilmez.
+Deneyden önce yazılır; sonuç görüldükten sonra geriye dönük değiştirilmez. Ölçülmeyen sonuç kabul edilmiş sayılmaz.
+
+## LOG
+Gerçekte yapılanlar, kullanılan donanım/yazılım ve ayarlar, veri konumları, gözlemler, sapmalar ve yapılmayan işlemler.
+
+## SONUÇ
+Kanıtın gösterdiği, göstermediği, belirsizlikler ve gerekçeli sonraki adım.
