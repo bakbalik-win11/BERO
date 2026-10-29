@@ -593,3 +593,15 @@ Bunlar uzun vadeli vizyon ve örnek fikirlerdir; uygulanmış mimari veya doğru
 **Aktif adım değişmedi:** E00A ile ESP32 dahili ADC ham örneklerini oku, kaydet ve bilgisayarda görselleştir. Bu adım MCP/Modbus/P4 entegrasyonu veya model geliştirmesiyle genişletilmeyecek.
 
 Ayrıntı: [Proje felsefesi](../docs/project-philosophy.md). Dokümantasyon güncellendi; firmware, Python/model kodu veya fiziksel ölçüm yapılmadı.
+
+
+## 2026-10-29 — Gün sonu kontrolü ve gelecekteki oturum için devir
+
+- **Durum:** UYGULANDI — depo kayıtları çapraz kontrol edildi; E00A kapsam çelişkileri düzeltildi. Fiziksel deney yapılmadı.
+- **HEDEF ve kabul ölçütü:** Günün kararlarını gelecekteki oturumun yeniden kurabileceği şekilde korumak; aktif ilk adımı, deney kapsamını ve görev sırasını birbiriyle tutarlı tutmak; uygulama yapılmadıysa bunu açıkça belirtmek.
+- **Yapılan:** Güncel main commit'i kontrol edildi; `AGENTS.md`, `STATUS.md`, `ROADMAP.md`, `docs/open-questions.md`, E00A README/protocol/YAML, görev indeksi, proje README'si, ilerleme ağacı ve oturum günlüğü okundu. E00A belgelerindeki eski “istatistik ana çıktı, grafik yalnız tanı” ifadeleri, kullanıcının hedefiyle çeliştiği için düzeltildi: ham ADC kaydı ve bilgisayarda zaman grafiği temel çıktıdır; istatistikler yardımcıdır. T007 mimari görevi, gerçek edinim sonuçları ve aktarım gereksinimleri oluşana kadar BEKLEMEDE durumuna alındı. T007 taslağı silinmedi.
+- **SONUÇ:** Aktif ilk adım E00A olarak kaldı. İlk adımda PZEM, akım formülü, MCP3208, model eğitimi veya çoklu ESP mimarisi eklenmeyecek. Uzun vadeli göreve özel ESP sistemleri vizyonu felsefe/STATUS/deney defteri/günlükte korunuyor; bu bir uygulama iddiası değildir.
+- **Doğrulama:** Değiştirilen dosyalar GitHub'a yazıldıktan sonra yeniden okunarak içerik eşleşmesi kontrol edildi. Main dalının son commit'i ve dosya SHA'ları kontrol edildi. Bu oturumda firmware yazılmadı veya derlenmedi; YAML parser, JSON Schema validator, CI ve fiziksel test çalıştırılmadı. Donanım kartı/GPIO ve ADR-007'deki 10 µF fiziksel değişikliği hâlâ deney ön koşullarıdır.
+- **Açık kalanlar:** E00A öncesinde gerçek geliştirme kartı/pinout doğrulanacak; 10 µF paralel kondansatör fiziksel olarak uygulanıp kaydedilecek; ardından yalnız E00A için firmware ve yerel CSV/grafik hazırlığı yapılacak.
+- **Sonraki tek adım:** E00A başlamadan önce gerçek ESP32 kartını ve pinout üzerindeki ADC GPIO eşleşmesini doğrula. Donanım görülmeden GPIO34 kesinleşmiş sayılmayacak.
+- **Kanıt:** [STATUS](../STATUS.md); [ROADMAP](../ROADMAP.md); [E00A açıklaması](../experiments/E00A-raw-waveform-observation/README.md); [E00A protokolü](../experiments/E00A-raw-waveform-observation/protocol.md); [E00A YAML](../experiments/E00A-raw-waveform-observation/experiment.yaml); [T007](../tasks/T007-python-architecture.md); [görev indeksi](../tasks/README.md).
