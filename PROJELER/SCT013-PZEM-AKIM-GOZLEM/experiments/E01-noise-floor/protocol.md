@@ -21,3 +21,7 @@ hardware/safety-checklist.md tamamlanmadan şebeke deneyi yapılmaz. Bağlantı 
 
 ## Kabul ölçütü
 Donanım ve yazılım kimlikleri, gerçek ölçüm süresi, ham veri ve grafik/özet sonuç birbiriyle ilişkilendirilebilir olmalıdır. Ölçülmeyen sonuç yazılmaz. Tek bir yüksüz kayıt, tüm koşullar için kesin gürültü veya düşük akım sınırı kanıtı sayılmaz.
+
+## Kaynak raporuyla kapsam ayrımı (2026-10-29)
+
+SCT013-030 raporunda ESP32 ADC, RMS ve kalibrasyon için genel örnekler vardır. E01 bunları uygulama görevi değildir: amaç mevcut BERO analog ön uçta, hatta akım yokken ofset/gürültü davranışını kaydetmektir. Bu oturumda fiziksel ölçüm yapılmadı ve kaynak rapordaki 10 µF önerisi devre değişikliğine dönüştürülmedi.
