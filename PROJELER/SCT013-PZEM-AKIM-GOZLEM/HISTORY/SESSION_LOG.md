@@ -517,3 +517,12 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** JSON Schema alanlarının FIELDS.md ile tam alan bazında karşılaştırılması; schema validator ve YAML parser erişilebilirliğinin belirlenmesi; göreli Markdown bağlantılarının hedefleriyle kontrolü; STATUS/ROADMAP/PROGRESS_TREE ve görev kartlarının son uyum kontrolü.
 - **Sonraki adım:** Kalan çapraz kontrolleri tamamlamak; fiziksel deney ve firmware işi başlatmamak.
 - **Kanıt:** [FIELDS.md](../schema/FIELDS.md); [PZEM JSON Schema](../schema/pzem_read.schema.json); [SCT pencere JSON Schema](../schema/window_record.schema.json); [Python mimarisi](../docs/architecture/python-program-architecture.md); [T007 görev kartı](../tasks/T007-python-architecture.md); [Analog ön uç](../hardware/frontend.md).
+
+## 2026-10-29 — Şema alan adları ve görev indeksi bağlantısı
+
+- **HEDEF:** JSON Schema ile FIELDS.md arasındaki alan adlarını açık eşleştirmek ve T007 görev kartını görev indeksinden doğrudan açılabilir yapmak.
+- **LOG:** `schema/FIELDS.md` içindeki genel PZEM alan grubu, `voltage_V`, `current_A`, `active_power_W`, `energy_Wh`, `frequency_Hz`, `power_factor` alan adlarıyla açıklandı. `tasks/README.md` içindeki T007 satırı yeni oluşturulan görev kartına bağlantı verecek şekilde güncellendi.
+- **SONUÇ:** İki dosya da GitHub'dan yeniden okunup değişiklikler doğrulandı. JSON Schema dosyalarının JSON olarak ayrıştırılması ve required/property listelerinin incelenmesi başarılı oldu; alan adlarının sözlükte açıkça yer alması gereken eksik ifadeler düzeltildi. JSON Schema validator, YAML parser, CI veya fiziksel test çalıştırılmadı.
+- **Açık kalanlar:** Kritik Markdown göreli bağlantılarının hedefleriyle kontrolü; `STATUS.md`, `ROADMAP.md`, `PROGRESS_TREE.md`, görev listesi ve günlükte son durum uyumu; varsa kalan eski kondansatör zamanlaması ifadelerinin taranması.
+- **Sonraki adım:** Son çapraz denetim ve günlük kapanış kaydı.
+- **Kanıt:** [FIELDS.md](../schema/FIELDS.md); [PZEM JSON Schema](../schema/pzem_read.schema.json); [SCT pencere JSON Schema](../schema/window_record.schema.json); [Görev listesi](../tasks/README.md); [T007 görev kartı](../tasks/T007-python-architecture.md).
