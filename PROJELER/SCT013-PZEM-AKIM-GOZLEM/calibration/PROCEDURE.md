@@ -1,20 +1,31 @@
-# Akım kalibrasyon prosedürü
+# SCT akım katsayısı/model değerlendirme prosedürü
 
-**Durum: HAZIR, UYGULANMADI.** Tercihen kalibrasyon durumu bilinen True-RMS ampermetre kullan; PZEM'i kusursuz referans varsayma.
+**Durum: HAZIR, UYGULANMADI.** Bu belge bir çalışma planıdır; fiziksel kalibrasyon veya ölçüm sonucu içermez.
+
+## Amaç ve sınırlar
+- PZEM-004T V3, model eğitimi/değerlendirmesi için proje referans akışıdır; kusursuz ground truth veya bağımsız kalibrasyon standardı sayılmaz.
+- Proje kapsamında True-RMS referans cihazı zorunlu değildir.
+- Kullanıcının belirlediği hedef: geçerli, sıfırdan farklı PZEM akımına göre model tahmini en fazla ±%4 bağıl sapmada ise `OK`. Bu, PZEM'e uyum hedefidir; mutlak ölçüm doğruluğu garantisi değildir.
+- Laboratuvar düzeyinde izlenebilirlik, ADC VREF karakterizasyonu veya üç seviyeli harici referans ölçümü varsayılan zorunluluk değildir.
 
 ## Ön koşullar
-- Güvenlik listesi tamamlanmış.
-- SCT varyantı ve analog ön uç doğrulanmış.
-- ADC VREF ve bias ölçülmüş.
-- En az üç kontrollü rezistif yük seviyesi hazır.
+- İlgili güvenlik kontrolü ve gerçek donanım bağlantısı gözden geçirilmiş olmalı.
+- Kullanılan SCT varyantı, ESP32 kartı/GPIO'su ve analog bağlantı kaydedilmiş olmalı.
+- E00A ile E00/E01 temel okuma adımları tamamlanmış veya kalibrasyonun hangi kayıtları kullandığı açıkça belirtilmiş olmalı.
+- PZEM okumalarının geçerlilik durumu ve yük/olay bağlamı kayıtlı olmalı.
 
 ## Adımlar
-1. Tarih, cihaz kimlikleri, ortam ve bağlantı şemasını kaydet.
-2. Yük kapalıyken ADC ortalaması ve gürültüsünü en az 30 s gözle.
-3. Düşük, orta ve yüksek güvenli akım seviyelerinde referans akım ve aynı aralıktaki SCT RMS'i kaydet.
-4. Her nokta için sample_count, gerçek örnekleme hızı, pencere süresi ve clipping'i yaz.
-5. Dönüşüm katsayısını hesapla; kullanılan noktaları belirt.
-6. Kalibrasyonda kullanılmayan bir doğrulama noktasıyla sınama yap.
-7. Yeni calibration_id oluştur ve calibrations.csv'ye ekle.
+1. Tarih, SCT/PZEM kimlikleri, ESP32/firmware sürümü, yük koşulu ve veri yollarını kaydet.
+2. Kalibrasyon/eğitim için seçilen kararlı alanları, bu alanların nasıl belirlendiğini ve dışlanan geçiş/geçersiz okumaları kaydet.
+3. Aynı alanlara ait SCT özetleriyle geçerli PZEM akım okumalarını ilişkilendir; PZEM'in okuma zamanlamasına dair bilinmeyenleri kesinmiş gibi varsayma.
+4. Sensör başına katsayı veya `f(x)` modeli çıkar; kullanılan kayıtları ve yöntemi belirt.
+5. Modeli eğitimde kullanılmayan kayıt/alanlarda değerlendir. `abs(prediction - pzem_current) / abs(pzem_current) <= 0.04` ise `OK`, değilse `OUT_OF_RANGE`; sıfır veya geçersiz PZEM referansını bu yüzde kuralıyla sınıflandırma.
+6. Kullanılan veriyi, hesaplama sürümünü, sınırlamaları ve yeni `calibration_id` bilgisini `calibrations.csv` içine ekle; eski girdilerin üzerine yazma.
 
-Kabul toleransı deneyden önce belirlenmeli. Sonuca göre geriye dönük tolerans değiştirme; değişiklik gerekçesini kaydet.
+## Kabul ve raporlama
+Kabul sonucu yalnız kayıtlı veriler ve açık değerlendirme kuralı ile verilir. PZEM'e göre ±%4 uyum, bağımsız mutlak doğruluğu kanıtlamaz. Clipping veya belirgin veri sorunu görülürse bunu ayrıca raporla; yapılmamış kontrolleri yapılmış gibi yazma.
+
+## HEDEF / LOG / SONUÇ
+- **HEDEF:** PZEM referans akışına uyumu ölçmek ve yeniden üretilebilir model kaydı oluşturmak.
+- **LOG:** Kullanılan ham/özet veri yolları, seçilen alanlar, gerçek donanım/yazılım koşulları, dışlanan okumalar ve hesaplama yöntemi yazılır. Veri yoksa açıkça belirtilir.
+- **SONUÇ:** Ölçüm/eğitim yapılmadan sonuç üretilmez; sonraki adım ve sınırlamalar kaydedilir.
