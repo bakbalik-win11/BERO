@@ -72,3 +72,11 @@ Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi 
 - [ESP32-C3-MINI-1/1U module datasheet — Espressif](https://documentation.espressif.com/esp32-c3-mini-1_mini-1u_datasheet_en.html)
 
 Pin planı notu: Modül datasheet'i, geliştirme kartındaki başlık/pad etiketleriyle aynı şey değildir. Kodlama öncesinde her kartın pinout/şeması ayrı doğrulanacak; yalnızca benzer görünen kartlara bakarak GPIO eşlemesi kopyalanmayacak.
+
+## 2026-10-29 — SCT013-030 kaynak raporundan eklenen notlar
+
+- **Nominal oran:** SCT013-030, 30 A AC RMS girişte yaklaşık 1 V AC RMS çıkış verir; nominal ölçek 30 A/V (33,33 mV/A). **Kaynak etiketi:** teknik rapor/nominal hesap; BERO'da ölçülmüş kalibrasyon değildir.
+- **Çıkış tipi:** Gerilim çıkışlı; dahili burden direnci bulunur. Ek burden direnci mevcut tasarımın varsayılan parçası değildir.
+- **Satürasyon:** CT satürasyonu genel teknik risk olarak kayda alındı. BERO'da satürasyon ölçülmüş değildir.
+- **Belge ayrımı:** ESP32 ADC, RMS, kalibrasyon ve örnek kodları genel kaynak bilgisidir. BERO'nun dahili ADC/T005 planı bu rapordaki kodlarla değiştirilmedi.
+- **Kondansatör:** Kaynak rapor 10 µF örneği verse de mevcut kullanıcı bildirimi bias orta noktasından GND'ye bağlı 104 (100 nF) kondansatördür. Değer değiştirme kararı bu güncellemeyle verilmemiştir.
