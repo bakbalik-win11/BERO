@@ -35,3 +35,6 @@ Bias-only, SCT yüksüz ve 100 W akkor koşullarında temel ADC istatistiklerini
 - Verinin desteklediği sonuç:
 - Belirsizlikler ve cevaplanmamış sorular:
 - Sonraki adım ve gerekçesi:
+
+
+**Koşul/yapılandırma kaynağı:** [experiment.yaml](experiment.yaml) — planlanan koşulları gösterir; gerçek uygulama ve ölçüm kanıtı yerine geçmez.
