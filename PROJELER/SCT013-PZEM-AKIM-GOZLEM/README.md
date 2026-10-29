@@ -51,4 +51,4 @@ Teknik açıklamaları yeniden yazmamak için ilgili Markdown dosyaları [hardwa
 Bunlar deneylerle gözden geçirilecek başlangıç değerleridir; doğrulanmış sonuç değildir.
 
 ## Deney durumu
-Bu projede henüz E01–E06 deney sonucu veya kalibrasyon sonucu üretilmedi. Deney tamamlanana kadar sonuç kayıtları YAPILMADI durumunu korur.
+Fiziksel deney veya kalibrasyon sonucu henüz üretilmedi. E00/E01 temel ADC ve yüksüz gürültü hazırlığı aktif görev sırasındadır. Sonraki kapsamlı SCT karakterizasyon planı [E08](experiments/E08-sct-characterization/README.md) içinde belgelenmiştir: yüksüz uzun okuma, 100 W akkor matrisi, 150 W akkor ve 8,5 W LED karşılaştırması, ardından aç-kapa testi. [E07](experiments/E07-sct-stability-step-tests/protocol.md) önceki uygulanmamış plan olarak korunur; E08 güncel planı açıklar. E08 kapsamında PZEM/başka ESP ortalama akımı yalnız genel bağlamdır, zaman eşleştirmesi yapılmaz. Tüm sonuç kayıtları gerçek ölçüm yapılana kadar YAPILMADI durumunda kalır.
