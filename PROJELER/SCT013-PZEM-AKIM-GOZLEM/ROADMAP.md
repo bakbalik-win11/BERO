@@ -81,7 +81,7 @@ E00A'nın amacı korunarak ilk geçiş sadeleştirildi. Öncelik canlı/akıcı 
 
 ## 2026-10-29 — Kaynak doküman incelemesi
 
-SCT013-030 teknik raporu ve CT satürasyonu notu mevcut donanım referanslarına işlendi. Bu belge incelemesi deney/kalibrasyon sonucu değildir ve faz/karar kapısı durumlarını değiştirmez. Sonraki somut iş önce E00A ham sinyal gözlemidir; ardından T005/E00-E01 yüksüz ofset ve gürültü tabanı hazırlığı gelir. E01 öncesi mevcut 100 nF'ye paralel 10 µF orta nokta kondansatörü önerisi [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) ile kaydedildi; fiziksel uygulama ve ölçüm bekleniyor.
+SCT013-030 teknik raporu ve CT satürasyonu notu mevcut donanım referanslarına işlendi. Bu belge incelemesi deney/kalibrasyon sonucu değildir ve faz/karar kapısı durumlarını değiştirmez. Sonraki somut teknik adım E00A ham sinyal gözlemidir; ardından E00/T005/E01 temel okumaları gelir. İlk notta 10 µF ekleme E01 öncesi olarak yazılmıştı; sonraki tutarlılık denetiminde, ilk SCT bağlantılı kayıt E00A olduğu için uygulama planı E00A öncesine alındı. Ayrıntı [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) içinde; fiziksel uygulama ve ölçüm bekleniyor.
 
 
 ## 2026-10-29 — E07 SCT kararlılık basamak testi planı
