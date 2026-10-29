@@ -4,10 +4,10 @@
 E08, SCT-013 ve ESP32 dahili ADC ölçüm zincirinin davranışını kendi verisi üzerinden anlamak için planlanır. Amaç PZEM ile zaman eşleştirmesi veya laboratuvar düzeyinde doğruluk doğrulaması değildir. Örnekleme hızı, hesaplama yöntemi, SCT içinden geçirilen kablo tur sayısı ve yük durumunun sonuçlara etkisi incelenecektir.
 
 ## Aşamalar
-1. [Yüksüz uzun okuma](stages/01-no-load-long-read.md): temel gürültü, bias ve pencere değişkenliği.
-2. [100 W akkor matrisi](stages/02-100w-matrix.md): ilk tam karşılaştırma.
-3. [150 W akkor ve 8,5 W LED](stages/03-load-comparison.md): yük seviyesi/türü etkisi.
-4. [Aç-kapa testi](stages/04-on-off-response.md): geçişler ve kararlı görünen bölgeler.
+1. [Yüksüz uzun okuma](stage-01-no-load.md): temel gürültü, bias ve pencere değişkenliği.
+2. [100 W akkor matrisi](stage-02-100w-matrix.md): ilk tam karşılaştırma.
+3. [150 W akkor ve 8,5 W LED](stage-03-load-comparison.md): yük seviyesi/türü etkisi.
+4. [Aç-kapa testi](stage-04-on-off.md): geçişler ve kararlı görünen bölgeler.
 
 ## Ortak karşılaştırma
 - Hedef hızlar: 1.000, 2.000 ve 2.500 örnek/s; gerçekleşen hız ayrıca kaydedilir.
