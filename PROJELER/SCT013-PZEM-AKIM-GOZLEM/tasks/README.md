@@ -38,3 +38,7 @@ Yeni görev için _template.md dosyasını kopyala; bir sonraki T numarasını k
 
 ## Fikir havuzu
 Henüz göreve dönüştürülmemiş veya önceliği değişebilecek fikirler [IDEA_BACKLOG.md](../IDEA_BACKLOG.md) içinde tutulur. Fikirler bu listede korunur; yalnızca seçilip uygulanmaya hazır olduğunda görev listesine alınır. Fikir ID'si görev açıldıktan sonra da korunur.
+
+## 2026-10-29 — Kaynak raporu incelemesi
+
+SCT013-030 raporu ve CT satürasyonu notu genel teknik referans olarak değerlendirildi. Bu belge incelemesi T005 durumunu değiştirmez; fiziksel ölçüm yapılmadı. Aktif görev T005/E01 olarak kalır.
