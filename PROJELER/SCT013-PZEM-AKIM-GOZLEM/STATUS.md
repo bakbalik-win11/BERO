@@ -2,7 +2,7 @@
 
 **Son güncelleme:** 2026-10-29  
 **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı  
-**Aktif görev:** [T005 — E01 gürültü tabanı](tasks/T005-noise-floor.md) — PLANLANDI. T004 hobi projesine uygun belge kapsamıyla tamamlandı; T005 için donanımın kurulması ve yüksüz veri toplama bekleniyor. T003, PZEM'e göre ±%4 bağıl sapma ve Python `OK` karar kuralı belirlenerek kapatıldı. T001 envanter ve T002 güvenlik kontrolü, kullanıcının tamamladığını bildirdiği bilgiler esas alınarak kaydedilip kapatıldı.  
+**Aktif görev:** [T005 — ADC temel okumaları ve E01 gürültü tabanı](tasks/T005-noise-floor.md) — PLANLANDI. İlk önce SCT bağlamadan bias noktasında `analogRead()` ham sayısı ile `analogReadMilliVolts()` karşılaştırılacak; sonra SCT bağlıyken akım yok durumunda aynı iki okuma yapılacak; uzun E01 gürültü kaydı daha sonraya bırakıldı. T003, PZEM'e göre ±%4 bağıl sapma ve Python `OK` karar kuralı belirlenerek kapatıldı. T001 envanter ve T002 güvenlik kontrolü, kullanıcının tamamladığını bildirdiği bilgiler esas alınarak kaydedilip kapatıldı.  
 **Öncelikli SCT:** SCT013-030 (30 A / 1 V)  
 **PZEM:** Esas kaynak [DONANIM/PZEM-004T/README.md](../../DONANIM/PZEM-004T/README.md); CT modeli kullanıcı tarafından PZCT-02 (0–100 A) olarak belirtildi.  
 **Bias üretim alt devresi:** TAMAMLANDI — kullanıcı onayı. RN130421 + KBU6M + 2200 µF / 35 V + L78L33; ayrı breadboardda 2 × 10 kΩ bölücü ve orta noktadan GND'ye 104 (100 nF) kondansatör. Bağımsız ölçüm raporu bu kayda eklenmedi.  
@@ -10,7 +10,7 @@
 **SCT/PZEM etiketleme ve kalibrasyon hedefi:** [Hedef mimari notu](docs/architecture/sct-pzem-labeling-and-calibration.md) — zaman damgası/sabit süre odaklı değil, paket bağlamı ve PZEM/SCT kararlı alanlarını algoritma-istatistikle belirleyip etiketleme; Python'da etiketli SCT verisiyle sensör başına katsayı/`f(x)` modeli çıkarma; ardından modeli çok paketli ham akışta sınayıp gerekirse iyileştirme. Firmware, algoritma ve deneyler henüz yapılmadı.  
 **SSR:** SAMM Market 5 V, 2 kanallı kart; tedarikçi kodu İzmo9659, SKU MP02637. Giriş mantığı ve kart üzerindeki SSR'nin tam kodu doğrulanmalı.  
 **RTC:** İki DS3231 modülünde de 2032 tipi pil bulunuyor. RTC kodunun çalıştığı ve güç kesilip yeniden verildikten sonra saatin korunduğu daha önce test edildi; bu bilgi esas alınır ve test tekrar istenmeyecek. Yüksek hızlı örnekleme zamanlaması ESP32 monoton zamanlayıcısına aittir.  
-**Deney durumu:** Donanım henüz kurulmadı; E01–E06 deneyleri ve kalibrasyon YAPILMADI. T005/E01'de hatta akım yokken ADC verisi zaman grafiğinde incelenecek. 30 saniye asgari başlangıç referansıdır, üst sınır değildir; daha uzun, hatta saatler süren kayıt seçeneği açık, kesin süre belirlenmedi. PZEM ve diğer ESP kartları ölçülen hattan beslenmez; beslemeleri ayrıdır.
+**Deney durumu:** Donanım henüz kurulmadı; E00 bias-only ADC karşılaştırması, E01–E06 deneyleri ve kalibrasyon YAPILMADI. T005/E01'de hatta akım yokken ADC verisi zaman grafiğinde incelenecek. 30 saniye asgari başlangıç referansıdır, üst sınır değildir; daha uzun, hatta saatler süren kayıt seçeneği açık, kesin süre belirlenmedi. PZEM ve diğer ESP kartları ölçülen hattan beslenmez; beslemeleri ayrıdır.
 
 ## Oturum sürekliliği
 - Yeni oturumda başlangıç protokolü uygulanır: güncel main/son commit kontrol edilir; AGENTS, STATUS, ROADMAP, open-questions, ilgili görev/deney ve son günlük kaydı okunup karşılaştırılır.
@@ -57,6 +57,14 @@
 - T003 TAMAMLANDI: model tahmini geçerli PZEM akımından ±%4 bağıl sapma içindeyse Python sonucu `OK` işaretler. Kararlı alan gözlemi ve SCT istatistikleri ayrı görev/deneylerde ele alınır. Test yükleri ilgili test kaydında beyan edilecek.
 
 Firmware, deney ve kalibrasyon sonuçları henüz eklenmedi.
+
+## İlk test sıralaması — 2026-10-29
+
+1. E00: SCT bağlı değil; bias orta noktası → ADC GPIO. `analogRead()` ham sayısı ve `analogReadMilliVolts()` aynı döngüde okunup voltmetreyle karşılaştırılacak.
+2. SCT bağlı, ölçülen hatta akım yok: aynı iki okuma tekrar edilecek.
+3. Ardından E01'in uzun yüksüz kayıt/grafik ve gürültü özeti yapılacak.
+
+E00 protokolü: [Bias-only ADC baseline](experiments/E00-bias-adc-baseline/protocol.md). Henüz fiziksel ölçüm yapılmadı.
 
 ## 2026-10-29 belge incelemesi
 
