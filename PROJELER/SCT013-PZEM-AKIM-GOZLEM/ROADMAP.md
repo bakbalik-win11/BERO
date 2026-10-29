@@ -8,7 +8,7 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
   - **Kapanış:** kullanıcı tarafından bildirilen envanter ve bias alt devresi kaydedildi. Elektriksel kuplaj/ADC aralığı T004 kapsamındadır; bu T001'i açık tutmaz.
 - [x] 0.2 220–240 V güvenlik kontrolleri. — [T002](tasks/T002-safety-checklist.md)
   - **Kapanış:** kullanıcı 2026-10-27 tarihinde listedeki tüm kontrolleri tamamladığını beyan etti. Kapanış kullanıcı beyanına dayanır; asistanın bağımsız fiziksel doğrulaması değildir.
-- [x] 0.3 PZEM'e göre model kabul hata hedefini tanımla. — [T003](tasks/T003-reference-and-error-target.md) — [T003](tasks/T003-reference-and-error-target.md)
+- [x] 0.3 PZEM'e göre model kabul hata hedefini tanımla. — [T003](tasks/T003-reference-and-error-target.md)
   - **Bitti sayılır:** PZEM'e göre ±%4 bağıl sapma hedefi ve Python `OK` karar kuralı tanımlanmış. Kullanılacak yükler ilgili test sırasında kullanıcı tarafından beyan edilir.
 
 ## Faz 1 — SCT analog ön uç
@@ -38,8 +38,8 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 ## Faz 4 — Zaman hizalama
 - [ ] 4.1 Tek monotonik saat kaynağı kullan.
 - [ ] 4.2 SCT RMS değişimiyle olay algıla.
-- [ ] 4.3 Olay sonrası yaklaşık 3 s'yi başlangıç transition_or_settling etiketi yap.
-  - **Bitti sayılır:** geçiş/kararlı kayıtlar ayrılmış; süre cihaz deneyine göre gözden geçirilmiş.
+- [ ] 4.3 PZEM ve SCT verilerinde kararlı/geçiş alanlarını deney verisi ve geliştirilecek istatistiksel ölçütlerle belirle; sabit süreyi nihai etiket kuralı olarak varsayma.
+  - **Bitti sayılır:** geçiş/kararlı alanların seçim yöntemi belgelenmiş, veride sınanmış ve sınırlamaları raporlanmış. Yaklaşık 3 s yalnız geçmişteki bir hipotez olarak kalır; otomatik etiket kuralı değildir.
 
 ## Faz 5 — Kayıt şeması
 - [ ] 5.1 Zorunlu ve önerilen alanları uygula, örnek kayıtları doğrula.
