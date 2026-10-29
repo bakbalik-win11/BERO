@@ -81,3 +81,10 @@ E00 protokolü: [Bias-only ADC baseline](experiments/E00-bias-adc-baseline/proto
 - Mevcut kayıtlı devrede bias orta noktasından GND'ye 104 (100 nF) bulunur.
 - [ADR-007](docs/decisions/ADR-007-bias-midpoint-capacitor.md) 10 kΩ + 10 kΩ bölücü ve 50 Hz SCT sinyali için orta noktadaki mevcut 100 nF'ye paralel 10 µF eklenmesini önerir. Değişiklik E01 öncesinde uygulanmalı ve fiziksel olarak yapılana kadar tamamlandı sayılmamalıdır.
 - ADC pinine ayrıca 100 nF eklenmesi opsiyoneldir; ilk E01 ölçümünde aynı anda ikinci değişken eklememek için şimdilik planlanmadı.
+
+
+## 2026-10-29 — E08 SCT karakterizasyon planı
+
+Kullanıcıyla mutabık kalınan sıra E08 olarak kaydedildi: (1) SCT yüksüz uzun okuma ile temel gürültü/bias davranışı, (2) 100 W akkor ile 1/2/4 kablo turu × 1/2/2,5 kS/s matrisi, (3) aynı matrisin 150 W akkor ve 8,5 W LED'de tekrarı, (4) sonuçlar görüldükten sonra aç-kapa ve kararlı görünen bölgelerin incelenmesi. Her pencerenin aynı örneklerinden bias çıkarılmış RMS, mutlak Peak ve Peak-to-Peak hesaplanır; yardımcı istatistikler ve gerçekleşen örnekleme hızı kaydedilir. PZEM/başka ESP ortalama akımı varsa genel koşul notudur; SCT ile zaman eşleştirmesi yapılmaz. Kararlılık eşiği, pencere sayısı ve kesin kayıt süresi önceden belirlenmez.
+
+[E08 açıklaması](experiments/E08-sct-characterization/README.md) · [Protokol](experiments/E08-sct-characterization/protocol.md). E08 planlandı; fiziksel ölçüm yapılmadı. Aktif sıradaki iş hâlâ T005/E00-E01 yüksüz temel ölçüm hazırlığıdır; E08 bunun ardından uygulanacak.
