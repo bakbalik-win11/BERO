@@ -28,3 +28,13 @@ Bu modellerin çıkış türleri aynı kabul edilmez. Hangi modelin kullanılaca
 ## Temel güvenlik
 
 Hobi düzeyinde temel elektrik güvenliği ve sağduyulu bağlantı kontrolü uygulanır. Enerjili devrede bağlantı değiştirilmez ve açık iletkenlere dokunulmaz.
+
+## Yeni belge incelemesi (2026-10-29)
+
+Kullanıcının sağladığı SCT013-030 raporu ve CT satürasyonu metni genel teknik referans olarak incelendi; bunlar BERO'da uygulama veya fiziksel test kanıtı değildir.
+
+- SCT013-030 nominali 30 A AC RMS → yaklaşık 1 V AC RMS; nominal oran 30 A/V (yaklaşık 33,33 mV/A).
+- Gerilim çıkışlı modelde dahili burden direnci vardır; ek burden eklenmesi önerilmez.
+- Raporun 2 × 10 kΩ + 10 µF örneği BERO'nun devresine otomatik aktarılmamalıdır. Mevcut breadboard bilgisi 2 × 10 kΩ ve orta noktadan GND'ye 104 (100 nF) kondansatördür. Kondansatör konusu ayrıca ele alınacak; bileşen değişikliği kararı alınmadı.
+- Satürasyon genel CT riskidir; BERO'da kanıtlanmış arıza değildir.
+- Raporun ESP32/ADS1115/RMS örnek kodları BERO firmware'i değildir. Dahili ADC ve T005/E01 kapsamı korunur.
