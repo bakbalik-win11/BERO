@@ -16,3 +16,17 @@ Henüz kayıt yok.
 
 ## Kanıt bağlantıları
 Henüz yok.
+
+## HEDEF / LOG / SONUÇ
+
+### HEDEF
+Hatta akım yokken ADC ofseti ve gürültü davranışını gözlemlemek.
+
+### LOG
+- **Durum:** PLANLANDI / YAPILMADI; fiziksel ölçüm ve sonuç verisi yok.
+- Gerçek donanım/yazılım ve uygulanan ayarlar: henüz kayıt yok.
+- Veri yolu, süre, örnek sayısı ve gözlemler: henüz veri yok.
+- Yapılmayan işlemler: fiziksel deney, firmware derlemesi ve ölçüm yapılmadı.
+
+### SONUÇ
+Henüz ölçülmedi; bu dosya deney başarısı veya fiziksel bulgu kanıtı değildir. Gerçek veriler alındığında sonuç, sınırlamalar ve sonraki adım kanıta dayanarak yazılacaktır.
