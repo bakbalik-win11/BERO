@@ -572,3 +572,13 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Depo güncellemesi:** `EXPERIMENT_LEDGER.md`, `STATUS.md` ve `PROGRESS_TREE.md` bu önceliğe göre güncellendi.
 - **Durum:** Yalnızca dokümantasyon güncellendi. Firmware oluşturulmadı, derlenmedi ve fiziksel ölçüm yapılmadı.
 - **Sonraki adım:** E00A protokolünü bu hedefle uyumlu, tek bir basit kayıt/görselleştirme adımı olacak şekilde sadeleştirmek; ardından gerçek kart/pinout doğrulamasından sonra uygulamak.
+
+
+## 2026-10-29 — Proje felsefesi: kişisel veri kümesi ve kabul edilebilir sınırlar
+
+- **Neden:** Kullanıcı BERO'nun ticari/evrensel akım ölçer olmadığını; evdeki sınırlı aygıtlardan toplanan birleşik veri kümesinin zamanla büyümesini ve modelin bu veri kümesinde çok iyi öğrenmesinin sorun sayılmamasını açıkladı.
+- **Karar:** Aşırı öğrenme bu proje için otomatik kusur veya başarısızlık ölçütü değildir. Amaç gözlenen ev içi aygıt ve yüklerde modele giderek daha iyi uyum kazandırmaktır. Eğitim kümesi, birleşik etiketli veri kümesi, varsa ayrılmış kayıt ve etiketsiz kayıt davranışı ayrı raporlanır; bu ayrım ticari genelleme iddiası için değil, gelişimi izlemek içindir.
+- **Sınırlar:** Kaynak makinesi gibi görülmemiş veya yüksek akımlı bir yük ADC aralığını aşabilir ya da model tahmin üretemeyebilir. Bu kabul edilebilir; her yükü ölçmek zorunlu değildir. Doygunluk ve başarısızlık davranışı kaydedilebilir, ölçülmeyen akım için sayı uydurulmaz.
+- **Depo değişiklikleri:** [Proje felsefesi](../docs/project-philosophy.md) oluşturuldu; README, STATUS, PROGRESS_TREE ve EXPERIMENT_LEDGER bağlantı/notları güncellendi.
+- **Doğrulama:** Yeni belgeler yeniden okunarak kontrol edilecek. Bu çalışma yalnızca plan/felsefe dokümantasyonudur; Python/model kodu yazılmadı, firmware derlenmedi ve fiziksel ölçüm yapılmadı.
+- **Sonraki adım:** E00A ilk ham ADC gözlemi olarak kalır. Gerçek veriler geldikçe Python görevleri, model eğitimi ve geçmiş sürümlerle karşılaştırma somut veri biçimlerine göre tasarlanır.
