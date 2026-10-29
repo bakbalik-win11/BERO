@@ -12,6 +12,7 @@ hedef:
   soru: "SCT bağlantısı ve yük durumu ham ADC istatistiklerini nasıl değiştiriyor?"
   kabul:
     - "Üç koşulun her biri için ham örnek kaydı bulunması"
+    - "Ham ADC örneklerinin bilgisayarda zaman grafiğinde görselleştirilmesi"
     - "Gerçek süre, örnek sayısı ve yaklaşık gerçek örnekleme hızının kaydı"
     - "Mean, min, max, peak-to-peak ve standart sapmanın karşılaştırılması"
 
@@ -49,6 +50,7 @@ kosullar:
 
 ciktilar:
   ham_ornekler: true
+  adc_zaman_grafigi: true # Bilgisayarda üretilecek temel görselleştirme; canlı grafik zorunlu değildir.
   istatistikler:
     - "mean"
     - "min"
