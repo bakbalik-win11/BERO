@@ -12,7 +12,6 @@ sample_rate_target_hz: 2000
 window_ms: 200
 pzem_poll_interval_ms: 1000
 calibration_id: null
-reference_meter: null
 load_description: null
 data_paths: []
 notes: "Deney henüz yapılmadı."
