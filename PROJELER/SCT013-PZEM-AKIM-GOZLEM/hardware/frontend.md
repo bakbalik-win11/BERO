@@ -43,3 +43,7 @@ Kullanıcının sağladığı SCT013-030 raporu ve CT satürasyonu metni genel t
 ## Bias kondansatörü kararı
 
 Mevcut fiziksel kayıt 104 (100 nF) kondansatörü gösterir. E01 öncesi önerilen değişiklik, mevcut 104'ü yerinde bırakıp aynı Vmid–GND noktalarına 10 µF elektrolitik kondansatör ekleyerek paralel bağlamaktır. ADC GPIO'suna ayrıca 100 nF eklemek zorunlu değildir ve ilk E01 düzenine dahil edilmemiştir; kaynak empedansı/bant genişliği etkisi ayrıca değerlendirilir. Ayrıntı ve kaynaklar: [ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md).
+
+## Bias kondansatörlerinin görev ayrımı
+
+[ADR-007](../docs/decisions/ADR-007-bias-midpoint-capacitor.md) uyarınca 10 µF elektrolitik ve mevcut 104 (100 nF) seramik aynı Vmid–GND noktalarına paralel bağlanacak. 10 µF, 50 Hz bileşeni için daha düşük empedanslı baypas sağlar; 104 daha yüksek frekanslarda tamamlayıcı baypas sağlayabilir. İki parça da paraziti tamamen ortadan kaldırmaz. SCT'nin diğer çıkış ucu ESP32 ADC pinine gidecek; gerçek GPIO kart modelinin pin planıyla ayrıca doğrulanacak. GPIO34, ESP32-C3 kartlarında mevcut değildir.
