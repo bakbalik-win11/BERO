@@ -114,16 +114,6 @@ Bu protokol bir sohbetin kendi kendine başlamasını garanti etmez. Yeni oturum
 - Temel güvenlik önlemlerini koru; yapılmayan kontrolü yapılmış gibi yazma.
 
 
-## Her adımın kaydı
-Her anlamlı çalışma veya deney adımında üç bölüm bulunmalı:
-
-1. **HEDEF:** Hangi soruya cevap aranıyor ve kabul ölçütü nedir?
-2. **LOG:** Gerçekte ne yapıldı; donanım/yazılım ayarları, süre, örnek sayısı, ham kayıt yolu, gözlemler ve sapmalar nelerdir? Yapılmayan işlem açıkça belirtilir.
-3. **SONUÇ:** Kanıt neyi destekliyor, hangi belirsizlikler kaldı ve sıradaki adım nedir? Ölçüm yapılmadıysa sonuç uydurulmaz; henüz ölçülmediği yazılır.
-
-Bu üç bölüm ilgili deney protokolü/sonuç kaydında ve oturum günlüğünde yer alır. Önceki adımın sonucu değerlendirilmeden gereksiz karmaşıklığa geçilmez. Oturum sonunda kullanıcıya hedef, log ve sonuç özeti verilir.
-
-
 ## Deney koşulları için açıklamalı YAML
 Her deney için, deney koşulları ve yapılandırma parametreleri uygunsa açıklamalı bir YAML dosyasında tutulur. YAML; deney kimliği/durumu, HEDEF, donanım ve bağlantı bilgileri, planlanan örnekleme ve kayıt ayarları, koşul listesi, kaydedilecek çıktılar ile LOG/SONUÇ alanlarını içerebilir. Her parametreye kısa açıklama eklenir; bilinmeyen değerler tahmin edilmez, `null` veya açık bir “henüz belirlenmedi” notuyla gösterilir. Planlanan ayarlar ile gerçekte kullanılan ayarlar birbirinden ayrılır. YAML tek başına ölçüm kanıtı değildir; gerçek çalışma LOG'a, yorum SONUÇ'a kaydedilir. Firmware bu YAML'ı gerçekten okumuyorsa YAML'ın kod tarafından otomatik uygulandığı iddia edilmez.
 
