@@ -1,5 +1,10 @@
 # Veri alanları sözlüğü
 
+## Kapsam ve uygulama durumu
+
+Bu belge, ileride üretilecek PZEM okuma kayıtları ve SCT pencere kayıtları için hedef alan sözlüğüdür; tek başına uygulanan JSON Schema, Python modeli veya çalışan doğrulama kodu değildir. Bu alanların tamamı henüz firmware ya da Python çıktısında uygulanmış değildir. E00A'nın ilk aşaması ham ADC örnekleri ve bunların tanımlayıcı istatistiklerini toplar; bu deneyden `sct_current_rms_A` veya `calibration_id` üretilmiş olduğu varsayılmayacaktır. Zorunlu alanlar, ilgili kayıt türü gerçek uygulamaya alındığında geçerlidir; deney sonuçları bu hedef şemayla ilişkilendirilirken mevcut olmayan alanlar uydurulmaz.
+
+
 ## SCT pencere kaydı
 | Alan | Durum | Açıklama |
 |---|---|---|
