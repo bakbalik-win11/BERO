@@ -54,3 +54,8 @@ Korelasyon, dağılım, ardışık pencere farkları ve görselleştirme Python'
 
 ## Durum
 PLANLANDI. Donanım kurulumu, firmware ve ölçüm henüz yapılmadı.
+
+
+## Güncel plan bağlantısı — 2026-10-29
+
+Bu protokol önceki SCT gözlem tasarımıdır ve fiziksel olarak uygulanmadı. Kullanıcıyla daha sonra kararlaştırılan kapsamlı SCT karakterizasyon sırası E08'de açıklanır; yeni uygulama planı için [E08 genel açıklaması](../E08-sct-characterization/README.md) ve [E08 protokolü](../E08-sct-characterization/protocol.md) esas alınır. E07 ve E08 fiziksel test yapılmış gibi yorumlanmamalıdır.
