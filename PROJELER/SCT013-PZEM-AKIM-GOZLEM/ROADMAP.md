@@ -19,8 +19,8 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 - [ ] 1.2b SCT bağlıyken ve ölçülen hatta akım yokken aynı iki ADC okumasını karşılaştır.
 - [ ] 1.2c Uzun yüksüz ADC kaydı, zaman grafiği ve gürültü özeti. — [T005](tasks/T005-noise-floor.md)
   - **Başlangıç:** Donanım henüz kurulmadı. PZEM ve ESP kartları ölçülen hattan beslenmiyor. 30 saniye asgari başlangıç referansı; kayıt daha uzun, gerekirse saatler sürebilir. Kesin süre deney sırasında belirlenecek.
-- [ ] 1.3 En az üç seviyede kalibrasyon yap. — [T006](tasks/T006-calibration.md)
-  - **Bitti sayılır:** önceden belirlenmiş hata hedefi sağlanmış; clipping yok; calibration_id kayıtlı.
+- [ ] 1.3 PZEM referans akışını kullanarak farklı akım/yük seviyelerinde SCT modelini değerlendir; veri kapsamı deneylerle belirlenecek. — [T006](tasks/T006-calibration.md)
+  - **Bitti sayılır:** eğitim ve değerlendirme verileri ayrılmış; PZEM'e göre ±%4 hedefi, clipping durumu ve sınırlamalar raporlanmış; calibration_id kayıtlı. Üç seviye bağımsız referans cihazıyla ölçüm zorunluluğu değildir.
 
 ## Faz 2 — SCT edinim
 - [ ] 2.1 Gerçek örnekleme hızını ve sapmayı ölç.
