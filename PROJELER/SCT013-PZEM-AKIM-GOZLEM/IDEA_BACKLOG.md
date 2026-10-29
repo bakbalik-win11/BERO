@@ -28,7 +28,7 @@
 | I003 | PZEM akışı ve üç SCT kanalının kararlı alanlarını deneylerle geliştirilecek kriterlerle Python'da etiketlemek | — | FİKİR | Kabul kriteri ve etikette tutulacak alanlar henüz kararlaştırılmadı. | — |
 
 
-| I004 | Tek sayfalık ilerleme ağacı oluşturmak: fazlar, görevler, deneyler, durumlar ve sıradaki adımı tek görünümde bağlamak | — | DEĞERLENDİRİLİYOR | Kullanıcı proje geçmişini kaybetmemeyi önceliyor; mevcut STATUS/ROADMAP/görev/deney listelerini tekrar eden ikinci bir sistem kurmadan tek bakışta gezinmeyi kolaylaştırmak. | — |
+| I004 | Tek sayfalık ilerleme ağacı oluşturmak: fazlar, görevler, deneyler, durumlar ve sıradaki adımı tek görünümde bağlamak | — | GÖREVE ALINDI | Uygulandı: PROGRESS_TREE.md oluşturuldu ve STATUS.md ile ilişkilendirildi; ağaç güncel tutulacak. | PROGRESS_TREE.md |
 
 ## Öncelik / karar geçmişi
 
