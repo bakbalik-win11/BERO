@@ -29,7 +29,7 @@ Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 | T002 | Güvenlik kontrolü | 0.2 | TAMAMLANDI — kullanıcı tüm kontrol maddelerini tamamladığını beyan etti; fiziksel durum bağımsız doğrulanmadı | T001 |
 | T003 | PZEM tabanlı model hata hedefi | 0.3 | TAMAMLANDI — ±%4 bağıl sapma; Python'da geçerli örnekler için OK kararı | T001 |
 | T004 | Analog ön uç | 1.1 | TAMAMLANDI — SCT jack/bias devresi ve dahili ADC yaklaşımı belgelendi; laboratuvar düzeyinde ölçüm şartı yok | T002, T003 |
-| T005 | E01 gürültü tabanı | 1.2 | PLANLANDI — donanım kurulumu bekleniyor; yüksüz ADC verisi zaman grafiğinde incelenecek, kayıt süresi 30 saniyeden uzun olabilir | T004 |
+| T005 | ADC temel okumaları ve E01 gürültü tabanı | 1.2 | PLANLANDI — önce SCT bağlı değilken ham ADC ve mV API'leri; sonra SCT bağlı ve akım yok; uzun E01 kaydı daha sonra | T004 |
 | T006 | SCT kalibrasyonu | 1.3 | PLANLANDI | T005 |
 | T007 | Python program mimarisini kullanıcı hedeflerine göre tanımla | 3–7 | DEVAM EDİYOR — ayrı mimari belgesi açıldı; program sayısı ve sorumluluklar sonraki açıklamalarla doldurulacak | HA→PC aktarım hedefi, PZEM/SCT analiz ve etiketleme hedefi |
 
@@ -38,6 +38,10 @@ Yeni görev için _template.md dosyasını kopyala; bir sonraki T numarasını k
 
 ## Fikir havuzu
 Henüz göreve dönüştürülmemiş veya önceliği değişebilecek fikirler [IDEA_BACKLOG.md](../IDEA_BACKLOG.md) içinde tutulur. Fikirler bu listede korunur; yalnızca seçilip uygulanmaya hazır olduğunda görev listesine alınır. Fikir ID'si görev açıldıktan sonra da korunur.
+
+## 2026-10-29 — İlk ADC öğrenme testi eklendi
+
+E00, SCT bağlı olmadan bias orta noktasını dahili ADC ile okuyan ilk adım olarak eklendi. Aynı örnek döngüsünde `analogRead()` ham sayısı ve `analogReadMilliVolts()` çıktısı karşılaştırılacak. Ardından SCT bağlı fakat akım yok durumu, daha sonra uzun E01 gürültü kaydı gelecek. Henüz fiziksel test yapılmadı.
 
 ## 2026-10-29 — Kaynak raporu incelemesi
 
