@@ -481,3 +481,12 @@ Bu günlük proje durumunun kronolojisidir. Her anlamlı depo çalışması sonu
 - **Açık kalanlar:** Metadata dosyalarındaki eski ortak alanlar ve planlanmış değerlerin anlamı; protokol–metadata–results arasındaki bağlantılar; Markdown bağlantılarının tüm depoda doğrulanması.
 - **Sonraki adım:** Metadata dosyalarını güncel proje kararlarına göre taramak; ardından bağlantı denetimi ve durum kayıtlarının çapraz kontrolünü tamamlamak.
 - **Kanıt:** [E01 sonuçları](../experiments/E01-noise-floor/results.md); [E06 sonuçları](../experiments/E06-load-scenarios/results.md); [E08 sonuçları](../experiments/E08-sct-characterization/results.md); diğer E02–E05 ve E07 sonuç dosyaları aynı klasörlerdedir.
+
+## 2026-10-29 — Eski deney metadata alanlarının temizlenmesi
+
+- **HEDEF:** Deney metadata dosyalarında dış referans cihazı varmış veya zorunluymuş izlenimi veren kullanılmayan alanları kaldırmak.
+- **LOG:** E02, E03 ve E04 metadata.yaml dosyalarındaki boş reference_meter alanı kaldırıldı. Bu deneyler için dış True-RMS/referans ölçer şartı tanımlanmıyor; proje referansı gerektiğinde PZEM akışıdır.
+- **SONUÇ:** Üç dosya değişiklikten sonra yeniden okundu ve eski alanın kaldırıldığı doğrulandı. E01/E05/E06 metadata dosyalarındaki aynı alanlar sonraki denetim adımında ele alınacak. Test/CI çalıştırılmadı.
+- **Açık kalanlar:** Metadata dosyalarında aynı alanın E01/E05/E06 sürümleri, eski varsayılan ayarların gerçekten deney planına ait olup olmadığı ve bütün bağlantıların geçerliliği.
+- **Sonraki adım:** Kalan metadata alanlarını aynı ilkeyle gözden geçirmek; ardından STATUS/PROGRESS_TREE ve dosya bağlantılarını denetlemek.
+- **Kanıt:** [E02 metadata](../experiments/E02-resistive-steady/metadata.yaml); [E03 metadata](../experiments/E03-pzem-step-response/metadata.yaml); [E04 metadata](../experiments/E04-pzem-field-timing/metadata.yaml).
