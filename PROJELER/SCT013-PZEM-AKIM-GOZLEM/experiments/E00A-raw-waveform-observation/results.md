@@ -2,18 +2,17 @@
 
 **Durum:** PLANLANDI — henüz kayıt veya fiziksel ölçüm yok.
 
-Her koşul ve örnekleme hızı için aşağıdaki bilgileri doldur:
-
-| Koşul | Hedef hız (S/s) | Kayıt süresi (s) | Örnek sayısı | Gerçekleşen hız (S/s) | Ortalama | Min | Max | Peak-to-Peak | Std. sapma | Grafik/dosya | Not |
+| Koşul | Hedef hız (S/s) | Kayıt süresi (s) | Örnek sayısı | Yaklaşık gerçek hız (S/s) | Ortalama | Min | Max | Tepe-tepe | Std. sapma | Ham dosya | Tanı grafiği / not |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|
-| Bias-only | | | | | | | | | | | |
-| SCT yüksüz | | | | | | | | | | | |
-| 100 W akkor | | | | | | | | | | | |
+| Bias-only | 2000 | | | | | | | | | | |
+| SCT yüksüz | 2000 | | | | | | | | | | |
+| 100 W akkor | 2000 | | | | | | | | | | |
 
 ## Son değerlendirme
-- Dalga biçimi hız değişiminde nasıl değişti:
-- İstatistiklerde gözlenen farklar:
-- Basit aktarımın yeterliliği:
+- Üç koşulun istatistikleri arasında gözlenen farklar:
+- Grafikle kontrol edilmesi gereken bir durum var mı:
+- Örnek sayısı / gerçekleşen hız açısından basit edinim yeterli mi:
+- Daha yüksek/düşük örnekleme hızı denemek için somut bir neden var mı:
 - Paketleme/buffer kararı ve gerekçesi:
 
-Ölçüm yapılmadan sonuç veya kabul kararı yazılmaz.
+Ölçüm yapılmadan sonuç veya kabul kararı yazılmaz. Ham veri varsayılan olarak Git'e eklenmez.
