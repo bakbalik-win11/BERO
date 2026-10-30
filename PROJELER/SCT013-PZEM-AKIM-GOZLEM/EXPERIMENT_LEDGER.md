@@ -262,3 +262,8 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 ## 2026-10-30 — E00B uzun yüksüz kayıt: olumlu karşılaştırma
 
 SCT bağlı yüksüz koşulun uzun ESPHome logu [ham loga](experiments/E00B-sct-connected-no-current/logs/2026-10-30-e00b-esp32d2-long-observation.log) eklendi. Açılış geçişi dışlandıktan sonra 351 değer/kanal analiz edildi. Bias GPIO34 RAW 1852.56 count, SCT GPIO32 RAW 1853.37 count (fark +0.82); bias GPIO35 ADC 1.6646 V, SCT GPIO33 ADC 1.6632 V (fark −1.4 mV). Sonuç: yüksüz durumda SCT düğümü bias referansına çok yakın; belirgin kayma görülmedi. Ayrı ADC kanalları eşzamanlı örnek değildir; primer akım/CT montaj koşulu logdan bağımsız doğrulanmış değildir. Ayrıntı: [E00B results](experiments/E00B-sct-connected-no-current/results.md).
+
+
+## 2026-10-30 — E08 Aşama 2 / 100 W akkor testi açıldı
+
+100 W akkor yükte SCT013-030 karakterizasyonu için E08 Aşama 2 hazırlığı açıldı. Tam matris 1/2/4 iletken turu × 1/2/2,5 kS/s hedeflerinden oluşur; ilk koşul 1 tur × 1 kS/s. Ölçüm özetleri aynı örnek penceresinden bias çıkarılmış RMS, mutlak Peak ve Peak-to-Peak olacaktır. Mevcut E00B YAML 1 saniyelik sensör yayını yaptığı için bu testi karşılamaz; ayrı yüksek hızlı edinim firmware'i gereklidir. Fiziksel ölçüm ve firmware henüz yapılmadı. [E08 Aşama 2](experiments/E08-sct-characterization/stage-02-100w-matrix.md).
