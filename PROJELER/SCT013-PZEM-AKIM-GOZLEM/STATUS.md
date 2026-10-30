@@ -1,3 +1,12 @@
+## 2026-10-30 — E00F-N01 bias referansı izleme eklentisi
+
+- Mevcut SCT013/ct_clamp yolu GPIO33, 200 ms pencere, 2 s yayın ve 24.22 katsayısıyla korunmuştur.
+- GPIO34 bias RAW count ve GPIO35 bias ADC voltajı, mevcut bağlantı noktaları kullanılarak 1 s aralıkla izlenecek şekilde YAML'a eklendi.
+- SCT Raw AC gerilimi de `on_raw_value` üzerinden ayrı V entity'sine aktarılır; bu değer ct_clamp çarpanından öncedir.
+- GPIO34/35 ayrı ADC okumalarıdır; eşzamanlı örnek değildir. 1 s kayıt yüksek frekanslı gürültü spektrumu veya 50 Hz dalga şekli sağlamaz.
+- Depo YAML'ı güncellendi. Bu kayıt tek başına derleme, OTA veya gece ölçümünün gerçekleştiğini kanıtlamaz; bunlar kullanıcı cihaz loguyla doğrulanacaktır.
+- Deney planı: [E00F-N01](../experiments/E00F-unthresholded-overnight-log/experiment.yaml).
+
 **ESP ölçüm mimarisi / E09 kararı (2026-10-30):** Kullanıcı kararıyla ESP-1 yalnız SCT013 ana sensörüne ve hızlı örneklemeye ayrıldı; PZEM veya yardımcı sensör görevi almayacak. ESP-2'de PZEM-004T V3.0, 1 adet ACS712-5A ve 1 adet ZMCT103C-5A aşamalı test edilecek: PZEM tek başına → ACS712 tek başına → ZMCT103C tek başına → PZEM+ACS712 → PZEM+ZMCT103C → üçü birlikte. Karar ADR-008'e, test planı E09'a, sensör adetleri envantere işlendi. Bu mimari/test planı kaydıdır; ESP-2 pinleri, analog ön uç, fiziksel kart eşleşmesi ve sensör testleri henüz doğrulanmadı. E09 henüz uygulanmadı.
 
 **E00F-N01 gece gözlemi (2026-10-30):** Kullanıcı talebiyle çalışan E00F YAML'ındaki 0.35 A altını sıfırlayan lambda filtresinin kaldırıldığı depo sürümü hazırlandı. GPIO33, ADC1/12 dB, raw:false, 200 ms, 2 s, 24.22 ve esp32d2 kimliği korundu. Derleme, cihaza yükleme ve gece logu henüz bekleniyor. Home Assistant geçmişi yayınlanan akım entity durumlarını tutar; Raw AC/N/SPS debug satırları ayrıca sürekli kaydedilmelidir. Deney: [E00F-N01](experiments/E00F-unthresholded-overnight-log/experiment.yaml).
