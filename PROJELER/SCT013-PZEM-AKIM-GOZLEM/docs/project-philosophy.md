@@ -59,3 +59,16 @@ Aynı yaklaşım gelecekte başka ev içi görevlerine de uyarlanabilir: çamaş
 Bu vizyonun ortak ilkesi, donanımın ve sensörlerin göreve göre değişebilmesi; her düğümün belirli bir işi, o işin verisi ve açıkça tanımlanmış başarı ölçütleriyle yerine getirmesidir. Bütün sensörleri, modülleri ve modelleri ilk sürümde birleştirmek hedeflenmez. Her görev küçük bir kanıtlı basamakla başlatılır; gerekli donanım ve yazılım, gerçek ihtiyaç ortaya çıktıkça seçilir.
 
 **Aktif ilk adım değişmez:** ESP32 dahili ADC'den ham örnekleri okumak, kaydetmek ve bilgisayarda görselleştirmek. MCP/Modbus/P4 entegrasyonu, akım tahmini, PZEM ile etiketleme ve kendi kendini yeniden eğitme hattı uzun vadeli vizyondur; şu anda uygulanmış değildir.
+
+## Fiziksel yorumlama ilkesi: PF ve RMS akım
+
+Yükün güç faktörü (PF), akım davranışını yorumlarken fiziksel bağlamın parçasıdır. Sinüzoidal koşullarda aynı gerilim ve aktif güç için PF azaldıkça gereken RMS akım artar. Doğrusal olmayan yüklerde gerçek PF, faz kaymasının yanında akım dalga şekli bozulmasından da etkilenebilir; bu nedenle ilişki yalnızca basit faz açısı anlatımına indirgenmez.
+
+Bu fiziksel sonuç, BERO'nun veri etiketleme ve sonuç değerlendirmesinde korunur:
+- Düşük PF koşulunda daha yüksek RMS akım veya SCT sinyal genliği görmek tek başına sensör hatası, kalibrasyon başarısızlığı ya da model kusuru sayılmaz.
+- Yükün aktif gücü, gerilimi, PZEM'in yayınladığı PF ve PZEM CT akımı birlikte değerlendirilir. Nominal yük gücü, ölçülen değerlerin yerine kullanılmaz.
+- SCT-PZEM farkı yük türü ve PF koşuluna göre gruplandırılarak incelenir. PF ile hata arasında ilişki görülmesi tek başına sebep-sonuç kanıtı değildir.
+- Daha yüksek SCT okuması otomatik olarak doğru kabul edilmez; PZEM proje içi referans akışı ve diğer ölçüm sınırlamalarıyla karşılaştırılır.
+- PZEM'in PF alanı, SCT'nin PF ölçtüğü veya PF'nin SCT'yi doğrudan değiştirdiği anlamına gelmez. PZEM PF ve akım yayınları birlikte kaydedilir; cihazın iç hesaplama ve ölçüm penceresi hakkında doğrulanmamış varsayım yapılmaz.
+
+Bu ilke özellikle E09'da deneysel olarak incelenir. E08'de ise yük türü ve SCT sinyal karakterizasyonu kaydedilir; E08'in PZEM ile eşzamanlı kalibrasyon deneyi olmadığı korunur. Bu bölüm fiziksel yorumlama kuralıdır, henüz BERO ölçüm sonucu değildir.
