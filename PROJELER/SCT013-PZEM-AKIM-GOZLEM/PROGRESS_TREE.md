@@ -9,7 +9,7 @@
 - **Deney başlangıcı:** BEKLEMEDE — gerçek ESP32 kart/GPIO ve fiziksel bağlantı kontrolü gerekiyor; bu belge denetimi fiziksel test veya firmware doğrulaması değildir.
 - **İlk teknik deney (denetim sonrası):** E00A — ham ADC kaydı ve temel istatistikler.
 - **E00A durumu:** PLANLANDI; firmware, fiziksel kayıt ve ölçüm henüz yapılmadı.
-- **E00A ilk hedefi:** ESP32 dahili ADC ham sayılarını oku, kaydet ve bilgisayarda görselleştir; kaydın/paketin sinyali ne ölçüde temsil ettiğini gözlemle. PZEM, akım formülü/kalibrasyon ve MCP3208 bu ilk adımın kapsamında değil. Donanım bağlantısı öncesi gerçek kart/pinout ve bias düzeni kontrol edilir.
+- **E00A ilk hedefi:** SCT bağlamadan bias trafosunun L78L33 3,3 V çıkışını harici 10k/10k ölçüm bölücüsü üzerinden, ardından yaklaşık 1,65 V Vmid noktasını doğrudan ESP32 ADC ile oku; ham ADC/mV, multimetre karşılaştırması ve kısa dönem istatistikleri kaydet. GPIO34 fiziksel kart/pinout doğrulanırsa kullanılacak. Firmware ve ölçüm henüz yok. ESP32 dahili ADC ham sayılarını oku, kaydet ve bilgisayarda görselleştir; kaydın/paketin sinyali ne ölçüde temsil ettiğini gözlemle. PZEM, akım formülü/kalibrasyon ve MCP3208 bu ilk adımın kapsamında değil. Donanım bağlantısı öncesi gerçek kart/pinout ve bias düzeni kontrol edilir.
 - **Sonraki adımlar:** E00 bias ADC karşılaştırması → T005 / E01 yüksüz temel okuma ve gürültü tabanı.
 - **Temel kural:** Her adımda NEDEN / HEDEF / KOD / LOG / GÖRSELLEŞTİRME / SONUÇ; deney kodunda açıklamalar ve açıklamalı YAML.
 
@@ -28,9 +28,9 @@ BERO — SCT013 + PZEM gözlem sistemi
 ├── 1. SCT analog ön uç ve temel okuma  ← ŞU AN
 │   ├── T004 Analog ön uç belgeleme ....... TAMAMLANDI
 │   ├── E00A Ham sinyal/istatistik ........ SIRADAKİ — PLANLANDI
-│   │   ├── A. Bias-only
-│   │   ├── B. SCT bağlı, yüksüz
-│   │   └── C. 100 W akkor yük
+│   │   ├── A. Bias trafosu L78L33 3,3 V (harici 10k/10k ölçüm bölücüsü)
+│   │   ├── B. Bias Vmid (~1,65 V, doğrudan ADC)
+│   │   └── SCT bu ilk deneyde bağlı değil
 │   ├── E00 Bias ADC karşılaştırması ...... SONRA
 │   └── T005 / E01 Yüksüz okuma-gürültü .... SONRA
 │
