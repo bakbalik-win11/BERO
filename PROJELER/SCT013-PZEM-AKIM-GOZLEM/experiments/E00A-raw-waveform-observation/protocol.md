@@ -40,3 +40,21 @@ PLANLANDI. Firmware geliştirme/derleme ve fiziksel ölçüm yapılmadı.
 - L78L33 DC çıkışı multimetre ile **3,31 V** ölçüldü (KULLANICI BİLDİRİMİ).
 - Bu, A koşulunun multimetre referans değeridir; ADC verisi değildir.
 - 30 saniyelik ADC kaydı henüz alınmadı. Önce gerçek kart/pinout ve ADC giriş aralığı/attenuation doğrulanmalıdır.
+
+
+## Firmware uygulaması — 2026-10-30
+
+İlk ESP32D2 firmware'i [firmware/esp32d2-e00a-adc.yaml](firmware/esp32d2-e00a-adc.yaml) altında saklanır.
+
+- ESPHome cihaz adı: `esp32d2`; framework: ESP-IDF.
+- GPIO34 / ADC1_CH6 yalnız ham ADC sayısı için (`raw: true`).
+- GPIO35 / ADC1_CH7 yalnız kalibrasyonlu voltaj tahmini için (`raw: false`).
+- Her kanal ayrı ADC sensörüdür; aynı pin iki sensörde tekrar kullanılmaz.
+- İki sensörün `update_interval` değeri 1 saniyedir. Bu, 1 kS/s veya 2 kS/s örnekleme anlamına gelmez; gerçek örnekleme hızı ayrıca ölçülmemiştir.
+- Kullanıcı kodun derlendiğini ve çalıştığını bildirdi (KULLANICI RAPORU). Derleme ve cihaz logları henüz bu protokole eklenmedi.
+- Fiziksel kablo bağlantılarının iki kanalda nasıl yapıldığı ve gerçek ADC değerleri logla doğrulanacaktır.
+
+### HEDEF / LOG / SONUÇ güncellemesi
+- **HEDEF:** İki ayrı ADC kanalını kullanarak ham count ve voltaj tahmini çıktılarını aynı deneyde elde etmek.
+- **LOG:** Firmware dosyası depoya eklendi; kullanıcı derlendiğini/çalıştığını bildirdi. Ölçüm logu bekleniyor.
+- **SONUÇ:** Kod aşamasında ilerleme var. Fiziksel ölçüm, ADC kararlılığı ve 30 saniyelik ham kayıt kabul ölçütleri açık.
