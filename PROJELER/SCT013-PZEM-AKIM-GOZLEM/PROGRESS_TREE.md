@@ -6,12 +6,12 @@
 
 - **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı.
 - **Depo belge tutarlılığı denetimi:** TAMAMLANDI; 87 Markdown dosyasındaki göreli bağlantı hedefleri kontrol edildi ve bulunan tek kırık bağlantı düzeltildi.
-- **Deney başlangıcı:** BEKLEMEDE — gerçek ESP32 kart/GPIO ve fiziksel bağlantı kontrolü gerekiyor; bu belge denetimi fiziksel test veya firmware doğrulaması değildir.
+- **E00B firmware:** HAZIRLANDI ve kullanıcı bildirimiyle DERLENDİ; fiziksel pinout, bağlantı, cihaza yükleme ve ölçüm bekliyor.
 - **İlk teknik deney (denetim sonrası):** E00A — ham ADC kaydı ve temel istatistikler.
 - **E00A durumu:** SCT bağlı olmayan bias-only Vmid alt adımı son ESP32D2 loguyla KAPATILDI. 603 geçerli eşleşme; GPIO35 standart sapma 6.474 mV, GPIO34 RAW standart sapma 6.97 count. RAW=0 başlangıç kayıtları eşleştirme dışı. E00A bütünü AÇIK: L78L33 3.3 V ayrı bölücü koşulu ve ham CSV/zaman grafiği henüz yok.
 - **E00A ilk hedefi:** SCT bağlamadan bias trafosunun L78L33 çıkışını (ilk multimetre bildirimi 3,31 V; KULLANICI BİLDİRİMİ) ve ardından yaklaşık 1,65 V Vmid noktasını ESP32 ADC ile ayrı ayrı gözle. Her koşul 30 saniye planlandı. 3,3 V için ayrı/geçici 10k/10k ölçüm bölücüsü henüz kurulmadı; ADC bağlantısı öncesi kart/pinout ve ADC sınırları doğrulanacak. GPIO34 fiziksel kart/pinout doğrulanırsa kullanılacak. Firmware dosyası mevcut; kullanıcı derleme/çalışma bildirdi. ADC sayısal sonuçları ve ölçüm kaydı henüz yok. ESP32 dahili ADC ham sayılarını oku, kaydet ve bilgisayarda görselleştir; kaydın/paketin sinyali ne ölçüde temsil ettiğini gözlemle. PZEM, akım formülü/kalibrasyon ve MCP3208 bu ilk adımın kapsamında değil. Donanım bağlantısı öncesi gerçek kart/pinout ve bias düzeni kontrol edilir.
-- **Yeni deney:** [E00B — SCT bağlı, akımsız hat ADC gözlemi](experiments/E00B-sct-connected-no-current/README.md) PLANLANDI. Bias GPIO34/35 korunur; SCT için GPIO32 RAW ve GPIO33 voltaj önerildi. Gerçek kart pinout'u doğrulanmadan fiziksel bağlantı yapılmayacak.
-- **Sonraki adımlar:** E00B pinout/bağlantı doğrulaması ve firmware hazırlığı; E00A'nın 3.3 V koşulu ve ham CSV/grafik gereksinimi açık kalır.
+- **Yeni deney:** [E00B — SCT bağlı, akımsız hat ADC gözlemi](experiments/E00B-sct-connected-no-current/README.md) FIRMWARE DERLENDİ (KULLANICI RAPORU). Bias GPIO34/35 korunur; SCT için GPIO32 RAW ve GPIO33 voltaj tanımlandı. Gerçek kart pinout'u doğrulanmadan fiziksel bağlantı yapılmayacak.
+- **Sonraki adımlar:** E00B pinout/bağlantı doğrulaması, cihaza yükleme ve akımsız koşul logu; E00A'nın 3.3 V koşulu ve ham CSV/grafik gereksinimi açık kalır.
 - **Temel kural:** Her adımda NEDEN / HEDEF / KOD / LOG / GÖRSELLEŞTİRME / SONUÇ; deney kodunda açıklamalar ve açıklamalı YAML.
 
 Güncel ayrıntı ve durum için [STATUS.md](STATUS.md) esas alınır.
