@@ -695,3 +695,12 @@ Ayrıntı: [Proje felsefesi](../docs/project-philosophy.md). Dokümantasyon gün
 - **UYGULAMA:** Firmware GPIO35 lambda filtresi ve “Corrected” sensör adı kaldırılarak revize edildi. Yeni revizyon henüz derlenmedi veya cihaza yüklenmedi.
 - **SONRAKİ KARAR KAPISI:** Ofsetsiz firmware derlemesi ve aynı Vmid noktasında multimetreyle eşzamanlı cihaz logu.
 - **KANIT:** [E00A sonuçları](experiments/E00A-raw-waveform-observation/results.md); kullanıcı logu `Yapıştırılan metin(20261030-121627).txt`.
+
+
+## 2026-10-30 — E00A RAW voltaj tahmini ve ADC fark sensörü
+
+- **HEDEF:** GPIO34 ham count değerini nominal voltaj tahminine çevirmek, GPIO35 ADC voltajıyla karşılaştırmak ve farkı loglamak.
+- **LOG:** Firmware'e GPIO34 RAW count, RAW'dan voltaj tahmini, GPIO35 ofsetsiz ADC voltajı ve işaretli fark sensörü eklendi. Kullanıcı YAML'ın derlemeye alındığını bildirdi; derleme sonucu henüz paylaşılmadı.
+- **SONUÇ:** Firmware dosyası GitHub'a kaydedildi ve yeniden okunarak doğrulandı. Derleme ve cihazda çalışma henüz doğrulanmış değil. RAW formülü nominal tahmin; ADC kalibrasyonu değildir.
+- **AÇIK:** GPIO34'ün GPIO35 ile aynı 1.654 V noktasına bağlanması; derleme sonucu; cihaz logu; multimetre karşılaştırması.
+- **Sonraki adım:** Derleme sonucunu ve ardından cihaz logunu kaydet.
