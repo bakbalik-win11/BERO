@@ -1,34 +1,32 @@
 # ============================================================
-# BERO - E00A / ADIM 2
-# ESP32D2 - GPIO34 HAM ADC / GPIO35 VOLTAJ SIFIR NOKTASI
+# BERO - E00A / ADIM 2 REVIZYONU
+# ESP32D2 - GPIO34 HAM ADC / GPIO35 DUZELTME UYGULANMAMIS VOLTAJ
 # ============================================================
 #
 # DENEY AMACI:
-# Bias devresinin DC seviyesini ESP32 dahili ADC ile gozlemlemek
-# ve GPIO35 voltaj okumasinin sifir noktasini yazilimda duzeltmek.
+# Bias devresinin DC seviyesini ESP32 dahili ADC ile oldugu gibi gozlemlemek.
+# ADC voltajina yazilimsal sifir ofseti uygulanmaz.
 #
-# BU ADIMDA YAPILAN:
+# BU REVIZYONDA:
 # - GPIO34 ham ADC sayisini (count) yayinlar.
-# - GPIO35 ADC voltaj tahminini okur.
-# - GPIO35 voltajindan 0.142 V gecici sifir ofseti cikarilir.
-# - Sonuc negatifse 0.000 V yayinlanir.
+# - GPIO35 ADC voltaj tahminini hicbir ofset cikarmadan yayinlar.
+# - Onceki 0.142 V yazilimsal sifir filtresi kaldirilmistir.
 #
-# SIFIR OFSETININ KAYNAGI:
-# Onceki E00A-S01 GND referans logunda GPIO35, kararlı bolumde
-# yaklasik 0.142 V gostermisti. Bu gozlem yazilim sifir ofseti
-# icin kullanilmaktadir.
+# ONCEKI DENEMEDEN CIKAN DERS:
+# GND testinde GPIO35 kararlı bolumde 0.142 V gostermisti. Bu tek
+# gozlem gercek bir ADC sifir-ofseti oldugunu kanitlamiyordu.
+# 0.142 V degerini yazilimdan cikarmak GND kosulunda ekrani 0.000 V
+# yapti; ancak bias Vmid testinde gercek DC voltaji da ayni miktarda
+# dusurdu. Kullanici multimetrede Vmid'i 1.654 V civarinda bildirdi.
+# Logdaki duzeltilmis ortalama yaklasik 1.525 V; ofset geri eklendiginde
+# filtresiz voltaj tahmini yaklasik 1.667 V olur. Fark yaklasik 13 mV.
+# Bu nedenle sifirlama gercek DC seviyeyi gizledi ve dogru okumayi bozdu.
 #
-# MATEMATIKSEL ISLEM:
-# V_duzeltilmis = max(0, V_ADC - 0.142)
-#
-# ORNEK:
-# ADC 0.142 V okursa -> 0.000 V
-# ADC 0.200 V okursa -> 0.058 V
-#
-# ONEMLI SINIRLAMA:
-# 0.142 V gecici ofsettir; cok noktalı ADC kalibrasyonu degildir.
-# Bu filtre yalniz sifir tabanini kaydirir. 1.65 V Vmid noktasinda
-# dogruluk ayrica multimetreyle karsilastirilacaktir.
+# KARAR:
+# Sabit 0.142 V yazilimsal duzeltme kullanilmayacak. ADC voltaj tahmini
+# oldugu gibi yayinlanacak. GND'de 0.142 V gorulmesi de veri olarak
+# korunacak; otomatik sifirlanmayacak. Farkli DC noktalarinda test
+# yapilmadan ADC genel kalibrasyonu iddia edilmeyecek.
 #
 # DONANIM:
 # Klasik ESP32-WROOM-32D / ESP32
@@ -42,7 +40,7 @@
 # GPIO34 bagli degilse giris floating kalabilir; degeri yorumlama.
 #
 # BEKLENTI:
-# GPIO35 GND'ye bagliyken duzeltilmis sensorun 0.000 V gostermesi.
+# GPIO35 voltajini duzeltmesiz yayinlamak; GND'de gorulen sifir disi degeri de kaydetmek.
 # Bu sonuc yeni cihaz loguyla dogrulanmadan basarili sayilmaz.
 #
 # GUVENLIK:
@@ -102,15 +100,14 @@ sensor:
     update_interval: 1s
 
   # ----------------------------------------------------------
-  # GPIO35 - GECICI SIFIR OFSETI DUZELTILMIS VOLTAJ
+  # GPIO35 - DUZELTME UYGULANMAMIS ADC VOLTAJ
   # ----------------------------------------------------------
   # raw: false -> ADC voltaj tahmini Volt cinsinden uretilir.
-  # Ardindan lambda filtresi onceki GND gozlemindeki 0.142 V
-  # tabanini cikarir. Alt sinir 0 V'tur.
+  # Yazilimsal ofset veya alt sinir filtresi uygulanmaz.
   - platform: adc
     pin: GPIO35
-    id: gpio35_adc_voltage_corrected
-    name: "ESP32D2 GPIO35 ADC Voltage Corrected"
+    id: gpio35_adc_voltage
+    name: "ESP32D2 GPIO35 ADC Voltage Uncorrected"
     attenuation: 12db
     raw: false
     accuracy_decimals: 3
@@ -119,30 +116,22 @@ sensor:
     state_class: measurement
     samples: 1
     update_interval: 1s
-    filters:
-      - lambda: |-
-          // GND referans testinde gozlenen gecici 0.142 V tabanini cikar.
-          // Sonuc negatifse 0.000 V yayinla.
-          return (x > 0.142f) ? (x - 0.142f) : 0.0f;
-
 # ============================================================
 # DENEY KAYIT NOTLARI
 # ============================================================
 #
 # HEDEF:
-# GPIO35 GND'ye bagliyken duzeltilmis voltajin 0.000 V oldugunu
-# cihaz loguyla dogrulamak.
+# GPIO35 ADC voltajini hicbir yazilimsal sifir duzeltmesi yapmadan
+# yayinlamak ve multimetreyle karsilastirmak.
 #
 # LOG:
-# Yeni firmware surumu, GND baglantisi, GPIO35 duzeltilmis degeri,
-# gozlem suresi ve varsa multimetre olcumu kaydedilecek.
+# Onceki GND logunda 0.142 V gozlenmistir. 0.142 V ofsetli deneme
+# GND'de 0.000 V vermis, ancak bias acikken gercek DC seviyeyi ayni
+# miktarda dusurmustur. Bu nedenle duzeltme kaldirildi.
 #
 # SONUC:
-# - 0.000 V gorulurse bu yalnizca secilen GND kosulunda sifir
-#   tabaninin yazilimla giderildigini gosterir.
-# - Ardindan Vmid (yaklasik 1.65 V) multimetreyle eszamanli
-#   karsilastirilir. Ofsetin sifir disi okumaya etkisi incelenir.
-# - ADC genel dogrulugu veya dogrusalligi bu tek nokta ile
-#   kanitlanmis sayilmaz.
+# ADC voltaj tahmini oldugu gibi korunur. GND'deki 0.142 V saklanmaz
+# veya otomatik silinmez. Farkli DC noktalariyla karsilastirma yapilir;
+# tek nokta ADC genel dogrulugunu kanitlamaz.
 #
 # ============================================================
