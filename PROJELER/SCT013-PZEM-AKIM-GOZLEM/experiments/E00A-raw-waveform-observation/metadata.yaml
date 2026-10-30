@@ -30,7 +30,8 @@ notes:
   - GPIO34 is only an unverified candidate until the actual classic ESP32 board pinout is checked.
   - 2 kS/s is an initial target, not a validated performance result.
   - No current conversion, calibration, PZEM, MCP3208, PF, or harmonic analysis in this experiment.
-  - User-reported multimeter reading at L78L33 output: 3.31 V DC (2026-10-30); ESP32 ADC has not been connected or measured.
+  - User-reported multimeter reading at L78L33 output: 3.31 V DC (2026-10-30).
+  - User-reported multimeter reading at breadboard bias midpoint (Vmid): 1.65 V DC (2026-10-30); ESP32 ADC has not been connected or measured.
   - Each ADC observation is planned for 30 seconds.
   - The temporary 10k/10k measurement divider is separate from the bias circuit and has not been physically installed.
   - No firmware build, ADC capture, or hardware validation has been performed.
