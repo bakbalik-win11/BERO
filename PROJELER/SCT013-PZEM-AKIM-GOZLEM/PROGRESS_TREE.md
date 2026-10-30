@@ -155,3 +155,8 @@ E00B uzun cihaz logu kaydedildi; 351 geçerli yayın/kanal analizinde SCT ve bia
 ## 2026-10-30 — E08 gözlem yaklaşımı güncellendi
 
 100 W akkor yük gözleminde mevcut E00B firmware'i değiştirilmeden kullanılacak. 1 saniyelik yayınlar yük altındaki sinyal alanlarının düşük hızlı davranışını görmeye yarayacak. Yüksek hızlı örnekleme ve hızlandırma testleri sonraki aşamaya bırakıldı. Fiziksel test/log henüz yok.
+
+
+## 2026-10-30 — ESP32D2 / SCT013-030 hazır ct_clamp kodu kaydı
+
+Kullanıcının cihazda kullandığı hazır ESPHome `ct_clamp` yapılandırması [firmware/esp32d2.yaml](firmware/esp32d2.yaml) olarak kaydedildi. Katsayı 24.22, eşik 0.35 A, GPIO33, 200 ms örnekleme penceresi ve 2 s yayın aralığı korunmuştur. 150 W akkor ve kettle testlerinde yaklaşık ±%4 hedefi içinde kullanıcı raporlu karşılaştırmalar vardır. 8.35 W LED / 0.041 A testi eşik nedeniyle görünür akım üretmedi; düşük akım konusu açık. Bu, mevcut çalışan saha yapılandırmasının kaydıdır; E00A/E00B/E08 yol haritası kabul ölçütlerinin tamamlandığı anlamına gelmez. Ayrıntı: [firmware/README.md](firmware/README.md).
