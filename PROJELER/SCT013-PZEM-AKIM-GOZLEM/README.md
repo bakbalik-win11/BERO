@@ -44,6 +44,15 @@ Teknik açıklamaları yeniden yazmamak için ilgili Markdown dosyaları [hardwa
 7. [Fiziksel donanım envanteri](hardware/inventory.md) — seçilen modüller ve bias alt devresi.
 8. [T001 kullanıcı envanter özeti](docs/inventory/T001-fiziksel-donanim-envanteri.md) — bildirilen stoklar ve breadboard bias alt devresi.
 
+## Güncel ölçüm düğümü kararı (2026-10-30)
+
+- ESP-1 yalnızca SCT013 ana sensörünü hızlı örnekler; PZEM veya yardımcı sensör görevi almaz.
+- ESP-2, PZEM-004T V3.0 + 1 adet ACS712-5A + 1 adet ZMCT103C-5A için ayrılmış karşılaştırma düğümüdür.
+- ESP-2 doğrulaması tekil PZEM, tekil ACS712, tekil ZMCT103C; ardından PZEM+ACS712, PZEM+ZMCT103C ve en son üçlü çalışma sırasıyla ilerler.
+- Bu dağılım bir mimari/test kararıdır; fiziksel pinler, kart eşleşmeleri, analog ön uçlar ve test sonuçları henüz doğrulanmamıştır.
+
+Karar ve test kapısı: [ADR-008](docs/decisions/ADR-008-two-node-staged-sensor-tests.md), [E09](experiments/E09-low-current-sensor-comparison/README.md).
+
 ## Başlangıç tasarım değerleri
 - SCT örnekleme hızı: 2 kS/s.
 - SCT özet penceresi: nominal 200 ms (50 Hz'de nominal 10 çevrim).
