@@ -9,3 +9,5 @@
 - [ADR-007 — Bias orta noktası kondansatörü](ADR-007-bias-midpoint-capacitor.md)
 
 ADR durumları kararın başlangıç niteliğini korur. Deneyle doğrulanmamış kararları ölçüm sonucu gibi göstermeyin.
+
+- [ADR-008 — İki ölçüm düğümü ve aşamalı sensör testleri](ADR-008-two-node-staged-sensor-tests.md)
