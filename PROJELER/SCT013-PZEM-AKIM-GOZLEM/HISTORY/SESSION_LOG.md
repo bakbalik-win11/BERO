@@ -906,3 +906,18 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **SONRAKİ ADIM:** E00B/E00A aktif deney sırasını sürdür. T006 aşamasında gerçek kararlı pencere verileri oluştuğunda önce doğrusal modelin artıklarını incele; parçalı modele ancak veri gerekçe verirse geç.
 - **KANIT:** [E00F teknik değerlendirme, bölüm 10](../docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md), [açık sorular](../docs/open-questions.md), ESPHome kaynak kodu yukarıdaki URL.
 
+
+
+## 2026-10-30 — Gemini son yanıtının teknik değerlendirmesi
+
+- HEDEF: Gemini'nin son altı maddelik değerlendirmesini BERO'nun E00F/E08 veri yolları ve mevcut ölçüm kanıtlarıyla karşılaştırıp kabul/ret kararlarını belirlemek.
+- LOG: Gemini'nin zaman ağırlığı sapması, bias kayması, doğrusal model artıkları, iki bölgeli model, varyans oranı, ct_clamp girdi seçimi ve SNR < 1 yorumları tek tek incelendi. Önceki ESPHome 2026.9.1 kaynak kodu incelemesi esas alındı.
+- KABUL: Ardışık aynı ADC kodlarını atlamak zaman ağırlıklı örnek dağılımını değiştirebilir; E00F RMS klasik tüm dönüşüm RMS'i diye yorumlanmayacak. Artık grafiği model yetersizliği için yararlı tanı aracıdır. Mevcut E00F akışında kullanılabilir girdi ct_clamp çıktısıdır.
+- DÜZELTME: Sabit DC bias kayması ideal varyans formülünde iptal olur; pencere içi bias hareketi ve kayan nokta hassasiyeti ayrı araştırma hipotezidir. Sıfırdan geçmeyen doğrusal modelin negatif tahmini tek başına modelin geçersizliğini kanıtlamaz. SNR < 1 tek pencere güvenilirliğini zayıflatır; yeterli tekrarlı pencerelerde istatistiksel ayrışmayı mutlak olarak imkânsız kılmaz.
+- RET: 1.0–1.2 varyans oranı eşiği BERO verisinden türetilmediği için kabul edilmedi. En fazla iki bölge kuralı şimdilik sabitlenmedi. Aynı olayın komşu pencereleriyle rastgele cross-validation veri sızıntısı riski taşır; veri yeterli olursa bağımsız olay/oturum bazlı bölme tercih edilecek.
+- MODEL GİRDİSİ: E00F ct_clamp ve E08 Python ham-ADC özellikleri aynı özellik kabul edilmeyecek. E00F mevcut akış için geçerli; E08 gelecekte alternatif/tercih edilebilir ham veri yolu olarak açık kalır.
+- SONUÇ: Sinyal tabandan güvenilir biçimde ayrılamıyorsa modelden akım uydurması beklenmeyecek. Ayrışma kanıtı varsa tahmin, yetersizse kalite/belirsizlik durumu üretilecek. Gerçek 0 A, algılanabilir düşük akım, algılanamayan düşük akım ve invalid veri ayrı tutulacak.
+- DOĞRULAMA SINIRI: Teknik rapor ve açık sorulara kararlar yazıldı; bu oturumda ham veri yeniden analizi, Python kodu, firmware, model eğitimi veya fiziksel test yapılmadı.
+- SONRAKİ ADIM: Aktif E00B/E00A deney sırasını değiştirme. Aynı edinim yoluyla yüksüz ve yük pencereleri topla; ham örnek mevcut olduğunda dedup ve float hassasiyeti etkisini karşılaştır. Model aşamasında önce tek doğrusal modelin artıklarını incele.
+- KANIT: [E00F teknik değerlendirme, bölüm 11](../docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md), [açık sorular](../docs/open-questions.md), ESPHome kaynak kodu: https://api-docs.esphome.io/ct__clamp__sensor_8cpp_source.
+
