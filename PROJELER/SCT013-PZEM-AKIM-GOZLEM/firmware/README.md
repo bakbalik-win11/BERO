@@ -1,3 +1,12 @@
+## 2026-10-30 — E00F-N01 bias referansı izleme eklentisi
+
+- Mevcut SCT013/ct_clamp yolu GPIO33, 200 ms pencere, 2 s yayın ve 24.22 katsayısıyla korunmuştur.
+- GPIO34 bias RAW count ve GPIO35 bias ADC voltajı, mevcut bağlantı noktaları kullanılarak 1 s aralıkla izlenecek şekilde YAML'a eklendi.
+- SCT Raw AC gerilimi de `on_raw_value` üzerinden ayrı V entity'sine aktarılır; bu değer ct_clamp çarpanından öncedir.
+- GPIO34/35 ayrı ADC okumalarıdır; eşzamanlı örnek değildir. 1 s kayıt yüksek frekanslı gürültü spektrumu veya 50 Hz dalga şekli sağlamaz.
+- Depo YAML'ı güncellendi. Bu kayıt tek başına derleme, OTA veya gece ölçümünün gerçekleştiğini kanıtlamaz; bunlar kullanıcı cihaz loguyla doğrulanacaktır.
+- Deney planı: [E00F-N01](../experiments/E00F-unthresholded-overnight-log/experiment.yaml).
+
 # ESP32D2 / SCT013-030 — çalışan ct_clamp yapılandırması
 
 ## HEDEF
