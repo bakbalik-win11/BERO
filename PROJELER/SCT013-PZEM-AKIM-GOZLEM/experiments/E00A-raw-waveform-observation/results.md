@@ -172,3 +172,33 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - Bu test SCT davranışını, akım ölçümünü veya bias devresinin SCT yükü altındaki davranışını göstermez. Yalnızca SCT'siz bias/ADC zincirinin ilk karşılaştırmasıdır.
 - Kullanıcının sonraki adımı: daha uzun RAW + voltaj logu paylaşmak. O kayıtta zaman serilerini eşleştirip korelasyon (Pearson ve/veya Spearman), eğim/kesişim, fark ve kararlı/geçiş bölümlerini inceleyeceğiz. Ham logdaki örnekleme zamanları korunmalı; farklı zaman damgaları körlemesine satır satır eşleştirilmeyecek.
 - E00A tamamlanmadı; bu kayıt ön gözlemdir.
+
+
+## 2026-10-30 — SCT bağlı değil: bias-only ADC gözlemi kapatıldı
+
+### HEDEF
+SCT bağlı değilken bias Vmid noktasındaki ESP32 ADC ölçüm zincirinin taban davranışını gözlemek; GPIO34 RAW sayımı ile GPIO35 voltaj çıktısını uzun log üzerinden zaman damgalarıyla karşılaştırmak. Bu adımın kapanış ölçütü: logun analiz edilmesi, geçersiz RAW sıfırlarının eşleştirmeden çıkarılması, gözlenen dalgalanmanın sınırlarının belirlenmesi ve sonraki deney koşulunun açıkça tanımlanması.
+
+### LOG
+- Kaynak dosya: kullanıcının yüklediği `esp32d2-logs.txt` (ESPHome 2026.9.1; cihaz `esp32d2`; 2026-10-30).
+- GPIO34 RAW, GPIO34 nominal voltaj tahmini, GPIO35 ADC voltajı ve fark sensörü için 618'er kayıt bulundu.
+- Kullanıcı talimatı: **RAW sıfırları eşleme**. GPIO34'ün ilk 14 adet 0 count kaydı geçersiz/bağlantı oturmamış başlangıç verisi olarak eşleştirmeye alınmadı. İlk geçişteki 15:37:45.448 RAW=1837 kaydıyla aynı ana ait olmayan 15:37:45.187 tarihli 0.000 V nominal tahmin de stale/önceki güncelleme olduğundan çıkarıldı.
+- Zaman damgası ile eşleştirilmiş geçerli çiftler: **603**; aralık 15:37:46.199–15:47:48.186. GPIO34 ve GPIO35 ayrı ADC kanallarıdır; yayınlar tam eşzamanlı değildir.
+- GPIO34 RAW count: ortalama **1846.80**, std. sapma **6.97 count**, min **1813**, max **1871**.
+- GPIO34 nominal voltaj tahmini: ortalama **1.398007 V**, std. sapma **5.303 mV**, min **1.372 V**, max **1.416 V**. Formül `count × 3.1 / 4095`; kalibre edilmiş voltaj değildir.
+- GPIO35 ADC voltajı: ortalama **1.665138 V**, std. sapma **6.474 mV**, min **1.644 V**, max **1.683 V**.
+- GPIO35 − RAW nominal tahmini farkı: ortalama **+0.267131 V**, std. sapma **8.444 mV**, min **+0.246 V**, max **+0.296 V**.
+- Aynı zamanlı eşleştirilmiş nominal RAW tahmini ile GPIO35 arasında Pearson **r = −0.0201** (p≈0.623), Spearman **ρ = −0.0200** (p≈0.625); anlamlı birlikte değişim görülmedi. ±3 örnek gecikme taramasında da anlamlı ilişki ortaya çıkmadı.
+- Kullanıcının multimetre Vmid bildirimi **1.654 V**'tur; bu ölçümün logla eşzamanlı zaman damgası yoktur.
+- Bu kayıt bias-only koşuludur; SCT bağlı değildir. Logda trafonun enerjilendirme anı ayrıca işaretlenmedi. Kullanıcı kondansatörler takılıyken değerlerin oturduğunu gözlemlediğini bildirdi.
+
+### SONUÇ
+- **ÖLÇÜLDÜ (bu kurulum ve bu log için):** GPIO35 voltaj serisinin standart sapması yaklaşık **6.5 mV**; GPIO34 RAW sayımının standart sapması yaklaşık **7 count**. Bunlar SCT'siz bias/ADC ölçüm zincirinde gözlenen dalgalanma seviyeleridir.
+- Bu değerler yalnız ADC'nin kendi taban gürültüsü olarak adlandırılamaz. ADC, bias beslemesi, kablolama, ortak toprak ve ölçüm zincirinin tüm etkileri ayrıştırılmadı. Bu nedenle sonuç **“SCT'siz ölçüm zincirinin gözlenen taban dalgalanması”** olarak kaydedilir; ADC'nin tek başına gürültü spesifikasyonu değildir.
+- RAW nominal voltaj tahmini GPIO35'ten ortalama yaklaşık **267 mV** düşük kalmıştır. Formül kalibre değildir; kanallar ayrıdır ve örnekler tam eşzamanlı değildir. Farkın nedeni bu deneyde belirlenmedi.
+- Yaklaşık sabit bias seviyesinde iki kanalın dalgalanmaları korelasyon göstermemiştir. Bu, SCT arızası veya ADC arızası kanıtı değildir; SCT zaten bağlı değildir ve sabit DC koşulundaki küçük değişimler kanal gürültüsü/ölçüm farkları tarafından baskılanabilir.
+- **KAPANIŞ:** SCT bağlı olmayan bias-only gözlem ve bu logun ilk karşılaştırma/kararlılık analizi kapatıldı. Bu kapanış yalnız bu alt koşula aittir; E00A'nın tamamı kapatılmadı.
+- **AÇIK KALAN E00A:** L78L33 3.3 V çıkışının ayrı 10k/10k ölçüm bölücüsüyle ADC gözlemi, ham yüksek hızlı ADC örneklerinin CSV olarak kaydı ve zaman grafiği bu logla sağlanmış değildir. E00A genel deneyi bu nedenle açık kalır.
+- **SONRAKİ ADIM:** SCT bağlanmadan yapılan bu taban kaydı referans olarak korunacak. Sonraki ayrı koşul, SCT'nin ADC/bias girişine bağlanması ve ölçülen hatta akım yokken aynı ölçüm zincirinin gözlenmesidir. Bağlantı topolojisi ve pin güvenliği önceden kontrol edilecek; yazılımsal offset/filtre eklenmeyecek. Daha sonra SCT'li yüksüz sonuç bu tabanla karşılaştırılacaktır.
+
+**Veri işleme kuralı:** Kullanıcının açık talimatı gereği, RAW count=0 başlangıç kayıtları eşleştirme/korelasyon analizine alınmaz; geçerli sıfır olayı olduğu ayrıca doğrulanmadıkça bu kayıtlar eksik/geçersiz başlangıç gözlemi sayılır.
