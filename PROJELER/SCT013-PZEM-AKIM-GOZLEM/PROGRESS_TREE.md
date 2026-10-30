@@ -8,7 +8,7 @@
 - **Depo belge tutarlılığı denetimi:** TAMAMLANDI; 87 Markdown dosyasındaki göreli bağlantı hedefleri kontrol edildi ve bulunan tek kırık bağlantı düzeltildi.
 - **Deney başlangıcı:** BEKLEMEDE — gerçek ESP32 kart/GPIO ve fiziksel bağlantı kontrolü gerekiyor; bu belge denetimi fiziksel test veya firmware doğrulaması değildir.
 - **İlk teknik deney (denetim sonrası):** E00A — ham ADC kaydı ve temel istatistikler.
-- **E00A durumu:** PLANLANDI; firmware, fiziksel kayıt ve ölçüm henüz yapılmadı.
+- **E00A durumu:** AÇILDI; ilk referans verisi var (L78L33 çıkışı 3,31 V, kullanıcı multimetre bildirimi); ESP32 ADC kaydı henüz yok.
 - **E00A ilk hedefi:** SCT bağlamadan bias trafosunun L78L33 3,3 V çıkışını harici 10k/10k ölçüm bölücüsü üzerinden, ardından yaklaşık 1,65 V Vmid noktasını doğrudan ESP32 ADC ile oku; ham ADC/mV, multimetre karşılaştırması ve kısa dönem istatistikleri kaydet. GPIO34 fiziksel kart/pinout doğrulanırsa kullanılacak. Firmware ve ölçüm henüz yok. ESP32 dahili ADC ham sayılarını oku, kaydet ve bilgisayarda görselleştir; kaydın/paketin sinyali ne ölçüde temsil ettiğini gözlemle. PZEM, akım formülü/kalibrasyon ve MCP3208 bu ilk adımın kapsamında değil. Donanım bağlantısı öncesi gerçek kart/pinout ve bias düzeni kontrol edilir.
 - **Sonraki adımlar:** E00 bias ADC karşılaştırması → T005 / E01 yüksüz temel okuma ve gürültü tabanı.
 - **Temel kural:** Her adımda NEDEN / HEDEF / KOD / LOG / GÖRSELLEŞTİRME / SONUÇ; deney kodunda açıklamalar ve açıklamalı YAML.
@@ -27,8 +27,8 @@ BERO — SCT013 + PZEM gözlem sistemi
 │
 ├── 1. SCT analog ön uç ve temel okuma  ← ŞU AN
 │   ├── T004 Analog ön uç belgeleme ....... TAMAMLANDI
-│   ├── E00A Ham sinyal/istatistik ........ SIRADAKİ — PLANLANDI
-│   │   ├── A. Bias trafosu L78L33 3,3 V (harici 10k/10k ölçüm bölücüsü)
+│   ├── E00A Ham sinyal/istatistik ........ AÇILDI — ilk referans 3,31 V kaydedildi
+│   │   ├── A. Bias trafosu L78L33 3,3 V (3,31 V multimetre bildirimi; ayrı ölçüm bölücüsü henüz kurulmadı)
 │   │   ├── B. Bias Vmid (~1,65 V, doğrudan ADC)
 │   │   └── SCT bu ilk deneyde bağlı değil
 │   ├── E00 Bias ADC karşılaştırması ...... SONRA
@@ -103,3 +103,8 @@ Faz 2–8, yol haritasındaki daha sonraki iş alanlarıdır; bu görünüm onla
 - Kalibrasyon/model kabul hedefi T003'teki ±%4 PZEM-referans sapmasıdır; bağımsız mutlak doğruluk iddiası değildir.
 - Sabit 3 saniyelik geçiş maskesi nihai etiketleme kuralı değildir. Kararlı alan ölçütleri deney ve analizle geliştirilecektir.
 - Güncel sıra: E00A → E00/T005/E01 temel okumaları → E08 karakterizasyonu. E07 tarihsel/uygulanmamış plandır.
+
+
+## 2026-10-30 — E00A ilk veri
+
+L78L33 çıkışı multimetreyle 3,31 V olarak kullanıcı tarafından raporlandı. Her ADC koşulu 30 saniye olarak planlandı. ADC ölçümü henüz alınmadı.
