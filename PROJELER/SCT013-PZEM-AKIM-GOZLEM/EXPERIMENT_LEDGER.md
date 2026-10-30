@@ -219,3 +219,13 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - Bu test SCT davranışını, akım ölçümünü veya bias devresinin SCT yükü altındaki davranışını göstermez. Yalnızca SCT'siz bias/ADC zincirinin ilk karşılaştırmasıdır.
 - Kullanıcının sonraki adımı: daha uzun RAW + voltaj logu paylaşmak. O kayıtta zaman serilerini eşleştirip korelasyon (Pearson ve/veya Spearman), eğim/kesişim, fark ve kararlı/geçiş bölümlerini inceleyeceğiz. Ham logdaki örnekleme zamanları korunmalı; farklı zaman damgaları körlemesine satır satır eşleştirilmeyecek.
 - E00A tamamlanmadı; bu kayıt ön gözlemdir.
+
+
+## 2026-10-30 — E00A SCT'siz bias-only gözlem alt adımı kapatıldı
+
+- **HEDEF:** SCT bağlı değilken Vmid bias noktasındaki ADC ölçüm zincirinin taban dalgalanmasını ölçmek; RAW/voltaj serilerini zaman damgasıyla eşleştirip yorumlamak.
+- **LOG:** `esp32d2-logs.txt`, ESPHome 2026.9.1; 618 kayıt/seri. RAW=0 ilk 14 kayıt ve ilk stale 0.000 V nominal tahmin eşleştirmeden çıkarıldı (kullanıcı kuralı: “RAW sıfırları eşleme”). 603 geçerli zaman eşleşmesi kaldı. GPIO34 RAW ortalama 1846.80 count, std 6.97 count; nominal RAW voltaj ortalama 1.398007 V, std 5.303 mV. GPIO35 ortalama 1.665138 V, std 6.474 mV. Ortalama kanal farkı +0.267131 V. Pearson r=-0.0201, Spearman rho=-0.0200; anlamlı birlikte değişim yok. Multimetre Vmid=1.654 V kullanıcı bildirimi; logla eşzamanlı değil.
+- **SONUÇ:** Bu SCT'siz koşul için gözlenen taban dalgalanması GPIO35'te yaklaşık 6.5 mV std ve GPIO34'te yaklaşık 7 count std olarak kaydedildi. Bu değerler yalnız ADC'nin kendi gürültüsü değildir; tüm bias/ADC/bağlantı zincirini kapsar. RAW nominal formül kalibre değildir; kanallar ayrı ve tam eşzamanlı değildir. SCT davranışı hakkında sonuç çıkarılmaz.
+- **DURUM:** SCT bağlı olmayan bias-only alt adım KAPATILDI. E00A bütünü açık: 3.3 V ayrı bölücü koşulu, ham örnek CSV ve zaman grafiği bu logda tamamlanmadı.
+- **SONRAKİ ADIM:** SCT bağlanmadan önce bağlantı/pin güvenliğini doğrula; sonra SCT bağlı fakat ölçülen hatta akım yok koşulunu ayrı deney olarak al ve bu tabanla karşılaştır.
+- **KANIT:** [E00A sonuç kaydı](experiments/E00A-raw-waveform-observation/results.md); kullanıcı logu `esp32d2-logs.txt`.
