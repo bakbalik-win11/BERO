@@ -76,9 +76,9 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
   - **Bitti sayılır:** oturum günlüğü ve STATUS güncellenmiş, ilgili testler çalıştırılmış, doğrulama kanıtı eklenmiş ve PR üzerindeki oturum kapanış kontrolü başarılı.
   - **Sınır:** CI yalnızca kayıt ve süreç alanlarını denetler; ölçüm doğruluğunu veya yeni sohbetin otomatik başlamasını garanti etmez.
 
-## 2026-10-30 — E00A bias trafosu ADC gözlemine çevrildi
+## 2026-10-30 — E00A açıldı; ilk multimetre referansı kaydedildi
 
-Kullanıcının netleştirdiği ilk donanım adımı SCT bağlamadan bias trafosunun L78L33 3,3 V çıkışını ve Vmid noktasını ESP32 ADC ile ayrı ayrı okumaktır. 3,3 V çıkış ADC'ye doğrudan verilmez; harici 10k/10k ölçüm bölücüsü kullanılır. İkinci koşulda Vmid doğrudan okunur. E00A README/protokol/metadata/experiment.yaml/results buna göre güncellendi. Fiziksel kurulum, firmware ve ölçüm yapılmadı.
+Kullanıcı L78L33 DC çıkışını multimetreyle 3,31 V ölçtüğünü bildirdi; bu değer E00A sonuç kaydına KULLANICI BİLDİRİMİ olarak eklendi. Bu, ADC ölçümü değildir. Her koşul için 30 saniyelik gözlem planlandı. 3,3 V için ayrı/geçici 10k/10k ölçüm bölücüsü bias trafosunun parçası değildir; fiziksel olarak kurulmuş sayılmaz. ADC sınırları ve gerçek kart/pinout doğrulanmadan bağlantı yapılmayacak. E00A belgeleri güncellendi. Firmware, ADC kaydı ve Vmid ölçümü henüz yok.
 
 ## 2026-10-29 — E00A kapsamı sadeleştirildi
 
