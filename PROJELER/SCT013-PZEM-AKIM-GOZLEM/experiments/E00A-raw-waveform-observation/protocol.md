@@ -58,3 +58,15 @@ PLANLANDI. Firmware geliştirme/derleme ve fiziksel ölçüm yapılmadı.
 - **HEDEF:** İki ayrı ADC kanalını kullanarak ham count ve voltaj tahmini çıktılarını aynı deneyde elde etmek.
 - **LOG:** Firmware dosyası depoya eklendi; kullanıcı derlendiğini/çalıştığını bildirdi. Ölçüm logu bekleniyor.
 - **SONUÇ:** Kod aşamasında ilerleme var. Fiziksel ölçüm, ADC kararlılığı ve 30 saniyelik ham kayıt kabul ölçütleri açık.
+
+
+
+## Adım 2 — GPIO35 voltaj sıfır noktasını yazılımla düzeltme (2026-10-30)
+
+**Amaç:** GPIO35'in GND referansında voltaj sensörünün 0.000 V göstermesini sağlamak.
+
+**Uygulama:** Önceki GND logunda kararlı bölümde görülen 0.142 V geçici sıfır tabanı kabul edildi. GPIO35 voltaj çıktısına `max(0, x - 0.142)` filtresi eklendi. GPIO34 ham ADC kanalı korundu. Firmware kullanıcı tarafından derlendi olarak bildirildi.
+
+**Kontrol:** GPIO35 GND'ye bağlıyken yeni firmware logunda düzeltilmiş voltajın 0.000 V olup olmadığı gözlenecek. Bu sonuç henüz alınmadı.
+
+**Sınırlama:** 0.142 V sabiti önceki gözleme dayalı geçici ofsettir. Bu işlem ADC'nin donanımsal/çok noktalı kalibrasyonu değildir; sıfır noktasını yazılımsal olarak kaydırır. Vmid gibi sıfır dışı gerilimlerde doğruluk ayrıca multimetreyle karşılaştırılmalıdır.
