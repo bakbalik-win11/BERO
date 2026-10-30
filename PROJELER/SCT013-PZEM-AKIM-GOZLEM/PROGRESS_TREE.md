@@ -116,3 +116,8 @@ E00A için ESP32D2 / ESP-IDF firmware'i [deney klasörüne](experiments/E00A-raw
 
 
 - **2026-10-30 E00A-S01:** GND referans testi loglandı. GPIO34 0 count; GPIO35 kararlı bölümde 0.142 V. Floating giriş teşhisi destekleniyor; Vmid'e pasif bias direnci elektriksel çözüm adayı. E00A henüz tamamlanmadı. [S01 raporu](experiments/E00A-raw-waveform-observation/reports/E00A-S01-gnd-reference-stability.md).
+
+
+### E00A — Adım 2: GPIO35 sıfır noktası yazılım düzeltmesi (2026-10-30)
+
+GPIO35 voltaj sensörüne önceki GND logunda görülen 0.142 V tabanını çıkaran geçici filtre eklendi; GPIO34 ham ADC kanalı korundu. Kullanıcı kodun derlendiğini bildirdi. GND girişinde 0.000 V sonucu henüz yeni logla doğrulanmadı. Sonraki adım GND'de sıfır çıktısını kontrol etmek, ardından Vmid'i multimetreyle karşılaştırmaktır. Ayrıntı: [E00A sonuç kaydı](experiments/E00A-raw-waveform-observation/results.md).
