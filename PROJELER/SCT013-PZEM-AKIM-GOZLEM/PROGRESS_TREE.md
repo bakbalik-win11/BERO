@@ -140,3 +140,8 @@ Son esp32d2-logs.txt kaydı analiz edildi. SCT bağlı değilken Vmid koşulunda
 ## 2026-10-30 — E00B deney açılışı
 
 SCT bağlı, izlenen iletkende akım yok koşulu için E00B açıldı. Bias GPIO34/35 kanalları korunuyor; SCT analog düğümü için GPIO32 RAW ve GPIO33 voltaj kanalları önerildi (ESP32-WROOM-32D ADC1_CH4/CH5). Gerçek geliştirme kartı pinout'u henüz fiziksel doğrulanmadı. Firmware ve fiziksel deney yapılmadı. Ayrıntı [E00B](experiments/E00B-sct-connected-no-current/README.md).
+
+
+## 2026-10-30 — E00B yüksüz karşılaştırma sonucu
+
+E00B uzun cihaz logu kaydedildi; 351 geçerli yayın/kanal analizinde SCT ve bias seviyeleri pratik olarak aynı çıktı (RAW fark +0.82 count; ADC voltaj farkı −1.4 mV). [E00B raporu](experiments/E00B-sct-connected-no-current/results.md) ve [ham log](experiments/E00B-sct-connected-no-current/logs/2026-10-30-e00b-esp32d2-long-observation.log). Sonraki yük koşulu ayrı kayıt olacak; mevcut firmware dört kanalı okumaya devam edebilir.
