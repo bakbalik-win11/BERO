@@ -15,7 +15,7 @@ ESP32D2 üzerindeki SCT013-030 ölçümünü ESPHome'un hazır `ct_clamp` platfo
 - ADC: GPIO33 / ADC1 / 12 dB.
 - `ct_clamp`: 200 ms örnekleme penceresi, 2 s yayın aralığı.
 - Katsayı: 24.22.
-- Yayın eşiği: 0.35 A; altındaki değerler sıfırlanır.
+- Önceki sürümde yayın eşiği 0.35 A idi; E00F-N01 için bu eşik kaldırıldı. Güncel YAML düşük değerleri sıfırlamaz.
 
 ## ÖNEMLİ KOD NOTU
 
