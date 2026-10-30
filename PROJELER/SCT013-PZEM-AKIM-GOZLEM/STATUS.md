@@ -1,3 +1,15 @@
+## 2026-10-30 — E00F-N02 dört ADC kanalı ilk cihaz logu
+
+- **Durum:** İlk cihaz çalışma doğrulaması başarılı (KULLANICI LOGU). ESPHome 2026.10.1 / ESP32 rev3.1; OTA/API bağlantısı ve Home Assistant API bağlantısı başarılı.
+- **HEDEF:** GPIO32/33 SCT çifti ile GPIO34/35 bias çiftinin aynı firmware'de çalışmasını doğrulamak.
+- **LOG:** Dört ADC kanalı da ADC1 üzerinde başlatıldı; her kanal için Handle Init, Config, Calibration ve Overall Init OK. Dört sensör 1 s güncelleme aralığında. CT Clamp 200 ms pencere / 2 s yayın. Cihaz 23:13:34'te loga bağlandı; 23:14:28.959'da "Boot seems successful".
+- **İLK KESİT:** 204 kayıt/kanal; GPIO32 RAW 1819–1865 count (ortalama 1849.75), GPIO33 1.644–1.671 V (ortalama 1.66029 V), GPIO34 RAW 1824–1872 count (ortalama 1849.67), GPIO35 1.600–1.677 V (ortalama 1.65978 V). GPIO35'te 1.600 V yalnızca bir kez görüldü; dışlanmadı, tekil aykırı gözlem olarak not edildi.
+- **CT CLAMP:** 102 pencere; 47 sıfır ve 55 sıfırdan farklı akım yayını. Akım aralığı 0–0.343 A, ortalama 0.08504 A. Raw AC aralığı 0–0.01416 V. Hatta yük durumu logdan çıkarılamaz; yüksüzlük kullanıcı tarafından ayrıca teyit edilmelidir.
+- **SPS:** Debug satırlarında 13,360–16,550 SPS, ortalama yaklaşık 15,783 SPS. Bu, CT Clamp'in kabul ettiği farklı örneklerden türetilen göstergedir; bağımsız doğrulanmış donanım ADC örnekleme hızı değildir.
+- **YORUM:** Dört ADC girişinin başlatılması ve sensör yayınları cihaz üzerinde doğrulandı. Fiziksel analog doğruluk, pin kablolaması, yüksüz taban karakterizasyonu ve akım kalibrasyonu doğrulanmadı. Uzun süreli gözlem ve sabah HA geçmiş dökümü bekleniyor.
+- **KAYIT:** [E00F-N02 ilk cihaz logu](experiments/E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md).
+- **Açık:** Sabah HA geçmiş CSV'si, fiziksel yük durumu teyidi ve uzun dönem analiz.
+
 ## 2026-10-30 — E00F-N01 bias referansı izleme eklentisi
 
 - Mevcut SCT013/ct_clamp yolu GPIO33, 200 ms pencere, 2 s yayın ve 24.22 katsayısıyla korunmuştur.
