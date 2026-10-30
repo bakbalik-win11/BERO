@@ -852,3 +852,14 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **TEST / KABUL:** Her pencere için zaman/koşul, Raw AC gerilimi, farklı örnek sayısı, raporlanan SPS ve yayınlanan akım; eşleşebiliyorsa pens/PZEM okuma zamanı kaydedilecek. N ve SPS gerçek ADC dönüşüm hızı diye adlandırılmayacak. Ölçüm yokken sonuç tamamlandı sayılmayacak.
 - **Sonraki adım:** Mevcut E00F loglarını D0 alanları açısından incele; loglar yetersizse çalışan yapılandırmayı değiştirmeden D1/D2 kayıt protokolünü uygula.
 - **Rapor:** docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md
+
+
+## 2026-10-30 — Claude geri bildirimiyle E00F test kabul ölçütleri güncellendi
+
+- **HEDEF:** D0–D5 planını uygulanabilir, sayılabilir kabul ölçütlerine bağlamak; N/SPS ve yüksüz taban istatistiklerini göz ardı etmemek.
+- **LOG:** D1 ve D2 için koşul başına en az 30 geçerli 200 ms pencere şartı eklendi. Anahtarlama/koşul değişimi sonrası ilk pencere dışlanacak; 30 geçerli pencere için en az 31 pencere yakalanacak. D0'a N ve SPS min/max/ortalama/medyan/SD/p5/p95 dağılımı ve pencere bazında Raw AC/N/SPS üçlüsü eklendi. D3, mümkünse 0.447 A ve 0.616 A akkor referanslarıyla yüksüz tabanın etkisini karşılaştıracak şekilde genişletildi. D4 için veri temelli geçiş kapısı belirlendi. D5'te ADC One-shot/Continuous karşılaştırmasının eşzamanlı değil, aynı yükte sıralı yapılacağı açıkça yazıldı.
+- **TEKNİK AYRIM:** 0.0017 V, 24.22 katsayısıyla 0.041 A'nın gerilim karşılığıdır; yüksüz taban eşiği değildir. 0 V ve 0.006 V yüksüz taban için sınanacak olasılıklardır. D1 SD ampirik taban olacak; D2/D3 ayrışması medyan + 3×SD ve gerektiğinde medyan + 3×MAD ile incelenecek. Bu istatistiksel karşılaştırma ±%4 akım kabul hedefiyle karıştırılmayacak.
+- **FLOAT32 SINIRI:** N dağılımı gerekli bir girdidir ancak tek başına float32 etkisini kanıtlamaz. Gerçek ADC örnek dizisi olmadan birebir float32/float64 yeniden oynatma yapılamaz; N-only simülasyon varsayımlı duyarlılık analizi olarak etiketlenir.
+- **SONUÇ:** Ana firmware ve fiziksel kurulum değiştirilmedi. Yeni firmware yazılmadı, derlenmedi, flash edilmedi; D0–D5 fiziksel testleri yapılmadı.
+- **SONRAKİ ADIM:** D0 için mevcut E00F loglarını pencere bazında Raw AC/N/SPS alanları açısından incele.
+- **RAPOR:** docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md
