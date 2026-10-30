@@ -126,3 +126,153 @@ step_S01_gnd_reference:
   electrical_candidate: "Jack/CT topolojisi doğrulandıktan sonra ADC düğümünü Vmid'e 47–100 kOhm aralığında pasif dirençle biaslama; değer henüz doğrulanmadı."
   next_step: "Tek kanalda Vmid bias, multimetre doğrulaması ve 60 saniye log."
   status: "S01 gözlemi kaydedildi; E00A tamamlanmadı."
+# E00A — açıklamalı deney yapılandırması
+# HEDEF: Bias trafosunun 3,3 V çıkışı ile Vmid noktasını ESP32 ADC üzerinden karşılaştırmak.
+# Bu dosya plan belgesidir; firmware tarafından otomatik okunmaz.
+
+experiment:
+  id: "E00A"
+  title: "Bias trafosu DC noktalarının ADC gözlemi"
+  status: "step2_zero_offset_removed_after_vmid_comparison_new_firmware_build_pending"
+
+hedef:
+  soru: "Bias trafosunun regüle 3,3 V çıkışı ve yaklaşık 1,65 V Vmid noktası ADC'de nasıl okunuyor ve zaman içinde ne kadar değişiyor?"
+  kabul:
+    - "İki koşulun ham ADC kaydı bulunması"
+    - "Her iki koşul için analogRead ve analogReadMilliVolts sonuçlarının kaydı"
+    - "Multimetre DC değerleriyle karşılaştırma"
+    - "Her koşul için 30 saniyelik gözlem; gerçek süre, örnek sayısı ve yaklaşık gerçekleşen örnekleme hızının kaydı"
+    - "Mean, min, max, peak-to-peak ve standart sapmanın karşılaştırılması"
+    - "Bilgisayarda ADC-değer/zaman grafiği"
+
+donanim:
+  kart: "ESP32-WROOM-32D adayı; gerçek kart ve pinout fiziksel olarak doğrulanacak"
+  adc: "ESP32 dahili ADC1"
+  gpio: [34, 35] # GPIO34=ADC1_CH6 ham; GPIO35=ADC1_CH7 voltaj sensörü. Klasik ESP32 kartta pin eşleşmesi esas alınır.
+  sensor: "Yok; SCT bu deneyde bağlı değil."
+  source: "Bias trafosu komple devre: RN130421, KBU6M, 2200uF/35V, L78L33 ve 2x10kOhm Vmid bölücüsü"
+  common_ground: true
+
+ornekleme:
+  hedef_hz: null # İki ESPHome ADC sensörünün update_interval değeri 1 saniye; gerçek örnekleme hızı henüz ölçülmedi.
+  planlanan_kayit_s: 30 # Her ADC koşulu için planlanan gözlem süresi.
+  ham_veri_kaydet: true
+  ham_veri_git'e_ekle: false
+  csv_sutunlari: "sample_index,adc_raw"
+  yerel_dosya_yollari:
+    - "data/raw/E00A/bias_trafo_3v3.csv"
+    - "data/raw/E00A/bias_vmid.csv"
+
+kosullar:
+  - id: "A"
+    ad: "bias_trafo_3v3"
+    aciklama: "L78L33 çıkışı, ADC sınırları doğrulandıktan sonra bias devresinden ayrı/geçici 10k/10k ölçüm bölücüsü üzerinden ADC'ye uygulanır; bölücü fiziksel olarak kurulmuş değil."
+    adc_pin_voltaji: "Yaklaşık 1,65V"
+    kaynak_gerilim_hesabi: "ADC pin mV x 2; direnç oranı doğrulanmalı"
+  - id: "B"
+    ad: "bias_vmid"
+    aciklama: "Bias devresinin 2x10k bölücü orta noktası ADC'ye doğrudan uygulanır."
+    adc_pin_voltaji: "Nominal yaklaşık 1,65V"
+
+ciktilar:
+  ham_ornekler: true
+  adc_zaman_grafigi: true
+  istatistikler:
+    - "mean"
+    - "min"
+    - "max"
+    - "peak_to_peak"
+    - "standard_deviation"
+  metadata:
+    - "multimetre_dc_voltaji"
+    - "hedef_ornekleme_hizi_hz"
+    - "gercek_kayit_suresi_s"
+    - "ornek_sayisi"
+    - "yaklasik_gercek_ornekleme_hizi_hz"
+
+log:
+  gercek_kart_modeli: null
+  gercek_gpio: null
+  firmware_surumu_veya_commit: null
+  kosul_kayitlari: []
+  multimetre_olcumleri:
+    - nokta: "Breadboard bias orta noktası / Vmid"
+      deger_V: 1.65
+      kaynak: "KULLANICI BİLDİRİMİ — breadboard üzerinden multimetreyle okundu; bağımsız tekrar yok."
+      tarih: "2026-10-30"
+    - nokta: "L78L33 DC çıkışı"
+      deger_V: 3.31
+      kaynak: "KULLANICI BİLDİRİMİ — multimetre ile ölçüldüğü bildirildi; bağımsız tekrar yok."
+      tarih: "2026-10-30"
+  sapmalar_ve_gozlemler: []
+  yapilmayan_islemler:
+    - "Firmware geliştirme/derleme yapılmadı."
+    - "ESP32 ADC bağlantısı ve 30 saniyelik ham kayıt yapılmadı."
+    - "Geçici harici 10k/10k ölçüm bölücüsü fiziksel olarak kurulmadı."
+    - "Vmid multimetre ölçümü kullanıcı tarafından 1.65 V olarak bildirildi; ESP32 ADC ölçümü henüz yapılmadı."
+
+sonuc:
+  durum: "Henüz ölçülmedi"
+  yorum: "İlk referans verileri: L78L33 çıkışı 3.31 V DC ve breadboard bias orta noktası/Vmid 1.65 V DC olarak kullanıcı tarafından multimetre okumaları şeklinde bildirildi. ADC davranışı henüz ölçülmedi."
+  belirsizlikler: []
+  sonraki_adim: "Gerçek ESP32-WROOM-32D kart/pinout ve ADC giriş sınırını doğrula; sonra 30 saniyelik ADC gözlemi için bağlantı/firmware hazırla."
+
+uygulama:
+  firmware_dosyasi: "firmware/esp32d2-e00a-adc.yaml" # Depoda saklanan tam ESPHome yapılandırması.
+  cihaz_adi: "esp32d2"
+  framework: "esp-idf"
+  adc_kanallari:
+    - gpio: 34
+      adc_kanali: "ADC1_CH6"
+      cikti: "raw count"
+      raw: true
+      attenuation: "12db"
+      update_interval: "1s"
+    - gpio: 35
+      adc_kanali: "ADC1_CH7"
+      cikti: "yazilimsal duzeltme uygulanmamis ADC voltaj tahmini (V)"
+      raw: false
+      attenuation: "12db"
+      update_interval: "1s"
+  kaynak: "KULLANICI RAPORU — kod derlendi ve çalıştı; log henüz paylaşılmadı."
+  durum: "ONCEKI_OFSETLI_SURUM_KULLANICI_BILDIRIMIYLE_DERLENDI; OFSETSIZ_REVIZYON_DERLEME_BEKLIYOR"
+
+# 2026-10-30 — S01 GND referans testi (sonradan eklenen deney adımı)
+step_S01_gnd_reference:
+  date: "2026-10-30"
+  sensor_connected: false
+  user_reported_connections:
+    GPIO34: "GND"
+    GPIO35: "GND"
+  log_source: "Yapıştırılan metin(8).txt"
+  observations:
+    GPIO34_raw: "14:49:11–14:52:24 aralığında görünen örneklerde 0 count"
+    GPIO35_voltage: "Başlangıç geçişinden sonra yaklaşık 14:49:29–14:52:24 arasında 0.142 V sabit"
+    stable_duration_seconds_approx: 175
+    adc_init_config_calibration: "Her iki kanalda OK"
+  conclusion: "GND referansında kararlılık; önceki floating giriş teşhisini destekler. GPIO35 0.142 V tabanı açık soru."
+  electrical_candidate: "Jack/CT topolojisi doğrulandıktan sonra ADC düğümünü Vmid'e 47–100 kOhm aralığında pasif dirençle biaslama; değer henüz doğrulanmadı."
+  next_step: "Tek kanalda Vmid bias, multimetre doğrulaması ve 60 saniye log."
+  status: "S01 gözlemi kaydedildi; E00A tamamlanmadı."
+
+
+# 2026-10-30 — Adım 2 deney kararı güncellemesi
+step_2_zero_offset_reversal:
+  date: "2026-10-30"
+  goal: "GPIO35 ADC voltajını yazılımsal ofset uygulamadan gözlemek."
+  prior_observation:
+    gnd_log_voltage_V: 0.142
+    offset_filter_output_at_gnd_V: 0.000
+    source: "Kullanıcı cihaz logu; filtreli sensör çıktısı."
+  bias_vmid_observation:
+    multimeter_V: 1.654
+    source: "KULLANICI BİLDİRİMİ"
+    filtered_adc_mean_V: 1.525
+    sample_count: 85
+    derived_unfiltered_estimate_V: 1.667
+    derived_difference_from_multimeter_V: 0.013
+    note: "1.667 V, filtreli ortalamaya 0.142 V eklenerek hesaplandı; doğrudan kaydedilmiş ham voltaj değildir."
+  decision: "0.142 V sabit yazılım ofseti kaldırılır. GND'de görülen 0.142 V saklanır; otomatik sıfırlanmaz."
+  rationale: "Sıfırlama GND koşulunda ekranda 0.000 V sağladı fakat Vmid DC seviyesini aynı miktarda aşağı kaydırdı."
+  next_step: "Ofsetsiz firmware'i derle ve cihaza yükle; aynı Vmid noktasında multimetreyle eşzamanlı log al."
+  status: "KARAR VERİLDİ; OFSETSİZ FIRMWARE DERLEME/ÇALIŞTIRMA HENÜZ DOĞRULANMADI"
