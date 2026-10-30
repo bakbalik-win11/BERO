@@ -55,3 +55,10 @@ Tam ESPHome yapılandırması: [firmware/esp32d2-e00a-adc.yaml](firmware/esp32d2
 - **HEDEF:** GPIO34 ham ADC çıktısı ile GPIO35 kalibrasyonlu voltaj çıktısını ESP-IDF tabanlı ESP32D2 üzerinde çalıştırmak.
 - **LOG:** Kod depoda; kullanıcı derlendiğini ve çalıştığını bildirdi. Gerçek log ve ölçüm değerleri bekleniyor.
 - **SONUÇ:** Firmware'in derlenip çalıştığı kullanıcı tarafından bildirildi. ADC ölçüm sonuçları ve E00A'nın iki koşullu/30 saniyelik kabul ölçütü henüz değerlendirilmedi.
+
+
+## 2026-10-30 — S01: GND referansında ADC kararlılığı
+
+SCT bağlı değilken GPIO34 ve GPIO35 GND'ye bağlandı (fiziksel bağlantı kullanıcı bildirimi). ESPHome logunda GPIO34 0 count; GPIO35 ise başlangıç geçişinden sonra yaklaşık 175 saniye boyunca 0.142 V sabit gösterdi. Bu, önceki açık giriş dalgalanmasının floating girişten kaynaklandığı teşhisini destekler. GPIO35'in GND'de 0.142 V göstermesi ayrıca incelenecek; iki kanal farklı GPIO ve farklı çıktı türüdür. Ayrıntı ve elektriksel çözüm değerlendirmesi: [E00A-S01 raporu](reports/E00A-S01-gnd-reference-stability.md).
+
+E00A'nın sonraki elektriksel adımı, jack/CT pin düzeni doğrulandıktan sonra ADC düğümünün Vmid'e yüksek değerli pasif dirençle biaslanmasını test etmektir. 47–100 kΩ yalnızca prototip değerlendirme aralığıdır; kesin değer ve bağlantı henüz onaylanmadı. E00A tamamlanmış değildir.
