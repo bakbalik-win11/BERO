@@ -78,3 +78,32 @@ E00B firmware'inin cihaza yüklendikten sonra dört ADC kanalını çalıştırd
 
 ### SONRAKİ ADIM
 Fiziksel koşulu (SCT'nin hangi iletken üzerinde ve primer akımın nasıl sıfırlandığını) deney notuna açıkça kaydet; aynı düzenekte daha uzun kararlı kayıt al. Sonraki değerlendirmede ilk açılış geçişini ayrı tut ve RAW sıfırlarını eşleştirme. E00A ile nicel kıyas için aynı bağlantı, aynı besleme ve aynı kayıt yöntemiyle tekrarlı A/B kayıtları gerekir.
+
+
+---
+
+## 2026-10-30 — Uzun E00B logu ve yüksüz karşılaştırma
+
+### HEDEF
+İlk cihaz logundaki kısa kararlı pencereyi daha uzun kayıtla tekrar değerlendirmek; SCT bağlı analog düğümün yüksüz durumda bias referansıyla aynı seviyeyi koruyup korumadığını görmek.
+
+### LOG
+- Ham kaynak: [2026-10-30-e00b-esp32d2-long-observation.log](logs/2026-10-30-e00b-esp32d2-long-observation.log) (222,578 bayt).
+- Açılış geçişi ve başlangıç RAW=0 / 0.142 V okumaları dışarıda bırakıldı; her kanal için 351 geçerli yayın değeri kullanıldı.
+- Bias GPIO34 RAW: ortalama **1852.56 count**, std **8.97**, medyan 1854, min 1834, max 1874.
+- SCT GPIO32 RAW: ortalama **1853.37 count**, std **9.33**, medyan 1856, min 1831, max 1941.
+- RAW ortalama farkı (SCT − Bias): **+0.82 count**; medyan fark **+2 count**.
+- Bias GPIO35 ADC voltajı: ortalama **1.6646 V**, std **0.0068 V**, medyan 1.666 V, min 1.635 V, max 1.680 V.
+- SCT GPIO33 ADC voltajı: ortalama **1.6632 V**, std **0.0070 V**, medyan 1.666 V, min 1.649 V, max 1.705 V.
+- ADC voltaj ortalama farkı (SCT − Bias): **−0.00136 V (−1.4 mV)**; medyanlar eşit: 1.666 V.
+- Dört kanalın her birinde n=351. Ayrı ADC girişlerinin yayınları eşzamanlı değildir; farklar yaklaşık yayın sırası üzerinden betimleyicidir.
+- Firmware sensör yayın aralığı 1 saniyedir; bu yüksek hızlı ham ADC örneklemesi değildir.
+
+### SONUÇ
+- **Deney sonucu olumlu:** uzun logun geçerli penceresinde SCT bağlı hat, yüksüz durumda bias referansıyla pratik olarak aynı seviyeyi göstermiştir.
+- RAW ortalama farkı 1 count'un altındadır; ADC voltaj ortalama farkı yaklaşık 1.4 mV'dur. Bu kayıtta SCT bağlantısının bias seviyesini anlamlı ölçüde kaydırdığına dair bulgu yoktur.
+- SCT RAW maksimumunda 1941 count görülmüştür; üst uçtaki bu değerin nedeni doğrulanmamıştır ve sonraki yük kayıtlarında izlenecektir.
+- Sonuç yalnız yüksüz koşula aittir. Fiziksel primer akımın sıfır olması ve CT montajı log satırlarından bağımsız doğrulanmış değildir.
+
+### SONRAKİ ADIM
+Aynı dört kanalı izleyen E00B firmware'i değiştirmeden koru. Sonraki yük koşulunu ayrı deney/log olarak kaydet; yük tipi ve gücü kesinleştirildikten sonra koşul başlığı aç.
