@@ -44,6 +44,7 @@ https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/periph
 
 - ESP-IDF belgesine göre aynı ADC birimi aynı anda continuous ve one-shot modlarında çalıştırılamaz. Bu nedenle GPIO34/32'yi kullanan mevcut ESPHome ADC sensörleri, continuous sürücüyle aynı firmware içinde eşzamanlı çalışır durumda bırakılmayacaktır.
 - Mevcut ESPHome ADC sensörleri ve yeni continuous sürücü arasında kaynak/ADC sahipliği çakışması tasarım aşamasında giderilmelidir.
+- Eski E00F ct_clamp / ADC One-shot ve yeni ADC Continuous edinimi aynı ADC1 biriminde eşzamanlı karşılaştırılamaz. Modlar arası karşılaştırma gerekiyorsa aynı yük, CT tur sayısı, bias/bağlantı ve kararlı koşul korunarak sıralı iki ayrı kayıt alınır; her kayıt öncesi yük koşulu yeniden teyit edilir.
 - Continuous sürücü DMA/I2S0 kaynaklarını kullanır; I2S0 kullanan başka bir bileşen varsa kaynak çakışması kontrol edilmelidir.
 - Örnek başına Home Assistant API yayını yapılmayacaktır. Kısa örnek pencereleri tamponlanıp toplu aktarılacaktır.
 - Hedef örnekleme hızı ile ölçülen gerçekleşen hız ayrı kaydedilecektir. Buffer taşması/kayıp örnek sayısı varsa raporlanacaktır.
