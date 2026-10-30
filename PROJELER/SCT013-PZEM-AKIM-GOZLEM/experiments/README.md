@@ -3,7 +3,7 @@
 Her deneyde protocol.md, metadata.yaml ve results.md bulunur. Ham veri varsayılan olarak Git'e eklenmez; yerel raw klasöründe tutulur, küçük sentetik örnekler samples altında saklanır.
 
 - [E00A — Bias trafosu DC noktalarının ADC gözlemi](E00A-raw-waveform-observation/README.md) — SCT bağlı değilken bias-only Vmid alt koşulu analiz edilip kapatıldı; E00A'nın 3,3 V bölücü koşulu ve ham CSV/grafik işleri açık.
-- [E00B — SCT bağlı, akımsız hat ADC gözlemi](E00B-sct-connected-no-current/README.md) — Bias GPIO34/35 korunur; SCT düğümü için GPIO32 RAW ve GPIO33 voltaj önerildi. Fiziksel pinout doğrulaması bekleniyor.
+- [E00B — SCT bağlı, akımsız hat ADC gözlemi](E00B-sct-connected-no-current/README.md) — Açıklamalı ESPHome firmware'i eklendi ve kullanıcı bildirimiyle derlendi; GPIO34/35 bias, GPIO32/33 SCT. Fiziksel pinout/bağlantı ve cihaz logu bekleniyor.
 - [E00 — Bias noktasını ADC ile okuma](E00-bias-adc-baseline/protocol.md) — E00A'dan sonraki temel ADC API karşılaştırma adımı.
 - E01 — Yüksüz ofset ve gürültü tabanı
 - E02 — Kararlı rezistif yük ve pencere değişkenliği
