@@ -118,3 +118,12 @@ Karar özeti: Önce tek doğrusal model; parçalı model ancak veri gerekçelend
 6. E08'in 1/2/4 primer tur karşılaştırması, 40 mA gibi çok düşük akım hedefini kanıtlamak için yeterli değil; bu hedef için ayrı bir düşük akım sensör karakterizasyonu gerekip gerekmediği hangi veriye göre kararlaştırılacak?
 
 **Geçici karar:** 30 A/1 V SCT013-030 ve mevcut E00F zincirinde 40 mA güvenilir ayrışması gösterilmedi. 0.35 A lambda eşiği sensör minimumu değildir; yazılım filtresidir. Harici burden değişimi önerilmiyor. E00A/E00B/E01/E08 sırası değişmedi. Ayrıntı: [E00F teknik değerlendirme, bölümler 13–14](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
+
+## 2026-10-30 — E00F-N01 gece gözlemi
+
+1. Eşik filtresi kaldırılmış YAML ESPHome tarafından başarılı derleniyor ve ESP32D2'ye yükleniyor mu?
+2. Gece boyunca Home Assistant geçmişinde 0.35 A altındaki akım durumları nasıl dağılıyor; sıfır yükte sürekli taban mı, aralıklı sıçramalar mı görülüyor?
+3. Raw AC Value / N / SPS debug satırları ayrıca sürekli dosyaya kaydedildi mi? Kaydedilmediyse sabah analizinin yalnız yayınlanan akım geçmişiyle sınırlı kalacağı not edilmeli.
+4. Fiziksel yük durumu gece boyunca gerçekten OFF/yüksüz kaldı mı?
+
+Bu gözlem 40 mA doğruluk testi değildir; filtre etkisini ve yüksüz yayın dağılımını inceleyen ara teşhistir. [E00F-N01 deney kaydı](../experiments/E00F-unthresholded-overnight-log/experiment.yaml).
