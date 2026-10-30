@@ -3,7 +3,7 @@
 **Durum:** Kullanıcı tarafından açıklanmış hedef mimari; uygulama/firmware ve deneyler henüz tamamlanmadı.  
 **Kapsam:** T001 sırasında aktarılan mimariyi ve gelecekteki veri/modelleme akışını koruyan proje notu. Bu belge uygulanmış yazılım veya deney sonucu iddiası değildir.
 
-## Ana hedef
+## PF ve akım ölçümüne ilişkin ek bakış\n\nPF'nin akım büyüklüğü ve SCT ölçümüne olası etkisi ayrı teknik notta kaydedilmiştir: [PF değişimi ve akım ölçümüne etkisi](pf-and-current-measurement.md). BERO'da amaç PF'yi SCT'den tahmin etmek değildir. İlk model PF girdisi olmadan denenir; farklı yük/PF koşullarındaki hata gözlenir. Gerekirse aynı veri ve koşullarla PF girdili model karşılaştırılır. Düşük PF'nin aynı aktif güçte RMS akımı artırabileceği dikkate alınır; yüksek SCT okuması otomatik hata sayılmaz, PZEM akımıyla karşılaştırılır.\n\n## Ana hedef
 
 Üç ayrı SCT örnekleme düğümünden ham/anlık sensör gerilimi örneklerini mümkün olduğunca az kayıpla toplamak. PZEM ve SCT'nin kararlı olduğu **alanları/dönemleri**, SSR olay paketleri ve geliştirilecek kararlılık algoritmaları/istatistikleriyle belirleyip etiketlemek. Python'da etiketlenmiş SCT verisi oluşturmak; bu veriyle her SCT için kalibrasyon katsayısı ve (f(x)) modelini çıkarmak. Ardından bulunan fonksiyonu çok sayıda paket/olay içeren ham veri üzerinde sınamak ve sonuçlara göre gerekirse modeli/algoritmayı iyileştirmek.
 
