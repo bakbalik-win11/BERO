@@ -17,7 +17,7 @@ Sinüzoidal koşullarda aktif güç:
 
 `P = V_{RMS} \\times I_{RMS} \\times PF`
 
-Buna göre aynı gerilim ve aktif güçte PF azaldığında gereken RMS akım artar. Bu nedenle düşük PF'li bir yükte SCT'nin daha yüksek akım genliği/ölçümü göstermesi otomatik olarak hata sayılmamalıdır; fiziksel olarak beklenen akım artışı olabilir.
+Buna göre aynı gerilim ve aktif güçte PF azaldığında gereken RMS akım artar. Bu, yalnızca teorik bir düzeltme değil, sonuçları yorumlarken korunması gereken fiziksel bir olasılıktır: düşük PF'li yükte daha yüksek RMS akım ve SCT sinyal genliği, tek başına ölçüm hatası değildir. Bununla birlikte gerçek yüklerde gerilim ve aktif güç de değişebileceği için bu ilişki ölçülen V, W, PF ve I değerleriyle sınanır; yalnızca nominal güç etiketinden sonuç çıkarılmaz.
 
 Doğrusal olmayan yüklerde (ör. anahtarlamalı LED sürücüleri) gerçek PF yalnızca faz açısının kosinüsü değildir. Akım dalga şekli bozulması da PF'yi etkileyebilir. Bu durumda akımın örneklenmesi, pencere özellikleri ve RMS çıkarımı önem kazanır.
 
@@ -50,6 +50,7 @@ Bu karşılaştırma, PF'nin yararlı olup olmadığını gösteren bir deneydir
 
 - Düşük PF, aynı aktif güçte RMS akımın artmasına yol açabilir; SCT'nin daha yüksek okuması bu nedenle tek başına hata değildir.
 - SCT'nin daha yüksek okuması tek başına doğru olduğunu da kanıtlamaz; PZEM akım referansı ve ölçüm koşullarıyla karşılaştırılır.
+- Bir sonuç `OUT_OF_RANGE` olduğunda, düşük PF koşulunda akımın fiziksel olarak artmış olabileceği önce yükün V/W/PF/I kayıtlarıyla kontrol edilir. Fiziksel akım artışı ile SCT-PZEM ölçüm farkı birbirine karıştırılmaz. ±%4 metriği, aynı kararlı alanın PZEM referans akımına uyumu ölçer; yükler arası akım seviyelerinin aynı olmasını şart koşmaz.
 - PF düşüşü tek başına SCT örnekleme hızını azaltmaz veya ölçümü geciktirmez. Gecikme ve ölçüm farkları; sensör, ADC, örnekleme, filtreleme, pencereleme ve PZEM güncelleme davranışı üzerinden ayrıca incelenmelidir.
 - PZEM'in PF değerinin nasıl hesaplandığı ve hangi örnekleme/ortalama pencerelerini kullandığı, mevcut donanım kaydında ayrıntılı olarak doğrulanmış değildir. İç algoritmaya ilişkin kesin iddia kurulmaz.
 - PZEM'in doğrudan hat gerilimi ölçmesi, PF değerinin bağımsız bir hat sensöründen geldiği anlamına gelmez; cihaz gerilim ve CT akım ölçümlerini birlikte kullanarak güç/PF sonuçlarını raporlar.
