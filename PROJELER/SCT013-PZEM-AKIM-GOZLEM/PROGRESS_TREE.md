@@ -53,8 +53,11 @@ BERO — SCT013 + PZEM gözlem sistemi
 │   ├── E07: önceki uygulanmamış plan (tarihçe)
 │   └── E08: güncel SCT karakterizasyon planı (T005/E00/E01 sonrasında)
 │
-├── 7. Python analizi ve etiketleme
-│   └── Kararlı bölgeleri belirleme, PZEM'i eğitim referansı olarak kullanma
+├── 7. Python analizi, etiketleme ve model
+│   ├── Ortak kararlı alanlardan PZEM etiketli SCT eğitim verisi
+│   ├── Aynı etiketli veride eğitim içi ±%4 uyum raporu
+│   └── Aynı aç-kapa olayının ham akışında SCT tahmini + PZEM zaman grafiği
+│       └── Tepki, yerleşme, PZEM okuma/güncelleme gecikmesi incelemesi
 │
 └── 8. İyileştirme ve bakım
     └── Sonuçlara göre ayarları geliştirme; değişiklik geçmişini koruma
@@ -66,6 +69,7 @@ Faz 2–8, yol haritasındaki daha sonraki iş alanlarıdır; bu görünüm onla
 
 | Deneyin nedenini, uygulama kodunu ve kanıtını birlikte izlemek | [EXPERIMENT_LEDGER.md](EXPERIMENT_LEDGER.md) |
 | Modelin amacı, veri kümesi yaklaşımı ve kabul edilebilir sınırlar | [docs/project-philosophy.md](docs/project-philosophy.md) |
+| Kararlı alan eğitimi ve ham aç-kapa gözlem mimarisi | [training-and-dynamic-observation.md](docs/architecture/training-and-dynamic-observation.md) |
 
 | İhtiyacın | İlk bakılacak dosya |
 |---|---|
