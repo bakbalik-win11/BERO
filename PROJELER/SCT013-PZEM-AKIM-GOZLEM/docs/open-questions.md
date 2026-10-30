@@ -79,3 +79,15 @@ Bu sorular için deney sırası ve kabul ölçütleri [toplu teknik değerlendir
 
 **Geçici karar:** Önce tek doğrusal model; yalnız artık analizi ve ayrı tutulan pencereler daha karmaşık yapıyı gerekçelendirirse parçalı doğrusal model. Sinyal ayrışma kontrolü model tahmininden ayrı tutulur. 0.1 V / 0.5 V gibi örnek eşikler şimdilik kabul edilmez. Ayrıntı: [E00F teknik değerlendirme, bölüm 10](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
 
+
+
+## 2026-10-30 — Gemini son değerlendirmesi sonrası karar soruları
+
+1. ESPHome ct_clamp dedup davranışının zaman ağırlıklı RMS'e etkisi, aynı sinyalin ham ADC örnekleriyle yeniden hesaplandığında ne kadar fark oluşturuyor?
+2. ESPHome varyans hesabında float hassasiyeti veya pencere içi bias hareketi BERO sinyal seviyesinde anlamlı fark oluşturuyor mu? Sabit DC kaymasının ideal varyansta iptal olduğu ayrımı korunmalı.
+3. E00F ct_clamp ve E08 Python ham örneklerinden hesaplanan özelliklerin aynı model girdisi sayılmaması için hangi edinim/özellik kimlikleri tutulmalı?
+4. Aynı edinim yolunda yüksüz taban ve yük pencerelerinin dağılımı hangi tekrarlı/bağımsız oturum koşulunda güvenilir biçimde ayrışıyor? Gemini'nin 1.0–1.2 varyans oranı eşik olarak kabul edilmedi.
+5. Model artıklarında bölgesel sistematik eğilim, bağımsız yük olayı/oturum tekrarlarında da görülüyor mu? Veri yeterli olmadan parçalı model veya cross-validation sonucu ilan edilmeyecek.
+
+Karar özeti: Önce tek doğrusal model; parçalı model ancak veri gerekçelendirirse. Sinyal ayrışma kapısı regresyondan ayrı. E00F ve E08 özellikleri gelişigüzel birleştirilmeyecek. Ayrıntı: [E00F teknik değerlendirme, bölüm 11](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
+
