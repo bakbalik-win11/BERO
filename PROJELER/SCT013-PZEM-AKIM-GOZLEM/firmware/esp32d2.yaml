@@ -1,44 +1,48 @@
-# BERO E00F - ESP32D2 / SCT013-030
+# BERO E00F - ESP32D2 / SCT013-030 + BIAS REFERANSI
 #
-# HEDEF:
-# E00F-N01 gece gözleminde 0.35 A altını sıfırlayan yazılım filtresini
-# kaldırarak ct_clamp'in düşük akım çıktısını ve yüksüz taban davranışını
-# Home Assistant geçmişinde gözlemek. Bu bir teşhis yapılandırmasıdır.
+# AMAC:
+# Yuksuz gece gozleminde SCT013 sinyalini ve bias referans dugumunun
+# zaman icindeki yavas degisimini birlikte izlemek. GPIO34/35 bias
+# okumalarinin eklenmesi SCT'nin 200 ms ct_clamp penceresini veya
+# 24.22 katsayisini degistirmez.
 #
-# BAĞLANTILAR:
-# SCT013-030 -> mevcut bias devresi -> ESP32 GPIO33
-# Mevcut 1.65 V bias devresi korunacaktır.
+# BAGLANTILAR:
+# SCT013-030 -> mevcut bias devresi -> GPIO33 (SCT analog dugumu)
+# Mevcut bias referans noktasi -> GPIO34 (RAW ADC count)
+# Ayni bias referans noktasi -> GPIO35 (ADC voltaj tahmini)
+# ESP32 GND ile bias devresi GND ortak.
+# GPIO34 ve GPIO35 ayni bias noktasini ayri ADC okumalariyla izler;
+# bunlar eszamanli tek bir ADC ornegi degildir.
 #
-# ÖLÇÜM AYARLARI:
-# ADC: GPIO33, ADC1, 12 dB
-# Örnekleme penceresi: 200 ms
-# Yayın aralığı: 2 saniye
-# SCT nominal katsayısı: 24.22
-# Sıfırlama eşiği: YOK (lambda filtresi kaldırıldı)
+# OLCUM AYARLARI:
+# SCT: GPIO33, ADC1, 12 dB, raw:false, ct_clamp 200 ms, yayin 2 s.
+# Bias: GPIO34 RAW count + GPIO35 ADC voltaji, 12 dB, 1 s yayin.
+# SCT nominal katsayisi: 24.22.
+# Yazilimsal sifirlama esigi: YOK.
 #
-# BEKLENTİ:
-# ct_clamp tarafından hesaplanan 0.35 A altı değerler de yayınlanır.
-# Düşük seviyedeki gürültü/yanlış pozitifler de görünür olabilir.
+# BEKLENTI:
+# Home Assistant'ta SCT akimi, SCT Raw AC (V), Bias GPIO34 RAW (count)
+# ve Bias GPIO35 ADC Voltage (V) ayri entity'ler olarak izlenir.
+# Bias okumalarindaki yavas kayma/dalgalanma ile SCT cikisinin
+# birlikte degisip degismedigi incelenebilir.
 #
-# ÖNEMLİ:
-# Bu sürümde yazılımsal sıfırlama eşiği yoktur.
-# 24.22 katsayısı ve ct_clamp hesaplama yolu korunmuştur.
-# Bu değişiklik gürültüyü filtrelemez; düşük değerleri görünür kılar.
+# SINIRLAR:
+# 1 saniyelik bias okumasi yuksek frekansli ADC gurultu spektrumu,
+# 50 Hz dalga sekli veya 2 kS/s ham edinim degildir.
+# GPIO34 ve GPIO35 okumasi birbirleriyle tam eszamanli degildir.
+# GPIO34 RAW count -> voltaj donusumu bu YAML'da kalibre edilmez.
+# ESP32 ADC voltaj okumasi da kalibre edilmis referans cihaz olcumu degildir.
+# 1 Hz bias ADC sorgularinin SCT edinimine etkisi dusuk beklenir ancak
+# sifir etkili oldugu varsayilmaz; log/deneyle kontrol edilir.
 #
-# LOG:
-# ÖNCEKİ SÜRÜM LOGU:
-# 2026-10-30 tarihinde eski 0.35 A filtresiyle yüksüz testte 6/6 yayın
-# 0.000 A görüldü. 8.35 W LED testinde 0.041 A pens akımı filtre altında
-# kaldığı için yayınların çoğu 0.000 A oldu.
+# GUVENLIK:
+# Fiziksel baglantilari enerji kesikken degistir. GPIO34/35'e uygulanan
+# gerilim ESP32 ADC giris sinirlarini asmamalidir. Sebeke tarafinda
+# acik breadboard kullanilmaz.
 #
-# E00F-N01 GÜNCEL DURUM:
-# 0.35 A lambda filtresi kullanıcı talebiyle kaldırıldı.
-# Yeni sürüm henüz derlenmedi, cihaza yüklenmedi veya ölçülmedi.
-#
-# KAYNAK:
-# Temel yapılandırma, kullanıcının 2026-10-30 tarihinde paylaştığı ve
-# cihaz loglarında çalıştığı görülen ESPHome YAML'ıdır. E00F-N01 için
-# yalnız yayın öncesi 0.35 A sıfırlama lambda'sı kaldırılmıştır.
+# LOG DURUMU:
+# Bu YAML depo surumudur; derleme/OTA ve gece kaydi bu degisiklikten
+# sonra kullanici tarafindan gerceklestirilip logla dogrulanmalidir.
 
 esphome:
   name: esp32d2
@@ -64,6 +68,9 @@ wifi:
   password: !secret wifi_password
 
 sensor:
+  # ----------------------------------------------------------
+  # SCT013 - MEVCUT ANA OLCUM YOLU
+  # ----------------------------------------------------------
   - platform: adc
     pin: GPIO33
     id: sct_voltage_source
@@ -73,15 +80,65 @@ sensor:
     sampling_mode: avg
     internal: true
 
+  # ct_clamp'in ham pencere RMS gerilim cikisini volt olarak yayinla.
+  - platform: template
+    id: sct_raw_ac
+    name: "BERO E00F SCT013 Raw AC"
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    accuracy_decimals: 5
+    force_update: true
+    update_interval: never
+
   - platform: ct_clamp
     sensor: sct_voltage_source
     id: sct_current
     name: "BERO E00F SCT013 Akim"
     sample_duration: 200ms
     update_interval: 2s
+    on_raw_value:
+      then:
+        - sensor.template.publish:
+            id: sct_raw_ac
+            state: !lambda |-
+              return x;
     filters:
       - multiply: 24.22
     unit_of_measurement: "A"
     device_class: current
     state_class: measurement
     accuracy_decimals: 3
+
+  # ----------------------------------------------------------
+  # BIAS REFERANSI - GPIO34 RAW ADC COUNT
+  # ----------------------------------------------------------
+  - platform: adc
+    pin: GPIO34
+    id: bias_gpio34_raw
+    name: "BERO E00F Bias GPIO34 RAW"
+    attenuation: 12db
+    raw: true
+    accuracy_decimals: 0
+    unit_of_measurement: "count"
+    state_class: measurement
+    samples: 1
+    force_update: true
+    update_interval: 1s
+
+  # ----------------------------------------------------------
+  # BIAS REFERANSI - GPIO35 ADC VOLTAJ TAHMINI
+  # ----------------------------------------------------------
+  - platform: adc
+    pin: GPIO35
+    id: bias_gpio35_voltage
+    name: "BERO E00F Bias GPIO35 ADC Voltage"
+    attenuation: 12db
+    raw: false
+    accuracy_decimals: 5
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    samples: 1
+    force_update: true
+    update_interval: 1s
