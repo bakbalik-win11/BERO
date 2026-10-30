@@ -58,3 +58,23 @@ Aşağıdaki değerler kullanıcı tarafından paylaşılan cihaz logları ve pe
 ## SONRAKİ ADIM
 
 Mevcut katsayıyı koruyarak, düşük akımın sıfırlanması ve ara sıra görülen sıçramalar konusunu ayrı ele almak. Çalışan `ct_clamp` paketini gereksiz yere yeniden yazmamak.
+
+
+## 2026-10-30 — Üç sarımlı düşük akım teşhis logu (ana kalibrasyon değil)
+
+**HEDEF:** Mevcut E00F ct_clamp firmware'ini değiştirmeden, yaklaşık 0.04 A yükte üç primer turun Raw AC davranışına etkisini gözlemek.
+
+**LOG (kullanıcı tarafından sağlanan cihaz kaydı ve beyanı):**
+- İletken SCT çekirdeğinden üç kez geçirildi; ampul/yük yanıyordu; pens ampermetre yaklaşık 0.04 A gösteriyordu. Yük tipi bu log kesitinde ayrıca tanımlanmadı.
+- ESPHome 2026.9.1, cihaz esp32d2, GPIO33 / ADC1 / 12 dB, 200 ms ct_clamp penceresi, 2 s güncelleme.
+- Mevcut kodun raw: false, 24.22 çarpanı ve 0.35 A eşiği korundu.
+- 12 Raw AC Value: 0.009, 0.006, 0.014, 0.007, 0.007, 0.011, 0.011, 0.007, 0.010, 0.008, 0.012, 0.004 V.
+- Ortalama 0.00883 V; medyan 0.0085 V; aralık 0.004–0.014 V.
+- Farklı kabul edilen örnek sayısı 3,175–3,350; raporlanan SPS 15,875–16,750. SPS fiziksel ADC dönüşüm hızı olarak yorumlanmaz.
+- 12/12 yayın 0.000 A.
+
+**SONUÇ:**
+- En yüksek Raw AC değeri 0.014 V × 24.22 ≈ 0.339 A ölçek karşılığıdır; 0.35 A filtresinin altında kaldığı için tüm pencerelerin sıfır yayınlaması beklenen davranıştır.
+- Üç tur için 0.04 A × 3 = 0.12 A-tur hesabı yalnız amper-tur eşdeğeridir; gerçek hat akımı veya tam üç kat çıktı değildir.
+- Raw AC aralığı önceki yüksüz (0.004–0.011 V) ve LED (0.003–0.013 V) aralıklarıyla örtüşür. Bu kayıt üç turun düşük akımı tabandan güvenilir biçimde ayırdığını göstermemiştir; 12 pencere tek başına istatistiksel ayrışmazlığı kanıtlamaz.
+- Ana ölçüm standardı tek sarım olarak korunur. Üç sarım yalnız teşhis denemesidir; katsayı/threshold değişikliği veya kalibrasyon sonucu değildir. E08'in 1/2/4 tur matrisi ayrı plan olarak kalır.
