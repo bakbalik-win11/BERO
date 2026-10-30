@@ -19,8 +19,8 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 - [ ] 1.2b SCT bağlıyken ve ölçülen hatta akım yokken aynı iki ADC okumasını karşılaştır.
 - [ ] 1.2c Uzun yüksüz ADC kaydı, zaman grafiği ve gürültü özeti. — [T005](tasks/T005-noise-floor.md)
   - **Başlangıç:** Donanım henüz kurulmadı. PZEM ve ESP kartları ölçülen hattan beslenmiyor. 30 saniye asgari başlangıç referansı; kayıt daha uzun, gerekirse saatler sürebilir. Kesin süre deney sırasında belirlenecek.
-- [ ] 1.3 PZEM referans akışını kullanarak farklı akım/yük seviyelerinde SCT modelini değerlendir; veri kapsamı deneylerle belirlenecek. — [T006](tasks/T006-calibration.md)
-  - **Bitti sayılır:** eğitim ve değerlendirme verileri ayrılmış; PZEM'e göre ±%4 hedefi, clipping durumu ve sınırlamalar raporlanmış; calibration_id kayıtlı. Üç seviye bağımsız referans cihazıyla ölçüm zorunluluğu değildir.
+- [ ] 1.3 PZEM referans akışını kullanarak ortak kararlı alanlardan SCT modelini eğit ve ilk uyum raporunu oluştur; aynı aç-kapa olayının tam ham akışını ayrıca gözlemle. — [T006](tasks/T006-calibration.md)
+  - **Bitti sayılır:** ortak kararlı alan etiketleme yöntemi ve veri kimlikleri kayıtlı; modelin aynı etiketli eğitim verisindeki ±%4 uyumu raporlanmış; aynı olayın ham SCT tahmini/PZEM zaman grafiği ile tepki ve gecikme gözlemleri ayrı raporlanmış; clipping ve sınırlamalar yazılmış. Bu ilk aşama bağımsız genelleme testi değildir.
 
 ## Faz 2 — SCT edinim
 - [ ] 2.1 Gerçek örnekleme hızını ve sapmayı ölç.
@@ -35,10 +35,11 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
 - [ ] 3.3 Sentinel, timeout ve parse hatalarını ayıkla.
   - **Bitti sayılır:** en az 10 dakikalık kayıt ve hata oranı var.
 
-## Faz 4 — Zaman hizalama
-- [ ] 4.1 Tek monotonik saat kaynağı kullan.
-- [ ] 4.2 SCT RMS değişimiyle olay algıla.
-- [ ] 4.3 PZEM ve SCT verilerinde kararlı/geçiş alanlarını deney verisi ve geliştirilecek istatistiksel ölçütlerle belirle; sabit süreyi nihai etiket kuralı olarak varsayma.
+## Faz 4 — Zaman ilişkisi ve olay davranışı
+- [ ] 4.1 SSR, SCT ve PZEM kayıtları için ortak monotonik zaman ilişkisini kur; istek/yanıt zamanlarını koru.
+- [ ] 4.2 SCT ve PZEM kararlılık/geçiş alanlarını ayrı ayrı deney verisi ve istatistiksel ölçütlerle belirle.
+- [ ] 4.3 Aynı SSR olayı içindeki örtüşen ortak kararlı alanları etiketleme için seç; tam ham olay akışını dinamik grafik için koru.
+- [ ] 4.4 PZEM güncelleme davranışı, okuma süresi, SCT tepki/yerleşme ve gözlenen zaman farklarını ayrı incele. Sabit süreyi nihai etiket kuralı varsayma.
   - **Bitti sayılır:** geçiş/kararlı alanların seçim yöntemi belgelenmiş, veride sınanmış ve sınırlamaları raporlanmış. Yaklaşık 3 s yalnız geçmişteki bir hipotez olarak kalır; otomatik etiket kuralı değildir.
 
 ## Faz 5 — Kayıt şeması
