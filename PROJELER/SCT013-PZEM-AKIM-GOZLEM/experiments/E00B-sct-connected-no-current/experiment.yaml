@@ -83,19 +83,19 @@ log:
       sct_gpio33_voltage_mean_v: 1.6639
       interpretation: "Kararlı bölümde bias ve SCT ADC kanalları birbirine yakın; ilk açılış değerleri hariç tutuldu."
 
-result:
-  status: "CIHAZ_LOGU_ALINDI; FIZIKSEL_KOSULLARIN_TAM_DOGRULAMASI_BEKLIYOR"
-  conclusion: "ESPHome cihaz logu alindi; dort ADC kanali baslatildi ve kararlı pencerede olcumler goruldu. Primer akimin sifir oldugu ve fiziksel SCT baglantisi logdan tek basina dogrulanamaz."
-  next_step: "Fiziksel SCT montajini ve primer akimin sifir oldugu kosulu kaydet; daha uzun kararlı kayit al ve acilis gecisini disla."
+  - date: "2026-10-30"
+    source: "logs/2026-10-30-e00b-esp32d2-long-observation.log"
+    type: "Extended ESPHome device log"
+    valid_window: "Acilis gecisi dislandiktan sonra 351 gecerli yayin/kanal"
+    startup_excluded: "Baslangictaki RAW=0 ve 0.142 V gecis degerleri"
+    bias_gpio34_raw_mean_count: 1852.5556
+    sct_gpio32_raw_mean_count: 1853.3732
+    bias_gpio35_voltage_mean_v: 1.6646
+    sct_gpio33_voltage_mean_v: 1.6632
+    raw_mean_difference_sct_minus_bias_count: 0.8177
+    voltage_mean_difference_sct_minus_bias_v: -0.0013647
+    interpretation: "Yukseluksuz pencerede SCT ve bias kanallari pratik olarak ayni seviyede; kanal ornekleri eszamanli degildir."
 
-
-# Uzun log sonucu — 2026-10-30
-# Ham log: logs/2026-10-30-e00b-esp32d2-long-observation.log
-# Analiz penceresi: açılış geçişi çıkarıldıktan sonra n=351 / kanal.
-# Bias RAW ort.: 1852.5556 count; SCT RAW ort.: 1853.3732 count.
-# Bias ADC ort.: 1.6646 V; SCT ADC ort.: 1.6632 V.
-# Farklar: RAW +0.8177 count; ADC voltaj -0.0013647 V.
-# Sonuç olumlu; ayrı GPIO ADC okumaları eşzamanlı değildir.
 result:
   status: "NO_LOAD_COMPARISON_POSITIVE; PHYSICAL_CONDITIONS_NOT_INDEPENDENTLY_VERIFIED"
   conclusion: "351 gecerli yayin/kanal degerinde SCT-Bias RAW ortalama farki +0.82 count, ADC voltaj ortalama farki -1.4 mV. Yuksuz karsilastirma olumlu; fiziksel primer akim ve CT montaji logdan bagimsiz kanitlanmis degildir."
