@@ -111,3 +111,8 @@ E00A için [ESP32D2 firmware'i](experiments/E00A-raw-waveform-observation/firmwa
 ## 2026-10-30 — E00A-S01 GND referans testi
 
 E00A kapsamında S01 alt adımı kaydedildi: sensör yokken GPIO34/GPIO35 GND referansında uzun log gözlendi. GPIO34 0 count; GPIO35 yaklaşık 175 saniyelik kararlı bölümde 0.142 V. Önceki açık giriş dalgalanması floating giriş teşhisini destekliyor. Elektriksel çözüm adayı, jack/CT bağlantısı doğrulandıktan sonra ADC düğümünü Vmid'e yüksek değerli pasif dirençle biaslamak. Sonraki test tek ADC kanalında Vmid bias ve 60 saniyelik gözlem. E00A henüz tamamlanmadı. Ayrıntı: [E00A-S01 raporu](experiments/E00A-raw-waveform-observation/reports/E00A-S01-gnd-reference-stability.md).
+
+
+## 2026-10-30 — E00A SCT'siz bias-only alt adım sonucu
+
+SCT bağlı değilken Vmid bias koşuluna ait uzun ESP32D2 logu analiz edildi; bu alt koşul kapatıldı. 603 geçerli zaman eşleşmesinde GPIO35 std. sapma 6.474 mV, GPIO34 RAW std. sapma 6.97 count. RAW sıfır başlangıç kayıtları eşleştirme dışı bırakıldı. Bu, tüm SCT'siz bias/ADC ölçüm zincirinin gözlenen dalgalanmasıdır; ADC'nin tek başına gürültüsü değildir. E00A bütünü açık kalır: L78L33 3.3 V ayrı bölücü koşulu ile ham CSV ve zaman grafiği tamamlanmadı. Sonraki deney koşulu SCT bağlı fakat ölçülen hatta akım yok durumudur. Ayrıntı [E00A sonuç kaydı](experiments/E00A-raw-waveform-observation/results.md).
