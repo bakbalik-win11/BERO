@@ -1,28 +1,33 @@
 experiment_id: E00A
-title: Ham sinyal kaydı ve temel istatistikler
+title: Bias trafosu DC noktalarının ADC gözlemi
 status: planned
-date: 2026-10-29
+date: 2026-10-30
 hardware:
-  sensor: SCT013-030 (30 A / 1 V), primary sensor
-  acquisition: ESP32 internal ADC; exact board and GPIO not selected
+  acquisition: ESP32-WROOM-32D adayı; gerçek kart/pinout fiziksel olarak doğrulanacak
+  adc: ESP32 dahili ADC1; GPIO34 aday, kesin bağlantı öncesi pinout doğrulaması gerekli
+  sensor: none; SCT bu deneyde bağlı değil
+  source: Bias trafosu komple devre (RN130421, KBU6M, 2200uF/35V, L78L33, 2x10kOhm Vmid bölücüsü)
 conditions:
-  - bias_only_without_SCT
-  - SCT_connected_no_load
-  - SCT_connected_100W_incandescent
+  - l78l33_3v3_through_external_10k_10k_divider
+  - bias_vmid_direct
 initial_target_sample_rate_sps: 2000
 target_record_duration_s: 1
 outputs:
   - raw_adc_samples_saved_locally
+  - analog_read_and_millivolts_comparison
+  - multimeter_dc_reference
   - mean_min_max_peak_to_peak_standard_deviation
   - target_rate_elapsed_duration_sample_count
   - approximate_actual_sample_rate
   - condition_comparison_summary
-  - optional_diagnostic_waveform_plot
+  - adc_time_plot
 notes:
-  - Initial pass uses one ESP32 and one target rate; 2 kS/s is a starting value, not a validated requirement.
-  - Statistics are descriptive raw ADC features, not current measurements; standard deviation includes both noise and signal variation.
-  - Plotting is diagnostic, not the primary output; continuous live plotting and slow playback are not required.
-  - Compare 1 and 2.5 kS/s later only if the first results raise a concrete question.
-  - No current conversion, RMS current, power factor, or harmonic analysis in this experiment.
-  - Complex buffering, DMA, and multi-ESP synchronization are deferred until evidence shows they are needed.
-  - No physical measurements or firmware tests have been performed.
+  - SCT is not connected and no current/load measurement is performed in E00A.
+  - L78L33 nominal 3.3V output is measured through an external 10kOhm/10kOhm divider; ADC pin sees approximately half the source voltage.
+  - Source voltage estimate for the 3.3V condition is ADC pin millivolts multiplied by two; verify actual resistor values.
+  - Bias Vmid is measured directly at the ADC input and is nominally about 1.65V.
+  - ESP32 ground and bias transformer ground must be common.
+  - GPIO34 is only an unverified candidate until the actual classic ESP32 board pinout is checked.
+  - 2 kS/s is an initial target, not a validated performance result.
+  - No current conversion, calibration, PZEM, MCP3208, PF, or harmonic analysis in this experiment.
+  - No firmware build, physical measurement, or hardware validation has been performed.
