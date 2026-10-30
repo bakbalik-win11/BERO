@@ -1,6 +1,6 @@
 experiment_id: E08
 name: SCT signal characterization
-status: planned
+status: in_progress_preparation
 sensor: SCT013-030 30A/1V
 adc: ESP32 internal ADC; board and GPIO to be recorded
 sampling_rate_targets_sps: [1000, 2000, 2500]
