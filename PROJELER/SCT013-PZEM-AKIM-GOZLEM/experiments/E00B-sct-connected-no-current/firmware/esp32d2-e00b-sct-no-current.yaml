@@ -1,0 +1,208 @@
+# ============================================================
+# BERO - E00B
+# ESP32D2 / ESP-IDF - SCT BAGLI, PRIMER AKIMI YOK
+# ============================================================
+#
+# DENEY AMACI:
+# E00A'da SCT bagli degilken olculen bias tabanini koruyarak,
+# SCT013-030 bagliyken ve izlenen iletkenden akim gecmezken
+# bias ve SCT analog dugumlerini ayri ADC kanallarinda gozlemek.
+#
+# E00B experiment.yaml bu firmware'in deney plani ve pin eslemesidir.
+# ESPHome bu YAML plan dosyasini otomatik okumaz; ayarlar burada
+# acikca tekrar tanimlanmistir.
+#
+# DONANIM / BAGLANTILAR:
+# GPIO34 / ADC1_CH6 = Bias Vmid RAW count
+# GPIO35 / ADC1_CH7 = Bias Vmid ADC voltaj tahmini
+# GPIO32 / ADC1_CH4 = SCT bias uygulanmis analog dugum RAW count
+# GPIO33 / ADC1_CH5 = Ayni SCT analog dugumunun ADC voltaj tahmini
+# ESP32 GND ile bias devresi GND ortak olmalidir.
+# GPIO32 ve GPIO33 ayni analog dugumu iki ayri ADC kanaliyla gozler;
+# ayni anda alinmis tek bir ADC ornegi olarak yorumlanmamali.
+#
+# ONEMLI PIN NOTU:
+# GPIO32/33, klasik ESP32-WROOM-32D icin planlanan ADC1 pinleridir.
+# Gercek gelistirme kartinin pinout'u fiziksel olarak dogrulanmadan
+# kablo baglama. Kart modeli/pin etiketleri farkliysa bu YAML'i
+# baglanti yapmadan once duzelt.
+#
+# RAW VOLTAJ TAHMINI:
+# count * 3.1 / 4095 nominal gosterimdir; kalibrasyon degildir.
+# Yazilimsal 0.142 V offset uygulanmaz. E00A'da sabit offsetin
+# gercek Vmid DC degerini bozdugu goruldu.
+#
+# OKUMA:
+# Her sensor 1 saniyede bir Home Assistant/ESPHome'a yayin yapar.
+# Bu, 1 kS/s veya daha yuksek hizli ham ornekleme degildir.
+# E08 icin planlanan SPS degerleri bu firmware'de uygulanmamistir.
+#
+# GUVENLIK:
+# Baglantilari enerji kesikken yap. SCT sekonderini primer akimi
+# varken uretici izin vermedikce acik devre birakma.
+# Sebeke iletkeni uzerinde calisma yalniz yetkin kisi tarafindan,
+# uygun izolasyon ve muhafaza ile yapilmalidir.
+# ============================================================
+
+esphome:
+  name: esp32d2
+  friendly_name: BERO E00B ESP32D2
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+sensor:
+  # ----------------------------------------------------------
+  # BIAS REFERANSI - GPIO34 RAW
+  # ----------------------------------------------------------
+  - platform: adc
+    pin: GPIO34
+    id: bias_adc_raw
+    name: "BERO E00B Bias GPIO34 RAW"
+    attenuation: 12db
+    raw: true
+    accuracy_decimals: 0
+    unit_of_measurement: "count"
+    state_class: measurement
+    samples: 1
+    update_interval: 1s
+
+  # GPIO34 RAW count degerinin nominal voltaj karsiligi.
+  - platform: template
+    id: bias_raw_voltage_estimate
+    name: "BERO E00B Bias GPIO34 RAW Voltage Estimate"
+    lambda: |-
+      if (isnan(id(bias_adc_raw).state)) {
+        return {};
+      }
+      return id(bias_adc_raw).state * (3.1f / 4095.0f);
+    accuracy_decimals: 3
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    update_interval: 1s
+
+  # Bias Vmid noktasinin ESPHome ADC voltaj tahmini; offset yok.
+  - platform: adc
+    pin: GPIO35
+    id: bias_adc_voltage
+    name: "BERO E00B Bias GPIO35 ADC Voltage"
+    attenuation: 12db
+    raw: false
+    accuracy_decimals: 3
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    samples: 1
+    update_interval: 1s
+
+  # GPIO35 ADC voltaji - GPIO34 RAW nominal voltaj tahmini.
+  - platform: template
+    id: bias_voltage_difference
+    name: "BERO E00B Bias Voltage Difference GPIO35 minus GPIO34"
+    lambda: |-
+      if (isnan(id(bias_raw_voltage_estimate).state) ||
+          isnan(id(bias_adc_voltage).state)) {
+        return {};
+      }
+      return id(bias_adc_voltage).state -
+             id(bias_raw_voltage_estimate).state;
+    accuracy_decimals: 3
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    update_interval: 1s
+
+  # ----------------------------------------------------------
+  # SCT DUGUMU - GPIO32 RAW
+  # ----------------------------------------------------------
+  - platform: adc
+    pin: GPIO32
+    id: sct_adc_raw
+    name: "BERO E00B SCT GPIO32 RAW"
+    attenuation: 12db
+    raw: true
+    accuracy_decimals: 0
+    unit_of_measurement: "count"
+    state_class: measurement
+    samples: 1
+    update_interval: 1s
+
+  # GPIO32 RAW count degerinin nominal voltaj karsiligi.
+  - platform: template
+    id: sct_raw_voltage_estimate
+    name: "BERO E00B SCT GPIO32 RAW Voltage Estimate"
+    lambda: |-
+      if (isnan(id(sct_adc_raw).state)) {
+        return {};
+      }
+      return id(sct_adc_raw).state * (3.1f / 4095.0f);
+    accuracy_decimals: 3
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    update_interval: 1s
+
+  # SCT'nin bias uygulanmis analog dugumunun ADC voltaj tahmini.
+  - platform: adc
+    pin: GPIO33
+    id: sct_adc_voltage
+    name: "BERO E00B SCT GPIO33 ADC Voltage"
+    attenuation: 12db
+    raw: false
+    accuracy_decimals: 3
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    samples: 1
+    update_interval: 1s
+
+  # GPIO33 ADC voltaji - GPIO32 RAW nominal voltaj tahmini.
+  - platform: template
+    id: sct_voltage_difference
+    name: "BERO E00B SCT Voltage Difference GPIO33 minus GPIO32"
+    lambda: |-
+      if (isnan(id(sct_raw_voltage_estimate).state) ||
+          isnan(id(sct_adc_voltage).state)) {
+        return {};
+      }
+      return id(sct_adc_voltage).state -
+             id(sct_raw_voltage_estimate).state;
+    accuracy_decimals: 3
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    update_interval: 1s
+
+# ============================================================
+# HEDEF / LOG / SONUC
+# ============================================================
+# HEDEF:
+# SCT bagliyken primer akimi yok kosulunda GPIO34/35 bias referansini
+# ve GPIO32/33 SCT dugumunu E00A SCT'siz tabanla karsilastirmak.
+#
+# LOG:
+# Kullanici 2026-10-30 tarihinde bu E00B YAML'in derlendigini bildirdi.
+# Bu firmware dosyasinin GitHub'a kaydedilmesi ve bu derleme bildirimi
+# birbirinden ayri kanitlardir. Derleme cihaza yukleme/olcum kaniti degil.
+#
+# SONUC:
+# Derleme basarili (KULLANICI RAPORU). Cihaz logu, fiziksel baglanti,
+# pinout ve akimsiz SCT olcumu henuz bu kayitta dogrulanmadi.
+# ============================================================
