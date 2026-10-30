@@ -133,7 +133,7 @@ step_S01_gnd_reference:
 experiment:
   id: "E00A"
   title: "Bias trafosu DC noktalarının ADC gözlemi"
-  status: "step2_zero_offset_removed_after_vmid_comparison_new_firmware_build_pending"
+  status: "step2_zero_offset_removed_raw_voltage_comparison_firmware_saved_build_in_progress_user_report"
 
 hedef:
   soru: "Bias trafosunun regüle 3,3 V çıkışı ve yaklaşık 1,65 V Vmid noktası ADC'de nasıl okunuyor ve zaman içinde ne kadar değişiyor?"
@@ -235,7 +235,7 @@ uygulama:
       attenuation: "12db"
       update_interval: "1s"
   kaynak: "KULLANICI RAPORU — kod derlendi ve çalıştı; log henüz paylaşılmadı."
-  durum: "ONCEKI_OFSETLI_SURUM_KULLANICI_BILDIRIMIYLE_DERLENDI; OFSETSIZ_REVIZYON_DERLEME_BEKLIYOR"
+  durum: "OFSETSIZ_RAW_VOLTAGE_KARSILASTIRMA_REVIZYONU_GITHUBA_KAYDEDILDI; KULLANICI_DERLEMEYE_ALDI; SONUC_BEKLENIYOR"
 
 # 2026-10-30 — S01 GND referans testi (sonradan eklenen deney adımı)
 step_S01_gnd_reference:
@@ -276,3 +276,24 @@ step_2_zero_offset_reversal:
   rationale: "Sıfırlama GND koşulunda ekranda 0.000 V sağladı fakat Vmid DC seviyesini aynı miktarda aşağı kaydırdı."
   next_step: "Ofsetsiz firmware'i derle ve cihaza yükle; aynı Vmid noktasında multimetreyle eşzamanlı log al."
   status: "KARAR VERİLDİ; OFSETSİZ FIRMWARE DERLEME/ÇALIŞTIRMA HENÜZ DOĞRULANMADI"
+
+
+# 2026-10-30 — GPIO34 RAW voltaj tahmini / GPIO35 ADC karşılaştırması
+step_2_raw_voltage_comparison:
+  date: "2026-10-30"
+  goal: "GPIO34 RAW count değerini nominal voltaj tahminine çevirmek; GPIO35 ADC voltajı ve iki değer arasındaki farkı yayınlamak."
+  firmware:
+    path: "firmware/esp32d2-e00a-adc.yaml"
+    sensors:
+      - "GPIO34 RAW count"
+      - "GPIO34 RAW Voltage Estimate"
+      - "GPIO35 ADC Voltage Uncorrected"
+      - "GPIO35 - GPIO34 RAW tahmini farkı"
+    raw_voltage_formula: "RAW_count * 3.1 / 4095"
+    formula_status: "Nominal ölçek tahmini; kalibrasyon değildir."
+  user_report:
+    event: "Kullanıcı yeni YAML'ı derlemeye aldığını bildirdi."
+    build_result: "Henüz bildirilmedi."
+    device_upload: "Henüz bildirilmedi."
+  required_connection: "GPIO34 ve GPIO35 aynı 1.654 V Vmid noktasına bağlanmalı; ortak GND korunmalı."
+  status: "GITHUBA_KAYDEDILDI; DERLEME SONUCU BEKLENIYOR"
