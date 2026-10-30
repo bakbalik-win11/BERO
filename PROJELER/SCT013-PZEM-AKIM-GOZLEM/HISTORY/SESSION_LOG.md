@@ -1,3 +1,12 @@
+## 2026-10-30 — Bias breadboard Vmid multimetre referansı eklendi
+
+- **HEDEF:** E00A için bias devresinin breadboard orta noktasına ait ilk DC referansını kaydetmek.
+- **LOG:** Kullanıcı, bias breadboard üzerinden multimetre ile orta noktada **1,65 V** okuduğunu bildirdi. Bu değer E00A results.md, experiment.yaml ve metadata.yaml dosyalarına KULLANICI BİLDİRİMİ olarak işlendi. L78L33 çıkışındaki 3,31 V referansından ayrı tutuldu.
+- **SONUÇ:** İki multimetre referansı kayıtlı: L78L33 çıkışı 3,31 V DC; breadboard bias orta noktası/Vmid 1,65 V DC. Bu değerler ESP32 ADC ölçümü değildir. ADC bağlantısı ve 30 saniyelik kayıt henüz yapılmadı.
+- **Doğrulama:** İlgili E00A sonuç/YAML kayıtları, STATUS, PROGRESS_TREE ve EXPERIMENT_LEDGER güncellendi; commit sonrası yeniden okunacak.
+- **Sonraki adım:** Gerçek kart/pinout ve ADC sınırları doğrulandıktan sonra iki noktayı ESP32 ADC ile ayrı ayrı gözlemek.
+- **Kanıt:** [E00A sonuç kaydı](../experiments/E00A-raw-waveform-observation/results.md), [E00A deney YAML](../experiments/E00A-raw-waveform-observation/experiment.yaml).
+
 ## 2026-10-30 — E00A açıldı ve ilk multimetre referansı eklendi
 
 - **Durum:** DENEY KAYDI AÇILDI; yalnız ilk multimetre referansı kullanıcı tarafından bildirildi. ESP32 ADC testi yapılmadı.
