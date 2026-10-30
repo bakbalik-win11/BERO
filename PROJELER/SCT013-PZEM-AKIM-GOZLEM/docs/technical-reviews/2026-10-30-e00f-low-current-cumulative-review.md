@@ -248,3 +248,54 @@ Bunlar kullanıcı tarafından raporlanan saha karşılaştırmalarıdır; bağ�
 6. PZEM'e göre ±%4 hedefi korunur. Sinyal yüksüz tabandan güvenilir biçimde ayrılamıyorsa Python bunu düzeltmiş gibi göstermez; ilgili bölgeyi geçersiz veya düşük güvenilirlikte işaretler.
 
 **SONUÇ:** Araştırma odağı, fiziksel tur sayısını artırmayı ana çözüm yapmak yerine tek sarımlı donanımı koruyup Python'da bölgesel model kalibrasyonu geliştirmektir. Bu bir tasarım yönüdür; henüz eğitim verisi, model, fonksiyon katsayısı veya bağımsız doğrulama sonucu yoktur.
+
+
+## 10. Gemini'nin formül ve parçalı kalibrasyon önerisi — teknik karar
+
+### 10.1 ct_clamp matematiğinin kontrolü
+
+Gemini'nin verdiği varyans açılımı ESPHome 2026.9.1 kaynak koduyla uyumludur:
+
+`mean = sample_sum_ / num_samples_`
+
+`mean_square = sample_squared_sum_ / num_samples_`
+
+`variance = mean_square - mean * mean`
+
+Varyans pozitifse karekök alınır; değilse AC RMS sıfır bırakılır. Kaynak kod ayrıca NaN örnekleri ve ardışık olarak aynı sayısal ADC değerlerini atlar. Bu nedenle `num_samples_`, bütün ADC dönüşümlerinin sayısı değildir; kabul edilen farklı ardışık değer sayısıdır. Logdaki SPS de bu sayının pencere süresine oranıdır.
+
+**Terim düzeltmesi:** Formüldeki `mean`, donanımdaki yaklaşık 1.65 V bias noktasının ayrıca ölçülüp çıkarılması değildir. Her örnekleme penceresinin kendi örnek ortalamasıdır. Dolayısıyla bunu “fiziksel bias ölçümü” değil, pencere ortalamasının çıkarılması olarak adlandırmak daha doğrudur.
+
+Kaynak: ESPHome 2026.9.1 `ct_clamp_sensor.cpp` (update/loop; mean, mean-square, variance, deduplication).
+
+### 10.2 Model biçimi için karar
+
+**KARAR — parçalı doğrusal model ilk model olarak doğrudan uygulanmayacak.**
+
+Uygulama sırası:
+1. İlk aday, tek sarımlı ve aynı edinim tanımına sahip kararlı SCT pencerelerinden tek doğrusal modeldir: `I_hat = a*X + b`.
+2. Model artıkları (residuals) akım bölgesine göre sistematik eğilim gösterirse, yeterli veri varsa parçalı doğrusal model karşılaştırmaya alınır.
+3. Parçalı model seçilirse geçişlerde süreklilik ve monotonluk kontrol edilir; bölge sınırları 0.1 V / 0.5 V gibi örnek sayılarla önceden sabitlenmez, veriden seçilir.
+4. Daha karmaşık model, yalnız eğitim verisi hatasını düşürdüğü için seçilmez. Ayrı tutulan kararlı pencerelerde karşılaştırmalı performans ve model karmaşıklığı birlikte değerlendirilir.
+5. PZEM geçerli ve kararlı proje referansıdır; kusursuz ground truth değildir. ±%4 hedefi PZEM'e göre raporlanır.
+
+### 10.3 Sinyal geçerlilik kapısı, sıfır akımdan ayrılacak
+
+Gemini'nin `RMS < noise threshold => 0 A` dalı doğrudan model çıktısı olarak kabul edilmeyecek.
+
+- Yüksüz tabandan güvenilir biçimde ayrışmayan pencere, otomatik olarak `0 A` ilan edilmez; `INVALID`, `BELOW_DETECTION` veya `LOW_CONFIDENCE` gibi ayrı kalite durumu ile işaretlenir.
+- Gerçek sıfır akım, düşük ama algılanamayan akım ve geçersiz sinyal birbirinden ayrılmalıdır.
+- Gürültü/ayrışma sınırı yüksüz kayıt dağılımı ve yük koşulu kayıtlarından deneysel olarak belirlenir; keyfî RMS eşiği atanmaz.
+- Bu kapı, regresyon modelinin dışında bir veri-kalitesi/algılanabilirlik kararıdır. Model, tabandan ayrılamayan sinyalden akım bilgisi üretemez.
+
+### 10.4 Model girdisi: ct_clamp RMS ile E08 ham RMS aynı kabul edilmeyecek
+
+E00F `ct_clamp` RMS'i, ESPHome'un One-shot ADC örneklerinden ve ardışık aynı sayısal değerleri atlayan döngüsünden üretilir. E08 ise planlandığı gibi zaman bilgili ham ADC örneklerini alıp Python'da pencere istatistikleri üretecektir. Örnek kümesi, örnekleme davranışı ve hesaplama yolu farklı olabileceğinden bu iki RMS serisi aynı özellik gibi birleştirilmeyecek.
+
+T006/Python eğitiminde hangi SCT özelliğinin kullanılacağı, ilgili edinim yolunun gerçek kayıtları görüldükten sonra seçilir. E08 ham örnekleri kullanılırsa RMS tanımı aynı örnek kümesinden, pencere ortalaması çıkarılarak ve örnek sayısı/zaman bilgisi korunarak hesaplanır. `ct_clamp` verisi ayrı kaynak/özellik olarak tutulabilir; ham RMS ile eşdeğer olduğu varsayılmaz.
+
+### 10.5 Gemini'ye yöneltilecek ek soru gereği
+
+Bu incelemede Gemini'ye doğrudan mesaj gönderilebilen bir bağlantı bulunmadığından soru iletilmedi. Teknik karar, ESPHome 2026.9.1 kaynak kodu ve BERO'nun mevcut veri mimarisi üzerinden verildi. Gemini'nin önerisindeki temel formül kabul edildi; modelin doğrudan parçalı uygulanması ve gürültü altı sinyalin sıfır akım sayılması kabul edilmedi.
+
+**Durum:** Tasarım kararı kaydedildi; Python kodu, eğitim verisi, model katsayıları ve fiziksel test henüz yoktur.
