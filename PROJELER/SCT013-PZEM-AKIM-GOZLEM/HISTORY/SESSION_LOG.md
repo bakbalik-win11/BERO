@@ -1,3 +1,14 @@
+## 2026-10-30 — Hat bazında SCT tur sayısı fikri depoya alındı
+
+- **Durum:** FİKİR KAYDEDİLDİ; fiziksel test, firmware değişikliği ve kalibrasyon yapılmadı.
+- **HEDEF:** İleride her hatta uygun CT birincil tur sayısının seçilebilmesi fikrini, mevcut E08 planıyla çakıştırmadan saklamak.
+- **LOG:** Depodaki E08 README, protokol ve stage-02 matrisi okundu. E08'de 100 W akkor için 1/2/4 tur × 1/2/2,5 kS/s planı zaten mevcut. Kullanıcı ileride hatta özel tur kullanmanın muhtemel olduğunu belirtti. Gemini'nin 5 tur önerisi de bu oturumda değerlendirildi.
+- **TEKNİK NOT:** Tur sayısı gerçek hat akımını artırmaz; CT çekirdeğinin gördüğü amper-tur değerini artırır. İdeal ilk yaklaşımda amper-tur = primer akım × tur sayısıdır. SCT013-030 30 A nominal değeri üzerinden 5 tur için 6 A, yalnız teorik nominal amper-tur karşılığıdır; kesin doyum/çalışma sınırı değildir. 6,39 A × 5 = 31,95 A-tur hesabı, kettle koşulunda 5 turun otomatik seçilmemesi gerektiğini gösterir; fiziksel sınır doğrulaması değildir.
+- **SONUÇ:** I005 fikir havuzuna eklendi ve ayrı teknik not oluşturuldu. E08'in 1/2/4 matrisi, aktif görev sırası ve firmware değiştirilmedi. 5 tur E08'e eklenmedi ve onaylı konfigürasyon sayılmıyor.
+- **Doğrulama sınırı:** Teknik not, fikir havuzu ve durum/günlük bağlantıları depoya yazıldıktan sonra yeniden okunarak doğrulanacak. Bu oturumda CT iletkeni fiziksel olarak yeniden sarılmadı; akım, çıkış, doyum veya kalibrasyon ölçümü yapılmadı.
+- **Sonraki adım:** E08 mevcut 1/2/4 tur sonuçları ve gerçek hat yük profili görüldükten sonra hat bazlı tur seçimi yeniden değerlendirilecek.
+- **Kanıt:** [Tur sayısı tasarım notu](../docs/technical-reviews/2026-10-30-ct-primary-turn-count-design-note.md), [I005 fikir havuzu](../IDEA_BACKLOG.md), [E08 stage-02 matrisi](../experiments/E08-sct-characterization/stage-02-100w-matrix.md).
+
 ## 2026-10-30 — Bias breadboard Vmid multimetre referansı eklendi
 
 - **HEDEF:** E00A için bias devresinin breadboard orta noktasına ait ilk DC referansını kaydetmek.
