@@ -74,3 +74,10 @@ ESPHome 2026.9.1 ile ESP32 rev3.1 cihazından API logu alındı. Dört ADC kanal
 Açılışın ilk yaklaşık 9 saniyesindeki RAW=0 ve 0.142 V okumaları kararlı ölçüm değildir; analiz dışında bırakıldı. RAW nominal voltaj tahmini ile ESPHome kalibre ADC voltajı arasındaki yaklaşık 0.25 V fark, firmware'in iki farklı ölçekleme yönteminden kaynaklanır; gerçek devre düşümü kabul edilmemelidir.
 
 **Sınır:** Cihaz ve ADC çalışma durumu logla doğrulandı. Primer akımın gerçekten sıfır olduğu, SCT'nin fiziksel montajı ve bağlantı düzeni log içeriğinden tek başına doğrulanamaz. E00B bu nedenle ölçüm logu alınmış aşamadadır; fiziksel koşulun tam doğrulaması ve daha uzun kayıt beklenir.
+
+
+## Uzun yüksüz kayıt — olumlu sonuç (2026-10-30)
+
+İkinci ve daha uzun cihaz logu [ham log](logs/2026-10-30-e00b-esp32d2-long-observation.log) olarak saklandı; hesap ve yorum [results.md](results.md) dosyasına eklendi. Açılış geçişi dışlandıktan sonra her kanalda 351 geçerli yayın değeri kullanıldı. Bias GPIO34 RAW ortalaması 1852.56 count, SCT GPIO32 RAW ortalaması 1853.37 count (fark +0.82 count). Bias GPIO35 ADC voltaj ortalaması 1.6646 V, SCT GPIO33 ortalaması 1.6632 V (fark −1.4 mV). Yüksüz karşılaştırma olumlu: belirgin bias kayması görülmedi.
+
+**Sınırlar:** Ayrı ADC pinlerinin okumaları eşzamanlı değildir. Firmware 1 saniyelik yayın yapar; yüksek hızlı ham örnekleme değildir. Fiziksel primer akımın sıfır olduğu ve CT montajı log tarafından bağımsız doğrulanmaz. SCT RAW maksimumundaki 1941 count sonraki koşullarda izlenecek.
