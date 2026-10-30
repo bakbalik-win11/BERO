@@ -737,3 +737,13 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **DOĞRULAMA:** Önceki sonuç kaydı ve durum belgeleri okundu. Bu oturumda fiziksel bağlantı, yeni firmware derlemesi, CSV ham örnek edinimi veya fiziksel test yapılmadı. Güncelleme yalnız paylaşılan logun analiz ve dokümantasyon kaydıdır.
 - **SONRAKİ ADIM:** SCT bağlı fakat ölçülen hatta akım yok koşulunu ayrı kaydet; önceki SCT'siz taban ile karşılaştır. E00A'nın 3.3 V koşulu ve ham CSV/grafik gereksinimleri açık kalır.
 - **KANIT:** [E00A sonuçları](../experiments/E00A-raw-waveform-observation/results.md); kullanıcı logu `esp32d2-logs.txt`.
+
+
+## 2026-10-30 — E00B SCT bağlı/akımsız deneyinin açılması ve GPIO planı
+
+- **HEDEF:** E00A'daki SCT'siz bias-only alt koşulundan sonra SCT bağlanmış fakat primer akımı sıfır olan koşulu ayrı deney olarak açmak; bias referans kanallarını koruyup SCT için iki yeni ADC1 GPIO belirlemek.
+- **LOG:** E00B README, experiment.yaml ve results.md oluşturuldu. Bias GPIO34 RAW (ADC1_CH6) ve GPIO35 voltaj (ADC1_CH7) olarak korundu. SCT RAW için GPIO32 (ADC1_CH4), SCT voltaj için GPIO33 (ADC1_CH5) önerildi. ESP32-WROOM-32D aday kart; gerçek geliştirme kartı pinout'u fiziksel doğrulanmadı.
+- **SONUÇ:** E00B PLANLANDI. Firmware, derleme, fiziksel bağlantı ve ölçüm yapılmadı. GPIO32/33 yalnız pinout doğrulaması sonrası bağlanacak.
+- **SONRAKİ ADIM:** Gerçek WROOM-32D geliştirme kartındaki GPIO32/33 etiketlerini pinout ile doğrula; sonra açıklamalı tam ESPHome firmware'ini hazırla.
+- **DOĞRULAMA:** Yeni E00B dosyaları oluşturuldu ve GitHub'dan yeniden okunarak doğrulandı. İndeks, STATUS, PROGRESS_TREE, ROADMAP ve ledger güncellendi; commit sonrası yeniden okunmaları bekleniyor.
+- **KANIT:** [E00B README](../experiments/E00B-sct-connected-no-current/README.md); [E00B experiment.yaml](../experiments/E00B-sct-connected-no-current/experiment.yaml); [E00B results](../experiments/E00B-sct-connected-no-current/results.md).
