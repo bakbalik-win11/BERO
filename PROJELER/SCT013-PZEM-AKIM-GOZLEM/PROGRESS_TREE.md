@@ -125,3 +125,7 @@ GPIO35 voltaj sensörüne önceki GND logunda görülen 0.142 V tabanını çık
 
 
 **E00A Adım 2 güncellemesi (2026-10-30):** GPIO35 düzeltilmiş voltajı kullanıcı logunda 49/49 kayıtta yaklaşık 48 saniye boyunca 0.000 V; sıfır gösterimi hedefi sağlandı. Kod değiştirilmeden aynı log oturumunda bias trafosu enerjilendirilerek Vmid tepkisi izlenecek. Sonuç: [E00A results.md](experiments/E00A-raw-waveform-observation/results.md).
+
+
+### E00A — Adım 2 karar düzeltmesi (2026-10-30)
+0.142 V yazılım ofseti kaldırılıyor. GND'de 0.000 V göstermesi, bias açıkken gerçek DC seviyeyi 0.142 V aşağı kaydırdı. Bias logundaki filtreli ortalama yaklaşık 1.525 V; ofset geri eklendiğinde hesaplanan filtresiz tahmin yaklaşık 1.667 V ve kullanıcı multimetre bildirimi 1.654 V ile fark yaklaşık 13 mV. Sıfırlama gerçeği gizlediği için GND'deki 0.142 V korunacak. Ofsetsiz firmware'in derlenmesi/cihazda çalışması henüz bekleniyor. Ayrıntı: [E00A sonuç kaydı](experiments/E00A-raw-waveform-observation/results.md).
