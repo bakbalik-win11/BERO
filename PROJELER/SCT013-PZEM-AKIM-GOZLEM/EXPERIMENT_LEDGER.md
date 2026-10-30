@@ -272,3 +272,16 @@ SCT bağlı yüksüz koşulun uzun ESPHome logu [ham loga](experiments/E00B-sct-
 ## 2026-10-30 — E08 Aşama 2 test yaklaşımı güncellendi
 
 Kullanıcı kararıyla yeni firmware hazırlanması/firmware değişikliği ertelendi. 100 W akkor yükte ilk gözlem mevcut E00B firmware'iyle yapılacak; 1 saniyelik yayın aralığı korunacak. Bu düşük hızlı kayıt, yük altında sensör değerlerinin davranışını gözlemlemek içindir; yüksek hızlı ham ADC edinimi veya 1/2/2,5 kS/s testi değildir. Hızlandırma testleri sonraki ayrı aşamada yapılacak.
+
+
+## 2026-10-30 — E00F düşük akım / ct_clamp incelemesi
+
+**Neden:** 0.041 A LED koşulunda 0.35 A yayın filtresi nedeniyle ölçüm görünmüyor; ayrıca raporlanan 0.006 V Raw AC Value ile pens okumasının aynı pencereye ait olup olmadığı bilinmiyor. Katsayıyı değiştirmeden ölçüm zincirinin hangi katmanının inceleneceğini belirlemek gerekiyor.
+
+**Kaynak kod bulgusu:** ESPHome 2026.9.1 ct_clamp, ardışık aynı sayısal kaynak değerlerini atlıyor ve kabul edilen farklı değerler üzerinden standart sapma/RMS hesaplıyor. N farklı kabul edilen değer sayısıdır; SPS de bu N ve pencere süresinden türetilir, gerçek ADC dönüşüm hızı değildir. ADC raw:false kalibre gerilim yolunda mV tamsayı çıktısı Volt'a çevrilir; raw:true farklı birim olan ADC count üretir. Raw AC Value debug metni kaynak sensör Volt ise RMS gerilimidir.
+
+**Karar:** E00F YAML, esp32d2, GPIO33, raw:false, 200 ms, 24.22 ve 0.35 A korunur. raw:true mevcut akım sensörüne uygulanmaz. D0 mevcut log korelasyonu; D1 yüksüz; D2 LED; D3 akkor kontrolü; gerekirse D4 ayrı RAW teşhisi; E08 kapsamında D5 yüksek hızlı ham edinim.
+
+**Kanıt durumu:** Kaynak kod davranışları incelendi; kullanıcı logları geçmişte bildirilen sonuçlar olarak mevcut. 0.006 V ile 0.041 A aynı pencereye eşlenmedi. Yeni firmware, derleme, flash veya fiziksel test yapılmadı.
+
+**Detay ve test kabul ölçütleri:** [Toplu teknik değerlendirme](docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
