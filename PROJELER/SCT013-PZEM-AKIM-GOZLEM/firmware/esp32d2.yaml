@@ -1,8 +1,9 @@
 # BERO E00F - ESP32D2 / SCT013-030
 #
 # HEDEF:
-# Ölçülen akım 0.35 A altında ise sonucu sıfırlamak.
-# Amaç yüksüz durumdaki gürültünün akım olarak görünmesini önlemek.
+# E00F-N01 gece gözleminde 0.35 A altını sıfırlayan yazılım filtresini
+# kaldırarak ct_clamp'in düşük akım çıktısını ve yüksüz taban davranışını
+# Home Assistant geçmişinde gözlemek. Bu bir teşhis yapılandırmasıdır.
 #
 # BAĞLANTILAR:
 # SCT013-030 -> mevcut bias devresi -> ESP32 GPIO33
@@ -13,16 +14,16 @@
 # Örnekleme penceresi: 200 ms
 # Yayın aralığı: 2 saniye
 # SCT nominal katsayısı: 24.22
-# Sıfırlama eşiği: 0.35 A
+# Sıfırlama eşiği: YOK (lambda filtresi kaldırıldı)
 #
 # BEKLENTİ:
-# 0.35 A altındaki değerler 0.000 A yayınlanır.
-# 0.35 A ve üzerindeki değerler olduğu gibi yayınlanır.
+# ct_clamp tarafından hesaplanan 0.35 A altı değerler de yayınlanır.
+# Düşük seviyedeki gürültü/yanlış pozitifler de görünür olabilir.
 #
 # ÖNEMLİ:
-# Bu eşik gerçek düşük akımları da sıfırlayabilir.
-# Ham ADC örneklerini ortadan kaldırmaz; yalnızca yayınlanan
-# akım değerine uygulanır.
+# Bu sürümde yazılımsal sıfırlama eşiği yoktur.
+# 24.22 katsayısı ve ct_clamp hesaplama yolu korunmuştur.
+# Bu değişiklik gürültüyü filtrelemez; düşük değerleri görünür kılar.
 #
 # LOG:
 # 2026-10-30 tarihinde yüksüz testte 6/6 yayın 0.000 A görüldü.
@@ -80,11 +81,6 @@ sensor:
     update_interval: 2s
     filters:
       - multiply: 24.22
-      - lambda: |-
-          if (x < 0.35f) {
-            return 0.0f;
-          }
-          return x;
     unit_of_measurement: "A"
     device_class: current
     state_class: measurement
