@@ -1,3 +1,11 @@
+## 2026-10-30 — E00F-N02 gece gözlemi ara CSV ve oturum kapanışı
+
+- **Durum:** Dört ADC kanalının cihazda başlatılması ve HA'ya yayın yapması kullanıcı loguyla doğrulandı. Gece gözlemi DEVAM EDİYOR; bu oturum kapatıldı, deney kapatılmadı.
+- **Ara HA CSV:** Kullanıcının sağladığı 651 satırlık CSV, 20:15:00–20:17:32.469 UTC (Türkiye saati 23:15:00–23:17:32.469) aralığını kapsıyor; yalnızca 2 dk 32 sn. Altı entity mevcut. Akım 47 kayıt, 17 sıfır/30 sıfırdan farklı, maksimum 0.285943 A; Raw AC maksimum 0.011806 V. GPIO32/33/34/35 istatistikleri ve sınırlamalar [E00F-N02 raporuna](experiments/E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md) işlendi.
+- **Yorum sınırı:** Bu CSV sabaha kadar süren kayıt değildir. Entity kayıt sayıları farklı, okumalar eşzamanlı değil; fiziksel yük durumu teyit edilmedi. Korelasyon, nedensellik, yüksüz taban veya uzun dönem drift sonucu çıkarılmadı.
+- **Sabah işi:** Tam HA geçmiş CSV'sinin kapsama aralığı ve entity kayıt sürekliliği incelenecek; varsa ESPHome DEBUG dosyası ayrıca değerlendirilecek. Yük durumu ve kablo/sensör konumu kullanıcı teyidiyle kaydedilecek.
+- **Oturum kaydı:** [SESSION_LOG](HISTORY/SESSION_LOG.md) güncellendi. Ham CSV Git'e eklenmedi.
+
 ## 2026-10-30 — E00F-N02 dört ADC kanalı ilk cihaz logu
 
 - **Durum:** İlk cihaz çalışma doğrulaması başarılı (KULLANICI LOGU). ESPHome 2026.10.1 / ESP32 rev3.1; OTA/API bağlantısı ve Home Assistant API bağlantısı başarılı.
