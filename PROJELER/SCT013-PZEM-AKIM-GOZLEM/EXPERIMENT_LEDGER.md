@@ -105,3 +105,11 @@ Ayrıntı: [Proje felsefesi](docs/project-philosophy.md).
 PZEM'in yayınladığı PF, PZEM'in doğrudan hat gerilimi ölçümü ve CT üzerinden akım ölçümüyle ilişkili birleşik bir sonuç olarak ele alınır. E09'da PZEM gerilim, akım, aktif güç ve PF alanları birlikte kaydedilecek; SCT özellikleri ve SCT-PZEM akım farkı yük/kararlı alan bağlamında incelenecektir. Düşük PF'li yükte daha yüksek SCT akım genliği otomatik hata sayılmaz. PF ile hata arasındaki ilişki gözlem olarak raporlanır; doğrudan sebep-sonuç varsayılmaz. İlk model PF'siz denenir; gerekirse aynı koşullarda PF girdili modelle karşılaştırılır.
 
 **Deney:** [E09 — PF koşulu ile SCT/PZEM akım karşılaştırması](experiments/E09-pf-current-relationship/README.md). E09 uzun vadeli plan olarak eklendi; E00A → E00/T005/E01 → E08 aktif sırası değişmedi. Fiziksel ölçüm yapılmadı.
+
+## 2026-10-30 — PF fiziksel yorum ilkesi ve sonuç değerlendirme
+
+**Fiziksel dayanak:** Aynı gerilim ve aktif güç koşulunda düşük PF daha yüksek RMS akıma yol açabilir. Bu nedenle yüksek akım veya SCT genliği tek başına ölçüm hatası değildir.
+
+**Karar:** PZEM gerilim, aktif güç, akım ve PF değerleri yük türüyle birlikte kaydedilir. SCT-PZEM farkı ve ±%4 eğitim verisi içi uyum aynı yük/ortak kararlı alan bağlamında değerlendirilir. `OUT_OF_RANGE` sonucu doğrudan PF'ye bağlanmaz; yükün fiziksel davranışı, SCT/ADC zinciri ve PZEM güncelleme davranışı ayrı ayrı incelenir. PF-hata ilişkisi gözlem olarak raporlanır, nedensellik varsayılmaz.
+
+**Kapsam:** Proje felsefesi, PF teknik notu, etiketleme mimarisi, E09, E08 yük karşılaştırma aşaması ve analiz metrikleri bu ilkeye göre güncellendi. E00A → E00/T005/E01 → E08 aktif sırası korunur. Değişiklik dokümantasyondur; deney/ölçüm/model çalıştırması yapılmadı.
