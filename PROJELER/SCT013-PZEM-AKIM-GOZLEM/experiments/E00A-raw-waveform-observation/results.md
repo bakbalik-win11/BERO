@@ -80,3 +80,12 @@ GND'ye referanslama ile giriş kararlılığı gözlendi. Önceki açık giriş 
 
 ### Elektriksel karar adayı
 Yazılımsal sıfırlama yerine ADC girişinin sensör yokken de tanımlı DC seviyede kalması hedeflenir. Jack/CT topolojisi doğrulandıktan sonra ADC düğümüne Vmid'e karşı 47–100 kΩ yüksek değerli bias direnci prototip olarak değerlendirilecek. Bu değer aralığı henüz doğrulanmış tasarım/BOM değildir. İlk sonraki test: tek kanalda Vmid bias, multimetreyle DC doğrulama, 60 saniye log.
+
+
+## Düzeltme — GPIO34 bağlı değil; GPIO35 Vmid logu (2026-10-30)
+
+Kullanıcı düzeltmesi: GPIO34 count kanalı bağlı değildir. GPIO34'ün 0 count değeri fiziksel GND testi kanıtı değildir; yorum dışıdır.
+
+Yeni logda GPIO35 ADC voltajı 14:57:02'de 1.678 V ile başlıyor; ilk bölümde yaklaşık 1.651–1.744 V arasında değişiyor, ardından belirgin biçimde düşerek 14:57:26'da 0.699 V'a ulaşıyor. Kullanıcı Vmid'in multimetrede sabit yaklaşık 1.65 V DC olduğunu bildiriyor. ADC logu ile multimetre arasında uyuşmazlık vardır. Kök neden belirlenmedi; ADC arızası sonucu çıkarılamaz.
+
+Sonraki ayırıcı test: GPIO34 yorum dışı. Yalnız GPIO35 bağlı olacak. Multimetre siyah probu ESP32 GND, kırmızı probu doğrudan GPIO35 pininde tutulurken aynı anda log alınacak; Vmid düğümü ayrıca ölçülecek. Kablo sürekliliği ve ortak GND doğrulanmadan direnç veya yazılım filtresi eklenmeyecek.
