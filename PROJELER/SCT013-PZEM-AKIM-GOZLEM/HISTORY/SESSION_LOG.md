@@ -874,3 +874,19 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **SONUÇ:** Ana firmware ve fiziksel kurulum değiştirilmedi. Yeni firmware yazılmadı, derlenmedi, flash edilmedi; D0–D5 fiziksel testleri yapılmadı.
 - **SONRAKİ ADIM:** D0 için mevcut E00F loglarını pencere bazında Raw AC/N/SPS alanları açısından incele.
 - **RAPOR:** docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md
+
+
+## 2026-10-30 — Claude/Copilot değerlendirmesi, üç sarım denemesi ve Python kalibrasyon yönü
+
+- **Durum:** DOKÜMANTASYON GÜNCELLENDİ; üç sarımlı teşhis logu kaydedildi. Model eğitimi, yeni firmware, derleme/flash veya yeni bağımsız fiziksel doğrulama yapılmadı.
+- **HEDEF:** Son Claude/Copilot değerlendirmesini ve yeni düşük akım logunu E00F teknik incelemesine eklemek; tek sarım saha sonuçlarını koruyarak Python bölgesel kalibrasyon yönünü kayda geçirmek.
+- **LOG:** Kullanıcı, SCT içinden geçen iletkenin üç sarım olduğunu, yükün yandığını ve pensin yaklaşık 0.04 A gösterdiğini bildirdi. ESPHome 2026.9.1 logunda 12 Raw AC penceresi 0.004–0.014 V (ortalama 0.00883 V, medyan 0.0085 V); 3,175–3,350 farklı kabul edilen örnek; 15,875–16,750 raporlanan SPS ve 12/12 kez 0.000 A yayın görüldü. Mevcut GPIO33, raw:false, 200 ms, 24.22 ve 0.35 A zinciri korundu. Log, üç sarımlı koşulda alınan kullanıcı kaydıdır.
+- **CLAUDE/COPILOT YORUMU:** Önceki LED 0.003–0.013 V ve yüksüz 0.004–0.011 V aralıklarının örtüşmesi düşük akım sinyalinin tabandan ayrışması konusunda SNR hipotezini destekliyor. Aralık örtüşmesi tek başına istatistiksel kanıt değildir. raw:true denemesi daha gürültülü görünmüş ve 1 mV kuantizasyonu ana açıklama olarak desteklememiştir; ancak raw:true birim/ölçek yolunu da değiştirdiğinden kuantizasyonu tek başına izole etmemiştir.
+- **HESAP:** 0.014 V × 24.22 ≈ 0.339 A; bu, 0.35 A filtresinin altında kaldığından 12/12 sıfır yayınla uyumludur. 0.04 A × 3 = 0.12 A-tur yalnız teorik amper-tur eşdeğeridir; gerçek hat akımı veya ölçülen çıkış değildir.
+- **SONUÇ:** Üç sarım denemesi düşük akımı yüksüz tabandan güvenilir biçimde ayırdığını göstermedi; 12 pencere istatistiksel hüküm için yetersizdir. Kullanıcı değerlendirmesi doğrultusunda ana düzen tek sarım kalır; çoklu tur E08'in 1/2/4 planıyla karıştırılmaz. 100 W (~0.447 A), 150 W (0.616 A) ve kettle (6.39 A referans / 6.15 A SCT, yaklaşık −%3.76) tek sarım saha sonuçları raporda ayrı korunmuştur.
+- **YENİ MODEL YÖNÜ:** PZEM referanslı kararlı pencerelerden Python'da düşük/orta/yüksek akım bölgelerine uygun fonksiyonlar öğrenme önerisi kaydedildi. İlk aday bölge başına doğrusal model; yalnız veri gerektirirse parçalı model. sensor_id, calibration_id, turn_count, firmware_version ve yük profili izlenecek. Bu yalnız önerilen yön; eğitim, model katsayıları ve bağımsız doğrulama henüz yoktur. PZEM ±%4 kabul hedefi korunur; sinyal tabandan ayrışmıyorsa yazılım ölçüm varmış gibi davranmaz.
+- **DOĞRULAMA:** E00F teknik inceleme raporu, firmware README, STATUS ve bu oturum günlüğü GitHub main dalında güncellendi; her dosya yazımdan sonra yeniden okunarak doğrulanacak. Firmware YAML değiştirilmedi; derleme/flash ve fiziksel tekrar testi yapılmadı.
+- **AÇIK KALANLAR:** Aynı fiziksel kurulumda yeni yüksüz ve 0.04 A yük pencerelerinin yeterli sayıda eşleştirilmesi; düşük akımın istatistiksel ayrışma düzeyi; bölgesel model için yeterli PZEM etiketli kararlı pencere verisi.
+- **SONRAKİ ADIM:** E00F için raporlanan bu yan teşhis, aktif E00B/E00A iş sırasını değiştirmez. Veri toplama sırası ve kalibrasyon modeli ancak yeterli kararlı pencere verisi biriktiğinde ele alınır.
+- **KANIT:** [E00F toplu teknik değerlendirme](../docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md), [firmware saha raporu](../firmware/README.md), [STATUS](../STATUS.md), [BERO deposu](https://github.com/bakbalik-win11/BERO).
+
