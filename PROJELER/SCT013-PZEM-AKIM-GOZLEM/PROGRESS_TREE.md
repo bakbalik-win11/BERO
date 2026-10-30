@@ -145,3 +145,8 @@ SCT bağlı, izlenen iletkende akım yok koşulu için E00B açıldı. Bias GPIO
 ## 2026-10-30 — E00B yüksüz karşılaştırma sonucu
 
 E00B uzun cihaz logu kaydedildi; 351 geçerli yayın/kanal analizinde SCT ve bias seviyeleri pratik olarak aynı çıktı (RAW fark +0.82 count; ADC voltaj farkı −1.4 mV). [E00B raporu](experiments/E00B-sct-connected-no-current/results.md) ve [ham log](experiments/E00B-sct-connected-no-current/logs/2026-10-30-e00b-esp32d2-long-observation.log). Sonraki yük koşulu ayrı kayıt olacak; mevcut firmware dört kanalı okumaya devam edebilir.
+
+
+## 2026-10-30 — E08 Aşama 2 açıldı
+
+100 W akkor yük altında SCT013-030 testi hazırlık durumunda açıldı. İlk koşul 1 tur × 1.000 örnek/s; tam matris 1/2/4 tur × 1/2/2,5 kS/s. Mevcut E00B firmware'i 1 saniyelik yayın yaptığı için E08 yüksek hızlı edinimine uygun değil. Ayrı firmware, gerçek örnekleme hızı doğrulaması ve fiziksel ölçüm bekleniyor. [Aşama 2 protokolü](experiments/E08-sct-characterization/stage-02-100w-matrix.md).
