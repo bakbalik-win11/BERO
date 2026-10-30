@@ -10,7 +10,9 @@ Bu deney, E00A/E00/T005/E01 temel ADC adımlarının ve E08 SCT karakterizasyonu
 
 PZEM-004T 100 A varyantında gerilim doğrudan ölçüm hattından, akım harici CT üzerinden algılanır. PZEM'in PF yayını bu ölçüm zincirinden raporlanan birleşik bir ölçüm alanıdır; PF, CT'den bağımsız ikinci bir akım sensörü değildir.
 
-Düşük PF'li yükte aynı gerilim ve aktif güç için RMS akımın yükselmesi beklenebilir. Bu nedenle düşük PF koşulunda SCT'nin daha yüksek akım genliği göstermesi otomatik olarak hata kabul edilmez. SCT-PZEM akım farkı, PZEM akımı ve ölçüm koşullarıyla birlikte değerlendirilir.
+Düşük PF'li yükte aynı gerilim ve aktif güç için RMS akımın yükselmesi beklenebilir. Bu, yükün elektriksel karakteristiğinin fiziksel sonucu olabilir; tek başına ölçüm hatası değildir. Bu nedenle düşük PF koşulunda SCT'nin daha yüksek akım genliği göstermesi otomatik olarak hata kabul edilmez.
+
+Bu ilke test sonuçlarına da uygulanır: Yükler arası ham genlik veya akım seviyesi doğrudan başarı/hata sıralaması için kullanılmaz. Her yükün ölçülen gerilimi, aktif gücü, PZEM akımı ve PF'si birlikte değerlendirilir. SCT-PZEM farkı ve ±%4 eğitim verisi içi uyum, aynı yük/ortak kararlı alan bağlamında raporlanır. Düşük PF ile hata arasında ilişki görülürse bu önce gözlemsel ilişki olarak yazılır; PF'nin SCT veya PZEM CT akım ölçümünü bozduğu sonucuna tek başına varılmaz.
 
 ## Deney koşulları
 
@@ -46,6 +48,8 @@ PZEM'in PF ve akım alanlarının aynı Modbus okumasında gelmesi, cihaz içind
 6. PF bilgisini modele girdi olarak vermek, PF'siz modele kıyasla eğitim verisi içi uyumu ne kadar değiştiriyor?
 
 ## Analiz ve raporlama
+
+Sonuç değerlendirme kuralı: Düşük PF koşulunda yüksek RMS akım veya SCT genliği, kendi başına `OUT_OF_RANGE` gerekçesi değildir. `OUT_OF_RANGE` kararı yalnızca ilgili kararlı alanın model tahmini ile o alanın geçerli PZEM akımı arasındaki ±%4 ölçütüne göre verilir. Bunun nedenleri incelenirken yükün V/W/PF/I değerleri, dalga şekli/yük türü, SCT yapılandırması ve PZEM ölçüm/güncelleme davranışı birlikte ele alınır.
 
 - Önce yük bazında PZEM gerilim, aktif güç, akım ve PF değerleri birlikte gösterilir.
 - Ardından SCT özellikleri ve SCT-PZEM akım farkı aynı yük/kararlı alan bağlamında incelenir.
