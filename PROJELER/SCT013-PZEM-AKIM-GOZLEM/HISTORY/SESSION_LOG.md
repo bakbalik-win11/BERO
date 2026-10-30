@@ -782,3 +782,11 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **LOG:** İlk koşul 1 tur × 1.000 örnek/s olarak tanımlandı. E08 aşama dosyası, E08 sonuç kaydı, metadata, STATUS, ROADMAP, PROGRESS_TREE ve deney defteri güncellendi. Mevcut E00B YAML'ın 1 saniyelik yayın yaptığı ve yüksek hızlı örnekleme sağlamadığı tespit edildi.
 - **SONUÇ:** Henüz ölçüm yok. E08 için ayrı yüksek hızlı ADC firmware'i hazırlanmalı; gerçek örnekleme hızı ayrıca doğrulanmalı. Mevcut E00B firmware'i E08 testi için kullanılamaz.
 - **Sonraki adım:** E08 koşullarına uygun, açıklamalı yüksek hızlı ADC firmware'i hazırlamak; derleme ve gerçek kart/pinout doğrulamasından sonra ilk 1 tur × 1 kS/s koşulunu uygulamak.
+
+
+## 2026-10-30 — E08 100 W gözleminde firmware kararı düzeltildi
+
+- **Kullanıcı kararı:** Yeni koda geçilmeyecek. Mevcut E00B kodu korunacak.
+- **HEDEF:** 100 W akkor yük altında mevcut 1 saniyelik sensör yayınlarıyla SCT/bias ölçüm alanlarının yük davranışını gözlemek.
+- **LOG:** Önceki oturumda yüksek hızlı firmware'e geçiş önerilmişti; kullanıcı bunun şu an gerekli olmadığını belirtti. Deney protokolü bu karara göre düzeltildi.
+- **SONUÇ:** Bu kayıt düşük hızlı gözlem niteliğindedir; yüksek hızlı örnekleme testi değildir. Hızlandırma denemeleri sonraki aşamada yapılacaktır. Fiziksel ampul testi ve log henüz alınmadı.
