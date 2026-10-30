@@ -136,3 +136,6 @@ Düşük PF'nin aynı gerilim ve aktif güç koşulunda RMS akımı artırabilec
 
 
 **2026-10-30 — E00A-S01 GND referans testi:** Kullanıcının paylaştığı logda GPIO34 GND'de 0 count; GPIO35 yaklaşık 175 saniyelik kararlı bölümde 0.142 V gösterdi. Önceki açık giriş dalgalanması floating giriş teşhisini destekliyor. Bu sonuç ADC'nin tüm aralık doğruluğunu kanıtlamaz. Elektriksel çözüm adayı, jack/CT bağlantısı doğrulandıktan sonra ADC düğümünü Vmid'e yüksek değerli (ilk prototip değerlendirmesi 47–100 kΩ) dirençle biaslamak; kesin değer ve bağlantı henüz onaylanmadı. Ayrıntı: [E00A-S01 raporu](experiments/E00A-raw-waveform-observation/reports/E00A-S01-gnd-reference-stability.md). E00A açık; Vmid ve SCT testleri yapılmadı.
+
+
+**2026-10-30 — E00A düzeltmesi:** GPIO34 count kanalı bağlı değildir; 0 count değeri GND testi kanıtı değildir ve yorum dışıdır. Yeni GPIO35 logu 1.678 V'tan başlayıp yaklaşık 25 saniyede 0.699 V'a düşüyor; kullanıcı Vmid'i multimetrede sabit yaklaşık 1.65 V DC olarak bildiriyor. ADC ile multimetre uyuşmazlığı var; kök neden henüz belirlenmedi. Önce GPIO35 pinindeki gerilim ESP32 GND referansıyla doğrudan ölçülürken eşzamanlı log alınacak. Kablo/ortak GND doğrulanmadan bias direnci veya yazılım filtresi eklenmeyecek. Ayrıntı: E00A results.md ve S01 raporu.
