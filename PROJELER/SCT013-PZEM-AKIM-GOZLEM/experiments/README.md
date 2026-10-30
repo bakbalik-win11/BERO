@@ -15,3 +15,5 @@ Her deneyde protocol.md, metadata.yaml ve results.md bulunur. Ham veri varsayıl
 - [E08 — SCT sinyalini tanıma](E08-sct-characterization/README.md) — yüksüz uzun okuma; 100 W ile hız × tur matrisi; 150 W ve 8,5 W LED karşılaştırması; ardından aç-kapa davranışı.
 
 E00A ve E00–E08 deneyleri plan/protokol düzeyindedir; fiziksel ölçüm sonuçları henüz yok. E00A, E00/E01 ve sonraki hız/paketleme çalışmalarından önce yapılacak. İlk geçişte 1 ve 2,5 kS/s karşılaştırması veya çoklu ESP32 eşzamanlaması zorunlu değildir; ilk istatistikler sonraki deneyi yönlendirecek.
+
+- [E09 — ESP-2 düşük akım sensör karşılaştırması](E09-low-current-sensor-comparison/README.md) — PZEM, ACS712-5A ve ZMCT103C-5A için tekil → ikili → üçlü aşamalı test planı. Henüz uygulanmadı.
