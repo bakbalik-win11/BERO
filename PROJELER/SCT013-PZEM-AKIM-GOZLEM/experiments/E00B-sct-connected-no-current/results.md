@@ -34,3 +34,47 @@ E00B firmware'i hazir ve kullanici tarafindan basarili derlendigi bildirildi. De
 
 ### SONRAKI ADIM
 Gercek gelistirme karti ve GPIO32/33 pinout'unu dogrula; guvenli baglantidan sonra cihaza yukle ve SCT bagli/primer akimsiz kosulun cihaz logunu kaydet.
+
+
+---
+
+## 2026-10-30 — İlk ESP32D2 saha logu
+
+### HEDEF
+E00B firmware'inin cihaza yüklendikten sonra dört ADC kanalını çalıştırdığını doğrulamak; açılış geçişini ayırarak bias ve SCT analog düğümünün akımsız koşuldaki kararlı okumalarını incelemek.
+
+### LOG
+- Kaynak dosya: [2026-10-30-e00b-esp32d2-startup-and-observation.log](logs/2026-10-30-e00b-esp32d2-startup-and-observation.log)
+- Cihaz: ESP32 rev3.1, 2 çekirdek; ESPHome 2026.9.1.
+- Derleme zamanı: 2026-10-30 16:17:02 +0300.
+- Log bağlantısı: 192.168.0.66 üzerinden ESPHome API; başarılı çözümleme, bağlantı ve handshake.
+- Wi-Fi bağlantısı başarılı; IP 192.168.0.66, RSSI -69 dB.
+- Dört ADC kanalı da ADC1 üzerinde, 12 dB attenuation, 1 sample ve 1 saniye update interval ile başlatılmış. Her kanal için Handle Init, Config, Calibration ve Overall Init = OK.
+- Log zaman aralığı yaklaşık 16:20:32–16:22:30.
+- Açılışın ilk yaklaşık 9 saniyesinde RAW kanalları 0 count ve voltaj kanalları 0.142 V gösterdi. Bu bölüm kararlı ölçüm kabul edilmedi; RAW sıfırları kullanıcı kuralı gereği ölçüm eşlemesine alınmadı.
+- Kararlı bölüm için 16:20:41 sonrasındaki 110 örnek/kanal kullanıldı. İstatistikler logda yayınlanan değerlerden hesaplandı; örnekler 1 saniyelik periyodik yayınlar olup yüksek hızlı ham ADC örneklemesi değildir.
+
+| Kanal | n | Ortalama | Std. sapma | Min | Maks |
+|---|---:|---:|---:|---:|---:|
+| Bias GPIO34 RAW | 110 | 1854.14 count | 9.64 | 1834 | 1874 |
+| SCT GPIO32 RAW | 110 | 1853.45 count | 8.22 | 1831 | 1865 |
+| Bias GPIO35 ADC | 110 | 1.6651 V | 0.0079 V | 1.635 V | 1.679 V |
+| SCT GPIO33 ADC | 110 | 1.6639 V | 0.0063 V | 1.650 V | 1.674 V |
+
+- Kararlı bölümde Bias GPIO34 RAW ile SCT GPIO32 RAW ortalamaları birbirine yakındır (fark yaklaşık 0.68 count).
+- Bias GPIO35 ve SCT GPIO33 ADC voltaj ortalamaları arasındaki fark yaklaşık 1.2 mV'dur.
+- Ham count değerinden hesaplanan nominal voltaj (count × 3.1 / 4095) yaklaşık 1.404 V seviyesindedir; doğrudan ADC voltajı yaklaşık 1.664 V seviyesindedir. Firmware'deki "Voltage Difference" sensörlerinin yaklaşık 0.25–0.27 V göstermesi bu iki farklı gösterim yönteminin sistematik farkıdır; fiziksel devrede gerçek bir 0.25 V düşüm olarak yorumlanmamalıdır.
+- E00A SCT'siz bias-only kaydındaki GPIO34 RAW ortalaması 1846.80 count idi. E00B bias RAW ortalaması 1854.14 count; fark +7.34 count. E00A ve E00B kayıtlarının aynı koşulda ve eşzamanlı alınmış kontrollü tekrarlar olduğu gösterilmediğinden bu fark yalnızca betimleyici karşılaştırmadır.
+- Kullanıcı log açıklamasında SCT bağlı/primer akımsız deney bağlamını belirtti; logun kendi satırları primer akımın sıfır olduğunu veya fiziksel bağlantı şemasını bağımsız olarak doğrulamıyor.
+
+### SONUÇ
+- Firmware cihazda çalışıyor; ESPHome API bağlantısı ve dört ADC kanalının başlatılması logla doğrulandı.
+- Açılışta geçici 0 count / 0.142 V okumaları var. Bunlar geçerli kararlı ölçüm olarak kullanılmamalı.
+- Açılış geçişinden sonra bias ve SCT ADC voltaj kanalları yaklaşık 1.664–1.665 V ortalamalarında ve bu log kesitinde düşük saçılma gösteriyor.
+- RAW kanalları yaklaşık 1853–1854 count ortalamasında. Bu kesitte SCT kanalının bias kanalından belirgin biçimde ayrıldığına dair bulgu yok.
+- Bu kayıt E00B'nin cihaz/log doğrulamasıdır; kontrollü fiziksel deneyin tüm koşullarını (primer akımın gerçekten sıfır olması, CT'nin iletkene/konuma montajı, kart pinout doğrulaması ve ölçüm bağlantısı) tek başına kanıtlamaz.
+- ESPHome logunda iki ayrı ADC pininin örnekleri farklı zamanlarda yayınlanıyor; bunlar eşzamanlı örnek çifti değildir.
+- ESPHome'un chip revision ve SRAM1-as-IRAM uyarıları bilgilendiricidir; bu logda ADC başlatma hatası görülmedi.
+
+### SONRAKİ ADIM
+Fiziksel koşulu (SCT'nin hangi iletken üzerinde ve primer akımın nasıl sıfırlandığını) deney notuna açıkça kaydet; aynı düzenekte daha uzun kararlı kayıt al. Sonraki değerlendirmede ilk açılış geçişini ayrı tut ve RAW sıfırlarını eşleştirme. E00A ile nicel kıyas için aynı bağlantı, aynı besleme ve aynı kayıt yöntemiyle tekrarlı A/B kayıtları gerekir.
