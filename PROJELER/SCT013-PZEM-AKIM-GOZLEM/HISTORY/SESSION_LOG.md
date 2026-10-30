@@ -1,3 +1,12 @@
+## 2026-10-30 — E00A bias trafosu DC noktalarının ADC gözlemi olarak hazırlandı
+
+- **Durum:** DOKÜMANTASYON UYGULANDI; firmware ve fiziksel deney yapılmadı.
+- **HEDEF:** Kullanıcının netleştirdiği sırayı depoda tek anlamlı protokole dönüştürmek: SCT olmadan önce bias trafosunun L78L33 3,3 V çıkışını, ardından bias Vmid noktasını ESP32 ADC ile gözlemek.
+- **LOG:** E00A README, protocol, metadata.yaml, experiment.yaml ve results.md güncellendi. Deney indeksi, STATUS, ROADMAP, PROGRESS_TREE ve EXPERIMENT_LEDGER da yeni kapsamla eşitlendi. 3,3 V çıkış için harici 10k/10k ölçüm bölücüsü tanımlandı; Vmid ikinci koşulda doğrudan ADC'ye bağlanacak. GPIO34 yalnız fiziksel WROOM-32D pinout doğrulanırsa kullanılacak. Ham CSV yolları data/raw/E00A altında tanımlandı.
+- **SONUÇ:** Deney sırası ve kayıt alanları hazır. 3,3 V ADC'ye doğrudan bağlanmayacak; 10k/10k bölücü ile ADC düğümü yaklaşık 1,65 V olacak. SCT bu deneyde yok. Firmware yazılmadı/derlenmedi, kart görülmedi, bias trafosu fiziksel olarak doğrulanmadı, multimetre ölçümü ve ADC kaydı alınmadı.
+- **Doğrulama:** E00A dokümanları ve bağlı durum dosyaları GitHub main üzerinde yazıldı. Commit sonrası tam çapraz yeniden okuma bu kaydın oluşturulması sırasında henüz yapılmadı.
+- **Sonraki adım:** Kullanıcı bias trafosunu bulduğunda gerçek kart/pinout ve devre GND'si kontrol edilir; multimetre ile 3,3 V ve Vmid ölçülür; sonra ilk ADC firmware'i hazırlanır.
+
 # Oturum günlüğü
 
 ## 2026-10-29 — E07 SCT kararlılık basamak testi planlandı
