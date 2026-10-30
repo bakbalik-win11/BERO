@@ -727,3 +727,13 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - Bu test SCT davranışını, akım ölçümünü veya bias devresinin SCT yükü altındaki davranışını göstermez. Yalnızca SCT'siz bias/ADC zincirinin ilk karşılaştırmasıdır.
 - Kullanıcının sonraki adımı: daha uzun RAW + voltaj logu paylaşmak. O kayıtta zaman serilerini eşleştirip korelasyon (Pearson ve/veya Spearman), eğim/kesişim, fark ve kararlı/geçiş bölümlerini inceleyeceğiz. Ham logdaki örnekleme zamanları korunmalı; farklı zaman damgaları körlemesine satır satır eşleştirilmeyecek.
 - E00A tamamlanmadı; bu kayıt ön gözlemdir.
+
+
+## 2026-10-30 — E00A SCT'siz bias-only log analizi ve alt adım kapanışı
+
+- **HEDEF:** SCT bağlı değilken alınan son ESP32D2 logunu analiz edip taban dalgalanmasını tanımlamak; RAW sıfırlarını eşleştirmeme kuralını uygulamak ve yalnız bu deney koşulunu kapatmak.
+- **LOG:** Kullanıcının `esp32d2-logs.txt` dosyası analiz edildi. 618'er kayıt bulunan dört sensör serisinde ilk 14 GPIO34 RAW=0 kaydı ve ilk geçişteki stale 0.000 V nominal tahmin eşleştirmeden çıkarıldı. Zaman damgasıyla 603 geçerli çift elde edildi. GPIO34 RAW: 1846.80±6.97 count; nominal RAW voltaj: 1.398007±0.005303 V; GPIO35: 1.665138±0.006474 V; ortalama fark: +0.267131 V. Pearson r=-0.0201, Spearman rho=-0.0200. Kullanıcının Vmid multimetre bildirimi 1.654 V olup logla eşzamanlı değildir.
+- **SONUÇ:** SCT'siz ölçüm zincirinde GPIO35 için gözlenen dalgalanma yaklaşık 6.5 mV standart sapmadır; bunu ADC'nin tek başına taban gürültüsü olarak nitelemek mümkün değildir. RAW nominal voltaj formülü kalibre değildir ve iki ADC kanalı tam eşzamanlı değildir. Yazılım offseti/filtre eklenmeyecek. SCT bağlı olmayan bias-only alt adım KAPATILDI; E00A bütünü açık kaldı.
+- **DOĞRULAMA:** Önceki sonuç kaydı ve durum belgeleri okundu. Bu oturumda fiziksel bağlantı, yeni firmware derlemesi, CSV ham örnek edinimi veya fiziksel test yapılmadı. Güncelleme yalnız paylaşılan logun analiz ve dokümantasyon kaydıdır.
+- **SONRAKİ ADIM:** SCT bağlı fakat ölçülen hatta akım yok koşulunu ayrı kaydet; önceki SCT'siz taban ile karşılaştır. E00A'nın 3.3 V koşulu ve ham CSV/grafik gereksinimleri açık kalır.
+- **KANIT:** [E00A sonuçları](../experiments/E00A-raw-waveform-observation/results.md); kullanıcı logu `esp32d2-logs.txt`.
