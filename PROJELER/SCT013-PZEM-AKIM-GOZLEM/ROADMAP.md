@@ -106,3 +106,8 @@ E08, önceki E07 tasarımından daha kapsamlı güncel karakterizasyon planıdı
 ## 2026-10-30 — E00A firmware uygulama notu
 
 E00A için [ESP32D2 firmware'i](experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml) depoya eklendi. GPIO34 ham ADC, GPIO35 voltaj sensörü olarak iki ayrı ADC kanalı kullanılır; ESP-IDF framework ve 1 saniyelik sensör güncellemesi tanımlıdır. Kullanıcı derleme ve çalışmayı bildirdi (KULLANICI RAPORU). Bu, E00A'nın 30 saniyelik ham kayıt, grafik ve iki fiziksel koşul kabul ölçütlerini tamamlamaz. Sonuç logu bekleniyor.
+
+
+## 2026-10-30 — E00A-S01 GND referans testi
+
+E00A kapsamında S01 alt adımı kaydedildi: sensör yokken GPIO34/GPIO35 GND referansında uzun log gözlendi. GPIO34 0 count; GPIO35 yaklaşık 175 saniyelik kararlı bölümde 0.142 V. Önceki açık giriş dalgalanması floating giriş teşhisini destekliyor. Elektriksel çözüm adayı, jack/CT bağlantısı doğrulandıktan sonra ADC düğümünü Vmid'e yüksek değerli pasif dirençle biaslamak. Sonraki test tek ADC kanalında Vmid bias ve 60 saniyelik gözlem. E00A henüz tamamlanmadı. Ayrıntı: [E00A-S01 raporu](experiments/E00A-raw-waveform-observation/reports/E00A-S01-gnd-reference-stability.md).
