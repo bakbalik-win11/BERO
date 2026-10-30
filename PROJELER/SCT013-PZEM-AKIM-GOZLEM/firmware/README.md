@@ -29,9 +29,17 @@ Aşağıdaki değerler kullanıcı tarafından paylaşılan cihaz logları ve pe
 |---|---:|---:|---|
 | Yüksüz | 0 A varsayılan koşul | 6/6 yayın 0.000 A; ham AC 0.006–0.009 | Eşik, bu kısa yüksüz kesitte istenmeyen yayınları bastırdı. |
 | 150 W akkor lamba | 0.616 A | yaklaşık 0.615 A ortalama | Yaklaşık −%0.2 fark; ±%4 hedefinin içinde. |
-| Kettle, düşük/kararlı çalışma kesiti | 0.637 A civarı | yaklaşık 0.656 A ortalama (ilk 20 değer) | Yaklaşık +%3.0; ±%4 hedefinin içinde. |
-| Kettle, kaynama | 6.39 A | yaklaşık 6.15 A ortalama (22 yayın) | Yaklaşık −%3.8; ±%4 hedefinin içinde. |
+| Kettle, düşük/kararlı çalışma kesiti | 0.637 A (kullanıcı pens bildirimi) | İlk 20 yayın ortalaması yaklaşık 0.656 A | Yaklaşık +%3.0; ±%4 hedefinin içinde. |
+| Kettle, kaynama kesiti | 6.39 A (kullanıcı pens bildirimi) | 22 yayın ortalaması yaklaşık 6.15 A | Yaklaşık −%3.8; ±%4 hedefinin içinde. |
+| Sonraki log kesiti; yük adı/koşulu teyitsiz | 0.437 A (kullanıcı bildirimi) | 74 yayın ortalaması 0.664 A; son değer 0.910 A; son sıçrama hariç ortalama 0.660 A | Referansla fark yaklaşık +%52. Bu kesit kettle sonucu olarak etiketlenmedi; koşul ve eşzamanlı pens okuması teyit edilmeden katsayıya müdahale edilmez. |
 | 8.35 W LED | 0.041 A | çoğu yayın 0.000 A; ara sıra 0.508 A ve 0.372 A sıçramaları | 0.35 A eşiği 41 mA gerçek yükü gizliyor. Sıçramalar gerçek akım olarak kabul edilmedi. |
+
+
+### Kettle karşılaştırmasının ayrıntısı
+
+- **Düşük/kararlı kettle kesiti:** Pens 0.637 A; ESP32'nin ilk 20 yayını ortalama yaklaşık 0.656 A. Fark yaklaşık +0.019 A / +%3.0. Kullanıcının ±%4 kabul sınırının içinde.
+- **Kaynama kesiti:** Pens 6.39 A; ESP32 tarafında 22 yayının ortalaması yaklaşık 6.15 A. Fark yaklaşık −0.24 A / −%3.8. Yuvarlama ve pens okumasının kullanıcı tarafından bildirilmiş olması dikkate alınmalıdır; sonuç sınırın içinde fakat sınıra yakındır.
+- **Daha sonraki 0.437 A pens bildirimi:** Bu değere ait paylaşılan 74 yayınlık logun ortalaması 0.664 A, son 0.910 A sıçraması çıkarıldığında 0.660 A'dır. Bu kayıt kettle olarak doğrulanmadığından kettle satırlarına karıştırılmadı. İki ölçüm aynı yükte ve aynı zaman aralığında alınmış mı, henüz belli değil. Bu nedenle uyum sonucu çıkarılamaz ve katsayı değiştirilmez.
 
 ### Log kanıtları
 
