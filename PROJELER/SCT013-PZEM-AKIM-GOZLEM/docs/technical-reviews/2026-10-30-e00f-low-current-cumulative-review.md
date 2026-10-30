@@ -191,3 +191,60 @@ Her test kaydı şu alanları taşımalıdır:
 - ESPHome kaynak kodu: 2026.9.1; ct_clamp_sensor.cpp, ct_clamp_sensor.h, adc_sensor_esp32.cpp, adc_sensor.h kaynak incelemesi.
 - BERO mevcut dosyaları: firmware/esp32d2.yaml, firmware/README.md, experiments/E08-sct-characterization/README.md, experiments/E08-sct-characterization/stage-03-high-speed-capture.md.
 - Kaynak kod incelemesi ile kullanıcı tarafından sağlanan deney logları ayrı kanıt sınıflarıdır. Simülasyon çıktıları BERO ölçümü sayılmaz.
+
+
+## 9. Son Claude/Copilot değerlendirmesi ve düşük akım sinyal ayrışması
+
+**Kaynak/kanıt ayrımı:** Bu bölüm, kullanıcının Claude ve Copilot ile yaptığı son değerlendirmeyi, daha önce paylaşılan Google RAW denemesine ilişkin yorumları ve 2026-10-30 tarihli yeni ESPHome cihaz logunu birlikte kaydeder. Claude/Copilot yorumları bağımsız BERO ölçümü değildir; aşağıdaki cihaz logu ve pens değeri kullanıcı tarafından sağlanmıştır.
+
+### 9.1 Düşük akım hipotezinin güncel yorumu
+
+- Önceki raw: false LED logunda bildirilen Raw AC Value aralığı yaklaşık 0.003–0.013 V; yüksüz log aralığı yaklaşık 0.004–0.011 V idi. Aralıkların örtüşmesi düşük akım sinyalinin mevcut ölçüm zincirinde yüksüz tabandan güvenilir biçimde ayrışmayabileceği hipotezini destekler.
+- Bu aralık örtüşmesi tek başına istatistiksel ayrışmazlığı kanıtlamaz. Örnek sayısı, eşzamanlı koşul bilgisi ve aynı kurulumdan yeterli sayıda pencere gerekir.
+- Claude/Copilot değerlendirmesinde 1 mV kalibre gerilim adımı ana neden olarak öne çıkarılmadı; normal raw: false yolunun daha temiz, raw: true denemesinin daha gürültülü göründüğü belirtildi. Bununla birlikte raw: true denemesi veri birimini ve ölçeği de değiştirdiğinden 1 mV kuantizasyon etkisini tek başına izole etmez. Bu nedenle kuantizasyon hipotezi ana açıklama olarak desteklenmiyor, fakat kesin olarak çürütülmüş de sayılmıyor.
+- Güncel en makul çalışma hipotezi, yaklaşık 40 mA seviyesindeki sinyalin mevcut SCT + bias + ESP32 ADC + ct_clamp zincirinin taban değişkenliğine göre küçük kalmasıdır. Bu, “40 mA hiçbir koşulda ölçülemez” anlamına gelmez; yalnızca mevcut düzen ve eldeki kayıtlarla güvenilir ayrım gösterilemediğini ifade eder.
+- Google'ın raw: true kodu ana E00F firmware'ine alınmamıştır. Mevcut çalışan yapılandırma korunur.
+
+### 9.2 Üç sarımlı E00F teşhis denemesi — 2026-10-30
+
+**HEDEF:** Mevcut çalışan ct_clamp kodunu değiştirmeden primer iletkeni SCT çekirdeğinden üç kez geçirmenin yaklaşık 0.04 A düşük akım gözlemine etkisini görmek.
+
+**LOG:**
+- Kullanıcı bildirimi: SCT içinden geçen aynı iletken üç sarım yapıldı; ampul/yük yanıyordu ve pens ampermetre yaklaşık 0.04 A gösteriyordu. Yük tipi bu log kesitinde ayrıca tanımlanmadı.
+- Cihaz: esp32d2; ESPHome 2026.9.1; GPIO33 / ADC1 / 12 dB; ct_clamp penceresi 0.20 s; güncelleme 2 s.
+- Çalışan E00F zinciri: raw: false, 24.22 çarpanı ve 0.35 A sıfırlama eşiği korundu. Firmware değişikliği bildirilmedi.
+- 12 Raw AC Value penceresi (V): 0.009, 0.006, 0.014, 0.007, 0.007, 0.011, 0.011, 0.007, 0.010, 0.008, 0.012, 0.004.
+- Özet: ortalama 0.00883 V; medyan 0.0085 V; minimum 0.004 V; maksimum 0.014 V.
+- Her pencerede 3,175–3,350 farklı kabul edilen örnek ve 15,875–16,750 raporlanan SPS görüldü. Bu SPS, kaynak kod incelemesinde belirtildiği gibi gerçek ADC dönüşüm hızı değildir.
+- 12/12 yayınlanan akım değeri 0.000 A oldu.
+
+**SONUÇ / HESAP:**
+- Üç primer tur için amper-tur yaklaşımıyla 0.04 A × 3 = 0.12 A-tur eşdeğeri elde edilir. Bu, gerçek hat akımının 0.12 A olduğu anlamına gelmez ve sensör çıkışının tam üç kat olacağını garanti etmez.
+- Logdaki en yüksek Raw AC değeri 0.014 V × 24.22 = yaklaşık 0.339 A ölçek karşılığıdır. Bu değer dahi 0.35 A filtresinin altındadır; dolayısıyla 12 pencerenin de 0.000 A yayınlaması mevcut lambda eşiğiyle tutarlıdır.
+- Raw AC aralığı 0.004–0.014 V, önceki yüksüz 0.004–0.011 V ve LED 0.003–0.013 V aralıklarıyla büyük ölçüde örtüşür. Bu yeni 12 pencerelik kayıt, üç sarımın düşük akım sinyalini tabandan güvenilir biçimde ayırdığını göstermemektedir. Ancak eşzamanlı, aynı kurulumdan alınmış yeni yüksüz referans ve daha geniş pencere dizisi olmadığı için istatistiksel ayrışmazlık da kesinleştirilmiş değildir.
+- Bu deneme kalibrasyon sonucu değildir; üç sarımlı düzenin ±%4 doğruluğa ulaştığı iddia edilmez.
+
+### 9.3 Tek sarımın korunması ve tur sayısının yeri
+
+Kullanıcının son değerlendirmesi doğrultusunda ana ölçüm düzeninde **tek sarım standart yaklaşım olarak korunacaktır**. Gerekçe, tek sarımda daha önce bildirilen orta/yüksek akım sonuçlarının hedefe yakın olmasıdır:
+
+| Koşul | Pens / referans | SCT / ESP32 | Yaklaşık sapma |
+|---|---:|---:|---:|
+| 100 W akkor | 0.447 A | 0.446–0.447 A | yaklaşık 0 ila −%0.2 |
+| 150 W akkor | 0.616 A | 0.615 A | yaklaşık −%0.2 |
+| Kettle kaynama | 6.39 A | 6.15 A | −%3.76 |
+
+Bunlar kullanıcı tarafından raporlanan saha karşılaştırmalarıdır; bağımsız laboratuvar doğrulaması değildir. 100 W ve 150 W sonuçları düşük/orta akım bölgesinde, kettle sonucu yüksek akım bölgesinde olumlu saha uyumunu gösterir. Tek sarımlı düzen bu nedenle mevcut referans kurulum olarak kalır. Üç sarımlı E00F denemesi düşük akım teşhis notudur; E08'in planlanmış 1/2/4 tur matrisiyle karıştırılmaz ve o planı değiştirmez.
+
+### 9.4 Python'da bölgesel kalibrasyon yaklaşımı
+
+**Önerilen çalışma yönü — henüz uygulanmadı:** Tek bir evrensel çarpan yerine, SCT kararlı pencere istatistikleri ile geçerli PZEM kararlı pencere referanslarından akım bölgelerine göre kalibrasyon fonksiyonları öğrenmek.
+
+1. Önce düşük, orta ve yüksek akım bölgelerinde yeterli sayıda kararlı ve eşleştirilmiş pencere biriktirilir. PZEM proje referansıdır; kusursuz ground truth olarak kabul edilmez.
+2. İlk model her bölge için basit doğrusal fonksiyonla denenebilir: I_hat = a*X + b. X, tek bir anlık okuma değil, SCT penceresinden hesaplanan seçilmiş istatistiktir.
+3. Veriler doğrusal modelin yetersiz olduğunu gösterirse parçalı doğrusal fonksiyon veya başka bir model karşılaştırılır. Bölge sınırları önceden keyfî seçilmez; veri dağılımı ve kararlı pencere kapsamıyla belirlenir.
+4. Eğitimde kullanılan pencerelerle aynı pencereler üzerinde elde edilen uyum, bağımsız doğrulama sonucu gibi sunulmaz. Ayrı tutulan pencerelerle de değerlendirme yapılır.
+5. sensor_id, calibration_id, turn_count, firmware_version, analog ön uç ve yük profili kayıtla ilişkilendirilir. Ana düzen tek sarım olduğundan standart kayıt turn_count=1 olur; farklı turla alınan deney verisi ayrı koşul olarak etiketlenir.
+6. PZEM'e göre ±%4 hedefi korunur. Sinyal yüksüz tabandan güvenilir biçimde ayrılamıyorsa Python bunu düzeltmiş gibi göstermez; ilgili bölgeyi geçersiz veya düşük güvenilirlikte işaretler.
+
+**SONUÇ:** Araştırma odağı, fiziksel tur sayısını artırmayı ana çözüm yapmak yerine tek sarımlı donanımı koruyup Python'da bölgesel model kalibrasyonu geliştirmektir. Bu bir tasarım yönüdür; henüz eğitim verisi, model, fonksiyon katsayısı veya bağımsız doğrulama sonucu yoktur.
