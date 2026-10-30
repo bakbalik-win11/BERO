@@ -1,43 +1,32 @@
-# E00A — Ham sinyal kaydı ve temel istatistikler
+# E00A — Bias trafosu çıkışı ve Vmid ADC gözlemi
 
 ## Amaç
-İlk olarak ESP32 dahili ADC'sinden gerçekte ne okunduğunu görmek: ham örnekleri kaydetmek ve bilgisayarda zaman grafiğiyle görselleştirmek. Grafik bu adımın temel inceleme aracıdır; istatistikler grafiği tamamlar ve koşullar arasındaki farkı özetler. Paketleme veya sürekli veri aktarım mimarisi hakkında karar vermek için önce kaydın sinyali nasıl temsil ettiğini gözlemleyeceğiz.
+SCT bağlanmadan, bias trafosunun iki DC noktasını ESP32-WROOM-32D dahili ADC'siyle ayrı ayrı gözlemek:
+1. Bias trafosunun L78L33 regülatör çıkışı: nominal 3,3 V DC.
+2. 2 × 10 kΩ bias bölücüsünün orta noktası: nominal yaklaşık 1,65 V DC (Vmid).
 
-Bu bir laboratuvar doğrulama deneyi değildir. Amaç, “SCT devreye girince ham ADC verisinde ne değişiyor?” sorusuna basit bir yanıt bulmaktır.
+Her iki noktada ADC ham sayısı, `analogReadMilliVolts()` sonucu ve zaman içindeki değişim kaydedilir. Multimetre ölçümü karşılaştırma referansı olarak ayrıca LOG'a yazılır. Bu adım SCT ölçümü değildir; akım hesabı/kalibrasyon da değildir.
+
+## Güvenli ADC bağlantısı
+GPIO34'e nominal 3,3 V hattını doğrudan bağlamak bu deney için uygun değildir: ADC'nin ölçüm aralığının üst ucuna dayanabilir ve küçük bir besleme yükselmesi doygunluk/ölçüm hatası oluşturabilir. İlk koşulda L78L33 çıkışı, **geçici 10 kΩ / 10 kΩ ölçüm bölücüsü** üzerinden GPIO34'e uygulanır. Bölücü orta noktası ADC'ye, alt 10 kΩ GND'ye; üst 10 kΩ 3,3 V çıkışa bağlanır. Böylece ADC yaklaşık 1,65 V görür; yazılımda bu koşulun tahmini kaynak voltajı ADC pinindeki mV değerinin iki katı olarak raporlanır. Bu geçici ölçüm bölücüsü, bias devresinin kendi 2 × 10 kΩ Vmid bölücüsüyle karıştırılmamalıdır.
+
+İkinci koşulda GPIO34 doğrudan bias Vmid noktasına bağlanır. Her iki koşulda bias trafosu GND'si ile ESP32 GND ortak olmalıdır. Bağlantılar enerji kesikken yapılır. Kartın gerçek modeli/pinout'u doğrulanmadan GPIO34 kullanılmaz. Multimetre ile 3,3 V ve Vmid gerçek değerleri kaydedilir. ESP32 ADC girişine 0 V altı veya kart besleme sınırını aşan gerilim uygulanmaz.
 
 ## Kapsam ve sıra
-Üç koşul, aynı kayıt yaklaşımıyla karşılaştırılır:
-1. **Bias-only:** SCT bağlı değil.
-2. **SCT yüksüz:** SCT bağlı, ölçülen iletkenden akım geçmiyor.
-3. **100 W akkor:** SCT bağlı, ampul açık.
-
-İlk denemede yalnızca **2 kS/s hedef örnekleme hızı** kullanılır. Bu, BERO için daha önce seçilen başlangıç değeridir; bu deneyde hızın en iyisi olduğu varsayılmaz. Her koşul için yaklaşık 1 saniyelik ham kayıt hedeflenir. Gerçek süre ve örnek sayısı kaydedilir; süre/hedef hızdan beklenen örnek sayısı ile basitçe karşılaştırılır.
-
-İlk sonuçlar alındıktan sonra örnekleme hızını karşılaştırmanın belirli bir soruya yanıt vereceği görülürse 1 ve 2,5 kS/s kayıtları eklenebilir. İlk denemede üç hızı her koşulda tekrarlamak veya üç ESP32'yi eşzamanlamak zorunlu değildir.
+- A — L78L33 3,3 V çıkışı: harici 10 kΩ/10 kΩ ölçüm bölücüsü üzerinden ADC.
+- B — Bias Vmid: yaklaşık 1,65 V orta nokta doğrudan ADC.
+- SCT jack'i bağlı değildir; ölçülen hatta yük/akım deneyi yoktur.
+- İlk geçişte tek ESP32, 2 kS/s hedefi ve koşul başına yaklaşık 1 saniyelik kayıt. Hedef hız doğrulanmış performans değildir.
+- Önce A kaydı ve kontrolü tamamlanır; bağlantı enerjisizken B'ye alınır, sonra B kaydı yapılır.
 
 ## Her kayıttan üretilecek çıktılar
-- Ham ADC örneklerinin yerel dosyaya kaydı; veri varsayılan olarak Git'e eklenmez.
+- Ham ADC örnekleri: `sample_index,adc_raw` CSV; yerel diskte, varsayılan olarak Git dışında.
+- Her örnek için ADC ham sayısı ve mV API'si karşılaştırması; ham CSV ayrı tutulur.
 - Ortalama, minimum, maksimum, tepe-tepe aralığı ve standart sapma.
-- Hedef örnekleme hızı, gerçek kayıt süresi, örnek sayısı ve mümkünse yaklaşık gerçekleşen örnekleme hızı.
-- Koşulları kıyaslayan kısa bir istatistik tablosu.
-- ADC ham değeri-zaman grafiği: her koşulun kaydını bilgisayarda görselleştir. Bu, sinyalin şeklini ve kayıt içindeki değişimleri incelemek için temel çıktıdır; canlı osiloskop arayüzü zorunlu değildir.
+- Multimetre DC değeri, hedef hız, gerçek süre, örnek sayısı ve yaklaşık gerçekleşen örnekleme hızı.
+- İki koşulun kısa karşılaştırması ve ADC-değer/zaman grafiği.
 
-Bu istatistikler ham ADC değerlerini tanımlar; tek başlarına amper ölçümü veya gürültünün kesin ölçümü değildir. Standart sapma hem gürültüden hem gerçek AC sinyalinden etkilenebilir.
-
-## Basit örnek sayısı kontrolü
-Beklenen örnek sayısı yaklaşık olarak hedef hız × gerçek kayıt süresidir. Okunan sayı ile karşılaştırılır. Bu ilk kontrol, zamanlama aralıklarının kusursuz olduğunu veya hiç örnek kaybolmadığını kanıtlamaz. Belirgin fark görülürse önce nedenini araştırırız.
-
-## Karar
-İlk soru, ham kaydın bilgisayarda nasıl göründüğü ve bias-only, SCT yüksüz ve yük altındaki koşulların grafikleri ile istatistiklerinin nasıl farklılaştığıdır. Grafik temel inceleme çıktısıdır. Örnekleme hızlarını geniş kapsamlı karşılaştırma, yavaş oynatma, üç ESP32 eşzamanlama, DMA veya çift buffer bu ilk adımın kabul koşulu değildir.
-
-İlk kayıtlardan sonra basit edinim ve aktarım yeterliyse karmaşık mimari kurmayız. Yetersizliği gösteren kanıt varsa sonraki deneyi o soruya göre seçeriz.
+Bu istatistikler DC seviyesinin kararlılığını tanımlar; tek başına ADC doğruluğu veya hassas voltmetre performansı kanıtı değildir. `analogReadMilliVolts()` kalibrasyon destekli tahmindir; multimetreyle farkı kaydedilir.
 
 ## Durum
-PLANLANDI. Firmware, kayıt, grafik ve fiziksel ölçüm henüz yapılmadı.
-
-
-## Deney YAML dosyalarının rolleri
-- [metadata.yaml](metadata.yaml): deney kimliği, durum, koşul listesi ve kısa özet metadata'sı.
-- [experiment.yaml](experiment.yaml): planlanan koşulların açıklamalı, ayrıntılı çalışma planı.
-
-İki dosya aynı bilgiyi farklı amaçlarla taşır; `metadata.yaml` kısa indeksleme içindir, `experiment.yaml` ise deney koşullarını açıklar. `experiment.yaml` şu anda firmware tarafından otomatik okunmaz. Gerçekte kullanılan kart, GPIO ve ayarlar ölçüm öncesi doğrulanıp LOG'a yazılmalıdır.
+PLANLANDI. Firmware, fiziksel bağlantı, derleme ve ölçüm henüz yapılmadı.
