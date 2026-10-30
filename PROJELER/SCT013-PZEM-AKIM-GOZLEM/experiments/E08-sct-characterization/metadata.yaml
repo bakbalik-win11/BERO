@@ -1,9 +1,9 @@
 experiment_id: E08
 name: SCT signal characterization
-status: in_progress_preparation
+status: in_progress_low_rate_observation
 sensor: SCT013-030 30A/1V
 adc: ESP32 internal ADC; board and GPIO to be recorded
-sampling_rate_targets_sps: [1000, 2000, 2500]
+sampling_rate_targets_sps: [1000, 2000, 2500] # sonraki yüksek hızlı aşama; bu gözlemde kullanılmıyor
 conductor_passes_through_ct: [1, 2, 4]
 initial_window_ms: 200
 methods: [bias_corrected_rms, bias_corrected_absolute_peak, peak_to_peak]
@@ -13,4 +13,6 @@ pzem_time_alignment: false
 external_average_current_context_only: true
 stability_threshold_predefined: false
 required_consecutive_windows_predefined: false
+current_firmware_observation: E00B unchanged; 1 s publication interval
+high_speed_sampling_stage: deferred
 measurements_completed: false
