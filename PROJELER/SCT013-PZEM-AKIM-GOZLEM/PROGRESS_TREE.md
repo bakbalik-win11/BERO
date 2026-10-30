@@ -113,3 +113,6 @@ L78L33 çıkışı 3,31 V ve breadboard bias orta noktası/Vmid 1,65 V multimetr
 ## 2026-10-30 — E00A firmware kaydı
 
 E00A için ESP32D2 / ESP-IDF firmware'i [deney klasörüne](experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml) eklendi. GPIO34 ham ADC, GPIO35 voltaj çıktısı üretir. Kullanıcı derlendiğini ve çalıştığını bildirdi; gerçek sensör logu ve ADC ölçüm yorumu bekleniyor. 1 saniyelik HA güncellemesi 30 saniyelik ham kayıt değildir.
+
+
+- **2026-10-30 E00A-S01:** GND referans testi loglandı. GPIO34 0 count; GPIO35 kararlı bölümde 0.142 V. Floating giriş teşhisi destekleniyor; Vmid'e pasif bias direnci elektriksel çözüm adayı. E00A henüz tamamlanmadı. [S01 raporu](experiments/E00A-raw-waveform-observation/reports/E00A-S01-gnd-reference-stability.md).
