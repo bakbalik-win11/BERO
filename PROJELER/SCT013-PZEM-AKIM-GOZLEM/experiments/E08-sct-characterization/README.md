@@ -17,4 +17,4 @@ E08, SCT-013 ve ESP32 dahili ADC ölçüm zincirinin davranışını kendi veris
 - PZEM veya başka ESP'nin ortalama akımı varsa genel deney notu olarak yazılabilir; SCT pencereleriyle zaman eşleştirmesi yapılmaz.
 - Kararlılık eşiği, gereken pencere sayısı ve kesin kayıt süresi sonuçlar görülmeden belirlenmez.
 
-Durum: PLANLANDI. Fiziksel kurulum ve ölçüm yapılmadı.
+Durum: AŞAMA 2 AÇILDI — HAZIRLIK. 100 W fiziksel ölçüm henüz yapılmadı; mevcut E00B firmware'i yüksek hızlı E08 edinimini karşılamaz.
