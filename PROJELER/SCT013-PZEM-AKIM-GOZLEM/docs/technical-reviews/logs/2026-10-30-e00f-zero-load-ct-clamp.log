@@ -1,0 +1,432 @@
+Logs - BERO E00F ESP32D2
+OTA
+INFO ESPHome 2026.9.1
+INFO Loaded validated config cache for esp32d2.yaml, skipping validation.
+INFO Starting log output from 192.168.0.66 using esphome API
+INFO Successfully resolved esp32d2 @ 192.168.0.66 in 0.000s
+INFO Successfully connected to esp32d2 @ 192.168.0.66 in 0.085s
+INFO Successful handshake with esp32d2 @ 192.168.0.66 in 0.029s
+[22:13:13.620][I][app:151]: ESPHome version 2026.9.1 compiled on 2026-10-30 21:56:30 +0300
+[22:13:13.621][I][app:158]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[22:13:13.621][W][app:171]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[22:13:13.621][W][app:198]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[22:13:13.630][C][logger:216]: Logger:
+[22:13:13.630][C][logger:216]:   Max Level: DEBUG
+[22:13:13.630][C][logger:216]:   Initial Level: DEBUG
+[22:13:13.630][C][logger:223]:   Log Baud Rate: 115200
+[22:13:13.630][C][logger:223]:   Hardware UART: UART0
+[22:13:13.653][C][logger:232]:   Task Log Buffer Size: 768 bytes
+[22:13:13.668][C][adc:017]: ADC Sensor 'sct_voltage_source'
+[22:13:13.668][C][adc:017]:   State Class: 'measurement'
+[22:13:13.668][C][adc:017]:   Unit of Measurement: 'V'
+[22:13:13.668][C][adc:017]:   Accuracy Decimals: 2
+[22:13:13.673][C][adc:165]:   Device Class: 'voltage'
+[22:13:13.674][C][adc:131]:   Pin: GPIO33
+[22:13:13.674][C][adc:131]:   Channel:       5
+[22:13:13.674][C][adc:131]:   Unit:          ADC1
+[22:13:13.674][C][adc:131]:   Attenuation:   12 dB
+[22:13:13.674][C][adc:131]:   Samples:       1
+[22:13:13.674][C][adc:131]:   Sampling mode: average
+[22:13:13.674][C][adc:131]:   Setup Status:
+[22:13:13.674][C][adc:131]:     Handle Init:  OK
+[22:13:13.674][C][adc:131]:     Config:       OK
+[22:13:13.674][C][adc:131]:     Calibration:  OK
+[22:13:13.674][C][adc:131]:     Overall Init: OK
+[22:13:13.695][C][adc:340]:   Update Interval: 60.000s
+[22:13:13.704][C][ct_clamp:017]: CT Clamp Sensor 'BERO E00F SCT013 Akim'
+[22:13:13.704][C][ct_clamp:017]:   State Class: 'measurement'
+[22:13:13.704][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[22:13:13.704][C][ct_clamp:017]:   Accuracy Decimals: 3
+[22:13:13.705][C][ct_clamp:165]:   Device Class: 'current'
+[22:13:13.705][C][ct_clamp:013]:   Sample Duration: 0.20s
+[22:13:13.708][C][ct_clamp:340]:   Update Interval: 2.000s
+[22:13:13.752][C][network:050]: Network:
+[22:13:13.752][C][network:050]:   TCP send buffer: 5760 bytes
+[22:13:13.753][C][wifi:1582]: WiFi:
+[22:13:13.753][C][wifi:1582]:   Local MAC: E0:8C:FE:5C:F4:E4
+[22:13:13.753][C][wifi:1582]:   Connected: YES
+[22:13:13.753][C][wifi:1286]:   IP Address: 192.168.0.66
+[22:13:13.753][C][wifi:1297]:   SSID: 'AKFISH'
+[22:13:13.753][C][wifi:1297]:   BSSID: 7E:64:CF:5C:81:73
+[22:13:13.753][C][wifi:1297]:   Hostname: 'esp32d2'
+[22:13:13.753][C][wifi:1297]:   Signal strength: -62 dB ▂▄▆█
+[22:13:13.753][C][wifi:1297]:   Channel: 2
+[22:13:13.753][C][wifi:1297]:   Subnet: 255.255.255.0
+[22:13:13.753][C][wifi:1297]:   Gateway: 192.168.0.1
+[22:13:13.753][C][wifi:1297]:   DNS1: 192.168.0.1
+[22:13:13.753][C][wifi:1297]:   DNS2: 0.0.0.0
+[22:13:13.765][C][esphome.ota:125]: Over-The-Air updates:
+[22:13:13.765][C][esphome.ota:125]:   Address: esp32d2.local:3232
+[22:13:13.765][C][esphome.ota:125]:   Version: 2
+[22:13:13.804][C][safe_mode:058]: Safe Mode:
+[22:13:13.804][C][safe_mode:058]:   Successful after: 60s
+[22:13:13.804][C][safe_mode:058]:   Invoke after: 10 attempts
+[22:13:13.804][C][safe_mode:058]:   Duration: 300s
+[22:13:13.833][C][safe_mode:079]:   Bootloader rollback: supported
+[22:13:13.834][C][api:293]: Server:
+[22:13:13.834][C][api:293]:   Address: esp32d2.local:6053
+[22:13:13.834][C][api:293]:   Listen backlog: 4
+[22:13:13.834][C][api:293]:   Max connections: 5
+[22:13:14.011][C][api:305]:   Noise encryption: NO
+[22:13:14.011][C][mdns:259]: mDNS:
+[22:13:14.011][C][mdns:259]:   Hostname: esp32d2
+[22:13:14.620][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 2831 different samples (14155 SPS)
+[22:13:14.712][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:16.593][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2907 different samples (14535 SPS)
+[22:13:16.703][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:18.590][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 2817 different samples (14085 SPS)
+[22:13:18.714][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:20.592][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 2838 different samples (14190 SPS)
+[22:13:20.710][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:22.615][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 2870 different samples (14350 SPS)
+[22:13:22.701][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:24.601][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3106 different samples (15530 SPS)
+[22:13:24.707][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:26.591][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3081 different samples (15405 SPS)
+[22:13:26.706][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:28.603][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.001A after 2959 different samples (14795 SPS)
+[22:13:28.700][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:30.601][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3095 different samples (15475 SPS)
+[22:13:30.701][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:32.593][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3033 different samples (15165 SPS)
+[22:13:32.701][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:34.590][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2979 different samples (14895 SPS)
+[22:13:34.703][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:36.590][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 2961 different samples (14805 SPS)
+[22:13:36.700][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:38.590][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 2811 different samples (14055 SPS)
+[22:13:38.719][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:40.589][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 2999 different samples (14995 SPS)
+[22:13:40.700][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:42.596][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3020 different samples (15100 SPS)
+[22:13:42.702][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:44.722][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.014A after 2871 different samples (14355 SPS)
+[22:13:44.737][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:46.633][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2668 different samples (13340 SPS)
+[22:13:46.701][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:48.589][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3013 different samples (15065 SPS)
+[22:13:48.707][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:50.593][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2446 different samples (12230 SPS)
+[22:13:50.702][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:52.591][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 2594 different samples (12970 SPS)
+[22:13:52.702][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:54.589][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2997 different samples (14985 SPS)
+[22:13:54.710][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:56.593][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 2817 different samples (14085 SPS)
+[22:13:56.701][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:13:58.606][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3056 different samples (15280 SPS)
+[22:13:58.708][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:00.589][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 2625 different samples (13125 SPS)
+[22:14:00.701][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:02.607][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 2655 different samples (13275 SPS)
+[22:14:02.707][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:04.707][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 2576 different samples (12880 SPS)
+[22:14:04.707][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:06.598][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.029A after 2633 different samples (13165 SPS)
+[22:14:06.715][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.692 A
+[22:14:08.588][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 2748 different samples (13740 SPS)
+[22:14:08.700][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:10.588][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 2918 different samples (14590 SPS)
+[22:14:10.702][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:12.589][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 2942 different samples (14710 SPS)
+[22:14:12.699][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:14.589][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 2989 different samples (14945 SPS)
+[22:14:14.697][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:16.592][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 2621 different samples (13105 SPS)
+[22:14:16.704][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:18.622][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 2933 different samples (14665 SPS)
+[22:14:18.705][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:20.602][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3097 different samples (15485 SPS)
+[22:14:20.711][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:22.604][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2634 different samples (13170 SPS)
+[22:14:22.719][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:24.610][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 2752 different samples (13760 SPS)
+[22:14:24.716][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:26.615][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3043 different samples (15215 SPS)
+[22:14:26.719][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:28.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3028 different samples (15140 SPS)
+[22:14:28.730][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:30.615][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3066 different samples (15330 SPS)
+[22:14:30.724][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:32.678][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2907 different samples (14535 SPS)
+[22:14:32.789][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:34.617][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3046 different samples (15230 SPS)
+[22:14:34.727][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:36.621][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 2914 different samples (14570 SPS)
+[22:14:36.737][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:38.618][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2990 different samples (14950 SPS)
+[22:14:38.729][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:40.621][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3050 different samples (15250 SPS)
+[22:14:40.732][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:42.620][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 2840 different samples (14200 SPS)
+[22:14:42.731][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:44.621][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3017 different samples (15085 SPS)
+[22:14:44.735][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:46.625][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2571 different samples (12855 SPS)
+[22:14:46.738][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:48.623][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3063 different samples (15315 SPS)
+[22:14:48.735][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:50.625][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3056 different samples (15280 SPS)
+[22:14:50.737][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:52.625][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3033 different samples (15165 SPS)
+[22:14:52.736][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:54.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.012A after 3077 different samples (15385 SPS)
+[22:14:54.737][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:56.626][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 2979 different samples (14895 SPS)
+[22:14:56.739][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:14:58.629][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2998 different samples (14990 SPS)
+[22:14:58.751][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:00.743][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.012A after 2796 different samples (13980 SPS)
+[22:15:00.821][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:02.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 2926 different samples (14630 SPS)
+[22:15:02.781][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:04.626][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 2962 different samples (14810 SPS)
+[22:15:04.739][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:06.638][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 2776 different samples (13880 SPS)
+[22:15:06.753][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:08.630][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 2871 different samples (14355 SPS)
+[22:15:08.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:10.633][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2469 different samples (12345 SPS)
+[22:15:10.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:12.659][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.017A after 2925 different samples (14625 SPS)
+[22:15:12.753][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.417 A
+[22:15:14.642][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.011A after 2915 different samples (14575 SPS)
+[22:15:14.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:16.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3012 different samples (15060 SPS)
+[22:15:16.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:18.687][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 2992 different samples (14960 SPS)
+[22:15:18.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:20.650][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3159 different samples (15795 SPS)
+[22:15:20.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:22.667][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3044 different samples (15220 SPS)
+[22:15:22.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:24.637][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3157 different samples (15785 SPS)
+[22:15:24.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:26.670][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 3181 different samples (15905 SPS)
+[22:15:26.779][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:28.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3231 different samples (16155 SPS)
+[22:15:28.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:30.632][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3130 different samples (15650 SPS)
+[22:15:30.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:32.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3101 different samples (15505 SPS)
+[22:15:32.803][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:34.635][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3197 different samples (15985 SPS)
+[22:15:34.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:36.639][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.025A after 3144 different samples (15720 SPS)
+[22:15:36.745][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.613 A
+[22:15:38.635][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3177 different samples (15885 SPS)
+[22:15:38.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:40.636][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3164 different samples (15820 SPS)
+[22:15:40.763][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:42.630][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 3135 different samples (15675 SPS)
+[22:15:42.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:44.647][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.011A after 3038 different samples (15190 SPS)
+[22:15:44.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:46.632][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3206 different samples (16030 SPS)
+[22:15:46.741][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:48.629][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3132 different samples (15660 SPS)
+[22:15:48.739][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:50.629][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3060 different samples (15300 SPS)
+[22:15:50.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:52.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3114 different samples (15570 SPS)
+[22:15:52.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:54.630][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3131 different samples (15655 SPS)
+[22:15:54.739][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:56.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3036 different samples (15180 SPS)
+[22:15:56.751][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:15:58.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3156 different samples (15780 SPS)
+[22:15:58.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:00.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3072 different samples (15360 SPS)
+[22:16:00.748][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:02.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 2890 different samples (14450 SPS)
+[22:16:02.741][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:04.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3070 different samples (15350 SPS)
+[22:16:04.741][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:06.629][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3107 different samples (15535 SPS)
+[22:16:06.750][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:08.639][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2954 different samples (14770 SPS)
+[22:16:08.745][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:10.640][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 2717 different samples (13585 SPS)
+[22:16:10.811][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:12.630][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3015 different samples (15075 SPS)
+[22:16:12.758][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:14.634][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 2931 different samples (14655 SPS)
+[22:16:14.741][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:16.630][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3071 different samples (15355 SPS)
+[22:16:16.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:18.633][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3018 different samples (15090 SPS)
+[22:16:18.757][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:20.634][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 2572 different samples (12860 SPS)
+[22:16:20.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:22.637][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3030 different samples (15150 SPS)
+[22:16:22.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:24.736][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.011A after 2777 different samples (13885 SPS)
+[22:16:24.754][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:26.667][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 3019 different samples (15095 SPS)
+[22:16:26.764][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:28.633][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 3127 different samples (15635 SPS)
+[22:16:28.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:30.659][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 2990 different samples (14950 SPS)
+[22:16:30.761][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:32.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 2980 different samples (14900 SPS)
+[22:16:32.747][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:34.633][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3095 different samples (15475 SPS)
+[22:16:34.751][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:36.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 2805 different samples (14025 SPS)
+[22:16:36.755][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:38.629][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 2934 different samples (14670 SPS)
+[22:16:38.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:40.691][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3021 different samples (15105 SPS)
+[22:16:40.757][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:42.634][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3162 different samples (15810 SPS)
+[22:16:42.745][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:44.644][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3091 different samples (15455 SPS)
+[22:16:44.768][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:46.630][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 2955 different samples (14775 SPS)
+[22:16:46.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:48.643][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3171 different samples (15855 SPS)
+[22:16:48.744][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:50.633][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 3159 different samples (15795 SPS)
+[22:16:50.745][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:52.633][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3087 different samples (15435 SPS)
+[22:16:52.746][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:54.639][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3000 different samples (15000 SPS)
+[22:16:54.745][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:16:56.776][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.017A after 2982 different samples (14910 SPS)
+[22:16:56.794][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.412 A
+[22:16:58.636][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2762 different samples (13810 SPS)
+[22:16:58.746][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:00.636][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3037 different samples (15185 SPS)
+[22:17:00.741][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:02.635][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 2916 different samples (14580 SPS)
+[22:17:02.747][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:04.634][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 3061 different samples (15305 SPS)
+[22:17:04.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:06.635][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.032A after 3019 different samples (15095 SPS)
+[22:17:06.746][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.770 A
+[22:17:08.661][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.011A after 2985 different samples (14925 SPS)
+[22:17:08.755][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:10.641][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 2820 different samples (14100 SPS)
+[22:17:10.760][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:12.665][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 2915 different samples (14575 SPS)
+[22:17:12.758][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:14.649][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 2991 different samples (14955 SPS)
+[22:17:14.751][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:16.637][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3089 different samples (15445 SPS)
+[22:17:16.750][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:18.646][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3114 different samples (15570 SPS)
+[22:17:18.762][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:20.637][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.013A after 3012 different samples (15060 SPS)
+[22:17:20.748][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:22.638][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 2804 different samples (14020 SPS)
+[22:17:22.757][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:24.638][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3172 different samples (15860 SPS)
+[22:17:24.749][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:26.641][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 3015 different samples (15075 SPS)
+[22:17:26.749][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:28.638][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2934 different samples (14670 SPS)
+[22:17:28.751][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:30.648][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3054 different samples (15270 SPS)
+[22:17:30.749][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:32.638][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 3213 different samples (16065 SPS)
+[22:17:32.747][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:34.632][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3133 different samples (15665 SPS)
+[22:17:34.746][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:36.647][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3114 different samples (15570 SPS)
+[22:17:36.747][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:38.632][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3104 different samples (15520 SPS)
+[22:17:38.753][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:40.635][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3059 different samples (15295 SPS)
+[22:17:40.745][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:42.635][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3147 different samples (15735 SPS)
+[22:17:42.747][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:44.716][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2884 different samples (14420 SPS)
+[22:17:44.771][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:46.639][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3146 different samples (15730 SPS)
+[22:17:46.741][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:48.663][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3185 different samples (15925 SPS)
+[22:17:48.749][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:50.645][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3122 different samples (15610 SPS)
+[22:17:50.750][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:52.637][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3095 different samples (15475 SPS)
+[22:17:52.749][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:54.634][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3114 different samples (15570 SPS)
+[22:17:54.747][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:56.636][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3058 different samples (15290 SPS)
+[22:17:56.749][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:17:58.632][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.001A after 3131 different samples (15655 SPS)
+[22:17:58.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:00.694][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3165 different samples (15825 SPS)
+[22:18:00.755][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:02.640][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2681 different samples (13405 SPS)
+[22:18:02.741][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:04.639][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3120 different samples (15600 SPS)
+[22:18:04.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:06.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.001A after 3093 different samples (15465 SPS)
+[22:18:06.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:08.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2636 different samples (13180 SPS)
+[22:18:08.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:10.630][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 2981 different samples (14905 SPS)
+[22:18:10.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:12.651][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 2647 different samples (13235 SPS)
+[22:18:12.748][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:14.634][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 2984 different samples (14920 SPS)
+[22:18:14.808][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:16.637][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 2806 different samples (14030 SPS)
+[22:18:16.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:18.731][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3134 different samples (15670 SPS)
+[22:18:18.814][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:20.632][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3054 different samples (15270 SPS)
+[22:18:20.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:22.638][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3024 different samples (15120 SPS)
+[22:18:22.745][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:24.630][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3150 different samples (15750 SPS)
+[22:18:24.741][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:26.644][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 2559 different samples (12795 SPS)
+[22:18:26.739][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:28.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 2941 different samples (14705 SPS)
+[22:18:28.741][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:30.697][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2888 different samples (14440 SPS)
+[22:18:30.794][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:32.635][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.001A after 3089 different samples (15445 SPS)
+[22:18:32.742][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:34.629][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3108 different samples (15540 SPS)
+[22:18:34.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:36.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.027A after 2895 different samples (14475 SPS)
+[22:18:36.743][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.660 A
+[22:18:38.629][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2985 different samples (14925 SPS)
+[22:18:38.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:40.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.001A after 3160 different samples (15800 SPS)
+[22:18:40.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:42.629][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3037 different samples (15185 SPS)
+[22:18:42.750][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:44.640][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.015A after 2921 different samples (14605 SPS)
+[22:18:44.819][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.353 A
+[22:18:46.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 2611 different samples (13055 SPS)
+[22:18:46.746][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:48.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3152 different samples (15760 SPS)
+[22:18:48.747][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:50.634][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.009A after 2955 different samples (14775 SPS)
+[22:18:50.738][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:52.644][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 2482 different samples (12410 SPS)
+[22:18:52.744][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:54.641][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3114 different samples (15570 SPS)
+[22:18:54.744][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:56.636][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 2984 different samples (14920 SPS)
+[22:18:56.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:18:58.631][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 2908 different samples (14540 SPS)
+[22:18:58.739][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:19:00.706][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.012A after 2934 different samples (14670 SPS)
+[22:19:00.809][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:19:02.629][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3079 different samples (15395 SPS)
+[22:19:02.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:19:04.630][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 2999 different samples (14995 SPS)
+[22:19:04.739][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:19:06.629][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3004 different samples (15020 SPS)
+[22:19:06.741][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:19:08.642][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3026 different samples (15130 SPS)
+[22:19:08.740][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:19:10.628][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 2914 different samples (14570 SPS)
+[22:19:10.745][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[22:19:12.625][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 2778 different samples (13890 SPS)
+[22:19:12.736][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
