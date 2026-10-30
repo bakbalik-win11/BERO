@@ -57,3 +57,14 @@ E08'de PZEM veya başka ESP'nin ortalama akımı varsa yalnız genel deney koşu
 5. D4 ayrı RAW count teşhisi veya D5 E08 ham edinimi, D0–D3 sonuçlarından sonra gerekli mi?
 
 Bu sorular için deney sırası ve kabul ölçütleri [toplu teknik değerlendirmede](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md) tanımlıdır. Bu soruların eklenmesi fiziksel ölçüm yapıldığı anlamına gelmez.
+
+
+## 2026-10-30 — E00F test kabul ölçütleri netleştirildi
+
+6. D0'da her pencerenin Raw AC / N / SPS üçlüsü çıkarılabiliyor mu; N ve SPS min/max/ortalama/medyan/SD/p5/p95 dağılımları nasıl?
+7. D1 yüksüz tabanı en az 30 geçerli 200 ms pencereyle hangi medyan ve standart sapmayı veriyor? 0.006 V seviyesi tekrarlanıyor mu, yoksa taban sıfıra veya başka bir seviyeye mi yakın?
+8. D2 LED koşulunda en az 30 geçerli pencere D1 tabanından ayrışıyor mu? D1 medyanı + 3×SD ve gerektiğinde robust medyan + 3×MAD karşılaştırması ne gösteriyor?
+9. D3'te 0.447 A ve/veya 0.616 A akkor koşulu aynı yüksüz tabanla karşılaştırıldığında Raw AC ve akım sapması nasıl değişiyor?
+10. D0–D3 verisi N değişkenliği, Raw AC sıçramaları ve mV kuantizasyonu arasındaki belirsizliği çözüyor mu; çözmüyorsa D4 RAW teşhisi gerekli mi?
+
+**Ölçüm protokolü:** D1/D2/D3 için her kararlı koşulda en az 30 geçerli 200 ms pencere tutulur; koşul değişiminden sonraki ilk pencere dışlanır. 0.0017 V, 0.041 A'nın 24.22 katsayısıyla gerilim karşılığıdır; yüksüz taban hedefi değildir. Standart sapma için keyfî mutlak Volt eşiği kullanılmaz; D1 dağılımı ampirik taban olarak alınır. Ayrıntı: [toplu teknik değerlendirme](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
