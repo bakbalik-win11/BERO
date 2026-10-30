@@ -890,3 +890,19 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **SONRAKİ ADIM:** E00F için raporlanan bu yan teşhis, aktif E00B/E00A iş sırasını değiştirmez. Veri toplama sırası ve kalibrasyon modeli ancak yeterli kararlı pencere verisi biriktiğinde ele alınır.
 - **KANIT:** [E00F toplu teknik değerlendirme](../docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md), [firmware saha raporu](../firmware/README.md), [STATUS](../STATUS.md), [BERO deposu](https://github.com/bakbalik-win11/BERO).
 
+
+
+## 2026-10-30 — Gemini'nin ct_clamp ve parçalı model önerisinin teknik kararı
+
+- **HEDEF:** Gemini'nin verdiği ESPHome varyans/RMS formülünü kaynak kodla kontrol etmek ve Python kalibrasyonunda ilk model, düşük sinyal kalite kapısı ve özellik kaynağı için karar vermek.
+- **LOG:** ESPHome 2026.9.1 resmi API kaynak görünümünde ct_clamp_sensor.cpp incelendi. sample_squared_sum_/num_samples_ - (sample_sum_/num_samples_)^2 hesaplanıyor; pozitif varyansta karekök alınıyor. NaN ve ardışık aynı değerler atlanıyor. ESPHome dokümantasyonu da ct_clamp için kalibrasyon gerektiğini ve doğrusal kalibrasyon örneğini veriyor. Kaynak: https://api-docs.esphome.io/ct__clamp__sensor_8cpp_source
+- **TEKNİK DÜZELTME:** Formüldeki ortalama, fiziksel 1.65 V bias düğümünün ayrıca ölçülmesi değil, pencerenin kendi ortalamasıdır. num_samples_ tüm ADC dönüşümleri değil, kabul edilen farklı ardışık değer sayısıdır. Log SPS gerçek ADC dönüşüm hızı değildir.
+- **KARAR 1:** Parçalı doğrusal model ilk uygulama olmayacak. Önce tek doğrusal model; residuals akım bölgesine göre sistematik kalır ve veri yeterliyse parçalı model karşılaştırılacak. Parçalı modelde geçiş sürekliliği ve monotonluk incelenecek; bölge eşikleri önceden 0.1/0.5 V diye sabitlenmeyecek.
+- **KARAR 2:** RMS gürültü tabanının altında diye otomatik 0 A üretilmeyecek. Ayrışmayan sinyal INVALID/BELOW_DETECTION/LOW_CONFIDENCE gibi ayrı kalite durumuyla işaretlenecek. Gerçek sıfır akım ve ölçülemeyen düşük akım ayrılacak.
+- **KARAR 3:** E00F ct_clamp RMS'i ile E08 ham örneklerinden Python'da hesaplanacak RMS aynı özellik kabul edilmeyecek. Örnekleme/dedup ve veri yolu farklıdır. Eğitim özelliği gerçek kayıtlar görüldükten sonra seçilecek.
+- **GEMINI İLETİŞİMİ:** Gemini'ye doğrudan mesaj gönderebilen bir bağlantı mevcut değildi; soru gönderilmedi. Teknik karar kaynak kod ve BERO mimarisi üzerinden verildi.
+- **SONUÇ:** Gemini'nin varyans formülü kabul edildi; parçalı modeli hemen uygulama ve gürültü altını sıfır akım sayma önerileri kabul edilmedi. Kod, eğitim, katsayı ve fiziksel test yapılmadı.
+- **DOĞRULAMA:** Teknik rapor ve açık sorular dosyası güncellendi; yazımdan sonra yeniden okunacak. Aktif görev E00B/E00A sırası değiştirilmedi; STATUS/ROADMAP işaretlenmedi.
+- **SONRAKİ ADIM:** E00B/E00A aktif deney sırasını sürdür. T006 aşamasında gerçek kararlı pencere verileri oluştuğunda önce doğrusal modelin artıklarını incele; parçalı modele ancak veri gerekçe verirse geç.
+- **KANIT:** [E00F teknik değerlendirme, bölüm 10](../docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md), [açık sorular](../docs/open-questions.md), ESPHome kaynak kodu yukarıdaki URL.
+
