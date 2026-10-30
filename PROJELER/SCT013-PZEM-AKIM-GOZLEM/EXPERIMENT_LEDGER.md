@@ -167,3 +167,12 @@ PZEM'in yayınladığı PF, PZEM'in doğrudan hat gerilimi ölçümü ve CT üze
 - **SONUÇ:** Kod derlendi; sıfır girişte 0.000 V üretme hedefi henüz cihaz loguyla doğrulanmadı. Ofset geçicidir ve ADC'nin genel kalibrasyonu değildir.
 - **Sonraki adım:** GPIO35 GND'deyken güncel logda düzeltilmiş voltajı doğrula; sonra multimetreyle ölçülen Vmid noktasında karşılaştır.
 - **Ayrıntı:** [E00A sonuç kaydı](experiments/E00A-raw-waveform-observation/results.md), [protokol](experiments/E00A-raw-waveform-observation/protocol.md).
+
+
+
+### E00A Adım 2 — sıfır çıktısı log ile doğrulandı (2026-10-30)
+
+- **HEDEF:** GPIO35 voltaj sensörünün GND koşulunda 0.000 V yayınlaması.
+- **LOG:** Kullanıcı logu `Yapıştırılan metin(10).txt`; ESPHome 2026.9.1, ESP32 rev3.1. GPIO35 15:13:08.379–15:13:56.381 aralığında 49/49 kayıtta 0.000 V. GPIO34 48 kayıt 0 count; fiziksel olarak bağlı olmadığı için yorum dışı.
+- **SONUÇ:** Adım 2'nin yazılım sıfır gösterimi hedefi sağlandı. Kanıt yalnız mevcut GND koşulunda filtrelenmiş sensör çıktısını kapsar.
+- **Sonraki adım:** Kod değiştirmeden aynı log oturumunda bias trafosuna enerji ver; GPIO35 düzeltilmiş voltajını ve eşzamanlı multimetre Vmid değerini kaydet.
