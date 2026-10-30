@@ -35,7 +35,7 @@ Aşağıdaki değerler kullanıcı tarafından paylaşılan cihaz logları ve pe
 
 ### Log kanıtları
 
-- Kettle kaynama kesiti: [cihaz logu, 20:31:13–20:31:55](https://github.com/bakbalik-win11/BERO/blob/main/PROJELER/SCT013-PZEM-AKIM-GOZLEM/experiments/E08-sct-characterization/README.md) — konuşmada paylaşılan log satırları 275–318.
+- Kettle kaynama kesiti: konuşmada paylaşılan cihaz logu, 20:31:13–20:31:55, satırlar 275–318 (ham log henüz depoya eklenmedi).
 - LED açık/kapalı kesiti: konuşmada paylaşılan log satırları 73–184; LED açıkken pens değeri kullanıcı tarafından 0.041 A bildirildi.
 - Ham dosyalar bu committe depoya yüklenmedi; yukarıdaki özet kullanıcı tarafından sağlanan sohbet loglarından çıkarılmıştır.
 
