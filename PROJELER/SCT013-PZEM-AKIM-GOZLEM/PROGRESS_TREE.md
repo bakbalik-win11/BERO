@@ -121,3 +121,7 @@ E00A için ESP32D2 / ESP-IDF firmware'i [deney klasörüne](experiments/E00A-raw
 ### E00A — Adım 2: GPIO35 sıfır noktası yazılım düzeltmesi (2026-10-30)
 
 GPIO35 voltaj sensörüne önceki GND logunda görülen 0.142 V tabanını çıkaran geçici filtre eklendi; GPIO34 ham ADC kanalı korundu. Kullanıcı kodun derlendiğini bildirdi. GND girişinde 0.000 V sonucu henüz yeni logla doğrulanmadı. Sonraki adım GND'de sıfır çıktısını kontrol etmek, ardından Vmid'i multimetreyle karşılaştırmaktır. Ayrıntı: [E00A sonuç kaydı](experiments/E00A-raw-waveform-observation/results.md).
+
+
+
+**E00A Adım 2 güncellemesi (2026-10-30):** GPIO35 düzeltilmiş voltajı kullanıcı logunda 49/49 kayıtta yaklaşık 48 saniye boyunca 0.000 V; sıfır gösterimi hedefi sağlandı. Kod değiştirilmeden aynı log oturumunda bias trafosu enerjilendirilerek Vmid tepkisi izlenecek. Sonuç: [E00A results.md](experiments/E00A-raw-waveform-observation/results.md).
