@@ -106,3 +106,15 @@ Karar özeti: Önce tek doğrusal model; parçalı model ancak veri gerekçelend
 
 
 **Önceki raw:true denemesi:** Kullanıcı, raw:true yolunun daha önce denendiğini ve daha gürültülü/kötü sonuç verdiğini bildirdi; önceki oturum kaydı da bunu destekliyor. raw:true tekrar deneyi planlanmıyor. Önceki testte Google'ın önerdiği 0.85 çarpanının kullanıldığına dair kanıt yok; bu iki uygulama aynı test olarak kaydedilmeyecek.
+
+
+## 2026-10-30 — E00F sıfır-yük logu ve 40 mA araştırması
+
+1. Aynı E00F edinim koşulunda tekrarlı yüksüz loglarda 0.015–0.032 V Raw AC sıçramaları aynı sıklıkta tekrarlanıyor mu; bunlar ADC/analog giriş, CT pickup, EMI veya ct_clamp örnek kabul davranışından hangisiyle ilişkili?
+2. 40 mA hedefi için yüksüz ve yük pencereleri aynı edinim zincirinde istatistiksel olarak ayrışıyor mu? Mevcut logda yüksüz Raw AC medyanı 5 mV ve pencere SD'si yaklaşık 5 mV; hedef sinyal mevcut katsayıyla yaklaşık 1.65 mV.
+3. E00F'nin 0.35 A lambda eşiği düşük akım araştırmasında nasıl ele alınacak? Bu eşik 40 mA'yı tasarım gereği sıfırlıyor; mevcut YAML değiştirilmeden önce ayrı karar gerekir.
+4. Daha düşük nominal CT (ör. SCT013-005 5A/1V) ve mevcut yardımcı sensörlerden ZMCT103C/ACS712-5A aynı kontrollü düşük akım koşulunda yüksüz tabandan daha iyi ayrışma sağlıyor mu? Üretici verileri tek başına 40 mA doğruluğunu garanti etmiyor.
+5. Analog ön yükselteç veya PGA'lı harici ADC eklendiğinde baskın gürültü kaynağı ADC mi, CT/analog giriş mi? Kazanç tam akım aralığında doyum yaratmadan nasıl seçilecek?
+6. E08'in 1/2/4 primer tur karşılaştırması, 40 mA gibi çok düşük akım hedefini kanıtlamak için yeterli değil; bu hedef için ayrı bir düşük akım sensör karakterizasyonu gerekip gerekmediği hangi veriye göre kararlaştırılacak?
+
+**Geçici karar:** 30 A/1 V SCT013-030 ve mevcut E00F zincirinde 40 mA güvenilir ayrışması gösterilmedi. 0.35 A lambda eşiği sensör minimumu değildir; yazılım filtresidir. Harici burden değişimi önerilmiyor. E00A/E00B/E01/E08 sırası değişmedi. Ayrıntı: [E00F teknik değerlendirme, bölümler 13–14](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
