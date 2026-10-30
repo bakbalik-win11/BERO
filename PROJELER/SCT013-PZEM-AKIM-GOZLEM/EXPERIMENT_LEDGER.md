@@ -187,3 +187,12 @@ PZEM'in yayınladığı PF, PZEM'in doğrudan hat gerilimi ölçümü ve CT üze
 - **Uygulama:** Firmware dosyası `experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml` revize edildi; GPIO35 lambda filtresi kaldırıldı, sensör adı ve açıklamalar düzeltildi. Yeni revizyonun derlenmesi/cihaza yüklenmesi henüz yapılmadı.
 - **Sonraki karar kapısı:** Ofsetsiz firmware derlemesi ve aynı Vmid noktasında multimetreyle eşzamanlı cihaz logu.
 - **Kanıt:** [E00A sonuçları](experiments/E00A-raw-waveform-observation/results.md); kullanıcı kaynağı `Yapıştırılan metin(20261030-121627).txt`.
+
+
+## 2026-10-30 — E00A GPIO34 RAW / GPIO35 voltaj karşılaştırması
+
+- **HEDEF:** Aynı DC giriş noktasında GPIO34 RAW count üzerinden voltaj tahmini üretmek; GPIO35 ESPHome ADC voltajıyla ve bunların farkıyla karşılaştırmak.
+- **UYGULAMA:** Firmware'e `GPIO34 RAW`, `GPIO34 RAW Voltage Estimate`, `GPIO35 ADC Voltage Uncorrected` ve `GPIO35 - GPIO34 RAW tahmini` fark sensörü eklendi. RAW tahmini nominal `count × 3.1 / 4095` formülünü kullanır; kalibrasyon iddiası değildir.
+- **LOG:** Kullanıcı 2026-10-30 tarihinde yeni YAML'ın derlemeye alındığını bildirdi. Derleme sonucu henüz alınmadı; cihaz yüklemesi ve yeni log yok.
+- **SONUÇ:** YAML depoya uygulandı ve geri okunarak doğrulandı. Derleme/cihaz doğrulaması beklemede. GPIO34 ve GPIO35 aynı 1.654 V noktasına bağlanmadan fark verisi anlamlı karşılaştırma sayılmaz.
+- **Sonraki adım:** Derleme sonucunu kaydet; başarılıysa aynı DC noktada iki kanalı eşzamanlı gözlemle.
