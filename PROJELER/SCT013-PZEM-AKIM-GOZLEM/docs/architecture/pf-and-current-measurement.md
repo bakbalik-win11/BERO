@@ -21,14 +21,26 @@ Buna göre aynı gerilim ve aktif güçte PF azaldığında gereken RMS akım ar
 
 Doğrusal olmayan yüklerde (ör. anahtarlamalı LED sürücüleri) gerçek PF yalnızca faz açısının kosinüsü değildir. Akım dalga şekli bozulması da PF'yi etkileyebilir. Bu durumda akımın örneklenmesi, pencere özellikleri ve RMS çıkarımı önem kazanır.
 
+## PZEM PF yayınının SCT karşılaştırmasındaki rolü
+
+PZEM'in yayınladığı PF değeri bu çalışma için özellikle kaydedilmelidir. PZEM-004T 100 A varyantında gerilim ölçümü doğrudan ölçüm hattından, akım ölçümü harici CT üzerinden alınır; cihaz aktif güç ve PF değerlerini de raporlar. Dolayısıyla PF alanı, PZEM'in gerilim ve CT akım ölçüm zincirinden üretilen birleşik bir sonuçtur. PF'nin CT'den bağımsız ayrı bir algılayıcıdan geldiği varsayılmamalıdır.
+
+BERO'da PF yayınının rolü iki yönlüdür:
+
+1. **Yük koşulunu tanımlamak:** Aynı aktif güçte veya farklı yüklerde PF değişirken PZEM akımının nasıl değiştiğini görmek.
+2. **SCT karşılaştırmasını bağlama oturtmak:** PZEM PF değeriyle birlikte PZEM akımı ve SCT'den elde edilen akım tahmini kaydedilerek SCT-PZEM farkının farklı PF koşullarında değişip değişmediğini incelemek.
+
+Bu, PZEM PF değerinin SCT'yi doğrudan etkilediği anlamına gelmez. PF, yükün gerilim-akım ilişkisi ve dalga şekli hakkında PZEM'in raporladığı bir göstergedir; SCT-PZEM farkıyla ilişkisi deneysel olarak incelenecek bir gözlemdir. PZEM'in PF algoritması ve iç ölçüm penceresi bilinmediğinden PF, SCT örnekleriyle anlık/milisaniyelik eşdeğer kabul edilmez. Önce PZEM akım, PF ve güncelleme davranışı birlikte kaydedilir.
+
 ## BERO için deney yaklaşımı
 
 Amaç PF'yi SCT'den tahmin etmek veya PF ölçer geliştirmek değildir. Amaç, farklı yük/PF koşullarında SCT verisinden PZEM akımına ne kadar iyi ulaşıldığını gözlemek ve PF bilgisinin modele eklenmesinin gerekli olup olmadığını deneyle belirlemektir.
 
 1. Önce PF modele girdi verilmeden SCT tabanlı model kurulur.
-2. Farklı yüklerin (özellikle 100 W/150 W akkor ve 8,5 W LED) ortak kararlı SCT-PZEM alanları etiketlenir.
-3. Model aynı etiketli eğitim verisi üzerinde değerlendirilir; hata ve ±%4 sınırında kalan örnek oranı yük bazında raporlanır.
-4. Daha sonra aynı veri ve koşullarla PF girdili model denenebilir. PF girdisinin sağladığı fark, PF'siz sonuçla karşılaştırılır.
+2. Farklı yüklerin (özellikle 100 W/150 W akkor ve 8,5 W LED) ortak kararlı SCT-PZEM alanları etiketlenir; aynı alanlara ait PZEM akım, PF, gerilim ve aktif güç değerleri birlikte saklanır.
+3. SCT özellikleri ile PZEM akımı arasındaki fark; yük türü ve PZEM'in raporladığı PF bağlamında incelenir. Düşük PF'li yükte daha yüksek SCT akım genliği görülmesi otomatik olarak ölçüm hatası sayılmaz.
+4. Model aynı etiketli eğitim verisi üzerinde değerlendirilir; hata ve ±%4 sınırında kalan örnek oranı yük ve PF grubu bazında raporlanır.
+5. Daha sonra aynı veri ve koşullarla PF girdili model denenebilir. PF girdisinin sağladığı fark, PF'siz sonuçla karşılaştırılır.
 
 Bu karşılaştırma, PF'nin yararlı olup olmadığını gösteren bir deneydir; önceden PF'nin zorunlu olduğu varsayılmaz.
 
@@ -39,6 +51,7 @@ Bu karşılaştırma, PF'nin yararlı olup olmadığını gösteren bir deneydir
 - PF düşüşü tek başına SCT örnekleme hızını azaltmaz veya ölçümü geciktirmez. Gecikme ve ölçüm farkları; sensör, ADC, örnekleme, filtreleme, pencereleme ve PZEM güncelleme davranışı üzerinden ayrıca incelenmelidir.
 - PZEM'in PF değerinin nasıl hesaplandığı ve hangi örnekleme/ortalama pencerelerini kullandığı, mevcut donanım kaydında ayrıntılı olarak doğrulanmış değildir. İç algoritmaya ilişkin kesin iddia kurulmaz.
 - PZEM'in doğrudan hat gerilimi ölçmesi, PF değerinin bağımsız bir hat sensöründen geldiği anlamına gelmez; cihaz gerilim ve CT akım ölçümlerini birlikte kullanarak güç/PF sonuçlarını raporlar.
+- PZEM'in PF yayını SCT-PZEM karşılaştırmasında önemli bir gözlem alanıdır: PZEM akımı ve PF birlikte kaydedilir, SCT akım tahmin hatası PF koşuluna göre incelenir. Bu ilişki deneysel olarak gözlenir; PF'nin CT akım ölçümünü tek başına bozduğu veya geciktirdiği önceden varsayılmaz.
 
 ## Kaynak ve kanıt sınıfları
 
@@ -50,6 +63,6 @@ Bu kaynaklar BERO'daki SCT/ESP32 zincirinin doğruluğunu kanıtlamaz. BERO'ya �
 
 ## HEDEF / LOG / SONUÇ
 
-- **HEDEF:** PF farklılığının SCT tabanlı akım tahmin hatasına etkisini ve PF bilgisinin modele katkısını deneyle görmek.
-- **LOG:** Bu not, kullanıcıyla yapılan teknik değerlendirmeyi ve test edilebilir hipotezleri kaydeder.
-- **SONUÇ:** PF modele baştan zorunlu girdi yapılmaz. İlk karşılaştırma PF'siz modelle başlar; PF'li model ancak karşılaştırma amacıyla eklenir. Henüz fiziksel ölçüm veya model deneyi yapılmamıştır.
+- **HEDEF:** PZEM'in yayınladığı PF ile CT üzerinden ölçtüğü akımın, SCT tabanlı akım tahminiyle ilişkisinin farklı yüklerde gözlenmesi; PF bilgisinin modele katkısının deneyle belirlenmesi.
+- **LOG:** PZEM akım, PF, gerilim ve aktif güç alanlarının aynı kayıt bağlamında tutulması; SCT özellikleri ve tahmin hatasıyla ilişkilendirilmesi planlandı.
+- **SONUÇ:** PF modele baştan zorunlu girdi yapılmaz. Önce PF'siz model ve PF'ye göre hata gözlemi; ardından gerekirse PF'li model karşılaştırması yapılır. Henüz fiziksel ölçüm veya model deneyi yapılmamıştır.
