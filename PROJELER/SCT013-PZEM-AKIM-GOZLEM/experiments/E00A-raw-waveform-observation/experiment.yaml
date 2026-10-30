@@ -102,8 +102,8 @@ uygulama:
       update_interval: "1s"
     - gpio: 35
       adc_kanali: "ADC1_CH7"
-      cikti: "kalibrasyonlu voltaj tahmini (V)"
-      raw: false
+      cikti: "yazilimsal ofset uygulanmamis ADC voltaj tahmini (V)"
+      raw: false # Voltaj tahmini; yazılımsal ofset veya filtre uygulanmaz.
       attenuation: "12db"
       update_interval: "1s"
   kaynak: "KULLANICI RAPORU — kod derlendi ve çalıştı; log henüz paylaşılmadı."
