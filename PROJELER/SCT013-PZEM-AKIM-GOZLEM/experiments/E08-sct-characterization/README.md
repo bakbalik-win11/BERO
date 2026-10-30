@@ -18,3 +18,17 @@ E08, SCT-013 ve ESP32 dahili ADC ölçüm zincirinin davranışını kendi veris
 - Kararlılık eşiği, gereken pencere sayısı ve kesin kayıt süresi sonuçlar görülmeden belirlenmez.
 
 Durum: AŞAMA 2 AÇILDI — HAZIRLIK. 100 W fiziksel ölçüm henüz yapılmadı; mevcut E00B firmware'i yüksek hızlı E08 edinimini karşılamaz.
+
+
+## Grafik standardı — kullanıcı tarafından onaylandı (2026-10-30)
+
+E08 grafiklerinde kullanıcının paylaştığı örnek görünüm esas alınır:
+- X ekseni: gerçek zaman damgası.
+- Y ekseni: ilk görünümde ADC RAW count; voltaj grafiği ayrı eksende/ayrı panelde sunulur.
+- Mavi çizgi: bias referansı (GPIO34 RAW).
+- Kırmızı çizgi: SCT sinyali (GPIO32 RAW).
+- Yeşil kesikli dikey çizgi: açıkça kaydedilmiş ampul/SSR açılma olayı. Olay kaydı yoksa çizgi tahminî olarak işaretlenir ve grafikte açıkça “tahminî” denir.
+- Aynı zaman ekseninde yüksüz başlangıç bölümü ve yük altındaki salınım birlikte gösterilir.
+- Grafik çizgileri ham örneklerden üretilir; araya veri uydurulmaz. Örnekleme hızı, kanal başına gerçekleşen hız ve örnek sayısı başlık/alt yazıda belirtilir.
+
+Önceki 1 saniyelik ESPHome grafiği yavaş örneklemeli aliasing/stroboskopik görünümü gösterir; gerçek 50 Hz dalga şeklini temsil etmez. Daha hızlı örnekleme grafiği ayrı bir ham veri edinim aşamasında üretilecektir. Görsel biçim onaylıdır; bu, önceki örnekleme hızının yeterli olduğu anlamına gelmez.
