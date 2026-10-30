@@ -78,3 +78,17 @@ Mevcut katsayıyı koruyarak, düşük akımın sıfırlanması ve ara sıra gö
 - Üç tur için 0.04 A × 3 = 0.12 A-tur hesabı yalnız amper-tur eşdeğeridir; gerçek hat akımı veya tam üç kat çıktı değildir.
 - Raw AC aralığı önceki yüksüz (0.004–0.011 V) ve LED (0.003–0.013 V) aralıklarıyla örtüşür. Bu kayıt üç turun düşük akımı tabandan güvenilir biçimde ayırdığını göstermemiştir; 12 pencere tek başına istatistiksel ayrışmazlığı kanıtlamaz.
 - Ana ölçüm standardı tek sarım olarak korunur. Üç sarım yalnız teşhis denemesidir; katsayı/threshold değişikliği veya kalibrasyon sonucu değildir. E08'in 1/2/4 tur matrisi ayrı plan olarak kalır.
+
+## 2026-10-30 — E00F-N01 eşik filtresiz gece gözlemi
+
+**HEDEF:** 0.35 A altındaki çıktıları sıfırlamadan, mevcut SCT013-030 / ESP32D2 / ct_clamp zincirinin düşük akım ve yüksüz taban davranışını gece boyunca gözlemek.
+
+**KOD DEĞİŞİKLİĞİ:** `firmware/esp32d2.yaml` içindeki yalnızca `x < 0.35f => 0.0f` lambda filtresi kaldırıldı. `multiply: 24.22`, GPIO33, ADC1, 12 dB, `raw: false`, 200 ms pencere, 2 s yayın aralığı ve `esphome.name: esp32d2` korundu.
+
+**BEKLENTİ:** ct_clamp tarafından hesaplanan 0.35 A altı değerler de sensör durumuna yayınlanacak. Yüksüz durumda gürültü kaynaklı küçük veya sıçrayan değerler görülebilir; bunlar gerçek akım olarak peşinen kabul edilmeyecek.
+
+**KAYIT SINIRI:** Home Assistant geçmişi `BERO E00F SCT013 Akim` entity'sinin yayınlanan durum değişimlerini izler. Bu geçmiş 200 ms içindeki ADC ham örneklerini veya her Raw AC debug satırını içermez. Raw AC Value / N / SPS satırlarının tamamı isteniyorsa ESPHome log akışının ayrıca bir bilgisayara sürekli kaydedilmesi gerekir. Recorder saklama süresi Home Assistant yapılandırmasına bağlıdır.
+
+**DERLEME / CİHAZ:** Bu depo değişikliği tek başına YAML'ın derlendiği veya cihaza yüklendiği anlamına gelmez. Kullanıcı yeni sürümü derleyip ESP32D2'ye yükledikten sonra gece kaydı başlayabilir.
+
+Deney planı: [E00F-N01 experiment.yaml](../experiments/E00F-unthresholded-overnight-log/experiment.yaml).
