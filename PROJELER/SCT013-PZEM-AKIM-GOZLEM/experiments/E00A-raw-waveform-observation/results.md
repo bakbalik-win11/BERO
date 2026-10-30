@@ -126,3 +126,26 @@ GPIO35'i GND'ye bağlı tutarak güncel firmware logunu gözle; düzeltilmiş vo
 **Adım 2'nin yazılım sıfır gösterimi hedefi sağlandı (KULLANICI LOGU):** GPIO35 düzeltilmiş sensörü yaklaşık 48 saniye boyunca kesintisiz görünen 49 kaydın tamamında 0.000 V yayınladı. Bu, mevcut filtre ve mevcut GND test koşulunda hedeflenen sıfır çıktısını gösterir. GPIO34 verisi bağlı olmadığı için dışarıda bırakıldı.
 
 **Açık devam:** Kod değiştirilmeden aynı log oturumunda bias trafosuna enerji verilecek. Sonraki log bölümünde GPIO35'in düzeltilmiş voltajı ve mümkünse eşzamanlı multimetre Vmid değeri kaydedilecek. Bu kayıt Adım 2'nin sıfır kontrolünden sonraki bias/Vmid kontrolüdür; henüz sonucu yoktur.
+
+
+## 2026-10-30 — E00A Adım 2 bias açık logu ve sıfırlama kararının geri alınması
+
+### HEDEF
+GND koşulunda 0.142 V ofsetle 0.000 V çıktısı elde etme denemesinin, bias Vmid uygulandığında gerçek DC seviyeyi bozup bozmadığını değerlendirmek.
+
+### LOG
+- Kaynak: Kullanıcının paylaştığı `Yapıştırılan metin(20261030-121627).txt`; ESPHome 2026.9.1; ESP32 rev3.1.
+- Cihaz logunda firmware derleme zamanı 2026-10-30 15:09:22 +0300; GPIO34 ve GPIO35 ADC init/config/calibration OK; güncelleme aralığı 1 s.
+- Bias öncesi GPIO35, 15:13:08.379–15:14:47.400 arasında 0.000 V yayınladı. Bu, 0.142 V yazılım filtresinin çıktısıdır; ham ADC'nin sıfır olduğunu göstermez.
+- Bias geçişi: 15:14:48.371'de GPIO35 1.158 V; 15:14:49.372'de 1.511 V.
+- Kararlı bölüm: 15:14:50.392–15:16:14.378 arasında GPIO35 yaklaşık 1.509–1.544 V. Bu bölümde 85 örneğin ortalaması yaklaşık 1.525 V, standart sapması yaklaşık 0.0069 V olarak hesaplandı.
+- GPIO34 sayımları bias geçişinden sonra yaklaşık 1840–1875 count görünür; kullanıcı GPIO34'ün bağlı olmadığını belirttiği için bu kanal yorum dışıdır.
+- Kullanıcı multimetrede Vmid'i yaklaşık 1.65 V, daha net olarak 1.654 V bildirdi (KULLANICI BİLDİRİMİ).
+- Hesap: filtre tarafından çıkarılan 0.142 V geri eklendiğinde tahmini filtresiz ortalama yaklaşık 1.667 V olur. Multimetre bildirimiyle fark yaklaşık +0.013 V'tur. Bu değer filtreli logdan türetilmiş hesaptır; doğrudan kaydedilmiş ham voltaj değildir.
+
+### SONUÇ
+- 0.142 V sabit ofset GND koşulunda ekranda 0.000 V elde etti; ancak bias Vmid koşulunda gerçek DC seviyeyi de 0.142 V azalttı.
+- Sıfır gösterme hedefi, gerçek voltajı olduğu gibi okuma hedefiyle çelişti. Kullanıcının kararıyla yazılımsal sıfırlama kaldırılıyor.
+- Bu deney noktasında filtresiz ADC voltaj tahmini yaklaşık 1.667 V hesaplanır ve kullanıcı multimetre bildirimi olan 1.654 V'a yaklaşık 13 mV farkla yakındır. Bu tek nokta tüm ADC aralığında doğruluk/lineerlik kanıtı değildir.
+- GND'de görülen 0.142 V artık gizlenmeyecek; ölçüm olarak korunacak.
+- Sonraki adım: ofsetsiz firmware'i derlemek/cihaza yüklemek ve aynı Vmid noktasında yeni log ile multimetre karşılaştırmasını tekrarlamak.
