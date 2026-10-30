@@ -1,4 +1,12 @@
-# Yol haritası
+# Yol haritas
+
+## Paralel düşük akım sensör karşılaştırma hattı — E09 (2026-10-30)
+
+- [ ] ESP-1'i yalnız SCT013 hızlı örnekleme düğümü olarak koru; PZEM ve yardımcı sensörleri bu düğüme ekleme.
+- [ ] ESP-2'de PZEM, ACS712-5A ve ZMCT103C-5A'yı E09 sırasıyla tekil → ikili → üçlü aşamalarda doğrula.
+- [ ] Her aşama için bağlantı, gerçek kart/pin eşleşmesi, derleme/çalışma logu ve sonuç yorumunu kaydetmeden sonraki aşamaya geçme.
+- Bu hat mimari/test planı olarak kabul edildi; Faz 1 SCT aktif işlerinin tamamlandığı veya fiziksel testlerin yapıldığı anlamına gelmez. Ayrıntı: [ADR-008](docs/decisions/ADR-008-two-node-staged-sensor-tests.md), [E09](experiments/E09-low-current-sensor-comparison/README.md).
+
 
 Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutular yalnız depoda kanıt olduğunda işaretlenir.
 
