@@ -91,3 +91,15 @@ Bu sorular için deney sırası ve kabul ölçütleri [toplu teknik değerlendir
 
 Karar özeti: Önce tek doğrusal model; parçalı model ancak veri gerekçelendirirse. Sinyal ayrışma kapısı regresyondan ayrı. E00F ve E08 özellikleri gelişigüzel birleştirilmeyecek. Ayrıntı: [E00F teknik değerlendirme, bölüm 11](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
 
+
+
+## 2026-10-30 — Google değerlendirmesi sonrası teknik açık sorular
+
+1. raw:false kalibre tam sayı mV dönüşümünün, BERO'nun gerçek bias/ADC kod hizasında 1.69 mV RMS civarındaki sinyal için ürettiği RMS sapması nedir? Hata yüzdesi mevcut logdan varsayılmayacak.
+2. raw:true count örnekleri ct_clamp'in gerçek sample() yoluna nasıl taşınabilir; ADC sensörünün publish filters zinciri bu çağrıya uygulanmadığı için doğru mimari ve çip-özel ölçek nasıl doğrulanacak?
+3. E00F logundaki N/SPS ile gerçek ADC dönüşüm hızı arasındaki fark nasıl ölçülecek? CPU jitter ve örnekleme aralıkları zaman bilgili edinim olmadan varsayılmayacak.
+4. Aynı edinim yolu ve benzer çevre koşullarında yüksüz taban ile düşük akım yük dağılımları ne ölçüde ayrışıyor; taban ne kadar durağan?
+5. Sinyal ve gürültü RMS karelerinin toplanması varsayımı BERO'nun edinim/kuantizasyon/dedup davranışında ne kadar geçerli?
+
+**Google önerileri hakkında karar:** 0.85 çarpanı ve Z>3 = %99.7 gerçek yük kuralları kabul edilmedi. raw:false 1 mV basamağı düşük akım için risk olarak tutuldu; gerçek hata henüz ölçülmedi. E00A/E00B sırası korunur; T006 residual analizi veri oluştuğunda yapılır. Ayrıntı: [E00F teknik değerlendirme, bölüm 12](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
+
