@@ -1,5 +1,8 @@
 # Proje durumu
 
+**E00F yan inceleme notu (2026-10-30):** Claude/Copilot son değerlendirmesi ve üç sarımlı düşük akım cihaz logu teknik inceleme raporuna işlendi. Üç tur denemesinde yük açıkken pens yaklaşık 0.04 A; 12 Raw AC penceresi 0.004–0.014 V ve yayınlar 0.000 A. Değerler önceki yüksüz/LED aralıklarıyla örtüşüyor; bu kısa kayıt ayrışma başarısı göstermiyor. Ana fiziksel düzen için tek sarım korunuyor. Python'da PZEM referanslı bölgesel kalibrasyon önerisi kaydedildi; henüz model/eğitim/kalibrasyon uygulanmadı. E00F bu notu E00B aktif görev sırasının yerine geçirmez.
+
+
 **Uzun vadeli yön:** Tek bir akım ölçerle sınırlı olmayan, göreve göre sensör ve donanımı değişebilen ESP tabanlı sistemler; model/katsayı öğrenimi ve ileride başka görevler için örüntü algılama. Bu vizyon [proje felsefesinde](docs/project-philosophy.md) açıklanır; E00A'nın SCT'siz bias-only alt koşulu kapatıldı; E00A'nın diğer işleri açık, yeni aktif hazırlık E00B SCT bağlı/akımsız ADC gözlemidir.
 
 **Genel görünüm:** [İlerleme ağacı — PROGRESS_TREE.md](PROGRESS_TREE.md). Deneylerin nedenini, kod/kanıt durumunu ve sonraki karar kapısını izlemek için [Deney ve karar izleme defteri](EXPERIMENT_LEDGER.md) kullanılır. Projenin kişisel veri kümesi, model öğrenimi ve kabul edilebilir sınırlarına ilişkin yaklaşım [proje felsefesinde](docs/project-philosophy.md) kayıtlıdır. Depoyu baştan sona okumadan genel resmi görmek için önce ilerleme ağacına, ardından bu dosyadaki güncel duruma bak.
