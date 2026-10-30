@@ -29,6 +29,7 @@
 
 
 | I004 | Tek sayfalık ilerleme ağacı oluşturmak: fazlar, görevler, deneyler, durumlar ve sıradaki adımı tek görünümde bağlamak | — | GÖREVE ALINDI | Uygulandı: PROGRESS_TREE.md oluşturuldu ve STATUS.md ile ilişkilendirildi; ağaç güncel tutulacak. | PROGRESS_TREE.md |
+| I005 | Hat bazında SCT birincil iletken tur sayısını belirlemek ve tur sayısını hat/sensör kalibrasyon kimliğiyle ilişkilendirmek | — | FİKİR | Kullanıcı ileride hatta özel tur kullanmanın muhtemel olduğunu belirtti. E08'de 1/2/4 tur matrisi zaten var; 5 tur yalnız dış AI önerisi ve henüz doğrulanmadı. E08 sonuçları ve gerçek hat yük profili görüldükten sonra yeniden değerlendirilir. | [Tur sayısı tasarım notu](docs/technical-reviews/2026-10-30-ct-primary-turn-count-design-note.md) |
 
 ## Öncelik / karar geçmişi
 
