@@ -1,6 +1,6 @@
 # E00A sonuç kaydı
 
-**Durum:** AÇILDI / İLK REFERANS VERİSİ KAYDEDİLDİ — multimetre ölçümü kullanıcı tarafından bildirildi; ESP32 ADC kaydı henüz yapılmadı.
+**Durum:** FIRMWARE KODU DEPOYA EKLENDİ — kullanıcı kodun derlendiğini ve çalıştığını bildirdi; ADC değerleri ve cihaz logu bekleniyor.
 
 | Koşul | Multimetre DC (V) | Hedef hız (S/s) | Kayıt süresi (s) | Örnek sayısı | Yaklaşık gerçek hız (S/s) | Ortalama ADC | Min | Max | Tepe-tepe | Std. sapma | Ham dosya |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
@@ -38,3 +38,22 @@ Bias trafosunun L78L33 3,3 V çıkışını ve bias Vmid noktasını ayrı ayrı
 - Sonraki adım:
 
 Ölçüm yapılmadan sonuç veya kabul kararı yazılmaz. Ham CSV dosyaları varsayılan olarak Git'e eklenmez.
+
+
+## 2026-10-30 — ESP32D2 ADC firmware ilk çalıştırma bildirimi
+
+### HEDEF
+GPIO34 ve GPIO35 üzerinden iki ayrı ESP32 ADC kanalını kullanarak aynı deney girişini iki farklı çıktı türüyle gözlemek: GPIO34 ham ADC sayısı, GPIO35 kalibrasyonlu voltaj tahmini.
+
+### LOG
+- Kullanıcı, ESPHome yapılandırmasının **derlendiğini ve çalıştığını** bildirdi (KULLANICI RAPORU).
+- Tam yapılandırma depoya eklendi: [firmware/esp32d2-e00a-adc.yaml](firmware/esp32d2-e00a-adc.yaml).
+- Cihaz adı: esp32d2; framework: ESP-IDF; GPIO34: ADC raw; GPIO35: ADC voltaj; attenuation: 12 dB; sensör güncelleme aralığı: 1 s.
+- Bu kayıt anında derleme çıktısı/cihaz logu henüz paylaşılmadı; ADC sayısal değerleri, fiziksel pin bağlantıları, gözlem süresi ve ham CSV mevcut değil.
+- 1 saniyelik sensör güncellemesi, 30 saniyelik ham ADC kaydı veya 2 kS/s edinim olarak yorumlanmaz.
+
+### SONUÇ
+- **Kod durumu:** Kullanıcı bildirimiyle derlendi ve çalıştı.
+- **Ölçüm durumu:** Henüz yorumlanmadı. GPIO34 ham sayısı ile GPIO35 voltaj tahmininin gerçek değerleri ve kararlılığı log geldikten sonra değerlendirilecek.
+- Bu bildirim tek başına ADC doğruluğunu, Vmid bağlantısını veya 30 saniyelik deney kabul ölçütlerini kanıtlamaz.
+- **Sonraki adım:** Kullanıcı ESPHome/cihaz logunu ve Home Assistant'ta görülen iki sensörün değerlerini paylaşacak; değerlendirme sonrasında bu dosyaya eklenecek.
