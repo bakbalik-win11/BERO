@@ -121,3 +121,13 @@ SCT bağlı değilken Vmid bias koşuluna ait uzun ESP32D2 logu analiz edildi; b
 ## 2026-10-30 — E00B yeni deney adımı
 
 E00A SCT'siz bias-only alt koşulu kapandıktan sonra SCT bağlı fakat primer akımı olmayan koşul E00B olarak açıldı. Bias GPIO34/35 korunur; SCT RAW GPIO32 (ADC1_CH4), SCT voltaj GPIO33 (ADC1_CH5) önerildi. ESP32-WROOM-32D geliştirme kartının gerçek pinout'u doğrulanmadan bağlantı yapılmaz. E00B firmware'i depoya eklendi ve kullanıcı tarafından derlendiği bildirildi (KULLANICI RAPORU); fiziksel bağlantı/ölçüm henüz yok. GPIO32/33 gerçek pinout doğrulaması bekliyor. Ayrıntı [E00B](experiments/E00B-sct-connected-no-current/README.md).
+
+
+## 2026-10-30 — E08 Aşama 2 / 100 W akkor testi açıldı
+
+- [ ] E08 Aşama 2 — 100 W akkor matrisi. Durum: HAZIRLIK.
+  - İlk koşul: 1 iletken turu × 1.000 örnek/s hedefi.
+  - Tam matris: 1/2/4 tur × 1.000/2.000/2.500 örnek/s.
+  - Mevcut E00B 1 saniyelik yayın firmware'i yeterli değildir; E08 yüksek hızlı ADC edinim firmware'i hazırlanacak.
+  - Ölçüm, gerçek örnekleme hızı, veri kaydı ve sonuç henüz yok.
+  - [Aşama protokolü](experiments/E08-sct-characterization/stage-02-100w-matrix.md).
