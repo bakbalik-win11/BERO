@@ -76,3 +76,22 @@ PLANLANDI. Firmware geliştirme/derleme ve fiziksel ölçüm yapılmadı.
 ### Adım 2 kontrol sonucu — 2026-10-30
 
 GPIO35 düzeltilmiş voltajı, kullanıcı logunda 15:13:08.379–15:13:56.381 arasında 49 örneğin tamamında 0.000 V görüldü (yaklaşık 48 saniye). Kullanıcı bu sonucu Adım 2 hedefinin sağlanması olarak kabul etti. GPIO34'ün 0 count kayıtları fiziksel bağlantı olmadığı için yorum dışıdır. Sonraki kontrol: firmware/kod değiştirilmeden aynı log oturumunda bias trafosuna enerji verilecek; GPIO35'in Vmid altındaki tepkisi izlenecek.
+
+
+## 2026-10-30 — Adım 2 karar düzeltmesi: yazılımsal sıfırlama kaldırıldı
+
+### HEDEF
+GND'de 0.000 V göstermenin, Vmid'deki gerçek DC okumayı bozup bozmadığını değerlendirmek.
+
+### LOG
+- İlk GND gözleminde GPIO35 kararlı bölümde 0.142 V göstermişti.
+- Bu değeri yazılımdan çıkarmak GND testinde 0.000 V çıktı verdi; ancak bias açık logunda aynı filtreli kanal kararlı bölümde ortalama yaklaşık 1.525 V gösterdi.
+- Kullanıcı Vmid multimetre değerini yaklaşık 1.654 V olarak bildirdi.
+- Filtrenin çıkardığı 0.142 V geri eklendiğinde tahmini filtresiz değer yaklaşık 1.667 V olur; multimetre bildirimiyle fark yaklaşık +0.013 V.
+- Kanıt türleri: cihaz logu kullanıcı tarafından sağlandı; multimetre değeri kullanıcı bildirimi; 1.667 V değeri hesap.
+
+### SONUÇ / KARAR
+Sabit 0.142 V ofset gerçek DC seviyeyi aşağı kaydırdığı için kaldırılacaktır. GND'de görülen 0.142 V, yazılımla sıfırlanmak yerine gerçek gözlem olarak kaydedilecektir. Firmware GPIO35 voltajını filtresiz yayınlayacaktır. Bu karar ADC'nin tüm aralıkta doğru/lineer olduğunu kanıtlamaz.
+
+### Sonraki adım
+Ofsetsiz firmware'i kullanıcı derleyip cihaza yükledikten sonra aynı Vmid noktasında multimetre ile eşzamanlı log alınır. Yeni revizyonun derlendiği henüz doğrulanmış değildir.
