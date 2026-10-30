@@ -68,6 +68,10 @@ log:
   firmware_surumu_veya_commit: null
   kosul_kayitlari: []
   multimetre_olcumleri:
+    - nokta: "Breadboard bias orta noktası / Vmid"
+      deger_V: 1.65
+      kaynak: "KULLANICI BİLDİRİMİ — breadboard üzerinden multimetreyle okundu; bağımsız tekrar yok."
+      tarih: "2026-10-30"
     - nokta: "L78L33 DC çıkışı"
       deger_V: 3.31
       kaynak: "KULLANICI BİLDİRİMİ — multimetre ile ölçüldüğü bildirildi; bağımsız tekrar yok."
@@ -77,10 +81,10 @@ log:
     - "Firmware geliştirme/derleme yapılmadı."
     - "ESP32 ADC bağlantısı ve 30 saniyelik ham kayıt yapılmadı."
     - "Geçici harici 10k/10k ölçüm bölücüsü fiziksel olarak kurulmadı."
-    - "Vmid multimetre ölçümü henüz bildirilmedi."
+    - "Vmid multimetre ölçümü kullanıcı tarafından 1.65 V olarak bildirildi; ESP32 ADC ölçümü henüz yapılmadı."
 
 sonuc:
   durum: "Henüz ölçülmedi"
-  yorum: "İlk referans verisi L78L33 çıkışında 3.31 V DC olarak kullanıcı tarafından bildirildi. ADC davranışı henüz ölçülmedi."
+  yorum: "İlk referans verileri: L78L33 çıkışı 3.31 V DC ve breadboard bias orta noktası/Vmid 1.65 V DC olarak kullanıcı tarafından multimetre okumaları şeklinde bildirildi. ADC davranışı henüz ölçülmedi."
   belirsizlikler: []
   sonraki_adim: "Gerçek ESP32-WROOM-32D kart/pinout ve ADC giriş sınırını doğrula; sonra 30 saniyelik ADC gözlemi için bağlantı/firmware hazırla."
