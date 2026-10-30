@@ -219,3 +219,13 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **LOG:** Kullanıcı 2026-10-30 tarihinde kodun derlendiğini bildirdi. Firmware commit: `20fbe9b4a99d057ef579d882bfd83d23f4ef199e`. ESPHome yayın aralığı 1 s; yüksek hızlı ham örnekleme değildir.
 - **SONUÇ:** Derleme başarılı kullanıcı raporudur. Cihaza yükleme, gerçek pinout/fiziksel bağlantı ve deney ölçümü henüz doğrulanmadı. E00B TAMAMLANDI değildir.
 - **Sonraki adım:** Gerçek kart pinout'unu doğrula; ardından güvenli fiziksel bağlantı ve cihaz logu.
+
+
+## 2026-10-30 — E00B ilk cihaz logu kaydedildi
+- **Durum:** CİHAZ LOGU ALINDI; fiziksel koşulların tam doğrulaması bekliyor.
+- **HEDEF:** Dört ADC kanalının cihaz üzerinde çalıştığını ve SCT bağlı/akımsız koşulun ilk gözlemlerini kaydetmek.
+- **LOG:** ESPHome 2026.9.1 / ESP32 rev3.1; GPIO34/35/32/33 ADC1 başlatma ve kalibrasyon OK. Kararlı bölüm 16:20:41 sonrası, 110 örnek/kanal. Bias RAW ortalaması 1854.14 count; SCT RAW 1853.45 count. Bias voltaj 1.6651 V; SCT voltaj 1.6639 V. İlk açılış geçişindeki 0 count ve 0.142 V değerleri analiz dışı bırakıldı.
+- **YORUM:** Bias ve SCT kanalları bu log kesitinde birbirine yakın. Nominal RAW voltaj tahmini ile kalibre ADC voltajı arasındaki yaklaşık 0.25 V fark fiziksel devre düşümü olarak yorumlanamaz.
+- **SONUÇ:** Cihaz bağlantısı ve dört ADC kanalının başlatılması doğrulandı. Primer akımın sıfır olduğu ve fiziksel SCT bağlantısı yalnız logdan bağımsız doğrulanamıyor.
+- **Sonraki adım:** Fiziksel kurulum/akımsız koşulu not et ve daha uzun kararlı kayıt al.
+- **Kayıt:** [E00B results](experiments/E00B-sct-connected-no-current/results.md), [ham log](experiments/E00B-sct-connected-no-current/logs/2026-10-30-e00b-esp32d2-startup-and-observation.log).
