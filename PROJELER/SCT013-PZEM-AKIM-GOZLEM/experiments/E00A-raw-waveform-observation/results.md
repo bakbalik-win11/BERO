@@ -57,3 +57,26 @@ GPIO34 ve GPIO35 üzerinden iki ayrı ESP32 ADC kanalını kullanarak aynı dene
 - **Ölçüm durumu:** Henüz yorumlanmadı. GPIO34 ham sayısı ile GPIO35 voltaj tahmininin gerçek değerleri ve kararlılığı log geldikten sonra değerlendirilecek.
 - Bu bildirim tek başına ADC doğruluğunu, Vmid bağlantısını veya 30 saniyelik deney kabul ölçütlerini kanıtlamaz.
 - **Sonraki adım:** Kullanıcı ESPHome/cihaz logunu ve Home Assistant'ta görülen iki sensörün değerlerini paylaşacak; değerlendirme sonrasında bu dosyaya eklenecek.
+
+
+## 2026-10-30 — E00A-S01 GND referans testi
+
+### HEDEF
+SCT bağlı değilken GPIO34 ve GPIO35 girişlerini GND'ye referanslayıp uzun logda kararlılığı görmek; floating giriş davranışını ayırmak.
+
+### LOG
+- Kaynak: Kullanıcının paylaştığı `Yapıştırılan metin(8).txt`; ESPHome 2026.9.1, ESP32 rev3.1.
+- Kullanıcı bildirimi: GPIO34 ve GPIO35 GND'ye bağlandı.
+- GPIO34 raw: 14:49:11–14:52:24 arasında görünen her kayıtta 0 count.
+- GPIO35 calibrated voltage: ilk bölümde 0.181–0.195 V, 14:49:24'te 2.405 V sıçrama, sonra düşüş; yaklaşık 14:49:29–14:52:24 arasında 0.142 V sabit.
+- Kararlı bölüm yaklaşık 175 saniye; sensör bağlı değil.
+- ADC Handle Init, Config, Calibration ve Overall Init her iki kanalda OK.
+- Sensör güncelleme aralığı 1 s; bu yüksek hızlı ham örnekleme değildir.
+- GPIO34 ve GPIO35 ayrı fiziksel ADC kanallarıdır; aynı analog örneğin count/volt karşılığı değildir.
+- Ayrıntılı analiz: [E00A-S01 raporu](reports/E00A-S01-gnd-reference-stability.md).
+
+### SONUÇ
+GND'ye referanslama ile giriş kararlılığı gözlendi. Önceki açık giriş dalgalanması floating giriş teşhisini destekler. GPIO35'in GND'de 0.142 V göstermesi ADC voltaj tabanı/ofseti açısından açık sorudur; neden kesinleşmedi. Bu kayıt ADC'nin tam aralık doğruluğunu, 1.65 V davranışını veya SCT ölçümünü kanıtlamaz.
+
+### Elektriksel karar adayı
+Yazılımsal sıfırlama yerine ADC girişinin sensör yokken de tanımlı DC seviyede kalması hedeflenir. Jack/CT topolojisi doğrulandıktan sonra ADC düğümüne Vmid'e karşı 47–100 kΩ yüksek değerli bias direnci prototip olarak değerlendirilecek. Bu değer aralığı henüz doğrulanmış tasarım/BOM değildir. İlk sonraki test: tek kanalda Vmid bias, multimetreyle DC doğrulama, 60 saniye log.
