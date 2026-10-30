@@ -8,7 +8,7 @@
 - **Depo belge tutarlılığı denetimi:** TAMAMLANDI; 87 Markdown dosyasındaki göreli bağlantı hedefleri kontrol edildi ve bulunan tek kırık bağlantı düzeltildi.
 - **Deney başlangıcı:** BEKLEMEDE — gerçek ESP32 kart/GPIO ve fiziksel bağlantı kontrolü gerekiyor; bu belge denetimi fiziksel test veya firmware doğrulaması değildir.
 - **İlk teknik deney (denetim sonrası):** E00A — ham ADC kaydı ve temel istatistikler.
-- **E00A durumu:** AÇILDI; ilk iki referans verisi var (L78L33 çıkışı 3,31 V; breadboard Vmid 1,65 V, kullanıcı multimetre bildirimleri); ESP32D2 için ESP-IDF firmware'i depoda; kullanıcı derlendiğini ve çalıştığını bildirdi. GPIO34 raw ve GPIO35 voltaj değerlerinin logu bekleniyor; 30 saniyelik ham kayıt henüz yok.
+- **E00A durumu:** SCT bağlı olmayan bias-only Vmid alt adımı son ESP32D2 loguyla KAPATILDI. 603 geçerli eşleşme; GPIO35 standart sapma 6.474 mV, GPIO34 RAW standart sapma 6.97 count. RAW=0 başlangıç kayıtları eşleştirme dışı. E00A bütünü AÇIK: L78L33 3.3 V ayrı bölücü koşulu ve ham CSV/zaman grafiği henüz yok.
 - **E00A ilk hedefi:** SCT bağlamadan bias trafosunun L78L33 çıkışını (ilk multimetre bildirimi 3,31 V; KULLANICI BİLDİRİMİ) ve ardından yaklaşık 1,65 V Vmid noktasını ESP32 ADC ile ayrı ayrı gözle. Her koşul 30 saniye planlandı. 3,3 V için ayrı/geçici 10k/10k ölçüm bölücüsü henüz kurulmadı; ADC bağlantısı öncesi kart/pinout ve ADC sınırları doğrulanacak. GPIO34 fiziksel kart/pinout doğrulanırsa kullanılacak. Firmware dosyası mevcut; kullanıcı derleme/çalışma bildirdi. ADC sayısal sonuçları ve ölçüm kaydı henüz yok. ESP32 dahili ADC ham sayılarını oku, kaydet ve bilgisayarda görselleştir; kaydın/paketin sinyali ne ölçüde temsil ettiğini gözlemle. PZEM, akım formülü/kalibrasyon ve MCP3208 bu ilk adımın kapsamında değil. Donanım bağlantısı öncesi gerçek kart/pinout ve bias düzeni kontrol edilir.
 - **Sonraki adımlar:** E00 bias ADC karşılaştırması → T005 / E01 yüksüz temel okuma ve gürültü tabanı.
 - **Temel kural:** Her adımda NEDEN / HEDEF / KOD / LOG / GÖRSELLEŞTİRME / SONUÇ; deney kodunda açıklamalar ve açıklamalı YAML.
@@ -129,3 +129,8 @@ GPIO35 voltaj sensörüne önceki GND logunda görülen 0.142 V tabanını çık
 
 ### E00A — Adım 2 karar düzeltmesi (2026-10-30)
 0.142 V yazılım ofseti kaldırılıyor. GND'de 0.000 V göstermesi, bias açıkken gerçek DC seviyeyi 0.142 V aşağı kaydırdı. Bias logundaki filtreli ortalama yaklaşık 1.525 V; ofset geri eklendiğinde hesaplanan filtresiz tahmin yaklaşık 1.667 V ve kullanıcı multimetre bildirimi 1.654 V ile fark yaklaşık 13 mV. Sıfırlama gerçeği gizlediği için GND'deki 0.142 V korunacak. Ofsetsiz firmware'in derlenmesi/cihazda çalışması henüz bekleniyor. Ayrıntı: [E00A sonuç kaydı](experiments/E00A-raw-waveform-observation/results.md).
+
+
+## 2026-10-30 — SCT'siz bias-only alt adım kapanışı
+
+Son esp32d2-logs.txt kaydı analiz edildi. SCT bağlı değilken Vmid koşulunda GPIO35 ortalama 1.665138 V, standart sapma 6.474 mV; GPIO34 RAW ortalama 1846.80 count, standart sapma 6.97 count. Bu, ölçüm zincirinin gözlenen taban dalgalanmasıdır; ADC'ye özgü gürültü olarak ayrıştırılmamıştır. Ayrıntı [E00A sonuç kaydında](experiments/E00A-raw-waveform-observation/results.md). E00A'nın diğer koşulları açık.
