@@ -8,8 +8,8 @@
 - **Depo belge tutarlılığı denetimi:** TAMAMLANDI; 87 Markdown dosyasındaki göreli bağlantı hedefleri kontrol edildi ve bulunan tek kırık bağlantı düzeltildi.
 - **Deney başlangıcı:** BEKLEMEDE — gerçek ESP32 kart/GPIO ve fiziksel bağlantı kontrolü gerekiyor; bu belge denetimi fiziksel test veya firmware doğrulaması değildir.
 - **İlk teknik deney (denetim sonrası):** E00A — ham ADC kaydı ve temel istatistikler.
-- **E00A durumu:** AÇILDI; ilk iki referans verisi var (L78L33 çıkışı 3,31 V; breadboard Vmid 1,65 V, kullanıcı multimetre bildirimleri); ESP32 ADC kaydı henüz yok.
-- **E00A ilk hedefi:** SCT bağlamadan bias trafosunun L78L33 çıkışını (ilk multimetre bildirimi 3,31 V; KULLANICI BİLDİRİMİ) ve ardından yaklaşık 1,65 V Vmid noktasını ESP32 ADC ile ayrı ayrı gözle. Her koşul 30 saniye planlandı. 3,3 V için ayrı/geçici 10k/10k ölçüm bölücüsü henüz kurulmadı; ADC bağlantısı öncesi kart/pinout ve ADC sınırları doğrulanacak. GPIO34 fiziksel kart/pinout doğrulanırsa kullanılacak. Firmware ve ölçüm henüz yok. ESP32 dahili ADC ham sayılarını oku, kaydet ve bilgisayarda görselleştir; kaydın/paketin sinyali ne ölçüde temsil ettiğini gözlemle. PZEM, akım formülü/kalibrasyon ve MCP3208 bu ilk adımın kapsamında değil. Donanım bağlantısı öncesi gerçek kart/pinout ve bias düzeni kontrol edilir.
+- **E00A durumu:** AÇILDI; ilk iki referans verisi var (L78L33 çıkışı 3,31 V; breadboard Vmid 1,65 V, kullanıcı multimetre bildirimleri); ESP32D2 için ESP-IDF firmware'i depoda; kullanıcı derlendiğini ve çalıştığını bildirdi. GPIO34 raw ve GPIO35 voltaj değerlerinin logu bekleniyor; 30 saniyelik ham kayıt henüz yok.
+- **E00A ilk hedefi:** SCT bağlamadan bias trafosunun L78L33 çıkışını (ilk multimetre bildirimi 3,31 V; KULLANICI BİLDİRİMİ) ve ardından yaklaşık 1,65 V Vmid noktasını ESP32 ADC ile ayrı ayrı gözle. Her koşul 30 saniye planlandı. 3,3 V için ayrı/geçici 10k/10k ölçüm bölücüsü henüz kurulmadı; ADC bağlantısı öncesi kart/pinout ve ADC sınırları doğrulanacak. GPIO34 fiziksel kart/pinout doğrulanırsa kullanılacak. Firmware dosyası mevcut; kullanıcı derleme/çalışma bildirdi. ADC sayısal sonuçları ve ölçüm kaydı henüz yok. ESP32 dahili ADC ham sayılarını oku, kaydet ve bilgisayarda görselleştir; kaydın/paketin sinyali ne ölçüde temsil ettiğini gözlemle. PZEM, akım formülü/kalibrasyon ve MCP3208 bu ilk adımın kapsamında değil. Donanım bağlantısı öncesi gerçek kart/pinout ve bias düzeni kontrol edilir.
 - **Sonraki adımlar:** E00 bias ADC karşılaştırması → T005 / E01 yüksüz temel okuma ve gürültü tabanı.
 - **Temel kural:** Her adımda NEDEN / HEDEF / KOD / LOG / GÖRSELLEŞTİRME / SONUÇ; deney kodunda açıklamalar ve açıklamalı YAML.
 
@@ -108,3 +108,8 @@ Faz 2–8, yol haritasındaki daha sonraki iş alanlarıdır; bu görünüm onla
 ## 2026-10-30 — E00A ilk veri
 
 L78L33 çıkışı 3,31 V ve breadboard bias orta noktası/Vmid 1,65 V multimetreyle kullanıcı tarafından raporlandı. Her ADC koşulu 30 saniye olarak planlandı. ADC ölçümü henüz alınmadı.
+
+
+## 2026-10-30 — E00A firmware kaydı
+
+E00A için ESP32D2 / ESP-IDF firmware'i [deney klasörüne](experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml) eklendi. GPIO34 ham ADC, GPIO35 voltaj çıktısı üretir. Kullanıcı derlendiğini ve çalıştığını bildirdi; gerçek sensör logu ve ADC ölçüm yorumu bekleniyor. 1 saniyelik HA güncellemesi 30 saniyelik ham kayıt değildir.
