@@ -70,3 +70,9 @@ PLANLANDI. Firmware geliştirme/derleme ve fiziksel ölçüm yapılmadı.
 **Kontrol:** GPIO35 GND'ye bağlıyken yeni firmware logunda düzeltilmiş voltajın 0.000 V olup olmadığı gözlenecek. Bu sonuç henüz alınmadı.
 
 **Sınırlama:** 0.142 V sabiti önceki gözleme dayalı geçici ofsettir. Bu işlem ADC'nin donanımsal/çok noktalı kalibrasyonu değildir; sıfır noktasını yazılımsal olarak kaydırır. Vmid gibi sıfır dışı gerilimlerde doğruluk ayrıca multimetreyle karşılaştırılmalıdır.
+
+
+
+### Adım 2 kontrol sonucu — 2026-10-30
+
+GPIO35 düzeltilmiş voltajı, kullanıcı logunda 15:13:08.379–15:13:56.381 arasında 49 örneğin tamamında 0.000 V görüldü (yaklaşık 48 saniye). Kullanıcı bu sonucu Adım 2 hedefinin sağlanması olarak kabul etti. GPIO34'ün 0 count kayıtları fiziksel bağlantı olmadığı için yorum dışıdır. Sonraki kontrol: firmware/kod değiştirilmeden aynı log oturumunda bias trafosuna enerji verilecek; GPIO35'in Vmid altındaki tepkisi izlenecek.
