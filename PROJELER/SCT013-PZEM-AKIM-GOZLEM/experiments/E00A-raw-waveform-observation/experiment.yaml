@@ -1,56 +1,54 @@
 # E00A — açıklamalı deney yapılandırması
-# HEDEF: Üç bağlantı/yük koşulunda ham ADC istatistiklerini karşılaştırmak.
-# Bu dosya şimdilik plan belgesidir; firmware tarafından otomatik okunmaz.
-# Ölçümden sonra gerçekleşen değerleri LOG/results.md içine yazın.
+# HEDEF: Bias trafosunun 3,3 V çıkışı ile Vmid noktasını ESP32 ADC üzerinden karşılaştırmak.
+# Bu dosya plan belgesidir; firmware tarafından otomatik okunmaz.
 
 experiment:
   id: "E00A"
-  title: "Ham SCT sinyali ve temel istatistikler"
-  status: "planned" # planned | in_progress | measured | reviewed
+  title: "Bias trafosu DC noktalarının ADC gözlemi"
+  status: "planned"
 
 hedef:
-  soru: "SCT bağlantısı ve yük durumu ham ADC istatistiklerini nasıl değiştiriyor?"
+  soru: "Bias trafosunun regüle 3,3 V çıkışı ve yaklaşık 1,65 V Vmid noktası ADC'de nasıl okunuyor ve zaman içinde ne kadar değişiyor?"
   kabul:
-    - "Üç koşulun her biri için ham örnek kaydı bulunması"
-    - "Ham ADC örneklerinin bilgisayarda zaman grafiğinde görselleştirilmesi"
-    - "Gerçek süre, örnek sayısı ve yaklaşık gerçek örnekleme hızının kaydı"
+    - "İki koşulun ham ADC kaydı bulunması"
+    - "Her iki koşul için analogRead ve analogReadMilliVolts sonuçlarının kaydı"
+    - "Multimetre DC değerleriyle karşılaştırma"
+    - "Gerçek süre, örnek sayısı ve yaklaşık gerçekleşen örnekleme hızının kaydı"
     - "Mean, min, max, peak-to-peak ve standart sapmanın karşılaştırılması"
+    - "Bilgisayarda ADC-değer/zaman grafiği"
 
 donanim:
-  kart: "İlk uygulama adayı: klasik ESP32-WROOM-32D; fiziksel kart işareti/pinout ölçüm öncesi doğrulanacak"
-  adc: "ESP32 dahili ADC"
-  gpio: 34 # Aday GPIO34 / ADC1_CH6; yalnız klasik ESP32 pinout’u doğrulanırsa kullanılacak.
-  sensor: "SCT-013-030, 30A/1V"
-  bias: "Mevcut 2 x 10 kOhm bölücü ve 100 nF; ADR-007 uyarınca ilk SCT bağlantılı koşuldan önce 10 uF paralel eklenmesi planlandı; fiziksel uygulama ölçüm öncesinde doğrulanacak"
+  kart: "ESP32-WROOM-32D adayı; gerçek kart ve pinout fiziksel olarak doğrulanacak"
+  adc: "ESP32 dahili ADC1"
+  gpio: 34 # Aday GPIO34 / ADC1_CH6; kart doğrulanmadan bağlanmayacak.
+  sensor: "Yok; SCT bu deneyde bağlı değil."
+  source: "Bias trafosu komple devre: RN130421, KBU6M, 2200uF/35V, L78L33 ve 2x10kOhm Vmid bölücüsü"
+  common_ground: true
 
 ornekleme:
-  hedef_hz: 2000 # Başlangıç hedefidir; doğrulanmış performans sonucu değildir.
-  planlanan_kayit_s: 1 # Her koşul için yaklaşık 1 saniye.
+  hedef_hz: 2000
+  planlanan_kayit_s: 1
   ham_veri_kaydet: true
-  ham_veri_git'e_ekle: false # Ham örnekler varsayılan olarak yerel tutulur.
+  ham_veri_git'e_ekle: false
   csv_sutunlari: "sample_index,adc_raw"
   yerel_dosya_yollari:
-    - "data/raw/E00A/bias_only.csv"
-    - "data/raw/E00A/sct_yuksuz.csv"
-    - "data/raw/E00A/100w_akkor.csv"
+    - "data/raw/E00A/bias_trafo_3v3.csv"
+    - "data/raw/E00A/bias_vmid.csv"
 
 kosullar:
   - id: "A"
-    ad: "bias_only"
-    aciklama: "SCT jack bağlı değil; bias devresi ADC girişinde."
-    yuk: "Yok"
+    ad: "bias_trafo_3v3"
+    aciklama: "L78L33 nominal 3,3V DC çıkışı, harici 10k/10k ölçüm bölücüsü üzerinden ADC'ye uygulanır."
+    adc_pin_voltaji: "Yaklaşık 1,65V"
+    kaynak_gerilim_hesabi: "ADC pin mV x 2; direnç oranı doğrulanmalı"
   - id: "B"
-    ad: "sct_yuksuz"
-    aciklama: "SCT bağlı; ölçülen iletkenden akım geçmediği doğrulanır."
-    yuk: "Akım yok"
-  - id: "C"
-    ad: "100w_akkor"
-    aciklama: "SCT bağlı; 100 W akkor ampul açık."
-    yuk: "100 W akkor ampul"
+    ad: "bias_vmid"
+    aciklama: "Bias devresinin 2x10k bölücü orta noktası ADC'ye doğrudan uygulanır."
+    adc_pin_voltaji: "Nominal yaklaşık 1,65V"
 
 ciktilar:
   ham_ornekler: true
-  adc_zaman_grafigi: true # Bilgisayarda üretilecek temel görselleştirme; canlı grafik zorunlu değildir.
+  adc_zaman_grafigi: true
   istatistikler:
     - "mean"
     - "min"
@@ -58,23 +56,25 @@ ciktilar:
     - "peak_to_peak"
     - "standard_deviation"
   metadata:
+    - "multimetre_dc_voltaji"
     - "hedef_ornekleme_hizi_hz"
     - "gercek_kayit_suresi_s"
     - "ornek_sayisi"
     - "yaklasik_gercek_ornekleme_hizi_hz"
 
 log:
-  gercek_kart_modeli: null # Fiziksel kart görülüp doğrulanınca doldur.
-  gercek_gpio: null # Gerçek bağlantı doğrulanınca doldur; aday GPIO34 tek başına kanıt değildir.
+  gercek_kart_modeli: null
+  gercek_gpio: null
   firmware_surumu_veya_commit: null
   kosul_kayitlari: []
+  multimetre_olcumleri: []
   sapmalar_ve_gozlemler: []
   yapilmayan_islemler:
     - "Firmware geliştirme/derleme yapılmadı."
-    - "Fiziksel ölçüm yapılmadı."
+    - "Fiziksel bağlantı ve ölçüm yapılmadı."
 
 sonuc:
   durum: "Henüz ölçülmedi"
   yorum: null
   belirsizlikler: []
-  sonraki_adim: "Kart ve ADC GPIO doğrulandıktan sonra ilk koşulun firmware/kayıt hazırlığını yapmak."
+  sonraki_adim: "Gerçek kart/pinout ve bias trafosu bulunduğunda bağlantı kontrolünü yapıp firmware hazırlamak."
