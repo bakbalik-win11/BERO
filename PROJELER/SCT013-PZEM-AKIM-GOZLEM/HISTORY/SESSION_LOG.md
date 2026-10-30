@@ -790,3 +790,10 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **HEDEF:** 100 W akkor yük altında mevcut 1 saniyelik sensör yayınlarıyla SCT/bias ölçüm alanlarının yük davranışını gözlemek.
 - **LOG:** Önceki oturumda yüksek hızlı firmware'e geçiş önerilmişti; kullanıcı bunun şu an gerekli olmadığını belirtti. Deney protokolü bu karara göre düzeltildi.
 - **SONUÇ:** Bu kayıt düşük hızlı gözlem niteliğindedir; yüksek hızlı örnekleme testi değildir. Hızlandırma denemeleri sonraki aşamada yapılacaktır. Fiziksel ampul testi ve log henüz alınmadı.
+
+
+## 2026-10-30 — ESP32D2 cihaz kimliği değişmez kuralı eklendi
+
+- **HEDEF:** ESP32D2 cihaz kimliğinin firmware/YAML düzenlemelerinde yanlışlıkla değiştirilmesini engellemek.
+- **LOG:** Kullanıcının açık talebiyle proje `AGENTS.md` dosyasına kesin ve öncelikli kural eklendi: ESP32D2 kimliği değiştirilemez; ESPHome `esphome.name` alanı mevcut kimlikle aynen korunur; her YAML değişikliğinde önce/sonra kontrolü zorunludur; farklılık varsa değişiklik geri alınır.
+- **SONUÇ:** Kural dokümantasyona işlendi. Firmware dosyası bu işlem kapsamında değiştirilmedi. Kuralın sonraki tüm ESPHome/YAML çalışmalarında uygulanması zorunludur.
