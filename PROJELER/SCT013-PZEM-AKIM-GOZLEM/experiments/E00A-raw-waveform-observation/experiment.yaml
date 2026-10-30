@@ -5,7 +5,7 @@
 experiment:
   id: "E00A"
   title: "Bias trafosu DC noktalarının ADC gözlemi"
-  status: "opened_first_reference_recorded"
+  status: "firmware_compiled_and_running_user_report_pending_measurement_logs"
 
 hedef:
   soru: "Bias trafosunun regüle 3,3 V çıkışı ve yaklaşık 1,65 V Vmid noktası ADC'de nasıl okunuyor ve zaman içinde ne kadar değişiyor?"
@@ -20,13 +20,13 @@ hedef:
 donanim:
   kart: "ESP32-WROOM-32D adayı; gerçek kart ve pinout fiziksel olarak doğrulanacak"
   adc: "ESP32 dahili ADC1"
-  gpio: 34 # Aday GPIO34 / ADC1_CH6; kart doğrulanmadan bağlanmayacak.
+  gpio: [34, 35] # GPIO34=ADC1_CH6 ham; GPIO35=ADC1_CH7 voltaj sensörü. Klasik ESP32 kartta pin eşleşmesi esas alınır.
   sensor: "Yok; SCT bu deneyde bağlı değil."
   source: "Bias trafosu komple devre: RN130421, KBU6M, 2200uF/35V, L78L33 ve 2x10kOhm Vmid bölücüsü"
   common_ground: true
 
 ornekleme:
-  hedef_hz: null # Firmware ve ADC yapılandırması seçilince belirlenecek.
+  hedef_hz: null # İki ESPHome ADC sensörünün update_interval değeri 1 saniye; gerçek örnekleme hızı henüz ölçülmedi.
   planlanan_kayit_s: 30 # Her ADC koşulu için planlanan gözlem süresi.
   ham_veri_kaydet: true
   ham_veri_git'e_ekle: false
@@ -88,3 +88,23 @@ sonuc:
   yorum: "İlk referans verileri: L78L33 çıkışı 3.31 V DC ve breadboard bias orta noktası/Vmid 1.65 V DC olarak kullanıcı tarafından multimetre okumaları şeklinde bildirildi. ADC davranışı henüz ölçülmedi."
   belirsizlikler: []
   sonraki_adim: "Gerçek ESP32-WROOM-32D kart/pinout ve ADC giriş sınırını doğrula; sonra 30 saniyelik ADC gözlemi için bağlantı/firmware hazırla."
+
+uygulama:
+  firmware_dosyasi: "firmware/esp32d2-e00a-adc.yaml" # Depoda saklanan tam ESPHome yapılandırması.
+  cihaz_adi: "esp32d2"
+  framework: "esp-idf"
+  adc_kanallari:
+    - gpio: 34
+      adc_kanali: "ADC1_CH6"
+      cikti: "raw count"
+      raw: true
+      attenuation: "12db"
+      update_interval: "1s"
+    - gpio: 35
+      adc_kanali: "ADC1_CH7"
+      cikti: "kalibrasyonlu voltaj tahmini (V)"
+      raw: false
+      attenuation: "12db"
+      update_interval: "1s"
+  kaynak: "KULLANICI RAPORU — kod derlendi ve çalıştı; log henüz paylaşılmadı."
+  durum: "KULLANICI_BILDIRIMI_DERLENDI_VE_CIHAZDA_CALISTI"
