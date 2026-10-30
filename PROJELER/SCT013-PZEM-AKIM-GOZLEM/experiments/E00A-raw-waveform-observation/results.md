@@ -89,3 +89,23 @@ Kullanıcı düzeltmesi: GPIO34 count kanalı bağlı değildir. GPIO34'ün 0 co
 Yeni logda GPIO35 ADC voltajı 14:57:02'de 1.678 V ile başlıyor; ilk bölümde yaklaşık 1.651–1.744 V arasında değişiyor, ardından belirgin biçimde düşerek 14:57:26'da 0.699 V'a ulaşıyor. Kullanıcı Vmid'in multimetrede sabit yaklaşık 1.65 V DC olduğunu bildiriyor. ADC logu ile multimetre arasında uyuşmazlık vardır. Kök neden belirlenmedi; ADC arızası sonucu çıkarılamaz.
 
 Sonraki ayırıcı test: GPIO34 yorum dışı. Yalnız GPIO35 bağlı olacak. Multimetre siyah probu ESP32 GND, kırmızı probu doğrudan GPIO35 pininde tutulurken aynı anda log alınacak; Vmid düğümü ayrıca ölçülecek. Kablo sürekliliği ve ortak GND doğrulanmadan direnç veya yazılım filtresi eklenmeyecek.
+
+
+
+## 2026-10-30 — E00A Adım 2: GPIO35 voltaj sıfır noktası düzeltmesi
+
+### HEDEF
+GPIO35 ADC voltaj okumasında giriş GND seviyesindeyken yazılım çıktısını 0.000 V'a indirmek. Önceki GND referans logunda görülen kararlı 0.142 V tabanını geçici ofset olarak çıkarmak.
+
+### LOG
+- Firmware: `firmware/esp32d2-e00a-adc.yaml`; commit: `9eae26000a1dc460191bec68581cec0ac9ab9397`.
+- GPIO34 ham ADC sayımı olarak korunmuştur.
+- GPIO35 voltaj tahmini `raw: false` olarak korunmuş; filtrede `max(0, x - 0.142)` uygulanmıştır.
+- Kullanıcı, güncellenen kodun derlendiğini bildirdi (KULLANICI RAPORU).
+- Derleme sonrası cihaz logu ve GND girişinde yeni düzeltilmiş sensör değeri henüz paylaşılmadı.
+
+### SONUÇ
+Kod derleme aşaması kullanıcı bildirimiyle başarılıdır. Amaç, sıfır girişte yazılım çıktısını sıfırlamaktır; fiziksel sıfır okuması henüz doğrulanmamıştır. 0.142 V yalnız önceki gözlemden alınan geçici ofsettir; tam ADC kalibrasyonu veya farklı gerilimlerde doğruluk kanıtı değildir.
+
+### Sonraki adım
+GPIO35'i GND'ye bağlı tutarak güncel firmware logunu gözle; düzeltilmiş voltajın 0.000 V olup olmadığını kaydet. Ardından bilinen Vmid geriliminde (multimetreyle eşzamanlı) ofsetin ölçümü bozup bozmadığını değerlendir.
