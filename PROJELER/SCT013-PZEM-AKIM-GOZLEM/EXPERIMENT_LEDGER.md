@@ -30,7 +30,7 @@ Her deney veya teknik adım için şu sorular cevaplanır:
 | Basamak | Neden yapılıyor? | Karar / gerekçe | Uygulama ve kanıt durumu | Sonraki karar kapısı |
 |---|---|---|---|---|
 | Hazırlık: envanter ve kapsam | Eldeki donanımı ve projenin sınırlarını bilmek; yanlış varsayımla kod yazmamak | İlk aşamada ESP32 dahili ADC; MCP3208 sonraya. Proje enerji/güç kalitesi analizörü değil | Donanım ve kararlar belgelenmiş; bazı bilgiler kullanıcı beyanına dayanır. Bağımsız fiziksel doğrulama olduğu varsayılmaz | Gerçek kart ve ADC pinini fiziksel pinout ile eşleştir |
-| E00A — ham ADC gözlemi | SCT bağlanınca ham ADC dağılımının bias-only ve yüksüz duruma, ardından 100 W akkor yük koşuluna göre değişip değişmediğini görmek | İlk geçişte tek ESP32, 2 kS/s hedefi ve yaklaşık 1 s/koşul; önce temel istatistikler, grafik yalnız gerektiğinde | **PLANLANDI.** Firmware/uygulama kodu, kayıt ve fiziksel ölçüm henüz yapılmadı. Protokol: [E00A](experiments/E00A-raw-waveform-observation/README.md). CSV planı ve yerel yollar protokolde | Kart/GPIO pinout'u ve fiziksel bias düzeni doğrulandıktan sonra ilk ham kayıt |
+| E00A — bias trafosu ADC gözlemi | SCT bağlamadan L78L33 3,3 V çıkışı ile bias Vmid noktasını ESP32 ADC ile okumak; ADC ham/mV sonuçlarını ve zaman içi değişimi karşılaştırmak | İlk koşulda 3,3 V çıkışı harici 10k/10k ölçüm bölücüsü üzerinden, ikinci koşulda Vmid doğrudan ADC'ye; tek ESP32 ve 2 kS/s başlangıç hedefi | **PLANLANDI.** E00A README/protocol/metadata/experiment.yaml/results güncellendi. Firmware/derleme/fiziksel ölçüm yok. [E00A](experiments/E00A-raw-waveform-observation/README.md) | Gerçek kart/pinout doğrula, bias trafosunu bul, multimetre DC ölçümlerini al ve ilk firmware'i hazırla |
 | E00 — bias ADC API karşılaştırması | SCT bağlı değilken ham ADC sayısı ile mV API'sinin ne gösterdiğini anlamak | Temel, anlaşılır bir okuma; SCT'li koşuldan ayrı tut | **PLANLANDI.** Kod ve ölçüm henüz yok. [Protokol](experiments/E00-bias-adc-baseline/protocol.md) | E00A gözlemi ve fiziksel hazırlık sonrası gerçek okumaları kaydet |
 | T005 / E01 — yüksüz temel okuma ve gürültü | Yüksüz sinyalin zaman içindeki davranışını görmek | Uzun kayıt, ilk kısa gözlemlerden sonra; gereksiz analiz eklememek | **PLANLANDI.** Fiziksel ölçüm yok. [T005](tasks/T005-noise-floor.md) | E00/E00A kanıtı temel kayıt planını destekliyor mu? |
 | E08 — SCT karakterizasyonu | Önceki temel adımların ardından yük, kablo turu ve örnekleme hızı değişimlerinin etkisini incelemek | Temel hazırlıklar tamamlanmadan öne alınmayacak; E07 eski/uygulanmamış plan olarak kalır | **PLANLANDI.** Ölçüm yok. [E08](experiments/E08-sct-characterization/README.md) | Yalnız önceki sonuçlar ihtiyaç gösterirse uygulanır |
@@ -56,6 +56,12 @@ Her yeni kod dosyası için:
 - **YORUMLANDI:** sonuç ve sınırlamalar kanıta dayalı olarak yazıldı.
 
 Bu durumlar birbirinin yerine kullanılamaz. Önceki kararlar silinmez; karar değişirse eski gerekçe ve değişiklik nedeni tarihçede korunur.
+
+## E00A kapsam düzeltmesi — bias trafosu DC noktaları (2026-10-30)
+
+Kullanıcı, ilk ölçümün SCT ile değil bias trafosu komple devresiyle yapılacağını netleştirdi. Sıra: (A) L78L33 nominal 3,3 V çıkışını harici 10k/10k ölçüm bölücüsü üzerinden ADC'ye uygula; (B) bias devresinin yaklaşık 1,65 V Vmid noktasını doğrudan ADC'ye uygula. İki koşulda analogRead ham değeri, analogReadMilliVolts, multimetre DC karşılaştırması ve kısa süreli istatistikler/grafik alınacak. SCT bu deneyde bağlı değil. 3,3 V ADC'ye doğrudan bağlanmayacak; ölçüm bölücüsüyle ADC düğümü yaklaşık 1,65 V tutulacak. Gerçek kart/pinout doğrulanmadan GPIO34'e bağlantı yapılmayacak.
+
+**Durum:** Dokümantasyon güncellendi; firmware geliştirme/derleme, fiziksel bağlantı ve ölçüm henüz yapılmadı.
 
 ## Kapsam düzeltmesi — kullanıcının asıl ilk hedefi (2026-10-29)
 
