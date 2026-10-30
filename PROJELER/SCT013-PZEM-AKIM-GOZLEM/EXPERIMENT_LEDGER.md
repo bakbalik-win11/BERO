@@ -98,3 +98,10 @@ Daha ileri örnek fikirler: çamaşır makinesinde ses örüntüsünden su alma 
 **Aktif basamak değişmedi:** E00A ile ESP32 dahili ADC ham örneklerini oku, kaydet ve bilgisayarda görselleştir. MCP/Modbus/P4 entegrasyonu, akım tahmini, PZEM etiketleme ve kendini yeniden eğiten veri hattı gelecekteki işlerdir.
 
 Ayrıntı: [Proje felsefesi](docs/project-philosophy.md).
+
+
+## E09 — PF koşulu ile SCT/PZEM akım karşılaştırması (planlandı)
+
+PZEM'in yayınladığı PF, PZEM'in doğrudan hat gerilimi ölçümü ve CT üzerinden akım ölçümüyle ilişkili birleşik bir sonuç olarak ele alınır. E09'da PZEM gerilim, akım, aktif güç ve PF alanları birlikte kaydedilecek; SCT özellikleri ve SCT-PZEM akım farkı yük/kararlı alan bağlamında incelenecektir. Düşük PF'li yükte daha yüksek SCT akım genliği otomatik hata sayılmaz. PF ile hata arasındaki ilişki gözlem olarak raporlanır; doğrudan sebep-sonuç varsayılmaz. İlk model PF'siz denenir; gerekirse aynı koşullarda PF girdili modelle karşılaştırılır.
+
+**Deney:** [E09 — PF koşulu ile SCT/PZEM akım karşılaştırması](experiments/E09-pf-current-relationship/README.md). E09 uzun vadeli plan olarak eklendi; E00A → E00/T005/E01 → E08 aktif sırası değişmedi. Fiziksel ölçüm yapılmadı.
