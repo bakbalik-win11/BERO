@@ -667,3 +667,12 @@ Ayrıntı: [Proje felsefesi](../docs/project-philosophy.md). Dokümantasyon gün
 - **Elektriksel çözüm adayı:** SCT jack topolojisi doğrulandıktan sonra ADC düğümüne Vmid'e karşı yüksek değerli pasif bias direnci (ilk prototip değerlendirmesi 47–100 kΩ). Kesin değer/bağlantı onaylanmadı; GND pull-down BERO'nun 1.65 V merkezli sinyal yaklaşımı için çözüm değil.
 - **Sonraki adım:** Bir ADC kanalında Vmid bias deneyi, multimetre kontrolü ve 60 saniye log; sonra SCT bağlantısı. E00A açık.
 - **Kanıt:** [E00A-S01 raporu](../experiments/E00A-raw-waveform-observation/reports/E00A-S01-gnd-reference-stability.md); kaynak kullanıcı logu `Yapıştırılan metin(8).txt`.
+
+
+
+## 2026-10-30 — E00A Adım 2: voltaj sıfır noktası düzeltmesi derlendi
+
+- **HEDEF:** GPIO35 voltaj çıktısının GND referansında sıfır göstermesi.
+- **LOG:** Önceki GND logunda kararlı görülen 0.142 V tabanını çıkarmak için GPIO35'e `max(0, x - 0.142)` filtresi eklendi; GPIO34 ham ADC kanalı korundu. Firmware [dosyası](../experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml) commit `9eae26000a1dc460191bec68581cec0ac9ab9397`. Kullanıcı kodun derlendiğini bildirdi.
+- **SONUÇ:** Derleme kullanıcı bildirimiyle başarılı. Yeni firmware ile GPIO35 GND ölçümünün 0.000 V'a indiği henüz logla doğrulanmadı. 0.142 V geçici ofsettir; genel ADC kalibrasyonu değildir.
+- **Sonraki adım:** GND bağlantısında düzeltilmiş GPIO35 değerini logla doğrula; ardından Vmid ve multimetre karşılaştırması yap.
