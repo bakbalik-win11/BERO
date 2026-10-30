@@ -1,5 +1,5 @@
-# E00F-N01 — Eşik filtresi kaldırılmış gece gözlemi
-# Amaç: 0.35 A altındaki ct_clamp çıktılarını sıfırlamadan gözlemek.
+# E00F-N01 — Eşik filtresiz SCT + bias referansı gece gözlemi
+# Amaç: SCT düşük seviye çıktıları ile GPIO34/35 bias referansını birlikte izlemek.
 # Bu YAML deney planı/kayıt şablonudur; ESPHome firmware'i tarafından okunmaz.
 
 experiment:
@@ -7,26 +7,34 @@ experiment:
   date: "2026-10-30"
   status: PREPARED
   purpose: >
-    SCT013-030 ve mevcut ESP32D2/ct_clamp zincirinde, yazılımsal sıfırlama
-    eşiği olmadan düşük akım yayınlarını ve yüksüz taban davranışını gece
-    boyunca gözlemek. Amaç bu aşamada kalibrasyon veya katsayı değiştirmek değil.
+    SCT013-030 ve ESP32D2/ct_clamp zincirinde yazılımsal sıfırlama eşiği
+    olmadan düşük seviye yayınları gözlemek; aynı gece GPIO34 RAW ve
+    GPIO35 ADC voltajı üzerinden bias referansının yavaş değişimini izlemek.
+    Amaç kalibrasyon veya katsayı değiştirmek değildir.
 
 hardware:
   device: esp32d2
   sensor: SCT013-030
   sensor_rating: "30 A / 1 V"
   primary_turns: 1
-  connection: "SCT013-030 -> mevcut yaklaşık 1.65 V bias devresi -> GPIO33"
-  adc_pin: GPIO33
-  adc_unit: ADC1
-  attenuation: 12db
-  adc_raw: false
+  connections:
+    sct: "SCT013-030 -> mevcut bias devresi -> GPIO33"
+    bias_gpio34: "Mevcut bias referans noktası -> GPIO34 (RAW ADC count)"
+    bias_gpio35: "Aynı bias referans noktası -> GPIO35 (ADC voltaj tahmini)"
+    common_ground: "ESP32 GND ile bias devresi GND ortak"
+  adc:
+    sct_pin: GPIO33
+    bias_raw_pin: GPIO34
+    bias_voltage_pin: GPIO35
+    unit: ADC1
+    attenuation: 12db
 
 firmware:
   file: firmware/esp32d2.yaml
-  esphome_version_seen_in_prior_log: "2026.9.1"
+  esphome_version_target: "2026.10.x; gerçek sürüm cihaz logundan kaydedilecek"
   ct_clamp_sample_duration: 200ms
-  publish_interval: 2s
+  sct_publish_interval: 2s
+  bias_publish_interval: 1s
   multiplier: 24.22
   zero_below_current_filter: null
   device_identity_must_remain: esp32d2
@@ -38,26 +46,36 @@ conditions:
     load_state: OFF
 
 recording:
-  home_assistant_entity: "BERO E00F SCT013 Akim"
-  expected_publish_interval: 2s
-  primary_record: "Home Assistant recorder/history üzerinden akım sensörü durum değişimleri"
+  home_assistant_entities:
+    - "BERO E00F SCT013 Akim"
+    - "BERO E00F SCT013 Raw AC"
+    - "BERO E00F Bias GPIO34 RAW"
+    - "BERO E00F Bias GPIO35 ADC Voltage"
+  expected_publish_interval:
+    sct_current: 2s
+    sct_raw_ac: 2s
+    bias_gpio34: 1s
+    bias_gpio35: 1s
+  primary_record: "Home Assistant recorder/history üzerinden dört entity'nin geçmişi"
   esphome_debug:
     enabled_by_existing_logger_level: DEBUG
     note: >
-      Raw AC Value / N / SPS debug satırları Home Assistant entity
-      geçmişi değildir. Bu satırların tamamını saklamak için ESPHome
-      log akışının ayrıca sürekli bir bilgisayara kaydedilmesi gerekir.
+      Raw AC Value / N / SPS debug satırları HA entity geçmişi değildir.
+      Bu satırların tamamı isteniyorsa ESPHome log akışı ayrıca bilgisayara kaydedilmelidir.
   retain_raw_adc: false
   calibration_id: null
 
 expected_observations:
-  - "0.35 A altındaki değerler artık 0.000 A'a zorlanmayacak."
-  - "Yüksüz durumda küçük ve sıçrayan akım yayınları görülebilir."
-  - "Bu gece kaydı tek başına 40 mA ölçüm doğruluğunu kanıtlamaz."
+  - "0.35 A altındaki SCT değerleri sıfıra zorlanmaz."
+  - "GPIO34 RAW count ve GPIO35 ADC voltajı bias referansındaki yavaş değişimi gösterir."
+  - "Bias kanalları 1 saniyede bir örneklenir; birbirleriyle veya SCT penceresiyle eşzamanlı kabul edilmez."
+  - "SCT sıçramaları bias değişimiyle aynı zamanlarda mı oluşuyor sorusu incelenebilir."
+  - "1 saniyelik bias örnekleri yüksek frekanslı gürültü spektrumu veya 50 Hz dalga şekli değildir."
 
 HEDEF:
-  - "Sıfırlama filtresinin etkisini izole etmek."
-  - "Düşük akım değerlerinin ve yüksüz taban dağılımının görünür olmasını sağlamak."
+  - "SCT yüksüz taban davranışını gözlemek."
+  - "Bias referansındaki yavaş kayma/dalgalanmayı aynı gece kaydında izlemek."
+  - "Bias ve SCT yayınlarının birlikte değişip değişmediğini sabah karşılaştırmak."
 
 LOG:
   firmware_compiled: PENDING
@@ -72,6 +90,8 @@ SONUC:
   status: "HENÜZ ÖLÇÜLMEDİ"
   interpretation: null
   limitations:
-    - "Home Assistant history çoğunlukla entity state değişimlerini kaydeder; 200 ms iç pencere ham örneklerini saklamaz."
+    - "Home Assistant history 200 ms içindeki ham SCT ADC örneklerini saklamaz."
+    - "GPIO34 RAW ve GPIO35 voltaj okumaları ayrı ADC okumalarıdır; eşzamanlı değildir."
+    - "1 Hz bias örneklemesi yüksek frekanslı gürültüyü ölçmez."
     - "ESPHome debug Raw AC/N/SPS satırları ayrıca sürekli kaydedilmezse sonradan geri getirilemez."
-    - "Filtre kaldırılmış çıktı, gerçek düşük akım ile yüksüz gürültüyü tek başına ayırmaz."
+    - "Bias ve SCT verilerinin korelasyonu tek başına nedensellik kanıtı değildir."
