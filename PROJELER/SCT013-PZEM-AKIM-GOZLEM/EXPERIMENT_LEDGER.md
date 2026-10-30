@@ -267,3 +267,8 @@ SCT bağlı yüksüz koşulun uzun ESPHome logu [ham loga](experiments/E00B-sct-
 ## 2026-10-30 — E08 Aşama 2 / 100 W akkor testi açıldı
 
 100 W akkor yükte SCT013-030 karakterizasyonu için E08 Aşama 2 hazırlığı açıldı. Tam matris 1/2/4 iletken turu × 1/2/2,5 kS/s hedeflerinden oluşur; ilk koşul 1 tur × 1 kS/s. Ölçüm özetleri aynı örnek penceresinden bias çıkarılmış RMS, mutlak Peak ve Peak-to-Peak olacaktır. Mevcut E00B YAML 1 saniyelik sensör yayını yaptığı için bu testi karşılamaz; ayrı yüksek hızlı edinim firmware'i gereklidir. Fiziksel ölçüm ve firmware henüz yapılmadı. [E08 Aşama 2](experiments/E08-sct-characterization/stage-02-100w-matrix.md).
+
+
+## 2026-10-30 — E08 Aşama 2 test yaklaşımı güncellendi
+
+Kullanıcı kararıyla yeni firmware hazırlanması/firmware değişikliği ertelendi. 100 W akkor yükte ilk gözlem mevcut E00B firmware'iyle yapılacak; 1 saniyelik yayın aralığı korunacak. Bu düşük hızlı kayıt, yük altında sensör değerlerinin davranışını gözlemlemek içindir; yüksek hızlı ham ADC edinimi veya 1/2/2,5 kS/s testi değildir. Hızlandırma testleri sonraki ayrı aşamada yapılacak.
