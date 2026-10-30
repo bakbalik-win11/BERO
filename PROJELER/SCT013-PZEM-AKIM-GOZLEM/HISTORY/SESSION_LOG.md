@@ -646,3 +646,14 @@ Ayrıntı: [Proje felsefesi](../docs/project-philosophy.md). Dokümantasyon gün
 - **Açık kalanlar:** Kararlılık ölçütleri, pencere/özellik seçimi, gerçek zaman kaynağı/alanları, PZEM güncelleme gecikmesi, model biçimi ve gerçek veri akışı uygulama aşamalarında belirlenecek.
 - **Sonraki adım:** E00A ham ADC gözlemi için gerçek ESP32 kartı/GPIO ve fiziksel bağlantı hazırlığına mevcut sırayla devam et; bu uzun vadeli model mimarisini E00A'ya taşımaya çalışma.
 - **Kanıt:** [Mimari diyagram ve zaman grafiği](../docs/architecture/training-and-dynamic-observation.md); [ana mimari notu](../docs/architecture/sct-pzem-labeling-and-calibration.md); [T006](../tasks/T006-calibration.md); [kalibrasyon prosedürü](../calibration/PROCEDURE.md); [STATUS](../STATUS.md); [ROADMAP](../ROADMAP.md).
+
+
+## 2026-10-30 — E00A ESP32D2 firmware depoya kaydedildi
+
+- **Durum:** UYGULANDI — firmware dosyası ve deney kayıtları main dalına işlendi. Derlenme/çalışma bilgisi kullanıcı raporudur; bağımsız log kontrolü henüz yapılmadı.
+- **Hedef ve kabul ölçütü:** ESP32D2 / ESP-IDF üzerinde E00A ADC firmware'ini kod olarak saklamak; GPIO34 ham ADC ve GPIO35 voltaj çıktılarını ayrı kanallarda tanımlamak; kod/protokol/sonuç/durum kayıtlarını eşlemek.
+- **Yapılan:** `experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml` oluşturuldu. `experiment.yaml`, `README.md`, `protocol.md`, `results.md`, proje `STATUS.md`, `ROADMAP.md` ve `EXPERIMENT_LEDGER.md` güncellendi. Kullanıcı, ESPHome kodunun derlendiğini ve çalıştığını bildirdi.
+- **Doğrulama:** GitHub yazma işlemleri başarılı döndü. Firmware derleme logu, cihaz logu, YAML bağımsız parser kontrolü, CI ve fiziksel ADC ölçüm sonuçları bu oturumda alınmadı. Kodun çalışma bilgisi KULLANICI RAPORU olarak etiketlendi.
+- **Açık kalanlar:** GPIO34/GPIO35 fiziksel bağlantı ayrıntısı; sensörlerden gelen sayısal değerler; ESPHome/cihaz logu; 30 saniyelik ham kayıt ve zaman grafiği.
+- **Sonraki adım:** Kullanıcının paylaşacağı logları incelemek, ham ADC/voltaj değerlerini yorumlamak ve sonucu E00A results.md dosyasına eklemek.
+- **Kanıt:** [Firmware](../experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml); [E00A sonuç kaydı](../experiments/E00A-raw-waveform-observation/results.md); [STATUS](../STATUS.md).
