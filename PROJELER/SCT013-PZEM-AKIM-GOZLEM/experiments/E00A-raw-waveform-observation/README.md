@@ -38,3 +38,20 @@ PLANLANDI. Firmware, fiziksel bağlantı, derleme ve ölçüm henüz yapılmadı
 - **Ölçülen değer:** 3,31 V DC.
 - **Kanıt etiketi:** KULLANICI BİLDİRİMİ (kullanıcının multimetre ölçüm raporu); bağımsız tekrar veya fotoğraf kaydı bu oturumda yok.
 - **Sınır:** Bu değer ESP32 ADC ölçümü değildir. GPIO34 bağlantısı, ADC ham değerleri ve 30 saniyelik kayıt henüz yapılmadı.
+
+
+## Uygulama kodu — ESP32D2 ilk ADC firmware'i
+
+Tam ESPHome yapılandırması: [firmware/esp32d2-e00a-adc.yaml](firmware/esp32d2-e00a-adc.yaml).
+
+- Cihaz: `esp32d2`; klasik ESP32 varyantı; ESP-IDF framework.
+- GPIO34 / ADC1_CH6: `raw: true`, ham ADC sayısı (count).
+- GPIO35 / ADC1_CH7: `raw: false`, kalibrasyonlu voltaj tahmini (V).
+- Her iki ADC sensöründe attenuation `12db`, `samples: 1`, `update_interval: 1s`.
+- Kullanıcı 2026-10-30 tarihinde kodun derlendiğini ve çalıştığını bildirdi (KULLANICI RAPORU). Derleme/cihaz logu ve sayısal ADC değerleri ayrıca eklenecek.
+- Bu firmware iki ayrı ADC kanalını okur; aynı örneği ölçmez. Home Assistant'a saniyede bir sensör güncellemesi yapar; yüksek hızlı ham kayıt veya 30 saniyelik CSV toplamaz.
+
+### HEDEF / LOG / SONUÇ
+- **HEDEF:** GPIO34 ham ADC çıktısı ile GPIO35 kalibrasyonlu voltaj çıktısını ESP-IDF tabanlı ESP32D2 üzerinde çalıştırmak.
+- **LOG:** Kod depoda; kullanıcı derlendiğini ve çalıştığını bildirdi. Gerçek log ve ölçüm değerleri bekleniyor.
+- **SONUÇ:** Firmware'in derlenip çalıştığı kullanıcı tarafından bildirildi. ADC ölçüm sonuçları ve E00A'nın iki koşullu/30 saniyelik kabul ölçütü henüz değerlendirilmedi.
