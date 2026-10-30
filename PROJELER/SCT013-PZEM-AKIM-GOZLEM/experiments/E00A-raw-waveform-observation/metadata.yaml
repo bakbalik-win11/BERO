@@ -1,6 +1,6 @@
 experiment_id: E00A
 title: Bias trafosu DC noktalarının ADC gözlemi
-status: planned
+status: opened_first_reference_recorded
 date: 2026-10-30
 hardware:
   acquisition: ESP32-WROOM-32D adayı; gerçek kart/pinout fiziksel olarak doğrulanacak
@@ -8,10 +8,10 @@ hardware:
   sensor: none; SCT bu deneyde bağlı değil
   source: Bias trafosu komple devre (RN130421, KBU6M, 2200uF/35V, L78L33, 2x10kOhm Vmid bölücüsü)
 conditions:
-  - l78l33_3v3_through_external_10k_10k_divider
+  - l78l33_3v3_through_separate_temporary_10k_10k_measurement_divider
   - bias_vmid_direct
-initial_target_sample_rate_sps: 2000
-target_record_duration_s: 1
+initial_target_sample_rate_sps: null # Firmware/ADC yapılandırması seçilince belirlenecek; 2000 S/s önceki taslak hedefti.
+target_record_duration_s: 30
 outputs:
   - raw_adc_samples_saved_locally
   - analog_read_and_millivolts_comparison
@@ -30,4 +30,7 @@ notes:
   - GPIO34 is only an unverified candidate until the actual classic ESP32 board pinout is checked.
   - 2 kS/s is an initial target, not a validated performance result.
   - No current conversion, calibration, PZEM, MCP3208, PF, or harmonic analysis in this experiment.
-  - No firmware build, physical measurement, or hardware validation has been performed.
+  - User-reported multimeter reading at L78L33 output: 3.31 V DC (2026-10-30); ESP32 ADC has not been connected or measured.
+  - Each ADC observation is planned for 30 seconds.
+  - The temporary 10k/10k measurement divider is separate from the bias circuit and has not been physically installed.
+  - No firmware build, ADC capture, or hardware validation has been performed.
