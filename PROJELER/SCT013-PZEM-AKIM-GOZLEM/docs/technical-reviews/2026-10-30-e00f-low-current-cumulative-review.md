@@ -515,3 +515,34 @@ GitHub açık kaynak kodu/dokümantasyon araması yapıldı; GitHub Copilot tara
 **Bu bölümün sınırı:** GitHub kod/doküman araştırması ve mevcut logun sayısal analizi yapıldı. Yeni fiziksel ölçüm, osiloskop ölçümü, Python model eğitimi, YAML değişikliği, derleme veya cihaza yükleme yapılmadı.
 
 **Dış kaynaklar:** [YHDC SCT013-030 datasheet](https://naylampmechatronics.com/img/cms/000154/SCT013-030-0-30A-0-1V.pdf), [YHDC SCT013 ürün ailesi](https://en.yhdc.com/product/SCT013-401.html), [OpenEnergyMonitor düşük akım tartışması](https://community.openenergymonitor.org/t/getting-low-currents-with-sct013-50a/14035), [Analog Devices CT eğitim notu](https://wiki.analog.com/university/courses/alm1k/alm-current-transformer), [Allegro ACS712 datasheet](https://www.allegromicro.com/-/media/files/datasheets/acs712-datasheet.pdf), [ZMCT103C datasheet](https://macrogroup.ru/upload/iblock/074/q7ualcq97gdch22ecqzmiotaqaykpxto/ZMCT103C-specification.pdf).
+
+## 15. E00F-N01 — yazılımsal sıfırlama filtresi kaldırılarak gece gözlemi
+
+### HEDEF
+Önceki yüksüz logda 0.35 A filtresi nedeniyle küçük çıktıların sıfıra bastırılması, düşük akım bölgesinin doğrudan gözlenmesini engelliyordu. Bu yan gözlemde yalnızca bu yazılım filtresi kaldırılarak ct_clamp çıkışının 0.35 A altındaki davranışı izlenecek. Amaç katsayı kalibrasyonu değil, filtre etkisini görünür kılmaktır.
+
+### KOD DEĞİŞİKLİĞİ
+- `firmware/esp32d2.yaml` içindeki `x < 0.35f` koşullu lambda kaldırıldı.
+- `multiply: 24.22` korundu.
+- GPIO33 / ADC1 / 12 dB / `raw: false` korundu.
+- `sample_duration: 200ms` ve `update_interval: 2s` korundu.
+- `esphome.name: esp32d2` aynen korundu.
+- raw:true, yeni ADC, farklı pin, farklı katsayı veya analog devre değişikliği yapılmadı.
+
+### LOG
+- Depodaki firmware YAML güncellendi; E00F-N01 deney planı oluşturuldu.
+- Derleme, cihaza yükleme ve gece ölçümü henüz yapılmadı.
+- Home Assistant'ta beklenen izleme varlığı: `BERO E00F SCT013 Akim`.
+- ESPHome DEBUG Raw AC Value / N / SPS satırları HA entity geçmişine otomatik olarak yazılmaz. Bunların da saklanması isteniyorsa log akışı ayrıca sürekli dosyaya kaydedilmelidir.
+
+### SONUÇ
+Henüz ölçülmedi. Filtre kaldırıldıktan sonra 0.35 A altı yayınlar görünür hâle gelecektir; yüksüz gürültü de akım gibi sayısallaştırılabilir. Tek başına bu kayıt 40 mA'nın doğru ölçüldüğünü veya yüksüz tabandan ayrıldığını kanıtlamaz. Değerlendirme için HA geçmişi ve mümkünse eşzamanlı ESPHome debug logu gereklidir.
+
+### KABUL / SONRAKİ ADIM
+1. YAML derlemesi başarılı olmalı.
+2. ESP32D2'ye yüklenmeli; cihaz adı ve GPIO33 bağlantısı korunmalı.
+3. Home Assistant geçmişinde sensörün 2 saniyelik yayınlarının başladığı görülmeli.
+4. Sabah HA geçmişi dışa aktarılmalı; varsa ESPHome debug logu da eklenmeli.
+5. Gece boyunca fiziksel yük koşulu ayrıca belirtilmeli.
+
+Deney şablonu: [E00F-N01](../../experiments/E00F-unthresholded-overnight-log/experiment.yaml).
