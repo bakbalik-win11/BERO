@@ -747,3 +747,11 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **SONRAKİ ADIM:** Gerçek WROOM-32D geliştirme kartındaki GPIO32/33 etiketlerini pinout ile doğrula; sonra açıklamalı tam ESPHome firmware'ini hazırla.
 - **DOĞRULAMA:** Yeni E00B dosyaları oluşturuldu ve GitHub'dan yeniden okunarak doğrulandı. İndeks, STATUS, PROGRESS_TREE, ROADMAP ve ledger güncellendi; commit sonrası yeniden okunmaları bekleniyor.
 - **KANIT:** [E00B README](../experiments/E00B-sct-connected-no-current/README.md); [E00B experiment.yaml](../experiments/E00B-sct-connected-no-current/experiment.yaml); [E00B results](../experiments/E00B-sct-connected-no-current/results.md).
+
+
+## 2026-10-30 — E00B firmware eklendi ve derleme bildirimi kaydedildi
+- **HEDEF:** E00B için açıklamalı dört kanallı ESPHome firmware'ini depoya koymak; deney planı, sonuç kaydı ve proje durumunu eşlemek.
+- **LOG:** Başlangıçta AGENTS.md, STATUS.md, ROADMAP.md, docs/open-questions.md, E00B README/experiment.yaml/results.md, PROGRESS_TREE.md ve EXPERIMENT_LEDGER.md okundu. E00B firmware dosyası oluşturuldu: `experiments/E00B-sct-connected-no-current/firmware/esp32d2-e00b-sct-no-current.yaml`. Kullanıcı kodun derlendiğini bildirdi (KULLANICI RAPORU). experiment.yaml, README, results, STATUS, ROADMAP, PROGRESS_TREE, EXPERIMENT_LEDGER ve deney indeksi güncellendi.
+- **SONUÇ:** Firmware depoya uygulandı; kullanıcı bildirimiyle derlendi. Bu, cihazda çalıştığı veya fiziksel deneyin yapıldığı anlamına gelmez. GPIO32/33 gerçek kart pinout doğrulaması bekliyor. 1 s sensor update aralığı yüksek hızlı ADC örnekleme değildir.
+- **DOĞRULAMA:** Firmware ve deney belgeleri GitHub'a yazıldı. Bu kayıtta ESPHome derleme komutu yeniden çalıştırılmadı; kullanıcı derleme çıktısı paylaşmadı. Cihaza yükleme, pinout, fiziksel bağlantı ve ölçüm yapılmadı. Dosyalar bu oturumun son adımında yeniden okunarak doğrulanacak.
+- **SONRAKİ ADIM:** Gerçek kart/pinout ve bağlantıyı doğrula; sonra firmware'i yükleyip SCT bağlı/primer akımsız logu al.
