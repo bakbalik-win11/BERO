@@ -116,3 +116,8 @@ E00A kapsamında S01 alt adımı kaydedildi: sensör yokken GPIO34/GPIO35 GND re
 ## 2026-10-30 — E00A SCT'siz bias-only alt adım sonucu
 
 SCT bağlı değilken Vmid bias koşuluna ait uzun ESP32D2 logu analiz edildi; bu alt koşul kapatıldı. 603 geçerli zaman eşleşmesinde GPIO35 std. sapma 6.474 mV, GPIO34 RAW std. sapma 6.97 count. RAW sıfır başlangıç kayıtları eşleştirme dışı bırakıldı. Bu, tüm SCT'siz bias/ADC ölçüm zincirinin gözlenen dalgalanmasıdır; ADC'nin tek başına gürültüsü değildir. E00A bütünü açık kalır: L78L33 3.3 V ayrı bölücü koşulu ile ham CSV ve zaman grafiği tamamlanmadı. Sonraki deney koşulu SCT bağlı fakat ölçülen hatta akım yok durumudur. Ayrıntı [E00A sonuç kaydı](experiments/E00A-raw-waveform-observation/results.md).
+
+
+## 2026-10-30 — E00B yeni deney adımı
+
+E00A SCT'siz bias-only alt koşulu kapandıktan sonra SCT bağlı fakat primer akımı olmayan koşul E00B olarak açıldı. Bias GPIO34/35 korunur; SCT RAW GPIO32 (ADC1_CH4), SCT voltaj GPIO33 (ADC1_CH5) önerildi. ESP32-WROOM-32D geliştirme kartının gerçek pinout'u doğrulanmadan bağlantı yapılmaz. E00B PLANLANDI; firmware ve fiziksel ölçüm henüz yok. Ayrıntı [E00B](experiments/E00B-sct-connected-no-current/README.md).
