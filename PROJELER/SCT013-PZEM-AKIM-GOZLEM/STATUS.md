@@ -148,3 +148,12 @@ Düşük PF'nin aynı gerilim ve aktif güç koşulunda RMS akımı artırabilec
 - **Hedef:** GND girişinde düzeltilmiş voltajı 0.000 V göstermek.
 - **Henüz doğrulanmadı:** Güncel firmware ile alınmış GND logu yok. 0.142 V geçici ofset; genel ADC kalibrasyonu değil.
 - **Sıradaki tek adım:** GPIO35 GND bağlantısındayken güncel logdan düzeltilmiş değerin 0.000 V olduğunu doğrula; sonra Vmid/multimetre karşılaştırmasına geç.
+
+
+
+## E00A — Adım 2 güncel sonuç ve sıradaki kontrol (2026-10-30)
+
+- **Sıfır kontrolü:** Kullanıcı logunda GPIO35 düzeltilmiş voltajı 49/49 kayıtta, yaklaşık 48 saniye boyunca 0.000 V. Kullanıcı Adım 2 hedefinin sağlandığını bildirdi.
+- **GPIO34:** 0 count kayıtları fiziksel bağlantı olmadığı için yorum dışı.
+- **Kod:** Değiştirilmeyecek.
+- **Sıradaki işlem:** Aynı log oturumunda bias trafosuna enerji verilecek; GPIO35'in bias/Vmid altındaki düzeltilmiş voltajı izlenecek. Bias açık logu ve eşzamanlı multimetre değeri henüz bekleniyor.
