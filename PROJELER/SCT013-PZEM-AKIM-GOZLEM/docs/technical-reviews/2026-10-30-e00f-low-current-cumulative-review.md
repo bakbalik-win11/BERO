@@ -414,3 +414,12 @@ Residual plot ve akım aralıklarına göre hata özeti, T006 model değerlendir
 **Durum:** Bu bölüm kaynak kod/doküman incelemesi ve matematiksel değerlendirmedir. raw:true denemesi, YAML değişikliği, derleme/flash, yeni ADC kaydı, Python residual analizi veya fiziksel test yapılmadı.
 
 **Kaynaklar:** [ESPHome ADC dokümantasyonu](https://esphome.io/components/sensor/adc/), [ESPHome ct_clamp kaynak kodu](https://api-docs.esphome.io/ct__clamp__sensor_8cpp_source), [ESPHome ct_clamp dokümantasyonu](https://esphome.io/components/sensor/ct_clamp/), [ESPHome ESP32 ADC uygulaması](https://github.com/esphome/esphome/blob/dev/esphome/components/adc/adc_sensor_esp32.cpp).
+
+
+### 12.8 Kullanıcı düzeltmesi — raw:true daha önce denendi ve sonuç kötüleşti
+
+Önceki bölümde raw:true yolunun yalnızca öneri olarak yeniden ele alınması gerektiği izlenimi oluşmamalıdır. Kullanıcı, BERO'da raw:true yolunun daha önce denendiğini ve raw:false mevcut akışa göre daha kötü/gürültülü sonuç verdiğini hatırlattı. Bu, önceki oturum kaydında da raw:true denemesinin daha gürültülü göründüğü şeklinde yer alıyordu; bu deneme 1 mV kuantizasyonunu tek başına izole etmemişti.
+
+**Düzeltilmiş karar:** raw:true mevcut aşamada yeni deney adayı değildir; daha önceki olumsuz kullanıcı test sonucu nedeniyle yeniden açılmayacaktır. Google'ın eklediği multiply:0.85 önerisi de kaynak/kalibrasyon temeli ve doğru sample() entegrasyon yolu gösterilmediğinden kabul edilmez. Önceki raw:true denemesinin tam olarak 0.85 çarpanıyla yapıldığına dair bu kayıtlarda kanıt yoktur; bu iki şeyi aynı deneymiş gibi yazmıyoruz.
+
+Bu düzeltme önceki raw:true deney sonucunu karar gerekçesine ekler. Mevcut YAML değiştirilmez; raw:true tekrar testi planlanmaz. raw:false 1 mV basamağının gerçek düşük-akım hatasına etkisi ise ayrı ve henüz cevaplanmamış teknik sorudur.
