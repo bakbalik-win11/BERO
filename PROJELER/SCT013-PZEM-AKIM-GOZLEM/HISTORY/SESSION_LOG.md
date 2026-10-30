@@ -676,3 +676,12 @@ Ayrıntı: [Proje felsefesi](../docs/project-philosophy.md). Dokümantasyon gün
 - **LOG:** Önceki GND logunda kararlı görülen 0.142 V tabanını çıkarmak için GPIO35'e `max(0, x - 0.142)` filtresi eklendi; GPIO34 ham ADC kanalı korundu. Firmware [dosyası](../experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml) commit `9eae26000a1dc460191bec68581cec0ac9ab9397`. Kullanıcı kodun derlendiğini bildirdi.
 - **SONUÇ:** Derleme kullanıcı bildirimiyle başarılı. Yeni firmware ile GPIO35 GND ölçümünün 0.000 V'a indiği henüz logla doğrulanmadı. 0.142 V geçici ofsettir; genel ADC kalibrasyonu değildir.
 - **Sonraki adım:** GND bağlantısında düzeltilmiş GPIO35 değerini logla doğrula; ardından Vmid ve multimetre karşılaştırması yap.
+
+
+
+## 2026-10-30 — E00A Adım 2 sıfır çıktısı logu
+
+- **HEDEF:** GPIO35 voltaj sensörünün GND koşulunda yazılım düzeltmesi sonrası 0.000 V göstermesini doğrulamak.
+- **LOG:** Kullanıcının `Yapıştırılan metin(10).txt` kaynağındaki ESPHome 2026.9.1 logunda GPIO35, 15:13:08.379–15:13:56.381 arasında 49 kaydın tamamında 0.000 V yayınladı. ESP32 rev3.1; ADC init/config/calibration OK; güncelleme aralığı 1 s. GPIO34 48 kez 0 count gösterdi, ancak fiziksel bağlantısı olmadığı için yorum dışı bırakıldı.
+- **SONUÇ:** Kullanıcı Adım 2 amacına ulaşıldığını bildirdi; log, GPIO35 düzeltilmiş çıktısının yaklaşık 48 saniye boyunca sıfır kaldığını destekliyor.
+- **Sonraki adım:** Kullanıcı kodu değiştirmeden aynı log oturumunda bias trafosuna enerji verecek. Sonraki kayıtlar Vmid tepkisini gösterecek; henüz bias açık sonucu yok.
