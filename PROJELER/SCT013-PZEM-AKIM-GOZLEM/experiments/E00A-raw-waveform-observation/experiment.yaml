@@ -108,4 +108,21 @@ uygulama:
       update_interval: "1s"
   kaynak: "KULLANICI RAPORU — kod derlendi ve çalıştı; log henüz paylaşılmadı."
   durum: "KULLANICI_BILDIRIMI_DERLENDI_VE_CIHAZDA_CALISTI"
-undefined
+
+# 2026-10-30 — S01 GND referans testi (sonradan eklenen deney adımı)
+step_S01_gnd_reference:
+  date: "2026-10-30"
+  sensor_connected: false
+  user_reported_connections:
+    GPIO34: "GND"
+    GPIO35: "GND"
+  log_source: "Yapıştırılan metin(8).txt"
+  observations:
+    GPIO34_raw: "14:49:11–14:52:24 aralığında görünen örneklerde 0 count"
+    GPIO35_voltage: "Başlangıç geçişinden sonra yaklaşık 14:49:29–14:52:24 arasında 0.142 V sabit"
+    stable_duration_seconds_approx: 175
+    adc_init_config_calibration: "Her iki kanalda OK"
+  conclusion: "GND referansında kararlılık; önceki floating giriş teşhisini destekler. GPIO35 0.142 V tabanı açık soru."
+  electrical_candidate: "Jack/CT topolojisi doğrulandıktan sonra ADC düğümünü Vmid'e 47–100 kOhm aralığında pasif dirençle biaslama; değer henüz doğrulanmadı."
+  next_step: "Tek kanalda Vmid bias, multimetre doğrulaması ve 60 saniye log."
+  status: "S01 gözlemi kaydedildi; E00A tamamlanmadı."
