@@ -150,11 +150,12 @@ Her test kaydı şu alanları taşımalıdır:
 - fiziksel yük ve durum (OFF/ON), mümkünse SSR BOOT_ID / EVENT_ID
 - window_start ve window_end (varsa; yoksa açıkça “logda yok”)
 - raw_ac_voltage_v
-- n_distinct_samples
-- reported_sps (gerçek ADC hızı değildir)
-- published_current_a (varsa)
+- n_distinct_samples ve reported_sps (SPS gerçek ADC hızı değildir)
+- pencere başına published_current_a (varsa)
+- her koşul için pencere sayısı; N ve SPS min/max/ortalama/medyan/SD/p5/p95; Raw AC min/max/ortalama/medyan/SD/p5/p95 ve MAD
 - pens akım değeri, cihaz/okuma zamanı ve kararlı koşul notu
 - PZEM akımı ve okuma zamanı (varsa; düşük akım geçerliliği ayrıca not edilir)
+- anahtarlama sonrası dışlanan ilk pencere ve dışlama gerekçesi
 - yorum, kanıt türü ve sınırlamalar
 
 ## 7. Sonuç ve sonraki tek adım
