@@ -55,3 +55,22 @@ Durum: PLANLANDI.
 E00B icin aciklamali ESPHome firmware'i [firmware/esp32d2-e00b-sct-no-current.yaml](firmware/esp32d2-e00b-sct-no-current.yaml) dosyasina eklendi. Kullanici bu kodun derlendigini bildirdi (KULLANICI RAPORU). Firmware 1 saniyelik sensor yayinlari kullanir; bu yuksek hizli ham ADC kaydi degildir.
 
 Bu derleme bildirimi; cihaza yukleme, gercek kart pinout dogrulamasi, fiziksel SCT/bias baglantisi veya akimsiz olcum yapildigini gostermez. GPIO32/33 pinout'u gercek kartta dogrulanmadan baglanti yapilmayacaktir.
+
+
+## İlk cihaz logu — 2026-10-30
+
+<badge>CIHAZ LOGU ALINDI</badge>
+
+ESPHome 2026.9.1 ile ESP32 rev3.1 cihazından API logu alındı. Dört ADC kanalı (GPIO34, GPIO35, GPIO32, GPIO33) ADC1 üzerinde başarıyla başlatıldı; her kanalın ADC init/config/calibration durumu OK.
+
+- Ham log: [2026-10-30-e00b-esp32d2-startup-and-observation.log](logs/2026-10-30-e00b-esp32d2-startup-and-observation.log)
+- Analiz ve yorum: [results.md](results.md)
+- Kararlı pencere: 16:20:41 sonrası, 110 örnek/kanal.
+- Bias GPIO34 RAW ortalaması: 1854.14 count.
+- SCT GPIO32 RAW ortalaması: 1853.45 count.
+- Bias GPIO35 ADC voltaj ortalaması: 1.6651 V.
+- SCT GPIO33 ADC voltaj ortalaması: 1.6639 V.
+
+Açılışın ilk yaklaşık 9 saniyesindeki RAW=0 ve 0.142 V okumaları kararlı ölçüm değildir; analiz dışında bırakıldı. RAW nominal voltaj tahmini ile ESPHome kalibre ADC voltajı arasındaki yaklaşık 0.25 V fark, firmware'in iki farklı ölçekleme yönteminden kaynaklanır; gerçek devre düşümü kabul edilmemelidir.
+
+**Sınır:** Cihaz ve ADC çalışma durumu logla doğrulandı. Primer akımın gerçekten sıfır olduğu, SCT'nin fiziksel montajı ve bağlantı düzeni log içeriğinden tek başına doğrulanamaz. E00B bu nedenle ölçüm logu alınmış aşamadadır; fiziksel koşulun tam doğrulaması ve daha uzun kayıt beklenir.
