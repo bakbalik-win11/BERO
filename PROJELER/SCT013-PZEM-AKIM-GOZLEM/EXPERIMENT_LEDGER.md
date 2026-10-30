@@ -144,3 +144,14 @@ PZEM'in yayınladığı PF, PZEM'in doğrudan hat gerilimi ölçümü ve CT üze
 - **LOG:** Kullanıcı 2026-10-30 tarihinde kodun derlendiğini ve çalıştığını bildirdi (KULLANICI RAPORU). Derleme/cihaz logu, fiziksel bağlantı ayrıntısı ve ADC sayısal değerleri henüz eklenmedi.
 - **SONUÇ:** Kod depoya uygulandı; firmware'in derlenip çalıştığı kullanıcı tarafından bildirildi. Ölçüm sonuçları, 30 saniyelik ham kayıt ve grafik henüz yok.
 - **Sonraki adım:** Kullanıcının göndereceği log ve sensör değerlerini değerlendir; ölçüm koşullarını ve yorumu E00A results.md'ye ekle.
+
+
+## E00A-S01 — GND referansında ADC kararlılığı (2026-10-30)
+
+- **Neden:** Sensör bağlı değilken açık ADC girişinin değişken değer üretmesinin elektriksel nedenini ayırmak.
+- **Soru/hipotez:** GND'ye referanslanan girişler kararlı mı? Önceki rastgele değerler floating girişten mi kaynaklanıyor?
+- **Uygulama:** ESP32D2 / ESPHome 2026.9.1; SCT bağlı değil; GPIO34 ve GPIO35 kullanıcının bildirimine göre GND'ye çekildi. GPIO34 raw count, GPIO35 kalibrasyonlu voltaj; iki ayrı kanal.
+- **LOG:** Paylaşılan logda GPIO34 0 count; GPIO35 başlangıç geçişinden sonra yaklaşık 175 saniye boyunca 0.142 V sabit. ADC kanal init/config/calibration OK. [Ayrıntılı rapor](experiments/E00A-raw-waveform-observation/reports/E00A-S01-gnd-reference-stability.md).
+- **SONUÇ:** Floating giriş teşhisi destekleniyor. GPIO35'in 0.142 V tabanı ayrıca incelenecek. Bu test 1.65 V ölçümünü veya SCT performansını kanıtlamaz.
+- **Karar:** Yazılımla sıfırlama yerine girişin elektriksel olarak tanımlı tutulması. Jack/CT pin düzeni doğrulandıktan sonra ADC düğümünü Vmid'e 47–100 kΩ aralığında yüksek değerli dirençle biaslama prototip adayı; değer henüz kesinleşmedi.
+- **Sonraki adım:** Önce bir ADC kanalında Vmid bias testi ve multimetre kontrolü; sonra 60 saniyelik log. Ardından SCT bağlantı doğrulaması.
