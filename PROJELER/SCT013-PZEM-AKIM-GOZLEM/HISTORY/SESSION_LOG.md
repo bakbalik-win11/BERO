@@ -685,3 +685,13 @@ Ayrıntı: [Proje felsefesi](../docs/project-philosophy.md). Dokümantasyon gün
 - **LOG:** Kullanıcının `Yapıştırılan metin(10).txt` kaynağındaki ESPHome 2026.9.1 logunda GPIO35, 15:13:08.379–15:13:56.381 arasında 49 kaydın tamamında 0.000 V yayınladı. ESP32 rev3.1; ADC init/config/calibration OK; güncelleme aralığı 1 s. GPIO34 48 kez 0 count gösterdi, ancak fiziksel bağlantısı olmadığı için yorum dışı bırakıldı.
 - **SONUÇ:** Kullanıcı Adım 2 amacına ulaşıldığını bildirdi; log, GPIO35 düzeltilmiş çıktısının yaklaşık 48 saniye boyunca sıfır kaldığını destekliyor.
 - **Sonraki adım:** Kullanıcı kodu değiştirmeden aynı log oturumunda bias trafosuna enerji verecek. Sonraki kayıtlar Vmid tepkisini gösterecek; henüz bias açık sonucu yok.
+
+
+## 2026-10-30 — E00A Adım 2: sıfırlama filtresi kaldırıldı
+
+- **HEDEF:** GND'de sıfır gösterme denemesinin Vmid gerçek DC okumasına etkisini değerlendirip doğru ölçüm yaklaşımını seçmek.
+- **LOG:** Önceki ofsetli cihaz logunda GPIO35 GND koşulunda 49/49 örnekte 0.000 V gösterdi. Aynı oturumun bias açık bölümünde 85 kararlı örnek yaklaşık 1.525 V ortalama verdi. Kullanıcı multimetre Vmid değerini 1.654 V bildirdi. 0.142 V filtre ofseti geri eklendiğinde hesaplanan filtresiz tahmin yaklaşık 1.667 V; fark yaklaşık 13 mV. Bu 1.667 V doğrudan ham log ölçümü değil, filtreli çıktıdan türetilmiş hesaptır. GPIO34 bağlı olmadığından yorum dışı.
+- **SONUÇ:** GND'de 0.000 V görüntüsü gerçek sıfır ölçümü değildi; filtre ADC voltajından sabit 0.142 V çıkarıyordu. Bu işlem Vmid'i de aynı miktarda düşürerek gerçek DC okumayı bozdu. Yazılımsal ofset kaldırıldı; GND'de görülen 0.142 V gözlemi korunacak.
+- **UYGULAMA:** Firmware GPIO35 lambda filtresi ve “Corrected” sensör adı kaldırılarak revize edildi. Yeni revizyon henüz derlenmedi veya cihaza yüklenmedi.
+- **SONRAKİ KARAR KAPISI:** Ofsetsiz firmware derlemesi ve aynı Vmid noktasında multimetreyle eşzamanlı cihaz logu.
+- **KANIT:** [E00A sonuçları](experiments/E00A-raw-waveform-observation/results.md); kullanıcı logu `Yapıştırılan metin(20261030-121627).txt`.
