@@ -934,3 +934,14 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **DOĞRULAMA SINIRI:** Teknik rapor, açık sorular ve bu oturum günlüğü güncellendi ve yazım sonrası yeniden okunacak. Bu oturumda YAML değişikliği, derleme/flash, yeni ADC kaydı, Python analizi veya fiziksel test yapılmadı.
 - **KANIT:** [E00F teknik değerlendirme, bölüm 12](../docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md), [açık sorular](../docs/open-questions.md), [ESPHome ADC dokümanı](https://esphome.io/components/sensor/adc/), [ct_clamp kaynak kodu](https://api-docs.esphome.io/ct__clamp__sensor_8cpp_source).
 
+
+
+## 2026-10-30 — raw:true önceki deneme sonucu için karar düzeltmesi
+
+- **HEDEF:** Google'ın raw:true önerisini BERO'da daha önce yapılan denemenin sonucuyla uzlaştırmak.
+- **KULLANICI DÜZELTMESİ:** raw:true yolunun daha önce denendiği, çalışmadığı ve daha gürültülü/kötü sonuç verdiği hatırlatıldı.
+- **ÖNCEKİ KAYIT:** E00F önceki oturum notunda raw:true denemesinin daha gürültülü göründüğü ve 1 mV kuantizasyonunu tek başına izole etmediği kayıtlı.
+- **KARAR:** raw:true tekrar denenmeyecek. Google'ın 0.85 çarpan önerisi ayrıca reddedildi. Önceki raw:true testinde 0.85 çarpanının kullanıldığına dair kanıt yok; iki test aynı kabul edilmeyecek.
+- **DÜZELTME:** Önceki yanıtım raw:true'ı yeniden değerlendirilebilecek yeni seçenek gibi sundu; mevcut olumsuz deney kaydını karar gerekçesi olarak kullanmalıydım.
+- **DOĞRULAMA SINIRI:** Bu kayıt güncellemesi dışında yeni deney, YAML değişikliği, derleme/flash veya fiziksel ölçüm yapılmadı.
+- **KANIT:** [E00F teknik değerlendirme, bölüm 12.8](../docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md), [açık sorular](../docs/open-questions.md).
