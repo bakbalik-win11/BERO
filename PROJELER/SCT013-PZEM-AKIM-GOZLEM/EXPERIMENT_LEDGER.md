@@ -229,3 +229,13 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **DURUM:** SCT bağlı olmayan bias-only alt adım KAPATILDI. E00A bütünü açık: 3.3 V ayrı bölücü koşulu, ham örnek CSV ve zaman grafiği bu logda tamamlanmadı.
 - **SONRAKİ ADIM:** SCT bağlanmadan önce bağlantı/pin güvenliğini doğrula; sonra SCT bağlı fakat ölçülen hatta akım yok koşulunu ayrı deney olarak al ve bu tabanla karşılaştır.
 - **KANIT:** [E00A sonuç kaydı](experiments/E00A-raw-waveform-observation/results.md); kullanıcı logu `esp32d2-logs.txt`.
+
+
+## E00B — SCT bağlı, akımsız hat ADC gözlemi (2026-10-30)
+
+- **Neden:** E00A SCT'siz bias-only tabanına karşı SCT bağlandığında ADC düğümünün nasıl değiştiğini görmek.
+- **HEDEF:** Öncelikli SCT013-030 bağlıyken izlenen iletkende akım yok koşulunda bias ve SCT kanallarını karşılaştırmak.
+- **Pin kararı:** Bias RAW GPIO34 / bias voltaj GPIO35 olarak korunur. SCT RAW için GPIO32 (ADC1_CH4), SCT voltaj için GPIO33 (ADC1_CH5) önerildi. Bu, ESP32-WROOM-32D için önerilen ADC1 pin atamasıdır; fiziksel geliştirme kartı pinout'u henüz doğrulanmadı.
+- **LOG:** E00B README, açıklamalı experiment.yaml ve results.md oluşturuldu. Firmware yazılmadı; fiziksel bağlantı, derleme ve ölçüm yapılmadı.
+- **SONUÇ:** Deney PLANLANDI. GPIO32/33 pin etiketleri gerçek kart üzerinde doğrulanmadan bağlantı yapılmayacak. Sonraki adım pinout doğrulaması ve tam firmware hazırlığı.
+- **Kanıt:** [E00B README](experiments/E00B-sct-connected-no-current/README.md), [experiment.yaml](experiments/E00B-sct-connected-no-current/experiment.yaml), [results.md](experiments/E00B-sct-connected-no-current/results.md).
