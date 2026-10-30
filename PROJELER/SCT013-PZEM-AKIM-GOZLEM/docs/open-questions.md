@@ -68,3 +68,14 @@ Bu sorular için deney sırası ve kabul ölçütleri [toplu teknik değerlendir
 10. D0–D3 verisi N değişkenliği, Raw AC sıçramaları ve mV kuantizasyonu arasındaki belirsizliği çözüyor mu; çözmüyorsa D4 RAW teşhisi gerekli mi?
 
 **Ölçüm protokolü:** D1/D2/D3 için her kararlı koşulda en az 30 geçerli 200 ms pencere tutulur; koşul değişiminden sonraki ilk pencere dışlanır. 0.0017 V, 0.041 A'nın 24.22 katsayısıyla gerilim karşılığıdır; yüksüz taban hedefi değildir. Standart sapma için keyfî mutlak Volt eşiği kullanılmaz; D1 dağılımı ampirik taban olarak alınır. Ayrıntı: [toplu teknik değerlendirme](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
+
+
+## 2026-10-30 — Python kalibrasyon modeli için karar soruları
+
+1. İlk tek doğrusal modelin artıkları akım aralığına göre sistematik eğilim gösteriyor mu; parçalı doğrusal model bunu ayrı kararlı pencerelerde anlamlı biçimde iyileştiriyor mu?
+2. Düşük SCT RMS pencereleri yüksüz taban dağılımından güvenilir biçimde ayrışıyor mu? Ayrışmayan pencereyi gerçek 0 A yerine geçersiz/düşük güvenilirlik olarak nasıl etiketleyeceğiz?
+3. T006 eğitim özelliği E08 ham örneklerinden Python'da hesaplanan RMS mi olacak, yoksa E00F ct_clamp çıktısı mı? İki hesaplama yolunun örnek kabul/dedup davranışı farklı olduğundan aynı özellik kabul edilmemeli.
+4. Parçalı model gerekirse bölge sınırları, geçiş sürekliliği ve monotonluk hangi gerçek kararlı pencere verisiyle belirlenecek?
+
+**Geçici karar:** Önce tek doğrusal model; yalnız artık analizi ve ayrı tutulan pencereler daha karmaşık yapıyı gerekçelendirirse parçalı doğrusal model. Sinyal ayrışma kontrolü model tahmininden ayrı tutulur. 0.1 V / 0.5 V gibi örnek eşikler şimdilik kabul edilmez. Ayrıntı: [E00F teknik değerlendirme, bölüm 10](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
+
