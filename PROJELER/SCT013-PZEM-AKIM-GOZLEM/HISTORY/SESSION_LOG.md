@@ -755,3 +755,12 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **SONUÇ:** Firmware depoya uygulandı; kullanıcı bildirimiyle derlendi. Bu, cihazda çalıştığı veya fiziksel deneyin yapıldığı anlamına gelmez. GPIO32/33 gerçek kart pinout doğrulaması bekliyor. 1 s sensor update aralığı yüksek hızlı ADC örnekleme değildir.
 - **DOĞRULAMA:** Firmware ve deney belgeleri GitHub'a yazıldı. Bu kayıtta ESPHome derleme komutu yeniden çalıştırılmadı; kullanıcı derleme çıktısı paylaşmadı. Cihaza yükleme, pinout, fiziksel bağlantı ve ölçüm yapılmadı. Dosyalar bu oturumun son adımında yeniden okunarak doğrulanacak.
 - **SONRAKİ ADIM:** Gerçek kart/pinout ve bağlantıyı doğrula; sonra firmware'i yükleyip SCT bağlı/primer akımsız logu al.
+
+
+## 2026-10-30 — E00B ilk cihaz logunun analizi ve depoya kaydı
+- **HEDEF:** Kullanıcının paylaştığı ESPHome logunu ham haliyle saklamak, açılış geçişini ayırmak, dört kanalın kararlı değerlerini özetlemek ve sonuçları deney kayıtlarına eklemek.
+- **LOG:** Ham log dosyası `experiments/E00B-sct-connected-no-current/logs/2026-10-30-e00b-esp32d2-startup-and-observation.log` olarak eklendi. ESPHome 2026.9.1 / ESP32 rev3.1. GPIO34/35/32/33 ADC1 başlatma ve kalibrasyon OK. Kararlı pencerede 110 örnek/kanal: Bias RAW 1854.14 count (SD 9.64); SCT RAW 1853.45 count (SD 8.22); Bias voltaj 1.6651 V (SD 0.0079); SCT voltaj 1.6639 V (SD 0.0063). İlk yaklaşık 9 saniyedeki RAW=0 ve 0.142 V başlangıç değerleri hariç tutuldu.
+- **YORUM:** Dört kanal çalışıyor. Kararlı kesitte Bias ve SCT değerleri yakın. Nominal RAW dönüşümü ile kalibre ADC voltajı arasındaki fark ölçekleme farkıdır; devredeki fiziksel gerilim farkı değildir.
+- **SONUÇ:** Ham log, analiz ve metadata depoya kaydedildi. Cihazın API üzerinden çalışması doğrulandı. Primer akımın sıfır olması ve fiziksel SCT montajı logla tek başına doğrulanamıyor; deneyin fiziksel koşulları tam doğrulanmış sayılmıyor.
+- **DOĞRULAMA:** Ham log GitHub'a yazıldı; results.md, experiment.yaml ve README güncellendi. STATUS/ledger/session log güncellemesi bu kayıtla yapılıyor.
+- **SONRAKİ ADIM:** Fiziksel SCT montajı ve primer akım=0 koşulunu kullanıcı kaydıyla teyit et; daha uzun kararlı pencere al.
