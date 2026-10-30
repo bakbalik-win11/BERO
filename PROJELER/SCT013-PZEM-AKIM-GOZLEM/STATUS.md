@@ -239,3 +239,13 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **SONUÇ:** 150 W ve kettle koşullarında gözlenen farklar yaklaşık ±%4 hedefinin içinde. 41 mA LED akımı mevcut eşik tarafından bastırıldığı için düşük akım kabiliyeti henüz gösterilmedi. Katsayı değiştirilmedi. Kod açıklamasındaki ilk 0.30 A ifadesi, lambda'nın fiilen uyguladığı 0.35 A ile tutarlı olacak şekilde depo kopyasında düzeltildi; çalışan lambda mantığı değiştirilmedi.
 - **Kayıt:** [firmware/esp32d2.yaml](firmware/esp32d2.yaml), [firmware/README.md](firmware/README.md).
 - **Açık kalan:** Ham test loglarının kalıcı dosya olarak eklenmesi ve 0.35 A eşik davranışının düşük akım için değerlendirilmesi. Bu kayıt E00A/E00B/E08 planlarının kabul ölçütlerini tamamlamaz veya fiziksel doğrulama iddiası oluşturmaz.
+
+
+## 2026-10-30 — Kettle ölçüm karşılaştırmaları rapora eklendi
+
+- **Durum:** UYGULANDI — rapor ve durum kaydı GitHub'a yazıldı.
+- **HEDEF:** Bu sohbet içinde paylaşılan kettle pens/ESP32 karşılaştırmalarını koşullarına göre ayrı kaydetmek; belirsiz 0.437 A bildirimini doğrulanmış kettle sonucu gibi göstermemek.
+- **LOG:** Kettle düşük/kararlı kesiti: pens 0.637 A, ilk 20 ESP32 yayınının ortalaması yaklaşık 0.656 A (+%3.0). Kettle kaynama kesiti: pens 6.39 A, 22 ESP32 yayınının ortalaması yaklaşık 6.15 A (−%3.8). Daha sonraki ayrı logda pens 0.437 A bildirilmiş; 74 ESP32 yayınının ortalaması 0.664 A, son 0.910 A sıçraması çıkarıldığında 0.660 A. Bu son kaydın yük/koşul eşleşmesi teyit edilmediğinden kettle olarak sınıflandırılmadı.
+- **SONUÇ:** İlk iki kettle kesiti kullanıcı tarafından belirlenen ±%4 sınırının içinde; kaynama kesiti sınıra yakındır. 0.437 A bildirimi ile log arasında yaklaşık +%52 fark vardır, ancak eşzamanlı ve aynı yük koşulu doğrulanmadan teknik sonuç çıkarılamaz. Katsayı 24.22 ve lambda eşiği 0.35 A değiştirilmedi.
+- **Açık kalan:** 0.437 A pens okumasının hangi yük/koşula ait olduğu ve logla eşzamanlı olup olmadığı.
+- **Kanıt:** [Firmware ve ölçüm raporu](firmware/README.md); [YAML](firmware/esp32d2.yaml).
