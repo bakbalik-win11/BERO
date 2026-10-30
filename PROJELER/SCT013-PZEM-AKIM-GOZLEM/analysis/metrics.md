@@ -25,3 +25,11 @@ Aynı sinyal ve ofset giderme tanımı geçerli olmalı. Invalid/clipped kayıtl
 
 ## Raporlama
 Hız karşılaştırmasında aynı fiziksel yük dizisini kullan. Veri kapsamı, eksik kayıt, kalibrasyon kimliği ve filtreleri raporla. Genel "%95 bilgi korunur" iddiası kullanma; yalnız açıkça tanımlı veri ve metrik için deneysel sonuç bildir.
+
+## PF ve yük koşulu bağlamında sonuç değerlendirme
+
+- Aynı gerilim ve aktif güç civarında düşük PF daha yüksek RMS akım gerektirebilir. Düşük PF'li yükte yüksek SCT RMS/Peak veya yüksek PZEM akımı tek başına hata değildir.
+- Yükler arası sonuçlar yalnız ham akım/genlik büyüklüğüne göre sıralanmaz. Yük türü, ölçülen PZEM V/W/I/PF, SCT sensör kimliği, tur sayısı ve örnekleme koşulu birlikte raporlanır.
+- ±%4 `OK` / `OUT_OF_RANGE` kararı, ilgili ortak kararlı alanın model tahmini ile geçerli PZEM akımı arasındaki bağıl farka uygulanır. PF'nin düşük olması bu matematiksel eşiği değiştirmez; fakat sonucun fiziksel yorumunda bağlam sağlar.
+- `OUT_OF_RANGE` sonucu görüldüğünde önce PZEM akımı, PF, gerilim, aktif güç, yük türü, SCT dalga biçimi/ADC sınırları ve PZEM güncelleme davranışı incelenir. Fiziksel akım artışı, sensör ölçüm hatası ve model uyumsuzluğu ayrı olgulardır.
+- PF ile hata arasında korelasyon, tek başına PF'nin SCT'yi veya CT ölçümünü bozduğunu kanıtlamaz. İlişki deneysel gözlem olarak raporlanır.
