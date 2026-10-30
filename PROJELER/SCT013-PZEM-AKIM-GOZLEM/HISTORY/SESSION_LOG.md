@@ -828,3 +828,15 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **Açık kalanlar:** Ham test loglarının depo dosyası olarak eklenmesi; 0.35 A eşiğinin 0.041 A LED yükünü bastırması ve ara sıra yüksek yayın sıçramalarının ayrıca ele alınması.
 - **Sonraki adım:** Katsayı 24.22'yi değiştirmeden, mevcut ct_clamp kodunu koruyup düşük akım/eşik davranışını ayrı incelemek.
 - **Kanıt:** [firmware/esp32d2.yaml](../firmware/esp32d2.yaml), [firmware/README.md](../firmware/README.md).
+
+
+## 2026-10-30 — Kettle karşılaştırma değerleri firmware raporuna eklendi
+
+- **Durum:** UYGULANDI; rapor GitHub main dalında güncellendi.
+- **Hedef ve kabul ölçütü:** Bu sohbette paylaşılan kettle pens ve ESP32 ölçümlerini ayrı koşullar olarak rapora eklemek; doğrulanmamış 0.437 A koşulunu kettle diye etiketlememek; katsayı ve çalışan eşik mantığını değiştirmemek.
+- **Yapılan:** `firmware/README.md` kettle düşük/kararlı kesitini (pens 0.637 A; ESP32 ilk 20 yayın ortalaması yaklaşık 0.656 A; +%3.0) ve kaynama kesitini (pens 6.39 A; ESP32 22 yayın ortalaması yaklaşık 6.15 A; −%3.8) ayrı kaydetti. 0.437 A pens bildirimiyle ilişkili 74 yayınlık log (ortalama 0.664 A; son 0.910 A sıçraması hariç 0.660 A) koşulu teyitsiz ayrı not edildi.
+- **SONUÇ:** İlk iki kettle koşulu ±%4 sınırında; kaynama sonucu sınıra yakın. 0.437 A ölçümünün yükü ve zaman eşleşmesi bilinmediği için karşılaştırma geçerli kabul edilmedi. Katsayı 24.22 ve eşik 0.35 A aynen korundu.
+- **Doğrulama:** README GitHub'a yazıldı. Bu işlemde YAML'ın çalışan değeri 0.35 A olarak korunmuştur; ESPHome derlemesi veya cihaza yükleme yapılmadı.
+- **Açık kalanlar:** 0.437 A pens ölçümünün hangi yük ve zaman aralığına ait olduğunun teyidi.
+- **Sonraki adım:** Kullanıcı yük koşulunu netleştirirse ilgili logu doğru koşulla eşleştir; yeni ölçüm gelmeden katsayıyı değiştirme.
+- **Kanıt:** [firmware/README.md](../firmware/README.md), [firmware/esp32d2.yaml](../firmware/esp32d2.yaml).
