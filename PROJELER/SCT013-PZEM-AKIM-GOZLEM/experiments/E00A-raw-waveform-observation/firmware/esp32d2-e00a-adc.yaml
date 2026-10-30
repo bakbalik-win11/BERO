@@ -1,56 +1,67 @@
 # ============================================================
-# BERO - E00A / ADIM 2 REVIZYONU
-# ESP32D2 - GPIO34 HAM ADC / GPIO35 DUZELTME UYGULANMAMIS VOLTAJ
+# BERO - E00A / ADIM 2
+# ESP32D2 - GPIO34 RAW + RAW VOLTAJ TAHMINI + GPIO35 ADC VOLTAJI
 # ============================================================
 #
 # DENEY AMACI:
-# Bias devresinin DC seviyesini ESP32 dahili ADC ile oldugu gibi gozlemlemek.
-# ADC voltajina yazilimsal sifir ofseti uygulanmaz.
-#
-# BU REVIZYONDA:
-# - GPIO34 ham ADC sayisini (count) yayinlar.
-# - GPIO35 ADC voltaj tahminini hicbir ofset cikarmadan yayinlar.
-# - Onceki 0.142 V yazilimsal sifir filtresi kaldirilmistir.
+# Ayni DC noktayi iki ESP32 ADC girisinden okuyarak:
+# 1) GPIO34 ham ADC count degerini,
+# 2) GPIO34 count degerinden nominal olcek ile hesaplanan voltaj tahminini,
+# 3) GPIO35 ESPHome ADC voltaj tahminini,
+# 4) iki voltaj tahmini arasindaki isaretli farki
+# Home Assistant / ESPHome logunda birlikte gozlemlemek.
 #
 # ONCEKI DENEMEDEN CIKAN DERS:
-# GND testinde GPIO35 kararlı bolumde 0.142 V gostermisti. Bu tek
-# gozlem gercek bir ADC sifir-ofseti oldugunu kanitlamiyordu.
+# GND testinde GPIO35 kararlı bolumde 0.142 V gostermisti.
+# Bu tek gozlem gercek bir ADC sifir-ofseti oldugunu kanitlamiyordu.
 # 0.142 V degerini yazilimdan cikarmak GND kosulunda ekrani 0.000 V
 # yapti; ancak bias Vmid testinde gercek DC voltaji da ayni miktarda
 # dusurdu. Kullanici multimetrede Vmid'i 1.654 V civarinda bildirdi.
-# Logdaki duzeltilmis ortalama yaklasik 1.525 V; ofset geri eklendiginde
-# filtresiz voltaj tahmini yaklasik 1.667 V olur. Fark yaklasik 13 mV.
-# Bu nedenle sifirlama gercek DC seviyeyi gizledi ve dogru okumayi bozdu.
+# Ofsetli log ortalamasi yaklasik 1.525 V idi; ofset geri eklendiginde
+# yaklasik 1.667 V elde ediliyordu. Bu nedenle sifirlama gercek DC
+# seviyeyi gizledi ve dogru okumayi bozdu.
 #
 # KARAR:
-# Sabit 0.142 V yazilimsal duzeltme kullanilmayacak. ADC voltaj tahmini
-# oldugu gibi yayinlanacak. GND'de 0.142 V gorulmesi de veri olarak
-# korunacak; otomatik sifirlanmayacak. Farkli DC noktalarinda test
-# yapilmadan ADC genel kalibrasyonu iddia edilmeyecek.
+# Sabit 0.142 V yazilimsal duzeltme KULLANILMAZ.
+# GPIO35 ADC voltaj tahminine ofset veya alt sinir filtresi uygulanmaz.
 #
-# DONANIM:
+# RAW -> VOLTAJ HESABI:
+# Klasik ESP32, 12 bit ADC icin nominal 0..4095 count ve 12 dB
+# attenuation icin yaklasik 3.1 V tam olcek varsayimi kullanilir:
+# V_raw_tahmin = RAW_count * 3.1 / 4095
+# Bu yalnizca nominal lineer olcek tahminidir. ESP32 ADC dogrusal
+# olmayabilir; bu deger kalibre edilmis voltaj veya olcum garantisi
+# DEGILDIR. GPIO35 ESPHome ADC voltajiyla farki deneysel olarak
+# goruntulemek icin kullanilir.
+#
+# FARK ISARETI:
+# Fark = GPIO35_ADC_V - GPIO34_RAW_V_TAHMINI
+# Pozitif fark, GPIO35 degerinin daha buyuk oldugunu gosterir.
+#
+# DONANIM VE BAGLANTI:
 # Klasik ESP32-WROOM-32D / ESP32
-# GPIO34 = ADC1_CH6
-# GPIO35 = ADC1_CH7
+# GPIO34 = ADC1_CH6 (RAW count)
+# GPIO35 = ADC1_CH7 (ESPHome ADC voltaji)
+# Karsilastirma icin GPIO34 ve GPIO35 ayni Vmid olcum noktasina
+# baglanmali ve ESP32 GND ile bias GND ortak olmalidir.
+# GPIO34 bagli degilse RAW degeri ve buna bagli voltaj/fark anlamsizdir.
+# Bu firmware iki pini ayni anda okur; ayni ADC ornegi olduklari
+# veya tam eszamanli okunduklari iddia edilmez.
 #
-# BAGLANTI:
-# Bu deney adiminda GPIO35'in test edilen DC noktasi baglantisi
-# ve ESP32 GND ortakligi fiziksel olarak korunmalidir.
-# GPIO34 yalniz gercekten bagliysa ham ADC verisi anlamlidir.
-# GPIO34 bagli degilse giris floating kalabilir; degeri yorumlama.
-#
-# BEKLENTI:
-# GPIO35 voltajini duzeltmesiz yayinlamak; GND'de gorulen sifir disi degeri de kaydetmek.
-# Bu sonuc yeni cihaz loguyla dogrulanmadan basarili sayilmaz.
+# MULTIMETRE REFERANSI (KULLANICI BILDIRIMI, 2026-10-30):
+# L78L33 cikisi: 3.31 V
+# 10k/10k bolucu orta noktasi: 1.654 V sabit
+# 1.654 V, iki ADC girisine ortak uygulanacak karsilastirma noktasi.
 #
 # GUVENLIK:
-# 3.31 V cikisini GPIO34 veya GPIO35'e dogrudan baglama.
-# ADC girisine GND altinda veya kartin izin verilen giris araligi
-# disinda gerilim uygulama. Baglantilari enerji kesikken degistir.
+# 3.31 V regülatör cikisini ADC pinine dogrudan baglama.
+# ADC girisine kartin izin verilen araligi disinda gerilim uygulama.
+# Baglantilari enerji kesikken degistir. Bu YAML fiziksel guvenligi
+# veya kart pinout'unu kendi basina dogrulamaz.
 #
 # OKUMA:
-# Home Assistant'a her 1 saniyede bir sensor durumu yayinlanir.
-# Bu ayar yuksek hizli ornekleme veya 30 saniyelik CSV kaydi degildir.
+# Sensorler 1 saniyede bir yayin yapar. Bu ayar 2 kS/s ham kayit
+# veya 30 saniyelik CSV kaydi degildir.
 #
 # ============================================================
 
@@ -77,16 +88,8 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-# ============================================================
-# ADC SENSORLERI
-# ============================================================
 sensor:
-  # ----------------------------------------------------------
-  # GPIO34 - HAM ADC SAYISI
-  # ----------------------------------------------------------
-  # raw: true oldugu icin voltaja donusturulmus deger degil,
-  # ESPHome ADC bileseninin ham count degeri yayinlanir.
-  # Bu kanal GPIO35 ile ayni ADC ornegi degildir; ayri GPIO'dur.
+  # GPIO34 - ham ADC count
   - platform: adc
     pin: GPIO34
     id: gpio34_adc_raw
@@ -99,11 +102,22 @@ sensor:
     samples: 1
     update_interval: 1s
 
-  # ----------------------------------------------------------
-  # GPIO35 - DUZELTME UYGULANMAMIS ADC VOLTAJ
-  # ----------------------------------------------------------
-  # raw: false -> ADC voltaj tahmini Volt cinsinden uretilir.
-  # Yazilimsal ofset veya alt sinir filtresi uygulanmaz.
+  # GPIO34 RAW count -> nominal lineer voltaj tahmini
+  - platform: template
+    id: gpio34_adc_raw_voltage_estimate
+    name: "ESP32D2 GPIO34 RAW Voltage Estimate"
+    lambda: |-
+      if (isnan(id(gpio34_adc_raw).state)) {
+        return {};
+      }
+      return id(gpio34_adc_raw).state * (3.1f / 4095.0f);
+    accuracy_decimals: 3
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    update_interval: 1s
+
+  # GPIO35 - ESPHome ADC voltaj tahmini; ofsetsiz
   - platform: adc
     pin: GPIO35
     id: gpio35_adc_voltage
@@ -116,22 +130,47 @@ sensor:
     state_class: measurement
     samples: 1
     update_interval: 1s
+
+  # Isaretli fark: GPIO35 voltaji - GPIO34 RAW'dan tahmin edilen voltaj
+  - platform: template
+    id: adc_voltage_difference
+    name: "ESP32D2 ADC Voltage Difference GPIO35 minus GPIO34 RAW"
+    lambda: |-
+      if (isnan(id(gpio34_adc_raw_voltage_estimate).state) ||
+          isnan(id(gpio35_adc_voltage).state)) {
+        return {};
+      }
+      return id(gpio35_adc_voltage).state -
+             id(gpio34_adc_raw_voltage_estimate).state;
+    accuracy_decimals: 3
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    update_interval: 1s
+
 # ============================================================
 # DENEY KAYIT NOTLARI
 # ============================================================
 #
 # HEDEF:
-# GPIO35 ADC voltajini hicbir yazilimsal sifir duzeltmesi yapmadan
-# yayinlamak ve multimetreyle karsilastirmak.
+# Ayni 1.654 V DC noktada iki ADC yolunu karsilastirmak.
+# RAW count, RAW voltaj tahmini, GPIO35 ADC voltaji ve aralarindaki
+# isaretli fark birlikte loglanir.
 #
 # LOG:
-# Onceki GND logunda 0.142 V gozlenmistir. 0.142 V ofsetli deneme
-# GND'de 0.000 V vermis, ancak bias acikken gercek DC seviyeyi ayni
-# miktarda dusurmustur. Bu nedenle duzeltme kaldirildi.
+# 2026-10-30 kullanici logunda GPIO34 RAW 1839..1879 count araliginda.
+# Ancak onceki baglanti bilgisinde GPIO34 baglantisiz oldugu bildirildi;
+# bu nedenle bu RAW serisi fiziksel voltaj olcumu olarak kullanilamaz.
+# GPIO35 logunda once yaklasik 1.511..1.537 V, sonra 0.000 V ve
+# 3.008 V goruldu. Kullanici multimetrede bolucu orta noktasini
+# 1.654 V sabit bildirdi; 3.008 V satirinin bias noktasina gecis
+# sonrasinda olustugunu acikladi. Logun bu firmware revizyonundan
+# geldigi dogrulanmamistir; eski sensor adi "Voltage Corrected" idi.
 #
 # SONUC:
-# ADC voltaj tahmini oldugu gibi korunur. GND'deki 0.142 V saklanmaz
-# veya otomatik silinmez. Farkli DC noktalariyla karsilastirma yapilir;
-# tek nokta ADC genel dogrulugunu kanitlamaz.
+# Bu YAML henuz derlenmedi veya cihaza yuklenmedi.
+# GPIO34 ve GPIO35 ayni 1.654 V noktasina baglanmadan fark sensoru
+# karsilastirma kaniti sayilmaz. RAW voltaj formulu nominal tahmindir;
+# ADC dogrulugu veya kalibrasyonu kanitlamaz.
 #
 # ============================================================
