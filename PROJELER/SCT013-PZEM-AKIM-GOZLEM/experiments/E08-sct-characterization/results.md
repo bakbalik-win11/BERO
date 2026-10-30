@@ -1,6 +1,6 @@
 # E08 sonuçları
 
-Durum: PLANLANDI; fiziksel ölçüm henüz yapılmadı.
+Durum: E08 Aşama 2 açıldı; önce mevcut E00B firmware'iyle düşük hızlı yük gözlemi yapılacak. Fiziksel ölçüm henüz yapılmadı.
 
 Aşamalar: yüksüz uzun okuma; 100 W matrisi; 150 W ve 8,5 W LED matrisleri; aç-kapa testi.
 
@@ -18,7 +18,11 @@ SCT sinyalini yüksüz, farklı yük/tur ve aç-kapa koşullarında karakterize 
 - Yapılmayan işlemler: fiziksel deney, firmware derlemesi ve ölçüm yapılmadı.
 
 ### SONUÇ
-Henüz ölçülmedi; bu dosya deney başarısı veya fiziksel bulgu kanıtı değildir. Gerçek veriler alındığında sonuç, sınırlamalar ve sonraki adım kanıta dayanarak yazılacaktır.
+Henüz ölçülmedi; bu dosya deney başarısı veya fiziksel bulgu kanıtı değildir.
+
+## 2026-10-30 — Aşama 2 yaklaşımı netleştirildi
+
+Kullanıcı kararı: Yeni yüksek hızlı firmware'e şu aşamada geçilmeyecek. Mevcut E00B kodu değiştirilmeden 100 W akkor yük altındaki sensör yayınları gözlenecek. Bu kayıt, 1 saniyelik yayın aralığında sinyalin/yük davranışının farklı alanlarını görmeye yönelik düşük hızlı bir gözlem olarak değerlendirilecek. Daha sonra ayrı hızlandırma testlerine geçilecek. Bu aşama 1/2/2,5 kS/s örnekleme hedeflerinin gerçekleştirildiği anlamına gelmez. Gerçek veriler alındığında sonuç, sınırlamalar ve sonraki adım kanıta dayanarak yazılacaktır.
 
 
 ## 2026-10-30 — Aşama 2 / 100 W akkor testi açıldı
