@@ -358,3 +358,59 @@ KARAR: Ayrışma kanıtı varsa tahmin; ayrışma yetersizse akım değeri yerin
 - SNR < 1'de güvenilir tek-pencere akım tahmini yapılamayacağı: KABUL; tekrarlı pencere istatistiğinin bilgi taşıyamayacağı iddiası KABUL DEĞİL.
 
 Durum: Bu bir teknik karar/inceleme kaydıdır. Yeni veri toplanmadı, firmware veya Python kodu değiştirilmedi, model eğitilmedi ve fiziksel test yapılmadı.
+
+
+## 12. Google değerlendirmesi — kaynak kod ve istatistik açısından denetim
+
+### 12.1 raw:false ve 1 mV basamağı: sorun gerçek, hata yüzdesi kanıtlanmadı
+
+ESPHome ESP32 ADC kalibre yolunda ham ADC kodunu kalibrasyon API'siyle tam sayı mV'ye dönüştürür ve Volt cinsinden float döndürür. Bu nedenle kaynak örnek değerinin 1 mV basamaklı olması doğrudur. BERO'daki 24.22 A/V katsayısıyla 0.041 A için yaklaşık 1.69 mV RMS hesabı aritmetik olarak doğrudur.
+
+Bununla birlikte 1 mV / 1.69 mV oranı, RMS akım hatasının doğrudan yüzde 59 veya Google'ın ileri sürdüğü yaklaşık yüzde 50 olduğu anlamına gelmez. Kuantizasyonun RMS'e etkisi dalga tepe genliği, ADC kod/bias hizası, ADC gürültüsü ve örneklerin zaman dağılımına bağlıdır. Sonuç: düşük akımda önemli kuantizasyon riski **KABUL**; belirli hata yüzdesi **HENÜZ KANITLANMADI**.
+
+### 12.2 raw:true + multiply:0.85 önerisi: reddedildi
+
+Google'ın 0.85 çarpanı için kaynak, birim veya ESP32'ye özgü kalibrasyon kanıtı yoktur. ESPHome dokümanında 12 dB için verilen genel eski ölçek örneği 0.00095238 V/count'tur; ESPHome bu yöntemin çipler arasında değişebileceğini ve genel olarak kalibre edilmiş gerilim yolunun tercih edilmesini belirtir. Bu genel çarpan da BERO kartı için doğrulanmış kalibrasyon katsayısı değildir.
+
+Daha kritik nokta: ct_clamp, loop() içinde ADC kaynağının sample() metodunu doğrudan çağırır. ADC sensörünün normal publish/filter zincirindeki filters işleminin ct_clamp'in doğrudan sample() çağrısından önce uygulandığı varsayılamaz. Dolayısıyla ADC sensörüne filters: - multiply: 0.85 eklemek, ct_clamp'e float ölçeklenmiş voltaj vereceği anlamına gelmez. Ham count dönüşümünün gerçekten ct_clamp örnekleme yoluna uygulanması için kaynak/uygulama mimarisi ayrıca tasarlanmalı ve doğrulanmalıdır.
+
+raw:true ham count yolunu kullanmak, ADC'nin fiziksel çözünürlüğünü artırmaz; kalibre edilmiş mV dönüşümündeki tam sayı mV basamağını atlar ama ham ADC'nin kendi kod çözünürlüğü, doğrusal olmama, gürültü ve çip değişkenliği devam eder. 0.85 çarpanlı YAML denemesi yapılmayacak.
+
+### 12.3 SNR ve gürültü RMS birleşimi: koşullu kabul
+
+Vsignal ve Vnoise bağımsız/ilişkisiz ve sıfır ortalamalı bileşenlerse varyansları toplanır; toplam RMS kareler toplamının karekökü olur. Bu bağıntı düşük sinyalde taban gürültüsünün etkisini açıklamak için yararlıdır. Ancak E00F'nin ardışık aynı değerleri atlayan örnekleme yöntemi nedeniyle bu ilişkinin BERO'daki sayısal etkisi ayrıca ölçülmelidir.
+
+Noise floor'un varlığı tek başına model eğrisinin asla sıfıra yaklaşamayacağını kanıtlamaz. Gürültü tabanı ve belirsizliği uygun, aynı edinim yoluyla toplanmış veriyle modellenebilir. Gürültü çıkarımı da tabanın kararlılığı ve sinyal-gürültü bağımsızlığı gösterilmeden uygulanmayacak.
+
+### 12.4 Dedup, zamanlama ve CPU jitter: kısmen kabul, iddia düzeltiliyor
+
+Ardışık aynı sayısal değerleri atlama, zaman ağırlıklı örnek dağılımını değiştirebilir. Ancak bunun dalga biçimini fiziksel olarak üçgen/kare şekle dönüştürdüğü ifadesi doğru değildir. Algoritma, tekrarları sıkıştırılmış ve zaman damgası taşımayan kabul edilmiş değerler kümesinin standart sapmasını hesaplar.
+
+ESPHome ct_clamp kodu yüksek frekanslı loop isteği başlatır; sabit zaman aralıklı ADC örnekleme zamanlayıcısı tanımlamaz. Logdaki N ve SPS, kabul edilen farklı değer sayısı ve bunun pencereye oranıdır; gerçek ADC dönüşüm hızı değildir. 8–11 kS/s fiziksel dönüşüm hızı veya CPU jitter ölçümü olarak kullanılamaz. CPU jitter miktarı mevcut logdan çıkarılamaz.
+
+200 ms, nominal 50 Hz'de 10 periyoda karşılık gelir; ancak şebekeye faz senkronizasyonu anlamına gelmez. Gerçek frekans ve örnekleme zamanlaması ayrı ölçülmelidir.
+
+### 12.5 Z > 3 kuralı: reddedildi
+
+Normal dağılım altında yaklaşık %99.73 değeri, gözlemlerin ±3 sigma aralığında kalma olasılığıdır; Z > 3 gözleminin gerçek yük olma olasılığı değildir. Tek taraflı Z > 3, ancak yüksüz dağılımın uygunluğu ve durağanlığı varsayımı altında yanlış alarm olasılığına ilişkin bir eşik olabilir. Yükün gerçek olma olasılığını hesaplamak için yük ve yüksüz koşullarının dağılımları, ön olasılıklar ve karar maliyetleri gerekir.
+
+Beş dakikalık taban kaydı da kanıtlanmış yeterlilik süresi değildir. T005/E01 mevcut sırası korunacak; kayıt süresi ve tekrarlı oturum gereksinimi gerçek dağılım ve kararlılık incelendikten sonra belirlenecek. Z > 3 otomatik yük tespiti veya Z <= 3 otomatik sıfır akım kuralı olarak kullanılmayacak.
+
+### 12.6 Residual analizi ve bölgesel eşikler: yöntem kabul, Google'ın çıkarımı reddedildi
+
+Residual plot ve akım aralıklarına göre hata özeti, T006 model değerlendirmesinde kullanılabilecek tanı araçlarıdır. Ancak <1 A, 1–3 A ve >3 A sınırları BERO verisinden türetilmemiştir. Kettle'da bildirilen yaklaşık −%3.8 fark, mevcut ±%4 kabul sınırının içindedir; tek başına tek doğrusal modelin başarısızlığını göstermez. Mevcut yük noktaları ve eşleşmiş kararlı pencere sayısı bölgesel model kararı için yeterli değildir.
+
+### 12.7 Nihai karar
+
+- raw:false 1 mV basamağı: **KABUL**; düşük akım için risk, hata yüzdesi ölçülmedi.
+- raw:true + multiply:0.85: **RED**; çarpan temelsiz ve ADC filters zincirinin ct_clamp sample() çağrısına uygulanacağı varsayımı yanlış.
+- RMS gürültü birleşimi: **KOŞULLU KABUL**; bağımsız bileşen varsayımı ve BERO edinim yöntemi etkisi dikkate alınmalı.
+- Dedup zaman ağırlığı: **KABUL**; dalga şeklinin kare/üçgen olduğu iddiası **RED**.
+- 8–11 kS/s gerçek ADC hızı ve CPU jitter sonucu: **RED**; log yalnız farklı kabul edilen değer sayısını gösterir.
+- Z > 3 = %99.7 gerçek yük: **RED**.
+- Residual analizi: **KABUL**; Google'ın akım bölgeleri ve kettle örneğinden model yetersizliği çıkarımı **RED**.
+- Mevcut E00F YAML, katsayı, eşik, pin ve cihaz kimliği değiştirilmeyecek. E00A/E00B deney sırası korunacak. T006 model analizi, ilgili görev sırası geldiğinde ve eşleşmiş kararlı veri oluştuğunda yapılacak.
+
+**Durum:** Bu bölüm kaynak kod/doküman incelemesi ve matematiksel değerlendirmedir. raw:true denemesi, YAML değişikliği, derleme/flash, yeni ADC kaydı, Python residual analizi veya fiziksel test yapılmadı.
+
+**Kaynaklar:** [ESPHome ADC dokümantasyonu](https://esphome.io/components/sensor/adc/), [ESPHome ct_clamp kaynak kodu](https://api-docs.esphome.io/ct__clamp__sensor_8cpp_source), [ESPHome ct_clamp dokümantasyonu](https://esphome.io/components/sensor/ct_clamp/), [ESPHome ESP32 ADC uygulaması](https://github.com/esphome/esphome/blob/dev/esphome/components/adc/adc_sensor_esp32.cpp).
