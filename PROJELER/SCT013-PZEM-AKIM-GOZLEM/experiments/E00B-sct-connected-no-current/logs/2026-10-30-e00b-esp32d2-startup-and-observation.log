@@ -1,0 +1,1000 @@
+ogs - BERO E00B ESP32D2
+OTA
+INFO ESPHome 2026.9.1
+INFO Loaded validated config cache for esp32d2.yaml, skipping validation.
+INFO Starting log output from 192.168.0.66 using esphome API
+INFO Successfully resolved esp32d2 @ 192.168.0.66 in 0.000s
+INFO Successfully connected to esp32d2 @ 192.168.0.66 in 3.591s
+INFO Successful handshake with esp32d2 @ 192.168.0.66 in 0.065s
+[16:20:32.195][I][app:151]: ESPHome version 2026.9.1 compiled on 2026-10-30 16:17:02 +0300
+[16:20:32.195][I][app:158]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[16:20:32.195][W][app:171]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[16:20:32.196][W][app:198]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[16:20:32.200][C][logger:216]: Logger:
+[16:20:32.200][C][logger:216]:   Max Level: DEBUG
+[16:20:32.200][C][logger:216]:   Initial Level: DEBUG
+[16:20:32.201][C][logger:223]:   Log Baud Rate: 115200
+[16:20:32.201][C][logger:223]:   Hardware UART: UART0
+[16:20:32.201][C][logger:232]:   Task Log Buffer Size: 768 bytes
+[16:20:32.223][C][template.sensor:017]: Template Sensor 'BERO E00B Bias GPIO34 RAW Voltage Estimate'
+[16:20:32.223][C][template.sensor:017]:   State Class: 'measurement'
+[16:20:32.223][C][template.sensor:017]:   Unit of Measurement: 'V'
+[16:20:32.223][C][template.sensor:017]:   Accuracy Decimals: 3
+[16:20:32.243][C][template.sensor:165]:   Device Class: 'voltage'
+[16:20:32.244][C][template.sensor:340]:   Update Interval: 1.000s
+[16:20:32.244][C][template.sensor:017]: Template Sensor 'BERO E00B Bias Voltage Difference'
+[16:20:32.244][C][template.sensor:017]:   State Class: 'measurement'
+[16:20:32.244][C][template.sensor:017]:   Unit of Measurement: 'V'
+[16:20:32.244][C][template.sensor:017]:   Accuracy Decimals: 3
+[16:20:32.256][C][template.sensor:165]:   Device Class: 'voltage'
+[16:20:32.257][C][template.sensor:340]:   Update Interval: 1.000s
+[16:20:32.303][C][template.sensor:017]: Template Sensor 'BERO E00B SCT GPIO32 RAW Voltage Estimate'
+[16:20:32.303][C][template.sensor:017]:   State Class: 'measurement'
+[16:20:32.303][C][template.sensor:017]:   Unit of Measurement: 'V'
+[16:20:32.303][C][template.sensor:017]:   Accuracy Decimals: 3
+[16:20:32.304][C][template.sensor:165]:   Device Class: 'voltage'
+[16:20:32.304][C][template.sensor:340]:   Update Interval: 1.000s
+[16:20:32.304][C][template.sensor:017]: Template Sensor 'BERO E00B SCT Voltage Difference'
+[16:20:32.304][C][template.sensor:017]:   State Class: 'measurement'
+[16:20:32.304][C][template.sensor:017]:   Unit of Measurement: 'V'
+[16:20:32.304][C][template.sensor:017]:   Accuracy Decimals: 3
+[16:20:32.310][C][template.sensor:165]:   Device Class: 'voltage'
+[16:20:32.311][C][template.sensor:340]:   Update Interval: 1.000s
+[16:20:32.311][C][adc:017]: ADC Sensor 'BERO E00B Bias GPIO34 RAW'
+[16:20:32.311][C][adc:017]:   State Class: 'measurement'
+[16:20:32.311][C][adc:017]:   Unit of Measurement: 'count'
+[16:20:32.311][C][adc:017]:   Accuracy Decimals: 0
+[16:20:32.311][C][adc:165]:   Device Class: 'voltage'
+[16:20:32.337][C][adc:131]:   Pin: GPIO34
+[16:20:32.338][C][adc:131]:   Channel:       6
+[16:20:32.338][C][adc:131]:   Unit:          ADC1
+[16:20:32.338][C][adc:131]:   Attenuation:   12 dB
+[16:20:32.338][C][adc:131]:   Samples:       1
+[16:20:32.338][C][adc:131]:   Sampling mode: average
+[16:20:32.338][C][adc:131]:   Setup Status:
+[16:20:32.338][C][adc:131]:     Handle Init:  OK
+[16:20:32.338][C][adc:131]:     Config:       OK
+[16:20:32.338][C][adc:131]:     Calibration:  OK
+[16:20:32.338][C][adc:131]:     Overall Init: OK
+[16:20:32.346][C][adc:340]:   Update Interval: 1.000s
+[16:20:32.357][C][adc:017]: ADC Sensor 'BERO E00B Bias GPIO35 ADC Voltage'
+[16:20:32.357][C][adc:017]:   State Class: 'measurement'
+[16:20:32.357][C][adc:017]:   Unit of Measurement: 'V'
+[16:20:32.357][C][adc:017]:   Accuracy Decimals: 3
+[16:20:32.370][C][adc:165]:   Device Class: 'voltage'
+[16:20:32.370][C][adc:131]:   Pin: GPIO35
+[16:20:32.377][C][adc:131]:   Channel:       7
+[16:20:32.377][C][adc:131]:   Unit:          ADC1
+[16:20:32.377][C][adc:131]:   Attenuation:   12 dB
+[16:20:32.377][C][adc:131]:   Samples:       1
+[16:20:32.377][C][adc:131]:   Sampling mode: average
+[16:20:32.377][C][adc:131]:   Setup Status:
+[16:20:32.377][C][adc:131]:     Handle Init:  OK
+[16:20:32.377][C][adc:131]:     Config:       OK
+[16:20:32.377][C][adc:131]:     Calibration:  OK
+[16:20:32.377][C][adc:131]:     Overall Init: OK
+[16:20:32.382][C][adc:340]:   Update Interval: 1.000s
+[16:20:32.424][C][adc:017]: ADC Sensor 'BERO E00B SCT GPIO32 RAW'
+[16:20:32.424][C][adc:017]:   State Class: 'measurement'
+[16:20:32.424][C][adc:017]:   Unit of Measurement: 'count'
+[16:20:32.424][C][adc:017]:   Accuracy Decimals: 0
+[16:20:32.424][C][adc:165]:   Device Class: 'voltage'
+[16:20:32.425][C][adc:131]:   Pin: GPIO32
+[16:20:32.425][C][adc:131]:   Channel:       4
+[16:20:32.425][C][adc:131]:   Unit:          ADC1
+[16:20:32.425][C][adc:131]:   Attenuation:   12 dB
+[16:20:32.425][C][adc:131]:   Samples:       1
+[16:20:32.425][C][adc:131]:   Sampling mode: average
+[16:20:32.425][C][adc:131]:   Setup Status:
+[16:20:32.425][C][adc:131]:     Handle Init:  OK
+[16:20:32.425][C][adc:131]:     Config:       OK
+[16:20:32.425][C][adc:131]:     Calibration:  OK
+[16:20:32.425][C][adc:131]:     Overall Init: OK
+[16:20:32.430][C][adc:340]:   Update Interval: 1.000s
+[16:20:32.443][C][adc:017]: ADC Sensor 'BERO E00B SCT GPIO33 ADC Voltage'
+[16:20:32.443][C][adc:017]:   State Class: 'measurement'
+[16:20:32.443][C][adc:017]:   Unit of Measurement: 'V'
+[16:20:32.443][C][adc:017]:   Accuracy Decimals: 3
+[16:20:32.448][C][adc:165]:   Device Class: 'voltage'
+[16:20:32.448][C][adc:131]:   Pin: GPIO33
+[16:20:32.455][C][adc:131]:   Channel:       5
+[16:20:32.455][C][adc:131]:   Unit:          ADC1
+[16:20:32.455][C][adc:131]:   Attenuation:   12 dB
+[16:20:32.455][C][adc:131]:   Samples:       1
+[16:20:32.455][C][adc:131]:   Sampling mode: average
+[16:20:32.455][C][adc:131]:   Setup Status:
+[16:20:32.455][C][adc:131]:     Handle Init:  OK
+[16:20:32.455][C][adc:131]:     Config:       OK
+[16:20:32.455][C][adc:131]:     Calibration:  OK
+[16:20:32.455][C][adc:131]:     Overall Init: OK
+[16:20:32.470][C][adc:340]:   Update Interval: 1.000s
+[16:20:32.481][C][network:050]: Network:
+[16:20:32.481][C][network:050]:   TCP send buffer: 5760 bytes
+[16:20:32.501][C][wifi:1582]: WiFi:
+[16:20:32.501][C][wifi:1582]:   Local MAC: E0:8C:FE:5C:F4:E4
+[16:20:32.501][C][wifi:1582]:   Connected: YES
+[16:20:32.509][C][wifi:1286]:   IP Address: 192.168.0.66
+[16:20:32.509][C][wifi:1297]:   SSID: 'AKFISH'
+[16:20:32.509][C][wifi:1297]:   BSSID: 3C:64:CF:5C:81:73
+[16:20:32.509][C][wifi:1297]:   Hostname: 'esp32d2'
+[16:20:32.509][C][wifi:1297]:   Signal strength: -69 dB ▂▄▆█
+[16:20:32.509][C][wifi:1297]:   Channel: 2
+[16:20:32.509][C][wifi:1297]:   Subnet: 255.255.255.0
+[16:20:32.509][C][wifi:1297]:   Gateway: 192.168.0.1
+[16:20:32.509][C][wifi:1297]:   DNS1: 192.168.0.1
+[16:20:32.509][C][wifi:1297]:   DNS2: 0.0.0.0
+[16:20:32.517][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 0.000 V
+[16:20:32.517][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.142 V
+[16:20:32.517][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 0.000 V
+[16:20:32.517][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 0.142 V
+[16:20:32.518][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.142 V
+[16:20:32.536][C][esphome.ota:125]: Over-The-Air updates:
+[16:20:32.536][C][esphome.ota:125]:   Address: esp32d2.local:3232
+[16:20:32.536][C][esphome.ota:125]:   Version: 2
+[16:20:32.550][C][safe_mode:058]: Safe Mode:
+[16:20:32.550][C][safe_mode:058]:   Successful after: 60s
+[16:20:32.550][C][safe_mode:058]:   Invoke after: 10 attempts
+[16:20:32.550][C][safe_mode:058]:   Duration: 300s
+[16:20:32.561][C][safe_mode:079]:   Bootloader rollback: supported
+[16:20:32.573][C][api:293]: Server:
+[16:20:32.573][C][api:293]:   Address: esp32d2.local:6053
+[16:20:32.573][C][api:293]:   Listen backlog: 4
+[16:20:32.573][C][api:293]:   Max connections: 5
+[16:20:32.580][C][api:305]:   Noise encryption: NO
+[16:20:32.627][C][mdns:259]: mDNS:
+[16:20:32.627][C][mdns:259]:   Hostname: esp32d2
+[16:20:32.714][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 0 count
+[16:20:32.715][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 0 count
+[16:20:32.715][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 0.142 V
+[16:20:33.492][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 0.000 V
+[16:20:33.493][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 0.142 V
+[16:20:33.493][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 0.000 V
+[16:20:33.494][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.142 V
+[16:20:33.494][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.142 V
+[16:20:33.708][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 0 count
+[16:20:33.708][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 0 count
+[16:20:33.709][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 0.142 V
+[16:20:34.537][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 0.000 V
+[16:20:34.537][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.142 V
+[16:20:34.538][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 0.142 V
+[16:20:34.538][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 0.000 V
+[16:20:34.539][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.142 V
+[16:20:34.715][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 0 count
+[16:20:34.715][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 0 count
+[16:20:34.716][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 0.142 V
+[16:20:35.521][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 0.142 V
+[16:20:35.521][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 0.000 V
+[16:20:35.521][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 0.000 V
+[16:20:35.522][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.142 V
+[16:20:35.643][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.142 V
+[16:20:35.643][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 0 count
+[16:20:35.802][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 0 count
+[16:20:35.802][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 0.142 V
+[16:20:36.523][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 0.000 V
+[16:20:36.523][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.142 V
+[16:20:36.524][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 0.000 V
+[16:20:36.524][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 0.142 V
+[16:20:36.525][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.142 V
+[16:20:36.675][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 0 count
+[16:20:36.675][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 0 count
+[16:20:36.675][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 0.142 V
+[16:20:37.500][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 0.000 V
+[16:20:37.501][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 0.142 V
+[16:20:37.501][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 0.000 V
+[16:20:37.502][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.142 V
+[16:20:37.502][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.142 V
+[16:20:37.690][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 0 count
+[16:20:37.690][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 0 count
+[16:20:37.691][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 0.142 V
+[16:20:38.488][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 0.000 V
+[16:20:38.489][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.142 V
+[16:20:38.489][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 0.142 V
+[16:20:38.490][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 0.000 V
+[16:20:38.490][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.142 V
+[16:20:38.678][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 0 count
+[16:20:38.678][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 0.142 V
+[16:20:38.679][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 0 count
+[16:20:39.498][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 0.142 V
+[16:20:39.499][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.142 V
+[16:20:39.499][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 0.000 V
+[16:20:39.500][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 0.000 V
+[16:20:39.500][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.142 V
+[16:20:39.731][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 0 count
+[16:20:39.731][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 0.142 V
+[16:20:39.732][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 0 count
+[16:20:40.517][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 0.000 V
+[16:20:40.517][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 0.000 V
+[16:20:40.517][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.142 V
+[16:20:40.517][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 0.142 V
+[16:20:40.518][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.142 V
+[16:20:40.694][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 0 count
+[16:20:40.695][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 0 count
+[16:20:40.695][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 0.142 V
+[16:20:41.487][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.142 V
+[16:20:41.487][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 0.000 V
+[16:20:41.487][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.635 V
+[16:20:41.488][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 0.000 V
+[16:20:41.488][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 1.635 V
+[16:20:41.683][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1851 count
+[16:20:41.683][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1854 count
+[16:20:41.684][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.664 V
+[16:20:42.510][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.668 V
+[16:20:42.511][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.401 V
+[16:20:42.511][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.404 V
+[16:20:42.511][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:20:42.512][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.267 V
+[16:20:42.677][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1841 count
+[16:20:42.677][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.663 V
+[16:20:42.677][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:20:43.497][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:20:43.498][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.394 V
+[16:20:43.498][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.257 V
+[16:20:43.498][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.662 V
+[16:20:43.499][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.268 V
+[16:20:43.691][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1866 count
+[16:20:43.691][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:20:43.691][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1859 count
+[16:20:44.489][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:20:44.490][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.670 V
+[16:20:44.490][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.413 V
+[16:20:44.490][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:20:44.491][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.257 V
+[16:20:44.689][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1839 count
+[16:20:44.689][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:20:44.689][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:20:45.485][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.392 V
+[16:20:45.486][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.670 V
+[16:20:45.486][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:20:45.487][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:20:45.615][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.278 V
+[16:20:45.615][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1856 count
+[16:20:45.778][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1841 count
+[16:20:45.779][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.654 V
+[16:20:46.498][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.394 V
+[16:20:46.499][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:20:46.499][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.666 V
+[16:20:46.499][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.405 V
+[16:20:46.500][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.261 V
+[16:20:46.694][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1856 count
+[16:20:46.694][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.665 V
+[16:20:46.695][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:20:47.512][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.658 V
+[16:20:47.512][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.271 V
+[16:20:47.513][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.405 V
+[16:20:47.513][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:20:47.513][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.253 V
+[16:20:47.719][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1841 count
+[16:20:47.719][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.651 V
+[16:20:47.720][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1843 count
+[16:20:48.486][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.394 V
+[16:20:48.487][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.395 V
+[16:20:48.488][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.256 V
+[16:20:48.488][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.655 V
+[16:20:48.488][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.261 V
+[16:20:48.832][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1872 count
+[16:20:48.832][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1840 count
+[16:20:48.832][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.653 V
+[16:20:49.526][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.258 V
+[16:20:49.526][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.393 V
+[16:20:49.527][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:20:49.527][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.417 V
+[16:20:49.527][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.250 V
+[16:20:49.676][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1847 count
+[16:20:49.676][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1858 count
+[16:20:49.677][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:20:50.493][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.653 V
+[16:20:50.493][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.398 V
+[16:20:50.494][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:20:50.494][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:20:50.495][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.255 V
+[16:20:50.687][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1854 count
+[16:20:50.687][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:20:50.688][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:20:51.487][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:20:51.487][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.404 V
+[16:20:51.488][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:20:51.488][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.666 V
+[16:20:51.488][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.262 V
+[16:20:51.687][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1847 count
+[16:20:51.687][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.670 V
+[16:20:51.688][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:20:52.499][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.264 V
+[16:20:52.499][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.674 V
+[16:20:52.500][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.398 V
+[16:20:52.500][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:20:52.500][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.276 V
+[16:20:52.714][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1839 count
+[16:20:52.714][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1859 count
+[16:20:52.715][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:20:53.493][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.392 V
+[16:20:53.494][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.648 V
+[16:20:53.494][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:20:53.495][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:20:53.495][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.256 V
+[16:20:53.684][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1856 count
+[16:20:53.685][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1862 count
+[16:20:53.685][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.663 V
+[16:20:54.493][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.410 V
+[16:20:54.494][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.253 V
+[16:20:54.494][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.674 V
+[16:20:54.495][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.405 V
+[16:20:54.495][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.269 V
+[16:20:54.679][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1859 count
+[16:20:54.679][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.672 V
+[16:20:54.680][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:20:55.496][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:20:55.496][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.262 V
+[16:20:55.496][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.407 V
+[16:20:55.497][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:20:55.497][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.260 V
+[16:20:55.688][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1862 count
+[16:20:55.689][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.671 V
+[16:20:55.689][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1863 count
+[16:20:56.495][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:20:56.495][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.410 V
+[16:20:56.496][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:20:56.496][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.654 V
+[16:20:56.496][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.244 V
+[16:20:56.678][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1855 count
+[16:20:56.679][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1840 count
+[16:20:56.679][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.654 V
+[16:20:57.496][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.244 V
+[16:20:57.496][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.393 V
+[16:20:57.497][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.658 V
+[16:20:57.497][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.404 V
+[16:20:57.497][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.254 V
+[16:20:57.678][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1851 count
+[16:20:57.678][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1859 count
+[16:20:57.678][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:20:58.494][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:20:58.495][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.401 V
+[16:20:58.495][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:20:58.496][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:20:58.496][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.266 V
+[16:20:58.687][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1874 count
+[16:20:58.687][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.670 V
+[16:20:58.688][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:20:59.490][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:20:59.491][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.419 V
+[16:20:59.491][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:20:59.491][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.671 V
+[16:20:59.492][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.252 V
+[16:20:59.685][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1842 count
+[16:20:59.685][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.664 V
+[16:20:59.685][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1858 count
+[16:21:00.515][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.255 V
+[16:21:00.516][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.657 V
+[16:21:00.516][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.394 V
+[16:21:00.516][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:00.517][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.263 V
+[16:21:00.721][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1846 count
+[16:21:00.722][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:21:00.722][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.664 V
+[16:21:01.490][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.397 V
+[16:21:01.491][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.671 V
+[16:21:01.491][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:21:01.492][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:21:01.492][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.274 V
+[16:21:01.694][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1834 count
+[16:21:01.694][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1863 count
+[16:21:01.695][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:21:02.491][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.410 V
+[16:21:02.491][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.258 V
+[16:21:02.492][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.658 V
+[16:21:02.492][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.388 V
+[16:21:02.492][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.270 V
+[16:21:02.684][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1862 count
+[16:21:02.684][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:21:02.685][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:21:03.486][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:21:03.486][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.256 V
+[16:21:03.487][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:21:03.487][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:21:03.488][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.257 V
+[16:21:03.679][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1859 count
+[16:21:03.679][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:03.680][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:21:04.502][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.407 V
+[16:21:04.503][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:21:04.503][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:21:04.503][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.666 V
+[16:21:04.503][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.259 V
+[16:21:04.689][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1846 count
+[16:21:04.690][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:21:04.690][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.669 V
+[16:21:05.492][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.263 V
+[16:21:05.492][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:21:05.493][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.656 V
+[16:21:05.493][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.397 V
+[16:21:05.493][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.259 V
+[16:21:05.684][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1856 count
+[16:21:05.685][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1842 count
+[16:21:05.685][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.653 V
+[16:21:06.499][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:21:06.499][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.405 V
+[16:21:06.500][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.394 V
+[16:21:06.500][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:21:06.500][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.262 V
+[16:21:06.677][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1856 count
+[16:21:06.677][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.669 V
+[16:21:06.678][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:21:07.494][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:21:07.495][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.405 V
+[16:21:07.495][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:21:07.496][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.674 V
+[16:21:07.496][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.269 V
+[16:21:07.689][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1857 count
+[16:21:07.690][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.670 V
+[16:21:07.690][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:21:08.488][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:21:08.489][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:21:08.489][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.406 V
+[16:21:08.489][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:21:08.490][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.261 V
+[16:21:08.679][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1857 count
+[16:21:08.679][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1840 count
+[16:21:08.680][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.650 V
+[16:21:09.520][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.406 V
+[16:21:09.521][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.658 V
+[16:21:09.521][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.393 V
+[16:21:09.521][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.257 V
+[16:21:09.522][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.252 V
+[16:21:09.748][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1842 count
+[16:21:09.749][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1859 count
+[16:21:09.749][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:10.521][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:10.521][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:21:10.521][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.654 V
+[16:21:10.522][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.394 V
+[16:21:10.522][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.260 V
+[16:21:10.698][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1838 count
+[16:21:10.698][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.658 V
+[16:21:10.699][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1847 count
+[16:21:11.489][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:21:11.489][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.251 V
+[16:21:11.490][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.391 V
+[16:21:11.490][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.398 V
+[16:21:11.491][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.276 V
+[16:21:11.684][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1855 count
+[16:21:11.685][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:11.685][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:21:12.485][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.404 V
+[16:21:12.486][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:21:12.486][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.258 V
+[16:21:12.486][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.668 V
+[16:21:12.486][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.264 V
+[16:21:12.679][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1862 count
+[16:21:12.679][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:21:12.680][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:21:13.499][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.257 V
+[16:21:13.499][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:21:13.500][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.665 V
+[16:21:13.500][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:21:13.500][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.255 V
+[16:21:13.675][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1858 count
+[16:21:13.675][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1860 count
+[16:21:13.675][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:21:14.572][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.672 V
+[16:21:14.572][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.407 V
+[16:21:14.573][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.408 V
+[16:21:14.573][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.258 V
+[16:21:14.573][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.265 V
+[16:21:14.691][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1854 count
+[16:21:14.692][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.658 V
+[16:21:14.692][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1842 count
+[16:21:15.485][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.394 V
+[16:21:15.486][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.404 V
+[16:21:15.486][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.264 V
+[16:21:15.487][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.673 V
+[16:21:15.487][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.269 V
+[16:21:15.679][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1866 count
+[16:21:15.679][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:21:15.680][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:21:16.501][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.274 V
+[16:21:16.502][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.665 V
+[16:21:16.502][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.413 V
+[16:21:16.503][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:21:16.503][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.252 V
+[16:21:16.681][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1850 count
+[16:21:16.681][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:21:16.682][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:17.494][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.400 V
+[16:21:17.494][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.666 V
+[16:21:17.495][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:21:17.495][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.258 V
+[16:21:17.496][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.266 V
+[16:21:17.686][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1862 count
+[16:21:17.686][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1859 count
+[16:21:17.687][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:18.488][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:18.489][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:21:18.489][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.671 V
+[16:21:18.490][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:21:18.490][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.261 V
+[16:21:18.683][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1846 count
+[16:21:18.683][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.657 V
+[16:21:18.684][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1847 count
+[16:21:19.485][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.668 V
+[16:21:19.485][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.250 V
+[16:21:19.485][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.397 V
+[16:21:19.485][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.398 V
+[16:21:19.646][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.271 V
+[16:21:19.646][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1862 count
+[16:21:19.775][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.655 V
+[16:21:19.775][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1840 count
+[16:21:20.494][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:21:20.494][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.393 V
+[16:21:20.494][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.262 V
+[16:21:20.495][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.670 V
+[16:21:20.495][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.260 V
+[16:21:20.696][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1872 count
+[16:21:20.697][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1860 count
+[16:21:20.697][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.670 V
+[16:21:21.495][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.277 V
+[16:21:21.495][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.408 V
+[16:21:21.495][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.673 V
+[16:21:21.496][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.417 V
+[16:21:21.496][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.256 V
+[16:21:21.710][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1856 count
+[16:21:21.710][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1840 count
+[16:21:21.711][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.653 V
+[16:21:22.501][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.675 V
+[16:21:22.502][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.405 V
+[16:21:22.502][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.393 V
+[16:21:22.502][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:21:22.598][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.270 V
+[16:21:22.599][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1843 count
+[16:21:22.780][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.664 V
+[16:21:22.781][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1843 count
+[16:21:23.497][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.395 V
+[16:21:23.498][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.395 V
+[16:21:23.498][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.269 V
+[16:21:23.499][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.666 V
+[16:21:23.499][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.271 V
+[16:21:23.689][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1868 count
+[16:21:23.690][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.669 V
+[16:21:23.691][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1859 count
+[16:21:24.489][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.274 V
+[16:21:24.490][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:21:24.490][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.414 V
+[16:21:24.490][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:24.491][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.253 V
+[16:21:24.689][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1867 count
+[16:21:24.690][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1855 count
+[16:21:24.690][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:21:25.485][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.413 V
+[16:21:25.485][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:21:25.486][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.404 V
+[16:21:25.486][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.264 V
+[16:21:25.596][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.254 V
+[16:21:25.596][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1861 count
+[16:21:25.777][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1863 count
+[16:21:25.778][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:26.497][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.410 V
+[16:21:26.498][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.257 V
+[16:21:26.498][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.649 V
+[16:21:26.498][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.409 V
+[16:21:26.499][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.240 V
+[16:21:26.685][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1863 count
+[16:21:26.686][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.654 V
+[16:21:26.686][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1840 count
+[16:21:27.235][I][safe_mode:154]: Boot seems successful; resetting boot loop counter
+[16:21:27.493][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.664 V
+[16:21:27.494][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.244 V
+[16:21:27.494][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:21:27.494][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.393 V
+[16:21:27.495][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.254 V
+[16:21:27.694][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1871 count
+[16:21:27.694][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.671 V
+[16:21:27.695][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:21:28.485][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.416 V
+[16:21:28.486][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:21:28.486][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.262 V
+[16:21:28.487][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.676 V
+[16:21:28.487][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.260 V
+[16:21:28.767][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1855 count
+[16:21:28.767][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1858 count
+[16:21:28.767][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:21:29.496][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:21:29.497][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:29.497][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.668 V
+[16:21:29.498][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.404 V
+[16:21:29.498][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.264 V
+[16:21:29.688][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1838 count
+[16:21:29.688][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:21:29.689][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.671 V
+[16:21:30.491][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.674 V
+[16:21:30.491][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.391 V
+[16:21:30.492][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:21:30.492][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.266 V
+[16:21:30.493][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.283 V
+[16:21:30.692][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1869 count
+[16:21:30.693][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.670 V
+[16:21:30.693][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:21:30.732][D][preferences:254]: Writing 1 items: 0 cached, 1 written, 0 failed
+[16:21:31.488][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:21:31.489][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.415 V
+[16:21:31.489][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.674 V
+[16:21:31.489][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:21:31.490][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.259 V
+[16:21:31.688][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1850 count
+[16:21:31.689][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1855 count
+[16:21:31.689][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:32.513][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.673 V
+[16:21:32.514][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.258 V
+[16:21:32.514][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.400 V
+[16:21:32.515][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.404 V
+[16:21:32.515][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.273 V
+[16:21:32.693][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1857 count
+[16:21:32.694][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.655 V
+[16:21:32.695][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1840 count
+[16:21:33.489][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.406 V
+[16:21:33.490][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.251 V
+[16:21:33.490][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.393 V
+[16:21:33.490][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.665 V
+[16:21:33.491][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.259 V
+[16:21:33.683][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1863 count
+[16:21:33.683][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:33.684][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1855 count
+[16:21:34.485][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.404 V
+[16:21:34.485][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.668 V
+[16:21:34.485][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.263 V
+[16:21:34.486][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:21:34.486][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.258 V
+[16:21:34.708][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1841 count
+[16:21:34.709][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1862 count
+[16:21:34.709][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:35.538][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.263 V
+[16:21:35.539][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.654 V
+[16:21:35.539][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.394 V
+[16:21:35.539][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.410 V
+[16:21:35.540][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.260 V
+[16:21:35.763][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1843 count
+[16:21:35.763][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1843 count
+[16:21:35.763][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.656 V
+[16:21:36.500][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.395 V
+[16:21:36.500][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.395 V
+[16:21:36.501][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.668 V
+[16:21:36.501][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:21:36.501][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.273 V
+[16:21:36.683][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1851 count
+[16:21:36.684][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.653 V
+[16:21:36.684][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1840 count
+[16:21:37.498][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.674 V
+[16:21:37.499][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.393 V
+[16:21:37.500][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:21:37.500][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.401 V
+[16:21:37.500][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.273 V
+[16:21:37.686][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1846 count
+[16:21:37.686][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:21:37.686][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:21:38.499][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.275 V
+[16:21:38.499][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.397 V
+[16:21:38.500][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:21:38.500][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.670 V
+[16:21:38.500][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.273 V
+[16:21:38.723][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1850 count
+[16:21:38.723][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1842 count
+[16:21:38.724][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.660 V
+[16:21:39.519][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.394 V
+[16:21:39.520][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.400 V
+[16:21:39.520][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.653 V
+[16:21:39.520][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.266 V
+[16:21:39.520][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.253 V
+[16:21:39.685][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1851 count
+[16:21:39.686][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1843 count
+[16:21:39.686][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.658 V
+[16:21:40.538][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.650 V
+[16:21:40.539][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.264 V
+[16:21:40.539][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.401 V
+[16:21:40.539][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.395 V
+[16:21:40.540][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.249 V
+[16:21:40.681][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1843 count
+[16:21:40.682][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:21:40.682][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1858 count
+[16:21:41.479][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.395 V
+[16:21:41.480][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.273 V
+[16:21:41.480][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:41.481][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.653 V
+[16:21:41.596][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.258 V
+[16:21:41.597][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1842 count
+[16:21:41.774][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.655 V
+[16:21:41.775][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1843 count
+[16:21:42.497][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.395 V
+[16:21:42.498][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:21:42.498][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:21:42.499][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.394 V
+[16:21:42.499][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.273 V
+[16:21:42.692][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1863 count
+[16:21:42.692][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1841 count
+[16:21:42.693][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.658 V
+[16:21:43.510][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.263 V
+[16:21:43.511][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.658 V
+[16:21:43.511][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:21:43.511][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.394 V
+[16:21:43.511][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.248 V
+[16:21:43.696][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1840 count
+[16:21:43.697][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1841 count
+[16:21:43.697][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:21:44.498][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.393 V
+[16:21:44.499][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.394 V
+[16:21:44.499][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.654 V
+[16:21:44.499][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.272 V
+[16:21:44.500][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.261 V
+[16:21:44.680][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1854 count
+[16:21:44.680][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:21:44.681][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:21:45.496][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:21:45.497][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:21:45.497][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.257 V
+[16:21:45.497][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.404 V
+[16:21:45.497][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.263 V
+[16:21:45.674][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1840 count
+[16:21:45.674][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.672 V
+[16:21:45.675][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1859 count
+[16:21:46.491][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.263 V
+[16:21:46.491][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.393 V
+[16:21:46.492][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:46.492][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.669 V
+[16:21:46.492][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.276 V
+[16:21:46.685][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1869 count
+[16:21:46.685][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1859 count
+[16:21:46.685][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:21:47.504][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:47.505][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.415 V
+[16:21:47.505][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.663 V
+[16:21:47.505][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:21:47.506][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.248 V
+[16:21:47.678][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1843 count
+[16:21:47.678][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:21:47.678][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:48.491][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.675 V
+[16:21:48.491][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:21:48.492][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.395 V
+[16:21:48.492][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:21:48.493][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.280 V
+[16:21:48.695][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1857 count
+[16:21:48.695][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.664 V
+[16:21:48.696][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1860 count
+[16:21:49.513][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.406 V
+[16:21:49.514][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:21:49.514][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.408 V
+[16:21:49.515][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.663 V
+[16:21:49.515][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.257 V
+[16:21:49.687][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1842 count
+[16:21:49.687][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:21:49.687][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1858 count
+[16:21:50.488][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:50.489][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.671 V
+[16:21:50.489][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:21:50.489][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.394 V
+[16:21:50.490][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.277 V
+[16:21:50.683][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1866 count
+[16:21:50.683][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1858 count
+[16:21:50.684][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:21:51.480][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:21:51.480][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.665 V
+[16:21:51.481][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.413 V
+[16:21:51.481][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:51.482][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.252 V
+[16:21:51.683][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1855 count
+[16:21:51.683][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1860 count
+[16:21:51.684][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:52.503][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.404 V
+[16:21:52.503][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.408 V
+[16:21:52.504][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.667 V
+[16:21:52.504][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:21:52.505][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.263 V
+[16:21:52.694][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1850 count
+[16:21:52.695][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.670 V
+[16:21:52.695][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1860 count
+[16:21:53.498][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.673 V
+[16:21:53.499][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.408 V
+[16:21:53.499][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.262 V
+[16:21:53.499][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.400 V
+[16:21:53.500][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.273 V
+[16:21:53.720][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1870 count
+[16:21:53.720][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:21:53.721][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:21:54.493][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:21:54.493][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.416 V
+[16:21:54.494][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:21:54.494][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.665 V
+[16:21:54.495][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.249 V
+[16:21:54.682][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1862 count
+[16:21:54.682][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:21:54.683][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.665 V
+[16:21:55.503][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:21:55.503][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:21:55.504][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.673 V
+[16:21:55.504][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.256 V
+[16:21:55.505][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.263 V
+[16:21:55.687][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1857 count
+[16:21:55.687][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1858 count
+[16:21:55.688][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:21:56.489][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.670 V
+[16:21:56.489][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:21:56.490][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.406 V
+[16:21:56.490][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:21:56.491][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.264 V
+[16:21:56.690][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1866 count
+[16:21:56.691][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.655 V
+[16:21:56.691][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1841 count
+[16:21:57.499][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.413 V
+[16:21:57.499][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.248 V
+[16:21:57.500][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.394 V
+[16:21:57.500][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.652 V
+[16:21:57.500][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.239 V
+[16:21:57.685][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1861 count
+[16:21:57.685][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.664 V
+[16:21:57.685][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:21:58.494][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:21:58.495][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.679 V
+[16:21:58.495][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.259 V
+[16:21:58.495][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.409 V
+[16:21:58.496][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.270 V
+[16:21:58.674][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1844 count
+[16:21:58.674][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:21:58.675][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:21:59.487][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.263 V
+[16:21:59.488][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.666 V
+[16:21:59.488][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.396 V
+[16:21:59.488][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:21:59.489][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.270 V
+[16:21:59.706][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1840 count
+[16:21:59.706][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1842 count
+[16:21:59.707][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.654 V
+[16:22:00.497][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.393 V
+[16:22:00.497][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.394 V
+[16:22:00.497][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.665 V
+[16:22:00.498][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:22:00.498][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.272 V
+[16:22:00.684][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1842 count
+[16:22:00.685][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:22:00.685][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1858 count
+[16:22:01.491][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.644 V
+[16:22:01.491][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:22:01.491][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:22:01.492][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.394 V
+[16:22:01.492][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.250 V
+[16:22:01.672][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1856 count
+[16:22:01.673][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:22:01.673][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:22:02.491][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:22:02.491][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.405 V
+[16:22:02.492][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:22:02.492][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.671 V
+[16:22:02.493][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.266 V
+[16:22:02.683][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1863 count
+[16:22:02.683][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1859 count
+[16:22:02.684][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.674 V
+[16:22:03.484][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:22:03.485][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:22:03.485][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.662 V
+[16:22:03.486][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.267 V
+[16:22:03.486][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.252 V
+[16:22:03.678][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1859 count
+[16:22:03.679][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:22:03.679][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:22:04.496][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.665 V
+[16:22:04.497][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:22:04.497][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.407 V
+[16:22:04.498][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:22:04.498][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.258 V
+[16:22:04.673][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1867 count
+[16:22:04.673][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.665 V
+[16:22:04.674][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1861 count
+[16:22:05.489][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.413 V
+[16:22:05.490][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:22:05.490][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.409 V
+[16:22:05.491][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.665 V
+[16:22:05.491][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.252 V
+[16:22:05.685][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1861 count
+[16:22:05.686][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.670 V
+[16:22:05.686][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1859 count
+[16:22:06.487][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.407 V
+[16:22:06.487][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.672 V
+[16:22:06.488][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.263 V
+[16:22:06.488][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.409 V
+[16:22:06.489][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.263 V
+[16:22:06.679][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1862 count
+[16:22:06.679][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1862 count
+[16:22:06.680][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.664 V
+[16:22:07.479][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.257 V
+[16:22:07.479][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.670 V
+[16:22:07.479][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:22:07.480][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.410 V
+[16:22:07.589][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.260 V
+[16:22:07.590][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1838 count
+[16:22:07.774][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1843 count
+[16:22:07.775][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.653 V
+[16:22:08.496][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.391 V
+[16:22:08.496][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.395 V
+[16:22:08.497][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.673 V
+[16:22:08.497][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.258 V
+[16:22:08.498][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.282 V
+[16:22:08.684][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1857 count
+[16:22:08.684][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.656 V
+[16:22:08.684][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1843 count
+[16:22:09.487][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.662 V
+[16:22:09.487][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.395 V
+[16:22:09.488][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:22:09.488][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.406 V
+[16:22:09.489][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.256 V
+[16:22:09.683][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1844 count
+[16:22:09.683][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.653 V
+[16:22:09.684][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1831 count
+[16:22:10.481][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.258 V
+[16:22:10.481][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.396 V
+[16:22:10.482][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.386 V
+[16:22:10.482][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.672 V
+[16:22:10.601][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.276 V
+[16:22:10.601][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1862 count
+[16:22:10.771][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:22:10.771][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.667 V
+[16:22:11.492][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:22:11.492][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.410 V
+[16:22:11.493][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.676 V
+[16:22:11.493][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.261 V
+[16:22:11.494][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.266 V
+[16:22:11.683][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1853 count
+[16:22:11.683][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1865 count
+[16:22:11.684][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:22:12.485][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.672 V
+[16:22:12.486][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.262 V
+[16:22:12.486][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.403 V
+[16:22:12.487][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.412 V
+[16:22:12.487][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.269 V
+[16:22:12.679][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1853 count
+[16:22:12.679][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.672 V
+[16:22:12.680][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1856 count
+[16:22:13.492][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.403 V
+[16:22:13.493][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:22:13.493][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.405 V
+[16:22:13.494][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.663 V
+[16:22:13.494][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.260 V
+[16:22:13.675][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1858 count
+[16:22:13.676][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.655 V
+[16:22:13.676][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1834 count
+[16:22:14.494][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.388 V
+[16:22:14.494][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.658 V
+[16:22:14.495][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.267 V
+[16:22:14.495][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.407 V
+[16:22:14.495][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.251 V
+[16:22:14.683][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1858 count
+[16:22:14.683][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:22:14.684][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.670 V
+[16:22:15.486][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.282 V
+[16:22:15.487][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.662 V
+[16:22:15.487][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.407 V
+[16:22:15.487][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:22:15.487][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.255 V
+[16:22:15.677][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1850 count
+[16:22:15.677][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:22:15.678][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.672 V
+[16:22:16.497][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.400 V
+[16:22:16.497][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:22:16.498][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.657 V
+[16:22:16.498][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.266 V
+[16:22:16.499][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.257 V
+[16:22:16.678][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1858 count
+[16:22:16.679][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.666 V
+[16:22:16.679][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:22:17.486][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.672 V
+[16:22:17.486][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:22:17.486][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.260 V
+[16:22:17.487][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.407 V
+[16:22:17.487][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.265 V
+[16:22:17.679][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1840 count
+[16:22:17.680][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.672 V
+[16:22:17.680][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1857 count
+[16:22:18.484][S][sensor]: 'BERO E00B SCT Voltage Difference' >> 0.266 V
+[16:22:18.484][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.393 V
+[16:22:18.485][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.406 V
+[16:22:18.485][S][sensor]: 'BERO E00B Bias GPIO35 ADC Voltage' >> 1.652 V
+[16:22:18.485][S][sensor]: 'BERO E00B Bias Voltage Difference' >> 0.259 V
+[16:22:18.678][S][sensor]: 'BERO E00B Bias GPIO34 RAW' >> 1869 count
+[16:22:18.678][S][sensor]: 'BERO E00B SCT GPIO32 RAW' >> 1855 count
+[16:22:18.678][S][sensor]: 'BERO E00B SCT GPIO33 ADC Voltage' >> 1.668 V
+[16:22:19.478][S][sensor]: 'BERO E00B SCT GPIO32 RAW Voltage Estimate' >> 1.404 V
+[16:22:19.479][S][sensor]: 'BERO E00B Bias GPIO34 RAW Voltage Estimate' >> 1.415 V
