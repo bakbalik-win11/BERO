@@ -5,7 +5,7 @@
 experiment:
   id: "E00A"
   title: "Bias trafosu DC noktalarının ADC gözlemi"
-  status: "firmware_compiled_and_running_user_report_pending_measurement_logs"
+  status: "SCT_FREE_BIAS_ONLY_SUBSTEP_CLOSED; E00A_OVERALL_OPEN"
 
 hedef:
   soru: "Bias trafosunun regüle 3,3 V çıkışı ve yaklaşık 1,65 V Vmid noktası ADC'de nasıl okunuyor ve zaman içinde ne kadar değişiyor?"
@@ -125,7 +125,7 @@ step_S01_gnd_reference:
   conclusion: "GND referansında kararlılık; önceki floating giriş teşhisini destekler. GPIO35 0.142 V tabanı açık soru."
   electrical_candidate: "Jack/CT topolojisi doğrulandıktan sonra ADC düğümünü Vmid'e 47–100 kOhm aralığında pasif dirençle biaslama; değer henüz doğrulanmadı."
   next_step: "Tek kanalda Vmid bias, multimetre doğrulaması ve 60 saniye log."
-  status: "S01 gözlemi kaydedildi; E00A tamamlanmadı."
+  status: "SCT_FREE_BIAS_ONLY_SUBSTEP_CLOSED; E00A_OVERALL_OPEN"
 # E00A — açıklamalı deney yapılandırması
 # HEDEF: Bias trafosunun 3,3 V çıkışı ile Vmid noktasını ESP32 ADC üzerinden karşılaştırmak.
 # Bu dosya plan belgesidir; firmware tarafından otomatik okunmaz.
@@ -133,7 +133,7 @@ step_S01_gnd_reference:
 experiment:
   id: "E00A"
   title: "Bias trafosu DC noktalarının ADC gözlemi"
-  status: "step2_zero_offset_removed_raw_voltage_comparison_firmware_saved_build_in_progress_user_report"
+  status: "SCT_FREE_BIAS_ONLY_SUBSTEP_CLOSED; E00A_OVERALL_OPEN"
 
 hedef:
   soru: "Bias trafosunun regüle 3,3 V çıkışı ve yaklaşık 1,65 V Vmid noktası ADC'de nasıl okunuyor ve zaman içinde ne kadar değişiyor?"
@@ -253,7 +253,7 @@ step_S01_gnd_reference:
   conclusion: "GND referansında kararlılık; önceki floating giriş teşhisini destekler. GPIO35 0.142 V tabanı açık soru."
   electrical_candidate: "Jack/CT topolojisi doğrulandıktan sonra ADC düğümünü Vmid'e 47–100 kOhm aralığında pasif dirençle biaslama; değer henüz doğrulanmadı."
   next_step: "Tek kanalda Vmid bias, multimetre doğrulaması ve 60 saniye log."
-  status: "S01 gözlemi kaydedildi; E00A tamamlanmadı."
+  status: "SCT_FREE_BIAS_ONLY_SUBSTEP_CLOSED; E00A_OVERALL_OPEN"
 
 
 # 2026-10-30 — Adım 2 deney kararı güncellemesi
@@ -275,7 +275,7 @@ step_2_zero_offset_reversal:
   decision: "0.142 V sabit yazılım ofseti kaldırılır. GND'de görülen 0.142 V saklanır; otomatik sıfırlanmaz."
   rationale: "Sıfırlama GND koşulunda ekranda 0.000 V sağladı fakat Vmid DC seviyesini aynı miktarda aşağı kaydırdı."
   next_step: "Ofsetsiz firmware'i derle ve cihaza yükle; aynı Vmid noktasında multimetreyle eşzamanlı log al."
-  status: "KARAR VERİLDİ; OFSETSİZ FIRMWARE DERLEME/ÇALIŞTIRMA HENÜZ DOĞRULANMADI"
+  status: "SCT_FREE_BIAS_ONLY_SUBSTEP_CLOSED; E00A_OVERALL_OPEN"
 
 
 # 2026-10-30 — GPIO34 RAW voltaj tahmini / GPIO35 ADC karşılaştırması
@@ -290,13 +290,13 @@ step_2_raw_voltage_comparison:
       - "GPIO35 ADC Voltage Uncorrected"
       - "GPIO35 - GPIO34 RAW tahmini farkı"
     raw_voltage_formula: "RAW_count * 3.1 / 4095"
-    formula_status: "Nominal ölçek tahmini; kalibrasyon değildir."
+    formula_status: "SCT_FREE_BIAS_ONLY_SUBSTEP_CLOSED; E00A_OVERALL_OPEN"
   user_report:
     event: "Kullanıcı yeni YAML'ı derlemeye aldığını bildirdi."
     build_result: "Henüz bildirilmedi."
     device_upload: "Henüz bildirilmedi."
   required_connection: "GPIO34 ve GPIO35 aynı 1.654 V Vmid noktasına bağlanmalı; ortak GND korunmalı."
-  status: "GITHUBA_KAYDEDILDI; DERLEME SONUCU BEKLENIYOR"
+  status: "SCT_FREE_BIAS_ONLY_SUBSTEP_CLOSED; E00A_OVERALL_OPEN"
 
 
 # 2026-10-30 — SCT bağlı değil: bias-only Vmid logu ve alt adım kapanışı
@@ -338,6 +338,6 @@ step_bias_only_log_closure:
     adc_only_noise_claim: false
     raw_formula_calibrated: false
     channels_simultaneous: false
-  substep_status: "KAPATILDI"
-  experiment_status: "E00A AÇIK — L78L33 3.3 V ayrı 10k/10k ölçüm bölücüsü koşulu, ham CSV ve zaman grafiği eksik."
+  substep_status: "SCT_FREE_BIAS_ONLY_SUBSTEP_CLOSED; E00A_OVERALL_OPEN"
+  experiment_status: "SCT_FREE_BIAS_ONLY_SUBSTEP_CLOSED; E00A_OVERALL_OPEN"
   next_step: "SCT bağlanmış fakat ölçülen hatta akım yok koşulunu ayrı deney olarak al; bu SCT'siz tabanla karşılaştır."
