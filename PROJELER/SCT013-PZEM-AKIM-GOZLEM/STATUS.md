@@ -1,3 +1,5 @@
+**E00F-N01 gece gözlemi (2026-10-30):** Kullanıcı talebiyle çalışan E00F YAML'ındaki 0.35 A altını sıfırlayan lambda filtresinin kaldırıldığı depo sürümü hazırlandı. GPIO33, ADC1/12 dB, raw:false, 200 ms, 2 s, 24.22 ve esp32d2 kimliği korundu. Derleme, cihaza yükleme ve gece logu henüz bekleniyor. Home Assistant geçmişi yayınlanan akım entity durumlarını tutar; Raw AC/N/SPS debug satırları ayrıca sürekli kaydedilmelidir. Deney: [E00F-N01](experiments/E00F-unthresholded-overnight-log/experiment.yaml).
+
 # Proje durumu
 
 **E00F yan inceleme notu (2026-10-30):** Claude/Copilot son değerlendirmesi ve üç sarımlı düşük akım cihaz logu teknik inceleme raporuna işlendi. Üç tur denemesinde yük açıkken pens yaklaşık 0.04 A; 12 Raw AC penceresi 0.004–0.014 V ve yayınlar 0.000 A. Değerler önceki yüksüz/LED aralıklarıyla örtüşüyor; bu kısa kayıt ayrışma başarısı göstermiyor. Ana fiziksel düzen için tek sarım korunuyor. Python'da PZEM referanslı bölgesel kalibrasyon önerisi kaydedildi; henüz model/eğitim/kalibrasyon uygulanmadı. E00F bu notu E00B aktif görev sırasının yerine geçirmez.
