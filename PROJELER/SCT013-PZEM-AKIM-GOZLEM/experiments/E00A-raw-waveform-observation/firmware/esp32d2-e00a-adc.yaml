@@ -1,45 +1,29 @@
 # ============================================================
 # BERO - E00A
-# ESP32D2 - GPIO34 / GPIO35 ADC Gozlemi
+# ESP32D2 - GPIO35 ADC HAM SAYIM GÖZLEMİ
 # ============================================================
 #
 # DENEY AMACI:
-# Bias devresinin DC cikisini ESP32 dahili ADC ile gozlemlemek.
-#
-# Bu asamada SCT sensoru kullanilmiyor.
-# Akim hesaplamasi yapilmiyor.
-# Amac:
-# - GPIO34 ADC ham sayisini gozlemlemek
-# - GPIO35 ADC voltaj tahminini gozlemlemek
+# ADC voltaj kalibrasyonu/dönüşümü olmadan GPIO35 ham ADC sayısını
+# gözlemek. Bu sürümde volt cinsinden sonuç üretilmez.
 #
 # DONANIM:
-# Klasik ESP32 / ESP32-WROOM-32D sinifi
-# GPIO34 : ADC1_CH6
+# Klasik ESP32 / ESP32-WROOM-32D sınıfı
 # GPIO35 : ADC1_CH7
 #
-# BAGLANTI PLANI:
-# GPIO34 -> Bias devresi Vmid (ayri ADC kanali)
-# GPIO35 -> Bias devresi Vmid (ayri ADC kanali)
-# ESP32 GND -> Bias devresi GND
+# BAĞLANTI:
+# GPIO35 -> test edilen bias/Vmid düğümü
+# ESP32 GND -> bias devresi GND
 #
-# Beklenen Vmid: yaklasik 1.65 V DC.
-# 3.31 V cikisi GPIO34 veya GPIO35'e dogrudan baglanmaz.
+# GPIO34 bu deneyde kullanılmıyor; bağlı olmadığı için sensör
+# tanımından çıkarıldı.
 #
-# OKUMA:
-# GPIO34 -> ESPHome ADC raw cikisi (count)
-# GPIO35 -> ESPHome ADC kalibre voltaj cikisi (V)
-#
-# Iki ayri fiziksel ADC kanali ve iki ayri donusum kullanilir.
-# Sonuclar ayni ADC ornegi degildir.
-#
-# YAYIN:
-# Her kanal Home Assistant'a 1 saniyelik aralikla yayinlanir.
-# Bu surum 30 saniyelik ham veri dosyasi kaydetmez.
-#
-# DURUM:
-# Kullanici bildirimi: ESPHome derlendi ve cihazda calisti.
-# Derleme/cihaz logu henuz bu kayda eklenmedi.
-# Fiziksel ADC degerleri ve yorum bekleniyor.
+# ÖNEMLİ:
+# raw: true, ADC voltaj kalibrasyonunu/volt cinsine dönüşümü
+# kullanmadan ham sayım çıktısı verir.
+# Bu ayar ADC ofsetini düzeltmez ve elektriksel sorunu çözmez.
+# Ham taban değeri gözlendikten sonra ayrı bir sıfır noktası
+# düzeltmesi değerlendirilir.
 #
 # ============================================================
 
@@ -66,20 +50,11 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-# ============================================================
-# ADC SENSORLERI
-# ============================================================
-#
-# GPIO34 ve GPIO35 ayri ADC sensorlerinde birer kez kullanilir.
-# Bu, ayni GPIO'nun iki sensor tarafindan kullanilmasi hatasini
-# onler.
-#
 sensor:
-  # GPIO34: ADC ham sayisi.
   - platform: adc
-    pin: GPIO34
-    id: gpio34_adc_raw
-    name: "ESP32D2 GPIO34 ADC Raw"
+    pin: GPIO35
+    id: gpio35_adc_raw
+    name: "ESP32D2 GPIO35 ADC Raw"
     attenuation: 12db
     raw: true
     accuracy_decimals: 0
@@ -87,34 +62,3 @@ sensor:
     state_class: measurement
     samples: 1
     update_interval: 1s
-
-  # GPIO35: ADC kalibrasyonlu voltaj tahmini.
-  - platform: adc
-    pin: GPIO35
-    id: gpio35_adc_voltage
-    name: "ESP32D2 GPIO35 ADC Voltage"
-    attenuation: 12db
-    raw: false
-    accuracy_decimals: 3
-    unit_of_measurement: "V"
-    device_class: voltage
-    state_class: measurement
-    samples: 1
-    update_interval: 1s
-
-# ============================================================
-# DENEY KAYIT NOTLARI
-# ============================================================
-#
-# E00A karsilastirmasi icin kaydedilecekler:
-# - Multimetre ile olculen Vmid DC voltaji
-# - GPIO34 ham ADC sayisi
-# - GPIO35 kalibrasyonlu voltaj tahmini
-# - Her iki kanalin zaman icindeki degisimi
-#
-# Bu kod yalnizca 1 saniyelik araliklarla HA'ya veri gonderir.
-# Gercek ornekleme hizi ve iki sensorun yayin zamani ayrica
-# loglardan kontrol edilmelidir.
-# 30 saniyelik ham kayit ve istatistikler sonraki adimdir.
-#
-# ============================================================
