@@ -109,3 +109,20 @@ Kod derleme aşaması kullanıcı bildirimiyle başarılıdır. Amaç, sıfır g
 
 ### Sonraki adım
 GPIO35'i GND'ye bağlı tutarak güncel firmware logunu gözle; düzeltilmiş voltajın 0.000 V olup olmadığını kaydet. Ardından bilinen Vmid geriliminde (multimetreyle eşzamanlı) ofsetin ölçümü bozup bozmadığını değerlendir.
+
+
+
+### LOG — Sifir noktasi kontrolu (2026-10-30, kullanici logu)
+
+- Kaynak: Kullanıcının paylaştığı `Yapıştırılan metin(10).txt`; ESPHome 2026.9.1.
+- Cihaz: ESP32 rev3.1; cihaz uygulama derleme zamanı logda 2026-10-30 15:09:22 +0300.
+- GPIO35 düzeltilmiş voltaj: 15:13:08.379–15:13:56.381 arasında 49 kayıt; tüm kayıtlar `0.000 V`.
+- Gözlenen süre: ilk ve son kayıt zamanları arasında yaklaşık 48 saniye.
+- GPIO34: 48 kayıtta `0 count`; önceki kullanıcı düzeltmesine göre GPIO34 fiziksel olarak bağlı olmadığından bu kanalın değerleri deney sonucu olarak yorumlanmaz.
+- Logda GPIO34 ve GPIO35 ADC başlatma/config/calibration durumları OK; iki sensörün güncelleme aralığı 1 saniye.
+- Kullanıcı, bu aşamada sıfır voltaj hedefinin sağlandığını ve kodu değiştirmeden bias trafosuna enerji vererek aynı log oturumunda devam edeceğini bildirdi.
+
+### SONUÇ
+**Adım 2'nin yazılım sıfır gösterimi hedefi sağlandı (KULLANICI LOGU):** GPIO35 düzeltilmiş sensörü yaklaşık 48 saniye boyunca kesintisiz görünen 49 kaydın tamamında 0.000 V yayınladı. Bu, mevcut filtre ve mevcut GND test koşulunda hedeflenen sıfır çıktısını gösterir. GPIO34 verisi bağlı olmadığı için dışarıda bırakıldı.
+
+**Açık devam:** Kod değiştirilmeden aynı log oturumunda bias trafosuna enerji verilecek. Sonraki log bölümünde GPIO35'in düzeltilmiş voltajı ve mümkünse eşzamanlı multimetre Vmid değeri kaydedilecek. Bu kayıt Adım 2'nin sıfır kontrolünden sonraki bias/Vmid kontrolüdür; henüz sonucu yoktur.
