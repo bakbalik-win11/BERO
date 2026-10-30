@@ -1,29 +1,20 @@
 # ============================================================
 # BERO - E00A
-# ESP32D2 - GPIO35 ADC HAM SAYIM GÖZLEMİ
+# ESP32D2 - GPIO34 RAW / GPIO35 VOLTAJ SIFIR OFSETI
 # ============================================================
 #
 # DENEY AMACI:
-# ADC voltaj kalibrasyonu/dönüşümü olmadan GPIO35 ham ADC sayısını
-# gözlemek. Bu sürümde volt cinsinden sonuç üretilmez.
+# Ayni Vmid noktasini iki ayri ADC kanaliyla gozlemek:
+# GPIO34 ham ADC sayisi, GPIO35 voltaj tahmini.
 #
-# DONANIM:
-# Klasik ESP32 / ESP32-WROOM-32D sınıfı
-# GPIO35 : ADC1_CH7
+# GPIO35 sifir noktasi duzeltmesi:
+# Onceki GND gozleminde kararlı cikis 0.142 V idi.
+# Bu surum bu gozlemi GECICI sifir ofseti olarak cikarir.
+# Duzeltilmis cikti: max(0, ADC voltaji - 0.142 V)
 #
-# BAĞLANTI:
-# GPIO35 -> test edilen bias/Vmid düğümü
-# ESP32 GND -> bias devresi GND
-#
-# GPIO34 bu deneyde kullanılmıyor; bağlı olmadığı için sensör
-# tanımından çıkarıldı.
-#
-# ÖNEMLİ:
-# raw: true, ADC voltaj kalibrasyonunu/volt cinsine dönüşümü
-# kullanmadan ham sayım çıktısı verir.
-# Bu ayar ADC ofsetini düzeltmez ve elektriksel sorunu çözmez.
-# Ham taban değeri gözlendikten sonra ayrı bir sıfır noktası
-# düzeltmesi değerlendirilir.
+# Bu, ADC donanimini kalibre etmez; yalnizca gozlenen sifir
+# tabanini yazilimda sifirlar. Farkli gerilimlerde dogruluk
+# ve dogrusallik kaniti degildir.
 #
 # ============================================================
 
@@ -51,10 +42,11 @@ wifi:
   password: !secret wifi_password
 
 sensor:
+  # GPIO34 - ADC ham sayisi
   - platform: adc
-    pin: GPIO35
-    id: gpio35_adc_raw
-    name: "ESP32D2 GPIO35 ADC Raw"
+    pin: GPIO34
+    id: gpio34_adc_raw
+    name: "ESP32D2 GPIO34 ADC Raw"
     attenuation: 12db
     raw: true
     accuracy_decimals: 0
@@ -62,3 +54,22 @@ sensor:
     state_class: measurement
     samples: 1
     update_interval: 1s
+
+  # GPIO35 - ADC voltaj tahmini, gecici sifir ofseti duzeltilmis
+  - platform: adc
+    pin: GPIO35
+    id: gpio35_adc_voltage_corrected
+    name: "ESP32D2 GPIO35 ADC Voltage Corrected"
+    attenuation: 12db
+    raw: false
+    accuracy_decimals: 3
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    samples: 1
+    update_interval: 1s
+    filters:
+      - lambda: |-
+          // GND gozleminde gorulen 0.142 V tabanini cikar.
+          // Negatif sonuc yerine 0 V yayinla.
+          return (x > 0.142f) ? (x - 0.142f) : 0.0f;
