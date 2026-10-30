@@ -423,3 +423,95 @@ Residual plot ve akım aralıklarına göre hata özeti, T006 model değerlendir
 **Düzeltilmiş karar:** raw:true mevcut aşamada yeni deney adayı değildir; daha önceki olumsuz kullanıcı test sonucu nedeniyle yeniden açılmayacaktır. Google'ın eklediği multiply:0.85 önerisi de kaynak/kalibrasyon temeli ve doğru sample() entegrasyon yolu gösterilmediğinden kabul edilmez. Önceki raw:true denemesinin tam olarak 0.85 çarpanıyla yapıldığına dair bu kayıtlarda kanıt yoktur; bu iki şeyi aynı deneymiş gibi yazmıyoruz.
 
 Bu düzeltme önceki raw:true deney sonucunu karar gerekçesine ekler. Mevcut YAML değiştirilmez; raw:true tekrar testi planlanmaz. raw:false 1 mV basamağının gerçek düşük-akım hatasına etkisi ise ayrı ve henüz cevaplanmamış teknik sorudur.
+
+
+## 13. E00F sıfır-yük ct_clamp logu — 2026-10-30
+
+### 13.1 Kaynak ve edinim ayarları
+
+- **KANIT:** Kullanıcının paylaştığı cihaz logu; ham metin [arşivlendi](logs/2026-10-30-e00f-zero-load-ct-clamp.log).
+- Cihaz: ESP32 rev3.1, ESPHome 2026.9.1; GPIO33 / ADC1_CH5, 12 dB attenuation.
+- ADC: raw=false, samples=1, sampling_mode=avg.
+- ct_clamp: 200 ms pencere, 2 s yayın aralığı.
+- Akım dönüşümü: multiply 24.22; ardından x < 0.35 A => 0 A yazılım eşiği.
+- Kayıtta 180 ct_clamp penceresi var; zaman aralığı yaklaşık 22:13:14.620–22:19:12.625.
+- Debug satırındaki Raw AC Value birim eki A olarak görünür; ancak multiply uygulanmadan önceki büyüklük bu yapılandırmada ADC kaynak sensörünün Volt cinsinden pencere RMS/standart sapma değeridir. Bu nedenle aşağıdaki özet V cinsinden yorumlanır.
+
+### 13.2 Logdan hesaplanan özet
+
+| Ölçüt | Sonuç |
+|---|---:|
+| Pencere sayısı | 180 |
+| Raw AC minimum / maksimum | 0.000 / 0.032 V |
+| Raw AC ortalaması | 0.00562 V |
+| Raw AC medyanı | 0.005 V |
+| Pencereler arası standart sapma | 0.00500 V |
+| %90 yüzdelik | 0.010 V |
+| %95 yüzdelik | 0.01205 V |
+| %99 yüzdelik | 0.02742 V |
+| Yayınlanan 0.000 A | 173 / 180 |
+| Yayınlanan sıfır dışı değer | 7 / 180 (%3.89) |
+
+Sıfır dışı yayınların ham logdaki karşılıkları:
+
+| Raw AC (V, yaklaşık) | Yayınlanan akım |
+|---:|---:|
+| 0.029 | 0.692 A |
+| 0.017 | 0.417 A |
+| 0.025 | 0.613 A |
+| 0.017 | 0.412 A |
+| 0.032 | 0.770 A |
+| 0.027 | 0.660 A |
+| 0.015 | 0.353 A |
+
+**SONUÇ — KULLANICI KOŞULU YÜKSÜZ OLARAK BİLDİRDİ:** Bu kayıt, mevcut E00F zincirinde sıfır-yük durumunda 7/180 pencerede sıfır dışı akım yayınlandığını gösteriyor. Bunlar bu test koşulunda yanlış pozitif akım yayınlarıdır. Ham log tek başına sıçramaların CT manyetik gürültüsünden mi, ADC/analog girişinden mi, EMI'den mi veya edinim algoritmasından mı kaynaklandığını ayıramaz.
+
+Logdaki kabul edilen farklı örnek sayısı 2446–3231, raporlanan SPS 12230–16155 aralığındadır. Bu sayılar ct_clamp dedup filtresinden sonra kabul edilen farklı ardışık değerlerin sayımıdır; fiziksel ADC dönüşüm hızı olarak yorumlanmayacaktır.
+
+### 13.3 40 mA hedefi ile karşılaştırma
+
+- **ÜRETİCİ BELGESİ:** SCT013-030 nominali 30 A RMS girişte 1 V RMS çıkıştır. Nominal hassasiyet yaklaşık 33.3 mV/A'dır; 40 mA için nominal çıkış yaklaşık **1.33 mV RMS** olur. Üretici PDF'si ±1% doğruluk ve ≤0.2% lineerlik yazar, fakat 40 mA gibi alt uçta doğruluğun garanti edildiği minimum akım açıkça belirtilmez.
+- **MEVCUT E00F KALİBRASYONU:** 24.22 A/V katsayısı kullanıldığında 40 mA'ya karşılık gelen giriş büyüklüğü yaklaşık **1.65 mV RMS** olur. Bu, nominal CT oranından ayrı tutulmalıdır; 24.22 A/V mevcut yazılım katsayısıdır.
+- **ÖLÇÜM:** Bu yüksüz logun Raw AC medyanı 5 mV, ortalaması 5.62 mV ve pencereler arası standart sapması yaklaşık 5 mV'dur. 40 mA için hesaplanan 1.33–1.65 mV hedef sinyal bu yüksüz dağılımdan küçük kalmaktadır.
+- **HESAP / VARSAYIM:** Sinyal ve yüksüz bileşenler ilişkisiz kabul edilip RMS kareleri üzerinden birleşirse, 5 mV taban ile 1.65 mV sinyalin toplamı yaklaşık 5.26 mV olur; artış yalnızca 0.26 mV'dur. Bu, logdaki 1 mV gösterim basamağından ve yaklaşık 5 mV pencere saçılmasından küçüktür. Bu hesap sinyalin bu edinim zincirinde güvenilir biçimde ayrışmasının zor olduğunu gösterir; bağımsız bileşen varsayımı ayrıca doğrulanmamıştır.
+- **YAZILIM KAPISI:** 0.35 A lambda eşiğinin kaynak girişindeki karşılığı 0.35 / 24.22 = 0.01445 V civarındadır. 40 mA hedefi mevcut katsayıyla yaklaşık 1.65 mV olduğundan bu eşik tarafından bilerek bastırılır. Bu nedenle mevcut E00F YAML ile 40 mA'nın 0.000 A yayınlanması, sensörün fiziksel olarak hiç sinyal üretmediğini tek başına kanıtlamaz; yazılım eşiği zaten 350 mA altını sıfırlamaktadır.
+- **KARAR:** 0.35 A eşiği bir sensör minimumu değil, E00F'nin yazılım filtresidir. Bu logdan 40 mA ölçülebilir/ölçülemez şeklinde mutlak CT hükmü çıkarılmayacak; ancak mevcut E00F zincirinde 40 mA'nın yüksüz tabandan ayrıştığına dair kanıt yoktur.
+
+## 14. Dış kaynak ve GitHub depo taraması — düşük akım çözümleri
+
+### 14.1 Üretici dokümanları ve topluluk ölçüm deneyimi
+
+- **ÜRETİCİ BELGESİ:** YHDC SCT013-030 PDF'si 30 A RMS / 1 V RMS, ±1% accuracy ve ≤0.2% linearity değerlerini verir; gerilim çıkışlı tipte örnekleme/burden direncinin sensör içinde olduğunu gösteren bağlantı şeması vardır. PDF, 40 mA alt-uç doğruluk garantisini açıkça tanımlamaz. Bu nedenle 30 A/1 V sensörde harici burden direncini büyütmek geçerli bir çözüm olarak önerilmeyecek.
+- **ÜRETİCİ BELGESİ:** YHDC ürün ailesinde 5 A/1 V ve 10 A/1 V gibi daha düşük tam ölçekli varyantlar da bulunur. Nominal hassasiyetleri sırasıyla 200 mV/A ve 100 mV/A'dır; 40 mA için teorik çıkışları 8 mV ve 4 mV olur. Bunlar 30 A/1 V modelin 1.33 mV çıkışından daha yüksek sinyal üretir; ancak 40 mA'da doğruluk garantisi olduğu anlamına gelmez.
+- **KULLANICI RAPORU / TOPLULUK:** OpenEnergyMonitor tartışmasında 50 A SCT013 modelinin doğruluk aralığının 10–120% (5–60 A) olduğu, 30–100 mA için bu CT'nin uygun olmadığı belirtilmiş; daha düşük aralıklı CT veya primeri çok tur geçirmek önerilmiştir. Bu yorum 50 A model hakkındadır; BERO'daki 30 A/1 V model için üretici garantisi gibi genellenmeyecek.
+- **KULLANICI RAPORU / TOPLULUK:** Aynı toplulukta çok turlu primer kullanımının efektif akım aralığını düşürdüğü, fakat üst akım kapasitesini de tur sayısı oranında azalttığı açıklanır. BERO'nun önceki üç tur denemesi yüksüz tabanla örtüşen 4–14 mV pencereler verdiği için 40 mA ayrışma çözümü olarak doğrulanmış değildir.
+- **TEKNİK ÖRNEK:** Analog Devices eğitim sayfasında farklı bir 15 mV/A akım probu 5 primer turla 75 mV/A'ya çıkarılmış; 35–45 mA tepe akımlı sinyal ham halde gürültü içinde zor görülmüş, dijital ortalama/iz ortalamasıyla daha net gösterilmiştir. Bu farklı prob ve ölçüm cihazı örneğidir; SCT013-030/ESP32 performans kanıtı değildir.
+
+### 14.2 GitHub depolarındaki uygulama kalıpları
+
+GitHub açık kaynak kodu/dokümantasyon araması yapıldı; GitHub Copilot tarafından BERO koduna değişiklik yaptırılmadı.
+
+1. **rb-amp/rbamp-esp-idf — CT seçimi:** Dokümantasyon, beklenen maksimum akımı karşılayan en küçük SCT013 modelini seçmeyi; aşırı büyük CT'nin düşük akım çözünürlüğünü düşürdüğünü belirtir. Sorun giderme notunda 100 A CT ile yaklaşık 0.2 A lambanın gürültü tabanına yaklaşabileceği yazılıdır. Ayrıca düşük akım için 5 A CT ve yüksek akım için 30 A/100 A CT'yi ayrı kanallarda kullanıp ana tarafta geçiş yapma örüntüsü sunulur. Bu, depo dokümantasyonunda önerilen mimaridir; 40 mA'da ölçüm doğruluğu kanıtı değildir.
+2. **SparkFun/SparkFun_ADE7953_Arduino_Library — yüksüz taban:** Kütüphane yüksüz durumda çoklu RMS register örneklerinden baseline ortalaması alır ve sqrt(reading² - baseline²) işlemiyle kareler alanında çıkarır. Kod ayrıca PGA kazancı ve analog yüksek geçiren filtre kullanır. Bu yöntem ADE7953 donanımına özgüdür; ESPHome ct_clamp zincirine doğrudan kopyalanmayacak. BERO açısından değerli nokta, taban ölçümünün ayrı ve açık bir kalibrasyon aşaması olmasıdır.
+3. **danpeig/ESP32EnergyMonitor — edinim/kalibrasyon:** ESP32 ve SCT013 kullanan örnek projede akım sensörü için ayrı kalibrasyon aracı, referans ampermetreyle katsayı belirleme ve 1 V çıkışlı CT'de harici burden direnci eklememe yaklaşımı vardır. Proje 100 A/50 mA akım çıkışlı CT örneğini esas alır; BERO'nun 30 A/1 V CT'sine doğrudan devre kopyası değildir.
+4. **dardhal/ESP32-ADS1115-CT-Power-Measurement — harici ADC uyarısı:** Depo sahibi ADS1115 continuous mode ile ESPHome ct_clamp kullanırken yavaş/güvenilmez ölçümler bildirmiştir. Harici ADC tek başına çözüm değildir; örnekleme modu, veri hızı ve yazılım entegrasyonu birlikte doğrulanmalıdır.
+
+### 14.3 BERO'daki yardımcı sensörler açısından not
+
+- **HESAP:** SCT013-100 100 A/1 V nominal hassasiyeti 10 mV/A olduğundan 40 mA'da yaklaşık 0.4 mV üretir; 40 mA için 30 A/1 V modelden de daha zayıf bir gerilim sinyali verir.
+- **ÜRETİCİ BELGESİ:** ZMCT103C çıplak CT datasheet'i 5 A primerde 5 mA sekonder ve 50 Ω burden ile 250 mV verir; 40 mA'da yaklaşık 2 mV hesaplanır. Aynı dokümandaki ≤0.2% linearity aralığı 5–120% olduğundan 40 mA, 5 A nominalin %0.8'i ile bu belirtilen aralığın altındadır. BERO'daki Ayzek modülünün gerçek burden/ön uç devresi ayrıca doğrulanmadan çıplak CT hesabı modül çıkışı kabul edilmeyecek.
+- **ÜRETİCİ BELGESİ:** ACS712-05B için nominal hassasiyet 185 mV/A'dır; 40 mA'da yaklaşık 7.4 mV değişim beklenir. Allegro datasheet'i 47 nF filtre koşulunda 2 kHz bant genişliğinde 21 mV peak-to-peak gürültü verir. Bu nedenle ACS712-5A da yalnızca daha yüksek hassasiyetli olduğu için otomatik olarak 40 mA çözümü sayılmayacak; filtre/bant genişliği ve modül gürültüsü birlikte incelenecek.
+
+### 14.4 BERO için sonuç ve öncelik
+
+1. Mevcut 30 A/1 V SCT013-030, 40 mA'yı nominal olarak yalnızca 1.33 mV RMS seviyesinde temsil eder. E00F'nin yüksüz logunda medyan 5 mV RMS kaynak tabanı ve 5 mV pencere saçılması görülmüştür. Bu nedenle mevcut zincirde 40 mA güvenilir biçimde ayrışmıyor.
+2. E00F'deki 0.35 A yazılım eşiği 40 mA'yı tasarım gereği sıfırlar. Mevcut YAML değiştirilmeyecek; bu eşik davranışı ölçüm donanımının minimum akım kabiliyetiyle karıştırılmayacak.
+3. İlk çözüm adayı 30 A CT'nin burden direncini değiştirmek değildir; bu model gerilim çıkışlı ve burden sensör içindedir.
+4. Düşük akım gerçekten proje gereksinimiyse, önce daha düşük nominal akım CT'nin aynı koşulda taban/sinyal ayrışması karşılaştırılmalı. 5 A/1 V varyantı teorik olarak 6 kat daha yüksek çıkış üretir ama 40 mA doğruluğu üretici dokümanıyla garanti edilmemiştir.
+5. Analog ön yükselteç, ADC'nin kendi kuantizasyon/gürültü etkisi baskınsa fayda sağlayabilir; CT'nin kendi manyetik gürültüsünü veya kabloya alınmış EMI'yi ortadan kaldırmaz. Kazanç 30 A tam aralıkta doyuma neden olabilir; düşük akım özel kanalı veya seçilebilir kazanç gerekir.
+6. Harici ADC seçimi yalnız bit sayısına göre yapılmayacak. PGA giriş aralığı, gerçek örnekleme hızı, 50 Hz başına örnek sayısı ve ESPHome entegrasyonu birlikte incelenecek.
+7. Öncelik sırası değişmiyor: E00A/E00B ve E01 taban çalışmaları; ardından planlı E08 1/2/4 tur yüksek hızlı edinim karşılaştırması. Üç tur denemesi 40 mA çözümü olarak kabul edilmeyecek. Bu oturumda firmware, devre, sensör veya deney sırası değiştirilmedi.
+
+**Bu bölümün sınırı:** GitHub kod/doküman araştırması ve mevcut logun sayısal analizi yapıldı. Yeni fiziksel ölçüm, osiloskop ölçümü, Python model eğitimi, YAML değişikliği, derleme veya cihaza yükleme yapılmadı.
+
+**Dış kaynaklar:** [YHDC SCT013-030 datasheet](https://naylampmechatronics.com/img/cms/000154/SCT013-030-0-30A-0-1V.pdf), [YHDC SCT013 ürün ailesi](https://en.yhdc.com/product/SCT013-401.html), [OpenEnergyMonitor düşük akım tartışması](https://community.openenergymonitor.org/t/getting-low-currents-with-sct013-50a/14035), [Analog Devices CT eğitim notu](https://wiki.analog.com/university/courses/alm1k/alm-current-transformer), [Allegro ACS712 datasheet](https://www.allegromicro.com/-/media/files/datasheets/acs712-datasheet.pdf), [ZMCT103C datasheet](https://macrogroup.ru/upload/iblock/074/q7ualcq97gdch22ecqzmiotaqaykpxto/ZMCT103C-specification.pdf).
