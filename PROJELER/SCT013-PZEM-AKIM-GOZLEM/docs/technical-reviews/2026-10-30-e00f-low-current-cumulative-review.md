@@ -299,3 +299,62 @@ T006/Python eğitiminde hangi SCT özelliğinin kullanılacağı, ilgili edinim 
 Bu incelemede Gemini'ye doğrudan mesaj gönderilebilen bir bağlantı bulunmadığından soru iletilmedi. Teknik karar, ESPHome 2026.9.1 kaynak kodu ve BERO'nun mevcut veri mimarisi üzerinden verildi. Gemini'nin önerisindeki temel formül kabul edildi; modelin doğrudan parçalı uygulanması ve gürültü altı sinyalin sıfır akım sayılması kabul edilmedi.
 
 **Durum:** Tasarım kararı kaydedildi; Python kodu, eğitim verisi, model katsayıları ve fiziksel test henüz yoktur.
+
+
+## 11. Gemini'nin son değerlendirmesi — eleştirel inceleme ve karar
+
+### 11.1 Ardışık aynı ADC kodlarının atlanması: kabul
+
+ESPHome ct_clamp döngüsünde last_value_ == value ise örnek atlanır. Bu işlem yalnızca örnek sayısını düşürmez; aynı ADC kodunun zaman içinde uzun süre tekrarlandığı run'ları tek temsile indirger. Böylece sample_sum_ ve sample_squared_sum_ üzerinden hesaplanan dağılım, sabit aralıklı bütün ADC okumalarının zaman ağırlıklı dağılımıyla aynı olmak zorunda değildir.
+
+Bu nedenle E00F RMS sonucu, bütün ADC dönüşümlerinin klasik zaman ağırlıklı RMS'i olarak yorumlanmayacak. Sapmanın büyüklüğü mevcut özet logdan hesaplanamaz; aynı sinyalin zaman bilgili ham ADC örnekleriyle karşılaştırma gerekir.
+
+### 11.2 Bias ofseti ve sayısal hassasiyet: kısmen kabul
+
+Varyansın E[x²] - E[x]² biçiminde hesaplanması, sabit bir DC ofseti ideal matematikte giderir. Bu nedenle 1.65 V bias değerindeki sabit/sıcaklık kaynaklı küçük kayma tek başına otomatik olarak sahte AC RMS üretir denemez.
+
+Buna karşılık pencere içinde değişen bias, düşük frekanslı dalgalanma veya başka bir ofset hareketi pencere varyansına katkı yapabilir. Ayrıca birbirine yakın iki büyük sayının farkından küçük varyans elde edildiği için kayan nokta sayısal hassasiyeti incelenmeye değer bir hipotezdir. Bu etkinin BERO'daki büyüklüğü ham örnekler ve aynı algoritmanın kontrollü yeniden oynatımı olmadan doğrulanmış değildir.
+
+### 11.3 Tek doğrusal modelin yetersizliği: kabul, ölçüt genişletildi
+
+Artıkların SCT özelliğine göre sistematik eğrilik göstermesi tek doğrusal modelin yetersizliğine işaret edebilir. Ancak tek bir U biçimli grafik tek başına model değiştirme kararı değildir. Artıkların akım aralığı, yük profili, sensör kimliği ve bağımsız olay/oturum bazında tekrarlanabilirliği incelenir.
+
+Sıfırdan geçmeyen I = aX + b modelinin sıfır girdide negatif veya pozitif çıktı vermesi de tek başına doğrusal modelin yetersizliğini kanıtlamaz; sıfır/algılanabilirlik davranışı modelin geçerlilik alanı ve ayrı kalite kapısıyla ele alınır.
+
+### 11.4 Parçalı model ve çapraz doğrulama: kısmen kabul
+
+Parçalı model gerekirse süreklilik ve pozitif eğim/monotonluk kontrol edilir. Ancak en fazla iki bölge sınırı şimdiden zorunlu kural yapılmayacak; bölge sayısı ve eşikler veriyle gerekçelendirilecek.
+
+Mevcut yük noktaları ve koşul çeşitliliği sınırlıdır. Aynı olayın ardışık pencerelerini rastgele eğitim ve doğrulama kümelerine bölmek veri sızıntısı yaratabilir. Veri yeterli olduğunda bölme, mümkün olduğunca bağımsız yük olayı/oturum veya tekrar grupları üzerinden yapılır. Bugünkü kayıtlar kapsamlı cross-validation için yeterli kabul edilmez.
+
+### 11.5 Gürültü varyans oranı: 1.0–1.2 önerisi reddedildi
+
+variance_window / variance_noise oranı tanımlayıcı bir özellik olarak incelenebilir; ancak 1.0–1.2 aralığı BERO verisinden türetilmediği için karar eşiği olarak kullanılmayacak. Üstelik E00F'nin ardışık aynı ADC kodlarını atlaması, yük ve yüksüz varyanslarını zaman ağırlığı bakımından farklı biçimde etkileyebilir.
+
+Önce aynı edinim yöntemi, aynı örnekleme/işleme yolu ve karşılaştırılabilir pencerelerle yüksüz taban ve yük koşulu dağılımları toplanır. Eşik, ancak bu dağılımlar ve yanlış kabul/ret davranışı incelendikten sonra belirlenir. Belirsiz pencereler otomatik sıfır veya otomatik pozitif akım sayılmaz; kalite durumu olarak korunur. Belirsiz örnekleri regresyon eğitimine ağırlık vererek sokmak varsayılan yöntem değildir; önce referans etiketi ve sinyal ayrışması güvenilir olmalıdır.
+
+### 11.6 Model girdisi: E00F ve E08 ayrımı korunuyor
+
+Gemini'nin mevcut esp32d2 E00F akışında kullanılabilir özelliğin ct_clamp çıktısı olduğu yönündeki tespiti mevcut firmware bağlamında doğrudur. Ancak bu, BERO'nun gelecekteki eğitim girdisini bugünden ct_clamp ile sınırlamaz. E08'in planlanan ham ADC edinimi ayrı bir veri yoludur; Python'da ham örneklerden özellikler gerçek kayıtlar elde edilince ayrıca değerlendirilebilir.
+
+E00F ct_clamp özelliği ve E08 Python ham-örnek özelliği aynı tanım/sampling population gibi birleştirilmeyecek. Hangi yol T006 modeline girecekse eğitim verisinin tamamında aynı özellik tanımı ve izlenebilir edinim kimliği korunur.
+
+### 11.7 SNR < 1 yorumu: fiziksel sınır kabul, mutlak ifade düzeltiliyor
+
+Sinyal gürültüden güvenilir biçimde ayrılamıyorsa tek pencereye dayanarak güvenilir akım büyüklüğü tahmin edilemez; modelin gürültüyü akım gibi uydurmasına izin verilmeyecek. Bu konuda Gemini'nin temel uyarısı kabul edilir.
+
+Ancak SNR < 1 ifadesi, hiçbir istatistiksel bilgi bulunamayacağı anlamına gelmez. Tek pencere zayıf olsa da yeterli sayıda bağımsız/tekrarlı pencerenin birlikte değerlendirilmesi dağılımlar arasında ayrışma gösterebilir. Böyle bir ayrışma gösterilse bile tek pencere tahmininin belirsizliği ayrıca raporlanmalıdır.
+
+KARAR: Ayrışma kanıtı varsa tahmin; ayrışma yetersizse akım değeri yerine kalite/belirsizlik durumu. Gerçek 0 A, algılanabilir düşük akım, algılanamayan düşük akım ve geçersiz veri birbirinden ayrılacaktır. Yazılım fiziksel olarak taşınmayan bilgiyi üretemez.
+
+### 11.8 Son karar özeti
+
+- Zaman ağırlığı/dedup sorunu: KABUL; etkisi ham örnekle henüz ölçülmedi.
+- Sabit bias kaymasının doğrudan sahte RMS yaptığı iddiası: KABUL DEĞİL; dinamik bias ve kayan nokta hassasiyeti araştırma hipotezi.
+- Artık eğriliği: KABUL; tek başına karar ölçütü değil.
+- En fazla iki parçalı bölge: ŞİMDİLİK KABUL DEĞİL.
+- Varyans oranı 1.0–1.2 eşiği: RED; veri temelli eşik henüz yok.
+- E00F ct_clamp girdisi: MEVCUT AKIŞ İÇİN KABUL; gelecekte E08 ham Python özelliklerini dışlamaz.
+- SNR < 1'de güvenilir tek-pencere akım tahmini yapılamayacağı: KABUL; tekrarlı pencere istatistiğinin bilgi taşıyamayacağı iddiası KABUL DEĞİL.
+
+Durum: Bu bir teknik karar/inceleme kaydıdır. Yeni veri toplanmadı, firmware veya Python kodu değiştirilmedi, model eğitilmedi ve fiziksel test yapılmadı.
