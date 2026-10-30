@@ -797,3 +797,13 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **HEDEF:** ESP32D2 cihaz kimliğinin firmware/YAML düzenlemelerinde yanlışlıkla değiştirilmesini engellemek.
 - **LOG:** Kullanıcının açık talebiyle proje `AGENTS.md` dosyasına kesin ve öncelikli kural eklendi: ESP32D2 kimliği değiştirilemez; ESPHome `esphome.name` alanı mevcut kimlikle aynen korunur; her YAML değişikliğinde önce/sonra kontrolü zorunludur; farklılık varsa değişiklik geri alınır.
 - **SONUÇ:** Kural dokümantasyona işlendi. Firmware dosyası bu işlem kapsamında değiştirilmedi. Kuralın sonraki tüm ESPHome/YAML çalışmalarında uygulanması zorunludur.
+
+
+## 2026-10-30 — E08 Aşama 2 için E00B YAML açıklamaları güncellendi
+
+- **Durum:** YALNIZCA AÇIKLAMALAR GÜNCELLENDİ; firmware ayarları değiştirilmedi.
+- **HEDEF:** Mevcut E00B ESP32D2 firmware'inin E08 Aşama 2 / 100 W akkor yük gözleminde hangi amaçla kullanılacağını YAML içinde açıkça belirtmek.
+- **LOG:** `esp32d2-e00b-sct-no-current.yaml` dosyasının açıklama bloğu güncellendi. Dosyanın E00B kimliği ve ESP32D2 cihaz kimliği korundu. E08 kullanımının yeni firmware/cihaz kimliği oluşturmadığı; mevcut dört kanalın 1 saniyelik yayınlarının düşük hızlı alan gözlemi olduğu; yüksek hızlı ham ADC, 1/2/2.5 kS/s edinim veya 200 ms pencere hesaplaması yapmadığı açıklandı. Deney protokolüyle dosya ilişkisi ve E08 fiziksel LOG durumunun henüz boş olduğu belirtildi.
+- **Değişmez kalanlar:** `esphome.name`, `friendly_name`, ESP32 variant/framework, GPIO34/35/32/33, sensör tanımları, entity adları, ADC ayarları ve `update_interval` dahil tüm çalıştırılabilir YAML içeriği değişiklik öncesiyle aynı tutuldu.
+- **SONUÇ:** YAML açıklamaları E08'in mevcut düşük hızlı gözlem amacını anlatıyor. E08 100 W fiziksel testi, yeni derleme, cihaza yükleme ve ölçüm bu işlem kapsamında yapılmadı; sonuç henüz ölçülmedi.
+- **Doğrulama:** Yorum satırları dışındaki boş olmayan tüm YAML satırları değişiklik öncesi/sonrası karşılaştırıldı ve aynı bulundu. Commit sonrası dosya yeniden okunarak ayrıca doğrulanacak.
