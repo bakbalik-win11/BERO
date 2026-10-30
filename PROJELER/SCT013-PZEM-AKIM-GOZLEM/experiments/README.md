@@ -17,3 +17,4 @@ Her deneyde protocol.md, metadata.yaml ve results.md bulunur. Ham veri varsayıl
 E00A ve E00–E08 deneyleri plan/protokol düzeyindedir; fiziksel ölçüm sonuçları henüz yok. E00A, E00/E01 ve sonraki hız/paketleme çalışmalarından önce yapılacak. İlk geçişte 1 ve 2,5 kS/s karşılaştırması veya çoklu ESP32 eşzamanlaması zorunlu değildir; ilk istatistikler sonraki deneyi yönlendirecek.
 
 - [E09 — ESP-2 düşük akım sensör karşılaştırması](E09-low-current-sensor-comparison/README.md) — PZEM, ACS712-5A ve ZMCT103C-5A için tekil → ikili → üçlü aşamalı test planı. Henüz uygulanmadı.
+- [E00F-N02 — Dört ADC kanalı ilk cihaz logu](E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md) — GPIO32/33 SCT ve GPIO34/35 bias kanalları cihazda başlatıldı; ilk kısa log istatistikleri kaydedildi. Sabah HA geçmiş analizi bekleniyor.
