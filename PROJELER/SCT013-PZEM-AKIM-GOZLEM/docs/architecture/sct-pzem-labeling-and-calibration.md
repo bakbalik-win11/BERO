@@ -17,14 +17,21 @@
 - **Home Assistant:** ESP düğümlerinden gelen verilerin aktarılacağı hedef sistem.
 - **Python (Mac Mini/PC):** Veri birleştirme, kararlılık algoritmaları ve istatistikleri geliştirme, alan etiketleme, kalibrasyon katsayısı/(f(x)) modelini çıkarma, modelin ham veri üzerinde doğrulanması ve iteratif iyileştirme. Temel hesaplama/modelleme ESP'lerde veya Home Assistant'ta değil Python tarafında yapılır.
 
-## Etiketleme mantığı
+## İlk eğitim aşaması — ortak kararlı alan etiketleme kuralı
 
-1. Olay paketleri çalışma durumunu/olay bağlamını verir (ör. `BOOT_ID`, `EVENT_ID`, `STATE=ON|OFF`).
-2. PZEM alanlarının ve SCT verisinin kararlı olup olmadığı geliştirilecek algoritma ve istatistiksel ölçütlerle belirlenir.
-3. Etiketler **kararlı alanı** temsil eder; yalnızca “olaydan sonra N saniye geçti” kuralına indirgenmez.
-4. Kararlı olmayan/geçiş/yerleşme alanları da gerektiğinde ayrı etiketlerle korunur; ham veri atılmaz. Böylece modelin hem kararlı alanlarda hem çok olaylı ham akışta davranışı incelenebilir.
-5. Python tarafında paket bağlamı ve kararlılık etiketleriyle işaretlenmiş SCT ham veri kümesi oluşturulur.
-6. Algoritma, eşikler ve etiket adları henüz belirlenmedi. Bunlar veri ve deneylerle geliştirilecek; mevcut not bunları önceden karara bağlamaz.
+Bu bölüm, BERO'nun ilk eğitim aşamasında uygulanacak temel etiketleme yöntemini tanımlar.
+
+1. SSR yükü açar veya kapatır. SSR'nin `BOOT_ID`, `EVENT_ID` ve `STATE=ON|OFF` bilgisi ilgili test olayını ve ON/OFF penceresini tanımlar.
+2. Aynı olay penceresindeki PZEM akım kayıtları Python'da incelenir; PZEM'in kararlı olduğu alan/alanlar belirlenir.
+3. Aynı olay penceresindeki SCT ham verisinden çıkarılan pencere istatistikleri ayrıca incelenir; SCT'nin kararlı olduğu alan/alanlar bağımsız olarak belirlenir.
+4. Python, PZEM kararlı alanı ile SCT kararlı alanının **aynı SSR olay penceresi içinde örtüştüğü ortak aralığı** bulur. Eğitim için kabul edilen bölüm yalnızca bu ortak kararlı aralıktır. Yalnız PZEM'in veya yalnız SCT'nin kararlı olması yeterli değildir.
+5. Ortak kararlı aralıkta yer alan SCT verisi, o aralığa karşılık gelen geçerli PZEM akım değeriyle etiketlenir. Etiket, PZEM'in proje içi referans değerini temsil eder; PZEM kusursuz veya bağımsız mutlak standart kabul edilmez.
+6. Aynı işlem hem SSR ON (yük açma) penceresi hem de SSR OFF (yük kapama) penceresi için uygulanır. Böylece açma ve kapama davranışlarından ortak kararlı alan örnekleri elde edilir.
+7. Geçiş, yerleşme ve kararlı olmayan alanlar eğitim etiketi olarak kullanılmaz; ihtiyaç halinde analiz amacıyla ayrı sınıflandırılıp korunabilir.
+
+**Zaman yaklaşımı:** Burada amaç her SCT örneğini PZEM okumasıyla milisaniye hassasiyetinde eşleştirmek değildir. İki taraftaki kararlılık ayrı ayrı bulunur ve aynı SSR olay penceresindeki örtüşen alan seçilir. Zaman damgaları ile PZEM istek/yanıt zamanları bu alanların sırasını, örtüşmesini ve PZEM güncelleme gecikmesini incelemek için kullanılır. Olaydan sonra sabit N saniye beklemek, ortak kararlı alanı bulmanın yerine geçmez.
+
+**Kararlılık ölçütleri:** PZEM ve SCT için eşikler, pencere sayıları ve algoritmalar önceden uydurulmaz; ilgili deney verileriyle belirlenir. Bu kurallar belirlenip uygulanana ve fiziksel veriyle sınanana kadar yöntem hedef tasarımdır, doğrulanmış sonuç değildir.
 
 ## Kalibrasyon ve model doğrulama döngüsü
 
