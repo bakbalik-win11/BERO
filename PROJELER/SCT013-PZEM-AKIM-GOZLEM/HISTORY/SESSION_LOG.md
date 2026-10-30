@@ -817,3 +817,14 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **ÖNEMLİ TEKNİK SINIR:** ADC continuous modu aynı ADC birimini one-shot moduyla eşzamanlı kullandıramaz. Mevcut ESPHome ADC sensörleri aynı ADC1 biriminde kalırken continuous sürücüye paralel bırakılmayacak; yüksek hızlı firmware tasarımında çakışma önlenecek. Wi-Fi/ESPHome yayınlarını her örnek için kullanmak yerine tamponlanmış kısa pencere aktarımı tasarlanacak.
 - **SONUÇ:** Grafik standardı KAYDEDİLDİ. Yüksek hızlı edinim yalnızca PLANLANDI; henüz YAML/C++ kodu yazılmadı, derleme/flash/ölçüm yapılmadı. Mevcut E00B YAML bu işlemde değiştirilmedi.
 - **SONRAKİ ADIM:** Yeni yüksek hızlı firmware'in tam tasarımını ve aktarım yolunu netleştir; ardından kimlik/pin/board değişmezliği kontrolüyle kodu hazırla. İlk hız doğrulamasından sonra 2 kS/s ve 2.5 kS/s hedeflerine geç.
+
+
+## 2026-10-30 — ESP32D2 / SCT013-030 hazır ct_clamp kodu kaydı
+
+- **Durum:** UYGULANDI (GitHub depo kaydı); cihaz üzerinde yeniden derleme/flash bu oturumda yapılmadı.
+- **Hedef ve kabul ölçütü:** Kullanıcının paylaştığı çalışan ESPHome YAML'ını, cihaz kimliğini ve gerçek ayarları koruyarak depoya kaydetmek; kod açıklamalarıyla uygulanan eşik değerinin tutarlı olması; dosyayı GitHub'dan yeniden okuyarak doğrulamak.
+- **Yapılan:** `firmware/esp32d2.yaml` ve `firmware/README.md` oluşturuldu. YAML'daki `esphome.name: esp32d2`, GPIO33, ADC1/12 dB, `ct_clamp` 200 ms pencere/2 s yayın, 24.22 katsayısı ve 0.35 A lambda eşiği korundu. İlk paylaşılan açıklama bloğundaki 0.30 A metni, gerçek lambda ile aynı olacak şekilde 0.35 A olarak düzeltildi; çalışma mantığına dokunulmadı. README'ye kullanıcı loglarından ölçüm özeti ve sınırlamalar eklendi.
+- **Doğrulama:** GitHub dosyaları yazıldı ve yeniden okundu. Commitler: YAML `c57920f48a4e4604afdbd1f1182c1fba101ebfcf`; README `2b2ac4b701fb166043608005f2fed23c409845ae`; README kanıt bağlantısı düzeltmesi `ec9d1bbe26a497f898757c9db7c791bc11dd928d`. ESPHome YAML parser/derleme, cihaz flash ve yeni fiziksel ölçüm bu oturumda çalıştırılmadı.
+- **Açık kalanlar:** Ham test loglarının depo dosyası olarak eklenmesi; 0.35 A eşiğinin 0.041 A LED yükünü bastırması ve ara sıra yüksek yayın sıçramalarının ayrıca ele alınması.
+- **Sonraki adım:** Katsayı 24.22'yi değiştirmeden, mevcut ct_clamp kodunu koruyup düşük akım/eşik davranışını ayrı incelemek.
+- **Kanıt:** [firmware/esp32d2.yaml](../firmware/esp32d2.yaml), [firmware/README.md](../firmware/README.md).
