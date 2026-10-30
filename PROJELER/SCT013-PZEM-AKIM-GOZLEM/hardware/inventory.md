@@ -14,7 +14,9 @@
 | ESP32-WROOM-32E tabanlı kart/modül | 1 adet | Kullanıcı bu kartı da SCT013 ölçümünde kullanacağını belirtti |
 | Genel ESP-WROOM-32 tabanlı NodeMCU ESP32 kartı | 1 adet | BERO envanter kaydı; kart üreticisi/revizyonu ve fotoğrafla eşleşmesi proje kaydında net değil |
 | ESP32 ölçüm düğümü | 1 adet | Önceki PZEM ölçüm düğümünde kullanıldı; fiziksel kart modeli yukarıdaki stoktan kesin eşleştirilmedi |
-| PZEM-004T | V3.0 | Kullanıcı bildirimi; ayrıntı için [mevcut BERO kaydı](../../../DONANIM/PZEM-004T/README.md) |
+| PZEM-004T | V3.0 | Kullanıcı bildirimi; ESP-2 karşılaştırma düğümünde kullanılacak; ayrıntı için [mevcut BERO kaydı](../../../DONANIM/PZEM-004T/README.md) |
+| ACS712-5A modülü | 1 adet | Kullanıcı bildirimi; ESP-2 düşük akım karşılaştırma kolu |
+| ZMCT103C-5A modülü | 1 adet | Kullanıcı bildirimi; ESP-2 düşük akım karşılaştırma kolu |
 | SSR kartı | SAMM Market 5 V, 2 kanal | Tedarikçi kodu İzmo9659, SKU MP02637; kart üzerindeki SSR'nin tam kodu ayrıca doğrulanmalı |
 | RTC | 2 × DS3231 modülü; her birinde 2032 tipi pil | Kullanıcı beyanı: kod çalıştı; güç kesilip yeniden verildikten sonra saat korundu |
 | Güç kaynağı | Masaüstü 5 V / 1,8 A | Kullanıcı bildirimi |
@@ -28,16 +30,15 @@
 Breadboard bias alt devresi kullanıcı beyanına göre 2 × 10 kΩ dirençle orta nokta oluşturur ve orta noktadan GND'ye 104 (100 nF) kondansatör bağlanmıştır.
 
 **Bağlantı tarifi (kullanıcı bildirimi):** SCT013 jack üzerinden breadboard bias devresine bağlanır; okuma ESP32'nin dahili ADC'siyle yapılır. 8 kanallı analog arayüz kartı mevcut değildir. Harici ADC kullanılmayacak; MCP3208 sonraki aşamaya ayrılmıştır.
-## SCT ölçüm kartı ve test düzeni
+## Ölçüm düğümleri ve test düzeni — 2026-10-30 kullanıcı kararı
 
-Kullanıcı kararı ve hedef mimari:
+- **ESP-1 — SCT ana ölçüm düğümü:** Yalnızca SCT013 ölçümü ve hızlı örnekleme yapar. PZEM, ACS712, ZMCT103C veya başka bir görev bu düğüme eklenmez.
+- **ESP-2 — karşılaştırma düğümü:** PZEM-004T V3.0, 1 adet ACS712-5A ve 1 adet ZMCT103C-5A bu düğümde aşamalı olarak ele alınır.
+- **ESP-2 test sırası:** (1) yalnız PZEM, (2) yalnız ACS712, (3) yalnız ZMCT103C, (4) PZEM + ACS712, (5) PZEM + ZMCT103C, (6) üçü birlikte. Her aşama log ve davranış doğrulaması yapılmadan ilerletilmez.
+- **Ayrı kontrol düğümü:** ESP32-C3 SuperMini'nin SSR/zamanlama rolü mevcut kayıtlarda korunur; bu ADR yeni bir kontrol firmware'i veya pin ataması yapmaz.
+- Fiziksel ESP-1/ESP-2 kart modelleri, GPIO eşlemesi ve sensör analog ön uç bağlantıları henüz seçilmiş/doğrulanmış değildir.
 
-- **Zamanlayıcı/olay üreticisi:** ESP32-C3 SuperMini, SSR yükünü açıp kapatır ve her geçiş için olay/paket bilgisi üretir. Mevcut ADR-006 tasarım kaydında 40 s ON / 20 s OFF, UDP broadcast port 4210 ve `BERO_EVT,BOOT_ID=XXXXXXXX,EVENT_ID=N,STATE=ON|OFF` biçimi tanımlıdır.
-- **Üç hızlı örnekleme düğümü:** 2 × ESP32-WROOM-32D + 1 × ESP32-WROOM-32E. Her biri SCT013 sensöründen ham/anlık gerilim örneklerini hızlı biçimde alır; bu aşamada akım veya RMS hesabı yapmaz.
-- **Çıktı hedefi:** Her örnekleme düğümü sensör gerilim örneklerini zamanlayıcıdan gelen olay/paket bilgisiyle birlikte yazdırır; böylece örnekler SSR'nin ON/OFF olayına bağlanabilir. Paket alımı/teslimi ve örnekleme zamanlaması testle doğrulanmalıdır.
-- **Sarım testleri:** Aynı hatta iletkenin SCT içinden 1, 2 ve 4 sarım geçirilmesi ayrı ayrı denenir.
-
-Bu, hedef mimari ve test planıdır; henüz ölçüm sonucu veya GPIO eşlemesi değildir.
+Ayrıntılar: [ADR-008](../docs/decisions/ADR-008-two-node-staged-sensor-tests.md) ve [E09 test planı](../experiments/E09-low-current-sensor-comparison/README.md).
 
 ## Önceden hazırlanmış bias üretim alt devresi
 
