@@ -1,3 +1,16 @@
+## 2026-10-30 — E00F-N01 sıfırlama filtresiz gece gözlemi hazırlandı
+
+- **Durum:** YAML depo kopyası güncellendi; E00F-N01 deney planı ve bağlı kayıtlar eklendi. Derleme, flash ve fiziksel gece gözlemi henüz yapılmadı.
+- **HEDEF:** 0.35 A altını sıfırlayan lambda'yı kaldırarak mevcut ct_clamp zincirinin düşük akım/yüksüz taban çıktısını görünür hâle getirmek ve gece boyunca Home Assistant geçmişinde gözlemek.
+- **BAŞLANGIÇ:** main dalı başlangıç HEAD: `5ad9658671e40be36eabfbb33dda365a6f2bfc3e`. AGENTS.md, STATUS.md, ROADMAP.md, docs/open-questions.md, firmware/esp32d2.yaml, firmware/README.md, E00F teknik değerlendirmesi ve oturum günlüğü okundu.
+- **KOD:** Yalnız `x < 0.35f => 0.0f` lambda filtresi kaldırıldı. `multiply: 24.22`, GPIO33, ADC1, 12 dB, `raw: false`, 200 ms pencere, 2 s yayın ve `esphome.name: esp32d2` korundu.
+- **DENEY PLANI:** [E00F-N01 experiment.yaml](../experiments/E00F-unthresholded-overnight-log/experiment.yaml) oluşturuldu. Beklenen HA entity `BERO E00F SCT013 Akim`.
+- **KAYIT SINIRI:** HA geçmişi sensörün yayınlanan durum değişimlerini kaydeder; 200 ms ham ADC örneklerini ve Raw AC/N/SPS debug satırlarını içermez. Bu debug verisi gerekiyorsa ESPHome log akışı bilgisayarda sürekli dosyaya alınmalıdır.
+- **SONUÇ:** Kod değişikliği depo üzerinde hazırdır; cihazda çalıştığı doğrulanmamıştır. Filtre kalkınca gürültü kaynaklı küçük akım değerleri de yayınlanabilir; bunlar gerçek akım kabul edilmeyecektir.
+- **DOĞRULAMA:** YAML metninde filtre koşulunun kalktığı ve cihaz kimliği/ayarların korunduğu kontrol edilecek; dosyalar yazımdan sonra yeniden okunacak. ESPHome compile/flash bu oturumda çalıştırılmadı.
+- **SONRAKİ ADIM:** Kullanıcı YAML'ı derleyip ESP32D2'ye yükler; HA geçmişinin başladığını doğrular; sabah geçmiş dışa aktarımını ve varsa debug logunu paylaşır.
+- **KANIT:** [Firmware YAML](../firmware/esp32d2.yaml), [E00F-N01 planı](../experiments/E00F-unthresholded-overnight-log/experiment.yaml), [firmware notu](../firmware/README.md).
+
 ## 2026-10-30 — Hat bazında SCT tur sayısı fikri depoya alındı
 
 - **Durum:** FİKİR KAYDEDİLDİ; fiziksel test, firmware değişikliği ve kalibrasyon yapılmadı.
