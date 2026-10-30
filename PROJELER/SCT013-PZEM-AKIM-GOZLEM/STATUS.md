@@ -164,3 +164,12 @@ Düşük PF'nin aynı gerilim ve aktif güç koşulunda RMS akımı artırabilec
 - **LOG:** Ofsetli logda GND koşulunda 49/49 GPIO35 örneği 0.000 V. Bias açık logunda kararlı bölümün 85 filtreli örnek ortalaması yaklaşık 1.525 V; kullanıcı multimetre Vmid bildirimi 1.654 V. Çıkarılan 0.142 V geri eklendiğinde hesaplanan filtresiz tahmin yaklaşık 1.667 V; fark yaklaşık +0.013 V.
 - **SONUÇ:** Sabit 0.142 V sıfırlama gerçek DC seviyeyi bozduğu için kaldırıldı. GND'deki 0.142 V gözlemi gizlenmeyecek. Ofsetsiz firmware depoya yazıldı; yeni derleme/cihaz testi henüz yapılmadı.
 - **Sonraki tek adım:** Kullanıcı ofsetsiz YAML'ı derleyip cihaza yükleyecek; aynı Vmid koşulunda yeni log alınacak. E00A tamamlanmadı.
+
+
+## 2026-10-30 — E00A RAW/voltaj karşılaştırma firmware'i
+
+- **HEDEF:** GPIO34 RAW count değerinden nominal voltaj tahmini üretmek; GPIO35 ESPHome ADC voltajıyla karşılaştırmak ve aradaki işaretli farkı yayınlamak.
+- **LOG:** Firmware'e GPIO34 RAW sensörü, `RAW × 3.1 / 4095` nominal voltaj tahmini, GPIO35 ofsetsiz ADC voltajı ve `GPIO35 - GPIO34 tahmini` fark sensörü eklendi. Kullanıcı yeni YAML'ın derlemeye alındığını bildirdi; derleme sonucu henüz bildirilmedi.
+- **SONUÇ:** Değişiklik GitHub'a kaydedildi ve dosya yeniden okunarak doğrulandı. Derleme başarılı veya cihazda çalışıyor olarak henüz işaretlenemez. RAW dönüşüm katsayısı nominal tahmindir; kalibrasyon değildir.
+- **Bağlantı koşulu:** Karşılaştırma için GPIO34 ve GPIO35 aynı 1.654 V Vmid noktasına bağlanmalı. GPIO34 bağlantısız kalırsa RAW voltajı ve fark sensörü geçerli karşılaştırma değildir.
+- **Sonraki adım:** Derleme sonucunu al; başarılıysa cihaz yüklemesi ve aynı Vmid noktasında multimetre eşzamanlı logu.
