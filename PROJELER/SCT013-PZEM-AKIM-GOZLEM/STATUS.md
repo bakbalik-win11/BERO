@@ -229,3 +229,13 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **SONUÇ:** Cihaz bağlantısı ve dört ADC kanalının başlatılması doğrulandı. Primer akımın sıfır olduğu ve fiziksel SCT bağlantısı yalnız logdan bağımsız doğrulanamıyor.
 - **Sonraki adım:** Fiziksel kurulum/akımsız koşulu not et ve daha uzun kararlı kayıt al.
 - **Kayıt:** [E00B results](experiments/E00B-sct-connected-no-current/results.md), [ham log](experiments/E00B-sct-connected-no-current/logs/2026-10-30-e00b-esp32d2-startup-and-observation.log).
+
+
+## 2026-10-30 — ESP32D2 / SCT013-030 hazır ct_clamp yapılandırması kaydedildi
+
+- **Durum:** UYGULANDI (GitHub depo kaydı). Kullanıcının paylaştığı ve cihaz loglarında çalıştığı görülen ESPHome yapılandırması `firmware/esp32d2.yaml` dosyasına kaydedildi. Bu oturumda yeniden derleme veya cihaza yükleme yapılmadı.
+- **HEDEF:** Hazır ESPHome `ct_clamp` paketiyle çalışan temel ölçüm yapılandırmasını, tek seferlik 24.22 katsayısını ve mevcut bağlantı/örnekleme ayarlarını kaybetmeden korumak.
+- **LOG:** ESP32D2 kimliği korunmuştur. SCT013-030 → mevcut yaklaşık 1.65 V bias → GPIO33; ADC1 / 12 dB; `sample_duration: 200ms`; `update_interval: 2s`; katsayı 24.22; yayın eşiği 0.35 A. 150 W akkor testinde pens 0.616 A / ESP32 yaklaşık 0.615 A; kettle düşük akım kesitinde yaklaşık 0.637 A / 0.656 A; kettle kaynama kesitinde pens 6.39 A / ESP32 yaklaşık 6.15 A. 8.35 W LED'de pens 0.041 A iken 0.35 A eşiği nedeniyle yayınların çoğu 0.000 A; ara sıra 0.508 A ve 0.372 A sıçramaları görüldü. Bu ölçüm ve pens değerleri kullanıcı raporu/loglarıdır.
+- **SONUÇ:** 150 W ve kettle koşullarında gözlenen farklar yaklaşık ±%4 hedefinin içinde. 41 mA LED akımı mevcut eşik tarafından bastırıldığı için düşük akım kabiliyeti henüz gösterilmedi. Katsayı değiştirilmedi. Kod açıklamasındaki ilk 0.30 A ifadesi, lambda'nın fiilen uyguladığı 0.35 A ile tutarlı olacak şekilde depo kopyasında düzeltildi; çalışan lambda mantığı değiştirilmedi.
+- **Kayıt:** [firmware/esp32d2.yaml](firmware/esp32d2.yaml), [firmware/README.md](firmware/README.md).
+- **Açık kalan:** Ham test loglarının kalıcı dosya olarak eklenmesi ve 0.35 A eşik davranışının düşük akım için değerlendirilmesi. Bu kayıt E00A/E00B/E08 planlarının kabul ölçütlerini tamamlamaz veya fiziksel doğrulama iddiası oluşturmaz.
