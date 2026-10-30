@@ -46,3 +46,14 @@ Bu kapılar belge düzenlemesiyle tamamlanmış sayılmaz. PZEM zaman damgası/l
 ## E08 — güncel deney kapsamı
 
 E08'de PZEM veya başka ESP'nin ortalama akımı varsa yalnız genel deney koşulu notudur; SCT pencereleriyle zaman eşleştirmesi yapılmaz. Bu, proje genelindeki daha sonraki PZEM/SCT etiketleme hedefini kaldırmaz; yalnız E08'in kapsamını sınırlar. Güncel sıra ve her aşamanın gerekçesi [E08 genel açıklamasında](../experiments/E08-sct-characterization/README.md) kayıtlıdır. Fiziksel ölçüm yapılmadı.
+
+
+## 2026-10-30 — E00F düşük akım teşhis soruları
+
+1. 0.006 V Raw AC Value hangi fiziksel koşulda ve hangi 200 ms pencerede üretildi? Aynı log kesitinde yük durumu, farklı örnek sayısı (N) ve raporlanan SPS var mı?
+2. D1 SCT bağlı/primer akımsız koşulu ile D2 8.35 W LED koşulunda Raw AC Value, N ve raporlanan SPS dağılımları nasıl değişiyor?
+3. Düşük akımda ardışık aynı sayısal ADC değerlerini atlama davranışının ve 1 mV kalibre gerilim adımının sonuç üzerindeki etkisi BERO ham verisiyle ne ölçüde gösterilebilir?
+4. D3 akkor kontrolünde aynı kurulum ve eşleşmiş pens/ESP32 kayıtları önceki ±%4 gözlemlerini tekrarlıyor mu?
+5. D4 ayrı RAW count teşhisi veya D5 E08 ham edinimi, D0–D3 sonuçlarından sonra gerekli mi?
+
+Bu sorular için deney sırası ve kabul ölçütleri [toplu teknik değerlendirmede](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md) tanımlıdır. Bu soruların eklenmesi fiziksel ölçüm yapıldığı anlamına gelmez.
