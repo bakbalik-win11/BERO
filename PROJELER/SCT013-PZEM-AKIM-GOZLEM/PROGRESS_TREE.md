@@ -150,3 +150,8 @@ E00B uzun cihaz logu kaydedildi; 351 geçerli yayın/kanal analizinde SCT ve bia
 ## 2026-10-30 — E08 Aşama 2 açıldı
 
 100 W akkor yük altında SCT013-030 testi hazırlık durumunda açıldı. İlk koşul 1 tur × 1.000 örnek/s; tam matris 1/2/4 tur × 1/2/2,5 kS/s. Mevcut E00B firmware'i 1 saniyelik yayın yaptığı için E08 yüksek hızlı edinimine uygun değil. Ayrı firmware, gerçek örnekleme hızı doğrulaması ve fiziksel ölçüm bekleniyor. [Aşama 2 protokolü](experiments/E08-sct-characterization/stage-02-100w-matrix.md).
+
+
+## 2026-10-30 — E08 gözlem yaklaşımı güncellendi
+
+100 W akkor yük gözleminde mevcut E00B firmware'i değiştirilmeden kullanılacak. 1 saniyelik yayınlar yük altındaki sinyal alanlarının düşük hızlı davranışını görmeye yarayacak. Yüksek hızlı örnekleme ve hızlandırma testleri sonraki aşamaya bırakıldı. Fiziksel test/log henüz yok.
