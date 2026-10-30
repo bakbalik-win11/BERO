@@ -28,15 +28,15 @@ Sorular: Hız değişince aynı yöntemin pencere değişkenliği değişiyor mu
 | 2 | Planlandı | Planlandı | Planlandı |
 | 4 | Planlandı | Planlandı | Planlandı |
 
-- İlk koşul 1 tur × 1.000 örnek/s olarak belirlendi. Her koşulda 100 W akkor yük sabit tutulur.
+- İlk koşul mevcut E00B koduyla düşük hızlı gözlem (1 s yayın aralığı) olarak belirlendi. Her koşulda 100 W akkor yük sabit tutulur.
 - Başlangıç pencere uzunluğu 200 ms'dir; optimum olduğu varsayılmaz.
 - Aynı pencere örneklerinden bias çıkarılmış RMS, mutlak Peak ve Peak-to-Peak hesaplanır. Ortalama, standart sapma, minimum, maksimum, örnek sayısı ve gerçekleşen örnekleme hızı da saklanır.
 - Her koşul için kayıt süresi ve tekrar sayısı, ilk edinim yazılımı/örnek verisi görüldükten sonra kararlaştırılacak; kararlılık eşiği baştan sabitlenmeyecek.
 
 ### Firmware ve veri
-Mevcut [E00B firmware'i](../E00B-sct-connected-no-current/firmware/esp32d2-e00b-sct-no-current.yaml) dört kanalı 1 saniyelik aralıkla Home Assistant'a yayımlar; bu yüksek hızlı ADC örneklemesi değildir. E08 için ayrı firmware hazırlanacaktır. Firmware; örnekleme hedefini, gerçek örnek sayısını/süreyi ve pencere özetlerini raporlamalıdır. YAML/deney planı firmware tarafından otomatik okunmuyorsa ayarlar kod içinde açıkça eşlenmelidir.
+Mevcut [E00B firmware'i](../E00B-sct-connected-no-current/firmware/esp32d2-e00b-sct-no-current.yaml) aynen kullanılacaktır. Dört kanalı 1 saniyelik aralıkla Home Assistant'a yayımlar; bu yüksek hızlı ham ADC örneklemesi değildir. Bu nedenle bu ilk çalışma, yük altındaki yavaş değişen/özet sensör alanlarını gözlemleme deneyi olarak değerlendirilir; yüksek hızlı örnekleme matrisi değildir. Hızlandırma ve ham pencere analizi daha sonraki ayrı aşamadır.
 
 ### HEDEF / LOG / SONUÇ
 - **HEDEF:** 100 W yük altında ilk kontrollü SCT sinyalini almak ve hız/tur matrisine başlamak.
-- **LOG:** Test açıldı. İlk koşul 1 tur × 1.000 örnek/s. Firmware henüz hazırlanmadı; derleme, cihaza yükleme, fiziksel test ve log yok.
-- **SONUÇ:** Henüz ölçülmedi. Mevcut E00B YAML bu testi gerçekleştirmek için yeterli değil. Sonraki adım E08 yüksek hızlı edinim firmware'ini hazırlamak.
+- **LOG:** Test açıldı. Yeni firmware'e geçilmeyecek. E00B firmware'i korunacak; 100 W yük altındaki düşük hızlı gözlem alınacak. Fiziksel test ve log henüz yok.
+- **SONUÇ:** Henüz ölçülmedi. Mevcut E00B YAML yüksek hızlı edinim için yeterli değildir; ancak bu ilk düşük hızlı gözlem için özellikle korunacaktır. Hızlandırma testi daha sonra ele alınacaktır.
