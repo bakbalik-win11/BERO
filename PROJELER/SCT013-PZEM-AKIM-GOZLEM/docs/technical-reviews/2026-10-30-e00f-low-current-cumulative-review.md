@@ -72,66 +72,88 @@ Eski E00F ölçeğinde I = 24.22 × V_AC,RMS kabul edilirse:
 
 ### D0 — Mevcut kanıtların eşleştirilmesi
 
-**Amaç:** 0.006 V değerinin hangi koşula ait olduğunu ve aynı kayıtta N/SPS bulunup bulunmadığını belirlemek.
+**Amaç:** 0.006 V değerinin hangi koşula ait olduğunu belirlemek ve ct_clamp örnek sayısı değişkenliğini gerçek loglardan çıkarmak.
 
-- Mevcut ESPHome loglarında Raw AC Value, after N different samples, SPS, zaman damgası ve yük/SSR durumu aranır.
-- Aynı zaman aralığına ait pens değeri varsa not edilir.
-- Eşleşme yoksa sonuç “eşleşme kanıtı yok” olarak kalır; geçmiş değerler geriye dönük eşleştirilmez.
+Her 200 ms pencere için mümkünse aynı kayıt grubunda şu alanlar çıkarılır: zaman/pencere sırası, yük/SSR durumu, Raw AC Value (Volt), N different samples, raporlanan SPS ve yayınlanan akım. N, kabul edilen farklı sayısal değer sayısıdır; SPS gerçek ADC dönüşüm hızı değildir.
 
-**Kabul:** Her kayıt için yük koşulu ve zaman bilgisi ya kanıtla eşleşir ya da açıkça “bilinmiyor” olarak işaretlenir.
+**N dağılımı zorunlu çıktısı:** Pencere sayısı, N min/max, ortalama, medyan, standart sapma, p5/p95 ve frekans dağılımı; aynı özetler SPS için de verilir. Mümkünse her pencerenin Raw AC, N ve SPS üçlüsü korunur.
 
-### D1 — Yüksüz SCT bağlı gözlem
+**Float32 sınırı:** N dağılımı float birikim şüphesini incelemek için gerekli girdilerden biridir; tek başına float32 hatasını kanıtlamaz. Gerçek ADC örnek dizisi debug satırında bulunmadığından yalnız N ile birebir yeniden oynatma yapılamaz. Gerçek quantized sample dizisi elde edilirse aynı pencere float32 ve float64 ile yeniden hesaplanabilir. Yalnız N varsa simülasyon varsayımlı duyarlılık analizi olarak etiketlenir.
 
-**Amaç:** SCT bağlı, primer akım yok koşulunda Raw AC Value, farklı örnek sayısı ve raporlanan SPS dağılımını görmek.
+**Kabul:** Mevcut logdan çıkarılabilen alanlar sayısal dağılımlarıyla raporlanır; bulunmayan alanlar “logda yok” diye işaretlenir. 0.006 V ile 0.041 A geçmişe dönük aynı pencereye bağlanmaz.
 
-- Mevcut firmware ve donanım ayarları değiştirilmez.
-- Birden fazla ardışık pencerenin logu saklanır.
-- Raw AC Value gerilim olarak değerlendirilir; SPS gerçek ADC hızı sayılmaz.
+### D1 — SCT bağlı, primer akımsız taban
 
-**Kabul:** Pencere sayısı, süre, N ve raporlanan SPS dağılımı kaydedilir; ölçüm koşulu belirtilir.
+**Amaç:** Yüksüz halde Raw AC Value tabanını ve pencere değişkenliğini ölçmek.
 
-### D2 — 8.35 W LED gözlemi
+- Mevcut firmware, bağlantı, 200 ms pencere ve yayın ayarları değiştirilmez.
+- Yüksüz durum kararlı hâle geldikten sonra en az **30 geçerli pencere** kaydedilir. Koşul/anahtarlama değişiminden sonraki ilk 200 ms pencere dışarıda bırakılır; 30 geçerli pencere için en az 31 pencere yakalanır.
+- Her pencere için Raw AC Value, N ve raporlanan SPS birlikte saklanır.
+- Ortalama, medyan, standart sapma, min/max, p5/p95 ve MAD raporlanır.
 
-**Amaç:** D1 ile aynı kurulumda düşük yükün pencere istatistiklerini nasıl değiştirdiğini görmek.
+**Taban yorumları — önceden hüküm değil, ayrıştırılacak seviyeler:**
+- Yaklaşık 0 V: debug tabanı sıfıra yakın.
+- Yaklaşık 0.006 V: önceki logda görülen seviyenin yüksüz koşulda tekrarlanıp tekrarlanmadığı.
+- Yaklaşık 0.0017 V: 24.22 katsayısıyla 0.041 A'ya karşılık gelen gerilim ölçeği. Bu üçüncü değer yüksüz taban için beklenen eşik değildir; LED akımının ölçek karşılığıdır.
 
-- Yük açık/kapalı durumu kayıt başında ve sonunda açıkça belirtilir.
-- Pens okuması kararlı koşulda kaydedilir.
-- Mümkünse PZEM değeri ve okuma zamanı ayrıca not edilir; PZEM'in bu düşük akımda geçerli/kararlı olduğu varsayılmaz.
-- Mevcut 0.35 A filtresi korunur; debug RMS zaten filtre öncesi kaydedilir.
+**Standart sapma ölçütü:** D1'de keyfî mutlak Volt sınırı konmaz. D1'in ölçülen SD'si ve medyanı ampirik yüksüz referans dağılımı olur. D2/D3 ayrışmasında D1 medyanı + 3×D1 SD karşılaştırma sınırı kullanılır; dağılım normal değilse medyan + 3×MAD ayrıca raporlanır. Bu sınır kalibrasyon veya ±%4 akım kabul sınırı değildir.
 
-**Kabul:** D1 ve D2 aynı firmware/bağlantı/kurulum koşulunda karşılaştırılabilir; pencere etiketleri ve referans okuma koşulu kayıtta bulunur.
+**Kabul:** En az 30 geçerli pencere, ilk geçiş penceresinin dışlanması, tüm pencere alanları ve dağılım istatistikleri bulunmalıdır. Aksi hâlde test “eksik kayıt” kalır.
 
-### D3 — Orta yük kontrolü
+### D2 — 8.35 W LED düşük akım testi
 
-**Amaç:** D1/D2 farkının yalnızca yük değişimiyle mi yoksa genel ölçüm zinciriyle mi ilişkili olduğunu daha önce uyumlu sonuç alınan akkor yükte kontrol etmek.
+**Amaç:** D1 ile aynı ölçüm düzeninde LED yükünün yüksüz tabandan ayrışıp ayrışmadığını görmek.
 
-- 100 W veya 150 W akkor koşulu kullanılır; gerçek kullanılan yük kayda yazılır.
-- Pens okuması ve ESP32 logu aynı kararlı koşula bağlanır.
-- 24.22 katsayısı ve eşik değiştirilmez.
+- D1 ile aynı ESP32, firmware, pin, ADC ayarları ve fiziksel bağlantı korunur.
+- LED kararlı ON durumuna geldikten sonra en az **30 geçerli pencere** kaydedilir; anahtarlama sonrası ilk 200 ms pencere dışarıda bırakılır ve en az 31 pencere yakalanır.
+- Her pencere için Raw AC Value, N, raporlanan SPS ve yayınlanan akım saklanır.
+- Pens değeri kararlı koşulda okunur; okuma zamanı ve yük durumu not edilir. PZEM varsa ayrıca yazılır; düşük akımda geçerliliği peşinen varsayılmaz.
+- D1/D2 medyan, SD, MAD ve N/SPS dağılımları karşılaştırılır.
 
-**Kabul:** Aynı kurulumda düşük yük ve orta yük davranışları yan yana raporlanır; sapma oranı yalnız eşleşmiş ölçümlerden hesaplanır.
+**Ayrışma ölçütü:** D2 medyan Raw AC, D1 medyan + 3×D1 SD sınırını aşıyorsa LED sinyalinin yüksüz tabandan ayrıldığı desteklenir. Normal dağılım varsayımı uygun değilse medyan + 3×MAD karşılaştırması da verilir. Aşmıyorsa “bu kurulumda tabandan güvenilir ayrışma gösterilemedi” denir; akım yok sonucu çıkarılmaz.
 
-### D4 — Ayrı ham ADC teşhisi (yalnız gerekirse)
+**Kabul:** En az 30 geçerli pencere, ilk geçiş penceresinin dışlanması, eşleşmiş D1 kurulum bilgisi, pens okuma zamanı ve pencere bazında Raw AC/N/SPS kayıtları bulunmalıdır.
 
-**Amaç:** Kalibre edilmiş Volt çıktısı yerine ham ADC count davranışını gözlemek.
+### D3 — Akkor yük kontrolü ve taban etkisi
 
-- Mevcut çalışan YAML kopyalanıp ayrı teşhis yapılandırması oluşturulmadan ana dosyaya dokunulmaz.
-- raw: true kullanılırsa ct_clamp çıkışı akım diye sunulmaz. 24.22 ve 0.35 A eşikleri bu yapılandırmada kullanılmaz; çıktı RAW count istatistiği olarak adlandırılır.
-- raw: true aynı değerleri atlama mekanizmasını kaldırmaz; yalnız sayısal temsil biçimini değiştirir.
+**Amaç:** Yüksüz tabanın, daha önce uyumlu saha sonucu alınan yaklaşık 0.447 A ve 0.616 A seviyelerindeki gözleme etkisini ayırmak.
 
-**Kabul:** Ham count verisi ve pencere istatistikleri ayrı birimlerle kaydedilir; mevcut E00F akım sensörüyle karıştırılmaz.
+- Aynı fiziksel kurulumda mevcut akkor yük test edilir. Gerçek yük/ampul etiketi ve pens okuması kaydedilir; iki akım seviyesi de mevcut değilse elde olan seviye ile test yapılır.
+- Her kararlı yük koşulunda en az 30 geçerli 200 ms pencere kaydedilir; yük açıldıktan sonraki ilk pencere dışarıda bırakılır.
+- Raw AC, N, SPS, yayınlanan akım ve pens okuma zamanı birlikte saklanır.
+- D1 yüksüz medyanı/SD'si ile D3 yük medyanı/SD'si yan yana raporlanır.
+- Ham yük Raw AC ve sqrt(max(V_load² − V_no_load², 0)) biçimindeki olası kareler farkı tahmini ayrı gösterilebilir. İkinci hesap yalnız bağımsız/ilişkisiz gürültü varsayımına dayalı tanısal modeldir; ölçülmüş sinyalden otomatik çıkarılmaz ve katsayıyı değiştirmek için tek başına kullanılmaz.
+- 0.447 A ve 0.616 A için beklenen gerilim ölçekleri 24.22 katsayısıyla hesaplanır. Pens/ESP32 farkı yalnız aynı kararlı koşul ve zaman aralığı eşleşmişse yüzde sapma olarak raporlanır. ±%4 hedefi akım karşılaştırması içindir; Raw AC SD'ye uygulanmaz.
+
+**Kabul:** D1 taban dağılımı ile D3 yük dağılımı, pencere bazında N/SPS ve eşleşmiş pens/ESP32 sonuçlarıyla karşılaştırılabilir olmalıdır.
+
+### D4 — Ayrı RAW ADC teşhisi (yalnız kanıta dayalı tetikleyiciyle)
+
+**Amaç:** Kalibre edilmiş Volt temsili ile ham ADC count temsilini ayrı teşhis yapılandırmasında karşılaştırmak.
+
+D4'e yalnız aşağıdakilerden biri D0–D3 verisiyle gösterilirse geçilir:
+1. N değişkenliği Raw AC sıçramalarıyla birlikte değişiyor ve mevcut log bunu açıklamaya yetmiyor.
+2. Yüksüz taban ve SD ölçülmüş olmasına rağmen LED/akkor farkı açıklanamıyor.
+3. 1 mV kalibre gerilim adımı şüphesi D1–D3 sonrasında hâlâ açık ve ham count verisi olmadan ayrıştırılamıyor.
+
+- Ana E00F YAML değiştirilmez; ayrı teşhis yapılandırması hazırlanır.
+- raw: true kullanılırsa çıktı ADC RAW count birimidir; akım değildir. 24.22 çarpanı ve 0.35 A eşiği bu yapılandırmaya taşınmaz.
+- raw: true tek başına ardışık aynı değerleri atlama davranışını kaldırmaz ve float32 etkisini izole etmez. Deduplication etkisi için aynı gerçek örnek dizisi atlamalı/atlamasız ve float32/float64 çevrimdışı hesaplarla karşılaştırılmalıdır.
+- D4, E08 ADC Continuous edinimiyle aynı anda aynı ADC1 biriminde One-shot çalıştırmaz.
+
+**Kabul:** RAW count verisinin birimi/yapılandırması açıkça etiketlenir; ana akım sensöründen ayrı tutulur ve hangi belirsizliği test ettiği önceden yazılır.
 
 ### D5 — E08 ham edinim ve algoritma karşılaştırması
 
 **Amaç:** Bias RAW ve SCT RAW örneklerini zaman bilgisiyle alıp aynı örnek kümesinde alternatif istatistikleri hesaplamak.
 
-- E08 planındaki GPIO34 Bias RAW ve GPIO32 SCT RAW eşlemesi, esp32d2 kimliği ve mevcut pin kararları korunur.
+- E08 planındaki GPIO34 Bias RAW ve GPIO32 SCT RAW eşlemesi ile esp32d2 kimliği korunur.
 - İlk hedef kanal başına 1 kS/s, 200 ms penceredir; gerçek hız örnek sayısı ve zaman damgasıyla doğrulanır.
-- ADC Continuous/DMA, aynı ADC1 biriminde One-shot sürücüsüyle eşzamanlı çalıştırılmaz.
-- Mevcut E00F ct_clamp ile E08 ham edinimi aynı anda çalışıyormuş gibi varsayılmaz; gerekirse ardışık test yapılır.
-- PC'de aynı ham örneklerden mean, bias-subtracted RMS, absolute peak, peak-to-peak ve örnek sayısı hesaplanır.
+- ADC Continuous/DMA ve One-shot aynı ADC1 biriminde eşzamanlı çalıştırılmaz. Eski E00F ct_clamp ile yeni Continuous edinim aynı anda çalıştırılamaz.
+- Karşılaştırma gerekiyorsa **sıralı** yapılır: aynı fiziksel yük, CT tur sayısı, bias/bağlantı ve kararlı koşul korunur; önce bir edinim modu, sonra diğeri çalıştırılır. Her kayıt öncesi yük/koşul yeniden teyit edilir.
+- PC'de ham örneklerden mean, bias-subtracted RMS, absolute peak, peak-to-peak ve örnek sayısı hesaplanır.
 
-**Kabul:** Gerçek kanal hızları, pencere süreleri, ham örnek sayıları ve hesaplanan istatistikler raporlanır. Firmware yazılması, derlenmesi, flash edilmesi ve fiziksel ölçüm ayrı durumlar olarak kaydedilir.
+**Kabul:** Gerçek kanal hızları, pencere süreleri, ham örnek sayıları, modlar arası koşul eşitliği ve hesaplanan istatistikler raporlanır. Firmware yazılması, derlenmesi, flash edilmesi ve fiziksel ölçüm ayrı durumlar olarak kaydedilir.
 
 ## 5. Değiştirilmeyecekler
 
