@@ -1,0 +1,78 @@
+# E00B — SCT bağlı, akımsız hat ADC gözlemi
+# Bu dosya deney planıdır; firmware tarafından otomatik okunmaz.
+
+experiment:
+  id: "E00B"
+  title: "SCT bağlıyken akımsız hat ADC gözlemi"
+  status: "PLANNED_GPIO_ASSIGNMENT_PROPOSED_PINOUT_UNVERIFIED"
+
+hedef:
+  neden: "E00A SCT'siz bias-only tabanıyla SCT bağlandıktan sonraki ADC davranışını karşılaştırmak."
+  soru: "SCT analog düğümü akımsız koşulda bias ve dalgalanmayı nasıl etkiliyor?"
+  kabul:
+    - "SCT bağlı ve izlenen iletkende akım yok koşulu açıkça doğrulansın."
+    - "Bias GPIO34 RAW ve GPIO35 voltaj logu alınsın."
+    - "SCT GPIO32 RAW ve GPIO33 voltaj logu alınsın."
+    - "RAW sıfır başlangıç kayıtları kullanıcı kuralına göre eşleştirmeye alınmasın; geçerli sıfır olayları ayrıca işaretlensin."
+    - "Zaman damgaları korunarak kanal istatistikleri ve E00A tabanıyla fark raporlansın."
+
+donanim:
+  kart: "ESP32-WROOM-32D; geliştirme kartı pinout'u fiziksel doğrulama bekliyor."
+  sensor: "Öncelikli SCT013-030, 30 A / 1 V"
+  adc: "ESP32 dahili ADC1; harici ADC yok, MCP3208 bu aşamada kullanılmıyor."
+  bias_devresi: "Mevcut 2x10k Vmid ağı; mevcut 100nF ve 10uF ekleme planının fiziksel durumu ayrıca doğrulanacak."
+  common_ground: true
+
+gpio_plan:
+  bias_raw:
+    gpio: 34
+    adc_channel: "ADC1_CH6"
+    purpose: "Bias Vmid RAW count"
+  bias_voltage:
+    gpio: 35
+    adc_channel: "ADC1_CH7"
+    purpose: "Bias Vmid ADC voltaj tahmini"
+  sct_raw:
+    gpio: 32
+    adc_channel: "ADC1_CH4"
+    purpose: "SCT analog düğümü RAW count"
+  sct_voltage:
+    gpio: 33
+    adc_channel: "ADC1_CH5"
+    purpose: "SCT analog düğümü ADC voltaj tahmini"
+  status: "GPIO32/33 önerilen atamadır; gerçek kart pinout'u doğrulanmadı."
+
+conditions:
+  - id: "A"
+    name: "SCT_connected_no_primary_current"
+    sct_connected: true
+    primary_current: 0
+    load: "Kapalı/enerjisiz"
+    firmware_ready: false
+    physical_test_done: false
+
+sampling:
+  update_interval: "Henüz belirlenmedi"
+  target_rates_sps: [1000, 2000, 2500]
+  note: "Bu hızlar E08 karakterizasyon planındaki hedeflerdir; E00B firmware'inde uygulanmış veya doğrulanmış değildir."
+  raw_capture: "Kısa deney kesiti; sürekli ham arşiv yok."
+
+outputs:
+  - "GPIO34 RAW ve GPIO35 bias voltaj zaman serileri"
+  - "GPIO32 RAW ve GPIO33 SCT voltaj zaman serileri"
+  - "Örnek sayısı, gerçek süre ve gerçekleşen örnekleme hızı"
+  - "Mean, min, max, peak-to-peak, standard deviation"
+  - "E00A SCT'siz bias-only tabanına göre fark"
+
+log:
+  source_file: null
+  firmware_commit: null
+  actual_board: null
+  actual_gpio_verified: false
+  physical_connection_verified: false
+  records: []
+
+result:
+  status: "HENÜZ_ÖLÇÜLMEDİ"
+  conclusion: "Deney yalnız planlandı; fiziksel bağlantı ve ölçüm yapılmadı."
+  next_step: "ESP32-WROOM-32D geliştirme kartındaki GPIO32/33 etiketlerini pinout ile doğrula; ardından açıklamalı tam firmware yapılandırmasını hazırla."
