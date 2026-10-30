@@ -33,14 +33,25 @@ Bu bölüm, BERO'nun ilk eğitim aşamasında uygulanacak temel etiketleme yönt
 
 **Kararlılık ölçütleri:** PZEM ve SCT için eşikler, pencere sayıları ve algoritmalar önceden uydurulmaz; ilgili deney verileriyle belirlenir. Bu kurallar belirlenip uygulanana ve fiziksel veriyle sınanana kadar yöntem hedef tasarımdır, doğrulanmış sonuç değildir.
 
+## İki bağlantılı iş hattı: eğitim ve dinamik gözlem
+
+Ayrıntılı akış, zaman grafiği, gecikme yorumlama ve kayıt ilişkileri için [Kararlı alan eğitimi ve aç-kapa ham akış gözlemi](training-and-dynamic-observation.md) belgesini esas al.
+
+- **Eğitim:** Aynı SSR olayındaki PZEM ve SCT kararlı alanlarının örtüşen ortak aralığından SCT verisi PZEM akımıyla etiketlenir; model bu kararlı etiketli veriyle eğitilir.
+- **İlk uyum raporu:** Model, eğitildiği aynı etiketli kararlı alan verisine yeniden uygulanır. ±%4 sonucu eğitim verisi içi uyumdur; bağımsız genelleme başarımı değildir.
+- **Dinamik gözlem:** Aynı olayın geçişler dahil tam SCT ham zaman akışına model uygulanır; SCT tahmini ve PZEM akışı zaman ekseninde birlikte çizilir. Tepki, yerleşme, gecikme ve zaman farkları incelenir. Bu grafik ayrı bir davranış raporudur; geçiş anları ±%4 eğitim metriğine karıştırılmaz.
+
+PZEM'in yanıt zamanı iç ölçüm zamanını kesin olarak göstermez. İstek/yanıt, SCT örnek/pencere ve SSR olay zamanları ayrı tutulur; haberleşme süresi fiziksel ölçüm gecikmesiyle eşitlenmez. Ayrı holdout veri kümesi ilk aşamanın zorunlu koşulu değildir.
+
 ## Kalibrasyon ve model doğrulama döngüsü
 
-1. Kararlı alanlardan seçilen, PZEM bağlamı ve mümkünse bağımsız referans ölçümle desteklenen etiketli veriyi hazırla.
-2. Python'da SCT başına kalibrasyon katsayısı ve/veya (f(x)) ilişkisini modelle.
-3. Bulunan fonksiyonu yalnızca modelin çıkarıldığı kararlı örneklerde değil, çok sayıda paket ve olay içeren ham veri akışında da dene.
-4. Hataları, yanlış etiketleri, geçiş davranışını ve veri kalitesini incele; gerekirse kararlılık algoritmasını, istatistiksel eşikleri veya fonksiyon biçimini iyileştir.
-5. Sonuçları ayrı doğrulama verisi ve açık hata ölçütleriyle raporla. Deney yapılmadan model başarısı veya doğruluk iddia etme.
-6. **Kabul hedefi (T003):** Python'da model tahmini geçerli PZEM akımından en fazla ±%4 bağıl sapıyorsa `OK` sayılır (`abs(prediction - pzem_current) / abs(pzem_current) <= 0.04`). Tam %4 sınır içindedir. Geçersiz PZEM okumaları ve sıfır referans akımı yüzdeyle sınıflandırılmaz; ayrı geçersiz/hesaplanamaz durum olarak tutulur.
+1. Ortak kararlı alanlardan SCT başına etiketli eğitim verisini hazırla.
+2. Python'da SCT başına katsayı ve/veya `f(x)` modelini eğit.
+3. İlk uyum raporunda modeli aynı etiketli eğitim verisine yeniden uygula; ±%4 PZEM-referans ölçütünü bu eğitim verisi içi uyum olarak raporla.
+4. Aynı SSR deneyinin geçişler dahil ham SCT akışına modeli uygula; SCT tahmini ve PZEM zaman serisini ortak zaman ekseninde dinamik gözlem için çiz.
+5. Tepki, yerleşme, PZEM güncelleme/okuma süreleri ve gözlenen zaman farklarını ayrı raporla. Geçiş grafiğini eğitim verisi içi ±%4 metriğiyle karıştırma.
+6. Hatalı etiketleri, veri kalitesini ve olaylar arası farkları incele; gerekirse kararlılık algoritmasını veya model biçimini geliştir.
+7. **Kabul hedefi (T003):** Geçerli, sıfırdan farklı PZEM akımında `abs(prediction - pzem_current) / abs(pzem_current) <= 0.04` ise `OK`; değilse `OUT_OF_RANGE`. Sıfır/geçersiz referans bu yüzde kuralıyla sınıflandırılmaz. Bu ilk rapor bağımsız genelleme kanıtı değildir.
 
 ## Sarım deneyleri
 
@@ -57,7 +68,7 @@ Aynı iletkenin SCT içinden geçirilme sayısı ayrı deneylerde 1 sarım, 2 sa
 1. Paket bilgisinin PZEM ve SCT verileriyle nasıl ilişkilendirileceği ve hangi düğümlerin paketi doğrudan alacağı.
 2. Kararlılık alanı tanımı, algoritması, istatistiksel eşikler ve etiket şeması.
 3. Home Assistant'a aktarım şeması, örnekleme hızı, tamponlama ve kayıp ölçüm yöntemi.
-4. Kalibrasyonda kullanılacak referans, (f(x)) model biçimi, eğitim/doğrulama ayrımı ve hata ölçütleri.
+4. Kalibrasyonda kullanılacak model biçimi, aynı eğitim verisindeki uyum raporunun ayrıntıları ve ileride ayrıca raporlanabilecek veri kümeleri.
 5. Ham veride modelin çok paketli/olaylı koşullarda nasıl değerlendirileceği ve iyileştirme ölçütleri.
 
 ## Kayıt ilkesi
