@@ -1,0 +1,91 @@
+# BERO E00F - ESP32D2 / SCT013-030
+#
+# HEDEF:
+# Ölçülen akım 0.35 A altında ise sonucu sıfırlamak.
+# Amaç yüksüz durumdaki gürültünün akım olarak görünmesini önlemek.
+#
+# BAĞLANTILAR:
+# SCT013-030 -> mevcut bias devresi -> ESP32 GPIO33
+# Mevcut 1.65 V bias devresi korunacaktır.
+#
+# ÖLÇÜM AYARLARI:
+# ADC: GPIO33, ADC1, 12 dB
+# Örnekleme penceresi: 200 ms
+# Yayın aralığı: 2 saniye
+# SCT nominal katsayısı: 24.22
+# Sıfırlama eşiği: 0.35 A
+#
+# BEKLENTİ:
+# 0.35 A altındaki değerler 0.000 A yayınlanır.
+# 0.35 A ve üzerindeki değerler olduğu gibi yayınlanır.
+#
+# ÖNEMLİ:
+# Bu eşik gerçek düşük akımları da sıfırlayabilir.
+# Ham ADC örneklerini ortadan kaldırmaz; yalnızca yayınlanan
+# akım değerine uygulanır.
+#
+# LOG:
+# 2026-10-30 tarihinde yüksüz testte 6/6 yayın 0.000 A görüldü.
+# 150 W akkor ve kettle yüklerinde ölçüm karşılaştırmaları yapıldı.
+# 8.35 W LED testinde 0.041 A pens akımı eşik altında kaldığı için
+# yayınlanan değerlerin çoğu 0.000 A oldu; nadir yüksek sıçramalar görüldü.
+#
+# SONUÇ:
+# 0.35 A eşiği yüksüz çıktıyı bastırıyor; düşük akım ölçümünü gizliyor.
+# Eşik davranışı sonraki çalışmada ayrıca değerlendirilecek.
+#
+# KAYNAK:
+# Kullanıcının 2026-10-30 tarihinde paylaştığı ve cihaz loglarında
+# çalışan ESPHome yapılandırması. Açıklama eşiği, lambda ile aynı
+# olacak şekilde 0.35 A olarak tutarlılaştırıldı.
+
+esphome:
+  name: esp32d2
+  friendly_name: BERO E00F ESP32D2
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+sensor:
+  - platform: adc
+    pin: GPIO33
+    id: sct_voltage_source
+    attenuation: 12db
+    raw: false
+    samples: 1
+    sampling_mode: avg
+    internal: true
+
+  - platform: ct_clamp
+    sensor: sct_voltage_source
+    id: sct_current
+    name: "BERO E00F SCT013 Akim"
+    sample_duration: 200ms
+    update_interval: 2s
+    filters:
+      - multiply: 24.22
+      - lambda: |-
+          if (x < 0.35f) {
+            return 0.0f;
+          }
+          return x;
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 3
