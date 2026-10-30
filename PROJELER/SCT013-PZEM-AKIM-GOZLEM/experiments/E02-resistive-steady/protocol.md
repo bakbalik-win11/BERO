@@ -13,6 +13,9 @@ Kararlı rezistif yük altında SCT pencere istatistiklerinin tekrarlanabilirli�
 4. SCT pencere değişkenliğini, geçerli PZEM okuma oranını ve PZEM'e göre farkı raporla. Sıfır/geçersiz PZEM okumaları yüzde sapma hesabına katılmaz.
 5. Ham veri, özetler, gerçek örnekleme hızı ve sapmaları deney sonuçlarına bağla.
 
+## Eğitim ve dinamik gözlem ilişkisi
+E02 kararlı rezistif yükte pencere davranışını ve PZEM'e göre farkı inceler. Daha sonraki ortak aç-kapa/etiketleme aşamasında E02'de geliştirilen SCT kararlılık bilgisi kullanılabilir; ancak E02 tek başına model eğitimi veya PZEM gecikme deneyi değildir. Eğitim ve ham akış gözlemi mimarisi için [kararlı alan eğitimi ve aç-kapa ham akış gözlemi](../../docs/architecture/training-and-dynamic-observation.md) belgesine bak.
+
 ## Kabul ölçütü
 Deney koşulları ve kullanılan kararlı alan seçim yöntemi kayıtlı; pencere değişkenliği, PZEM geçerlilik oranı ve PZEM'e göre fark veriye dayanarak raporlanmış olmalıdır. Ölçüm yapılmadan sonuç yazılmaz.
 
