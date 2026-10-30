@@ -134,3 +134,13 @@ PZEM'in yayınladığı PF, PZEM'in doğrudan hat gerilimi ölçümü ve CT üze
 - **HEDEF:** Bias devresinin L78L33 çıkışından ayrı olan breadboard Vmid noktasını da ölçüm referansı olarak kaydetmek.
 - **LOG:** Kullanıcı breadboard üzerindeki bias orta noktasını multimetreyle **1,65 V** okuduğunu bildirdi. Değer E00A results.md ve experiment.yaml dosyalarına KULLANICI BİLDİRİMİ olarak eklendi.
 - **SONUÇ:** İki ayrı DC referansı mevcut: L78L33 çıkışı 3,31 V ve breadboard Vmid 1,65 V. İkisi de multimetre bildirimi; ESP32 ADC ham/mV kaydı henüz yok.
+
+
+## 2026-10-30 — E00A ESP32D2 firmware kodu eklendi
+
+- **Neden:** İlk ESP32D1/Arduino denemesinden sonra mevcut deney mantığını ESP32D2 ve ESP-IDF yapılandırmasına taşımak; GPIO çakışmasını önlemek için iki ayrı ADC kanalını kullanmak.
+- **Karar:** GPIO34 / ADC1_CH6 ham ADC sayısı (`raw: true`), GPIO35 / ADC1_CH7 kalibrasyonlu voltaj tahmini (`raw: false`) verir. İki kanal ayrı ayrı ve 1 saniyelik sensör güncellemesiyle Home Assistant'a yayınlanır. Aynı ADC örneği değillerdir.
+- **Kod:** [experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml](experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml).
+- **LOG:** Kullanıcı 2026-10-30 tarihinde kodun derlendiğini ve çalıştığını bildirdi (KULLANICI RAPORU). Derleme/cihaz logu, fiziksel bağlantı ayrıntısı ve ADC sayısal değerleri henüz eklenmedi.
+- **SONUÇ:** Kod depoya uygulandı; firmware'in derlenip çalıştığı kullanıcı tarafından bildirildi. Ölçüm sonuçları, 30 saniyelik ham kayıt ve grafik henüz yok.
+- **Sonraki adım:** Kullanıcının göndereceği log ve sensör değerlerini değerlendir; ölçüm koşullarını ve yorumu E00A results.md'ye ekle.
