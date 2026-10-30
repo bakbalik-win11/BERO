@@ -176,3 +176,14 @@ PZEM'in yayınladığı PF, PZEM'in doğrudan hat gerilimi ölçümü ve CT üze
 - **LOG:** Kullanıcı logu `Yapıştırılan metin(10).txt`; ESPHome 2026.9.1, ESP32 rev3.1. GPIO35 15:13:08.379–15:13:56.381 aralığında 49/49 kayıtta 0.000 V. GPIO34 48 kayıt 0 count; fiziksel olarak bağlı olmadığı için yorum dışı.
 - **SONUÇ:** Adım 2'nin yazılım sıfır gösterimi hedefi sağlandı. Kanıt yalnız mevcut GND koşulunda filtrelenmiş sensör çıktısını kapsar.
 - **Sonraki adım:** Kod değiştirmeden aynı log oturumunda bias trafosuna enerji ver; GPIO35 düzeltilmiş voltajını ve eşzamanlı multimetre Vmid değerini kaydet.
+
+
+## 2026-10-30 — E00A Adım 2: sabit yazılım sıfırlamasının geri alınması
+
+- **Neden:** GND koşulunda 0.000 V üretmek için eklenen 0.142 V ofsetin, bias Vmid gerçek DC okumasını bozup bozmadığını sınamak.
+- **HEDEF:** ADC voltajını olduğu gibi korumak; yalnız GND'de sıfır görünmesi uğruna diğer DC seviyeleri kaydırmamak.
+- **LOG:** Ofsetli log GND koşulunda 49/49 GPIO35 örneğinde 0.000 V verdi. Bias açık logunda kararlı bölümün 85 filtreli örnek ortalaması yaklaşık 1.525 V. Kullanıcı multimetre Vmid değerini 1.654 V bildirdi. Filtrenin çıkardığı 0.142 V geri eklendiğinde hesaplanan filtresiz tahmin yaklaşık 1.667 V; fark yaklaşık 13 mV. GPIO34 bağlı değil ve yorum dışı.
+- **SONUÇ / KARAR:** Sıfırlama gerçek DC seviyeyi 0.142 V aşağı kaydırdı; GND'deki sıfır görüntüsü gerçek okuma pahasına elde edildi. Sabit ofset kaldırıldı. GND'de görülen 0.142 V veri olarak korunacak. Filtresiz tahminin tüm ADC aralığında doğruluğu kanıtlanmış değildir.
+- **Uygulama:** Firmware dosyası `experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml` revize edildi; GPIO35 lambda filtresi kaldırıldı, sensör adı ve açıklamalar düzeltildi. Yeni revizyonun derlenmesi/cihaza yüklenmesi henüz yapılmadı.
+- **Sonraki karar kapısı:** Ofsetsiz firmware derlemesi ve aynı Vmid noktasında multimetreyle eşzamanlı cihaz logu.
+- **Kanıt:** [E00A sonuçları](experiments/E00A-raw-waveform-observation/results.md); kullanıcı kaynağı `Yapıştırılan metin(20261030-121627).txt`.
