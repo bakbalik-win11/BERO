@@ -155,3 +155,15 @@ PZEM'in yayınladığı PF, PZEM'in doğrudan hat gerilimi ölçümü ve CT üze
 - **SONUÇ:** Floating giriş teşhisi destekleniyor. GPIO35'in 0.142 V tabanı ayrıca incelenecek. Bu test 1.65 V ölçümünü veya SCT performansını kanıtlamaz.
 - **Karar:** Yazılımla sıfırlama yerine girişin elektriksel olarak tanımlı tutulması. Jack/CT pin düzeni doğrulandıktan sonra ADC düğümünü Vmid'e 47–100 kΩ aralığında yüksek değerli dirençle biaslama prototip adayı; değer henüz kesinleşmedi.
 - **Sonraki adım:** Önce bir ADC kanalında Vmid bias testi ve multimetre kontrolü; sonra 60 saniyelik log. Ardından SCT bağlantı doğrulaması.
+
+
+
+## E00A — Adım 2: voltaj sıfır noktasını yazılımla sıfırlama (2026-10-30)
+
+- **HEDEF:** GPIO35 girişinin GND seviyesinde yazılım voltaj çıktısını 0.000 V yapmak.
+- **Karar:** Önceki GND logunda kararlı görülen 0.142 V tabanını geçici ofset olarak çıkar; GPIO34 ham ADC kanalını koru.
+- **Uygulama:** GPIO35'e `max(0, x - 0.142)` filtresi eklendi. Firmware commit'i: `9eae26000a1dc460191bec68581cec0ac9ab9397`.
+- **LOG:** Kullanıcı güncel kodun derlendiğini bildirdi (KULLANICI RAPORU). Derleme sonrası GND sensör logu henüz yok.
+- **SONUÇ:** Kod derlendi; sıfır girişte 0.000 V üretme hedefi henüz cihaz loguyla doğrulanmadı. Ofset geçicidir ve ADC'nin genel kalibrasyonu değildir.
+- **Sonraki adım:** GPIO35 GND'deyken güncel logda düzeltilmiş voltajı doğrula; sonra multimetreyle ölçülen Vmid noktasında karşılaştır.
+- **Ayrıntı:** [E00A sonuç kaydı](experiments/E00A-raw-waveform-observation/results.md), [protokol](experiments/E00A-raw-waveform-observation/protocol.md).
