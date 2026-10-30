@@ -2,12 +2,12 @@
 experiment:
   id: "E00B"
   title: "SCT bagliyken akimsiz hat ADC gozlemi"
-  status: "FIRMWARE_COMPILED_USER_REPORTED"
+  status: "DEVICE_LOG_CAPTURED"
   firmware: "firmware/esp32d2-e00b-sct-no-current.yaml"
   firmware_compile:
     status: "SUCCESS_USER_REPORTED"
     date: "2026-10-30"
-    evidence: "Kullanici bildirimi; derleme logu bu kayda eklenmedi."
+    evidence: "2026-10-30 cihaz logunda ESPHome 2026.9.1 firmware build bilgisi ve API bağlantısı görüldü."
 
 hedef:
   neden: "E00A SCT'siz bias-only tabanina gore SCT baglandiginda ADC dugumunun davranisini gozlemek."
@@ -48,8 +48,8 @@ conditions:
     primary_current: 0
     load: "Kapali/enerjisiz"
     firmware_compile: "Kullanici basarili derleme bildirdi."
-    firmware_uploaded: false
-    physical_test_done: false
+    firmware_uploaded: true # ESPHome API üzerinden çalışan cihaza bağlanıldı.
+    physical_test_done: true # Kullanıcı cihaz logu sağladı; primer akım=0 ve fiziksel bağlantı koşulu log satırlarıyla bağımsız doğrulanmış değil.
 
 sampling:
   actual_update_interval: "1s"
@@ -66,14 +66,24 @@ outputs:
   - "E00A SCT'siz bias-only tabanina gore fark"
 
 log:
-  source_file: null # Cihaz logu henuz paylasilmadi.
+  source_file: "logs/2026-10-30-e00b-esp32d2-startup-and-observation.log"
   firmware_commit: "20fbe9b4a99d057ef579d882bfd83d23f4ef199e"
-  actual_board: null
-  actual_gpio_verified: false
-  physical_connection_verified: false
-  records: []
+  actual_board: "ESP32 rev3.1, 2 core (logda bildirildi)"
+  actual_gpio_verified: true # Çalışan cihaz logunda GPIO34/35/32/33 ADC1 pinleri doğrulandı.
+  physical_connection_verified: false # Log ADC çalışmasını doğrular; kablo/CT montajını bağımsız doğrulamaz.
+  records:
+    - date: "2026-10-30"
+      source: "logs/2026-10-30-e00b-esp32d2-startup-and-observation.log"
+      type: "ESPHome device log"
+      valid_window: "16:20:41 sonrası, 110 örnek/kanal"
+      startup_excluded: "İlk yaklaşık 9 saniye; RAW 0 count ve ADC 0.142 V başlangıç geçişi"
+      bias_gpio34_raw_mean_count: 1854.14
+      sct_gpio32_raw_mean_count: 1853.45
+      bias_gpio35_voltage_mean_v: 1.6651
+      sct_gpio33_voltage_mean_v: 1.6639
+      interpretation: "Kararlı bölümde bias ve SCT ADC kanalları birbirine yakın; ilk açılış değerleri hariç tutuldu."
 
 result:
-  status: "DERLENDI_KULLANICI_BILDIRIMI; FIZIKSEL_DENEY_BEKLIYOR"
-  conclusion: "E00B firmware derlemesi kullanici tarafindan basarili bildirildi. Cihaza yukleme, fiziksel baglanti ve olcum sonucu henuz yok."
-  next_step: "Gercek kart pinout ve baglantilari guvenli sekilde dogrula; firmware'i cihaza yukle ve SCT bagli/primer akimsiz kosulun logunu al."
+  status: "CIHAZ_LOGU_ALINDI; FIZIKSEL_KOSULLARIN_TAM_DOGRULAMASI_BEKLIYOR"
+  conclusion: "ESPHome cihaz logu alindi; dort ADC kanali baslatildi ve kararlı pencerede olcumler goruldu. Primer akimin sifir oldugu ve fiziksel SCT baglantisi logdan tek basina dogrulanamaz."
+  next_step: "Fiziksel SCT montajini ve primer akimin sifir oldugu kosulu kaydet; daha uzun kararlı kayit al ve acilis gecisini disla."
