@@ -249,3 +249,11 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **SONUÇ:** Firmware hazır ve kullanıcı bildirimiyle derlenmiş durumda. Fiziksel pinout, kablolama, cihaz yüklemesi ve ölçüm kanıtı yoktur. Önceki E00B açılış kaydındaki “firmware yazılmadı/derleme yok” ifadesi bu yeni gelişmeyle güncellenmiştir.
 - **Sonraki adım:** Gerçek kart pinout'unu doğrula; sonra bağlantı ve cihaz logunu kaydet.
 - **Kanıt:** [E00B README](experiments/E00B-sct-connected-no-current/README.md), [experiment.yaml](experiments/E00B-sct-connected-no-current/experiment.yaml), [results](experiments/E00B-sct-connected-no-current/results.md), [firmware](experiments/E00B-sct-connected-no-current/firmware/esp32d2-e00b-sct-no-current.yaml).
+
+
+## E00B — ilk cihaz logu (2026-10-30)
+- **HEDEF:** E00B dört ADC kanalını cihaz loguyla doğrulamak.
+- **LOG:** ESPHome 2026.9.1, ESP32 rev3.1. GPIO34/35/32/33 ADC1 init/config/calibration OK. Kararlı pencerede (16:20:41 sonrası, n=110/kanal): GPIO34 RAW 1854.14 count; GPIO32 RAW 1853.45 count; GPIO35 1.6651 V; GPIO33 1.6639 V. Başlangıç RAW sıfırları ve 0.142 V değerleri geçiş verisi olarak dışlandı.
+- **YORUM:** Bias ve SCT kanalları bu kayıt kesitinde yakın. RAW nominal voltajı ile ADC kalibre voltajı farklı ölçeklerdir; aradaki yaklaşık 0.25 V fark gerçek devre farkı değildir.
+- **SONUÇ:** Cihaz/API ve ADC başlangıcı logla doğrulandı. Primer akımın sıfır olduğu ve CT'nin fiziksel montajı bağımsız kanıtlanmadı.
+- **Kanıt:** [ham log](experiments/E00B-sct-connected-no-current/logs/2026-10-30-e00b-esp32d2-startup-and-observation.log), [yorumlu sonuç](experiments/E00B-sct-connected-no-current/results.md).
