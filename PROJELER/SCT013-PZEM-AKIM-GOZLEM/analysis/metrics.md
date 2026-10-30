@@ -8,8 +8,15 @@
 - Yük olayı algılama gecikmesi, kaçırılan olay ve clipping sayısı.
 - PZEM read_status hata oranı.
 
-## Geçiş / kararlı ayrımı
-Yaklaşık 3 s olay sonrası etiketi başlangıç maskesidir, cihaz garantisi değildir. E03/E04'e göre güncellenir.
+## Aç-kapa dinamik gözlem ve zamanlama
+- SCT model tahmini ile PZEM akım akışı aynı deneyin ortak zaman ekseninde çizilir; geçişler grafikte korunur.
+- SSR olay zamanı, SCT örnek/pencere zamanı, PZEM istek zamanı ve PZEM yanıt zamanı ayrı saklanır.
+- PZEM istek-yanıt süresi, haberleşme/okuma süresidir; cihazın iç ölçüm güncelleme gecikmesini tek başına vermez.
+- Açma ve kapama tepkisi, yerleşme ve gözlenen zaman farkı ayrı incelenir. Sabit bir zaman kaydırması kararlı alan etiketlemesinin yerine geçmez.
+- Bu grafik dinamik davranış incelemesidir; geçiş anındaki fark, PZEM'in iç ölçüm zamanı bilinmediğinden tek başına model doğruluk hatası sayılmaz.
+
+## Eğitim verisi içi uyum
+İlk aşamada model, eğitildiği aynı etiketli kararlı alan verisine yeniden uygulanır. ±%4 raporu eğitim verisi içi uyumu gösterir; bağımsız genelleme başarımı değildir. Geçerli, sıfırdan farklı PZEM akımı için bağıl hata `abs(prediction - pzem_current) / abs(pzem_current)` olarak hesaplanır.
 
 ## RMS pencerelerini birleştirme
 RMS_toplam = √(Σ(Nᵢ × RMSᵢ²) / ΣNᵢ)
