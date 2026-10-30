@@ -32,6 +32,8 @@ BERO'da PF yayınının rolü iki yönlüdür:
 
 Bu, PZEM PF değerinin SCT'yi doğrudan etkilediği anlamına gelmez. PF, yükün gerilim-akım ilişkisi ve dalga şekli hakkında PZEM'in raporladığı bir göstergedir; SCT-PZEM farkıyla ilişkisi deneysel olarak incelenecek bir gözlemdir. PZEM'in PF algoritması ve iç ölçüm penceresi bilinmediğinden PF, SCT örnekleriyle anlık/milisaniyelik eşdeğer kabul edilmez. Önce PZEM akım, PF ve güncelleme davranışı birlikte kaydedilir.
 
+E09 deney bağlantısı: [PF koşulu ile SCT/PZEM akım karşılaştırması](../../experiments/E09-pf-current-relationship/README.md). Bu deney PZEM'in PF ve CT akım yayınını birlikte kaydederek SCT-PZEM farkını farklı yük koşullarında inceleyecektir.
+
 ## BERO için deney yaklaşımı
 
 Amaç PF'yi SCT'den tahmin etmek veya PF ölçer geliştirmek değildir. Amaç, farklı yük/PF koşullarında SCT verisinden PZEM akımına ne kadar iyi ulaşıldığını gözlemek ve PF bilgisinin modele eklenmesinin gerekli olup olmadığını deneyle belirlemektir.
