@@ -103,3 +103,6 @@ Karar özeti: Önce tek doğrusal model; parçalı model ancak veri gerekçelend
 
 **Google önerileri hakkında karar:** 0.85 çarpanı ve Z>3 = %99.7 gerçek yük kuralları kabul edilmedi. raw:false 1 mV basamağı düşük akım için risk olarak tutuldu; gerçek hata henüz ölçülmedi. E00A/E00B sırası korunur; T006 residual analizi veri oluştuğunda yapılır. Ayrıntı: [E00F teknik değerlendirme, bölüm 12](technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
 
+
+
+**Önceki raw:true denemesi:** Kullanıcı, raw:true yolunun daha önce denendiğini ve daha gürültülü/kötü sonuç verdiğini bildirdi; önceki oturum kaydı da bunu destekliyor. raw:true tekrar deneyi planlanmıyor. Önceki testte Google'ın önerdiği 0.85 çarpanının kullanıldığına dair kanıt yok; bu iki uygulama aynı test olarak kaydedilmeyecek.
