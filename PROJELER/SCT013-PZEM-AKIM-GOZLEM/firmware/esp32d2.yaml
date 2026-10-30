@@ -26,19 +26,19 @@
 # Bu değişiklik gürültüyü filtrelemez; düşük değerleri görünür kılar.
 #
 # LOG:
-# 2026-10-30 tarihinde yüksüz testte 6/6 yayın 0.000 A görüldü.
-# 150 W akkor ve kettle yüklerinde ölçüm karşılaştırmaları yapıldı.
-# 8.35 W LED testinde 0.041 A pens akımı eşik altında kaldığı için
-# yayınlanan değerlerin çoğu 0.000 A oldu; nadir yüksek sıçramalar görüldü.
+# ÖNCEKİ SÜRÜM LOGU:
+# 2026-10-30 tarihinde eski 0.35 A filtresiyle yüksüz testte 6/6 yayın
+# 0.000 A görüldü. 8.35 W LED testinde 0.041 A pens akımı filtre altında
+# kaldığı için yayınların çoğu 0.000 A oldu.
 #
-# SONUÇ:
-# 0.35 A eşiği yüksüz çıktıyı bastırıyor; düşük akım ölçümünü gizliyor.
-# Eşik davranışı sonraki çalışmada ayrıca değerlendirilecek.
+# E00F-N01 GÜNCEL DURUM:
+# 0.35 A lambda filtresi kullanıcı talebiyle kaldırıldı.
+# Yeni sürüm henüz derlenmedi, cihaza yüklenmedi veya ölçülmedi.
 #
 # KAYNAK:
-# Kullanıcının 2026-10-30 tarihinde paylaştığı ve cihaz loglarında
-# çalışan ESPHome yapılandırması. Açıklama eşiği, lambda ile aynı
-# olacak şekilde 0.35 A olarak tutarlılaştırıldı.
+# Temel yapılandırma, kullanıcının 2026-10-30 tarihinde paylaştığı ve
+# cihaz loglarında çalıştığı görülen ESPHome YAML'ıdır. E00F-N01 için
+# yalnız yayın öncesi 0.35 A sıfırlama lambda'sı kaldırılmıştır.
 
 esphome:
   name: esp32d2
