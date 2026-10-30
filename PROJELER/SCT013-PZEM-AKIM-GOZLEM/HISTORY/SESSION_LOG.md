@@ -921,3 +921,16 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - SONRAKİ ADIM: Aktif E00B/E00A deney sırasını değiştirme. Aynı edinim yoluyla yüksüz ve yük pencereleri topla; ham örnek mevcut olduğunda dedup ve float hassasiyeti etkisini karşılaştır. Model aşamasında önce tek doğrusal modelin artıklarını incele.
 - KANIT: [E00F teknik değerlendirme, bölüm 11](../docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md), [açık sorular](../docs/open-questions.md), ESPHome kaynak kodu: https://api-docs.esphome.io/ct__clamp__sensor_8cpp_source.
 
+
+
+## 2026-10-30 — Google'ın aynı sorulara verdiği yanıtın teknik denetimi
+
+- **HEDEF:** Google değerlendirmesindeki raw:false kuantizasyonu, raw:true dönüşüm önerisi, RMS gürültü birleşimi, ct_clamp dedup/zamanlama, Z-skoru ve residual önerilerini kaynak kod ve BERO kararlarıyla karşılaştırmak.
+- **LOG:** Depodaki AGENTS.md, STATUS.md, ROADMAP.md, docs/open-questions.md, T005-noise-floor.md, E00F teknik raporu ve önceki oturum kayıtları okundu. main dalı HEAD başlangıçta 066819710d1986de5d910e4e507ac3d6e985d8d4 idi. ESPHome ADC, ct_clamp dokümantasyonu ve ct_clamp/ADC kaynak kodu incelendi.
+- **KABUL:** raw:false kalibre ADC yolunun tam sayı mV dönüşümü 1 mV basamak oluşturur; 0.041 A × 1/24.22 ≈ 1.69 mV hesabı doğrudur. Bu düşük akım için risk oluşturur, fakat hata yüzdesi henüz ölçülmemiştir. Bağımsız sinyal/gürültü bileşenlerinin varyanslarının toplanması koşullu olarak doğrudur. Dedup zaman ağırlığını değiştirebilir. Residual analizi T006'da yararlı olacaktır.
+- **RED/DÜZELTME:** 0.85 çarpanı kaynak/kalibrasyon temeli olmayan bir katsayıdır. ADC sensörünün normal filters zincirinin ct_clamp'in doğrudan source_->sample() çağrısına uygulanacağı varsayımı yanlıştır. raw:true ham count fiziksel ADC çözünürlüğünü artırmaz; yalnızca kalibre mV dönüşüm yolunu değiştirir. 1 mV/1.69 mV oranı doğrudan %50 RMS hata demek değildir. Dedup dalga şeklini fiziksel olarak kare/üçgene dönüştürmez. Log SPS gerçek ADC dönüşüm hızı değildir; CPU jitter ölçümü değildir. Z>3, %99.7 gerçek yük olasılığı anlamına gelmez.
+- **MODEL:** <1 A, 1–3 A, >3 A eşikleri veriden türetilmemiştir. Kettle'daki yaklaşık −%3.8 fark ±%4 proje kabul sınırının içindedir; tek doğrusal modelin başarısızlığını kanıtlamaz.
+- **KARAR:** raw:true + multiply:0.85 denemesi başlatılmayacak. Mevcut E00F YAML/katsayı/eşik/pin/cihaz kimliği değişmeyecek. E00A/E00B deney sırası korunacak; residual analizi T006 aşamasında eşleşmiş kararlı veriler oluştuğunda yapılacak.
+- **DOĞRULAMA SINIRI:** Teknik rapor, açık sorular ve bu oturum günlüğü güncellendi ve yazım sonrası yeniden okunacak. Bu oturumda YAML değişikliği, derleme/flash, yeni ADC kaydı, Python analizi veya fiziksel test yapılmadı.
+- **KANIT:** [E00F teknik değerlendirme, bölüm 12](../docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md), [açık sorular](../docs/open-questions.md), [ESPHome ADC dokümanı](https://esphome.io/components/sensor/adc/), [ct_clamp kaynak kodu](https://api-docs.esphome.io/ct__clamp__sensor_8cpp_source).
+
