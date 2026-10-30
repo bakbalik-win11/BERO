@@ -249,3 +249,14 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **SONUÇ:** İlk iki kettle kesiti kullanıcı tarafından belirlenen ±%4 sınırının içinde; kaynama kesiti sınıra yakındır. 0.437 A bildirimi ile log arasında yaklaşık +%52 fark vardır, ancak eşzamanlı ve aynı yük koşulu doğrulanmadan teknik sonuç çıkarılamaz. Katsayı 24.22 ve lambda eşiği 0.35 A değiştirilmedi.
 - **Açık kalan:** 0.437 A pens okumasının hangi yük/koşula ait olduğu ve logla eşzamanlı olup olmadığı.
 - **Kanıt:** [Firmware ve ölçüm raporu](firmware/README.md); [YAML](firmware/esp32d2.yaml).
+
+
+## 2026-10-30 — E00F düşük akım / ct_clamp toplu teknik değerlendirmesi
+
+- **Durum:** Kaynak kod incelemesi ve kademeli teşhis planı depoya kaydedildi; fiziksel test yapılmadı.
+- **Kayıt:** [Toplu teknik değerlendirme](docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md) Gemini, Google, Claude ve GitHub Copilot raporlarını kaynak kod, kullanıcı logu ve hipotez sınıflarına ayırır.
+- **Kesin kararlar:** E00F çalışan YAML, esp32d2 kimliği, GPIO33, raw: false, 200 ms, 24.22 ve 0.35 A korunur. Google'ın raw: true önerisi mevcut akım yapılandırmasına uygulanmaz; birim/ölçek değişir.
+- **Teknik olarak doğrulanan:** ct_clamp ardışık eşit sayısal değerleri atlar; N ve raporlanan SPS bu nedenle gerçek ADC dönüşüm sayısı/hızı değildir. Raw AC Value, kaynak ADC sensörü Volt olduğunda RMS gerilimidir.
+- **Açık kalan:** 0.006 V değerinin 0.041 A LED ölçümüyle aynı pencereye ait olduğu kanıtlanmadı. Deduplication, 1 mV kalibre çıkış basamağı, ADC gürültüsü ve float birikim etkilerinin BERO'daki büyüklüğü ölçülmedi.
+- **Sıradaki teşhis dizisi:** D0 mevcut log eşleştirmesi → D1 SCT bağlı yüksüz pencere kayıtları → D2 aynı kurulumda 8.35 W LED → D3 akkor kontrol. D4 ayrı RAW teşhisi yalnız gerekirse; E08 ham edinim ayrı plan olarak kalır.
+- **Durum ayrımı:** Bu belge ve plan kaydı firmware kodlandığı, derlendiği, cihaza yüklendiği veya deneylerin yapıldığı anlamına gelmez. Mevcut STATUS içindeki E00B aktif iş sırası bu kayıtla değiştirilmedi.
