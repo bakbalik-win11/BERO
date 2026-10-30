@@ -34,6 +34,17 @@ Kullanıcı için kısa kontrol listesi: [Gün sonu kontrolü](GUN_SONU_KONTROLU
 ## Kapsam
 Proje, SCT ADC edinimi, akım özellikleri çıkarımı ve PZEM okumalarıyla zaman eşleştirmesidir. PF hesabı, FFT/THD, harmonik çözümleme, güç kalitesi analizi veya enerji analizörü geliştirme işi önermeyin.
 
+
+
+## Değişmez cihaz kimliği — KESİN KURAL
+
+- BERO'da kullanılan ESP32D2 cihaz kimliği sabittir ve **DEĞİŞTİRİLEMEZ**.
+- Hiçbir deney, firmware yenilemesi, YAML düzenlemesi, yeniden adlandırma veya kod temizliği gerekçesiyle ESP32D2 kimliği değiştirilmez.
+- ESPHome yapılandırmasındaki cihaz kimliğini belirleyen `esphome.name` alanı mevcut ESP32D2 kimliğiyle aynen korunur. Kullanıcı açıkça kimlik değişikliği talep etmedikçe bu alana dokunulmaz; kullanıcı talebi yoksa değişiklik kesinlikle yapılmaz.
+- Yeni deney kodu hazırlanırken mevcut cihaz kimliği kaynak YAML'dan kopyalanır; yeni/alternatif bir kimlik uydurulmaz.
+- Her YAML değişikliğinde `esphome.name` alanı değişiklik öncesi ve sonrası karşılaştırılır. Fark varsa değişiklik geri alınır ve dosya kullanıcıya sunulmaz.
+- Bu kural diğer genel kodlama ve adlandırma tercihlerinden üstündür. İhlali kritik hata kabul edilir.
+
 ## Değişmez veri kuralları
 - PZEM kusursuz ground truth değildir; davranışı ve gecikmesi ölçülecek referans akışıdır.
 - -1.0 gibi sentinel değerler, NaN, timeout ve parse hataları geçerli ölçüm gibi ortalamaya girmez.
