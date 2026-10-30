@@ -1,0 +1,77 @@
+# E00F-N01 — Eşik filtresi kaldırılmış gece gözlemi
+# Amaç: 0.35 A altındaki ct_clamp çıktılarını sıfırlamadan gözlemek.
+# Bu YAML deney planı/kayıt şablonudur; ESPHome firmware'i tarafından okunmaz.
+
+experiment:
+  id: E00F-N01
+  date: "2026-10-30"
+  status: PREPARED
+  purpose: >
+    SCT013-030 ve mevcut ESP32D2/ct_clamp zincirinde, yazılımsal sıfırlama
+    eşiği olmadan düşük akım yayınlarını ve yüksüz taban davranışını gece
+    boyunca gözlemek. Amaç bu aşamada kalibrasyon veya katsayı değiştirmek değil.
+
+hardware:
+  device: esp32d2
+  sensor: SCT013-030
+  sensor_rating: "30 A / 1 V"
+  primary_turns: 1
+  connection: "SCT013-030 -> mevcut yaklaşık 1.65 V bias devresi -> GPIO33"
+  adc_pin: GPIO33
+  adc_unit: ADC1
+  attenuation: 12db
+  adc_raw: false
+
+firmware:
+  file: firmware/esp32d2.yaml
+  esphome_version_seen_in_prior_log: "2026.9.1"
+  ct_clamp_sample_duration: 200ms
+  publish_interval: 2s
+  multiplier: 24.22
+  zero_below_current_filter: null
+  device_identity_must_remain: esp32d2
+
+conditions:
+  - id: unloaded_observation
+    description: "SCT bağlı; ölçülen iletkende yük akımı yok. Fiziksel koşul kullanıcı tarafından teyit edilecek."
+    planned_duration: "Gece boyunca; kesin bitiş saati kullanıcı tarafından belirlenecek."
+    load_state: OFF
+
+recording:
+  home_assistant_entity: "BERO E00F SCT013 Akim"
+  expected_publish_interval: 2s
+  primary_record: "Home Assistant recorder/history üzerinden akım sensörü durum değişimleri"
+  esphome_debug:
+    enabled_by_existing_logger_level: DEBUG
+    note: >
+      Raw AC Value / N / SPS debug satırları Home Assistant entity
+      geçmişi değildir. Bu satırların tamamını saklamak için ESPHome
+      log akışının ayrıca sürekli bir bilgisayara kaydedilmesi gerekir.
+  retain_raw_adc: false
+  calibration_id: null
+
+expected_observations:
+  - "0.35 A altındaki değerler artık 0.000 A'a zorlanmayacak."
+  - "Yüksüz durumda küçük ve sıçrayan akım yayınları görülebilir."
+  - "Bu gece kaydı tek başına 40 mA ölçüm doğruluğunu kanıtlamaz."
+
+HEDEF:
+  - "Sıfırlama filtresinin etkisini izole etmek."
+  - "Düşük akım değerlerinin ve yüksüz taban dağılımının görünür olmasını sağlamak."
+
+LOG:
+  firmware_compiled: PENDING
+  flashed_to_device: PENDING
+  start_time: null
+  end_time: null
+  home_assistant_history_export: null
+  esphome_debug_log_file: null
+  physical_condition_confirmation: null
+
+SONUC:
+  status: "HENÜZ ÖLÇÜLMEDİ"
+  interpretation: null
+  limitations:
+    - "Home Assistant history çoğunlukla entity state değişimlerini kaydeder; 200 ms iç pencere ham örneklerini saklamaz."
+    - "ESPHome debug Raw AC/N/SPS satırları ayrıca sürekli kaydedilmezse sonradan geri getirilemez."
+    - "Filtre kaldırılmış çıktı, gerçek düşük akım ile yüksüz gürültüyü tek başına ayırmaz."
