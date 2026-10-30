@@ -1,3 +1,14 @@
+## 2026-10-30 — E00A açıldı ve ilk multimetre referansı eklendi
+
+- **Durum:** DENEY KAYDI AÇILDI; yalnız ilk multimetre referansı kullanıcı tarafından bildirildi. ESP32 ADC testi yapılmadı.
+- **HEDEF:** E00A'yı 30 saniyelik kısa ADC gözlemleriyle başlatmak ve ilk donanım referansını kaybetmeden depoya eklemek.
+- **LOG:** Kullanıcı bias trafosunun L78L33 DC çıkışını multimetreyle **3,31 V** ölçtüğünü bildirdi. Değer E00A results.md ve experiment.yaml içine KULLANICI BİLDİRİMİ olarak kaydedildi. Her ADC koşulu 30 saniye olarak güncellendi. 3,3 V için düşünülen harici 10k/10k bölücünün bias devresinin parçası olmadığı, ayrı/geçici ölçüm aparatı olduğu açıklandı.
+- **SONUÇ:** 3,31 V kaynak referansı kaydedildi; ESP32 ADC ham değeri, analogReadMilliVolts sonucu, Vmid değeri ve 30 saniyelik kayıt henüz yok. Gerçek WROOM-32D kart/pinout ve ADC attenuation/giriş sınırı doğrulanmadan bağlantı yapılmayacak.
+- **Depoya yazılanlar:** E00A README, protocol, results, metadata.yaml, experiment.yaml; STATUS, ROADMAP, PROGRESS_TREE, EXPERIMENT_LEDGER.
+- **Doğrulama sınırı:** GitHub yazımları dosya bazında commit edildi. Commit sonrası çapraz yeniden okuma bu kaydın hazırlanması sırasında henüz yapılmadı. Firmware yazılmadı/derlenmedi; fiziksel ADC testi yapılmadı.
+- **Sonraki adım:** Gerçek kart/GPIO ve ADC sınırını doğrula; ardından A/B koşullarını 30 saniye kaydet.
+- **Kanıt:** [E00A sonuç kaydı](../experiments/E00A-raw-waveform-observation/results.md), [protokol](../experiments/E00A-raw-waveform-observation/protocol.md), [STATUS](../STATUS.md).
+
 ## 2026-10-30 — E00A bias trafosu DC noktalarının ADC gözlemi olarak hazırlandı
 
 - **Durum:** DOKÜMANTASYON UYGULANDI; firmware ve fiziksel deney yapılmadı.
