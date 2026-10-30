@@ -239,3 +239,13 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **LOG:** E00B README, açıklamalı experiment.yaml ve results.md oluşturuldu. Firmware yazılmadı; fiziksel bağlantı, derleme ve ölçüm yapılmadı.
 - **SONUÇ:** Deney PLANLANDI. GPIO32/33 pin etiketleri gerçek kart üzerinde doğrulanmadan bağlantı yapılmayacak. Sonraki adım pinout doğrulaması ve tam firmware hazırlığı.
 - **Kanıt:** [E00B README](experiments/E00B-sct-connected-no-current/README.md), [experiment.yaml](experiments/E00B-sct-connected-no-current/experiment.yaml), [results.md](experiments/E00B-sct-connected-no-current/results.md).
+
+
+## 2026-10-30 — E00B firmware derleme güncellemesi
+- **Neden:** SCT bağlı/akımsız deney için bias referans ve SCT analog düğüm kanallarını aynı ESPHome firmware'inde izlemek.
+- **HEDEF:** GPIO34/35 bias ve GPIO32/33 SCT kanallarını E00B kapsamında tanımlamak.
+- **UYGULAMA:** [E00B firmware](experiments/E00B-sct-connected-no-current/firmware/esp32d2-e00b-sct-no-current.yaml) depoya eklendi; commit `20fbe9b4a99d057ef579d882bfd83d23f4ef199e`.
+- **LOG:** Kullanıcı kodun derlendiğini bildirdi (KULLANICI RAPORU, 2026-10-30). Derleme çıktısı paylaşılmadı. Kod 1 s güncelleme aralığı kullanır; 1/2/2.5 kS/s ham edinim yapmaz.
+- **SONUÇ:** Firmware hazır ve kullanıcı bildirimiyle derlenmiş durumda. Fiziksel pinout, kablolama, cihaz yüklemesi ve ölçüm kanıtı yoktur. Önceki E00B açılış kaydındaki “firmware yazılmadı/derleme yok” ifadesi bu yeni gelişmeyle güncellenmiştir.
+- **Sonraki adım:** Gerçek kart pinout'unu doğrula; sonra bağlantı ve cihaz logunu kaydet.
+- **Kanıt:** [E00B README](experiments/E00B-sct-connected-no-current/README.md), [experiment.yaml](experiments/E00B-sct-connected-no-current/experiment.yaml), [results](experiments/E00B-sct-connected-no-current/results.md), [firmware](experiments/E00B-sct-connected-no-current/firmware/esp32d2-e00b-sct-no-current.yaml).
