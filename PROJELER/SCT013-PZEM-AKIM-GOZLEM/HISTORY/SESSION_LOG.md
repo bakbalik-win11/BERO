@@ -840,3 +840,15 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **Açık kalanlar:** 0.437 A pens ölçümünün hangi yük ve zaman aralığına ait olduğunun teyidi.
 - **Sonraki adım:** Kullanıcı yük koşulunu netleştirirse ilgili logu doğru koşulla eşleştir; yeni ölçüm gelmeden katsayıyı değiştirme.
 - **Kanıt:** [firmware/README.md](../firmware/README.md), [firmware/esp32d2.yaml](../firmware/esp32d2.yaml).
+
+
+## 2026-10-30 — E00F düşük akım / ct_clamp toplu teknik incelemesi
+
+- **Durum:** KAYNAK KOD İNCELEMESİ TAMAMLANDI; D0–D5 teşhis planı depoya işlendi. Fiziksel deney yapılmadı.
+- **HEDEF:** Gemini, Google, Claude ve GitHub Copilot değerlendirmelerini tek bir kanıt hiyerarşisinde toplamak; düşük akım davranışında katsayı, ADC edinimi ve ct_clamp algoritması katmanlarını ayırmak.
+- **LOG:** ESPHome 2026.9.1 ct_clamp ve ESP32 ADC kaynak kodundan; aynı sayısal değeri atlama, num_samples_ tanımı, SPS hesabı, samples: 1 davranışı, raw: false kalibre mV→V yolu ve Raw AC Value debug birimi doğrulandı. Depodaki E00F YAML ve daha önce raporlanan akkor/kettle/LED sonuçları incelendi. 0.006 V Raw AC Value ile 0.041 A LED pens değerinin aynı 200 ms pencereye ait olduğuna dair ortak zaman/olay etiketi bulunmadığı kaydedildi.
+- **SONUÇ:** 24.22 katsayısı için değişiklik gerekçesi yok; 0.35 A filtresi 0.041 A seviyesini yayın dışında bırakıyor. Bu kesin davranış, RMS zincirinin düşük akımda doğru/yanlış olduğu sorusunu tek başına çözmüyor. Deduplication ve 1 mV kalibre gerilim adımı önemli araştırma adaylarıdır; hata büyüklükleri henüz ölçülmedi. raw: true mevcut akım YAML'ına uygulanmayacak; çıktı birimi RAW count olur ve eski katsayı/eşik anlamını kaybeder.
+- **KARAR:** Çalışan YAML, esp32d2, GPIO eşlemesi, raw: false, 200 ms, 24.22 ve 0.35 A korunacak. Önce D0 mevcut log eşleştirmesi; ardından D1 yüksüz ve D2 LED gözlemi; D3 akkor kontrol. D4 ayrı ham ADC teşhisi yalnız gerekirse; D5 E08 edinimi ayrı aşamadır.
+- **TEST / KABUL:** Her pencere için zaman/koşul, Raw AC gerilimi, farklı örnek sayısı, raporlanan SPS ve yayınlanan akım; eşleşebiliyorsa pens/PZEM okuma zamanı kaydedilecek. N ve SPS gerçek ADC dönüşüm hızı diye adlandırılmayacak. Ölçüm yokken sonuç tamamlandı sayılmayacak.
+- **Sonraki adım:** Mevcut E00F loglarını D0 alanları açısından incele; loglar yetersizse çalışan yapılandırmayı değiştirmeden D1/D2 kayıt protokolünü uygula.
+- **Rapor:** docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md
