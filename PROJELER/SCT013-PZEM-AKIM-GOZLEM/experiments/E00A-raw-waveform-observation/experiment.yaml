@@ -5,7 +5,7 @@
 experiment:
   id: "E00A"
   title: "Bias trafosu DC noktalarının ADC gözlemi"
-  status: "planned"
+  status: "opened_first_reference_recorded"
 
 hedef:
   soru: "Bias trafosunun regüle 3,3 V çıkışı ve yaklaşık 1,65 V Vmid noktası ADC'de nasıl okunuyor ve zaman içinde ne kadar değişiyor?"
@@ -13,7 +13,7 @@ hedef:
     - "İki koşulun ham ADC kaydı bulunması"
     - "Her iki koşul için analogRead ve analogReadMilliVolts sonuçlarının kaydı"
     - "Multimetre DC değerleriyle karşılaştırma"
-    - "Gerçek süre, örnek sayısı ve yaklaşık gerçekleşen örnekleme hızının kaydı"
+    - "Her koşul için 30 saniyelik gözlem; gerçek süre, örnek sayısı ve yaklaşık gerçekleşen örnekleme hızının kaydı"
     - "Mean, min, max, peak-to-peak ve standart sapmanın karşılaştırılması"
     - "Bilgisayarda ADC-değer/zaman grafiği"
 
@@ -26,8 +26,8 @@ donanim:
   common_ground: true
 
 ornekleme:
-  hedef_hz: 2000
-  planlanan_kayit_s: 1
+  hedef_hz: null # Firmware ve ADC yapılandırması seçilince belirlenecek.
+  planlanan_kayit_s: 30 # Her ADC koşulu için planlanan gözlem süresi.
   ham_veri_kaydet: true
   ham_veri_git'e_ekle: false
   csv_sutunlari: "sample_index,adc_raw"
@@ -38,7 +38,7 @@ ornekleme:
 kosullar:
   - id: "A"
     ad: "bias_trafo_3v3"
-    aciklama: "L78L33 nominal 3,3V DC çıkışı, harici 10k/10k ölçüm bölücüsü üzerinden ADC'ye uygulanır."
+    aciklama: "L78L33 çıkışı, ADC sınırları doğrulandıktan sonra bias devresinden ayrı/geçici 10k/10k ölçüm bölücüsü üzerinden ADC'ye uygulanır; bölücü fiziksel olarak kurulmuş değil."
     adc_pin_voltaji: "Yaklaşık 1,65V"
     kaynak_gerilim_hesabi: "ADC pin mV x 2; direnç oranı doğrulanmalı"
   - id: "B"
@@ -67,14 +67,20 @@ log:
   gercek_gpio: null
   firmware_surumu_veya_commit: null
   kosul_kayitlari: []
-  multimetre_olcumleri: []
+  multimetre_olcumleri:
+    - nokta: "L78L33 DC çıkışı"
+      deger_V: 3.31
+      kaynak: "KULLANICI BİLDİRİMİ — multimetre ile ölçüldüğü bildirildi; bağımsız tekrar yok."
+      tarih: "2026-10-30"
   sapmalar_ve_gozlemler: []
   yapilmayan_islemler:
     - "Firmware geliştirme/derleme yapılmadı."
-    - "Fiziksel bağlantı ve ölçüm yapılmadı."
+    - "ESP32 ADC bağlantısı ve 30 saniyelik ham kayıt yapılmadı."
+    - "Geçici harici 10k/10k ölçüm bölücüsü fiziksel olarak kurulmadı."
+    - "Vmid multimetre ölçümü henüz bildirilmedi."
 
 sonuc:
   durum: "Henüz ölçülmedi"
-  yorum: null
+  yorum: "İlk referans verisi L78L33 çıkışında 3.31 V DC olarak kullanıcı tarafından bildirildi. ADC davranışı henüz ölçülmedi."
   belirsizlikler: []
-  sonraki_adim: "Gerçek kart/pinout ve bias trafosu bulunduğunda bağlantı kontrolünü yapıp firmware hazırlamak."
+  sonraki_adim: "Gerçek ESP32-WROOM-32D kart/pinout ve ADC giriş sınırını doğrula; sonra 30 saniyelik ADC gözlemi için bağlantı/firmware hazırla."
