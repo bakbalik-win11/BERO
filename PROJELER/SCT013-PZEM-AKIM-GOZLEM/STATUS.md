@@ -260,3 +260,15 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **Açık kalan:** 0.006 V değerinin 0.041 A LED ölçümüyle aynı pencereye ait olduğu kanıtlanmadı. Deduplication, 1 mV kalibre çıkış basamağı, ADC gürültüsü ve float birikim etkilerinin BERO'daki büyüklüğü ölçülmedi.
 - **Sıradaki teşhis dizisi:** D0 mevcut log eşleştirmesi → D1 SCT bağlı yüksüz pencere kayıtları → D2 aynı kurulumda 8.35 W LED → D3 akkor kontrol. D4 ayrı RAW teşhisi yalnız gerekirse; E08 ham edinim ayrı plan olarak kalır.
 - **Durum ayrımı:** Bu belge ve plan kaydı firmware kodlandığı, derlendiği, cihaza yüklendiği veya deneylerin yapıldığı anlamına gelmez. Mevcut STATUS içindeki E00B aktif iş sırası bu kayıtla değiştirilmedi.
+
+
+## 2026-10-30 — Claude incelemesi sonrası E00F test kabul ölçütleri sıkılaştırıldı
+
+- **Durum:** Yalnız test protokolü ve kabul ölçütleri güncellendi; firmware ve fiziksel kurulum değişmedi.
+- **D0:** Her pencere için Raw AC, N (farklı kabul edilen değer sayısı) ve raporlanan SPS birlikte çıkarılacak. N/SPS için min, max, ortalama, medyan, SD, p5/p95 ve dağılım; pencere bazında üçlü kayıt istenecek. N tek başına float32 etkisini kanıtlamaz; gerçek ADC örnek dizisi yoksa simülasyon varsayımlı duyarlılık analizi olarak etiketlenecek.
+- **D1/D2:** Her koşulda en az 30 geçerli 200 ms pencere; anahtarlama/koşul değişiminden sonraki ilk pencere dışlanacak, bu nedenle en az 31 pencere yakalanacak. Raw AC, N ve SPS pencere bazında saklanacak.
+- **Taban ve SD:** 0 V ve 0.006 V olasılıkları yüksüz taban yorumları olarak sınanacak. 0.0017 V, 24.22 katsayısıyla 0.041 A'ya karşılık gelen LED ölçek referansıdır; yüksüz taban eşiği değildir. D1'in ölçülen SD'si ampirik referans olacak; D2/D3 ayrışması D1 medyanı + 3×SD ve gerektiğinde medyan + 3×MAD ile değerlendirilecek. Bu, ±%4 akım kabul hedefinden farklıdır.
+- **D3:** Mümkünse yaklaşık 0.447 A ve 0.616 A akkor koşulları D1 tabanıyla karşılaştırılacak. Gerçek yük/akım beyan edilecek; ham Raw AC ve yalnız tanısal olarak kareler farkı tahmini ayrı gösterilecek. Pens/ESP32 sapması yalnız eşleşmiş kararlı kayıtla hesaplanacak.
+- **D4:** Koşul netleştirildi: D0–D3 sonrasında N değişkenliği Raw AC sıçramalarıyla ilişkiliyse, taban modeli sonucu açıklamıyorsa veya kalibre mV basamağı şüphesi hâlâ ham count gerektiriyorsa açılabilir. RAW:true deduplication'ı tek başına kaldırmaz.
+- **D5:** E00F One-shot ve E08 Continuous aynı ADC1 biriminde eşzamanlı çalıştırılmayacak. Modlar arası karşılaştırma aynı yük ve aynı kararlı kurulumda sıralı kayıtla yapılacak.
+- **Aktif görev:** Bu protokol güncellemesi E00B aktif iş sırasını değiştirmez; E00F teşhis planı ayrı tutulur.
