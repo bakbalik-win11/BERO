@@ -764,3 +764,12 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **SONUÇ:** Ham log, analiz ve metadata depoya kaydedildi. Cihazın API üzerinden çalışması doğrulandı. Primer akımın sıfır olması ve fiziksel SCT montajı logla tek başına doğrulanamıyor; deneyin fiziksel koşulları tam doğrulanmış sayılmıyor.
 - **DOĞRULAMA:** Ham log GitHub'a yazıldı; results.md, experiment.yaml ve README güncellendi. STATUS/ledger/session log güncellemesi bu kayıtla yapılıyor.
 - **SONRAKİ ADIM:** Fiziksel SCT montajı ve primer akım=0 koşulunu kullanıcı kaydıyla teyit et; daha uzun kararlı pencere al.
+
+
+## 2026-10-30 — E00B uzun logu kaydedildi ve olumlu sonuç raporlandı
+
+- **Durum:** Ham log ve analiz GitHub main dalına yazıldı; dosyalar commit sonrası yeniden okunarak doğrulandı.
+- **HEDEF:** SCT bağlı yüksüz hat ile bias referansının daha uzun kayıt üzerinden yakınlığını değerlendirmek.
+- **LOG:** Kullanıcının sağladığı 222,578 baytlık uzun ESPHome logu `experiments/E00B-sct-connected-no-current/logs/2026-10-30-e00b-esp32d2-long-observation.log` yoluna eklendi. Açılış geçişi çıkarıldıktan sonra dört kanalın her birinde 351 geçerli yayın değeri analiz edildi. RAW ortalamaları bias 1852.56, SCT 1853.37 count; fark +0.82 count. ADC voltaj ortalamaları bias 1.6646 V, SCT 1.6632 V; fark −1.4 mV.
+- **SONUÇ:** E00B yüksüz karşılaştırması olumlu; bu log penceresinde anlamlı bias kayması görülmedi. GPIO kanalları eşzamanlı örnek değildir; 1 saniyelik ESPHome yayınları yüksek hızlı örnekleme değildir. Fiziksel primer akım/CT montajı logdan bağımsız kanıtlanmış değildir. SCT RAW maksimum 1941 count sonraki yük kayıtlarında izlenecek.
+- **Sonraki adım:** Dört kanallı E00B firmware'ini değiştirmeden tut; sonraki yük koşulunu ayrı deney/log olarak tanımla. E00A'nın açık işleri ayrıca korunur.
