@@ -7,6 +7,10 @@
 
 PF'nin akım büyüklüğü ve SCT ölçümüne olası etkisi ayrı teknik notta kaydedilmiştir: [PF değişimi ve akım ölçümüne etkisi](pf-and-current-measurement.md). BERO'da amaç PF'yi SCT'den tahmin etmek değildir. İlk model PF girdisi olmadan denenir; farklı yük/PF koşullarındaki hata gözlenir. Gerekirse aynı veri ve koşullarla PF girdili model karşılaştırılır. Düşük PF'nin aynı aktif güçte RMS akımı artırabileceği dikkate alınır; yüksek SCT okuması otomatik hata sayılmaz, PZEM akımıyla karşılaştırılır.
 
+## Fiziksel yük koşulunun etiket ve sonuç yorumuna etkisi
+
+Etiketleme ve kalibrasyon sırasında PF, yük koşulunu açıklayan eşlikçi ölçüm alanıdır. Aynı gerilim ve aktif güç civarında düşük PF daha yüksek RMS akıma yol açabilir. Bu nedenle SCT özelliklerinin/genliğinin veya PZEM akımının yüksek olması, yalnızca başka bir yükle kıyaslandığında otomatik hata sayılmaz. Her ortak kararlı alan için PZEM gerilim, aktif güç, akım ve PF birlikte korunmalı; hata sonuçları yük türü ve gözlenen PF koşuluna göre de incelenmelidir. PF-hata korelasyonu sebep-sonuç olarak sunulmaz. Ayrıntı: [PF ve akım ölçüm notu](pf-and-current-measurement.md) ve [E09](../../experiments/E09-pf-current-relationship/README.md).
+
 ## Ana hedef
 
 Üç ayrı SCT örnekleme düğümünden ham/anlık sensör gerilimi örneklerini mümkün olduğunca az kayıpla toplamak. PZEM ve SCT'nin kararlı olduğu **alanları/dönemleri**, SSR olay paketleri ve geliştirilecek kararlılık algoritmaları/istatistikleriyle belirleyip etiketlemek. Python'da etiketlenmiş SCT verisi oluşturmak; bu veriyle her SCT için kalibrasyon katsayısı ve (f(x)) modelini çıkarmak. Ardından bulunan fonksiyonu çok sayıda paket/olay içeren ham veri üzerinde sınamak ve sonuçlara göre gerekirse modeli/algoritmayı iyileştirmek.
