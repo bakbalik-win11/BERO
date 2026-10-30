@@ -2,7 +2,7 @@
 experiment:
   id: "E00B"
   title: "SCT bagliyken akimsiz hat ADC gozlemi"
-  status: "DEVICE_LOG_CAPTURED"
+  status: "NO_LOAD_COMPARISON_POSITIVE"
   firmware: "firmware/esp32d2-e00b-sct-no-current.yaml"
   firmware_compile:
     status: "SUCCESS_USER_REPORTED"
@@ -87,3 +87,16 @@ result:
   status: "CIHAZ_LOGU_ALINDI; FIZIKSEL_KOSULLARIN_TAM_DOGRULAMASI_BEKLIYOR"
   conclusion: "ESPHome cihaz logu alindi; dort ADC kanali baslatildi ve kararlı pencerede olcumler goruldu. Primer akimin sifir oldugu ve fiziksel SCT baglantisi logdan tek basina dogrulanamaz."
   next_step: "Fiziksel SCT montajini ve primer akimin sifir oldugu kosulu kaydet; daha uzun kararlı kayit al ve acilis gecisini disla."
+
+
+# Uzun log sonucu — 2026-10-30
+# Ham log: logs/2026-10-30-e00b-esp32d2-long-observation.log
+# Analiz penceresi: açılış geçişi çıkarıldıktan sonra n=351 / kanal.
+# Bias RAW ort.: 1852.5556 count; SCT RAW ort.: 1853.3732 count.
+# Bias ADC ort.: 1.6646 V; SCT ADC ort.: 1.6632 V.
+# Farklar: RAW +0.8177 count; ADC voltaj -0.0013647 V.
+# Sonuç olumlu; ayrı GPIO ADC okumaları eşzamanlı değildir.
+result:
+  status: "NO_LOAD_COMPARISON_POSITIVE; PHYSICAL_CONDITIONS_NOT_INDEPENDENTLY_VERIFIED"
+  conclusion: "351 gecerli yayin/kanal degerinde SCT-Bias RAW ortalama farki +0.82 count, ADC voltaj ortalama farki -1.4 mV. Yuksuz karsilastirma olumlu; fiziksel primer akim ve CT montaji logdan bagimsiz kanitlanmis degildir."
+  next_step: "Ayni E00B firmware'ini koruyarak sonraki yuk kosulunu ayri deney/log olarak tanimla."
