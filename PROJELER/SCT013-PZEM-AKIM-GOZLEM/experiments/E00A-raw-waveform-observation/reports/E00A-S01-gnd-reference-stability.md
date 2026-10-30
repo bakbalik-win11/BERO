@@ -64,3 +64,15 @@ SCT'nin gerilim çıkışlı (1 V) kullanımında, giriş topolojisi doğruland�
 - **Floating giriş teşhisi:** Destekleniyor.
 - **Elektriksel düzeltme:** Vmid'e yüksek değerli pasif bias direnci, fiziksel jack/CT bağlantısı doğrulandıktan sonra prototiplenecek.
 - **E00A:** Tamamlanmadı. Vmid testi, gerçek SCT bağlantısı, ham örnek kaydı ve zaman grafiği hâlâ açık.
+
+## Düzeltme / ek gözlem — GPIO34 bağlantısız, GPIO35 Vmid gözlemi (2026-10-30)
+
+Önceki yorumdaki GPIO34=0 count sonucu GND referans testi olarak kabul edilmemelidir. Kullanıcı düzeltmesi: **GPIO34 (count) bağlı değil.** Bu nedenle GPIO34'ün 0 count göstermesi elektriksel test kanıtı değildir; pinin bağlantı durumu nedeniyle yorum dışıdır.
+
+Yeni paylaşılan 14:57:01–14:57:26 logunda GPIO35 ADC voltaj kanalı ölçüm yapmaktadır. Kullanıcı, multimetrede Vmid'in sabit yaklaşık 1.65 V DC olduğunu, buna rağmen ADC logunun güvenilmez göründüğünü bildirmiştir. Logdaki GPIO35 değerleri 1.678 V ile başlıyor; ilk saniyelerde yaklaşık 1.65–1.744 V arasında değişiyor, ardından 1.532, 1.477, 1.355, 1.192, 1.061, 0.894, 0.857 ve 0.699 V'a doğru belirgin biçimde düşüyor. Bu, sabit 1.65 V giriş için kabul edilebilir küçük dalgalanma gibi yorumlanamaz.
+
+**Güncel sonuç:** Önceki rapordaki “GND referansında GPIO34 ve GPIO35 kararlı” genellemesi bu bağlantı bilgisiyle desteklenmiyor. GPIO34 verisi geçersiz/yorum dışı. GPIO35 için ise sabit multimetre referansı ile ADC raporu arasında uyuşmazlık var. Kök neden henüz belirlenmedi; ADC arızası da kanıtlanmadı.
+
+**İzole edilmesi gerekenler:** (1) GPIO35 pininin gerçekten Vmid düğümüne doğrudan ve sağlam bağlantısı, (2) ESP32 GND ile bias GND ortaklığı, (3) multimetre problarının ADC pininin kendisinde ve aynı anda Vmid'te ne gösterdiği, (4) Vmid kaynağının ESP32 bağlıyken yük altında değişip değişmediği, (5) ADC dönüşüm/attenuation ve pin/kanal konfigürasyonu. Önce kablo/ortak GND ve pin üzerindeki gerçek DC gerilim eşzamanlı doğrulanmalı; direnç ekleme veya yazılım filtresi kararı bundan sonra verilmeli.
+
+**Test kuralı:** GPIO34 bağlantısız bırakılıp logu referans kabul edilmeyecek. Tek test kanalı GPIO35 olacak. Multimetre siyah probu ESP32 GND'de, kırmızı probu doğrudan GPIO35 pininde; ESPHome logu aynı anda alınacak. Vmid kaynağı üzerinde ölçüm ayrı olarak karşılaştırılacak. Düşük gerilim dışında bağlantı yapılmayacak.
