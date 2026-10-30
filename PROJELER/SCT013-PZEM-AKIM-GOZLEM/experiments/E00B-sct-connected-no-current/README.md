@@ -49,3 +49,9 @@ SCT bağlıyken akımsız koşulda ADC ölçüm zincirinin bias ve dalgalanma da
 Henüz ölçülmedi. Deney yalnız planlandı. GPIO32/33 fiziksel pinout doğrulaması ve firmware hazırlığı sonraki uygulama adımlarıdır.
 
 Durum: PLANLANDI.
+
+## Firmware durumu — 2026-10-30
+
+E00B icin aciklamali ESPHome firmware'i [firmware/esp32d2-e00b-sct-no-current.yaml](firmware/esp32d2-e00b-sct-no-current.yaml) dosyasina eklendi. Kullanici bu kodun derlendigini bildirdi (KULLANICI RAPORU). Firmware 1 saniyelik sensor yayinlari kullanir; bu yuksek hizli ham ADC kaydi degildir.
+
+Bu derleme bildirimi; cihaza yukleme, gercek kart pinout dogrulamasi, fiziksel SCT/bias baglantisi veya akimsiz olcum yapildigini gostermez. GPIO32/33 pinout'u gercek kartta dogrulanmadan baglanti yapilmayacaktir.
