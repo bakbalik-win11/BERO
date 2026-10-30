@@ -1,6 +1,6 @@
 # E00A sonuç kaydı
 
-**Durum:** FIRMWARE KODU DEPOYA EKLENDİ — kullanıcı kodun derlendiğini ve çalıştığını bildirdi; ADC değerleri ve cihaz logu bekleniyor.
+**Durum:** SCT bağlı olmayan bias-only Vmid alt adımı KAPATILDI (2026-10-30 log analizi). E00A bütünü AÇIK: 3.3 V bölücü koşulu ve ham CSV/zaman grafiği eksik.
 
 | Koşul | Multimetre DC (V) | Hedef hız (S/s) | Kayıt süresi (s) | Örnek sayısı | Yaklaşık gerçek hız (S/s) | Ortalama ADC | Min | Max | Tepe-tepe | Std. sapma | Ham dosya |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
