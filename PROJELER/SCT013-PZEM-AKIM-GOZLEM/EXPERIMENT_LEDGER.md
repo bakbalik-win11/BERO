@@ -285,3 +285,16 @@ Kullanıcı kararıyla yeni firmware hazırlanması/firmware değişikliği erte
 **Kanıt durumu:** Kaynak kod davranışları incelendi; kullanıcı logları geçmişte bildirilen sonuçlar olarak mevcut. 0.006 V ile 0.041 A aynı pencereye eşlenmedi. Yeni firmware, derleme, flash veya fiziksel test yapılmadı.
 
 **Detay ve test kabul ölçütleri:** [Toplu teknik değerlendirme](docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
+
+
+## 2026-10-30 — Claude geri bildirimiyle E00F test protokolü keskinleştirildi
+
+- **D0 kabul çıktısı:** Pencere bazında Raw AC/N/SPS üçlüsü; N ve SPS için min/max/mean/median/SD/p5/p95 ve frekans dağılımı. N tek başına float32 simülasyonu için yeterli değildir; gerçek quantized örnek dizisi yoksa simülasyon varsayımlı duyarlılık çalışmasıdır.
+- **D1/D2 kayıt sayısı:** Her koşulda en az 30 geçerli 200 ms pencere. Koşul/anahtarlama değişiminden sonraki ilk pencere atılır; 30 geçerli pencere için en az 31 pencere yakalanır. Pencere başına Raw AC, N ve SPS korunur.
+- **Referans seviyeleri:** 0 V ve 0.006 V yüksüz taban olasılıklarıdır. 0.0017 V, 0.041 A akımın 24.22 katsayısıyla gerilim karşılığıdır; yüksüz taban eşiği değildir.
+- **SD yaklaşımı:** Önceden keyfî mutlak Volt sınırı konmaz. D1 medyan/SD yüksüz referans dağılımını oluşturur. D2/D3 ayrışması D1 medyanı + 3×SD ve normal dağılım uygun değilse medyan + 3×MAD ile raporlanır. Bu, ±%4 akım kabul kriteri değildir.
+- **D3:** Mümkünse 0.447 A ve 0.616 A akkor koşulları aynı D1 tabanıyla kıyaslanır. Kareler farkı düzeltmesi yalnız bağımsız gürültü varsayımına dayalı tanısal hesap olarak gösterilir; ham değerin yerine geçirilmez.
+- **D4 geçiş kapısı:** D0–D3 sonrasında N değişkenliği Raw AC sıçramalarıyla ilişkiliyse, yüksüz taban yük farkını açıklayamıyorsa veya kalibre mV basamağı şüphesi ham count gerektiriyorsa açılır. RAW:true aynı değerleri atlama davranışını tek başına kaldırmaz.
+- **D5:** ADC One-shot ve Continuous aynı ADC1 biriminde eşzamanlı çalıştırılmaz; aynı fiziksel yük/kurulum/kararlı koşulda sıralı kayıt alınır.
+- **Durum:** Bu güncelleme test protokolüdür. Yeni log, firmware, derleme, flash veya fiziksel ölçüm yapılmadı.
+- **Ayrıntı:** [Toplu teknik değerlendirme](docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
