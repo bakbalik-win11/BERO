@@ -657,3 +657,13 @@ Ayrıntı: [Proje felsefesi](../docs/project-philosophy.md). Dokümantasyon gün
 - **Açık kalanlar:** GPIO34/GPIO35 fiziksel bağlantı ayrıntısı; sensörlerden gelen sayısal değerler; ESPHome/cihaz logu; 30 saniyelik ham kayıt ve zaman grafiği.
 - **Sonraki adım:** Kullanıcının paylaşacağı logları incelemek, ham ADC/voltaj değerlerini yorumlamak ve sonucu E00A results.md dosyasına eklemek.
 - **Kanıt:** [Firmware](../experiments/E00A-raw-waveform-observation/firmware/esp32d2-e00a-adc.yaml); [E00A sonuç kaydı](../experiments/E00A-raw-waveform-observation/results.md); [STATUS](../STATUS.md).
+
+
+## 2026-10-30 — E00A-S01 GND referans testi ve floating giriş teşhisi
+
+- **HEDEF:** SCT bağlı değilken ADC girişlerinin GND referansında kararlılığını sınamak; önceki açık giriş dalgalanmasının nedenini belirlemek.
+- **LOG:** Kullanıcı GPIO34 ve GPIO35'i GND'ye çektiğini bildirdi. Paylaşılan ESPHome 2026.9.1 logunda GPIO34, 14:49:11–14:52:24 aralığında görünen örneklerde 0 count. GPIO35 başlangıçta 0.181–0.195 V, kısa süreli 2.405 V sıçrama ve düşüş sonrası yaklaşık 14:49:29–14:52:24 arasında 0.142 V sabit. Kararlı bölüm yaklaşık 175 saniye. ADC init/config/calibration OK. GPIO34 raw count ve GPIO35 kalibre voltaj iki ayrı kanaldır.
+- **SONUÇ:** GND referansı girişleri kararlı hale getirdi; önceki geniş dalgalanma floating giriş davranışıyla uyumlu. ADC arızası kanıtı yok; tam ADC doğruluğu da kanıtlanmadı. GPIO35'in 0.142 V tabanı açık soru.
+- **Elektriksel çözüm adayı:** SCT jack topolojisi doğrulandıktan sonra ADC düğümüne Vmid'e karşı yüksek değerli pasif bias direnci (ilk prototip değerlendirmesi 47–100 kΩ). Kesin değer/bağlantı onaylanmadı; GND pull-down BERO'nun 1.65 V merkezli sinyal yaklaşımı için çözüm değil.
+- **Sonraki adım:** Bir ADC kanalında Vmid bias deneyi, multimetre kontrolü ve 60 saniye log; sonra SCT bağlantısı. E00A açık.
+- **Kanıt:** [E00A-S01 raporu](../experiments/E00A-raw-waveform-observation/reports/E00A-S01-gnd-reference-stability.md); kaynak kullanıcı logu `Yapıştırılan metin(8).txt`.
