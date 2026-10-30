@@ -297,3 +297,47 @@ step_2_raw_voltage_comparison:
     device_upload: "Henüz bildirilmedi."
   required_connection: "GPIO34 ve GPIO35 aynı 1.654 V Vmid noktasına bağlanmalı; ortak GND korunmalı."
   status: "GITHUBA_KAYDEDILDI; DERLEME SONUCU BEKLENIYOR"
+
+
+# 2026-10-30 — SCT bağlı değil: bias-only Vmid logu ve alt adım kapanışı
+step_bias_only_log_closure:
+  date: "2026-10-30"
+  sensor_connected: false
+  source_file: "esp32d2-logs.txt"
+  firmware:
+    device: "esp32d2"
+    esphome_version: "2026.9.1"
+    gpio34: "ADC1_CH6 RAW count + nominal estimate (count * 3.1 / 4095)"
+    gpio35: "ADC1_CH7 ADC voltage estimate; software offset/filter yok"
+    update_interval: "1s"
+  raw_zero_handling:
+    rule: "Kullanıcı talimatı: RAW sıfırları eşleme."
+    excluded_gpio34_zero_records: 14
+    excluded_stale_raw_voltage_zero_record: 1
+    valid_time_matched_pairs: 603
+    valid_interval: "15:37:46.199–15:47:48.186"
+  measured_statistics:
+    gpio34_raw_mean_count: 1846.80
+    gpio34_raw_std_count: 6.97
+    gpio34_raw_min_count: 1813
+    gpio34_raw_max_count: 1871
+    gpio34_nominal_voltage_mean_V: 1.398007
+    gpio34_nominal_voltage_std_V: 0.005303
+    gpio35_voltage_mean_V: 1.665138
+    gpio35_voltage_std_V: 0.006474
+    gpio35_voltage_min_V: 1.644
+    gpio35_voltage_max_V: 1.683
+    mean_channel_difference_V: 0.267131
+    pearson_r: -0.0201
+    spearman_rho: -0.0200
+  user_multimeter_report:
+    vmid_V: 1.654
+    synchronous_with_log: false
+  conclusion:
+    observed_baseline: "SCT bağlı değilken tüm bias+bağlantı+ADC ölçüm zincirinin gözlenen dalgalanması; GPIO35 std 6.474 mV, GPIO34 RAW std 6.97 count."
+    adc_only_noise_claim: false
+    raw_formula_calibrated: false
+    channels_simultaneous: false
+  substep_status: "KAPATILDI"
+  experiment_status: "E00A AÇIK — L78L33 3.3 V ayrı 10k/10k ölçüm bölücüsü koşulu, ham CSV ve zaman grafiği eksik."
+  next_step: "SCT bağlanmış fakat ölçülen hatta akım yok koşulunu ayrı deney olarak al; bu SCT'siz tabanla karşılaştır."
