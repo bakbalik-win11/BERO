@@ -1,3 +1,15 @@
+## 2026-10-31 — BREAD-TOASTER-001 / Log 63
+
+- Ekmek kızartma makinesi için, önceki TOASTER-001 tost makinesi kaydından ayrı BREAD-TOASTER-001 testi açıldı.
+- UNIT 3,30 A kullanıcı bildirimi; PZEM değil ve SCT loguyla tam zaman eşleşmesi belgelenmedi.
+- Log 63'te ilk açılış yayını dışlandıktan sonra 50 SCT yayını: ortalama 3,09636 A; medyan 3,094 A; min–maks 3,071–3,144 A; CV %0,433.
+- Kararlı Raw AC ortalaması 0,127843 V; SPS ortalaması 18.117.
+- UNIT'e göre aritmetik fark −%6,17; eşzamanlılık teyitsiz olduğundan doğruluk sonucu değil.
+- K=24.22 ve firmware değişmedi; Python/modelleme yapılmadı; PZEM yok.
+- [Test kaydı](test-loads/bread-toaster/README.md); [analiz](logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md); [seçilmiş kanıt](logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt).
+- Tam ham TXT GitHub'a aktarılmadı; kaynak dosya 32.064 bayt / 449 satır, SHA-256 `cf9254185e591650a06a990e5bc0f567ee499ba4ec541c4bb8748b132513f896`.
+- Test açık; tekrarlı log ve eşzamanlı UNIT/PZEM kararlı pencere bekleniyor.
+
 ## 2026-10-31 — Toplu yük karşılaştırması
 
 - [Tüm yükler ve karma yükler raporu](test-loads/COMPARATIVE-RESULTS-2026-10-31.md) oluşturuldu.
