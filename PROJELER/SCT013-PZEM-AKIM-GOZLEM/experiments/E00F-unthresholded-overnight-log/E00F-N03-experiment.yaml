@@ -62,7 +62,9 @@ conditions:
 recording:
   source_files: ["esp32d2-logs (14).txt", "esp32d2-logs (15).txt"]
   source_sha256: "c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e" # Yüklenen kaynak dosyanın tam SHA-256 değeri.
-  ct_windows: 262
+  ct_windows:
+    first_log: 262
+    second_log: 455
   slow_adc_updates_per_channel: 523
   calibration_id: null # Bu gözlemde yeni kalibrasyon yapılmadı.
   raw_adc_archive: false # DEBUG logu ham ADC örnek dizisini içermez.
@@ -75,20 +77,24 @@ HEDEF:
 LOG:
   user_reported_load_on_local: "10:32"
   log_start_local: "10:30:27.239"
-  log_end_local: "10:39:09.934"
-  ct_debug_window_count: 262
-  load_off_time_local: null
+  log_end_local: "10:45:59.928"
+  ct_debug_window_count: 455
+  user_reported_load_off_local: null
+  inferred_raw_ac_return_local: "10:39:27.837–10:39:29.819"
   physical_ct_position_confirmed: false
   full_raw_log_committed_to_repository: false
 
 SONUC:
-  status: "KISMİ GÖZLEM — TEST DEVAM EDİYOR"
+  status: "KISMİ GÖZLEM — KAPANIŞ SONRASI TABANA DÖNÜŞ GÖRÜLDÜ; TEST DEVAM EDİYOR"
   interpretation: >
     Yük açılmadan önce Raw AC medyanı 0.004 V; açılma sonrası tüm kesitte
-    0.019 V; 10:35–10:39 daha sakin bölümünde 0.019 V'tur. Bu, mevcut
-    ölçüm zincirinin yük açılmasına belirgin tepki verdiğini destekler.
+    0.019 V; 10:35–10:39 daha sakin bölümünde 0.019 V'tur. İkinci logda
+    10:39:27.837–10:39:29.819 arasında değer 0.006 V'tan 0.000 V'a iner;
+    10:40–10:46 medyanı 0.000 V'tur. Bu, yük kesildikten sonra sinyalin
+    yüksüz başlangıç davranışına döndüğünü destekler. Fiziksel kapatma
+    zamanı kullanıcı tarafından teyit edilmemiştir.
   limitations:
-    - "Yük kapatma ve yük kapalıya dönüş bölümü henüz kaydedilmedi."
+    - "Fiziksel ampul kapatma saati kullanıcı tarafından henüz teyit edilmedi; 10:39:27–10:39:29 geçişi logdan çıkarılmıştır."
     - "CT'nin fiziksel olarak hangi iletkeni ve kaç turu gördüğü doğrulanmadı."
     - "GPIO32/33/34/35 yavaş ADC okumaları CT pencereleriyle eşzamanlı değildir."
     - "N ve SPS bağımsız metrik değildir; SPS = N / 0.20 s."
