@@ -18,8 +18,8 @@
   1. **T009 — Modül/ESP devreye alma üst görevi:** DEVAM EDİYOR.
   2. **T010 — Modül 2 ESP32D1 üçlü SCT + tek ortak bias modülü:** AKTİF.
   3. **T007 — HA → PC veri aktarımı:** PZEM/SCT entity'leri çalışınca.
-  3. **T008 — PZEM/SCT kararlı alan eşleştirme/etiketleme:** T007 sonrasında.
-  4. **T006 — K=24.22 katsayı/model değerlendirmesi:** T008 sonrasında.
+  4. **T008 — PZEM/SCT kararlı alan eşleştirme/etiketleme:** T007 sonrasında.
+  5. **T006 — K=24.22 katsayı/model değerlendirmesi:** T008 sonrasında.
 
 ## Faz 2 geliştirme ilkesi
 
