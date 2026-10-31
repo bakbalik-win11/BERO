@@ -86,3 +86,12 @@ Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik par
 - **Kanıt ayrımı:** L78L33/TO-92 ve adet/yerleşim bilgisi kullanıcı beyanıdır. Paylaşılan ST L78L veri sayfası görseli aile özelliklerini gösterir; tek başına kullanılan parçanın üreticisini veya tam sipariş kodunu doğrulamaz.
 
 **Güncelleme:** Önceki tabloda regülatör modeli bilinmiyor olarak bırakılmıştı. Bu kayıtla model ve stok dağılımı kullanıcı tarafından verilen bilgiye göre güncellendi. Önceki belirsizlik notu yalnız kondansatörlerin adet/değerleri için geçerlidir.
+
+## 7. Konnektör ve bağlantı elemanları
+
+| Bileşen | Model / özellik | Adet | Yerleşim |
+|---|---|---:|---|
+| 3.5 mm stereo jack dişi, PCB tipi | **PJ-324M** | **15** | Stok; hangi kutu/kartta kaç adet kullanılacağı henüz belirtilmedi |
+
+**Kayıt dayanağı:** Kullanıcının ürün adı, modeli ve adet bildirimi ile paylaştığı ürün fotoğrafı. Fotoğraftaki parça PJ-324M tipi PCB montajlı 3.5 mm stereo dişi jack olarak envantere işlendi. Bu kayıt, 15 adedin tamamının akım trafosu kutusuna takılı olduğu anlamına gelmez.
+
