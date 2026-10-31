@@ -107,7 +107,7 @@ Kullanıcının sağladığı başlangıç kimliği ve yapılandırma:
 - `framework: esp-idf`
 - logger, API, OTA ve Wi-Fi.
 
-YAML şimdilik yalnız temel ESPHome iskeletidir. Henüz ADC sensörleri, SCT okuma/ct_clamp bileşenleri, bias sensörü, kalan GPIO atamaları, katsayı veya filtre kodu yoktur. Derleme, OTA yüklemesi veya gerçek cihaz testi yapılmamıştır.
+YAML, kullanıcının sağladığı temel ESPHome yapılandırması korunarak ilk ADC giriş kontrolü seviyesine genişletildi. GPIO32/33/34 için üç ayrı SCT ADC gerilim sensörü ve GPIO35 için ortak bias ADC gerilim sensörü tanımlıdır. Dört sensör 1 saniye aralıkla voltaj örneği yayınlar. Bu okumalar anlık ADC gerilimidir; RMS/akım hesabı, ct_clamp, katsayı veya filtre içermez. Kodun derlenmesi, OTA yüklemesi ve gerçek cihaz testi henüz yapılmamıştır.
 
 ## 7. Açık bağlantı ve tasarım noktaları
 
@@ -133,4 +133,4 @@ YAML şimdilik yalnız temel ESPHome iskeletidir. Henüz ADC sensörleri, SCT ok
 
 Modülün kapsamı ve ESP32D1 kimliği kaydedildi. Dört GPIO eşlemesi kullanıcı bildirimi olarak kaydedildi: GPIO32 (1. yuva sarı), GPIO33 (2. yuva yeşil), GPIO34 (3. yuva mavi), GPIO35 (ortak bias turuncu). İşlevsel bağlantı şeması bu bildirimlere göre depoya eklendi. Kart/shield terminal bağlantıları ve jack tip/ring/sleeve pinout'unun fiziksel teyidi, bias devresi düğümleri, besleme/USB güç yolu, sensör YAML kodu, derleme ve fiziksel test beklemededir.
 
-**Durum özeti:** Bağlantı planı dokümante edildi; modül tamamlanmış veya çalışır olarak işaretlenmemiştir.
+**Durum özeti:** Bağlantı planı ve ilk dört kanallı ADC YAML kodu depolandı. Kod henüz derlenmedi ve fiziksel test edilmedi; modül tamamlanmış veya çalışır olarak işaretlenmemiştir.
