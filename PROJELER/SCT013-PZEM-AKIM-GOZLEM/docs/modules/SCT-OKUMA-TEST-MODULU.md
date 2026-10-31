@@ -1,3 +1,13 @@
+## 2026-10-31 — SCT-1 / 100 W ct_clamp ve PENS karşılaştırması
+
+- Paylaşılan ESPHome logunda SCT-1 / GPIO32 için ct_clamp 200 ms pencereyle çalıştı; akım çıktıları alındı.
+- Son beş kararlı yayın 0,578–0,597 A aralığında, ortalama 0,589 A.
+- Kullanıcı aynı 100 W test koşulunda PENS değerini 0,427 A olarak bildirdi.
+- ESP32D1 ortalaması PENS'ten 0,162 A / yaklaşık %37,9 yüksek.
+- Bu fark nedeniyle nominal 30 A/V katsayısı henüz doğrulanmış sayılmaz. Tek ölçümden yeni katsayı uygulanmadı; SCT-1 CT modelinin 30 A/1 V olup olmadığı kanal bazında teyit edilmeli ve eşzamanlı tekrar yapılmalı.
+- Ayrıntı: [SCT-1 ct_clamp + PENS karşılaştırma kaydı](../../logs/module2/2026-10-31-sct1-100w-ct-clamp-comparison.txt).
+- **Durum:** Akım çıktısı logla desteklendi; kalibrasyon doğrulanmadı. T010 AKTİF.
+
 ## 2026-10-31 — Üç kanallı akım okuma yazılımı
 
 Modül 2 firmware'ine ESPHome `ct_clamp` bileşeniyle üç ayrı akım hesabı eklendi:
