@@ -161,3 +161,11 @@
 - Önceki LOAD-57W-001 bağımsız olarak açık kalır.
 - [Test kaydı](test-loads/mixed-57w-15w/README.md).
 
+
+## 2026-10-31 — IRON-001 kapatıldı; TOASTER-001 açıldı
+
+- IRON-001 iki mevcut logla sınırlı gözlem raporu olarak kapatıldı; tüm termostat çevrimlerinin doğrulandığı iddia edilmez.
+- Açık çevrimler: 9,2852 A (n=5) ve 9,3605 A (n=4). UNIT 10,16 A bildirimine göre aritmetik fark −%8,61 / −%7,87; eşzamanlılık teyitsiz.
+- Kapalı/düşük akım: 40 yayın; 27 sıfır, 13 adet 0,011–0,092 A. Yaklaşık 104 s kayıt boşluğu süre hesabına katılmadı.
+- TOASTER-001 tost makinesi testi AÇIK; fiziksel ölçüm bekleniyor. Güç ve referans cihazı bilinmiyor; Modül 2/K=24.22 korunacak.
+- [IRON-001 raporu](test-loads/iron/README.md); [TOASTER-001 planı](test-loads/toaster/README.md).
