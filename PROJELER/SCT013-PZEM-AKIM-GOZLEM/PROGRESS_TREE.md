@@ -30,15 +30,18 @@
 - 200 ms pencere, 2 s yayın ve K=24.22 önceki çalışan ölçüm yolunun tarihsel değerleridir.
 - Yeni üç SCT + bias Modül 2 bağlantısı ve yeni ESP pin eşlemesi henüz doğrulanmadı.
 
-## Modül 2 — SCT Okuma Test Modülü
+## Modül 2 — Üçlü SCT Okuma Modülü
 
-- **Kutu içeriği:** 3 adet SCT jack girişi, ESP32D2 assembly (ESP32 kartı + GPIO shield) ve bias mini breadboard.
-- **Kutu dışında:** 220 V AC giriş/çıkış, PZEM, SSR ve kutu içi 5 V güç kaynağı.
-- **Besleme:** Bias ayrı Bias Trafosu modülünden; ESP32 harici 5 V kaynaktan beslenecek. ESP kart modeli ve USB konektör tipi henüz kesinleştirilmedi.
-- **Sinyal düzeni:** Kullanıcı bildirimine göre kırmızı ortak bias hattı; mavi, yeşil ve sarı ayrı SCT sinyal hatları. Jack tip/ring/sleeve eşlemesi fiziksel olarak doğrulanmadı.
-- **ADC hedefi:** Tasarım adayı 3 bağımsız SCT sinyali + 1 ortak bias/Vmid izleme noktasıdır. Kesin GPIO/pin planı ve RAW/voltaj sensör tercihi Faz 2 uygulamasında netleştirilecektir.
-- **Durum:** Taslak; bağlantı ve firmware uygulanmadı/doğrulanmadı.
-- **Kararlar:** [ADR-012](docs/decisions/ADR-012-sct-test-module-scope.md), [ADR-013](docs/decisions/ADR-013-bias-adc-channel-selection.md).
+- **ESPHome kimliği:** `esp32d1` / `ESP32D1`; temel başlangıç YAML'ı eklendi.
+- **Kutu içeriği:** 3 SCT jack girişi, gömülü ESP32 kartı + GPIO shield, ortak bias mini breadboard.
+- **Besleme:** ESP32 harici 5 V DC ile beslenecek; USB portundan PC bağlantısına erişim bulunacak.
+- **Bias:** Tek kayıtlı bias devresi; tek ortak bias beslemesi üç SCT girişine dağıtılacak. Ortak bias düğümü tek ADC noktasından izlenecek.
+- **ADC hedefi:** 3 bağımsız SCT sinyali + 1 ortak bias izleme = 4 ADC giriş noktası.
+- **Bildirilen eşleştirmeler:** 1. dişi yuva sarı → GPIO32; 2. dişi yuva yeşil → GPIO33. Üçüncü SCT ve bias GPIO'su açık.
+- **Açık noktalar:** ESP32 kart/shield modeli, üçüncü SCT/bias GPIO'ları, jack pinout'u, USB ile harici 5 V'un birlikte kullanım koşulları, bias ADC RAW/voltaj gösterimi.
+- **Durum:** Tasarım tanımlandı; fiziksel bağlantı, YAML sensörleri, derleme ve donanım testi yapılmadı.
+- **Görev:** [T010](tasks/T010-module2-triple-sct-bringup.md).
+- **Karar:** [ADR-015](docs/decisions/ADR-015-module2-esp32d1-triple-sct.md).
 
 ## Dosya navigasyonu
 
