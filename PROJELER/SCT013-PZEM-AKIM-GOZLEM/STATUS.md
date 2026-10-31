@@ -67,7 +67,7 @@ Bu karşılaştırmalar önceki kullanıcı kayıtları/loglarıyla desteklenmek
 - Tek ortak bias devresi mini breadboard üzerinde; kayıtlı Bias Trafosu modülünden beslenecek.
 - ESP32 harici 5 V ile beslenecek; PC USB erişimi sağlanacak. İki kaynağın aynı anda kullanım koşulu kart güç yolu doğrulanmadan kabul edilmeyecek.
 - ESP32 kart/shield tam modeli, jack tip/ring/sleeve eşleşmeleri ve bias ADC RAW/voltaj gösterimi açık.
-- **LOG:** Kullanıcı kod iskeleti ve ilk iki kablo/GPIO eşleştirmesini bildirdi; YAML dosyası oluşturuldu. Derleme, yükleme veya fiziksel test yapılmadı.
+- **LOG:** Kullanıcı ESPHome temel iskeletini ve dört kablo/GPIO eşleştirmesini bildirdi; YAML dosyası oluşturuldu. Derleme, yükleme veya fiziksel test yapılmadı.
 - **DURUM:** T010 AKTİF — tasarım ve bağlantı hazırlığı. Modül çalışır/tamamlandı değildir.
 - Kayıtlar: [Modül 2](docs/modules/SCT-OKUMA-TEST-MODULU.md), [ADR-015](docs/decisions/ADR-015-module2-esp32d1-triple-sct.md), [T010](tasks/T010-module2-triple-sct-bringup.md).
 
