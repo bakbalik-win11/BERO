@@ -1,3 +1,9 @@
+## 2026-10-31 — TOASTER-001 UNIT referansı bildirildi
+
+- **UNIT:** 7,89 A — kullanıcı bildirimi. Bu değer TOASTER-001 için referans notu olarak kaydedildi; PZEM değildir.
+- **ZAMAN EŞLEŞMESİ:** Henüz SCT loguyla aynı kararlı pencereye ait olduğu doğrulanmadı. Şimdilik yalnız referans bildirimi olarak tutulur; sapma/doğruluk hesabı yapılmaz.
+- **TEST:** TOASTER-001 açık. [Test kaydı](test-loads/toaster/README.md).
+
 ## 2026-10-31 — IRON-001 kapatıldı / TOASTER-001 açıldı
 
 - **IRON-001 DURUM:** İki logluk gözlem raporu tamamlandı; bu sınırlı kapsamla kapatıldı. Tüm termostat çevrimleri/uzun dönem davranış doğrulandı iddiası yoktur.
