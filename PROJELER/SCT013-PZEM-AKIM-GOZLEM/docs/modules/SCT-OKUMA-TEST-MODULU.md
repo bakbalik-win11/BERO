@@ -39,10 +39,10 @@ Tek bir bias devresi kullanılacaktır. Kayıtlı bias devresi mini breadboard �
 |---|---|---|---|
 | 1. dişi yuva | Sarı | GPIO32 | Kullanıcı bildirimi |
 | 2. dişi yuva | Yeşil | GPIO33 | Kullanıcı bildirimi |
-| 3. dişi yuva | Henüz bildirilmedi | Henüz belirlenmedi | Açık |
-| Ortak bias ölçümü | Ortak bias hattı | Henüz belirlenmedi | Açık |
+| 3. dişi yuva | Mavi | GPIO34 | Kullanıcı bildirimi |
+| Ortak bias ölçümü | Turuncu | GPIO35 | Kullanıcı bildirimi |
 
-Önceki kullanıcı bildiriminde kırmızı hattın ortak bias, mavi/yeşil/sarı hatların ayrı SCT sinyalleri olduğu belirtilmişti. Buradaki GPIO32 ve GPIO33 eşleştirmeleri sonradan verilen yuva bazlı bildirimlerdir.
+Güncel yuva bazlı kullanıcı bildirimleri: 1. yuva sarı → GPIO32; 2. yuva yeşil → GPIO33; 3. yuva mavi → GPIO34; ortak bias ölçüm hattı turuncu → GPIO35. Önceki genel kablo rengi notunda kırmızı hattın ortak bias olduğu belirtilmişti; bu yeni bağlantı tarifinde bias ölçüm kablosu turuncu olarak bildirildiğinden, fiziksel kablo güzergâhı/renk teyidi montaj sırasında yapılmalıdır.
 
 Jack tip/ring/sleeve uçlarının tamamı henüz doğrulanmadı. Kablo rengi ve yuva sırası tek başına jak pinout'unun doğrulandığı anlamına gelmez.
 
@@ -63,7 +63,6 @@ YAML şimdilik yalnız temel ESPHome iskeletidir. Henüz ADC sensörleri, SCT ok
 
 - ESP32 kartının tam modeli ve revizyonu.
 - GPIO shield modeli ve terminal/pin eşleşmesi.
-- Üçüncü SCT sinyal GPIO'su ve ortak bias ADC GPIO'su.
 - Üç jack'in tip/ring/sleeve pinout'u.
 - Üçüncü girişin kablo rengi ve gerçek bağlantısı.
 - Bias mini breadboard üzerindeki elektrolitik kondansatörün değeri, polaritesi ve kesin bağlantısı.
@@ -83,6 +82,6 @@ YAML şimdilik yalnız temel ESPHome iskeletidir. Henüz ADC sensörleri, SCT ok
 
 ## 8. Doğrulama durumu
 
-Modülün kapsamı ve ESP32D1 kimliği kaydedildi. GPIO32 (1. yuva sarı) ve GPIO33 (2. yuva yeşil) kullanıcı bildirimi olarak kaydedildi. Diğer pinler, kablo eşleştirmeleri, kart modeli, besleme/USB güç yolu, sensör YAML kodu, derleme ve fiziksel test beklemededir.
+Modülün kapsamı ve ESP32D1 kimliği kaydedildi. GPIO32 (1. yuva sarı) ve GPIO33 (2. yuva yeşil) kullanıcı bildirimi olarak kaydedildi. Dört GPIO eşlemesi kullanıcı tarafından bildirildi; kart/shield terminal bağlantıları ve jack tip/ring/sleeve pinout'unun fiziksel teyidi, besleme/USB güç yolu, sensör YAML kodu, derleme ve fiziksel test beklemededir.
 
 **Durum özeti:** Tasarım açıldı; modül tamamlanmış veya çalışır olarak işaretlenmemiştir.
