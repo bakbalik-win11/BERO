@@ -164,3 +164,14 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - **KARAR:** Bu kararlı karma-yük oturumu UNIT referansına göre ±%4 kriterini sağladı. Bu, PZEM doğrulaması veya genel kalibrasyon garantisi değildir. Logda PZEM akım/PF/aktif güç ve fan olay işaretleri bulunmaz; geçiş süresi/tepki farkı çıkarılamaz.
 - **KOD SNAPSHOT:** [MIXED-LOAD-001 kapanış YAML](../../firmware/archive/MIXED-LOAD-001-2026-10-31-esp32d1-sct1.yaml). Snapshot aktif firmware ile aynı YAML içeriğidir; binary eşleşmesi iddia edilmez.
 - **ARŞİV:** [Tam ham log](../../logs/module2/2026-10-31-mixed-load-001-module2-sct1-full.txt); [analiz raporu](../../logs/module2/2026-10-31-mixed-load-001-module2-sct1-analysis.md).
+
+
+## 2026-10-31 — FAN-3-3T-001 açıldı: üç primer tur
+
+- **DURUM:** AÇIK; henüz fiziksel ölçüm/log yok.
+- **AMAÇ:** FAN-3 yükünde SCT013-030 sensörünü aynı tek yalıtılmış iletkenle üç tur kullanarak düşük akım Raw AC ve ct_clamp davranışını gözlemlemek.
+- **KOD:** `firmware/esp32d1.yaml` değiştirilmeyecek; K=24.22 korunacak. Ham akım göstergesi / 3 yalnız analizde deneysel normalizasyon olarak hesaplanacak.
+- **REFERANS:** En güncel kullanıcı bildirimi UNIT 0,142 A; eski arşivdeki 0,141 A tarihsel kayıt olarak kalır.
+- **ÖNCEKİ TEK TUR:** Raw AC ortalama 0,009273 V; SCT ortalama 0,224612 A.
+- **KURAL:** 0,30 A altı için ±%4 kabul/ret uygulanmaz.
+- **AYRINTI:** [FAN-3-3T-001 test planı](fan3-3turn/README.md).
