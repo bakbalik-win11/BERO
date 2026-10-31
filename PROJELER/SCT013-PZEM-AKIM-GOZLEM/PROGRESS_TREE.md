@@ -115,3 +115,11 @@
 - 0,30 A altı gözlem bölgesi; ±%4 kabul/ret uygulanmaz.
 - SCT logu ve fiziksel ampul ayrıntıları bekleniyor.
 - [Test kaydı](test-loads/42w-bulb/README.md).
+
+## 2026-10-31 — LOAD-42W-001 / Log 57 gözlemi
+
+- 42 W test yükü altında 96 SCT-1 yayını analiz edildi (21:09:28–21:12:38).
+- SCT ortalaması 0,252438 A; medyan 0,251 A; aralık 0,221–0,295 A; CV %4,37.
+- Raw AC ortalaması 0,0104248 V; ortak bias 1,663469 V.
+- UNIT 0,174 A ile aynı zamanlı kararlı pencere doğrulanmadığından +%45,08 fark yalnız betimleyici; doğruluk sonucu değil.
+- Test düşük akım gözlemi olarak açık. [Test kaydı](test-loads/42w-bulb/README.md); [analiz](logs/module2/2026-10-31-load-42w-001-log57-analysis.md).
