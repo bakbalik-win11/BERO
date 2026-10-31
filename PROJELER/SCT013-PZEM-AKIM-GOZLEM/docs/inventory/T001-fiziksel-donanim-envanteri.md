@@ -55,7 +55,7 @@ Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik par
 |---|---|---|
 | İzolasyon trafosu | **RN130421**, 230 V AC / 6 V AC, 2.0 VA, EI 30/15.5, PCB tipi | Kullanıcının paylaştığı üretici teknik dokümanı |
 | Köprü doğrultucu | **KBU610** | Kullanıcı bildirimi |
-| Filtre kondansatörleri | Mevcut; adet ve değerleri henüz belirlenmedi | Kullanıcı bildirimi |
+| Filtre kondansatörü | **2200 µF / 35 V, 16×25 mm — toplam 3 adet; 1 adet akım trafosu kutusunda, 2 adet stokta** | Kullanıcı bildirimi |
 | 3.3 V regülatör entegresi | **L78L33, TO-92 — toplam 3 adet; 1 adet akım trafosu kutusunda takılı, 2 adet yedek stokta** | Kullanıcı model/adet bildirimi; L78L ailesi üretici veri sayfası görseli |
 
 ### RN130421 üretici dokümanı bilgileri
@@ -95,3 +95,15 @@ Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik par
 
 **Kayıt dayanağı:** Kullanıcının ürün adı, modeli ve adet bildirimi ile paylaştığı ürün fotoğrafı. Fotoğraftaki parça PJ-324M tipi PCB montajlı 3.5 mm stereo dişi jack olarak envantere işlendi. Bu kayıt, 15 adedin tamamının akım trafosu kutusuna takılı olduğu anlamına gelmez.
 
+
+### 2200 µF filtre kondansatörü — model ve stok ayrıntısı
+
+- **Kapasite:** 2200 µF.
+- **Anma gerilimi:** 35 V.
+- **Boyut:** 16 × 25 mm.
+- **Toplam adet:** 3.
+- **Akım trafosu kutusundaki:** 1 adet.
+- **Serbest stok:** 2 adet.
+- **Kayıt dayanağı:** Kullanıcının model/özellik/adet ve yerleşim bildirimi.
+
+**Not:** Kondansatörün kutudaki görevi filtreleme olarak kaydedilmiştir; devredeki gerçek bağlantı noktası ve polaritesi henüz fiziksel olarak izlenip doğrulanmadı.
