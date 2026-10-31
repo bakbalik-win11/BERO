@@ -1,45 +1,52 @@
 # ============================================================
 # BERO MODUL 2 — ESP32D1
-# TEK SCT AKIM OKUMASI + ORTAK BIAS IZLEME
-# SURUM: TEK KANAL ct_clamp (SCT-3 / GPIO34)
-# DURUM: YAPILANDIRILDI; YENI DERLEME VE TEK KANAL TESTI BEKLIYOR
+# DORT ADC GIRISI / UZUN SURELI GERILIM GOZLEM KODU
+# SURUM: 1 SANIYE ARALIKLI ADC LOG
+# DURUM: ESKI DORTLU ADC LOG SURUMU GERI YUKLENDI;
+#        YENI DERLEME VE MODUL TESTI BEKLIYOR
 # ============================================================
 #
 # AMAC:
-# - Tek seferde yalniz bir SCT kanalini okumak.
-# - Mevcut test duzeninde SCT-3 sinyalini GPIO34 / ADC1_CH6
-#   uzerinden ESPHome ct_clamp ile 200 ms pencerede olcmek.
-# - Ortak bias seviyesini GPIO35 / ADC1_CH7 uzerinden izlemek.
-# - Uc fiziksel SCT soketini ve diger GPIO baglantilarini degistirmemek.
+# - Uc SCT sinyal girisini ve ortak bias hattini ayni anda izlemek.
+# - SCT-1 bagliyken GPIO32 davranisini uzun sureli kaydetmek.
+# - GPIO33, GPIO34 ve GPIO35 degerlerini ayni zaman akisinda
+#   tani amaciyla loglamak.
+# - Uzun sureli kayitta ADC gerilimlerinin degisimini gozlemlemek.
 #
 # BAGLANTILAR (KULLANICI BILDIRIMI):
-# - Aktif SCT: 3. disi yuva / mavi sinyal -> GPIO34 (ADC1_CH6)
-# - Ortak bias: turuncu sinyal -> GPIO35 (ADC1_CH7)
-# - Pasif birakilan SCT hatlari: GPIO32 (sari) ve GPIO33 (yesil).
-#   Bu pinler donanimda kalir; bu firmware'de okunmaz.
+# - SCT-1 / sari sinyal       -> GPIO32 (ADC1_CH4)
+# - SCT-2 / yesil sinyal      -> GPIO33 (ADC1_CH5)
+# - SCT-3 / mavi sinyal       -> GPIO34 (ADC1_CH6)
+# - Ortak bias / turuncu      -> GPIO35 (ADC1_CH7)
 #
-# AKIM DONUSUMU:
-# - Baslangic varsayimi: SCT-013-030 nominal 30 A / 1 V.
-# - 1.0 V RMS -> 30.0 A (30 A/V).
-# - Katsayi saha kalibrasyonu degildir; CT modeli teyidi ve
-#   referans cihazla eszamanli karsilastirma gerekir.
+# TEST DUZENI:
+# - Bu testte SCT-1 fiziksel olarak bagli olacak.
+# - SCT-2 ve SCT-3 bagli degilse GPIO33/GPIO34 okumasi bosta
+#   kalan ADC girisi olarak degerlendirilecek; sensor verisi sayilmaz.
+# - GPIO35 ortak bias gerilimini izler.
 #
 # BEKLENEN:
-# - HA'da tek akim entity'si: ESP32D1 SCT 3 Current (A).
-# - HA'da ortak bias entity'si: ESP32D1 Common Bias ADC Voltage (V).
-# - ESPHome logunda sct_current etiketiyle yalniz SCT-3 akimi.
-# - ADC gerilim tanisi yalniz aktif GPIO34 ve ortak GPIO35 icin.
+# - Home Assistant'ta dort ADC gerilim sensoru gorunur.
+# - Her sensor 1 saniyede bir ADC gerilimi yayinlar.
+# - Her ornek ESPHome loguna kanal adi, GPIO ve voltaj ile yazilir.
+# - GPIO35 ortak bias degeri de her saniye logda gorunur.
 #
-# SINIRLAR:
-# - Bu kod guc, enerji, PF, harmonik, FFT veya THD hesaplamaz.
-# - Tek kanal yapisi, uc ct_clamp sensorunun zamanlama/yuk etkisini
-#   ayirmak icin kontrollu test surumudur; kalite artisi henuz kanitli degil.
+# ONEMLI SINIR:
+# - Bu kod anlik ADC gerilimi okur; RMS veya akim hesaplamaz.
+# - 1 saniyelik ADC yayini 50 Hz dalga seklini yakalamaz.
+# - Bu uzun kayit, gerilim/bias davranisini ve yuk degisimi
+#   sirasindaki yavas gozlemi incelemek icindir.
+# - ct_clamp, akim katsayisi veya kalibrasyon filtresi yoktur.
 #
 # GUVENLIK:
-# - ADC pinlerine 5 V uygulanmaz; analog tepe gerilimi ADC giris
-#   sinirlari icinde kalmalidir.
-# - SCT yalniz tek yalıtılmış iletkeni kavrar; faz+nötr birlikte degil.
-# - SCT/kanal degisikligi yuk enerjisizken yapilir.
+# - ADC pinlerine 5 V uygulanmaz.
+# - Analog dugum gerilimleri ESP32 ADC giris sinirlari icinde
+#   olmalidir.
+# - SCT yalniz tek yalıtılmış iletkeni kavrar; faz ve notr birlikte
+#   SCT icinden gecirilmez.
+# - SCT/kanal baglantisi yuk enerjisizken degistirilir.
+# - Harici 5 V ve PC USB ayni anda, kartin guc yolu dogrulanmadan
+#   baglanmaz.
 # ============================================================
 
 esphome:
@@ -65,9 +72,39 @@ wifi:
   password: !secret wifi_password
 
 sensor:
-  # Aktif SCT-3 ADC kaynak sensoru.
-  # ct_clamp, sample() metodunu 200 ms pencere boyunca hizli okur.
-  # 1 s aralikli ADC yayini yalniz HA/log tani amaciyla korunur.
+  # SCT-1: sari kablo / GPIO32. Anlik ADC voltaji.
+  - platform: adc
+    pin: GPIO32
+    name: "ESP32D1 SCT 1 ADC Voltage"
+    id: sct_1_adc_voltage
+    attenuation: 12db
+    update_interval: 1s
+    unit_of_measurement: "V"
+    accuracy_decimals: 3
+    device_class: voltage
+    state_class: measurement
+    on_value:
+      then:
+        - lambda: |-
+            ESP_LOGI("sct_test", "SCT-1 GPIO32 ADC = %.3f V", x);
+
+  # SCT-2: yesil kablo / GPIO33. Anlik ADC voltaji.
+  - platform: adc
+    pin: GPIO33
+    name: "ESP32D1 SCT 2 ADC Voltage"
+    id: sct_2_adc_voltage
+    attenuation: 12db
+    update_interval: 1s
+    unit_of_measurement: "V"
+    accuracy_decimals: 3
+    device_class: voltage
+    state_class: measurement
+    on_value:
+      then:
+        - lambda: |-
+            ESP_LOGI("sct_test", "SCT-2 GPIO33 ADC = %.3f V", x);
+
+  # SCT-3: mavi kablo / GPIO34. Anlik ADC voltaji.
   - platform: adc
     pin: GPIO34
     name: "ESP32D1 SCT 3 ADC Voltage"
@@ -83,7 +120,7 @@ sensor:
         - lambda: |-
             ESP_LOGI("sct_test", "SCT-3 GPIO34 ADC = %.3f V", x);
 
-  # Ortak bias izleme. Akim kanali degildir.
+  # Ortak bias: turuncu kablo / GPIO35. Her saniye loga yazilir.
   - platform: adc
     pin: GPIO35
     name: "ESP32D1 Common Bias ADC Voltage"
@@ -98,23 +135,3 @@ sensor:
       then:
         - lambda: |-
             ESP_LOGI("sct_test", "COMMON BIAS GPIO35 ADC = %.3f V", x);
-
-  # Tek aktif akim hesaplayicisi: SCT-3 / GPIO34.
-  - platform: ct_clamp
-    sensor: sct_3_adc_voltage
-    name: "ESP32D1 SCT 3 Current"
-    id: sct_3_current
-    sample_duration: 200ms
-    update_interval: 5s
-    unit_of_measurement: "A"
-    accuracy_decimals: 3
-    device_class: current
-    state_class: measurement
-    filters:
-      - calibrate_linear:
-          - 0.0 -> 0.0
-          - 1.0 -> 30.0
-    on_value:
-      then:
-        - lambda: |-
-            ESP_LOGI("sct_current", "SCT-3 GPIO34 CURRENT = %.3f A (nominal 30A/V)", x);
