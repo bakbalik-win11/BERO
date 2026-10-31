@@ -18,6 +18,7 @@ Bu bölüm, aynı fiziksel test yüküyle farklı ESP kartı, modül, SCT kanal�
 | Test yükü | Ana kayıt |
 |---|---|
 | 100 W akkor ampul | [100 W akkor — karşılaştırmalı ölçüm tablosu](100w-incandescent/README.md) |
+| 150 W akkor ampul | [150 W akkor — karşılaştırmalı ölçüm tablosu](150w-incandescent/README.md) |
 
 ## Her ölçüm satırında tutulacak alanlar
 
