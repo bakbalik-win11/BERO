@@ -1,3 +1,15 @@
+## 2026-11-01 — Faz 2 veri hattı / düşük akım planı depo kaydı
+
+- **DURUM:** Kullanıcının sunduğu Faz 2 uygulama taslağı repo kararlarıyla karşılaştırıldı ve düzeltilmiş yürütme planı depoya eklendi.
+- **HEDEF VE KABUL ÖLÇÜTÜ:** Planı mevcut iki faz yapısına, T009→T010→T007→T008→T006 sırasına, kanıt etiketlerine ve düşük akım araştırma sınırlarına uyarlamak; firmware/ölçüm yapılmış gibi sunmamak.
+- **DEPO OKUMASI:** Proje AGENTS.md, STATUS.md, ROADMAP.md, README.md, SESSION_PROTOCOL.md, docs/open-questions.md, T009/T010 görev kayıtları, düşük akım teknik incelemesi, H1–H19 hipotez sicili ve E10 protokolü incelendi. Çalışma öncesi main SHA: `8972d440d91461ea248668dbd5ada647d46278a0`.
+- **YAPILAN:** `docs/plans/2026-11-01-phase2-data-and-low-current-execution-plan.md` oluşturuldu. STATUS.md ve ROADMAP.md plana bağlandı.
+- **PLAN DÜZELTMELERİ:** T010 tamamlanmadan T007/T008/T006'ya geçiş yapılmayacak. 0.4 A fiziksel alt sınır olarak kabul edilmiyor (H17 kanıt yok). 0.35 A filtresi eski E00F/ESP32D2 yapılandırmasına ait; güncel Modül 2'de olduğu doğrulanmadı. Düşük akımın SNR/bias/ADC/dedup/nümerik hesap kaynaklarından hangisiyle ilgili olduğu henüz ayrıştırılmadı. Bölgesel model kararı ancak eşleşmiş, tekrarlanabilir veriyle değerlendirilecek.
+- **KORUNANLAR:** K=24.22, firmware, YAML, pinler, cihaz kimliği ve E10 200→500→1000→200 ms protokolü değiştirilmedi. E10 PLANLANDI; fiziksel deney yapılmadı.
+- **DOĞRULAMA:** Yeni plan, STATUS ve ROADMAP yazımları GitHub üzerinden yapıldı. Dosyaların geri okuma/link kontrolü bu kayıt sonrasında yapıldı.
+- **AÇIK KALANLAR:** T010 donanım/kanal kabul adımları; E10; uygun düğümler hazır olduğunda T007; sonra T008 ve T006.
+- **SONRAKİ ADIM:** T010 kapsamındaki sıradaki kontrollü Modül 2 kanal çalışması. Bu planlama kaydı bir test/kalibrasyon sonucu değildir.
+- **KANIT:** [Plan](../docs/plans/2026-11-01-phase2-data-and-low-current-execution-plan.md), [STATUS](../STATUS.md), [ROADMAP](../ROADMAP.md), [T010](../tasks/T010-module2-triple-sct-bringup.md).
 ## 2026-11-01 — Oturum kapanışı / BERO işi yapılmadı
 
 - **DURUM:** Kapanış kaydı; bu sohbet kapsamında BERO teknik uygulaması yapılmadı.
