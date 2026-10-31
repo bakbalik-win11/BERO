@@ -1075,3 +1075,12 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **AÇIK SINIR:** CT'nin hangi tekil primer iletkeni kaç tur çevrelediği henüz doğrulanmadı. Ham iki TXT dosyası Git'e aktarılmadı; hash ve analiz raporları kayıtlıdır. Bu nedenle E00F-N03 tamamlandı olarak işaretlenmedi.
 - **GÜNCELLEMELER:** N03 deney YAML'ına `user_reported_load_off_local: "10:39"` eklendi; N03 gözlem raporu, STATUS.md ve PROGRESS_TREE.md kullanıcı teyidine göre güncellendi.
 - **SONRAKİ ADIM:** CT'nin fiziksel iletken/tur düzenini doğrula; ardından N03 kabul ölçütleri üzerinden deney durumunu gözden geçir.
+
+
+## 2026-10-31 — E00F-N03 CT iletken ve tur bilgisi kullanıcı tarafından teyit edildi
+
+- **KULLANICI BEYANI:** SCT içinden yalnız faz iletkeni geçiyor; iletken CT penceresinden tek geçiş yapıyor (1 tur).
+- **TEKNİK KAYIT:** Deney YAML'ında `primary_conductor: phase`, `primary_turns: 1`, `physical_ct_position_confirmed: true` olarak kaydedildi. Bu teyit kullanıcı beyanıdır; bağımsız fiziksel inceleme değildir.
+- **YORUM:** Faz ve nötrün birlikte CT içinden geçirilmesi söz konusu değil. Önceki “primer iletken/tur bilinmiyor” sınırlaması kullanıcı teyidiyle giderildi.
+- **DİĞER SINIRLAR:** PZEM ile eşzamanlı referans karşılaştırması ve kalibrasyon yapılmadı; ham ADC örnek dizisi mevcut değil. Dolayısıyla aç-kapa gözlemi, akım doğruluğu veya ±%4 kabulü anlamına gelmez.
+- **GÜNCELLEMELER:** E00F-N03 deney YAML'ı, gözlem raporu, STATUS.md ve PROGRESS_TREE.md güncellendi.
