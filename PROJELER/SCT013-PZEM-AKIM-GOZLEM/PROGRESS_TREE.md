@@ -5,7 +5,7 @@
 - **KARARLI BÖLGE:** İlk 119 yayın, 21:52:30.185–21:56:26.262; ortalama 7,1900 A, medyan 7,188 A, min–maks 7,135–7,264 A, SD 0,0247 A, CV %0,344.
 - **REFERANS SINIRI:** UNIT 7,89 A kullanıcı bildirimi; zaman eşleşmesi doğrulanmadığından −%8,87 yalnız aritmetik farktır. PZEM yok.
 - **GEÇİŞ:** Son yayın 6,096 A; tek örnek, termostat OFF kanıtı değil.
-- **SONUÇ:** K=24.22 sabit; test açık. [Test kaydı](test-loads/toaster/README.md), [analiz](logs/module2/2026-10-31-toaster-001-module2-sct1-analysis.md), [ham log](logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt).
+- **SONUÇ:** K=24.22 sabit; test açık. [Test kaydı](test-loads/toaster/README.md), [analiz](logs/module2/2026-10-31-toaster-001-module2-sct1-log62-analysis.md), [ham log](logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt).
 
 ## 2026-10-31 — MIXED-LOAD-57W-15W-001 / Log 59
 
