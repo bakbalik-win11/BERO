@@ -1,3 +1,13 @@
+## 2026-10-31 — Modül 2 için 150 W akkor test yükü kaydı açıldı
+
+- **KULLANICI PLANI:** Masaüstü harici besleme ile daha uzun 100 W SCT-1 logu paylaşılacak; ardından Modül 2 testinde 150 W akkor ampule geçilecek.
+- **YENİ YÜK KAYDI:** [150 W akkor karşılaştırmalı test dosyası](test-loads/150w-incandescent/README.md) oluşturuldu.
+- **ENVANTER:** [Test yükleri ana listesine](test-loads/README.md) 150 W akkor satırı eklendi. 100 W ve 150 W yükleri ayrı klasörlerde ve ayrı tablolarla izlenir.
+- **TARİHSEL REFERANS:** ROADMAP/Faz 1 arşivinde 150 W için 0,616 A referans ve 0,615 A kod sonucu (yaklaşık −%0,2) bulunuyor. Bu sonuç tarihsel Faz 1 kaydıdır; yeni Modül 2 testinin sonucu veya doğrulanmış hedefi değildir.
+- **YENİ TEST PLANI:** İlk oturum SCT-1 / sarı / GPIO32; ortak bias GPIO35. Masaüstü besleme, firmware sürümü, zaman aralığı, ham log ve mümkünse eşzamanlı UNIT/PZEM değerleri ayrı kaydedilecek.
+- **DURUM:** 150 W fiziksel test henüz yapılmadı. T010 aktif; daha uzun 100 W tekrar logu da bekleniyor.
+- **GÖREV:** [T010 Modül 2](tasks/T010-module2-triple-sct-bringup.md) içine 150 W test planı eklendi.
+
 ## 2026-10-31 — LOAD-100W-004 masaüstü güç kaynağı sonrası SCT-1 testi
 
 - **KULLANICI BİLDİRİMİ:** ESP32D1 beslemesi PC USB'den masaüstü harici güç kaynağına alındı; 100 W akkor test tekrarlanmıştır.
