@@ -1,12 +1,15 @@
-## 2026-10-31 — MIXED-LOAD-57W-15W-001 açıldı: 57 W + 15 W ampul
+## 2026-10-31 — MIXED-LOAD-57W-15W-001 / Log 59 analiz edildi
 
-- **DURUM:** AÇIK — yeni karma yük koşulu; SCT logu bekleniyor. Önceki LOAD-57W-001 ayrı test olarak açık kalır.
+- **DURUM:** AÇIK — Log 59 arşivlendi ve analiz edildi; ±%5,6 bandı hedefi karşılanmadı. Önceki LOAD-57W-001 ayrı test olarak açık kalır.
 - **YÜK:** 57 W akkor ampul + 15 W ampul (15 W ampul tipi henüz belirtilmedi); etiket güçleri toplamı 72 W.
-- **UNIT:** 0,303 A kullanıcı bildirimi; ölçüm zamanı ve SCT ile aynı kararlı pencere olduğu henüz teyit edilmedi; PZEM değildir.
+- **UNIT:** 0,303 A; kullanıcı, test boyunca sabit kaldığını ve değişirse bildireceğini belirtti (KULLANICI BİLDİRİMİ). PZEM değildir.
 - **DÜZENEK:** Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp 200 ms/2 s, K=24.22; yazılımsal sıfır eşiği yok.
-- **DEĞERLENDİRME:** UNIT 0,303 A, 0,30 A BERO gözlem sınırının hemen üzerinde. Eşleşmiş kararlı pencere varsa ±%4 kıyası yapılabilir; altındaki yayınlar ayrıca düşük akım gözlemi olarak ele alınır. UNIT ve varsa PZEM ayrı tutulur.
+- **DEĞERLENDİRME:** Bu test için kullanıcı toleransı ±%5,6; hesap bandı 0,286032–0,319968 A. Log 59'da 31/179 (%17,32) yayın bant içinde, 148/179 (%82,68) üstünde; ortalama 0,329553 A (+%8,76), medyan 0,328 A (+%8,25). 0,250 A ve altında yayın yok (%0). UNIT ve PZEM ayrı tutulur.
 - **DOSYA:** [MIXED-LOAD-57W-15W-001](test-loads/mixed-57w-15w/README.md).
-- **SONRAKİ:** SCT logunu ve UNIT ölçüm zamanını kaydet; test koşulu değişmeden kararlı pencereyi gözle. Önceki LOAD-57W-001 kapatılmayacak.
+- **LOG:** `esp32d1-logs (59).txt`; 99.807 bayt / 1.349 satır; SHA-256 `6e7dea5c6c8991a6d4f915ebd6182f3de82b151d5726066700840f21a7d7124a`; 21:20:18.203–21:26:14.218 (+03:00), 179 SCT yayını. Raw AC ortalama 0,013604 V; bias GPIO35 1,663504 V; GPIO32 ADC 1,663869 V; SPS ortalama 17.586.
+- **ARŞİV:** [Analiz](logs/module2/2026-10-31-mixed-load-57w-15w-001-module2-sct1-analysis.md); [tam ham log](logs/module2/2026-10-31-mixed-load-57w-15w-001-module2-sct1-full.txt); [test kaydı](test-loads/mixed-57w-15w/README.md).
+- **KARAR:** ±%5,6 bandı yayın bazında yalnız %17,32 oranında karşılandı; test bu tolerans kriterine göre başarılı değil. 0,250 A altına düşülmemesi ayrı ve olumlu alt eşik gözlemidir. Firmware ve K=24.22 değiştirilmedi.
+- **SONRAKİ:** Test açık kalır; 15 W ampul tipi henüz bilinmiyor. Önceki LOAD-57W-001 kapatılmayacak.
 
 ## 2026-10-31 — LOAD-57W-001 / Log 58 analiz edildi
 
