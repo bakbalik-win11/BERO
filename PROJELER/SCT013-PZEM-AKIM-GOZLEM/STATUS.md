@@ -1,3 +1,12 @@
+## 2026-10-31 — Modül 2 bias ADC kanal kararı (ADR-013)
+
+- **KARAR:** Yeni Modül 2 bağlantı tasarımında üç bağımsız SCT sinyali + tek bias ölçüm noktası için dört ADC girişi ayrılacak. Bias kanalı voltaj olarak okunacak (`raw: false`); bias için ikinci bir fiziksel RAW GPIO ayrılmayacak.
+- **GEREKÇE — GECE KAYDI:** 2026-10-30 23:15–2026-10-31 10:07:48.897 Türkiye saati aralığındaki 10 saat 52 dakika 48.897 saniyelik HA geçmişinde bias voltaj medyanı 1.653 V, ortalaması 1.6516 V, SD 7.94 mV; bias RAW medyanı 1,840 count, ortalaması 1,839.01 count, SD 9.77 count. İki entity aynı bias noktasını farklı gösterimlerle izliyor.
+- **YORUM SINIRI:** Bu kayıt bias noktasının gece boyunca kararlı davrandığını destekler; voltaj ve RAW serilerinin ikisini birden yeni kutuda ayrı GPIO ile sürdürmeyi zorunlu kılmaz. Tekil uç değerler ham geçmişte korunur.
+- **FİRMWARE SINIRI:** Mevcut `firmware/esp32d2.yaml` ve çalışan E00F baseline değiştirilmedi. GPIO34/35'in yeni donanımda yeniden görevlendirilmesi ancak ayrı pin/firmware incelemesiyle yapılacak.
+- **DURUM:** Tasarım kararı kaydedildi; yeni üç-kanal bağlantı, pin eşlemesi, USB bağlantısı ve firmware henüz uygulanmadı veya doğrulanmadı.
+- **KARAR KAYDI:** [ADR-013](docs/decisions/ADR-013-bias-adc-channel-selection.md); [Modül 2](docs/modules/SCT-OKUMA-TEST-MODULU.md).
+
 ## 2026-10-31 — Modül 2 kutu kapsamı sadeleştirildi
 
 - **KARAR:** Kutu yalnızca üç SCT girişi, ESP32D2 ve bias mini breadboard içerecek.
