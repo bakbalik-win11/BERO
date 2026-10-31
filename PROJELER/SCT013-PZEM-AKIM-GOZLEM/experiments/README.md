@@ -37,7 +37,10 @@ Aynı fiziksel yükte farklı ESP/modül/kod düzenekleriyle alınan sonuçlar, 
 
 ## Faz 2 — Yeni deneyler
 
-Şu anda yeni Faz 2 deneyi planlanmış değildir. Önce [T007 veri aktarımı](../tasks/T007-python-architecture.md) yapılacaktır. Gerçek verinin ortaya çıkardığı somut bir soru deney gerektirirse yeni numara ve yeni protokolle açılır.
+- **[E10 — ESPHome ct_clamp örnekleme penceresi süresi gözlemi](E10-ct-clamp-window-duration/README.md): PLANLANDI.** T010 / Modül 2 SCT-1 altında 200 → 500 → 1000 → 200 ms geri dönüş karşılaştırması. Yalnızca sample_duration değişecek; update_interval: 2s ve K=24.22 sabit. Bu deney kalibrasyon değildir. [Sonuç defteri](E10-ct-clamp-window-duration/results.md).
+- E09 — PF koşulu ile SCT/PZEM akım karşılaştırması ayrı uzun vadeli plandır; E10 ile birleştirilmez.
+
+Faz 2 görev sırası T010 → T007 → T008 → T006 olarak kalır. E10, T010 altındaki somut ölçüm sorusudur; görev sırasını değiştirmez.
 
 ## Kayıt standardı
 
