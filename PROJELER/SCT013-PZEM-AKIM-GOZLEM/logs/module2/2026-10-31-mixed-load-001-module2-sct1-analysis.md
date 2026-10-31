@@ -6,7 +6,7 @@
 
 ## Kaynak ve duzenek
 
-- Kullanici kaynak dosyasi: `esp32d1-logs (44).txt` / yuklenen ayni icerik: `Yapıştırılan metin(20261031-150001).txt`
+- Kullanici kaynak dosyasi: `esp32d1-logs (44).txt`
 - Kaynak SHA-256: `f6f3434e540402e7d9a7d63fb38aed0f7dc660b96cb3ef14e00ad6affc07e910`
 - Kaynak boyutu: 77,072 bayt.
 - ESPHome 2026.10.1; ESP32D1 / Modul 2; SCT-1 sari GPIO32 ADC1_CH4; ortak bias turuncu GPIO35 ADC1_CH7.
