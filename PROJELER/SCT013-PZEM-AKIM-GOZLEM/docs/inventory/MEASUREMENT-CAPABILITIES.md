@@ -92,6 +92,12 @@ Bu katalog yalnız cihaz listesi değildir. Her ölçüm talimatı; cihaz + mod/
 
 Kaynak: [Microchip MCP3204/3208 resmi veri sayfası](https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/21298e.pdf). Bu değerler entegre içindir; kullanıcının elindeki breakout/modül üzerindeki regülatör, referans kaynağı, filtre ve bağlantı kalitesi ayrıca doğrulanmalıdır.
 
+**Mimari fark — ESP32 dahili ADC'ye karşı MCP3208:**
+- ESP32 dahili ADC mimarisinde analog giriş ESP32'nin kendi ADC çevre birimine gider; dönüşüm ve okuma ESP32 içinde yapılır.
+- MCP3208 mimarisinde analog sinyal harici MCP3208 entegresine girer. ESP32, SPI master olarak saat ve komut/veri alışverişini yönetir; MCP3208 SPI üzerinden dijital dönüşüm sonucunu ESP32'ye iletir.
+- Böylece analog dönüşüm ESP32 dışında gerçekleşir; ancak SPI kablolaması, ortak GND, VREF, analog giriş aralığı, kanal seçimi ve yazılım zamanlaması yeni tasarım değişkenleri haline gelir.
+- Bu mimari farklılığı tek başına daha iyi ölçüm garantisi değildir; BERO'da aynı analog sinyal üzerinde kontrollü karşılaştırmayla değerlendirilmelidir.
+
 **BERO'da teşhis amacıyla kullanılabilecek kontroller:**
 - Aynı düşük gerilim analog noktasını ESP32 dahili ADC ve MCP3208 ile karşılaştırarak ADC kaynaklı sapma, gürültü veya kararsızlık olup olmadığını araştırmak.
 - SCT analog çıkışının bias çevresindeki davranışını, kanal bazında sayısal örnekler alarak incelemek.
@@ -106,7 +112,7 @@ Kaynak: [Microchip MCP3204/3208 resmi veri sayfası](https://ww1.microchip.com/d
 - MCP3208 analog girişine VREF/VDD sınırlarını aşan veya negatif gerilim uygulanmaz. SCT devresinin bias'lı sinyali, ortak GND ve giriş aralığı ölçülmeden doğrudan bağlanmaz.
 - Bu modülün satın alınmış olması, MCP3208'in mevcut ESP32D2 YAML'ına eklendiği veya firmware'de kullanıldığı anlamına gelmez. Firmware/pin planı değişikliği ancak ayrı test ve karar kaydıyla yapılır.
 
-**İlk teşhis yaklaşımı — henüz uygulanmadı:** Önce tam MCP3208 kartının fotoğrafı ve pin etiketleri, entegre parça son eki, VREF bağlantısı ve kart üzerindeki ek devreler belirlenir. Ardından aynı güvenli düşük gerilim analog nokta iki ADC ile aynı koşulda ölçülür; örnek sayısı, örnekleme hızı, ortalama/medyan, standart sapma ve uç değerler karşılaştırılır. Sonuçlar gerçek logla kaydedilmeden ADC üstünlüğü veya arızası ilan edilmez.
+**İlk mimari/teşhis incelemesi — henüz uygulanmadı:** Önce tam MCP3208 kartının fotoğrafı ve pin etiketleri, entegre parça son eki, VREF bağlantısı ve kart üzerindeki ek devreler belirlenir. Ardından aynı güvenli düşük gerilim analog nokta iki ADC ile aynı koşulda ölçülür; örnek sayısı, örnekleme hızı, ortalama/medyan, standart sapma ve uç değerler karşılaştırılır. Sonuçlar gerçek logla kaydedilmeden ADC üstünlüğü veya arızası ilan edilmez.
 
 ## 2. Ölçüm talimatı standardı
 
