@@ -326,4 +326,4 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - 119 yayınlık kararlı SCT bölgesi ortalama 7,1900 A; CV %0,344.
 - UNIT 7,89 A kullanıcı bildirimi; zaman eşleşmesi yok, doğruluk sonucu çıkarılmadı.
 - K=24.22 sabit; kalibrasyon yapılmadı.
-- [Test kaydı](toaster/README.md); [analiz](../logs/module2/2026-10-31-toaster-001-module2-sct1-analysis.md); [tam ham log](../logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt).
+- [Test kaydı](toaster/README.md); [analiz](../logs/module2/2026-10-31-toaster-001-module2-sct1-log62-analysis.md); [tam ham log](../logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt).
