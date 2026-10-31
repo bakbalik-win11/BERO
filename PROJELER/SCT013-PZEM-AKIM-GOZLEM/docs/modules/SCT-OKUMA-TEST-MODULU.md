@@ -19,6 +19,15 @@ Kullanıcının paylaştığı genel bias yapısında görülen/bildirilen elema
 
 Envanterde daha önce belirtilen breadboard bias bileşenleri: 2 × 10 kΩ, 1/4 W metal film direnç ve 104 kodlu (100 nF) seramik kondansatör. Fotoğraftaki elektrolitik kondansatörün değeri henüz belirlenmedi. Kesin bağlantı şeması ve elemanların bağlantı noktaları doğrulanmış değildir.
 
+## Şebeke girişi ve besleme dağıtımı
+
+Modülde bir **220 V AC şebeke bağlantısı** bulunacaktır. Bu girişten iki besleme kolu planlanmıştır:
+
+1. **PZEM bağlantısı:** PZEM-004T'nin AC ölçüm/gerilim referansı için gereken bağlantısı bu modülün şebeke girişinden beslenecektir.
+2. **5 V güç kaynağı:** ESP'ye enerji sağlayacak 5 V güç kaynağı aynı modülün şebeke girişinden beslenecektir.
+
+Bu kayıt işlevsel mimariyi tanımlar; şebeke dağıtımının kablolaması, koruma elemanları, klemensleri, sigorta değerleri ve muhafaza yerleşimi henüz tasarlanmış veya doğrulanmış değildir. PZEM'in akım ölçüm yolu ile gerilim bağlantısının kesin topolojisi de ayrıca belirlenecektir.
+
 ## SCT bağlantıları
 
 - Üç adet 3,5 mm dişi jack girişi vardır.
@@ -27,10 +36,14 @@ Envanterde daha önce belirtilen breadboard bias bileşenleri: 2 × 10 kΩ, 1/4 
 - İlk aşamada tek kanal kullanılacaktır; diğer girişler mevcut kapasite olarak korunur.
 - Jack uçlarının tip/ring/sleeve karşılıkları ve kesin pin dizilimi henüz doğrulanmamıştır.
 
+## Güvenlik sınırı
+
+Modül içinde 220 V AC bulunacağından şebeke tarafı ile ESP/SCT düşük gerilim tarafı fiziksel ve elektriksel olarak ayrılmalıdır. Uygun sigorta/koruma, yalıtım mesafeleri, kablo sabitleme, dokunmaya karşı koruma ve kapalı muhafaza tasarlanmalıdır. Açık mini breadboard yalnızca düşük gerilim bias devresi için kullanılmalı; şebeke bağlantısı breadboard üzerinden taşınmamalıdır. Şebeke bağlantısı yetkin kişi tarafından uygun güvenlik koşullarında yapılmalıdır.
+
 ## Sınırlar ve açık noktalar
 
-- Bu modülün PZEM, SSR, RTC veya ESP içereceği henüz kararlaştırılmadı.
-- Bias beslemesinin Bias Trafosu modülünden alınacağı tasarım kararıdır; bağlantı ve yük altında çalışma doğrulaması yapılmadı.
+- PZEM bağlantısı ve ESP'yi besleyecek 5 V güç kaynağı modülün 220 V AC girişinden beslenecek şekilde planlandı. ESP'nin kesin modeli, SSR ve RTC'nin bu modüle dahil olup olmayacağı henüz kararlaştırılmadı.
+- Bias beslemesinin Bias Trafosu modülünden alınacağı tasarım kararıdır; bu modülün şebeke girişinden Bias Trafosu'na nasıl enerji aktarılacağı henüz netleştirilmedi. Bağlantı ve yük altında çalışma doğrulaması yapılmadı.
 - Elektrolitik kondansatörün değeri, polaritesi ve devredeki kesin yeri doğrulanmadı.
 - Devre şeması ve jack pin eşlemesi, fiziksel süreklilik/bağlantı kontrolü sonrasında eklenecektir.
 
