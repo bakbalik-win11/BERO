@@ -1004,3 +1004,10 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **YORUM:** SCT ve bias merkez değerleri birbirine yakın. Akım/Raw AC çıktısının fiziksel anlamı, yük durumu bilinmeden belirlenemez. HA geçmişi 200 ms ham ADC örneklerini veya N/SPS debug satırlarını içermez; gerçek yüksek hızlı edinim kanıtı değildir.
 - **DOĞRULAMA SINIRI:** CSV analizi tamamlandı; fiziksel primer/CT koşulu ve varsa ESPHome DEBUG logu henüz teyit edilmedi. E00F-N02 deney durumu TAMAMLANDI yapılmadı.
 - **SONRAKİ ADIM:** Kullanıcıdan gece boyunca yük/primer ve CT konumu/tur sayısı ile kola temasın saat aralığı teyit edilecek; varsa DEBUG logu incelenecek.
+
+
+## 2026-10-31 — E00F-N02 kullanıcı koşul beyanı ile yorum düzeltmesi
+
+- **KULLANICI BEYANI:** Gece sistemi boşta bıraktığını, kol temasının 00:30 Türkiye saati sonrasında sürmediğini ve akkor ampulün henüz deney yükü olmadığını önceki mesajlarda bildirmişti.
+- **DÜZELTME:** Bu bilgi ışığında 05:24:02'deki 2.665238 A tepe kola temasla açıklanamaz. Sistem boşta beyanı altında gece boyunca görülen 0.192920 A medyan CT Clamp çıktısı yüksüz zincir davranışı olarak değerlendirilmelidir; gerçek primer akımı olarak sunulmaz.
+- **SINIR:** Kullanıcı beyanı fiziksel koşul bilgisidir, bağımsız akım ölçümü değildir. Tepe olayının kaynağı hâlâ sınıflandırılmadı; ham değer silinmedi.
