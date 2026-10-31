@@ -1281,3 +1281,14 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **ARŞİV:** Teknik analiz ve test kaydı güncellendi; ham TXT'nin tam metni Git'e eklenmedi. Kaynak dosya adı, boyutu ve SHA-256 kaydedildi.
 - **AÇIK KALAN:** Fiziksel yükün kimliği/gücü, 0,130 A değerinin kaynağı/referans cihazı ve aynı zaman aralığında UNIT/PZEM ölçümü. Test nihai doğrulama olarak kapatılmadı.
 - **SONRAKİ:** Referans ve yük koşulu netleştikten sonra aynı kararlı pencerede tekrar ölç; K'yı değiştirme.
+
+## 2026-10-31 — LOAD-42W-001 / 42 W ampul testi açılışı
+
+- **HEDEF:** Kullanıcının isteğiyle 42 W ampulü düşük akım gözlem yükü olarak ayrı test kaydına almak.
+- **UNIT:** Kullanıcı 0,174 A bildirdi. Başlangıç referansı olarak kaydedildi; kararlı pencere ve ölçüm saati ayrıca teyit edilmedi. PZEM değeri değildir.
+- **YÜK:** 42 W ampul; ampul teknolojisi, marka/model ve etiket teyidi bekleniyor.
+- **DÜZENEK:** Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35. Depodaki firmware referansı ESPHome 2026.10.1, ADC 12 dB / 1 s, ct_clamp 200 ms / 2 s, K=24.22; yazılımsal sıfır eşiği yok. Deneyde firmware/K değişikliği planlanmadı.
+- **DEĞERLENDİRME:** 0,30 A altı gözlem alanı; ±%4 kabul/ret yok. SCT dağılımı, Raw AC, bias ve zaman içi kararlılık incelenecek. UNIT ve varsa PZEM ayrı referanslar olarak tutulacak.
+- **DURUM:** Test AÇIK / PLANLANDI. Fiziksel SCT logu, test zamanı ve ampul ayrıntıları henüz yok.
+- **DEPO:** Test README, ana test yükleri indeksi, STATUS ve PROGRESS_TREE güncellendi. Bu oturum kaydı eklendi.
+- **SONRAKİ:** SCT logu geldiğinde analizi yap; UNIT 0,174 A ile yalnız örtüşen kararlı pencerede karşılaştır. Ölçüm olmadan tamamlandı işaretleme.
