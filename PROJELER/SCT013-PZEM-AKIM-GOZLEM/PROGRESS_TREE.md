@@ -1,3 +1,8 @@
+## 2026-10-31 — ESPHome ct_clamp teknik rapor arşivi
+
+- Kullanıcının sağladığı DOCX özgün haliyle arşivlendi; bağımsız kaynak kod/BERO Log 63 incelemesi ayrı Markdown raporu olarak oluşturuldu.
+- Raporlar ve kapsam farkları: [ct_clamp rapor arşivi](docs/research/ct-clamp/README.md).
+- Araştırma kaydıdır; firmware/K değişikliği veya yeni fiziksel test değildir.
 ## 2026-10-31 — BREAD-TOASTER-001 / Log 63
 
 - Ekmek kızartma makinesi için, önceki TOASTER-001 tost makinesi kaydından ayrı BREAD-TOASTER-001 testi açıldı.

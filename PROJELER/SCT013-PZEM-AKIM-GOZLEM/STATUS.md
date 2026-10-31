@@ -1,3 +1,10 @@
+## 2026-10-31 — ESPHome ct_clamp teknik raporları arşivlendi
+
+- **KULLANICI RAPORU:** Özgün DOCX, `docs/research/ct-clamp/source/2026-10-31-user-supplied-ct-clamp-report.docx` yolunda değiştirilmeden saklandı. Boyut 9.547 bayt; kaynak SHA-256 `cfb2d76f64a93efd8d80e0005c6e80b974d9086e77b72f61542898aa03f88a05`.
+- **BAĞIMSIZ İNCELEME:** ESPHome 2026.10.1 kaynak kodu, Espressif/CT dokümanları ve BERO Log 63 temelinde ayrı Markdown raporu oluşturuldu: `docs/research/ct-clamp/2026-10-31-independent-technical-review.md`.
+- **AYRIM:** Kullanıcı raporundaki simülasyon ve varsayımlar gerçek BERO ölçümü olarak sunulmadı. GPIO33 (kullanıcı raporu başlığı) ile Log 63'teki GPIO32 farkı not edildi; özgün belge değiştirilmedi.
+- **KARAR:** Araştırma nedeniyle firmware, K=24.22, 200 ms pencere veya 2 s yayın aralığı değiştirilmedi. Yeni fiziksel test yapılmadı.
+- **NAVİGASYON:** [Rapor arşivi README](docs/research/ct-clamp/README.md).
 ## 2026-10-31 — BREAD-TOASTER-001 / Log 63 tam ham arşiv GitHub'a aktarıldı
 
 - **HAM LOG:** [Tam Log 63](logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-full.txt); 32.064 bayt / 449 satır; kaynak SHA-256 `cf9254185e591650a06a990e5bc0f567ee499ba4ec541c4bb8748b132513f896`; Git blob SHA `06a342ef00d156a9ca78d4dc5d55ea5debe1790c`.
