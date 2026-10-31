@@ -2,7 +2,7 @@
 
 **Modül kimliği:** BERO-SCT-OKUMA-TEST-002  
 **ESPHome kimliği:** `esp32d1` / `ESP32D1`  
-**Durum:** KUTU MONTAJI KULLANICI BİLDİRİMİYLE YAPILDI — kanal testleri bekliyor  
+**Durum:** FIRMWARE AÇILDI, DÖRT ADC BAŞLATMASI LOG İLE DESTEKLENDİ — SCT/100 W kanal testleri bekliyor  
 **Görev:** [T010 — Modül 2 üçlü SCT devreye alma](../../tasks/T010-module2-triple-sct-bringup.md)  
 **Karar:** [ADR-015](../decisions/ADR-015-module2-esp32d1-triple-sct.md)
 
