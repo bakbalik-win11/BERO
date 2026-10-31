@@ -1,3 +1,7 @@
+## 2026-10-31 — Toplu yük karşılaştırması
+
+- [Tekil ve karma yük sonuç tablosu](test-loads/COMPARATIVE-RESULTS-2026-10-31.md) eklendi. Referans farkı ve kendi iç kararlılığı ayrı gösterildi; eşzamanlılığı doğrulanmayan farklar hata olarak sınıflandırılmadı. K=24.22 değişmedi.
+
 ## 2026-10-31 — TOASTER-001 / Log 62 ham arşiv tamamlandı
 
 - **HAM LOG:** [Tam Log 62](logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt); 68.572 bayt / 934 satır; SHA-256 `4790b00e69aaba791339f6d43aa13041efe373c5a87b9ed7fd4c1f481ce551f2`.
