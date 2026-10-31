@@ -821,3 +821,14 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 ## 2026-10-31 — EINHELL-CHARGER-001 ek akım gözlemi
 
 Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki kullanıcı bildirimleri 0,413 A ve 0,419 A idi. Şu ana kadarki bildirilen gözlem aralığı 0,413–0,422 A; 0,419 A'dan 0,422 A'ya fark +0,003 A (yaklaşık +%0,72). 0,422 A değerinin kalıcı/sabit olduğu bildirilmedi. Ölçüm cihazı hâlâ belirtilmedi; bu değer PZEM veya SCT log sonucu olarak sınıflandırılmaz. Deney açık; ESP32D1 logu ve referans cihaz bilgisi bekleniyor.
+
+## 2026-10-31 — FIXED-LOAD-0130A-001 sabit yük testi açıldı
+
+- **DURUM:** PLANLANDI; fiziksel ölçüm ve ESP32D1 logu bekleniyor.
+- **HEDEF:** 0,130 A civarında sabit yükte Modül 2 / SCT-1 düşük akım davranışını gözlemek.
+- **REFERANS:** 0,130 A kullanıcı bildirimi; ölçüm cihazı belirtilmedi. UNIT/PZEM olduğu varsayılmadı. Kullanıcı şu anda ölçüm alınamadığını bildirdi; değer doğrulanmış ölçüm değildir.
+- **YÜK:** Fiziksel yükün kimliği/gücü henüz belirtilmedi.
+- **DÜZENEK:** ESP32D1 / Modül 2 / SCT-1 GPIO32 / ortak bias GPIO35. Mevcut firmware ve K=24.22 korunacak; yazılımsal sıfır eşiği eklenmeyecek.
+- **DEĞERLENDİRME:** 0,30 A altı gözlem bölgesi; ±%4 kabul/ret yok. Kararlılık, dağılım, Raw AC ve bias incelenecek.
+- **DOSYA:** [FIXED-LOAD-0130A-001](test-loads/fixed-load-0130a/README.md).
+- **SONRAKİ:** Yük kimliği, referans cihazı ve gerçek log geldiğinde aynı test altında kaydet; ölçüm alınmadan sonucu tamamlandı işaretleme.
