@@ -238,3 +238,17 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - **KURAL:** 0,30 A altı gözlem bölgesi; ±%4 kabul/ret uygulanmaz. UNIT ve PZEM ayrı referanslardır.
 - **DURUM:** Test kaydı AÇIK; SCT logu, test zamanı ve fiziksel ampul ayrıntıları bekleniyor.
 - **DOSYA:** [LOAD-42W-001 test kaydı](42w-bulb/README.md).
+
+
+## 2026-10-31 — LOAD-42W-001 / Log 57 SCT-1 gözlemi
+
+- **KAYNAK:** `esp32d1-logs (57).txt`; 55.924 bayt / 766 satır; SHA-256 `f519f752ea4466e82cc365dac832e3338195303e920520414e7be6538d0203ae`.
+- **ZAMAN:** İlk/son SCT akım yayını 21:09:28–21:12:38 (+03:00); 96 yayın, yaklaşık 3 dk 10 sn.
+- **DÜZENEK:** ESP32D1 / Modül 2 / SCT-1 GPIO32 ADC1_CH4 / ortak bias GPIO35 ADC1_CH7; ESPHome 2026.10.1; ADC 12 dB / 1 s; ct_clamp 200 ms / 2 s. K=24.22 mevcut firmware referansıdır; log binary eşleşmesini tek başına kanıtlamaz.
+- **SCT AKIM:** Ortalama 0,252438 A; medyan 0,251 A; min–maks 0,221–0,295 A; örnek SD 0,011038 A; CV %4,37. 96/96 yayın 0,30 A altındadır.
+- **ANALOG:** Raw AC ortalaması 0,0104248 V (0,00914–0,01218 V); ortak bias GPIO35 ortalaması 1,663469 V (1,656–1,673 V); SCT-1 ADC GPIO32 ortalaması 1,660745 V (1,632–1,678 V). Loglanan SPS ortalaması 17.354,8 (16.840–17.675).
+- **ZAMAN İÇİ DAVRANIŞ:** Ardışık 24 örnekli dört blok ortalaması 0,25421 / 0,25392 / 0,24988 / 0,25175 A. Bu kısa kesitte belirgin uzun dönemli trend yok. ERROR/[E] satırı görülmedi.
+- **UNIT SINIRI:** LOAD-42W-001 açılışında bildirilen UNIT 0,174 A ile log ortalaması arasındaki betimleyici fark +0,078438 A (+%45,08); medyan farkı +%44,25. UNIT değerinin logla aynı kararlı zaman penceresinde alındığı doğrulanmadığından bu eşzamanlı sapma/doğruluk sonucu değildir. PZEM verisi yoktur.
+- **SONUÇ:** 42 W test yükünde SCT-1 yaklaşık 0,25 A çevresinde düzenli yayın üretmiştir. Bu 0,30 A altı düşük akım gözlemidir; ±%4 kabul/ret, kalibrasyon veya doğruluk onayı değildir. Test açık kalır; K ve firmware değiştirilmez.
+- **ANALİZ:** [Log 57 teknik analiz](../../logs/module2/2026-10-31-load-42w-001-log57-analysis.md).
+- **HAM KAYNAK:** Kullanıcı yüklemesi bu konuşmada korunmaktadır; ham TXT'nin GitHub'a tam kopyası bu güncellemede yapılmadı. Kaynak adı, boyutu ve SHA-256 kaydedildi.
