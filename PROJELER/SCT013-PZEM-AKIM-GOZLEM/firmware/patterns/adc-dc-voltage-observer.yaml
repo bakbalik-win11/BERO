@@ -1,0 +1,99 @@
+# ============================================================
+# BERO — GENERIC ADC / ANALOG DC VOLTAGE OBSERVER
+# DOSYA: firmware/patterns/adc-dc-voltage-observer.yaml
+# DURUM: ACIKLAMALI REFERANS SABLONU; DERLEME/FIZIKSEL TEST YOK
+# ============================================================
+#
+# AMAC
+# - Analog DC cikisli bir sensorun ADC pinindeki gerilimini izlemek.
+# - Sensorun ham fiziksel cikisini volt cinsinden Home Assistant'a
+#   yayinlamak.
+# - Daha sonra sensorun kendi transfer fonksiyonu ile V -> °C, bar,
+#   seviye vb. donusum eklenebilmesi icin sade bir baslangic sunmak.
+#
+# BAGLANTI VARSAYIMI
+# - Ornek pin GPIO34: klasik ESP32 ADC1 girisi varsayimidir.
+# - Bu pin yalnizca secilen kartta fiziksel olarak erisilebilir,
+#   bossa ve ADC destegi dogrulanmissa kullanilir.
+# - BERO Modül 2'de GPIO34 SCT-3 icin ayrilmistir; bu dosya mevcut
+#   Modül 2'ye oldugu gibi yuklenmemelidir.
+# - Sensor cikis gerilimi ADC izin verilen aralikta olmalidir.
+# - Sensor daha yuksek gerilim uretiyorsa bolucu/koruma devresi
+#   hesaplanmadan dogrudan ESP32 GPIO'ya baglanmaz.
+# - GND ortaklama yalniz sensor arayuzu buna izin veriyorsa yapilir.
+#
+# BEKLENEN ENTITY
+# - BERO Analog DC Input Voltage: ADC pinindeki kalibre gerilim (V).
+#
+# BU ORNEK NE YAPMAZ?
+# - CT icin AC RMS hesaplamaz.
+# - Sensorun fiziksel birimini kendiliginden bilmez.
+# - 1 saniyelik yayin, yuksek hizli dalga sekli orneklemesi degildir.
+# - Harici sensor bolucusunun katsayisini otomatik hesaplamaz.
+# ============================================================
+
+esphome:
+  name: bero-adc-ref
+  friendly_name: BERO ADC Voltage Reference
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+sensor:
+  # ----------------------------------------------------------
+  # ADC KAYNAGI — VOLTAJ GOZLEMI
+  # ----------------------------------------------------------
+  # pin: sensorun analog cikisinin baglandigi ADC pini.
+  # attenuation: ADC giris araligini secmek icin ESPHome ayari.
+  # raw: false: sayim degeri yerine kalibre gerilim (V) yayinla.
+  # samples: 1: tek ADC ornegi; coklu ornek ortalamasi degildir.
+  # update_interval: 1s: Home Assistant'a yavas gozlem/yayin hizi.
+  # force_update: ayni deger tekrar etse de guncellemeyi yayinla.
+  #
+  # GPIO34 yalniz ornektir; fiziksel pin plani dogrulanmadan
+  # cihaza yuklenmemelidir.
+  - platform: adc
+    pin: GPIO34
+    id: analog_dc_input_voltage
+    name: "BERO Analog DC Input Voltage"
+    attenuation: 12db
+    raw: false
+    accuracy_decimals: 4
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    samples: 1
+    force_update: true
+    update_interval: 1s
+
+  # ----------------------------------------------------------
+  # SENSOR BIRIMINE DONUSUM — SONRAKI ASAMA ICIN NOT
+  # ----------------------------------------------------------
+  # Bu ornekte bilerek bir °C/bar/seviye donusumu tanimlanmamistir.
+  # Sensorun tam modeli, besleme gerilimi, analog cikis araligi ve
+  # uretici transfer fonksiyonu bilinmeden katsayi uydurulmaz.
+  #
+  # Uygulama yapilirken:
+  # 1) ADC voltaji once dogrulanir.
+  # 2) Sensorun V -> fiziksel birim denklemi eklenir.
+  # 3) Kalibrasyon noktalarinin kaynagi ve calibration_id kaydedilir.
+  # 4) Filtre gerekiyorsa sensorun tepki suresine gore secilir.
+  #
+  # Ornek birim donusumu, yalniz sensor datasheet'i saglandiginda
+  # ayrica yazilmalidir.
