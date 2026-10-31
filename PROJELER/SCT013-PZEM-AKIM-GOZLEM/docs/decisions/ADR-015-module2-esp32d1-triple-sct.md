@@ -40,7 +40,7 @@ Tek bir bias devresi kullanılacak ve ortak bias seviyesi üç girişe dağıtı
 | 3. dişi yuva | Mavi | GPIO34 | Kullanıcı bildirimi |
 | Ortak bias ölçümü | Turuncu | GPIO35 | Kullanıcı bildirimi |
 
-Önceki kullanıcı bildiriminde kırmızı hat ortak bias hattı, mavi/yeşil/sarı hatlar ayrı SCT sinyal hatları olarak tarif edilmişti. Bu kayıt, 1. ve 2. yuva için sonradan verilen kesin GPIO eşlemesini yansıtır. Jack tip/ring/sleeve pinlerinin tamamı henüz doğrulanmamıştır.
+Önceki genel kullanıcı notunda kırmızı hattın ortak bias olduğu belirtilmişti. Sonraki yuva bazlı bağlantı bildiriminde ortak bias ölçüm hattı turuncu olarak GPIO35'e eşlendi; güncel yuva bazlı eşleştirme bu kayıtta esas alınır. Kablo güzergâhı ve renk montaj sırasında fiziksel olarak teyit edilmelidir. Jack tip/ring/sleeve pinlerinin tamamı henüz doğrulanmamıştır.
 
 ## ESPHome başlangıç yapılandırması
 
