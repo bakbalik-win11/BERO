@@ -53,3 +53,12 @@ Henüz ölçüm logu yoktur. Bu kayıt yalnız deneyin açılış planıdır; te
 - Kaynak sınıfı: KULLANICI BİLDİRİMİ. Ölçüm cihazı henüz doğrulanmadı; bu değer PZEM veya SCT log ölçümü olarak etiketlenmez.
 - Bu, şarj cihazının o andaki kararlı akımına ilişkin ön gözlemdir. Süre, pilin şarj aşaması ve ESP32D1 logu henüz yoktur.
 - Test AÇIK kalır; uzun log ve referans cihaz bilgisi beklenir.
+
+
+## 2026-10-31 — Ek akım gözlemi (kullanıcı bildirimi)
+
+- Kullanıcı 0,422 A değerini de gördüğünü bildirdi; bu değer sabitlendi olarak değil, ek gözlem olarak kaydedildi.
+- Bildirilen değerler: 0,413 A → 0,419 A (sabitlendi) → 0,422 A (görüldü).
+- Bildirilen gözlem aralığı: 0,413–0,422 A. 0,419 A ile 0,422 A arasındaki fark +0,003 A (yaklaşık +%0,72); ilk 0,413 A değerine göre toplam fark +0,009 A (yaklaşık +%2,18).
+- Kaynak sınıfı: KULLANICI BİLDİRİMİ. Ölçüm cihazı henüz doğrulanmadı; PZEM veya SCT ölçümü olduğu varsayılmaz.
+- ESP32D1 uzun logu ve eşzamanlı referans verisi henüz yoktur. Deney AÇIK kalır.
