@@ -75,7 +75,7 @@ Bu katalog yalnız cihaz listesi değildir. Her ölçüm talimatı; cihaz + mod/
 
 **Sınıf:** Bağımsız ölçüm ve teşhis ekipmanı → Harici ADC / analog veri toplama.
 
-**BERO'daki edinim amacı (KULLANICI BİLDİRİMİ):** MCP3208 özellikle SCT ölçüm zincirinde veya ESP32 dahili ADC okumalarında ortaya çıkabilecek sorunları araştırmak, analog sinyali bağımsız bir ADC üzerinden karşılaştırmak ve gerektiğinde alternatif analog veri toplama yolunu sınamak amacıyla edinildi. Bu cihaz şu anda BERO'nun çalışan baseline'ı değildir; envanterde bulunması kullanıldığı veya devreye alındığı anlamına gelmez.
+**BERO'daki edinim gerekçesi (KULLANICI BİLDİRİMİ):** MCP3208, geçmişte edinilen ESP–MCP veri alışverişi deneyimi ve SPI tabanlı farklı donanım mimarisi nedeniyle, SCT ölçüm zincirinde yaşanabilecek sorunları incelemek ve ESP32'nin dahili ADC yoluna alternatif bir harici ADC mimarisini değerlendirmek amacıyla edinildi. Kullanıcının belirttiği geçmiş deneyimin ayrıntılı devre şeması, kodu ve ölçüm sonuçları bu kayıtta henüz bulunmuyor; bu nedenle geçmiş deneyimin teknik sonucu hakkında çıkarım yapılmıyor. MCP3208 şu anda BERO'nun çalışan baseline'ı değildir; envanterde bulunması kullanıldığı veya devreye alındığı anlamına gelmez.
 
 **Üretici teknik özellikleri — Microchip MCP3208:**
 
