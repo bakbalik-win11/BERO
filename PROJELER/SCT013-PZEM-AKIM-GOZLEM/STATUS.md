@@ -780,3 +780,13 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **KARAR:** Bu kararlı karma-yük oturumu UNIT referansına göre ±%4 kriterini sağladı. Bu, PZEM doğrulaması veya genel kalibrasyon garantisi değildir. Logda PZEM akım/PF/aktif güç ve fan olay işaretleri bulunmaz; geçiş süresi/tepki farkı çıkarılamaz.
 - **KOD SNAPSHOT:** [MIXED-LOAD-001 kapanış YAML](../../firmware/archive/MIXED-LOAD-001-2026-10-31-esp32d1-sct1.yaml). Snapshot aktif firmware ile aynı YAML içeriğidir; binary eşleşmesi iddia edilmez.
 - **ARŞİV:** [Tam ham log](../../logs/module2/2026-10-31-mixed-load-001-module2-sct1-full.txt); [analiz raporu](../../logs/module2/2026-10-31-mixed-load-001-module2-sct1-analysis.md).
+
+
+## 2026-10-31 — FAN-3-3T-001 kapatıldı; FAN-1-RETEST-001 açıldı
+
+- **FAN-3-3T-001:** 3T düşük akım gözlem oturumu, `esp32d1-logs (47).txt` ile kapatıldı. Kaynak SHA-256: `fb48997412ced2a9f769b3084bec9f63dab8ef7174efea23062ce4e63dbc735c`; 236 akım yayını; 18:30:59.057–18:38:49.014.
+- Sıçrama hariç akım ortalaması 0,413894 A; medyan 0,413 A; gösterge/3 ortalaması 0,137965 A; Raw AC ortalaması 0,017089 V. Tekil 0,932 A sıçrama ham veri içinde korundu.
+- Önceki 1T FAN-3 ile artış yaklaşık 1,843x; 3x doğrusal ilişki kanıtlanmadı. UNIT 0,142 A kullanıcı bildirimi; /3 kıyası betimleyici ve ±%4 kabul/ret değildir.
+- K=24.22 değişmedi; yazılımsal sıfır eşiği eklenmedi. Kapanış YAML snapshot ve analiz raporu eklendi.
+- **FAN-1-RETEST-001:** Yeni FAN-1 gözlem oturumu AÇIK. Eski FAN-1 kayıtları değiştirilmedi. UNIT 0,093 A; 0,30 A altında ±%4 yok. Fan kapalı taban/açılış/kararlı/kapanış işaretli protokol açıldı.
+- Ayrıntılar: [FAN-3-3T-001](test-loads/fan3-3turn/README.md), [FAN-1-RETEST-001](test-loads/fan1-retest/README.md).
