@@ -10,7 +10,8 @@ Tost makinesi çalışırken Modül 2 / ESP32D1 / SCT-1 kanalının yüksek akı
 - ADC: 12 dB / 1 s; ct_clamp: 200 ms örnek penceresi / 2 s çıktı.
 - K: 24.22; test sırasında firmware ve katsayı değiştirilmez.
 - Primer: tek tur; aynı tek yalıtılmış faz iletkeni CT çekirdeğinden geçirilir.
-- Referans cihaz/değer: henüz bildirilmedi. UNIT veya PZEM olduğu varsayılmayacak.
+- UNIT referansı: **7,89 A** (kullanıcı bildirimi, 2026-10-31). Bu değer PZEM değildir; SCT loguyla zaman eşleşmesi ayrıca teyit edilecek.
+- PZEM referansı: henüz bildirilmedi.
 
 ## TEST AKIŞI
 1. Yükün etiket gücü ve varsa referans cihaz bilgisi test öncesi kaydedilir.
