@@ -27,7 +27,7 @@ Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 |---|---|---:|---|---|
 | T001 | Fiziksel donanım envanteri | 0.1 | TAMAMLANDI — envanter belgelemesi kullanıcı beyanına göre tamamlandı; bağımsız fiziksel doğrulama iddiası yok | — |
 | T002 | Güvenlik kontrolü | 0.2 | TAMAMLANDI — kullanıcı tüm kontrol maddelerini tamamladığını beyan etti; fiziksel durum bağımsız doğrulanmadı | T001 |
-| T003 | PZEM tabanlı model hata hedefi | 0.3 | TAMAMLANDI — ±%4 kabul hedefi ve gelecekteki Python değerlendirmesi için karar kuralı belgelendi; Python kodu/testi henüz yok | T001 |
+| T003 | PZEM tabanlı model hata hedefi | 0.3 | TAMAMLANDI — ±%4 hedefi tanımlandı; kullanıcı raporuna göre harici kodla dört yük koşulunda sağlandı (ADR-009). Harici kod/Python model entegrasyonu bu depoda yok | T001 |
 | T004 | Analog ön uç | 1.1 | TAMAMLANDI — belgeleme kapsamı tamamlandı; fiziksel analog davranış ve GPIO eşlemesi doğrulanmış değil | T002, T003 |
 | T005 | ADC temel okumaları ve E01 gürültü tabanı | 1.2 | PLANLANDI — önce SCT bağlı değilken ham ADC ve mV API'leri; sonra SCT bağlı ve akım yok; uzun E01 kaydı daha sonra | T004 |
 | T006 | SCT kalibrasyonu | 1.3 | PLANLANDI | T005 |
@@ -65,3 +65,8 @@ Kullanıcının değerlendirmesiyle E00A'nın ilk geçişi grafik merkezli olmak
 ## 2026-10-29 — Gün sonu kapsam ve sıra düzeltmesi
 
 Önceki E00A sadeleştirme notundaki “grafik merkezli olmaktan çıkarılıp istatistik merkezli” ifadesi güncel kullanıcı hedefini doğru yansıtmıyordu. E00A'nın ilk amacı ham ADC örneklerini kaydetmek ve bilgisayarda zaman grafiğinde görmektir; istatistikler grafiği tamamlar. Bu yüzden E00A aktif ilk adım olarak kalır. T007'nin mimari taslağı korunur ancak gerçek edinim ve aktarım verileri oluşana kadar BEKLEMEDE'dir. Firmware, ölçüm veya Python uygulaması bu düzeltmeyle yapılmış sayılmaz.
+
+
+## 2026-10-31 — Ara edinim işlerinin kapanışı
+
+PC'ye ham 50 Hz dalga aktarımı, her ADC örneğini ayrı zaman damgasıyla saklama ve bunlar için DMA/ADC Continuous firmware'i geliştirme artık gereksizdir; yeni iş olarak takip edilmeyecektir. Bu işler [E08 yüksek hızlı edinim hazırlığında](../experiments/E08-sct-characterization/stage-03-high-speed-capture.md) KAPATILDI olarak arşivlenmiştir. ±%4 sonucu ve dört yük karşılaştırması [ADR-009](../docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md) içindedir.
