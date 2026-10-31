@@ -27,10 +27,10 @@ Modül içine gömülü ESP32D1 ile üç bağımsız SCT sinyalini ve tek ortak 
 |---|---|---|---|
 | 1. dişi yuva | Sarı | GPIO32 | Kullanıcı bildirdi |
 | 2. dişi yuva | Yeşil | GPIO33 | Kullanıcı bildirdi |
-| 3. dişi yuva | Açık | Açık | Bekliyor |
-| Ortak bias ADC | Ortak bias hattı | Açık | Bekliyor |
+| 3. dişi yuva | Mavi | GPIO34 | Kullanıcı bildirdi |
+| Ortak bias ADC | Turuncu | GPIO35 | Kullanıcı bildirdi |
 
-Bu eşleştirmeler kullanıcı bildirimidir; jakın tip/ring/sleeve pin diziliminin tamamı fiziksel olarak doğrulanmış değildir.
+Dört eşleştirme de kullanıcı bildirimidir. Jakların tip/ring/sleeve pin diziliminin ve kabloların gerçek terminal güzergâhının tamamı fiziksel olarak doğrulanmış değildir.
 
 ## Kod durumu
 
@@ -43,7 +43,7 @@ YAML henüz ADC/SCT/bias sensör bileşenleri içermez. GPIO32 ve GPIO33 için s
 1. ESP32 kartı ve takılı GPIO shield'ın tam modelini/revizyonunu belirle.
 2. ESP kartındaki USB konektörünü ve 5 V güç giriş yolunu doğrula. PC USB ve harici 5 V birlikte kullanılacaksa kartın güç yolu/geri besleme korumasını kontrol et.
 3. Üç jack ve ortak bias mini breadboard bağlantılarını fiziksel olarak izle; tip/ring/sleeve pinout'unu doğrula.
-4. İlk iki bildirilen eşleştirmeyi (GPIO32 sarı, GPIO33 yeşil) fiziksel olarak teyit et; üçüncü SCT ve bias için GPIO seç.
+4. Bildirilen dört eşleştirmeyi (GPIO32 sarı, GPIO33 yeşil, GPIO34 mavi, GPIO35 turuncu bias) fiziksel olarak teyit et.
 5. Tek ortak bias bağlantısını üç SCT sinyal girişine nasıl dağıtacağını mevcut bias devresi üzerinde doğrula.
 6. Bias ölçüm entity'sinin RAW count veya voltaj gösterimini kararlaştır; tek fiziksel bias ADC girişi kullan.
 7. Üç kanallı SCT için çalışan ESPHome örneği bul; minimum uyarlamayla yapılandır.
@@ -54,7 +54,7 @@ YAML henüz ADC/SCT/bias sensör bileşenleri içermez. GPIO32 ve GPIO33 için s
 
 - ESP32 kart model/revizyonu ve GPIO shield modeli.
 - USB konektör tipi; harici 5 V ve PC USB'nin aynı anda kullanımı.
-- Üçüncü SCT sinyal GPIO'su ve ortak bias ADC GPIO'su.
+- Dört GPIO'nun gerçek ESP32 kartı ve shield terminaliyle birebir eşleştiğinin fiziksel teyidi.
 - Üç jack'in tip/ring/sleeve pinout'u ve diğer kabloların fiziksel eşlemesi.
 - Bias devresinin elektrolitik kondansatör değeri/polaritesi ve Bias Trafosu modülünden besleme bağlantısı.
 - Bias ADC'nin yazılım gösterimi (RAW count veya voltaj).
@@ -72,5 +72,5 @@ YAML henüz ADC/SCT/bias sensör bileşenleri içermez. GPIO32 ve GPIO33 için s
 ## HEDEF / LOG / SONUÇ
 
 - **HEDEF:** Modül 2'nin elektriksel ve yazılımsal yapısını uygulanabilir hâle getirmek.
-- **LOG:** Kullanıcının esp32d1 ESPHome temel ayarları ve 1. yuva sarı/GPIO32 ile 2. yuva yeşil/GPIO33 bildirimleri kaydedildi.
-- **SONUÇ:** Modül kapsamı ve iki sinyal eşlemesi kayıtlı. Üçüncü SCT/bias pinleri, kart doğrulaması, ADC/SCT kodu, derleme ve fiziksel test beklemede. Modül tamamlanmış değildir.
+- **LOG:** Kullanıcının esp32d1 ESPHome temel ayarları ve dört bağlantı bildirimi kaydedildi: 1. yuva sarı/GPIO32; 2. yuva yeşil/GPIO33; 3. yuva mavi/GPIO34; ortak bias turuncu/GPIO35.
+- **SONUÇ:** Modül kapsamı ve dört GPIO eşlemesi kullanıcı bildirimi olarak kayıtlı. Kart/shield ve jack pinout fiziksel teyidi, ADC/SCT kodu, derleme ve fiziksel test beklemede. Modül tamamlanmış değildir.
