@@ -1,12 +1,15 @@
-## 2026-10-31 — LOAD-57W-001 / 57 W akkor ampul testi açıldı
+## 2026-10-31 — LOAD-57W-001 / Log 58 analiz edildi
 
-- **DURUM:** AÇIK — test yükü ve başlangıç referansı kaydedildi; SCT logu bekleniyor.
+- **DURUM:** AÇIK — ilk SCT logu arşivlendi ve analiz edildi; eşzamanlı referans doğrulaması bekleniyor.
 - **YÜK:** 57 W akkor ampul (KULLANICI BİLDİRİMİ).
-- **UNIT:** 0,244 A kullanıcı bildirimi; kararlı pencere/zaman örtüşmesi henüz teyit edilmedi; PZEM değildir.
-- **DÜZENEK:** Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp 200 ms/2 s, K=24.22; yazılımsal sıfır eşiği yok.
-- **DEĞERLENDİRME:** 0,30 A altı düşük akım gözlem bölgesi; ±%4 kabul/ret yok. SCT dağılımı, Raw AC, bias ve zaman içi kararlılık incelenecek. UNIT ve varsa PZEM ayrı tutulacak.
-- **DOSYA:** [LOAD-57W-001](test-loads/57w-incandescent/README.md).
-- **SONRAKİ:** SCT logunu al; UNIT ölçümünün aynı kararlı pencereye ait olduğunu kaydet. Test sonucu olmadan kapatma.
+- **UNIT:** 0,244 A kullanıcı bildirimi; SCT loguyla aynı kararlı pencere olduğu teyit edilmedi; PZEM değildir.
+- **LOG:** `esp32d1-logs (58).txt`; 66.456 bayt / 906 satır; SHA-256 `f5a2d958dc2c85ec204516240c99ec2e87b519a422958a9ddd1cf122b4ee8d08`; 21:14:44–21:18:34 (+03:00), 116 SCT yayını.
+- **SCT:** Ortalama 0,304207 A; medyan 0,303 A; min–maks 0,284–0,348 A; SD 0,009126 A; CV %3,00. 31/116 yayın 0,30 A altında; 85/116 yayın 0,30 A ve üzeri.
+- **ANALOG:** Raw AC ortalama 0,012562 V; GPIO35 bias 1,663073 V; GPIO32 ADC 1,660694 V; SPS ortalama 17.768.
+- **YORUM:** Dört 29 örnekli blok ortalaması 0,3061 / 0,3022 / 0,3046 / 0,3040 A; kısa oturumda belirgin uzun dönemli trend yok. UNIT 0,244 A'ya göre ortalama aritmetik fark +%24,67; zaman örtüşmesi doğrulanmadığından doğruluk/sapma sonucu değildir. PZEM yok.
+- **KARAR:** 0,30 A altı düşük akım alanında ±%4 kabul/ret yok. Firmware ve K=24.22 değişmedi; tek logdan katsayı türetilmedi.
+- **ARŞİV:** [Test kaydı](test-loads/57w-incandescent/README.md); [analiz](logs/module2/2026-10-31-load-57w-001-module2-sct1-analysis.md); [tam ham log](logs/module2/2026-10-31-load-57w-001-module2-sct1-full.txt).
+- **SONRAKİ:** UNIT'i SCT ile örtüşen kararlı pencerede yeniden kaydet; varsa PZEM akım/PF'yi ayrı al. Test açık kalır.
 
 ## 2026-10-31 — LOAD-42W-001 / 42 W ampul düşük akım testi açıldı
 
