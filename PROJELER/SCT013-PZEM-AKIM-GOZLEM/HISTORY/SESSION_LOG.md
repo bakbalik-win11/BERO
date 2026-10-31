@@ -1,3 +1,14 @@
+## 2026-10-31 — ESPHome ct_clamp üç kaynaklı sentez
+
+- **HEDEF:** Kullanıcının “aynı soruya cevap” çalışmasında Claude ve GitHub Copilot yanıtlarını önceki bağımsız kaynak kod/tarihçe incelemesiyle birleştirmek; ortak bulguları ve kanıtlanmayan iddiaları ayırmak.
+- **DEPO OKUMASI:** AGENTS.md, STATUS.md, ROADMAP.md, ct_clamp araştırma arşivi, README, PROGRESS_TREE ve SESSION_LOG okundu. Faz 2 / T010 aktif; araştırma görev sırasını değiştirmiyor.
+- **EK GITHUB KONTROLÜ:** PR #1906 açıklaması standart sapma formülüyle offset kalibrasyonu ihtiyacını kaldırmayı; #1915 birden fazla ct_clamp'in aynı anda örneklemesinin örnek sayısını düşürmesini; #1916 negatif karekök/NaN; #2283 ADS1115'in istenen SPS hızına yetişememesi nedeniyle yinelenen örnekleri; #4229 sıfır akımda NaN yerine 0; #4236 sıfır akımda negatif karekök sorununu belgeliyor.
+- **SENTEZ:** İlk bileşen PR #559 ve commit 3089ffa 2019'a aittir. #1906 2021'de AC-only standart sapma hesabının açık gerekçesidir; ilk bileşenin başlangıcı değildir. Jesse Hills ana ilk katkıyı yaptı; Otto Winter mimari katkı sağladı.
+- **LAST_VALUE:** #2283 filtresi sonradan eklenmiştir. Kaynak çağrısı karşılaştırmadan önce yapıldığından ADC okuma talebini azaltmaz. PR amacı doğruluk/duplicate örnek yönetimidir; bellek veya CPU optimizasyonu olarak açıklanmamıştır. Test ortamı ESP8266 ve örnek ADS1115'tir; BERO ESP32'ye doğrudan genelleme yapılmadı.
+- **VARSAYILANLAR:** 200 ms'nin 50 Hz'de 10 çevrim olduğu belgeli; neden 10 çevrimin seçildiği bilinmiyor. 60 s genel polling varsayılanıdır; özel tasarım gerekçesi bulunamadı.
+- **DOSYA:** [Üç kaynaklı sentez raporu](../docs/research/ct-clamp/2026-10-31-synthesis-copilot-claude-independent.md); [arşiv README](../docs/research/ct-clamp/README.md).
+- **SONUÇ:** Araştırma raporu oluşturuldu ve arşiv yönlendirmesi güncellendi. Firmware/YAML, K=24.22, 200 ms/2 s ayarları değişmedi. E10 PLANLANDI olarak kalır; fiziksel test ve yeni log yapılmadı.
+
 ## 2026-10-31 — ESPHome ct_clamp tasarım tarihçesi araştırıldı
 
 - **DURUM:** Kaynak araştırması tamamlandı ve ayrı rapor olarak arşivlendi; firmware/YAML, K katsayısı ve fiziksel deney değişmedi.
