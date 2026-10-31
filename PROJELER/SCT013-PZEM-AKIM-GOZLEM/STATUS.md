@@ -1,14 +1,14 @@
-## 2026-10-31 — E00F-N03 100 W akkor yük gözlemi (kısmi)
+## 2026-10-31 — E00F-N03 100 W akkor yük gözlemi (kısmi, kapanış dönüşü görüldü)
 
-- **Durum:** E00F-N03 FİZİKSEL TEST DEVAM EDİYOR. Kullanıcı 100 W akkor ampulü 10:32'de açtığını doğruladı; yük kapatma ve kapanış sonrası bölüm henüz kaydedilmedi.
-- **Log:** Kullanıcının `esp32d2-logs (14).txt` dosyası 222.950 bayt / 3.006 satır; SHA-256 `c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e`. ESPHome 2026.10.1 / ESP32 rev3.1 / esp32d2; CT Clamp 262 adet 200 ms pencereyi 10:30:27.836–10:39:09.831 arasında kaydetti.
-- **Ana bulgu:** Yük öncesi Raw AC medyanı 0.004 V (46 pencere); 10:32 sonrası 0.019 V (215 pencere). 10:35–10:39 daha sakin bölümünde Raw AC medyanı 0.019 V, ortalaması 0.02003 V; akım entity medyanı 0.466 A. Bu, mevcut zincirin akkor yük açılmasına belirgin tepki verdiğini gösterir; kalibrasyon veya ±%4 doğruluk kanıtı değildir.
-- **Aykırı bölüm:** 10:33:53–10:34:21 arasında Raw AC 0.080–0.088 V; en yüksek yayın 2.129 A. N ile Raw AC korelasyonu yaklaşık 0.886; N/SPS ilişkili ve gerçek ADC dönüşüm hızı değildir. Nedeni bilinmiyor, kararlı yük seviyesi sayılmayacak.
-- **Cihaz:** ERROR/[E] yok; üç açılış framework optimizasyon uyarısı var. Dört ADC kanalı çalışıyor; 1 s yavaş ADC yayınları CT'nin 200 ms pencereleriyle eşzamanlı değil.
-- **Sınırlar:** CT'nin fiziksel olarak hangi iletkeni ve kaç turu gördüğü doğrulanmadı. Logda yük kapatma olayı yok. PZEM karşılaştırması ve ham ADC örnek dizisi yok. Tam ham TXT dosyası bu committe Git'e aktarılmadı; kaynak hash'i ve analiz/örnek log satırları rapora kaydedildi.
-- **Sonraki adım:** Ampul kapatıldığında kapanış saatini kaydet; kapanış sonrası kesitle başlangıç tabanına dönüşü incele. Firmware, katsayı 24.22, eşik, pinler ve cihaz kimliği değiştirilmedi.
+- **Durum:** E00F-N03 FİZİKSEL TEST DEVAM EDİYOR. İlk logda kullanıcı 100 W akkor ampulü 10:32'de açtığını doğruladı. İkinci logda Raw AC seviyesi 10:39:27–10:39:29 arasında yük öncesi tabana döndü; bu saat logdan çıkarılmış geçiş zamanıdır, kullanıcı tarafından bildirilmiş fiziksel kapatma saati değildir.
+- **İlk log:** `esp32d2-logs (14).txt`, 222.950 bayt / 3.006 satır; SHA-256 `c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e`. 262 CT penceresi; yük öncesi Raw AC medyanı 0.004 V, yük açık daha sakin bölüm medyanı 0.019 V.
+- **İkinci log:** `esp32d2-logs (15).txt`, 375.017 bayt / 5.000 satır; SHA-256 `1ada9e16f102b8a290d2bdc3b8d7572c3ab442561f552acb081ee367f5a23952`. 455 CT penceresi; zaman aralığı 10:30:51.840–10:45:59.928.
+- **Kapanış dönüşü:** İkinci logda 10:38 bölümünde Raw AC medyanı 0.019 V; 10:39:25.820'de 0.018 V, 10:39:27.837'de 0.006 V ve 10:39:29.819'da 0.000 V. 10:40–10:46 bölümünde medyan 0.000 V (180 pencere), ortalama 0.00238 V. Başlangıç kesitinin 10:30:00–10:32:00 medyanı 0.004 V (35 pencere). Bu, yük kesildikten sonra sinyalin yüksüz davranışına döndüğünü destekler; fiziksel anahtarlama anı yalnız logdan kesinleştirilemez.
+- **Yavaş ADC kanalları:** SCT GPIO32 RAW medyanı başlangıç/yük açık/yük sonrası 1842 / 1852 / 1842 count; SCT GPIO33 voltajı 1.642 / 1.657 / 1.642 V. Bias GPIO35 voltaj medyanı 1.653 / 1.653 / 1.653 V. Yavaş ADC yayınları 200 ms CT pencereleriyle eşzamanlı değildir.
+- **Cihaz/log:** İkinci dosyada 455 CT DEBUG penceresi ve 0 ERROR/[E] satırı var. Bu dosya cihaz açılışını içermeyen devam kaydıdır; ilk dosyadaki açılış uyarılarıyla ilgili önceki not geçerlidir.
+- **Sınırlar:** İkinci dosya fiziksel ampul kapatma saatini kullanıcı beyanı olarak içermez. CT'nin hangi iletkeni kaç tur çevrelediği doğrulanmadı. PZEM karşılaştırması ve ham ADC örnek dizisi yok. İki ham TXT dosyası da bu güncellemede Git'e aktarılmadı; SHA-256 ve analiz raporu kaydedildi.
+- **Sonraki adım:** Kullanıcıdan ampulü yaklaşık 10:39:27–10:39:29 civarında kapatıp kapatmadığını teyit et. CT fiziksel iletken/tur bilgisi de doğrulanmadan deneyi TAMAMLANDI yapma. Firmware, katsayı 24.22, eşik, pinler ve cihaz kimliği değiştirilmedi.
 - **Ayrıntı:** [E00F-N03 raporu](experiments/E00F-unthresholded-overnight-log/E00F-N03-incandescent-step-observation.md), [deney YAML kaydı](experiments/E00F-unthresholded-overnight-log/E00F-N03-experiment.yaml).
-
 ## 2026-10-31 — E00F-N02 aykırı gözlem değerlendirmesi ve sonraki test
 
 - **Aykırı olay:** 05:24:02 civarındaki 2.665238 A tepe, kullanıcının evde kedi bulunduğu ve tekil sıçramanın öneminin büyütülmemesi gerektiği yönündeki değerlendirmesiyle birlikte ele alındı. Olay ham veriden silinmedi; nedeni doğrulanmadığı için tekil/atıfsız aykırı gözlem olarak tutuldu. Kedi teması kanıtlanmış neden değildir.
