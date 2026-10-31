@@ -990,3 +990,17 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **Açık kalanlar:** Cihaz sabaha kadar mevcut yapılandırmada çalışacak; sabah tam HA CSV, varsa ESPHome DEBUG dosyası, fiziksel yük durumu ve kablo/sensör konumu teyidi bekleniyor.
 - **Sonraki adım:** Sabah CSV'nin gerçek kapsama aralığını ve her entity'nin kayıt sürekliliğini kontrol et; kısa ara kesitle karşılaştır; ardından yalnız kanıt destekliyorsa E00F-N02 sonuç durumunu güncelle.
 - **Kanıt:** E00F-N02 raporu; kullanıcı cihaz logu; kullanıcı tarafından sağlanan HA CSV ara dökümü; GitHub commit kayıtları.
+
+
+## 2026-10-31 — E00F-N02 tam gece CSV incelemesi
+
+- **HEDEF:** Önceki oturumda beklenen sabah Home Assistant geçmiş CSV'sinin tüm geceyi kapsayıp kapsamadığını ve altı entity'nin kayıt sürekliliğini kontrol etmek.
+- **BAŞLANGIÇ:** main dalı son commit ve ilgili AGENTS/STATUS/ROADMAP, görev indeksi, açık sorular, E00F-N02 raporu ve son commit geçmişi okundu. Aktif inceleme E00F-N02 olarak korundu.
+- **GİRDİ:** Kullanıcı dosyası `history (19).csv`; 177.370 satır, 6 entity; SHA-256 `5bec07f210f744f14aa5d509538f69105e32dcb0e4c2e76c0aa4c44377a91ac2`. Ham CSV Git'e eklenmedi.
+- **ZAMAN:** 2026-10-30 20:15:00Z–2026-10-31 07:07:48.897Z; Türkiye saati 23:15:00–10:07:48.897; 10:52:48.897 toplam süre.
+- **LOG:** SCT Akım 19.113 sayısal kayıt (medyan 0.192920 A, ortalama 0.194878 A, maksimum 2.665238 A); Raw AC 19.113 (medyan 0.007965 V, maksimum 0.110043 V); GPIO32 RAW 34.707 (medyan 1841), GPIO34 RAW 36.270 (medyan 1840); GPIO33 ve GPIO35 voltaj medyanı 1.653 V.
+- **KARŞILAŞTIRMA:** En yakın zaman damgası farkı ≤1.2 s olan 34.600 SCT/Bias RAW çifti; fark medyanı 0 count, ortalama −0.377 count, SD 12.673 count. Akım ve Raw AC arasında 24.22 katsayısı ile sayısal eşleşme var; bunlar bağımsız ölçüm değildir.
+- **AYKIRI OLAY:** 31 Ekim 05:24:02.363 Türkiye saati civarında 2.665238 A / 0.110043 V tepe. Yakın ADC yayınları yaklaşık 1843/1841 RAW ve 1.649/1.653 V; ancak örnekleme eşzamanlı değil. Olayın nedeni atanmadı ve kayıt silinmedi.
+- **YORUM:** SCT ve bias merkez değerleri birbirine yakın. Akım/Raw AC çıktısının fiziksel anlamı, yük durumu bilinmeden belirlenemez. HA geçmişi 200 ms ham ADC örneklerini veya N/SPS debug satırlarını içermez; gerçek yüksek hızlı edinim kanıtı değildir.
+- **DOĞRULAMA SINIRI:** CSV analizi tamamlandı; fiziksel primer/CT koşulu ve varsa ESPHome DEBUG logu henüz teyit edilmedi. E00F-N02 deney durumu TAMAMLANDI yapılmadı.
+- **SONRAKİ ADIM:** Kullanıcıdan gece boyunca yük/primer ve CT konumu/tur sayısı ile kola temasın saat aralığı teyit edilecek; varsa DEBUG logu incelenecek.
