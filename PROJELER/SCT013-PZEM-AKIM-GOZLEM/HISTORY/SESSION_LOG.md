@@ -1240,3 +1240,12 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **KOD:** `firmware/esp32wr1-pzem.yaml` kullanıcı tarafından sağlanan içerikle depoya eklendi.
 - **DOĞRULAMA:** Dosya ekleme commit'i `44130ff788288932a26fcda5e44efbe074fd276a`. ESPHome derlemesi, OTA, PZEM haberleşmesi veya UDP alımı bu kayıt sırasında test edilmedi.
 - **SONRAKİ:** Önce gerçek cihaz kimliklerini ve bağlantıları koruyarak derleme kontrolü; sonra PZEM UART ölçümünü tek başına, ardından UDP alımını SSR yayınından bağımsız/beraber kontrollü test et.
+
+
+## 2026-10-31 — EINHELL-CHARGER-001 deney açılışı
+
+- Kullanıcı Einhell pil şarj cihazında 0,413 A akım bildirdi ve testin açılmasını istedi.
+- test-loads/einhell-charger/README.md deney planı oluşturuldu; ana test yükleri listesine bağlandı.
+- 0,413 A, ölçüm cihazı henüz belirtilmediğinden KULLANICI BİLDİRİMİ olarak tutuldu; PZEM/UNIT referansı olduğu varsayılmadı.
+- Test aralığı 0,5 A altı; kullanıcı kapsam sınırı 0,01 A ve üzeri. Mevcut firmware/K=24.22 kilitli.
+- Fiziksel test, ESPHome logu ve sonuç analizi henüz yoktur. Deney AÇIK ve plan aşamasındadır.
