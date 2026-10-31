@@ -76,16 +76,16 @@ Bu karşılaştırmalar önceki kullanıcı kayıtları/loglarıyla desteklenmek
 **Hedef:** Üç SCT sinyali + tek ortak bias ADC girişi olan, ESP32D1 gömülü, harici 5 V beslemeli ve USB üzerinden PC'ye erişilebilir modülü oluşturmak.
 
 - ESPHome kimliği: `esp32d1` / `ESP32D1`.
-- Başlangıç iskeleti: [firmware/esp32d1.yaml](firmware/esp32d1.yaml); ADC/SCT sensör kodu henüz yok.
+- İlk ADC firmware: [firmware/esp32d1.yaml](firmware/esp32d1.yaml); GPIO32/33/34 için üç SCT gerilim sensörü ve GPIO35 için ortak bias gerilim sensörü tanımlı. Derleme ve fiziksel test bekliyor.
 - 1. dişi SCT yuvası sarı sinyal kablosu: GPIO32 (KULLANICI BİLDİRİMİ).
 - 2. dişi SCT yuvası yeşil sinyal kablosu: GPIO33 (KULLANICI BİLDİRİMİ).
 - 3. dişi SCT yuvası mavi sinyal kablosu: GPIO34 (KULLANICI BİLDİRİMİ).
 - Ortak bias ölçüm hattı turuncu kablo: GPIO35 (KULLANICI BİLDİRİMİ).
-- Tek ortak bias devresi mini breadboard üzerinde; kayıtlı Bias Trafosu modülünden beslenecek.
-- ESP32 harici 5 V ile beslenecek; PC USB erişimi sağlanacak. İki kaynağın aynı anda kullanım koşulu kart güç yolu doğrulanmadan kabul edilmeyecek.
+- Bias Trafosu modülü ve tek ortak bias devresi kapalı kutu içine gömülü (KULLANICI BİLDİRİMİ).
+- Kapalı kutu modül harici 5 V DC ile beslenecek; PC USB erişimi mevcut olacak. İki kaynağın aynı anda kullanım koşulu kart güç yolu doğrulanmadan kabul edilmeyecek.
 - ESP32 kart/shield tam modeli, jack tip/ring/sleeve eşleşmeleri ve bias ADC RAW/voltaj gösterimi açık.
-- **LOG:** Kullanıcı ESPHome temel iskeletini ve dört kablo/GPIO eşleştirmesini bildirdi; YAML dosyası oluşturuldu. Derleme, yükleme veya fiziksel test yapılmadı.
-- **DURUM:** T010 AKTİF — tasarım ve bağlantı hazırlığı. Modül çalışır/tamamlandı değildir.
+- **LOG:** Kullanıcı ESPHome temel iskeletini, dört kablo/GPIO eşleştirmesini ve kapalı kutu montajını bildirdi; dört ADC sensörlü YAML ve 100 W kanal test planı depoya işlendi. Derleme, yükleme veya fiziksel kanal testi yapılmadı.
+- **DURUM:** T010 AKTİF — kutu montajı kullanıcı beyanıyla yapıldı; ilk firmware derlemesi ve üç ayrı 100 W kanal testi bekliyor. Modül çalışır/tamamlandı değildir.
 - Kayıtlar: [Modül 2](docs/modules/SCT-OKUMA-TEST-MODULU.md), [ADR-015](docs/decisions/ADR-015-module2-esp32d1-triple-sct.md), [T010](tasks/T010-module2-triple-sct-bringup.md).
 
 ## Önceki durum kayıtları — tarihsel arşiv
