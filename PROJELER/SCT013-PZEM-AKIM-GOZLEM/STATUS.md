@@ -719,3 +719,18 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **PF:** Logda PZEM akım/PF yok; UNIT PF göstermiyor. PF etkisi hipotez olarak kalır.
 - **RAPOR:** [FAN-2 teknik analiz](logs/module2/2026-10-31-fan2-module2-sct1-long-analysis.md); [tam ham log](logs/module2/2026-10-31-fan2-module2-sct1-long-full.txt); [fan test kaydı](test-loads/fan/README.md).
 - **AÇIK İŞ:** PZEM akım + PF ile eşleşmiş kararlı pencere; 0,30 A altı ayrı 1T/2T/4T deney matrisi henüz uygulanmadı.
+
+
+## 2026-10-31 — FAN-3 uzun SCT-1 logu arşivlendi ve gözlem oturumu kapatıldı
+
+- **KAPANIŞ SINIFI:** FAN-3, Modül 2 düşük akım gözlem oturumu olarak kapatıldı; ±%4 akım doğrulama veya PF doğrulaması değildir.
+- **UNIT:** Kullanıcı bildirimi 0,141 A; 0,30 A altı BERO düşük akım bölgesinde ±%4 kabul/ret uygulanmaz.
+- **HAM LOG:** `logs/module2/2026-10-31-fan3-module2-sct1-long-full.txt`; kaynak `esp32d1-logs (43).txt`; 139.575 bayt / 1.877 satır; SHA-256 `a4345c7af2b5dcc608b264e1dceed50dbe8ee5e40c5137d1eeff2583f9a53a9f`.
+- **ZAMAN/ÖRNEK:** 17:35:27.127–17:43:55.115 (+03:00); 255 akım yayını.
+- **AKIM:** Ortalama 0,224612 A; medyan 0,223 A; min–maks 0,189–0,311 A; örnek SD 0,018657 A. 253/255 yayın 0,30 A altındadır; iki tekil yayın 0,305 A ve 0,311 A'dır.
+- **ANALOG:** Raw AC ortalama 0,009273 V; bias GPIO35 ortalama 1,663387 V; SCT-1 ADC GPIO32 ortalama 1,661008 V.
+- **KOD:** `firmware/archive/FAN-3-2026-10-31-esp32d1-sct1.yaml` kapanış snapshot'ı olarak kaydedildi. ESPHome 2026.10.1; GPIO32/35; ADC 12 dB / 1 s; ct_clamp 200 ms / 2 s; K=24.22; yazılımsal sıfır eşiği yok. Binary eşleşmesi iddia edilmez.
+- **PF:** Logda PZEM akım/PF yok; UNIT PF göstermiyor. PF etkisi doğrulanamadı.
+- **GEÇİŞ:** Açılma/kapanma olay işareti bulunmadığından gerçek anahtarlama anı ve tepki farkı hesaplanamadı.
+- **ANALİZ:** `logs/module2/2026-10-31-fan3-module2-sct1-long-analysis.md`.
+- **SONRAKİ:** PZEM akım + PF ile eşleşmiş kararlı pencere ve olay işaretli açılma/kapanma geçiş deneyi.
