@@ -1,5 +1,9 @@
 # SCT013 – PZEM Akım Gözlem
 
+## BERO üst mimarisi
+
+Bu klasör BERO'nun sensörden bağımsız mimarisinin kendisi değil, ilk SCT013 + PZEM uygulamasıdır. Ortak üç katmanlı yapı (veri toplama → özellik çıkarma → davranış çıkarımı) ve sensörler arası tasarım ilkeleri [BERO Mimari](../../MIMARI/README.md) altında tutulur. Bu projedeki SCT/CT'ye özgü ayarlar ve kanıtlar burada kalır.
+
 ## Projenin amacı
 
 BERO'nun bu alt projesi, SCT013 akım sensöründen elde edilen ölçüm çıktısını çalışan bir kod yolu üzerinden izlemek ve PZEM-004T V3.0 referans akışıyla karşılaştırarak zaman içinde geliştirmektir.
