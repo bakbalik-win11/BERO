@@ -272,3 +272,14 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - UNIT 0,244 A ile aritmetik ortalama farkı +%24,67; zaman örtüşmesi teyitsiz olduğundan doğruluk sonucu değildir. PZEM yoktur.
 - 0,30 A altı gözlem alanında ±%4 kabul/ret uygulanmaz; firmware ve K=24.22 değişmedi. Test açık kalır.
 - [Test kaydı](57w-incandescent/README.md); [analiz](../logs/module2/2026-10-31-load-57w-001-module2-sct1-analysis.md); [tam ham log](../logs/module2/2026-10-31-load-57w-001-module2-sct1-full.txt).
+
+## 2026-10-31 — MIXED-LOAD-57W-15W-001 açıldı
+
+- 57 W akkor ampul + 15 W ampul birlikte test yükü olarak açıldı; 15 W ampulün tipi henüz belirtilmedi.
+- Etiket güçlerinin aritmetik toplamı 72 W'tır; gerçek çekilen güç ölçümü değildir.
+- UNIT 0,303 A kullanıcı bildirimi; ölçüm zamanı ve SCT ile örtüşen kararlı pencere henüz doğrulanmadı.
+- Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; firmware ve K=24.22 korunacak.
+- 0,30 A sınırının hemen üzerindeki referans için eşleşmiş kararlı pencere sağlanırsa ±%4 kıyası yapılabilir.
+- Önceki LOAD-57W-001 açık kalır; bu farklı ve bağımsız yük koşuludur.
+- [MIXED-LOAD-57W-15W-001 test kaydı](mixed-57w-15w/README.md).
+
