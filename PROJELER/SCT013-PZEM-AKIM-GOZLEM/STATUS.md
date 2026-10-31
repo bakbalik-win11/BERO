@@ -1,3 +1,12 @@
+## 2026-10-31 — SCT-1 / 100 W ampul ilk kanal denemesi
+
+- **TEST:** SCT-1, ön panel 1 numaralı girişe bağlandı. Kullanıcı 100 W ampulü açtığını bildirdi.
+- **BIAS:** Ortak bias değeri ESPHome logunda görüldü (KULLANICI BİLDİRİMİ); bu mesajda sayısal bias değeri verilmedi.
+- **REFERANS GÖSTERGE:** Kullanıcı U200B+ cihazında 0,433 A gördüğünü bildirdi (KULLANICI BİLDİRİMİ).
+- **ADC KANITI:** Bu kayıtla birlikte SCT-1 GPIO32 ADC sayısal log örneği paylaşılmadı. Dolayısıyla 0,433 A, ESP32 ADC akım hesabı veya ADC doğruluk sonucu değildir.
+- **KAYIT:** [SCT-1 100 W test kaydı](logs/module2/2026-10-31-sct1-100w-test.txt).
+- **SONUÇ:** SCT-1 test adımı kullanıcı bildirimiyle gerçekleştirildi. GPIO32 ADC davranışını değerlendirmek için ampul açıkken GPIO32 ve aynı zaman aralığındaki GPIO35 log satırları gerekir. SCT-2 ve SCT-3 testleri bekliyor; T010 AKTİF.
+
 ## 2026-10-31 — Modül 2 ilk firmware açılışı / bağlantısız ADC kontrol logu
 
 - **KANIT:** Kullanıcının paylaştığı ESPHome logundan seçilmiş ADC kurulum ve örnek satırları kanıt dökümü olarak depoya eklendi: [ilk açılış log kanıt dökümü](logs/module2/2026-10-31-first-boot-no-load.txt).
