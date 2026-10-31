@@ -22,7 +22,57 @@ Modül harici 5 V DC ile beslenecek. ESP'nin USB bağlantısı PC'ye erişim/ser
 
 **Kutu dışında:** 220–240 V AC giriş/çıkış, PZEM-004T, SSR ve kutu içi şebeke kaynaklı 5 V güç kaynağı.
 
-## 3. Analog sinyal düzeni
+## 3. Modül 2 bağlantı şeması
+
+Aşağıdaki çizim, şu ana kadar bildirilen işlevsel bağlantı planıdır. GPIO/kablo eşleştirmeleri kullanıcı bildirimidir. Jack tip/ring/sleeve uçları, bias devresinin kesin düğümleri ve shield üzerindeki fiziksel terminaller henüz ölçülerek doğrulanmadı. Bu nedenle çizim, jack iç bağlantı pinout'u veya üretime hazır elektrik şeması değildir.
+
+```text
+       SCT-1                         ESP32D1 / GPIO SHIELD
+  [3.5 mm dişi yuva 1]              +----------------------+
+       Sinyal -- SARI -------------->| GPIO32 / ADC1_CH4    |
+                                    |                      |
+       SCT-2                         |                      |
+  [3.5 mm dişi yuva 2]              |                      |
+       Sinyal -- YESIL ------------>| GPIO33 / ADC1_CH5    |
+                                    |                      |
+       SCT-3                         |                      |
+  [3.5 mm dişi yuva 3]              |                      |
+       Sinyal -- MAVI -------------->| GPIO34 / ADC1_CH6    |
+                                    |                      |
+                                    |                      |
+  BIAS TRAFOSU MODULU               |                      |
+          |                         |                      |
+          v                         |                      |
+  +----------------------+          |                      |
+  | ORTAK BIAS DEVRESI   |          |                      |
+  | mini breadboard      |          |                      |
+  |                      |          |                      |
+  | Bias/Vmid dagitimi --+--*------> SCT-1 bias noktasi     |
+  |                      +--*------> SCT-2 bias noktasi     |
+  |                      +--*------> SCT-3 bias noktasi     |
+  |                      |          |                      |
+  | Bias olcum hatti     +-- TURUNCU -> GPIO35 / ADC1_CH7   |
+  | GND                  +----------> ESP32 GND             |
+  +----------------------+          +----------------------+
+
+  Harici 5 V DC -------------------> Kartin belgelenmis 5 V girisi
+  PC USB --------------------------> ESP32 USB (servis/veri erisimi)
+```
+
+`*` İşaretleri ortak bias düğümünün üç kanala dağıtılması fikrini gösterir; gerçek direnç/kondansatör bağlantı noktalarını veya jack kontaklarını tarif etmez. Bu noktalar bias devresi ve kablo süreklilik ölçümüyle netleştirilecektir.
+
+### 3.1 Kanal bağlantı tablosu
+
+| Kanal | SCT yuvası / işlev | Kablo rengi | GPIO | ESP32 klasik pin işlevi |
+|---:|---|---|---:|---|
+| 1 | SCT-1 sinyal girişi | Sarı | GPIO32 | ADC1_CH4 |
+| 2 | SCT-2 sinyal girişi | Yeşil | GPIO33 | ADC1_CH5 |
+| 3 | SCT-3 sinyal girişi | Mavi | GPIO34 | ADC1_CH6 |
+| 4 | Ortak bias ölçümü | Turuncu | GPIO35 | ADC1_CH7 |
+
+GPIO işlev adları klasik ESP32 varyantı içindir; kartın tam modeli/revizyonu ve ESPHome pin desteği ayrıca doğrulanacaktır.
+
+## 4. Analog sinyal düzeni
 
 Toplam dört ADC giriş noktası hedeflenir:
 
@@ -33,7 +83,7 @@ Toplam dört ADC giriş noktası hedeflenir:
 
 Tek bir bias devresi kullanılacaktır. Kayıtlı bias devresi mini breadboard üzerinde kurulacak ve Bias Trafosu modülünden beslenecektir. Ortak bias seviyesi üç SCT girişine dağıtılır; her SCT için ayrı bias kaynağı yapılmaz.
 
-## 4. Bildirilen fiziksel GPIO eşleştirmeleri
+## 5. Bildirilen fiziksel GPIO eşleştirmeleri
 
 | SCT yuvası | Sinyal kablosu | GPIO shield terminali | Kanıt durumu |
 |---|---|---|---|
@@ -42,11 +92,11 @@ Tek bir bias devresi kullanılacaktır. Kayıtlı bias devresi mini breadboard �
 | 3. dişi yuva | Mavi | GPIO34 | Kullanıcı bildirimi |
 | Ortak bias ölçümü | Turuncu | GPIO35 | Kullanıcı bildirimi |
 
-Güncel yuva bazlı kullanıcı bildirimleri: 1. yuva sarı → GPIO32; 2. yuva yeşil → GPIO33; 3. yuva mavi → GPIO34; ortak bias ölçüm hattı turuncu → GPIO35. Önceki genel kablo rengi notunda kırmızı hattın ortak bias olduğu belirtilmişti; bu yeni bağlantı tarifinde bias ölçüm kablosu turuncu olarak bildirildiğinden, fiziksel kablo güzergâhı/renk teyidi montaj sırasında yapılmalıdır.
+Güncel yuva bazlı kullanıcı bildirimleri: 1. yuva sarı → GPIO32; 2. yuva yeşil → GPIO33; 3. yuva mavi → GPIO34; ortak bias ölçüm kablosu turuncu → GPIO35. Önceki genel kablo rengi notunda kırmızı hattın ortak bias olduğu belirtilmişti; yeni bağlantı tarifinde bias ölçüm kablosu turuncu olarak bildirildiğinden, fiziksel kablo güzergâhı/renk teyidi montaj sırasında yapılmalıdır.
 
 Jack tip/ring/sleeve uçlarının tamamı henüz doğrulanmadı. Kablo rengi ve yuva sırası tek başına jak pinout'unun doğrulandığı anlamına gelmez.
 
-## 5. ESPHome başlangıç dosyası
+## 6. ESPHome başlangıç dosyası
 
 Dosya: [firmware/esp32d1.yaml](../../firmware/esp32d1.yaml).
 
@@ -59,7 +109,7 @@ Kullanıcının sağladığı başlangıç kimliği ve yapılandırma:
 
 YAML şimdilik yalnız temel ESPHome iskeletidir. Henüz ADC sensörleri, SCT okuma/ct_clamp bileşenleri, bias sensörü, kalan GPIO atamaları, katsayı veya filtre kodu yoktur. Derleme, OTA yüklemesi veya gerçek cihaz testi yapılmamıştır.
 
-## 6. Açık bağlantı ve tasarım noktaları
+## 7. Açık bağlantı ve tasarım noktaları
 
 - ESP32 kartının tam modeli ve revizyonu.
 - GPIO shield modeli ve terminal/pin eşleşmesi.
@@ -70,17 +120,17 @@ YAML şimdilik yalnız temel ESPHome iskeletidir. Henüz ADC sensörleri, SCT ok
 - Harici 5 V ile PC USB'nin aynı anda bağlanabilmesi için kartın güç yolu/geri besleme tasarımı.
 - Üç kanallı SCT okumada kullanılacak çalışan ESPHome örneği ve minimum uyarlama.
 
-## 7. Besleme ve bağlantı güvenliği
+## 8. Besleme ve bağlantı güvenliği
 
 - ESP32 harici 5 V DC kaynaktan beslenecek; 5 V ADC/GPIO pinlerine uygulanmaz.
 - USB üzerinden PC bağlantısı isteniyor. Harici 5 V ile PC USB aynı anda bağlı olacaksa kartın şeması/kılavuzundan güç yolu ve geri besleme koruması doğrulanmadan iki kaynak birlikte bağlanmaz.
-- Bias devresi GND'si ve ESP32 GND ortak referans olmalıdır; kesin bağlantı fiziksel kart ve bias devresi görülerek çizilecektir.
+- Bias devresi GND'si ve ESP32 GND ortak referans olmalıdır; kesin bağlantı noktaları fiziksel kart ve bias devresi görülerek teyit edilir.
 - Bias/Vmid ve SCT analog düğümlerinin gerilimleri doğrulanmadan ESP32 ADC pinlerine bağlantı yapılmaz.
 - Açık breadboard yalnız düşük gerilim bias devresi içindir; modül içinde şebeke gerilimi bulunmaz.
 - CT sekonderinin açık bırakılması konusunda ilgili SCT modelinin üretici talimatı gözetilir.
 
-## 8. Doğrulama durumu
+## 9. Doğrulama durumu
 
-Modülün kapsamı ve ESP32D1 kimliği kaydedildi. Dört GPIO eşlemesi kullanıcı bildirimi olarak kaydedildi: GPIO32 (1. yuva sarı), GPIO33 (2. yuva yeşil), GPIO34 (3. yuva mavi), GPIO35 (ortak bias turuncu). Kart/shield terminal bağlantıları ve jack tip/ring/sleeve pinout'unun fiziksel teyidi, besleme/USB güç yolu, sensör YAML kodu, derleme ve fiziksel test beklemededir.
+Modülün kapsamı ve ESP32D1 kimliği kaydedildi. Dört GPIO eşlemesi kullanıcı bildirimi olarak kaydedildi: GPIO32 (1. yuva sarı), GPIO33 (2. yuva yeşil), GPIO34 (3. yuva mavi), GPIO35 (ortak bias turuncu). İşlevsel bağlantı şeması bu bildirimlere göre depoya eklendi. Kart/shield terminal bağlantıları ve jack tip/ring/sleeve pinout'unun fiziksel teyidi, bias devresi düğümleri, besleme/USB güç yolu, sensör YAML kodu, derleme ve fiziksel test beklemededir.
 
-**Durum özeti:** Tasarım açıldı; modül tamamlanmış veya çalışır olarak işaretlenmemiştir.
+**Durum özeti:** Bağlantı planı dokümante edildi; modül tamamlanmış veya çalışır olarak işaretlenmemiştir.
