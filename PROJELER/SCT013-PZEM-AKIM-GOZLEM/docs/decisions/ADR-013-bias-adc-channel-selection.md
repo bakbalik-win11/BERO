@@ -1,3 +1,5 @@
+> **2026-10-31 kapsam açıklaması — ADR-015:** Tek bir ortak bias/Vmid ADC noktasının kullanılacağı kararı geçerlidir. Ancak `raw: false` gösterim tercihi, Modül 2'nin yeni ESP32D1 tasarımında kesinleşmiş uygulama kararı olarak kabul edilmeyecektir; RAW count veya voltaj gösterimi T010 sırasında kullanıcıyla netleştirilecektir. ADR-015, bu uygulama tercihi bakımından bu kayıttan daha günceldir.
+
 # ADR-013 — Modül 2 bias ADC kanal seçimi
 
 - **Tarih:** 2026-10-31
