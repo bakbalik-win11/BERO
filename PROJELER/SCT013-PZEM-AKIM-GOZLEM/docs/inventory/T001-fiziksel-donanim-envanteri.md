@@ -46,3 +46,31 @@ Bunlar stok eksikliği değil; analog ön uç tasarımı/doğrulaması kapsamın
 ## 5. Kapanış notu
 
 Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik parça olmadığını bildirmiştir. Bu sayfa fiziksel envanter beyanını kaydeder; tek başına elektriksel güvenlik veya analog ölçüm doğrulama kanıtı değildir.
+
+## 6. Akım trafosu modülü — kutu içindeki mevcut parçalar
+
+**Yerleşim:** Bu parçalar, kullanıcının SCT013 sinyalinin ESP32D2'ye bağlandığını belirttiği mevcut akım trafosu kutusunun içindedir. Ayrı bir stok kalemi olarak değil, **akım trafosu modülünün mevcut iç bileşenleri** olarak kaydedilmiştir.
+
+| Bileşen | Özellik / model | Kayıt dayanağı |
+|---|---|---|
+| İzolasyon trafosu | **RN130421**, 230 V AC / 6 V AC, 2.0 VA, EI 30/15.5, PCB tipi | Kullanıcının paylaştığı üretici teknik dokümanı |
+| Köprü doğrultucu | **KBU610** | Kullanıcı bildirimi |
+| Filtre kondansatörleri | Mevcut; adet ve değerleri henüz belirlenmedi | Kullanıcı bildirimi |
+| 3.3 V regülatör entegresi | Mevcut; parça/model numarası henüz belirlenmedi | Kullanıcı bildirimi |
+
+### RN130421 üretici dokümanı bilgileri
+
+- Primer: 230 V AC, 50–60 Hz.
+- Sekonder: 6 V AC.
+- Nominal çıkış gücü: 2.0 VA.
+- Nominal sekonder akımı: 0.333 A.
+- Yüksüz çıkış gerilimi: 9.30 V.
+- İzolasyon test gerilimi: 4000 V / 50 Hz.
+- Güvenlik sınıfı: II; kısa devre dayanımlı (dokümandaki “Short-Circuit Proof” ifadesi).
+- Maksimum ortam sıcaklığı: 60 °C.
+- Yapı: vakum altında kapsüllenmiş, bölünmüş bobin (split-bobbin), PCB pinli EI 30/15.5.
+
+**İşlevsel zincir — henüz bağlantı ölçümüyle doğrulanmadı:** 230 V AC → RN130421 → KBU610 köprü doğrultucu → filtre kondansatörleri → 3.3 V regülatör. Bu sıra, bildirilen bileşenlerden çıkarılan teknik yerleşim yorumudur; kart üzerindeki izler ve pin bağlantıları henüz takip edilmedi.
+
+**Kayıt sınırı:** 3.3 V çıkışın varlığı kullanıcı tarafından bildirildi. Regülatörün tam modeli, kondansatör değerleri, doğrultucu çıkış gerilimi ve 3.3 V hattının ESP32D2'ye hangi pin/bağlantı üzerinden gittiği henüz doğrulanmadı. Şebeke tarafı bağlantılar enerjiliyken incelenmeyecek.
+
