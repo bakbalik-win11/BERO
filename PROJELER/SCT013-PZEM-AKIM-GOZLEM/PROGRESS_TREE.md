@@ -39,7 +39,7 @@
 - **Bias:** Tek kayıtlı bias devresi; tek ortak bias beslemesi üç SCT girişine dağıtılacak. Ortak bias düğümü tek ADC noktasından izlenecek.
 - **ADC hedefi:** 3 bağımsız SCT sinyali + 1 ortak bias izleme = 4 ADC giriş noktası.
 - **Bildirilen eşleştirmeler:** 1. dişi yuva sarı → GPIO32; 2. dişi yuva yeşil → GPIO33; 3. dişi yuva mavi → GPIO34; ortak bias turuncu → GPIO35.
-- **Açık noktalar:** ESP32 kart/shield modeli, üçüncü SCT/bias GPIO'ları, jack pinout'u, USB ile harici 5 V'un birlikte kullanım koşulları, bias ADC RAW/voltaj gösterimi.
+- **Açık noktalar:** ESP32 kart/shield modeli, jack tip/ring/sleeve pinout'unun fiziksel teyidi, USB ile harici 5 V'un birlikte kullanım koşulları, bias ADC RAW/voltaj gösterimi.
 - **Durum:** Tasarım tanımlandı; fiziksel bağlantı, YAML sensörleri, derleme ve donanım testi yapılmadı.
 - **Görev:** [T010](tasks/T010-module2-triple-sct-bringup.md).
 - **Karar:** [ADR-015](docs/decisions/ADR-015-module2-esp32d1-triple-sct.md).
