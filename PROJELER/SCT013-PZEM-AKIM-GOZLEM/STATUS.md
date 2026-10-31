@@ -1,3 +1,12 @@
+## 2026-11-01 — Faz 2 veri hattı ve düşük akım uygulama planı
+
+- **KAYIT:** [Faz 2 veri hattı ve düşük akım uygulama planı](docs/plans/2026-11-01-phase2-data-and-low-current-execution-plan.md).
+- **AMAÇ:** Mevcut ct_clamp/K=24.22 yolunu koruyarak T010 pratik modül devreye almayı sürdürmek; modüller gerçek veri ürettiğinde T007 → T008 → T006 veri zincirini çalıştırmak; düşük akım davranışını kanıtlanmış sonuç yerine ölçülecek soru olarak ele almak.
+- **SIRA:** AGENTS/ROADMAP görev sırası korunur: T009 → T010 → T007 → T008 → T006. T010 hâlen aktif; T007/T008/T006 erkene çekilmedi.
+- **DÜZELTME:** 0.4 A fiziksel alt sınır değildir (H17 kanıt yok). 0.35 A filtresi eski E00F/ESP32D2 kaydına aittir; güncel Modül 2'ye atfedilmez. Düşük akımda SNR, bias, ADC basamağı, dedup ve sayısal hesap etkileri ayrıştırılmamıştır.
+- **MODEL:** Tek K=24.22 önce eşleşmiş kararlı veriyle değerlendirilecek. Bölgesel model yalnız tekrarlanabilir bölgesel sapma ve yeterli doğrulama verisi bulunursa adaydır.
+- **DURUM:** Bu kayıt planlama güncellemesidir; firmware/YAML, K, pin, eşik veya fiziksel deney değiştirilmedi. E10 ayrı T010 alt deneyi olarak PLANLANDI kalır.
+
 ## 2026-11-01 — Gün sonu kapanışı / BERO teknik ilerleme yok
 
 - **OTURUM KAPSAMI:** Bu sohbetin konusu Claude hizmet durumunu netleştirmek ve Claude'a verilecek genel kod denetim promptunu hazırlamaktı. Bu çalışma BERO firmware'i veya deneyleri üzerinde teknik bir uygulama değildi.
