@@ -1,3 +1,11 @@
+## 2026-10-31 — Sensör okuma kalıpları
+
+- ct_clamp araştırmasından hareketle genel sensör veri yolu ile CT'ye özgü AC RMS algoritması ayrıştırıldı.
+- Açıklamalı referans YAML'lar eklendi: [CT / AC RMS](firmware/patterns/ct-clamp-ac-rms-reference.yaml), [analog DC ADC](firmware/patterns/adc-dc-voltage-observer.yaml).
+- Ayrıntı ve sensör türüne göre seçim rehberi: [firmware/patterns/README.md](firmware/patterns/README.md).
+- Şablonlar henüz derlenmedi veya donanımda test edilmedi; mevcut ESP32D1/ESP32D2 firmware'leri değiştirilmedi.
+- firmware/esp32d1.yaml ile daha sonraki üç kanallı T010 kaydı arasında içerik tutarsızlığı tespit edildi; mevcut dosya korunarak ayrı not edildi.
+
 ## 2026-10-31 — ESPHome ct_clamp üç kaynaklı sentez
 
 - Claude, GitHub Copilot ve bağımsız inceleme; PR #559, #1906, #1915, #1916, #2283, #4229 ve #4236 kayıtlarıyla sentezlendi.
