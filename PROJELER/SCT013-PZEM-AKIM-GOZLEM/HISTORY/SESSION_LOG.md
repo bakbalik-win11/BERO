@@ -1050,3 +1050,18 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **Açık kalanlar:** E00F-N02 fiziksel koşullarının kapanışı ayrı değerlendirilir. E00F-N03 için akkor ampulün etiketi/gücü, CT'nin gerçek iletkeni ve tur sayısı test başlangıcında kaydedilecek.
 - **Sonraki adım:** 100 W akkor ampul hazır olduğunda mevcut E00F firmware'ini değiştirmeden kapalı/açık/kapalı kontrollü kayıt al. Sonra E08 Aşama 3 ADC Continuous/DMA hazırlığını sürdür.
 - **Kanıt:** [E00F-N02 raporu](../experiments/E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md); bu commit.
+
+
+## 2026-10-31 — E00F-N03 ikinci log: yük sonrası tabana dönüş
+
+- **HEDEF:** İlk logda 100 W akkor ampul açıldığında yükselen SCT Raw AC seviyesinin, yük kesildiğinde yüksüz başlangıç davranışına dönüp dönmediğini ikinci cihaz loguyla incelemek. Kabul ölçütü: açma öncesi, yük açık ve yük sonrası CT pencerelerinin ayrı karşılaştırılması; kullanıcı beyanı ile logdan çıkarılan olay zamanının ayrılması.
+- **BAŞLANGIÇ:** Proje AGENTS.md, STATUS.md, ROADMAP.md, docs/open-questions.md, PROGRESS_TREE.md, E00F-N03 YAML/raporu ve SESSION_LOG okundu. Aktif deney E00F-N03 olarak korundu. main üzerindeki önceki kayıt E00F-N03 kısmi testti; yük kapatma sonrası kesit eksikti.
+- **GİRDİ:** Kullanıcının yüklediği `esp32d2-logs (15).txt`; 5.000 satır, 375.017 bayt; SHA-256 `1ada9e16f102b8a290d2bdc3b8d7572c3ab442561f552acb081ee367f5a23952`. Ham TXT bu oturumda Git'e eklenmedi.
+- **LOG:** 455 CT DEBUG penceresi 10:30:51.840–10:45:59.928. 10:30–10:32 başlangıç kesitinde 35 pencere ve Raw AC medyanı 0.004 V. 10:35–10:39 yük açık kesitinde 120 pencere, medyan 0.019 V, ortalama 0.01997 V, p95 0.024 V. 10:39:25.820'de 0.018 V; 10:39:27.837'de 0.006 V; 10:39:29.819'da 0.000 V. 10:40–10:46 sonrası 180 pencere, medyan 0.000 V, ortalama 0.00238 V, maksimum 0.011 V.
+- **YAVAŞ ADC:** Başlangıç/yük açık/yük sonrası medyanlar GPIO32 SCT RAW 1842/1852/1842 count; GPIO33 SCT voltaj 1.642/1.657/1.642 V; GPIO34 Bias RAW 1841.5/1841/1840 count; GPIO35 Bias voltaj 1.653/1.653/1.653 V. 1 s ADC yayınları 200 ms CT pencereleriyle eşzamanlı değildir.
+- **HATA / CİHAZ:** İkinci dosyada 455 CT penceresi, ERROR/[E] satırı yok. Bu dosya cihaz açılışını içermeyen devam logudur. Firmware, cihaz kimliği, pinler, katsayı 24.22 ve eşik değiştirilmedi.
+- **SONUÇ:** **ÖLÇÜLDÜ:** SCT Raw AC seviyesi yük açıkken yükselmiş, ikinci logda 10:39:27.837–10:39:29.819 aralığında düşerek sonraki altı dakikada başlangıçtaki düşük banda dönmüştür. Bu, 100 W akkor yük için aç-kapa tepkisinin log düzeyinde gözlendiğini destekler. Geçiş saati logdan çıkarılmıştır; kullanıcının fiziksel kapatma zamanı olarak kaydedilmemiştir.
+- **SINIRLAR:** Kullanıcı ampulü yaklaşık 10:39:28'de kapattığını henüz ayrıca teyit etmedi. CT'nin hangi primer iletkeni kaç tur çevrelediği doğrulanmadı. PZEM referans verisi ve ham ADC örnek dizisi yok; kalibrasyon/±%4 doğruluk sonucu çıkarılamaz. İkinci ham TXT Git'e aktarılmadı.
+- **DEPO:** STATUS.md ve E00F-N03 gözlem raporu güncellendi. Deney YAML henüz güncellenmedi. Dosyalar yeniden okunarak doğrulanacak.
+- **SONRAKİ ADIM:** Kullanıcıdan 10:39:27–10:39:29 aralığında ampulü kapattığını teyit et. YAML'daki kayıt metadatası ve ikinci log bilgilerini rapor/STATUS ile eşleştir. CT fiziksel iletken/tur teyidi gelmeden E00F-N03'ü TAMAMLANDI yapma.
+
