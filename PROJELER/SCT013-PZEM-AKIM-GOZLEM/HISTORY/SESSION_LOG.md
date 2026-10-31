@@ -1065,3 +1065,13 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **DEPO:** STATUS.md ve E00F-N03 gözlem raporu güncellendi. Deney YAML henüz güncellenmedi. Dosyalar yeniden okunarak doğrulanacak.
 - **SONRAKİ ADIM:** Kullanıcıdan 10:39:27–10:39:29 aralığında ampulü kapattığını teyit et. YAML'daki kayıt metadatası ve ikinci log bilgilerini rapor/STATUS ile eşleştir. CT fiziksel iletken/tur teyidi gelmeden E00F-N03'ü TAMAMLANDI yapma.
 
+
+
+## 2026-10-31 — E00F-N03 fiziksel kapatma zamanı kullanıcı tarafından teyit edildi
+
+- **KULLANICI BEYANI:** 100 W akkor ampul 10:39 yerel saatinde kapatıldı. Açma zamanı daha önce 10:32 olarak bildirilmişti.
+- **LOG İLE KARŞILAŞTIRMA:** İkinci DEBUG logunda 10:39:25.820 CT penceresinde Raw AC 0.018 V; 10:39:27.837'de 0.006 V; 10:39:29.819'da 0.000 V. Kullanıcının 10:39 kapatma beyanı sinyal dönüşüyle uyumludur. 10:40–10:46 aralığında Raw AC medyanı 0.000 V'tur.
+- **YORUM:** 100 W akkor yükün açılmasıyla SCT Raw AC seviyesi yükselmiş, yük kapatıldığında başlangıçtaki düşük banda dönmüştür. Bu gözlem aç-kapa tepkisini destekler; PZEM karşılaştırması veya kalibrasyon doğrulaması değildir.
+- **AÇIK SINIR:** CT'nin hangi tekil primer iletkeni kaç tur çevrelediği henüz doğrulanmadı. Ham iki TXT dosyası Git'e aktarılmadı; hash ve analiz raporları kayıtlıdır. Bu nedenle E00F-N03 tamamlandı olarak işaretlenmedi.
+- **GÜNCELLEMELER:** N03 deney YAML'ına `user_reported_load_off_local: "10:39"` eklendi; N03 gözlem raporu, STATUS.md ve PROGRESS_TREE.md kullanıcı teyidine göre güncellendi.
+- **SONRAKİ ADIM:** CT'nin fiziksel iletken/tur düzenini doğrula; ardından N03 kabul ölçütleri üzerinden deney durumunu gözden geçir.
