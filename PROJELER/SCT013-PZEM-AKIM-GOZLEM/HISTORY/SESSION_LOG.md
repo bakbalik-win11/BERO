@@ -1093,3 +1093,14 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **SONUÇ:** N03'ün kendi hedefi ve üç koşullu gözlem sırası karşılandı; E00F-N03 **TAMAMLANDI** olarak kapatıldı. Bu karar PZEM kalibrasyonu veya ±%4 doğruluk iddiası değildir; bunlar ayrı görev kapsamındadır.
 - **SINIRLAR / ARŞİV:** PZEM referans karşılaştırması ve ham ADC dönüşüm dizisi bu testte yoktur. İki kaynak TXT dosyası Git'e aktarılmadı; SHA-256 değerleri ve rapor kayıtlıdır. CT yerleşim bilgisi kullanıcı beyanıdır, bağımsız fiziksel inceleme değildir.
 - **DEPO GÜNCELLEMELERİ:** Deney YAML, gözlem raporu, STATUS.md ve PROGRESS_TREE.md TAMAMLANDI durumuna getirildi.
+
+
+## 2026-10-31 — ±%4 hedefi ve yüksek hızlı ham edinim ara işlerinin kapatılması
+
+- **HEDEF:** Kullanıcının yeni/harici kodla ölçüm hedefini sağladığı kararını kaydetmek; artık gerekmeyen ham dalga aktarımı, ADC örneklerini tek tek zaman damgalama ve DMA edinim işlerini yol haritasından çıkarmak.
+- **GİRDİ:** Kullanıcının önceki gün sunduğu dört yük karşılaştırması; mevcut konuşmada özetlenen değerler: 100 W akkor 0,446–0,447 A referans / 0,4471 A kod; 150 W akkor 0,616 A / 0,615 A; kettle düşük/kararlı 0,637 A / 0,656 A; kettle kaynama 6,39 A / 6,15 A.
+- **SONUÇ:** Aktarılan sapmalar yaklaşık %0, −%0,2, +%3,0 ve −%3,8; dört koşul da ±%4 sınırında. Bu sonuç KULLANICI RAPORU olarak kaydedildi. Ham ölçüm dosyaları ve harici kod bu oturumda yeniden alınmadı veya depoya eklenmedi.
+- **KARAR:** PC'ye ham 50 Hz dalga aktarımı, her ADC örneğine ayrı zaman damgası ve bunlar için ADC Continuous/DMA geliştirmesi KAPATILDI — GEREKSİZ. E00F'nin çalışan kodu/ayarları korunacak. E00F-N03 kendi gözlem hedefi içinde tamamlanmış durumda.
+- **SINIR:** Bu kapanış BERO Python model/eğitim hattını, bağımsız genelleme testini veya E08'in bütün yük matrisini tamamlamaz. Harici kodun kaynak/versiyonu depoda bulunmuyor.
+- **DEPO:** ADR-009, STATUS, ROADMAP, PROGRESS_TREE, görev indeksi, E08 açıklamaları ve deney günlüğü güncellendi. Yazılan dosyalar yeniden okunarak doğrulanacak.
+- **SONRAKİ ADIM:** Çalışan ölçüm kodunu sabitlemek ve aynı yüklerde tekrarlanabilirlik kayıtlarını düzenlemek; yeni ham edinim/DMA geliştirmesi açmamak.
