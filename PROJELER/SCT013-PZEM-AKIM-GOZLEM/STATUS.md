@@ -1,3 +1,12 @@
+## 2026-10-31 — ESPHome ct_clamp üç kaynaklı sentez
+
+- **DURUM:** Claude raporu, GitHub Copilot raporu ve bağımsız inceleme birleştirilerek sentez raporu oluşturuldu; GitHub PR kayıtları ayrıca kontrol edildi.
+- **TARİHÇE:** İlk bileşen PR #559 / commit 3089ffa (2019); 2021 #1906 AC-only standart sapma hesabını açıklar. #1915 çoklu CT örnekleme mutex'i, #1916 NaN/negatif karekök, #2283 yinelenen örnek filtresi; #4229/#4236 sıfır akım/negatif karekök sınırlarını ele alır.
+- **DÜZELTME:** Copilot'un 2021'i ilk tasarım kanıtı sayması eksik; 2019 ilk bileşen kaydıdır. 200 ms'nin tarihsel tercih nedeni, 60 s için özel tasarım gerekçesi ve #2283'ün performans amacı kanıtlanmamıştır.
+- **LAST_VALUE:** Filtre sonradan eklenmiştir; ADS1115'in istenenden yavaş dönüşüm hızı bağlamında tekrar eden değerleri istatistiğe yeniden katmamayı hedefler. ADC çağrısını kesmez. PR'nin test ortamı ESP8266'dır; ESP32'ye doğrudan genelleme yapılmaz.
+- **BERO KARARI:** Firmware, 200 ms / 2 s ve K=24.22 değişmedi. E10 planı geçerli; last_value filtresi için ayrı kontrollü karşılaştırma gerekebilir. Yeni fiziksel test yapılmadı.
+- **RAPOR:** [Üç kaynaklı sentez](docs/research/ct-clamp/2026-10-31-synthesis-copilot-claude-independent.md); [arşiv indeksi](docs/research/ct-clamp/README.md).
+
 ## 2026-10-31 — ESPHome ct_clamp tasarım tarihçesi araştırıldı
 
 - **DURUM:** Kaynak araştırması tamamlandı ve ayrı rapor olarak arşivlendi; firmware/YAML, K katsayısı ve fiziksel deney değişmedi.
