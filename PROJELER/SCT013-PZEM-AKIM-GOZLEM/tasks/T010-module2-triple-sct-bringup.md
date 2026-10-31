@@ -36,7 +36,7 @@ Dört eşleştirme de kullanıcı bildirimidir. Jakların tip/ring/sleeve pin di
 
 Başlangıç ESPHome iskeleti [esp32d1.yaml](../firmware/esp32d1.yaml) dosyasına kaydedildi. Cihaz kimliği esp32d1 / ESP32D1 olarak kullanıcı tarafından sağlandı.
 
-YAML henüz ADC/SCT/bias sensör bileşenleri içermez. GPIO32 ve GPIO33 için sensör kodu, kalan GPIO ataması, ct_clamp yapılandırması, entity adları ve katsayı/filtre kodu henüz eklenmedi. Derleme veya cihaz testi yapılmadı.
+YAML henüz ADC/SCT/bias sensör bileşenleri içermez. Dört GPIO eşlemesi kullanıcı tarafından bildirildi; bunları kullanan sensör kodu, ct_clamp yapılandırması, entity adları ve katsayı/filtre kodu henüz eklenmedi. Derleme veya cihaz testi yapılmadı.
 
 ## İş sırası
 
@@ -55,7 +55,7 @@ YAML henüz ADC/SCT/bias sensör bileşenleri içermez. GPIO32 ve GPIO33 için s
 - ESP32 kart model/revizyonu ve GPIO shield modeli.
 - USB konektör tipi; harici 5 V ve PC USB'nin aynı anda kullanımı.
 - Dört GPIO'nun gerçek ESP32 kartı ve shield terminaliyle birebir eşleştiğinin fiziksel teyidi.
-- Üç jack'in tip/ring/sleeve pinout'u ve diğer kabloların fiziksel eşlemesi.
+- Üç jack'in tip/ring/sleeve pinout'u ve dört rengin gerçek terminal güzergâhının fiziksel teyidi.
 - Bias devresinin elektrolitik kondansatör değeri/polaritesi ve Bias Trafosu modülünden besleme bağlantısı.
 - Bias ADC'nin yazılım gösterimi (RAW count veya voltaj).
 - Üç kanallı okuma için seçilecek çalışan ESPHome örneği.
