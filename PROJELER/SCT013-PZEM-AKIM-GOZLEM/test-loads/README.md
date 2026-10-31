@@ -229,3 +229,12 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - 0,30 A altı gözlem bölgesinde ±%4 kabul/ret uygulanmaz. K=24.22 korunur, yazılımsal sıfır eşiği yoktur.
 - Kaynak: `esp32d1-logs (56).txt`, 298.344 bayt, SHA-256 `15c94083291b374e60f80d932494d6a6a58cbef9b5a3d82227cc2f58703dc20a`. Tam TXT bu committe Git'e eklenmedi; kaynak kullanıcı yüklemesinde korunur.
 - [Test kaydı](fixed-load-0130a/README.md); [analiz](../logs/module2/2026-10-31-fixed-load-0130a-001-sct1-analysis.md).
+
+## 2026-10-31 — LOAD-42W-001 açıldı: 42 W ampul
+
+- **YÜK:** 42 W ampul; ampul teknolojisi/marka-modeli henüz teyit edilmedi.
+- **UNIT:** 0,174 A kullanıcı bildirimi; başlangıç referansı olarak kaydedildi. Kararlı pencere olduğu henüz teyit edilmedi.
+- **DÜZENEK:** Mevcut Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35 başlangıç ayarları; ESPHome 2026.10.1, ct_clamp 200 ms / 2 s, K=24.22, sıfır eşiği yok.
+- **KURAL:** 0,30 A altı gözlem bölgesi; ±%4 kabul/ret uygulanmaz. UNIT ve PZEM ayrı referanslardır.
+- **DURUM:** Test kaydı AÇIK; SCT logu, test zamanı ve fiziksel ampul ayrıntıları bekleniyor.
+- **DOSYA:** [LOAD-42W-001 test kaydı](42w-bulb/README.md).
