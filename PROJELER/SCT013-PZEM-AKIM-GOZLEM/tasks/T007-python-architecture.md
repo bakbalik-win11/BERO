@@ -1,13 +1,13 @@
 # T007 — Home Assistant verisini PC'ye aktarma ve Python başlangıcı
 
-- **Durum:** AKTİF — Faz 2'nin ilk görevi
-- **Faz:** Faz 2 — Bulunan kodu PZEM ile eğitmek
-- **Bağımlılık:** Faz 1'de bulunan çalışan SCT ölçüm yolu ve mevcut PZEM-004T V3.0 veri akışı.
+- **Durum:** BEKLEMEDE — pratik modül devreye alma sonrasında
+- **Faz:** Faz 2 — Pratik yeniden kurulum ve sistem geliştirme (veri aktarımı alt aşaması)
+- **Bağımlılık:** T009 kapsamında PZEM ve SCT düğümlerinin temel işlevlerinin gerçek donanımda çalışması ve Home Assistant'ta gerçek entity üretmesi.
 - **Hedef:** Home Assistant'ta kaydedilen PZEM ve SCT entity geçmişlerini PC'ye taşıyacak, kaynak bilgilerini koruyacak ve aynı veri üzerinde tekrar çalıştırılabilecek en küçük Python veri giriş hattını kurmak.
 
-## Neden ilk iş bu?
+## Neden T009 sonrasında?
 
-PZEM ve SCT kararlı alanlarını eşleştirebilmek için önce iki akışın aynı PC çalışma alanında, kaynak timestamp'leri bozulmadan bulunması gerekir. Kararlılık algoritması, etiket şeması veya katsayı modeli bu veri yolu görülmeden kesinleştirilmeyecek. Eski E00A/E00/E01 ADC deneyleri T007'nin ön koşulu değildir; Faz 1 hedefe ulaşıldığı için kapatılmıştır.
+Veri aktarımı için önce PZEM ve SCT düğümlerinin gerçek veriyi Home Assistant'a yayınlıyor olması gerekir. Faz 2'nin ilk hedefi veri analizi değil, modülleri pratik olarak yeniden devreye alıp temel işlevlerini doğrulamaktır. T009 kabul koşulları karşılandıktan ve gerçek entity listesi görüldükten sonra T007 başlatılır.
 
 ## Bilinen hedef
 
@@ -48,4 +48,4 @@ PZEM ve SCT kararlı alanlarını eşleştirebilmek için önce iki akışın ay
 
 - **HEDEF:** Faz 2'nin ilk veri yolunu kurmak.
 - **LOG:** Henüz bu yeni görev kapsamında HA verisi dışa aktarılmadı ve Python uygulaması yazılmadı.
-- **SONUÇ:** T007 AKTİF. İlk somut adım, gerçek HA entity listesini ve dışa aktarılabilir geçmiş örneğini elde etmektir.
+- **SONUÇ:** T007 BEKLEMEDE. PZEM/SCT düğümleri T009 kapsamında çalıştırılıp gerçek entity'leri doğrulanınca açılacaktır.
