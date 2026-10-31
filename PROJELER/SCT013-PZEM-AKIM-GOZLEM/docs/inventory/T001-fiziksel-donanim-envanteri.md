@@ -47,7 +47,9 @@ Bunlar stok eksikliği değil; analog ön uç tasarımı/doğrulaması kapsamın
 
 Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik parça olmadığını bildirmiştir. Bu sayfa fiziksel envanter beyanını kaydeder; tek başına elektriksel güvenlik veya analog ölçüm doğrulama kanıtı değildir.
 
-## 6. Akım trafosu modülü — kutu içindeki mevcut parçalar
+## 6. BERO modülü: Bias Trafosu
+
+Bu donanım bağımsız BERO modülü olarak tanımlanmıştır. Amaç, ESP32D2'nin SCT013 ölçüm devresine bias beslemesi sağlamaktır. Ayrıntılı modül tanımı, parça listesi, ölçüm kanıtı ve açık doğrulamalar: [BIAS-TRAFOSU.md](../modules/BIAS-TRAFOSU.md).
 
 **Yerleşim:** Bu parçalar, kullanıcının SCT013 sinyalinin ESP32D2'ye bağlandığını belirttiği mevcut akım trafosu kutusunun içindedir. Ayrı bir stok kalemi olarak değil, **akım trafosu modülünün mevcut iç bileşenleri** olarak kaydedilmiştir.
 
@@ -55,8 +57,8 @@ Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik par
 |---|---|---|
 | İzolasyon trafosu | **RN130421**, 230 V AC / 6 V AC, 2.0 VA, EI 30/15.5, PCB tipi | Kullanıcının paylaştığı üretici teknik dokümanı |
 | Köprü doğrultucu | **KBU610 1000 V / 6 A; toplam 5 adet; 1 adet akım trafosu modülünde, 4 adet stokta** | Kullanıcı bildirimi |
-| Filtre kondansatörü | **2200 µF / 35 V, 16×25 mm — toplam 3 adet; 1 adet akım trafosu kutusunda, 2 adet stokta** | Kullanıcı bildirimi |
-| 3.3 V regülatör entegresi | **L78L33, TO-92 — toplam 3 adet; 1 adet akım trafosu kutusunda takılı, 2 adet yedek stokta** | Kullanıcı model/adet bildirimi; L78L ailesi üretici veri sayfası görseli |
+| Filtre kondansatörü | **2200 µF / 35 V, 16×25 mm — toplam 3 adet; 1 adet Bias Trafosu modülünde, 2 adet stokta** | Kullanıcı bildirimi |
+| 3.3 V regülatör entegresi | **L78L33, TO-92 — toplam 3 adet; 1 adet Bias Trafosu modülünde takılı, 2 adet yedek stokta** | Kullanıcı model/adet bildirimi; L78L ailesi üretici veri sayfası görseli |
 
 ### RN130421 üretici dokümanı bilgileri
 
@@ -80,7 +82,7 @@ Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik par
 - **Model:** L78L33.
 - **Kılıf:** TO-92.
 - **Toplam adet:** 3.
-- **Modül içindeki:** 1 adet; akım trafosu kutusunda kullanılıyor.
+- **Modül içindeki:** 1 adet; Bias Trafosu modülünde kullanılıyor.
 - **Serbest stok:** 2 adet.
 - **Üretici dokümanı görselinden görülen L78L ailesi özellikleri:** 3.3 V dahil sabit çıkış seçenekleri; 100 mA'ya kadar çıkış akımı; termal aşırı yük ve kısa devre koruması; harici bileşen gerektirmeyen regülatör ailesi.
 - **Kanıt ayrımı:** L78L33/TO-92 ve adet/yerleşim bilgisi kullanıcı beyanıdır. Paylaşılan ST L78L veri sayfası görseli aile özelliklerini gösterir; tek başına kullanılan parçanın üreticisini veya tam sipariş kodunu doğrulamaz.
