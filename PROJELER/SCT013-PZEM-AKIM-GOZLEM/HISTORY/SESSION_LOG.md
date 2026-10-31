@@ -1356,3 +1356,18 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **AYRIM:** Önceki LOAD-57W-001 (yalnız 57 W akkor, UNIT 0,244 A) açık kalır; bu kayıt yeni ve bağımsız karma yük koşuludur.
 - **DOSYA:** [MIXED-LOAD-57W-15W-001](../test-loads/mixed-57w-15w/README.md).
 - **DURUM:** Test AÇIK; SCT logu, UNIT kararlılığı ve varsa PZEM verisi bekleniyor.
+
+
+## 2026-10-31 — IRON-001 kapatıldı; TOASTER-001 açıldı
+
+- **İSTEK:** Kullanıcı IRON-001'i sağladığı iki log parçasıyla bitirmemizi ve raporlamamızı, ardından tost makinesi için yeni test açmamızı istedi.
+- **IRON-001 KAPANIŞ:** Kapsam iki mevcut logla sınırlı gözlem raporudur; tüm termostat çevrimleri/uzun dönem davranış doğrulandı denmemiştir.
+- **AÇIK ÇEVRİM 1:** n=5; 21:40:42.179–21:40:50.187; ortalama 9,2852 A; medyan 9,291 A; min–maks 9,237–9,311 A; SD 0,0285 A.
+- **AÇIK ÇEVRİM 2:** n=4; 21:43:50.190–21:43:56.173; ortalama 9,3605 A; medyan 9,351 A; min–maks 9,314–9,426 A; SD 0,0542 A.
+- **REFERANS:** UNIT 10,16 A kullanıcı bildirimi. Aritmetik farklar −%8,61 ve −%7,87; zaman eşleşmesi teyitsiz, dolayısıyla doğruluk/kalibrasyon sonucu değil. PZEM verisi yok.
+- **OFF:** Toplam 49 yayının 40'ı SCT ≤0,25 A; 27 tam sıfır, 13 adet 0,011–0,092 A. OFF okumaları geçerli veri olarak raporda tutuldu.
+- **SÜRE SINIRI:** İki log arasında yaklaşık 104 s kayıt boşluğu var; ölçülmüş kapalı süre sayılmadı.
+- **KOD:** ESPHome 2026.10.1; K=24.22; firmware değişmedi.
+- **TOASTER-001:** Tost makinesi için yeni gözlem testi açıldı. Etiket gücü ve UNIT/PZEM referansı bilinmiyor; ölçüm ve log bekleniyor. Açılış, kararlı ON, varsa termostat OFF ve geçişler ayrı değerlendirilecek.
+- **DOSYALAR:** [IRON-001 kapanış raporu](../test-loads/iron/README.md); [TOASTER-001 test planı](../test-loads/toaster/README.md).
+- **DURUM:** Aktif test TOASTER-001. IRON-001 yalnız iki logluk rapor kapsamıyla kapatıldı.
