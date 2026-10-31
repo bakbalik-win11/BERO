@@ -31,8 +31,8 @@ Tek sarım Modül 2 / SCT-1 düzeninde ütünün termostat çevrimlerini gözlem
 - Log 60'da 21:40:52.182'de 0,000 A'ya düşüş ve 21:41:56.178'e kadar kapalı/düşük akım yayınları var. Log 61'de 21:43:40.175–21:43:48.182 aralığında yeniden düşük akım, 21:43:50.190'da tekrar 9,426 A yükselişi ve 21:43:58.169'da 0,047 A'ya iniş görülüyor.
 - İki dosya arasında yaklaşık 104 saniyelik kayıt boşluğu vardır. Bu boşlukta ne olduğu bilinmiyor; kapalı süreye ölçülmüş veri olarak eklenmez.
 - Bu ilk parçalar kısa çevrim örnekleridir; uzun dönem kararlılık veya nihai doğruluk sonucu değildir. PZEM verisi bu loglarda yoktur.
-- Ham loglar: [Log 60](../../logs/module2/2026-10-31-iron-001-log60-module2-sct1-full.txt), [Log 61](../../logs/module2/2026-10-31-iron-001-log61-module2-sct1-full.txt).
-- Analiz: [ilk bölüm analizi](../../logs/module2/2026-10-31-iron-001-initial-analysis.md).
+- Ham loglar: [Log 60](log60-full.txt), [Log 61](log61-measurement-evidence.txt).
+- Analiz: [ilk bölüm analizi](initial-analysis.md).
 
 ## DURUM
 AÇIK — ilk iki log parçası arşivlendi; uzun deney ve daha fazla termostat çevrimi bekleniyor. Tamamlandı olarak işaretlenmedi.
