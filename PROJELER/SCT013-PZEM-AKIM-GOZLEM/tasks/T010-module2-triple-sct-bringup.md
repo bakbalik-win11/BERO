@@ -1,6 +1,6 @@
 # T010 — Modül 2: ESP32D1 üçlü SCT okuma modülünü oluşturma
 
-- **Durum:** AKTİF — firmware yüklendi ve dört ADC başlatması logla doğrulandı; SCT/100 W kanal testleri bekliyor
+- **Durum:** AKTİF — firmware/ADC açılışı logla desteklendi; SCT-1 100 W denemesi kullanıcı bildirimiyle yapıldı; SCT-2 ve SCT-3 bekliyor
 - **Faz:** Faz 2 — Pratik yeniden kurulum ve sistem geliştirme
 - **Modül:** BERO-SCT-OKUMA-TEST-002
 - **Karar:** [ADR-015](../docs/decisions/ADR-015-module2-esp32d1-triple-sct.md)
@@ -16,6 +16,15 @@
 - **BROWNOUT AYRIMI:** Önceki ayrı logda OTA rollback/brownout uyarısı vardı. Bu ilk bağlantısız ADC logunda brownout mesajı görünmüyor; bu kayıt önceki olayın nedenini açıklamaz.
 - **SONUÇ:** Firmware'in cihazda çalıştığı ve dört ADC kanalının başlatıldığı LOG İLE DESTEKLENDİ. SCT okuma performansı, 100 W ampul tepkisi ve gerçek bağlantı doğrulanmadı. T010 AKTİF kalır; üç ayrı 100 W kanal testi bekliyor.
 - **KAYNAK DOSYA ÖZETİ:** Kullanıcı ekindeki özgün log: 203 satır, 11,363 bayt; SHA-256 `88f897b2603815233b0c44e497261169be2e6bff73368b435ae04e38ebb312b3`. Depodaki kayıt dosyası önemli kurulum ve örnek satırlarını korur; özgün tam metin kullanıcı ekinde kalır ve SHA-256 özetiyle tanımlanır.
+
+## 2026-10-31 — SCT-1 / 100 W ilk kanal denemesi
+
+- **TEST:** SCT-1 ön panel 1 numaralı girişe bağlandı; 100 W ampul açıldı (KULLANICI BİLDİRİMİ).
+- **BIAS:** Ortak bias logda görüldü; sayısal değer bu bildirimde yok (KULLANICI BİLDİRİMİ).
+- **U200B+:** 0,433 A gösterdi (KULLANICI BİLDİRİMİ).
+- **ADC:** GPIO32 ADC sayısal log örneği bu kayıtla paylaşılmadı; 0,433 A ESP32 ADC sonucu değildir.
+- **KAYIT:** [SCT-1 100 W test kaydı](../logs/module2/2026-10-31-sct1-100w-test.txt).
+- **SONRAKİ:** SCT-1 için GPIO32 ve eşzamanlı GPIO35 logu incelenecek; sonra SCT-2 ve SCT-3 aynı ampulle sırayla test edilecek.
 
 ## Hedef
 
