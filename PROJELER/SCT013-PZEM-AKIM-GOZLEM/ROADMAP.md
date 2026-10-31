@@ -43,20 +43,21 @@ Faz 2 yeni bir başlangıçtır; ancak geçmişi silmek anlamına gelmez. Kayıt
 
 ### Faz 2 görev sırası
 
-1. **T009 — Modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma (ilk aktif iş).**
-   - Modül kapsamı, gerçek ESP kartı, pin eşlemesi ve düşük gerilim bağlantıları belirlenir.
-   - Çalışan kod/örnek seçilir, minimum uyarlama yapılır.
-   - Derleme ve gerçek donanım testi ayrı doğrulanır.
-   - Modülün gerçek çıktısı ve log yorumu depolanır.
-   - Modül sırası kullanıcıyla kararlaştırılır; burada sabit bir ESP sırası dayatılmaz.
-2. **T007 — Home Assistant → PC veri aktarımı.**
+1. **T009 — Modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma (üst görev).**
+   - Modül modül yürütülecek genel devreye alma çerçevesidir.
+2. **T010 — Modül 2: ESP32D1 üçlü SCT okuma modülü (ilk somut modül işi).**
+   - Üç ayrı SCT sinyali ve tek ortak bias ölçümü için dört ADC giriş noktası hazırlanır.
+   - Harici 5 V besleme ve PC USB erişimi sağlanır; kartın güç yolu doğrulanır.
+   - Gerçek GPIO eşlemesi, çalışan örnek kod, derleme ve donanım testi tamamlanır.
+   - Ayrıntı: [T010](tasks/T010-module2-triple-sct-bringup.md).
+3. **T007 — Home Assistant → PC veri aktarımı.**
    - PZEM ve SCT modülleri gerçek veri ürettiğinde HA geçmişi PC'ye alınır.
    - Entity kimliği, kaynak timestamp, birim ve ham durum korunur.
-3. **T008 — PZEM/SCT kararlı alan eşleştirme ve etiketleme.**
+4. **T008 — PZEM/SCT kararlı alan eşleştirme ve etiketleme.**
    - İki akışın kararlılığı ayrı değerlendirilir.
    - Zaman bakımından örtüşen kararlı alanlar eşleştirilir.
    - PZEM proje referansı olarak SCT pencerelerine etiketlenir; mutlak ground truth sayılmaz.
-4. **T006 — Katsayı/model değerlendirmesi.**
+5. **T006 — Katsayı/model değerlendirmesi.**
    - İlk karşılaştırmada K=24.22 başlangıç değeri olarak incelenir.
    - Yalnız eşleşmiş veriler sistematik ve tekrarlanabilir sapma gösterirse iyileştirme yapılır.
    - Her yeni sürüm gerçek veri ve yeni calibration_id ile kaydedilir.
