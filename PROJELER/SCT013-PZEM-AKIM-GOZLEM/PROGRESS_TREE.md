@@ -1,3 +1,14 @@
+## 2026-10-31 — ESPHome ct_clamp tasarım tarihçesi araştırıldı
+
+- **DURUM:** Kaynak araştırması tamamlandı ve ayrı rapor olarak arşivlendi; firmware/YAML, K katsayısı ve fiziksel deney değişmedi.
+- **İLK GELİŞTİRME:** PR #559 (26.05.2019); ilk bileşen commit'i 3089ffa (29.05.2019), author Jesse Hills; Otto Winter co-author/committer ve mimari inceleme katkısı.
+- **KÖKEN/AMAÇ:** Jesse, kodun büyük bölümünü OpenEnergyMonitor EMonLib'den aldığını ve CTL-10-CLS ile D1 Mini üzerinde akıllı sayaç karşılaştırması yaptığını açıkladı. SCT013'e özel değil; CT clamp akım ölçümü için.
+- **200 ms:** Resmî dokümanda 50 Hz'de 10 tam çevrim. İlk geliştiricinin 10 çevrimi neden seçtiğine ilişkin daha özel gerekçe bulunamadı.
+- **60 s:** İlk kodda genel polling_component_schema varsayılanı; ct_clamp'e özel geliştirici gerekçesi bulunamadı. PR test örneklerinde 5 s ve 500 ms de var.
+- **last_value filtresi:** PR #2283 / commit c33077bc (12.10.2021); PR gerekçesi yinelenen örnekleri atarak doğruluğu artırmak. ADC sample çağrısını engellemez; aynı değerin istatistik toplamına tekrar eklenmesini önler. Bellek/ADC dönüşüm tasarrufu hedefi belgelenmemiştir.
+- **ANA KAYIT:** [Tasarım tarihçesi raporu](docs/research/ct-clamp/2026-10-31-design-history.md); [arşiv indeksi](docs/research/ct-clamp/README.md).
+- **BERO ETKİSİ:** 200 ms/2 s/K=24.22 ayarları değiştirilmedi. E10 deneyi planlandığı gibi ayrı gözlem deneyi olarak kalır.
+
 ## 2026-10-31 — GitHub Copilot raporu arşivi
 
 - GitHub Copilot tarafından hazırlanmış ct_clamp raporu, özgün metni korunarak TXT biçiminde arşivlendi.
