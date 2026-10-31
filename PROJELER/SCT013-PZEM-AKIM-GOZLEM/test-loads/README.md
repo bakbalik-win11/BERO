@@ -211,3 +211,11 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - [FAN-1-RETEST-001 planı](fan1-retest/README.md).
 
 | Einhell pil şarj cihazı | [EINHELL-CHARGER-001 düşük akım deneyi](einhell-charger/README.md) |
+
+## 2026-10-31 — FIXED-LOAD-0130A-001 planlandı
+
+- 0,130 A sabit yük gözlem testi açıldı; fiziksel ölçüm henüz alınmadı.
+- 0,130 A kullanıcı tarafından bildirilen hedef/referans değeridir. Ölçüm cihazı ve yükün kimliği/gücü henüz belirtilmedi; UNIT/PZEM olarak varsayılmadı.
+- Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; mevcut firmware ve K=24.22 korunacak; yazılımsal sıfır eşiği eklenmeyecek.
+- 0,30 A altı düşük akım gözlem bölgesidir; ±%4 kabul/ret uygulanmaz. Kararlılık, dağılım, Raw AC ve bias gözlenecek.
+- [FIXED-LOAD-0130A-001 test planı](fixed-load-0130a/README.md).
