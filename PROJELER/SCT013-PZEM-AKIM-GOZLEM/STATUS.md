@@ -734,3 +734,14 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **GEÇİŞ:** Açılma/kapanma olay işareti bulunmadığından gerçek anahtarlama anı ve tepki farkı hesaplanamadı.
 - **ANALİZ:** `logs/module2/2026-10-31-fan3-module2-sct1-long-analysis.md`.
 - **SONRAKİ:** PZEM akım + PF ile eşleşmiş kararlı pencere ve olay işaretli açılma/kapanma geçiş deneyi.
+
+
+## 2026-10-31 — MIXED-LOAD-001 açıldı: 100 W akkor + FAN-3
+
+- **DURUM:** Karma yük testi planı açıldı; fiziksel bağlantı ve ölçüm henüz yapılmadı.
+- **AMAÇ:** 100 W akkor dirençli yük ile FAN-3 motor yükü birlikte çalışırken SCT-1'in toplam hat akımını gözlemlemesi; PZEM toplam akım ve PF verileriyle eşleşmiş kararlı pencereleri incelemek.
+- **AŞAMALAR:** 100 W tek başına; FAN-3 tek başına; birlikte çalışma; 100 W açıkken FAN-3 açılma ve kapanma geçişleri.
+- **ÖNCEKİ REFERANSLAR:** 100 W UNIT geçici bildirimi 0,427 A; FAN-3 UNIT bildirimi 0,141 A. Bunlar ayrı testlerden gelir, karma yük referansı değildir. Birlikte çalışma için yeni UNIT ve mümkünse eşzamanlı PZEM akım/PF ölçümü alınacak.
+- **DEĞERLENDİRME:** 0,30 A ve üzeri kararlı pencerelerde eşleşmiş referans varsa ±%4; 0,30 A altında ±%4 kabul/ret yok. SCT toplam akımı gözlemler; PF veya motorun bileşen akımını tek başına ayırmaz.
+- **DOSYA:** [MIXED-LOAD-001 — 100 W akkor + FAN-3](test-loads/mixed-load-100w-plus-fan3/README.md); [test yükleri ana listesi](test-loads/README.md).
+- **SONRAKİ:** Fiziksel düzenek kurulunca UNIT ölçümünü al; ardından SCT ve PZEM loglarını aynı kararlı pencerelerde kaydet. Geçişlerde FAN-3 açma/kapatma anını ayrıca işaretle.
