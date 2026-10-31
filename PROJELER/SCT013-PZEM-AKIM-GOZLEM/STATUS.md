@@ -1,3 +1,12 @@
+## 2026-10-31 — Sensörden bağımsız BERO mimarisi ayrıştırıldı
+
+- **HEDEF:** SCT013 akım projesinde edinilen pencereleme, örnek yönetimi ve özellik çıkarma tecrübelerini yalnız SCT klasöründe bırakmayıp BERO genelinde yeniden kullanılabilir mimari olarak sunmak.
+- **YAPI:** Depo kökünde `MIMARI/` oluşturuldu. [Mimari indeksi](../../MIMARI/README.md) ve [Pencereli Sensör Analizi ve Davranış Çıkarımı](../../MIMARI/PENCERELI-SENSOR-ANALIZI/README.md) eklendi.
+- **AYRIM:** MIMARI sensörden bağımsız ilkeleri; PROJELER belirli donanım/uygulama kanıtlarını taşır. SCT013-PZEM ilk uygulama olarak kaldı.
+- **ÜÇ KATMAN:** Veri toplama → özellik çıkarma → davranış çıkarımı. Özellik penceresi ile kararlılık penceresi ayrı tanımlandı. Sürekli ham ADC arşivi mevcut BERO kararı gereği varsayılan yapılmadı.
+- **SINIRLAR:** RMS her sensöre uygulanmaz; ct_clamp yalnız CT/AC örneğidir. Davranış sınıflandırma, mikrofon ve ivmeölçer entegrasyonu henüz uygulanmış/doğrulanmış değildir.
+- **GÖREV ETKİSİ:** T010 aktif kaldı; Faz 2 görev sırası ve mevcut firmware değiştirilmedi.
+
 ## 2026-10-31 — Yeniden kullanılabilir sensör okuma kalıpları oluşturuldu
 
 - **HEDEF:** ct_clamp araştırmasındaki genellenebilir yazılım ilkelerini diğer sensör okumalarına taşımak; CT'ye özgü RMS/offset işlemlerini yanlışlıkla tüm sensörlere uygulamamak.
