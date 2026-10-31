@@ -31,6 +31,15 @@
 - 200 ms pencere, 2 s yayın ve K=24.22 önceki çalışan ölçüm yolunun tarihsel değerleridir.
 - Yeni üç SCT + bias Modül 2 bağlantısı ve yeni ESP pin eşlemesi henüz doğrulanmadı.
 
+### 2026-10-31 ilk firmware açılışı
+
+- Dört ADC sensörü (GPIO32/33/34/35) logda başlatıldı; tüm ADC setup durumları OK.
+- ESPHome 2026.10.1 firmware'i açıldı; Wi-Fi/API bağlantısı başarılı.
+- GPIO35 ortak bias örnekleri 1.643–1.668 V.
+- SCT/ampul bağlantısı yoktu; üç SCT kanalı için 100 W test sonucu değildir.
+- [İlk açılış log kanıt dökümü](logs/module2/2026-10-31-first-boot-no-load.txt).
+- **T010:** Firmware açılışı ve ADC başlatma LOG İLE DESTEKLENDİ; 100 W kanal testleri bekliyor.
+
 ## Modül 2 — Üçlü SCT Okuma Modülü
 
 - **ESPHome kimliği:** `esp32d1` / `ESP32D1`; temel başlangıç YAML'ı eklendi.
