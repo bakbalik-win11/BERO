@@ -1,3 +1,10 @@
+## 2026-10-31 — ESPHome ct_clamp üç kaynaklı sentez
+
+- Claude, GitHub Copilot ve bağımsız inceleme; PR #559, #1906, #1915, #1916, #2283, #4229 ve #4236 kayıtlarıyla sentezlendi.
+- 2019 ilk geliştirme ile 2021 algoritma/iyileştirme adımları ayrıştırıldı. Copilot'un 200 ms, 60 s ve performans gerekçeleri kanıt düzeyine göre düzeltildi.
+- [Sentez raporu](docs/research/ct-clamp/2026-10-31-synthesis-copilot-claude-independent.md).
+- Firmware, K=24.22, sample_duration ve update_interval değişmedi; fiziksel test yapılmadı.
+
 ## 2026-10-31 — ESPHome ct_clamp tasarım tarihçesi araştırıldı
 
 - **DURUM:** Kaynak araştırması tamamlandı ve ayrı rapor olarak arşivlendi; firmware/YAML, K katsayısı ve fiziksel deney değişmedi.
