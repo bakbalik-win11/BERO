@@ -42,11 +42,8 @@ Bir fazın kabul ölçütü sağlanmadan sonraki faz tamamlandı sayılmaz. Kutu
   - **Bitti sayılır:** ortak kararlı alan etiketleme yöntemi ve veri kimlikleri kayıtlı; modelin aynı etiketli eğitim verisindeki ±%4 uyumu raporlanmış; aynı olayın ham SCT tahmini/PZEM zaman grafiği ile tepki ve gecikme gözlemleri ayrı raporlanmış; clipping ve sınırlamalar yazılmış. Bu ilk aşama bağımsız genelleme testi değildir.
 
 ## Faz 2 — SCT edinim
-- [ ] 2.1 Gerçek örnekleme hızını ve sapmayı ölç.
-- [ ] 2.2 2 kS/s ve nominal 200 ms penceresini dene.
-- [ ] 2.3 RMS, ADC ortalaması, min/max, örnek sayısı ve clipping sayaçlarını üret.
-- [ ] E08 için aynı pencereden bias çıkarılmış RMS, mutlak Peak, Peak-to-Peak ve yardımcı istatistikleri üret; hedef örnekleme hızı ile ölçülen gerçek hızı ayrı kaydet.
-  - **Bitti sayılır:** yüksüz ve yük altındaki pencere değişkenliği raporlanmış; hız ve kablo turu etkileri karşılaştırılmış; sonraki karar eldeki veriyle gerekçelendirilmiş.
+- [x] 2.1–2.3 Ham örnek edinimi, örnekleme hızı matrisi ve örnek-bazlı kayıt — KAPATILDI / GEREKSİZ (2026-10-31). ±%4 hedefi yeni/harici kodla sağlandığı için PC'ye ham 50 Hz dalga aktarımı, her örneğe zaman damgası ve bu amaçla DMA/ADC Continuous geliştirmesi yapılmayacak. [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
+- [x] E08 ham dalga/örnekleme hızı karakterizasyonu — KAPATILDI / GEREKSİZ (2026-10-31). Ayrı yüksek hızlı ham edinim artık hedef değildir; E08'in yük karşılaştırma raporları kendi kanıt durumuna göre korunur. [Aşama 3 kapanış kaydı](experiments/E08-sct-characterization/stage-03-high-speed-capture.md).
 
 ## Faz 3 — PZEM edinim
 - [ ] 3.1 Yaklaşık 1 s sorgu başlangıcı; istek/yanıt zamanları ve read_status kaydı.
