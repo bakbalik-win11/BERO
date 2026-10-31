@@ -1,3 +1,12 @@
+## 2026-10-31 — MIXED-LOAD-57W-15W-001 / Log 59
+
+- **YÜK:** 57 W akkor + 15 W ampul; UNIT 0,303 A'nın test boyunca sabit kaldığı kullanıcı bildirimi.
+- **LOG:** 179 SCT-1 yayını; 21:20:18.203–21:26:14.218 (+03:00); kaynak 99.807 bayt / 1.349 satır; SHA-256 `6e7dea5c6c8991a6d4f915ebd6182f3de82b151d5726066700840f21a7d7124a`.
+- **SONUÇ:** SCT ortalama 0,329553 A; medyan 0,328 A; CV %4,48. Teste özgü ±%5,6 bandı 0,286032–0,319968 A; 31/179 (%17,32) yayın band içinde, 148/179 (%82,68) üstünde. Ortalama sapma +%8,76.
+- **ALT EŞİK:** 0,250 A ve altında yayın yok (%0); tüm yayınlar 0,250 A üzerinde.
+- **KARAR:** Bu testte ±%5,6 tolerans hedefi karşılanmadı. 0,250 A alt eşiğinin korunması ayrı ve olumlu gözlemdir. Firmware/K değişmedi; test AÇIK.
+- **DOSYALAR:** [Test kaydı](test-loads/mixed-57w-15w/README.md); [analiz](logs/module2/2026-10-31-mixed-load-57w-15w-001-module2-sct1-analysis.md); [tam ham log](logs/module2/2026-10-31-mixed-load-57w-15w-001-module2-sct1-full.txt).
+
 ## 2026-10-31 — Modül 2 SCT-1 / 100 W ct_clamp karşılaştırması
 
 - Paylaşılan logda SCT-1 için 200 ms ct_clamp pencereleri ve akım çıktıları gözlendi.
