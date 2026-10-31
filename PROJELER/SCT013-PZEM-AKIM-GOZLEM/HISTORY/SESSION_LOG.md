@@ -1259,3 +1259,13 @@ Kullanıcı, Einhell şarj cihazı akımının 0,413 A'dan 0,419 A'a yükselip s
 ## 2026-10-31 — EINHELL-CHARGER-001 ek akım gözlemi
 
 Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,413 A ve 0,419 A (sabitlendi) idi. Bildirilen gözlem aralığı 0,413–0,422 A; 0,419 A'dan 0,422 A'ya fark +0,003 A (yaklaşık +%0,72). 0,422 A'nın sabitlendiği söylenmedi. Ölçüm cihazı henüz belirtilmedi; PZEM/SCT sonucu olarak etiketlenmedi. Deney açık, ESP32D1 logu ve referans cihaz bilgisi bekleniyor.
+
+## 2026-10-31 — FIXED-LOAD-0130A-001 test planı açılışı
+
+- **HEDEF:** Kullanıcının isteğiyle 0,130 A sabit yük koşulunda düşük akım gözlem testi açmak.
+- **KULLANICI BİLDİRİMİ:** 0,130 A hedef/referans değeri; kullanıcı mevcut durumda ölçüm alınamadığını belirtti. Ölçüm cihazı UNIT/PZEM olarak tanımlanmadı.
+- **EKSİK:** Fiziksel yük kimliği/gücü, referans cihazı ve ESP32D1 ölçüm logu.
+- **PLAN:** Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35 ile gözlem. K=24.22 ve firmware korunacak; yazılımsal sıfır eşiği eklenmeyecek.
+- **DEĞERLENDİRME:** 0,30 A altı gözlem bölgesi; ±%4 kabul/ret yok. Kararlılık, dağılım, Raw AC ve bias incelenecek.
+- **DURUM:** Yalnız test planı oluşturuldu; fiziksel test yapılmadı, ölçüm sonucu yok.
+- **DOSYA:** [FIXED-LOAD-0130A-001](../test-loads/fixed-load-0130a/README.md).
