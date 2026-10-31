@@ -182,3 +182,8 @@ Kullanıcının sabah Home Assistant geçmiş dökümü bekleniyor. Dört ADC ka
 - **DEĞİŞMEYECEKLER:** Bu test öncesinde katsayı 24.22, eşik/lambda, ADC pinleri, cihaz kimliği veya donanım değiştirilmez. Tekil 05:24 sıçraması nedeniyle ek filtre/threshold eklenmez.
 - **SONRAKİ AŞAMA:** E00F-N03 tamamlandıktan sonra, daha hızlı ham dalga görünümü için E08 Aşama 3'teki ADC Continuous/DMA tasarımına geçilir. E08 firmware'i henüz yazılmadı; mevcut E00F One-shot/ct_clamp ile aynı ADC1 biriminde eşzamanlı çalıştırılacağı varsayılmaz.
 - **DURUM:** E00F-N02 analiz ve takip logu kaydedildi; deneyin fiziksel koşul doğrulaması/nihai kapanışı ayrı tutulur. E00F-N03 planlandı, henüz uygulanmadı.
+
+
+## E00F-N03 sonraki testin kısmi sonucu — 2026-10-31
+
+Önceki bölümde planlanan 100 W akkor testi kullanıcı tarafından 10:32'de başlatıldı. İlk ESPHome DEBUG kesiti yük öncesi Raw AC medyanı 0.004 V, yük sonrası medyanı 0.019 V gösterdi. Test yük kapatma ve kapanış sonrası ölçüm alınmadığı için devam ediyor. Ayrıntı ve sınırlamalar: [E00F-N03 kısmi gözlem raporu](E00F-N03-incandescent-step-observation.md); koşul kaydı [E00F-N03 experiment.yaml](E00F-N03-experiment.yaml).
