@@ -30,6 +30,46 @@ Bu katalog yalnız cihaz listesi değildir. Her ölçüm talimatı; cihaz + mod/
 
 **Kayıt sınırı:** 3 A kademesi kullanıcı tarafından bildirildi. Bu katalogda henüz BERO'ya ait UT200B+ ile alınmış sayısal bir ölçüm sonucu yoktur.
 
+
+### SANEC USB Lojik Analizör — 24 MHz / 8 kanal
+
+**Sınıf:** Bağımsız ölçüm ekipmanı → Dijital sinyal ve haberleşme analizörleri → USB lojik analizör.
+
+**Cihaz kimliği / kanıt sınırı:** Kullanıcının bildirdiği model adı SANEC USB Lojik Analizör, 24 MHz, 8 kanal. Erişilebilen SANEC ürün ilanı 8 kanal ve 24 MHz bilgisini veriyor; SANEC'e ait ayrıntılı üretici veri sayfası veya bu cihazın kart revizyonunu kesinleştiren belge bulunamadı. Aşağıdaki elektriksel giriş eşikleri, aynı sınıftaki SparkFun 24 MHz/8 kanal cihazın üretici dokümanı ve benzer ürün teknik listelerinden alınmış **referans değerleridir**; SANEC cihazına ait doğrulanmış garanti değerleri değildir.
+
+| Özellik | Kayıt | Kanıt / sınır |
+|---|---|---|
+| Kanal sayısı | 8 dijital giriş | Kullanıcının bildirdiği model tanımı ve SANEC ürün ilanı |
+| Azami örnekleme | 24 MHz (24 MS/s olarak listeleniyor) | Ürün ilanı ve benzer model dokümanları; SANEC donanımında bağımsız test yapılmadı |
+| Sinyal türü | Dijital lojik 0/1 | Lojik analizörün çalışma türü |
+| Tipik protokol çözümleme | UART, I²C, SPI, 1-Wire; CAN desteği yazılım/cihaz uyumuna bağlı | Sigrok/PulseView ve benzer ürün kaynakları; SANEC uyumluluğu henüz test edilmedi |
+| PC bağlantısı | USB | Ürün tanımı |
+| Yazılım adayı | PulseView / sigrok | Benzer 24 MHz analizörlerin desteklediği açık kaynaklı yazılım; SANEC cihazında henüz doğrulanmadı |
+| Lojik seviye / giriş sınırı | Benzer modelde 5,25 V azami giriş; lojik HIGH en az 2,0 V, LOW en çok 0,8 V | SparkFun referans dokümanı; SANEC için kesin sınır kabul edilmez |
+| Analog ölçüm | Yapmaz | Analog gerilim dalga şeklini veya akımı ölçen osiloskop/pens yerine geçmez |
+
+**BERO'da kullanım alanları:**
+- ESP32-WR1-PZEM ile PZEM arasındaki UART TX/RX trafiğini gözlemek; baud hızı, paket zamanlaması ve veri alışverişini incelemek.
+- ESP32-C3 ile DS3231 arasındaki I²C SDA/SCL trafiğini incelemek.
+- ESP32-C3 SSR kontrol GPIO'sunun açma/kapama zamanlamasını ve dijital durum geçişlerini gözlemek.
+- Gerekirse ESP32 düğümleri arasındaki diğer kablolu dijital sinyalleri eşzamanlı olarak kaydetmek (kanal ve bağlantı uygunluğuna göre).
+
+**Sınırlar ve güvenlik:**
+- Bu cihaz analog SCT sinyalinin genliğini, 50 Hz akım dalga şeklini, RMS değerini veya bias voltajını ölçmez. Bu işler için uygun multimetre/osiloskop/akım ölçüm aracı gerekir.
+- 24 MHz örnekleme, her türlü 24 MHz dijital sinyali hatasız çözebileceği anlamına gelmez; sinyal frekansı, kenar süreleri, örnekleme ayarı, tampon kapasitesi ve yazılım dekoderi sonucu etkiler.
+- Giriş gerilim sınırı SANEC'e ait belgeyle doğrulanana kadar 5 V toleranslı olduğu varsayılmayacak. İlk kullanımda yalnız 3,3 V lojik hatlarda ve düşük gerilimli, ortak referansı bilinen devrelerde kullanılacak.
+- GND referansı doğru kurulmalı; USB üzerinden bilgisayara bağlı cihazın toprak bağlantısı ölçülen devreyi bilgisayar toprağına bağlayabilir. Şebeke gerilimi veya izolasyonu belirsiz/floating devrelerde kullanılmaz.
+- Girişlere 220–240 V şebeke, PZEM'in şebeke tarafı veya herhangi bir yüksek gerilim hattı kesinlikle bağlanmaz. Lojik analizör galvanik izolasyon veya yüksek gerilim probu değildir.
+- SANEC cihazının gerçek giriş eşikleri, pin sıralaması, koruma devresi, kanal tamponu ve yazılım uyumluluğu; kart üzerindeki entegre/PCB revizyonu veya üretici belgesi görülmeden kesinleştirilmiş sayılmaz.
+
+**İlk kullanım kontrolü — henüz yapılmadı:**
+1. Cihazın kart fotoğrafı, USB konnektörü ve kanal/GND pin etiketleri kaydedilir.
+2. Bilgisayarda PulseView/sigrok cihazı tanıyorsa model/driver bilgisi not edilir; tanınmıyorsa uyumlu sürücü varsayılmaz.
+3. İlk bağlantı yalnız ESP32'nin 3,3 V UART veya I²C hattında, GND ortaklığı ve pin eşlemesi doğrulandıktan sonra yapılır.
+4. İlk yakalamada örnekleme ayarı, aktif kanal, dekoder ayarları ve gerçek ekran/log çıktısı saklanır.
+
+**Katalog kaydı:** Cihaz envantere ölçüm imkânı olarak eklendi; SANEC'e özgü elektriksel limitler ve BERO üzerinde çalışması henüz doğrulanmadı. Bu kayıt fiziksel test yapıldığı anlamına gelmez.
+
 ## 2. Ölçüm talimatı standardı
 
 Kullanıcıdan ölçüm istenirken aşağıdaki sırayla açık talimat ver:
