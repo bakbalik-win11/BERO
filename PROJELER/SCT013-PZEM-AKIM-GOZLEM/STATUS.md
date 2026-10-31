@@ -754,3 +754,16 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **KAYIT NİTELİĞİ:** 0,573 A, kullanıcının birlikte çalışma için bildirdiği UNIT-reported açılış referansıdır. Ayrı akımların aritmetik toplamı olarak türetilmemiştir. PZEM teyidi ve eşzamanlı SCT logu henüz yoktur.
 - **DURUM:** UNIT başlangıç referansı kaydedildi; PZEM/PF ve SCT ölçümleri bekleniyor. ±%4 sonucu veya PF doğrulaması verilmedi.
 - **DOSYA:** [MIXED-LOAD-001 test kaydı](test-loads/mixed-load-100w-plus-fan3/README.md).
+
+
+## 2026-10-31 — MIXED-LOAD-001 karma yük kararlı oturumu kapatıldı
+
+- **KAPSAM:** 100 W akkor + FAN-3 birlikte açık kararlı ölçüm oturumu kapatıldı. Test planındaki ayrı yük tekrarları ve FAN-3 açma/kapama geçişleri bu logda yer almadığından tamamlanmış sayılmaz; PZEM eşleştirmesi ve olay işaretli geçiş gözlemi sonraki çalışma olarak açık kalır.
+- **REFERANS:** UNIT-reported 0,573 A (kullanıcı bildirimi; PZEM değildir). ±%4 bandı 0,55008–0,59592 A.
+- **LOG:** `esp32d1-logs (44).txt`; 77.072 bayt; kaynak SHA-256 `f6f3434e540402e7d9a7d63fb38aed0f7dc660b96cb3ef14e00ad6affc07e910`; ilk/son SCT akım yayını 17:55:57.139–18:00:27.106 (+03:00); 136 yayın.
+- **SCT:** Ortalama 0,582456 A; medyan 0,582 A; min–maks 0,564–0,609 A; örnek SD 0,007335 A. Ortalama sapma +%1,650; medyan sapması +%1,571. 130/136 (%95,59) yayın UNIT ±%4 bandında; 6 yayın üst sınırın üzerinde, alt sınır altında yayın yok.
+- **ANALOG:** Raw AC ortalama 0,024048 V; bias GPIO35 ortalama 1,663754 V; SCT-1 ADC GPIO32 ortalama 1,663051 V.
+- **KOD/DÜZENEK:** ESP32D1 / Modül 2 / SCT-1 sarı GPIO32 ADC1_CH4 / ortak bias turuncu GPIO35 ADC1_CH7; ESPHome 2026.10.1; ADC 12 dB/1 s; ct_clamp 200 ms/2 s; K=24.22. K değiştirilmedi, yazılımsal sıfır eşiği eklenmedi.
+- **KARAR:** Bu kararlı karma-yük oturumu UNIT referansına göre ±%4 kriterini sağladı. Bu, PZEM doğrulaması veya genel kalibrasyon garantisi değildir. Logda PZEM akım/PF/aktif güç ve fan olay işaretleri bulunmaz; geçiş süresi/tepki farkı çıkarılamaz.
+- **KOD SNAPSHOT:** [MIXED-LOAD-001 kapanış YAML](../../firmware/archive/MIXED-LOAD-001-2026-10-31-esp32d1-sct1.yaml). Snapshot aktif firmware ile aynı YAML içeriğidir; binary eşleşmesi iddia edilmez.
+- **ARŞİV:** [Tam ham log](../../logs/module2/2026-10-31-mixed-load-001-module2-sct1-full.txt); [analiz raporu](../../logs/module2/2026-10-31-mixed-load-001-module2-sct1-analysis.md).
