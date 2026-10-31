@@ -57,3 +57,18 @@ ESP32D2'nin besleme yöntemi ve kutu dışından sağlanacak düşük gerilim ba
 - Üç girişin kullanım/test sırası.
 
 **Kanıt ayrımı:** Kutu içeriği ve kapsam, kullanıcının bu oturumdaki tasarım kararıdır. Jack renkleri ve bias elemanları önceki kullanıcı bildirim/fotoğrafına dayanır. Devre bağlantıları henüz fiziksel olarak doğrulanmamıştır.
+
+## ADC kanal mimarisi — gece kaydına dayalı karar
+
+**Karar:** Yeni Modül 2 tasarımında dört bağımsız ADC girişi şu işlevlere ayrılacaktır:
+- SCT giriş 1 sinyali.
+- SCT giriş 2 sinyali.
+- SCT giriş 3 sinyali.
+- Ortak bias/Vmid ölçümü — ADC voltaj okuması (`raw: false`).
+
+Bias noktası için ikinci bir GPIO üzerinden ayrıca RAW count okunmayacaktır. Mevcut firmware'de GPIO34 RAW ve GPIO35 voltaj sensörleri aynı bias noktasını ayrı ADC girişlerinden izlemektedir; yeni kutuda bu çift yapı korunmayacaktır.
+
+**Kanıt — ÖLÇÜLDÜ / HA GEÇMİŞİ İLE DESTEKLENDİ:** 2026-10-30 23:15:00–2026-10-31 10:07:48.897 Türkiye saati aralığındaki gece kaydında Bias GPIO35 voltaj medyanı 1.653 V, ortalaması 1.6516 V, standart sapması 7.94 mV; Bias GPIO34 RAW medyanı 1,840 count, ortalaması 1,839.01 count, standart sapması 9.77 count olarak raporlandı. Voltaj serisinin saatlik medyanlarında yaklaşık 5 mV yükselme gözlendi. Bu sonuç, bias noktasının izlenmesi için voltaj kanalını tercih etmeyi destekler.
+
+**Önemli sınır:** Bu karar mevcut `firmware/esp32d2.yaml` dosyasını değiştirmez. Mevcut E00F baseline korunur. Üç SCT kanalına geçişte GPIO atamaları, kartın gerçek pinout'u ve ESPHome yapılandırması ayrıca doğrulanmadan firmware güncellenmeyecektir.
+
