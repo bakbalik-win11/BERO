@@ -132,3 +132,12 @@
 - 0,30 A altı gözlem alanı; ±%4 kabul/ret yok.
 - Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; K=24.22 ve firmware korunacak.
 - [Test kaydı](test-loads/57w-incandescent/README.md).
+
+
+## 2026-10-31 — LOAD-57W-001 / Log 58
+
+- 57 W akkor ampul testinde ESP32D1 Modül 2 / SCT-1 için 116 yayın analiz edildi.
+- SCT ortalaması 0,304207 A; medyan 0,303 A; aralık 0,284–0,348 A; CV %3,00.
+- Raw AC ortalaması 0,012562 V; ortak bias GPIO35 ortalaması 1,663073 V; GPIO32 ADC ortalaması 1,660694 V.
+- UNIT 0,244 A başlangıç bildirimiyle aritmetik fark +%24,67; aynı zaman penceresi doğrulanmadığından doğruluk sonucu değildir. PZEM verisi yok.
+- Test açık; firmware/K=24.22 değişmedi. [Test kaydı](test-loads/57w-incandescent/README.md); [analiz](logs/module2/2026-10-31-load-57w-001-module2-sct1-analysis.md); [tam log](logs/module2/2026-10-31-load-57w-001-module2-sct1-full.txt).
