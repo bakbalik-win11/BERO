@@ -54,7 +54,7 @@ Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik par
 | Bileşen | Özellik / model | Kayıt dayanağı |
 |---|---|---|
 | İzolasyon trafosu | **RN130421**, 230 V AC / 6 V AC, 2.0 VA, EI 30/15.5, PCB tipi | Kullanıcının paylaştığı üretici teknik dokümanı |
-| Köprü doğrultucu | **KBU610** | Kullanıcı bildirimi |
+| Köprü doğrultucu | **KBU610 1000 V / 6 A; toplam 5 adet; 1 adet akım trafosu modülünde, 4 adet stokta** | Kullanıcı bildirimi |
 | Filtre kondansatörü | **2200 µF / 35 V, 16×25 mm — toplam 3 adet; 1 adet akım trafosu kutusunda, 2 adet stokta** | Kullanıcı bildirimi |
 | 3.3 V regülatör entegresi | **L78L33, TO-92 — toplam 3 adet; 1 adet akım trafosu kutusunda takılı, 2 adet yedek stokta** | Kullanıcı model/adet bildirimi; L78L ailesi üretici veri sayfası görseli |
 
