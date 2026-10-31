@@ -15,6 +15,20 @@ Bu bölüm, aynı fiziksel test yüküyle farklı ESP kartı, modül, SCT kanal�
 
 ## Yük kayıtları
 
+| Yüksüz / boşta Modül 2 | [Yüksüz SCT-1 ölçüm kayıtları](idle-no-load/README.md) |
+
+## 2026-10-31 — LOAD-IDLE-001 ilk yüksüz log
+
+- Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; ESPHome 2026.10.1.
+- 60 akım yayını, yaklaşık 1 dk 58 sn: ortalama 0,011267 A; medyan 0,000 A; min–maks 0,000–0,104 A.
+- 48/60 (%80) yayın sıfır; 12/60 (%20) yayın 0,014–0,104 A.
+- Raw AC ortalaması 0,0004657 V; bias ortalaması 1,663881 V; SCT-1 ADC ortalaması 1,662508 V.
+- Yüksüz senaryo olduğu için UNIT referansı aranmadı. PZEM verisi yok.
+- K değiştirilmedi; yazılımsal sıfır eşiği eklenmedi. Tek kısa kayıt, ilk yüksüz taban gözlemidir.
+- [Yüksüz test dosyası](idle-no-load/README.md); [analiz](../logs/module2/2026-10-31-load-idle-001-analysis.md); [seçilmiş log kanıtı](../logs/module2/2026-10-31-load-idle-001-evidence.txt).
+- Kaynak dosya 36.687 bayt / 514 satır; SHA-256 `9ac3ece0770a85219e7ad6664f15f1ccc9db9b561d04f6195ef034d4e718e455`. Tam kaynak metin kullanıcı yüklemesinde korunmuştur; depoya seçilmiş gerçek satırlardan kanıt dökümü eklendi.
+
+
 | Test yükü | Ana kayıt |
 |---|---|
 | 100 W akkor ampul | [100 W akkor — karşılaştırmalı ölçüm tablosu](100w-incandescent/README.md) |
