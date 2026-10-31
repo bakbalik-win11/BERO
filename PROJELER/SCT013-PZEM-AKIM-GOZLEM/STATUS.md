@@ -1,3 +1,12 @@
+## 2026-10-31 — 100 W akkor için geçici beklenen akım değeri
+
+- **BEKLENEN DEĞER:** 0,427 A.
+- **KAYNAK:** UNIT cihazında görülen değer; kullanıcı bildirimi.
+- **ANLAMI:** 100 W akkor ampul testlerinde şimdilik ne okunması beklendiğini gösteren geçici çalışma referansıdır.
+- **PZEM:** Aynı yükte PZEM kararlı okuması henüz sabitlenmedi. PZEM ölçümü geldiğinde zaman aralığı ve kararlı pencereyle ayrı kaydedilecek; geçici 0,427 A değeri doğrulanacak veya güncellenecek.
+- **003 ÖN KARŞILAŞTIRMA:** Tek kanallı SCT-1 medyanı 0,469 A; 0,427 A beklentiye göre yaklaşık +%9,8. Bu sonuç PZEM teyidi olmadan kesin sapma/±%4 kabul kararı değildir. Katsayı değiştirilmedi.
+- **KAYIT:** [100 W akkor karşılaştırma dosyası](test-loads/100w-incandescent/README.md).
+
 ## 2026-10-31 — LOAD-100W-003: ESP32D1 SCT-1 tek kanal testi
 
 - **TEST:** 100 W akkor ampul; Modül 2 / ESP32D1; SCT-1 sarı/GPIO32; ortak bias turuncu/GPIO35.
