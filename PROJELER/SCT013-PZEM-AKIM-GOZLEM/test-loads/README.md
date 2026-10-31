@@ -81,3 +81,15 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - UNIT/PZEM referansı yok; yüksüz senaryoda UNIT aranmadı. K değiştirilmedi; yazılımsal sıfır eşiği eklenmedi.
 - [Yüksüz test dosyası](idle-no-load/README.md); [uzun log analizi](../logs/module2/2026-10-31-load-idle-001-analysis.md); [tam ham log](../logs/module2/2026-10-31-load-idle-001-module2-sct1-no-load-full.txt).
 
+
+
+| Fan | [Fan kademe test kayıtları](fan/README.md) |
+
+## 2026-10-31 — FAN-1 uzun SCT-1 logu
+
+- Kaynak `esp32d1-logs (39).txt`; özgün SHA-256 `ccc520db070555741d45f3fa67b5866011bec0dadc092c839eb52ff5502eba8e`.
+- 97 akım yayını, 17:13:53.070–17:17:05.067 (+03:00); ortalama 0,14114 A, medyan 0,147 A, aralık 0,000–0,259 A.
+- İlk açılışın çok kısa yüksüz olduğu kullanıcı tarafından bildirildi. Başlangıç/geçiş değerleri kararlı fan ölçümünden ayrı tutulur.
+- FAN-1 UNIT son bildirimi 0,096 A (ilk bildirim 0,097 A); ±%4 aralığı 0,09216–0,09984 A. Logda fanın tam açılma/kararlı zaman işareti yok; kesin sapma kararı verilmedi.
+- UNIT PF göstermiyor; PZEM ile sonraki aşamada netleştirilecek. K=24.22 ve yazılımsal sıfır eşiği kararı değişmedi.
+- [Fan test kaydı](fan/README.md); [analiz](../logs/module2/2026-10-31-fan1-module2-sct1-analysis.md); [tam ham log](../logs/module2/2026-10-31-fan1-module2-sct1-extended-full.txt).
