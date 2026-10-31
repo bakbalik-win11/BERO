@@ -1,49 +1,65 @@
-# LOAD-IDLE-001 — Modül 2 yüksüz SCT-1 ilk log analizi
+# LOAD-IDLE-001 — Modül 2 yüksüz SCT-1 uzun log analizi
 
-- TEST ID: LOAD-IDLE-001
-- Senaryo: Modül 2 / yüksüz (boşta) okuma. Bağımsız test senaryosudur; yük testlerinden ayrı tutulur.
-- Kaynak: Yapıştırılan metin(20261031-135010).txt
-- Boyut: 36.687 bayt; 514 satır.
-- SHA-256: 9ac3ece0770a85219e7ad6664f15f1ccc9db9b561d04f6195ef034d4e718e455
-- Zaman: İlk akım yayını 16:47:55.066, son akım yayını 16:49:53.052 (+03:00); yaklaşık 1 dk 58 sn.
-- Düzenek: ESP32D1 / Modül 2 / SCT-1 GPIO32 ADC1_CH4; ortak bias GPIO35 ADC1_CH7. ESPHome 2026.10.1; ESP32 rev3.1. ADC 12 dB, samples 1, update 1 s. ct_clamp 200 ms, update 2 s. Wi-Fi RSSI −54 dB.
-- UNIT/PZEM: Yüksüz senaryoda UNIT referansı aranmadı. Logda PZEM verisi yok.
-- K: Değiştirilmedi; yazılımsal sıfır eşiği eklenmedi.
+- **TEST ID:** LOAD-IDLE-001
+- **OTURUM:** İlk kısa logun devamı; yeni test ID değildir.
+- **KAYNAK:** `esp32d1-logs (37).txt`
+- **BOYUT:** 110.590 bayt; 1.492 satır.
+- **SHA-256:** `e4b229b45abce1f85e74f60260c0a7ed279e48c6b8f59d70ccbabaf23c8ee22f`
+- **AKIM YAYIN ARALIĞI:** 16:47:55.066–16:54:33.029 (+03:00), yaklaşık 6 dk 38 sn.
+- **DONANIM:** ESP32D1 / Modül 2 / SCT-1 GPIO32 ADC1_CH4; ortak bias GPIO35 ADC1_CH7.
+- **FIRMWARE:** ESPHome 2026.10.1; ESP32 rev3.1. ADC 12 dB, samples 1, update 1 s. ct_clamp sample_duration 200 ms, update_interval 2 s. Wi-Fi RSSI −54 dB.
+- **REFERANS:** Yüksüz senaryo için UNIT referansı aranmadı. Logda PZEM yok.
+- **KATSAYI / SIFIR:** K değiştirilmedi; yazılımsal sıfır eşiği eklenmedi.
 
-## Akım sonuçları
+## Önceki kısa logla ilişki
 
-60 adet akım yayını:
-- Ortalama 0,011267 A
-- Medyan 0,000 A
-- Min–maks 0,000–0,104 A
-- Örnek SD 0,025876 A
-- Tam sıfır: 48/60 (%80,0)
-- Sıfır dışı: 12/60 (%20,0)
+Önceki `Yapıştırılan metin(20261031-135010).txt` kaydındaki 60 akım yayınının tamamı, bu uzun logun ilk 60 akım yayınıyla zaman ve değer bazında birebir eşleşmektedir. Bu dosya yeni test değil, aynı LOAD-IDLE-001 ölçümünün uzatılmış kaydıdır. Uzun kayıtta toplam 200 yayın vardır; ilk 60 yayın önceki kısa dosyayla mükerrer içeriktir, 140 yeni yayın eklenmiştir.
 
-Sıfır dışı yayınlar (A): 0,051; 0,085; 0,103; 0,014; 0,060; 0,025; 0,039; 0,047; 0,104; 0,066; 0,042; 0,040. Bu değerlerin kaynağı (gerçek primer akımı, girişim veya ölçüm zinciri davranışı) yalnız bu logla ayrıştırılamaz.
+## Akım sonuçları — toplam 200 yayın
 
-## Analog gözlem
+- Ortalama: **0,017130 A**
+- Medyan: **0,000 A**
+- Min–maks: **0,000–0,144 A**
+- Örnek standart sapma: **0,032705 A**
+- Tam sıfır: **146/200 (%73,0)**
+- Sıfır dışı: **54/200 (%27,0)**
 
-| Entity | Yayın | Ortalama | Min–maks |
-|---|---:|---:|---:|
-| Raw AC | 60 | 0,0004657 V | 0,00000–0,00428 V |
-| Common Bias GPIO35 | 118 | 1,663881 V | 1,652–1,678 V |
-| SCT-1 ADC GPIO32 | 118 | 1,662508 V | 1,652–1,673 V |
+## Devam bölümü — 140 yeni yayın
 
-Bias ve SCT ADC yayınları 1 saniyelik ayrı güncellemeler olduğundan birebir eşzamanlı çiftler olarak ele alınmadı.
+- Ortalama: **0,019643 A**
+- Medyan: **0,000 A**
+- Min–maks: **0,000–0,144 A**
+- Tam sıfır: **98/140 (%70,0)**
+- Sıfır dışı: **42/140 (%30,0)**
+
+Devam bölümündeki sıfır dışı değerler 0,010–0,144 A aralığındadır. En yüksek gözlenen akım 0,144 A'dır (16:51:27.046). Bunlar yüksüz koşulda görülen sıfır dışı çıktılardır; yalnız bu logla gerçek primer akımı, çevresel girişim veya ölçüm zinciri etkisi olarak kesin sınıflandırılamaz.
+
+## Analog ölçümler — toplam log
+
+| Entity | Yayın | Ortalama | Min–maks | Örnek SD |
+|---|---:|---:|---:|---:|
+| Raw AC | 200 | 0,00070765 V | 0,00000–0,00593 V | 0,001350 V |
+| Common Bias GPIO35 | 399 | 1,664461 V | 1,646–1,685 V | 0,003783 V |
+| SCT-1 ADC GPIO32 | 399 | 1,662461 V | 1,647–1,673 V | 0,004020 V |
+
+ADC kanalları 1 saniyelik ayrı yayınlardır; satır sırası üzerinden birebir eşzamanlı çift gibi değerlendirilmemelidir.
 
 ## Örnekleme ve cihaz durumu
 
-- ct_clamp DEBUG SPS: 17.465–18.280; ortalama yaklaşık 17.971 SPS. Bu, ESPHome logunun raporladığı değerdir; bağımsız ölçüm değildir.
+- ct_clamp DEBUG SPS: **17.465–18.465**, ortalama **17.990 SPS** (200 pencere). Bu, ESPHome logunun raporladığı değerdir; bağımsız ADC zaman ölçümü değildir.
 - GPIO32 ve GPIO35 ADC başlatma/konfigürasyon/kalibrasyon durumları OK.
-- Üç derleyici/optimizasyon uyarısı var; [E] hata, brownout veya reboot işareti yok.
+- Üç derleyici/optimizasyon uyarısı; sıfır `[E]` hata. Logda brownout veya reboot işareti görülmedi.
 
-## Teknik yorum
+## İlk kısa logla karşılaştırma
 
-1. 60 akım yayınının %80'i 0,000 A; yüksüz durumda çoğunlukla sıfır okuma doğrudan gözlendi.
-2. Kalan %20'de 0,014–0,104 A aralığında düşük sıfır dışı yayınlar var. Bu değerler silinmedi veya eşikle bastırılmadı.
-3. Bias ve SCT-1 ADC ortalamaları yaklaşık 1,66 V seviyesinde ve birbirine yakın.
-4. Yaklaşık iki dakikalık tek kayıt, ilk yüksüz taban gözlemidir; kalıcı eşik veya katsayı kararı için yeterli değildir.
-5. K değiştirilmedi; yazılımsal sıfır eşiği eklenmedi.
+İlk 60 yayında sıfır oranı %80 idi. Uzun logun tamamında sıfır oranı %73'e indi; yeni 140 yayınlık devam bölümünde sıfır oranı %70 oldu. Ortalama akım toplam kayıtta 0,011267 A'dan 0,017130 A'ya yükseldi. Ölçüm süresi uzadıkça sıfır dışı düşük okumaların daha fazla görüldüğü anlaşılıyor. Bu aşamada bir sıfır eşiği belirlemek için yeterli kanıt yoktur.
 
-SONUÇ: LOAD-IDLE-001 ilk logu analiz edildi. %80 sıfır yayın ve %20 düşük sıfır dışı yayın gözlendi. Test senaryosu açık kalır; sonraki yüksüz kayıtlar bu tabanla karşılaştırılacaktır.
+## Teknik yorum ve karar
+
+1. Yüksüz durumda sistem sıfır okuma üretiyor; ancak uzun logda 200 yayının 54'ü sıfır dışıdır.
+2. Sıfır dışı değerler 0,010–0,144 A aralığına kadar çıkmıştır. En yüksek değer 0,144 A'dır; gerçek yük akımı olarak yorumlanmamalıdır.
+3. Bias ve SCT-1 ADC ortalamaları birbirine yakındır ve yaklaşık 1,66 V seviyesindedir.
+4. Tek uzun kayıt, yüksüz dağılımı tanımlamaya yardımcı olur; kalıcı yazılım deadband'i veya K katsayısı değişikliğini haklı çıkarmaz.
+5. **K=24.22 korunur; yazılımsal sıfır eşiği eklenmez.** Aynı fiziksel koşul ve firmware ile başka bir yüksüz oturum alınıp dağılımın tekrarlanabilirliği karşılaştırılmalıdır.
+
+**SONUÇ:** LOAD-IDLE-001 uzun logu analiz edildi. Toplam 200 akım yayınının %73'ü sıfır, %27'si sıfır dışıdır. İlk 60 yayın önceki kısa logla aynıdır; 140 yeni yayın eklenmiştir. Tam ham log depoya kaydedilmiştir.
