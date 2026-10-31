@@ -320,3 +320,10 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - UNIT 7,89 A kullanıcı bildirimi olarak kaydedildi; PZEM değildir.
 - SCT loguyla zaman eşleşmesi henüz teyit edilmedi; şimdilik sapma/doğruluk hesabı yapılmaz.
 - [TOASTER-001 test kaydı](toaster/README.md).
+
+## 2026-10-31 — TOASTER-001 / Log 62
+- Tost makinesi yüksek akım gözlemi; test açık.
+- 119 yayınlık kararlı SCT bölgesi ortalama 7,1900 A; CV %0,344.
+- UNIT 7,89 A kullanıcı bildirimi; zaman eşleşmesi yok, doğruluk sonucu çıkarılmadı.
+- K=24.22 sabit; kalibrasyon yapılmadı.
+- [Test kaydı](toaster/README.md); [analiz](../logs/module2/2026-10-31-toaster-001-module2-sct1-analysis.md); [tam ham log](../logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt).
