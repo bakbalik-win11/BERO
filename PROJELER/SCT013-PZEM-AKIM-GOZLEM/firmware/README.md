@@ -1,4 +1,5 @@
 
+
 ## Yeniden kullanılabilir sensör okuma kalıpları
 
 Yeni sensör koduna başlamadan önce [firmware/patterns/README.md](patterns/README.md) okunmalıdır.
