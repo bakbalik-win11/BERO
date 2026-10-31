@@ -219,3 +219,13 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; mevcut firmware ve K=24.22 korunacak; yazılımsal sıfır eşiği eklenmeyecek.
 - 0,30 A altı düşük akım gözlem bölgesidir; ±%4 kabul/ret uygulanmaz. Kararlılık, dağılım, Raw AC ve bias gözlenecek.
 - [FIXED-LOAD-0130A-001 test planı](fixed-load-0130a/README.md).
+
+## 2026-10-31 — FIXED-LOAD-0130A-001 ilk SCT-1 log gözlemi
+
+- 0,130 A sabit yük hedefi için açılan testte ESP32D1 Modül 2 / SCT-1 logu incelendi.
+- 556 yayın, 20:47:30–21:06:00 (+03:00); SCT ortalama 0,203637 A, medyan 0,203 A, aralık 0,157–0,291 A, SD 0,017971 A.
+- Raw AC ortalaması 0,0084077 V; bias ortalaması 1,663729 V. Yaklaşık iki dakikalık blok ortalamaları 0,1993–0,2081 A aralığında.
+- 0,130 A hedefi ile logdaki SCT değeri farklıdır; UNIT/PZEM referansı ve fiziksel yük kimliği logda doğrulanmadığından sapma hesabı yapılmaz.
+- 0,30 A altı gözlem bölgesinde ±%4 kabul/ret uygulanmaz. K=24.22 korunur, yazılımsal sıfır eşiği yoktur.
+- Kaynak: `esp32d1-logs (56).txt`, 298.344 bayt, SHA-256 `15c94083291b374e60f80d932494d6a6a58cbef9b5a3d82227cc2f58703dc20a`. Tam TXT bu committe Git'e eklenmedi; kaynak kullanıcı yüklemesinde korunur.
+- [Test kaydı](fixed-load-0130a/README.md); [analiz](../logs/module2/2026-10-31-fixed-load-0130a-001-sct1-analysis.md).
