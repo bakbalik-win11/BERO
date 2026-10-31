@@ -72,3 +72,19 @@ FAN-3 tek tur logu:
 - Test, ham log ve analiz raporu GitHub'a kaydedilip doğrulanmadan kapatılmaz.
 - Test kapanışında kullanılan son YAML snapshot'ı arşivlenir; log ve analiz bu snapshot'a bağlanır.
 - Bu testin açılması, ölçümün yapıldığı veya başarılı olduğu anlamına gelmez.
+
+
+## 2026-10-31 — FAN-3-3T-001 üç primer tur gözlemi kapatıldı
+
+- **DURUM:** Düşük akım üç-tur gözlem oturumu kapatıldı. ±%4 doğrulaması, PZEM doğrulaması veya kalibrasyon değildir.
+- **KAYNAK:** `esp32d1-logs (47).txt`; 129.554 bayt / 1.744 satır; kaynak SHA-256 `fb48997412ced2a9f769b3084bec9f63dab8ef7174efea23062ce4e63dbc735c`.
+- **MÜKERRERLİK:** `esp32d1-logs (46).txt` (SHA-256 `27567257b0cdf05766899da3f5d8db59410069e236a92037e5c72321df0f659e`) bu logun birebir başlangıç önekidir; ayrı veri sayılmadı.
+- **ZAMAN/ÖRNEK:** 18:30:59.057–18:38:49.014 (+03:00); 236 akım ve 236 Raw AC yayını.
+- **AKIM:** Tüm yayınlarda ortalama 0,416089 A, medyan 0,413 A, min–maks 0,392–0,932 A. 18:31:57.032'deki tekil 0,932 A sıçrama (Raw AC 0,03849 V) korunarak işaretlendi. Sıçrama hariç 235 yayında ortalama 0,413894 A; medyan 0,413 A; min–maks 0,392–0,454 A.
+- **NORMALİZASYON:** Sıçrama hariç firmware göstergesi/3 ortalaması 0,137965 A; medyanı 0,137667 A; min–maks 0,130667–0,151333 A. UNIT 0,142 A kullanıcı bildirimine göre ortalama fark −%2,84; yalnız betimleyici aritmetik, kabul/ret değildir.
+- **ANALOG:** Sıçrama hariç Raw AC ortalama 0,017089 V; bias GPIO35 ortalama 1,662684 V; SCT ADC GPIO32 ortalama 1,657652 V. SPS ortalama 17.321,6 (16.890–18.430).
+- **TEK TUR KIYASI:** Önceki FAN-3 tek tur ortalaması 0,224612 A ve Raw AC 0,009273 V. Bu oturumda sıçrama hariç akım ve Raw AC artış oranları yaklaşık 1,843x; ideal 3x doğrusal artış görülmedi. /3 sonucu kalibrasyon veya doğrusal davranış kanıtı değildir.
+- **REFERANS/PF:** Logda PZEM akım/PF yoktur. UNIT 0,142 A kullanıcı bildirimidir. 0,30 A altı düşük akım sınıfında ±%4 kabul/ret uygulanmaz.
+- **KOD:** K=24.22 ve yazılımsal sıfır eşiği olmaması korundu; firmware değiştirilmedi. [Kapanış YAML snapshot](../../firmware/archive/FAN-3-3T-001-2026-10-31-esp32d1-sct1.yaml). Binary eşleşmesi iddia edilmez.
+- **RAPOR:** [Teknik analiz](../../logs/module2/2026-10-31-fan3-3t-001-module2-sct1-analysis.md). Ham logun GitHub'a tam metin arşivi bu işlemde tamamlanamadı; kaynak dosya bu sohbet yüklemesinde mevcut ve SHA-256 kaydı korunmuştur.
+- **AÇIK ARAŞTIRMA:** Ayrı düşük akım ESP/model veri sınıfı, daha uzun/tekrarlı loglar, PZEM akım+PF eşleşmesi ve farklı tur sayılarının kontrollü karşılaştırması.
