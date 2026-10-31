@@ -856,3 +856,13 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki kullanıcı bi
 - **DOSYALAR:** [Test kaydı](test-loads/fixed-load-0130a/README.md); [analiz](logs/module2/2026-10-31-fixed-load-0130a-001-sct1-analysis.md).
 - **HAM LOG SINIRI:** Tam TXT Git'e eklenmedi; kaynak dosya adı/boyutu/hash kayıtlı ve kullanıcı yüklemesinde mevcut.
 - **SONRAKİ:** Fiziksel yük ve referans cihazını netleştir; aynı zaman penceresinde referansla tekrar gözlem al. Testi referanssız kalibrasyon sonucu olarak kapatma.
+
+## 2026-10-31 — LOAD-42W-001 / Log 57 değerlendirildi
+
+- **DURUM:** AÇIK — test yükü logu analiz edildi; eşzamanlı referans ve fiziksel ampul ayrıntıları bekleniyor.
+- **KAYNAK:** `esp32d1-logs (57).txt`; 55.924 bayt / 766 satır; SHA-256 `f519f752ea4466e82cc365dac832e3338195303e920520414e7be6538d0203ae`.
+- **LOG:** 21:09:28–21:12:38 (+03:00), 96 SCT-1 yayını; ortalama 0,252438 A; medyan 0,251 A; min–maks 0,221–0,295 A; SD 0,011038 A; CV %4,37.
+- **ANALOG:** Raw AC ortalaması 0,0104248 V; bias GPIO35 ortalaması 1,663469 V; SCT-1 ADC GPIO32 ortalaması 1,660745 V; SPS ortalaması 17.354,8.
+- **REFERANS:** Önceki UNIT 0,174 A kullanıcı bildirimiyle aynı kararlı zaman penceresi teyit edilmedi. Betimleyici ortalama farkı +%45,08; doğruluk/sapma kararı değildir. PZEM yok.
+- **KARAR:** 0,30 A altı gözlem; ±%4 kabul/ret yok. Test açık, K=24.22 ve firmware korunuyor.
+- **DOSYA:** [LOAD-42W-001](test-loads/42w-bulb/README.md); [Log 57 analizi](logs/module2/2026-10-31-load-42w-001-log57-analysis.md).
