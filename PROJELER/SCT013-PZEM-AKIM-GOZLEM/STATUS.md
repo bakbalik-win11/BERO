@@ -1,3 +1,16 @@
+## 2026-10-31 — LOAD-100W-003 uzun SCT-1 tek kanal logu
+
+- **YENİ KANIT:** [Tam 1.219 satırlık log](logs/module2/2026-10-31-load-100w-003-sct1-single-channel-full.txt); özgün dosya 90.076 bayt; SHA-256 `30fc5d5ccccf629423924ea17fe1706bdb4f8dfab1185f64f523596661663ed4`.
+- **SÜRE:** 15:59:53.051–16:05:11.858 (+03:00), yaklaşık 5 dakika 19 saniye.
+- **DÜZENEK:** ESP32D1 / Modül 2 / SCT-1 sarı GPIO32 ADC1_CH4; ortak bias turuncu GPIO35 ADC1_CH7. ESPHome 2026.10.1; ct_clamp 200 ms, yayın 2 s; ADC voltaj güncellemesi 1 s; 12 dB.
+- **AKIM:** 160 yayın; medyan 0,460 A; ortalama 0,4841 A; min–max 0,422–1,164 A. 150/160 yayın 0,422–0,541 A; 10 yayın 0,55 A üzerindedir.
+- **ANALOG:** Raw AC 160 yayında ortalama 0,01999 V; bias 321 yayında ortalama 1,65540 V; SCT-1 ADC 320 yayında ortalama 1,65253 V.
+- **0,427 A KARŞILAŞTIRMASI:** UNIT kullanıcı bildirimi kaynaklı geçici beklenti, PZEM teyidi değildir. Medyan farkı +%7,7; 0,55 A üzerindeki yayınlar hariç 150 yayının ortalaması 0,46288 A (+%8,4). ±%4 bandında 17/160 yayın vardır. Eşzamanlı PZEM kararlı ölçümü logda yoktur.
+- **YORUM:** 10 yüksek yayın nedeniyle ortalama tek başına kararlı değer kabul edilmedi. K katsayısı değiştirilmedi; 0,427 A PZEM ile teyit edilene kadar geçicidir.
+- **ANALİZ:** [Uzun log teknik analizi](logs/module2/2026-10-31-load-100w-003-sct1-single-channel-extended-analysis.md).
+- **TEST KAYDI:** [100 W akkor karşılaştırma dosyası](test-loads/100w-incandescent/README.md).
+- **KOD:** [003 tek kanallı firmware snapshot](firmware/archive/LOAD-100W-003-esp32d1-sct1-single-channel.yaml). Log konfigürasyonu snapshot ile uyumludur; binary/YAML kriptografik eşleşme iddiası yoktur.
+
 ## 2026-10-31 — 100 W akkor için geçici beklenen akım değeri
 
 - **BEKLENEN DEĞER:** 0,427 A.
