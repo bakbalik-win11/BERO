@@ -1,3 +1,15 @@
+## 2026-10-31 — LOAD-150W-001 uzun SCT-1 testi arşivlendi
+
+- **TEST:** 150 W akkor; ESP32D1 / Modül 2 / SCT-1 sarı GPIO32 / ortak bias GPIO35; masaüstü harici besleme.
+- **LOG:** Kullanıcı kaynağı `esp32d1-logs (36).txt`, 211.455 bayt; SHA-256 `a407bc3363a804a4a72c06e0163119d3fac2243e8c802a7ff781038f699bdb4e`; 16:31:30.179–16:44:32.407 (+03:00). 391 akım yayını. Dosya 35'teki 133 ölçüm aynı testin başındaki ölçümlerdir; mükerrer test sayılmadı.
+- **UNIT:** Kullanıcı bildirimi 0,598 A ve 0,599 A; ortalama 0,5985 A. ±%4 bandı 0,57456–0,62244 A.
+- **SCT SONUCU:** Ortalama 0,6082148 A; medyan 0,608 A; min–maks 0,591–0,655 A; örnek SD 0,006595 A; ortalama sapma +%1,6232; 388/391 (%99,23) yayın UNIT bandında.
+- **ANALOG:** Raw AC ortalama 0,0251121 V; bias 1,6636003 V; SCT-1 ADC 1,661110 V. ct_clamp SPS ortalaması yaklaşık 17.411.
+- **DURUM:** 3 derleyici/optimizasyon uyarısı; hata, brownout veya reboot işareti yok. PZEM değeri logda yok; bu UNIT kıyasıdır, PZEM doğrulaması değildir. K=24.22 değiştirilmedi.
+- **ARŞİV:** [150 W test kaydı](test-loads/150w-incandescent/README.md); [uzun log analizi](logs/module2/2026-10-31-load-150w-001-sct1-long-analysis.md); [ana test kayıtları](test-loads/README.md). Ham log dosyasının tam metni GitHub'a henüz aktarılmadı; kaynak adı, boyutu ve SHA-256 korundu.
+- **PROTOKOL KARARI:** Her yükte önce o yüke ait UNIT ölçümü; SCT kıyası UNIT ile. PZEM daha sonra eklenir; UNIT ve PZEM ayrı referanslardır.
+- **SONRAKİ:** 150 W testi kapatıldı. SCT bağlı ve primer akımı olmayan koşulda boşta okuma tabanını kaydet. Mevcut kodda yazılımsal sıfır eşiği yok; boşta testte eşik ekleme.
+
 ## 2026-10-31 — Modül 2 tek aktif SCT kanalı / üç jack kararı
 
 - **KARAR:** Aynı ESP düğümü aynı anda tek SCT akım kanalını okuyacak. Üç fiziksel jack korunacak ve seçilen jack farklı oturumlarda kullanılacak.
