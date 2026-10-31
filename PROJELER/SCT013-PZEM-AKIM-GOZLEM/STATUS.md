@@ -1,3 +1,14 @@
+## 2026-10-31 — E00F-N02 tam gece HA geçmişi analizi
+
+- **Durum:** Kullanıcının sağladığı tam gece CSV'si incelendi. Kayıt aralığı 2026-10-30 20:15:00Z–2026-10-31 07:07:48.897Z (Türkiye saati 23:15:00–10:07:48.897), toplam 10:52:48.897; 177.370 satır ve 6 entity.
+- **Özet:** SCT akım 19.113 sayısal kayıt; medyan 0.192920 A, ortalama 0.194878 A, maksimum 2.665238 A. Raw AC medyan 0.007965 V, maksimum 0.110043 V. GPIO32 SCT RAW medyan 1841 count; GPIO34 Bias RAW medyan 1840 count. GPIO33 ve GPIO35 voltaj medyanları 1.653 V.
+- **Karşılaştırma:** Yakın zamanlı (≤1.2 s) SCT/Bias RAW eşleştirmesinde 34.600 çift; fark medyanı 0 count, ortalaması −0.377 count, SD 12.673 count. Akım ve Raw AC aynı CT Clamp yolunun katsayı öncesi/sonrası çıktılarıdır; 24.22 çarpanı ile bağıntı doğrulandı, bağımsız teyit sayılmaz.
+- **Dikkat çeken olay:** 31 Ekim 05:24:02.363 Türkiye saati civarında 2.665238 A / 0.110043 V tepe kaydı. Yavaş ve eşzamanlı olmayan ADC geçmişiyle olayın fiziksel nedeni sınıflandırılamaz; değer silinmedi.
+- **Yorum sınırı:** Entity kayıt aralıkları farklıdır; CT/Raw AC medyanı fiziksel yük durumu teyit edilmeden gerçek akım veya yüksüz taban kabul edilmez. HA CSV 200 ms ham örnekleri ve N/SPS debug satırlarını içermez.
+- **Açık:** Fiziksel primer yük durumu, CT'nin hangi iletkeni/kaç turu gördüğü ve kol teması zaman aralığı kullanıcı teyidi bekliyor. Varsa ESPHome DEBUG logu ayrıca incelenecek.
+- **Ayrıntı:** [E00F-N02 tam gece analizi](experiments/E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md#tam-gece-home-assistant-gecmis-analizi--2026-10-31).
+- **Durum kararı:** Analiz yapıldı; fiziksel koşul doğrulaması açık olduğundan E00F-N02 TAMAMLANDI işaretlenmedi.
+
 ## 2026-10-30 — E00F-N02 gece gözlemi ara CSV ve oturum kapanışı
 
 - **Durum:** Dört ADC kanalının cihazda başlatılması ve HA'ya yayın yapması kullanıcı loguyla doğrulandı. Gece gözlemi DEVAM EDİYOR; bu oturum kapatıldı, deney kapatılmadı.
