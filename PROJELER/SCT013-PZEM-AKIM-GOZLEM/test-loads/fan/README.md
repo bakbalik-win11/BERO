@@ -43,3 +43,18 @@
 - **PF/REFERANS:** Logda PZEM akım ve PF yok; UNIT PF göstermiyor. PF etkisi hipotez olarak kalır.
 - **KAPANIŞ:** Yalnız düşük akım gözlemi kapatıldı. PZEM akım + PF ile eşleşmiş kararlı pencere doğrulaması ve ayrı düşük akım 1T/2T/4T deneyleri açık iş olarak kalır.
 - **DOSYALAR:** [Tam ham log](../../logs/module2/2026-10-31-fan2-module2-sct1-long-full.txt); [teknik analiz](../../logs/module2/2026-10-31-fan2-module2-sct1-long-analysis.md).
+
+
+## 2026-10-31 — FAN-3 uzun SCT-1 logu ve gözlem kapanışı
+
+- **KAPANIŞ SINIFI:** FAN-3, Modül 2 düşük akım gözlem oturumu olarak kapatıldı; ±%4 akım doğrulaması veya PF doğrulaması değildir.
+- **UNIT:** Kullanıcı bildirimi **0,141 A**; 0,30 A altı BERO düşük akım bölgesinde ±%4 kabul/ret uygulanmaz.
+- **UZUN HAM LOG:** `esp32d1-logs (43).txt`; 139.575 bayt / 1.877 satır; kaynak SHA-256 `a4345c7af2b5dcc608b264e1dceed50dbe8ee5e40c5137d1eeff2583f9a53a9f`.
+- **ZAMAN/ÖRNEK:** 17:35:27.127–17:43:55.115 (+03:00); 255 SCT akım yayını.
+- **AKIM:** Ortalama **0,224612 A**; medyan **0,223 A**; min–maks **0,189–0,311 A**; örnek SD **0,018657 A**. 253/255 yayın 0,30 A altındadır; yalnız iki tekil yayın 0,30 A'yı aşmıştır.
+- **ANALOG:** Raw AC ortalama **0,009273 V**; bias GPIO35 ortalama **1,663387 V**; SCT-1 ADC GPIO32 ortalama **1,661008 V**.
+- **KOD:** [FAN-3 kapanış YAML snapshot](../../firmware/archive/FAN-3-2026-10-31-esp32d1-sct1.yaml). ESPHome 2026.10.1; GPIO32 SCT-1, GPIO35 bias; ADC 12 dB / 1 s; ct_clamp 200 ms / 2 s; K=24.22; yazılımsal sıfır eşiği yok. Binary eşleşmesi iddia edilmez.
+- **PF/REFERANS:** Logda PZEM akım ve PF yok; UNIT PF göstermiyor. PF etkisi bu testte doğrulanamadı.
+- **GEÇİŞLER:** Açılma/kapanma olay işareti yok. Gerçek geçiş zamanı ve SCT-PZEM tepki farkı bu logdan çıkarılamaz.
+- **RAPOR:** [FAN-3 teknik analiz](../../logs/module2/2026-10-31-fan3-module2-sct1-long-analysis.md); [tam ham log](../../logs/module2/2026-10-31-fan3-module2-sct1-long-full.txt).
+- **SONRAKİ:** PZEM akım + PF ile eşleşmiş kararlı pencere; ayrıca fan açma/kapatma anı olay işaretli geçiş deneyi.
