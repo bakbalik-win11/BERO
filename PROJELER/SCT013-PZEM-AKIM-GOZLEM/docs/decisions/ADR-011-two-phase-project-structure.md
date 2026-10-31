@@ -1,3 +1,5 @@
+> **Sonraki kapsam güncellemesi:** Bu ADR'de Faz 2 ilk olarak PZEM referanslı öğrenme olarak tanımlanmıştı. 2026-10-31 tarihli [ADR-014](ADR-014-phase2-practical-restart.md), bu tanımı genişleterek Faz 2'nin ana kapsamını pratik sistemin yeniden kurulması ve geliştirilmesi olarak güncelledi. T007 → T008 → T006 sırası, sistem düğümleri çalıştıktan sonraki veri/öğrenme alt aşaması olarak korunur.
+
 # ADR-011 — Projeyi iki ana faza ayırma ve Faz 2'yi başlatma
 
 - **Tarih:** 2026-10-31
