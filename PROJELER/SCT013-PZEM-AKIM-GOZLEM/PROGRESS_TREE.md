@@ -141,3 +141,14 @@
 - Raw AC ortalaması 0,012562 V; ortak bias GPIO35 ortalaması 1,663073 V; GPIO32 ADC ortalaması 1,660694 V.
 - UNIT 0,244 A başlangıç bildirimiyle aritmetik fark +%24,67; aynı zaman penceresi doğrulanmadığından doğruluk sonucu değildir. PZEM verisi yok.
 - Test açık; firmware/K=24.22 değişmedi. [Test kaydı](test-loads/57w-incandescent/README.md); [analiz](logs/module2/2026-10-31-load-57w-001-module2-sct1-analysis.md); [tam log](logs/module2/2026-10-31-load-57w-001-module2-sct1-full.txt).
+
+## 2026-10-31 — MIXED-LOAD-57W-15W-001 açıldı
+
+- 57 W akkor + 15 W ampul karma yük testi açıldı; 15 W ampul tipi henüz belirtilmedi.
+- Nominal etiket güçlerinin toplamı 72 W (hesap); gerçek güç ölçümü değildir.
+- UNIT 0,303 A kullanıcı bildirimi; SCT ile zaman örtüşmesi/kararlılık doğrulanmadı.
+- Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; K=24.22 ve firmware kilitli.
+- Eşleşmiş kararlı pencere elde edilirse ±%4 kıyası yapılabilir; test açık ve log bekliyor.
+- Önceki LOAD-57W-001 bağımsız olarak açık kalır.
+- [Test kaydı](test-loads/mixed-57w-15w/README.md).
+
