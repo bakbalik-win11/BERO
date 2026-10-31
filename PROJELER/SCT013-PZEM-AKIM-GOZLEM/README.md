@@ -7,7 +7,7 @@ BERO'nun bu alt projesi, SCT013 akım sensöründen elde edilen ölçüm çıkt�
 Proje iki ana fazdan oluşur:
 
 - **Faz 1 — Çalışan kodu bulmak ve ±%4 hedefine ulaşmak: TAMAMLANDI.** Dış kaynaklı ESPHome ct_clamp koduyla hedef sağlandı.
-- **Faz 2 — Bulunan kodu PZEM ile eğitmek: AKTİF.** Home Assistant verisi PC'ye alınacak; Python ile kararlı alan eşleştirme, etiketleme ve katsayı/model iyileştirme yapılacak.
+- **Faz 2 — Pratik yeniden kurulum ve sistem geliştirme: AKTİF.** Kayıtlı kod ve çalışan örneklerden yararlanarak modüller ve ESP düğümleri tek tek devreye alınacak; ardından PZEM referanslı veri aktarımı, kararlı alan eşleştirme ve model iyileştirmesi yapılacak.
 
 Bu proje enerji analizörü, güç kalitesi analizörü veya harmonik analiz sistemi değildir.
 
@@ -26,15 +26,16 @@ Dört karşılaştırmanın tamamı ±%4 sınırındadır. Faz 1 hedefi sağland
 
 ## Faz 2 — güncel çalışma
 
-İlk iş **T007 — Home Assistant verisini PC'ye aktarma**. Gerçek PZEM ve SCT entity geçmişleri PC'ye alınacak, kaynak timestamp ve birimler korunacak, Python ile tekrar işlenebilir bir veri girişi oluşturulacak.
+Faz 2, yeni bir pratik başlangıçtır: önce çalışan kod/örnek bulunur, kayıtlı YAML ve donanım bilgileri başlangıç referansı olarak kullanılır, modüller ve ESP düğümleri tek tek devreye alınır. Her modül için derleme, bağlantı ve gerçek donanım çıktısı ayrı doğrulanır. Başarılı kod, gerçek log/çıktı ve yorum depoda saklanır.
 
-Sonraki sıra:
-1. T007 — HA → PC aktarımı.
+İlk aktif iş **T009 — modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma**. Manyetik teori veya ESP32 ADC iç mimarisi, somut bir sorun veya uygulama kararı gerektirmediği sürece çalışma odağı yapılmaz. Önceki araştırmalar tarihsel teknik referans olarak korunur.
+
+Modüller çalışır ve gerçek Home Assistant entity akışları oluşur hâle geldikten sonra:
+1. T007 — HA → PC veri aktarımı.
 2. T008 — PZEM ve SCT kararlı alanlarını ayrı bulma, örtüşen alanları eşleştirme ve PZEM ile etiketleme.
 3. T006 — mevcut K=24.22 katsayısını değerlendirme; yalnız veri gerekçelendirirse iyileştirme.
-4. Yeni yük/koşullar geldikçe öğrenme döngüsünü tekrarlama.
 
-Yeni Faz 2 deneyleri şimdiden planlanmayacak. Gerçek verinin cevaplanması gereken somut bir soru ortaya çıkarması hâlinde yeni deney numarasıyla planlanacak.
+Faz 2 kapsamı: [ADR-014](docs/decisions/ADR-014-phase2-practical-restart.md). İlk görev: [T009](tasks/T009-practical-system-bringup.md).
 
 ## Çalışan ölçüm baseline'ı
 
@@ -63,7 +64,8 @@ Bu ayarlar ilk PZEM/SCT veri karşılaştırmasında başlangıç baseline'ıdı
 3. [ROADMAP.md](ROADMAP.md) — yalnız iki ana faz.
 4. [PROGRESS_TREE.md](PROGRESS_TREE.md) — genel görünüm.
 5. [tasks/README.md](tasks/README.md) — Faz 2 görev sırası.
-6. [T007](tasks/T007-python-architecture.md) — ilk iş.
+6. [T009](tasks/T009-practical-system-bringup.md) — ilk aktif iş.
+7. [T007](tasks/T007-python-architecture.md) — sonraki veri aktarımı adımı.
 7. [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
 8. [Deney arşivi](experiments/README.md) — Faz 1 tarihçesi.
 9. [Karar kayıtları](docs/decisions/).
