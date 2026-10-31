@@ -1,3 +1,13 @@
+## 2026-10-31 — Modül 2 tek kanallı SCT test firmware'i
+
+- **KARAR:** Üçlü ct_clamp yapılandırması kontrollü test için tek aktif kanala indirildi. Üçlü yapının kaliteyi düşürdüğü henüz kanıtlanmadı; bu değişiklik hipotezi sınamak içindir.
+- **AKTİF GİRİŞ:** SCT-3 / GPIO34 / ADC1_CH6. Son fiziksel testte SCT bu girişteydi.
+- **KORUNAN:** GPIO35 ortak bias ADC izlemesi, 200 ms ct_clamp penceresi, 5 s yayın aralığı ve nominal 30 A/V başlangıç katsayısı.
+- **PASİF:** GPIO32 ve GPIO33 donanımda yerinde; bu firmware sürümünde tanımlı/okunur değiller.
+- **KOD:** [Tek kanallı esp32d1.yaml](firmware/esp32d1.yaml). Karar: [ADR-017](docs/decisions/ADR-017-module2-single-sct-channel.md).
+- **DOĞRULAMA:** YAML GitHub'a yazıldı; yeni sürüm henüz ESPHome'da derlenmedi, cihaza yüklenmedi ve fiziksel test edilmedi. T010 AKTİF.
+- **SONRAKİ:** Derleme/OTA sonrası aynı SCT-3 ve aynı yükle kapalı → açık kararlı → kapalı logu al; önceki üç kanallı kayıtla karşılaştır.
+
 ## 2026-10-31 — Modül 2 SCT-1 / 100 W PENS karşılaştırması
 
 - **LOG:** Yeni ct_clamp logunda SCT-1 için 200 ms pencerede hızlı örnekleme ve akım yayını görüldü. Son beş kararlı değer 0,578–0,597 A; ortalama 0,589 A.
