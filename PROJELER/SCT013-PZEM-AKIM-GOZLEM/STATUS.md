@@ -1,3 +1,13 @@
+## 2026-10-31 — Modül 2 tek aktif SCT kanalı / üç jack kararı
+
+- **KARAR:** Aynı ESP düğümü aynı anda tek SCT akım kanalını okuyacak. Üç fiziksel jack korunacak ve seçilen jack farklı oturumlarda kullanılacak.
+- **PINLER:** SCT-1 sarı GPIO32 / ADC1_CH4; SCT-2 yeşil GPIO33 / ADC1_CH5; SCT-3 mavi GPIO34 / ADC1_CH6; ortak bias turuncu GPIO35 / ADC1_CH7.
+- **KULLANIM:** Tek, iki veya dört primer tur gibi sarım koşulları aynı test kutusunda, jack/tesisat sökülmeden ayrı zamanlarda denenebilecek. Eşzamanlı üç kanal okuma hedeflenmiyor.
+- **KOD GÖZLEMİ:** Kullanıcı LOAD-100W-004 tek kanal kodunu 0,427 A geçici UNIT beklentisiyle uyumlu buluyor. Bu PZEM doğrulaması değildir; K değiştirilmedi.
+- **GÜÇ:** Harici masaüstü beslemeli uzun log kararlı (215 yayın; medyan 0,423 A; ortalama 0,425 A; 0,55 A üzeri sıçrama yok). 5 V ve 3,3 V rayları logda ölçülmedi. Güç kaynağı etkisi hipotez; aynı koşulda tekrar ve mümkünse multimetre ölçümü bekliyor.
+- **AYRINTI:** [ADR-021](docs/decisions/ADR-021-module2-one-active-sct-channel-three-jacks.md), [oturum tecrübe kaydı](HISTORY/SESSION_LOG.md).
+- **SONRAKİ:** SCT-1 / 100 W / harici besleme koşusunu tekrarla ve güç raylarını gözlemle; sonra SCT-2 ve SCT-3 jack'lerini ayrı oturumlarda test et.
+
 ## 2026-10-31 — LOAD-100W-004 uzun masaüstü besleme tekrarı ve tek kanal mimarisi
 
 - **LOG:** [Tam 1.602 satır / 118.860 bayt](logs/module2/2026-10-31-load-100w-004-sct1-desktop-power-full.txt); SHA-256 `de3f2289700f657cfcf1fd8bff816bbd8a8bc05bb2296f349462709cbb42d859`.
