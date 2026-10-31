@@ -1,3 +1,14 @@
+## 2026-10-31 — IRON-001 kapatıldı / TOASTER-001 açıldı
+
+- **IRON-001 DURUM:** İki logluk gözlem raporu tamamlandı; bu sınırlı kapsamla kapatıldı. Tüm termostat çevrimleri/uzun dönem davranış doğrulandı iddiası yoktur.
+- **IRON-001 AÇIK ÇEVRİMLER:** n=5 ortalama 9,2852 A; n=4 ortalama 9,3605 A. UNIT 10,16 A kullanıcı bildirimine göre aritmetik farklar −%8,61 ve −%7,87; zaman eşleşmesi doğrulanmadığı için doğruluk sonucu değildir.
+- **IRON-001 KAPALI VERİ:** 49 toplam yayının 40'ı ≤0,25 A; bunların 27'si 0,000 A, 13'ü 0,011–0,092 A. Yaklaşık 104 s log boşluğu ölçülmüş kapalı süre sayılmadı. PZEM yok.
+- **IRON-001 RAPOR:** [Kapanış raporu](test-loads/iron/README.md). K=24.22 ve firmware değişmedi.
+- **TOASTER-001 DURUM:** AÇIK — tost makinesi gözlem testi planlandı; henüz log/ölçüm yok.
+- **TOASTER-001 DÜZENEK:** Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp 200 ms/2 s, K=24.22. Tek tur.
+- **TOASTER-001 EKSİK:** Etiket gücü ve UNIT/PZEM referans bilgisi henüz bildirilmedi; varsayılmadı.
+- **TOASTER-001 PLAN:** Açılış, kararlı ON, varsa OFF ve geçişler ayrı incelenecek. [Test planı](test-loads/toaster/README.md).
+
 ## 2026-10-31 — MIXED-LOAD-57W-15W-001 / Log 59 analiz edildi
 
 - **DURUM:** AÇIK — Log 59 arşivlendi ve analiz edildi; ±%5,6 bandı hedefi karşılanmadı. Önceki LOAD-57W-001 ayrı test olarak açık kalır.
