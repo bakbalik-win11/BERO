@@ -1,3 +1,15 @@
+## 2026-11-01 — Oturum kapanışı / BERO işi yapılmadı
+
+- **DURUM:** Kapanış kaydı; bu sohbet kapsamında BERO teknik uygulaması yapılmadı.
+- **HEDEF VE KABUL ÖLÇÜTÜ:** Depodaki son BERO durumunu okuyup mevcut aktif görev ve bekleyen deneyleri koruyarak günü doğru kapatmak. Yeni deney/kod sonucu uydurulmaması.
+- **DEPO OKUMASI:** Proje AGENTS.md, STATUS.md, ROADMAP.md, README.md, SESSION_PROTOCOL.md, GUN_SONU_KONTROLU.md, HISTORY/SESSION_LOG.md, PROGRESS_TREE.md, docs/open-questions.md, T010 ve E10 protokol/sonuç defteri okundu. main dalı başlangıç SHA: `5b7e7e43910c0e24ae0cfc63190cf41a2fa20ac6`.
+- **YAPILAN:** Aktif faz/görev ve E10 durumları çapraz kontrol edildi. Claude hizmet durumu ve genel kod denetim promptu BERO dışı sohbet konusu olduğundan proje teknik kaydı olarak içeri alınmadı.
+- **DOĞRULAMA:** Faz 2 aktif, T010 aktif; E10 PLANLANDI. E10 sonuç defterinde A/B/C/D aşamalarının tümü bekliyor. Firmware, K=24.22, YAML, donanım ve fiziksel düzenek hakkında yeni değişiklik yapılmadı.
+- **AÇIK KALANLAR:** T010 Modül 2 kanal testleri ve fiziksel doğrulamaları; E10'un 200→500→1000→200 ms aşamaları; mevcut firmware dosyası ile tarihsel üç kanal kaydı arasındaki daha önce işaretlenmiş tutarsızlık.
+- **SONRAKİ ADIM:** T010'un sıradaki kontrollü kanal testinden devam et; E10'a başlarken README'deki sabitleri ve uygulama öncesi kontrol listesini uygula.
+- **KANIT:** [STATUS](../STATUS.md), [T010](../tasks/T010-module2-triple-sct-bringup.md), [E10 protokolü](../experiments/E10-ct-clamp-window-duration/README.md), [E10 sonuç defteri](../experiments/E10-ct-clamp-window-duration/results.md).
+- **SINIR:** Bu kapanış yalnız bu sohbetin BERO içeriğini kaydeder; kullanıcının günün başka sohbetlerinde yapmış olabileceği işleri kapsadığı iddia edilmez.
+
 ## 2026-10-31 — ct_clamp sohbet sentezi / hipotez sicili
 
 - **HEDEF:** Kullanıcının bu sohbet boyunca sunduğu 19 maddelik hipotez sınıflandırmasını, önceki ct_clamp kaynak araştırması ve BERO log kanıtlarıyla birleştirip yarın devam edilebilir tek bir sicile dönüştürmek.
