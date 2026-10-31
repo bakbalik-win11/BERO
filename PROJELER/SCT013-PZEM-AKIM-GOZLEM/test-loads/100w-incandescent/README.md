@@ -6,11 +6,17 @@
 **Kabul hedefi:** Referans cihaza göre mutlak yüzde sapma en fazla %4.  
 **Önemli:** Farklı tarihlerdeki ölçümler ancak aynı ampul ve karşılaştırılabilir elektriksel koşullar sağlandığında doğrudan karşılaştırılabilir. Test saati veya eşzamanlılık kanıtı yoksa bu sınırlama ayrıca belirtilir.
 
+## 100 W akkor için geçici beklenen akım değeri
+
+**Geçici çalışma referansı: 0,427 A (UNIT cihazı; kullanıcı bildirimi).**
+
+Bu değer, 100 W akkor ampul için şimdilik “ne okumayı bekliyoruz?” sorusunun pratik karşılığı olarak kaydedilmiştir. Henüz PZEM tarafından aynı yük ve kararlı koşulda doğrulanmış/sabitlenmiş değer değildir. PZEM okuması alındığında aynı ampul ve karşılaştırılabilir besleme koşulunda kararlı pencere belirlenecek; PZEM değeri ayrıca kaydedilecek ve bu geçici 0,427 A beklentisiyle ilişkisi netleştirilecektir. O zamana kadar 0,427 A kesin PZEM referansı veya kalibrasyon gerçeği olarak kullanılmayacaktır.
+
 ## Karşılaştırma tablosu
 
 | Test ID | Tarih | Saat / log aralığı | ESP / düzenek | SCT kanalı | Kod / sürüm | Log | Referans | Kod sonucu | Sapma | ±%4 durumu |
 |---|---|---|---|---|---|---|---:|---:|---:|---|
-| LOAD-100W-003 | 2026-10-31 | 15:59:53–16:01:39 (+03:00) | ESP32D1 / Modül 2 | SCT-1 / GPIO32 / sarı | [Tek kanallı firmware snapshot](https://github.com/bakbalik-win11/BERO/blob/720e52de7fac8c409fe2c7de8569849ca171f166/PROJELER/SCT013-PZEM-AKIM-GOZLEM/firmware/archive/LOAD-100W-003-esp32d1-sct1-single-channel.yaml) | [003 log analizi ve gerçek log satırları](../../logs/module2/2026-10-31-load-100w-003-sct1-single-channel-analysis.md) | Referans cihaz değeri paylaşılmadı | 54 yayın; medyan 0,469 A; 52/54 yayın 0,426–0,541 A; iki yüksek değer 0,797 A ve 1,164 A | Hesaplanamadı | **Referans bekleniyor** |
+| LOAD-100W-003 | 2026-10-31 | 15:59:53–16:01:39 (+03:00) | ESP32D1 / Modül 2 | SCT-1 / GPIO32 / sarı | [Tek kanallı firmware snapshot](https://github.com/bakbalik-win11/BERO/blob/720e52de7fac8c409fe2c7de8569849ca171f166/PROJELER/SCT013-PZEM-AKIM-GOZLEM/firmware/archive/LOAD-100W-003-esp32d1-sct1-single-channel.yaml) | [003 log analizi ve gerçek log satırları](../../logs/module2/2026-10-31-load-100w-003-sct1-single-channel-analysis.md) | Geçici beklenti: 0,427 A (UNIT, kullanıcı bildirimi; PZEM teyidi bekleniyor) | 54 yayın; medyan 0,469 A; 52/54 yayın 0,426–0,541 A; iki yüksek değer 0,797 A ve 1,164 A | Hesaplanamadı | **Referans bekleniyor** |
 | LOAD-100W-001 | Tarihsel kayıt; kesin tarih bu özet tabloda belirtilmemiş | Ham logdaki zaman aralığı mevcut özet kayıtta verilmemiş | ESP32D2, harici/Modül 2 kutusu olmadan | ESP32D2 baseline bağlantısı; GPIO33 ct_clamp | [firmware/esp32d2.yaml](../../firmware/esp32d2.yaml) — tarihsel baseline kodu; testte kullanılan tam commit ayrıca arşivlenmemiş | Ayrı ham log dosyası bulunamadı. Sonuç STATUS/ROADMAP tarihsel özetinden aktarılmıştır. | Pens: 0,446–0,447 A | 0,4471 A | yaklaşık %0 | **Hedef içinde** (tarihsel kayıt; ham log/zaman aralığı eksik) |
 | LOAD-100W-002 | 2026-10-31 | Logdan çıkarılan son beş kararlı yayın; kesin başlangıç/bitiş timestamp'i özet dosyada korunmamış | ESP32D1 / Modül 2 | SCT-1 / GPIO32 / sarı | [Üç kanallı ESP32D1 firmware — test öncesi commit](https://github.com/bakbalik-win11/BERO/blob/33b2b8fcb17f51a97edbb5cbd416ee6f9a532278/PROJELER/SCT013-PZEM-AKIM-GOZLEM/firmware/esp32d1.yaml) — 31.10.2026 tarihli üç kanal ct_clamp sürümü | [SCT-1 100 W ct_clamp + PENS karşılaştırması](../../logs/module2/2026-10-31-sct1-100w-ct-clamp-comparison.txt) — 563 satırlık özgün logun tamamı değil, analiz özeti | PENS: 0,427 A (kullanıcı bildirimi) | Son beş kararlı değer: 0,578 / 0,591 / 0,597 / 0,590 / 0,589 A; ortalama 0,589 A | +%37,9 | **Hedef dışında** |
 
@@ -78,3 +84,12 @@ Log özetinin başlığı, test sırasında kullanılan yapılandırmayı nomina
 - Bias 107 yayında 1,623–1,678 V; ortalama 1,65672 V.
 - Logda referans cihaz değeri bulunmuyor; sapma ve ±%4 durumu hesaplanamaz. Katsayı değişikliği yapılmadı.
 - Özgün log SHA-256: c92d51915de6b7ab69fdbc1f00ad4b7554455748958d18525ba2b3320a9d9723.
+
+
+## 0,427 A geçici referansının kullanımı
+
+- **Beklenen okuma:** 0,427 A.
+- **Kaynak:** UNIT cihazında görülen değer; kullanıcı bildirimi. Bu değer 100 W akkor yük için geçici çalışma beklentisidir.
+- **PZEM durumu:** Aynı yükte PZEM ölçümü henüz alınmadı veya kararlı pencere olarak doğrulanmadı. PZEM değeri geldiğinde tarih/saat ve kararlı aralıkla ayrı kaydedilecek; gerekirse 0,427 A beklentisi güncellenecek.
+- **003 ile kaba karşılaştırma:** 003 medyanı 0,469 A olduğundan 0,427 A geçici beklentiye göre yaklaşık +%9,8 fark vardır. Bu yalnızca ön karşılaştırmadır; referans PZEM ile sabitlenmeden ±%4 kabul kararı değildir. İki yüksek yayın (0,797 A ve 1,164 A) ayrıca değerlendirilmelidir.
+- **Karar:** Şimdilik katsayı değiştirilmez. 0,427 A, PZEM teyidi gelene kadar “geçici beklenen değer” olarak tutulur.
