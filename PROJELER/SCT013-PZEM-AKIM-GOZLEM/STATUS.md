@@ -1,3 +1,14 @@
+## 2026-10-31 — TOASTER-001 / Log 62 ön değerlendirmesi
+
+- **LOG:** `esp32d1-logs (62).txt`; 934 satır / 68.564 karakter; kaynak SHA-256 `4790b00e69aaba791339f6d43aa13041efe373c5a87b9ed7fd4c1f481ce551f2`.
+- **KARARLI SCT BÖLGESİ:** İlk 119 yayın, 21:52:30.185–21:56:26.262; ortalama 7,1900 A, medyan 7,188 A, min–maks 7,135–7,264 A, SD 0,0247 A, CV %0,344.
+- **ANALOG:** Raw AC ortalama 0,29686 V (0,29461–0,29991 V); bias GPIO35 ortalama 1,66391 V; SPS ortalama 18.561.
+- **UNIT:** 7,89 A kullanıcı bildirimi. SCT ortalamasına göre aritmetik fark −%8,87; zaman eşleşmesi doğrulanmadığından doğruluk sapması değildir. PZEM verisi yok.
+- **GEÇİŞ:** Son tek yayın 21:56:28.190'da 6,096 A; kararlı istatistiklerden ayrı tutuldu, termostat çevrimi kanıtı sayılmadı.
+- **KATSAYI:** K=24.22 sabit; değiştirilmedi. Amaç yüksek akım bölgesini mevcut katsayıyla karakterize etmek.
+- **ARŞİV:** [TOASTER-001 raporu](test-loads/toaster/README.md). Ham Log 62'nın tam içeriği bu adımda GitHub'a yüklenmedi; kaynak SHA ve istatistikler kaydedildi.
+- **DURUM:** TOASTER-001 açık; ek log ve UNIT zaman eşleşmesi bekleniyor.
+
 ## 2026-10-31 — TOASTER-001 UNIT referansı bildirildi
 
 - **UNIT:** 7,89 A — kullanıcı bildirimi. Bu değer TOASTER-001 için referans notu olarak kaydedildi; PZEM değildir.
