@@ -56,7 +56,7 @@ Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik par
 | İzolasyon trafosu | **RN130421**, 230 V AC / 6 V AC, 2.0 VA, EI 30/15.5, PCB tipi | Kullanıcının paylaştığı üretici teknik dokümanı |
 | Köprü doğrultucu | **KBU610** | Kullanıcı bildirimi |
 | Filtre kondansatörleri | Mevcut; adet ve değerleri henüz belirlenmedi | Kullanıcı bildirimi |
-| 3.3 V regülatör entegresi | Mevcut; parça/model numarası henüz belirlenmedi | Kullanıcı bildirimi |
+| 3.3 V regülatör entegresi | **L78L33, TO-92 — toplam 3 adet; 1 adet akım trafosu kutusunda takılı, 2 adet yedek stokta** | Kullanıcı model/adet bildirimi; L78L ailesi üretici veri sayfası görseli |
 
 ### RN130421 üretici dokümanı bilgileri
 
@@ -74,3 +74,15 @@ Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik par
 
 **Kayıt sınırı:** 3.3 V çıkışın varlığı kullanıcı tarafından bildirildi. Regülatörün tam modeli, kondansatör değerleri, doğrultucu çıkış gerilimi ve 3.3 V hattının ESP32D2'ye hangi pin/bağlantı üzerinden gittiği henüz doğrulanmadı. Şebeke tarafı bağlantılar enerjiliyken incelenmeyecek.
 
+
+### L78L33 regülatör — model ve stok ayrıntısı
+
+- **Model:** L78L33.
+- **Kılıf:** TO-92.
+- **Toplam adet:** 3.
+- **Modül içindeki:** 1 adet; akım trafosu kutusunda kullanılıyor.
+- **Serbest stok:** 2 adet.
+- **Üretici dokümanı görselinden görülen L78L ailesi özellikleri:** 3.3 V dahil sabit çıkış seçenekleri; 100 mA'ya kadar çıkış akımı; termal aşırı yük ve kısa devre koruması; harici bileşen gerektirmeyen regülatör ailesi.
+- **Kanıt ayrımı:** L78L33/TO-92 ve adet/yerleşim bilgisi kullanıcı beyanıdır. Paylaşılan ST L78L veri sayfası görseli aile özelliklerini gösterir; tek başına kullanılan parçanın üreticisini veya tam sipariş kodunu doğrulamaz.
+
+**Güncelleme:** Önceki tabloda regülatör modeli bilinmiyor olarak bırakılmıştı. Bu kayıtla model ve stok dağılımı kullanıcı tarafından verilen bilgiye göre güncellendi. Önceki belirsizlik notu yalnız kondansatörlerin adet/değerleri için geçerlidir.
