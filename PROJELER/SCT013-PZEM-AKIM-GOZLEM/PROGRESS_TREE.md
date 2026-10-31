@@ -123,3 +123,12 @@
 - Raw AC ortalaması 0,0104248 V; ortak bias 1,663469 V.
 - UNIT 0,174 A ile aynı zamanlı kararlı pencere doğrulanmadığından +%45,08 fark yalnız betimleyici; doğruluk sonucu değil.
 - Test düşük akım gözlemi olarak açık. [Test kaydı](test-loads/42w-bulb/README.md); [analiz](logs/module2/2026-10-31-load-42w-001-log57-analysis.md).
+
+
+## 2026-10-31 — LOAD-57W-001 / 57 W akkor testi açıldı
+
+- 57 W akkor ampul test yükü ve UNIT 0,244 A başlangıç bildirimi kaydedildi.
+- UNIT değerinin SCT ile aynı kararlı zaman penceresine ait olduğu henüz doğrulanmadı; PZEM verisi verilmedi.
+- 0,30 A altı gözlem alanı; ±%4 kabul/ret yok.
+- Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; K=24.22 ve firmware korunacak.
+- [Test kaydı](test-loads/57w-incandescent/README.md).
