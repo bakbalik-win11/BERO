@@ -1,3 +1,15 @@
+## 2026-10-31 — Sensör bağımsız BERO mimarisi üst seviyeye taşındı
+
+- **HEDEF:** Kullanıcının isteği doğrultusunda SCT013 akım projesinde edinilen tecrübeleri yalnızca SCT013 klasöründe tutmayıp, depoda sensörden bağımsız bir mimari yapı içinde sunmak.
+- **DEPO OKUMASI:** Proje AGENTS.md, STATUS.md, ROADMAP.md, README.md, PROGRESS_TREE.md ve SESSION_LOG.md okundu. Faz 2 / T010 aktif; görev sırası korunuyor.
+- **MİMARİ KARAR:** Depo kökünde MIMARI alanı açıldı. Üst seviye mimari, üç katmanla tanımlandı: (1) veri toplama, (2) özellik çıkarma, (3) davranış çıkarımı.
+- **TEKNİK AYRIMLAR:** Özellik penceresi ile daha uzun kararlılık penceresi birbirinden ayrıldı. Örnekleme hızı, pencere süresi ve yayın aralığının farklı kavramlar olduğu belirtildi. RMS/offset işleminin evrensel olmadığı; sensör sinyaline uygun özellik seçilmesi gerektiği kaydedildi.
+- **VERİ KORUMA:** Sürekli ham ADC arşivi varsayılan yapılmadı. Zaman, kaynak kimliği, geçerlilik, örnek sayısı, özellik/birim ve varsa gerçek calibration_id gibi izlenebilirlik alanları mimari sözleşme olarak önerildi.
+- **UYGULAMA SINIRI:** SCT013-PZEM ilk uygulama olarak kaldı. Mikrofon, ivmeölçer ve ACS712 entegrasyonu yapılmadı. Davranış sınıflandırma çalışan bir sistem olarak sunulmadı.
+- **DOSYALAR:** [Mimari indeks](../../MIMARI/README.md); [Pencereli sensör analizi mimarisi](../../MIMARI/PENCERELI-SENSOR-ANALIZI/README.md). Proje README, PROJELER indeksi ve AGENTS yönlendirmeleri güncellendi.
+- **DOĞRULAMA:** Yeni Markdown dosyaları GitHub'a yazıldı. Sonraki adımda yeni ve güncellenen dosyalar GitHub'dan yeniden okunarak içerik/link kontrolü yapılacak. Kod, firmware, derleme, OTA veya fiziksel test yapılmadı.
+- **SONUÇ:** Tecrübeler SCT013 projesinden ayrı bir BERO mimari alanına taşındı. T010 ve Faz 2 sırası değişmedi.
+
 ## 2026-10-31 — Sensör kalıplarına gerçek Log 63 çıktısı eklendi
 
 - [patterns rehberi](../firmware/patterns/README.md) içine Log 63'ten gerçek ESPHome çıktı örneği eklendi: 3.656 kabul edilmiş farklı örnek, 18.280 raporlanan SPS, Raw AC entity 0,12763 V ve akım entity 3,091 A.
