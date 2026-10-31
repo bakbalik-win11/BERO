@@ -169,3 +169,12 @@
 - Kapalı/düşük akım: 40 yayın; 27 sıfır, 13 adet 0,011–0,092 A. Yaklaşık 104 s kayıt boşluğu süre hesabına katılmadı.
 - TOASTER-001 tost makinesi testi AÇIK; fiziksel ölçüm bekleniyor. Güç ve referans cihazı bilinmiyor; Modül 2/K=24.22 korunacak.
 - [IRON-001 raporu](test-loads/iron/README.md); [TOASTER-001 planı](test-loads/toaster/README.md).
+
+
+## 2026-10-31 — TOASTER-001 / Log 62 ön değerlendirmesi
+
+- İlk 119 SCT yayını yaklaşık 236 s boyunca 7,1900 A ortalama ve %0,344 CV ile kararlı.
+- UNIT 7,89 A'ya göre aritmetik fark −%8,87; zaman eşleşmesi teyitsiz, doğruluk sonucu değil.
+- Son tek yayın 6,096 A olarak ayrı geçiş verisi tutuldu.
+- K=24.22 değişmedi; test açık.
+- [TOASTER-001 raporu](test-loads/toaster/README.md).
