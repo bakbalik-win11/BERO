@@ -7,7 +7,7 @@ Mevcut ESP32D2/E00F ölçüm zincirini değiştirmeden, bilinen 100 W akkor ampu
 ## LOG
 
 - **Yük:** 100 W akkor ampul — KULLANICI BEYANI; kullanıcı 10:32'de açtığını bildirdi ve ampulün 100 W akkor olduğunu doğruladı.
-- **Kaynak:** Kullanıcının yüklediği `esp32d2-logs (14).txt`; 3.006 satır; 146.513? bayt değil, bu dosyanın gerçek boyutu ve SHA aşağıdadır.
+- **Kaynak:** Kullanıcının yüklediği `esp32d2-logs (14).txt`; 3.006 satır; 222.950 bayt.
 - **SHA-256:** `c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e`.
 - **Zaman:** cihaz logu 10:30:27.239–10:39:09.934; CT Clamp pencereleri 10:30:27.836–10:39:09.831; 262 pencere. Kullanıcının yük açma işareti 10:32.
 - **Cihaz:** ESPHome 2026.10.1, ESP32 rev3.1, `esp32d2`; Wi-Fi/API bağlantısı başarılı.
@@ -21,7 +21,7 @@ Mevcut ESP32D2/E00F ölçüm zincirini değiştirmeden, bilinen 100 W akkor ampu
 |---|---:|---:|---:|---:|---:|---:|
 | Yük öncesi 10:30:27–10:31:59 | 0.20 s / 2 s yayın | 46 | 0.004 V | 0.00426 V | 0.011 V | 0.031 V |
 | Kullanıcı açma işaretinden sonra 10:32–10:39:09 | aynı | 215 | 0.019 V | 0.02447 V | 0.080 V | 0.088 V |
-| Daha sakin yük bölümü 10:35–10:39:09 | aynı | 124 | 0.019 V | 0.02003 V | 0.02385 V | 0.033 V? |
+| Daha sakin yük bölümü 10:35–10:39:09 | aynı | 124 | 0.019 V | 0.02003 V | 0.02385 V | 0.049 V |
 
 > Not: Son satırın maksimum değeri özet istatistikten ayrıca teyit edilmelidir; raporda kararlı bölüm için medyan/ortalama/p95 esas alınır, tekil tepe kararlı seviye olarak kullanılmaz.
 
