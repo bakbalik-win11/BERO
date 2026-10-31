@@ -14,7 +14,7 @@ Projede yalnızca iki ana faz vardır:
 1. **Faz 1 — Çalışan kodu bulmak ve ±%4 hedefine ulaşmak: TAMAMLANDI.** Dış kaynaklı kodla hedef sağlandı. Faz 1 kapsamındaki yapılmamış işler hedefe ulaşıldığı için kapatılmıştır; eski deney dosyaları tarihsel arşivdir.
 2. **Faz 2 — Pratik yeniden kurulum ve sistem geliştirme: AKTİF.** Faz 2, yalnız mevcut kodu PZEM ile eğitme aşaması değildir. Kayıtlı kodlar ve çalışan örneklerden yararlanarak modüller/ESP düğümleri yeniden devreye alınır, temel işlevleri gerçek donanımda doğrulanır ve sistem geliştirilir. PZEM referanslı veri aktarımı/etiketleme bu işleyen sistemin sonraki alt aşamasıdır.
 
-Faz 2'nin ilk aktif görevi T009'dur: modülleri ve ESP düğümlerini pratik olarak devreye alma. Ardından T007 → T008 → T006 yürütülür. Her oturumda STATUS.md içindeki tek aktif görev üzerinde çalış. Faz 1 deneylerini yeniden açma. Yeni deneyler ancak gerçek bir uygulama/ölçüm sorusu ortaya çıktığında yeni numaralarla planlanır.
+T009, Faz 2'nin genel modül/ESP devreye alma üst görevidir. İlk somut modül görevi T010 — Modül 2 ESP32D1 üçlü SCT okuma modülüdür. T010 tamamlandıkça diğer modül işleri açılır; PZEM/SCT düğümleri çalışınca T007 → T008 → T006 veri/öğrenme alt aşaması yürütülür. Her oturumda STATUS.md içindeki tek aktif görev üzerinde çalış. Faz 1 deneylerini yeniden açma. Yeni deneyler ancak gerçek bir uygulama/ölçüm sorusu ortaya çıktığında yeni numaralarla planlanır.
 
 ## Pratik geliştirme ilkesi
 
@@ -64,10 +64,11 @@ Etiketsiz teknik iddia yazma.
 
 ## Faz 2 görev sırası
 
-1. T009 — Modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma.
-2. T007 — Çalışan PZEM/SCT düğümlerinin HA geçmişini PC'ye aktarma.
-3. T008 — PZEM/SCT kararlı alanlarını ayrı bulma, örtüşen alanları eşleştirme ve PZEM ile etiketleme.
-4. T006 — K=24.22 katsayısını değerlendirme; veri gerekçelendirirse model iyileştirme.
+1. T009 — Modül/ESP devreye alma üst görevi; ilk somut modül işi T010.
+2. T010 — Modül 2: ESP32D1 üçlü SCT + tek ortak bias okuma modülü.
+3. T007 — Çalışan PZEM/SCT düğümlerinin HA geçmişini PC'ye aktarma.
+4. T008 — PZEM/SCT kararlı alanlarını ayrı bulma, örtüşen alanları eşleştirme ve PZEM ile etiketleme.
+5. T006 — K=24.22 katsayısını değerlendirme; veri gerekçelendirirse model iyileştirme.
 
 ## HEDEF / LOG / SONUÇ standardı
 
