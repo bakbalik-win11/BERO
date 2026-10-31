@@ -8,6 +8,13 @@
 - Depo yazımından sonra dosyayı yeniden oku ve bağlantıları doğrula.
 - Yapılmamış işi tamamlandı, doğrulanmamış kodu çalışır diye sunma.
 
+## Üst seviye BERO mimarisi
+
+- Sensörden bağımsız mimari ilkeler `../../MIMARI/README.md` altında tutulur. Mimari/ortak altyapı işi yapılırken [pencereli sensör analizi belgesi](../../MIMARI/PENCERELI-SENSOR-ANALIZI/README.md) okunur.
+- Bu proje SCT013 + PZEM uygulama alanıdır. Buradaki pin, katsayı, CT/AC RMS yöntemi ve deney sonuçları diğer sensörlere evrensel kural olarak aktarılmaz.
+- Yeni sensör uygulamaları kendi donanım, firmware, deney ve log kanıtlarıyla ayrı kaydedilir; ortak ilkeler MIMARI altında güncellenir.
+- Bu mimari kayıt, bu projenin iki fazını ve aktif görev sırasını değiştirmez.
+
 ## İki fazlı proje yapısı
 
 Projede yalnızca iki ana faz vardır:
