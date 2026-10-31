@@ -20,8 +20,8 @@ hardware:
     type: incandescent
     rated_power_w: 100
     evidence: "KULLANICI BEYANI — kullanıcı 100 W akkor ampul olduğunu doğruladı."
-  primary_conductor: null # CT'nin hangi tekil iletkeni çevrelediği bu logla doğrulanamıyor.
-  primary_turns: null # Plan tek turdu; gerçek fiziksel tur sayısı kullanıcı tarafından henüz doğrulanmadı.
+  primary_conductor: phase # KULLANICI TEYİDİ — SCT içinden yalnız faz iletkeni geçiyor.
+  primary_turns: 1 # KULLANICI TEYİDİ — faz iletkeni SCT içinden tek geçiş yapıyor.
   connections:
     sct_raw: "SCT analog düğümü -> GPIO32 (RAW ADC)"
     sct_voltage: "SCT analog düğümü -> GPIO33 (ADC voltaj)"
@@ -91,7 +91,7 @@ LOG:
   ct_debug_window_count: 455
   user_reported_load_off_local: "10:39" # KULLANICI TEYİDİ
   inferred_raw_ac_return_local: "10:39:27.837–10:39:29.819"
-  physical_ct_position_confirmed: false
+  physical_ct_position_confirmed: true # Kullanıcı: tek geçiş, yalnız faz iletkeni.
   full_raw_log_committed_to_repository: false
 
 SONUC:
@@ -104,7 +104,7 @@ SONUC:
     yüksüz başlangıç davranışına döndüğünü destekler. Kullanıcı ampulün 10:39’da kapatıldığını teyit etmiştir; logdaki dönüş bununla uyumludur.
   limitations:
     - "Kullanıcı fiziksel kapatma saatini 10:39 olarak teyit etti; logdaki 10:39:27–10:39:29 düşüşü bu beyanla uyumludur."
-    - "CT'nin fiziksel olarak hangi iletkeni ve kaç turu gördüğü doğrulanmadı."
+    - "CT bağlantısı kullanıcı tarafından doğrulandı: yalnız faz iletkeni, SCT içinden tek geçiş (1 tur). Bağımsız fiziksel inceleme yapılmadı."
     - "GPIO32/33/34/35 yavaş ADC okumaları CT pencereleriyle eşzamanlı değildir."
     - "N ve SPS bağımsız metrik değildir; SPS = N / 0.20 s."
     - "Kısa süreli yüksek değerlerin fiziksel nedeni bu logdan belirlenemez."
