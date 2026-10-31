@@ -1,3 +1,10 @@
+## 2026-10-31 — Toplu yük ve karma yük karşılaştırması
+
+- Depodaki yük deneyleri tek raporda birleştirildi: [COMPARATIVE-RESULTS-2026-10-31.md](../test-loads/COMPARATIVE-RESULTS-2026-10-31.md).
+- UNIT/Pens kaynakları PZEM gibi sunulmadı; eşzamanlılığı doğrulanmayan referans farkları aritmetik fark olarak işaretlendi.
+- Kendi iç kararlılığı için kaynakta bulunan SD/CV değerleri kullanıldı; eksik değerler uydurulmadı.
+- 0,30 A altındaki ölçümlerde ±%4 kabul/ret uygulanmadı. K=24.22 değişmedi.
+
 ## 2026-10-31 — TOASTER-001 Log 62 ham log arşivi ve analiz
 
 - **HEDEF:** Tost makinesinin yüksek akım davranışını mevcut K=24.22 ile gözlemek; katsayı/firmware değiştirmemek.
