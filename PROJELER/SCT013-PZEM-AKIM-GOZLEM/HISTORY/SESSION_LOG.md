@@ -1332,3 +1332,14 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **ARŞİV:** Tam ham TXT `logs/module2/2026-10-31-load-57w-001-module2-sct1-full.txt` yoluna kaydedildi. [Teknik analiz](../logs/module2/2026-10-31-load-57w-001-module2-sct1-analysis.md); [test kaydı](../test-loads/57w-incandescent/README.md).
 - **DEPO:** Ham log, analiz raporu, test README, test yükleri indeksi, STATUS, PROGRESS_TREE ve bu oturum kaydı güncellendi. Her dosya commit sonrası yeniden okunarak doğrulanacak.
 - **SONRAKİ:** UNIT ölçümünü SCT ile örtüşen kararlı pencerede kaydet; varsa PZEM akım/PF'yi ayrı al. LOAD-57W-001 açık kalır.
+
+## 2026-10-31 — MIXED-LOAD-57W-15W-001 test yükü açıldı
+
+- **HEDEF:** 57 W akkor ampul ile 15 W ampulün birlikte çalıştığı karma yükte Modül 2 / SCT-1 davranışını ayrı bir deney olarak gözlemek.
+- **YÜK:** 57 W akkor + 15 W ampul. 15 W ampulün teknolojisi/tipi belirtilmedi. 72 W yalnız nominal etiket güçlerinin aritmetik toplamıdır; gerçek güç ölçümü değildir.
+- **UNIT:** 0,303 A kullanıcı bildirimi; ölçüm saati ve SCT ile aynı kararlı pencereye ait olduğu doğrulanmadı. PZEM değildir.
+- **DÜZENEK:** ESP32D1 Modül 2 / SCT-1 GPIO32 ADC1_CH4 / ortak bias GPIO35 ADC1_CH7; ESPHome 2026.10.1, ADC 12 dB / 1 s, ct_clamp 200 ms / 2 s, K=24.22, yazılımsal sıfır eşiği yok.
+- **KARAR:** Firmware ve K değiştirilmeden gözlem yapılacak. UNIT ve PZEM ayrı tutulacak. 0,303 A referansı 0,30 A değerlendirme sınırının hemen üzerinde; ±%4 ancak aynı yükte eşleşmiş kararlı pencereyle değerlendirilecek.
+- **AYRIM:** Önceki LOAD-57W-001 (yalnız 57 W akkor, UNIT 0,244 A) açık kalır; bu kayıt yeni ve bağımsız karma yük koşuludur.
+- **DOSYA:** [MIXED-LOAD-57W-15W-001](../test-loads/mixed-57w-15w/README.md).
+- **DURUM:** Test AÇIK; SCT logu, UNIT kararlılığı ve varsa PZEM verisi bekleniyor.
