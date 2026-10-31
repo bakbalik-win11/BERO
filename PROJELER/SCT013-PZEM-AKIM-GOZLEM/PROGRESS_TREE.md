@@ -3,6 +3,7 @@
 - ct_clamp araştırmasından hareketle genel sensör veri yolu ile CT'ye özgü AC RMS algoritması ayrıştırıldı.
 - Açıklamalı referans YAML'lar eklendi: [CT / AC RMS](firmware/patterns/ct-clamp-ac-rms-reference.yaml), [analog DC ADC](firmware/patterns/adc-dc-voltage-observer.yaml).
 - Ayrıntı ve sensör türüne göre seçim rehberi: [firmware/patterns/README.md](firmware/patterns/README.md).
+- Patterns rehberinde gerçek Log 63 örnek çıktısı (0,12763 V Raw AC / 3,091 A / 3.656 kabul edilmiş örnek) gösterildi; tarihsel kanıt, yeni şablon testi değildir.
 - Şablonlar henüz derlenmedi veya donanımda test edilmedi; mevcut ESP32D1/ESP32D2 firmware'leri değiştirilmedi.
 - firmware/esp32d1.yaml ile daha sonraki üç kanallı T010 kaydı arasında içerik tutarsızlığı tespit edildi; mevcut dosya korunarak ayrı not edildi.
 
