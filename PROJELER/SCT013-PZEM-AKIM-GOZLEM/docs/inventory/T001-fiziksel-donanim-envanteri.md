@@ -49,45 +49,12 @@ Kullanıcı, listelenen donanımların tamamının elinde olduğunu ve eksik par
 
 ## 6. BERO modülü: Bias Trafosu
 
-Bu donanım bağımsız BERO modülü olarak tanımlanmıştır. Amaç, ESP32D2'nin SCT013 ölçüm devresine bias beslemesi sağlamaktır. Ayrıntılı modül tanımı, parça listesi, ölçüm kanıtı ve açık doğrulamalar: [BIAS-TRAFOSU.md](../modules/BIAS-TRAFOSU.md).
+Bu donanım bağımsız bir **BERO modülü** olarak tanımlanmıştır. Görevi ESP32D2'nin SCT013 ölçüm devresine bias beslemesi sağlamaktır. ESP32'nin ana beslemesi olarak tanımlanmamıştır.
 
-**Yerleşim:** Bu parçalar, kullanıcının SCT013 sinyalinin ESP32D2'ye bağlandığını belirttiği mevcut akım trafosu kutusunun içindedir. Ayrı bir stok kalemi olarak değil, **akım trafosu modülünün mevcut iç bileşenleri** olarak kaydedilmiştir.
-
-| Bileşen | Özellik / model | Kayıt dayanağı |
-|---|---|---|
-| İzolasyon trafosu | **RN130421**, 230 V AC / 6 V AC, 2.0 VA, EI 30/15.5, PCB tipi | Kullanıcının paylaştığı üretici teknik dokümanı |
-| Köprü doğrultucu | **KBU610 1000 V / 6 A; toplam 5 adet; 1 adet akım trafosu modülünde, 4 adet stokta** | Kullanıcı bildirimi |
-| Filtre kondansatörü | **2200 µF / 35 V, 16×25 mm — toplam 3 adet; 1 adet Bias Trafosu modülünde, 2 adet stokta** | Kullanıcı bildirimi |
-| 3.3 V regülatör entegresi | **L78L33, TO-92 — toplam 3 adet; 1 adet Bias Trafosu modülünde takılı, 2 adet yedek stokta** | Kullanıcı model/adet bildirimi; L78L ailesi üretici veri sayfası görseli |
-
-### RN130421 üretici dokümanı bilgileri
-
-- Primer: 230 V AC, 50–60 Hz.
-- Sekonder: 6 V AC.
-- Nominal çıkış gücü: 2.0 VA.
-- Nominal sekonder akımı: 0.333 A.
-- Yüksüz çıkış gerilimi: 9.30 V.
-- İzolasyon test gerilimi: 4000 V / 50 Hz.
-- Güvenlik sınıfı: II; kısa devre dayanımlı (dokümandaki “Short-Circuit Proof” ifadesi).
-- Maksimum ortam sıcaklığı: 60 °C.
-- Yapı: vakum altında kapsüllenmiş, bölünmüş bobin (split-bobbin), PCB pinli EI 30/15.5.
-
-**İşlevsel zincir — henüz bağlantı ölçümüyle doğrulanmadı:** 230 V AC → RN130421 → KBU610 köprü doğrultucu → filtre kondansatörleri → 3.3 V regülatör. Bu sıra, bildirilen bileşenlerden çıkarılan teknik yerleşim yorumudur; kart üzerindeki izler ve pin bağlantıları henüz takip edilmedi.
-
-**Kayıt sınırı:** 3.3 V çıkışın varlığı kullanıcı tarafından bildirildi. Regülatörün tam modeli, kondansatör değerleri, doğrultucu çıkış gerilimi ve 3.3 V hattının ESP32D2'ye hangi pin/bağlantı üzerinden gittiği henüz doğrulanmadı. Şebeke tarafı bağlantılar enerjiliyken incelenmeyecek.
-
-
-### L78L33 regülatör — model ve stok ayrıntısı
-
-- **Model:** L78L33.
-- **Kılıf:** TO-92.
-- **Toplam adet:** 3.
-- **Modül içindeki:** 1 adet; Bias Trafosu modülünde kullanılıyor.
-- **Serbest stok:** 2 adet.
-- **Üretici dokümanı görselinden görülen L78L ailesi özellikleri:** 3.3 V dahil sabit çıkış seçenekleri; 100 mA'ya kadar çıkış akımı; termal aşırı yük ve kısa devre koruması; harici bileşen gerektirmeyen regülatör ailesi.
-- **Kanıt ayrımı:** L78L33/TO-92 ve adet/yerleşim bilgisi kullanıcı beyanıdır. Paylaşılan ST L78L veri sayfası görseli aile özelliklerini gösterir; tek başına kullanılan parçanın üreticisini veya tam sipariş kodunu doğrulamaz.
-
-**Güncelleme:** Önceki tabloda regülatör modeli bilinmiyor olarak bırakılmıştı. Bu kayıtla model ve stok dağılımı kullanıcı tarafından verilen bilgiye göre güncellendi. Önceki belirsizlik notu yalnız kondansatörlerin adet/değerleri için geçerlidir.
+- Modül kimliği: **BERO-BIAS-TRAFOSU-001**
+- Modül içeriği: RN130421 izolasyon trafosu, KBU610 köprü doğrultucu, 2200 µF / 35 V filtre kondansatörü ve L78L33 TO-92 regülatör.
+- Çıkış ölçümü: **3,31 V DC** (kullanıcının paylaştığı UNI-T UT33D+ fotoğrafı; ölçüm koşulu/yük durumu ayrıca doğrulanmadı).
+- Modül bileşenlerinin stok dağılımı ve teknik ayrıntıları: [BERO Bias Trafosu modül belgesi](../modules/BIAS-TRAFOSU.md).
 
 ## 7. Konnektör ve bağlantı elemanları
 
