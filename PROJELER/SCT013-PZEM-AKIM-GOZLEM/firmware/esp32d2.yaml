@@ -1,48 +1,50 @@
-# BERO E00F - ESP32D2 / SCT013-030 + BIAS REFERANSI
+# ============================================================
+# BERO E00F - ESP32D2
+# SCT013 + BIAS / DORT ADC HATTI GECE GOZLEMI
+# ============================================================
 #
 # AMAC:
-# Yuksuz gece gozleminde SCT013 sinyalini ve bias referans dugumunun
-# zaman icindeki yavas degisimini birlikte izlemek. GPIO34/35 bias
-# okumalarinin eklenmesi SCT'nin 200 ms ct_clamp penceresini veya
-# 24.22 katsayisini degistirmez.
+# Yuksuz gece gozleminde SCT analog dugumunu ve bias referansini
+# iki farkli ADC okuma yoluyla izlemek.
 #
 # BAGLANTILAR:
-# SCT013-030 -> mevcut bias devresi -> GPIO33 (SCT analog dugumu)
-# Mevcut bias referans noktasi -> GPIO34 (RAW ADC count)
-# Ayni bias referans noktasi -> GPIO35 (ADC voltaj tahmini)
-# ESP32 GND ile bias devresi GND ortak.
-# GPIO34 ve GPIO35 ayni bias noktasini ayri ADC okumalariyla izler;
-# bunlar eszamanli tek bir ADC ornegi degildir.
+# GPIO32 = SCT analog dugumu / RAW ADC count
+# GPIO33 = Ayni SCT analog dugumu / ADC voltaj tahmini
+# GPIO34 = Bias Vmid noktasi / RAW ADC count
+# GPIO35 = Ayni Bias Vmid noktasi / ADC voltaj tahmini
+#
+# ESP32 GND ile bias devresi GND ortak olmalidir.
+# GPIO32-33 ayni SCT dugumune bagli olmalidir.
+# GPIO34-35 ayni bias referans noktasina bagli olmalidir.
 #
 # OLCUM AYARLARI:
-# SCT: GPIO33, ADC1, 12 dB, raw:false, ct_clamp 200 ms, yayin 2 s.
-# Bias: GPIO34 RAW count + GPIO35 ADC voltaji, 12 dB, 1 s yayin.
-# SCT nominal katsayisi: 24.22.
-# Yazilimsal sifirlama esigi: YOK.
+# ADC: 12 dB attenuation
+# Dort ADC goruntuleme kanali: 1 saniye
+# SCT ct_clamp penceresi: 200 ms
+# SCT yayin araligi: 2 saniye
+# SCT katsayisi: 24.22
+# Yazilimsal sifirlama esigi: YOK
+#
+# GPIO33 ayni zamanda ct_clamp'in hizli ornekleme kaynagidir.
+# Bir saniyelik ADC yayinlari, ct_clamp'in 200 ms penceresini
+# degistirmez; kaynak ADC ornekleri pencere boyunca okunur.
 #
 # BEKLENTI:
-# Home Assistant'ta SCT akimi, SCT Raw AC (V), Bias GPIO34 RAW (count)
-# ve Bias GPIO35 ADC Voltage (V) ayri entity'ler olarak izlenir.
-# Bias okumalarindaki yavas kayma/dalgalanma ile SCT cikisinin
-# birlikte degisip degismedigi incelenebilir.
+# Home Assistant'ta dort ADC entity'si, SCT Raw AC ve SCT Akim
+# ayri ayri izlenir.
 #
 # SINIRLAR:
-# 1 saniyelik bias okumasi yuksek frekansli ADC gurultu spektrumu,
-# 50 Hz dalga sekli veya 2 kS/s ham edinim degildir.
-# GPIO34 ve GPIO35 okumasi birbirleriyle tam eszamanli degildir.
-# GPIO34 RAW count -> voltaj donusumu bu YAML'da kalibre edilmez.
-# ESP32 ADC voltaj okumasi da kalibre edilmis referans cihaz olcumu degildir.
-# 1 Hz bias ADC sorgularinin SCT edinimine etkisi dusuk beklenir ancak
-# sifir etkili oldugu varsayilmaz; log/deneyle kontrol edilir.
+# Bir saniyelik ADC yayinlari yuksek hizli ham dalga kaydi degildir.
+# GPIO32/33 ve GPIO34/35 okumalarinin tam eszamanli oldugu
+# iddia edilmez.
+# RAW count -> voltaj donusumu kalibrasyon degildir.
 #
 # GUVENLIK:
-# Fiziksel baglantilari enerji kesikken degistir. GPIO34/35'e uygulanan
-# gerilim ESP32 ADC giris sinirlarini asmamalidir. Sebeke tarafinda
-# acik breadboard kullanilmaz.
+# ADC girislerine ESP32'nin izin verilen gerilim araligi disinda
+# gerilim uygulanmamali. Fiziksel baglantilari enerji kesikken yap.
+# Sebeke tarafinda acik breadboard kullanma.
 #
-# LOG DURUMU:
-# Bu YAML depo surumudur; derleme/OTA ve gece kaydi bu degisiklikten
-# sonra kullanici tarafindan gerceklestirilip logla dogrulanmalidir.
+# ============================================================
 
 esphome:
   name: esp32d2
@@ -68,19 +70,49 @@ wifi:
   password: !secret wifi_password
 
 sensor:
+
   # ----------------------------------------------------------
-  # SCT013 - MEVCUT ANA OLCUM YOLU
+  # 1 - SCT GPIO32 / RAW ADC COUNT
   # ----------------------------------------------------------
+
+  - platform: adc
+    pin: GPIO32
+    id: sct_gpio32_raw
+    name: "BERO E00F SCT GPIO32 RAW"
+    attenuation: 12db
+    raw: true
+    accuracy_decimals: 0
+    unit_of_measurement: "count"
+    state_class: measurement
+    samples: 1
+    force_update: true
+    update_interval: 1s
+
+  # ----------------------------------------------------------
+  # 2 - SCT GPIO33 / ADC VOLTAJ
+  # Ayni ADC kaynagi ct_clamp tarafindan hizli okunur.
+  # ----------------------------------------------------------
+
   - platform: adc
     pin: GPIO33
     id: sct_voltage_source
+    name: "BERO E00F SCT GPIO33 ADC Voltage"
     attenuation: 12db
     raw: false
+    accuracy_decimals: 5
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
     samples: 1
-    sampling_mode: avg
-    internal: true
+    force_update: true
+    update_interval: 1s
 
-  # ct_clamp'in ham pencere RMS gerilim cikisini volt olarak yayinla.
+  # ----------------------------------------------------------
+  # SCT RAW AC / CT CLAMP PENCERESINDEN GELEN RMS GERILIM
+  # Bu deger GPIO33'un anlik ADC voltaji degildir.
+  # 200 ms pencerenin AC RMS gerilim degeridir.
+  # ----------------------------------------------------------
+
   - platform: template
     id: sct_raw_ac
     name: "BERO E00F SCT013 Raw AC"
@@ -91,28 +123,36 @@ sensor:
     force_update: true
     update_interval: never
 
+  # ----------------------------------------------------------
+  # SCT AKIM / MEVCUT CT CLAMP YOLU
+  # ----------------------------------------------------------
+
   - platform: ct_clamp
     sensor: sct_voltage_source
     id: sct_current
     name: "BERO E00F SCT013 Akim"
     sample_duration: 200ms
     update_interval: 2s
+
     on_raw_value:
       then:
         - sensor.template.publish:
             id: sct_raw_ac
             state: !lambda |-
               return x;
+
     filters:
       - multiply: 24.22
+
     unit_of_measurement: "A"
     device_class: current
     state_class: measurement
     accuracy_decimals: 3
 
   # ----------------------------------------------------------
-  # BIAS REFERANSI - GPIO34 RAW ADC COUNT
+  # 3 - BIAS GPIO34 / RAW ADC COUNT
   # ----------------------------------------------------------
+
   - platform: adc
     pin: GPIO34
     id: bias_gpio34_raw
@@ -127,8 +167,9 @@ sensor:
     update_interval: 1s
 
   # ----------------------------------------------------------
-  # BIAS REFERANSI - GPIO35 ADC VOLTAJ TAHMINI
+  # 4 - BIAS GPIO35 / ADC VOLTAJ
   # ----------------------------------------------------------
+
   - platform: adc
     pin: GPIO35
     id: bias_gpio35_voltage
