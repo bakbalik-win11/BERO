@@ -1,3 +1,17 @@
+## 2026-10-31 — LOAD-100W-004 masaüstü güç kaynağı sonrası SCT-1 testi
+
+- **KULLANICI BİLDİRİMİ:** ESP32D1 beslemesi PC USB'den masaüstü harici güç kaynağına alındı; 100 W akkor test tekrarlanmıştır.
+- **LOG:** [Tam 397 satır](logs/module2/2026-10-31-load-100w-004-sct1-desktop-power.txt); özgün dosya 28.161 bayt; SHA-256 `0cba41fa5f66894f17ba2cda45773cae6a77c82eab1aa4e4c8bda81e019d4ac3`.
+- **SÜRE:** 16:06:43.782–16:08:09.198 (+03:00); 43 akım yayını.
+- **DÜZENEK:** ESP32D1 / Modül 2 / SCT-1 sarı GPIO32 ADC1_CH4; ortak bias turuncu GPIO35 ADC1_CH7. ESPHome 2026.10.1; cihaz derleme zamanı 15:55:25; ct_clamp 200 ms, yayın 2 s; ADC update 1 s; 12 dB.
+- **AKIM:** Medyan 0,423 A; ortalama 0,42274 A; örnek standart sapma 0,00852 A; min–maks 0,407–0,440 A.
+- **0,427 A KIYASI:** Geçici UNIT beklentisi 0,427 A'nın ±%4 bandında 39/43 (%90,7) yayın; ortalama farkı −%1,0. Eşzamanlı PZEM/UNIT ölçümü logda yok.
+- **ÖNCEKİ TESTE GÖRE:** LOAD-100W-003 uzun log medyanı 0,460 A, ortalama 0,4841 A, aralık 0,422–1,164 A ve 10 yüksek yayın içeriyordu. Yeni log medyanı 0,423 A, aralığı 0,407–0,440 A; 0,55 A üzeri yayın yok. Belirgin iyileşme işareti var; ancak yeni kayıt yaklaşık 84 saniye ve 43 yayından oluşuyor, nedensellik ispatı değil.
+- **ANALOG:** Raw AC ortalama 0,01745 V; bias ortalama 1,66342 V; SCT-1 ADC ortalama 1,65952 V.
+- **KARAR:** K katsayısı değiştirilmedi. 0,427 A UNIT kullanıcı bildirimi kaynaklı geçici beklenti; PZEM doğrulaması değildir. Aynı harici beslemeyle daha uzun tekrar ve aynı zaman aralığında PZEM/UNIT ölçümü bekleniyor.
+- **ANALİZ:** [LOAD-100W-004 teknik analizi](logs/module2/2026-10-31-load-100w-004-sct1-desktop-power-analysis.md).
+- **TEST TABLOSU:** [100 W akkor karşılaştırma arşivi](test-loads/100w-incandescent/README.md).
+
 ## 2026-10-31 — LOAD-100W-003 uzun SCT-1 tek kanal logu
 
 - **YENİ KANIT:** [Tam 1.219 satırlık log](logs/module2/2026-10-31-load-100w-003-sct1-single-channel-full.txt); özgün dosya 90.076 bayt; SHA-256 `30fc5d5ccccf629423924ea17fe1706bdb4f8dfab1185f64f523596661663ed4`.
