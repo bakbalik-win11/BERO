@@ -157,3 +157,12 @@ Başlangıç ESPHome iskeleti [esp32d1.yaml](../firmware/esp32d1.yaml) dosyasın
 T010 altında, mevcut SCT-1 okuma zincirinin pencere süresine duyarlılığını incelemek için [E10 protokolü](../experiments/E10-ct-clamp-window-duration/README.md) açıldı. Deney 200 → 500 → 1000 → 200 ms geri dönüş sırasını kullanır. SCT-1 GPIO32, ortak bias GPIO35, ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp update_interval: 2s ve K=24.22 sabit kalır. Yalnızca sample_duration değişir. BREAD-TOASTER-001 aynı fiziksel yük olarak seçildi; Log 63 tarihsel 200 ms tabanıdır, yeni A kontrol aşaması yine alınacaktır.
 
 **Amaç kalibrasyon değildir.** Pencere süresinin Raw AC RMS, akım dağılımı, kabul edilmiş örnek sayısı/SPS ve geçişleri yumuşatma davranışı üzerindeki etkisi gözlenecek. Raporlardaki simülasyonlar gerçek BERO ölçümü sayılmayacak. E10 henüz PLANLANDI; YAML değişikliği, derleme/OTA ve fiziksel log bekliyor. Sonuçlar [E10 sonuç defterine](../experiments/E10-ct-clamp-window-duration/results.md) yazılacak.
+
+
+## 2026-10-31 — ct_clamp araştırma sentezi sonrası deney sırası
+
+- **ARAŞTIRMA KAYDI:** [H1–H19 hipotez sicili](../docs/research/ct-clamp/2026-10-31-hypothesis-register-and-next-experiments.md).
+- **ÖNCELİK:** Üç SCT kanalının tekil/çoklu davranışını kontrollü karşılaştır; ardından T010 altında E10 penceresini 200 → 500 → 1000 → 200 ms geri dönüş sırasıyla uygula.
+- **AYRI SORU:** last_value tekrar filtresinin ESP32 dahili ADC üzerindeki etkisi E10'dan ayrı, tek değişkenli A/B deneyiyle incelenebilir. Mevcut filtreyi kaldırma kararı alınmadı.
+- **SONRAKİ FAZ 2 SIRASI:** T010 tamamlanmadan T007/T008/T006'ya geçiş yapılmaz; ana görev sırası değişmedi.
+- **DURUM:** Bu not araştırma/planlama kaydıdır. Yeni derleme, OTA, fiziksel test veya firmware değişikliği yapılmadı. T010 AKTİF kalır.
