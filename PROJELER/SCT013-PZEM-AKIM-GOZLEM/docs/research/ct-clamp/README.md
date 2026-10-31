@@ -44,3 +44,11 @@ Firmware/K değişikliği, yeni donanım testi veya proje görev sırası deği�
 - İlk PR/commit (2019), 2021 AC-only RMS değişikliği (#1906), çoklu CT mutex (#1915), NaN düzeltmesi (#1916), yinelenen örnek filtresi (#2283) ve sıfır akım düzeltmeleri (#4229/#4236) birlikte değerlendirildi.
 - Copilot'un doğru ek katkıları korundu; belgelenmeyen 200 ms / 60 s / performans gerekçeleri kesin bilgi olarak kabul edilmedi.
 - BERO ayarları değiştirilmedi; E10 planı ve last_value için kontrollü inceleme kararı korundu.
+
+
+## 6. Hipotez sicili ve sonraki deneyler
+
+- [H1–H19 hipotez sicili ve deney önceliği](2026-10-31-hypothesis-register-and-next-experiments.md).
+- Kaynak kodla kanıtlı bilgiler, BERO saha desteği, deney bekleyen hipotezler, açık araştırma soruları ve şu an kanıtsız iddialar ayrı sınıflandırıldı.
+- T010 kanal davranışı → E10 pencere süresi → ayrı last_value A/B → T007 → T008 → T006 sırası önerildi; ana Faz 2 sırası değişmedi.
+- Bu sicil yeni fiziksel test/kalibrasyon değildir; firmware ve K=24.22 değiştirilmedi.
