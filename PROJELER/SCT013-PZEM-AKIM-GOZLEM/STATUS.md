@@ -18,7 +18,8 @@ Bu karşılaştırmalar önceki kullanıcı kayıtları/loglarıyla desteklenmek
 
 ## Faz 2 yaklaşımı ve aktif görev
 
-**Aktif görev: T009 — Modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma.**
+**Üst görev: T009 — Modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma.  
+**Aktif somut modül görevi: T010 — Modül 2 ESP32D1 üçlü SCT okuma modülü.**
 
 - Önce çalışan kod/örnek/kütüphane bulunur; depodaki YAML ve loglar başlangıç referansı olarak kullanılır.
 - Her seferinde tek modül ve tek temel işlev ele alınır.
@@ -46,7 +47,8 @@ Bu karşılaştırmalar önceki kullanıcı kayıtları/loglarıyla desteklenmek
 - [Yol haritası](ROADMAP.md)
 - [İlerleme ağacı](PROGRESS_TREE.md)
 - [Görev sırası](tasks/README.md)
-- [T009 — Pratik modül/ESP devreye alma](tasks/T009-practical-system-bringup.md)
+- [T009 — Pratik modül/ESP devreye alma üst görevi](tasks/T009-practical-system-bringup.md)
+- [T010 — Modül 2 ESP32D1 üçlü SCT modülü](tasks/T010-module2-triple-sct-bringup.md)
 - [T007 — HA → PC aktarımı](tasks/T007-python-architecture.md)
 - [T008 — Kararlı alan eşleştirme](tasks/T008-pzem-sct-stable-window-labeling.md)
 - [T006 — Katsayı/model](tasks/T006-calibration.md)
