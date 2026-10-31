@@ -1,6 +1,6 @@
 # ESPHome ct_clamp rapor arşivi
 
-Bu klasör, BERO'nun ct_clamp ölçüm zinciri hakkındaki iki ayrı raporu saklar.
+Bu klasör, BERO'nun ct_clamp ölçüm zinciri hakkındaki üç ayrı kaynağı saklar: kullanıcının sağladığı rapor, GitHub Copilot raporu ve bağımsız teknik inceleme.
 
 ## 1. Kullanıcının sağladığı rapor
 
