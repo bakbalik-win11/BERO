@@ -1,3 +1,13 @@
+## 2026-10-31 — Güncel ana yön: PZEM–SCT kararlı alan öğrenme döngüsü
+
+- **Çalışan baseline:** Kullanıcının paylaştığı E00F ESP32D2 YAML; firmware değişmeden korunacak.
+- **Aktif sonraki görev:** T008 — PZEM ve SCT aynı yük olayında kaydedilecek; ayrı kararlılık ölçütleriyle örtüşen alanlar eşleştirilecek ve PZEM ile etiketlenecek.
+- **Sürekli döngü:** kayıt → kararlılık → eşleştirme → etiketleme → 24.22 katsayısını değerlendirme/iyileştirme → yeni koşullarda tekrar.
+- **ct_clamp:** şimdilik değiştirilmez; yalnız eşleştirilmiş veride tekrarlanabilir sorun görülürse kaynak kodu hedefli incelenir.
+- **Kapatılan:** ham dalga aktarımı, örnek başına timestamp, DMA/ADC Continuous (ADR-009).
+- **Park edilen:** eski T005/E00A/E01 ham ADC ve gürültü tabanı işleri; ana PZEM etiketleme yolunu bloke etmez.
+- **Sınır:** Bu plan yeni fiziksel ölçüm veya model eğitimi yapıldığı anlamına gelmez. Ayrıntı [ROADMAP](ROADMAP.md), [T008](tasks/T008-pzem-sct-stable-window-labeling.md), [ADR-010](docs/decisions/ADR-010-pzem-stable-window-learning-focus.md).
+
 ## 2026-10-31 — Güncel karar: ±%4 hedefi sağlandı
 
 - **Ölçüm hedefi:** Kullanıcının bildirimine göre yeni/harici kod ±%4 sapma hedefini sağladı. 100 W akkor, 150 W akkor ve kettle'ın iki çalışma koşulunda verilen dört karşılaştırmanın tamamı sınır içinde. Ayrıntı: [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
