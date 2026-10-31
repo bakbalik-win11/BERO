@@ -160,3 +160,25 @@ Kullanıcının sabah Home Assistant geçmiş dökümü bekleniyor. Dört ADC ka
 - **Önceki gece olayıyla ilişki:** Bu takip logu 10:18–10:23 yerel cihaz saati aralığındadır; önceki HA CSV'sindeki 05:24:02 civarı 2.665238 A olayını içermiyor. Bu logdan gece tepesinin nedeni belirlenemez.
 - **Yorum:** DEBUG alanları istenen N/SPS görünürlüğünü sağladı. Örnek sayısı ile SPS arasında beklenen matematiksel bağ doğrulandı; ancak N/SPS dalgalanması ile Raw AC büyüklüğü arasında bu kesitte anlamlı bir ilişki görülmedi. Ham değerler korunur; eşik, katsayı, YAML veya donanım değişikliği yapılmadı.
 - **Sonraki adım:** E00F-N02 açık tutulacak. 05:24 olayını açıklamak için aynı saat aralığından DEBUG logu mevcut değilse yeni tekrar ölçümünde log ile HA zamanını eşleştirerek yakalamak gerekir. Ham dalga şekli veya eşzamanlı ADC örnekleri olmadan fiziksel neden ataması yapılmayacak.
+
+
+## Kullanıcı değerlendirmesi ve sonraki test kararı — 2026-10-31
+
+### Aykırı tepeye ilişkin değerlendirme
+
+- **KULLANICI BİLDİRİMİ:** Evde kedi bulunuyor. Kullanıcı, gece kaydındaki tekil sıçramanın deney açısından önemli bir bulgu olarak büyütülmemesi gerektiğini belirtti.
+- **YORUM:** 05:24:02.363 Türkiye saati civarındaki 2.665238 A / 0.110043 V kaydı ham veriden silinmeyecek; ancak tek başına deneyin ana sonucu veya arıza kanıtı sayılmayacak. Kedi veya kablo/sensör düzeneğine olası temas yalnızca açıklama ihtimalidir; olayın nedeni doğrulanmadı. Bu nedenle kayıt **tekil, nedeni belirlenememiş aykırı gözlem** olarak tutulur.
+- **ÖNCELİK:** Analizin odağı bu sıçrama değil, yüksüz koşuldaki genel SCT/bias davranışı ve bilinen bir yük uygulandığında oluşacak tekrarlanabilir farktır.
+
+### Sonraki test — akkor yük altında kontrollü karşılaştırma
+
+- **Önerilen kimlik:** E00F-N03 (E00F mevcut ölçüm zinciriyle kontrollü akkor yük gözlemi). Bu adlandırma öneridir; test henüz başlatılmadı.
+- **HEDEF:** Yüksüz koşulda gözlenen CT Clamp çıktısının bilinen bir akkor yük açıldığında nasıl değiştiğini, mevcut donanım ve YAML ayarlarını değiştirmeden gözlemek.
+- **Yük:** İlk tercih 100 W akkor ampul. Ampulün etiketi/gerçek gücü kullanıcı tarafından doğrulanır; LED ampul bu ilk dirençli yük testinin yerine kullanılmaz.
+- **Kurulum:** Mevcut ESP32D2 ve E00F yapılandırması korunur. CT yalnız tek bir yalıtılmış faz iletkenini çevrelemeli; faz ve nötr birlikte CT içinden geçirilmemeli. Tur sayısı ve fiziksel yerleşim test öncesi kayda alınır. 220–240 V bağlantı ve yük değişimi güvenli, kapalı düzenekte yapılır.
+- **Koşul sırası:** (1) yük kapalı başlangıç kaydı, (2) akkor yük açık kararlı kayıt, (3) yük tekrar kapalı kayıt. Her bölümde aynı CT konumu/tur sayısı ve aynı firmware ayarları korunur. Olay saatleri not edilir; ESPHome DEBUG logu ile Home Assistant geçmişinin zamanları birlikte saklanır.
+- **Kaydedilecekler:** SCT Akım ve Raw AC; GPIO32 SCT RAW, GPIO33 SCT ADC voltajı, GPIO34 Bias RAW, GPIO35 Bias ADC voltajı; cihaz DEBUG logu; yükün etiketi/gücü, CT iletkeni ve tur sayısı, koşul başlangıç-bitiş saatleri.
+- **SONUÇ ÖLÇÜTÜ:** Yüksüz/açık/yüksüz bölümlerin dağılımları ve zaman grafikleri karşılaştırılır. Yük açıkken değişim görülmesi bu zincirin yüke tepki verdiğini gösterir; tek başına kalibrasyon veya ±%4 doğruluk kanıtı değildir. Yük kapatılınca başlangıç davranışına dönüş ayrıca incelenir.
+- **DEĞİŞMEYECEKLER:** Bu test öncesinde katsayı 24.22, eşik/lambda, ADC pinleri, cihaz kimliği veya donanım değiştirilmez. Tekil 05:24 sıçraması nedeniyle ek filtre/threshold eklenmez.
+- **SONRAKİ AŞAMA:** E00F-N03 tamamlandıktan sonra, daha hızlı ham dalga görünümü için E08 Aşama 3'teki ADC Continuous/DMA tasarımına geçilir. E08 firmware'i henüz yazılmadı; mevcut E00F One-shot/ct_clamp ile aynı ADC1 biriminde eşzamanlı çalıştırılacağı varsayılmaz.
+- **DURUM:** E00F-N02 analiz ve takip logu kaydedildi; deneyin fiziksel koşul doğrulaması/nihai kapanışı ayrı tutulur. E00F-N03 planlandı, henüz uygulanmadı.
