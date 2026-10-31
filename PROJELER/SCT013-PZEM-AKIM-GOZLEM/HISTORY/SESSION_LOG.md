@@ -1,3 +1,14 @@
+## 2026-10-31 — Modül 2 tek aktif SCT kanalı ve güç kaynağı tekrar gözlem kararı
+
+- **KULLANICI DEĞERLENDİRMESİ:** LOAD-100W-004 tek kanal çıktısı, geçici 0,427 A UNIT beklentisiyle mevcut aşamada oldukça uyumlu bulunuyor. Bu değer PZEM ile eşzamanlı doğrulanmış değildir.
+- **MİMARİ KARAR:** ESP aynı anda yalnız bir SCT kanalını okuyacak. Modül 2'deki üç jack fiziksel olarak korunacak; seçilen SCT jack'i GPIO32 (sarı), GPIO33 (yeşil) veya GPIO34 (mavi) girişlerinden birine takılarak farklı zamanlarda kullanılacak. Ortak bias GPIO35'te kalacak.
+- **KULLANIM AMACI:** Tek, iki veya dört primer tur gibi farklı sarım koşulları aynı test düzeneğinde, kablo/jack sökülüp yeniden kurulmadan ayrı oturumlarda gözlenebilecek. Eşzamanlı çoklu kanal okuma hedeflenmiyor.
+- **GÜÇ KAYNAĞI:** Masaüstü harici besleme ile alınan LOAD-100W-004 uzun logu kararlı: 215 yayın, medyan 0,423 A, ortalama 0,425 A, aralık 0,401–0,480 A; 0,55 A üzeri sıçrama yok. Bu gözlem güç kaynağının tek başına neden olduğunu kanıtlamaz. Besleme tekrar gözlemlenecek; mümkünse 5 V giriş ve 3,3 V rayı yük altında ölçülecek.
+- **KOD/UNIT YORUMU:** Kullanıcı mevcut tek kanal kodunun UNIT ile uyumunu olumlu değerlendiriyor. 0,427 A yalnız geçici UNIT kullanıcı beklentisidir; PZEM teyidi ve kalibrasyon sonucu değildir. K katsayısı değiştirilmedi.
+- **KANIT SINIRI:** Üç jack'in sırayla kullanılması mimari tercihtir; SCT-2/SCT-3 testleri ve yeni güç ölçümleri henüz yapılmadı. Üç kanallı kodun teknik olarak çalışamayacağı sonucuna varılmadı.
+- **KARAR KAYDI:** [ADR-021 — tek aktif SCT kanalı / üç fiziksel jack](../docs/decisions/ADR-021-module2-one-active-sct-channel-three-jacks.md).
+- **SONRAKİ:** Harici beslemeyle aynı 100 W / SCT-1 koşusunu tekrarla; 5 V ve 3,3 V raylarını gözlemle. Ardından diğer jack girişlerini ayrı zamanlarda test et.
+
 ## 2026-10-31 — Modül 2 SCT-1 / 100 W PENS karşılaştırması
 
 - **HEDEF:** Yeni üç kanallı ct_clamp firmware'inin SCT-1 akım çıktısını aynı 100 W ampul koşulunda PENS ile karşılaştırmak.
