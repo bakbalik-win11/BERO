@@ -18,9 +18,9 @@ Bu deney FAN-3'ün akımını tek başına ayrıştırmayı veya SCT üzerinden 
 | Bileşen | Ön bilgi | Bu testteki rol |
 |---|---|---|
 | 100 W akkor ampul | Ayrı testlerde kullanılmış dirençli yük; UNIT geçici bildirimi 0,427 A | Kararlı, daha yüksek akım bileşeni |
-| FAN-3 | Önceki FAN-3 UNIT bildirimi 0,141 A; düşük akım gözlem sınıfında | Motor yükü / PF etkisi araştırılacak bileşen |
+| FAN-3 | FAN-3 UNIT bildirimi 0,142 A; düşük akım gözlem sınıfında | Motor yükü / PF etkisi araştırılacak bileşen |
 
-Önceki ayrı testlerdeki UNIT değerleri bu karma yükün referansı değildir. Birlikte çalışma için yeni, eşzamanlı referans ölçümleri alınacaktır.
+Ayrı yük bildirimleri: FAN-3 UNIT 0,142 A; 100 W akkor UNIT yaklaşık 0,430 A. Birlikte çalışma için kullanıcı tarafından bildirilen UNIT değeri 0,573 A olarak açılış referans kaydına alınmıştır. Bu değer doğrudan birlikte ölçüm bildirimi olarak tutulur; ayrı akımların aritmetik toplamı değildir. PZEM ile henüz doğrulanmış değildir.
 
 ## Deney düzeni
 
@@ -60,14 +60,14 @@ Yükler paralel bağlanır; aynı akım yolundan geçen toplam hat akımı SCT t
 
 ## İlk durum
 
-Henüz karma yük bağlantısı yapıldığı, UNIT/PZEM değeri alındığı veya SCT logu toplandığı bildirilmedi. Bu dosya test planının açılış kaydıdır; ölçüm sonucu değildir.
+Karma yük için kullanıcı UNIT bildirimi alınmıştır: 100 W akkor yaklaşık 0,430 A; FAN-3 0,142 A; birlikte 0,573 A. 0,573 A, MIXED-LOAD-001 için UNIT-reported açılış referansıdır. PZEM ve SCT eşzamanlı kayıtları henüz alınmadı; bu nedenle ±%4 sonucu veya PF doğrulaması değildir.
 
 ## Sonuç tablosu
 
 | Aşama | UNIT | PZEM akım | PZEM PF | SCT kararlı sonuç | Log / analiz | Durum |
 |---|---:|---:|---:|---:|---|---|
 | 100 W yalnız | Bekliyor | Bekliyor | Bekliyor | Bekliyor | Bekliyor | PLAN |
-| FAN-3 yalnız | Önceki bildirim 0,141 A; yeni ölçüm bekliyor | Bekliyor | Bekliyor | Bekliyor | Bekliyor | PLAN |
-| 100 W + FAN-3 | Bekliyor | Bekliyor | Bekliyor | Bekliyor | Bekliyor | PLAN |
+| FAN-3 yalnız | 0,142 A (UNIT; kullanıcı bildirimi) | Bekliyor | Bekliyor | Bekliyor | Bekliyor | PLAN |
+| 100 W + FAN-3 | **0,573 A (UNIT; kullanıcı bildirimi)** | Bekliyor | Bekliyor | Bekliyor | Bekliyor | PLAN |
 | FAN-3 açılma geçişi (100 W açık) | — | Bekliyor | Bekliyor | Bekliyor | Olay işaretli log bekliyor | PLAN |
 | FAN-3 kapanma geçişi (100 W açık) | — | Bekliyor | Bekliyor | Bekliyor | Olay işaretli log bekliyor | PLAN |
