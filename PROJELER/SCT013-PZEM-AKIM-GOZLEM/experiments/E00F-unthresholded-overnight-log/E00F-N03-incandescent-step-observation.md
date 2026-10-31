@@ -93,6 +93,14 @@ Mevcut ESP32D2/E00F ölçüm zincirini değiştirmeden, bilinen 100 W akkor ampu
 
 - **ÖLÇÜLDÜ:** İlk kayıtta yük öncesi 0.004 V olan Raw AC medyanı, yük açık sakin bölümde 0.019 V'a yükselmişti. İkinci kayıtta sinyal 10:39:27.837–10:39:29.819 aralığında düşük seviyeye inmiş ve takip eden altı dakikada medyan 0.000 V olmuştur.
 - **YORUM:** Ölçüm zinciri hem yük açıldığında yükselme hem de yük kesildiğinde başlangıç tabanına dönüş davranışı göstermiştir. Bu, 100 W akkor yükün SCT sinyalinde ayrışabilir bir etki oluşturduğunu destekleyen daha güçlü bir aç-kapa gözlemidir.
-- **SINIR:** Logdaki sinyal dönüşü ampulün fiziksel olarak kapatıldığını düşündürür; kullanıcı fiziksel kapatma saatini 10:39 olarak teyit etmiştir; logdaki dönüş bu beyanla uyumludur. CT'nin primer iletkeni/tur sayısı doğrulanmamıştır. PZEM verisi ve ham ADC örnek dizisi yoktur. Kalibrasyon veya ±%4 doğruluk sonucu çıkarılamaz.
-- **DURUM:** E00F-N03 kısmi gözlem olarak kalır. Kullanıcı fiziksel kapatma saatini 10:39 olarak teyit etti. CT fiziksel konum/tur bilgisi doğrulanmadan deney TAMAMLANDI sayılmayacak.
+- **SINIR:** Logdaki sinyal dönüşü ampulün fiziksel olarak kapatıldığını düşündürür; kullanıcı fiziksel kapatma saatini 10:39 olarak teyit etmiştir; logdaki dönüş bu beyanla uyumludur. Kullanıcı CT bağlantısını doğruladı: SCT içinden yalnız faz iletkeni tek geçiş yapıyor (1 tur). Bu, kullanıcı beyanıdır; bağımsız fiziksel inceleme yapılmadı. PZEM verisi ve ham ADC örnek dizisi yoktur. Kalibrasyon veya ±%4 doğruluk sonucu çıkarılamaz.
+- **DURUM:** E00F-N03 kısmi gözlem olarak kalır. Kullanıcı fiziksel kapatma saatini 10:39 olarak teyit etti. CT yerleşimi kullanıcı beyanıyla netleşti: yalnız faz, tek geçiş (1 tur). E00F-N03'ün bu donanım teyidi sağlandı; ancak deneyin genel kabul ölçütleri ve PZEM karşılaştırması ayrı değerlendirilmeden tüm proje doğrulaması tamamlandı sayılmayacak.
 
+
+
+### Donanım yerleşimi — kullanıcı teyidi (2026-10-31)
+
+- **CT içinden geçen iletken:** Yalnız faz iletkeni.
+- **Geçiş sayısı:** Tek geçiş; 1 tur.
+- **Kanıt türü:** Kullanıcı beyanı. Bu bilgi deney YAML'ında `primary_conductor: phase`, `primary_turns: 1` olarak işaretlendi. Bağımsız fiziksel inceleme yapılmadı.
+- **Yorum:** Faz ve nötrün birlikte CT içinden geçmesi durumu söz konusu değil. E00F-N03'te CT'nin iletken/tur belirsizliği kullanıcı teyidiyle giderildi.
