@@ -1,0 +1,96 @@
+# E00F-N03 — 100 W akkor yük basamak gözlemi
+# Amaç: Mevcut E00F ölçüm zincirinin bilinen akkor yük açıldığında verdiği tepkiyi
+# yüksüz başlangıç kesitiyle karşılaştırmak. Bu YAML kayıt/deney tanımıdır;
+# ESPHome firmware'i tarafından otomatik okunmaz.
+
+experiment:
+  id: E00F-N03
+  date: "2026-10-31"
+  status: IN_PROGRESS
+  purpose: >
+    100 W akkor ampulün açılmasıyla SCT013/ct_clamp Raw AC çıktısında oluşan
+    seviye değişimini, firmware ve donanım ayarlarını değiştirmeden gözlemek.
+    Bu adım kalibrasyon veya ±%4 doğruluk doğrulaması değildir.
+
+hardware:
+  device: esp32d2
+  sensor: SCT013-030
+  sensor_rating: "30 A / 1 V"
+  load:
+    type: incandescent
+    rated_power_w: 100
+    evidence: "KULLANICI BEYANI — kullanıcı 100 W akkor ampul olduğunu doğruladı."
+  primary_conductor: null # CT'nin hangi tekil iletkeni çevrelediği bu logla doğrulanamıyor.
+  primary_turns: null # Plan tek turdu; gerçek fiziksel tur sayısı kullanıcı tarafından henüz doğrulanmadı.
+  connections:
+    sct_raw: "SCT analog düğümü -> GPIO32 (RAW ADC)"
+    sct_voltage: "SCT analog düğümü -> GPIO33 (ADC voltaj)"
+    bias_raw: "Bias referansı -> GPIO34 (RAW ADC)"
+    bias_voltage: "Bias referansı -> GPIO35 (ADC voltaj)"
+    common_ground: "Mevcut E00F bağlantısı; bu logda fiziksel kablolama bağımsız doğrulanmadı."
+  adc:
+    unit: ADC1
+    attenuation: 12db
+    samples: 1
+    sampling_mode: average
+    slow_channel_update_interval: 1s
+
+firmware:
+  device_identity: esp32d2
+  esphome_version_observed: "2026.10.1"
+  ct_clamp_sample_duration: 200ms
+  ct_clamp_update_interval: 2s
+  multiplier: 24.22 # Mevcut E00F ayarı; bu testte değiştirilmedi.
+  adc_pins:
+    sct_raw: GPIO32
+    sct_voltage: GPIO33
+    bias_raw: GPIO34
+    bias_voltage: GPIO35
+  changes_during_test: false
+
+conditions:
+  - id: pre_load
+    load_state: OFF
+    time_local: "10:30:27–10:31:59"
+    note: "Logun açılma öncesinde kapsadığı başlangıç kesiti."
+  - id: incandescent_on
+    load_state: ON
+    user_reported_start_local: "10:32"
+    log_coverage_end_local: "10:39:09"
+    note: "100 W akkor açık bölümü; kapanış olayı bu dosyada bulunmuyor."
+
+recording:
+  source_file: "esp32d2-logs (14).txt"
+  source_sha256: "c4131d1d4a6f7b9a" # Tam SHA-256 rapor dosyasında kayıtlıdır.
+  ct_windows: 262
+  slow_adc_updates_per_channel: 523
+  calibration_id: null # Bu gözlemde yeni kalibrasyon yapılmadı.
+  raw_adc_archive: false # DEBUG logu ham ADC örnek dizisini içermez.
+
+HEDEF:
+  - "100 W akkor yük açıldığında Raw AC seviyesinin değişip değişmediğini gözlemek."
+  - "Yük öncesi ve yük altındaki dağılımları karşılaştırmak."
+  - "Kısa süreli yüksek sıçramaları kararlı yük seviyesiyle karıştırmamak."
+
+LOG:
+  user_reported_load_on_local: "10:32"
+  log_start_local: "10:30:27.239"
+  log_end_local: "10:39:09.934"
+  ct_debug_window_count: 262
+  load_off_time_local: null
+  physical_ct_position_confirmed: false
+  full_raw_log_committed_to_repository: false
+
+SONUC:
+  status: "KISMİ GÖZLEM — TEST DEVAM EDİYOR"
+  interpretation: >
+    Yük açılmadan önce Raw AC medyanı 0.004 V; açılma sonrası tüm kesitte
+    0.019 V; 10:35–10:39 daha sakin bölümünde 0.019 V'tur. Bu, mevcut
+    ölçüm zincirinin yük açılmasına belirgin tepki verdiğini destekler.
+  limitations:
+    - "Yük kapatma ve yük kapalıya dönüş bölümü henüz kaydedilmedi."
+    - "CT'nin fiziksel olarak hangi iletkeni ve kaç turu gördüğü doğrulanmadı."
+    - "GPIO32/33/34/35 yavaş ADC okumaları CT pencereleriyle eşzamanlı değildir."
+    - "N ve SPS bağımsız metrik değildir; SPS = N / 0.20 s."
+    - "Kısa süreli yüksek değerlerin fiziksel nedeni bu logdan belirlenemez."
+    - "PZEM referans verisi bulunmadığından kalibrasyon/±%4 doğruluk sonucu çıkarılamaz."
