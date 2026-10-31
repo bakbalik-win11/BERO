@@ -1,40 +1,40 @@
 # ============================================================
 # BERO MODUL 2 — ESP32D1
 # UC SCT GIRISI + TEK ORTAK BIAS OKUMA
-# DURUM: YALNIZ ESPHOME TEMEL ISKELETI; ADC/SCT KODU YOK
+# SURUM: ILK ADC GIRIS KONTROLU
+# DURUM: KOD HAZIR; DERLEME VE DONANIM TESTI BEKLIYOR
 # ============================================================
 #
 # AMAC:
-# Modul 2 icindeki gomulu ESP32D1 cihazinin temel ESPHome
-# baglantisini tanimlamak. Uc SCT sinyali ve bir ortak bias
-# ADC girisi daha sonra, kart/shield pinleri dogrulaninca eklenecek.
+# - Uc SCT sinyal hattini ayri ADC girislerinden okumak.
+# - Uc SCT'nin ortak bias/Vmid hattini dorduncu ADC girisinden izlemek.
+# - Dört analog girisin anlik ADC gerilimlerini Home Assistant'a aktarmak.
 #
-# DONANIM HEDEFI:
-# - ESP32 karti ve GPIO shield modül icinde.
-# - ESP32 harici 5 V DC ile beslenecek.
-# - USB portu PC'ye baglanti/servis erisimi saglayacak.
-# - 3 adet 3.5 mm disi SCT girisi.
-# - Mini breadboard uzerinde kayitli ortak bias devresi.
-# - 3 ayri SCT sinyali + 1 ortak bias noktasi okuma hedefi.
+# BAGLANTILAR (KULLANICI BILDIRIMI; FIZIKSEL TEYIT BEKLIYOR):
+# - SCT-1 / sari sinyal       -> GPIO32 (ADC1_CH4)
+# - SCT-2 / yesil sinyal     -> GPIO33 (ADC1_CH5)
+# - SCT-3 / mavi sinyal      -> GPIO34 (ADC1_CH6)
+# - Ortak bias / turuncu     -> GPIO35 (ADC1_CH7)
 #
-# BILDIRILEN BAGLANTILAR:
-# - 1. disi SCT yuvasi sari sinyal kablosu -> shield GPIO32.
-# - 2. disi SCT yuvasi yesil sinyal kablosu -> shield GPIO33.
-# - 3. disi SCT yuvasi mavi sinyal kablosu -> shield GPIO34.
-# - Ortak bias olcum hatti turuncu kablo -> shield GPIO35.
-# Bu GPIO bilgileri kullanici bildirimidir; fiziksel terminal teyidi bekler.
+# BEKLENEN:
+# - Home Assistant'ta dort ayri gerilim sensoru olusur.
+# - Her sensor 1 saniyede bir ADC gerilim ornegi yayinlar.
+# - SCT sensorleri akim veya RMS degeri hesaplamaz.
+# - Bias sensoru yalniz ortak bias hattinin ADC gerilimini izler.
 #
-# BAGLANTI / GUVENLIK:
-# - Bias devresi ve ESP32 GND ortak referans olacak; kesin noktalar
-#   fiziksel kart ve breadboard uzerinden teyit edilecek.
-# - Harici 5 V ADC/GPIO girislerine uygulanmaz.
-# - PC USB ile harici 5 V ayni anda kullanilacaksa kartin guc yolu
-#   ve geri besleme korumasi once dogrulanmalidir.
-# - Jack tip/ring/sleeve pinleri henuz tam dogrulanmamistir.
+# ONEMLI SINIR:
+# Bu ilk kod ADC giris baglantisini ve temel veri akisinin varligini
+# kontrol etmek icindir. Tekil ADC okumasi AC dalga sekli RMS degeri
+# degildir; bu degerlerden akim, guc veya kalibrasyon sonucu cikarilmaz.
 #
-# BEKLENTI:
-# Bu iskelet yalniz ESPHome cihazini Wi-Fi/API/OTA ile tanimlar.
-# Henüz SCT akimi, ADC veya bias sensor verisi yayinlamaz.
+# GUVENLIK / BAGLANTI:
+# - ADC pinlerine 5 V uygulanmaz. Analog dugumler ESP32 ADC sinirlari
+#   icinde oldugu olculerek dogrulanmadan pinlere baglanmaz.
+# - ESP32 GND ile bias devresi GND ortak referans olmalidir.
+# - Jack tip/ring/sleeve pinleri henuz teyit edilmemistir.
+# - PC USB ve harici 5 V ayni anda, kartin guc yolu dogrulanmadan
+#   baglanmaz.
+# - GPIO/kablo eslesmeleri kullanici bildirimidir; terminal teyidi degildir.
 #
 # ============================================================
 
@@ -59,3 +59,54 @@ ota:
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
+
+sensor:
+  # SCT-1 sinyal hatti: sari kablo, GPIO32 / ADC1_CH4.
+  # Anlik ADC gerilimi; akim veya RMS hesabi degildir.
+  - platform: adc
+    pin: GPIO32
+    name: "ESP32D1 SCT 1 ADC Voltage"
+    id: sct_1_adc_voltage
+    attenuation: 12db
+    update_interval: 1s
+    unit_of_measurement: "V"
+    accuracy_decimals: 3
+    device_class: voltage
+    state_class: measurement
+
+  # SCT-2 sinyal hatti: yesil kablo, GPIO33 / ADC1_CH5.
+  - platform: adc
+    pin: GPIO33
+    name: "ESP32D1 SCT 2 ADC Voltage"
+    id: sct_2_adc_voltage
+    attenuation: 12db
+    update_interval: 1s
+    unit_of_measurement: "V"
+    accuracy_decimals: 3
+    device_class: voltage
+    state_class: measurement
+
+  # SCT-3 sinyal hatti: mavi kablo, GPIO34 / ADC1_CH6.
+  - platform: adc
+    pin: GPIO34
+    name: "ESP32D1 SCT 3 ADC Voltage"
+    id: sct_3_adc_voltage
+    attenuation: 12db
+    update_interval: 1s
+    unit_of_measurement: "V"
+    accuracy_decimals: 3
+    device_class: voltage
+    state_class: measurement
+
+  # Uc SCT'nin ortak bias/Vmid hatti: turuncu kablo, GPIO35 / ADC1_CH7.
+  # Bias geriliminin anlik izlenmesi; RAW count veya kalibrasyon degildir.
+  - platform: adc
+    pin: GPIO35
+    name: "ESP32D1 Common Bias ADC Voltage"
+    id: common_bias_adc_voltage
+    attenuation: 12db
+    update_interval: 1s
+    unit_of_measurement: "V"
+    accuracy_decimals: 3
+    device_class: voltage
+    state_class: measurement
