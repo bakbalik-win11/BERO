@@ -1292,3 +1292,16 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **DURUM:** Test AÇIK / PLANLANDI. Fiziksel SCT logu, test zamanı ve ampul ayrıntıları henüz yok.
 - **DEPO:** Test README, ana test yükleri indeksi, STATUS ve PROGRESS_TREE güncellendi. Bu oturum kaydı eklendi.
 - **SONRAKİ:** SCT logu geldiğinde analizi yap; UNIT 0,174 A ile yalnız örtüşen kararlı pencerede karşılaştır. Ölçüm olmadan tamamlandı işaretleme.
+
+
+## 2026-10-31 — LOAD-42W-001 Log 57
+
+- **HEDEF:** 42 W test yükü altında Modül 2 / SCT-1 logunu incelemek ve test kaydına eklemek.
+- **GİRDİ:** `esp32d1-logs (57).txt`; 55.924 bayt / 766 satır; SHA-256 `f519f752ea4466e82cc365dac832e3338195303e920520414e7be6538d0203ae`.
+- **LOG:** 21:09:28–21:12:38 (+03:00), 96 yayın. Ortalama 0,252438 A; medyan 0,251 A; min–maks 0,221–0,295 A; SD 0,011038 A; CV %4,37.
+- **ANALOG:** Raw AC ortalaması 0,0104248 V; bias GPIO35 ortalaması 1,663469 V; SCT-1 ADC GPIO32 ortalaması 1,660745 V.
+- **YORUM:** Dört ardışık 24 örnekli blok ortalaması 0,25421 / 0,25392 / 0,24988 / 0,25175 A. 96 yayının tamamı 0,30 A altındadır.
+- **REFERANS SINIRI:** UNIT 0,174 A önceki başlangıç bildirimidir; aynı zamanlı kararlı pencere teyit edilmedi. Betimleyici fark +%45,08 olup doğruluk sonucu değildir. PZEM verisi yoktur.
+- **KARAR:** Test açık kalır; ±%4 kabul/ret yapılmaz. Firmware ve K=24.22 değiştirilmedi.
+- **DEPO:** Test README, test indeksi, STATUS ve PROGRESS_TREE güncellendi. Ayrı teknik analiz eklenecek. Ham TXT Git'e kopyalanmadı; kaynak adı/boyutu/hash kaydedildi.
+- **SONRAKİ:** UNIT ölçümünü aynı fiziksel yükün SCT loguyla örtüşen kararlı penceresinde al; PZEM varsa ayrı kaydet.
