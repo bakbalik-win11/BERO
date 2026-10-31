@@ -5,7 +5,7 @@
 ## Şu an nerede?
 
 - **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı.
-- **E00F-N03:** 100 W akkor yük 10:32'de açıldı, kullanıcı beyanına göre 10:39'da kapatıldı. İkinci DEBUG kaydında Raw AC 10:39:27–10:39:29 arasında başlangıç tabanına döndü. Aç-kapa gözlemi desteklendi; CT primer iletken/tur bilgisi doğrulanana kadar deney açık. [Kısmi rapor](experiments/E00F-unthresholded-overnight-log/E00F-N03-incandescent-step-observation.md).
+- **E00F-N03:** 100 W akkor yük 10:32'de açıldı, kullanıcı beyanına göre 10:39'da kapatıldı. İkinci DEBUG kaydında Raw AC 10:39:27–10:39:29 arasında başlangıç tabanına döndü. Aç-kapa gözlemi desteklendi; CT yerleşimi kullanıcı tarafından doğrulandı: yalnız faz, tek geçiş (1 tur). PZEM karşılaştırması ve genel kabul ölçütleri ayrı aşamada. [Kısmi rapor](experiments/E00F-unthresholded-overnight-log/E00F-N03-incandescent-step-observation.md).
 - **Depo belge tutarlılığı denetimi:** TAMAMLANDI; 87 Markdown dosyasındaki göreli bağlantı hedefleri kontrol edildi ve bulunan tek kırık bağlantı düzeltildi.
 - **E00B firmware:** HAZIRLANDI ve kullanıcı bildirimiyle DERLENDİ; fiziksel pinout, bağlantı, cihaza yükleme ve ölçüm bekliyor.
 - **İlk teknik deney (denetim sonrası):** E00A — ham ADC kaydı ve temel istatistikler.
