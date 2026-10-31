@@ -209,3 +209,5 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - UNIT son bildirimi 0,093 A; düşük akım sınıfında ±%4 kabul/ret yok.
 - Fan kapalı taban, FAN-1 açılış işareti, kararlı pencere ve kapanış işareti ayrı kaydedilecek.
 - [FAN-1-RETEST-001 planı](fan1-retest/README.md).
+
+| Einhell pil şarj cihazı | [EINHELL-CHARGER-001 düşük akım deneyi](einhell-charger/README.md) |
