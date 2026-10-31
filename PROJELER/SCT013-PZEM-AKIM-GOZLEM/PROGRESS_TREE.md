@@ -1,3 +1,10 @@
+## 2026-10-31 — ct_clamp hipotez sicili ve sonraki deney sırası
+
+- Bu sohbetin H1–H19 sınıflandırması tek bir [hipotez sicilinde](docs/research/ct-clamp/2026-10-31-hypothesis-register-and-next-experiments.md) toplandı.
+- Kaynak kod/tarihçe bulguları, BERO saha desteği, hipotezler, açık araştırma soruları ve kanıtsız iddialar ayrıldı.
+- Sonraki ölçüm sırası: T010 kanal davranışı; E10 200→500→1000→200 ms; ayrı last_value A/B; ardından T007→T008→T006.
+- E10 hâlâ planlandı; bu kayıt sırasında YAML/firmware/K değiştirilmedi, derleme/OTA ve fiziksel deney yapılmadı.
+
 ## 2026-10-31 — BERO sensörden bağımsız mimari kaydı
 
 - Depo kökünde [MIMARI](../../MIMARI/README.md) alanı oluşturuldu.
