@@ -1,3 +1,14 @@
+## 2026-10-31 — Kapsam revizyonu: ±%4 hedefi sağlandı
+
+±%4 sapma hedefinin yeni/harici kodla sağlandığı kullanıcı tarafından bildirildi. Dünkü dört karşılaştırma (100 W akkor, 150 W akkor, kettle düşük/kararlı, kettle kaynama) ±%4 içindedir; ayrıntı [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
+
+Aşağıdaki ara işler artık hedef değildir ve kapatılmıştır:
+- 50 Hz ham dalga şeklini bilgisayara aktarma.
+- Her ADC örneğini ayrı zaman damgasıyla saklama.
+- Bu edinim için ESP-IDF ADC Continuous/DMA firmware'i geliştirme.
+
+Bu karar E00F'nin çalışan ölçüm yolunu değiştirmez. E08 yüksek hızlı ham edinim hazırlığı KAPATILDI — GEREKSİZ olarak arşivlenir. E08'in 100/150 W/LED yük karakterizasyon belgeleri otomatik olarak tamamlanmış sayılmaz; yalnızca kullanıcı tarafından sunulmuş dört karşılaştırma kaydı ±%4 sonucunu destekler. BERO içindeki Python model/eğitim hattı ve bağımsız genelleme doğrulaması da tamamlanmış sayılmaz.
+
 # Yol haritas
 
 ## Paralel düşük akım sensör karşılaştırma hattı — E09 (2026-10-30)
