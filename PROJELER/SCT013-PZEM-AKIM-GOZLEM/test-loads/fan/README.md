@@ -58,3 +58,16 @@
 - **GEÇİŞLER:** Açılma/kapanma olay işareti yok. Gerçek geçiş zamanı ve SCT-PZEM tepki farkı bu logdan çıkarılamaz.
 - **RAPOR:** [FAN-3 teknik analiz](../../logs/module2/2026-10-31-fan3-module2-sct1-long-analysis.md); [tam ham log](../../logs/module2/2026-10-31-fan3-module2-sct1-long-full.txt).
 - **SONRAKİ:** PZEM akım + PF ile eşleşmiş kararlı pencere; ayrıca fan açma/kapatma anı olay işaretli geçiş deneyi.
+
+
+## 2026-10-31 — FAN-3-3T-001 üç primer tur deneyi açıldı
+
+- **DURUM:** AÇIK; fiziksel ölçüm/log bekleniyor. Bu kayıt, önceki FAN-3 tek tur oturumundan ayrı bir deneydir.
+- **AMAÇ:** Mevcut SCT013-030 (30A/1V) ile FAN-3 akımını, aynı tek yalıtılmış iletken CT çekirdeğinden üç kez geçirilerek gözlemlemek.
+- **DÜZENEK:** ESP32D1 Modül 2 / SCT-1 sarı GPIO32 / ortak bias GPIO35. Firmware `firmware/esp32d1.yaml`; açılış anındaki blob SHA `e1b110aca2ffa05fa792fd8e4b6248ed986e738c`.
+- **KOD:** Kod değişmeyecek; K=24.22 ve yazılımsal sıfır eşiği olmaması korunacak. Firmware akım göstergesi ayrıca saklanacak; deneysel normalize değer gösterge/3 olarak hesaplanacak. Bu bölme firmware'e uygulanmayacak.
+- **UNIT:** En güncel kullanıcı bildirimi 0,142 A; önceki arşivdeki 0,141 A tarihsel olarak korunur.
+- **ÖNCEKİ TEK TUR:** Raw AC ortalaması 0,009273 V; SCT akım ortalaması 0,224612 A. [Önceki log](../../logs/module2/2026-10-31-fan3-module2-sct1-long-full.txt).
+- **KURAL:** 0,30 A altındaki düşük akım bölgesinde ±%4 kabul/ret yok. Amaç sinyal büyümesi ve tekrarlanabilir gözlemdir.
+- **GÜVENLİK:** Enerji kesikken yalnız aynı tek yalıtılmış iletken üç tur geçirilir; faz ve nötr birlikte geçirilmez.
+- **TEST PLANI:** [FAN-3-3T-001 ayrıntılı kayıt](fan3-3turn/README.md).
