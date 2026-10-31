@@ -1,3 +1,16 @@
+## 2026-10-31 — Güncel aktif yön: PZEM–SCT kararlı alan eşleştirme ve sürekli öğrenme
+
+- **ANA HEDEF:** Kullanıcının paylaştığı çalışan E00F YAML'ını baseline olarak koru. PZEM-004T V3.0 ile SCT Raw AC/akım çıktısını aynı yük koşullarında karşılaştır; iki tarafta kararlı alanları ayrı belirle; örtüşen alanları eşleştirip PZEM ile etiketle; yeni verilerle 24.22 katsayısını/modelini iyileştir.
+- **AKTİF SONRAKİ GÖREV:** T008 — PZEM ve E00F eşzamanlı gözlem kaydı ve kararlı alan eşleştirme hazırlığı. Henüz yeni kayıt/etiketleme yapılmadı; PLANLANDI.
+- **ÇALIŞAN BASELINE:** Kullanıcının bu oturumda paylaştığı E00F ESP32D2 YAML. Bu kayıt derleme/OTA kanıtı değildir.
+- **ÖĞRENME DÖNGÜSÜ:** kayıt → ayrı PZEM/SCT kararlılık analizi → örtüşen alanları eşleştirme → PZEM etiketleme → mevcut katsayıyı değerlendirme → yeni calibration_id ile iyileştirme → yeni koşullarda tekrarlama.
+- **ct_clamp:** Şimdilik değiştirilmez. Önce PZEM eşleştirilmiş veride sorun aranır; tekrarlanabilir somut sorun çıkarsa hedefli kaynak kod incelemesi açılır.
+- **KAPATILAN:** Ham 50 Hz dalga aktarımı, örnek başına timestamp, DMA/ADC Continuous ve bunlara bağlı örnekleme hızı geliştirmeleri (ADR-009).
+- **PARK EDİLEN:** Eski T005/E00A/E01 yüksüz ADC/ham dalga planı ana PZEM etiketleme yolunun zorunlu ön koşulu değildir.
+- **SINIR:** ±%4 sonucu harici kod için kullanıcı raporudur. Harici kodun kaynak dosyası depoda değildir; BERO Python öğrenme hattı bu sonucu yeniden üretmiş değildir.
+- **SONRAKİ ÇIKTI:** T008 veri kayıt protokolü, gerçek PZEM/SCT HA entity listesi, zaman alanları ve ilk karşılaştırma senaryosu.
+- **Ayrıntı:** [ROADMAP](ROADMAP.md), [ADR-010](docs/decisions/ADR-010-pzem-stable-window-learning-focus.md), [T008](tasks/T008-pzem-sct-stable-window-labeling.md).
+
 ## 2026-10-31 — Ölçüm hedefi sağlandı; yüksek hızlı ham edinim ara işleri kapatıldı
 
 - **Karar:** Kullanıcının bildirdiği üzere yeni/harici kodla ±%4 sapma hedefi sağlandı. Bu nedenle 50 Hz ham dalga şeklini PC'ye aktarma, her ADC örneğini ayrı zaman damgasıyla saklama ve bu amaçla DMA/ADC Continuous firmware'i geliştirme işleri artık hedef değildir; **GEREKSİZ / KAPATILDI** olarak arşivlenir.
