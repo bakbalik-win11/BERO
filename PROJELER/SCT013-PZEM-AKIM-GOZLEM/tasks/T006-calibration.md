@@ -1,24 +1,26 @@
 # T006 — SCT katsayısı/model değerlendirmesi
 
-- **Durum:** PLANLANDI
-- **Faz:** PZEM–SCT kararlı alan etiketleme ve sürekli iyileştirme
-- **Bağımlılık:** T008 — en az bir geçerli PZEM/SCT ortak kararlı alan kaydı ve etiketleme
-- **Hedef:** PZEM referans akışına göre mevcut SCT katsayısını değerlendirmek; veri desteklerse katsayı/modeli yeni calibration_id ile iyileştirmek.
+- **Durum:** BEKLEMEDE
+- **Faz:** Faz 2 — Bulunan kodu PZEM ile eğitmek
+- **Bağımlılık:** T008 kapsamında üretilmiş geçerli PZEM/SCT ortak kararlı alan eşleşmeleri ve etiketli veri.
+- **Hedef:** Önce mevcut K=24.22 katsayısını yeni etiketli kararlı alanlarda değerlendirmek; yalnız veri gerekçelendirirse katsayı/modeli iyileştirmek.
 
-## Yapılacak
-1. T008 kapsamında eşleştirilmiş, geçerli PZEM/SCT kararlı alanlarını kullan.
-2. Önce mevcut 24.22 katsayısını değiştirmeden farkı ve bağıl sapmayı hesapla.
-3. Sapmayı yük/akım seviyesi, SCT Raw AC, pencere değişkenliği ve kayıt koşuluna göre incele.
-4. Sistematik ve tekrarlanabilir hata varsa en basit yeterli katsayı/model güncellemesini değerlendir.
-5. Her yeni katsayı/model için yeni calibration_id, veri hash'i, firmware/config sürümü, yöntem ve tarih kaydet. Önceki kayıtları silme.
-6. Eğitim verisi içi uyum ile farklı olay/yükte ayrı doğrulama sonuçlarını ayrı raporla.
-7. Geçiş dinamikleri ayrı tutulur; kararlı etiketli eğitim alanlarıyla karıştırılmaz.
-8. PZEM'e uyum, bağımsız mutlak doğruluk veya kusursuz ground truth iddiası değildir.
+## Yapılacaklar
+
+1. T008'in eşleştirilmiş ve geçerli PZEM/SCT kararlı alanlarını kullan.
+2. İlk karşılaştırmada K=24.22 değerini değiştirmeden sapmayı hesapla.
+3. Sapmayı yük/akım seviyesi, Raw AC, pencere değişkenliği ve kayıt koşuluna göre incele.
+4. Sistematik ve tekrarlanabilir hata görülürse en basit yeterli katsayı/model değişikliğini değerlendir.
+5. Her yeni sürüme yeni calibration_id, veri hash'i, firmware/config sürümü, yöntem ve tarih ekle; eski sürümleri koru.
+6. Eğitim verisi uyumunu, ayrı olay/yük doğrulamasından ayrı raporla.
+7. Geçiş dinamiklerini kararlı etiketli eğitim alanlarıyla karıştırma.
 
 ## Kabul ölçütü
-En az bir geçerli ortak kararlı alan veri setiyle 24.22 katsayısının sonucu hesaplanmış; gerekiyorsa yeni katsayı/model gerekçelendirilmiş; veri kökeni, calibration_id, hata ölçütleri ve sınırlamalar raporlanmış olmalıdır. Ayrı doğrulama yapılmadıysa açıkça belirtilir. Uygun veri yoksa görev PLANLANDI kalır.
+
+En az bir gerçek ortak kararlı alan veri setinde K=24.22 sonucu hesaplanmış; değişiklik gerekiyorsa gerekçelendirilmiş ve yeni calibration_id ile kaydedilmiş olmalı. Veri kökeni, yöntem, hata ölçütleri ve sınırlamalar raporlanmalı. Ayrı doğrulama yapılmadıysa açıkça belirtilmeli.
 
 ## HEDEF / LOG / SONUÇ
-- **HEDEF:** Yeni veriler geldikçe izlenebilir ve sürümlü katsayı/model iyileştirmesi yapmak.
-- **LOG:** Gerçek PZEM/SCT eşleşmeleri, dışlanan kayıtlar, hesaplama sürümü ve örnek sonuçlar kaydedilir.
-- **SONUÇ:** Bu kart modelin eğitildiği veya ±%4 başarımın BERO içinde yeniden üretildiği anlamına gelmez.
+
+- **HEDEF:** Etiketli PZEM/SCT verisi geldikçe mevcut katsayıyı ve gerekirse modeli izlenebilir biçimde iyileştirmek.
+- **LOG:** T008 etiketli veri henüz yok; yeni katsayı/model hesaplanmadı.
+- **SONUÇ:** T006 BEKLEMEDE. K=24.22 başlangıç baseline'ı olarak korunuyor.
