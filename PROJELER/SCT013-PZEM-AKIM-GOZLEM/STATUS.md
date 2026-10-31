@@ -1,3 +1,11 @@
+## 2026-10-31 — E00F tek SCT ct_clamp kodu Modül 2'ye uyarlandı
+
+- **KOD:** [firmware/esp32d1.yaml](firmware/esp32d1.yaml) artık Modül 2 SCT-1 soketine göre GPIO32 sinyal + GPIO35 ortak bias kullanır. Cihaz kimliği `esp32d1` / `ESP32D1` korunmuştur.
+- **KORUNAN E00F AYARLARI:** 12 dB, 200 ms `ct_clamp`, 2 s yayın, `on_raw_value` ile ayrı Raw AC entity'si, 24.22 katsayısı, yazılımsal sıfırlama eşiği yok.
+- **PIN FARKI:** E00F'de GPIO32/33 aynı SCT düğümünün iki ADC görüntüsü, GPIO34/35 bias düğümünün iki görüntüsüydü. Modül 2'de GPIO32/33/34 üç ayrı SCT soketi olduğundan bu dört girişli düzen bire bir kopyalanmadı. RAW count entity'si eklenmedi; GPIO33 ve GPIO34 bu tek kanal firmware'inde kullanılmıyor.
+- **KARAR:** [ADR-020](docs/decisions/ADR-020-e00f-ct-clamp-module2-adaptation.md).
+- **DOĞRULAMA:** GitHub'a kaydedildi; ESPHome derlemesi, OTA ve gece testi henüz yapılmadı. 24.22 katsayısı E00F'den taşınmış başlangıç değeridir, Modül 2 kalibrasyonu değildir.
+
 ## 2026-10-31 — Modül 2 dört ADC girişli uzun kayıt firmware'i geri yüklendi
 
 - **KARAR:** Tek kanallı ct_clamp sürümü yerine depo geçmişindeki dört ADC girişli log sürümü geri yüklendi.
