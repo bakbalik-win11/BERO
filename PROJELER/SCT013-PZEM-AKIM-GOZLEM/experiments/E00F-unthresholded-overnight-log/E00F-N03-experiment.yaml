@@ -89,7 +89,7 @@ LOG:
   log_start_local: "10:30:27.239"
   log_end_local: "10:45:59.928"
   ct_debug_window_count: 455
-  user_reported_load_off_local: null
+  user_reported_load_off_local: "10:39" # KULLANICI TEYİDİ
   inferred_raw_ac_return_local: "10:39:27.837–10:39:29.819"
   physical_ct_position_confirmed: false
   full_raw_log_committed_to_repository: false
@@ -101,10 +101,9 @@ SONUC:
     0.019 V; 10:35–10:39 daha sakin bölümünde 0.019 V'tur. İkinci logda
     10:39:27.837–10:39:29.819 arasında değer 0.006 V'tan 0.000 V'a iner;
     10:40–10:46 medyanı 0.000 V'tur. Bu, yük kesildikten sonra sinyalin
-    yüksüz başlangıç davranışına döndüğünü destekler. Fiziksel kapatma
-    zamanı kullanıcı tarafından teyit edilmemiştir.
+    yüksüz başlangıç davranışına döndüğünü destekler. Kullanıcı ampulün 10:39’da kapatıldığını teyit etmiştir; logdaki dönüş bununla uyumludur.
   limitations:
-    - "Fiziksel ampul kapatma saati kullanıcı tarafından henüz teyit edilmedi; 10:39:27–10:39:29 geçişi logdan çıkarılmıştır."
+    - "Kullanıcı fiziksel kapatma saatini 10:39 olarak teyit etti; logdaki 10:39:27–10:39:29 düşüşü bu beyanla uyumludur."
     - "CT'nin fiziksel olarak hangi iletkeni ve kaç turu gördüğü doğrulanmadı."
     - "GPIO32/33/34/35 yavaş ADC okumaları CT pencereleriyle eşzamanlı değildir."
     - "N ve SPS bağımsız metrik değildir; SPS = N / 0.20 s."
