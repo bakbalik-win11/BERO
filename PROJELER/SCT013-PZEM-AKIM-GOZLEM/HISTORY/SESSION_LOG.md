@@ -1,3 +1,15 @@
+## 2026-10-31 — E10 ct_clamp pencere süresi deneyi planlandı
+
+- **HEDEF:** 200 ms pencerenin yeterli olup olmadığını “daha fazla örnek” varsayımına kapılmadan gerçek Modül 2 üzerinde sınamak; 500 ms ve 1000 ms pencerelerin ölçüm dağılımı/örnek sayısı/geçiş görünürlüğü üzerindeki etkisini gözlemek.
+- **DEPO OKUMASI:** AGENTS.md, STATUS.md, ROADMAP.md, T010, ct_clamp rapor arşivi, E09 ve deney kayıt yapısı incelendi. T010 Faz 2 aktif görevdir; Faz 1 deneyleri yeniden açılmadı. E09'dan ayrı yeni deney numarası E10 verildi.
+- **KAYNAK DAYANAĞI:** Kullanıcı raporu Bölüm 2/4/5; Copilot raporunun sample_duration ve update_interval bölümleri; bağımsız teknik inceleme Bölüm 3/4/8/9/10; BREAD-TOASTER-001 Log 63 analizi. Kaynak raporlardaki simülasyonlar/varsayımlar BERO ölçümü olarak kabul edilmedi.
+- **LOG 63 BAŞLANGIÇ TABANI:** 200 ms / 2 s / K=24.22 koşulunda ilk açılış yayını ayrıldıktan sonra 50 yayın ortalama 3,09636 A, CV %0,433, Raw AC ortalaması 0,127843 V; pencere başına 3.500–3.667 kabul edilmiş örnek ve yaklaşık 18.117 kabul edilmiş SPS. Bu tarihsel log yeni deneyin yerine geçmez; A aşamasında yeni 200 ms kontrolü de alınacak.
+- **DENEY SIRASI:** A 200 ms → B 500 ms → C 1000 ms → D 200 ms geri dönüş. Her aşamada hedef en az 3 dakika (yaklaşık 90 yayın); diğer YAML ayarları sabit.
+- **SABİTLER:** ESP32D1 Modül 2, SCT-1 GPIO32/ADC1_CH4, ortak bias GPIO35/ADC1_CH7, ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp update_interval 2 s, K=24.22, aynı BREAD-TOASTER-001 yükü.
+- **KAPSAM SINIRI:** Kalibrasyon, katsayı ayarı, PZEM doğruluk iddiası veya ±%4 testi değildir. Uzun pencerenin CV'yi düşürmesi yalnız hipotezdir. Pencere uzunluğu ADC saniyelik çağrı hızını artırmaz; aynı hızda pencere başına kabul edilen örnek sayısı artabilir.
+- **DOSYALAR:** [E10 protokolü](../experiments/E10-ct-clamp-window-duration/README.md); [sonuç defteri](../experiments/E10-ct-clamp-window-duration/results.md).
+- **DURUM:** PLANLANDI. YAML değiştirilmedi, derleme/OTA yapılmadı, fiziksel yük çalıştırılmadı, yeni log alınmadı.
+
 ## 2026-10-31 — GitHub Copilot raporunun arşivlenmesi
 
 - Kullanıcı, GitHub Copilot tarafından yazılmış ct_clamp raporunu ayrıca depoda saklamamı istedi.
