@@ -1,3 +1,13 @@
+## 2026-10-31 — Modül 2 kutu kapsamı sadeleştirildi
+
+- **HEDEF:** Son tasarım kararına göre SCT Okuma Test Modülü'nün fiziksel kutu kapsamını güncellemek.
+- **KARAR:** Kutu yalnızca 3 SCT girişi, ESP32D2 ve bias mini breadboard içerecek.
+- **KAPSAM DIŞI:** Önceki taslaktaki 220 V AC giriş/çıkış, PZEM, SSR ve kutu içi 5 V güç kaynağı bu modülden çıkarıldı. Diğer BERO modüllerine ilişkin kapsam kararı verilmedi.
+- **BESLEME:** Bias ayrı Bias Trafosu modülünden beslenecek. ESP32D2 beslemesi henüz belirlenmedi.
+- **DEPO:** Modül belgesi sadeleştirildi; ADR-012 oluşturuldu; STATUS ve PROGRESS_TREE güncellendi.
+- **DOĞRULAMA SINIRI:** Fiziksel kablolama, jack pinleri veya güç bağlantıları bu oturumda test edilmedi.
+- **AÇIK:** Üç girişin kullanım biçimi, jack pin eşlemesi, bias kablosu/konnektörü ve ESP32D2 besleme yöntemi.
+
 ## 2026-10-31 — Proje iki faza indirildi; Faz 2 aktif edildi
 
 - **HEDEF:** Eski çok fazlı/deney odaklı yapıyı sadeleştirip Faz 1 ve Faz 2 ayrımını tüm ana navigasyon, görev ve karar dosyalarında tutarlı hâle getirmek. Faz 2'nin ilk işini netleştirmek.
