@@ -54,6 +54,14 @@ Bu karşılaştırmalar önceki kullanıcı kayıtları/loglarıyla desteklenmek
 - [T006 — Katsayı/model](tasks/T006-calibration.md)
 - [Karar — Faz 2 yeni başlangıç](docs/decisions/ADR-014-phase2-practical-restart.md)
 
+## 2026-10-31 — Modül 2 ilk dört kanallı ADC YAML kodu
+
+- **KOD:** Kullanıcının verdiği ESPHome temel yapılandırması korundu; GPIO32/33/34 SCT girişleri ve GPIO35 ortak bias girişi için dört ayrı `platform: adc` sensörü eklendi.
+- **YAYIN:** Dört sensör 1 saniyede bir voltaj örneği yayınlayacak şekilde tanımlandı.
+- **SINIR:** Bu sürüm anlık ADC gerilim izleme kodudur; RMS/akım hesabı, ct_clamp, katsayı ve filtre içermez. Tekil ADC gerilimi akım ölçümü olarak yorumlanmaz.
+- **DURUM:** YAML GitHub'a kaydedildi. Derleme, OTA yüklemesi, pinlerin fiziksel teyidi ve gerçek cihaz testi henüz yapılmadı. T010 AKTİF kalır.
+- **SONRAKİ ADIM:** Önce analog düğüm gerilimlerini ölç; ardından ESPHome derleme kontrolü ve düşük gerilimde dört sensörün HA yayını testi.
+
 ## Modül 2 — T010 aktif çalışma
 
 **Hedef:** Üç SCT sinyali + tek ortak bias ADC girişi olan, ESP32D1 gömülü, harici 5 V beslemeli ve USB üzerinden PC'ye erişilebilir modülü oluşturmak.
