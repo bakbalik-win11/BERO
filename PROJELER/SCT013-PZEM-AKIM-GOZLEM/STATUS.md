@@ -816,3 +816,8 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - Kaynak: kullanıcı bildirimi; ölçüm cihazı belirtilmediğinden PZEM/SCT ölçümü olarak sınıflandırılmadı.
 - ESP32D1 ham logu henüz alınmadı; test AÇIK, fiziksel gözlem sürüyor.
 - Deney kaydı: test-loads/einhell-charger/README.md.
+
+
+## 2026-10-31 — EINHELL-CHARGER-001 ek akım gözlemi
+
+Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki kullanıcı bildirimleri 0,413 A ve 0,419 A idi. Şu ana kadarki bildirilen gözlem aralığı 0,413–0,422 A; 0,419 A'dan 0,422 A'ya fark +0,003 A (yaklaşık +%0,72). 0,422 A değerinin kalıcı/sabit olduğu bildirilmedi. Ölçüm cihazı hâlâ belirtilmedi; bu değer PZEM veya SCT log sonucu olarak sınıflandırılmaz. Deney açık; ESP32D1 logu ve referans cihaz bilgisi bekleniyor.
