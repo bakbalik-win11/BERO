@@ -1,3 +1,14 @@
+## 2026-10-31 — E10 ct_clamp pencere süresi deneyi planlandı
+
+- **DURUM:** PLANLANDI; YAML değişikliği, derleme/OTA, fiziksel deney ve yeni log henüz yapılmadı.
+- **AMAÇ:** ESPHome ct_clamp sample_duration değerinin 200 / 500 / 1000 ms olmasının SCT-1 Raw AC RMS, akım dağılımı, kabul edilmiş örnek sayısı/SPS ve yük geçişlerinin görünürlüğüne etkisini aynı yükte gözlemek.
+- **SIRA:** 200 ms başlangıç → 500 ms → 1000 ms → 200 ms geri dönüş. update_interval: 2s, K=24.22 ve diğer tüm ayarlar sabit.
+- **DÜZENEK:** ESP32D1 Modül 2 / SCT-1 GPIO32 / ortak bias GPIO35 / ESPHome 2026.10.1 / BREAD-TOASTER-001 aynı fiziksel yük.
+- **REFERANSLAR:** Kullanıcı ct_clamp raporu Bölüm 2, 4, 5; Copilot raporu sample_duration ve update_interval bölümleri; bağımsız teknik inceleme Bölüm 3, 4, 8–10; BREAD-TOASTER-001 Log 63. Simülasyon ve teorik iddialar gerçek BERO ölçümü sayılmayacak.
+- **ÖNEMLİ:** Bu bir gözlem deneyidir, kalibrasyon değildir. K değiştirilmez; PZEM eşleşmesi olmadan doğruluk/±%4 sonucu çıkarılmaz.
+- **PROTOKOL:** [E10 ayrıntılı deney planı](experiments/E10-ct-clamp-window-duration/README.md); [sonuç defteri](experiments/E10-ct-clamp-window-duration/results.md).
+- **T010:** Faz 2 aktif görev olarak kalır; E10 bu görev altında yürütülecek.
+
 ## 2026-10-31 — GitHub Copilot ct_clamp raporu arşivlendi
 
 - Kullanıcının sağladığı GitHub Copilot raporu, metin ve ifadeleri değiştirilmeden UTF-8 TXT olarak `docs/research/ct-clamp/source/2026-10-31-github-copilot-ct-clamp-report.txt` yolunda saklandı.
