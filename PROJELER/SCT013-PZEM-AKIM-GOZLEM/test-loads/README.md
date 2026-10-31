@@ -262,3 +262,13 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; K=24.22 ve mevcut firmware korunacak.
 - SCT logu bekleniyor.
 - [Test kaydı](57w-incandescent/README.md).
+
+
+## 2026-10-31 — LOAD-57W-001 / Log 58 SCT-1 sonucu
+
+- Kaynak `esp32d1-logs (58).txt`; 66.456 bayt / 906 satır; SHA-256 `f5a2d958dc2c85ec204516240c99ec2e87b519a422958a9ddd1cf122b4ee8d08`.
+- 116 SCT yayını, 21:14:44–21:18:34 (+03:00); ortalama 0,304207 A, medyan 0,303 A, min–maks 0,284–0,348 A, CV %3,00.
+- Raw AC ortalaması 0,012562 V; GPIO35 bias ortalaması 1,663073 V; GPIO32 ADC ortalaması 1,660694 V; SPS ortalaması 17.768.
+- UNIT 0,244 A ile aritmetik ortalama farkı +%24,67; zaman örtüşmesi teyitsiz olduğundan doğruluk sonucu değildir. PZEM yoktur.
+- 0,30 A altı gözlem alanında ±%4 kabul/ret uygulanmaz; firmware ve K=24.22 değişmedi. Test açık kalır.
+- [Test kaydı](57w-incandescent/README.md); [analiz](../logs/module2/2026-10-31-load-57w-001-module2-sct1-analysis.md); [tam ham log](../logs/module2/2026-10-31-load-57w-001-module2-sct1-full.txt).
