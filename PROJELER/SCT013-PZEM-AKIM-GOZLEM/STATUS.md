@@ -832,3 +832,17 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki kullanıcı bi
 - **DEĞERLENDİRME:** 0,30 A altı gözlem bölgesi; ±%4 kabul/ret yok. Kararlılık, dağılım, Raw AC ve bias incelenecek.
 - **DOSYA:** [FIXED-LOAD-0130A-001](test-loads/fixed-load-0130a/README.md).
 - **SONRAKİ:** Yük kimliği, referans cihazı ve gerçek log geldiğinde aynı test altında kaydet; ölçüm alınmadan sonucu tamamlandı işaretleme.
+
+## 2026-10-31 — FIXED-LOAD-0130A-001 ilk SCT-1 log analizi
+
+- **DURUM:** GÖZLEM LOGU ANALİZ EDİLDİ; referans/kurulum bilgisi eksik olduğu için test nihai doğrulama olarak kapatılmadı.
+- **KAYNAK:** `esp32d1-logs (56).txt`; 298.344 bayt / 3.986 satır; SHA-256 `15c94083291b374e60f80d932494d6a6a58cbef9b5a3d82227cc2f58703dc20a`.
+- **ZAMAN:** 20:47:30–21:06:00 (+03:00); 556 SCT-1 akım yayını.
+- **SCT:** Ortalama 0,203637 A; medyan 0,203 A; min–maks 0,157–0,291 A; SD 0,017971 A; CV %8,82.
+- **ANALOG:** Raw AC ortalama 0,0084077 V; bias GPIO35 ortalama 1,663729 V.
+- **YORUM:** Yaklaşık iki dakikalık blok ortalamaları 0,1993–0,2081 A; uzun dönemli ortalamada belirgin sürüklenme yok. Anlık dağılım kayda değer.
+- **REFERANS:** 0,130 A hedef değeri olarak tutulur; logda UNIT/PZEM referansı ve fiziksel yük kimliği doğrulanmadı. 0,203637 A ile 0,130 A arasında sapma/doğruluk hesabı yapılmadı.
+- **KURAL:** 0,30 A altı gözlem bölgesi; ±%4 kabul/ret yok. K=24.22 korunur, yazılımsal sıfır eşiği eklenmez.
+- **DOSYALAR:** [Test kaydı](test-loads/fixed-load-0130a/README.md); [analiz](logs/module2/2026-10-31-fixed-load-0130a-001-sct1-analysis.md).
+- **HAM LOG SINIRI:** Tam TXT Git'e eklenmedi; kaynak dosya adı/boyutu/hash kayıtlı ve kullanıcı yüklemesinde mevcut.
+- **SONRAKİ:** Fiziksel yük ve referans cihazını netleştir; aynı zaman penceresinde referansla tekrar gözlem al. Testi referanssız kalibrasyon sonucu olarak kapatma.
