@@ -121,3 +121,13 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - Raw AC ortalama 0,00697685 V; bias GPIO35 ortalama 1,663426 V; SCT-1 ADC GPIO32 ortalama 1,660537 V.
 - FAN-2, düşük akım gözlem oturumu olarak kapatıldı; ±%4 doğrulaması değildir. PZEM akım + PF ile aynı kararlı pencerede ileri inceleme açık.
 - [FAN kayıtları](fan/README.md); [analiz](../logs/module2/2026-10-31-fan2-module2-sct1-long-analysis.md); [tam log](../logs/module2/2026-10-31-fan2-module2-sct1-long-full.txt); [kapanış YAML](../firmware/archive/FAN-2-2026-10-31-esp32d1-sct1.yaml).
+
+
+## 2026-10-31 — FAN-3 uzun SCT-1 logu ve kapanışı
+
+- FAN-3 UNIT bildirimi 0,141 A; 0,30 A altı düşük akım bölgesinde ±%4 kabul/ret uygulanmaz.
+- Uzun log: `esp32d1-logs (43).txt`; 139.575 bayt; SHA-256 `a4345c7af2b5dcc608b264e1dceed50dbe8ee5e40c5137d1eeff2583f9a53a9f`; 17:35:27.127–17:43:55.115; 255 yayın.
+- SCT akım ortalaması 0,224612 A; medyan 0,223 A; min–maks 0,189–0,311 A; örnek SD 0,018657 A. 253/255 yayın 0,30 A altındadır.
+- Raw AC ortalama 0,009273 V; bias GPIO35 ortalama 1,663387 V; SCT-1 ADC GPIO32 ortalama 1,661008 V.
+- FAN-3, düşük akım gözlem oturumu olarak kapatıldı; ±%4 veya PF doğrulaması değildir. PZEM akım + PF ile eşleşmiş kararlı pencere ve olay işaretli açılma/kapanma deneyi açık araştırma işidir.
+- [Fan kayıtları](fan/README.md); [FAN-3 analiz](../logs/module2/2026-10-31-fan3-module2-sct1-long-analysis.md); [tam ham log](../logs/module2/2026-10-31-fan3-module2-sct1-long-full.txt); [kapanış YAML](../firmware/archive/FAN-3-2026-10-31-esp32d1-sct1.yaml).
