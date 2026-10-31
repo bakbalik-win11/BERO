@@ -1,3 +1,10 @@
+## 2026-10-31 — Sensör kalıplarına gerçek Log 63 çıktısı eklendi
+
+- [patterns rehberi](../firmware/patterns/README.md) içine Log 63'ten gerçek ESPHome çıktı örneği eklendi: 3.656 kabul edilmiş farklı örnek, 18.280 raporlanan SPS, Raw AC entity 0,12763 V ve akım entity 3,091 A.
+- Örnek, şablonların yeni test sonucu olarak sunulmadı; mevcut BERO SCT-1 logundan tarihsel kanıttır.
+- Tam analiz: [Log 63 raporu](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md); seçilmiş gerçek satırlar: [evidence](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt).
+- Şablonlar için derleme/OTA/fiziksel doğrulama yapılmadı.
+
 ## 2026-10-31 — Yeniden kullanılabilir sensör okuma kodları ve açıklamaları
 
 - **HEDEF:** Kullanıcının Claude/Copilot/bağımsız ct_clamp araştırmalarından çıkardığı gözlemleri yalnız rapor olarak bırakmayıp, diğer sensör türlerine doğru şekilde uyarlanabilecek kod ve rehber haline getirmek.
