@@ -1,29 +1,31 @@
-# T008 — PZEM ve E00F SCT kararlı alan kaydı / etiketleme
+# T008 — PZEM/SCT kararlı alan eşleştirme ve etiketleme
 
-- **Durum:** PLANLANDI
-- **Öncelik:** AKTİF SONRAKİ GÖREV
-- **Bağımlılık:** Kullanıcının çalışan E00F YAML baseline'ı ve mevcut PZEM-004T V3.0 akışı.
-- **Hedef:** Aynı yük koşullarında PZEM referans ölçümleri ile E00F SCT Raw AC/akım çıktılarını birlikte kaydetmek; geçerli ve örtüşen kararlı alanları bulmak; PZEM akımıyla SCT kayıtlarını etiketlemek.
-- **Kapsam dışı:** Ham 50 Hz dalga aktarımı, her ADC örneğine timestamp, DMA/ADC Continuous, FFT/THD, güç kalitesi analizi ve ct_clamp bileşenini şimdiden değiştirmek.
+- **Durum:** BEKLEMEDE
+- **Faz:** Faz 2 — Bulunan kodu PZEM ile eğitmek
+- **Bağımlılık:** T007'nin gerçek Home Assistant dışa aktarımını PC'ye taşıması ve veri alanlarını koruduğunu doğrulaması.
+- **Hedef:** PZEM ve SCT akışlarında kararlı alanları ayrı ayrı belirlemek; aynı yük/olay içinde zaman bakımından örtüşen alanları eşleştirmek; geçerli PZEM akımını SCT penceresi için etiket olarak kaydetmek.
 
-## Aşamalar
-1. **Entity envanteri:** PZEM gerilim/akım/güç/enerji/PF/frekans alanları; E00F SCT GPIO32 RAW, GPIO33 ADC Voltage, SCT Raw AC ve SCT Akım entity'leri. Bias GPIO34/35 yalnız bağlam/izleme içindir. Entity ID ve birimler gerçek HA kurulumundan alınır, tahmin edilmez.
-2. **Ortak olay kaydı:** Aynı fiziksel yük/olay altında PZEM ve SCT geçmişi dışa aktarılır. Zaman damgaları, saat dilimi, örnek aralıkları, eksik kayıtlar ve tekrarlar korunur. Yük, açma-kapama saatleri, CT tur sayısı/iletken konumu, firmware ve calibration_id metadata'ya eklenir. Sürekli ADC ham örnekleri istenmez.
-3. **Geçersiz veri:** PZEM -1, NaN, timeout, parse hatası ve geçersiz alanlar etiketlemeden çıkarılır. Dışlanan satırlar silinmez; adet ve nedenleri raporlanır.
-4. **Kararlılık:** PZEM ve SCT için ayrı pencere ölçütleri geliştirilir. Adaylar pencere içi yayılım, min-max aralığı, eğim ve ardışık pencere tutarlılığıdır. Sabit 3 saniye gecikme/maske kabul edilmez; eşikler gerçek kayıtta test edilir.
-5. **Eşleştirme/etiket:** Aynı olay içindeki zaman bakımından örtüşen kararlı alanlar belirlenir. Geçerli PZEM akımı referans etikettir; PZEM mutlak ground truth sayılmaz. Geçiş/yerleşme dinamik raporu ayrı tutulur.
-6. **Katsayı:** İlk karşılaştırmada 24.22 değiştirilmeden sapma hesaplanır. Sistematik hata varsa katsayı/model güncellemesi önerilir; her sürüm yeni calibration_id ile eklenir, eskiler korunur.
+## Yapılacaklar
+
+1. T007 örnek dosyasındaki gerçek entity_id ve birimleri kullan; bilinmeyen entity adları uydurma.
+2. PZEM ve SCT kayıtlarının timestamp dağılımını, güncelleme aralıklarını, boşlukları ve tekrarları ayrı incele.
+3. Geçersiz PZEM değerlerini (-1.0, NaN, timeout, parse/alan hatası) etiketlemeden çıkar; kayıtları silme, dışlama nedenini say.
+4. PZEM kararlılığını kendi akışında, SCT kararlılığını kendi akışında değerlendir. Pencere yayılımı, min-max aralığı, eğim ve ardışık pencere tutarlılığı aday ölçütlerdir; eşikler gerçek veri görülmeden sabitlenmez.
+5. Aynı olay içindeki zaman bakımından örtüşen kararlı alanları eşleştir. Sabit 3 saniye gecikme/maske varsayma.
+6. PZEM akımını referans etiket olarak ekle; PZEM mutlak ground truth değildir.
+7. Geçiş/yerleşme dinamiklerini kararlı etiketli alanlardan ayrı tut.
+8. Kaynak dosya/hash, analiz kodu sürümü, kayıt özeti, örnek eşleşme ve yorumunu depoda sakla.
 
 ## Kabul ölçütü
-- En az bir yük koşulunda PZEM ve SCT aynı olay altında kaydedilmiş.
-- Entity, birim, timestamp, yük/kurulum ve firmware metadata'sı mevcut.
-- Geçersiz PZEM okumaları sayılmış ve etiketlemeden çıkarılmış.
-- PZEM/SCT kararlılık ölçütleri ayrı açıklanmış ve gerçek kayıtta sınanmış.
-- En az bir ortak kararlı alan eşleştirilmiş; PZEM etiketi, SCT değeri ve farkı raporlanmış.
-- 24.22 katsayısının sonucu hesaplanmış; değiştirilmişse yeni calibration_id ile gerekçelendirilmiş.
-- Kaynak dosya/hash, analiz kodu sürümü, log örneği ve yorum depoda kayıtlı.
+
+- En az bir gerçek yük olayında PZEM ve SCT aynı olay bağlamında kayıtlı.
+- İki akışın zaman ve kararlılık davranışı ayrı raporlanmış.
+- En az bir ortak kararlı alan eşleştirilmiş ve PZEM etiketiyle işaretlenmiş.
+- Dışlanan okumalar ve nedenleri sayılmış.
+- Veri kökeni, kod sürümü, örnek çıktı ve yorum depoda kayıtlı.
 
 ## HEDEF / LOG / SONUÇ
-- **HEDEF:** PZEM referanslı, kararlı alan temelli, tekrarlanabilir SCT etiketleme döngüsünü kurmak.
-- **LOG:** Yalnız gerçek HA export/log ve doğrulanmış entity bilgileri kullanılır; kaynak/ölçüm/yorum ayrımı korunur.
-- **SONUÇ:** Henüz yeni ölçüm veya etiketleme yapılmadı. Bu kart plan ve kabul ölçütlerini tanımlar; kod/deney tamamlandı anlamına gelmez.
+
+- **HEDEF:** PZEM referanslı kararlı alan etiketleme yöntemini gerçek veride kurmak.
+- **LOG:** T007 veri aktarımı henüz tamamlanmadı; bu kart kapsamında eşleştirme yapılmadı.
+- **SONUÇ:** T008 BEKLEMEDE; T007 kabul ölçütleri sağlanınca açılacak.
