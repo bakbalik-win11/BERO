@@ -28,14 +28,14 @@ Dört karşılaştırmanın tamamı ±%4 sınırındadır. Faz 1 hedefi sağland
 
 Faz 2, yeni bir pratik başlangıçtır: önce çalışan kod/örnek bulunur, kayıtlı YAML ve donanım bilgileri başlangıç referansı olarak kullanılır, modüller ve ESP düğümleri tek tek devreye alınır. Her modül için derleme, bağlantı ve gerçek donanım çıktısı ayrı doğrulanır. Başarılı kod, gerçek log/çıktı ve yorum depoda saklanır.
 
-İlk aktif iş **T009 — modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma**. Manyetik teori veya ESP32 ADC iç mimarisi, somut bir sorun veya uygulama kararı gerektirmediği sürece çalışma odağı yapılmaz. Önceki araştırmalar tarihsel teknik referans olarak korunur.
+Genel üst görev **T009 — modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma**. İlk somut modül görevi **T010 — Modül 2 ESP32D1 üçlü SCT okuma modülü**. Manyetik teori veya ESP32 ADC iç mimarisi, somut bir sorun veya uygulama kararı gerektirmediği sürece çalışma odağı yapılmaz. Önceki araştırmalar tarihsel teknik referans olarak korunur.
 
 Modüller çalışır ve gerçek Home Assistant entity akışları oluşur hâle geldikten sonra:
 1. T007 — HA → PC veri aktarımı.
 2. T008 — PZEM ve SCT kararlı alanlarını ayrı bulma, örtüşen alanları eşleştirme ve PZEM ile etiketleme.
 3. T006 — mevcut K=24.22 katsayısını değerlendirme; yalnız veri gerekçelendirirse iyileştirme.
 
-Faz 2 kapsamı: [ADR-014](docs/decisions/ADR-014-phase2-practical-restart.md). İlk görev: [T009](tasks/T009-practical-system-bringup.md).
+Faz 2 kapsamı: [ADR-014](docs/decisions/ADR-014-phase2-practical-restart.md). Üst görev: [T009](tasks/T009-practical-system-bringup.md). İlk modül görevi: [T010](tasks/T010-module2-triple-sct-bringup.md).
 
 ## Çalışan ölçüm baseline'ı
 
@@ -64,11 +64,12 @@ Bu ayarlar Faz 1'deki çalışan yolun tarihsel referansıdır. Faz 2'de yeni mo
 3. [ROADMAP.md](ROADMAP.md) — yalnız iki ana faz.
 4. [PROGRESS_TREE.md](PROGRESS_TREE.md) — genel görünüm.
 5. [tasks/README.md](tasks/README.md) — Faz 2 görev sırası.
-6. [T009](tasks/T009-practical-system-bringup.md) — ilk aktif iş.
-7. [T007](tasks/T007-python-architecture.md) — sonraki veri aktarımı adımı.
-8. [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
-9. [Deney arşivi](experiments/README.md) — Faz 1 tarihçesi.
-10. [Karar kayıtları](docs/decisions/).
+6. [T009](tasks/T009-practical-system-bringup.md) — genel devreye alma üst görevi.
+7. [T010](tasks/T010-module2-triple-sct-bringup.md) — ilk somut modül görevi.
+8. [T007](tasks/T007-python-architecture.md) — sonraki veri aktarımı adımı.
+9. [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
+10. [Deney arşivi](experiments/README.md) — Faz 1 tarihçesi.
+11. [Karar kayıtları](docs/decisions/).
 
 ## Kapsam dışı
 
