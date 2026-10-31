@@ -745,3 +745,12 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **DEĞERLENDİRME:** 0,30 A ve üzeri kararlı pencerelerde eşleşmiş referans varsa ±%4; 0,30 A altında ±%4 kabul/ret yok. SCT toplam akımı gözlemler; PF veya motorun bileşen akımını tek başına ayırmaz.
 - **DOSYA:** [MIXED-LOAD-001 — 100 W akkor + FAN-3](test-loads/mixed-load-100w-plus-fan3/README.md); [test yükleri ana listesi](test-loads/README.md).
 - **SONRAKİ:** Fiziksel düzenek kurulunca UNIT ölçümünü al; ardından SCT ve PZEM loglarını aynı kararlı pencerelerde kaydet. Geçişlerde FAN-3 açma/kapatma anını ayrıca işaretle.
+
+
+## 2026-10-31 — MIXED-LOAD-001 UNIT açılış referansı kaydedildi
+
+- **YÜK:** 100 W akkor + FAN-3 birlikte.
+- **UNIT BİLDİRİMLERİ:** FAN-3 tek başına 0,142 A; 100 W akkor tek başına yaklaşık 0,430 A; iki yük birlikte **0,573 A**.
+- **KAYIT NİTELİĞİ:** 0,573 A, kullanıcının birlikte çalışma için bildirdiği UNIT-reported açılış referansıdır. Ayrı akımların aritmetik toplamı olarak türetilmemiştir. PZEM teyidi ve eşzamanlı SCT logu henüz yoktur.
+- **DURUM:** UNIT başlangıç referansı kaydedildi; PZEM/PF ve SCT ölçümleri bekleniyor. ±%4 sonucu veya PF doğrulaması verilmedi.
+- **DOSYA:** [MIXED-LOAD-001 test kaydı](test-loads/mixed-load-100w-plus-fan3/README.md).
