@@ -1023,3 +1023,14 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **KULLANICI BEYANI:** Gece sistemi boşta bıraktığını, kol temasının 00:30 Türkiye saati sonrasında sürmediğini ve akkor ampulün henüz deney yükü olmadığını önceki mesajlarda bildirmişti.
 - **DÜZELTME:** Bu bilgi ışığında 05:24:02'deki 2.665238 A tepe kola temasla açıklanamaz. Sistem boşta beyanı altında gece boyunca görülen 0.192920 A medyan CT Clamp çıktısı yüksüz zincir davranışı olarak değerlendirilmelidir; gerçek primer akımı olarak sunulmaz.
 - **SINIR:** Kullanıcı beyanı fiziksel koşul bilgisidir, bağımsız akım ölçümü değildir. Tepe olayının kaynağı hâlâ sınıflandırılmadı; ham değer silinmedi.
+
+
+## 2026-10-31 — E00F-N02 değerlendirme notu ve E00F-N03 test planı
+
+- **Durum:** RAPOR GÜNCELLENDİ; sonraki test PLANLANDI, fiziksel olarak uygulanmadı.
+- **Hedef ve kabul ölçütü:** Tekil gece sıçramasının önemini orantılı kaydetmek ve yüksüz gözlemden sonra bilinen akkor yükle yapılacak en küçük kontrollü testi tanımlamak.
+- **Yapılan:** Kullanıcının evde kedi bulunduğu ve tekil sıçramanın önemli görülmemesi gerektiği beyanı rapora işlendi. 05:24:02 civarındaki 2.665238 A tepe ham veriden çıkarılmadı; nedeni belirlenememiş tekil aykırı gözlem olarak bırakıldı. Kedi teması neden olarak atanmadı. E00F-N03 için kapalı → 100 W akkor açık kararlı → kapalı sırası; tek faz iletkeni/tek tur CT yerleşimi; mevcut E00F ayarlarını koruma; dört ADC kanalı, Raw AC/akım ve DEBUG logunu birlikte kaydetme koşulları yazıldı.
+- **Doğrulama:** E00F-N02 raporu, STATUS ve bu günlük GitHub'da güncellendi; yeniden okuma ile içerik kontrol edildi. Fiziksel test, derleme, flash veya yeni ölçüm yapılmadı.
+- **Açık kalanlar:** E00F-N02 fiziksel koşullarının kapanışı ayrı değerlendirilir. E00F-N03 için akkor ampulün etiketi/gücü, CT'nin gerçek iletkeni ve tur sayısı test başlangıcında kaydedilecek.
+- **Sonraki adım:** 100 W akkor ampul hazır olduğunda mevcut E00F firmware'ini değiştirmeden kapalı/açık/kapalı kontrollü kayıt al. Sonra E08 Aşama 3 ADC Continuous/DMA hazırlığını sürdür.
+- **Kanıt:** [E00F-N02 raporu](../experiments/E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md); bu commit.
