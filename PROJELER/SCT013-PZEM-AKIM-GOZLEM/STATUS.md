@@ -1,13 +1,13 @@
-## 2026-10-31 — E00F-N03 100 W akkor yük gözlemi (kısmi, kapanış dönüşü görüldü)
+## 2026-10-31 — E00F-N03 100 W akkor yük gözlemi (kısmi, kapatma saati teyit edildi)
 
-- **Durum:** E00F-N03 FİZİKSEL TEST DEVAM EDİYOR. İlk logda kullanıcı 100 W akkor ampulü 10:32'de açtığını doğruladı. İkinci logda Raw AC seviyesi 10:39:27–10:39:29 arasında yük öncesi tabana döndü; bu saat logdan çıkarılmış geçiş zamanıdır, kullanıcı tarafından bildirilmiş fiziksel kapatma saati değildir.
+- **Durum:** Kullanıcı ampulü 10:32'de açtığını ve 10:39'da kapattığını bildirdi. Logdaki Raw AC düşüşü 10:39:27.837–10:39:29.819 aralığında gerçekleşiyor ve kullanıcı beyanıyla uyumlu. E00F-N03 fiziksel test kaydı, CT'nin primer iletken/tur bilgisi henüz doğrulanmadığından açık kalıyor.
 - **İlk log:** `esp32d2-logs (14).txt`, 222.950 bayt / 3.006 satır; SHA-256 `c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e`. 262 CT penceresi; yük öncesi Raw AC medyanı 0.004 V, yük açık daha sakin bölüm medyanı 0.019 V.
 - **İkinci log:** `esp32d2-logs (15).txt`, 375.017 bayt / 5.000 satır; SHA-256 `1ada9e16f102b8a290d2bdc3b8d7572c3ab442561f552acb081ee367f5a23952`. 455 CT penceresi; zaman aralığı 10:30:51.840–10:45:59.928.
-- **Kapanış dönüşü:** İkinci logda 10:38 bölümünde Raw AC medyanı 0.019 V; 10:39:25.820'de 0.018 V, 10:39:27.837'de 0.006 V ve 10:39:29.819'da 0.000 V. 10:40–10:46 bölümünde medyan 0.000 V (180 pencere), ortalama 0.00238 V. Başlangıç kesitinin 10:30:00–10:32:00 medyanı 0.004 V (35 pencere). Bu, yük kesildikten sonra sinyalin yüksüz davranışına döndüğünü destekler; fiziksel anahtarlama anı yalnız logdan kesinleştirilemez.
+- **Kapanış dönüşü:** 10:39:25.820'de 0.018 V, 10:39:27.837'de 0.006 V, 10:39:29.819'da 0.000 V. 10:40–10:46 bölümünde medyan 0.000 V (180 pencere), ortalama 0.00238 V. Başlangıç kesitinin 10:30:00–10:32:00 medyanı 0.004 V (35 pencere). Kullanıcının 10:39 kapatma beyanı bu geçişle uyumludur.
 - **Yavaş ADC kanalları:** SCT GPIO32 RAW medyanı başlangıç/yük açık/yük sonrası 1842 / 1852 / 1842 count; SCT GPIO33 voltajı 1.642 / 1.657 / 1.642 V. Bias GPIO35 voltaj medyanı 1.653 / 1.653 / 1.653 V. Yavaş ADC yayınları 200 ms CT pencereleriyle eşzamanlı değildir.
 - **Cihaz/log:** İkinci dosyada 455 CT DEBUG penceresi ve 0 ERROR/[E] satırı var. Bu dosya cihaz açılışını içermeyen devam kaydıdır; ilk dosyadaki açılış uyarılarıyla ilgili önceki not geçerlidir.
-- **Sınırlar:** İkinci dosya fiziksel ampul kapatma saatini kullanıcı beyanı olarak içermez. CT'nin hangi iletkeni kaç tur çevrelediği doğrulanmadı. PZEM karşılaştırması ve ham ADC örnek dizisi yok. İki ham TXT dosyası da bu güncellemede Git'e aktarılmadı; SHA-256 ve analiz raporu kaydedildi.
-- **Sonraki adım:** Kullanıcıdan ampulü yaklaşık 10:39:27–10:39:29 civarında kapatıp kapatmadığını teyit et. CT fiziksel iletken/tur bilgisi de doğrulanmadan deneyi TAMAMLANDI yapma. Firmware, katsayı 24.22, eşik, pinler ve cihaz kimliği değiştirilmedi.
+- **Sınırlar:** CT'nin hangi tekil iletkeni kaç tur çevrelediği doğrulanmadı. PZEM karşılaştırması ve ham ADC örnek dizisi yok. İki ham TXT dosyası Git'e aktarılmadı; SHA-256 ve analiz raporu kaydedildi.
+- **Sonraki adım:** CT fiziksel iletken/tur bilgisini doğrula; ardından E00F-N03 kabul ölçütlerini gözden geçir. Firmware, katsayı 24.22, eşik, pinler ve cihaz kimliği değiştirilmedi.
 - **Ayrıntı:** [E00F-N03 raporu](experiments/E00F-unthresholded-overnight-log/E00F-N03-incandescent-step-observation.md), [deney YAML kaydı](experiments/E00F-unthresholded-overnight-log/E00F-N03-experiment.yaml).
 ## 2026-10-31 — E00F-N02 aykırı gözlem değerlendirmesi ve sonraki test
 
