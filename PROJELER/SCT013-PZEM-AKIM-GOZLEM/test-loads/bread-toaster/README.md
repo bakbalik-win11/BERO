@@ -24,7 +24,7 @@ Ekmek kızartma makinesinin yaklaşık 3,30 A UNIT bildirimi çevresinde Modül 
 - PZEM verisi yok. K=24.22 ve firmware değişmedi; katsayı türetilmedi.
 - [Teknik analiz raporu](../../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md).
 - [Seçilmiş log kanıtı](../../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt).
-- Tam ham log bu commit'te GitHub'a aktarılmadı; kaynak dosya konuşma ekinde korunur ve yukarıdaki SHA-256 ile tanımlanır.
+- [Tam ham Log 63](../../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-full.txt) — 32.064 bayt; Git blob SHA `06a342ef00d156a9ca78d4dc5d55ea5debe1790c`; GitHub'dan geri okunarak doğrulandı.
 
 ## DEĞERLENDİRME
 - İlk kısa kayıt SCT-1'in 3,1 A civarında kendi içinde dar dağılım gösterdiğini destekler.
