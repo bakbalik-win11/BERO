@@ -1,3 +1,15 @@
+## 2026-10-31 — Proje iki faza indirildi; Faz 2 aktif edildi
+
+- **HEDEF:** Eski çok fazlı/deney odaklı yapıyı sadeleştirip Faz 1 ve Faz 2 ayrımını tüm ana navigasyon, görev ve karar dosyalarında tutarlı hâle getirmek. Faz 2'nin ilk işini netleştirmek.
+- **BAŞLANGIÇ:** main dalı incelendi. Başlangıç HEAD: 8da78c1cabb56cbb6f839ecb9511912f6c8d4adf. AGENTS.md, README.md, STATUS.md, ROADMAP.md, PROGRESS_TREE.md, görev kartları, deney indeksi, Python mimarisi, açık sorular, deney/karar defteri ve ADR-008/009/010 okundu.
+- **FAZ 1 KARARI:** Dış kaynaklı ESPHome ct_clamp koduyla ±%4 hedefi sağlandı. Dört karşılaştırma: 100 W akkor yaklaşık %0; 150 W akkor −%0,2; kettle düşük/kararlı +%3,0; kettle kaynama −%3,8. Faz 1 tamamlandı. Faz 1 kapsamında yapılmamış kalan deney ve işler hedefe ulaşıldığı için kapatıldı; yapılmamış işler yapılmış deney gibi gösterilmedi.
+- **FAZ 2 KARARI:** Bulunan kod PZEM referans akışıyla eğitilecek. Sıra: T007 HA → PC veri aktarımı; T008 PZEM/SCT ayrı kararlılık, örtüşen pencere eşleştirme ve etiketleme; T006 K=24.22 katsayı/model değerlendirmesi.
+- **ct_clamp:** Şimdilik değiştirilmez. Önce Faz 2 verisiyle PZEM/SCT eşleşmesi yapılır; tekrarlanabilir sorun görülürse hedefli kaynak kod incelemesi açılır.
+- **DEPO DEĞİŞİKLİKLERİ:** README.md, STATUS.md, ROADMAP.md, PROGRESS_TREE.md, AGENTS.md, tasks/README.md, T005/T006/T007/T008 görevleri, Python mimarisi, deney indeksi, E00A/E00B/E00/E07/E08 arşiv başlıkları, EXPERIMENT_LEDGER.md, docs/open-questions.md, ADR-008/009/010 güncellendi. ADR-011 oluşturuldu. Uygulanmamış E09 planı kaldırıldı.
+- **DOĞRULAMA:** Değiştirilen ana dosyalar yeniden okundu; Faz 2 aktif T007 olarak görünüyor; T008 ve T006 beklemede; E09 dosyası 404 ile artık bulunmuyor. Fiziksel ölçüm veya Python uygulaması bu dokümantasyon çalışmasında yapılmadı.
+- **SONUÇ:** Proje yapısı iki ana faza göre düzenlendi. Faz 1 kapalı, Faz 2 aktif. İlk gerçek teknik iş T007'dir.
+- **AÇIK:** T007 için gerçek HA entity_id listesi ve küçük bir geçmiş dışa aktarım örneği gerekiyor. Henüz veri aktarımı veya Python kodu yazılmadı.
+
 ## 2026-10-31 — E00F-N03 100 W akkor yük gözlemi (kısmi)
 
 - **HEDEF:** Mevcut E00F zincirinin 100 W akkor yük açılmasına verdiği tepkiyi, firmware/ayar değişikliği yapmadan yük öncesi kesitle karşılaştırmak.
