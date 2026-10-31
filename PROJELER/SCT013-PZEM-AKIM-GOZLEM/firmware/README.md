@@ -1,14 +1,3 @@
-
-
-## Yeniden kullanılabilir sensör okuma kalıpları
-
-Yeni sensör koduna başlamadan önce [firmware/patterns/README.md](patterns/README.md) okunmalıdır.
-
-- [CT / AC RMS referansı](patterns/ct-clamp-ac-rms-reference.yaml): ADC kaynağı → ct_clamp penceresi → Raw AC RMS gerilim → katsayılı akım. BERO 24.22 katsayısı yalnız tarihsel SCT başlangıç değeridir; başka sensöre taşınmaz.
-- [Genel analog DC gerilim gözlemcisi](patterns/adc-dc-voltage-observer.yaml): ADC pininden gerilim okur. CT RMS hesabı yapmaz; sensörün fiziksel birimine dönüşüm için gerçek sensör transfer fonksiyonu gerekir.
-- İki YAML da açıklamalı referans şablonudur; derleme/OTA/fiziksel test yapılmamıştır. Mevcut ESP32D1 ve ESP32D2 cihaz YAML'ları bu örnekler nedeniyle değiştirilmemiştir.
-- Tekrar örnek eleme, DC offset çıkarma ve RMS hesaplama evrensel filtreler değildir. Sinyal türüne göre seçilir.
-
 # Firmware dosyalari ve dugumler
 
 ## ESP32-WR1-PZEM — PZEM ölçüm ve SSR UDP olay alıcı düğümü
@@ -144,3 +133,12 @@ Mevcut katsayıyı koruyarak, düşük akımın sıfırlanması ve ara sıra gö
 **DERLEME / CİHAZ:** Bu depo değişikliği tek başına YAML'ın derlendiği veya cihaza yüklendiği anlamına gelmez. Kullanıcı yeni sürümü derleyip ESP32D2'ye yükledikten sonra gece kaydı başlayabilir.
 
 Deney planı: [E00F-N01 experiment.yaml](../experiments/E00F-unthresholded-overnight-log/experiment.yaml).
+
+## Yeniden kullanılabilir sensör okuma kalıpları
+
+Yeni sensör koduna başlamadan önce [firmware/patterns/README.md](patterns/README.md) okunmalıdır.
+
+- [CT / AC RMS referansı](patterns/ct-clamp-ac-rms-reference.yaml): ADC kaynağı → ct_clamp penceresi → Raw AC RMS gerilim → katsayılı akım. BERO 24.22 katsayısı yalnız tarihsel SCT başlangıç değeridir; başka sensöre taşınmaz.
+- [Genel analog DC gerilim gözlemcisi](patterns/adc-dc-voltage-observer.yaml): ADC pininden gerilim okur. CT RMS hesabı yapmaz; sensörün fiziksel birimine dönüşüm için gerçek sensör transfer fonksiyonu gerekir.
+- İki YAML da açıklamalı referans şablonudur; derleme/OTA/fiziksel test yapılmamıştır. Mevcut ESP32D1 ve ESP32D2 cihaz YAML'ları bu örnekler nedeniyle değiştirilmemiştir.
+- Tekrar örnek eleme, DC offset çıkarma ve RMS hesaplama evrensel filtreler değildir. Sinyal türüne göre seçilir.
