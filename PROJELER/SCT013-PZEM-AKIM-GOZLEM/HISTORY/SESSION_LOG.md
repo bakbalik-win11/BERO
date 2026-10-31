@@ -1,3 +1,13 @@
+## 2026-10-31 — ct_clamp sohbet sentezi / hipotez sicili
+
+- **HEDEF:** Kullanıcının bu sohbet boyunca sunduğu 19 maddelik hipotez sınıflandırmasını, önceki ct_clamp kaynak araştırması ve BERO log kanıtlarıyla birleştirip yarın devam edilebilir tek bir sicile dönüştürmek.
+- **DEPO OKUMASI:** AGENTS.md, README.md, STATUS.md, ROADMAP.md, T010, E10 protokolü/sonuç defteri, ct_clamp sentez raporu, arşiv indeksi ve PROGRESS_TREE incelendi.
+- **YENİ KAYIT:** `docs/research/ct-clamp/2026-10-31-hypothesis-register-and-next-experiments.md` eklendi. H1–H19 kanıt seviyeleri ve her birinin sınırları, kritik teknik ayrımlar ve deney sırası yazıldı.
+- **SONUÇ:** H1–H5 kaynak kodu/tarihçe ile kanıtlı (H2 sabit bias koşuluyla); H6–H8 BERO saha verisiyle güçlü destekli fakat kapsamı sınırlı; H9–H11 güçlü hipotez; H12–H15 araştırma sorusu; H16–H19 kanıtsız.
+- **ÖNCELİK:** T010 kanal karşılaştırması → E10 200/500/1000/200 ms → last_value için ayrı kontrollü A/B → T007 → T008 → T006. Bu sıra ana Faz 2 görev sırasını değiştirmez.
+- **KORUNAN KARARLAR:** E10 yalnız planlı; K=24.22, 200 ms/2 s ve mevcut firmware değiştirilmedi. Yeni YAML derlenmedi, OTA yapılmadı, fiziksel deney yapılmadı.
+- **DOĞRULAMA SINIRI:** Hipotez sicili yeni ölçüm değildir; H6–H8 kalibrasyon/evrensel doğruluk garantisi değildir. UNIT ile PZEM birbirine karıştırılmaz; zaman eşleşmesi olmayan fark doğruluk sapması sayılmaz.
+
 ## 2026-10-31 — Sensör bağımsız BERO mimarisi üst seviyeye taşındı
 
 - **HEDEF:** Kullanıcının isteği doğrultusunda SCT013 akım projesinde edinilen tecrübeleri yalnızca SCT013 klasöründe tutmayıp, depoda sensörden bağımsız bir mimari yapı içinde sunmak.
