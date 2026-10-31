@@ -705,3 +705,17 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - UNIT PF göstermiyor; PZEM daha sonra eklenecek. UNIT değeri mutlak doğru kabul edilmedi.
 - [Fan test kaydı](test-loads/fan/README.md); [analiz](logs/module2/2026-10-31-fan1-module2-sct1-analysis.md); [tam ham log](logs/module2/2026-10-31-fan1-module2-sct1-extended-full.txt).
 - K=24.22 korundu; yazılımsal sıfır eşiği eklenmedi.
+
+
+## 2026-10-31 — FAN-2 uzun logu arşivlendi ve gözlem oturumu kapatıldı
+
+- **KAPANIŞ SINIFI:** FAN-2, Modül 2 düşük akım gözlem oturumu olarak kapatıldı; ±%4 akım doğrulama testi olarak kapatılmadı.
+- **UNIT:** Kullanıcı bildirimi 0,106 A; 0,30 A altı BERO düşük akım bölgesidir, ±%4 kabul/ret uygulanmaz.
+- **UZUN HAM LOG:** `logs/module2/2026-10-31-fan2-module2-sct1-long-full.txt`; kaynak `esp32d1-logs (42).txt`; 90.706 bayt; kaynak SHA-256 `e550d447b75b50e2b99581a70de23b8916caba576a8665240f44574e586a3dca`.
+- **ZAMAN/ÖRNEK:** 17:26:19.113–17:31:41.120 (+03:00); 162 SCT akım yayını. Önceki kısa dosya (41) ilk 54 yayını içerir ve uzun dosyanın tam başlangıç önekidir; uzun dosya 108 yeni yayın ekler.
+- **AKIM:** Ortalama 0,168969 A; medyan 0,1685 A; min–maks 0,108–0,257 A; örnek SD 0,024640 A. Tüm 162 yayın 0,30 A altındadır.
+- **ANALOG:** Raw AC ortalama 0,00697685 V; bias GPIO35 ortalama 1,663426 V; SCT-1 ADC GPIO32 ortalama 1,660537 V.
+- **KOD:** [FAN-2 kapanış YAML snapshot](firmware/archive/FAN-2-2026-10-31-esp32d1-sct1.yaml). ESPHome 2026.10.1; GPIO32/35; ADC 12 dB / 1 s; ct_clamp 200 ms / 2 s; K=24.22; yazılımsal sıfır eşiği yok. Binary eşleşmesi iddia edilmez.
+- **PF:** Logda PZEM akım/PF yok; UNIT PF göstermiyor. PF etkisi hipotez olarak kalır.
+- **RAPOR:** [FAN-2 teknik analiz](logs/module2/2026-10-31-fan2-module2-sct1-long-analysis.md); [tam ham log](logs/module2/2026-10-31-fan2-module2-sct1-long-full.txt); [fan test kaydı](test-loads/fan/README.md).
+- **AÇIK İŞ:** PZEM akım + PF ile eşleşmiş kararlı pencere; 0,30 A altı ayrı 1T/2T/4T deney matrisi henüz uygulanmadı.
