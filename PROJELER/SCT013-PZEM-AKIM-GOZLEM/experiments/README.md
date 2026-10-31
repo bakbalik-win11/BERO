@@ -31,6 +31,10 @@ Eski kayıtlar:
 
 Dört koşulun tamamı ±%4 sınırındadır. Sonuç ve kapanış kararı [ADR-009](../docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md) içinde kayıtlıdır.
 
+## Test yükleri ve karşılaştırmalı ölçüm kayıtları
+
+Aynı fiziksel yükte farklı ESP/modül/kod düzenekleriyle alınan sonuçlar, deney numaralarından ayrı olarak yük bazında izlenir. Her yükün ana tablosu kod, log, tarih/saat aralığı, referans, sonuç ve ±%4 değerlendirmesini birbirine bağlar. İlk kayıt: [100 W akkor ampul karşılaştırma tablosu](../test-loads/100w-incandescent/README.md). Genel kayıt standardı: [Test yükleri bölümü](../test-loads/README.md).
+
 ## Faz 2 — Yeni deneyler
 
 Şu anda yeni Faz 2 deneyi planlanmış değildir. Önce [T007 veri aktarımı](../tasks/T007-python-architecture.md) yapılacaktır. Gerçek verinin ortaya çıkardığı somut bir soru deney gerektirirse yeni numara ve yeni protokolle açılır.
