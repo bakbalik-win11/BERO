@@ -314,3 +314,9 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - Modül 2 / ESP32D1 / SCT-1; K=24.22 ve ESPHome baseline korunacak.
 - Açılış, kararlı ON, varsa termostat OFF ve geçişler ayrı incelenecek.
 - [TOASTER-001 test planı](toaster/README.md).
+
+## 2026-10-31 — TOASTER-001 UNIT referansı
+
+- UNIT 7,89 A kullanıcı bildirimi olarak kaydedildi; PZEM değildir.
+- SCT loguyla zaman eşleşmesi henüz teyit edilmedi; şimdilik sapma/doğruluk hesabı yapılmaz.
+- [TOASTER-001 test kaydı](toaster/README.md).
