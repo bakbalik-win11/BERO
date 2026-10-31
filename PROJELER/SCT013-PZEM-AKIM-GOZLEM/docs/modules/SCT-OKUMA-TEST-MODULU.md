@@ -28,37 +28,33 @@ Modül harici 5 V DC ile beslenecek. ESP'nin USB bağlantısı PC'ye erişim/ser
 Aşağıdaki çizim, şu ana kadar bildirilen işlevsel bağlantı planıdır. GPIO/kablo eşleştirmeleri kullanıcı bildirimidir. Jack tip/ring/sleeve uçları, bias devresinin kesin düğümleri ve shield üzerindeki fiziksel terminaller henüz ölçülerek doğrulanmadı. Bu nedenle çizim, jack iç bağlantı pinout'u veya üretime hazır elektrik şeması değildir.
 
 ```text
-       SCT-1                         ESP32D1 / GPIO SHIELD
-  [3.5 mm dişi yuva 1]              +----------------------+
-       Sinyal -- SARI -------------->| GPIO32 / ADC1_CH4    |
-                                    |                      |
-       SCT-2                         |                      |
-  [3.5 mm dişi yuva 2]              |                      |
-       Sinyal -- YESIL ------------>| GPIO33 / ADC1_CH5    |
-                                    |                      |
-       SCT-3                         |                      |
-  [3.5 mm dişi yuva 3]              |                      |
-       Sinyal -- MAVI -------------->| GPIO34 / ADC1_CH6    |
-                                    |                      |
-                                    |                      |
-  KUTU ICINDE GOMULU BIAS TRAFOSU MODULU                       
-          |                                                    
-          v                                                    
-  +----------------------+          ESP32D1 / GPIO SHIELD     
-  | ORTAK BIAS DEVRESI   |          +----------------------+  
-  | mini breadboard      |          |                      |
-  |                      |          |                      |
-  | Bias/Vmid dagitimi --+--*------> SCT-1 bias noktasi     |
-  |                      +--*------> SCT-2 bias noktasi     |
-  |                      +--*------> SCT-3 bias noktasi     |
-  |                      |          |                      |
-  | Bias olcum hatti     +-- TURUNCU -> GPIO35 / ADC1_CH7   |
-  | GND                  +----------> ESP32 GND             |
-  +----------------------+          +----------------------+
-
-  KAPALI MODUL KUTUSU: ESP32D1 + 3 SCT GIRISI + BIAS TRAFOSU MODULU
-  Harici 5 V DC (kutu disindan) --> Kartin belgelenmis 5 V girisi
-  PC USB (kutu erisimi) -----------> ESP32 USB (servis/veri erisimi)
+                 KAPALI MODUL KUTUSU
++-----------------------------------------------------------+
+|                                                           |
+|  BIAS TRAFOSU MODULU                                      |
+|       |                                                   |
+|       v                                                   |
+|  ORTAK BIAS DEVRESI                                       |
+|       |---------------------> SCT-1 bias noktasi          |
+|       |---------------------> SCT-2 bias noktasi          |
+|       |---------------------> SCT-3 bias noktasi          |
+|       |                                                   |
+|       +---- TURUNCU --------------------> GPIO35 / ADC1   |
+|       +---- GND ------------------------> ESP32 GND       |
+|                                                           |
+|  SCT-1 sinyal -- SARI ------------------> GPIO32 / ADC1   |
+|  SCT-2 sinyal -- YESIL -----------------> GPIO33 / ADC1   |
+|  SCT-3 sinyal -- MAVI ------------------> GPIO34 / ADC1   |
+|                                                           |
+|  +----------------------+                                 |
+|  | ESP32D1 + GPIO SHIELD|                                 |
+|  +----------------------+                                 |
+|                                                           |
++-----------------------------------------------------------+
+       ^                              ^
+       |                              |
+HARICI 5 V DC                  USB -> PC / SERVIS
+(kutu disindan)
 ```
 
 `*` İşaretleri ortak bias düğümünün üç kanala dağıtılması fikrini gösterir; gerçek direnç/kondansatör bağlantı noktalarını veya jack kontaklarını tarif etmez. Bu noktalar bias devresi ve kablo süreklilik ölçümüyle netleştirilecektir.
@@ -97,7 +93,7 @@ Toplam dört ADC giriş noktası hedeflenir:
 3. SCT-3 ayrı sinyal hattı.
 4. Üç SCT'ye ortak dağıtılan tek bias/Vmid düğümünün bir kez ölçülmesi.
 
-Tek bir bias devresi kullanılacaktır. Kayıtlı bias devresi mini breadboard üzerinde kurulacak ve Bias Trafosu modülünden beslenecektir. Ortak bias seviyesi üç SCT girişine dağıtılır; her SCT için ayrı bias kaynağı yapılmaz.
+Tek bir ortak bias devresi kullanılacaktır. Bias Trafosu modülü ve ortak bias devresi kapalı kutu içine gömülüdür. Ortak bias seviyesi üç SCT girişine dağıtılır; her SCT için ayrı bias kaynağı yapılmaz. Ortak bias seviyesi üç SCT girişine dağıtılır; her SCT için ayrı bias kaynağı yapılmaz.
 
 ## 5. Bildirilen fiziksel GPIO eşleştirmeleri
 
