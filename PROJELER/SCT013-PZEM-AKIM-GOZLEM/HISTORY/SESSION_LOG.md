@@ -1371,3 +1371,11 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **TOASTER-001:** Tost makinesi için yeni gözlem testi açıldı. Etiket gücü ve UNIT/PZEM referansı bilinmiyor; ölçüm ve log bekleniyor. Açılış, kararlı ON, varsa termostat OFF ve geçişler ayrı değerlendirilecek.
 - **DOSYALAR:** [IRON-001 kapanış raporu](../test-loads/iron/README.md); [TOASTER-001 test planı](../test-loads/toaster/README.md).
 - **DURUM:** Aktif test TOASTER-001. IRON-001 yalnız iki logluk rapor kapsamıyla kapatıldı.
+
+
+## 2026-10-31 — TOASTER-001 UNIT bildirimi
+
+- Kullanıcı tost makinesi testi için UNIT değerini **7,89 A** olarak bildirdi.
+- Değer TOASTER-001 test README ve STATUS'a kullanıcı bildirimi olarak işlendi; UNIT, PZEM değildir.
+- SCT loguyla eşzamanlılığı henüz doğrulanmadığından sapma/doğruluk hesabı yapılmadı.
+- Test TOASTER-001 olarak açık kalır.
