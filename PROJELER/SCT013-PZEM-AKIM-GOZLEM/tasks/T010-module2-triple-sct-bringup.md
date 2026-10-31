@@ -151,3 +151,9 @@ Başlangıç ESPHome iskeleti [esp32d1.yaml](../firmware/esp32d1.yaml) dosyasın
 - **HEDEF:** Modül 2'nin elektriksel ve yazılımsal yapısını uygulanabilir hâle getirmek.
 - **LOG:** Kullanıcının ESPHome temel ayarları, dört bağlantı bildirimi, kapalı kutu montajı, kutu içindeki Bias Trafosu modülü ve harici 5 V besleme planı kaydedildi.
 - **SONUÇ:** GPIO eşleştirme tablosu ve 100 W akkor ampulle üç ayrı kanal test planı depoda. Üç test sonucu, derleme ve fiziksel çalışma doğrulaması beklemede. Modül tamamlanmış değildir.
+
+## 2026-10-31 — E10 ct_clamp pencere süresi gözlem deneyi
+
+T010 altında, mevcut SCT-1 okuma zincirinin pencere süresine duyarlılığını incelemek için [E10 protokolü](../experiments/E10-ct-clamp-window-duration/README.md) açıldı. Deney 200 → 500 → 1000 → 200 ms geri dönüş sırasını kullanır. SCT-1 GPIO32, ortak bias GPIO35, ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp update_interval: 2s ve K=24.22 sabit kalır. Yalnızca sample_duration değişir. BREAD-TOASTER-001 aynı fiziksel yük olarak seçildi; Log 63 tarihsel 200 ms tabanıdır, yeni A kontrol aşaması yine alınacaktır.
+
+**Amaç kalibrasyon değildir.** Pencere süresinin Raw AC RMS, akım dağılımı, kabul edilmiş örnek sayısı/SPS ve geçişleri yumuşatma davranışı üzerindeki etkisi gözlenecek. Raporlardaki simülasyonlar gerçek BERO ölçümü sayılmayacak. E10 henüz PLANLANDI; YAML değişikliği, derleme/OTA ve fiziksel log bekliyor. Sonuçlar [E10 sonuç defterine](../experiments/E10-ct-clamp-window-duration/results.md) yazılacak.
