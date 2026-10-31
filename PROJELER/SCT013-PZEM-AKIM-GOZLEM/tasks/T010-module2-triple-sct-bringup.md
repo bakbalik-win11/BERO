@@ -1,6 +1,6 @@
 # T010 — Modül 2: ESP32D1 üçlü SCT okuma modülünü oluşturma
 
-- **Durum:** AKTİF — tasarım ve donanım hazırlığı
+- **Durum:** AKTİF — firmware yüklendi ve dört ADC başlatması logla doğrulandı; SCT/100 W kanal testleri bekliyor
 - **Faz:** Faz 2 — Pratik yeniden kurulum ve sistem geliştirme
 - **Modül:** BERO-SCT-OKUMA-TEST-002
 - **Karar:** [ADR-015](../docs/decisions/ADR-015-module2-esp32d1-triple-sct.md)
