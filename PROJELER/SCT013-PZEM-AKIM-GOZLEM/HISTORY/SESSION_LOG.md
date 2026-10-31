@@ -1,3 +1,14 @@
+## 2026-10-31 — Modül 2 ESP32D1 üçlü SCT görevi açıldı (ADR-015 / T010)
+
+- **HEDEF:** Üç SCT sinyali + tek ortak bias ADC okuması olan, ESP32D1 gömülü, harici 5 V beslemeli ve USB üzerinden PC'ye erişilebilir SCT okuma modülünü tanımlamak.
+- **KULLANICI BİLDİRİMİ:** ESPHome cihaz kimliği `esp32d1`, friendly_name `ESP32D1`; temel ESP32/ESP-IDF, logger, API, OTA ve Wi-Fi iskeleti verildi. Henüz ADC/SCT kodu yok.
+- **KULLANICI BİLDİRİMİ:** 1. dişi SCT yuvasının sarı sinyal kablosu shield GPIO32 terminalinde; 2. dişi SCT yuvasının yeşil sinyal kablosu shield GPIO33 terminalinde.
+- **KARAR:** Tek ortak bias devresi mini breadboard üzerinde; aynı bias beslemesi üç SCT girişine dağıtılacak. Üç sinyal ayrı okunacak ve ortak bias tek ADC noktasından izlenecek. Toplam dört ADC giriş noktası hedeflenir.
+- **BESLEME:** ESP32 modül dışından 5 V DC alacak; USB üzerinden PC erişimi sağlanacak. Harici 5 V ve PC USB'nin eşzamanlı kullanımına kartın güç yolu incelenmeden izin verildiği varsayılmayacak.
+- **DEPO:** ADR-015, T010 ve `firmware/esp32d1.yaml` başlangıç iskeleti eklendi; Modül 2 dokümanı ve proje durum kayıtları güncellenecek/güncellendi.
+- **AÇIK:** ESP kart/shield modeli, GPIO32/GPIO33 dışında üçüncü SCT ve bias GPIO'ları, jack uç pinout'u, bias ADC RAW/voltaj tercihi, USB güç yolu.
+- **DOĞRULAMA SINIRI:** YAML yalnız temel ESPHome iskeletidir. ADC/SCT sensör kodu yazılmadı; derleme, OTA ve fiziksel test yapılmadı. Modül tamamlanmış değildir.
+
 ## 2026-10-31 — Faz 2 pratik yeniden başlangıç olarak yeniden tanımlandı (ADR-014)
 
 - **HEDEF:** Faz 2'nin yalnız PZEM ile kod eğitimi olmadığını; BERO modüllerini ve ESP düğümlerini pratik biçimde yeniden devreye alma ve sistemi geliştirme aşaması olduğunu proje kayıtlarına yansıtmak.
