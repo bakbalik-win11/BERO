@@ -1,5 +1,15 @@
 ## 2026-10-31 — ESPHome ct_clamp raporlarının ayrı ayrı arşivlenmesi
 
+- **HEDEF:** Kullanıcının yüklediği iç çalışma raporunu ve bağımsız teknik incelemeyi ayrı, izlenebilir dosyalar halinde BERO deposunda saklamak.
+- **DEPO İNCELEMESİ:** AGENTS.md, STATUS.md, ROADMAP.md, PROGRESS_TREE.md ve EXPERIMENT_LEDGER.md okundu. Faz 2 / T010 aktif; bu rapor arşivi görev sırasını değiştirmiyor.
+- **KULLANICI BELGESİ:** Dört sayfalık DOCX'in metin aktarımı Markdown olarak saklandı. Kaynak dosya boyutu 9.547 bayt; kaynak SHA-256 `cfb2d76f64a93efd8d80e0005c6e80b974d9086e77b72f61542898aa03f88a05`. Simülasyon/varsayım uyarıları ve GPIO33 başlığı korundu.
+- **BAĞIMSIZ RAPOR:** ESPHome 2026.10.1 kaynak kodu (commit `4ea26ed`), Espressif ADC dokümanları, SCT013-030 teknik bilgisi ve BERO Log 63 istatistikleriyle ayrı Markdown raporu arşivlendi.
+- **ÖNEMLİ AYRIM:** Kullanıcı raporundaki simülasyon tabloları gerçek BERO ölçümü sayılmadı. Kullanıcı raporunun GPIO33 başlığı ile Log 63'teki GPIO32 bağlantı kaydı arasındaki fark not edildi.
+- **SONUÇ:** İki rapor ve yönlendirme README'si arşivlendi. Firmware, K=24.22, sample_duration ve update_interval değiştirilmedi. Yeni fiziksel test yapılmadı.
+- **DOSYALAR:** [Arşiv README](../docs/research/ct-clamp/README.md); [bağımsız inceleme](../docs/research/ct-clamp/2026-10-31-independent-technical-review.md); [kullanıcı raporu metin aktarımı](../docs/research/ct-clamp/source/2026-10-31-user-supplied-ct-clamp-report.md).
+
+## 2026-10-31 — ESPHome ct_clamp raporlarının ayrı ayrı arşivlenmesi
+
 - **HEDEF:** Kullanıcının yüklediği iç çalışma raporunu ve önceki bağımsız teknik incelemeyi ayrı, izlenebilir dosyalar halinde BERO deposunda saklamak.
 - **DEPO İNCELEMESİ:** AGENTS.md, STATUS.md, ROADMAP.md, PROGRESS_TREE.md ve EXPERIMENT_LEDGER.md okundu. Faz 2 / T010 aktif; bu rapor arşivi görev sırasını değiştirmiyor.
 - **KULLANICI BELGESİ:** DOCX özgün biçimiyle saklandı. Boyut 9.547 bayt; kaynak SHA-256 `cfb2d76f64a93efd8d80e0005c6e80b974d9086e77b72f61542898aa03f88a05`.
