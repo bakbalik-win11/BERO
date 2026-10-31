@@ -1254,3 +1254,8 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 ## 2026-10-31 — EINHELL-CHARGER-001 akım güncellemesi
 
 Kullanıcı, Einhell şarj cihazı akımının 0,413 A'dan 0,419 A'a yükselip sabitlendiğini bildirdi. Fark +0,006 A'dır. Ölçüm cihazı ve ESP32D1 logu henüz doğrulanmadı; deney açık.
+
+
+## 2026-10-31 — EINHELL-CHARGER-001 ek akım gözlemi
+
+Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,413 A ve 0,419 A (sabitlendi) idi. Bildirilen gözlem aralığı 0,413–0,422 A; 0,419 A'dan 0,422 A'ya fark +0,003 A (yaklaşık +%0,72). 0,422 A'nın sabitlendiği söylenmedi. Ölçüm cihazı henüz belirtilmedi; PZEM/SCT sonucu olarak etiketlenmedi. Deney açık, ESP32D1 logu ve referans cihaz bilgisi bekleniyor.
