@@ -1,3 +1,5 @@
+> **Sonraki karar / güncel uygulama:** ADR-012 ilk taslakta ESP32D2 ve ESP besleme yöntemini açık bırakmıştı. 2026-10-31 tarihli [ADR-015](ADR-015-module2-esp32d1-triple-sct.md) ile Modül 2'nin gömülü ESPHome kimliği `esp32d1`, harici 5 V besleme ve PC USB erişimi olarak güncellendi. ADR-012 tarihsel kapsam kararını korur; ESP kimliği ve besleme bakımından ADR-015 geçerlidir.
+
 # ADR-012 — SCT Okuma Test Modülü kutu kapsamını sadeleştirme
 
 - **Tarih:** 2026-10-31
