@@ -1,3 +1,11 @@
+## 2026-10-31 — Güncel karar: ±%4 hedefi sağlandı
+
+- **Ölçüm hedefi:** Kullanıcının bildirimine göre yeni/harici kod ±%4 sapma hedefini sağladı. 100 W akkor, 150 W akkor ve kettle'ın iki çalışma koşulunda verilen dört karşılaştırmanın tamamı sınır içinde. Ayrıntı: [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
+- **Kapatılan ara işler:** PC'ye ham 50 Hz dalga aktarımı, ADC örneklerini tek tek zaman damgalı saklama ve bunlar için DMA/ADC Continuous geliştirmesi artık gereksiz; kapatıldı.
+- **Korunan:** E00F çalışan ct_clamp firmware'i ve mevcut ayarları. E00F-N03 aç-kapa gözlemi tamamlandı.
+- **Sınır:** Harici kodun kaynak dosyası bu depoda değil; ±%4 sonucu kullanıcı raporudur. Python model/eğitim hattı, bağımsız genelleme testi ve E08'in tüm yük matrisi tamamlandı denmiyor.
+- **Yeni odak:** Çalışan kodu koruma, ölçüm tekrar edilebilirliği ve ölçüm kayıtlarını düzenleme.
+
 # BERO — İlerleme Ağacı
 
 > **Amaç:** Depoyu baştan sona okumadan projenin genel yapısını, nerede olduğumuzu ve sıradaki adımı kabaca görebilmek. Bu dosya bir özet/navigasyon haritasıdır; ayrıntılı kayıtların yerine geçmez.
