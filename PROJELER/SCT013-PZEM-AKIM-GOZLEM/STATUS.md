@@ -1,3 +1,14 @@
+## 2026-10-31 — Ölçüm hedefi sağlandı; yüksek hızlı ham edinim ara işleri kapatıldı
+
+- **Karar:** Kullanıcının bildirdiği üzere yeni/harici kodla ±%4 sapma hedefi sağlandı. Bu nedenle 50 Hz ham dalga şeklini PC'ye aktarma, her ADC örneğini ayrı zaman damgasıyla saklama ve bu amaçla DMA/ADC Continuous firmware'i geliştirme işleri artık hedef değildir; **GEREKSİZ / KAPATILDI** olarak arşivlenir.
+- **Kapsam:** Kapanış yalnızca bu ara edinim işlerine ilişkindir. E00F'nin çalışan ESPHome ct_clamp yolu ve ölçüm ayarları korunur. Ham dalga/örnek-zaman damgası gereksinimi yeni iş veya kabul kriteri olarak açılmaz.
+- **Ölçüm kanıtı (KULLANICI RAPORU):** 100 W akkor: referans 0,446–0,447 A, kod 0,4471 A (yaklaşık %0); 150 W akkor: 0,616 A / 0,615 A (−%0,2); kettle düşük/kararlı: 0,637 A / 0,656 A (+%3,0); kettle kaynama: 6,39 A / 6,15 A (−%3,8). Dört karşılaştırmanın tamamı ±%4 sınırındadır. Değerler kullanıcının önceki gün sunduğu ölçümlerin mevcut konuşmada özetlenen tablosundan aktarılmıştır; ham ölçüm dosyaları ve referans cihazın bağımsız yeniden incelemesi bu depo güncellemesinde yapılmadı.
+- **Önemli ayrım:** Bu sonuç, kullanıcı tarafından bildirilen harici kodla hedefe ulaşıldığını gösterir; harici kodun kaynak dosyası/commit'i bu kayda eklenmiş değildir. BERO deposundaki Python eğitim/model hattının tamamlandığı veya bağımsız genelleme testinin yapıldığı anlamına gelmez.
+- **Korunan sınırlar:** ESPHome E00F YAML'ı, ct_clamp 200 ms penceresi, 2 s yayın aralığı, 24.22 katsayısı ve cihaz kimliği bu kararla değiştirilmez. E00F-N03 aç-kapa gözlemi kendi kapsamı içinde tamamlanmış kalır.
+- **Sonraki odak:** Yeni örnek edinim altyapısı yerine çalışan ölçüm kodunun korunması, ölçüm koşullarının tekrarlanabilirliği ve mevcut referans karşılaştırmalarının kayıt altına alınması.
+- **Durum etiketi:** ±%4 sonucu KULLANICI RAPORU; harici kodun repo içine alınması/bağımsız derlenmesi YAPILMADI.
+- **Ayrıntı:** [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
+
 ## 2026-10-31 — E00F-N03 100 W akkor yük aç-kapa gözlemi (TAMAMLANDI)
 
 - **Durum:** Kullanıcı ampulü 10:32'de açtığını ve 10:39'da kapattığını bildirdi. Logdaki Raw AC düşüşü 10:39:27.837–10:39:29.819 aralığında gerçekleşiyor ve kullanıcı beyanıyla uyumlu. Kullanıcı CT bağlantısını da doğruladı: yalnız faz iletkeni, SCT içinden tek geçiş (1 tur). Bu donanım teyidi kullanıcı beyanıdır; bağımsız fiziksel inceleme değildir. N03'ün kendi kabul koşulu olan kapalı → açık kararlı → kapalı dönüş gözlemi karşılandı; test TAMAMLANDI. PZEM karşılaştırması/kalibrasyon ayrı görevdir, N03'ü açık tutmaz.
