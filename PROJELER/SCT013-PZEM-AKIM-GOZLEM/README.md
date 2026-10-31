@@ -1,4 +1,5 @@
 
+
 ## Sensör okuma mimarisi ve tekrar kullanılabilir kod
 
 ESPHome `ct_clamp` araştırmasından çıkan ortak sensör okuma yaklaşımı ve açıklamalı YAML örnekleri [firmware/patterns/README.md](firmware/patterns/README.md) altında tutulur.
