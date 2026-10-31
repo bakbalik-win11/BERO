@@ -1,47 +1,51 @@
-# T007 — Python program mimarisini kullanıcı hedeflerine göre tanımla
+# T007 — Home Assistant verisini PC'ye aktarma ve Python başlangıcı
 
-- **Durum:** BEKLEMEDE — taslak korunuyor; E00A/E00/E01 edinim sonuçları ve gerçek HA→PC veri akışı netleşene kadar aktif çalışma değil.
-- **Faz:** 3–7 (PZEM edinimi, kayıt şeması, hizalama ve analiz hazırlığı)
-- **Bağımlılık:** E00A/E00/E01 temel edinim sonuçları, kullanıcı tarafından açıklanan Home Assistant → PC veri akışı hedefi
-- **Hedef:** Python tarafında yapılacak işlerin sınırlarını ve bağımlılıklarını, gerçek ölçüm verisi ve kullanıcı hedefleriyle uyumlu olacak şekilde aşamalı olarak tanımlamak; erken ve kanıtsız mimari varsayımlar üretmemek.
+- **Durum:** AKTİF — Faz 2'nin ilk görevi
+- **Faz:** Faz 2 — Bulunan kodu PZEM ile eğitmek
+- **Bağımlılık:** Faz 1'de bulunan çalışan SCT ölçüm yolu ve mevcut PZEM-004T V3.0 veri akışı.
+- **Hedef:** Home Assistant'ta kaydedilen PZEM ve SCT entity geçmişlerini PC'ye taşıyacak, kaynak bilgilerini koruyacak ve aynı veri üzerinde tekrar çalıştırılabilecek en küçük Python veri giriş hattını kurmak.
 
-## Mevcut durum
+## Neden ilk iş bu?
 
-- [Python Program Mimarisi](../docs/architecture/python-program-architecture.md) yalnızca hedefleri ve açık kararları kaydeden taslaktır.
-- Proje klasöründe Python uygulama dosyası henüz bulunmuyor.
-- Home Assistant kayıtlarının PC'ye aktarılması, PZEM ve üç SCT kanalının analiz/etiketlenmesi Python tarafında hedefleniyor.
-- Program sayısı, çalıştırılabilir süreçler, modül sınırları, aktarım yöntemi ve veri sözleşmeleri henüz belirlenmedi.
-- İlk ADC edinim deneyleri ve veri biçimi gereksinimleri anlaşılmadan uygulama mimarisini kesinleştirmek hedeflenmiyor.
+PZEM ve SCT kararlı alanlarını eşleştirebilmek için önce iki akışın aynı PC çalışma alanında, kaynak timestamp'leri bozulmadan bulunması gerekir. Kararlılık algoritması, etiket şeması veya katsayı modeli bu veri yolu görülmeden kesinleştirilmeyecek. Eski E00A/E00/E01 ADC deneyleri T007'nin ön koşulu değildir; Faz 1 hedefe ulaşıldığı için kapatılmıştır.
 
-## Yapılacak
+## Bilinen hedef
 
-1. Kullanıcının mevcut veri akışı hedefini mimari belgede koru; bilinmeyen ayrıntıları açık soru olarak tut.
-2. E00A/E00/E01 çıktılarından gerçek ham kayıt ve metadata gereksinimlerini çıkar.
-3. [FIELDS.md](../schema/FIELDS.md) ve JSON Schema dosyalarının hangi kayıt türleri için hedef olduğunu belirle; henüz üretilmeyen alanları uygulandı sayma.
-4. HA → PC aktarım biçimi ve sıklığı netleşince en küçük gerekli program/modül sınırlarını öner.
-5. Mimari kararları ancak somut gereksinim ve örnek kayıtlarla gerekçelendir; karar verilirse ilgili ADR veya mimari belgeye yaz.
+- Home Assistant geçmişinden PZEM ve mevcut SCT entity kayıtları alınacak.
+- Veriler PC'de Python ile işlenecek.
+- Kaynak entity_id, state/value, unit, timestamp ve mevcutsa attributes korunacak.
+- PZEM ve SCT farklı güncelleme hızlarında olabilir; aktarım bunları yapay olarak eşitlemeyecek.
+- Aynı dışa aktarılan dosya tekrar analiz edilebilir olmalı.
+
+## Bu görevde yapılacaklar
+
+1. Home Assistant'ta gerçek PZEM ve SCT entity_id listesini belirle; tahmin etme.
+2. HA geçmişini PC'ye almanın mevcut en basit yolunu seç (ör. HA export/API veya dosya dışa aktarımı); seçim gerçek erişim ve örnek veri üzerinden yapılacak.
+3. Küçük bir gerçek örnek dışa aktar ve dosya biçimini/alanlarını incele.
+4. Python tarafında dosyayı okuyup satır sayısı, zaman aralığı, entity dağılımı, eksik/geçersiz değer sayısı ve birim özetini çıkar.
+5. Kaynak dosya adı, hash'i, aktarım zamanı ve kullanılan kod sürümünü sonuç kaydına ekle.
+6. Başarılı kod, örnek log/çıktı ve yorumunu depoda sakla.
+
+## Bu görevde yapılmayacaklar
+
+- Faz 1 deneylerini yeniden açmak.
+- Sürekli ham ADC veya 50 Hz dalga kaydı geliştirmek.
+- Şimdiden sabit örnekleme/polling aralığı veya kararlılık eşiği belirlemek.
+- PZEM ve SCT timestamp'lerini aynı zamana yuvarlamak veya yapay senkronize etmek.
+- K=24.22 katsayısını değiştirmek.
+- \`ct_clamp\` kaynak kodunu değiştirmek.
+- Henüz veri görmeden yeni deney serisi tasarlamak.
 
 ## Kabul ölçütü
 
-- Bilinen hedefler, bilinmeyen kararlar ve bağımlılıklar ayrı ayrı belgelenmiş olmalı.
-- Gerçek kodun varlığı veya çalışması hakkında kanıtsız iddia bulunmamalı.
-- Her önerilen program/modülün girdisi, çıktısı ve sorumluluğu açıklanmalı; kullanıcı tarafından onaylanmamış kararlar kesinleşmiş gibi sunulmamalı.
-- Görev durumu, gerçek kod/deney ilerlemesini değil bu mimari tanımlama işinin durumunu yansıtmalı.
+- Gerçek HA dışa aktarımı PC'ye alınmış ve Python ile açılmış olmalı.
+- PZEM ve SCT kayıtları entity_id bazında ayrıştırılabilmeli.
+- Timestamp, birim ve kaynak değerleri korunmuş olmalı.
+- Aktarım/okuma kodu tekrar çalıştırılabilir olmalı.
+- Bir gerçek örnek çıktı/log ve kısa yorumu depoya eklenmiş olmalı.
 
-## Çıktı / dokunulacak dosyalar
+## HEDEF / LOG / SONUÇ
 
-- [docs/architecture/python-program-architecture.md](../docs/architecture/python-program-architecture.md)
-- [schema/FIELDS.md](../schema/FIELDS.md) ve mevcut JSON Schema dosyaları
-- Gerekirse STATUS.md, ROADMAP.md ve HISTORY/SESSION_LOG.md
-
-## Kanıt
-
-- Mimari taslak: [python-program-architecture.md](../docs/architecture/python-program-architecture.md)
-- Gerçek Python uygulaması henüz yok; firmware, fiziksel ölçüm ve Python testleri bu görev kapsamında henüz çalıştırılmadı.
-
-## Açık kalanlar
-
-- Kaç süreç/program gerekeceği.
-- Home Assistant'tan PC'ye veri aktarım yöntemi ve kayıt biçimi.
-- Ham ADC kayıtlarının boyutu/sıklığı ve özet/olay kesiti saklama sınırları.
-- JSON Schema doğrulamasının hangi aşamada ve hangi araçla çalıştırılacağı.
+- **HEDEF:** Faz 2'nin ilk veri yolunu kurmak.
+- **LOG:** Henüz bu yeni görev kapsamında HA verisi dışa aktarılmadı ve Python uygulaması yazılmadı.
+- **SONUÇ:** T007 AKTİF. İlk somut adım, gerçek HA entity listesini ve dışa aktarılabilir geçmiş örneğini elde etmektir.
