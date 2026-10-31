@@ -45,10 +45,10 @@ YAML henüz ADC/SCT/bias sensör bileşenleri içermez. Dört GPIO eşlemesi kul
 3. Üç jack ve ortak bias mini breadboard bağlantılarını fiziksel olarak izle; tip/ring/sleeve pinout'unu doğrula.
 4. Bildirilen dört eşleştirmeyi (GPIO32 sarı, GPIO33 yeşil, GPIO34 mavi, GPIO35 turuncu bias) fiziksel olarak teyit et.
 5. Tek ortak bias bağlantısını üç SCT sinyal girişine nasıl dağıtacağını mevcut bias devresi üzerinde doğrula.
-6. Bias ölçüm entity'sinin RAW count veya voltaj gösterimini kararlaştır; tek fiziksel bias ADC girişi kullan.
-7. Üç kanallı SCT için çalışan ESPHome örneği bul; minimum uyarlamayla yapılandır.
-8. Önce YAML derleme kontrolü, sonra uygun düşük gerilim bağlantısı ve gerçek donanım testi yap.
-9. Başarılı YAML, gerçek cihaz logu/çıktısı ve yorumunu depoda sakla.
+6. İlk sürümde dört ADC kanalı voltaj olarak tanımlandı; fiziksel bias gerilimi ölçülerek Home Assistant değeriyle karşılaştırılacak.
+7. İlk ADC giriş kontrolü YAML'ını derle; derleme sonucunu kaydet.
+8. Analog düğümlerin gerilimini multimetreyle doğrula; sonra düşük gerilim bağlantısı ve dört kanalın HA yayını testini yap.
+9. Başarılı derleme/cihaz logu, gerçek sensör çıktısı ve yorumunu depoya ekle. SCT akım/RMS okuma yaklaşımı ancak bu temel aşama doğrulandıktan sonra seçilecek.
 
 ## Açık noktalar
 
@@ -58,7 +58,7 @@ YAML henüz ADC/SCT/bias sensör bileşenleri içermez. Dört GPIO eşlemesi kul
 - Üç jack'in tip/ring/sleeve pinout'u ve dört rengin gerçek terminal güzergâhının fiziksel teyidi.
 - Bias devresinin elektrolitik kondansatör değeri/polaritesi ve Bias Trafosu modülünden besleme bağlantısı.
 - Bias ADC'nin yazılım gösterimi (RAW count veya voltaj).
-- Üç kanallı okuma için seçilecek çalışan ESPHome örneği.
+- SCT sinyalinden akım/RMS üretmek için sonraki aşamada seçilecek çalışan okuma yaklaşımı.
 
 ## Bağlantı ve güvenlik koşulları
 
