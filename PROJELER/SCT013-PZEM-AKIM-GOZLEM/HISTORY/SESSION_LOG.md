@@ -1,3 +1,19 @@
+## 2026-10-31 — E00F-N03 100 W akkor yük gözlemi (kısmi)
+
+- **HEDEF:** Mevcut E00F zincirinin 100 W akkor yük açılmasına verdiği tepkiyi, firmware/ayar değişikliği yapmadan yük öncesi kesitle karşılaştırmak.
+- **BAŞLANGIÇ:** main dalı başlangıç HEAD `8d92f4ac53875d6136b72fcb81a831c939e6893d`. AGENTS.md, STATUS.md, ROADMAP.md, docs/open-questions.md, PROGRESS_TREE.md, E00F-N02 raporu, E00F-N01 experiment.yaml ve SESSION_LOG okundu.
+- **KULLANICI BEYANI:** 100 W akkor ampulün 10:32'de açıldığı doğrulandı.
+- **GİRDİ:** `esp32d2-logs (14).txt`, 3.006 satır, 222.950 bayt, SHA-256 `c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e`.
+- **LOG:** ESPHome 2026.10.1 / ESP32 rev3.1 / esp32d2; 10:30:27.239–10:39:09.934. 262 CT Clamp penceresi, 0.20 s sample duration / 2.00 s update; GPIO32/33/34/35 ADC1, 12 dB, samples=1, average, 1 s. ERROR/[E] yok; üç framework uyarısı.
+- **İSTATİSTİK:** Yük öncesi 46 CT penceresinde Raw AC medyanı 0.004 V, ortalama 0.00426 V, p95 0.011 V. 10:32 sonrası 215 pencerede medyan 0.019 V, ortalama 0.02447 V, p95 0.080 V. 10:35–10:39 daha sakin bölümünde 124 pencerede medyan 0.019 V, ortalama 0.02003 V, p95 0.02385 V; akım entity medyanı 0.466 A, ortalaması 0.482 A.
+- **AÇIK ANOMALİ:** 10:33:53–10:34:21 arasında Raw AC 0.080–0.088 V kümesi; maksimum 0.088 V / 2.129 A. Bu kesitte N medyanı 3.754; tüm logda Raw AC–N korelasyonu yaklaşık 0.886. N/SPS aynı sayaçtan türetilir ve gerçek ADC dönüşüm hızı değildir; korelasyon fiziksel nedeni açıklamaz.
+- **ADC KANALLARI:** Her yavaş kanal 523 yayın içeriyor. Medyanlar yük öncesi/sonrası GPIO32 1842/1847.5 count; GPIO33 1.643/1.652 V; GPIO34 1841/1840 count; GPIO35 1.653/1.653 V. Bu okumalar CT pencereleriyle eşzamanlı değil.
+- **SONUÇ:** Yük açılması sonrasında Raw AC medyanı yaklaşık 4.75 kat yükselmiş; daha sakin yük bölümünde 0.019 V çevresinde kalmış. E00F zincirinin bilinen akkor yüke tepki verdiği destekleniyor. Kalibrasyon, PZEM referans uyumu veya ±%4 doğruluk sonucu çıkarılmadı.
+- **SINIR / DURUM:** Dosyada yük kapatma olayı yok; E00F-N03 DEVAM EDİYOR. CT'nin fiziksel iletkeni/tur sayısı teyit edilmedi. Tam ham TXT Git'e aktarılmadı; hash, ölçüm özeti ve seçilmiş log satırları deney raporuna işlendi.
+- **DEĞİŞİKLİK:** E00F-N03 experiment YAML ve kısmi sonuç raporu oluşturuldu; STATUS ve bu günlük güncellendi. Firmware, katsayı, eşik, pin veya cihaz kimliği değiştirilmedi.
+- **SONRAKİ ADIM:** Kullanıcı yükü kapattığında saat işareti alınacak; kapanış sonrası ölçümlerle geri dönüş incelenecek.
+- **KANIT:** [E00F-N03 raporu](../experiments/E00F-unthresholded-overnight-log/E00F-N03-incandescent-step-observation.md), [experiment.yaml](../experiments/E00F-unthresholded-overnight-log/E00F-N03-experiment.yaml).
+
 ## 2026-10-31 — E00F-N02 ESPHome DEBUG takip logu
 
 - **Hedef:** Önceki tam gece HA CSV'sinde görülen 05:24:02 civarı 2.665238 A tepe olayını açıklamak için ESPHome DEBUG çıktısındaki Raw AC, N ve SPS alanlarını incelemek.
