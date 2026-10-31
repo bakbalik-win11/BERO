@@ -1,3 +1,12 @@
+
+## Sensör okuma mimarisi ve tekrar kullanılabilir kod
+
+ESPHome `ct_clamp` araştırmasından çıkan ortak sensör okuma yaklaşımı ve açıklamalı YAML örnekleri [firmware/patterns/README.md](firmware/patterns/README.md) altında tutulur.
+
+- CT/AC akım: [ct-clamp-ac-rms-reference.yaml](firmware/patterns/ct-clamp-ac-rms-reference.yaml)
+- Analog DC gerilim: [adc-dc-voltage-observer.yaml](firmware/patterns/adc-dc-voltage-observer.yaml)
+
+Bu örnekler mevcut cihaz firmware'lerinin yerine geçmez. Her yeni sensörde pin, elektriksel aralık, sensör transfer fonksiyonu ve uygun sinyal işleme yöntemi doğrulanır. YAML'lar henüz derlenmiş veya fiziksel donanımda test edilmiş değildir.
 # SCT013 – PZEM Akım Gözlem
 
 ## Projenin amacı
