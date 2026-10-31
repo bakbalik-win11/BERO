@@ -1,3 +1,13 @@
+## 2026-10-31 — E00F-N02 ESPHome DEBUG takip logu
+
+- **Durum:** Kullanıcının sağladığı ESP32D2 DEBUG logu incelendi ve ham hali depoya arşivlendi.
+- **Kapsam:** 10:18:09–10:23:46 cihaz log saati; 169 CT Clamp penceresi; N=2.820–3.309 (medyan 3.165), SPS=14.100–16.545 (medyan 15.825).
+- **Teknik bulgu:** SPS her satırda N×5; bu 0.20 s pencerenin matematiksel karşılığıdır, bağımsız gerçek ADC örnekleme hızı değildir. Raw AC ile N/SPS korelasyonu yaklaşık 0.116; bu kısa logda örnek sayısı dalgalanması Raw AC değişimini açıklamıyor.
+- **Tepe:** Takip logunda Raw AC maksimumu 0.02511 V / akım 0.608 A. Bu kayıt önceki 05:24:02 / 2.665238 A gece tepesini içermiyor. Yavaş GPIO okumaları CT penceresiyle eşzamanlı olmadığından tepeyi doğrulamaz/çürütmez.
+- **Uyarılar:** ERROR veya [E] satırı yok; açılışta üç ESP32 framework optimizasyon uyarısı var.
+- **Arşiv:** [E00F-N02 raporu](experiments/E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md#esphome-debug-takip-logu--2026-10-31), [ham DEBUG logu](docs/technical-reviews/logs/2026-10-31-e00f-n02-debug-followup.log).
+- **Karar:** YAML, katsayı, eşik, pin veya donanım değiştirilmedi. E00F-N02 AÇIK; gece tepe olayının fiziksel nedeni belirsiz.
+
 ## 2026-10-31 — E00F-N02 fiziksel koşul beyanı eklendi
 
 - **KULLANICI BEYANI:** Gece gözlemi sırasında sistem boşta; kola temas 00:30 Türkiye saati sonrasında yok; akkor ampul henüz deney yükü olarak kullanılmadı.
