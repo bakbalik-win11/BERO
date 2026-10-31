@@ -1,26 +1,9 @@
-## 2026-10-31 — Modül 2 bias ADC kanal kararı (ADR-013)
-
-- **KARAR:** Yeni Modül 2 bağlantı tasarımında üç bağımsız SCT sinyali + tek bias ölçüm noktası için dört ADC girişi ayrılacak. Bias kanalı voltaj olarak okunacak (`raw: false`); bias için ikinci bir fiziksel RAW GPIO ayrılmayacak.
-- **GEREKÇE — GECE KAYDI:** 2026-10-30 23:15–2026-10-31 10:07:48.897 Türkiye saati aralığındaki 10 saat 52 dakika 48.897 saniyelik HA geçmişinde bias voltaj medyanı 1.653 V, ortalaması 1.6516 V, SD 7.94 mV; bias RAW medyanı 1,840 count, ortalaması 1,839.01 count, SD 9.77 count. İki entity aynı bias noktasını farklı gösterimlerle izliyor.
-- **YORUM SINIRI:** Bu kayıt bias noktasının gece boyunca kararlı davrandığını destekler; voltaj ve RAW serilerinin ikisini birden yeni kutuda ayrı GPIO ile sürdürmeyi zorunlu kılmaz. Tekil uç değerler ham geçmişte korunur.
-- **FİRMWARE SINIRI:** Mevcut `firmware/esp32d2.yaml` ve çalışan E00F baseline değiştirilmedi. GPIO34/35'in yeni donanımda yeniden görevlendirilmesi ancak ayrı pin/firmware incelemesiyle yapılacak.
-- **DURUM:** Tasarım kararı kaydedildi; yeni üç-kanal bağlantı, pin eşlemesi, USB bağlantısı ve firmware henüz uygulanmadı veya doğrulanmadı.
-- **KARAR KAYDI:** [ADR-013](docs/decisions/ADR-013-bias-adc-channel-selection.md); [Modül 2](docs/modules/SCT-OKUMA-TEST-MODULU.md).
-
-## 2026-10-31 — Modül 2 kutu kapsamı sadeleştirildi
-
-- **KARAR:** Kutu yalnızca üç SCT girişi, ESP32D2 ve bias mini breadboard içerecek.
-- **KUTU DIŞI:** 220 V AC giriş/çıkış, PZEM, SSR ve kutu içi 220 V → 5 V güç kaynağı bu modülün kapsamında değildir. PZEM ve SSR BERO sisteminin diğer bölümlerinde ayrı ele alınacaktır.
-- **BESLEME:** Bias ayrı Bias Trafosu modülünden beslenecek; ESP32D2 besleme yöntemi henüz belirlenmedi.
-- **SINIR:** Üç girişin eşzamanlı kullanım biçimi, jack pin eşlemesi ve düşük gerilim besleme bağlantısı henüz doğrulanmadı.
-- **KARAR KAYDI:** [ADR-012](docs/decisions/ADR-012-sct-test-module-scope.md); [Modül 2](docs/modules/SCT-OKUMA-TEST-MODULU.md).
-
 # Güncel Durum — 2026-10-31
 
 ## Projenin iki fazı
 
-1. **Faz 1 — Çalışan kodu bulmak ve ±%4 hedefine ulaşmak: TAMAMLANDI.** Dış kaynaklı çalışan ESPHome ct_clamp koduyla hedef sağlandı. 100 W akkor, 150 W akkor ve kettle'ın iki koşulundaki dört karşılaştırmanın tamamı ±%4 içindedir. Faz 1 kapsamında kalan, yapılmamış tüm deneyler ve işler hedefe ulaşıldığı için kapatıldı. Yapılmamış deneyler yapılmış gibi gösterilmez; tarihsel dosyalarında kapatılmış plan olarak kalır.
-2. **Faz 2 — Bulunan kodu PZEM ile eğitmek: AKTİF.** PZEM ve SCT verilerini Home Assistant'tan PC'ye alacağız; Python'da iki akışın kararlı alanlarını ayrı bulup örtüşen alanları eşleştireceğiz; PZEM ile SCT pencerelerini etiketleyip mevcut katsayıyı değerlendireceğiz. Bu öğrenme BERO boyunca sürecek.
+1. **Faz 1 — Çalışan kodu bulmak ve ±%4 hedefine ulaşmak: TAMAMLANDI.** Dış kaynaklı ESPHome ct_clamp koduyla hedef sağlandı. Dört yük karşılaştırmasının tamamı ±%4 içindedir. Faz 1'in yapılmamış işleri hedefe ulaşıldığı için kapatıldı; deney kayıtları tarihsel arşivde korunur.
+2. **Faz 2 — Pratik yeniden kurulum ve sistem geliştirme: AKTİF.** Bu faz yalnız bulunan kodu PZEM ile eğitmek değildir. Kayıtlı kod ve çalışan örneklerden yararlanarak modüller ve ESP düğümleri yeniden devreye alınacak, temel işlevleri gerçek donanımda doğrulanacak ve sistem geliştirilecektir. PZEM referanslı veri aktarımı/etiketleme sonraki alt aşamadır. Kapsam kararı: [ADR-014](docs/decisions/ADR-014-phase2-practical-restart.md).
 
 ## Faz 1 sonuç kaydı
 
@@ -31,44 +14,43 @@
 | Kettle düşük/kararlı | 0,637 A | 0,656 A | +%3,0 |
 | Kettle kaynama | 6,39 A | 6,15 A | −%3,8 |
 
-Bu karşılaştırmalar paylaşılan deney logları ve kayıtlarıyla desteklenmektedir. Dört koşulun tamamı ±%4 kabul sınırındadır. Harici kodun kaynağı depoda bulunmasa da Faz 1 hedefi sağlanmış kabul edilmiştir. Ayrıntı: [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
+Bu karşılaştırmalar önceki kullanıcı kayıtları/loglarıyla desteklenmektedir. Harici kodun kaynak dosyasının depoda bulunmadığı ve Faz 2'nin henüz bağımsız öğrenme modeli üretmediği ayrımı korunur.
 
-## Faz 2 aktif görev sırası — cihazları devreye alma öncelikli
+## Faz 2 yaklaşımı ve aktif görev
 
-1. **İLK — PZEM düğümünü devreye alma:** ESP32-WR1-PZEM, UART GPIO17/16, 9600 baud; gerçek PZEM entity'lerini ve HA yayınlarını doğrula.
-2. **SONRA — SSR düğümünü devreye alma:** [esp32c3-ssr.yaml](firmware/esp32c3-ssr.yaml); 40 s ON / 20 s OFF, DS3231/NTP, BOOT_ID/EVENT_ID ve UDP olay paketi. Önce derleme, sonra kontrollü fiziksel test.
-3. **SONRA — SCT düğümünü doğrulama:** mevcut [esp32d2.yaml](firmware/esp32d2.yaml) ve HA entity'leri; çalışan baseline korunur.
-4. **ENTEGRASYON:** SSR'nin değiştirdiği ortak yükü PZEM ve SCT'nin aynı elektriksel akım yolundan gözlediğini doğrula; üç düğümün HA veri sözleşmesini ve olay ilişkisini yaz.
-5. **VERİ AKTARIMI — T007:** gerçek HA geçmişini PC'ye al ve Python veri giriş hattını kur.
-6. **ETİKETLEME — T008:** PZEM/SCT kararlı alanlarını ayrı bul, örtüşen pencereleri eşleştir ve PZEM ile etiketle.
-7. **MODEL — T006:** etiketli kararlı alanlarda mevcut K=24.22 katsayısını değerlendir.
+**Aktif görev: T009 — Modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma.**
 
-PZEM/SSR/SCT devreye alma ve HA veri sözleşmesi tamamlanmadan T007 veri aktarımına geçilmez.
+- Önce çalışan kod/örnek/kütüphane bulunur; depodaki YAML ve loglar başlangıç referansı olarak kullanılır.
+- Her seferinde tek modül ve tek temel işlev ele alınır.
+- Gerçek kart, pinout ve bağlantılar doğrulanır; minimum kod uyarlaması yapılır.
+- Derleme, fiziksel bağlantı ve gerçek çalışma testi ayrı ayrı doğrulanır.
+- Başarılı kod, gerçek log/çıktı ve yorum depoya eklenir.
+- Manyetik teori ve ESP32 ADC iç mimarisi yalnız somut bir sorun veya karar bunları gerektirirse derinleştirilir. Önceki araştırmalar silinmez; gerektiğinde başvurulacak tarihsel bilgi olarak korunur.
+- Modül/ESP sırası kullanıcıyla belirlenir; şimdiden sabit bir sıra dayatılmaz.
 
-## Korunacak çalışan baseline
+### Sonraki alt aşamalar
 
-- E00F ESP32D2 yapılandırması ve mevcut ct_clamp ölçüm yolu korunur.
-- Mevcut katsayı K=24.22; ilk PZEM/SCT karşılaştırmasında değiştirilmez.
-- sample_duration 200ms, update_interval 2s, GPIO ve cihaz kimliği gerekçesiz değiştirilmez.
-- Harici kaynak kodun depoda olmaması, Faz 1 başarısını geçersiz kılmaz. Yeni kod veya algoritma değişikliği ancak Faz 2 verisi gerekçe gösterirse değerlendirilir.
+1. **T007 — HA → PC veri aktarımı:** PZEM ve SCT düğümleri çalışır, gerçek HA entity'leri oluşur hâle geldikten sonra.
+2. **T008 — Kararlı alan eşleştirme/etiketleme:** gerçek PZEM/SCT geçmişi PC'ye aktarıldıktan sonra.
+3. **T006 — K=24.22 değerlendirmesi:** eşleşmiş kararlı pencere verisi oluşunca.
 
-## ct_clamp incelemesinin zamanı
+## Korunan tarihsel kod ve donanım kayıtları
 
-Şu an ct_clamp kodunu değiştirmiyoruz. Önce PZEM ile eşleştirilmiş kararlı alan verisi elde edilecek. Tekrarlanabilir sapma veya açıklanamayan davranış ortaya çıkarsa kaynak kodu hedefli inceleyeceğiz. Bu nedenle ct_clamp incelemesi T007/T008 veri çalışmasının önüne geçmez.
+- Mevcut ESP32D2 ve diğer ESP YAML kayıtları silinmez; bunlar Faz 2 için başlangıç referanslarıdır, yeni donanımda test edilmiş oldukları varsayılmaz.
+- E00F ayarları, eski pin eşlemesi ve bias RAW/voltaj geçmişi tarihsel baseline olarak korunur.
+- Yeni Modül 2'nin üç SCT + bir bias ADC bağlantısı, GPIO seçimi ve firmware'i henüz uygulanmış/doğrulanmış değildir.
+- ESP kartı, shield, USB bağlantısı, pin eşlemesi veya firmware değişiklikleri gerçek kart ve bağlantı bilgisi doğrulanmadan yapılmaz.
 
-## Bugünkü somut ilk adım
+## Ana dosyalar
 
-SSR düğümünün ilk YAML taslağı [firmware/esp32c3-ssr.yaml](firmware/esp32c3-ssr.yaml) olarak depoya eklendi. Henüz derlenmedi ve fiziksel test edilmedi. Sıradaki adım PZEM düğümünün mevcut gerçek YAML/entity listesini bulup devreye alma sırasını uygulamak; ardından SSR YAML'ını derleme kontrolünden geçirmek.
-
-## Güncel ana dosyalar
-
-- [İki fazlı yol haritası](ROADMAP.md)
+- [Yol haritası](ROADMAP.md)
 - [İlerleme ağacı](PROGRESS_TREE.md)
-- [Faz 2 görev sırası](tasks/README.md)
+- [Görev sırası](tasks/README.md)
+- [T009 — Pratik modül/ESP devreye alma](tasks/T009-practical-system-bringup.md)
 - [T007 — HA → PC aktarımı](tasks/T007-python-architecture.md)
-- [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md)
-- [Faz 1 deney arşivi](experiments/README.md)
-- [Karar kaydı ADR-011](docs/decisions/ADR-011-two-phase-project-structure.md)
+- [T008 — Kararlı alan eşleştirme](tasks/T008-pzem-sct-stable-window-labeling.md)
+- [T006 — Katsayı/model](tasks/T006-calibration.md)
+- [Karar — Faz 2 yeni başlangıç](docs/decisions/ADR-014-phase2-practical-restart.md)
 
 ## Önceki durum kayıtları — tarihsel arşiv
 
