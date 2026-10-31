@@ -1,3 +1,14 @@
+## 2026-10-31 — Yeniden kullanılabilir sensör okuma kalıpları oluşturuldu
+
+- **HEDEF:** ct_clamp araştırmasındaki genellenebilir yazılım ilkelerini diğer sensör okumalarına taşımak; CT'ye özgü RMS/offset işlemlerini yanlışlıkla tüm sensörlere uygulamamak.
+- **DEPO KODLARI:** [patterns rehberi](firmware/patterns/README.md), [CT / AC RMS referans YAML](firmware/patterns/ct-clamp-ac-rms-reference.yaml), [analog DC ADC referans YAML](firmware/patterns/adc-dc-voltage-observer.yaml).
+- **GENELLEŞTİRİLEN KATMANLAR:** Kaynak okuma, geçerlilik kontrolü, örnek yönetimi, sinyale uygun pencere/istatistik, fiziksel birime dönüşüm ve yayın/kayıt birbirinden ayrıldı.
+- **SENSÖRE ÖZGÜ İŞLEM:** ct_clamp AC RMS ve bias ortalamasını ayırma yalnız CT/AC sinyali içindir. Aynı işlem sıcaklık, basınç veya DC analog sensörlere uygulanmaz. `last_value` tekrar elemesi de tüm sensörlerde varsayılan yapılmaz.
+- **KOD DURUMU:** İki YAML açıklamalı referans şablonudur; derleme, OTA ve fiziksel test yapılmadı. Çalışan cihaz YAML'ları değiştirilmedi.
+- **MEVCUT DOSYA TUTARSIZLIĞI:** `firmware/esp32d1.yaml` şu an tek ct_clamp kanalını içeriyor; daha sonraki T010/STATUS kayıtlarında üç kanal eklendiği yazıyor. Bu fark çözülmeden mevcut firmware dosyası üzerine yazılmadı.
+- **AKTİF GÖREV:** T010 aynı şekilde aktif; Faz 2 görev sırası değişmedi.
+- **KAYIT:** [Firmware patterns rehberi](firmware/patterns/README.md).
+
 ## 2026-10-31 — ESPHome ct_clamp üç kaynaklı sentez
 
 - **DURUM:** Claude raporu, GitHub Copilot raporu ve bağımsız inceleme birleştirilerek sentez raporu oluşturuldu; GitHub PR kayıtları ayrıca kontrol edildi.
