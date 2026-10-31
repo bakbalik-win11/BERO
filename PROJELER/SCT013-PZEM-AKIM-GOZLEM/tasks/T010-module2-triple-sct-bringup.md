@@ -1,3 +1,12 @@
+
+
+## 2026-10-31 — Modül 2 test yükü: 150 W akkor ampule geçiş
+
+- **PLAN:** Kullanıcı, masaüstü harici besleme ile daha uzun bir SCT-1 logu daha paylaşacağını ve Modül 2 testinde 150 W akkor ampule geçileceğini bildirdi.
+- **YÜK KAYDI:** [150 W akkor karşılaştırmalı test dosyası](../test-loads/150w-incandescent/README.md) açıldı. Ana envantere [test-loads/README.md](../test-loads/README.md) üzerinden bağlandı.
+- **TARİHSEL KIYAS:** Faz 1 ROADMAP'inde 150 W için referans 0,616 A ve kod sonucu 0,615 A (yaklaşık −%0,2) kayıtlıdır. Bu, yeni Modül 2 testinin sonucu veya kesin hedef değeri değildir; yeni yük/koşul için UNIT ve PZEM ölçümleri ayrıca alınacaktır.
+- **YENİ TEST PLANI:** İlk oturum SCT-1 / sarı / GPIO32; ortak bias GPIO35 izlenecek. Masaüstü harici besleme kullanıcı bildirimi olarak kaydedilecek. Firmware sürümü, log zaman aralığı ve eşzamanlı UNIT/PZEM değerleri test sırasında eklenecek.
+- **DURUM:** 150 W fiziksel test henüz yapılmadı; bu kayıt plan/altyapı kaydıdır. 100 W uzun tekrar logu da bekleniyor. T010 AKTİF.
 ## 2026-10-31 — SCT-1 ct_clamp / 100 W PENS karşılaştırması
 
 - **LOG:** Paylaşılan 563 satırlık ESPHome logunda SCT-1 ct_clamp 200 ms pencerelerle çalıştı. Log örnek sayısı yaklaşık 3.323–3.435/pencere; raporlanan örnekleme hızı yaklaşık 16.615–17.175 örnek/s.
