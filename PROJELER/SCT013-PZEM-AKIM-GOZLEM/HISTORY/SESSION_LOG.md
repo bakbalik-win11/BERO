@@ -1126,3 +1126,15 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **GÖREVLER:** T008 yeni aktif sonraki görev olarak açılır; T006 katsayı/model değerlendirmesi T008 çıktısına bağlanır.
 - **SINIR:** Bu oturumda yeni fiziksel PZEM/SCT ölçümü, HA export analizi, etiketleme, katsayı hesabı veya ct_clamp kod değişikliği yapılmadı.
 - **SONRAKİ ADIM:** T008 kapsamında gerçek PZEM/SCT entity'lerini ve ilk ortak yük kayıt protokolünü doğrulamak.
+
+
+## 2026-10-31 — ESP32-C3 SSR kontrol YAML taslağı eklendi
+
+- **HEDEF:** SSR düğümünün kimliğini, görevini, bağlantılarını ve HA/UDP veri çıktısını tek firmware dosyasında tanımlamak.
+- **KOD:** `firmware/esp32c3-ssr.yaml` oluşturuldu. ESP32-C3 / ESP-IDF; SSR GPIO6 active-low; 40 s ON / 20 s OFF; DS3231 I2C GPIO0/1; SNTP Europe/Istanbul; BOOT_ID + artan EVENT_ID; UDP broadcast port 4210.
+- **HA VERİLERİ:** SSR switch komutu, Boot ID, Event ID, son olay, IP, SSID, MAC, ESPHome sürümü, uptime ve Wi-Fi sinyal seviyesi.
+- **DÜZELTME:** Paylaşılan ilk kodda GPIO6 `inverted: true` iken fiziksel GPIO seviyesi ON/OFF kontrolü ters yorumlanıyordu. Daha önemlisi, ESP-IDF `gpio_get_level()` giriş olarak yapılandırılmamış pad için 0 döndürebilir; bu nedenle GPIO readback satırları kaldırıldı. Yazılım komutu fiziksel SSR/AC iletimi kanıtı sayılmaz.
+- **DOĞRULAMA:** Dosya GitHub'a eklendi ve yeniden okundu. ESPHome derlemesi, OTA yüklemesi, UDP alımı ve fiziksel SSR çevrimi bu kayıt sırasında yapılmadı. Kod durumu: HAZIRLANDI / DEPOYA EKLENDİ; TEST BEKLİYOR.
+- **SONUÇ:** SSR firmware taslağı ve HA'ya açılacak tanılama/olay alanları tanımlandı. Test logu henüz yok; test yapılmış gibi kaydedilmedi.
+- **SONRAKİ ADIM:** PZEM düğümünü devreye alma dosyası ve gerçek HA entity listesini bulmak; ardından SSR YAML derlemesini ve güvenli fiziksel testi yapmak.
+- **KAYNAK:** [ESP-IDF GPIO API](https://docs.espressif.com/projects/esp-idf/en/v5.4/esp32c3/api-reference/peripherals/gpio.html); [ESPHome time component](https://esphome.io/components/time/).
