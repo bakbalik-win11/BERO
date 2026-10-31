@@ -21,3 +21,12 @@
 - **KAPANIŞ SINIFI:** FAN-1, Modül 2 ısınma/deneme gözlemi olarak kapatıldı; ±%4 akım doğrulaması olarak kapatılmadı. PZEM ile ileri doğrulama açık kalır.
 - FAN-2 ve sonraki fan kademeleri için PZEM akım + PF kaydı gerekli kabul edildi.
 - Kod snapshot: [FAN-1 kapanış YAML](../../firmware/archive/FAN-1-2026-10-31-esp32d1-sct1.yaml); [uzun ham log](../../logs/module2/2026-10-31-fan1-module2-sct1-long-full.txt); [uzun analiz](../../logs/module2/2026-10-31-fan1-module2-sct1-long-analysis.md).
+
+
+## 2026-10-31 — FAN-1 düşük akım sınıflandırması düzeltmesi
+
+- **KURAL DÜZELTMESİ:** 0,30 A altındaki çalışma bölgesinde ±%4 kabul/ret kriteri uygulanmaz. Bu sınır, BERO'nun mevcut deney değerlendirme kuralıdır; sensör üreticisinin doğruluk spesifikasyonu değildir.
+- FAN-1 UNIT son bildirimi 0,093 A olduğundan düşük akım araştırma bölgesindedir. Önceki kayıtlardaki ±%4 bandı (0,08928–0,09672 A) ve 4/247 sayımı yalnız tarihsel aritmetik bilgi olarak korunur; FAN-1 için kabul/ret veya başarısızlık ölçütü değildir.
+- 247 yayın ortalaması 0,146757 A, medyanı 0,147 A ve aralığı 0,064–0,259 A olarak korunur. Bu SCT gözlemleri UNIT ile ±%4 uyumu şeklinde yorumlanmaz.
+- FAN-1, Modül 2 ısınma/deneme gözlemi olarak kapalıdır. Düşük akım deney programı kapsamında ileride PZEM akım + PF ile, tek tur/2 tur/4 tur düzenekleri kontrollü karşılaştırılabilir.
+- FAN-1'in mevcut logu sonradan değiştirilmez; yeni sarım koşulları ayrı deney oturumları ve ayrı loglarla kaydedilir.
