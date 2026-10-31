@@ -1,8 +1,8 @@
-# E00F-N03 — 100 W akkor yük basamak gözlemi (kısmi) — 2026-10-31
+# E00F-N03 — 100 W akkor yük basamak gözlemi (TAMAMLANDI) — 2026-10-31
 
 ## HEDEF
 
-Mevcut ESP32D2/E00F ölçüm zincirini değiştirmeden, bilinen 100 W akkor ampul açıldığında SCT Raw AC çıktısının yüksüz başlangıç kesitinden ayrılıp ayrılmadığını gözlemek. Bu adım kalibrasyon veya ±%4 doğruluk doğrulaması değildir. Planlanan tam sıra yük kapalı → yük açık kararlı → tekrar yük kapalıdır.
+Mevcut ESP32D2/E00F ölçüm zincirini değiştirmeden, bilinen 100 W akkor ampul açıldığında SCT Raw AC çıktısının yüksüz başlangıç kesitinden ayrılıp ayrılmadığını gözlemek. Bu adım kalibrasyon veya ±%4 doğruluk doğrulaması değildir. Planlanan tam sıra yük kapalı → yük açık kararlı → tekrar yük kapalıdır. Bu üç koşul iki DEBUG logu ve kullanıcı olay saatleriyle kaydedildi.
 
 ## LOG
 
@@ -55,9 +55,10 @@ Mevcut ESP32D2/E00F ölçüm zincirini değiştirmeden, bilinen 100 W akkor ampu
 
 ## SONUÇ
 
+- **DURUM: TAMAMLANDI — E00F-N03 gözlem protokolünün üç koşulu da karşılandı:** yük öncesi kapalı başlangıç, 100 W akkor yük açık kararlı bölüm ve yük kapatıldıktan sonra başlangıç tabanına dönüş. Kullanıcı 10:32 açılış, 10:39 kapanış ve yalnız faz iletkeninin SCT içinden tek tur geçtiğini bildirdi.
 - **ÖLÇÜLDÜ:** Bu logda 100 W akkor yük açılmasından sonra Raw AC medyanı 0.004 V'tan 0.019 V'a yükselmiştir. 10:35–10:39 daha sakin bölümünde medyan 0.019 V ve akım entity medyanı 0.466 A'dır.
 - **YORUM:** Mevcut E00F zinciri yük açılmasına tepki vermektedir. Bu ilk karşılaştırma, yük değişiminin algılandığına dair kanıttır; CT akım kalibrasyonu veya PZEM'e göre ±%4 doğruluk kanıtı değildir.
-- **AÇIK:** Yük kapatma saati ve kapanış sonrası ölçüm bu dosyada yoktur. CT'nin fiziksel iletken/tur bilgisi de doğrulanmamıştır. E00F-N03 bu nedenle **DEVAM EDİYOR / KISMİ GÖZLEM** durumundadır.
+- **AÇIK:** Yük kapatma saati ve kapanış sonrası ölçüm bu dosyada yoktur. CT'nin fiziksel iletken/tur bilgisi de doğrulanmamıştır. E00F-N03 **TAMAMLANDI**. Kapanış sonrası dönüş ve CT yerleşim bilgisi kaydedildi.
 - **SONRAKİ ADIM:** Yük kapatıldığında saati ayrıca kaydet; kapanış sonrası log/HA verisiyle Raw AC'nin önceki yüksüz davranışına dönüşünü incele. Firmware, katsayı, eşik, pin ve cihaz kimliği değiştirilmemelidir.
 
 ## Sınırlamalar
@@ -66,8 +67,8 @@ Mevcut ESP32D2/E00F ölçüm zincirini değiştirmeden, bilinen 100 W akkor ampu
 - Yavaş ADC kanalları CT pencereleriyle eşzamanlı değildir.
 - Log gerçek ham ADC örnek dizisini saklamaz; 50 Hz dalga şekli, faz veya harmonik sonucu çıkarılmaz.
 - PZEM kaydı bu dosyada yoktur; referans karşılaştırması yapılmamıştır.
-- CT'nin fiziksel konumu ve tur sayısı bilinmemektedir.
-- Yük kapatma/geri dönüş kesiti yoktur.
+- CT yerleşimi kullanıcı beyanıyla netleştirildi: yalnız faz, tek geçiş (1 tur).
+- Yük kapatma/geri dönüş kesiti ikinci logda mevcuttur; kullanıcı 10:39 kapanış zamanını teyit etti.
 
 
 ## İkinci log — yük sonrası tabana dönüş gözlemi
@@ -94,7 +95,7 @@ Mevcut ESP32D2/E00F ölçüm zincirini değiştirmeden, bilinen 100 W akkor ampu
 - **ÖLÇÜLDÜ:** İlk kayıtta yük öncesi 0.004 V olan Raw AC medyanı, yük açık sakin bölümde 0.019 V'a yükselmişti. İkinci kayıtta sinyal 10:39:27.837–10:39:29.819 aralığında düşük seviyeye inmiş ve takip eden altı dakikada medyan 0.000 V olmuştur.
 - **YORUM:** Ölçüm zinciri hem yük açıldığında yükselme hem de yük kesildiğinde başlangıç tabanına dönüş davranışı göstermiştir. Bu, 100 W akkor yükün SCT sinyalinde ayrışabilir bir etki oluşturduğunu destekleyen daha güçlü bir aç-kapa gözlemidir.
 - **SINIR:** Logdaki sinyal dönüşü ampulün fiziksel olarak kapatıldığını düşündürür; kullanıcı fiziksel kapatma saatini 10:39 olarak teyit etmiştir; logdaki dönüş bu beyanla uyumludur. Kullanıcı CT bağlantısını doğruladı: SCT içinden yalnız faz iletkeni tek geçiş yapıyor (1 tur). Bu, kullanıcı beyanıdır; bağımsız fiziksel inceleme yapılmadı. PZEM verisi ve ham ADC örnek dizisi yoktur. Kalibrasyon veya ±%4 doğruluk sonucu çıkarılamaz.
-- **DURUM:** E00F-N03 kısmi gözlem olarak kalır. Kullanıcı fiziksel kapatma saatini 10:39 olarak teyit etti. CT yerleşimi kullanıcı beyanıyla netleşti: yalnız faz, tek geçiş (1 tur). E00F-N03'ün bu donanım teyidi sağlandı; ancak deneyin genel kabul ölçütleri ve PZEM karşılaştırması ayrı değerlendirilmeden tüm proje doğrulaması tamamlandı sayılmayacak.
+- **DURUM:** E00F-N03 aç-kapa gözlem testi TAMAMLANDI. PZEM verisi ve ham ADC örnek dizisi bu testte bulunmadığından kalibrasyon/±%4 doğruluk sonucu çıkarılamaz; bunlar ayrı çalışma kapsamıdır. Kullanıcı fiziksel kapatma saatini 10:39 olarak teyit etti. CT yerleşimi kullanıcı beyanıyla netleşti: yalnız faz, tek geçiş (1 tur). E00F-N03'ün bu donanım teyidi sağlandı; ancak deneyin genel kabul ölçütleri ve PZEM karşılaştırması ayrı değerlendirilmeden tüm proje doğrulaması tamamlandı sayılmayacak.
 
 
 
