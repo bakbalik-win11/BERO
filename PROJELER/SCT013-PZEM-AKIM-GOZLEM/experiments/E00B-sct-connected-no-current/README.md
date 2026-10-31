@@ -1,3 +1,5 @@
+> **FAZ 1 ARŞİVİ — KAPATILDI / HEDEFE ULAŞILDI (2026-10-31).** Bu dosya tarihsel deney kaydıdır; aktif deney veya Faz 2 ön koşulu değildir. Dosyada tamamlanmamış adımlar fiziksel olarak yapılmış sayılmaz. Faz 1 hedefi dış kaynaklı çalışan kodla ±%4 sapma olarak sağlandığı için kalan işler kapatılmıştır. Gerçekleşmiş log ve sonuçlar korunur.
+
 # E00B — SCT bağlı, akımsız hat ADC gözlemi
 
 ## Neden yapıyoruz?
