@@ -1,0 +1,113 @@
+BERO MODUL 2 — ILK ESP32D1 ADC ACILIS KANITI
+Tarih: 2026-10-31
+ESPHome: 2026.10.1
+Derleme: 2026-10-31 15:19:21 +0300
+Log oturumu: 15:26:04.985 itibariyla
+Cihaz: ESP32 rev3.1 / esp32d1 / 192.168.0.31
+
+TEST DURUMU:
+Kullanici bildirimi: Bu acilista SCT girisleri ve 220 V / 100 W ampul bagli degildi.
+Bu nedenle SCT GPIO okumalarini SCT performans sonucu olarak yorumlama.
+Bu dosya, kullanicinin paylastigi logdan ADC kurulum ve ornek satirlarini
+koruyan kanit dokumudur. Arayuzun "Back to install / States" gibi log disi
+satirlari alinmamistir.
+
+ILK BAGLANTI VE FIRMWARE:
+INFO ESPHome 2026.10.1
+INFO Loaded validated config cache for esp32d1.yaml, skipping validation.
+INFO Starting log output from 192.168.0.31 using esphome API
+INFO Successfully connected to esp32d1 @ 192.168.0.31 in 1.054s
+INFO Successful handshake with esp32d1 @ 192.168.0.31 in 0.032s
+[15:26:04.985][I][app:164]: ESPHome version 2026.10.1 compiled on 2026-10-31 15:19:21 +0300
+[15:26:04.990][I][app:171]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+
+ADC KURULUMU:
+GPIO32 / ADC1_CH4 / SCT-1:
+[15:26:05.057][C][adc:131]:   Pin: GPIO32
+[15:26:05.057][C][adc:131]:   Channel:       4
+[15:26:05.057][C][adc:131]:   Attenuation:   12 dB
+[15:26:05.057][C][adc:131]:     Overall Init: OK
+[15:26:05.063][C][adc:340]:   Update Interval: 1.000s
+
+GPIO33 / ADC1_CH5 / SCT-2:
+[15:26:05.079][C][adc:017]: ADC Sensor 'ESP32D1 SCT 2 ADC Voltage'
+[15:26:05.093][C][adc:131]:   Pin: GPIO33
+[15:26:05.093][C][adc:131]:   Channel:       5
+[15:26:05.093][C][adc:131]:   Attenuation:   12 dB
+[15:26:05.093][C][adc:131]:     Overall Init: OK
+[15:26:05.103][C][adc:340]:   Update Interval: 1.000s
+
+GPIO34 / ADC1_CH6 / SCT-3:
+[15:26:05.137][C][adc:017]: ADC Sensor 'ESP32D1 SCT 3 ADC Voltage'
+[15:26:05.138][C][adc:131]:   Pin: GPIO34
+[15:26:05.138][C][adc:131]:   Channel:       6
+[15:26:05.138][C][adc:131]:   Attenuation:   12 dB
+[15:26:05.138][C][adc:131]:     Overall Init: OK
+[15:26:05.167][C][adc:340]:   Update Interval: 1.000s
+
+GPIO35 / ADC1_CH7 / COMMON BIAS:
+[15:26:05.171][C][adc:017]: ADC Sensor 'ESP32D1 Common Bias ADC Voltage'
+[15:26:05.172][C][adc:131]:   Pin: GPIO35
+[15:26:05.179][C][adc:131]:   Channel:       7
+[15:26:05.179][C][adc:131]:   Attenuation:   12 dB
+[15:26:05.179][C][adc:131]:     Overall Init: OK
+[15:26:05.223][C][adc:340]:   Update Interval: 1.000s
+
+WIFI:
+[15:26:05.239][C][wifi:1688]:   Connected: YES
+[15:26:05.257][C][wifi:1392]:   IP Address: 192.168.0.31
+
+GERCEK ADC ORNEKLERI (KULLANICININ PAYLASTIGI LOGDAN):
+[15:26:05.103][I][sct_test:078]: SCT-1 GPIO32 ADC = 0.359 V
+[15:26:05.103][I][sct_test:110]: SCT-3 GPIO34 ADC = 0.706 V
+[15:26:05.223][I][sct_test:126]: COMMON BIAS GPIO35 ADC = 1.654 V
+[15:26:05.334][I][sct_test:094]: SCT-2 GPIO33 ADC = 0.468 V
+[15:26:06.102][I][sct_test:078]: SCT-1 GPIO32 ADC = 0.333 V
+[15:26:06.111][I][sct_test:110]: SCT-3 GPIO34 ADC = 0.765 V
+[15:26:06.206][I][sct_test:126]: COMMON BIAS GPIO35 ADC = 1.668 V
+[15:26:06.339][I][sct_test:094]: SCT-2 GPIO33 ADC = 0.452 V
+[15:26:07.107][I][sct_test:078]: SCT-1 GPIO32 ADC = 0.352 V
+[15:26:07.114][I][sct_test:110]: SCT-3 GPIO34 ADC = 0.769 V
+[15:26:07.203][I][sct_test:126]: COMMON BIAS GPIO35 ADC = 1.656 V
+[15:26:07.340][I][sct_test:094]: SCT-2 GPIO33 ADC = 0.414 V
+[15:26:08.106][I][sct_test:078]: SCT-1 GPIO32 ADC = 0.418 V
+[15:26:08.133][I][sct_test:110]: SCT-3 GPIO34 ADC = 0.806 V
+[15:26:08.206][I][sct_test:126]: COMMON BIAS GPIO35 ADC = 1.660 V
+[15:26:08.336][I][sct_test:094]: SCT-2 GPIO33 ADC = 0.254 V
+[15:26:09.130][I][sct_test:110]: SCT-3 GPIO34 ADC = 0.461 V
+[15:26:09.205][I][sct_test:078]: SCT-1 GPIO32 ADC = 0.858 V
+[15:26:09.206][I][sct_test:126]: COMMON BIAS GPIO35 ADC = 1.649 V
+[15:26:09.350][I][sct_test:094]: SCT-2 GPIO33 ADC = 0.215 V
+[15:26:10.151][I][sct_test:110]: SCT-3 GPIO34 ADC = 0.442 V
+[15:26:10.356][I][sct_test:078]: SCT-1 GPIO32 ADC = 0.773 V
+[15:26:10.357][I][sct_test:126]: COMMON BIAS GPIO35 ADC = 1.643 V
+[15:26:10.415][I][sct_test:094]: SCT-2 GPIO33 ADC = 0.142 V
+[15:26:11.105][I][sct_test:110]: SCT-3 GPIO34 ADC = 0.461 V
+[15:26:11.112][I][sct_test:078]: SCT-1 GPIO32 ADC = 0.805 V
+[15:26:11.208][I][sct_test:126]: COMMON BIAS GPIO35 ADC = 1.655 V
+[15:26:11.341][I][sct_test:094]: SCT-2 GPIO33 ADC = 0.180 V
+[15:26:12.116][I][sct_test:110]: SCT-3 GPIO34 ADC = 0.505 V
+[15:26:12.124][I][sct_test:078]: SCT-1 GPIO32 ADC = 0.856 V
+[15:26:12.206][I][sct_test:126]: COMMON BIAS GPIO35 ADC = 1.657 V
+[15:26:12.340][I][sct_test:094]: SCT-2 GPIO33 ADC = 0.184 V
+[15:26:13.114][I][sct_test:110]: SCT-3 GPIO34 ADC = 0.468 V
+[15:26:13.122][I][sct_test:078]: SCT-1 GPIO32 ADC = 0.767 V
+[15:26:13.208][I][sct_test:126]: COMMON BIAS GPIO35 ADC = 1.664 V
+[15:26:13.350][I][sct_test:094]: SCT-2 GPIO33 ADC = 0.142 V
+[15:26:14.105][I][sct_test:110]: SCT-3 GPIO34 ADC = 0.494 V
+[15:26:14.111][I][sct_test:078]: SCT-1 GPIO32 ADC = 0.818 V
+[15:26:14.204][I][sct_test:126]: COMMON BIAS GPIO35 ADC = 1.666 V
+[15:26:14.342][I][sct_test:094]: SCT-2 GPIO33 ADC = 0.142 V
+
+KISA DEGERLENDIRME:
+- Dört ADC girişi başlatılmış; setup durumları OK.
+- GPIO35 ortak bias örnekleri 1.643–1.668 V aralığında.
+- SCT girişleri bu denemede bağlı olmadığından GPIO32/33/34 değişimleri
+  gerçek SCT sinyali, akım veya 100 W ampul tepkisi değildir.
+- Bu kanıt yalnız firmware açılışı, ADC başlatma, log ve Wi-Fi bağlantısını
+  destekler. Fiziksel SCT/ampul testi henüz yapılmamıştır.
+
+KAYNAK EK:
+Kullanıcının sağladığı özgün metin eki: 203 satır, 11,363 bayt.
+Özgün ek SHA-256:
+88f897b2603815233b0c44e497261169be2e6bff73368b435ae04e38ebb312b3
