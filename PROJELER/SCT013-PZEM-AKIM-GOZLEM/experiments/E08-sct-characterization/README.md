@@ -17,7 +17,7 @@ E08, SCT-013 ve ESP32 dahili ADC ölçüm zincirinin davranışını kendi veris
 - PZEM veya başka ESP'nin ortalama akımı varsa genel deney notu olarak yazılabilir; SCT pencereleriyle zaman eşleştirmesi yapılmaz.
 - Kararlılık eşiği, gereken pencere sayısı ve kesin kayıt süresi sonuçlar görülmeden belirlenmez.
 
-Durum: AŞAMA 2 AÇILDI — HAZIRLIK. 100 W fiziksel ölçüm henüz yapılmadı; mevcut E00B firmware'i yüksek hızlı E08 edinimini karşılamaz.
+**Kapsam kararı (2026-10-31):** Ayrı [yüksek hızlı ham ADC edinimi hazırlığı](stage-03-high-speed-capture.md) kullanıcı kararıyla KAPATILDI — GEREKSİZ. ±%4 ölçüm hedefinin harici kodla sağlandığı kullanıcı tarafından bildirildi. Bu karar E08'in 100 W/150 W/LED yük karşılaştırma aşamalarını otomatik olarak tamamlamaz. Dört karşılaştırma ve sınırlar [ADR-009](../../docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md) içinde kayıtlıdır.
 
 
 ## Grafik standardı — kullanıcı tarafından onaylandı (2026-10-30)
