@@ -1,3 +1,56 @@
+# Güncel Durum — 2026-10-31
+
+## Projenin iki fazı
+
+1. **Faz 1 — Çalışan kodu bulmak ve ±%4 hedefine ulaşmak: TAMAMLANDI.** Dış kaynaklı çalışan ESPHome ct_clamp koduyla hedef sağlandı. 100 W akkor, 150 W akkor ve kettle'ın iki koşulundaki dört karşılaştırmanın tamamı ±%4 içindedir. Faz 1 kapsamında kalan, yapılmamış tüm deneyler ve işler hedefe ulaşıldığı için kapatıldı. Yapılmamış deneyler yapılmış gibi gösterilmez; tarihsel dosyalarında kapatılmış plan olarak kalır.
+2. **Faz 2 — Bulunan kodu PZEM ile eğitmek: AKTİF.** PZEM ve SCT verilerini Home Assistant'tan PC'ye alacağız; Python'da iki akışın kararlı alanlarını ayrı bulup örtüşen alanları eşleştireceğiz; PZEM ile SCT pencerelerini etiketleyip mevcut katsayıyı değerlendireceğiz. Bu öğrenme BERO boyunca sürecek.
+
+## Faz 1 sonuç kaydı
+
+| Yük koşulu | Referans | Kod sonucu | Sapma |
+|---|---:|---:|---:|
+| 100 W akkor | 0,446–0,447 A | 0,4471 A | yaklaşık %0 |
+| 150 W akkor | 0,616 A | 0,615 A | −%0,2 |
+| Kettle düşük/kararlı | 0,637 A | 0,656 A | +%3,0 |
+| Kettle kaynama | 6,39 A | 6,15 A | −%3,8 |
+
+Bu karşılaştırmalar paylaşılan deney logları ve kayıtlarıyla desteklenmektedir. Dört koşulun tamamı ±%4 kabul sınırındadır. Harici kodun kaynağı depoda bulunmasa da Faz 1 hedefi sağlanmış kabul edilmiştir. Ayrıntı: [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
+
+## Faz 2 aktif görev sırası
+
+- **AKTİF — T007:** Home Assistant geçmişini PC'ye aktarma ve Python veri giriş hattını kurma. İlk iş budur. Eski E00A/E00/E01 deneyleri T007'nin ön koşulu değildir.
+- **BEKLEMEDE — T008:** PZEM ve SCT akışlarının kararlılığını ayrı inceleme; örtüşen kararlı alanları eşleştirme ve PZEM ile etiketleme. T007 veri aktarımı tamamlanınca başlayacak.
+- **BEKLEMEDE — T006:** Mevcut K=24.22 katsayısını etiketli kararlı alanlarda değerlendirme. T008 çıktısını bekler.
+
+## Korunacak çalışan baseline
+
+- E00F ESP32D2 yapılandırması ve mevcut ct_clamp ölçüm yolu korunur.
+- Mevcut katsayı K=24.22; ilk PZEM/SCT karşılaştırmasında değiştirilmez.
+- sample_duration 200ms, update_interval 2s, GPIO ve cihaz kimliği gerekçesiz değiştirilmez.
+- Harici kaynak kodun depoda olmaması, Faz 1 başarısını geçersiz kılmaz. Yeni kod veya algoritma değişikliği ancak Faz 2 verisi gerekçe gösterirse değerlendirilir.
+
+## ct_clamp incelemesinin zamanı
+
+Şu an ct_clamp kodunu değiştirmiyoruz. Önce PZEM ile eşleştirilmiş kararlı alan verisi elde edilecek. Tekrarlanabilir sapma veya açıklanamayan davranış ortaya çıkarsa kaynak kodu hedefli inceleyeceğiz. Bu nedenle ct_clamp incelemesi T007/T008 veri çalışmasının önüne geçmez.
+
+## Bugünkü somut ilk adım
+
+T007 kapsamında gerçek Home Assistant entity geçmişini PC'ye aktarabilecek yolu seçmek. Önce gerçek entity_id'leri ve küçük bir geçmiş örneğini alacağız. Python kodu ancak veri biçimini gördükten sonra yazılacak. Başarılı kod, örnek çıktı/log ve yorum depoda saklanacak.
+
+## Güncel ana dosyalar
+
+- [İki fazlı yol haritası](ROADMAP.md)
+- [İlerleme ağacı](PROGRESS_TREE.md)
+- [Faz 2 görev sırası](tasks/README.md)
+- [T007 — HA → PC aktarımı](tasks/T007-python-architecture.md)
+- [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md)
+- [Faz 1 deney arşivi](experiments/README.md)
+- [Karar kaydı ADR-011](docs/decisions/ADR-011-two-phase-project-structure.md)
+
+## Önceki durum kayıtları — tarihsel arşiv
+
+Aşağıdaki eski STATUS girdileri yazıldıkları tarihteki durumu korur. Güncel fazı ve aktif işi belirlemede bu dosyanın başındaki güncel bölüm esas alınır.
+
 ## 2026-10-31 — Güncel aktif yön: PZEM–SCT kararlı alan eşleştirme ve sürekli öğrenme
 
 - **ANA HEDEF:** Kullanıcının paylaştığı çalışan E00F YAML'ını baseline olarak koru. PZEM-004T V3.0 ile SCT Raw AC/akım çıktısını aynı yük koşullarında karşılaştır; iki tarafta kararlı alanları ayrı belirle; örtüşen alanları eşleştirip PZEM ile etiketle; yeni verilerle 24.22 katsayısını/modelini iyileştir.
