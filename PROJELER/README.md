@@ -2,6 +2,9 @@
 
 Bu klasör, birden fazla donanım bileşenini ve deneyi birlikte kullanan çalışmaları tutar.
 
+## Mimari
+- [BERO üst mimarisi](../MIMARI/README.md) — sensörden bağımsız tasarım ilkeleri ve pencereli sensör analizi.
+
 ## Projeler
 - [SCT-013 + PZEM akım gözlem sistemi](SCT013-PZEM-AKIM-GOZLEM/README.md) — SCT ham ADC örneklerinden özet özellikler çıkarır ve bunları PZEM ölçüm akışıyla zaman bakımından karşılaştırır.
 
