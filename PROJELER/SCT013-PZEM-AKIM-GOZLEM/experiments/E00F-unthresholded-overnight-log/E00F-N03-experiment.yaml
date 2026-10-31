@@ -61,7 +61,7 @@ conditions:
 
 recording:
   source_file: "esp32d2-logs (14).txt"
-  source_sha256: "c4131d1d4a6f7b9a" # Tam SHA-256 rapor dosyasında kayıtlıdır.
+  source_sha256: "c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e" # Yüklenen kaynak dosyanın tam SHA-256 değeri.
   ct_windows: 262
   slow_adc_updates_per_channel: 523
   calibration_id: null # Bu gözlemde yeni kalibrasyon yapılmadı.
