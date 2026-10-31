@@ -91,3 +91,11 @@
 - **HEDEF:** Faz 2'nin pratik başlangıç yaklaşımını, görev sırasını ve Modül 2'nin mevcut tasarım durumunu tek görünümde göstermek.
 - **LOG:** ADR-014, T009 ve ana proje yönergeleri oluşturuldu/güncellendi.
 - **SONUÇ:** Faz 1 tamamlandı; Faz 2 pratik yeniden kurulum ve geliştirme olarak aktif. T009 ilk görev. Bu belge donanımın çalıştığına veya firmware'in test edildiğine kanıt değildir.
+
+## 2026-10-31 — FIXED-LOAD-0130A-001 planlandı
+
+- 0,130 A sabit yük gözlem testi açıldı; durum PLANLANDI, ölçüm/log henüz yok.
+- 0,130 A kullanıcı bildirimi; ölçüm cihazı ve fiziksel yük kimliği/gücü belirtilmedi.
+- Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; K=24.22 korunacak, yazılımsal sıfır eşiği eklenmeyecek.
+- 0,30 A altı düşük akım gözlem alanında ±%4 kabul/ret uygulanmayacak.
+- [Test planı](test-loads/fixed-load-0130a/README.md).
