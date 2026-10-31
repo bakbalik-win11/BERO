@@ -1,0 +1,40 @@
+BERO MODÜL 2 — SCT-1 / 100 W AKKOR / CT_CLAMP + PENS KARŞILAŞTIRMASI
+Tarih: 2026-10-31
+Cihaz: ESP32D1 / esp32d1
+Kanal: SCT-1 / GPIO32 / sarı kablo
+Yük: 100 W akkor ampul
+Firmware: firmware/esp32d1.yaml — ct_clamp 200 ms, nominal 30 A/V
+
+KAYNAK VE KOŞUL
+- Kullanıcı, Kanal 1'de 100 W ampulü açtığını bildirdi.
+- Kullanıcı, bu test sırasında pens ampermetrede (PENS) 0,427 A okuduğunu bildirdi.
+- ESP32D1 sonucu, kullanıcının paylaştığı 563 satırlık ESPHome logunun analizinden çıkarıldı.
+- PENS değeri kullanıcı bildirimi; PENS ekran fotoğrafı bu kayıtta yok.
+- Ham 563 satırlık logun tamamı bu dosyaya kopyalanmadı; burada özet istatistik ve yorum tutulur.
+
+ESP32D1 LOG BULGULARI
+- SCT-1 ct_clamp penceresi: 200 ms.
+- SCT-1 log örnek sayısı: yaklaşık 3.323–3.435 / pencere; logun raporladığı örnekleme hızı yaklaşık 16.615–17.175 örnek/s.
+- SCT-1 akım yayınları: 5 saniye aralıkla.
+- İlk ölçümler değişken: 0,542 A; 0,333 A; 0,310 A; 0,691 A.
+- Sonraki beş kararlı ölçüm: 0,578 A; 0,591 A; 0,597 A; 0,590 A; 0,589 A.
+- Son beş ölçüm ortalaması: 0,589 A.
+- Son beş ölçüm aralığı: 0,578–0,597 A.
+- GPIO35 ortak bias log değerleri yaklaşık 1,635–1,671 V aralığında.
+- GPIO32'nin 1 saniyelik anlık ADC voltaj değerleri dalga biçimi/RMS değerlendirmesi için tek başına kullanılmadı; akım sonucu ct_clamp penceresinden alındı.
+
+PENS KARŞILAŞTIRMASI
+- PENS: 0,427 A (KULLANICI BİLDİRİMİ).
+- ESP32D1 SCT-1 kararlı bölüm ortalaması: 0,589 A (PAYLAŞILAN LOGDAN HESAP).
+- Mutlak fark: 0,162 A.
+- PENS değerine göre ESP32D1 yüksek okuma: yaklaşık %37,9.
+- Oran: PENS / ESP32D1 = yaklaşık 0,725.
+
+YORUM
+Bu koşulda 30 A/V nominal katsayıyla üretilen ESP32D1 sonucu, bildirilen PENS değerinden belirgin biçimde yüksektir. Bu tek karşılaştırma katsayının değiştirilmesi için yeterli değildir. Önce PENS ve ESP32 ölçümlerinin aynı yükte ve aynı kararlı zaman aralığında alındığı tekrar teyit edilmeli; ardından aynı koşulda tekrar ölçüm yapılmalıdır. CT modelinin SCT-1'e gerçekten 30 A/1 V olan SCT-013-030 olup olmadığı da kanal bazında doğrulanmalıdır. 30 A/V değeri bu nedenle şimdilik nominal başlangıç katsayısı olarak kalır; 21,75 A/V gibi tek noktadan türetilmiş yeni katsayı uygulanmaz.
+
+DURUM
+- ct_clamp ile hızlı örnekleme ve akım çıktısı logda gözlendi.
+- Bu 100 W koşulunda PENS karşılaştırması yapıldı; fark yaklaşık +%37,9.
+- Katsayı kalibrasyonu doğrulanmadı; firmware katsayısı değiştirilmedi.
+- SCT-2 ve SCT-3 testleri bekliyor; T010 AKTİF.
