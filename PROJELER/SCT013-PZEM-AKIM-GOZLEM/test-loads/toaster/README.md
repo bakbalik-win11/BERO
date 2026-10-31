@@ -32,5 +32,43 @@ Tost makinesi çalışırken Modül 2 / ESP32D1 / SCT-1 kanalının yüksek akı
 ## GÜVENLİK
 Tost makinesi şebeke gerilimiyle çalışan yüksek güçlü bir yüktür. CT yalnız tek bir yalıtılmış faz iletkenini çevrelemelidir; faz ve nötr birlikte çekirdekten geçirilmez. Şebeke tarafında açık breadboard veya açıkta iletken bırakılmaz. Kablo/CT yerleşimi değiştirilecekse cihaz enerjisiz bırakılır; uygun muhafaza ve yetkin elektrik güvenliği şarttır.
 
+
+## LOG 62 — ilk SCT gözlemi (2026-10-31)
+
+### Kaynak ve düzenek
+- Kaynak dosya: `esp32d1-logs (62).txt`; 934 satır, 68.564 karakter.
+- Kaynak SHA-256: `4790b00e69aaba791339f6d43aa13041efe373c5a87b9ed7fd4c1f481ce551f2`.
+- ESPHome 2026.10.1; ESP32 rev3.1; SCT-1 GPIO32 / ADC1, ortak bias GPIO35 / ADC1.
+- ADC 12 dB / 1 s; ct_clamp 0,20 s örnek penceresi / 2 s çıktı; K=24.22.
+- Cihaz bağlantısı ve ADC/ct_clamp başlatma durumları OK. Logda çalışma hatası veya timeout görülmedi. Derleme çıktısındaki üç ESP32 framework satırı optimizasyon önerisi uyarısıdır; ölçüm hatası olarak değerlendirilmedi.
+
+### Kararlı ON bölgesi — son düşüş örneği hariç
+İlk 119 akım yayını 21:52:30.185–21:56:26.262 aralığında, yaklaşık 236,1 saniyelik kararlı bölgedir.
+
+| Ölçüt | SCT |
+|---|---:|
+| n | 119 |
+| Ortalama | 7,1900 A |
+| Medyan | 7,188 A |
+| Min–maks | 7,135–7,264 A |
+| Örnek SD | 0,0247 A |
+| CV | %0,344 |
+| Raw AC ortalaması | 0,29686 V |
+| Raw AC min–maks | 0,29461–0,29991 V |
+| GPIO35 bias ortalaması | 1,66391 V |
+| SPS ortalaması | 18.561 |
+
+- Kararlı bölgedeki SCT dağılımı dardır; yaklaşık 7,19 A seviyesinde yüksek kısa dönem kararlılık gözlenmiştir.
+- UNIT 7,89 A kullanıcı bildirimiyle aritmetik ortalama farkı −%8,87; medyan farkı −%8,90'dır. UNIT ölçümünün aynı zaman aralığına ait olduğu doğrulanmadığından bu değerler **eşzamanlı doğruluk sapması değildir**.
+- 21:56:28.190'da son yayın 6,096 A'ya düşmüştür (önceki 7,208 A). Bu tek örnek kararlı istatistiklere katılmadı; yük geçişi/kapanma olasılığı olarak ayrıca izlenecek, tek başına termostat çevrimi kanıtı sayılmayacaktır.
+- K=24.22 sabit tutuldu. Bu logda katsayı değişikliği yapılmadı ve yapılması önerilmiyor; amaç yüksek akım bölgesindeki mevcut davranışı gözlemlemektir.
+- PZEM verisi ve UNIT ile eşzamanlı zaman damgası bu logda yoktur.
+
+### Ön değerlendirme
+**Gözlem:** Mevcut K=24.22 ile 7,19 A civarında SCT çıkışı kararlı görünmektedir. UNIT 7,89 A ile görülen yaklaşık %8,9 aritmetik fark, zaman eşleşmesi doğrulanmadan kalibrasyon/katsayı sonucu olarak yorumlanamaz. Son 6,096 A örneği ayrı geçiş verisi olarak korunur.
+
+### Arşiv notu
+Bu rapor, sohbet eki olan Log 62'nin tam içeriğinden hesaplanmıştır. Ham dosyanın GitHub'a birebir arşivlenmesi bu adımda yapılmadı; kaynak adı, satır/karakter sayısı ve SHA-256 kaydedildi.
+
 ## DURUM
-AÇIK — test planı oluşturuldu; fiziksel ölçüm, etiket gücü, referans ve log bekleniyor.
+AÇIK — Log 62 ön değerlendirmesi yapıldı. Yeni loglar/UNIT zaman eşleşmesi ve varsa termostat geçişleri bekleniyor.
