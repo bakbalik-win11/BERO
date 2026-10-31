@@ -1,3 +1,9 @@
+## 2026-10-31 — Toplu yük karşılaştırması
+
+- [Tüm yükler ve karma yükler raporu](test-loads/COMPARATIVE-RESULTS-2026-10-31.md) oluşturuldu.
+- Referans farkı ile kendi iç kararlılığı (SD/CV) ayrı gösterildi; eşzamanlılığı doğrulanmayan referans farkları hata sayılmadı.
+- 0,30 A altı deneylerde ±%4 kabul/ret uygulanmadı. K=24.22 değişmedi.
+
 ## 2026-10-31 — TOASTER-001 / Log 62 ham arşiv ve analiz
 
 - **HEDEF:** Mevcut K=24.22 ile tost makinesinin yüksek akım davranışını karakterize etmek; katsayıyı değiştirmemek.
