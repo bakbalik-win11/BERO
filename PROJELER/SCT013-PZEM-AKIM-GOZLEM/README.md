@@ -1,7 +1,7 @@
 # SCT-013 + PZEM akım gözlem sistemi
 
 ## Amaç
-SCT-013 akım trafosundan ADC örnekleri toplamak, pencere bazlı akım istatistikleri üretmek ve bunları PZEM'in bildirdiği ölçümlerle zaman damgalı şekilde karşılaştırmak.
+SCT-013 ölçüm zincirinin yük akımını hedeflenen sapma sınırında izlemesini sağlamak ve sonuçları PZEM referans akışıyla karşılaştırmak. Ham 50 Hz dalga biçimini PC'ye aktarmak ve her ADC örneğini ayrı zaman damgasıyla saklamak nihai amaç değil, artık kapatılmış ara geliştirme adımlarıdır.
 
 Bu çalışma enerji analizörü, güç kalitesi analizörü veya harmonik ölçüm sistemi geliştirme projesi değildir.
 
@@ -53,13 +53,13 @@ Teknik açıklamaları yeniden yazmamak için ilgili Markdown dosyaları [hardwa
 
 Karar ve test kapısı: [ADR-008](docs/decisions/ADR-008-two-node-staged-sensor-tests.md), [E09](experiments/E09-low-current-sensor-comparison/README.md).
 
-## Başlangıç tasarım değerleri
-- SCT örnekleme hızı: 2 kS/s.
-- SCT özet penceresi: nominal 200 ms (50 Hz'de nominal 10 çevrim).
-- PZEM sorgusu: yaklaşık 1 s başlangıç aralığı.
-- Yük geçişi için kararlı/geçiş alanları: deney verisi ve istatistiksel ölçütlerle belirlenecek; yaklaşık 3 s yalnızca geçmiş bir hipotezdir, nihai etiket kuralı değildir.
+## Çalışan ölçüm yolu ve tarihsel tasarım değerleri
+- E00F çalışan yolunda SCT ölçümü ESPHome ct_clamp ile 200 ms pencerede hesaplanır ve 2 s aralıkla yayınlanır; mevcut katsayı 24.22'dir.
+- 2 kS/s ham ADC edinimi ve 50 Hz ham dalga aktarımı eski ara tasarım hedefidir; ±%4 hedefinin yeni/harici kodla sağlandığı kullanıcı raporu üzerine kapatılmıştır.
+- PZEM sorgu aralığı ve kararlı pencere/etiketleme kuralları, ilgili entegrasyon aşamasında gerçek akışa göre belirlenir.
+- Tarihsel tasarım ve kapanış kararı: [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
 
-Bunlar deneylerle gözden geçirilecek başlangıç değerleridir; doğrulanmış sonuç değildir.
+Bu maddeler, harici kodun bu depoya aktarıldığı veya bağımsız olarak doğrulandığı anlamına gelmez.
 
 ## Ölçüm hedefi güncellemesi (2026-10-31)
 Kullanıcının bildirimine göre yeni/harici kodla ±%4 sapma hedefi dört karşılaştırma koşulunda sağlandı (100 W akkor, 150 W akkor, kettle düşük/kararlı ve kettle kaynama). Ham 50 Hz dalga aktarımı, her ADC örneğini ayrı zaman damgasıyla saklama ve bu işler için DMA/ADC Continuous geliştirmesi ara basamak olarak kapatıldı. E00F'nin çalışan ölçüm yolu korunur. Sonuç KULLANICI RAPORU olarak [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md) içinde kayıtlıdır; harici kodun kaynağı bu depoda değildir.
