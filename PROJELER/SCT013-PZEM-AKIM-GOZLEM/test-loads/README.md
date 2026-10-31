@@ -111,3 +111,13 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - **FAN-1:** UNIT bildirimi 0,093 A; düşük akım araştırma bölgesindedir. Önceki ±%4 bandı ve 4/247 sayımı tarihsel hesap olarak korunur, kabul/ret sonucu sayılmaz. 247 yayın ortalaması 0,146757 A ve medyanı 0,147 A istatistik olarak korunur.
 - **FAN-2:** UNIT bildirimi 0,106 A; düşük akım araştırma bölgesindedir. Mevcut SCT logu ayrı gözlem olarak tutulur; ±%4 değerlendirmesi yapılmaz. PZEM akım + PF gereklidir.
 - **AYRI DENEY:** [0,30 A altı düşük akım deney planı](low-current-below-0p30/README.md). Tek tur, 2 tur ve 4 tur koşulları planlanmıştır; henüz uygulanmış test değildir.
+
+
+## 2026-10-31 — FAN-2 uzun SCT-1 logu ve kapanışı
+
+- FAN-2 UNIT bildirimi 0,106 A; 0,30 A altı düşük akım bölgesinde ±%4 kabul/ret uygulanmaz.
+- Uzun log: `esp32d1-logs (42).txt`; 90.706 bayt; SHA-256 `e550d447b75b50e2b99581a70de23b8916caba576a8665240f44574e586a3dca`; 17:26:19.113–17:31:41.120; 162 yayın.
+- SCT akım ortalaması 0,168969 A; medyan 0,1685 A; min–maks 0,108–0,257 A. 162 yayının tamamı 0,30 A altındadır.
+- Raw AC ortalama 0,00697685 V; bias GPIO35 ortalama 1,663426 V; SCT-1 ADC GPIO32 ortalama 1,660537 V.
+- FAN-2, düşük akım gözlem oturumu olarak kapatıldı; ±%4 doğrulaması değildir. PZEM akım + PF ile aynı kararlı pencerede ileri inceleme açık.
+- [FAN kayıtları](fan/README.md); [analiz](../logs/module2/2026-10-31-fan2-module2-sct1-long-analysis.md); [tam log](../logs/module2/2026-10-31-fan2-module2-sct1-long-full.txt); [kapanış YAML](../firmware/archive/FAN-2-2026-10-31-esp32d1-sct1.yaml).
