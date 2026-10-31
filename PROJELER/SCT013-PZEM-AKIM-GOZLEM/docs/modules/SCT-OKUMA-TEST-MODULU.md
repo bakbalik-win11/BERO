@@ -2,7 +2,7 @@
 
 **Modül kimliği:** BERO-SCT-OKUMA-TEST-002  
 **ESPHome kimliği:** `esp32d1` / `ESP32D1`  
-**Durum:** FIRMWARE AÇILDI, DÖRT ADC BAŞLATMASI LOG İLE DESTEKLENDİ — SCT/100 W kanal testleri bekliyor  
+**Durum:** SCT-1 100 W denemesi kullanıcı bildirimiyle yapıldı; SCT-2 ve SCT-3 bekliyor  
 **Görev:** [T010 — Modül 2 üçlü SCT devreye alma](../../tasks/T010-module2-triple-sct-bringup.md)  
 **Karar:** [ADR-015](../decisions/ADR-015-module2-esp32d1-triple-sct.md)
 
@@ -17,6 +17,15 @@
 - **BROWNOUT AYRIMI:** Önceki ayrı logda OTA rollback/brownout uyarısı vardı. Bu ilk bağlantısız ADC logunda brownout mesajı görünmüyor; bu kayıt önceki olayın nedenini açıklamaz.
 - **SONUÇ:** Firmware'in cihazda çalıştığı ve dört ADC kanalının başlatıldığı LOG İLE DESTEKLENDİ. SCT okuma performansı, 100 W ampul tepkisi ve gerçek bağlantı doğrulanmadı. T010 AKTİF kalır; üç ayrı 100 W kanal testi bekliyor.
 - **KAYNAK DOSYA ÖZETİ:** Kullanıcı ekindeki özgün log: 203 satır, 11,363 bayt; SHA-256 `88f897b2603815233b0c44e497261169be2e6bff73368b435ae04e38ebb312b3`. Depodaki kayıt dosyası önemli kurulum ve örnek satırlarını korur; özgün tam metin kullanıcı ekinde kalır ve SHA-256 özetiyle tanımlanır.
+
+## 2026-10-31 — SCT-1 / 100 W ilk kanal denemesi
+
+- SCT-1 ön panel 1 numaralı girişe bağlandı ve 100 W ampul açıldı (KULLANICI BİLDİRİMİ).
+- Ortak bias değeri ESPHome logunda görüldü; sayısal bias değeri bu bildirimde yok (KULLANICI BİLDİRİMİ).
+- U200B+ cihazında 0,433 A görüldü (KULLANICI BİLDİRİMİ).
+- GPIO32 ADC sayısal log örneği paylaşılmadı. Bu nedenle U200B+ akım değeri ESP32 ADC ölçüm başarısı olarak yorumlanmaz.
+- Ayrıntılı kayıt: [SCT-1 100 W test kaydı](../../logs/module2/2026-10-31-sct1-100w-test.txt).
+- **Durum:** SCT-1 test adımı bildirildi; ADC log analizi ve SCT-2/SCT-3 testleri bekliyor.
 
 ## 1. Amaç
 
@@ -88,7 +97,7 @@ GPIO işlev adları klasik ESP32 varyantı içindir; kartın tam modeli/revizyon
 
 | Test sırası | Test edilen SCT kanalı | Kablo | GPIO | Yük | Sonuç |
 |---:|---|---|---:|---|---|
-| 1 | SCT-1 | Sarı | GPIO32 | 100 W akkor ampul | Bekliyor |
+| 1 | SCT-1 | Sarı | GPIO32 | 100 W akkor ampul | Kullanıcı bildirimi: U200B+ 0,433 A; ADC logu bekleniyor |
 | 2 | SCT-2 | Yeşil | GPIO33 | 100 W akkor ampul | Bekliyor |
 | 3 | SCT-3 | Mavi | GPIO34 | 100 W akkor ampul | Bekliyor |
 
