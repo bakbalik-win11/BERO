@@ -102,3 +102,12 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - UNIT PF göstermediğinden PF etkisi doğrulanamadı. FAN-1'in PZEM akım ve PF ile aynı kararlı pencerede yeniden değerlendirilmesi açık kalır.
 - FAN-2 ve sonraki fan kademeleri için PZEM akım + PF kaydı gereklidir.
 - [FAN-1 kayıt dosyası](fan/README.md); [uzun analiz](../logs/module2/2026-10-31-fan1-module2-sct1-long-analysis.md); [uzun ham log](../logs/module2/2026-10-31-fan1-module2-sct1-long-full.txt); [kapanış kod snapshot](../firmware/archive/FAN-1-2026-10-31-esp32d1-sct1.yaml).
+
+
+## 2026-10-31 — Düşük akım bölgesi ve FAN-1 değerlendirme düzeltmesi
+
+- **KURAL:** 0,30 A altındaki akım bölgesinde ±%4 kabul/ret ölçütü uygulanmaz. 0,30 A ve üzerindeki koşullarda ±%4 kriteri, eşleşmiş ve kararlı referans verisi mevcutsa kullanılabilir.
+- Bu 0,30 A sınırı BERO deney sınıflandırmasıdır; SCT-013 üretici doğruluk garantisi veya fiziksel alt ölçüm sınırı değildir.
+- **FAN-1:** UNIT bildirimi 0,093 A; düşük akım araştırma bölgesindedir. Önceki ±%4 bandı ve 4/247 sayımı tarihsel hesap olarak korunur, kabul/ret sonucu sayılmaz. 247 yayın ortalaması 0,146757 A ve medyanı 0,147 A istatistik olarak korunur.
+- **FAN-2:** UNIT bildirimi 0,106 A; düşük akım araştırma bölgesindedir. Mevcut SCT logu ayrı gözlem olarak tutulur; ±%4 değerlendirmesi yapılmaz. PZEM akım + PF gereklidir.
+- **AYRI DENEY:** [0,30 A altı düşük akım deney planı](low-current-below-0p30/README.md). Tek tur, 2 tur ve 4 tur koşulları planlanmıştır; henüz uygulanmış test değildir.
