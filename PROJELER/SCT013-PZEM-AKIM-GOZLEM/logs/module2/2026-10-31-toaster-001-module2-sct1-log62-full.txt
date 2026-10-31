@@ -1,0 +1,1 @@
+INFO ESPHome 2026.10.1
