@@ -1,61 +1,13 @@
-# ============================================================
-# PROJE BERO — ESP32-C3 SSR KONTROL DUGUMU
-# ============================================================
-#
-# AMAC:
-# - SSR kontrol cikisini 40 saniye ON / 20 saniye OFF dongusuyle
-#   calistirmak.
-# - Her ON/OFF gecisini BOOT_ID ve artan EVENT_ID ile tanimlamak.
-# - Olayi UDP broadcast ile 4210 portuna yayinlamak.
-# - Ayni olay kimligini ESPHome loglarinda ve Home Assistant
-#   metin entity'lerinde gorunur kilmak.
-# - DS3231 RTC saatini kullanmak; NTP geldiginde RTC'yi guncellemek.
-# - ESP cihaz/agir bilgilerini Home Assistant'ta izlenebilir yapmak.
-#
-# ESP KIMLIGI:
-# - ESP32-C3 (ESP-IDF framework)
-# - ESPHome node name: esphome-web-0424f4
-# - HA friendly name: ESP32-C3-SSR
-# - SSR GPIO: GPIO6 (inverted: true)
-# - DS3231 I2C: SDA GPIO0, SCL GPIO1, adres 0x68
-#
-# BAGLANTILAR:
-# - ESP32-C3 GPIO6 -> SSR kartinin kontrol girisi
-# - ESP32-C3 GND -> SSR karti kontrol GND (kart bu baglantiyi
-#   gerektiriyorsa; giris gerilim seviyesini kart dokumanina gore
-#   dogrula).
-# - DS3231 SDA -> GPIO0
-# - DS3231 SCL -> GPIO1
-# - DS3231 VCC/GND -> kartin ve modulun uygun besleme/GND hatlari
-#
-# ONEMLI:
-# - inverted: true oldugu icin ON komutunda GPIO6 fiziksel LOW,
-#   OFF komutunda fiziksel HIGH olur.
-# - GPIO cikis seviyesinin yazilimdan okunmasi, SSR'nin AC tarafinda
-#   gercekten iletime gectigini kanitlamaz. Fiziksel yuk durumu daha
-#   sonra PZEM akim verisiyle kontrol edilecektir.
-# - UDP paketi: BERO_EVT,BOOT_ID=XXXXXXXX,EVENT_ID=N,STATE=ON|OFF
-# - UDP hedefi: 255.255.255.255:4210
-# - Dongu millis() ile yurur; RTC/NTP yalniz olay zaman damgasi icindir.
-#
-# BEKLENEN:
-# - HA'da SSR komut durumu, BOOT_ID, EVENT_ID ve son olay gorunur.
-# - HA cihaz tanilama bilgileri: IP, SSID, MAC, ESPHome surumu,
-#   uptime ve Wi-Fi sinyal seviyesi.
-# - Logda RTC/NTP kaynagi ve UDP gonderim sonucu gorunur.
-#
-# DURUM:
-# - Bu YAML depo kaynak dosyasidir.
-# - Derleme, cihaza yukleme ve fiziksel SSR testi henuz
-#   dogrulanmamistir. Bu dosya tek basina test kaniti degildir.
-#
-# ============================================================
+# PROJE BERO — ESP32-C3-SSR
+# SSR: 40 saniye ON / 20 saniye OFF
+# UDP olay yayını: port 4210
+# socket() belirsizliği ::socket() ile düzeltildi.
+# Derleme ve fiziksel test sonucu henüz doğrulanmadı.
 
 esphome:
   name: esphome-web-0424f4
   friendly_name: ESP32-C3-SSR
   name_add_mac_suffix: false
-
   on_boot:
     - priority: -100
       then:
@@ -63,17 +15,7 @@ esphome:
         - lambda: |-
             id(bero_boot_id) = esp_random();
             id(bero_event_id) = 0;
-            id(bero_last_state) = "BOOT";
-
-            char boot_buffer[9];
-            snprintf(boot_buffer, sizeof(boot_buffer), "%08X",
-              (unsigned int) id(bero_boot_id));
-            id(bero_boot_id_text).publish_state(boot_buffer);
-            id(bero_event_id_text).publish_state("0");
-            id(bero_last_state_text).publish_state("BOOT");
-
-            ESP_LOGI("bero_event",
-              "BERO_BOOT_ID=%08X EVENT_ID_START=0",
+            ESP_LOGI("bero_event", "BERO_BOOT_ID=%08X EVENT_ID_START=0",
               (unsigned int) id(bero_boot_id));
 
             auto rtc_now = id(rtc_time).now();
@@ -172,11 +114,6 @@ globals:
     restore_value: no
     initial_value: '0'
 
-  - id: bero_last_state
-    type: std::string
-    restore_value: no
-    initial_value: '"BOOT"'
-
   - id: ssr_cycle_start_ms
     type: uint32_t
     restore_value: no
@@ -191,11 +128,10 @@ interval:
   - interval: 1s
     then:
       - lambda: |-
+          #include "driver/gpio.h"
           #include "lwip/sockets.h"
           #include "lwip/inet.h"
           #include <errno.h>
-          #include <stdio.h>
-          #include <string.h>
 
           auto log_event = [&](const char *event) {
             auto rtc = id(rtc_time).now();
@@ -219,7 +155,6 @@ interval:
 
           auto emit_shared_event = [&](const char *state) {
             id(bero_event_id)++;
-            id(bero_last_state) = state;
 
             char packet[128];
             snprintf(packet, sizeof(packet),
@@ -227,24 +162,14 @@ interval:
               (unsigned int) id(bero_boot_id),
               (unsigned int) id(bero_event_id), state);
 
-            char event_id_buffer[16];
-            snprintf(event_id_buffer, sizeof(event_id_buffer), "%u",
-              (unsigned int) id(bero_event_id));
-            id(bero_event_id_text).publish_state(event_id_buffer);
-            id(bero_last_state_text).publish_state(state);
-
             static int udp_sock = -1;
             if (udp_sock < 0) {
               udp_sock = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 
               if (udp_sock >= 0) {
                 int broadcast_enable = 1;
-                int option_result = setsockopt(udp_sock, SOL_SOCKET,
-                  SO_BROADCAST, &broadcast_enable, sizeof(broadcast_enable));
-                if (option_result < 0) {
-                  ESP_LOGW("bero_udp",
-                    "UDP_BROADCAST_OPTION_FAILED errno=%d", errno);
-                }
+                setsockopt(udp_sock, SOL_SOCKET, SO_BROADCAST,
+                  &broadcast_enable, sizeof(broadcast_enable));
               } else {
                 ESP_LOGW("bero_udp",
                   "UDP_SOCKET_CREATE_FAILED errno=%d", errno);
@@ -282,6 +207,13 @@ interval:
             emit_shared_event("ON");
             log_event("COMMAND_ON");
             id(ssr_control).turn_on();
+
+            const int gpio_level = gpio_get_level(GPIO_NUM_6);
+            if (gpio_level == 1) {
+              log_event("GPIO_ON_CONFIRMED");
+            } else {
+              log_event("GPIO_ON_READBACK_MISMATCH");
+            }
             log_event("CYCLE_START_ON_40S");
             return;
           }
@@ -294,12 +226,26 @@ interval:
               emit_shared_event("ON");
               log_event("COMMAND_ON");
               id(ssr_control).turn_on();
+
+              const int gpio_level = gpio_get_level(GPIO_NUM_6);
+              if (gpio_level == 1) {
+                log_event("GPIO_ON_CONFIRMED");
+              } else {
+                log_event("GPIO_ON_READBACK_MISMATCH");
+              }
             }
           } else if (elapsed_s < 60) {
             if (id(ssr_control).state) {
               emit_shared_event("OFF");
               log_event("COMMAND_OFF");
               id(ssr_control).turn_off();
+
+              const int gpio_level = gpio_get_level(GPIO_NUM_6);
+              if (gpio_level == 0) {
+                log_event("GPIO_OFF_CONFIRMED");
+              } else {
+                log_event("GPIO_OFF_READBACK_MISMATCH");
+              }
             }
           } else {
             id(ssr_cycle_start_ms) = now_ms;
@@ -307,36 +253,17 @@ interval:
             emit_shared_event("ON");
             log_event("COMMAND_ON");
             id(ssr_control).turn_on();
+
+            const int gpio_level = gpio_get_level(GPIO_NUM_6);
+            if (gpio_level == 1) {
+              log_event("GPIO_ON_CONFIRMED");
+            } else {
+              log_event("GPIO_ON_READBACK_MISMATCH");
+            }
             log_event("CYCLE_RESTART_ON_40S");
           }
 
 text_sensor:
-  - platform: template
-    id: bero_boot_id_text
-    name: "BERO SSR Boot ID"
-    update_interval: never
-
-  - platform: template
-    id: bero_event_id_text
-    name: "BERO SSR Event ID"
-    update_interval: never
-
-  - platform: template
-    id: bero_last_state_text
-    name: "BERO SSR Son Olay"
-    update_interval: never
-
-  - platform: wifi_info
-    ip_address:
-      name: "BERO SSR IP"
-    ssid:
-      name: "BERO SSR WiFi SSID"
-    mac_address:
-      name: "BERO SSR MAC"
-
-  - platform: version
-    name: "BERO SSR ESPHome Surumu"
-
   - platform: template
     name: "BERO NTP Saat"
     update_interval: 5s
@@ -366,15 +293,6 @@ text_sensor:
         now.year, now.month, now.day_of_month, now.hour, now.minute, now.second);
       ESP_LOGI("rtc_test", "RTC_TIME: %s", buffer);
       return {buffer};
-
-sensor:
-  - platform: uptime
-    name: "BERO SSR Uptime"
-    update_interval: 60s
-
-  - platform: wifi_signal
-    name: "BERO SSR WiFi Sinyal"
-    update_interval: 60s
 
 button:
   - platform: template
