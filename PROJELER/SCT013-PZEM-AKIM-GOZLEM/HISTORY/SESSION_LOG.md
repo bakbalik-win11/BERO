@@ -1084,3 +1084,12 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **YORUM:** Faz ve nötrün birlikte CT içinden geçirilmesi söz konusu değil. Önceki “primer iletken/tur bilinmiyor” sınırlaması kullanıcı teyidiyle giderildi.
 - **DİĞER SINIRLAR:** PZEM ile eşzamanlı referans karşılaştırması ve kalibrasyon yapılmadı; ham ADC örnek dizisi mevcut değil. Dolayısıyla aç-kapa gözlemi, akım doğruluğu veya ±%4 kabulü anlamına gelmez.
 - **GÜNCELLEMELER:** E00F-N03 deney YAML'ı, gözlem raporu, STATUS.md ve PROGRESS_TREE.md güncellendi.
+
+
+## 2026-10-31 — E00F-N03 aç-kapa gözlem testi kapatıldı
+
+- **HEDEF:** Mevcut E00F ölçüm zincirinin 100 W akkor yükte kapalı → açık kararlı → tekrar kapalı davranışını gözlemek.
+- **KABUL / LOG:** Kullanıcı yükün 10:32'de açıldığını ve 10:39'da kapatıldığını bildirdi. İki DEBUG logunda yük öncesi Raw AC medyanı 0.004 V, yük açık sakin bölüm medyanı 0.019 V; kapanış geçişinde 10:39:25.820'de 0.018 V, 10:39:27.837'de 0.006 V, 10:39:29.819'da 0.000 V; yük sonrası 10:40–10:46 medyanı 0.000 V. Kullanıcı CT içinden yalnız faz iletkeninin tek geçiş (1 tur) yaptığını doğruladı.
+- **SONUÇ:** N03'ün kendi hedefi ve üç koşullu gözlem sırası karşılandı; E00F-N03 **TAMAMLANDI** olarak kapatıldı. Bu karar PZEM kalibrasyonu veya ±%4 doğruluk iddiası değildir; bunlar ayrı görev kapsamındadır.
+- **SINIRLAR / ARŞİV:** PZEM referans karşılaştırması ve ham ADC dönüşüm dizisi bu testte yoktur. İki kaynak TXT dosyası Git'e aktarılmadı; SHA-256 değerleri ve rapor kayıtlıdır. CT yerleşim bilgisi kullanıcı beyanıdır, bağımsız fiziksel inceleme değildir.
+- **DEPO GÜNCELLEMELERİ:** Deney YAML, gözlem raporu, STATUS.md ve PROGRESS_TREE.md TAMAMLANDI durumuna getirildi.
