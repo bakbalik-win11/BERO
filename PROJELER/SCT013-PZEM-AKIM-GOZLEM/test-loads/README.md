@@ -143,3 +143,11 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - **KURAL:** 0,30 A ve üzeri kararlı pencerelerde eşleşmiş referans varsa ±%4 kıyası; 0,30 A altında ±%4 kabul/ret yok. SCT toplam hat akımını gözlemler; tek başına PF veya FAN-3 bileşen akımını ayrıştırmaz.
 - **DURUM:** Test planı açıldı; fiziksel deney, yeni log ve sonuç henüz yoktur.
 - **AYRINTI:** [MIXED-LOAD-001 test dosyası](mixed-load-100w-plus-fan3/README.md).
+
+
+## 2026-10-31 — MIXED-LOAD-001 UNIT açılış referansı
+
+- 100 W akkor UNIT bildirimi yaklaşık 0,430 A; FAN-3 UNIT bildirimi 0,142 A.
+- İki yük birlikte UNIT bildirimi **0,573 A** olarak kaydedildi. Bu doğrudan kullanıcı bildirimi olan karma yük referansıdır; ayrı değerlerin aritmetik toplamı değildir.
+- PZEM teyidi ve eşzamanlı SCT logu henüz yoktur; ±%4 sonucu çıkarılmamıştır.
+- [MIXED-LOAD-001 kayıt dosyası](mixed-load-100w-plus-fan3/README.md).
