@@ -1,3 +1,13 @@
+## 2026-10-31 — MIXED-LOAD-57W-15W-001 açıldı: 57 W + 15 W ampul
+
+- **DURUM:** AÇIK — yeni karma yük koşulu; SCT logu bekleniyor. Önceki LOAD-57W-001 ayrı test olarak açık kalır.
+- **YÜK:** 57 W akkor ampul + 15 W ampul (15 W ampul tipi henüz belirtilmedi); etiket güçleri toplamı 72 W.
+- **UNIT:** 0,303 A kullanıcı bildirimi; ölçüm zamanı ve SCT ile aynı kararlı pencere olduğu henüz teyit edilmedi; PZEM değildir.
+- **DÜZENEK:** Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp 200 ms/2 s, K=24.22; yazılımsal sıfır eşiği yok.
+- **DEĞERLENDİRME:** UNIT 0,303 A, 0,30 A BERO gözlem sınırının hemen üzerinde. Eşleşmiş kararlı pencere varsa ±%4 kıyası yapılabilir; altındaki yayınlar ayrıca düşük akım gözlemi olarak ele alınır. UNIT ve varsa PZEM ayrı tutulur.
+- **DOSYA:** [MIXED-LOAD-57W-15W-001](test-loads/mixed-57w-15w/README.md).
+- **SONRAKİ:** SCT logunu ve UNIT ölçüm zamanını kaydet; test koşulu değişmeden kararlı pencereyi gözle. Önceki LOAD-57W-001 kapatılmayacak.
+
 ## 2026-10-31 — LOAD-57W-001 / Log 58 analiz edildi
 
 - **DURUM:** AÇIK — ilk SCT logu arşivlendi ve analiz edildi; eşzamanlı referans doğrulaması bekleniyor.
