@@ -1,3 +1,13 @@
+## 2026-10-31 — Modül 2 SCT-1 / 100 W ct_clamp karşılaştırması
+
+- Paylaşılan logda SCT-1 için 200 ms ct_clamp pencereleri ve akım çıktıları gözlendi.
+- Son beş kararlı ESP32D1 değeri ortalama 0,589 A (aralık 0,578–0,597 A).
+- Kullanıcı aynı test koşulunda PENS değerini 0,427 A bildirdi.
+- Fark 0,162 A; ESP32D1, PENS değerinden yaklaşık %37,9 yüksek.
+- Tek noktadan katsayı değiştirilmedi; nominal 30 A/V geçici olarak korundu.
+- [SCT-1 karşılaştırma kaydı](logs/module2/2026-10-31-sct1-100w-ct-clamp-comparison.txt).
+- **T010:** SCT-1 akım çıktısı logla desteklendi; ölçek/kalibrasyon doğrulanmadı. SCT-2 ve SCT-3 bekliyor.
+
 ## 2026-10-31 — SCT-1 / 100 W ilk kanal denemesi
 
 - SCT-1 ön panel 1 numaralı girişe bağlandı ve 100 W ampul açıldı (KULLANICI BİLDİRİMİ).
