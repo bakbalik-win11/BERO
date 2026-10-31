@@ -200,8 +200,8 @@ Bu sistem enerji analizörü değildir; gerilim, faz, aktif güç ve enerji öl�
 
 ### BERO kanıtları
 
-- [BREAD-TOASTER-001 test kaydı](../../test-loads/bread-toaster/README.md)
-- [Log 63 teknik analiz](../../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md)
+- [BREAD-TOASTER-001 test kaydı](../../../test-loads/bread-toaster/README.md)
+- [Log 63 teknik analiz](../../../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md)
 - [Log 63 tam ham kayıt](../../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-full.txt)
 
 ---

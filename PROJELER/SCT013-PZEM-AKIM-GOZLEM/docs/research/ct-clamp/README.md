@@ -7,11 +7,11 @@ Bu klasör, BERO'nun ct_clamp ölçüm zinciri hakkındaki iki ayrı raporu sakl
 - [Kullanıcı raporu — Markdown metin aktarımı](source/2026-10-31-user-supplied-ct-clamp-report.md)
 - Kaynak: kullanıcı tarafından yüklenen dört sayfalık DOCX.
 - Depoda metin aktarımı Markdown biçiminde tutulur; raporun varsayımları, simülasyon sonuçları ve kendi çıkarım notları kaynak metindeki gibi korunmuştur.
-- Kaynak DOCX: 9.547 bayt; SHA-256 `cfb2d76f64a93efd8d80e0005c6e80b974d9086e77b72f61542898aa03f88a05`.
+- Kaynak DOCX'in kendisi depoda ikili dosya olarak tutulmuyor; dört sayfalık içeriği Markdown metin aktarımı olarak korunuyor. Kaynak DOCX: 9.547 bayt; SHA-256 `cfb2d76f64a93efd8d80e0005c6e80b974d9086e77b72f61542898aa03f88a05`.
 
 ## 2. Bağımsız teknik inceleme
 
-- [Bağımsız teknik inceleme](../ct-clamp/2026-10-31-independent-technical-review.md)
+- [Bağımsız teknik inceleme](2026-10-31-independent-technical-review.md)
 - Biçim: Markdown.
 - Dayanak: ESPHome 2026.10.1 kaynak kodu, Espressif/CT dokümanları ve BERO Log 63.
 - Kaynak koddan doğrulanan davranışlar, gerçek BERO log bulguları, üretici bilgileri, hesaplar ve teorik senaryolar ayrı sınıflandırılmıştır.
