@@ -1,3 +1,15 @@
+## 2026-10-31 — Yeniden kullanılabilir sensör okuma kodları ve açıklamaları
+
+- **HEDEF:** Kullanıcının Claude/Copilot/bağımsız ct_clamp araştırmalarından çıkardığı gözlemleri yalnız rapor olarak bırakmayıp, diğer sensör türlerine doğru şekilde uyarlanabilecek kod ve rehber haline getirmek.
+- **DEPO OKUMASI:** AGENTS.md, STATUS.md, ROADMAP.md, T010, mevcut firmware/esp32d1.yaml ve firmware/esp32d2.yaml, firmware/README.md, proje README ve ilgili ct_clamp araştırma raporları incelendi.
+- **SENTEZ:** Ortak veri yolu; kaynak okuma → geçerlilik kontrolü → örnek yönetimi → sinyale uygun pencere/istatistik → fiziksel birime dönüşüm → yayın/kayıt olarak tanımlandı. Bu, ortak mimari ilkedir; tüm adımları otomatik yapan tek ESPHome bileşeni olduğu iddiası değildir.
+- **CT ÖZELİ:** ct_clamp'in DC ortalamasını çıkararak AC RMS hesaplaması CT/AC sinyali içindir. `last_value == value` tekrarı, ADS1115'in dönüşüm hızı bağlamındaki özel bir örnek kabul kararıdır; ADC okuma çağrısını durdurmaz ve yavaş sensörlerde tekrar eden değerler gerçek sabit ölçüm olabilir.
+- **GENEL ÖRNEK:** Analog DC sensör için ADC voltajını doğrudan gözleyen ayrı YAML eklendi. Fiziksel birime dönüşüm için sensör modeli ve transfer fonksiyonu bilinmeden katsayı uydurulmadı.
+- **EKLENEN DOSYALAR:** [patterns/README.md](../firmware/patterns/README.md); [ct-clamp-ac-rms-reference.yaml](../firmware/patterns/ct-clamp-ac-rms-reference.yaml); [adc-dc-voltage-observer.yaml](../firmware/patterns/adc-dc-voltage-observer.yaml).
+- **ÖNEMLİ FARK:** Mevcut `firmware/esp32d1.yaml` tek ct_clamp kanalı içeriyor; daha sonraki T010 kaydı üç kanalın eklendiğini belirtiyor. Çelişki çözülmeden cihaz YAML'ı değiştirilmedi.
+- **DOĞRULAMA:** Yeni dosyalar GitHub'a yazıldı ve yeniden okunarak içeriklerinin bulunduğu doğrulandı. Ancak ESPHome derlemesi, OTA ve fiziksel sensör testi yapılmadı.
+- **SONUÇ:** Tekrar kullanılabilir referans kodlar ve açıklama rehberi depoda; T010 ve görev sırası değişmedi.
+
 ## 2026-10-31 — ESPHome ct_clamp üç kaynaklı sentez
 
 - **HEDEF:** Kullanıcının “aynı soruya cevap” çalışmasında Claude ve GitHub Copilot yanıtlarını önceki bağımsız kaynak kod/tarihçe incelemesiyle birleştirmek; ortak bulguları ve kanıtlanmayan iddiaları ayırmak.
