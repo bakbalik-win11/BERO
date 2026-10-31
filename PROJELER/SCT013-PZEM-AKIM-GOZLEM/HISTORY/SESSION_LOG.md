@@ -7,7 +7,7 @@
 - **REFERANS:** UNIT 7,89 A kullanıcı bildirimi. Aritmetik fark −%8,87; zaman eşleşmesi doğrulanmadığı için doğruluk sapması değildir. PZEM yok.
 - **GEÇİŞ:** 21:56:28.190'da 6,096 A tek yayın; termostat OFF çevrimi olduğu doğrulanmadı.
 - **SONUÇ:** Mevcut K=24.22 ile SCT kararlı dar dağılım gösterdi. Katsayı ve firmware değiştirilmedi. TOASTER-001 açık kaldı.
-- **DOĞRULAMA:** Ham log, analiz, test README, STATUS, PROGRESS_TREE ve test index güncellendi; dosyalar yeniden okunarak doğrulanacak.
+- **DOĞRULAMA:** Ham log, analiz, test README, STATUS, PROGRESS_TREE ve test index güncellendi. GitHub'dan yeniden okuma yapıldı; ham log 68.564 karakter / 934 satır, analiz 2.845 karakter / 49 satır; tüm ilgili bağlantılar kontrol edildi.
 
 ## 2026-10-31 — MIXED-LOAD-57W-15W-001 Log 59 analizi ve arşiv
 
