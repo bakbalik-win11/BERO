@@ -46,7 +46,7 @@ Faz 2 kapsamı: [ADR-014](docs/decisions/ADR-014-phase2-practical-restart.md). �
 - update_interval: 2s.
 - Mevcut katsayı K=24.22.
 
-Bu ayarlar ilk PZEM/SCT veri karşılaştırmasında başlangıç baseline'ıdır. Gerekçe ve eşleşmiş veri olmadan firmware veya ct_clamp değiştirilmez. [Firmware kaydı](firmware/esp32d2.yaml).
+Bu ayarlar Faz 1'deki çalışan yolun tarihsel referansıdır. Faz 2'de yeni modül/ESP kurulumuna başlangıç noktası olabilir; yeni donanım ve işlev gerektirirse kontrollü biçimde uyarlanabilir. Her değişiklik ayrı kaydedilir ve derleme/gerçek donanım testiyle doğrulanır. [Firmware kaydı](firmware/esp32d2.yaml).
 
 ## Donanım referansları
 
@@ -66,9 +66,9 @@ Bu ayarlar ilk PZEM/SCT veri karşılaştırmasında başlangıç baseline'ıdı
 5. [tasks/README.md](tasks/README.md) — Faz 2 görev sırası.
 6. [T009](tasks/T009-practical-system-bringup.md) — ilk aktif iş.
 7. [T007](tasks/T007-python-architecture.md) — sonraki veri aktarımı adımı.
-7. [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
-8. [Deney arşivi](experiments/README.md) — Faz 1 tarihçesi.
-9. [Karar kayıtları](docs/decisions/).
+8. [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
+9. [Deney arşivi](experiments/README.md) — Faz 1 tarihçesi.
+10. [Karar kayıtları](docs/decisions/).
 
 ## Kapsam dışı
 
