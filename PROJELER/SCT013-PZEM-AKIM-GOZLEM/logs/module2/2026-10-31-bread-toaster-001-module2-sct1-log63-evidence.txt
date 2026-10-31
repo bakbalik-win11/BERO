@@ -1,0 +1,37 @@
+# BREAD-TOASTER-001 — Log 63 seçilmiş gerçek satırlar
+
+Kaynak: `esp32d1-logs (63).txt`
+Kaynak SHA-256: `cf9254185e591650a06a990e5bc0f567ee499ba4ec541c4bb8748b132513f896`
+Bu dosya tam ham log değildir; yalnızca kurulum ve örnek ölçüm satırlarını koruyan seçilmiş kanıt dökümüdür.
+
+```text
+INFO ESPHome 2026.10.1
+INFO Loaded validated config cache for esp32d1.yaml, skipping validation.
+INFO Starting log output from 192.168.0.31 using esphome API
+INFO Successfully resolved esp32d1 @ 192.168.0.31 in 0.000s
+INFO Successfully connected to esp32d1 @ 192.168.0.31 in 0.068s
+INFO Successful handshake with esp32d1 @ 192.168.0.31 in 0.013s
+[22:31:29.932][I][app:164]: ESPHome version 2026.10.1 compiled on 2026-10-31 15:55:25 +0300
+[22:31:29.932][I][app:171]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[22:31:29.987][C][adc:017]: ADC Sensor 'ESP32D1 SCT 1 ADC Voltage'
+[22:31:30.028][C][adc:131]:   Pin: GPIO32
+[22:31:30.028][C][adc:131]:   Attenuation:   12 dB
+[22:31:30.051][C][adc:017]: ADC Sensor 'ESP32D1 Common Bias ADC Voltage'
+[22:31:30.051][C][adc:131]:   Pin: GPIO35
+[22:31:30.101][C][ct_clamp:017]: CT Clamp Sensor 'BERO Mod2 SCT1 Akim'
+[22:31:30.101][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[22:31:30.102][C][ct_clamp:013]:   Sample Duration: 0.20s
+[22:31:30.120][C][ct_clamp:340]:   Update Interval: 2.000s
+[22:31:30.171][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.125A after 186 different samples (930 SPS)
+[22:31:30.257][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.12496 V
+[22:31:30.257][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 3.027 A
+[22:31:32.115][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.128A after 3656 different samples (18280 SPS)
+[22:31:32.226][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.12763 V
+[22:31:32.227][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 3.091 A
+[22:33:08.113][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.128A after 3628 different samples (18140 SPS)
+[22:33:08.227][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.12762 V
+[22:33:08.228][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 3.091 A
+[22:33:10.130][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.128A after 3610 different samples (18050 SPS)
+[22:33:10.229][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.12826 V
+[22:33:10.230][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 3.106 A
+```
