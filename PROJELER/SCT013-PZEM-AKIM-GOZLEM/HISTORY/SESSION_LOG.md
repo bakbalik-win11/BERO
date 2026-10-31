@@ -1,3 +1,14 @@
+## 2026-10-31 — Modül 2 SCT-1 / 100 W PENS karşılaştırması
+
+- **HEDEF:** Yeni üç kanallı ct_clamp firmware'inin SCT-1 akım çıktısını aynı 100 W ampul koşulunda PENS ile karşılaştırmak.
+- **GİRDİ:** Kullanıcının paylaştığı 563 satırlık ESPHome logu ve “PENS 0,427 A” bildirimi.
+- **LOG:** SCT-1 ct_clamp 200 ms pencereyle çalıştı. Son beş kararlı akım yayını 0,578 / 0,591 / 0,597 / 0,590 / 0,589 A; ortalama 0,589 A. Bias GPIO35 yaklaşık 1,635–1,671 V. Log örnek sayısı yaklaşık 3.323–3.435/pencere.
+- **HESAP:** PENS 0,427 A; ESP32D1 0,589 A; fark 0,162 A; ESP32D1'in PENS'e göre yüksekliği yaklaşık %37,9.
+- **SONUÇ:** ct_clamp akım çıktısı gerçek cihaz logunda gözlendi. Mevcut nominal 30 A/V ölçek PENS ile bu testte uyuşmadı. Tek ölçümden yeni katsayı türetilip firmware'e uygulanmadı.
+- **SINIR:** PENS değeri kullanıcı bildirimi; fotoğraf yok. Ham 563 satırlık log bu commit'te bütünüyle arşivlenmedi; özet analiz kaydı eklendi. Aynı kararlı zaman aralığında eşzamanlı tekrar ve SCT-1 CT model teyidi gerekiyor.
+- **DEPO:** Karşılaştırma logu, STATUS, T010, Modül 2 dokümanı, PROGRESS_TREE ve bu oturum günlüğü güncellendi. T010 AKTİF.
+- **SONRAKİ:** Tekrarlı eşzamanlı PENS karşılaştırması; ardından SCT-2/SCT-3 100 W kanal testleri.
+
 ## 2026-10-31 — SCT-1 / 100 W ilk kanal denemesi
 
 - SCT-1 ön panel 1 numaralı girişe bağlandı ve 100 W ampul açıldı (KULLANICI BİLDİRİMİ).
