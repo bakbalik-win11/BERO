@@ -295,3 +295,22 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - 0,250 A ve altında yayın yok; tüm SCT yayınları bu eşik üzerinde.
 - Bu test tolerans bandına göre başarılı değildir; 0,250 A alt eşiği açısından olumlu gözlem vardır. Bu iki ölçüt ayrı tutulur.
 - [Test kaydı](mixed-57w-15w/README.md); [analiz](../logs/module2/2026-10-31-mixed-load-57w-15w-001-module2-sct1-analysis.md); [tam ham log](../logs/module2/2026-10-31-mixed-load-57w-15w-001-module2-sct1-full.txt).
+
+| Ütü / termostatlı yük | [IRON-001 — iki logluk gözlem raporu](iron/README.md) |
+| Tost makinesi | [TOASTER-001 — yüksek akım gözlemi](toaster/README.md) |
+
+## 2026-10-31 — IRON-001 kapatıldı
+
+- İki SCT log parçası üzerinden gözlem raporu tamamlandı; test bu sınırlı kapsamla kapatıldı.
+- Açık çevrim ortalamaları 9,2852 A (n=5) ve 9,3605 A (n=4); UNIT 10,16 A bildirimine göre aritmetik farklar −%8,61 ve −%7,87. Eşzamanlılık doğrulanmadığı için doğruluk sonucu değildir.
+- Kapalı/düşük akım sınıfında 40 yayın: 27 sıfır, 13 adet 0,011–0,092 A. Kapalı veriler raporda korundu.
+- Yaklaşık 104 s kayıt boşluğu ölçülmüş kapalı süre sayılmadı. PZEM kaydı yok.
+- [IRON-001 kapanış raporu](iron/README.md).
+
+## 2026-10-31 — TOASTER-001 açıldı
+
+- Tost makinesi yüksek akım gözlem testi planlandı; fiziksel ölçüm/log henüz yok.
+- Etiket gücü ve UNIT/PZEM referansı henüz belirtilmedi; varsayım yapılmayacak.
+- Modül 2 / ESP32D1 / SCT-1; K=24.22 ve ESPHome baseline korunacak.
+- Açılış, kararlı ON, varsa termostat OFF ve geçişler ayrı incelenecek.
+- [TOASTER-001 test planı](toaster/README.md).
