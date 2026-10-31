@@ -149,6 +149,28 @@ Yeni sensör eklerken:
 7. Derleme, cihaz bağlantısı ve gerçek ölçüm doğrulaması ayrı kaydedilir.
 8. Başarılı kod, gerçek örnek log ve yorum birlikte arşivlenir.
 
+## Gerçek BERO çıktısı — Log 63
+
+Bu bölüm şablon kodun yeni test sonucu değildir. Mevcut Modül 2 / SCT-1 sisteminden daha önce alınmış gerçek Log 63 kaydının örneğidir.
+
+**Ölçüm koşulları:** ESP32D1, ESPHome 2026.10.1, GPIO32 SCT-1 ADC, GPIO35 bias gözlemi, ADC 12 dB / 1 s, ct_clamp 200 ms / 2 s, K=24.22.
+
+Seçilmiş gerçek çıktı:
+
+```text
+[22:31:32.115][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.128A after 3656 different samples (18280 SPS)
+[22:31:32.226][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.12763 V
+[22:31:32.227][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 3.091 A
+```
+
+Log 63'ün açılış yayını ayrıldıktan sonraki 50 yayınında:
+- Akım ortalaması 3.09636 A; medyan 3.094 A; SD 0.01340 A; CV %0.433.
+- Raw AC ortalaması 0.127843 V.
+- Kabul edilen farklı örnek sayısı yaklaşık 3.500–3.667 / pencere; raporlanan SPS ortalaması 18.117.
+- Bu SPS, fiziksel ADC dönüşüm hızı değildir; ct_clamp'in istatistiğe kabul ettiği farklı örneklerden türetilen değerdir.
+
+**Yorum sınırı:** UNIT 3.30 A kullanıcı bildirimidir; aynı zaman penceresine ait olduğu doğrulanmamış ve PZEM değildir. Bu nedenle −%6.17 aritmetik fark kalibrasyon/doğruluk sonucu sayılmaz. Bu log, yaklaşık 3.1 A seviyesinde kısa dönem iç kararlılık gözlemidir. Ayrıntı: [Log 63 teknik raporu](../../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md) ve [seçilmiş gerçek satırlar](../../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt).
+
 ## Bu kayıtla ilgili doğrulama durumu
 
 - Kaynak dayanağı: BERO'daki ESPHome ct_clamp araştırma sentezi ve mevcut YAML örnekleri.
