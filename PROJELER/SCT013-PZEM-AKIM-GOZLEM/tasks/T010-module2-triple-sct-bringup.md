@@ -1,3 +1,13 @@
+## 2026-10-31 — SCT-1 ct_clamp / 100 W PENS karşılaştırması
+
+- **LOG:** Paylaşılan 563 satırlık ESPHome logunda SCT-1 ct_clamp 200 ms pencerelerle çalıştı. Log örnek sayısı yaklaşık 3.323–3.435/pencere; raporlanan örnekleme hızı yaklaşık 16.615–17.175 örnek/s.
+- **KARARLI ALAN:** Son beş SCT-1 akım yayını 0,578 / 0,591 / 0,597 / 0,590 / 0,589 A; ortalama 0,589 A.
+- **REFERANS:** Kullanıcı aynı 100 W ampul testinde PENS değerini 0,427 A olarak bildirdi.
+- **SAPMA:** ESP32D1 ortalaması PENS'ten 0,162 A, yaklaşık %37,9 yüksek.
+- **YORUM:** Hızlı örnekleme ve akım çıktısı logla desteklendi; ancak nominal 30 A/V katsayısı bu testte PENS ile uyuşmadı. Tek testten katsayı türetilip uygulanmayacak. CT modelinin SCT-1 için doğrulanması ve eşzamanlı tekrarlı karşılaştırma gerekli.
+- **KAYIT:** [SCT-1 100 W ct_clamp + PENS karşılaştırması](../logs/module2/2026-10-31-sct1-100w-ct-clamp-comparison.txt).
+- **DURUM:** SCT-1 ilk akım okuma testi yapıldı; ölçüm ölçeği doğrulanmadı. SCT-2/SCT-3 ve tekrarlı karşılaştırma bekliyor. T010 AKTİF.
+
 ## 2026-10-31 — Üç kanal ct_clamp akım sensörü eklendi
 
 - **KOD:** [firmware/esp32d1.yaml](../firmware/esp32d1.yaml) GPIO32/33/34 ADC kaynaklarına üç ayrı `ct_clamp` sensörü eklendi. GPIO35 ortak bias ölçümü ve üç ADC voltaj entity'si korundu.
