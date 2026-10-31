@@ -1,3 +1,13 @@
+## 2026-10-31 — TOASTER-001 / Log 62 ham arşiv tamamlandı
+
+- **HAM LOG:** [Tam Log 62](logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt); 68.572 bayt / 934 satır; SHA-256 `4790b00e69aaba791339f6d43aa13041efe373c5a87b9ed7fd4c1f481ce551f2`.
+- **ANALİZ:** [Log 62 teknik analiz](logs/module2/2026-10-31-toaster-001-module2-sct1-log62-analysis.md); [test kaydı](test-loads/toaster/README.md).
+- **SONUÇ:** İlk 119 yayın kararlı bölüm; ortalama 7,1900 A, medyan 7,188 A, aralık 7,135–7,264 A, SD 0,0247 A, CV %0,344.
+- **UNIT:** 7,89 A kullanıcı bildirimiyle aritmetik fark −%8,87; zaman eşleşmesi doğrulanmadığı için doğruluk sonucu değil. PZEM verisi yok.
+- **GEÇİŞ:** 21:56:28.190'da 6,096 A tek yayın; termostat çevrimi kanıtı değil.
+- **KATSAYI:** K=24.22 ve firmware değişmedi. Amaç yüksek akım karakterizasyonu; kalibrasyon değil.
+- **DURUM:** TOASTER-001 açık; sonraki loglar ve UNIT zaman eşleşmesi bekleniyor.
+
 ## 2026-10-31 — TOASTER-001 / Log 62 ön değerlendirmesi
 
 - **LOG:** `esp32d1-logs (62).txt`; 934 satır / 68.564 karakter; kaynak SHA-256 `4790b00e69aaba791339f6d43aa13041efe373c5a87b9ed7fd4c1f481ce551f2`.
