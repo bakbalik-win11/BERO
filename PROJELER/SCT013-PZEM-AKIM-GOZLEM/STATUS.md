@@ -1,3 +1,9 @@
+## 2026-10-31 — E00F-N02 fiziksel koşul beyanı eklendi
+
+- **KULLANICI BEYANI:** Gece gözlemi sırasında sistem boşta; kola temas 00:30 Türkiye saati sonrasında yok; akkor ampul henüz deney yükü olarak kullanılmadı.
+- **YORUM:** 05:24:02'deki 2.665238 A tepe bildirilen kol temasına bağlanamaz. Sistem boşta beyanı altında 0.192920 A medyan, gerçek yük akımı olarak değil yüksüz CT/ADC/ct_clamp zinciri çıktısı olarak değerlendirilir.
+- **SINIR:** Bu fiziksel koşul kullanıcı beyanıdır; bağımsız primer akım ölçümü değildir. E00F-N02'nin fiziksel nedeni belirsiz tepe olayı açık kalır.
+- **Ayrıntı:** [E00F-N02 tam gece raporu](experiments/E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md).
 ## 2026-10-31 — E00F-N02 tam gece HA geçmişi analizi
 
 - **Durum:** Kullanıcının sağladığı tam gece CSV'si incelendi. Kayıt aralığı 2026-10-30 20:15:00Z–2026-10-31 07:07:48.897Z (Türkiye saati 23:15:00–10:07:48.897), toplam 10:52:48.897; 177.370 satır ve 6 entity.
