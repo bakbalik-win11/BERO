@@ -1104,3 +1104,13 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **SINIR:** Bu kapanış BERO Python model/eğitim hattını, bağımsız genelleme testini veya E08'in bütün yük matrisini tamamlamaz. Harici kodun kaynak/versiyonu depoda bulunmuyor.
 - **DEPO:** ADR-009, STATUS, ROADMAP, PROGRESS_TREE, görev indeksi, E08 açıklamaları ve deney günlüğü güncellendi. Yazılan dosyalar yeniden okunarak doğrulanacak.
 - **SONRAKİ ADIM:** Çalışan ölçüm kodunu sabitlemek ve aynı yüklerde tekrarlanabilirlik kayıtlarını düzenlemek; yeni ham edinim/DMA geliştirmesi açmamak.
+
+## 2026-10-31 — Ana yol haritası PZEM–SCT kararlı alan döngüsüne çevrildi
+
+- **HEDEF:** Kullanıcının talebiyle kararları aktif, sıralı ve kabul ölçütlü yol haritasına dönüştürmek.
+- **KARAR:** E00F çalışan YAML baseline olarak korunur. Ana döngü aynı yükte PZEM/SCT kaydı → ayrı kararlılık ölçütleri → ortak alan eşleştirme → PZEM etiketleme → 24.22 katsayısını değerlendirme/iyileştirme → yeni koşullarla tekrarlamadır.
+- **ct_clamp:** Şimdilik değiştirilmez. Yalnız eşleştirilmiş gerçek veride tekrarlanabilir sorun çıkarsa hedefli kaynak incelemesi açılır.
+- **KAPSAM:** Ham 50 Hz dalga aktarımı, örnek başına timestamp ve DMA/ADC Continuous kapalı kalır. Eski T005/E00A/E01 edinim planı PZEM etiketleme yolunun zorunlu ön koşulu olmaktan çıkarılıp park edilir; tarihsel kayıtlar silinmez.
+- **GÖREVLER:** T008 yeni aktif sonraki görev olarak açılır; T006 katsayı/model değerlendirmesi T008 çıktısına bağlanır.
+- **SINIR:** Bu oturumda yeni fiziksel PZEM/SCT ölçümü, HA export analizi, etiketleme, katsayı hesabı veya ct_clamp kod değişikliği yapılmadı.
+- **SONRAKİ ADIM:** T008 kapsamında gerçek PZEM/SCT entity'lerini ve ilk ortak yük kayıt protokolünü doğrulamak.
