@@ -327,3 +327,11 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - UNIT 7,89 A kullanıcı bildirimi; zaman eşleşmesi yok, doğruluk sonucu çıkarılmadı.
 - K=24.22 sabit; kalibrasyon yapılmadı.
 - [Test kaydı](toaster/README.md); [analiz](../logs/module2/2026-10-31-toaster-001-module2-sct1-log62-analysis.md); [tam ham log](../logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt).
+
+## 2026-10-31 — Tüm yükler ve karma yükler karşılaştırması
+
+- Tekil yükler, birleşik yükler ve termostatlı yükler ortak tabloda toplandı.
+- Referansa göre aritmetik fark ile kendi iç kararlılığı (SD/CV) ayrı gösterildi.
+- UNIT/Pens bildirimleri PZEM gibi sunulmadı; zaman eşleşmesi olmayan farklar hata oranı olarak etiketlenmedi.
+- [Karşılaştırmalı sonuç raporu](COMPARATIVE-RESULTS-2026-10-31.md).
+
