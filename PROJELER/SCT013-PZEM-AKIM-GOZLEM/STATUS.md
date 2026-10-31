@@ -1,3 +1,14 @@
+
+
+## 2026-10-31 — 0,30 A altı düşük akım deney sınıflandırması ve FAN-1/FAN-2 düzeltmesi
+
+- **KALICI TEST KURALI:** 0,30 A altındaki akım bölgesinde ±%4 kabul/ret ölçütü uygulanmaz. 0,30 A ve üzerindeki koşullarda, eşleşmiş kararlı referans verisi varsa ±%4 karşılaştırması yapılabilir.
+- Bu sınır BERO'nun deney değerlendirme kararıdır; SCT-013 üretici spesifikasyonu, sensörün minimum ölçüm akımı veya doğruluk garantisi değildir.
+- **FAN-1 DÜZELTME:** UNIT 0,093 A; düşük akım deney bölgesi. Önceki 0,08928–0,09672 A aritmetik bandı ve 4/247 sayımı tarihsel veri olarak korunur, kabul/ret ölçütü değildir. SCT istatistikleri değişmez: yaklaşık 247 yayın, ortalama 0,146757 A, medyan 0,147 A, min–maks 0,064–0,259 A. FAN-1 yalnız Modül 2 ısınma/deneme gözlemi olarak kapalıdır; düşük akım araştırması ayrıca açıktır.
+- **FAN-2 DÜZELTME:** UNIT 0,106 A; aynı düşük akım bölgesinde. 2026-10-31 logundaki 54 yayın ve ortalama 0,164259 A yalnız gözlem istatistiğidir; ±%4 kıyası yapılmaz. PZEM akım + PF henüz logda yoktur.
+- **DENEY PLANI:** Tek tur, 2 tur ve 4 tur koşullarıyla düşük akım sinyalinin gözlenmesi; PZEM akım/PF, UNIT bildirimi, SCT Raw AC ve ct_clamp istatistiklerinin aynı kararlı pencerelerde kaydı. Çok turlu koşullarda CT'nin gördüğü amper-sarım sayısı ayrıca dikkate alınır; firmware K değeri deney sırasında değiştirilmez. Plan henüz fiziksel olarak uygulanmadı.
+- **DOSYA:** [0,30 A altı deney planı](test-loads/low-current-below-0p30/README.md).
+- **DONANIM GÜVENLİĞİ:** Sarım düzenini değiştirirken enerji kesilir; yalnız aynı tek yalıtılmış iletken CT çekirdeğinden belirtilen sayıda geçirilir. Farklı faz/nötr iletkenleri birlikte çekirdekten geçirilmez.
 ## 2026-10-31 — FAN-1 Modül 2 ısınma/deneme kaydı kapatıldı
 
 - **SINIF:** FAN-1, Modül 2 ısınma/deneme gözlemi olarak kapatıldı; ±%4 akım doğrulama testi olarak kabul edilmedi. PZEM ile ileri değerlendirme açık.
