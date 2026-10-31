@@ -671,3 +671,14 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **TEST 001:** ESP32D2, Modül 2 kutusu olmadan yapılan tarihsel baseline. Referans 0,446–0,447 A; kod sonucu 0,4471 A; yaklaşık %0 sapma. Kod dosyası mevcut. Ayrı ham log ve kesin log zaman aralığı mevcut depo özetinde bulunmadığı için açıkça eksik kanıt olarak işaretlendi.
 - **TEST 002:** Modül 2 / ESP32D1 / SCT-1 GPIO32, 2026-10-31. PENS 0,427 A kullanıcı bildirimi; son beş kararlı kod yayını ortalama 0,589 A; yaklaşık +%37,9. Karşılaştırma ±%4 dışında. Log dosyası analiz özeti içerir; özgün 563 satırın tamamı değildir. Logdaki nominal 30 A/V firmware ile depodaki güncel YAML'ın tam commit eşleşmesi doğrulanmadı.
 - **KURAL:** Eski test satırları silinmez veya geriye dönük doldurulmuş gibi gösterilmez. Her yeni Modül 2 ölçümü aynı 100 W dosyasına yeni satır olarak eklenecek; kod ve log bağlantıları test anındaki sürümü gösterecek.
+
+
+## 2026-10-31 — FAN-1 uzun logu arşivlendi
+
+- Tam ham log `logs/module2/2026-10-31-fan1-module2-sct1-extended-full.txt` dosyasına kaydedildi. Özgün dosya SHA-256: `ccc520db070555741d45f3fa67b5866011bec0dadc092c839eb52ff5502eba8e`.
+- 97 akım yayını; 17:13:53.070–17:17:05.067 (+03:00); ortalama 0,14114 A; medyan 0,147 A; aralık 0,000–0,259 A.
+- FAN-1 UNIT son kullanıcı bildirimi 0,096 A; ilk bildirim 0,097 A. ±%4 bandı 0,09216–0,09984 A. Fanın gerçek açılma/kararlı zaman işareti bulunmadığından geçiş ile kararlı bölüm kesin ayrıştırılamadı.
+- Kullanıcı ilk açılışta çok kısa yüksüz bölüm olduğunu belirtti. Başlangıç verileri kararlı FAN-1 verisiyle birleştirilmedi.
+- UNIT PF göstermiyor; PZEM daha sonra eklenecek. UNIT değeri mutlak doğru kabul edilmedi.
+- [Fan test kaydı](test-loads/fan/README.md); [analiz](logs/module2/2026-10-31-fan1-module2-sct1-analysis.md); [tam ham log](logs/module2/2026-10-31-fan1-module2-sct1-extended-full.txt).
+- K=24.22 korundu; yazılımsal sıfır eşiği eklenmedi.
