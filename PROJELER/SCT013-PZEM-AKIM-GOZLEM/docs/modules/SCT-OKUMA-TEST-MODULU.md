@@ -81,6 +81,6 @@ YAML şimdilik yalnız temel ESPHome iskeletidir. Henüz ADC sensörleri, SCT ok
 
 ## 8. Doğrulama durumu
 
-Modülün kapsamı ve ESP32D1 kimliği kaydedildi. Dört GPIO eşlemesi kullanıcı bildirimi olarak kaydedildi: GPIO32 (1. yuva sarı), GPIO33 (2. yuva yeşil), GPIO34 (3. yuva mavi), GPIO35 (ortak bias turuncu).di; kart/shield terminal bağlantıları ve jack tip/ring/sleeve pinout'unun fiziksel teyidi, besleme/USB güç yolu, sensör YAML kodu, derleme ve fiziksel test beklemededir.
+Modülün kapsamı ve ESP32D1 kimliği kaydedildi. Dört GPIO eşlemesi kullanıcı bildirimi olarak kaydedildi: GPIO32 (1. yuva sarı), GPIO33 (2. yuva yeşil), GPIO34 (3. yuva mavi), GPIO35 (ortak bias turuncu). Kart/shield terminal bağlantıları ve jack tip/ring/sleeve pinout'unun fiziksel teyidi, besleme/USB güç yolu, sensör YAML kodu, derleme ve fiziksel test beklemededir.
 
 **Durum özeti:** Tasarım açıldı; modül tamamlanmış veya çalışır olarak işaretlenmemiştir.
