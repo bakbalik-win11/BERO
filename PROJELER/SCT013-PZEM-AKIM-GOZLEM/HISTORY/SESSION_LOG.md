@@ -1,3 +1,15 @@
+## 2026-10-31 — E00F-N02 ESPHome DEBUG takip logu
+
+- **Hedef:** Önceki tam gece HA CSV'sinde görülen 05:24:02 civarı 2.665238 A tepe olayını açıklamak için ESPHome DEBUG çıktısındaki Raw AC, N ve SPS alanlarını incelemek.
+- **Girdi:** Kullanıcı dosyası `esp32d2-logs (13).txt`; 146.513 bayt, 1.987 satır; SHA-256 `0839285eb41bf7aa6eb89fc5f6332a6efb7ac22be3b684b01a116825e2899033`. Ham dosya `docs/technical-reviews/logs/2026-10-31-e00f-n02-debug-followup.log` olarak Git'e eklendi.
+- **Log:** ESPHome 2026.10.1 / ESP32 rev3.1 / esp32d2; 10:18:09–10:23:46; 169 adet 200 ms CT Clamp penceresi. CT Clamp update 2 s. ERROR/[E] yok; üç framework optimizasyon uyarısı.
+- **İstatistik:** N 2.820–3.309, medyan 3.165; SPS 14.100–16.545, medyan 15.825. Her satırda SPS=N×5; 0.20 s pencereyle tam uyumlu. N/SPS bağımsız metrik değil ve gerçek ADC dönüşüm hızı olarak yorumlanamaz.
+- **Raw AC:** 0–0.02511 V; akım 0–0.608 A. Maksimum 10:22:23.917 penceresinde N=3.201 / 16.005 SPS; Raw AC 0.02511 V ve akım 0.608 A yayınlandı. DEBUG `Raw AC Value` sayısı Raw AC voltaj entity'siyle eşleşiyor; DEBUG satırındaki A eki fiziksel akım birimi olarak alınmadı.
+- **İlişki:** Raw AC ile N/SPS korelasyonu yaklaşık 0.116; bu kesitte N/SPS değişimi Raw AC değişimini açıklamıyor. Tepe anına yakın GPIO32/34/33/35 yayınları CT penceresiyle eşzamanlı değil.
+- **Sınır:** Bu takip logu 05:24 gece tepesini içermiyor; fiziksel neden ataması yapılamaz. Ham dalga şekli veya eşzamanlı ADC kanıtı yok.
+- **Karar:** YAML/katsayı/eşik/pin/donanım değişikliği yok. E00F-N02 açık tutuldu. Rapor ve STATUS güncellendi; commit sonrası tekrar okunacak.
+- **Ayrıntı:** [E00F-N02 raporu](../experiments/E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md#esphome-debug-takip-logu--2026-10-31).
+
 ## 2026-10-30 — E00F-N01 sıfırlama filtresiz gece gözlemi hazırlandı
 
 - **Durum:** YAML depo kopyası güncellendi; E00F-N01 deney planı ve bağlı kayıtlar eklendi. Derleme, flash ve fiziksel gece gözlemi henüz yapılmadı.
