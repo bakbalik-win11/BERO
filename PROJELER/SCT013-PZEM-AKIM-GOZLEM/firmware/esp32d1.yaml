@@ -1,49 +1,64 @@
 # ============================================================
 # BERO MODUL 2 — ESP32D1
-# GECE BOYU TEK SCT KANALI KAYIT SURUMU
-# AKTIF: SCT-1 / GPIO32 + ORTAK BIAS / GPIO35
+# SCT-1 TEK KANAL / UZUN SURELI GECE GOZLEMI
+# E00F CT_CLAMP YONTEMININ MODUL 2 PINLERINE UYARLANMIS HALI
 # ============================================================
 #
 # AMAC:
-# - Yalniz SCT-1 soketine takili CT ile uzun sureli akim gozlemi.
-# - ct_clamp ile her 5 saniyede bir 200 ms olcum penceresi.
-# - SCT-1 ADC ve ortak bias gerilimlerini 5 saniyede bir izleme.
+# - Modül 2'nin 1 numarali SCT soketine bagli SCT'yi izlemek.
+# - SCT-1 sinyalini GPIO32 uzerinden ct_clamp ile okumak.
+# - 200 ms olcum penceresinden Raw AC (V RMS) ve akim (A)
+#   degerlerini ayri entity'ler olarak yayinlamak.
+# - Ortak bias noktasini GPIO35 uzerinden izlemek.
+# - Gece boyunca olcum akisinin surekliligini gozlemek.
 #
-# BAGLANTILAR (KULLANICI BILDIRIMI):
+# MODUL 2 BAGLANTILARI:
 # - SCT-1 / 1 numarali soket / sari sinyal -> GPIO32 (ADC1_CH4)
+# - SCT-2 / yesil sinyal                  -> GPIO33 (BU TESTTE KULLANILMIYOR)
+# - SCT-3 / mavi sinyal                   -> GPIO34 (BU TESTTE KULLANILMIYOR)
 # - Ortak bias / turuncu sinyal           -> GPIO35 (ADC1_CH7)
-# - GPIO33 ve GPIO34 bu firmware'de okunmaz.
 #
-# AKIM DONUSUMU:
-# - Baslangic varsayimi: SCT-013-030, 30 A / 1 V (30 A/V).
-# - CT modeli SCT-1 icin farkliysa bu katsayi dogru degildir.
-# - Katsayi saha kalibrasyonu veya dogruluk garantisi degildir.
+# ONEMLI DONANIM FARKI:
+# E00F orneginde GPIO32 ve GPIO33 ayni SCT analog dugumune,
+# GPIO34 ve GPIO35 ayni bias dugumune bagliydi. Modül 2'de ise
+# GPIO32/33/34 uc AYRI SCT soketidir; GPIO35 ortak bias girisidir.
+# Bu nedenle E00F'deki dort ADC goruntuleme girisi bire bir
+# tasinmamistir. GPIO33 ve GPIO34 baska SCT soketlerine ait oldugu
+# icin bu tek kanal testinde kullanilmaz.
+# RAW ADC count goruntulemesi bu pin duzeninde ek bir paralel
+# analog baglanti olmadan yapilamaz; bu YAML'da RAW count entity
+# yoktur. Var olan kablo duzeni degistirilmemistir.
 #
-# KAYIT:
-# - Akim, SCT-1 ADC ve bias entity'leri 5 saniyede bir guncellenir.
-# - ESPHome logunda sct_night etiketiyle degerler yazilir.
-# - HA Recorder etkinse entity durumlari HA gecmisinde saklanir.
-# - ESPHome canli log ekrani tek basina kalici arsiv garantisi vermez.
+# OLCUM AYARLARI:
+# - ADC attenuation: 12 dB
+# - SCT kaynak ADC entity yayini: 1 saniye
+# - ct_clamp pencere suresi: 200 ms
+# - Akim/Raw AC yayin araligi: 2 saniye
+# - Akim katsayisi: 24.22 (E00F kullanici kodundan korunmustur)
+# - Yazilimsal sifirlama esigi: YOK
 #
-# BEKLENEN:
-# - ESP32D1 SCT 1 Current (A)
-# - ESP32D1 SCT 1 ADC Voltage (V)
-# - ESP32D1 Common Bias ADC Voltage (V)
+# ct_clamp, GPIO32 ADC kaynagindan 200 ms boyunca hizli ornek alir.
+# Bir saniyelik ADC entity yayini bu hizli pencerenin kendisi degildir.
 #
-# SINIRLAR:
-# - PF, guc, enerji, harmonik, FFT veya THD hesaplanmaz.
-# - ADC voltaj entity'si yavas tani ornegidir; ct_clamp'in hizli
-#   orneklemesinin yerine gecmez.
-# - Uzun kayit, olcum dogrulugunu tek basina kanitlamaz.
+# BEKLENEN ENTITY'LER:
+# - ESP32D1 SCT 1 ADC Voltage (GPIO32, V)
+# - BERO Mod2 SCT1 Raw AC (200 ms pencere RMS gerilimi, V)
+# - BERO Mod2 SCT1 Akim (24.22 katsayili, A)
+# - ESP32D1 Common Bias ADC Voltage (GPIO35, V)
+#
+# KATSAYI NOTU:
+# 24.22, kullanicinin verdigi E00F kodundaki katsayidir; burada
+# baslangic degeri olarak korunmustur. SCT-1 CT modelinin ve
+# bu modüldeki analog yolun ayni oldugu teyit edilmeden yeni
+# kalibrasyon veya dogruluk garantisi sayilmaz.
 #
 # GUVENLIK:
-# - CT/SCT soket degisikligi yuk enerjisizken yapilir.
+# - SCT soket degisikligi yuk enerjisizken yapilir.
 # - SCT yalniz tek yalıtılmış iletkeni kavrar; faz ve notr birlikte
 #   SCT icinden gecirilmez.
-# - ADC pinlerine 5 V uygulanmaz; bias dugumu ADC giris araliginda
-#   kalmalidir.
+# - ADC girislerine izin verilen araligin disinda gerilim uygulanmaz.
 # - Gece boyunca kutu kapali, kuru ve guvenli konumda tutulur.
-#   Anormal isinma/koku gorulurse enerji kesilir.
+#   Anormal isinma veya koku gorulurse enerji kesilir.
 # ============================================================
 
 esphome:
@@ -58,7 +73,7 @@ esp32:
     type: esp-idf
 
 logger:
-  level: INFO
+  level: DEBUG
 
 api:
 
@@ -70,56 +85,65 @@ wifi:
   password: !secret wifi_password
 
 sensor:
-  # SCT-1 ADC kaynagi: GPIO32 / ADC1_CH4.
-  # Bu 5 s ADC entity'si tani amaclidir; ct_clamp hizli orneklemesi
-  # kendi 200 ms penceresinde sensor.sample() ile yapilir.
+  # SCT-1 sinyal ADC kaynagi: GPIO32 / ADC1_CH4.
+  # ct_clamp bu kaynaktan 200 ms boyunca hizli ornek alir.
   - platform: adc
     pin: GPIO32
+    id: sct_1_voltage_source
     name: "ESP32D1 SCT 1 ADC Voltage"
-    id: sct_1_adc_voltage
     attenuation: 12db
-    update_interval: 5s
+    raw: false
+    accuracy_decimals: 5
     unit_of_measurement: "V"
-    accuracy_decimals: 3
     device_class: voltage
     state_class: measurement
-    on_value:
-      then:
-        - lambda: |-
-            ESP_LOGI("sct_night", "SCT-1 GPIO32 ADC = %.3f V", x);
+    samples: 1
+    force_update: true
+    update_interval: 1s
 
-  # Ortak bias izleme: GPIO35 / ADC1_CH7.
-  - platform: adc
-    pin: GPIO35
-    name: "ESP32D1 Common Bias ADC Voltage"
-    id: common_bias_adc_voltage
-    attenuation: 12db
-    update_interval: 5s
+  # ct_clamp penceresinden gelen RMS gerilim.
+  # Bu deger GPIO32'nin tekil ADC voltaji degildir.
+  - platform: template
+    id: sct_1_raw_ac
+    name: "BERO Mod2 SCT1 Raw AC"
     unit_of_measurement: "V"
-    accuracy_decimals: 3
     device_class: voltage
     state_class: measurement
-    on_value:
-      then:
-        - lambda: |-
-            ESP_LOGI("sct_night", "COMMON BIAS GPIO35 = %.3f V", x);
+    accuracy_decimals: 5
+    force_update: true
+    update_interval: never
 
-  # Tek aktif akim sensoru: SCT-1 / GPIO32.
+  # SCT-1 akim: E00F kodundaki 24.22 katsayisi korunmustur.
   - platform: ct_clamp
-    sensor: sct_1_adc_voltage
-    name: "ESP32D1 SCT 1 Current"
+    sensor: sct_1_voltage_source
     id: sct_1_current
+    name: "BERO Mod2 SCT1 Akim"
     sample_duration: 200ms
-    update_interval: 5s
+    update_interval: 2s
+    on_raw_value:
+      then:
+        - sensor.template.publish:
+            id: sct_1_raw_ac
+            state: !lambda |-
+              return x;
+    filters:
+      - multiply: 24.22
     unit_of_measurement: "A"
-    accuracy_decimals: 3
     device_class: current
     state_class: measurement
-    filters:
-      - calibrate_linear:
-          - 0.0 -> 0.0
-          - 1.0 -> 30.0
-    on_value:
-      then:
-        - lambda: |-
-            ESP_LOGI("sct_night", "SCT-1 GPIO32 CURRENT = %.3f A", x);
+    accuracy_decimals: 3
+
+  # Ortak bias referansi: GPIO35 / ADC1_CH7.
+  - platform: adc
+    pin: GPIO35
+    id: common_bias_adc_voltage
+    name: "ESP32D1 Common Bias ADC Voltage"
+    attenuation: 12db
+    raw: false
+    accuracy_decimals: 5
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    samples: 1
+    force_update: true
+    update_interval: 1s
