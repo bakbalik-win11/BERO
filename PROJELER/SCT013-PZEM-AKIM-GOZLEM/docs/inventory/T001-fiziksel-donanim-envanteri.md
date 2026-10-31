@@ -64,7 +64,6 @@ Bu donanım bağımsız bir **BERO modülü** olarak tanımlanmıştır. Görevi
 
 **Kayıt dayanağı:** Kullanıcının ürün adı, modeli ve adet bildirimi ile paylaştığı ürün fotoğrafı. Fotoğraftaki parça PJ-324M tipi PCB montajlı 3.5 mm stereo dişi jack olarak envantere işlendi. Bu kayıt, 15 adedin tamamının akım trafosu kutusuna takılı olduğu anlamına gelmez.
 
-
 ### 2200 µF filtre kondansatörü — model ve stok ayrıntısı
 
 - **Kapasite:** 2200 µF.
@@ -76,3 +75,24 @@ Bu donanım bağımsız bir **BERO modülü** olarak tanımlanmıştır. Görevi
 - **Kayıt dayanağı:** Kullanıcının model/özellik/adet ve yerleşim bildirimi.
 
 **Not:** Kondansatörün kutudaki görevi filtreleme olarak kaydedilmiştir; devredeki gerçek bağlantı noktası ve polaritesi henüz fiziksel olarak izlenip doğrulanmadı.
+
+## 8. Bağımsız ölçüm ekipmanları
+
+Bu cihazlar BERO'nun ESP/HA veri toplama zincirine bağlı sistem modülleri değildir. Fiziksel ölçüm, karşılaştırma ve devre kontrolü için bağımsız ekipman olarak envanterde tutulur. PZEM, Faz 2 etiketleme/karşılaştırma akışının proje referansı olmaya devam eder; bu cihazlar otomatik etiket kaynağı olarak kullanılmaz.
+
+| Cihaz | Sınıf | BERO'daki rolü | Kayıt dayanağı |
+|---|---|---|---|
+| **UNI-T UT200B+** | Pens ampermetre | Akım için bağımsız kontrol/karşılaştırma imkânı. Kullanıcının belirttiği 3 A kademesi düşük akım gözlemlerinde yararlı olabilir; ölçüm doğruluğu ve koşulları cihaz kılavuzundaki sınırlara göre ele alınır. | Kullanıcı cihaz bildirimi ve 3 A kademe açıklaması |
+| **UNI-T UT33D+** | Dijital multimetre | DC/AC gerilim, DC akım, direnç, diyot ve süreklilik gibi desteklenen ölçümlerde bağımsız kontrol. Bias beslemesi ve düşük gerilim noktalarının kontrolünde kullanılabilir. | Kullanıcı cihaz bildirimi; model özellikleri üretici ürün sayfası/veri sayfasıyla karşılaştırıldı |
+
+### UNI-T UT33D+ — üretici teknik özellik özeti
+
+- DC gerilim: 200 mV / 2 V / 20 V / 200 V / 600 V; doğruluk ±(%0,5 + 2 digit).
+- AC gerilim: 200 V / 600 V; doğruluk ±(%1,2 + 3 digit).
+- DC akım: 2.000 µA / 20 mA / 200 mA / 10 A; doğruluk ±(%1 + 2 digit).
+- Direnç: 200 Ω'dan 200 MΩ'a belirtilen kademeler; doğruluk ±(%0,8 + 2 digit).
+- Diyot testi, süreklilik buzzeri ve NCV işlevleri bulunur; kademe seçimi manueldir.
+- **Önemli sınır:** UT33D+ AC akım ölçüm kademesi sunmaz. AC akım için bu cihaz kullanılmaz; UT200B+ pens ampermetre bu amaçla bağımsız kontrol aracıdır.
+- Üretici kaynağı: [UNI-T UT33+ Series — UT33D+ teknik özellikleri](https://meters.uni-trend.com/product/ut33plus-series/).
+
+**Kullanım ve yorum sınırı:** UT33D+ ile alınan 3,31 V bias çıkışı ölçümü daha önce kullanıcı tarafından fotoğrafla bildirilmiştir; bu kayıt cihazın varlığını ve o ölçümde kullanıldığını gösterir, ölçüm yükünü/bağlantı noktalarını geriye dönük olarak doğrulamaz. UT200B+ ve UT33D+ ölçümleri tarih, ölçüm noktası, kademe, yük koşulu ve cihaz gösterimiyle birlikte kaydedilmelidir. Bu ekipmanların hiçbiri PZEM referans rolünü otomatik olarak değiştirmez.
