@@ -32,11 +32,25 @@ Modül içine gömülü ESP32D1 ile üç bağımsız SCT sinyalini ve tek ortak 
 
 Dört eşleştirme de kullanıcı bildirimidir. Jakların tip/ring/sleeve pin diziliminin ve kabloların gerçek terminal güzergâhının tamamı fiziksel olarak doğrulanmış değildir.
 
+## Kutu montajı ve 100 W kanal testi
+
+**Kullanıcı bildirimi:** ESP32D1, üç SCT kanal bağlantısı ve Bias Trafosu modülü kapalı kutu içine gömüldü. Kutu harici 5 V DC ile beslenecek. Bu bilgi montaj beyanıdır; güç yolu/gerilim ölçümü veya çalışma testi anlamına gelmez.
+
+| Test sırası | SCT kanalı | Kablo | GPIO | Test yükü | Sonuç |
+|---:|---|---|---:|---|---|
+| 1 | SCT-1 | Sarı | GPIO32 | 100 W akkor ampul | Bekliyor |
+| 2 | SCT-2 | Yeşil | GPIO33 | 100 W akkor ampul | Bekliyor |
+| 3 | SCT-3 | Mavi | GPIO34 | 100 W akkor ampul | Bekliyor |
+
+Her testte aynı 100 W akkor ampul kullanılacak ve SCT kanalları sırayla, ayrı ayrı denenecek. GPIO35 ortak bias ADC kanalıdır; yük kanalı değildir ve her adımda izlenecektir. Yük kapalı başlangıç, açık kararlı bölüm ve kapatma sonrası değerleri ile GPIO35 bias değeri kaydedilecek. Test sonuçları henüz mevcut değildir.
+
+**Güvenli test koşulu:** SCT, yalnız tek yalıtılmış iletkeni çevrelemelidir; faz ve nötr birlikte geçirilmez. CT bağlantısı/kanal değişimi yük enerjisizken yapılır. Şebeke tarafı kapalı ve korumalı lamba düzeneğinde tutulur; açıkta 230 V bağlantı veya breadboard kullanılmaz.
+
 ## Kod durumu
 
 Başlangıç ESPHome iskeleti [esp32d1.yaml](../firmware/esp32d1.yaml) dosyasına kaydedildi. Cihaz kimliği esp32d1 / ESP32D1 olarak kullanıcı tarafından sağlandı.
 
-YAML henüz ADC/SCT/bias sensör bileşenleri içermez. Dört GPIO eşlemesi kullanıcı tarafından bildirildi; bunları kullanan sensör kodu, ct_clamp yapılandırması, entity adları ve katsayı/filtre kodu henüz eklenmedi. Derleme veya cihaz testi yapılmadı.
+İlk ADC giriş kontrolü YAML'ı eklendi: GPIO32/33/34 üzerinde üç SCT ADC gerilim sensörü ve GPIO35 üzerinde ortak bias ADC gerilim sensörü bulunur. Kod anlık gerilim yayınlar; RMS/akım hesabı içermez. Derleme ve cihaz testi yapılmadı.
 
 ## İş sırası
 
@@ -72,5 +86,5 @@ YAML henüz ADC/SCT/bias sensör bileşenleri içermez. Dört GPIO eşlemesi kul
 ## HEDEF / LOG / SONUÇ
 
 - **HEDEF:** Modül 2'nin elektriksel ve yazılımsal yapısını uygulanabilir hâle getirmek.
-- **LOG:** Kullanıcının esp32d1 ESPHome temel ayarları ve dört bağlantı bildirimi kaydedildi: 1. yuva sarı/GPIO32; 2. yuva yeşil/GPIO33; 3. yuva mavi/GPIO34; ortak bias turuncu/GPIO35.
-- **SONUÇ:** Modül kapsamı ve dört GPIO eşlemesi kullanıcı bildirimi olarak kayıtlı. Kart/shield ve jack pinout fiziksel teyidi, ADC/SCT kodu, derleme ve fiziksel test beklemede. Modül tamamlanmış değildir.
+- **LOG:** Kullanıcının ESPHome temel ayarları, dört bağlantı bildirimi, kapalı kutu montajı, kutu içindeki Bias Trafosu modülü ve harici 5 V besleme planı kaydedildi.
+- **SONUÇ:** GPIO eşleştirme tablosu ve 100 W akkor ampulle üç ayrı kanal test planı depoda. Üç test sonucu, derleme ve fiziksel çalışma doğrulaması beklemede. Modül tamamlanmış değildir.
