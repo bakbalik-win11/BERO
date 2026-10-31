@@ -1,3 +1,13 @@
+## 2026-10-31 — LOAD-42W-001 / 42 W ampul düşük akım testi açıldı
+
+- **DURUM:** AÇIK — test kaydı oluşturuldu; SCT logu ve fiziksel koşul ayrıntıları bekleniyor.
+- **YÜK:** 42 W ampul; teknoloji/marka/model henüz doğrulanmadı.
+- **UNIT:** 0,174 A kullanıcı bildirimi; başlangıç referansı. Kararlı pencere olduğu teyit edilmedi; PZEM değildir.
+- **DÜZENEK:** Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; mevcut ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp 200 ms/2 s, K=24.22, yazılımsal sıfır eşiği yok.
+- **DEĞERLENDİRME:** 0,30 A altı düşük akım gözlem bölgesi; ±%4 kabul/ret yok. SCT dağılımı, Raw AC, bias ve zaman içi kararlılık incelenecek. UNIT ve varsa PZEM ayrı tutulacak.
+- **DOSYA:** [LOAD-42W-001](test-loads/42w-bulb/README.md).
+- **SONRAKİ:** SCT logunu ve UNIT ölçüm zamanını kaydet; aynı kararlı pencerede karşılaştır. Test sonucu olmadan kapatma.
+
 ## 2026-10-31 — Arşiv doğrulama notu: FAN-3-3T-001
 
 - Tam ham log GitHub'a kaydedildi: [FAN-3-3T-001 full log](logs/module2/2026-10-31-fan3-3t-001-module2-sct1-full.txt); Git blob SHA `1f947025d9716ac5a3a4e8e586e8d1b65e5cdd22`; kaynak SHA-256 `fb48997412ced2a9f769b3084bec9f63dab8ef7174efea23062ce4e63dbc735c`.
