@@ -70,6 +70,44 @@ Bu katalog yalnız cihaz listesi değildir. Her ölçüm talimatı; cihaz + mod/
 
 **Katalog kaydı:** Cihaz envantere ölçüm imkânı olarak eklendi; SANEC'e özgü elektriksel limitler ve BERO üzerinde çalışması henüz doğrulanmadı. Bu kayıt fiziksel test yapıldığı anlamına gelmez.
 
+
+### MCP3208 — harici 12 bit ADC / analog ölçüm teşhis modülü
+
+**Sınıf:** Bağımsız ölçüm ve teşhis ekipmanı → Harici ADC / analog veri toplama.
+
+**BERO'daki edinim amacı (KULLANICI BİLDİRİMİ):** MCP3208 özellikle SCT ölçüm zincirinde veya ESP32 dahili ADC okumalarında ortaya çıkabilecek sorunları araştırmak, analog sinyali bağımsız bir ADC üzerinden karşılaştırmak ve gerektiğinde alternatif analog veri toplama yolunu sınamak amacıyla edinildi. Bu cihaz şu anda BERO'nun çalışan baseline'ı değildir; envanterde bulunması kullanıldığı veya devreye alındığı anlamına gelmez.
+
+**Üretici teknik özellikleri — Microchip MCP3208:**
+
+| Özellik | Değer | Kaynak |
+|---|---|---|
+| ADC mimarisi | 12 bit SAR, dahili sample-and-hold | Microchip MCP3204/3208 veri sayfası |
+| Kanal | 8 tek uçlu kanal veya 4 pseudo-differential çift | Microchip veri sayfası |
+| Haberleşme | SPI; Mode 0,0 ve 1,1 | Microchip veri sayfası |
+| Besleme | 2,7–5,5 V | Microchip veri sayfası |
+| Azami dönüşüm hızı | VDD=5 V iken 100 ksps; VDD=2,7 V iken 50 ksps | Microchip veri sayfası |
+| Analog giriş aralığı | Single-ended kullanımda VSS ile VREF arası | Microchip veri sayfası |
+| Referans | Harici VREF girişi | Microchip veri sayfası |
+| Doğrusallık | B sürümünde INL ±1 LSB; C sürümünde ±2 LSB; DNL ±1 LSB | Tam parça son eki önemlidir |
+
+Kaynak: [Microchip MCP3204/3208 resmi veri sayfası](https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/21298e.pdf). Bu değerler entegre içindir; kullanıcının elindeki breakout/modül üzerindeki regülatör, referans kaynağı, filtre ve bağlantı kalitesi ayrıca doğrulanmalıdır.
+
+**BERO'da teşhis amacıyla kullanılabilecek kontroller:**
+- Aynı düşük gerilim analog noktasını ESP32 dahili ADC ve MCP3208 ile karşılaştırarak ADC kaynaklı sapma, gürültü veya kararsızlık olup olmadığını araştırmak.
+- SCT analog çıkışının bias çevresindeki davranışını, kanal bazında sayısal örnekler alarak incelemek.
+- MCP3208 kanalları arasında çapraz etki, kanal değiştirme sonrası yerleşme ve örnekleme kararlılığını araştırmak.
+- SPI haberleşme/okuma kodunu ve seçilen örnekleme hızında veri kaybı olup olmadığını test etmek.
+- Gerektiğinde MCP3208'i üç SCT sinyali ve bias voltajı için alternatif çok kanallı ADC adayı olarak değerlendirmek; bu kullanım henüz tasarım kararı değildir.
+
+**Önemli yorum sınırları:**
+- 12 bit çözünürlük, otomatik olarak 12 bit etkin doğruluk veya ESP32 ADC'den her koşulda daha iyi sonuç anlamına gelmez. Referans gerilimi, analog kaynak empedansı, topraklama, besleme gürültüsü, PCB/modül tasarımı ve SPI zamanlaması sonucu etkiler.
+- 100 ksps toplam ADC dönüşüm kapasitesi olarak ele alınmalı; sekiz kanalın her birinde aynı anda 100 ksps garantisi değildir. Kanallar çoklanarak okunur.
+- MCP3208'in 100 ksps değeri, BERO'nun şu anki kararlı pencere/etiketleme hedefi için zorunlu gereksinim olarak kabul edilmez.
+- MCP3208 analog girişine VREF/VDD sınırlarını aşan veya negatif gerilim uygulanmaz. SCT devresinin bias'lı sinyali, ortak GND ve giriş aralığı ölçülmeden doğrudan bağlanmaz.
+- Bu modülün satın alınmış olması, MCP3208'in mevcut ESP32D2 YAML'ına eklendiği veya firmware'de kullanıldığı anlamına gelmez. Firmware/pin planı değişikliği ancak ayrı test ve karar kaydıyla yapılır.
+
+**İlk teşhis yaklaşımı — henüz uygulanmadı:** Önce tam MCP3208 kartının fotoğrafı ve pin etiketleri, entegre parça son eki, VREF bağlantısı ve kart üzerindeki ek devreler belirlenir. Ardından aynı güvenli düşük gerilim analog nokta iki ADC ile aynı koşulda ölçülür; örnek sayısı, örnekleme hızı, ortalama/medyan, standart sapma ve uç değerler karşılaştırılır. Sonuçlar gerçek logla kaydedilmeden ADC üstünlüğü veya arızası ilan edilmez.
+
 ## 2. Ölçüm talimatı standardı
 
 Kullanıcıdan ölçüm istenirken aşağıdaki sırayla açık talimat ver:
