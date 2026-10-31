@@ -5,6 +5,7 @@
 ## Şu an nerede?
 
 - **Aktif faz:** Faz 1 — SCT analog ön uç ve yüksüz ölçüm hazırlığı.
+- **E00F-N03:** 100 W akkor yük 10:32'de açıldı; ilk DEBUG kesitinde Raw AC medyanı yük öncesi 0.004 V, yük sonrası 0.019 V. Test kapanış olayı beklediğinden DEVAM EDİYOR. [Kısmi rapor](experiments/E00F-unthresholded-overnight-log/E00F-N03-incandescent-step-observation.md).
 - **Depo belge tutarlılığı denetimi:** TAMAMLANDI; 87 Markdown dosyasındaki göreli bağlantı hedefleri kontrol edildi ve bulunan tek kırık bağlantı düzeltildi.
 - **E00B firmware:** HAZIRLANDI ve kullanıcı bildirimiyle DERLENDİ; fiziksel pinout, bağlantı, cihaza yükleme ve ölçüm bekliyor.
 - **İlk teknik deney (denetim sonrası):** E00A — ham ADC kaydı ve temel istatistikler.
