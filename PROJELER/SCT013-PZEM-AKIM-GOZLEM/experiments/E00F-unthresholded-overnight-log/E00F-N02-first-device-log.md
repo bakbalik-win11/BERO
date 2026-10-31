@@ -95,3 +95,47 @@ Kullanıcının sabah Home Assistant geçmiş dökümü bekleniyor. Dört ADC ka
 - **Önemli sınır:** CSV, HA geçmişindeki yayınlanan entity durumlarını içerir. 200 ms içindeki ham ADC örneklerini veya tüm ESPHome DEBUG Raw AC/N/SPS satırlarını içermez.
 - **Yorum:** SCT ve bias voltaj ortalamaları bu kısa kesitte birbirine yakındır; ancak kanallar eşzamanlı örneklenmediği, kayıt sayıları farklı olduğu ve kesit kısa olduğu için korelasyon/nedensellik sonucu çıkarılamaz. Uzun dönem gece tabanı veya drift kararı verilemez.
 - **Sonraki adım:** Cihaz mevcut yapılandırmayla sabaha kadar çalışmaya bırakılacak. Sabah alınacak tam HA geçmiş dökümünde zaman aralığı ve her entity'nin kapsama oranı doğrulanacak; bu ara kesitle birlikte değerlendirilecek. Fiziksel yük durumu ve kablo/sensör konumu kullanıcı teyidiyle kayda alınacak.
+
+
+## Tam gece Home Assistant geçmiş analizi — 2026-10-31
+
+- **Kaynak:** Kullanıcının yüklediği `history (19).csv`; 177.370 satır, 3 sütun, 6 entity. Dosya 16.171.115 bayt; SHA-256: `5bec07f210f744f14aa5d509538f69105e32dcb0e4c2e76c0aa4c44377a91ac2`. Ham CSV Git'e eklenmedi.
+- **Zaman aralığı:** 2026-10-30 20:15:00.000Z – 2026-10-31 07:07:48.897Z; Türkiye saatiyle 23:15:00 – 10:07:48.897. Toplam 10 saat 52 dakika 48.897 saniye. Bu, önceki 651 satırlık/2 dk 32 sn ara CSV'den farklı olarak gece boyunca uzanan dökümdür.
+- **Entity kayıtları:** SCT Akım 19.114 (19.113 sayısal), Raw AC 19.114 (19.113 sayısal), GPIO33 voltaj 33.560 (33.559 sayısal), GPIO35 voltaj 34.603 (34.602 sayısal), GPIO32 RAW 34.708 (34.707 sayısal), GPIO34 RAW 36.271 (36.270 sayısal). Entity kayıt adetleri farklıdır; satırlar eşzamanlı ölçüm olarak ele alınmamıştır.
+- **Kayıt sürekliliği:** Medyan aralık Akım/Raw AC için 2.000 s; dört ADC entity'sinde yaklaşık 1.001–1.003 s. En uzun boşluk Akım/Raw AC'de 44.003 s; GPIO32 RAW'da 21.160 s; GPIO33 voltajda 21.159 s; GPIO34 RAW'da 20.820 s; GPIO35 voltajda 20.820 s. Kayıt gece boyunca sürmüştür, ancak kesintisiz ve eşzamanlı örnekleme değildir.
+
+### Ham geçmiş istatistikleri
+
+| Entity | n (sayısal) | Min | Medyan | Ortalama | Maks | SD |
+|---|---:|---:|---:|---:|---:|---:|
+| SCT Akım | 19.113 | 0 A | 0.192920 A | 0.194878 A | 2.665238 A | 0.110286 A |
+| SCT Raw AC | 19.113 | 0 V | 0.007965 V | 0.008046 V | 0.110043 V | 0.004553 V |
+| GPIO32 SCT RAW | 34.707 | 1600 | 1841 | 1838.598 | 2121 | 10.145 count |
+| GPIO33 SCT ADC Voltage | 33.559 | 1.419 V | 1.653 V | 1.650747 V | 2.075 V | 8.692 mV |
+| GPIO34 Bias RAW | 36.270 | 1535 | 1840 | 1839.009 | 2011 | 9.766 count |
+| GPIO35 Bias ADC Voltage | 34.602 | 1.503 V | 1.653 V | 1.651577 V | 1.779 V | 7.938 mV |
+
+- Akım entity'sinde 1.461 sıfır, 17.652 sıfırdan farklı sayısal kayıt vardır. Bu veri tek başına fiziksel yükün açık/kapalı olduğunu kanıtlamaz.
+- Akım ve Raw AC kanalları neredeyse tam aynı yayın zamanlarına sahiptir. 19.113 eşleştirilmiş kayıtta korelasyon yaklaşık 1.000'dır ve Akım = Raw AC × 24.22 bağıntısı sayısal hassasiyet sınırında sağlanır. Dolayısıyla bu iki entity bağımsız sensör teyidi değildir; aynı CT Clamp yolunun katsayı öncesi ve sonrası çıktılarıdır.
+- Akım medyanı 0.192920 A, Raw AC medyanı 0.007965 V'tur. Kullanıcının fiziksel yük durumu ayrıca teyit edilmeden bu değerler gerçek yük akımı veya kesin yüksüz taban olarak sınıflandırılmaz.
+
+### SCT ve bias kanallarının karşılaştırılması
+
+- GPIO32 SCT RAW ile GPIO34 Bias RAW için en yakın zaman damgası eşleştirmesi (en fazla 1.2 s fark) 34.600 çift verdi. Farkın (SCT−Bias) medyanı 0 count, ortalaması −0.377 count, SD'si 12.673 count; %25–%75 aralığı −6 ile +5 count, %5–%95 aralığı −20 ile +19 count. Mutlak fark çiftlerin %51.5'inde 5 count veya altında, %65.8'inde 10 count veya altındadır.
+- GPIO32 ve GPIO34 RAW medyanları sırasıyla 1841 ve 1840 count; GPIO33 ve GPIO35 voltaj medyanları her ikisi de 1.653 V'tur. Bu uzun gözlemde merkez değerler birbirine yakındır.
+- RAW/voltaj entity'leri ayrı ADC okumalarıdır ve eşzamanlı değildir. Yakın zaman damgası eşleştirmesi yalnız betimleyici karşılaştırmadır; fiziksel girişlerin aynı anda aynı sinyali gördüğünü veya CT'nin primerden akım almadığını kanıtlamaz.
+- GPIO32–GPIO33 yakın zamanlı kayıtlarının korelasyonu yaklaşık 0.327'dir; bu iki farklı ADC dönüşüm yolunun eşzamanlı/aynı örnekler olduğu varsayılmamalıdır.
+
+### Dikkat çeken olay
+
+- En yüksek akım/Raw AC yayını 2026-10-31 02:24:02.363Z (Türkiye saati 05:24:02.363) anında 2.665238 A / 0.110043 V'tur. En yüksek akım değerlerinin bir bölümü 05:23:38–05:24:02 yerel saat aralığında kümelenmiştir.
+- Tepe anına en yakın GPIO32/34 RAW kayıtları yaklaşık 1843/1841 count; GPIO33/35 voltajları yaklaşık 1.649/1.653 V'tur. Ancak ADC yayınları ile CT Clamp pencereleri eşzamanlı değildir ve ADC kayıtları yaklaşık 1 s aralıklıdır. Bu nedenle tepeyi gerçek yük olayı, temas, elektriksel parazit veya yazılım/örnekleme anomalisi olarak sınıflandırmak mümkün değildir.
+- Maksimum değer otomatik silinmemiştir. Ham veride aykırı olay olarak korunmuştur.
+
+### LOG / SONUÇ / SINIR
+
+- **LOG:** CSV Python/pandas ile okundu; satır/entity sayıları, zaman kapsamı, kayıt aralıkları, dağılımlar, en yakın zaman damgalı RAW karşılaştırması ve akım–Raw AC bağıntısı hesaplandı.
+- **SONUÇ:** Gece geçmişi 10 saat 52 dakika 49 saniyeye yakın bir zaman aralığını kapsıyor ve altı entity'nin tamamında kayıt var. SCT ve bias merkez değerleri birbirine yakındır. Bununla birlikte akım/Raw AC zincirinde yaklaşık 0.193 A medyan çıktı ve 2.665 A tekil tepe bulunması, fiziksel yük durumu teyit edilmeden yüksüz taban sonucu ilan etmeyi engeller.
+- **YORUM SINIRI:** HA geçmişi 200 ms pencerelerin içindeki ham ADC örneklerini, her pencerenin N/SPS debug satırlarını veya örnek bazında zamanlamayı içermez. Kayıtların varlığı yüksek hızlı örnekleme doğrulaması değildir. Bu CSV'den RMS dalga şekli, 50 Hz faz ilişkisi, harmonik, PF veya gerçek akım doğruluğu çıkarılmaz.
+- **AÇIK:** Kullanıcıdan gece boyunca fiziksel primer/CT durumu (yük gerçekten bağlı mıydı, CT hangi iletkeni ve kaç turu görüyordu; kola temasın hangi saatlerde sürdüğü) teyidi bekleniyor. Varsa ESPHome DEBUG logu ayrıca incelenmeli.
+- **DURUM:** Tam gece CSV analizi yapıldı; E00F-N02 deneyinin fiziksel koşul doğrulaması ve nihai yorumu açık. Deney TAMAMLANDI olarak işaretlenmedi.
