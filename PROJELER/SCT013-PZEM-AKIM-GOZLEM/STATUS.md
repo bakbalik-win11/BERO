@@ -1,6 +1,6 @@
 ## 2026-10-31 — LOAD-42W-001 / 42 W ampul düşük akım testi açıldı
 
-- **DURUM:** AÇIK — test kaydı oluşturuldu; SCT logu ve fiziksel koşul ayrıntıları bekleniyor.
+- **DURUM:** AÇIK — Log 57 analiz edildi; eşzamanlı referans ve fiziksel ampul ayrıntıları bekleniyor.
 - **YÜK:** 42 W ampul; teknoloji/marka/model henüz doğrulanmadı.
 - **UNIT:** 0,174 A kullanıcı bildirimi; başlangıç referansı. Kararlı pencere olduğu teyit edilmedi; PZEM değildir.
 - **DÜZENEK:** Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; mevcut ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp 200 ms/2 s, K=24.22, yazılımsal sıfır eşiği yok.
