@@ -1,3 +1,11 @@
+## 2026-10-31 — E00F-N02 aykırı gözlem değerlendirmesi ve sonraki test
+
+- **Aykırı olay:** 05:24:02 civarındaki 2.665238 A tepe, kullanıcının evde kedi bulunduğu ve tekil sıçramanın öneminin büyütülmemesi gerektiği yönündeki değerlendirmesiyle birlikte ele alındı. Olay ham veriden silinmedi; nedeni doğrulanmadığı için tekil/atıfsız aykırı gözlem olarak tutuldu. Kedi teması kanıtlanmış neden değildir.
+- **Öncelik:** Tekil sıçrama yerine yüksüz davranışın geneli ve bilinen akkor yükte tekrarlanabilir tepki incelenecek.
+- **Sıradaki test:** Önerilen E00F-N03 — 100 W akkor ampulle mevcut ESP32D2/E00F yapılandırmasını değiştirmeden kapalı → açık kararlı → kapalı kayıt. CT tek faz iletkenini tek turda çevrelemeli; fiziksel konum/tur sayısı ve olay saatleri kaydedilmeli. Dört ADC kanalı, Raw AC/akım ve cihaz DEBUG kaydı birlikte saklanmalı. Test henüz yapılmadı.
+- **Değişiklik sınırı:** Katsayı 24.22, eşik, pinler, cihaz kimliği ve firmware bu test için değiştirilmeyecek. E00F-N03 sonrasında E08 Aşama 3 ADC Continuous/DMA tasarımına geçilecek; bu firmware henüz yazılmadı.
+- **Ayrıntı:** [E00F-N02 raporu](experiments/E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md#kullanici-degerlendirmesi-ve-sonraki-test-karari--2026-10-31).
+
 ## 2026-10-31 — E00F-N02 ESPHome DEBUG takip logu
 
 - **Durum:** Kullanıcının sağladığı ESP32D2 DEBUG logu incelendi ve ham hali depoya arşivlendi.
