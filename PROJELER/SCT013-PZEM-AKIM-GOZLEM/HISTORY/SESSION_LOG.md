@@ -1,3 +1,13 @@
+## 2026-10-31 — Faz 2 pratik yeniden başlangıç olarak yeniden tanımlandı (ADR-014)
+
+- **HEDEF:** Faz 2'nin yalnız PZEM ile kod eğitimi olmadığını; BERO modüllerini ve ESP düğümlerini pratik biçimde yeniden devreye alma ve sistemi geliştirme aşaması olduğunu proje kayıtlarına yansıtmak.
+- **KULLANICI DEĞERLENDİRMESİ:** Hobi projesinde önce çalışan kod/örnek bulunup geliştirilmelidir. Önceki süreçte akım okuma hedefinde zorlanılan noktalarda manyetik teori ve ESP32 ADC mimarisine gereğinden fazla derinleşildi; bu yönelim ana uygulama hedefini ikinci plana itti. Kullanıcı bunu doğru çalışma biçimi olarak görmedi.
+- **KARAR:** Faz 2'nin ilk işi T009 modül/ESP pratik devreye alma oldu. Depodaki YAML, kod, log ve donanım kayıtları başlangıç referansı olarak korunacak; her modül tek işlevden başlayarak doğrulanacak. PZEM → HA veri aktarımı → kararlı alan eşleştirme → katsayı/model geliştirme, sistem çalıştıktan sonraki alt aşamalardır.
+- **ÇALIŞMA İLKESİ:** Önce çalışan kod/örnek; en az uyarlama; derleme ve gerçek donanım testi; gerçek log/çıktı ve yorum. Teori/ADC mimarisi yalnız somut sorun, ölçüm çelişkisi veya karar ihtiyacı gerektirirse derinleştirilecek. Önceki teorik kayıtlar silinmeyecek.
+- **DEPO:** ADR-014 ve T009 eklendi; AGENTS, README, ROADMAP, STATUS, PROGRESS_TREE, tasks/README ve T007 güncellendi. ADR-010/011'e yeni kapsam notu eklendi.
+- **DOĞRULAMA SINIRI:** Bu oturumda firmware değiştirilmedi, derlenmedi, ESP'ye yüklenmedi ve fiziksel bağlantı/test yapılmadı. T009 tasarım/başlangıç görevi olarak AKTİF; diğer modüller henüz doğrulanmış değildir.
+- **SONUÇ:** Faz 2 pratik yeniden kurulum ve sistem geliştirme aşaması olarak tanımlandı; T007 BEKLEMEDE, T008 ve T006 daha sonraki alt aşamalardır.
+
 ## 2026-10-31 — Modül 2 kutu kapsamı sadeleştirildi
 
 - **HEDEF:** Son tasarım kararına göre SCT Okuma Test Modülü'nün fiziksel kutu kapsamını güncellemek.
