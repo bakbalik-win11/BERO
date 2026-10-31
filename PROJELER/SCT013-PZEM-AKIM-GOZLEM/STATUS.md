@@ -1,3 +1,12 @@
+## 2026-10-31 — Modül 2 kapalı kutu montajı ve 100 W kanal test planı
+
+- **KULLANICI BİLDİRİMİ:** ESP32D1, üç SCT kanalı ve Bias Trafosu modülü kapalı kutu içine gömüldü. Modül harici 5 V DC ile beslenecek.
+- **KANAL TABLOSU:** SCT-1 sarı/GPIO32; SCT-2 yeşil/GPIO33; SCT-3 mavi/GPIO34; ortak bias izleme turuncu/GPIO35.
+- **TEST PLANI:** Aynı 100 W akkor ampul SCT-1, SCT-2 ve SCT-3 kanallarında sırayla, ayrı ayrı kullanılacak. GPIO35 bias değeri her test boyunca izlenecek. Üç kanalın sonucu henüz girilmedi.
+- **GÜVENLİK:** SCT yalnız tek yalıtılmış iletkeni çevrelemeli; faz+nötr birlikte geçirilmemeli. Kanal/CT bağlantısı değiştirilirken yük enerjisiz olmalı. Şebeke tarafı kapalı ve korumalı lamba düzeneğinde tutulmalı.
+- **DURUM:** Montaj kullanıcı beyanıyla kaydedildi; YAML derleme ve üç kanalın fiziksel testi yapılmadı. T010 AKTİF.
+- **KAYIT:** [Modül bağlantı tablosu ve test planı](docs/modules/SCT-OKUMA-TEST-MODULU.md#32-100-w-akkor-ampul-ile-kanal-bazli-test-plani).
+
 # Güncel Durum — 2026-10-31
 
 ## Projenin iki fazı
