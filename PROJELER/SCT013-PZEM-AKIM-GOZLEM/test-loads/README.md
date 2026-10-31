@@ -335,3 +335,15 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - UNIT/Pens bildirimleri PZEM gibi sunulmadı; zaman eşleşmesi olmayan farklar hata oranı olarak etiketlenmedi.
 - [Karşılaştırmalı sonuç raporu](COMPARATIVE-RESULTS-2026-10-31.md).
 
+
+
+## 2026-10-31 — BREAD-TOASTER-001 / ekmek kızartma makinesi
+
+- Önceki TOASTER-001 tost makinesi kaydından ayrı fiziksel yük/test kaydıdır.
+- UNIT 3,30 A kullanıcı bildirimi; PZEM değildir. Tam zaman eşleşmesi doğrulanmadı.
+- Log 63'te ilk açılış yayını hariç 50 SCT yayını: ortalama 3,09636 A; medyan 3,094 A; aralık 3,071–3,144 A; CV %0,433.
+- Kararlı Raw AC ortalaması 0,127843 V; SPS ortalaması 18.117.
+- UNIT'e göre aritmetik fark −%6,17; eşzamanlılık yoksa doğruluk sonucu değildir. PZEM verisi yok.
+- K=24.22 değişmedi; test açık.
+- [BREAD-TOASTER-001 test kaydı](bread-toaster/README.md); [analiz](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md); [seçilmiş log kanıtı](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt).
+
