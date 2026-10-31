@@ -13,3 +13,5 @@ ADR durumları kararın başlangıç niteliğini korur. Deneyle doğrulanmamış
 - [ADR-008 — İki ölçüm düğümü ve aşamalı sensör testleri](ADR-008-two-node-staged-sensor-tests.md)
 
 - [ADR-009 — ±%4 hedefi ve ham edinim ara işlerinin kapatılması](ADR-009-measurement-target-met-close-raw-capture.md)
+
+- [ADR-010 — PZEM referanslı kararlı alan etiketleme ve sürekli öğrenme](ADR-010-pzem-stable-window-learning-focus.md)
