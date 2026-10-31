@@ -1,3 +1,13 @@
+## 2026-10-31 — Modül 2 dört analog GPIO eşlemesi bildirildi
+
+- **KULLANICI BİLDİRİMİ:** 1. dişi SCT yuvası sarı sinyal kablosu → GPIO32.
+- **KULLANICI BİLDİRİMİ:** 2. dişi SCT yuvası yeşil sinyal kablosu → GPIO33.
+- **KULLANICI BİLDİRİMİ:** 3. dişi SCT yuvası mavi sinyal kablosu → GPIO34.
+- **KULLANICI BİLDİRİMİ:** Ortak bias ölçüm hattı turuncu kablo → GPIO35.
+- **DEPO:** Modül 2 belgesi, ADR-015, T010, ESP32D1 YAML açıklamaları, STATUS ve PROGRESS_TREE dört eşlemeyi gösterecek şekilde güncellendi.
+- **DOĞRULAMA SINIRI:** Bu eşlemeler kullanıcı bildirimidir. ESP32/shield terminal bağlantısı, jack tip/ring/sleeve pinout'u ve kablo güzergâhı fiziksel olarak henüz teyit edilmedi. ADC/SCT sensör kodu eklenmedi; derleme veya donanım testi yapılmadı.
+- **SONUÇ:** Dört ADC girişinin GPIO eşlemesi bildirildi; T010 tasarım ve bağlantı teyidi aşamasında AKTİF kalıyor.
+
 ## 2026-10-31 — Modül 2 bağlantı bildirimi ve T010 başlangıç kaydı
 
 - **ESP:** Modül içine gömülü ESPHome kimliği `esp32d1` / friendly name `ESP32D1`. Kullanıcı tarafından verilen başlangıç YAML iskeleti `firmware/esp32d1.yaml` olarak kaydedildi; ADC/SCT sensör kodu eklenmedi.
