@@ -93,3 +93,12 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - FAN-1 UNIT son bildirimi 0,096 A (ilk bildirim 0,097 A); ±%4 aralığı 0,09216–0,09984 A. Logda fanın tam açılma/kararlı zaman işareti yok; kesin sapma kararı verilmedi.
 - UNIT PF göstermiyor; PZEM ile sonraki aşamada netleştirilecek. K=24.22 ve yazılımsal sıfır eşiği kararı değişmedi.
 - [Fan test kaydı](fan/README.md); [analiz](../logs/module2/2026-10-31-fan1-module2-sct1-analysis.md); [tam ham log](../logs/module2/2026-10-31-fan1-module2-sct1-extended-full.txt).
+
+
+## 2026-10-31 — FAN-1 uzun log istatistikleri ve kapanış sınıfı
+
+- FAN-1, Modül 2 ısınma/deneme gözlemi olarak kapatıldı; ±%4 akım doğrulama testi olarak kabul edilmedi.
+- Son UNIT bildirimi 0,093 A; ±%4 aritmetik bandı 0,08928–0,09672 A. 17:14:11.079 sonrası yaklaşık 247 yayın: ortalama 0,146757 A; medyan 0,147 A; aralık 0,064–0,259 A; SD 0,026064 A. 4/247 (%1,6) yayın UNIT bandında.
+- UNIT PF göstermediğinden PF etkisi doğrulanamadı. FAN-1'in PZEM akım ve PF ile aynı kararlı pencerede yeniden değerlendirilmesi açık kalır.
+- FAN-2 ve sonraki fan kademeleri için PZEM akım + PF kaydı gereklidir.
+- [FAN-1 kayıt dosyası](fan/README.md); [uzun analiz](../logs/module2/2026-10-31-fan1-module2-sct1-long-analysis.md); [uzun ham log](../logs/module2/2026-10-31-fan1-module2-sct1-long-full.txt); [kapanış kod snapshot](../firmware/archive/FAN-1-2026-10-31-esp32d1-sct1.yaml).
