@@ -33,6 +33,7 @@ Bu bölüm, aynı fiziksel test yüküyle farklı ESP kartı, modül, SCT kanal�
 |---|---|
 | 100 W akkor ampul | [100 W akkor — karşılaştırmalı ölçüm tablosu](100w-incandescent/README.md) |
 | 150 W akkor ampul | [150 W akkor — karşılaştırmalı ölçüm tablosu](150w-incandescent/README.md) |\n| 57 W akkor ampul | [57 W akkor — düşük akım gözlem kaydı](57w-incandescent/README.md) |
+| 57 W + 15 W ampul karma yük | [MIXED-LOAD-57W-15W-001](mixed-57w-15w/README.md) |
 
 ## Her ölçüm satırında tutulacak alanlar
 
@@ -283,3 +284,14 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - Önceki LOAD-57W-001 açık kalır; bu farklı ve bağımsız yük koşuludur.
 - [MIXED-LOAD-57W-15W-001 test kaydı](mixed-57w-15w/README.md).
 
+
+
+## 2026-10-31 — MIXED-LOAD-57W-15W-001 / Log 59
+
+- 57 W akkor + 15 W ampul karma yük; UNIT 0,303 A'nın test boyunca sabit kaldığı kullanıcı bildirimi.
+- Log 59: 179 SCT-1 yayını; ortalama 0,329553 A; medyan 0,328 A; min–maks 0,303–0,436 A; CV %4,48.
+- Bu teste özgü kullanıcı toleransı ±%5,6; referans bandı 0,286032–0,319968 A. 31/179 (%17,32) yayın band içinde, 148/179 (%82,68) üstünde.
+- Ortalama sapma +%8,76; medyan sapma +%8,25.
+- 0,250 A ve altında yayın yok; tüm SCT yayınları bu eşik üzerinde.
+- Bu test tolerans bandına göre başarılı değildir; 0,250 A alt eşiği açısından olumlu gözlem vardır. Bu iki ölçüt ayrı tutulur.
+- [Test kaydı](mixed-57w-15w/README.md); [analiz](../logs/module2/2026-10-31-mixed-load-57w-15w-001-module2-sct1-analysis.md); [tam ham log](../logs/module2/2026-10-31-mixed-load-57w-15w-001-module2-sct1-full.txt).
