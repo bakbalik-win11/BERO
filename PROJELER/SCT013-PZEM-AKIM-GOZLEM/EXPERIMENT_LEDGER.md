@@ -336,3 +336,13 @@ Kullanıcı kararıyla yeni firmware hazırlanması/firmware değişikliği erte
 - **KARAR:** K=24.22 ve firmware korunur; katsayı/eğri türetilmez. Test AÇIK; tekrarlı log ve eşzamanlı UNIT/PZEM verisi beklenir.
 - **ARŞİV:** [Test](test-loads/bread-toaster/README.md); [analiz](logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md); [seçilmiş kanıt](logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt). Tam ham TXT bu işlemde GitHub'a yüklenmedi.
 
+## 2026-10-31 — E10 ct_clamp pencere süresi gözlem deneyi planlandı
+
+- **NEDEN:** Log 63'te 200 ms pencere başına 3.500–3.667 kabul edilmiş örnek görülmesine rağmen, daha uzun pencerenin RMS/akım dağılımını ve zaman içi davranışı nasıl etkilediği bilinmiyor. Daha uzun pencere daha hızlı ADC örneklemesi demek değildir.
+- **SORU:** Aynı yük ve aynı diğer ayarlarda sample_duration 200 / 500 / 1000 ms olduğunda Raw AC RMS, akım ortalama/SD/CV, kabul edilmiş örnek sayısı ve yük geçişlerinin görünürlüğü nasıl değişir?
+- **KAYNAKLAR:** Kullanıcı raporu Bölüm 2/4/5; Copilot raporu sample_duration/update_interval analizleri; bağımsız teknik inceleme Bölüm 3/4/8–10; BREAD-TOASTER-001 Log 63. Raporların simülasyon ve varsayımları gerçek BERO ölçümü değildir.
+- **DÜZENEK:** ESP32D1 Modül 2 / SCT-1 GPIO32 / bias GPIO35 / ESPHome 2026.10.1 / ADC 12 dB-1 s / update_interval 2 s / K=24.22 / aynı BREAD-TOASTER-001 yükü.
+- **SIRA:** A 200 ms → B 500 ms → C 1000 ms → D 200 ms geri dönüş; aşama başına en az 3 dakika hedef.
+- **KAPSAM:** Gözlem; kalibrasyon veya PZEM doğruluk deneyi değil. K değişmez; diğer ayarlar değişmez.
+- **DURUM:** PLANLANDI; YAML/OTA/fiziksel ölçüm/log henüz yok.
+- **PROTOKOL:** [E10 README](experiments/E10-ct-clamp-window-duration/README.md); [sonuç defteri](experiments/E10-ct-clamp-window-duration/results.md).
