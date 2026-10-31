@@ -1,20 +1,40 @@
-# Deneyler
+# Deney arşivi
 
-Her deneyde protocol.md, metadata.yaml ve results.md bulunur. Ham veri varsayılan olarak Git'e eklenmez; yerel raw klasöründe tutulur, küçük sentetik örnekler samples altında saklanır.
+Bu klasör Faz 1'deki tarihsel deney ve gözlem kayıtlarını korur. **Faz 1 kapalıdır.** Aşağıdaki kayıtlar yeni aktif deney planı değildir; yapılmış çalışmaların logları ve sonuçları ile hedefe ulaşıldığı için yapılmadan kapatılan planlar aynı tarihçe altında korunur.
 
-- [E00A — Bias trafosu DC noktalarının ADC gözlemi](E00A-raw-waveform-observation/README.md) — SCT bağlı değilken bias-only Vmid alt koşulu analiz edilip kapatıldı; E00A'nın 3,3 V bölücü koşulu ve ham CSV/grafik işleri açık.
-- [E00B — SCT bağlı, akımsız hat ADC gözlemi](E00B-sct-connected-no-current/README.md) — Açıklamalı ESPHome firmware'i eklendi ve kullanıcı bildirimiyle derlendi; GPIO34/35 bias, GPIO32/33 SCT. Fiziksel pinout/bağlantı ve cihaz logu bekleniyor.
-- [E00 — Bias noktasını ADC ile okuma](E00-bias-adc-baseline/protocol.md) — E00A'dan sonraki temel ADC API karşılaştırma adımı.
-- E01 — Yüksüz ofset ve gürültü tabanı
-- E02 — Kararlı rezistif yük ve pencere değişkenliği
-- E03 — PZEM adım yanıtı / yerleşme süresi
-- E04 — PZEM alanlarının değişim zamanları
+## Faz 1 — Çalışan kodu bulmak ve ±%4 hedefine ulaşmak (KAPATILDI)
+
+Eski kayıtlar:
+- [E00A — Bias/DC ve ADC gözlemleri](E00A-raw-waveform-observation/README.md)
+- [E00B — SCT bağlı, akımsız hat gözlemi](E00B-sct-connected-no-current/README.md)
+- [E00 — Bias ADC baseline](E00-bias-adc-baseline/protocol.md)
+- E01 — Yüksüz ofset/gürültü tabanı
+- E02 — Kararlı rezistif yük
+- E03 — PZEM adım yanıtı/yerleşme
+- E04 — PZEM alan değişim zamanları
 - E05 — Örnekleme hızı karşılaştırması
-- E06 — Yük senaryoları / clipping
-- [E07 — SCT kararlılık gözlemi: basamaklı yükler ve örnekleme hızı](E07-sct-stability-step-tests/protocol.md) — önceki basamaklı gözlem planı.
-- [E08 — SCT sinyalini tanıma](E08-sct-characterization/README.md) — yüksüz uzun okuma; 100 W ile hız × tur matrisi; 150 W ve 8,5 W LED karşılaştırması; ardından aç-kapa davranışı.
+- E06 — Yük senaryoları
+- [E07 — SCT kararlılık basamak planı](E07-sct-stability-step-tests/protocol.md)
+- [E08 — SCT sinyal karakterizasyonu](E08-sct-characterization/README.md)
+- [E00F-N02/N03 — ESP32D2 gözlem logları](E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md)
 
-E00A ve E00–E08 deneyleri plan/protokol düzeyindedir; fiziksel ölçüm sonuçları henüz yok. E00A, E00/E01 ve sonraki hız/paketleme çalışmalarından önce yapılacak. İlk geçişte 1 ve 2,5 kS/s karşılaştırması veya çoklu ESP32 eşzamanlaması zorunlu değildir; ilk istatistikler sonraki deneyi yönlendirecek.
+**Kapanış anlamı:** Faz 1 hedefi dış kaynaklı çalışan kodla ±%4 sapma olarak sağlandığı için Faz 1 kapsamında kalan yapılmamış deneyler ve işler KAPATILDI — HEDEFE ULAŞILDI. Bu deneylerin fiziksel olarak yapıldığı veya sonuç ürettiği anlamına gelmez. Gerçekten yapılmış alt deneylerin sonuçları kendi dosyalarında kalır. Eski planlar Faz 2'nin ön koşulu değildir ve yeniden açılmaz.
 
-- [E09 — ESP-2 düşük akım sensör karşılaştırması](E09-low-current-sensor-comparison/README.md) — PZEM, ACS712-5A ve ZMCT103C-5A için tekil → ikili → üçlü aşamalı test planı. Henüz uygulanmadı.
-- [E00F-N02 — Dört ADC kanalı ilk cihaz logu](E00F-unthresholded-overnight-log/E00F-N02-first-device-log.md) — GPIO32/33 SCT ve GPIO34/35 bias kanalları cihazda başlatıldı; ilk kısa log istatistikleri kaydedildi. Sabah HA geçmiş analizi bekleniyor.
+## Faz 1 başarı karşılaştırmaları
+
+| Yük | Referans | Kod sonucu | Sapma |
+|---|---:|---:|---:|
+| 100 W akkor | 0,446–0,447 A | 0,4471 A | yaklaşık %0 |
+| 150 W akkor | 0,616 A | 0,615 A | −%0,2 |
+| Kettle düşük/kararlı | 0,637 A | 0,656 A | +%3,0 |
+| Kettle kaynama | 6,39 A | 6,15 A | −%3,8 |
+
+Dört koşulun tamamı ±%4 sınırındadır. Sonuç ve kapanış kararı [ADR-009](../docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md) içinde kayıtlıdır.
+
+## Faz 2 — Yeni deneyler
+
+Şu anda yeni Faz 2 deneyi planlanmış değildir. Önce [T007 veri aktarımı](../tasks/T007-python-architecture.md) yapılacaktır. Gerçek verinin ortaya çıkardığı somut bir soru deney gerektirirse yeni numara ve yeni protokolle açılır.
+
+## Kayıt standardı
+
+Her yeni deney için amaç/HEDEF, gerçek bağlantı ve ayarlar, LOG, SONUÇ, kaynak veri/hash, kod sürümü ve yorum birlikte saklanır. Yapılmayan adım yapılmış gibi gösterilmez. Ham veri varsayılan olarak Git'e eklenmez; gerekli küçük örnekler ve özetler saklanır.
