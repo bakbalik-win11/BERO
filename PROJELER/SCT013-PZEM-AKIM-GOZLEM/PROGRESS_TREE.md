@@ -99,3 +99,10 @@
 - Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; K=24.22 korunacak, yazılımsal sıfır eşiği eklenmeyecek.
 - 0,30 A altı düşük akım gözlem alanında ±%4 kabul/ret uygulanmayacak.
 - [Test planı](test-loads/fixed-load-0130a/README.md).
+
+## 2026-10-31 — FIXED-LOAD-0130A-001 ilk log analizi
+
+- SCT-1 logu incelendi: n=556; ortalama 0,203637 A; medyan 0,203 A; min–maks 0,157–0,291 A; SD 0,017971 A.
+- 0,130 A hedefi UNIT/PZEM referansı olarak doğrulanmadı; fiziksel yük kimliği de bilinmiyor. Sapma hesabı yapılmadı.
+- Durum: log analizi yapıldı; test referans ve kurulum teyidi beklediği için açık.
+- [Test kaydı](test-loads/fixed-load-0130a/README.md); [analiz](logs/module2/2026-10-31-fixed-load-0130a-001-sct1-analysis.md).
