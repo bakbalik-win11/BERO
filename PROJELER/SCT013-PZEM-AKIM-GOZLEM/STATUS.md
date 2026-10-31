@@ -1,3 +1,15 @@
+## 2026-10-31 — LOAD-IDLE-001 ilk yüksüz SCT-1 logu arşivlendi
+
+- **TEST:** Modül 2 / ESP32D1 / SCT-1 GPIO32 ADC1_CH4 / ortak bias GPIO35 ADC1_CH7; ESPHome 2026.10.1; ct_clamp 200 ms, yayın 2 s; ADC 1 s, 12 dB.
+- **LOG:** Kullanıcı kaynağı Yapıştırılan metin(20261031-135010).txt; 36.687 bayt / 514 satır; SHA-256 `9ac3ece0770a85219e7ad6664f15f1ccc9db9b561d04f6195ef034d4e718e455`. İlk/son akım yayını 16:47:55.066–16:49:53.052 (+03:00).
+- **AKIM:** 60 yayın; ortalama 0,011267 A; medyan 0,000 A; min–maks 0,000–0,104 A; örnek SD 0,025876 A. 48/60 (%80) sıfır, 12/60 (%20) sıfır dışı.
+- **ANALOG:** Raw AC ortalama 0,0004657 V; bias GPIO35 ortalama 1,663881 V; SCT-1 GPIO32 ADC ortalama 1,662508 V.
+- **ÖRNEKLEME:** ct_clamp log SPS 17.465–18.280; ortalama yaklaşık 17.971 SPS. Üç derleyici/optimizasyon uyarısı; [E] hata, brownout veya reboot işareti yok.
+- **REFERANS:** Yüksüz senaryo için UNIT referansı aranmadı; logda PZEM yok.
+- **YORUM:** Yüksüz durumda çoğunlukla sıfır okuma var; 12 aralıklı düşük sıfır dışı değer görüldü. Kaynağı bu logla ayrıştırılamaz. K değiştirilmedi; yazılımsal sıfır eşiği eklenmedi.
+- **ARŞİV:** [Yüksüz test kaydı](test-loads/idle-no-load/README.md); [teknik analiz](logs/module2/2026-10-31-load-idle-001-analysis.md); [seçilmiş gerçek log satırları](logs/module2/2026-10-31-load-idle-001-evidence.txt). Kanıt dökümü tam ham log değildir; tam kaynak dosyanın adı, boyutu ve SHA-256 değeri kaydedilmiştir.
+- **SONRAKİ:** Daha uzun/tekrarlı yüksüz log; mevcut kod ve katsayı değiştirilmeden.
+
 ## 2026-10-31 — LOAD-150W-001 uzun SCT-1 testi arşivlendi
 
 - **TEST:** 150 W akkor; ESP32D1 / Modül 2 / SCT-1 sarı GPIO32 / ortak bias GPIO35; masaüstü harici besleme.
