@@ -1249,3 +1249,8 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - 0,413 A, ölçüm cihazı henüz belirtilmediğinden KULLANICI BİLDİRİMİ olarak tutuldu; PZEM/UNIT referansı olduğu varsayılmadı.
 - Test aralığı 0,5 A altı; kullanıcı kapsam sınırı 0,01 A ve üzeri. Mevcut firmware/K=24.22 kilitli.
 - Fiziksel test, ESPHome logu ve sonuç analizi henüz yoktur. Deney AÇIK ve plan aşamasındadır.
+
+
+## 2026-10-31 — EINHELL-CHARGER-001 akım güncellemesi
+
+Kullanıcı, Einhell şarj cihazı akımının 0,413 A'dan 0,419 A'a yükselip sabitlendiğini bildirdi. Fark +0,006 A'dır. Ölçüm cihazı ve ESP32D1 logu henüz doğrulanmadı; deney açık.
