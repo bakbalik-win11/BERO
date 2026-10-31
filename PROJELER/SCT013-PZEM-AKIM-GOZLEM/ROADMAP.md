@@ -1,3 +1,52 @@
+## 2026-10-31 — ANA YOL HARİTASI: PZEM–SCT KARARLI ALAN ÖĞRENME DÖNGÜSÜ
+
+> Bu bölüm güncel ve bağlayıcı çalışma sırasıdır. Aşağıdaki eski faz açıklamalarındaki ham ADC/2 kS/s edinim adımları tarihsel plandır; ADR-009 ile kapatılan işleri yeniden açmaz. Çelişki varsa bu bölüm ve STATUS.md esas alınır.
+
+### Proje hedefi
+Çalışan E00F ölçüm yolunu koruyarak SCT çıktısını PZEM-004T V3.0 referans akışıyla aynı yük koşullarında karşılaştırmak; iki tarafta kararlı alanları ayrı tespit etmek; örtüşen alanları eşleştirip PZEM ile etiketlemek; veri biriktikçe SCT katsayısını/modelini iyileştirmek. Bu öğrenme döngüsü BERO boyunca sürecektir. PZEM referanstır; mutlak ve yanılmaz ground truth değildir.
+
+### Aktif iş sırası
+1. **T008 — PZEM ve E00F eşzamanlı gözlem kaydı.**
+   - Kullanıcının paylaştığı çalışan E00F YAML baseline kabul edilir; pinler, 200 ms pencere, 2 s yayın aralığı ve 24.22 katsayısı gerekçe olmadan değiştirilmez.
+   - Aynı yük/olay koşulunda PZEM alanları ile SCT Raw AC ve akım entity'leri kaydedilir.
+   - Zaman damgası, saat dilimi, yük, olay/tekrar, sensör/firmware ve calibration_id bilgisi korunur.
+   - PZEM -1, NaN, timeout ve parse hataları etiketlemeden çıkarılır; dışlama sayıları ayrıca raporlanır.
+2. **Kararlılık ölçütlerini veriden çıkar.**
+   - PZEM ve SCT kararlılığı ayrı hesaplanır; örnekleme/güncelleme hızları aynı varsayılmaz.
+   - Aday ölçütler: pencere içi yayılım, min-max aralığı, eğim ve ardışık pencere tutarlılığı.
+   - Sabit 3 saniye gecikme veya sabit maske önceden kabul edilmez.
+3. **Ortak kararlı alanları eşleştir ve etiketle.**
+   - Aynı fiziksel yük/SSR olayı içindeki örtüşen PZEM/SCT kararlı alanları seçilir.
+   - Geçerli PZEM akımı etiket/referans alanıdır; eşleşme kalitesi ve zaman belirsizliği kaydedilir.
+   - Geçiş/yerleşme verisi kararlı etiketlerden ayrı tutulur.
+4. **Katsayı/model iyileştirme.**
+   - İlk olarak mevcut 24.22 katsayısının yeni etiketli alanlardaki sapması ölçülür.
+   - Sistematik ve tekrarlanabilir hata gösterilirse katsayı/model güncellenir; veri gerekçelendirmedikçe karmaşık model eklenmez.
+   - Her sürüm yeni calibration_id ile kaydedilir; önceki sürümler korunur.
+   - Eğitim verisi içi uyum ile ayrı deney/genelleme doğrulaması ayrılır.
+5. **Sürekli öğrenme ve bakım.**
+   - Yeni yük, akım seviyesi, sensör veya kurulum koşulunda döngü tekrarlanır.
+   - Model performansı, artıklar, düşük akım davranışı ve koşul dışı örnekler izlenir.
+   - Değişiklik ancak karşılaştırmalı kanıtla kabul edilir; çalışan baseline geri dönüş noktasıdır.
+
+### ct_clamp inceleme kararı
+ESPHome ct_clamp bileşenini şu aşamada değiştirmek, yeniden yazmak veya alternatif RMS algoritması geliştirmek aktif iş değildir. Önce mevcut bileşenin PZEM ile eşleştirilmiş kararlı alanlardaki davranışı ölçülür. Tekrarlanabilir sapma, kararlılık sorunu veya açıklanamayan anomali görülürse hedefli kaynak kod incelemesi açılır. Salt merak veya varsayımla firmware değiştirilmez. Önceki teknik notlar ölçüm kanıtı değil, kaynak kod gözlemi/hipotez olarak korunur.
+
+### Kapatılan / park edilen işler
+- PC'ye sürekli ham 50 Hz dalga aktarımı, örnek başına timestamp ve DMA/ADC Continuous: **KAPATILDI / GEREKSİZ** (ADR-009).
+- Eski T005/E00A/E01 ham ADC ve gürültü tabanı planı: PZEM etiketlemenin zorunlu ön koşulu olmaktan çıkarıldı; **PARK EDİLDİ**.
+- ct_clamp algoritmasını değiştirme/yeniden yazma: şimdilik yapılmayacak.
+- Eski deneyler otomatik tamamlanmış sayılmaz; yalnız ana hedefe doğrudan katkı sağlayan yük koşulları gerektiğinde yeniden kullanılır.
+
+### Karar kapıları
+- **G1 Veri:** PZEM ve SCT aynı olay/yük koşulunda yeterli kayıt üretmiş; zaman ve kaynak bilgisi korunmuş.
+- **G2 Kararlılık:** İki kanal için ayrı, veride sınanmış kararlılık ölçütleri tanımlanmış.
+- **G3 Etiket:** Ortak alanlar, dışlanan okumalar ve eşleşme belirsizliği raporlanmış.
+- **G4 Model:** Mevcut katsayı ve varsa yeni model karşılaştırılmış; eğitim içi ve ayrı doğrulama sonuçları ayrılmış.
+- **G5 Süreklilik:** Yeni calibration_id, veri kökeni ve geri dönüş kaydı mevcut.
+
+---
+
 ## 2026-10-31 — Kapsam revizyonu: ±%4 hedefi sağlandı
 
 ±%4 sapma hedefinin yeni/harici kodla sağlandığı kullanıcı tarafından bildirildi. Dünkü dört karşılaştırma (100 W akkor, 150 W akkor, kettle düşük/kararlı, kettle kaynama) ±%4 içindedir; ayrıntı [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
