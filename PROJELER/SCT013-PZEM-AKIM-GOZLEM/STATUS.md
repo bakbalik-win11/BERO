@@ -16,11 +16,17 @@
 
 Bu karşılaştırmalar paylaşılan deney logları ve kayıtlarıyla desteklenmektedir. Dört koşulun tamamı ±%4 kabul sınırındadır. Harici kodun kaynağı depoda bulunmasa da Faz 1 hedefi sağlanmış kabul edilmiştir. Ayrıntı: [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
 
-## Faz 2 aktif görev sırası
+## Faz 2 aktif görev sırası — cihazları devreye alma öncelikli
 
-- **AKTİF — T007:** Home Assistant geçmişini PC'ye aktarma ve Python veri giriş hattını kurma. İlk iş budur. Eski E00A/E00/E01 deneyleri T007'nin ön koşulu değildir.
-- **BEKLEMEDE — T008:** PZEM ve SCT akışlarının kararlılığını ayrı inceleme; örtüşen kararlı alanları eşleştirme ve PZEM ile etiketleme. T007 veri aktarımı tamamlanınca başlayacak.
-- **BEKLEMEDE — T006:** Mevcut K=24.22 katsayısını etiketli kararlı alanlarda değerlendirme. T008 çıktısını bekler.
+1. **İLK — PZEM düğümünü devreye alma:** ESP32-WR1-PZEM, UART GPIO17/16, 9600 baud; gerçek PZEM entity'lerini ve HA yayınlarını doğrula.
+2. **SONRA — SSR düğümünü devreye alma:** [esp32c3-ssr.yaml](firmware/esp32c3-ssr.yaml); 40 s ON / 20 s OFF, DS3231/NTP, BOOT_ID/EVENT_ID ve UDP olay paketi. Önce derleme, sonra kontrollü fiziksel test.
+3. **SONRA — SCT düğümünü doğrulama:** mevcut [esp32d2.yaml](firmware/esp32d2.yaml) ve HA entity'leri; çalışan baseline korunur.
+4. **ENTEGRASYON:** SSR'nin değiştirdiği ortak yükü PZEM ve SCT'nin aynı elektriksel akım yolundan gözlediğini doğrula; üç düğümün HA veri sözleşmesini ve olay ilişkisini yaz.
+5. **VERİ AKTARIMI — T007:** gerçek HA geçmişini PC'ye al ve Python veri giriş hattını kur.
+6. **ETİKETLEME — T008:** PZEM/SCT kararlı alanlarını ayrı bul, örtüşen pencereleri eşleştir ve PZEM ile etiketle.
+7. **MODEL — T006:** etiketli kararlı alanlarda mevcut K=24.22 katsayısını değerlendir.
+
+PZEM/SSR/SCT devreye alma ve HA veri sözleşmesi tamamlanmadan T007 veri aktarımına geçilmez.
 
 ## Korunacak çalışan baseline
 
@@ -35,7 +41,7 @@ Bu karşılaştırmalar paylaşılan deney logları ve kayıtlarıyla desteklenm
 
 ## Bugünkü somut ilk adım
 
-T007 kapsamında gerçek Home Assistant entity geçmişini PC'ye aktarabilecek yolu seçmek. Önce gerçek entity_id'leri ve küçük bir geçmiş örneğini alacağız. Python kodu ancak veri biçimini gördükten sonra yazılacak. Başarılı kod, örnek çıktı/log ve yorum depoda saklanacak.
+SSR düğümünün ilk YAML taslağı [firmware/esp32c3-ssr.yaml](firmware/esp32c3-ssr.yaml) olarak depoya eklendi. Henüz derlenmedi ve fiziksel test edilmedi. Sıradaki adım PZEM düğümünün mevcut gerçek YAML/entity listesini bulup devreye alma sırasını uygulamak; ardından SSR YAML'ını derleme kontrolünden geçirmek.
 
 ## Güncel ana dosyalar
 
