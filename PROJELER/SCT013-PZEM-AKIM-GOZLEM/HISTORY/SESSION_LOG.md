@@ -1269,3 +1269,15 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **DEĞERLENDİRME:** 0,30 A altı gözlem bölgesi; ±%4 kabul/ret yok. Kararlılık, dağılım, Raw AC ve bias incelenecek.
 - **DURUM:** Yalnız test planı oluşturuldu; fiziksel test yapılmadı, ölçüm sonucu yok.
 - **DOSYA:** [FIXED-LOAD-0130A-001](../test-loads/fixed-load-0130a/README.md).
+
+## 2026-10-31 — FIXED-LOAD-0130A-001 ilk SCT-1 logunun analizi
+
+- **HEDEF:** 0,130 A sabit yük gözlem testi için gelen ESP32D1 logunu yorumlamak ve proje kaydına eklemek.
+- **GİRDİ:** `esp32d1-logs (56).txt`; 298.344 bayt / 3.986 satır; SHA-256 `15c94083291b374e60f80d932494d6a6a58cbef9b5a3d82227cc2f58703dc20a`.
+- **LOG:** 556 SCT-1 yayını; 20:47:30–21:06:00 (+03:00). Ortalama 0,203637 A; medyan 0,203 A; min–maks 0,157–0,291 A; SD 0,017971 A; CV %8,82. Raw AC ortalaması 0,0084077 V; bias ortalaması 1,663729 V; raporlanan SPS ortalaması 17.171.
+- **YORUM:** Yaklaşık iki dakikalık blok ortalamaları 0,1993–0,2081 A; uzun dönemli ortalama yaklaşık 0,20 A çevresinde. Anlık dağılım belirgin. Bu log, SCT-1'in bu oturumda düzenli veri ürettiğini gösterir.
+- **REFERANS SINIRI:** 0,130 A test hedefidir; UNIT/PZEM referansı ve fiziksel yük kimliği bu logdan doğrulanamadı. Dolayısıyla 0,203637 A SCT çıktısıyla 0,130 A arasında sapma/doğruluk sonucu çıkarılmadı. 0,30 A altı gözlem alanında ±%4 kabul/ret yoktur.
+- **KOD:** Depodaki ESP32D1 YAML K=24.22 ve sıfır eşiği yok ayarlarını içerir. Log binary'sinin YAML ile birebir eşleştiği iddia edilmedi; firmware değişikliği yapılmadı.
+- **ARŞİV:** Teknik analiz ve test kaydı güncellendi; ham TXT'nin tam metni Git'e eklenmedi. Kaynak dosya adı, boyutu ve SHA-256 kaydedildi.
+- **AÇIK KALAN:** Fiziksel yükün kimliği/gücü, 0,130 A değerinin kaynağı/referans cihazı ve aynı zaman aralığında UNIT/PZEM ölçümü. Test nihai doğrulama olarak kapatılmadı.
+- **SONRAKİ:** Referans ve yük koşulu netleştikten sonra aynı kararlı pencerede tekrar ölç; K'yı değiştirme.
