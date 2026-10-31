@@ -1,5 +1,17 @@
 # Deney ve karar izleme defteri
 
+> **Güncel yapı — 2026-10-31:** Proje yalnızca iki ana fazdan oluşur. **Faz 1 tamamlandı:** dış kaynaklı çalışan kodla ±%4 hedefi sağlandı; Faz 1 kapsamındaki yapılmamış işler hedefe ulaşıldığı için kapatıldı. **Faz 2 aktif:** önce HA geçmişini PC'ye aktarma (T007), sonra PZEM/SCT kararlı alan eşleştirme ve etiketleme (T008), ardından K=24.22 katsayı/model değerlendirmesi (T006). Bu dosyanın aşağıdaki eski basamak ve deney anlatımları tarihsel arşivdir; aktif iş sırası değildir. Güncel yön için [ROADMAP](ROADMAP.md), [STATUS](STATUS.md) ve [ADR-011](docs/decisions/ADR-011-two-phase-project-structure.md) esas alınır.
+
+## Faz 1 kapanış sonucu
+
+Dış kaynaklı çalışan ESPHome ct_clamp koduyla dört karşılaştırma ±%4 sınırında sonuçlandı: 100 W akkor yaklaşık %0; 150 W akkor −%0,2; kettle düşük/kararlı +%3,0; kettle kaynama −%3,8. Faz 1 tamamlandı. Kalan yapılmamış deneyler yapılmış gibi gösterilmez; hedefe ulaşıldığı için kapatılmıştır. Gerçek log ve sonuç kayıtları silinmez.
+
+## Faz 2 aktif basamakları
+
+1. T007 — Home Assistant geçmişini PC'ye aktarma.
+2. T008 — PZEM ve SCT kararlı alanlarını ayrı bulma, örtüşen alanları eşleştirme ve PZEM ile etiketleme.
+3. T006 — K=24.22 katsayısını değerlendirme; veri gerekçelendirirse model iyileştirme.
+
 > **Bu dosyanın amacı:** Deney kodunu, deneyin neden yapıldığını, alınan kararları ve kanıtlanan sonucu birbirinden koparmamak. Bu dosya bir navigasyon/özet defteridir; ayrıntılı protokol, kod ve sonuç kayıtlarının yerine geçmez.
 
 ## Her basamakta korunacak kayıt
