@@ -796,3 +796,15 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - K=24.22 değişmedi; yazılımsal sıfır eşiği eklenmedi. Kapanış YAML snapshot ve analiz raporu eklendi.
 - **FAN-1-RETEST-001:** Yeni FAN-1 gözlem oturumu AÇIK. Eski FAN-1 kayıtları değiştirilmedi. UNIT 0,093 A; 0,30 A altında ±%4 yok. Fan kapalı taban/açılış/kararlı/kapanış işaretli protokol açıldı.
 - Ayrıntılar: [FAN-3-3T-001](test-loads/fan3-3turn/README.md), [FAN-1-RETEST-001](test-loads/fan1-retest/README.md).
+
+
+## 2026-10-31 — EINHELL-CHARGER-001 deney planı açıldı
+
+- **DURUM:** AÇIK; yalnız plan kaydı oluşturuldu. Fiziksel test/log henüz yok.
+- **YÜK:** Einhell pil şarj cihazı; kullanıcı tarafından bildirilen başlangıç akımı 0,413 A.
+- **KAYNAK SINIRI:** 0,413 A bir kullanıcı bildirimidir; ölçüm cihazı (PZEM/UNIT/başka) henüz belirtilmedi. PZEM doğrulanmış referansı olarak gösterilmez.
+- **AMAÇ:** 0,5 A altındaki şarj yükünün başlangıç, kararlı şarj ve ilerleyen şarj aşamalarındaki SCT davranışını gözlemek. Kullanıcının belirlediği alt inceleme sınırı 0,01 A; bunun altı kapsam dışıdır.
+- **DÜZENEK:** Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; mevcut firmware ve K=24.22 korunur. Firmware değişikliği ve yazılımsal sıfır eşiği yok.
+- **DEĞERLENDİRME:** 0,413 A, STATUS'ta kayıtlı 0,30 A eşiğinin üzerindedir. Aynı kararlı pencerede referans cihaz belirlenip ölçüm alınırsa mevcut ±%4 karşılaştırma kuralı kullanılabilir.
+- **DOSYA:** test-loads/einhell-charger/README.md.
+- **SONRAKİ:** Kullanıcı test logunu ve 0,413 A değerini gösteren referans cihaz bilgisini paylaşacak; başlangıç/kararlı/şarj ilerleme pencereleri ayrı analiz edilecek.
