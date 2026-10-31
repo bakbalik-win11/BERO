@@ -1,3 +1,13 @@
+## 2026-10-31 — Modül 2 dört ADC girişli uzun kayıt firmware'i geri yüklendi
+
+- **KARAR:** Tek kanallı ct_clamp sürümü yerine depo geçmişindeki dört ADC girişli log sürümü geri yüklendi.
+- **KOD:** [firmware/esp32d1.yaml](firmware/esp32d1.yaml) GPIO32/33/34/35 girişlerini 1 saniye aralıkla okur; dört örnek de ESPHome loguna `sct_test` etiketiyle yazılır.
+- **ESP KİMLİĞİ:** `esp32d1` / `ESP32D1` korunmuştur.
+- **TEST KOŞULU:** Kullanıcı SCT-1'i GPIO32'de test edeceğini bildirdi. GPIO33 ve GPIO34 fiziksel SCT bağlı değilse boşta giriş olarak değerlendirilir; akım/sensör kanıtı sayılmaz. GPIO35 ortak bias ölçümüdür.
+- **SINIR:** Bu sürüm RMS/akım hesaplamaz; yalnız 1 saniyelik ADC voltaj gözlemi yapar. 50 Hz dalga şekli örneklemesi değildir.
+- **KARAR KAYDI:** [ADR-018](docs/decisions/ADR-018-module2-four-adc-long-log.md).
+- **DOĞRULAMA:** YAML GitHub'a kaydedildi; ESPHome derlemesi, OTA ve yeni uzun fiziksel log henüz yapılmadı. T010 AKTİF.
+
 ## 2026-10-31 — Modül 2 tek kanallı SCT test firmware'i
 
 - **KARAR:** Üçlü ct_clamp yapılandırması kontrollü test için tek aktif kanala indirildi. Üçlü yapının kaliteyi düşürdüğü henüz kanıtlanmadı; bu değişiklik hipotezi sınamak içindir.
