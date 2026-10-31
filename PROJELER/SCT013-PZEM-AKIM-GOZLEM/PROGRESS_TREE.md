@@ -1,3 +1,11 @@
+## 2026-10-31 — BERO sensörden bağımsız mimari kaydı
+
+- Depo kökünde [MIMARI](../../MIMARI/README.md) alanı oluşturuldu.
+- [Pencereli Sensör Analizi ve Davranış Çıkarımı](../../MIMARI/PENCERELI-SENSOR-ANALIZI/README.md) üç katmanı tanımlar: veri toplama, özellik çıkarma, davranış çıkarımı.
+- SCT013-PZEM bu mimarinin ilk uygulama/kanıt alanıdır; sensöre özgü pin, katsayı ve algoritmalar genel ilke sayılmaz.
+- Özellik penceresi ile kararlılık penceresi ayrıldı; sürekli ham ADC saklama kararı değiştirilmedi.
+- Yeni mimari belge tasarım kaydıdır; genel davranış sınıflandırması veya yeni sensör entegrasyonu tamamlanmış değildir.
+
 ## 2026-10-31 — Sensör okuma kalıpları
 
 - ct_clamp araştırmasından hareketle genel sensör veri yolu ile CT'ye özgü AC RMS algoritması ayrıştırıldı.
