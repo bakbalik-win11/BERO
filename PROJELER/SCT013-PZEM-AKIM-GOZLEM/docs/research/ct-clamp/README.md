@@ -23,6 +23,12 @@ Bu klasör, BERO'nun ct_clamp ölçüm zinciri hakkındaki üç ayrı kaynağı 
 - Kaynak koddan doğrulanan davranışlar, gerçek BERO log bulguları, üretici bilgileri, hesaplar ve teorik senaryolar ayrı sınıflandırılmıştır.
 - Bu inceleme yeni firmware testi veya yeni fiziksel ölçüm değildir.
 
+## 4. Tasarım tarihçesi ve geliştirici niyeti
+
+- [ESPHome ct_clamp tasarım tarihçesi](2026-10-31-design-history.md)
+- İlk PR/commit, Jesse Hills ve Otto Winter katkıları, EMonLib kökeni, CTL-10-CLS test düzeneği, 200 ms ve 60 s varsayılanlarının kanıt durumu, 2021 last_value filtresinin eklenme nedeni ve ilgili issue/PR tartışmaları incelendi.
+- Geliştirici açıklaması ile kaynak koddan çıkarılan teknik yorumlar ayrı tutuldu; belgelenmeyen tasarım gerekçeleri varsayılmadı.
+
 ## Önemli karşılaştırma notu
 
 Kullanıcı raporunun başlığında GPIO33 geçerken Log 63 ve güncel Modül 2 SCT-1 kaydı GPIO32'yi gösterir. Kullanıcı raporunun metni değiştirilmemiştir; pin farkı belgeler karşılaştırılırken dikkate alınmalıdır.
