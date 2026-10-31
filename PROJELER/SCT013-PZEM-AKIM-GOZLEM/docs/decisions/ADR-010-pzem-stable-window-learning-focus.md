@@ -1,3 +1,5 @@
+> **Kapsam notu:** Bu ADR'deki PZEM referanslı kararlı alan öğrenme döngüsü geçerlidir; ancak ADR-014 ile Faz 2'nin tamamı değil, modüller ve ESP düğümleri pratik olarak devreye alındıktan sonraki alt aşaması olarak konumlandırılmıştır.
+
 # ADR-010 — PZEM referanslı kararlı alan etiketleme ve sürekli öğrenme
 
 - **Tarih:** 2026-10-31
