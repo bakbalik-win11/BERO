@@ -1,3 +1,15 @@
+## 2026-10-31 — LOAD-100W-004 uzun masaüstü besleme tekrarı ve tek kanal mimarisi
+
+- **LOG:** [Tam 1.602 satır / 118.860 bayt](logs/module2/2026-10-31-load-100w-004-sct1-desktop-power-full.txt); SHA-256 `de3f2289700f657cfcf1fd8bff816bbd8a8bc05bb2296f349462709cbb42d859`.
+- **ANALİZ:** [Uzun tekrar teknik analizi](logs/module2/2026-10-31-load-100w-004-sct1-desktop-power-extended-analysis.md).
+- **SÜRE:** İlk/son akım yayını 16:06:45.189–16:13:53.226 (+03:00), yaklaşık 7 dakika 8 saniye; 215 akım yayını.
+- **AKIM:** Medyan 0,423 A; ortalama 0,425 A; örnek SD 0,01149 A; min–maks 0,401–0,480 A; 0,55 A üzeri sıçrama yok.
+- **GEÇİCİ UNIT KIYASI:** 0,427 A ±%4 bandında 192/215 (%89,3) yayın. Bu değer PZEM teyidi değildir; logda eşzamanlı UNIT/PZEM ölçümü yoktur.
+- **ANALOG:** Raw AC ortalama 0,01755 V; bias GPIO35 ortalama 1,66367 V (1,653–1,681 V); SCT-1 ADC ortalama 1,66144 V (1,631–1,692 V). ct_clamp raporlanan SPS ortalaması 17.659.
+- **GÜÇ YORUMU:** Harici masaüstü besleme koşusunda uzun süreli kararlılık gözlendi. Log 5 V girişini veya 3,3 V rayını ölçmediği için güç kalitesi doğrudan doğrulanmadı; USB/harici besleme nedenselliği için kontrollü A/B testi gerekir.
+- **MİMARİ ÇALIŞMA KARARI:** Şimdilik bir ESP düğümünde bir aktif SCT kanalı tercih edilecek. Bu, üç kanalın aynı ESP'de kesinlikle çalışamayacağının kanıtı değil; görev izolasyonu ve kararlılık için geçici test mimarisidir.
+- **KATSAYI:** K değiştirilmedi. 150 W Modül 2 testi ayrı yük dosyasında bekliyor.
+
 ## 2026-10-31 — Modül 2 için 150 W akkor test yükü kaydı açıldı
 
 - **KULLANICI PLANI:** Masaüstü harici besleme ile daha uzun 100 W SCT-1 logu paylaşılacak; ardından Modül 2 testinde 150 W akkor ampule geçilecek.
@@ -5,10 +17,10 @@
 - **ENVANTER:** [Test yükleri ana listesine](test-loads/README.md) 150 W akkor satırı eklendi. 100 W ve 150 W yükleri ayrı klasörlerde ve ayrı tablolarla izlenir.
 - **TARİHSEL REFERANS:** ROADMAP/Faz 1 arşivinde 150 W için 0,616 A referans ve 0,615 A kod sonucu (yaklaşık −%0,2) bulunuyor. Bu sonuç tarihsel Faz 1 kaydıdır; yeni Modül 2 testinin sonucu veya doğrulanmış hedefi değildir.
 - **YENİ TEST PLANI:** İlk oturum SCT-1 / sarı / GPIO32; ortak bias GPIO35. Masaüstü besleme, firmware sürümü, zaman aralığı, ham log ve mümkünse eşzamanlı UNIT/PZEM değerleri ayrı kaydedilecek.
-- **DURUM:** 150 W fiziksel test henüz yapılmadı. T010 aktif; daha uzun 100 W tekrar logu da bekleniyor.
+- **DURUM:** 150 W fiziksel test henüz yapılmadı. Daha uzun 100 W tekrar logu alındı ve arşivlendi; T010 aktif.
 - **GÖREV:** [T010 Modül 2](tasks/T010-module2-triple-sct-bringup.md) içine 150 W test planı eklendi.
 
-## 2026-10-31 — LOAD-100W-004 masaüstü güç kaynağı sonrası SCT-1 testi
+## 2026-10-31 — LOAD-100W-004 masaüstü güç kaynağı sonrası SCT-1 kısa log kesiti (uzun logla genişletildi)
 
 - **KULLANICI BİLDİRİMİ:** ESP32D1 beslemesi PC USB'den masaüstü harici güç kaynağına alındı; 100 W akkor test tekrarlanmıştır.
 - **LOG:** [Tam 397 satır](logs/module2/2026-10-31-load-100w-004-sct1-desktop-power.txt); özgün dosya 28.161 bayt; SHA-256 `0cba41fa5f66894f17ba2cda45773cae6a77c82eab1aa4e4c8bda81e019d4ac3`.
