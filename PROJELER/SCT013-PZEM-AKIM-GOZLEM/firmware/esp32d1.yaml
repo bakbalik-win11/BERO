@@ -20,8 +20,9 @@
 # BILDIRILEN BAGLANTILAR:
 # - 1. disi SCT yuvasi sari sinyal kablosu -> shield GPIO32.
 # - 2. disi SCT yuvasi yesil sinyal kablosu -> shield GPIO33.
-# - 3. SCT sinyali GPIO'su henuz belirlenmedi.
-# - Ortak bias ADC GPIO'su henuz belirlenmedi.
+# - 3. disi SCT yuvasi mavi sinyal kablosu -> shield GPIO34.
+# - Ortak bias olcum hatti turuncu kablo -> shield GPIO35.
+# Bu GPIO bilgileri kullanici bildirimidir; fiziksel terminal teyidi bekler.
 #
 # BAGLANTI / GUVENLIK:
 # - Bias devresi ve ESP32 GND ortak referans olacak; kesin noktalar
