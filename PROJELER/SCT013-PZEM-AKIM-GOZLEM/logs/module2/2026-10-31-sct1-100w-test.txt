@@ -1,0 +1,42 @@
+BERO MODUL 2 — SCT-1 / 100 W AKKOR AMPUL TEST KAYDI
+Tarih: 2026-10-31
+Cihaz: ESP32D1 / esp32d1
+Test kanali: SCT-1 / on panel 1 numarali giris / GPIO32 (mevcut proje eslestirmesi)
+Yuk: 100 W akkor ampul
+
+KAYNAK VE KANIT DURUMU:
+Bu kayit, kullanicinin test sonu bildiriminden olusturulmustur. Ham ESPHome logu veya
+U200B+ ekran fotografi bu kayitla birlikte sunulmamistir. Bu nedenle olcum degerleri
+KULLANICI BILDIRIMI olarak etiketlenir; ham logla bagimsiz dogrulama yapilmis degildir.
+
+KULLANICININ BILDIRDIGI TEST AKISI:
+1. SCT, 1 numarali kanala baglandi.
+2. Ortak bias degeri ESPHome logunda goruldu; sayisal bias degeri bu bildirimde verilmedi.
+3. 100 W ampul acildi.
+4. U200B+ cihazinda 0.433 A goruldu.
+
+KAYDEDILEN SONUC:
+- SCT-1 baglantisi: Kullanici bildirimiyle yapildi.
+- Ortak bias logu: Kullanici bildirimiyle goruldu; sayisal deger mevcut degil.
+- 100 W ampul: Acildi.
+- U200B+ gostergesi: 0.433 A (KULLANICI BILDIRIMI).
+- SCT-1 GPIO32 ADC log degeri/seri ornekleri: Bu kayitta mevcut degil.
+- Yuk kapali baseline ve ampul kapatildiktan sonraki deger: Bu kayitta mevcut degil.
+- ESPHome ham logu: Bu kayitta mevcut degil.
+
+YORUM VE SINIRLAR:
+Bu bildirim SCT-1'in 100 W ampul denemesinde kullanildigini ve U200B+ uzerinde
+0.433 A goruldugunu kaydeder. U200B+ degeri SCT ADC voltajiyla ayni turden bir
+olcum degildir; tek basina ESP32 ADC okumasinin dogrulugunu veya akim hesapladigini
+gostermez. Bias'in logda gorulmesi, ortak bias izleme yolunun calistigina dair
+kullanici bildirimidir; sayisal stabilite yorumu icin ilgili log satirlari gerekir.
+
+SONRAKI KANIT IHTIYACI:
+- Ampul acikken SCT-1 GPIO32 ADC log satirlari.
+- Ayni zaman araligindaki GPIO35 COMMON BIAS log satirlari.
+- Mumkunse yuk kapali ve ampul kapatildiktan sonraki kisa log bolumleri.
+- U200B+ 0.433 A gostergesinin fotografi veya ayni zamana ait notu (varsa).
+
+GOREV DURUMU:
+SCT-1 / 100 W test adimi KULLANICI BILDIRIMIYLE YAPILDI; ADC davranisinin
+logla analizi ve T010'un kalan iki kanal testi devam ediyor.
