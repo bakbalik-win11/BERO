@@ -62,7 +62,8 @@ Bu karşılaştırmalar önceki kullanıcı kayıtları/loglarıyla desteklenmek
 - Başlangıç iskeleti: [firmware/esp32d1.yaml](firmware/esp32d1.yaml); ADC/SCT sensör kodu henüz yok.
 - 1. dişi SCT yuvası sarı sinyal kablosu: GPIO32 (KULLANICI BİLDİRİMİ).
 - 2. dişi SCT yuvası yeşil sinyal kablosu: GPIO33 (KULLANICI BİLDİRİMİ).
-- 3. SCT sinyal GPIO'su ve ortak bias ölçüm GPIO'su henüz açık.
+- 3. dişi SCT yuvası mavi sinyal kablosu: GPIO34 (KULLANICI BİLDİRİMİ).
+- Ortak bias ölçüm hattı turuncu kablo: GPIO35 (KULLANICI BİLDİRİMİ).
 - Tek ortak bias devresi mini breadboard üzerinde; kayıtlı Bias Trafosu modülünden beslenecek.
 - ESP32 harici 5 V ile beslenecek; PC USB erişimi sağlanacak. İki kaynağın aynı anda kullanım koşulu kart güç yolu doğrulanmadan kabul edilmeyecek.
 - ESP32 kart/shield tam modeli, jack tip/ring/sleeve eşleşmeleri ve bias ADC RAW/voltaj gösterimi açık.
