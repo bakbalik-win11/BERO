@@ -32,7 +32,7 @@ Bu bölüm, aynı fiziksel test yüküyle farklı ESP kartı, modül, SCT kanal�
 | Test yükü | Ana kayıt |
 |---|---|
 | 100 W akkor ampul | [100 W akkor — karşılaştırmalı ölçüm tablosu](100w-incandescent/README.md) |
-| 150 W akkor ampul | [150 W akkor — karşılaştırmalı ölçüm tablosu](150w-incandescent/README.md) |
+| 150 W akkor ampul | [150 W akkor — karşılaştırmalı ölçüm tablosu](150w-incandescent/README.md) |\n| 57 W akkor ampul | [57 W akkor — düşük akım gözlem kaydı](57w-incandescent/README.md) |
 
 ## Her ölçüm satırında tutulacak alanlar
 
@@ -252,3 +252,13 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - **SONUÇ:** 42 W test yükünde SCT-1 yaklaşık 0,25 A çevresinde düzenli yayın üretmiştir. Bu 0,30 A altı düşük akım gözlemidir; ±%4 kabul/ret, kalibrasyon veya doğruluk onayı değildir. Test açık kalır; K ve firmware değiştirilmez.
 - **ANALİZ:** [Log 57 teknik analiz](../../logs/module2/2026-10-31-load-42w-001-log57-analysis.md).
 - **HAM KAYNAK:** Kullanıcı yüklemesi bu konuşmada korunmaktadır; ham TXT'nin GitHub'a tam kopyası bu güncellemede yapılmadı. Kaynak adı, boyutu ve SHA-256 kaydedildi.
+
+
+## 2026-10-31 — LOAD-57W-001 açıldı: 57 W akkor ampul
+
+- 57 W akkor ampul test yükü kullanıcı tarafından bildirildi.
+- UNIT başlangıç değeri 0,244 A; kullanıcı bildirimi, kararlı pencere/zaman örtüşmesi teyitsiz.
+- 0,30 A altı düşük akım gözlem alanı; ±%4 kabul/ret uygulanmaz.
+- Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; K=24.22 ve mevcut firmware korunacak.
+- SCT logu bekleniyor.
+- [Test kaydı](57w-incandescent/README.md).
