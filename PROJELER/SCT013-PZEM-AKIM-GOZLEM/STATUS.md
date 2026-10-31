@@ -18,8 +18,8 @@ Bu karşılaştırmalar önceki kullanıcı kayıtları/loglarıyla desteklenmek
 
 ## Faz 2 yaklaşımı ve aktif görev
 
-**Üst görev: T009 — Modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma.  
-**Aktif somut modül görevi: T010 — Modül 2 ESP32D1 üçlü SCT okuma modülü.**
+**Üst görev:** T009 — Modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma.  
+**Aktif somut modül görevi:** T010 — Modül 2 ESP32D1 üçlü SCT okuma modülü.
 
 - Önce çalışan kod/örnek/kütüphane bulunur; depodaki YAML ve loglar başlangıç referansı olarak kullanılır.
 - Her seferinde tek modül ve tek temel işlev ele alınır.
