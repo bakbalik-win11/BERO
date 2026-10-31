@@ -1138,3 +1138,15 @@ SCT bağlamadan bias Vmid noktasını ESP32D2'nin GPIO34 RAW ve GPIO35 ADC volta
 - **SONUÇ:** SSR firmware taslağı ve HA'ya açılacak tanılama/olay alanları tanımlandı. Test logu henüz yok; test yapılmış gibi kaydedilmedi.
 - **SONRAKİ ADIM:** PZEM düğümünü devreye alma dosyası ve gerçek HA entity listesini bulmak; ardından SSR YAML derlemesini ve güvenli fiziksel testi yapmak.
 - **KAYNAK:** [ESP-IDF GPIO API](https://docs.espressif.com/projects/esp-idf/en/v5.4/esp32c3/api-reference/peripherals/gpio.html); [ESPHome time component](https://esphome.io/components/time/).
+
+
+## 2026-10-31 — ESP32-WR1-PZEM düğümü tanımlandı ve YAML depoya eklendi
+
+- **CİHAZ:** ESPHome `name: esphome-web-2a35cc`, `friendly_name: ESP32-WR1-PZEM`; klasik ESP32 / ESP-IDF.
+- **AMAÇ:** PZEM-004T V3 ölçümlerini UART/Modbus üzerinden HA'ya yayınlamak ve ESP32-C3-SSR tarafından gönderilen BERO UDP olay paketlerini almak.
+- **BAĞLANTILAR:** PZEM UART TX GPIO17, RX GPIO16, 9600 baud, 8N1 varsayılan; UDP 4210.
+- **VERİLER:** PZEM gerilim, akım, güç, enerji, frekans ve PF; 5 s güncelleme.
+- **UDP:** `BERO_EVT,BOOT_ID=XXXXXXXX,EVENT_ID=N,STATE=ON|OFF` alımı; 100 ms aralıkta non-blocking soket, her döngüde en fazla bir datagram, yalnızca log. CSV/HA olay entity'si yok.
+- **KOD:** `firmware/esp32wr1-pzem.yaml` kullanıcı tarafından sağlanan içerikle depoya eklendi.
+- **DOĞRULAMA:** Dosya ekleme commit'i `44130ff788288932a26fcda5e44efbe074fd276a`. ESPHome derlemesi, OTA, PZEM haberleşmesi veya UDP alımı bu kayıt sırasında test edilmedi.
+- **SONRAKİ:** Önce gerçek cihaz kimliklerini ve bağlantıları koruyarak derleme kontrolü; sonra PZEM UART ölçümünü tek başına, ardından UDP alımını SSR yayınından bağımsız/beraber kontrollü test et.
