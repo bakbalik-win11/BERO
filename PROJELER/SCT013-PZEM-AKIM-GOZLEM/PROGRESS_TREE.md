@@ -106,3 +106,12 @@
 - 0,130 A hedefi UNIT/PZEM referansı olarak doğrulanmadı; fiziksel yük kimliği de bilinmiyor. Sapma hesabı yapılmadı.
 - Durum: log analizi yapıldı; test referans ve kurulum teyidi beklediği için açık.
 - [Test kaydı](test-loads/fixed-load-0130a/README.md); [analiz](logs/module2/2026-10-31-fixed-load-0130a-001-sct1-analysis.md).
+
+## 2026-10-31 — LOAD-42W-001 açıldı
+
+- 42 W ampul düşük akım gözlem testi açıldı.
+- UNIT 0,174 A kullanıcı bildirimi; kararlılık ve ölçüm zamanı henüz teyit edilmedi.
+- Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; K=24.22 ve mevcut firmware korunacak.
+- 0,30 A altı gözlem bölgesi; ±%4 kabul/ret uygulanmaz.
+- SCT logu ve fiziksel ampul ayrıntıları bekleniyor.
+- [Test kaydı](test-loads/42w-bulb/README.md).
