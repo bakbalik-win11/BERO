@@ -1,3 +1,8 @@
+## 2026-10-31 — GitHub Copilot ct_clamp raporu arşivlendi
+
+- Kullanıcının sağladığı GitHub Copilot raporu, metin ve ifadeleri değiştirilmeden UTF-8 TXT olarak `docs/research/ct-clamp/source/2026-10-31-github-copilot-ct-clamp-report.txt` yolunda saklandı.
+- Bu belge, kullanıcı raporu ve bağımsız teknik incelemeden ayrı bir üçüncü kaynaktır. İçeriğindeki teknik iddialar henüz doğrulanmış proje kararı veya ölçüm sonucu değildir.
+- Arşiv indeksi güncellendi: `docs/research/ct-clamp/README.md`.
 ## 2026-10-31 — ESPHome ct_clamp teknik raporları arşivlendi
 
 - **KULLANICI RAPORU:** Yüklenen dört sayfalık DOCX'in metin aktarımı Markdown olarak `docs/research/ct-clamp/source/2026-10-31-user-supplied-ct-clamp-report.md` yolunda saklandı. Kaynak DOCX 9.547 bayt; SHA-256 `cfb2d76f64a93efd8d80e0005c6e80b974d9086e77b72f61542898aa03f88a05`.

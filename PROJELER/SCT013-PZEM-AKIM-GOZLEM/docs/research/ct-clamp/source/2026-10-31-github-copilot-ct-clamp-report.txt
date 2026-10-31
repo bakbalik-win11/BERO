@@ -1,0 +1,380 @@
+İstediğin teknik rapor aşağıdaki şekilde hazır. Not: aşağıdaki yorumlar, ESPHome’un resmi ct_clamp bileşeni (esphome/components/ct_clamp) kaynak kodundan çıkarılmıştır; ayrıca proje bağlamındaki bias / K=24.22 ve SCT013-030 mimarisini bu mantıkla birleştiriyorum. Koddan çıkarım ile kişisel yorum net ayrılıyor.
+
+Ölçüm zinciri
+SCT013 → burden direnci → bias devresi (DC offset) → ESP32 ADC → ESPHome voltage_sampler → ct_clamp bileşeni → RMS hesabı → yayınlanan amper değeri
+
+Aşama aşama:
+
+SCT013:
+
+Bir current transformer (CT).
+Primer akım değiştiğinde sekonder tarafında AC gerilim üretir.
+Sekonder akım değil, gerilim sinyalidir; genellikle çok düşük seviyede ve tek taraflı değil.
+Tipik olarak SCT013-030 = 30 A / 1 V demektir: 30 A RMS akımda 1 V RMS çıkış beklenir.
+Bu yüzden doğrudan ADC’ye verilmez; önce burden üzerinden sinyal okunur.
+Burden direnci:
+
+SCT’nin sekonderi, burden (yük) üzerinden açık devre olmadan terminalden okunan bir voltaj üretir.
+Bu voltage, çoğu zaman 0V civarında ortalanmış bir AC sinyali olur.
+Burden direnci, ölçülecek gerilim seviyesini belirler.
+Eğer burden doğru değilse, sinyal çok zayıf olur, ya da ADC aralığına sığmayacak kadar büyür.
+Bias devresi:
+
+ADC tek taraflı (0..3.3 V) olduğu için AC sinyalin negatif yarısını yakalamak için sinyal, bir DC offset (bias / Vmid) üzerine bindirilir.
+Bu offset genellikle ADC ortasıdır: ESP32’de 12-bit ADC için yaklaşık 1.65 V (3.3V / 2), veya sayısal olarak bir count merkez noktası.
+Böylece sinyal “0V civarı” yerine “1.65V civarı” etrafında döner.
+Bu olmazsa, negatif yarım dalga ADC tarafından bozulur / kesilir.
+ESP32 ADC:
+
+ADC tek yönlü; negatif değer yapamaz.
+ADC çözünürlüğü: 12-bit → 4096 adet seviye.
+3.3V referansla LSB ≈ 0.8 mV civarıdır.
+Fakat gerçek ADC ölçümü bir takım offset + gürültü + doğruluk kaybı taşır.
+Bu nedenle düşük akımda, sinyal çok küçük olduğunda hata baskın hale gelir.
+ESPHome voltage_sampler:
+
+ADC örneklerini source_->sample() olarak okur.
+ct_clamp bileşeni bunu doğrudan kullanır.
+Yani ct_clamp muhtemelen “ADC voltajı” üzerinde işlem yapar; ardından proje seviyesinde “amper” değeri için bir kalibrasyon çarpanı uygulanır.
+ct_clamp kodu:
+
+ADC örneklerini belirli süre boyunca toplar.
+Sampleların ortalamasını almaz; bunun yerine “mean of squared samples” mantığı kullanır.
+Bu, DC offseti çıkararak AC RMS’i bulma yöntemidir.
+RMS hesabı:
+
+Her örneği mean’a göre merkezleyen bir yaklaşım kullanır.
+Temel formül:
+x_i = ADC örneği
+dc = average(x_i)
+ac_rms = sqrt( average((x_i - dc)^2) )
+Kod bunu “sum / N” ve “sum of square / N” üzerinden yapar.
+Yayınlanan amper değeri:
+
+Bu kaynak kodu doğrudan “A” olarak yazmaz; kodun logunda “Raw AC Value” yazıyor.
+Bu nedenle proje bağlamında K=24.22 gibi katsayı, “ADC voltajı → ampere” dönüşümünde kullanılır.
+Basit anlatım:
+ADC voltajı = analog sinyal
+ct_clamp = AC RMS olarak hesaplıyor
+proje özel YAML / kalibrasyon = bunu amperlere çeviriyor
+ct_clamp source code walkthrough
+Kaynak kodu resmi ESPHome repo’sundan inceliyorum. Ana yapı:
+
+ct_clamp_sensor.h
+ct_clamp_sensor.cpp
+sensor.py
+İlk olarak yapı tanımı:
+
+esphome / esphome / esphome / components / ct_clamp / ct_clamp_sensor.h
+class CTClampSensor final : public sensor::Sensor, public PollingComponent {
+ public:
+   void update() override;
+   void loop() override;
+   void dump_config() override;
+
+Buradan anlaşılanlar:
+
+source_ ADC sinyal kaynağıdır.
+sample_duration_ örnekleme süresidir.
+num_samples_, sample_sum_, sample_squared_sum_ RMS için gerekli özet istatistiklerdir.
+last_value_ aynı değeri tekrar saymamak için vardır.
+Şimdi update() fonksiyonu:
+
+esphome / esphome / esphome / components / ct_clamp / ct_clamp_sensor.cpp
+v1
+void CTClampSensor::update() {
+  this->high_freq_.start();
+
+  this->set_timeout(READ_TIMEOUT_ID, this->sample_duration_, [this]() {
+    this->is_sampling_ = false;
+    this->high_freq_.stop();
+Buradaki mantık:
+
+update() ölçüm periyodunu başlatır.
+sample_duration_ kadar bekler.
+Sonra rms_ac hesaplar.
+Sonucu publish_state() ile yayınlar.
+loop() kısmı:
+
+esphome / esphome / esphome / components / ct_clamp / ct_clamp_sensor.cpp
+v2
+void CTClampSensor::loop() {
+  if (!this->is_sampling_)
+    return;
+
+  float value = this->source_->sample();
+  if (std::isnan(value))
+Bu çok kritik:
+
+source_->sample() ADC örneğini alıyor.
+Aynı değeri tekrar etmemesi için last_value_ == value kontrolü var.
+Yani kod “aynı örnek sayısını tekrar saymıyor”.
+Böylece ADC çevrim hızı ve örnekleme hızı bir şekilde filtreleniyor.
+Bu bileşen sample_duration boyunca ADC örneklerini toplanır; ardından update_interval geldiğinde bir sonraki aralığı başlatır. Ana iş akışı budur.
+
+RMS hesaplama ayrıntısı
+Kodun matematiği aşağıdaki gibi:
+
+sample_squared_sum_ = Σ x_i²
+sample_sum_ = Σ x_i
+num_samples_ = N
+RMS hesabı:
+
+mean_x2 = (Σ x_i²) / N
+mean_x = (Σ x_i) / N
+rms_ac_squared = mean_x2 - mean_x²
+rms_ac = sqrt(rms_ac_squared)
+Yani formül:
+
+rms_ac = sqrt( E[x²] - E[x]² )
+Bu, bir sinyalin DC bileşeni kaldırılmış AC RMS değeridir.
+
+Önemli:
+
+Bu kod “mutlak değer alma” yapmıyor.
+“Kare ortalaması” alıyor.
+Ortalama bir DC offsetten arındırılıyor.
+Dolayısıyla “AC bileşeni” elde edilir.
+Şu husus çok önemli:
+
+Eğer sinyal tam olarak bir AC sinüsü ise ve bias ortalanmışsa, formül basitçe:
+rms ≈ sqrt(average(x²))
+Ama burada mean_x çıkarıldığı için ölçülen sinyalin merkez noktası da dikkate alınır.
+Bu, ADC offset kayması ve DC drift’e karşı daha sağlamdır.
+Yani:
+
+Bias nasıl çıkarılıyor?
+Kod bildiğimiz gibi “bias” parametresi kullanmıyor; bias çıkarmak yerine “ortalama değeri” çıkarıyor.
+Bu, analog devredeki DC offsetin etkisini matematiksel olarak yok etmeye çalışır.
+Mutlak değer mi?
+Hayır.
+Kare ortalaması mı?
+Evet.
+Kaç örnek kullanılıyor?
+sample_duration boyunca toplanan örnek sayısı.
+Her örneğin ağırlığı eşit mi?
+Evet; tüm örneklerin eşit ağırlığı var.
+sample_duration analizi
+sample_duration: 200ms örneği:
+
+50 Hz sistemde tam bir çevrim süresi = 20 ms.
+200 ms = 10 çevrim.
+60 Hz sistemde 16.67 ms çevrim, 200 ms ≈ 12 çevrim.
+Yani:
+
+100 ms:
+50 Hz: 5 çevrim
+60 Hz: 6 çevrim
+200 ms:
+50 Hz: 10 çevrim
+60 Hz: 12 çevrim
+500 ms:
+50 Hz: 25 çevrim
+60 Hz: 30 çevrim
+1 s:
+50 Hz: 50 çevrim
+60 Hz: 60 çevrim
+Avantajları:
+
+Daha uzun sample_duration, daha stabil RMS ve daha az salınım.
+Nötr (zero-crossing) etkilerini daha iyi ortalar.
+Düşük akımın “gürültü maskelenmesi” için yardımcı olur.
+Dezavantajları:
+
+Daha yavaş yanıt.
+Hızlı değişen akımın tespit edememesi.
+update_interval ile birlikte kötü bir kombinasyonda gecikme oluşur.
+Kısa söylem:
+
+200 ms, 50/60Hz ağ için pratik ve yaygın bir kompromist seçimdir.
+100 ms çok hızlı ama daha az dalga sayısı.
+1 s çok kararlı ama yavaş.
+update_interval analizi
+Burada çok kritik nokta:
+
+sample_duration ile update_interval aynı şey değil.
+sensor.py içinde:
+
+esphome / esphome / esphome / components / ct_clamp / sensor.py
+CONFIG_SCHEMA = (
+    sensor.sensor_schema(
+        CTClampSensor,
+        unit_of_measurement=UNIT_AMPERE,
+        accuracy_decimals=2,
+        device_class=DEVICE_CLASS_CURRENT,
+Bu demek:
+
+sample_duration default 200 ms
+update_interval default 60 s
+Yani bir sensor, 60 saniyede bir “yeni örnekleme süreci” başlatabilir.
+Ama proje bağlamında kullanıcı update_interval: 2s kullanıyorsa, bu da şu anlama gelir:
+
+Her 2 saniyede bir CTClampSensor::update() çağılır.
+update() içinde sample_duration_ = 200ms boyunca örnek toplanır.
+Sonra sonuç yayınlanır.
+Bu arada 1.8 s boyunca bekleme vardır.
+Yani:
+
+Sensör “gerçekten sürekli mi örnekler?”:
+Hayır, aralıklı örnekler alır.
+İçeride örnekleme süresi 200 ms, arada kesinti var.
+update_interval = 2 s:
+Gerçekten okuma frekansı 0.5 Hz civarındadır.
+200 ms’lik örnekleme penceresi 2 s’de bir tekrarlanır.
+Bu da düşük akım jitter ve düşük frekans dalgalanma için ölçüm kararsızlığı doğurabilir.
+ESP32 özel analizi
+ESP32’de ct_clamp açısından en kritikler:
+
+ADC doğruluğu:
+
+ESP32 ADC tek taraflıdır.
+12-bit çözünürlük.
+Gerçek doğruluk, harici referans/ölçüm devresine göre değişir.
+Düşük sinyal için ek ADC offset ve gürültü baskındır.
+Attenuation etkisi:
+
+ESP32 ADC genellikle attenuation ile çalışır.
+Ekstra attenuation kullanıldığında ADC aralığı genişler ama çözünürlük düşer.
+Düşük akım için çok fazla attenuation, ADC hassasiyetini zayıflatır.
+Offset hataları:
+
+Bias kör noktası, Vmid, kaynak kaynağı, dirençler, ADC kalibrasyonu, sıcaklık gibi nedenlerle drift olabilir.
+Bu hata, DC offset ve low-current hatalarının ana nedeni olur.
+Düşük genlikte davranış:
+
+0.1–0.5 A aralığında sinyal çok zayıftır.
+ADC’nin 0.8 mV LSB civarı ve bias devresindeki hata, bu aralıkta büyük oranda etkili olur.
+Bu yüzden RMS sonucu daha kolay “başka bir salınım” gibi görünür.
+Düşük akım problemi (0.1 A – 0.5 A)
+Bu aralıkta hataların büyümesi için başlıca nedenler:
+
+ADC quantization
+
+12-bit ADC, küçük sinyal için step boyutu çok önemlidir.
+1.65V bias içinde örneklenmiş AC sinyali çok küçükse, her LSB artık çok kritik hale gelir.
+0.1A gibi bir akım, CT çıkışı çok küçük olabilir; bu da örnekler çok zayıf hale gelir.
+Gürültü
+
+ADC gürültüsü, güç kaynağı gürültüsü, breadboard parazitleri, bias devresi dalgalanması.
+RMS yöntemi gürültüyü tamamen ortadan kaldırmaz; onun yayılması, özellikle düşük genlikte ölçümde görünür olur.
+Bias kayması
+
+Bias 1.65V değil de hafif kaymışsa, sinyalin ortalama değeri bozulur.
+Çarpanlar farklı olduğu için aynı gerçek akım, farklı RMS çıkışı verir.
+Burden seçimi
+
+Burden direnci ne kadar büyürse sinyal o kadar büyük olur.
+Ama fazla büyük burden, yükü de daha fazla etkileyebilir; zayıf sinyal için uygun denge gerekir.
+Burden ve CT karakteristiği çok düşük akımda kısmi doğruluktan çıkar.
+Örnek sayısı
+
+200 ms içinde 10–12 çevrim içerir.
+Düşük akımda bu örnek sayısı çok azsa, her örneğin etkisi büyür.
+Özellikle 50/60Hz’den kurtulan veya gürültü yüklenmiş durumda sonuçlar salınır.
+RMS yöntemi
+
+RMS, DC offseti ortadan kaldırır; fakat sinyalin küçük farklarıyla birlikte gürültünün karesini de toplar.
+Yani düşük akımda “gerçek akım” değil, “gürültü + küçük sinyal” karışımı daha büyük sorun olur.
+Sonuç:
+
+0.1–0.5 A için tek ADC + CT + bias + 200 ms yaklaşımı işe yarayan ama zayıf bir alan.
+Bu aralıkta ekstra filtre, daha iyi burden, daha düşük gürültü, daha stabil bias veya daha yüksek çözünürlüklü ADC gerekebilir.
+Yüksek akım davranışı (3 A, 8 A, 10 A)
+Teorik olarak lineer davranış beklenir:
+
+CT ve burden kombinasyonu lineer olduğunda, akım artışıyla gerilim de orantılı artar.
+Kod da x² ve mean metoduyla doğrusal olmayan ama RMS bilineni ile çalışır; bu bakımdan uygun.
+Ancak high-current riskleri:
+
+CT ve burden saturasyon
+CT’nin bir noktadan sonra doğrusal awü olmaz.
+Ölçülebilecek maksimum akım sınırı vardır.
+ADC sinyali too large → clipping / distortion
+ADC aralığı aşımı
+3.3V limit, bias + sinyal >3.3V olursa ADC saturasyon olur.
+Bu tam olarak ölçümde “lineerliği bozma”dır.
+Burden uygun değilse:
+Ya düşük sinyal olur, ya da çok büyük sinyal olur.
+Aralık dışına çıkınca sonuç bozulur.
+Bu yüzden:
+
+3 A, 8 A, 10 A gibi akımlarda lineer beklemek normaldir.
+Ama bunu “kodun lineerliği” değil, “devre ve CT’nin lineerliği” ile bağlantılı görmek gerekir.
+Kodun kendisi bu aralıkta çok da bozulmaz; bozulma çoğunlukla ADC/bias/CT saturation üzerinden gelir.
+Gerçek örnek üzerinden yorum
+Verilen mimari:
+
+ESP32
+SCT013-030
+bias ≈1.66V
+ct_clamp
+sample_duration 200 ms
+update_interval 2 s
+katsayı 24.22
+Bu mimaride:
+
+50/60Hz sinyali doğru şekilde ortalanmışsa, bu yaklaşım için pratik ve yaygın bir yapı vardır.
+0.4 A altında risk artar.
+Kodun mantığı teknik olarak sağlamdır ama gerçek ölçüm doğruluğu tamamen:
+burden
+bias offset
+ADC gürültüsü
+örnek boyutu
+kalibrasyon
+yük tipine bağlıdır.
+Bu yüzden güvenilir akım alanı:
+
+En güvenli kullanım alanı genellikle orta akım aralığıdır.
+Düşük akım için:
+yanılma ihtimali yüksek
+signal-to-noise ratio düşer
+bias drift etkisi büyür
+Yüksek akım için:
+CT ve ADC aralığı önemli
+saturation risk gündeme gelir
+Pratik yorum:
+
+100 W, 150 W, kettle gibi daha yüksek ve kararlı yüklerde bu yapı iyi çalışabilir.
+0.1–0.5 A civarı daha zayıf bölgedir.
+Mevcut K=24.22 katsayısı, “bu mimari için elde edilmiş pratik kalibrasyon” olabilir; fakat bunun altında net veri olmadan değişiklik yapmak teknik olarak güvenli değildir.
+Sonuç
+Mühendislik kararları olarak:
+
+ct_clamp tasarımı teknik olarak sağlam mı?
+
+Evet, ölçüm mantığı doğru ve yaygın.
+CT + burden + bias + ADC + RMS yaklaşımı bilinen bir tasarım.
+Ama “çok düşük akım” için doğrudan yüksek doğruluk sunmaz.
+Bu tasarım bir “güvenli, basit, hızlı AC akım ölçüm” yaklaşımıdır.
+Davranış modelleme için uygun mu?
+
+Evet, orta ve yüksek akım bölgelerinde uygun.
+Düşük akım için modelleme basit değil; bias ve gürültüye çok duyarlı.
+Enerji ölçümü için uygun mu?
+
+Yalnızca yaklaşık, kararlı akım ölçümü için uygun.
+Enerji ölçümünde çok düşük akım alanında hassaslık problemi doğabilir.
+Daha yüksek kalibrasyon ve daha sağlam ADC/hardware gerekir.
+Güçlü kullanım senaryoları:
+
+Yük takibi
+Kompakt akım belirleme
+Kararlı orta akımlı sistemlerde koşul takibi
+PZEM/SCT eğitimi gibi karşılaştırmalı veri kümeleri
+Zayıf kullanım senaryoları:
+
+0.1–0.5 A altı hassas ölçüm
+çok hızlı, yüksek dinamik tepki gerektiren akımlar
+çok düşük sinyal, çok gürültülü ortam
+yüksek keskin sıçramalar / harmonik yoğunluğun yüksek olduğu durumlar
+Son cümle:
+
+Teknik olarak ct_clamp, bir “uygun ve yaygın” AC akım ölçüm yaklaşımıdır.
+Fakat ESP32 dahili ADC + bias + 200 ms örnekleme + 2 s yayın mimarisinde, düşük akım bölgede başarısızlık beklentisi doğaldır; bunun üstesinden gelmek için kalibrasyon, bias kararlılığı, örnekleme süresi, burden ve ADC aralığı birlikte yönetilmelidir.
+İstersen bir sonraki adımda bunu, BERO projesine özel olarak:
+
+“SCT013-030 + ESP32 + bias 1.66V + K=24.22 + sample_duration 200ms” için dosya düzeyinde proje notu haline getirebilirim.
+Ayrıca buna “önerilen iyileştirme planı” da ekleyebilirim:
+düşük akım için ne değiştirilmeli
+hangi parametreler korunmalı
+hangi katsayılar neden değiştirilmeli.

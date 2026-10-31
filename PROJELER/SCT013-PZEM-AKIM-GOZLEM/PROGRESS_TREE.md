@@ -1,3 +1,8 @@
+## 2026-10-31 — GitHub Copilot raporu arşivi
+
+- GitHub Copilot tarafından hazırlanmış ct_clamp raporu, özgün metni korunarak TXT biçiminde arşivlendi.
+- Üç kaynak ayrı tutuluyor: kullanıcı raporu, Copilot raporu ve bağımsız teknik inceleme. [Arşiv indeksi](docs/research/ct-clamp/README.md).
+- Copilot raporundaki ifadeler doğrulanmış bulgu/karar olarak kabul edilmedi.
 ## 2026-10-31 — ESPHome ct_clamp teknik rapor arşivi
 
 - Kullanıcının sağladığı dört sayfalık raporun metin aktarımı Markdown olarak arşivlendi; bağımsız kaynak kod/BERO Log 63 incelemesi ayrı Markdown raporu olarak oluşturuldu.

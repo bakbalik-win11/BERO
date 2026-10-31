@@ -1,3 +1,10 @@
+## 2026-10-31 — GitHub Copilot raporunun arşivlenmesi
+
+- Kullanıcı, GitHub Copilot tarafından yazılmış ct_clamp raporunu ayrıca depoda saklamamı istedi.
+- Dosya, içeriği düzenlenmeden UTF-8 TXT olarak `docs/research/ct-clamp/source/2026-10-31-github-copilot-ct-clamp-report.txt` yoluna eklendi.
+- README, STATUS ve PROGRESS_TREE güncellendi.
+- Bu kaynak bağımsız teknik incelemeden ayrı tutuldu; içindeki teknik iddialar doğrulanmış sayılmadı.
+- Firmware, donanım, K katsayısı veya görev sırası değişmedi.
 ## 2026-10-31 — ESPHome ct_clamp raporlarının ayrı ayrı arşivlenmesi
 
 - **HEDEF:** Kullanıcının yüklediği iç çalışma raporunu ve bağımsız teknik incelemeyi ayrı, izlenebilir dosyalar halinde BERO deposunda saklamak.

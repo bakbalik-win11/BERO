@@ -9,7 +9,13 @@ Bu klasör, BERO'nun ct_clamp ölçüm zinciri hakkındaki iki ayrı raporu sakl
 - Depoda metin aktarımı Markdown biçiminde tutulur; raporun varsayımları, simülasyon sonuçları ve kendi çıkarım notları kaynak metindeki gibi korunmuştur.
 - Kaynak DOCX'in kendisi depoda ikili dosya olarak tutulmuyor; dört sayfalık içeriği Markdown metin aktarımı olarak korunuyor. Kaynak DOCX: 9.547 bayt; SHA-256 `cfb2d76f64a93efd8d80e0005c6e80b974d9086e77b72f61542898aa03f88a05`.
 
-## 2. Bağımsız teknik inceleme
+## 2. GitHub Copilot raporu
+
+- [GitHub Copilot raporu — özgün metin](source/2026-10-31-github-copilot-ct-clamp-report.txt)
+- Kullanıcının paylaştığı metin, içerik ve ifadeleri düzeltilmeden UTF-8 TXT olarak saklanmıştır.
+- Bu dosya bağımsız teknik inceleme değildir; Copilot'un kendi değerlendirmesidir. İçindeki teknik iddialar doğrulanmış kabul edilmemelidir.
+
+## 3. Bağımsız teknik inceleme
 
 - [Bağımsız teknik inceleme](2026-10-31-independent-technical-review.md)
 - Biçim: Markdown.
