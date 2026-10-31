@@ -72,3 +72,10 @@ Bu rapor, sohbet eki olan Log 62'nin tam içeriğinden hesaplanmıştır. Ham do
 
 ## DURUM
 AÇIK — Log 62 ön değerlendirmesi yapıldı. Yeni loglar/UNIT zaman eşleşmesi ve varsa termostat geçişleri bekleniyor.
+
+## 2026-10-31 — Log 62 ham arşiv tamamlandı
+- İlk ön değerlendirme sırasında ham logun GitHub arşivi henüz yoktu; bu not o anki durumu anlatıyordu.
+- Sonraki işlemde aynı kaynak dosya birebir GitHub'a aktarıldı: [tam ham log](../../logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt).
+- Ham dosya: 68.572 bayt, 934 satır; SHA-256 `4790b00e69aaba791339f6d43aa13041efe373c5a87b9ed7fd4c1f481ce551f2`.
+- Teknik analiz ayrı dosyaya alındı: [Log 62 analiz raporu](../../logs/module2/2026-10-31-toaster-001-module2-sct1-log62-analysis.md).
+- Ham log ve analiz dosyaları GitHub'a yazıldı; yeniden okuma/doğrulama bir sonraki adımda yapılacaktır.
