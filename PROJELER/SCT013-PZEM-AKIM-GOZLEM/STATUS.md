@@ -1,3 +1,15 @@
+## 2026-10-31 — FAN-1 Modül 2 ısınma/deneme kaydı kapatıldı
+
+- **SINIF:** FAN-1, Modül 2 ısınma/deneme gözlemi olarak kapatıldı; ±%4 akım doğrulama testi olarak kabul edilmedi. PZEM ile ileri değerlendirme açık.
+- **KAYNAK:** `esp32d1-logs (40).txt`; 140.312 bayt / 1.887 satır; SHA-256 `8687da052b254f16b88f6eb6d27d41c94ae8166b027f089f0b6186069c58bedf`; 17:13:51.283–17:22:23.079 (+03:00).
+- **DÜZENEK:** ESP32D1 / Modül 2 / SCT-1 GPIO32 ADC1_CH4 / ortak bias GPIO35 ADC1_CH7; ESPHome 2026.10.1; ADC 12 dB, 1 s; ct_clamp 200 ms, yayın 2 s.
+- **İSTATİSTİK:** 17:14:11.079 sonrası yaklaşık 247 yayın; ortalama 0,146757 A; medyan 0,147 A; min–maks 0,064–0,259 A; SD 0,026064 A.
+- **UNIT:** Son kullanıcı bildirimi 0,093 A; önceki 0,097 A ve 0,096 A bildirimleri tarihsel not olarak korundu. ±%4 aritmetik bandı 0,08928–0,09672 A; 4/247 (%1,6) yayın bant içinde. Bu sonuç tek başına kabul/ret değildir.
+- **PF:** UNIT PF göstermedi. PF etkisi olası açıklama olarak hipotez düzeyinde kaldı; aynı kararlı pencerede PZEM akım ve PF olmadan doğrulanamaz.
+- **KOD:** Kapanış YAML snapshot [firmware/archive/FAN-1-2026-10-31-esp32d1-sct1.yaml](firmware/archive/FAN-1-2026-10-31-esp32d1-sct1.yaml); snapshot kaynak dosya [firmware/esp32d1.yaml](firmware/esp32d1.yaml). Kodun logla eşleşmesi yapılandırma düzeyindedir; binary eşleşmesi iddia edilmez.
+- **ARŞİV:** [fan kaydı](test-loads/fan/README.md); [uzun analiz](logs/module2/2026-10-31-fan1-module2-sct1-long-analysis.md); [tam ham log](logs/module2/2026-10-31-fan1-module2-sct1-long-full.txt); [ana kayıt](test-loads/README.md).
+- **SONRAKİ:** FAN-2'ye geçilebilir. FAN-2 ve sonraki kademelerde PZEM akım + PF verisi test girdisi olacaktır. K=24.22 korunur; yazılımsal sıfır eşiği eklenmez.
+
 ## 2026-10-31 — LOAD-IDLE-001 uzun yüksüz log arşivlendi
 
 - **TEST:** LOAD-IDLE-001 aynı yüksüz oturumun uzatılmış kaydıdır; yeni test ID değildir.
