@@ -37,8 +37,8 @@ Tek bir bias devresi kullanılacak ve ortak bias seviyesi üç girişe dağıtı
 |---|---|---|---|
 | 1. dişi yuva | Sarı | GPIO32 | Kullanıcı bildirimi |
 | 2. dişi yuva | Yeşil | GPIO33 | Kullanıcı bildirimi |
-| 3. dişi yuva | Henüz bildirilmedi | Henüz belirlenmedi | Açık |
-| Ortak bias ölçümü | Ortak bias hattı | Henüz belirlenmedi | Açık |
+| 3. dişi yuva | Mavi | GPIO34 | Kullanıcı bildirimi |
+| Ortak bias ölçümü | Turuncu | GPIO35 | Kullanıcı bildirimi |
 
 Önceki kullanıcı bildiriminde kırmızı hat ortak bias hattı, mavi/yeşil/sarı hatlar ayrı SCT sinyal hatları olarak tarif edilmişti. Bu kayıt, 1. ve 2. yuva için sonradan verilen kesin GPIO eşlemesini yansıtır. Jack tip/ring/sleeve pinlerinin tamamı henüz doğrulanmamıştır.
 
@@ -58,8 +58,6 @@ Bu dosya yalnız ESPHome temel iskeletidir. Henüz ADC sensörü, SCT okuma bile
 
 - ESP32 kartının tam modeli ve revizyonu.
 - Shield üzerindeki GPIO pin etiketleri ve ESP32 pinlerine gerçek bağlantısı.
-- 3. SCT girişinin sinyal GPIO'su ve kablo rengi.
-- Ortak bias ölçümü için kullanılacak ADC GPIO'su.
 - ESP'nin 5 V giriş yolunun kart üzerindeki gerçek adı/konumu ve USB konektör tipi.
 - Harici 5 V kaynağı ile PC USB bağlantısının aynı anda kullanımına ilişkin kartın güç yolu/geri besleme özelliği.
 - Üç adet 3,5 mm jack'in tip/ring/sleeve eşlemesi ve CT kablo renklerinin fiziksel teyidi.
@@ -80,6 +78,6 @@ Bu dosya yalnız ESPHome temel iskeletidir. Henüz ADC sensörü, SCT okuma bile
 
 ## Doğrulama durumu
 
-Bu ADR modülün amaç ve işlevsel kapsamını ve kullanıcı tarafından bildirilen iki bağlantıyı kaydeder. Kutu imalatı, diğer kablo bağlantıları, pin eşlemesi, YAML sensör kodu, derleme, OTA ve gerçek donanım testi henüz yapılmamıştır.
+Bu ADR modülün amaç ve işlevsel kapsamını ve kullanıcı tarafından bildirilen dört analog GPIO eşlemesini kaydeder. Kutu imalatı, diğer kablo bağlantıları, pin eşlemesi, YAML sensör kodu, derleme, OTA ve gerçek donanım testi henüz yapılmamıştır.
 
 **Sonuç:** Modül 2'nin hedefi ESP32D1 gömülü, harici 5 V beslemeli, PC USB bağlantısına erişilebilir; üç SCT sinyali ve bir ortak bias ölçümü olan düşük gerilim SCT okuma modülüdür.
