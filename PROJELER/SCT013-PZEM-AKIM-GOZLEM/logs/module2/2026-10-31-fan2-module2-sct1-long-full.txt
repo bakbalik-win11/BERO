@@ -1,0 +1,1227 @@
+INFO ESPHome 2026.10.1
+INFO Loaded validated config cache for esp32d1.yaml, skipping validation.
+INFO Starting log output from 192.168.0.31 using esphome API
+INFO Successfully resolved esp32d1 @ 192.168.0.31 in 0.000s
+INFO Successfully connected to esp32d1 @ 192.168.0.31 in 0.118s
+INFO Successful handshake with esp32d1 @ 192.168.0.31 in 0.242s
+[17:26:17.233][I][app:164]: ESPHome version 2026.10.1 compiled on 2026-10-31 15:55:25 +0300
+[17:26:17.234][I][app:171]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[17:26:17.234][W][app:189]: Set flash_chip: generic under esp32 > framework > advanced to save IRAM
+[17:26:17.234][W][app:201]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[17:26:17.278][W][app:228]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[17:26:17.279][C][logger:218]: Logger:
+[17:26:17.279][C][logger:218]:   Max Level: DEBUG
+[17:26:17.279][C][logger:218]:   Initial Level: DEBUG
+[17:26:17.279][C][logger:225]:   Log Baud Rate: 115200
+[17:26:17.279][C][logger:225]:   Hardware UART: UART0
+[17:26:17.280][C][logger:234]:   Task Log Buffer Size: 768 bytes
+[17:26:17.291][C][template.sensor:017]: Template Sensor 'BERO Mod2 SCT1 Raw AC'
+[17:26:17.291][C][template.sensor:017]:   State Class: 'measurement'
+[17:26:17.291][C][template.sensor:017]:   Unit of Measurement: 'V'
+[17:26:17.291][C][template.sensor:017]:   Accuracy Decimals: 5
+[17:26:17.338][C][template.sensor:166]:   Device Class: 'voltage'
+[17:26:17.338][C][template.sensor:338]:   Update Interval: never
+[17:26:17.338][C][adc:017]: ADC Sensor 'ESP32D1 SCT 1 ADC Voltage'
+[17:26:17.338][C][adc:017]:   State Class: 'measurement'
+[17:26:17.338][C][adc:017]:   Unit of Measurement: 'V'
+[17:26:17.338][C][adc:017]:   Accuracy Decimals: 5
+[17:26:17.339][C][adc:166]:   Device Class: 'voltage'
+[17:26:17.339][C][adc:131]:   Pin: GPIO32
+[17:26:17.339][C][adc:131]:   Channel:       4
+[17:26:17.339][C][adc:131]:   Unit:          ADC1
+[17:26:17.339][C][adc:131]:   Attenuation:   12 dB
+[17:26:17.339][C][adc:131]:   Samples:       1
+[17:26:17.339][C][adc:131]:   Sampling mode: average
+[17:26:17.339][C][adc:131]:   Setup Status:
+[17:26:17.339][C][adc:131]:     Handle Init:  OK
+[17:26:17.339][C][adc:131]:     Config:       OK
+[17:26:17.339][C][adc:131]:     Calibration:  OK
+[17:26:17.339][C][adc:131]:     Overall Init: OK
+[17:26:17.340][C][adc:340]:   Update Interval: 1.000s
+[17:26:17.362][C][adc:017]: ADC Sensor 'ESP32D1 Common Bias ADC Voltage'
+[17:26:17.362][C][adc:017]:   State Class: 'measurement'
+[17:26:17.362][C][adc:017]:   Unit of Measurement: 'V'
+[17:26:17.362][C][adc:017]:   Accuracy Decimals: 5
+[17:26:17.365][C][adc:166]:   Device Class: 'voltage'
+[17:26:17.365][C][adc:131]:   Pin: GPIO35
+[17:26:17.365][C][adc:131]:   Channel:       7
+[17:26:17.365][C][adc:131]:   Unit:          ADC1
+[17:26:17.365][C][adc:131]:   Attenuation:   12 dB
+[17:26:17.365][C][adc:131]:   Samples:       1
+[17:26:17.365][C][adc:131]:   Sampling mode: average
+[17:26:17.365][C][adc:131]:   Setup Status:
+[17:26:17.365][C][adc:131]:     Handle Init:  OK
+[17:26:17.365][C][adc:131]:     Config:       OK
+[17:26:17.365][C][adc:131]:     Calibration:  OK
+[17:26:17.365][C][adc:131]:     Overall Init: OK
+[17:26:17.374][C][adc:340]:   Update Interval: 1.000s
+[17:26:17.413][C][ct_clamp:017]: CT Clamp Sensor 'BERO Mod2 SCT1 Akim'
+[17:26:17.413][C][ct_clamp:017]:   State Class: 'measurement'
+[17:26:17.413][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[17:26:17.413][C][ct_clamp:017]:   Accuracy Decimals: 3
+[17:26:17.414][C][ct_clamp:166]:   Device Class: 'current'
+[17:26:17.414][C][ct_clamp:013]:   Sample Duration: 0.20s
+[17:26:17.423][C][ct_clamp:340]:   Update Interval: 2.000s
+[17:26:17.439][C][network:050]: Network:
+[17:26:17.439][C][network:050]:   TCP send buffer: 5760 bytes
+[17:26:17.494][C][wifi:1688]: WiFi:
+[17:26:17.494][C][wifi:1688]:   Local MAC: 70:4B:CA:48:0B:9C
+[17:26:17.494][C][wifi:1688]:   Connected: YES
+[17:26:17.495][C][wifi:1392]:   IP Address: 192.168.0.31
+[17:26:17.496][C][wifi:1403]:   SSID: 'AKFISH'
+[17:26:17.496][C][wifi:1403]:   BSSID: 3C:64:CF:5C:81:73
+[17:26:17.496][C][wifi:1403]:   Hostname: 'esp32d1'
+[17:26:17.496][C][wifi:1403]:   Signal strength: -54 dB ▂▄▆█
+[17:26:17.496][C][wifi:1403]:   Channel: 2
+[17:26:17.496][C][wifi:1403]:   Subnet: 255.255.255.0
+[17:26:17.496][C][wifi:1403]:   Gateway: 192.168.0.1
+[17:26:17.496][C][wifi:1403]:   DNS1: 192.168.0.1
+[17:26:17.496][C][wifi:1403]:   DNS2: 0.0.0.0
+[17:26:17.496][C][esphome.ota:129]: Over-The-Air updates:
+[17:26:17.496][C][esphome.ota:129]:   Address: esp32d1.local:3232
+[17:26:17.496][C][esphome.ota:129]:   Version: 2
+[17:26:17.497][C][safe_mode:058]: Safe Mode:
+[17:26:17.497][C][safe_mode:058]:   Successful after: 60s
+[17:26:17.497][C][safe_mode:058]:   Invoke after: 10 attempts
+[17:26:17.497][C][safe_mode:058]:   Duration: 300s
+[17:26:17.498][C][safe_mode:079]:   Bootloader rollback: support unknown
+[17:26:17.498][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65600 V
+[17:26:17.507][C][api:368]: Server:
+[17:26:17.507][C][api:368]:   Address: esp32d1.local:6053
+[17:26:17.507][C][api:368]:   Listen backlog: 4
+[17:26:17.507][C][api:368]:   Max connections: 5
+[17:26:17.513][C][api:380]:   Noise encryption: NO
+[17:26:17.513][C][mdns:324]: mDNS:
+[17:26:17.513][C][mdns:324]:   Hostname: esp32d1
+[17:26:17.642][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:26:18.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:26:18.620][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:26:19.004][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3330 different samples (16650 SPS)
+[17:26:19.113][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00813 V
+[17:26:19.113][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.197 A
+[17:26:19.489][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:26:19.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:26:20.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:26:20.651][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65100 V
+[17:26:21.011][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3414 different samples (17070 SPS)
+[17:26:21.114][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00767 V
+[17:26:21.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.186 A
+[17:26:21.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:26:21.636][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:26:22.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:26:22.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:26:23.007][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3388 different samples (16940 SPS)
+[17:26:23.137][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00649 V
+[17:26:23.137][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.157 A
+[17:26:23.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:26:23.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64600 V
+[17:26:24.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:26:24.644][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:26:25.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3351 different samples (16755 SPS)
+[17:26:25.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00673 V
+[17:26:25.117][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.163 A
+[17:26:25.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:26:25.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:26:26.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:26:26.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65200 V
+[17:26:27.012][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3477 different samples (17385 SPS)
+[17:26:27.143][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00715 V
+[17:26:27.143][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.173 A
+[17:26:27.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:26:27.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:26:28.482][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:26:28.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65200 V
+[17:26:29.009][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3560 different samples (17800 SPS)
+[17:26:29.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00831 V
+[17:26:29.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.201 A
+[17:26:29.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:26:29.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:26:30.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:26:30.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:26:31.001][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3451 different samples (17255 SPS)
+[17:26:31.119][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00689 V
+[17:26:31.119][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.167 A
+[17:26:31.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:26:31.634][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:26:32.489][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:26:32.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:26:33.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3406 different samples (17030 SPS)
+[17:26:33.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00691 V
+[17:26:33.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.167 A
+[17:26:33.502][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:26:33.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:26:34.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:26:34.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:26:35.006][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3411 different samples (17055 SPS)
+[17:26:35.113][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00630 V
+[17:26:35.113][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.153 A
+[17:26:35.493][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:26:35.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:26:36.574][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:26:36.673][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:26:37.080][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3493 different samples (17465 SPS)
+[17:26:37.146][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00610 V
+[17:26:37.146][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.148 A
+[17:26:37.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:26:37.641][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:26:38.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:26:38.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.67100 V
+[17:26:39.006][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3416 different samples (17080 SPS)
+[17:26:39.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00811 V
+[17:26:39.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.196 A
+[17:26:39.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65100 V
+[17:26:39.639][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.67200 V
+[17:26:40.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:26:40.648][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:26:41.031][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3436 different samples (17180 SPS)
+[17:26:41.135][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00545 V
+[17:26:41.135][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.132 A
+[17:26:41.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:26:41.640][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:26:42.527][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:26:42.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:26:43.004][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3399 different samples (16995 SPS)
+[17:26:43.116][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00568 V
+[17:26:43.117][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.137 A
+[17:26:43.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:26:43.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:26:44.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:26:44.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:26:45.011][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3306 different samples (16530 SPS)
+[17:26:45.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00723 V
+[17:26:45.118][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.175 A
+[17:26:45.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:26:45.632][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:26:46.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65800 V
+[17:26:46.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:26:47.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3382 different samples (16910 SPS)
+[17:26:47.114][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00753 V
+[17:26:47.114][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.182 A
+[17:26:47.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:26:47.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:26:48.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:26:48.636][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66600 V
+[17:26:49.017][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3418 different samples (17090 SPS)
+[17:26:49.114][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00474 V
+[17:26:49.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.115 A
+[17:26:49.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:26:49.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:26:50.476][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:26:50.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.67700 V
+[17:26:51.001][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3372 different samples (16860 SPS)
+[17:26:51.123][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00604 V
+[17:26:51.123][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.146 A
+[17:26:51.488][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:26:51.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:26:52.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65800 V
+[17:26:52.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:26:53.001][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3316 different samples (16580 SPS)
+[17:26:53.113][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00750 V
+[17:26:53.113][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.182 A
+[17:26:53.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:26:53.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:26:54.477][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:26:54.639][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:26:55.001][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3350 different samples (16750 SPS)
+[17:26:55.118][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00619 V
+[17:26:55.119][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.150 A
+[17:26:55.482][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:26:55.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:26:56.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:26:56.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:26:57.006][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3385 different samples (16925 SPS)
+[17:26:57.154][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00703 V
+[17:26:57.155][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.170 A
+[17:26:57.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:26:57.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:26:58.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:26:58.711][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:26:59.013][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3471 different samples (17355 SPS)
+[17:26:59.124][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00686 V
+[17:26:59.124][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.166 A
+[17:26:59.482][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:26:59.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:27:00.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:27:00.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:27:01.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3367 different samples (16835 SPS)
+[17:27:01.111][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00825 V
+[17:27:01.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.200 A
+[17:27:01.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:27:01.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:27:02.475][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:02.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:27:03.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3440 different samples (17200 SPS)
+[17:27:03.120][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00596 V
+[17:27:03.121][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.144 A
+[17:27:03.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:27:03.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64900 V
+[17:27:04.521][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:27:04.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65200 V
+[17:27:04.999][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3364 different samples (16820 SPS)
+[17:27:05.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00670 V
+[17:27:05.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.162 A
+[17:27:05.489][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:27:05.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:27:06.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:27:06.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:27:07.000][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3350 different samples (16750 SPS)
+[17:27:07.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00733 V
+[17:27:07.118][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.177 A
+[17:27:07.482][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:27:07.641][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:27:08.475][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:27:08.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:27:08.998][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3368 different samples (16840 SPS)
+[17:27:09.111][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00707 V
+[17:27:09.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.171 A
+[17:27:09.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65600 V
+[17:27:09.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:27:10.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:27:10.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:27:10.998][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3413 different samples (17065 SPS)
+[17:27:11.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00651 V
+[17:27:11.110][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.158 A
+[17:27:11.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:27:11.636][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:27:12.476][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:12.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:27:12.999][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3360 different samples (16800 SPS)
+[17:27:13.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00794 V
+[17:27:13.110][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.192 A
+[17:27:13.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:27:13.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:27:14.475][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:27:14.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:27:14.997][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3397 different samples (16985 SPS)
+[17:27:15.135][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00756 V
+[17:27:15.135][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.183 A
+[17:27:15.482][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.67200 V
+[17:27:15.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:27:16.478][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:16.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:27:17.000][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3416 different samples (17080 SPS)
+[17:27:17.109][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00556 V
+[17:27:17.110][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.135 A
+[17:27:17.472][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:27:17.622][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:27:18.498][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:27:18.615][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:27:19.012][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3423 different samples (17115 SPS)
+[17:27:19.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00623 V
+[17:27:19.110][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.151 A
+[17:27:19.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:27:19.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:27:20.475][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:20.621][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:27:20.998][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3306 different samples (16530 SPS)
+[17:27:21.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00834 V
+[17:27:21.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.202 A
+[17:27:21.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:27:21.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.67000 V
+[17:27:22.475][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:27:22.649][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:27:23.287][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3446 different samples (17230 SPS)
+[17:27:23.287][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00668 V
+[17:27:23.288][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.162 A
+[17:27:23.576][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:23.670][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:27:24.572][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:24.660][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:27:24.998][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3414 different samples (17070 SPS)
+[17:27:25.109][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00568 V
+[17:27:25.110][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.138 A
+[17:27:25.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:27:25.723][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:27:26.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:27:26.620][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:27:26.997][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3356 different samples (16780 SPS)
+[17:27:27.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00763 V
+[17:27:27.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.185 A
+[17:27:27.488][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:27:27.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:27:28.579][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:27:28.719][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65100 V
+[17:27:29.012][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3377 different samples (16885 SPS)
+[17:27:29.123][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00667 V
+[17:27:29.123][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.162 A
+[17:27:29.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:29.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:27:30.475][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:27:30.621][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:27:30.997][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3418 different samples (17090 SPS)
+[17:27:31.108][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00498 V
+[17:27:31.109][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.121 A
+[17:27:31.478][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:27:31.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:27:32.474][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:27:32.708][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:27:33.006][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3399 different samples (16995 SPS)
+[17:27:33.121][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00687 V
+[17:27:33.122][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.166 A
+[17:27:33.475][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:27:33.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:27:34.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:27:34.622][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:27:34.998][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3376 different samples (16880 SPS)
+[17:27:35.123][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00816 V
+[17:27:35.123][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.198 A
+[17:27:35.546][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:27:35.787][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:27:36.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:27:36.620][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:27:37.001][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3413 different samples (17065 SPS)
+[17:27:37.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00731 V
+[17:27:37.110][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.177 A
+[17:27:37.476][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:27:37.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:27:38.498][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:38.655][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:27:38.998][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3399 different samples (16995 SPS)
+[17:27:39.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00596 V
+[17:27:39.110][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.144 A
+[17:27:39.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65800 V
+[17:27:39.662][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:27:40.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:27:40.619][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:27:40.997][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3413 different samples (17065 SPS)
+[17:27:41.108][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00665 V
+[17:27:41.108][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.161 A
+[17:27:41.478][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:27:41.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:27:42.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:27:42.620][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:27:42.998][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3350 different samples (16750 SPS)
+[17:27:43.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00752 V
+[17:27:43.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.182 A
+[17:27:43.495][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:27:43.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:27:44.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:44.618][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:27:44.997][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3394 different samples (16970 SPS)
+[17:27:45.107][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00661 V
+[17:27:45.107][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.160 A
+[17:27:45.482][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:27:45.681][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:27:46.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:46.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:27:47.001][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3383 different samples (16915 SPS)
+[17:27:47.111][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00746 V
+[17:27:47.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.181 A
+[17:27:47.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:47.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:27:48.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:27:48.686][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:27:49.069][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3457 different samples (17285 SPS)
+[17:27:49.167][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00614 V
+[17:27:49.167][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.149 A
+[17:27:49.476][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65600 V
+[17:27:49.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:27:50.478][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:50.619][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:27:51.015][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3450 different samples (17250 SPS)
+[17:27:51.109][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00614 V
+[17:27:51.109][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.149 A
+[17:27:51.620][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65600 V
+[17:27:51.712][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:27:52.476][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:27:52.622][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:27:53.033][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3422 different samples (17110 SPS)
+[17:27:53.130][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00589 V
+[17:27:53.130][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.143 A
+[17:27:53.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:27:53.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:27:54.517][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:27:54.622][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:27:54.998][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3456 different samples (17280 SPS)
+[17:27:55.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00680 V
+[17:27:55.110][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.165 A
+[17:27:55.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:27:55.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:27:56.536][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:27:56.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:27:56.999][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3379 different samples (16895 SPS)
+[17:27:57.109][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00604 V
+[17:27:57.110][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.146 A
+[17:27:57.488][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:27:57.638][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:27:58.477][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:27:58.621][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:27:58.998][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3394 different samples (16970 SPS)
+[17:27:59.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00681 V
+[17:27:59.116][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.165 A
+[17:27:59.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:27:59.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:28:00.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:28:00.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64600 V
+[17:28:01.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3346 different samples (16730 SPS)
+[17:28:01.114][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00804 V
+[17:28:01.114][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.195 A
+[17:28:01.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:01.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:28:02.478][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:28:02.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:28:03.007][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3410 different samples (17050 SPS)
+[17:28:03.111][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00474 V
+[17:28:03.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.115 A
+[17:28:03.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:03.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:04.475][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:28:04.621][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:28:04.999][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3427 different samples (17135 SPS)
+[17:28:05.109][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00694 V
+[17:28:05.109][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.168 A
+[17:28:05.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:05.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:28:06.478][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:06.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:07.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3502 different samples (17510 SPS)
+[17:28:07.112][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00681 V
+[17:28:07.113][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.165 A
+[17:28:07.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:28:07.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:08.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65600 V
+[17:28:08.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.67000 V
+[17:28:08.997][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3365 different samples (16825 SPS)
+[17:28:09.155][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00767 V
+[17:28:09.155][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.186 A
+[17:28:09.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:28:09.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:28:10.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:28:10.784][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:28:11.015][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3520 different samples (17600 SPS)
+[17:28:11.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00742 V
+[17:28:11.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.180 A
+[17:28:11.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:28:11.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:12.510][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:28:12.620][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:28:12.998][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3384 different samples (16920 SPS)
+[17:28:13.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00803 V
+[17:28:13.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.194 A
+[17:28:13.535][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:28:13.639][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:28:14.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:14.619][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:14.999][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3508 different samples (17540 SPS)
+[17:28:15.128][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00730 V
+[17:28:15.129][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.177 A
+[17:28:15.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:15.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:28:16.508][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:28:16.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:28:16.996][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.009A after 3383 different samples (16915 SPS)
+[17:28:17.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00864 V
+[17:28:17.110][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.209 A
+[17:28:17.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:28:17.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:28:18.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:28:18.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:28:19.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3397 different samples (16985 SPS)
+[17:28:19.118][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00729 V
+[17:28:19.118][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.177 A
+[17:28:19.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:28:19.632][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66600 V
+[17:28:20.476][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:28:20.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:28:20.997][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3459 different samples (17295 SPS)
+[17:28:21.112][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00801 V
+[17:28:21.113][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.194 A
+[17:28:21.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:28:21.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:28:22.477][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:28:22.620][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:28:23.016][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3452 different samples (17260 SPS)
+[17:28:23.111][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00732 V
+[17:28:23.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.177 A
+[17:28:23.488][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:23.640][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:28:24.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:24.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:28:25.042][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3397 different samples (16985 SPS)
+[17:28:25.111][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00755 V
+[17:28:25.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.183 A
+[17:28:25.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:28:25.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:28:26.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:26.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:27.037][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3400 different samples (17000 SPS)
+[17:28:27.114][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00591 V
+[17:28:27.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.143 A
+[17:28:27.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:28:27.645][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:28.476][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:28.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:28:29.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.011A after 3406 different samples (17030 SPS)
+[17:28:29.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.01059 V
+[17:28:29.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.257 A
+[17:28:29.482][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:29.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:30.484][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:28:30.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:28:30.999][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3432 different samples (17160 SPS)
+[17:28:31.106][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00618 V
+[17:28:31.107][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.150 A
+[17:28:31.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:28:31.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:28:32.474][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:28:32.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:32.999][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3400 different samples (17000 SPS)
+[17:28:33.116][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00619 V
+[17:28:33.117][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.150 A
+[17:28:33.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:28:33.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.67000 V
+[17:28:34.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:28:34.622][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:28:35.007][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3333 different samples (16665 SPS)
+[17:28:35.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00770 V
+[17:28:35.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.186 A
+[17:28:35.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:28:35.622][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:28:36.579][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:28:36.815][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:36.995][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.009A after 3383 different samples (16915 SPS)
+[17:28:37.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00866 V
+[17:28:37.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.210 A
+[17:28:37.600][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:37.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:28:38.478][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:28:38.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66600 V
+[17:28:39.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3428 different samples (17140 SPS)
+[17:28:39.164][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00622 V
+[17:28:39.165][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.151 A
+[17:28:39.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:28:39.658][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:28:40.478][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:28:40.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:28:41.001][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3434 different samples (17170 SPS)
+[17:28:41.148][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00708 V
+[17:28:41.149][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.171 A
+[17:28:41.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:28:41.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:28:42.477][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:28:42.623][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:28:43.000][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3382 different samples (16910 SPS)
+[17:28:43.112][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00804 V
+[17:28:43.112][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.195 A
+[17:28:43.492][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:28:43.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:28:44.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:28:44.640][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:28:45.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3372 different samples (16860 SPS)
+[17:28:45.110][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00706 V
+[17:28:45.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.171 A
+[17:28:45.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:28:45.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:28:46.472][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:28:46.700][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:28:46.999][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3350 different samples (16750 SPS)
+[17:28:47.111][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00846 V
+[17:28:47.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.205 A
+[17:28:47.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:28:47.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:28:48.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:28:48.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:28:49.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3478 different samples (17390 SPS)
+[17:28:49.121][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00733 V
+[17:28:49.122][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.178 A
+[17:28:49.484][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:28:49.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:28:50.478][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:28:50.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:28:50.999][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3507 different samples (17535 SPS)
+[17:28:51.111][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00649 V
+[17:28:51.111][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.157 A
+[17:28:51.482][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:28:51.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:28:52.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:28:52.624][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:28:53.025][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3493 different samples (17465 SPS)
+[17:28:53.122][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00725 V
+[17:28:53.122][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.175 A
+[17:28:53.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:28:53.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:28:54.484][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:28:54.653][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:28:55.112][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3410 different samples (17050 SPS)
+[17:28:55.112][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00677 V
+[17:28:55.113][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.164 A
+[17:28:55.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:28:55.698][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:28:56.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:28:56.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:28:57.048][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3436 different samples (17180 SPS)
+[17:28:57.153][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00674 V
+[17:28:57.154][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.163 A
+[17:28:57.533][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:28:57.670][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:28:58.479][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:28:58.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:28:59.039][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3432 different samples (17160 SPS)
+[17:28:59.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00739 V
+[17:28:59.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.179 A
+[17:28:59.520][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:28:59.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:29:00.514][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:29:00.671][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:29:01.249][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3424 different samples (17120 SPS)
+[17:29:01.250][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00774 V
+[17:29:01.250][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.187 A
+[17:29:01.500][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:29:01.640][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:29:02.523][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:29:02.702][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:29:03.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3428 different samples (17140 SPS)
+[17:29:03.113][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00682 V
+[17:29:03.113][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.165 A
+[17:29:03.498][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:29:03.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:29:04.505][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:29:04.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65300 V
+[17:29:05.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3448 different samples (17240 SPS)
+[17:29:05.112][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00528 V
+[17:29:05.113][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.128 A
+[17:29:05.496][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:29:05.696][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:29:06.516][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:29:06.634][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:29:07.000][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3522 different samples (17610 SPS)
+[17:29:07.119][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00624 V
+[17:29:07.119][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.151 A
+[17:29:07.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:29:07.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:29:08.500][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65800 V
+[17:29:08.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65100 V
+[17:29:09.001][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3407 different samples (17035 SPS)
+[17:29:09.114][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00710 V
+[17:29:09.114][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.172 A
+[17:29:09.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:29:09.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:29:10.497][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:29:10.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:29:11.009][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3470 different samples (17350 SPS)
+[17:29:11.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00766 V
+[17:29:11.117][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.186 A
+[17:29:11.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:29:11.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:29:12.495][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:29:12.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:29:13.062][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.009A after 3443 different samples (17215 SPS)
+[17:29:13.128][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00934 V
+[17:29:13.129][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.226 A
+[17:29:13.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:29:13.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:29:14.505][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:29:14.641][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:29:15.004][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3353 different samples (16765 SPS)
+[17:29:15.113][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00729 V
+[17:29:15.114][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.177 A
+[17:29:15.521][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:29:15.634][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64600 V
+[17:29:16.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:29:16.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64900 V
+[17:29:17.001][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3431 different samples (17155 SPS)
+[17:29:17.113][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00765 V
+[17:29:17.114][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.185 A
+[17:29:17.505][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:29:17.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64900 V
+[17:29:18.502][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:29:18.700][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65300 V
+[17:29:19.005][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3471 different samples (17355 SPS)
+[17:29:19.113][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00685 V
+[17:29:19.114][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.166 A
+[17:29:19.484][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:29:19.642][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:29:20.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:29:20.665][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:29:21.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3417 different samples (17085 SPS)
+[17:29:21.113][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00676 V
+[17:29:21.114][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.164 A
+[17:29:21.516][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:29:21.638][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64800 V
+[17:29:22.482][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:29:22.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64600 V
+[17:29:22.999][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3430 different samples (17150 SPS)
+[17:29:23.122][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00724 V
+[17:29:23.123][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.175 A
+[17:29:23.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:29:23.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:29:24.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:29:24.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.68400 V
+[17:29:25.000][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3496 different samples (17480 SPS)
+[17:29:25.114][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00822 V
+[17:29:25.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.199 A
+[17:29:25.482][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:29:25.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:29:26.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:29:26.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65300 V
+[17:29:27.037][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3445 different samples (17225 SPS)
+[17:29:27.143][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00714 V
+[17:29:27.143][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.173 A
+[17:29:27.496][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:29:27.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:29:28.481][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:29:28.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65100 V
+[17:29:29.004][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.009A after 3417 different samples (17085 SPS)
+[17:29:29.114][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00864 V
+[17:29:29.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.209 A
+[17:29:29.500][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:29:29.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:29:30.495][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:29:30.625][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:29:31.016][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3426 different samples (17130 SPS)
+[17:29:31.167][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00757 V
+[17:29:31.167][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.183 A
+[17:29:31.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:29:31.632][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:29:32.498][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:29:32.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:29:33.005][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3438 different samples (17190 SPS)
+[17:29:33.114][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00776 V
+[17:29:33.114][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.188 A
+[17:29:33.480][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:29:33.632][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:29:34.523][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:29:34.626][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65300 V
+[17:29:35.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3416 different samples (17080 SPS)
+[17:29:35.147][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00731 V
+[17:29:35.147][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.177 A
+[17:29:35.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:29:35.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:29:36.484][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:29:36.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64200 V
+[17:29:37.029][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3410 different samples (17050 SPS)
+[17:29:37.302][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00696 V
+[17:29:37.303][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.169 A
+[17:29:37.550][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:29:37.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:29:38.494][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:29:38.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:29:39.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3417 different samples (17085 SPS)
+[17:29:39.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00645 V
+[17:29:39.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.156 A
+[17:29:39.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:29:39.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64600 V
+[17:29:40.511][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:29:40.676][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:29:41.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3450 different samples (17250 SPS)
+[17:29:41.225][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00688 V
+[17:29:41.225][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.167 A
+[17:29:41.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:29:41.632][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:29:42.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:29:42.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64900 V
+[17:29:43.004][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3409 different samples (17045 SPS)
+[17:29:43.116][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00777 V
+[17:29:43.117][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.188 A
+[17:29:43.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:29:43.639][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:29:44.497][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:29:44.645][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:29:45.017][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3417 different samples (17085 SPS)
+[17:29:45.161][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00637 V
+[17:29:45.162][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.154 A
+[17:29:45.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:29:45.636][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:29:46.498][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:29:46.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65100 V
+[17:29:47.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3481 different samples (17405 SPS)
+[17:29:47.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00600 V
+[17:29:47.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.145 A
+[17:29:47.496][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:29:47.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:29:48.497][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:29:48.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:29:49.009][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3357 different samples (16785 SPS)
+[17:29:49.118][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00752 V
+[17:29:49.118][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.182 A
+[17:29:49.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:29:49.634][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:29:50.497][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:29:50.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:29:51.006][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3424 different samples (17120 SPS)
+[17:29:51.116][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00576 V
+[17:29:51.116][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.140 A
+[17:29:51.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:29:51.634][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:29:52.498][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:29:52.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:29:53.005][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3405 different samples (17025 SPS)
+[17:29:53.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00584 V
+[17:29:53.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.141 A
+[17:29:53.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66300 V
+[17:29:53.645][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:29:54.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:29:54.634][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:29:55.013][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3447 different samples (17235 SPS)
+[17:29:55.116][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00673 V
+[17:29:55.117][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.163 A
+[17:29:55.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:29:55.632][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:29:56.509][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:29:56.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:29:57.006][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3347 different samples (16735 SPS)
+[17:29:57.132][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00534 V
+[17:29:57.133][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.129 A
+[17:29:57.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:29:57.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:29:58.498][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:29:58.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:29:59.005][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3433 different samples (17165 SPS)
+[17:29:59.118][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00626 V
+[17:29:59.119][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.152 A
+[17:29:59.530][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:29:59.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:30:00.515][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:30:00.648][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66600 V
+[17:30:01.027][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3466 different samples (17330 SPS)
+[17:30:01.121][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00644 V
+[17:30:01.121][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.156 A
+[17:30:01.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:30:01.636][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:30:02.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:30:02.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:30:03.005][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3425 different samples (17125 SPS)
+[17:30:03.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00823 V
+[17:30:03.117][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.199 A
+[17:30:03.493][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:30:03.634][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:30:04.520][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:30:04.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:30:05.018][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.004A after 3402 different samples (17010 SPS)
+[17:30:05.133][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00445 V
+[17:30:05.134][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.108 A
+[17:30:05.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:30:05.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:30:06.499][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:30:06.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:30:07.006][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3410 different samples (17050 SPS)
+[17:30:07.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00846 V
+[17:30:07.118][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.205 A
+[17:30:07.489][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:30:07.649][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.67400 V
+[17:30:08.508][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65600 V
+[17:30:08.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:30:09.045][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3356 different samples (16780 SPS)
+[17:30:09.157][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00705 V
+[17:30:09.157][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.171 A
+[17:30:09.543][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:30:09.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:30:10.523][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:30:10.724][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:30:11.006][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3434 different samples (17170 SPS)
+[17:30:11.127][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00826 V
+[17:30:11.128][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.200 A
+[17:30:11.483][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:30:11.639][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:30:12.513][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66300 V
+[17:30:12.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:30:13.007][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3452 different samples (17260 SPS)
+[17:30:13.118][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00674 V
+[17:30:13.119][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.163 A
+[17:30:13.493][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:30:13.645][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:30:14.504][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:30:14.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:30:15.006][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3412 different samples (17060 SPS)
+[17:30:15.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00687 V
+[17:30:15.117][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.166 A
+[17:30:15.489][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:30:15.634][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:30:16.499][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:30:16.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66600 V
+[17:30:17.015][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3416 different samples (17080 SPS)
+[17:30:17.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00690 V
+[17:30:17.118][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.167 A
+[17:30:17.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:30:17.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:30:18.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:30:18.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:30:19.013][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3337 different samples (16685 SPS)
+[17:30:19.120][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00733 V
+[17:30:19.121][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.178 A
+[17:30:19.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:30:19.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:30:20.502][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:30:20.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:30:21.007][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3408 different samples (17040 SPS)
+[17:30:21.122][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00564 V
+[17:30:21.122][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.137 A
+[17:30:21.500][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65700 V
+[17:30:21.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:30:22.501][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.67000 V
+[17:30:22.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:30:23.019][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3417 different samples (17085 SPS)
+[17:30:23.123][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00706 V
+[17:30:23.123][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.171 A
+[17:30:23.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.67200 V
+[17:30:23.647][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:30:24.500][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:30:24.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:30:25.012][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3398 different samples (16990 SPS)
+[17:30:25.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00644 V
+[17:30:25.118][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.156 A
+[17:30:25.502][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.67300 V
+[17:30:25.642][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65100 V
+[17:30:26.502][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:30:26.658][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65200 V
+[17:30:27.012][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3412 different samples (17060 SPS)
+[17:30:27.129][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00652 V
+[17:30:27.129][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.158 A
+[17:30:27.489][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:30:27.655][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:30:28.504][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:30:28.636][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:30:29.008][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3450 different samples (17250 SPS)
+[17:30:29.119][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00829 V
+[17:30:29.119][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.201 A
+[17:30:29.489][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:30:29.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:30:30.510][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:30:30.638][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:30:31.008][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3425 different samples (17125 SPS)
+[17:30:31.131][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00629 V
+[17:30:31.131][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.152 A
+[17:30:31.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:30:31.660][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:30:32.546][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65600 V
+[17:30:32.641][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:30:33.049][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3480 different samples (17400 SPS)
+[17:30:33.161][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00680 V
+[17:30:33.161][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.165 A
+[17:30:33.489][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:30:33.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:30:34.504][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:30:34.632][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:30:35.058][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3450 different samples (17250 SPS)
+[17:30:35.129][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00574 V
+[17:30:35.130][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.139 A
+[17:30:35.495][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:30:35.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.67500 V
+[17:30:36.501][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V[17:30:36.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:30:37.009][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3389 different samples (16945 SPS)
+[17:30:37.119][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00718 V
+[17:30:37.119][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.174 A
+[17:30:37.489][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:30:37.636][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:30:38.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:30:38.641][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:30:39.012][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3476 different samples (17380 SPS)
+[17:30:39.119][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00489 V
+[17:30:39.119][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.118 A
+[17:30:39.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:30:39.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:30:40.506][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:30:40.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:30:41.010][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3368 different samples (16840 SPS)
+[17:30:41.120][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00600 V
+[17:30:41.121][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.145 A
+[17:30:41.493][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65400 V
+[17:30:41.643][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:30:42.524][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:30:42.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:30:43.009][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3373 different samples (16865 SPS)
+[17:30:43.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00736 V
+[17:30:43.118][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.178 A
+[17:30:43.494][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:30:43.641][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:30:44.508][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:30:44.642][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:30:45.026][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3439 different samples (17195 SPS)
+[17:30:45.124][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00522 V
+[17:30:45.125][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.126 A
+[17:30:45.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:30:45.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:30:46.541][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:30:46.663][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:30:47.080][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3450 different samples (17250 SPS)
+[17:30:47.187][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00715 V
+[17:30:47.187][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.173 A
+[17:30:47.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:30:47.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:30:48.517][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:30:48.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:30:49.015][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3343 different samples (16715 SPS)
+[17:30:49.122][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00804 V
+[17:30:49.123][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.195 A
+[17:30:49.514][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:30:49.649][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:30:50.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:30:50.634][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:30:51.029][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3417 different samples (17085 SPS)
+[17:30:51.183][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00749 V
+[17:30:51.183][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.181 A
+[17:30:51.488][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:30:51.638][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.64700 V
+[17:30:52.511][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:30:52.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:30:53.010][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3373 different samples (16865 SPS)
+[17:30:53.120][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00789 V
+[17:30:53.121][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.191 A
+[17:30:53.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66300 V
+[17:30:53.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65200 V
+[17:30:54.502][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66300 V
+[17:30:54.632][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:30:55.008][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3425 different samples (17125 SPS)
+[17:30:55.125][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00656 V
+[17:30:55.125][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.159 A
+[17:30:55.510][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:30:55.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:30:56.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:30:56.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:30:57.010][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3447 different samples (17235 SPS)
+[17:30:57.119][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00755 V
+[17:30:57.119][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.183 A
+[17:30:57.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:30:57.646][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:30:58.505][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:30:58.639][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:30:59.009][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3460 different samples (17300 SPS)
+[17:30:59.127][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00549 V
+[17:30:59.127][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.133 A
+[17:30:59.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:30:59.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:31:00.501][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:31:00.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:31:01.009][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3357 different samples (16785 SPS)
+[17:31:01.131][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00547 V
+[17:31:01.131][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.133 A
+[17:31:01.490][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:31:01.641][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66300 V
+[17:31:02.504][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:31:02.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:31:03.008][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3453 different samples (17265 SPS)
+[17:31:03.120][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00738 V
+[17:31:03.120][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.179 A
+[17:31:03.492][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:31:03.673][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:31:04.519][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:31:04.771][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66700 V
+[17:31:05.279][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3455 different samples (17275 SPS)
+[17:31:05.384][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00807 V
+[17:31:05.385][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.195 A
+[17:31:05.504][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:31:05.667][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66800 V
+[17:31:06.501][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:31:06.632][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:31:07.020][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3413 different samples (17065 SPS)
+[17:31:07.124][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00760 V
+[17:31:07.125][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.184 A
+[17:31:07.488][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:31:07.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66600 V
+[17:31:08.565][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:31:08.673][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:31:09.025][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3435 different samples (17175 SPS)
+[17:31:09.128][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00495 V
+[17:31:09.129][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.120 A
+[17:31:09.494][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:31:09.636][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:31:10.501][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:31:10.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:31:11.041][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3452 different samples (17260 SPS)
+[17:31:11.147][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00720 V
+[17:31:11.147][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.174 A
+[17:31:11.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65900 V
+[17:31:11.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:31:12.496][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65600 V
+[17:31:12.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:31:13.033][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.005A after 3461 different samples (17305 SPS)
+[17:31:13.122][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00548 V
+[17:31:13.122][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.133 A
+[17:31:13.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:31:13.655][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:31:14.497][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66200 V
+[17:31:14.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:31:15.006][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3462 different samples (17310 SPS)
+[17:31:15.127][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00623 V
+[17:31:15.127][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.151 A
+[17:31:15.484][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:31:15.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:31:16.502][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:31:16.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65200 V
+[17:31:17.059][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3420 different samples (17100 SPS)
+[17:31:17.132][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00660 V
+[17:31:17.133][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.160 A
+[17:31:17.497][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:31:17.641][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65200 V
+[17:31:18.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:31:18.687][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65200 V
+[17:31:19.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3350 different samples (16750 SPS)
+[17:31:19.119][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00703 V
+[17:31:19.119][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.170 A
+[17:31:19.647][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66100 V
+[17:31:19.718][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:31:20.499][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:31:20.630][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:31:21.003][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3410 different samples (17050 SPS)
+[17:31:21.114][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00668 V
+[17:31:21.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.162 A
+[17:31:21.487][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:31:21.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65400 V
+[17:31:22.508][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:31:22.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65800 V
+[17:31:23.010][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3400 different samples (17000 SPS)
+[17:31:23.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00755 V
+[17:31:23.118][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.183 A
+[17:31:23.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66800 V
+[17:31:23.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66300 V
+[17:31:24.498][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:31:24.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:31:25.005][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3423 different samples (17115 SPS)
+[17:31:25.171][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00596 V
+[17:31:25.171][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.144 A
+[17:31:25.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:31:25.632][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66500 V
+[17:31:26.499][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:31:26.638][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:31:27.005][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.009A after 3404 different samples (17020 SPS)
+[17:31:27.116][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00918 V
+[17:31:27.116][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.222 A
+[17:31:27.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:31:27.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:31:28.499][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:31:28.631][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:31:29.035][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3332 different samples (16660 SPS)
+[17:31:29.117][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00814 V
+[17:31:29.117][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.197 A
+[17:31:29.491][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66900 V
+[17:31:29.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66400 V
+[17:31:30.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:31:30.627][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:31:31.005][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3441 different samples (17205 SPS)
+[17:31:31.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00602 V
+[17:31:31.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.146 A
+[17:31:31.497][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:31:31.666][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66900 V
+[17:31:32.503][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:31:32.635][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66100 V
+[17:31:33.058][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.009A after 3422 different samples (17110 SPS)
+[17:31:33.159][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00870 V
+[17:31:33.159][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.211 A
+[17:31:33.575][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66300 V
+[17:31:33.709][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66200 V
+[17:31:34.507][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:31:34.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.66000 V
+[17:31:35.004][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.006A after 3447 different samples (17235 SPS)
+[17:31:35.128][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00586 V
+[17:31:35.129][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.142 A
+[17:31:35.485][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66000 V
+[17:31:35.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:31:36.509][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.65800 V
+[17:31:36.634][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65900 V
+[17:31:37.002][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.007A after 3384 different samples (16920 SPS)
+[17:31:37.115][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00695 V
+[17:31:37.115][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.168 A
+[17:31:37.488][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66400 V
+[17:31:37.637][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65500 V
+[17:31:38.502][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66600 V
+[17:31:38.628][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65600 V
+[17:31:39.019][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.008A after 3474 different samples (17370 SPS)
+[17:31:39.146][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00790 V
+[17:31:39.147][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.191 A
+[17:31:39.486][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66500 V
+[17:31:39.633][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65200 V
+[17:31:40.499][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.66700 V
+[17:31:40.629][S][sensor]: 'ESP32D1 SCT 1 ADC Voltage' >> 1.65700 V
+[17:31:41.094][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.010A after 3446 different samples (17230 SPS)
+[17:31:41.119][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.01017 V
+[17:31:41.120][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.246 A
