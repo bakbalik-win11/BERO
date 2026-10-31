@@ -808,3 +808,11 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 - **DEĞERLENDİRME:** 0,413 A, STATUS'ta kayıtlı 0,30 A eşiğinin üzerindedir. Aynı kararlı pencerede referans cihaz belirlenip ölçüm alınırsa mevcut ±%4 karşılaştırma kuralı kullanılabilir.
 - **DOSYA:** test-loads/einhell-charger/README.md.
 - **SONRAKİ:** Kullanıcı test logunu ve 0,413 A değerini gösteren referans cihaz bilgisini paylaşacak; başlangıç/kararlı/şarj ilerleme pencereleri ayrı analiz edilecek.
+
+
+## 2026-10-31 — EINHELL-CHARGER-001 ilk kararlı akım bildirimi
+
+- Kullanıcı, ilk 0,413 A gözleminden sonra akımın **0,419 A değerinde sabitlendiğini** bildirdi (+0,006 A / yaklaşık +%1,45).
+- Kaynak: kullanıcı bildirimi; ölçüm cihazı belirtilmediğinden PZEM/SCT ölçümü olarak sınıflandırılmadı.
+- ESP32D1 ham logu henüz alınmadı; test AÇIK, fiziksel gözlem sürüyor.
+- Deney kaydı: test-loads/einhell-charger/README.md.
