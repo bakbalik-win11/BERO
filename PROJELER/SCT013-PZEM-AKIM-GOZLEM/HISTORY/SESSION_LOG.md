@@ -1,3 +1,14 @@
+## 2026-10-31 — Modül 2 bağlantı bildirimi ve T010 başlangıç kaydı
+
+- **ESP:** Modül içine gömülü ESPHome kimliği `esp32d1` / friendly name `ESP32D1`. Kullanıcı tarafından verilen başlangıç YAML iskeleti `firmware/esp32d1.yaml` olarak kaydedildi; ADC/SCT sensör kodu eklenmedi.
+- **BESLEME / ERİŞİM:** ESP32 harici 5 V DC ile beslenecek. USB portuna PC bağlantısı için erişim olacak. Aynı anda USB ve harici 5 V kullanımı kartın güç yolu doğrulanmadan yapılmayacak.
+- **ANALOG MİMARİ:** Tek ortak bias devresi mini breadboard üzerinde; aynı bias beslemesi üç SCT girişine dağıtılacak. Üç bağımsız SCT sinyali ve ortak bias noktasının tek ölçümü için dört ADC giriş noktası hedefleniyor.
+- **FİZİKSEL EŞLEŞTİRME — KULLANICI BİLDİRİMİ:** 1. dişi yuva sarı sinyal kablosu → GPIO32; 2. dişi yuva yeşil sinyal kablosu → GPIO33.
+- **AÇIK:** Üçüncü SCT sinyal GPIO'su/kablo rengi, ortak bias ADC GPIO'su, ESP32 kart/shield modeli, jack tip/ring/sleeve bağlantıları, bias ADC RAW/voltaj gösterimi ve USB güç yolu.
+- **DEPO:** ADR-015, T010 ve `firmware/esp32d1.yaml` oluşturuldu. Modül 2 belgesi, STATUS, PROGRESS_TREE, görev dizini ve ADR-012 tarihsel kapsam notu güncellendi.
+- **DOĞRULAMA SINIRI:** GPIO32/GPIO33 eşleştirmeleri kullanıcı bildirimidir; diğer jack uçları fiziksel teyit edilmedi. YAML yalnız temel ESPHome iskeletidir; derleme, yükleme ve fiziksel test yapılmadı.
+- **SONUÇ:** T010 AKTİF — Modül 2 tasarım/bağlantı hazırlığı. Modül çalışır veya tamamlanmış değildir.
+
 ## 2026-10-31 — Modül 2 ESP32D1 üçlü SCT görevi açıldı (ADR-015 / T010)
 
 - **HEDEF:** Üç SCT sinyali + tek ortak bias ADC okuması olan, ESP32D1 gömülü, harici 5 V beslemeli ve USB üzerinden PC'ye erişilebilir SCT okuma modülünü tanımlamak.
