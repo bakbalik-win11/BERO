@@ -60,7 +60,7 @@ conditions:
     note: "100 W akkor açık bölümü; kapanış olayı bu dosyada bulunmuyor."
 
 recording:
-  source_file: "esp32d2-logs (14).txt"
+  source_files: ["esp32d2-logs (14).txt", "esp32d2-logs (15).txt"]
   source_sha256: "c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e" # Yüklenen kaynak dosyanın tam SHA-256 değeri.
   ct_windows: 262
   slow_adc_updates_per_channel: 523
