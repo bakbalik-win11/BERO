@@ -1,3 +1,13 @@
+## 2026-10-31 — ct_clamp hipotez sicili ve deney önceliği
+
+- **HEDEF:** Bu sohbet boyunca biriken kaynak kod, tasarım tarihçesi ve BERO saha gözlemlerini kanıt düzeylerine ayırmak; teorik araştırmadan kontrollü veri üreten deneylere geçişi netleştirmek.
+- **KAYIT:** [19 maddelik hipotez sicili ve deney önceliği](docs/research/ct-clamp/2026-10-31-hypothesis-register-and-next-experiments.md).
+- **SINIFLANDIRMA:** H1–H5 kaynak kodu/tarihçe ile kanıtlı (H2 sabit bias koşuluyla); H6–H8 saha verisiyle güçlü destekli fakat evrensel değil; H9–H11 deney gerektiren hipotez; H12–H15 açık araştırma sorusu; H16–H19 şu an kanıtsız.
+- **ÖNEMLİ DÜZELTME:** last_value karşılaştırmasından önce source_->sample() çağrılır; ADC çağrısı kesilmez. Bu, filtrenin istatistiksel etkisinin sıfır olduğunu kanıtlamaz. Sabit bias matematiksel olarak ayrılır; değişken bias/gürültü ayrışmaz.
+- **DENEY ÖNCELİĞİ:** T010 kanal davranışını kontrollü incele; E10'u 200→500→1000→200 ms olarak yürüt; last_value için ayrı A/B deneyini ancak tasarlayıp; sonra T007→T008→T006 veri sırasını koru.
+- **DURUM:** E10 hâlâ PLANLANDI. YAML, K=24.22, OTA ve fiziksel düzenek değiştirilmedi. Bu oturumda yeni fiziksel deney yapılmadı.
+- **AKTİF GÖREV:** T010 değişmedi.
+
 ## 2026-10-31 — Sensörden bağımsız BERO mimarisi ayrıştırıldı
 
 - **HEDEF:** SCT013 akım projesinde edinilen pencereleme, örnek yönetimi ve özellik çıkarma tecrübelerini yalnız SCT klasöründe bırakmayıp BERO genelinde yeniden kullanılabilir mimari olarak sunmak.
