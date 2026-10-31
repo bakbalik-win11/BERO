@@ -30,3 +30,16 @@
 - 247 yayın ortalaması 0,146757 A, medyanı 0,147 A ve aralığı 0,064–0,259 A olarak korunur. Bu SCT gözlemleri UNIT ile ±%4 uyumu şeklinde yorumlanmaz.
 - FAN-1, Modül 2 ısınma/deneme gözlemi olarak kapalıdır. Düşük akım deney programı kapsamında ileride PZEM akım + PF ile, tek tur/2 tur/4 tur düzenekleri kontrollü karşılaştırılabilir.
 - FAN-1'in mevcut logu sonradan değiştirilmez; yeni sarım koşulları ayrı deney oturumları ve ayrı loglarla kaydedilir.
+
+
+## 2026-10-31 — FAN-2 uzun logu ve test kapanışı
+
+- **DURUM:** FAN-2, Modül 2 düşük akım gözlem oturumu olarak kapatıldı; ±%4 akım doğrulama testi değildir.
+- **UNIT:** Kullanıcı bildirimi 0,106 A. 0,30 A altı BERO düşük akım bölgesinde ±%4 kabul/ret uygulanmaz.
+- **UZUN LOG:** `esp32d1-logs (42).txt`; kaynak boyutu 90.706 bayt; kaynak SHA-256 `e550d447b75b50e2b99581a70de23b8916caba576a8665240f44574e586a3dca`; 17:26:19.113–17:31:41.120 (+03:00); 162 akım yayını.
+- **AKIM:** Ortalama 0,168969 A; medyan 0,1685 A; min–maks 0,108–0,257 A; örnek SD 0,024640 A. 162/162 yayın 0,30 A altındadır.
+- **ANALOG:** Raw AC ortalama 0,00697685 V; bias GPIO35 ortalama 1,663426 V; SCT-1 ADC GPIO32 ortalama 1,660537 V.
+- **KOD:** [FAN-2 kapanış YAML snapshot](../../firmware/archive/FAN-2-2026-10-31-esp32d1-sct1.yaml). ESPHome 2026.10.1; GPIO32 SCT-1, GPIO35 bias; ADC 12 dB / 1 s; ct_clamp 200 ms / 2 s; K=24.22; yazılımsal sıfır eşiği yok. Binary eşleşmesi iddia edilmez.
+- **PF/REFERANS:** Logda PZEM akım ve PF yok; UNIT PF göstermiyor. PF etkisi hipotez olarak kalır.
+- **KAPANIŞ:** Yalnız düşük akım gözlemi kapatıldı. PZEM akım + PF ile eşleşmiş kararlı pencere doğrulaması ve ayrı düşük akım 1T/2T/4T deneyleri açık iş olarak kalır.
+- **DOSYALAR:** [Tam ham log](../../logs/module2/2026-10-31-fan2-module2-sct1-long-full.txt); [teknik analiz](../../logs/module2/2026-10-31-fan2-module2-sct1-long-analysis.md).
