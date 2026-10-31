@@ -1,3 +1,10 @@
+## 2026-10-31 — ESP32D1 ilk firmware açılışı ve bağlantısız ADC kontrolü
+
+- **KOD:** `firmware/esp32d1.yaml` dört ADC sensörlü sürüm cihazda açıldı. Log derleme bilgisini 2026-10-31 15:19:21 +0300 ve ESPHome 2026.10.1 olarak gösteriyor.
+- **LOG KANITI:** [İlk açılış ADC log kanıt dökümü](logs/module2/2026-10-31-first-boot-no-load.txt). Özgün kullanıcı eki: 203 satır, 11,363 bayt; SHA-256 `88f897b2603815233b0c44e497261169be2e6bff73368b435ae04e38ebb312b3`.
+- **SONUÇ:** GPIO32/33/34/35 ADC başlangıç durumları OK; Wi-Fi/API bağlantısı başarılı. GPIO35 bias okumaları 1.643–1.668 V. SCT girişleri ve ampul bağlı değildi; bu yüzden üç SCT voltajı yük/sensör testi olarak kabul edilmez.
+- **DURUM:** Firmware açılışı ve ADC başlatma LOG İLE DESTEKLENDİ. Üç ayrı 100 W kanal testi bekliyor; T010 AKTİF.
+
 ## 2026-10-31 — Modül 2 dört analog GPIO eşlemesi bildirildi
 
 - **KULLANICI BİLDİRİMİ:** 1. dişi SCT yuvası sarı sinyal kablosu → GPIO32.
