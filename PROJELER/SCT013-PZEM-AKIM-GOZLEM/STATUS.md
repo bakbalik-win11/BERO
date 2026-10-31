@@ -1,3 +1,11 @@
+## 2026-10-31 — Modül 2 kutu kapsamı sadeleştirildi
+
+- **KARAR:** Kutu yalnızca üç SCT girişi, ESP32D2 ve bias mini breadboard içerecek.
+- **KUTU DIŞI:** 220 V AC giriş/çıkış, PZEM, SSR ve kutu içi 220 V → 5 V güç kaynağı bu modülün kapsamında değildir. PZEM ve SSR BERO sisteminin diğer bölümlerinde ayrı ele alınacaktır.
+- **BESLEME:** Bias ayrı Bias Trafosu modülünden beslenecek; ESP32D2 besleme yöntemi henüz belirlenmedi.
+- **SINIR:** Üç girişin eşzamanlı kullanım biçimi, jack pin eşlemesi ve düşük gerilim besleme bağlantısı henüz doğrulanmadı.
+- **KARAR KAYDI:** [ADR-012](docs/decisions/ADR-012-sct-test-module-scope.md); [Modül 2](docs/modules/SCT-OKUMA-TEST-MODULU.md).
+
 # Güncel Durum — 2026-10-31
 
 ## Projenin iki fazı
