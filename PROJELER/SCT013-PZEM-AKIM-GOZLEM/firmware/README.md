@@ -1,3 +1,23 @@
+# Firmware dosyalari ve dugumler
+
+## ESP32-C3 SSR kontrol dugumu — ilk taslak
+
+- YAML: [esp32c3-ssr.yaml](esp32c3-ssr.yaml)
+- ESP32 kimligi: `esphome-web-0424f4`
+- Home Assistant gorunen adi: `ESP32-C3-SSR`
+- Gorev: 40 s ON / 20 s OFF SSR dongusu, BOOT_ID/EVENT_ID olay kimligi,
+  UDP broadcast (255.255.255.255:4210), DS3231/NTP saat bilgisi.
+- HA'ya acilan olay alanlari: Boot ID, Event ID, son olay durumu.
+- HA cihaz tanilama alanlari: IP, Wi-Fi SSID, MAC, ESPHome surumu,
+  uptime ve Wi-Fi sinyal seviyesi.
+- **Durum: KOD DEPOYA EKLENDI; derleme, OTA ve fiziksel SSR testi
+  henuz yapilmadi/dogrulanmadi.**
+- GPIO6 `inverted: true` oldugu icin yazilim ON komutu fiziksel LOW,
+  OFF komutu fiziksel HIGH uretir. GPIO cikis okumasiyla SSR'nin AC
+  tarafinda iletime gectigi kanitlanmaz; yuk teyidi PZEM'den yapilmalidir.
+
+## ESP32D2 / SCT dugumu
+
 ## 2026-10-30 — E00F-N01 bias referansı izleme eklentisi
 
 - Mevcut SCT013/ct_clamp yolu GPIO33, 200 ms pencere, 2 s yayın ve 24.22 katsayısıyla korunmuştur.
