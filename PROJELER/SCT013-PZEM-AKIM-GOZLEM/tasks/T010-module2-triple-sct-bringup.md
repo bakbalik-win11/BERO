@@ -1,3 +1,13 @@
+## 2026-10-31 — Üç kanal ct_clamp akım sensörü eklendi
+
+- **KOD:** [firmware/esp32d1.yaml](../firmware/esp32d1.yaml) GPIO32/33/34 ADC kaynaklarına üç ayrı `ct_clamp` sensörü eklendi. GPIO35 ortak bias ölçümü ve üç ADC voltaj entity'si korundu.
+- **YÖNTEM:** Her kanal 200 ms örnekleme penceresi kullanır. Yayın aralıkları 5 s, 5.5 s ve 6 s olarak ayrıldı.
+- **İLK KATSAYI:** SCT-013-030 nominal 30 A / 1 V verisinden 30 A/V dönüşümü uygulandı. Bu nominal başlangıç değeridir; saha kalibrasyonu değildir.
+- **BEKLENEN:** HA'da üç ayrı akım entity'si A biriminde görünür; ESPHome logunda `sct_current` etiketiyle kanal akımları yazılır.
+- **DOĞRULAMA DURUMU:** YAML GitHub'a kaydedildi. Derleme, OTA ve fiziksel akım ölçümü henüz yapılmadı. T010 AKTİF.
+- **KABUL:** Derleme başarılı; üç kanalın 100 W yükte ve yüksüz okumaları alınmış; U200B+ veya PZEM karşılaştırması yapılmış olmalı. Gerçek kalibrasyon yapılmadan doğruluk iddiası verilmez.
+- **KARAR:** [ADR-016](../docs/decisions/ADR-016-module2-three-channel-ct-clamp.md).
+
 # T010 — Modül 2: ESP32D1 üçlü SCT okuma modülünü oluşturma
 
 - **Durum:** AKTİF — firmware/ADC açılışı logla desteklendi; SCT-1 100 W denemesi kullanıcı bildirimiyle yapıldı; SCT-2 ve SCT-3 bekliyor
