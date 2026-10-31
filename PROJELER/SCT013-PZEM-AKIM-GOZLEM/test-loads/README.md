@@ -131,3 +131,15 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - Raw AC ortalama 0,009273 V; bias GPIO35 ortalama 1,663387 V; SCT-1 ADC GPIO32 ortalama 1,661008 V.
 - FAN-3, düşük akım gözlem oturumu olarak kapatıldı; ±%4 veya PF doğrulaması değildir. PZEM akım + PF ile eşleşmiş kararlı pencere ve olay işaretli açılma/kapanma deneyi açık araştırma işidir.
 - [Fan kayıtları](fan/README.md); [FAN-3 analiz](../logs/module2/2026-10-31-fan3-module2-sct1-long-analysis.md); [tam ham log](../logs/module2/2026-10-31-fan3-module2-sct1-long-full.txt); [kapanış YAML](../firmware/archive/FAN-3-2026-10-31-esp32d1-sct1.yaml).
+
+
+| Karma yük | [100 W akkor + FAN-3 test kaydı](mixed-load-100w-plus-fan3/README.md) |
+
+## 2026-10-31 — MIXED-LOAD-001 açıldı: 100 W akkor + FAN-3
+
+- **AMAÇ:** FAN-3 motor yükünü 100 W akkor dirençli yükle birlikte çalıştırarak toplam hat akımının ve karma yük davranışının SCT-1 tarafından gözlenmesini incelemek.
+- **DENEY:** 100 W tek başına; FAN-3 tek başına; ikisi birlikte; 100 W açıkken FAN-3 açılma/kapanma geçişleri.
+- **REFERANS:** Önceki ayrı testlerde 100 W için UNIT geçici bildirimi 0,427 A, FAN-3 için 0,141 A'dır. Bunlar karma yük referansı değildir. Yeni birlikte çalışma UNIT ölçümü ve eşzamanlı PZEM akım/PF kaydı alınacaktır.
+- **KURAL:** 0,30 A ve üzeri kararlı pencerelerde eşleşmiş referans varsa ±%4 kıyası; 0,30 A altında ±%4 kabul/ret yok. SCT toplam hat akımını gözlemler; tek başına PF veya FAN-3 bileşen akımını ayrıştırmaz.
+- **DURUM:** Test planı açıldı; fiziksel deney, yeni log ve sonuç henüz yoktur.
+- **AYRINTI:** [MIXED-LOAD-001 test dosyası](mixed-load-100w-plus-fan3/README.md).
