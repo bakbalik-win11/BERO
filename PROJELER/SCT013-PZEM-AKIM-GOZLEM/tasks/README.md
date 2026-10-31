@@ -29,8 +29,9 @@ Bir kart, yalnızca doküman dolduruldu diye otomatik olarak TAMAMLANDI olmaz.
 | T002 | Güvenlik kontrolü | 0.2 | TAMAMLANDI — kullanıcı tüm kontrol maddelerini tamamladığını beyan etti; fiziksel durum bağımsız doğrulanmadı | T001 |
 | T003 | PZEM tabanlı model hata hedefi | 0.3 | TAMAMLANDI — ±%4 hedefi tanımlandı; kullanıcı raporuna göre harici kodla dört yük koşulunda sağlandı (ADR-009). Harici kod/Python model entegrasyonu bu depoda yok | T001 |
 | T004 | Analog ön uç | 1.1 | TAMAMLANDI — belgeleme kapsamı tamamlandı; fiziksel analog davranış ve GPIO eşlemesi doğrulanmış değil | T002, T003 |
-| T005 | ADC temel okumaları ve E01 gürültü tabanı | 1.2 | PLANLANDI — önce SCT bağlı değilken ham ADC ve mV API'leri; sonra SCT bağlı ve akım yok; uzun E01 kaydı daha sonra | T004 |
-| T006 | SCT kalibrasyonu | 1.3 | PLANLANDI | T005 |
+| T005 | Eski ADC temel okumaları / E01 gürültü tabanı | Tarihsel | PARK EDİLDİ — PZEM etiketleme yolunun ön koşulu değil (ADR-010) | T004 |
+| T006 | SCT katsayısı/model değerlendirmesi | Sürekli | PLANLANDI — T008 ortak kararlı alan/etiket çıktısını bekler | T008 |
+| [T008](T008-pzem-sct-stable-window-labeling.md) | PZEM–SCT ortak kayıt, kararlı alan eşleştirme ve etiketleme | Aktif | PLANLANDI — sıradaki görev (ADR-010) | Çalışan E00F baseline + PZEM akışı |
 | [T007](T007-python-architecture.md) | Python program mimarisini kullanıcı hedeflerine göre tanımla | 3–7 | BEKLEMEDE — taslak korunuyor; E00A/E00/E01 verisi ve gerçek aktarım gereksinimi bekleniyor | E00A/E00/E01 temel edinim sonuçları, HA→PC aktarım hedefi |
 
 ## Kart açma
