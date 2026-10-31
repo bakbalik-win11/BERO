@@ -12,9 +12,18 @@
 
 Projede yalnızca iki ana faz vardır:
 1. **Faz 1 — Çalışan kodu bulmak ve ±%4 hedefine ulaşmak: TAMAMLANDI.** Dış kaynaklı kodla hedef sağlandı. Faz 1 kapsamındaki yapılmamış işler hedefe ulaşıldığı için kapatılmıştır; eski deney dosyaları tarihsel arşivdir.
-2. **Faz 2 — Bulunan kodu PZEM ile eğitmek: AKTİF.** İlk görev T007 HA → PC veri aktarımı; sonra T008 kararlı alan eşleştirme/etiketleme; ardından T006 katsayı/model değerlendirmesi.
+2. **Faz 2 — Pratik yeniden kurulum ve sistem geliştirme: AKTİF.** Faz 2, yalnız mevcut kodu PZEM ile eğitme aşaması değildir. Kayıtlı kodlar ve çalışan örneklerden yararlanarak modüller/ESP düğümleri yeniden devreye alınır, temel işlevleri gerçek donanımda doğrulanır ve sistem geliştirilir. PZEM referanslı veri aktarımı/etiketleme bu işleyen sistemin sonraki alt aşamasıdır.
 
-Her oturumda STATUS.md içindeki tek aktif görev üzerinde çalış. Faz 1 deneylerini yeniden açma. Faz 2 için yeni deneyler ancak somut veri sorusu ortaya çıktığında yeni numaralarla planlanır.
+Faz 2'nin ilk aktif görevi T009'dur: modülleri ve ESP düğümlerini pratik olarak devreye alma. Ardından T007 → T008 → T006 yürütülür. Her oturumda STATUS.md içindeki tek aktif görev üzerinde çalış. Faz 1 deneylerini yeniden açma. Yeni deneyler ancak gerçek bir uygulama/ölçüm sorusu ortaya çıktığında yeni numaralarla planlanır.
+
+## Pratik geliştirme ilkesi
+
+- Önce çalışan kod, örnek proje, kütüphane veya hazır modül uygulaması bul ve değerlendir; sonra gereken en az uyarlamayı yap.
+- Depodaki YAML'lar, kodlar, loglar ve kararlar başlangıç referansıdır; yeni kurulumda gerekirse kontrollü biçimde uyarlanabilir.
+- Donanım ve ESP düğümlerini modül modül, tek işlevden başlayarak devreye al. Derleme, bağlantı ve gerçek çıktı adımlarını ayrı doğrula.
+- Ana hedef çalışan sistemi kurmak ve SCT akımını güvenilir biçimde okuyabilmektir. Teorik derinleşme, manyetik modelleme veya ESP32 ADC iç mimarisi incelemesi yalnız somut bir engel/arıza/karar gerektirirse yapılır.
+- Önceki teorik ve ADC araştırmalarını silme veya değersizleştirme; bunlar gerektiğinde başvurulacak tarihsel teknik kayıttır.
+- Gerçek test/log olmadan kodu çalışıyor, modülü tamamlandı olarak gösterme.
 
 ## Değişmez cihaz kimliği
 
@@ -55,9 +64,10 @@ Etiketsiz teknik iddia yazma.
 
 ## Faz 2 görev sırası
 
-1. T007 — HA geçmişini PC'ye aktarma ve Python veri giriş hattı.
-2. T008 — PZEM/SCT kararlı alanlarını ayrı bulma, örtüşen alanları eşleştirme ve PZEM ile etiketleme.
-3. T006 — K=24.22 katsayısını değerlendirme; veri gerekçelendirirse model iyileştirme.
+1. T009 — Modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma.
+2. T007 — Çalışan PZEM/SCT düğümlerinin HA geçmişini PC'ye aktarma.
+3. T008 — PZEM/SCT kararlı alanlarını ayrı bulma, örtüşen alanları eşleştirme ve PZEM ile etiketleme.
+4. T006 — K=24.22 katsayısını değerlendirme; veri gerekçelendirirse model iyileştirme.
 
 ## HEDEF / LOG / SONUÇ standardı
 
