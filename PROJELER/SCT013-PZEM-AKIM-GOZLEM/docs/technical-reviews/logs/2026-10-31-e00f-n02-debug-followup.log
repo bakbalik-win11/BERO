@@ -1,0 +1,1986 @@
+INFO ESPHome 2026.10.1
+INFO Loaded validated config cache for esp32d2.yaml, skipping validation.
+INFO Starting log output from 192.168.0.66 using esphome API
+INFO Successfully resolved esp32d2 @ 192.168.0.66 in 0.000s
+INFO Successfully connected to esp32d2 @ 192.168.0.66 in 0.057s
+INFO Successful handshake with esp32d2 @ 192.168.0.66 in 0.015s
+[10:18:09.342][I][app:164]: ESPHome version 2026.10.1 compiled on 2026-10-30 23:12:09 +0300
+[10:18:09.342][I][app:171]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[10:18:09.342][W][app:189]: Set flash_chip: generic under esp32 > framework > advanced to save IRAM
+[10:18:09.343][W][app:201]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[10:18:09.350][W][app:228]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[10:18:09.350][C][logger:218]: Logger:
+[10:18:09.350][C][logger:218]:   Max Level: DEBUG
+[10:18:09.350][C][logger:218]:   Initial Level: DEBUG
+[10:18:09.367][C][logger:225]:   Log Baud Rate: 115200
+[10:18:09.367][C][logger:225]:   Hardware UART: UART0
+[10:18:09.367][C][logger:234]:   Task Log Buffer Size: 768 bytes
+[10:18:09.408][C][template.sensor:017]: Template Sensor 'BERO E00F SCT013 Raw AC'
+[10:18:09.408][C][template.sensor:017]:   State Class: 'measurement'
+[10:18:09.408][C][template.sensor:017]:   Unit of Measurement: 'V'
+[10:18:09.408][C][template.sensor:017]:   Accuracy Decimals: 5
+[10:18:09.415][C][template.sensor:166]:   Device Class: 'voltage'
+[10:18:09.416][C][template.sensor:338]:   Update Interval: never
+[10:18:09.416][C][adc:017]: ADC Sensor 'BERO E00F SCT GPIO32 RAW'
+[10:18:09.416][C][adc:017]:   State Class: 'measurement'
+[10:18:09.416][C][adc:017]:   Unit of Measurement: 'count'
+[10:18:09.416][C][adc:017]:   Accuracy Decimals: 0
+[10:18:09.424][C][adc:166]:   Device Class: 'voltage'
+[10:18:09.425][C][adc:131]:   Pin: GPIO32
+[10:18:09.425][C][adc:131]:   Channel:       4
+[10:18:09.425][C][adc:131]:   Unit:          ADC1
+[10:18:09.425][C][adc:131]:   Attenuation:   12 dB
+[10:18:09.425][C][adc:131]:   Samples:       1
+[10:18:09.425][C][adc:131]:   Sampling mode: average
+[10:18:09.425][C][adc:131]:   Setup Status:
+[10:18:09.425][C][adc:131]:     Handle Init:  OK
+[10:18:09.425][C][adc:131]:     Config:       OK
+[10:18:09.425][C][adc:131]:     Calibration:  OK
+[10:18:09.425][C][adc:131]:     Overall Init: OK
+[10:18:09.442][C][adc:340]:   Update Interval: 1.000s
+[10:18:09.454][C][adc:017]: ADC Sensor 'BERO E00F SCT GPIO33 ADC Voltage'
+[10:18:09.454][C][adc:017]:   State Class: 'measurement'
+[10:18:09.454][C][adc:017]:   Unit of Measurement: 'V'
+[10:18:09.454][C][adc:017]:   Accuracy Decimals: 5
+[10:18:09.459][C][adc:166]:   Device Class: 'voltage'
+[10:18:09.459][C][adc:131]:   Pin: GPIO33
+[10:18:09.459][C][adc:131]:   Channel:       5
+[10:18:09.459][C][adc:131]:   Unit:          ADC1
+[10:18:09.459][C][adc:131]:   Attenuation:   12 dB
+[10:18:09.459][C][adc:131]:   Samples:       1
+[10:18:09.459][C][adc:131]:   Sampling mode: average
+[10:18:09.459][C][adc:131]:   Setup Status:
+[10:18:09.459][C][adc:131]:     Handle Init:  OK
+[10:18:09.459][C][adc:131]:     Config:       OK
+[10:18:09.459][C][adc:131]:     Calibration:  OK
+[10:18:09.459][C][adc:131]:     Overall Init: OK
+[10:18:09.489][C][adc:340]:   Update Interval: 1.000s
+[10:18:09.505][C][adc:017]: ADC Sensor 'BERO E00F Bias GPIO34 RAW'
+[10:18:09.505][C][adc:017]:   State Class: 'measurement'
+[10:18:09.505][C][adc:017]:   Unit of Measurement: 'count'
+[10:18:09.505][C][adc:017]:   Accuracy Decimals: 0
+[10:18:09.506][C][adc:166]:   Device Class: 'voltage'
+[10:18:09.506][C][adc:131]:   Pin: GPIO34
+[10:18:09.518][C][adc:131]:   Channel:       6
+[10:18:09.518][C][adc:131]:   Unit:          ADC1
+[10:18:09.518][C][adc:131]:   Attenuation:   12 dB
+[10:18:09.518][C][adc:131]:   Samples:       1
+[10:18:09.518][C][adc:131]:   Sampling mode: average
+[10:18:09.518][C][adc:131]:   Setup Status:
+[10:18:09.518][C][adc:131]:     Handle Init:  OK
+[10:18:09.518][C][adc:131]:     Config:       OK
+[10:18:09.518][C][adc:131]:     Calibration:  OK
+[10:18:09.518][C][adc:131]:     Overall Init: OK
+[10:18:09.551][C][adc:340]:   Update Interval: 1.000s
+[10:18:09.551][C][adc:017]: ADC Sensor 'BERO E00F Bias GPIO35 ADC Voltage'
+[10:18:09.551][C][adc:017]:   State Class: 'measurement'
+[10:18:09.551][C][adc:017]:   Unit of Measurement: 'V'
+[10:18:09.551][C][adc:017]:   Accuracy Decimals: 5
+[10:18:09.552][C][adc:166]:   Device Class: 'voltage'
+[10:18:09.559][C][adc:131]:   Pin: GPIO35
+[10:18:09.560][C][adc:131]:   Channel:       7
+[10:18:09.560][C][adc:131]:   Unit:          ADC1
+[10:18:09.560][C][adc:131]:   Attenuation:   12 dB
+[10:18:09.560][C][adc:131]:   Samples:       1
+[10:18:09.560][C][adc:131]:   Sampling mode: average
+[10:18:09.560][C][adc:131]:   Setup Status:
+[10:18:09.560][C][adc:131]:     Handle Init:  OK
+[10:18:09.560][C][adc:131]:     Config:       OK
+[10:18:09.560][C][adc:131]:     Calibration:  OK
+[10:18:09.560][C][adc:131]:     Overall Init: OK
+[10:18:09.625][C][adc:340]:   Update Interval: 1.000s
+[10:18:09.625][C][ct_clamp:017]: CT Clamp Sensor 'BERO E00F SCT013 Akim'
+[10:18:09.625][C][ct_clamp:017]:   State Class: 'measurement'
+[10:18:09.625][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[10:18:09.625][C][ct_clamp:017]:   Accuracy Decimals: 3
+[10:18:09.630][C][ct_clamp:166]:   Device Class: 'current'
+[10:18:09.630][C][ct_clamp:013]:   Sample Duration: 0.20s
+[10:18:09.631][C][ct_clamp:340]:   Update Interval: 2.000s
+[10:18:09.631][C][network:050]: Network:
+[10:18:09.631][C][network:050]:   TCP send buffer: 5760 bytes
+[10:18:09.638][C][wifi:1688]: WiFi:
+[10:18:09.638][C][wifi:1688]:   Local MAC: E0:8C:FE:5C:F4:E4
+[10:18:09.638][C][wifi:1688]:   Connected: YES
+[10:18:09.652][C][wifi:1392]:   IP Address: 192.168.0.66
+[10:18:09.653][C][wifi:1403]:   SSID: 'AKFISH'
+[10:18:09.653][C][wifi:1403]:   BSSID: 3C:64:CF:5C:81:73
+[10:18:09.653][C][wifi:1403]:   Hostname: 'esp32d2'
+[10:18:09.653][C][wifi:1403]:   Signal strength: -50 dB ▂▄▆█
+[10:18:09.653][C][wifi:1403]:   Channel: 2
+[10:18:09.653][C][wifi:1403]:   Subnet: 255.255.255.0
+[10:18:09.653][C][wifi:1403]:   Gateway: 192.168.0.1
+[10:18:09.653][C][wifi:1403]:   DNS1: 192.168.0.1
+[10:18:09.653][C][wifi:1403]:   DNS2: 0.0.0.0
+[10:18:09.654][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1823 count
+[10:18:09.654][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:18:09.659][C][esphome.ota:129]: Over-The-Air updates:
+[10:18:09.659][C][esphome.ota:129]:   Address: esp32d2.local:3232
+[10:18:09.659][C][esphome.ota:129]:   Version: 2
+[10:18:09.660][C][safe_mode:058]: Safe Mode:
+[10:18:09.660][C][safe_mode:058]:   Successful after: 60s
+[10:18:09.660][C][safe_mode:058]:   Invoke after: 10 attempts
+[10:18:09.660][C][safe_mode:058]:   Duration: 300s
+[10:18:09.670][C][safe_mode:079]:   Bootloader rollback: support unknown
+[10:18:09.679][C][api:368]: Server:
+[10:18:09.679][C][api:368]:   Address: esp32d2.local:6053
+[10:18:09.679][C][api:368]:   Listen backlog: 4
+[10:18:09.679][C][api:368]:   Max connections: 5
+[10:18:09.697][C][api:380]:   Noise encryption: NO
+[10:18:09.697][C][mdns:324]: mDNS:
+[10:18:09.697][C][mdns:324]:   Hostname: esp32d2
+[10:18:09.858][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:18:09.858][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:18:09.865][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2820 different samples (14100 SPS)
+[10:18:09.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:09.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:10.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1829 count
+[10:18:10.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1834 count
+[10:18:10.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:18:10.845][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63700 V
+[10:18:11.641][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1829 count
+[10:18:11.642][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:18:11.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:18:11.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:18:11.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3186 different samples (15930 SPS)
+[10:18:11.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:11.976][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:12.679][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1837 count
+[10:18:12.679][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:18:12.845][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:12.846][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:18:13.645][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:18:13.646][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:18:13.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:18:13.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:18:13.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3109 different samples (15545 SPS)
+[10:18:13.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00779 V
+[10:18:13.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.189 A
+[10:18:14.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1829 count
+[10:18:14.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:18:14.840][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:18:14.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:18:15.640][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:18:15.641][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:18:15.845][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:15.846][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:18:15.862][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3113 different samples (15565 SPS)
+[10:18:15.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00504 V
+[10:18:15.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.122 A
+[10:18:16.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:18:16.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:18:16.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:18:16.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:18:17.643][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:18:17.644][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:18:17.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:17.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:18:17.856][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3052 different samples (15260 SPS)
+[10:18:17.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00589 V
+[10:18:17.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.143 A
+[10:18:18.664][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1826 count
+[10:18:18.665][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:18:18.886][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:18:18.887][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:18:19.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:18:19.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:18:19.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:18:19.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:18:19.856][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3206 different samples (16030 SPS)
+[10:18:19.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:19.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:20.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:18:20.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:18:20.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:18:20.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:18:21.642][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1839 count
+[10:18:21.643][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:18:21.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:18:21.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:18:21.856][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3129 different samples (15645 SPS)
+[10:18:22.016][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:22.017][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:22.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:18:22.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:18:22.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:18:22.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:18:23.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1834 count
+[10:18:23.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:18:23.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:18:23.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:18:23.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3103 different samples (15515 SPS)
+[10:18:23.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:23.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:24.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:18:24.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:18:24.849][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:18:24.850][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:18:25.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:18:25.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:18:25.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:18:25.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:18:25.876][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3133 different samples (15665 SPS)
+[10:18:25.978][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00703 V
+[10:18:25.979][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.170 A
+[10:18:26.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1837 count
+[10:18:26.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1829 count
+[10:18:26.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:18:26.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63500 V
+[10:18:27.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1828 count
+[10:18:27.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:18:27.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63800 V
+[10:18:27.828][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:18:27.856][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3103 different samples (15515 SPS)
+[10:18:27.979][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:27.980][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:28.638][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1814 count
+[10:18:28.639][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1830 count
+[10:18:28.871][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63100 V
+[10:18:28.871][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:18:29.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1839 count
+[10:18:29.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1823 count
+[10:18:29.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:18:29.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:18:29.867][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3111 different samples (15555 SPS)
+[10:18:29.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00658 V
+[10:18:29.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.159 A
+[10:18:30.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:18:30.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:18:30.848][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:18:30.848][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:18:31.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:18:31.624][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:18:31.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:18:31.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:18:31.855][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3098 different samples (15490 SPS)
+[10:18:31.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:31.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:32.635][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1823 count
+[10:18:32.636][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:18:32.840][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63500 V
+[10:18:32.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:18:33.643][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:18:33.644][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:18:33.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:33.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:18:33.905][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3136 different samples (15680 SPS)
+[10:18:33.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:33.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:34.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:18:34.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:18:34.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:18:34.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:18:35.640][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1826 count
+[10:18:35.640][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1830 count
+[10:18:35.903][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:18:35.904][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63500 V
+[10:18:35.986][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3181 different samples (15905 SPS)
+[10:18:35.986][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:35.987][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:36.637][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:18:36.638][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:18:36.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:18:36.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:18:37.714][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1854 count
+[10:18:37.714][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:18:37.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:18:37.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:18:37.903][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3158 different samples (15790 SPS)
+[10:18:37.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:37.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:38.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:18:38.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:18:38.840][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:38.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:18:39.626][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1820 count
+[10:18:39.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:18:39.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:18:39.831][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:18:39.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.021A after 3236 different samples (16180 SPS)
+[10:18:39.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.02132 V
+[10:18:39.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.516 A
+[10:18:40.641][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:18:40.642][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:18:40.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:18:40.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:18:41.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:18:41.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:18:41.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:41.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63700 V
+[10:18:41.853][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3228 different samples (16140 SPS)
+[10:18:41.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:41.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:42.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1844 count
+[10:18:42.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:18:42.840][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64300 V
+[10:18:42.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:18:43.644][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:18:43.644][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1829 count
+[10:18:43.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:43.827][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:18:43.853][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3202 different samples (16010 SPS)
+[10:18:43.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:43.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:44.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:18:44.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:18:44.838][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:18:44.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:18:45.639][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1823 count
+[10:18:45.640][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:18:45.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63500 V
+[10:18:45.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65600 V
+[10:18:45.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3214 different samples (16070 SPS)
+[10:18:45.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00830 V
+[10:18:45.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.201 A
+[10:18:46.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:18:46.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:18:46.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:18:46.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:18:47.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:18:47.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:18:47.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:47.831][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64500 V
+[10:18:47.855][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3192 different samples (15960 SPS)
+[10:18:47.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00201 V
+[10:18:47.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.049 A
+[10:18:48.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:18:48.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:18:48.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:18:48.838][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:18:49.639][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1819 count
+[10:18:49.640][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:18:49.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:18:49.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:18:49.852][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3244 different samples (16220 SPS)
+[10:18:49.972][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:18:49.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:18:50.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:18:50.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:18:50.916][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65200 V
+[10:18:50.917][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:18:51.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:18:51.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:18:51.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:51.836][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:18:51.855][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3170 different samples (15850 SPS)
+[10:18:51.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00637 V
+[10:18:51.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.154 A
+[10:18:52.626][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:18:52.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:18:52.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:18:52.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:18:53.648][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1832 count
+[10:18:53.649][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:18:53.890][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63000 V
+[10:18:53.891][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:18:53.898][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.014A after 3239 different samples (16195 SPS)
+[10:18:53.994][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.01403 V
+[10:18:53.994][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.340 A
+[10:18:54.626][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:18:54.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1829 count
+[10:18:54.850][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:18:54.851][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:18:55.657][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:18:55.658][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:18:55.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:55.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:18:55.852][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3216 different samples (16080 SPS)
+[10:18:56.035][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00823 V
+[10:18:56.035][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.199 A
+[10:18:56.662][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:18:56.663][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1829 count
+[10:18:56.840][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:18:56.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:18:57.621][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:18:57.622][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:18:57.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:18:57.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63800 V
+[10:18:57.853][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3213 different samples (16065 SPS)
+[10:18:57.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00517 V
+[10:18:57.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.125 A
+[10:18:58.626][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1851 count
+[10:18:58.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:18:58.845][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:18:58.845][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:18:59.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:18:59.626][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:18:59.828][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:18:59.829][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:18:59.852][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3217 different samples (16085 SPS)
+[10:18:59.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00692 V
+[10:18:59.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.168 A
+[10:19:00.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:19:00.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:19:00.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:19:00.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64500 V
+[10:19:01.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1824 count
+[10:19:01.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:19:01.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:19:01.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:19:01.853][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3209 different samples (16045 SPS)
+[10:19:01.979][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00582 V
+[10:19:01.979][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.141 A
+[10:19:02.646][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1821 count
+[10:19:02.650][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:19:02.867][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:19:02.868][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66500 V
+[10:19:03.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:19:03.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1838 count
+[10:19:03.828][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:19:03.829][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:19:03.880][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3246 different samples (16230 SPS)
+[10:19:03.972][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00738 V
+[10:19:03.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.179 A
+[10:19:04.640][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:19:04.641][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:19:04.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:19:04.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:19:05.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:19:05.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:19:05.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:19:05.831][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:19:05.853][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3213 different samples (16065 SPS)
+[10:19:05.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00714 V
+[10:19:05.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.173 A
+[10:19:06.638][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1820 count
+[10:19:06.639][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:19:06.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:19:06.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:19:07.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:19:07.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:19:07.889][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63500 V
+[10:19:07.889][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:19:07.898][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3165 different samples (15825 SPS)
+[10:19:07.981][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:19:07.981][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:19:08.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:19:08.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:19:08.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63700 V
+[10:19:08.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:19:09.699][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1829 count
+[10:19:09.700][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1823 count
+[10:19:09.868][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:19:09.868][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:19:09.873][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3249 different samples (16245 SPS)
+[10:19:09.968][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:19:09.969][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:19:10.628][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:19:10.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:19:10.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:19:10.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:19:11.646][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1828 count
+[10:19:11.646][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:19:11.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:11.829][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:19:11.854][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3128 different samples (15640 SPS)
+[10:19:11.968][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00667 V
+[10:19:11.969][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.161 A
+[10:19:12.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1860 count
+[10:19:12.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:19:12.862][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:19:12.862][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:19:13.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:19:13.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:19:13.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:19:13.827][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:19:13.854][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3216 different samples (16080 SPS)
+[10:19:13.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:19:13.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:19:14.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1856 count
+[10:19:14.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:19:14.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:14.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64300 V
+[10:19:15.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1844 count
+[10:19:15.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:19:15.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:19:15.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:19:15.864][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3145 different samples (15725 SPS)
+[10:19:15.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00657 V
+[10:19:15.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.159 A
+[10:19:16.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:19:16.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1836 count
+[10:19:16.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:19:16.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:19:17.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:19:17.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:19:17.893][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:19:17.893][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63500 V
+[10:19:17.901][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3185 different samples (15925 SPS)
+[10:19:17.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00489 V
+[10:19:17.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.118 A
+[10:19:18.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:19:18.635][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:19:18.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:18.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66100 V
+[10:19:19.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1821 count
+[10:19:19.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:19:19.847][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:19:19.848][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:19:19.855][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3183 different samples (15915 SPS)
+[10:19:19.972][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00695 V
+[10:19:19.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.168 A
+[10:19:20.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:19:20.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:19:20.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:19:20.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:19:21.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:19:21.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:19:21.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:19:21.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63800 V
+[10:19:21.855][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3210 different samples (16050 SPS)
+[10:19:21.972][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00511 V
+[10:19:21.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.124 A
+[10:19:22.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1823 count
+[10:19:22.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:19:22.867][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.62800 V
+[10:19:22.867][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:19:23.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1835 count
+[10:19:23.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:19:23.879][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:19:23.879][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:19:23.895][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3211 different samples (16055 SPS)
+[10:19:23.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:19:23.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:19:24.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:19:24.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:19:24.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:19:24.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:19:25.635][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1844 count
+[10:19:25.636][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1850 count
+[10:19:25.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:25.838][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:19:25.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3216 different samples (16080 SPS)
+[10:19:25.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00723 V
+[10:19:25.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.175 A
+[10:19:26.662][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1853 count
+[10:19:26.663][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:19:26.840][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:19:26.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:19:27.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1831 count
+[10:19:27.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:19:27.849][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:19:27.850][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:19:27.856][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3228 different samples (16140 SPS)
+[10:19:27.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:19:27.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:19:28.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:19:28.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:19:28.913][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:28.914][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:19:29.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:19:29.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:19:29.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:19:29.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:19:29.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3227 different samples (16135 SPS)
+[10:19:29.982][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00766 V
+[10:19:29.983][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.186 A
+[10:19:30.628][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:19:30.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:19:30.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:30.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:19:31.679][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1839 count
+[10:19:31.680][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:19:31.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:19:31.836][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:19:31.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3309 different samples (16545 SPS)
+[10:19:31.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:19:31.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:19:32.647][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:19:32.648][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:19:32.845][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:19:32.846][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:19:33.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:19:33.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:19:33.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:19:33.836][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:19:33.946][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3242 different samples (16210 SPS)
+[10:19:34.003][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00425 V
+[10:19:34.004][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.103 A
+[10:19:34.644][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:19:34.644][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:19:34.850][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:19:34.850][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:19:35.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:19:35.626][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:19:35.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:35.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66000 V
+[10:19:35.856][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3198 different samples (15990 SPS)
+[10:19:35.976][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00516 V
+[10:19:35.977][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.125 A
+[10:19:36.647][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1819 count
+[10:19:36.647][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:19:36.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:19:36.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64300 V
+[10:19:37.635][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:19:37.636][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:19:37.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64300 V
+[10:19:37.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:19:37.868][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3193 different samples (15965 SPS)
+[10:19:37.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00598 V
+[10:19:37.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.145 A
+[10:19:38.637][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:19:38.638][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:19:38.850][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:19:38.850][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66200 V
+[10:19:39.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1854 count
+[10:19:39.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:19:39.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:19:39.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:19:39.856][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3165 different samples (15825 SPS)
+[10:19:39.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:19:39.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:19:40.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:19:40.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:19:40.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:19:40.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:19:41.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:19:41.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:19:41.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:19:41.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65200 V
+[10:19:41.873][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3201 different samples (16005 SPS)
+[10:19:41.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00740 V
+[10:19:41.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.179 A
+[10:19:42.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:19:42.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1831 count
+[10:19:42.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:19:42.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:19:43.687][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:19:43.688][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:19:43.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:19:43.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:19:43.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3167 different samples (15835 SPS)
+[10:19:43.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:19:43.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:19:44.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:19:44.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:19:44.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:19:44.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:19:45.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:19:45.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:19:45.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:19:45.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:19:45.889][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3133 different samples (15665 SPS)
+[10:19:45.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00553 V
+[10:19:45.976][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.134 A
+[10:19:46.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:19:46.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:19:46.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:19:46.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:19:47.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:19:47.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:19:47.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:19:47.829][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63900 V
+[10:19:47.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3134 different samples (15670 SPS)
+[10:19:47.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00305 V
+[10:19:47.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.074 A
+[10:19:48.675][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1836 count
+[10:19:48.676][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1822 count
+[10:19:48.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:19:48.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64700 V
+[10:19:49.641][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:19:49.642][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:19:49.828][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:49.829][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:19:49.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3187 different samples (15935 SPS)
+[10:19:49.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00703 V
+[10:19:49.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.170 A
+[10:19:50.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:19:50.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:19:50.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:19:50.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:19:51.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:19:51.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:19:51.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:51.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:19:51.859][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3137 different samples (15685 SPS)
+[10:19:51.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00653 V
+[10:19:51.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.158 A
+[10:19:52.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1854 count
+[10:19:52.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:19:52.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:19:52.845][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63800 V
+[10:19:53.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1838 count
+[10:19:53.635][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:19:53.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:19:53.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:19:53.856][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3226 different samples (16130 SPS)
+[10:19:53.977][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00506 V
+[10:19:53.978][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.123 A
+[10:19:54.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:19:54.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:19:54.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:54.845][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:19:55.635][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1854 count
+[10:19:55.636][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1822 count
+[10:19:55.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.66500 V
+[10:19:55.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:19:55.873][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3236 different samples (16180 SPS)
+[10:19:56.060][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:19:56.061][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:19:56.689][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:19:56.689][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:19:56.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:19:56.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:19:57.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:19:57.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:19:57.887][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64300 V
+[10:19:57.888][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:19:57.946][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3291 different samples (16455 SPS)
+[10:19:57.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:19:57.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:19:58.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:19:58.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:19:58.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:19:58.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:19:59.637][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:19:59.638][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:19:59.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:19:59.838][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:19:59.859][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3252 different samples (16260 SPS)
+[10:19:59.988][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00728 V
+[10:19:59.989][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.176 A
+[10:20:00.731][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:20:00.732][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:20:00.845][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:20:00.846][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:20:01.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:20:01.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:20:01.860][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:20:01.860][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64500 V
+[10:20:01.870][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3189 different samples (15945 SPS)
+[10:20:01.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00341 V
+[10:20:01.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.083 A
+[10:20:02.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:20:02.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1851 count
+[10:20:02.862][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:20:02.862][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:20:03.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:20:03.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:20:03.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:20:03.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:03.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3116 different samples (15580 SPS)
+[10:20:03.978][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00659 V
+[10:20:03.978][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.160 A
+[10:20:04.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:20:04.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:20:04.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:20:04.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:20:05.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:20:05.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:20:05.836][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:20:05.836][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:20:05.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3143 different samples (15715 SPS)
+[10:20:05.983][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:05.984][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:06.685][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1825 count
+[10:20:06.685][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:20:06.882][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64800 V
+[10:20:06.883][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:20:07.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:20:07.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:20:07.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:20:07.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63700 V
+[10:20:07.870][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3157 different samples (15785 SPS)
+[10:20:07.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:07.976][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:08.651][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:20:08.652][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1830 count
+[10:20:08.857][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:20:08.858][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:20:09.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1829 count
+[10:20:09.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1829 count
+[10:20:09.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:09.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:20:09.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.017A after 3169 different samples (15845 SPS)
+[10:20:09.977][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.01711 V
+[10:20:09.978][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.414 A
+[10:20:10.701][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1816 count
+[10:20:10.702][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:20:10.904][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:20:10.905][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63600 V
+[10:20:11.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:20:11.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:20:11.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:20:11.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65200 V
+[10:20:11.905][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3071 different samples (15355 SPS)
+[10:20:11.995][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00466 V
+[10:20:11.996][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.113 A
+[10:20:12.638][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1852 count
+[10:20:12.639][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1811 count
+[10:20:12.845][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:12.845][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66200 V
+[10:20:13.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1826 count
+[10:20:13.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:20:13.882][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.66100 V
+[10:20:13.882][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63800 V
+[10:20:13.891][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3156 different samples (15780 SPS)
+[10:20:13.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:13.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:14.641][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1824 count
+[10:20:14.642][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:20:14.845][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:20:14.846][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:15.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:20:15.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:20:15.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:20:15.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:20:15.861][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3175 different samples (15875 SPS)
+[10:20:15.976][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00730 V
+[10:20:15.976][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.177 A
+[10:20:16.635][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:20:16.635][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:20:16.845][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:20:16.846][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:20:17.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1844 count
+[10:20:17.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:20:17.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:20:17.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:20:17.863][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.020A after 3130 different samples (15650 SPS)
+[10:20:17.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.01986 V
+[10:20:17.976][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.481 A
+[10:20:18.642][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:20:18.643][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:20:18.845][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:20:18.846][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64800 V
+[10:20:19.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:20:19.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:20:19.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:20:19.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:20:19.860][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3067 different samples (15335 SPS)
+[10:20:19.977][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00788 V
+[10:20:19.977][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.191 A
+[10:20:20.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:20:20.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:20:20.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:20:20.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:20:21.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:20:21.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:20:21.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:20:21.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63200 V
+[10:20:21.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.001A after 3224 different samples (16120 SPS)
+[10:20:21.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00126 V
+[10:20:21.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.030 A
+[10:20:22.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:20:22.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:20:22.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:20:22.838][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:20:23.646][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1821 count
+[10:20:23.646][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1833 count
+[10:20:23.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64500 V
+[10:20:23.831][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:20:23.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3204 different samples (16020 SPS)
+[10:20:23.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00771 V
+[10:20:23.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.187 A
+[10:20:24.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1837 count
+[10:20:24.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:20:24.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:20:24.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:20:25.645][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1838 count
+[10:20:25.646][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:20:25.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:20:25.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:20:25.859][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3209 different samples (16045 SPS)
+[10:20:25.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00514 V
+[10:20:25.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.125 A
+[10:20:26.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:20:26.635][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1813 count
+[10:20:26.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:26.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65900 V
+[10:20:27.643][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:20:27.644][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:20:27.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:27.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:20:27.874][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3121 different samples (15605 SPS)
+[10:20:27.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00520 V
+[10:20:27.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.126 A
+[10:20:28.642][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:20:28.642][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:20:28.847][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:28.847][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:20:29.647][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:20:29.647][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1830 count
+[10:20:29.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:20:29.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:29.859][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3137 different samples (15685 SPS)
+[10:20:29.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00589 V
+[10:20:29.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.143 A
+[10:20:30.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1844 count
+[10:20:30.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:20:30.847][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:20:30.848][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63700 V
+[10:20:31.652][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1829 count
+[10:20:31.653][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:20:31.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:20:31.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:31.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3143 different samples (15715 SPS)
+[10:20:31.990][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:31.990][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:32.637][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:20:32.637][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:20:32.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:20:32.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:20:33.649][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1838 count
+[10:20:33.650][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:20:33.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:20:33.837][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:20:33.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3211 different samples (16055 SPS)
+[10:20:33.985][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00767 V
+[10:20:33.985][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.186 A
+[10:20:34.635][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:20:34.636][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1828 count
+[10:20:34.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:20:34.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:35.646][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:20:35.646][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:20:35.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:20:35.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63900 V
+[10:20:35.866][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3105 different samples (15525 SPS)
+[10:20:35.977][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00226 V
+[10:20:35.977][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.055 A
+[10:20:36.643][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1853 count
+[10:20:36.643][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:20:36.849][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:20:36.850][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:20:37.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:20:37.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:20:37.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:20:37.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:37.875][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3178 different samples (15890 SPS)
+[10:20:37.978][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00664 V
+[10:20:37.979][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.161 A
+[10:20:38.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:20:38.635][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:20:38.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:20:38.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64500 V
+[10:20:39.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:20:39.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1819 count
+[10:20:39.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:20:39.836][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:20:39.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3212 different samples (16060 SPS)
+[10:20:39.980][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:39.981][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:40.638][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1822 count
+[10:20:40.638][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1822 count
+[10:20:40.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:40.845][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:20:41.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:20:41.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:20:41.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:41.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:41.871][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3145 different samples (15725 SPS)
+[10:20:41.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00735 V
+[10:20:41.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.178 A
+[10:20:42.645][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1844 count
+[10:20:42.645][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:20:42.848][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:20:42.849][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:20:43.653][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1830 count
+[10:20:43.653][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:20:43.850][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:20:43.851][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:20:43.991][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3143 different samples (15715 SPS)
+[10:20:43.992][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:43.992][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:44.669][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1829 count
+[10:20:44.669][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:20:44.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63500 V
+[10:20:44.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:45.716][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:20:45.717][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:20:45.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:20:45.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:20:45.864][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3129 different samples (15645 SPS)
+[10:20:45.976][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:45.977][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:46.639][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1851 count
+[10:20:46.640][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1829 count
+[10:20:46.848][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:20:46.848][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63700 V
+[10:20:47.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1851 count
+[10:20:47.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:20:47.828][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V[10:20:47.829][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63800 V
+[10:20:47.867][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3149 different samples (15745 SPS)
+[10:20:47.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:47.976][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:48.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:20:48.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1830 count
+[10:20:48.891][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:20:48.892][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:20:49.637][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:20:49.638][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:20:49.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:20:49.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:20:49.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3132 different samples (15660 SPS)
+[10:20:49.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:49.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:50.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:20:50.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1849 count
+[10:20:50.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:20:50.845][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:20:51.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:20:51.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1849 count
+[10:20:51.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63800 V
+[10:20:51.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:20:51.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3145 different samples (15725 SPS)
+[10:20:51.979][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:51.980][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:52.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:20:52.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:20:52.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:20:52.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:20:53.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:20:53.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:20:53.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:20:53.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:53.860][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3125 different samples (15625 SPS)
+[10:20:53.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00588 V
+[10:20:53.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.142 A
+[10:20:54.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1826 count
+[10:20:54.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:20:54.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:54.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65600 V
+[10:20:55.673][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:20:55.674][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:20:55.854][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:55.855][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63800 V
+[10:20:55.870][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3152 different samples (15760 SPS)
+[10:20:55.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:55.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:56.674][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1825 count
+[10:20:56.674][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1823 count
+[10:20:56.853][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:56.853][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64500 V
+[10:20:57.641][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1826 count
+[10:20:57.641][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:20:57.903][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63800 V
+[10:20:57.903][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:20:57.913][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3122 different samples (15610 SPS)
+[10:20:57.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:20:57.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:20:58.635][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:20:58.636][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:20:58.848][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:20:58.849][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:59.643][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:20:59.644][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:20:59.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:20:59.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:20:59.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3091 different samples (15455 SPS)
+[10:20:59.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00566 V
+[10:20:59.976][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.137 A
+[10:21:00.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:21:00.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:21:00.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:21:00.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:01.649][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:21:01.650][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:21:01.838][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:21:01.838][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:21:01.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3128 different samples (15640 SPS)
+[10:21:01.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00513 V
+[10:21:01.976][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.124 A
+[10:21:02.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:21:02.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1835 count
+[10:21:02.846][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64500 V
+[10:21:02.847][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:21:03.636][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:21:03.637][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:21:03.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:21:03.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:03.859][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3107 different samples (15535 SPS)
+[10:21:03.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00626 V
+[10:21:03.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.152 A
+[10:21:04.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:21:04.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1828 count
+[10:21:04.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:21:04.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63900 V
+[10:21:05.680][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1830 count
+[10:21:05.680][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1856 count
+[10:21:05.848][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:21:05.849][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:21:05.861][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3162 different samples (15810 SPS)
+[10:21:05.977][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:05.977][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:06.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:21:06.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:21:06.851][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:21:06.852][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:21:07.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1854 count
+[10:21:07.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1832 count
+[10:21:07.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:21:07.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:21:07.859][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3121 different samples (15605 SPS)
+[10:21:08.034][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:08.034][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:08.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1844 count
+[10:21:08.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:21:08.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:21:08.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:09.636][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:21:09.637][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:21:09.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:21:09.829][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:21:09.862][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3151 different samples (15755 SPS)
+[10:21:09.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:09.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:10.642][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1837 count
+[10:21:10.643][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:21:10.847][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:21:10.847][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:21:11.651][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1837 count
+[10:21:11.652][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:21:11.838][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:21:11.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:21:11.936][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3199 different samples (15995 SPS)
+[10:21:11.977][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:11.978][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:12.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:21:12.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:21:12.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:21:12.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:21:13.628][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:21:13.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:21:13.849][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:21:13.850][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63900 V
+[10:21:13.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3088 different samples (15440 SPS)
+[10:21:13.978][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:13.979][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:14.725][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1839 count
+[10:21:14.726][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:21:14.863][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:21:14.863][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:15.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1823 count
+[10:21:15.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:21:15.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:21:15.845][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:21:15.920][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.004A after 3135 different samples (15675 SPS)
+[10:21:15.993][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00440 V
+[10:21:15.994][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.107 A
+[10:21:16.649][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:21:16.650][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:21:16.846][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:21:16.847][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:21:17.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1821 count
+[10:21:17.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1823 count
+[10:21:17.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:21:17.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:21:17.867][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3127 different samples (15635 SPS)
+[10:21:17.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:17.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:18.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:21:18.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:21:18.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:21:18.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:19.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1826 count
+[10:21:19.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:21:19.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:21:19.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:21:19.868][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3151 different samples (15755 SPS)
+[10:21:19.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00691 V
+[10:21:19.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.167 A
+[10:21:20.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1830 count
+[10:21:20.635][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:21:20.845][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:21:20.846][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:21.628][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:21:21.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:21:21.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64300 V
+[10:21:21.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:21:21.860][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3125 different samples (15625 SPS)
+[10:21:21.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:21.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:22.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1825 count
+[10:21:22.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:21:22.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64500 V
+[10:21:22.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:23.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:21:23.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:21:23.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:21:23.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63900 V
+[10:21:23.877][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3191 different samples (15955 SPS)
+[10:21:23.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:23.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:24.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:21:24.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:21:24.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:21:24.845][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66200 V
+[10:21:25.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:21:25.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:21:25.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:21:25.828][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64800 V
+[10:21:25.869][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3169 different samples (15845 SPS)
+[10:21:25.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:25.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:26.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1830 count
+[10:21:26.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:21:26.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:21:26.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63900 V
+[10:21:27.643][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1834 count
+[10:21:27.644][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:21:27.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:21:27.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:21:27.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3241 different samples (16205 SPS)
+[10:21:27.972][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00749 V
+[10:21:27.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.181 A
+[10:21:28.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1852 count
+[10:21:28.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:21:28.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:21:28.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65900 V
+[10:21:29.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:21:29.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:21:29.872][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:21:29.873][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63700 V
+[10:21:29.905][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3250 different samples (16250 SPS)
+[10:21:29.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:29.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:30.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1853 count
+[10:21:30.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:21:30.838][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:21:30.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65600 V
+[10:21:31.635][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1825 count
+[10:21:31.636][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:21:31.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:21:31.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:21:31.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3221 different samples (16105 SPS)
+[10:21:31.978][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00713 V
+[10:21:31.979][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.173 A
+[10:21:32.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1854 count
+[10:21:32.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:21:32.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:21:32.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:21:33.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1831 count
+[10:21:33.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:21:33.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:21:33.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66000 V
+[10:21:33.859][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3233 different samples (16165 SPS)
+[10:21:33.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00542 V
+[10:21:33.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.131 A
+[10:21:34.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1824 count
+[10:21:34.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:21:34.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:21:34.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65000 V
+[10:21:35.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1830 count
+[10:21:35.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:21:35.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:21:35.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:35.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3177 different samples (15885 SPS)
+[10:21:35.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00199 V
+[10:21:35.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.048 A
+[10:21:36.635][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:21:36.636][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:21:36.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:21:36.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:21:37.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:21:37.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:21:37.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:21:37.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65600 V
+[10:21:37.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3225 different samples (16125 SPS)
+[10:21:37.983][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00730 V
+[10:21:37.983][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.177 A
+[10:21:38.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:21:38.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:21:38.862][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65100 V
+[10:21:38.863][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64300 V
+[10:21:39.688][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1830 count
+[10:21:39.689][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:21:39.882][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:21:39.883][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.60100 V
+[10:21:39.891][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.023A after 3148 different samples (15740 SPS)
+[10:21:39.992][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.02307 V
+[10:21:39.993][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.559 A
+[10:21:40.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:21:40.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:21:40.851][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:21:40.851][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63400 V
+[10:21:41.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1855 count
+[10:21:41.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1849 count
+[10:21:41.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:21:41.831][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:41.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3121 different samples (15605 SPS)
+[10:21:41.977][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00466 V
+[10:21:41.978][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.113 A
+[10:21:42.636][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1834 count
+[10:21:42.637][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:21:42.875][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:21:42.875][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63900 V
+[10:21:43.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1855 count
+[10:21:43.626][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:21:43.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:21:43.831][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:21:43.862][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3115 different samples (15575 SPS)
+[10:21:43.981][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:43.981][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:44.668][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1832 count
+[10:21:44.668][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1839 count
+[10:21:44.848][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:21:44.849][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65900 V
+[10:21:45.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:21:45.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:21:45.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:21:45.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:45.869][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.013A after 3130 different samples (15650 SPS)
+[10:21:45.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.01312 V
+[10:21:45.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.318 A
+[10:21:46.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:21:46.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:21:46.847][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:21:46.847][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:47.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:21:47.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:21:47.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:21:47.828][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:21:47.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3197 different samples (15985 SPS)
+[10:21:47.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:21:47.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:21:48.693][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:21:48.693][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:21:48.866][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65100 V
+[10:21:48.867][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66000 V
+[10:21:49.632][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:21:49.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:21:49.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:21:49.831][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66000 V
+[10:21:49.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3156 different samples (15780 SPS)
+[10:21:49.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00642 V
+[10:21:49.976][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.155 A
+[10:21:50.637][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1837 count
+[10:21:50.637][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:21:50.854][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:21:50.855][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66600 V
+[10:21:51.647][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1833 count
+[10:21:51.647][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:21:51.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:21:51.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63700 V
+[10:21:51.862][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 3191 different samples (15955 SPS)
+[10:21:51.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00981 V
+[10:21:51.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.238 A
+[10:21:52.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:21:52.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:21:52.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:21:52.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66400 V
+[10:21:53.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1839 count
+[10:21:53.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:21:53.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:21:53.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:21:53.861][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3230 different samples (16150 SPS)
+[10:21:53.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00728 V
+[10:21:53.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.176 A
+[10:21:54.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:21:54.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:21:54.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:21:54.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:21:55.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:21:55.624][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:21:55.844][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:21:55.845][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:21:55.860][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3229 different samples (16145 SPS)
+[10:21:55.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00578 V
+[10:21:55.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.140 A
+[10:21:56.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:21:56.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:21:56.856][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:21:56.857][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65100 V
+[10:21:57.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:21:57.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:21:57.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:21:57.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65100 V
+[10:21:57.859][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3221 different samples (16105 SPS)
+[10:21:57.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00647 V
+[10:21:57.969][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.157 A
+[10:21:58.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:21:58.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:21:58.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:21:58.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:21:59.628][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:21:59.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:21:59.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:21:59.827][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66300 V
+[10:21:59.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3266 different samples (16330 SPS)
+[10:21:59.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00775 V
+[10:21:59.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.188 A
+[10:22:00.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1851 count
+[10:22:00.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:22:00.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:22:00.837][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:22:01.639][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1826 count
+[10:22:01.640][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:22:01.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:22:01.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:01.855][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.015A after 3177 different samples (15885 SPS)
+[10:22:01.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.01536 V
+[10:22:01.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.372 A
+[10:22:02.637][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:22:02.637][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:22:02.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:22:02.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:22:03.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1838 count
+[10:22:03.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:22:03.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:22:03.828][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63900 V
+[10:22:03.868][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3160 different samples (15800 SPS)
+[10:22:03.972][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00222 V
+[10:22:03.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.054 A
+[10:22:04.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:22:04.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1831 count
+[10:22:04.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:22:04.838][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:22:05.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1824 count
+[10:22:05.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:22:05.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:22:05.836][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:05.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.012A after 3255 different samples (16275 SPS)
+[10:22:05.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.01238 V
+[10:22:05.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.300 A
+[10:22:06.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:22:06.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:22:06.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:22:06.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:22:07.637][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1839 count
+[10:22:07.637][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1837 count
+[10:22:07.825][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64700 V
+[10:22:07.825][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:22:07.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.011A after 3176 different samples (15880 SPS)
+[10:22:07.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.01051 V
+[10:22:07.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.255 A
+[10:22:08.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:22:08.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:22:08.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:22:08.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:09.641][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:22:09.641][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1828 count
+[10:22:09.838][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:22:09.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:09.854][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3161 different samples (15805 SPS)
+[10:22:09.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00469 V
+[10:22:09.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.114 A
+[10:22:10.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:22:10.635][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:22:10.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:22:10.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:22:11.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1856 count
+[10:22:11.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:22:11.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:22:11.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:11.855][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3147 different samples (15735 SPS)
+[10:22:11.987][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00523 V
+[10:22:11.988][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.127 A
+[10:22:12.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1821 count
+[10:22:12.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:22:12.836][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65100 V
+[10:22:12.836][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:13.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:22:13.626][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:22:13.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:22:13.829][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:22:13.854][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.010A after 3056 different samples (15280 SPS)
+[10:22:13.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.01001 V
+[10:22:13.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.242 A
+[10:22:14.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:22:14.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:22:14.862][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65200 V
+[10:22:14.863][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:15.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:22:15.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1807 count
+[10:22:15.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63700 V
+[10:22:15.831][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:22:15.869][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3159 different samples (15795 SPS)
+[10:22:16.031][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00656 V
+[10:22:16.031][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.159 A
+[10:22:16.669][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1830 count
+[10:22:16.670][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:22:16.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:22:16.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64500 V
+[10:22:17.623][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1819 count
+[10:22:17.624][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1831 count
+[10:22:17.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:22:17.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:22:17.865][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.003A after 3151 different samples (15755 SPS)
+[10:22:17.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00324 V
+[10:22:17.976][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.079 A
+[10:22:18.637][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:22:18.638][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:22:18.840][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63700 V
+[10:22:18.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:19.666][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1818 count
+[10:22:19.666][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:22:19.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:22:19.829][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:22:19.865][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.011A after 3126 different samples (15630 SPS)
+[10:22:19.981][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.01060 V
+[10:22:19.982][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.257 A
+[10:22:20.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:22:20.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:22:20.848][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:22:20.849][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64500 V
+[10:22:21.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:22:21.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1829 count
+[10:22:21.830][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:22:21.831][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64700 V
+[10:22:21.872][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3135 different samples (15675 SPS)
+[10:22:22.002][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:22:22.003][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:22:22.659][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1833 count
+[10:22:22.660][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1858 count
+[10:22:22.836][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:22:22.837][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66000 V
+[10:22:23.628][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:22:23.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:22:23.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:22:23.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66000 V
+[10:22:23.917][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.025A after 3201 different samples (16005 SPS)
+[10:22:23.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.02511 V
+[10:22:23.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.608 A
+[10:22:24.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:22:24.635][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:22:24.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:22:24.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:22:25.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1823 count
+[10:22:25.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1814 count
+[10:22:25.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64500 V
+[10:22:25.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:22:25.870][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.013A after 3214 different samples (16070 SPS)
+[10:22:25.972][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.01261 V
+[10:22:25.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.306 A
+[10:22:26.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:22:26.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:22:26.840][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.66000 V
+[10:22:26.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65600 V
+[10:22:27.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1829 count
+[10:22:27.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:22:27.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:22:27.831][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:22:27.883][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3273 different samples (16365 SPS)
+[10:22:27.976][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00793 V
+[10:22:27.977][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.192 A
+[10:22:28.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1851 count
+[10:22:28.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1837 count
+[10:22:28.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:22:28.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:22:29.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:22:29.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:22:29.829][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:22:29.830][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:22:29.855][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3231 different samples (16155 SPS)
+[10:22:29.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:22:29.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:22:30.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1783 count
+[10:22:30.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:22:30.854][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:22:30.855][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63700 V
+[10:22:31.626][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:22:31.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1829 count
+[10:22:31.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:22:31.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:22:31.854][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3242 different samples (16210 SPS)
+[10:22:31.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00750 V
+[10:22:31.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.182 A
+[10:22:32.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:22:32.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:22:32.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:22:32.837][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63800 V
+[10:22:33.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:22:33.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:22:33.824][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63500 V
+[10:22:33.825][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63900 V
+[10:22:33.863][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3192 different samples (15960 SPS)
+[10:22:33.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:22:33.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:22:34.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1824 count
+[10:22:34.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:22:34.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:22:34.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:35.639][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1834 count
+[10:22:35.640][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:22:35.826][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63500 V
+[10:22:35.826][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:22:35.853][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3165 different samples (15825 SPS)
+[10:22:35.979][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:22:35.979][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:22:36.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:22:36.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:22:36.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:22:36.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:22:37.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1819 count
+[10:22:37.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:22:37.826][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:22:37.827][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:22:37.900][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3175 different samples (15875 SPS)
+[10:22:37.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:22:37.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:22:38.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:22:38.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1809 count
+[10:22:38.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:22:38.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:22:39.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:22:39.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:22:39.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64900 V
+[10:22:39.838][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:39.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3091 different samples (15455 SPS)
+[10:22:39.971][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:22:39.972][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:22:40.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:22:40.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:22:40.838][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:22:40.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:22:41.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1853 count
+[10:22:41.635][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:22:41.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:22:41.836][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:22:41.858][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3109 different samples (15545 SPS)
+[10:22:41.981][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00514 V
+[10:22:41.982][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.125 A
+[10:22:42.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1825 count
+[10:22:42.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:22:42.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.66600 V
+[10:22:42.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:22:43.685][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1835 count
+[10:22:43.686][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:22:43.888][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:22:43.889][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:22:43.897][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3160 different samples (15800 SPS)
+[10:22:43.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:22:43.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:22:44.675][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:22:44.676][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:22:44.850][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:22:44.851][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:22:45.626][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:22:45.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:22:45.831][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:22:45.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65100 V
+[10:22:45.853][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3142 different samples (15710 SPS)
+[10:22:45.977][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00714 V
+[10:22:45.977][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.173 A
+[10:22:46.651][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:22:46.652][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:22:46.840][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:22:46.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66000 V
+[10:22:47.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:22:47.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:22:47.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:22:47.827][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64300 V
+[10:22:47.855][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.002A after 3103 different samples (15515 SPS)
+[10:22:47.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00207 V
+[10:22:47.969][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.050 A
+[10:22:48.638][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1835 count
+[10:22:48.639][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:22:48.842][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:22:48.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:22:49.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:22:49.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:22:49.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:22:49.832][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:22:49.863][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.008A after 3168 different samples (15840 SPS)
+[10:22:49.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00797 V
+[10:22:49.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.193 A
+[10:22:50.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1851 count
+[10:22:50.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1835 count
+[10:22:50.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:22:50.838][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:22:51.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1821 count
+[10:22:51.624][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:22:51.826][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:22:51.827][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63800 V
+[10:22:51.860][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3145 different samples (15725 SPS)
+[10:22:51.974][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:22:51.974][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:22:52.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1826 count
+[10:22:52.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1846 count
+[10:22:52.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:22:52.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:22:53.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1838 count
+[10:22:53.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:22:53.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:22:53.827][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:22:53.867][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3157 different samples (15785 SPS)
+[10:22:53.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00517 V
+[10:22:53.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.125 A
+[10:22:54.626][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:22:54.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:22:54.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:22:54.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:22:55.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:22:55.626][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:22:55.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:22:55.843][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:22:55.852][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3174 different samples (15870 SPS)
+[10:22:55.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:22:55.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:22:56.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:22:56.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:22:56.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:22:56.838][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:22:57.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1839 count
+[10:22:57.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:22:57.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64700 V
+[10:22:57.828][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:22:57.856][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3196 different samples (15980 SPS)
+[10:22:57.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00632 V
+[10:22:57.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.153 A
+[10:22:58.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1851 count
+[10:22:58.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:22:58.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:22:58.834][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64700 V
+[10:22:59.628][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:22:59.629][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1829 count
+[10:22:59.857][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:22:59.858][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64300 V
+[10:22:59.885][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3159 different samples (15795 SPS)
+[10:23:00.029][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:00.030][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:00.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1837 count
+[10:23:00.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:23:00.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:23:00.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:23:01.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:23:01.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:23:01.824][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:23:01.825][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:23:01.875][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3240 different samples (16200 SPS)
+[10:23:01.969][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:01.970][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:02.628][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:23:02.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:23:02.837][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:02.837][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66000 V
+[10:23:03.630][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1833 count
+[10:23:03.631][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:23:03.822][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:23:03.822][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63900 V
+[10:23:03.850][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3184 different samples (15920 SPS)
+[10:23:03.968][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:03.969][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:04.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1819 count
+[10:23:04.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:23:04.838][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64400 V
+[10:23:04.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:23:05.623][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:23:05.623][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:23:05.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64300 V
+[10:23:05.828][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:23:06.009][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3230 different samples (16150 SPS)
+[10:23:06.010][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00619 V
+[10:23:06.010][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.150 A
+[10:23:06.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:23:06.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1831 count
+[10:23:06.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:23:06.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:23:07.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:23:07.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:23:07.820][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:23:07.821][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:23:07.861][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3110 different samples (15550 SPS)
+[10:23:07.966][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:07.967][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:08.634][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1829 count
+[10:23:08.634][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:23:08.855][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:23:08.855][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:23:09.645][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1825 count
+[10:23:09.645][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1823 count
+[10:23:09.846][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:23:09.846][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:23:09.860][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.022A after 3152 different samples (15760 SPS)
+[10:23:09.966][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.02157 V
+[10:23:09.967][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.523 A
+[10:23:10.626][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:23:10.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:23:10.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:23:10.836][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:23:11.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:23:11.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1841 count
+[10:23:11.823][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:23:11.823][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:23:11.854][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3181 different samples (15905 SPS)
+[10:23:11.983][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:11.983][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:12.641][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1841 count
+[10:23:12.642][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1847 count
+[10:23:12.860][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:23:12.861][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:23:13.636][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:23:13.637][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:23:13.828][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:13.829][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:23:13.855][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3123 different samples (15615 SPS)
+[10:23:13.968][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:13.969][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:14.631][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:23:14.632][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:23:14.871][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:23:14.872][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64800 V
+[10:23:15.645][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:23:15.646][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:23:15.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64300 V
+[10:23:15.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:23:15.852][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3162 different samples (15810 SPS)
+[10:23:15.979][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:15.980][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:16.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:23:16.626][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:23:16.838][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:23:16.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:23:17.693][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1835 count
+[10:23:17.694][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:23:17.826][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63900 V
+[10:23:17.827][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65600 V
+[10:23:17.854][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3110 different samples (15550 SPS)
+[10:23:17.967][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:17.968][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:18.626][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1843 count
+[10:23:18.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1850 count
+[10:23:18.847][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:18.848][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66200 V
+[10:23:19.623][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1853 count
+[10:23:19.624][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:23:19.827][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65400 V
+[10:23:19.828][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64000 V
+[10:23:19.852][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3182 different samples (15910 SPS)
+[10:23:19.973][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:19.973][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:20.665][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:23:20.666][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:23:20.848][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:23:20.849][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:23:21.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1853 count
+[10:23:21.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:23:21.824][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:21.824][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63800 V
+[10:23:21.852][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3121 different samples (15605 SPS)
+[10:23:21.977][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:21.978][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:22.635][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:23:22.635][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:23:22.838][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65800 V
+[10:23:22.839][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64200 V
+[10:23:23.623][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:23:23.623][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1844 count
+[10:23:23.824][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64200 V
+[10:23:23.825][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:23:23.863][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3170 different samples (15850 SPS)
+[10:23:23.967][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00527 V
+[10:23:23.967][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.128 A
+[10:23:24.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1842 count
+[10:23:24.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:23:24.841][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65600 V
+[10:23:24.842][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:23:25.621][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:23:25.622][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1825 count
+[10:23:25.823][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:23:25.823][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:23:25.853][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3125 different samples (15625 SPS)
+[10:23:25.975][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:25.975][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:26.684][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1822 count
+[10:23:26.685][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1830 count
+[10:23:26.843][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64500 V
+[10:23:26.844][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:23:27.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1853 count
+[10:23:27.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1842 count
+[10:23:27.824][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:27.825][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:23:27.857][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3165 different samples (15825 SPS)
+[10:23:27.968][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00710 V
+[10:23:27.968][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.172 A
+[10:23:28.641][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:23:28.642][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:23:28.853][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.63200 V
+[10:23:28.854][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:23:29.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:23:29.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1822 count
+[10:23:29.822][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:23:29.823][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.63500 V
+[10:23:29.859][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3204 different samples (16020 SPS)
+[10:23:29.968][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:29.969][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:30.629][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1822 count
+[10:23:30.630][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:23:30.847][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:30.848][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
+[10:23:31.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1845 count
+[10:23:31.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:23:31.823][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:31.824][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:23:31.850][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.007A after 3121 different samples (15605 SPS)
+[10:23:31.967][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00701 V
+[10:23:31.968][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.170 A
+[10:23:32.626][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1827 count
+[10:23:32.627][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:23:32.833][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:23:32.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64400 V
+[10:23:33.617][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1824 count
+[10:23:33.618][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1829 count
+[10:23:33.822][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64100 V
+[10:23:33.822][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64800 V
+[10:23:33.854][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3197 different samples (15985 SPS)
+[10:23:34.025][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:34.026][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:34.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1822 count
+[10:23:34.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1826 count
+[10:23:34.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:23:34.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65800 V
+[10:23:35.622][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1847 count
+[10:23:35.622][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:23:35.824][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:23:35.825][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64100 V
+[10:23:35.860][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 3172 different samples (15860 SPS)
+[10:23:35.967][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:35.968][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:36.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1853 count
+[10:23:36.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:23:36.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:36.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:23:37.621][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:23:37.622][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1821 count
+[10:23:37.823][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:37.823][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:23:37.851][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3206 different samples (16030 SPS)
+[10:23:37.970][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00603 V
+[10:23:37.971][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.146 A
+[10:23:38.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:23:38.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:23:38.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:38.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.64500 V
+[10:23:39.633][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1823 count
+[10:23:39.633][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1845 count
+[10:23:39.822][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65300 V
+[10:23:39.823][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:23:39.853][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3076 different samples (15380 SPS)
+[10:23:39.965][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00600 V
+[10:23:39.966][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.145 A
+[10:23:40.623][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1846 count
+[10:23:40.624][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:23:40.839][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:23:40.840][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:23:41.625][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1819 count
+[10:23:41.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1843 count
+[10:23:41.826][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64300 V
+[10:23:41.827][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:23:41.852][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.006A after 3066 different samples (15330 SPS)
+[10:23:41.967][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00551 V
+[10:23:41.967][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.133 A
+[10:23:42.624][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1821 count
+[10:23:42.625][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:23:42.840][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65500 V
+[10:23:42.841][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65700 V
+[10:23:43.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1813 count
+[10:23:43.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1840 count
+[10:23:43.832][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:23:43.833][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65300 V
+[10:23:43.848][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.000A after 2911 different samples (14555 SPS)
+[10:23:43.965][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00000 V
+[10:23:43.966][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.000 A
+[10:23:44.623][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1840 count
+[10:23:44.624][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1824 count
+[10:23:44.835][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65200 V
+[10:23:44.836][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65400 V
+[10:23:45.627][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1850 count
+[10:23:45.628][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1851 count
+[10:23:45.823][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.64000 V
+[10:23:45.823][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.66300 V
+[10:23:45.851][D][ct_clamp:040]: 'BERO E00F SCT013 Akim' - Raw AC Value: 0.005A after 3082 different samples (15410 SPS)
+[10:23:45.994][S][sensor]: 'BERO E00F SCT013 Raw AC' >> 0.00528 V
+[10:23:45.995][S][sensor]: 'BERO E00F SCT013 Akim' >> 0.128 A
+[10:23:46.623][S][sensor]: 'BERO E00F Bias GPIO34 RAW' >> 1849 count
+[10:23:46.624][S][sensor]: 'BERO E00F SCT GPIO32 RAW' >> 1827 count
+[10:23:46.834][S][sensor]: 'BERO E00F SCT GPIO33 ADC Voltage' >> 1.65700 V
+[10:23:46.835][S][sensor]: 'BERO E00F Bias GPIO35 ADC Voltage' >> 1.65500 V
