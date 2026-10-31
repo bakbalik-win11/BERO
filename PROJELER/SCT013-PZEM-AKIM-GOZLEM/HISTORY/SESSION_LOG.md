@@ -1,3 +1,14 @@
+## 2026-10-31 — TOASTER-001 Log 62 ham log arşivi ve analiz
+
+- **HEDEF:** Tost makinesinin yüksek akım davranışını mevcut K=24.22 ile gözlemek; katsayı/firmware değiştirmemek.
+- **GİRDİ:** `esp32d1-logs (62).txt`; 68.572 bayt, 934 satır, 68.564 UTF-8 karakter; SHA-256 `4790b00e69aaba791339f6d43aa13041efe373c5a87b9ed7fd4c1f481ce551f2`.
+- **ARŞİV:** Tam ham log [logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt](../logs/module2/2026-10-31-toaster-001-module2-sct1-log62-full.txt); teknik analiz [logs/module2/2026-10-31-toaster-001-module2-sct1-log62-analysis.md](../logs/module2/2026-10-31-toaster-001-module2-sct1-log62-analysis.md).
+- **LOG:** İlk 119 yayın 21:52:30.185–21:56:26.262; ortalama 7,1900 A; medyan 7,188 A; min–maks 7,135–7,264 A; SD 0,0247 A; CV %0,344. Raw AC ortalama 0,29686 V; bias GPIO35 1,66391 V; SPS 18.561.
+- **REFERANS:** UNIT 7,89 A kullanıcı bildirimi. Aritmetik fark −%8,87; zaman eşleşmesi doğrulanmadığı için doğruluk sapması değildir. PZEM yok.
+- **GEÇİŞ:** 21:56:28.190'da 6,096 A tek yayın; termostat OFF çevrimi olduğu doğrulanmadı.
+- **SONUÇ:** Mevcut K=24.22 ile SCT kararlı dar dağılım gösterdi. Katsayı ve firmware değiştirilmedi. TOASTER-001 açık kaldı.
+- **DOĞRULAMA:** Ham log, analiz, test README, STATUS, PROGRESS_TREE ve test index güncellendi; dosyalar yeniden okunarak doğrulanacak.
+
 ## 2026-10-31 — MIXED-LOAD-57W-15W-001 Log 59 analizi ve arşiv
 
 - **HEDEF:** 57 W + 15 W karma yükte SCT-1'in 0,303 A UNIT referansı çevresindeki davranışını değerlendirmek. Kullanıcı, UNIT 0,303 A'nın test boyunca sabit kaldığını bildirdi.
