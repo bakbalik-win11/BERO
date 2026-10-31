@@ -4,6 +4,7 @@
 - **DEPO KODLARI:** [patterns rehberi](firmware/patterns/README.md), [CT / AC RMS referans YAML](firmware/patterns/ct-clamp-ac-rms-reference.yaml), [analog DC ADC referans YAML](firmware/patterns/adc-dc-voltage-observer.yaml).
 - **GENELLEŞTİRİLEN KATMANLAR:** Kaynak okuma, geçerlilik kontrolü, örnek yönetimi, sinyale uygun pencere/istatistik, fiziksel birime dönüşüm ve yayın/kayıt birbirinden ayrıldı.
 - **SENSÖRE ÖZGÜ İŞLEM:** ct_clamp AC RMS ve bias ortalamasını ayırma yalnız CT/AC sinyali içindir. Aynı işlem sıcaklık, basınç veya DC analog sensörlere uygulanmaz. `last_value` tekrar elemesi de tüm sensörlerde varsayılan yapılmaz.
+- **GERÇEK ÇIKTI ÖRNEĞİ:** patterns rehberine Log 63'ten 3.091 A / 0.12763 V örnek satırı ve 50 yayınlık ölçüm özeti eklendi. Bu tarihsel logdur; yeni şablonların test sonucu değildir.
 - **KOD DURUMU:** İki YAML açıklamalı referans şablonudur; derleme, OTA ve fiziksel test yapılmadı. Çalışan cihaz YAML'ları değiştirilmedi.
 - **MEVCUT DOSYA TUTARSIZLIĞI:** `firmware/esp32d1.yaml` şu an tek ct_clamp kanalını içeriyor; daha sonraki T010/STATUS kayıtlarında üç kanal eklendiği yazıyor. Bu fark çözülmeden mevcut firmware dosyası üzerine yazılmadı.
 - **AKTİF GÖREV:** T010 aynı şekilde aktif; Faz 2 görev sırası değişmedi.
