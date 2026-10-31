@@ -545,3 +545,12 @@ SCT bağlı değilken bias Vmid koşulunda son log analiz edildi ve bu alt deney
 
 
 **E00F sıfır-yük logu ve düşük akım araştırması (2026-10-30):** Kullanıcının paylaştığı 180 pencerelik E00F logunda 173 yayın 0.000 A, 7 yayın (%3.89) 0.353–0.770 A yanlış pozitif akım olarak görüldü (koşul kullanıcı tarafından yüksüz bildirildi). Kaynak Raw AC medyanı 5 mV, ortalaması 5.62 mV, pencere SD'si yaklaşık 5 mV. E00F 0.35 A yazılım eşiği 40 mA'yı tasarım gereği sıfırlar; bu eşik CT'nin minimum akımı değildir. SCT013-030 nominal 40 mA çıkışı yaklaşık 1.33 mV RMS; mevcut 24.22 A/V katsayısı 1.65 mV karşılığı verir. Mevcut yüksüz dağılımda güvenilir ayrışma gösterilmedi. GitHub araştırması düşük akımda en küçük uygun CT, yüksüz taban kalibrasyonu ve gerektiğinde ayrı düşük/yüksek aralık CT yaklaşımını gösterdi; BERO donanımı/YAML/deney sırası değiştirilmedi. Ayrıntı ve ham log: [E00F teknik değerlendirme, bölümler 13–14](docs/technical-reviews/2026-10-30-e00f-low-current-cumulative-review.md).
+
+
+## 2026-10-31 — Test yükleri için karşılaştırmalı kayıt bölümü açıldı
+
+- **YENİ BÖLÜM:** [Test yükleri ve karşılaştırmalı ölçüm kayıtları](test-loads/README.md). Her fiziksel yük için ayrı ana kayıt dosyası; her test oturumu için kod, log, tarih/saat aralığı, referans, sonuç, sapma ve kanıt durumu tutulacak.
+- **İLK YÜK KAYDI:** [100 W akkor ampul karşılaştırma tablosu](test-loads/100w-incandescent/README.md).
+- **TEST 001:** ESP32D2, Modül 2 kutusu olmadan yapılan tarihsel baseline. Referans 0,446–0,447 A; kod sonucu 0,4471 A; yaklaşık %0 sapma. Kod dosyası mevcut. Ayrı ham log ve kesin log zaman aralığı mevcut depo özetinde bulunmadığı için açıkça eksik kanıt olarak işaretlendi.
+- **TEST 002:** Modül 2 / ESP32D1 / SCT-1 GPIO32, 2026-10-31. PENS 0,427 A kullanıcı bildirimi; son beş kararlı kod yayını ortalama 0,589 A; yaklaşık +%37,9. Karşılaştırma ±%4 dışında. Log dosyası analiz özeti içerir; özgün 563 satırın tamamı değildir. Logdaki nominal 30 A/V firmware ile depodaki güncel YAML'ın tam commit eşleşmesi doğrulanmadı.
+- **KURAL:** Eski test satırları silinmez veya geriye dönük doldurulmuş gibi gösterilmez. Her yeni Modül 2 ölçümü aynı 100 W dosyasına yeni satır olarak eklenecek; kod ve log bağlantıları test anındaki sürümü gösterecek.
