@@ -71,3 +71,14 @@
 - **KURAL:** 0,30 A altındaki düşük akım bölgesinde ±%4 kabul/ret yok. Amaç sinyal büyümesi ve tekrarlanabilir gözlemdir.
 - **GÜVENLİK:** Enerji kesikken yalnız aynı tek yalıtılmış iletken üç tur geçirilir; faz ve nötr birlikte geçirilmez.
 - **TEST PLANI:** [FAN-3-3T-001 ayrıntılı kayıt](fan3-3turn/README.md).
+
+
+## 2026-10-31 — FAN-1-RETEST-001 yeniden gözlem oturumu açıldı
+
+- **DURUM:** AÇIK; yeni fiziksel ölçüm ve log bekleniyor. Önceki FAN-1 oturumunun yerine geçmez.
+- **AMAÇ:** FAN-1'i Modül 2 / ESP32D1 / SCT-1 üzerinde yeniden gözlemlemek; düşük akım eğitim/veri sınıfına ayrı oturum verisi toplamak.
+- **DÜZENEK:** SCT-1 sarı GPIO32 / ADC1_CH4; ortak bias turuncu GPIO35 / ADC1_CH7; mevcut SCT013-030; `firmware/esp32d1.yaml`; K=24.22; yazılımsal sıfır eşiği yok.
+- **REFERANS:** Son UNIT bildirimi 0,093 A; eski 0,097 A ve 0,096 A bildirimleri tarihsel kalır. 0,30 A altı için ±%4 kabul/ret yok.
+- **PROTOKOL:** Fan kapalı başlangıç tabanı → FAN-1 açılış olayı → kararlı pencere → FAN-1 kapanış olayı → fan kapalı son taban. Geçiş ve kararlı veriler ayrı tutulur; varsa PZEM akım/PF ve UNIT aynı pencereye bağlanır.
+- **KAPANIŞ:** Ham log/SHA-256, analiz ve kapanış YAML snapshot GitHub'a kaydedilip yeniden okunarak doğrulanmadan kapatılmaz.
+- **AYRINTI:** [FAN-1-RETEST-001 test planı](fan1-retest/README.md).
