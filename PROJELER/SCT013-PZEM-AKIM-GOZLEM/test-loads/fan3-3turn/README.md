@@ -1,6 +1,6 @@
 # FAN-3-3T-001 — FAN-3 / SCT-1 üç primer tur deneyi
 
-**Durum:** AÇIK — fiziksel ölçüm ve log bekleniyor.
+**Durum:** KAPATILDI — düşük akım üç-tur gözlem oturumu; ±%4/PZEM doğrulaması değildir.
 
 ## 1. Amaç
 

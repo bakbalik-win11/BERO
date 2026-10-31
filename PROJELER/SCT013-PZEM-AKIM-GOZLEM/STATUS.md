@@ -1,3 +1,9 @@
+## 2026-10-31 — Arşiv doğrulama notu: FAN-3-3T-001
+
+- Tam ham log GitHub'a kaydedildi: [FAN-3-3T-001 full log](logs/module2/2026-10-31-fan3-3t-001-module2-sct1-full.txt); Git blob SHA `1f947025d9716ac5a3a4e8e586e8d1b65e5cdd22`; kaynak SHA-256 `fb48997412ced2a9f769b3084bec9f63dab8ef7174efea23062ce4e63dbc735c`.
+- [Analiz](logs/module2/2026-10-31-fan3-3t-001-module2-sct1-analysis.md), [kapanış YAML](firmware/archive/FAN-3-3T-001-2026-10-31-esp32d1-sct1.yaml) ve test kaydı GitHub'dan yeniden okunarak doğrulandı.
+- FAN-3-3T-001 kapalı; FAN-1-RETEST-001 açık.
+
 
 
 ## 2026-10-31 — FAN-3-3T-001 üç primer tur deneyi açıldı
