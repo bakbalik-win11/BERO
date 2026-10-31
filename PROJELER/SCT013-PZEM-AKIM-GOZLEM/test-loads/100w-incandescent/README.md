@@ -16,6 +16,7 @@ Bu değer, 100 W akkor ampul için şimdilik “ne okumayı bekliyoruz?” sorus
 
 | Test ID | Tarih | Saat / log aralığı | ESP / düzenek | SCT kanalı | Kod / sürüm | Log | Referans | Kod sonucu | Sapma | ±%4 durumu |
 |---|---|---|---|---|---|---|---:|---:|---:|---|
+| LOAD-100W-004 | 2026-10-31 | 16:06:43–16:08:09 (+03:00) | ESP32D1 / Modül 2; masaüstü harici besleme (kullanıcı bildirimi) | SCT-1 / GPIO32 / sarı | Önceki 003 ile aynı cihaz derleme zamanı 15:55:25; 200 ms ct_clamp / 2 s yayın | [Tam 397 satır log](../../logs/module2/2026-10-31-load-100w-004-sct1-desktop-power.txt) / [analiz](../../logs/module2/2026-10-31-load-100w-004-sct1-desktop-power-analysis.md) | Geçici beklenti 0,427 A (UNIT; PZEM teyidi yok) | 43 yayın; medyan 0,423 A; ortalama 0,42274 A; min–maks 0,407–0,440 A | Ortalama bazında −%1,0 (UNIT geçici değere göre) | **39/43 (%90,7) ±%4 bandında; PZEM teyidi bekleniyor** |
 | LOAD-100W-003 | 2026-10-31 | 15:59:53–16:05:11 (+03:00) | ESP32D1 / Modül 2 | SCT-1 / GPIO32 / sarı | [Tek kanallı firmware snapshot](https://github.com/bakbalik-win11/BERO/blob/720e52de7fac8c409fe2c7de8569849ca171f166/PROJELER/SCT013-PZEM-AKIM-GOZLEM/firmware/archive/LOAD-100W-003-esp32d1-sct1-single-channel.yaml) | [Tam uzun log](../../logs/module2/2026-10-31-load-100w-003-sct1-single-channel-full.txt) / [uzun log analizi](../../logs/module2/2026-10-31-load-100w-003-sct1-single-channel-extended-analysis.md) | Geçici beklenti: 0,427 A (UNIT; PZEM teyidi bekleniyor) | 160 yayın; medyan 0,460 A; ortalama 0,4841 A; 150/160 yayın 0,422–0,541 A | Medyana göre +%7,7 (UNIT geçici değere göre) | **±%4 dışında; PZEM teyidi bekleniyor** |
 | LOAD-100W-001 | Tarihsel kayıt; kesin tarih bu özet tabloda belirtilmemiş | Ham logdaki zaman aralığı mevcut özet kayıtta verilmemiş | ESP32D2, harici/Modül 2 kutusu olmadan | ESP32D2 baseline bağlantısı; GPIO33 ct_clamp | [firmware/esp32d2.yaml](../../firmware/esp32d2.yaml) — tarihsel baseline kodu; testte kullanılan tam commit ayrıca arşivlenmemiş | Ayrı ham log dosyası bulunamadı. Sonuç STATUS/ROADMAP tarihsel özetinden aktarılmıştır. | Pens: 0,446–0,447 A | 0,4471 A | yaklaşık %0 | **Hedef içinde** (tarihsel kayıt; ham log/zaman aralığı eksik) |
 | LOAD-100W-002 | 2026-10-31 | Logdan çıkarılan son beş kararlı yayın; kesin başlangıç/bitiş timestamp'i özet dosyada korunmamış | ESP32D1 / Modül 2 | SCT-1 / GPIO32 / sarı | [Üç kanallı ESP32D1 firmware — test öncesi commit](https://github.com/bakbalik-win11/BERO/blob/33b2b8fcb17f51a97edbb5cbd416ee6f9a532278/PROJELER/SCT013-PZEM-AKIM-GOZLEM/firmware/esp32d1.yaml) — 31.10.2026 tarihli üç kanal ct_clamp sürümü | [SCT-1 100 W ct_clamp + PENS karşılaştırması](../../logs/module2/2026-10-31-sct1-100w-ct-clamp-comparison.txt) — 563 satırlık özgün logun tamamı değil, analiz özeti | PENS: 0,427 A (kullanıcı bildirimi) | Son beş kararlı değer: 0,578 / 0,591 / 0,597 / 0,590 / 0,589 A; ortalama 0,589 A | +%37,9 | **Hedef dışında** |
@@ -108,3 +109,19 @@ Daha uzun log, önceki kısa 003 kaydını silmeden esas analiz olarak eklendi.
 - Bias 321 yayında ortalama 1,65540 V; SCT-1 ADC 320 yayında ortalama 1,65253 V.
 - K katsayısı değiştirilmedi; PZEM kararlı ölçümü bekleniyor.
 - Özgün dosya SHA-256: `30fc5d5ccccf629423924ea17fe1706bdb4f8dfab1185f64f523596661663ed4`.
+
+
+## Test 004 — ESP32D1 masaüstü güç kaynağıyla SCT-1
+
+Kullanıcı, ESP32D1 beslemesini PC USB'den masaüstü harici güç kaynağına aldıktan sonra aynı 100 W akkor testini yeniden yaptı. Bu güç kaynağı değişikliği kullanıcı bildirimidir.
+
+- Tam ham kayıt: [397 satırlık LOAD-100W-004 logu](../../logs/module2/2026-10-31-load-100w-004-sct1-desktop-power.txt).
+- Teknik analiz: [LOAD-100W-004 analizi](../../logs/module2/2026-10-31-load-100w-004-sct1-desktop-power-analysis.md).
+- Süre: 16:06:43.782–16:08:09.198 (+03:00); 43 akım yayını.
+- Akım medyanı 0,423 A; ortalama 0,42274 A; min–maks 0,407–0,440 A.
+- UNIT geçici beklentisi 0,427 A'nın ±%4 bandında 39/43 (%90,7) yayın bulunuyor. Ortalama farkı −%1,0.
+- Önceki LOAD-100W-003 uzun logunda medyan 0,460 A, ortalama 0,4841 A, min–maks 0,422–1,164 A ve 10 adet 0,55 A üzeri yayın vardı. Yeni logda 0,55 A üzeri yayın yok.
+- Bu sonuç gözle görülür iyileşme işaretidir; ancak test yaklaşık 84 saniyedir ve farklı zamanlarda yapılan iki ölçüm besleme kaynağının nedensel etkisini tek başına ispatlamaz.
+- Logda PZEM/UNIT eşzamanlı okuması yok. 0,427 A UNIT kullanıcı bildirimi kaynaklı geçici beklentidir; PZEM kabul sonucu değildir.
+- K katsayısı değiştirilmedi. Aynı harici beslemeyle daha uzun tekrar ve eşzamanlı PZEM/UNIT kaydı önerilir.
+- Özgün log SHA-256: `0cba41fa5f66894f17ba2cda45773cae6a77c82eab1aa4e4c8bda81e019d4ac3`.
