@@ -139,3 +139,10 @@ Kullanıcının sabah Home Assistant geçmiş dökümü bekleniyor. Dört ADC ka
 - **YORUM SINIRI:** HA geçmişi 200 ms pencerelerin içindeki ham ADC örneklerini, her pencerenin N/SPS debug satırlarını veya örnek bazında zamanlamayı içermez. Kayıtların varlığı yüksek hızlı örnekleme doğrulaması değildir. Bu CSV'den RMS dalga şekli, 50 Hz faz ilişkisi, harmonik, PF veya gerçek akım doğruluğu çıkarılmaz.
 - **AÇIK:** Kullanıcıdan gece boyunca fiziksel primer/CT durumu (yük gerçekten bağlı mıydı, CT hangi iletkeni ve kaç turu görüyordu; kola temasın hangi saatlerde sürdüğü) teyidi bekleniyor. Varsa ESPHome DEBUG logu ayrıca incelenmeli.
 - **DURUM:** Tam gece CSV analizi yapıldı; E00F-N02 deneyinin fiziksel koşul doğrulaması ve nihai yorumu açık. Deney TAMAMLANDI olarak işaretlenmedi.
+
+
+## Kullanıcının gece koşulu beyanı — 2026-10-31
+
+- **KULLANICI BEYANI:** Gece gözlemi sırasında sistemin boşta olduğu; kola temasın 00:30 Türkiye saati sonrasında devam etmediği ve akkor ampulün henüz deney yükü olarak kullanılmadığı önceki kullanıcı mesajlarında belirtildi.
+- **YORUM:** 05:24:02 Türkiye saatindeki 2.665238 A tepe, bildirilen 00:30 sonrası kol temasına bağlanamaz. Sistem boşta beyanı doğruysa, 0.192920 A medyan ve diğer sıfırdan farklı akım yayınları gerçek deney yükü akımı olarak değil, yüksüz koşuldaki CT/ADC/ct_clamp zinciri çıktısı olarak ele alınmalıdır.
+- **KANIT SINIRI:** Bu fiziksel koşul kullanıcı beyanıdır; CSV tek başına primer iletkendeki gerçek akımı veya CT'nin fiziksel konumunu doğrulamaz. Bu nedenle 2.665 A tepe bir anomali olarak korunur; nedeni henüz belirlenmiş değildir.
