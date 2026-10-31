@@ -48,3 +48,17 @@ SCT yalnız tek yalıtılmış iletkeni çevrelemelidir; faz ve nötr birlikte g
 ## İlk durum
 
 **PLANLANDI / AÇIK.** Şu an yalnız 57 W akkor ampul yük tanımı ve UNIT 0,244 A kullanıcı bildirimi mevcut. SCT ölçümü, eşzamanlı UNIT kararlılığı ve PZEM karşılaştırması henüz yok.
+
+
+## 2026-10-31 — Log 58 / SCT-1 ölçüm analizi
+
+- **KAYNAK:** `esp32d1-logs (58).txt`; 66.456 bayt / 906 satır; SHA-256 `f5a2d958dc2c85ec204516240c99ec2e87b519a422958a9ddd1cf122b4ee8d08`.
+- **ZAMAN:** İlk/son SCT akım yayını 21:14:44–21:18:34 (+03:00); 116 yayın.
+- **SCT AKIM:** Ortalama 0,304207 A; medyan 0,303 A; min–maks 0,284–0,348 A; örnek SD 0,009126 A; CV %3,00. 31/116 yayın 0,30 A altında, 85/116 yayın 0,30 A ve üzerindedir.
+- **BLOK DAVRANIŞI:** Ardışık 29 örnekli dört blok ortalaması 0,3061 / 0,3022 / 0,3046 / 0,3040 A. Belirgin uzun dönemli yükselme/düşme görünmüyor.
+- **ANALOG:** Raw AC ortalaması 0,012562 V (0,01173–0,01436 V); GPIO35 bias ortalaması 1,663073 V (1,651–1,672 V); GPIO32 ADC ortalaması 1,660694 V (1,642–1,683 V). Log SPS ortalaması 17.768 (17.280–18.260).
+- **UNIT SINIRI:** Başlangıç UNIT bildirimi 0,244 A. SCT ortalamasıyla salt aritmetik fark +0,060207 A / +%24,67; medyan farkı +%24,18. UNIT zamanının logdaki kararlı pencereyle örtüşmesi teyitsiz olduğundan bu eşzamanlı sapma veya doğruluk sonucu değildir. PZEM verisi yoktur.
+- **YORUM:** SCT çıktısı bu oturumda kendi içinde görece kararlıdır (CV %3,00), ancak ölçüm dağılımı 0,30 A BERO gözlem sınırının iki tarafına yayılır. 0,30 A altı düşük akım değerlendirmesinde ±%4 kabul/ret uygulanmaz. Firmware/K=24.22 değiştirilmedi; tek logdan katsayı çıkarılmadı.
+- **DURUM:** Test AÇIK kalır; UNIT'in aynı zamanlı kararlı pencerede tekrar kaydı ve mümkünse PZEM akım/PF verisi beklenir.
+- **ANALİZ:** [Log 58 teknik analiz](../../logs/module2/2026-10-31-load-57w-001-module2-sct1-analysis.md).
+- **HAM LOG:** [Log 58 tam ham TXT](../../logs/module2/2026-10-31-load-57w-001-module2-sct1-full.txt); dosya GitHub'a eksiksiz kaydedildi.
