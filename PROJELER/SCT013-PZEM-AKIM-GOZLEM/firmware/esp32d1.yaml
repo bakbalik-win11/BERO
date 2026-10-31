@@ -1,52 +1,49 @@
 # ============================================================
 # BERO MODUL 2 — ESP32D1
-# DORT ADC GIRISI / UZUN SURELI GERILIM GOZLEM KODU
-# SURUM: 1 SANIYE ARALIKLI ADC LOG
-# DURUM: ESKI DORTLU ADC LOG SURUMU GERI YUKLENDI;
-#        YENI DERLEME VE MODUL TESTI BEKLIYOR
+# GECE BOYU TEK SCT KANALI KAYIT SURUMU
+# AKTIF: SCT-1 / GPIO32 + ORTAK BIAS / GPIO35
 # ============================================================
 #
 # AMAC:
-# - Uc SCT sinyal girisini ve ortak bias hattini ayni anda izlemek.
-# - SCT-1 bagliyken GPIO32 davranisini uzun sureli kaydetmek.
-# - GPIO33, GPIO34 ve GPIO35 degerlerini ayni zaman akisinda
-#   tani amaciyla loglamak.
-# - Uzun sureli kayitta ADC gerilimlerinin degisimini gozlemlemek.
+# - Yalniz SCT-1 soketine takili CT ile uzun sureli akim gozlemi.
+# - ct_clamp ile her 5 saniyede bir 200 ms olcum penceresi.
+# - SCT-1 ADC ve ortak bias gerilimlerini 5 saniyede bir izleme.
 #
 # BAGLANTILAR (KULLANICI BILDIRIMI):
-# - SCT-1 / sari sinyal       -> GPIO32 (ADC1_CH4)
-# - SCT-2 / yesil sinyal      -> GPIO33 (ADC1_CH5)
-# - SCT-3 / mavi sinyal       -> GPIO34 (ADC1_CH6)
-# - Ortak bias / turuncu      -> GPIO35 (ADC1_CH7)
+# - SCT-1 / 1 numarali soket / sari sinyal -> GPIO32 (ADC1_CH4)
+# - Ortak bias / turuncu sinyal           -> GPIO35 (ADC1_CH7)
+# - GPIO33 ve GPIO34 bu firmware'de okunmaz.
 #
-# TEST DUZENI:
-# - Bu testte SCT-1 fiziksel olarak bagli olacak.
-# - SCT-2 ve SCT-3 bagli degilse GPIO33/GPIO34 okumasi bosta
-#   kalan ADC girisi olarak degerlendirilecek; sensor verisi sayilmaz.
-# - GPIO35 ortak bias gerilimini izler.
+# AKIM DONUSUMU:
+# - Baslangic varsayimi: SCT-013-030, 30 A / 1 V (30 A/V).
+# - CT modeli SCT-1 icin farkliysa bu katsayi dogru degildir.
+# - Katsayi saha kalibrasyonu veya dogruluk garantisi degildir.
+#
+# KAYIT:
+# - Akim, SCT-1 ADC ve bias entity'leri 5 saniyede bir guncellenir.
+# - ESPHome logunda sct_night etiketiyle degerler yazilir.
+# - HA Recorder etkinse entity durumlari HA gecmisinde saklanir.
+# - ESPHome canli log ekrani tek basina kalici arsiv garantisi vermez.
 #
 # BEKLENEN:
-# - Home Assistant'ta dort ADC gerilim sensoru gorunur.
-# - Her sensor 1 saniyede bir ADC gerilimi yayinlar.
-# - Her ornek ESPHome loguna kanal adi, GPIO ve voltaj ile yazilir.
-# - GPIO35 ortak bias degeri de her saniye logda gorunur.
+# - ESP32D1 SCT 1 Current (A)
+# - ESP32D1 SCT 1 ADC Voltage (V)
+# - ESP32D1 Common Bias ADC Voltage (V)
 #
-# ONEMLI SINIR:
-# - Bu kod anlik ADC gerilimi okur; RMS veya akim hesaplamaz.
-# - 1 saniyelik ADC yayini 50 Hz dalga seklini yakalamaz.
-# - Bu uzun kayit, gerilim/bias davranisini ve yuk degisimi
-#   sirasindaki yavas gozlemi incelemek icindir.
-# - ct_clamp, akim katsayisi veya kalibrasyon filtresi yoktur.
+# SINIRLAR:
+# - PF, guc, enerji, harmonik, FFT veya THD hesaplanmaz.
+# - ADC voltaj entity'si yavas tani ornegidir; ct_clamp'in hizli
+#   orneklemesinin yerine gecmez.
+# - Uzun kayit, olcum dogrulugunu tek basina kanitlamaz.
 #
 # GUVENLIK:
-# - ADC pinlerine 5 V uygulanmaz.
-# - Analog dugum gerilimleri ESP32 ADC giris sinirlari icinde
-#   olmalidir.
+# - CT/SCT soket degisikligi yuk enerjisizken yapilir.
 # - SCT yalniz tek yalıtılmış iletkeni kavrar; faz ve notr birlikte
 #   SCT icinden gecirilmez.
-# - SCT/kanal baglantisi yuk enerjisizken degistirilir.
-# - Harici 5 V ve PC USB ayni anda, kartin guc yolu dogrulanmadan
-#   baglanmaz.
+# - ADC pinlerine 5 V uygulanmaz; bias dugumu ADC giris araliginda
+#   kalmalidir.
+# - Gece boyunca kutu kapali, kuru ve guvenli konumda tutulur.
+#   Anormal isinma/koku gorulurse enerji kesilir.
 # ============================================================
 
 esphome:
@@ -61,6 +58,7 @@ esp32:
     type: esp-idf
 
 logger:
+  level: INFO
 
 api:
 
@@ -72,13 +70,15 @@ wifi:
   password: !secret wifi_password
 
 sensor:
-  # SCT-1: sari kablo / GPIO32. Anlik ADC voltaji.
+  # SCT-1 ADC kaynagi: GPIO32 / ADC1_CH4.
+  # Bu 5 s ADC entity'si tani amaclidir; ct_clamp hizli orneklemesi
+  # kendi 200 ms penceresinde sensor.sample() ile yapilir.
   - platform: adc
     pin: GPIO32
     name: "ESP32D1 SCT 1 ADC Voltage"
     id: sct_1_adc_voltage
     attenuation: 12db
-    update_interval: 1s
+    update_interval: 5s
     unit_of_measurement: "V"
     accuracy_decimals: 3
     device_class: voltage
@@ -86,47 +86,15 @@ sensor:
     on_value:
       then:
         - lambda: |-
-            ESP_LOGI("sct_test", "SCT-1 GPIO32 ADC = %.3f V", x);
+            ESP_LOGI("sct_night", "SCT-1 GPIO32 ADC = %.3f V", x);
 
-  # SCT-2: yesil kablo / GPIO33. Anlik ADC voltaji.
-  - platform: adc
-    pin: GPIO33
-    name: "ESP32D1 SCT 2 ADC Voltage"
-    id: sct_2_adc_voltage
-    attenuation: 12db
-    update_interval: 1s
-    unit_of_measurement: "V"
-    accuracy_decimals: 3
-    device_class: voltage
-    state_class: measurement
-    on_value:
-      then:
-        - lambda: |-
-            ESP_LOGI("sct_test", "SCT-2 GPIO33 ADC = %.3f V", x);
-
-  # SCT-3: mavi kablo / GPIO34. Anlik ADC voltaji.
-  - platform: adc
-    pin: GPIO34
-    name: "ESP32D1 SCT 3 ADC Voltage"
-    id: sct_3_adc_voltage
-    attenuation: 12db
-    update_interval: 1s
-    unit_of_measurement: "V"
-    accuracy_decimals: 3
-    device_class: voltage
-    state_class: measurement
-    on_value:
-      then:
-        - lambda: |-
-            ESP_LOGI("sct_test", "SCT-3 GPIO34 ADC = %.3f V", x);
-
-  # Ortak bias: turuncu kablo / GPIO35. Her saniye loga yazilir.
+  # Ortak bias izleme: GPIO35 / ADC1_CH7.
   - platform: adc
     pin: GPIO35
     name: "ESP32D1 Common Bias ADC Voltage"
     id: common_bias_adc_voltage
     attenuation: 12db
-    update_interval: 1s
+    update_interval: 5s
     unit_of_measurement: "V"
     accuracy_decimals: 3
     device_class: voltage
@@ -134,4 +102,24 @@ sensor:
     on_value:
       then:
         - lambda: |-
-            ESP_LOGI("sct_test", "COMMON BIAS GPIO35 ADC = %.3f V", x);
+            ESP_LOGI("sct_night", "COMMON BIAS GPIO35 = %.3f V", x);
+
+  # Tek aktif akim sensoru: SCT-1 / GPIO32.
+  - platform: ct_clamp
+    sensor: sct_1_adc_voltage
+    name: "ESP32D1 SCT 1 Current"
+    id: sct_1_current
+    sample_duration: 200ms
+    update_interval: 5s
+    unit_of_measurement: "A"
+    accuracy_decimals: 3
+    device_class: current
+    state_class: measurement
+    filters:
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 1.0 -> 30.0
+    on_value:
+      then:
+        - lambda: |-
+            ESP_LOGI("sct_night", "SCT-1 GPIO32 CURRENT = %.3f A", x);
