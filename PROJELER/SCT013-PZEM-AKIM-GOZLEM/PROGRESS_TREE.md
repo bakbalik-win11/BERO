@@ -220,3 +220,13 @@
 - Son tek yayın 6,096 A olarak ayrı geçiş verisi tutuldu.
 - K=24.22 değişmedi; test açık.
 - [TOASTER-001 raporu](test-loads/toaster/README.md).
+
+## 2026-10-31 — E10 ct_clamp pencere süresi deneyi planlandı
+
+- Faz 2 / T010 altında E10 gözlem protokolü açıldı.
+- Tek değişken sample_duration: 200 → 500 → 1000 → 200 ms geri dönüş.
+- update_interval: 2s, K=24.22, ESPHome 2026.10.1, SCT-1 GPIO32 ve ortak bias GPIO35 sabit.
+- Deney yükü BREAD-TOASTER-001; Log 63 tarihsel 200 ms tabanı.
+- Kullanıcı raporu, Copilot raporu ve bağımsız teknik inceleme protokolde ayrı ayrı referanslandı; simülasyonlar ölçüm sayılmadı.
+- **Durum:** Yalnız planlandı. YAML/OTA/fiziksel ölçüm/log yok.
+- [E10 protokolü](experiments/E10-ct-clamp-window-duration/README.md); [sonuç defteri](experiments/E10-ct-clamp-window-duration/results.md).
