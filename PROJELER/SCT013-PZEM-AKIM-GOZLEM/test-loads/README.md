@@ -68,3 +68,16 @@ Bu bölüm, aynı fiziksel test yüküyle farklı ESP kartı, modül, SCT kanal�
 ## Test referans sırası kararı
 
 Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu bu UNIT değeriyle karşılaştırılır. PZEM sonraki aşamada eklenir. UNIT ve PZEM değerleri birbirinin yerine yazılmaz.
+
+
+## 2026-10-31 — LOAD-IDLE-001 uzun yüksüz log güncellemesi
+
+- Kaynak `esp32d1-logs (37).txt`; 110.590 bayt / 1.492 satır; SHA-256 `e4b229b45abce1f85e74f60260c0a7ed279e48c6b8f59d70ccbabaf23c8ee22f`.
+- İlk kısa logdaki 60 akım yayını, uzun logun ilk 60 yayınıyla birebir aynı. Bu yeni test değil, aynı testin uzatılmış kaydı; 140 yeni yayın eklenmiştir.
+- Toplam 200 akım yayını: ortalama 0,017130 A; medyan 0,000 A; aralık 0,000–0,144 A; 146/200 (%73) sıfır.
+- Devam eden 140 yayında ortalama 0,019643 A; medyan 0,000 A; 98/140 (%70) sıfır.
+- Raw AC ortalama 0,00070765 V; bias ortalama 1,664461 V; SCT-1 ADC ortalama 1,662461 V.
+- ct_clamp log SPS ortalaması 17.990 (17.465–18.465).
+- UNIT/PZEM referansı yok; yüksüz senaryoda UNIT aranmadı. K değiştirilmedi; yazılımsal sıfır eşiği eklenmedi.
+- [Yüksüz test dosyası](idle-no-load/README.md); [uzun log analizi](../logs/module2/2026-10-31-load-idle-001-analysis.md); [tam ham log](../logs/module2/2026-10-31-load-idle-001-module2-sct1-no-load-full.txt).
+
