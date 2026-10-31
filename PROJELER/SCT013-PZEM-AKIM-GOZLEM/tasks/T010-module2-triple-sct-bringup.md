@@ -8,8 +8,8 @@
 - **ANALOG:** Raw AC ortalama 0,127843 V; SPS ortalama 18.117; GPIO35 bias medyan 1,664 V.
 - **YORUM:** UNIT'e göre aritmetik fark −%6,17; eşzamanlılık teyitsiz olduğu için doğruluk/kalibrasyon sonucu değil. PZEM yok.
 - **KOD:** K=24.22 ve firmware değişmedi. Python/modelleme yapılmadı.
-- **KAYIT:** [BREAD-TOASTER-001 test](../test-loads/bread-toaster/README.md); [Log 63 analiz](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md); [seçilmiş kanıt](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt).
-- **SINIR:** Tam ham TXT GitHub'a aktarılmadı; kaynak hash ve sohbet eki korunur. SCT-2/SCT-3 ve PZEM doğrulaması bekliyor. T010 AKTİF.
+- **KAYIT:** [BREAD-TOASTER-001 test](../test-loads/bread-toaster/README.md); [Log 63 analiz](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md); [seçilmiş kanıt](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt); [tam ham Log 63](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-full.txt).
+- **ARŞİV DOĞRULAMA:** Tam 32.064 baytlık ham TXT GitHub'a yüklendi ve geri okunarak doğrulandı; Git blob SHA `06a342ef00d156a9ca78d4dc5d55ea5debe1790c`. SCT-2/SCT-3 ve PZEM doğrulaması bekliyor. T010 AKTİF.
 
 
 
