@@ -175,3 +175,20 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - **ÖNCEKİ TEK TUR:** Raw AC ortalama 0,009273 V; SCT ortalama 0,224612 A.
 - **KURAL:** 0,30 A altı için ±%4 kabul/ret uygulanmaz.
 - **AYRINTI:** [FAN-3-3T-001 test planı](fan3-3turn/README.md).
+
+
+| FAN-1 yeniden gözlem | [FAN-1-RETEST-001](fan1-retest/README.md) |
+
+## 2026-10-31 — FAN-3-3T-001 üç primer tur gözlemi kapatıldı
+
+- Kaynak `esp32d1-logs (47).txt`; 129.554 bayt; SHA-256 `fb48997412ced2a9f769b3084bec9f63dab8ef7174efea23062ce4e63dbc735c`; 236 akım yayını, 18:30:59.057–18:38:49.014.
+- Sıçrama hariç ortalama firmware akımı 0,413894 A; gösterge/3 ortalaması 0,137965 A; Raw AC ortalaması 0,017089 V.
+- Tekil 0,932 A sıçrama ham veride korunup işaretlendi. Önceki tek turla sinyal artışı yaklaşık 1,843x; 3x doğrusal ilişki doğrulanmadı.
+- Düşük akım gözlemi olarak kapatıldı; ±%4/PZEM doğrulaması değildir. [Analiz](../logs/module2/2026-10-31-fan3-3t-001-module2-sct1-analysis.md); [kapanış YAML](../firmware/archive/FAN-3-3T-001-2026-10-31-esp32d1-sct1.yaml); [deney dosyası](fan3-3turn/README.md).
+
+## 2026-10-31 — FAN-1-RETEST-001 açıldı
+
+- FAN-1 yeni oturumu açık; eski FAN-1 kapanış kayıtları değiştirilmiyor.
+- UNIT son bildirimi 0,093 A; düşük akım sınıfında ±%4 kabul/ret yok.
+- Fan kapalı taban, FAN-1 açılış işareti, kararlı pencere ve kapanış işareti ayrı kaydedilecek.
+- [FAN-1-RETEST-001 planı](fan1-retest/README.md).
