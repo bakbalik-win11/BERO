@@ -1,3 +1,16 @@
+## 2026-10-31 — MIXED-LOAD-57W-15W-001 Log 59 analizi ve arşiv
+
+- **HEDEF:** 57 W + 15 W karma yükte SCT-1'in 0,303 A UNIT referansı çevresindeki davranışını değerlendirmek. Kullanıcı, UNIT 0,303 A'nın test boyunca sabit kaldığını bildirdi.
+- **GİRDİ:** `esp32d1-logs (59).txt`; 99.807 bayt / 1.349 satır; SHA-256 `6e7dea5c6c8991a6d4f915ebd6182f3de82b151d5726066700840f21a7d7124a`.
+- **LOG:** 179 SCT yayını; 21:20:18.203–21:26:14.218 (+03:00). Ortalama 0,329553 A; medyan 0,328 A; min–maks 0,303–0,436 A; SD 0,014762 A; CV %4,48.
+- **HESAP / KULLANICI KRİTERİ:** Bu test için ±%5,6 kabul bandı 0,286032–0,319968 A. 31/179 (%17,32) yayın bant içinde; 148/179 (%82,68) üstünde; bant altında yayın yok. Ortalama UNIT farkı +%8,76; medyan farkı +%8,25.
+- **ALT EŞİK:** 0,250 A ve altında yayın yok (%0); bütün yayınlar bu eşiğin üzerinde. Bu, alt eşik gözlemidir; ±%5,6 bandı başarısı değildir.
+- **ANALOG:** Raw AC ortalama 0,013604 V; GPIO35 bias ortalama 1,663504 V; GPIO32 ADC ortalama 1,663869 V; SPS ortalama 17.586.
+- **SONUÇ:** Log, 0,250 A altına düşmeme açısından olumlu; ancak ±%5,6 tolerans hedefini yayınların yalnız %17,32'si karşıladığı için test bu kritere göre başarılı değil. PZEM kaydı yok; UNIT sürekliliği kullanıcı bildirimidir.
+- **KOD KARARI:** ESPHome 2026.10.1 / mevcut firmware ve K=24.22 değiştirilmedi. Yeni katsayı türetilmedi.
+- **DEPO:** Tam ham log, analiz, test README, test index, STATUS, PROGRESS_TREE ve bu oturum günlüğü güncellendi.
+- **SONRAKİ:** Test AÇIK kalır. 15 W ampul tipi bilinmiyor; gerekirse sonraki tekrar öncesinde fiziksel yük kimliği netleştirilir.
+
 ## 2026-10-31 — Modül 2 tek aktif SCT kanalı ve güç kaynağı tekrar gözlem kararı
 
 - **KULLANICI DEĞERLENDİRMESİ:** LOAD-100W-004 tek kanal çıktısı, geçici 0,427 A UNIT beklentisiyle mevcut aşamada oldukça uyumlu bulunuyor. Bu değer PZEM ile eşzamanlı doğrulanmış değildir.
