@@ -1,3 +1,13 @@
+## 2026-10-31 — LOAD-100W-003: ESP32D1 SCT-1 tek kanal testi
+
+- **TEST:** 100 W akkor ampul; Modül 2 / ESP32D1; SCT-1 sarı/GPIO32; ortak bias turuncu/GPIO35.
+- **KOD:** Tek kanallı ct_clamp firmware snapshot'ı [LOAD-100W-003 kod arşivinde](firmware/archive/LOAD-100W-003-esp32d1-sct1-single-channel.yaml) sabitlendi. Arşiv commit'i: 720e52de7fac8c409fe2c7de8569849ca171f166.
+- **LOG:** 2026-10-31 15:59:53.051–16:01:39.884 (+03:00); ESPHome 2026.10.1, derleme 15:55:25 +0300. GPIO32 ADC1_CH4, GPIO35 ADC1_CH7; ct_clamp 200 ms, yayın 2 s.
+- **SONUÇ:** 54 akım yayını; medyan 0.469 A; 52/54 yayın 0.426–0.541 A. İki yüksek değer: 0.797 A ve 1.164 A. Bias ortalaması 1.65672 V (107 yayın; aralık 1.623–1.678 V).
+- **REFERANS:** Bu logda PENS/U200B+ veya PZEM değeri yok. Sapma ve ±%4 kabulü hesaplanmadı; katsayı değiştirilmedi.
+- **ANALİZ/LOG KANITI:** [003 log analizi ve seçilmiş gerçek satırlar](logs/module2/2026-10-31-load-100w-003-sct1-single-channel-analysis.md). Özgün log SHA-256: c92d51915de6b7ab69fdbc1f00ad4b7554455748958d18525ba2b3320a9d9723.
+- **T010:** Tek kanal akım okuma işlevi bu logda çalışıyor; üç kanalın tamamı ve referansla doğrulama henüz tamamlanmış değildir.
+
 ## 2026-10-31 — E00F tek SCT ct_clamp kodu Modül 2'ye uyarlandı
 
 - **KOD:** [firmware/esp32d1.yaml](firmware/esp32d1.yaml) artık Modül 2 SCT-1 soketine göre GPIO32 sinyal + GPIO35 ortak bias kullanır. Cihaz kimliği `esp32d1` / `ESP32D1` korunmuştur.
