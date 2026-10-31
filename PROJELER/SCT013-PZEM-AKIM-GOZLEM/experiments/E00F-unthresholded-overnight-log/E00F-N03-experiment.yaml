@@ -56,16 +56,26 @@ conditions:
   - id: incandescent_on
     load_state: ON
     user_reported_start_local: "10:32"
-    log_coverage_end_local: "10:39:09"
-    note: "100 W akkor açık bölümü; kapanış olayı bu dosyada bulunmuyor."
+    log_coverage_end_local: "10:39:25"
+    note: "İkinci logda geçişten hemen önce 10:39:25.820 penceresi hâlâ 0.018 V."
+  - id: return_to_preload_baseline
+    load_state: OFF
+    inferred_transition_local: "10:39:27.837–10:39:29.819"
+    evidence: "LOGDAN ÇIKARIM — Raw AC 0.006 V'tan 0.000 V'a iner; kullanıcı fiziksel kapatma saatini henüz teyit etmedi."
+    post_load_observation_end_local: "10:45:59.928"
+    note: "10:40–10:46 aralığında Raw AC medyanı 0.000 V."
 
 recording:
   source_files: ["esp32d2-logs (14).txt", "esp32d2-logs (15).txt"]
-  source_sha256: "c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e" # Yüklenen kaynak dosyanın tam SHA-256 değeri.
+  source_sha256:
+    first_log: "c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e"
+    second_log: "1ada9e16f102b8a290d2bdc3b8d7572c3ab442561f552acb081ee367f5a23952"
   ct_windows:
     first_log: 262
     second_log: 455
-  slow_adc_updates_per_channel: 523
+  slow_adc_updates_per_channel:
+    first_log: 523
+    second_log: "909 (GPIO32/33/35), 908 (GPIO34)"
   calibration_id: null # Bu gözlemde yeni kalibrasyon yapılmadı.
   raw_adc_archive: false # DEBUG logu ham ADC örnek dizisini içermez.
 
