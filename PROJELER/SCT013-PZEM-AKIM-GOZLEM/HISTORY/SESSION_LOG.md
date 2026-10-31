@@ -1,3 +1,12 @@
+## 2026-10-31 — SCT-1 / 100 W ilk kanal denemesi
+
+- SCT-1 ön panel 1 numaralı girişe bağlandı ve 100 W ampul açıldı (KULLANICI BİLDİRİMİ).
+- Ortak bias değeri ESPHome logunda görüldü; sayısal değer bu bildirimde paylaşılmadı.
+- U200B+ göstergesinde 0,433 A görüldü (KULLANICI BİLDİRİMİ).
+- GPIO32 ADC sayısal log örneği henüz bu kayıtla ilişkilendirilmedi; 0,433 A ESP32 ADC sonucu değildir.
+- Ayrıntı: [SCT-1 100 W test kaydı](logs/module2/2026-10-31-sct1-100w-test.txt).
+- Sonuç: SCT-1 denemesi kullanıcı bildirimiyle yapıldı; ADC log analizi ve SCT-2/SCT-3 testleri bekliyor. T010 AKTİF.
+
 ## 2026-10-31 — ESP32D1 ilk firmware açılışı ve bağlantısız ADC kontrolü
 
 - **KOD:** `firmware/esp32d1.yaml` dört ADC sensörlü sürüm cihazda açıldı. Log derleme bilgisini 2026-10-31 15:19:21 +0300 ve ESPHome 2026.10.1 olarak gösteriyor.
