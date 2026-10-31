@@ -1,3 +1,13 @@
+## 2026-10-31 — Modül 2 üç kanal akım hesabı eklendi (derleme bekliyor)
+
+- **KOD:** [firmware/esp32d1.yaml](firmware/esp32d1.yaml) üç GPIO32/33/34 ADC kaynağına ESPHome `ct_clamp` akım sensörleri ekleyecek şekilde güncellendi; GPIO35 ortak bias ve mevcut ADC voltaj entity'leri korundu.
+- **HESAP:** SCT-013-030 nominal 30 A / 1 V oranından ilk dönüşüm 30 A/V olarak tanımlandı. Bu üretici nominal oranından türetilmiş başlangıç katsayısıdır; saha kalibrasyonu veya doğrulanmış doğruluk değildir.
+- **ÖRNEKLEME:** Üç kanal 200 ms örnekleme penceresiyle; 5 s / 5.5 s / 6 s yayın aralıklarıyla yapılandırıldı.
+- **BEKLENEN ENTITY'LER:** ESP32D1 SCT 1 Current, ESP32D1 SCT 2 Current, ESP32D1 SCT 3 Current (A); üç ADC voltajı ve ortak bias voltajı (V).
+- **KARAR:** [ADR-016](docs/decisions/ADR-016-module2-three-channel-ct-clamp.md).
+- **DOĞRULAMA:** YAML GitHub'a yazıldı; bu oturumda ESPHome derlemesi, OTA yüklemesi veya yeni akım logu alınmadı. Kod çalışır/doğrulandı olarak işaretlenmedi.
+- **SONRAKİ:** ESPHome derlemesi; ardından her kanalda aynı 100 W ampulle yük kapalı/açık/kapalı ölçümü ve U200B+ karşılaştırması. SCT-1 için daha önce bildirilen U200B+ 0.433 A referans bilgisi korunur; yeni kodun sonucu değildir.
+
 ## 2026-10-31 — SCT-1 / 100 W ampul ilk kanal denemesi
 
 - **TEST:** SCT-1, ön panel 1 numaralı girişe bağlandı. Kullanıcı 100 W ampulü açtığını bildirdi.
