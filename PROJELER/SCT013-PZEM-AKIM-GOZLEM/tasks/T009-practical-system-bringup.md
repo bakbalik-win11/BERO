@@ -59,3 +59,8 @@ T009, yalnız tasarım belgesi yazıldığı için tamamlanmış sayılmaz. Her 
 - **HEDEF:** Faz 2'yi pratik yeniden kurulum ve geliştirme süreci olarak başlatmak.
 - **LOG:** Bu görev açılırken yeni firmware derleme, yükleme veya fiziksel test yapılmadı.
 - **SONUÇ:** T009 AKTİF. İlk modül ve bağlantı ayrıntıları kullanıcıyla belirlenecek.
+
+
+## İlk somut alt görev
+
+Modül 2 — ESP32D1 üçlü SCT okuma modülü ayrı görev kartıyla açılmıştır: [T010](T010-module2-triple-sct-bringup.md). T009 üst görevi, sonraki modüllerin de aynı pratik devreye alma standardıyla yönetilmesini sağlar.
