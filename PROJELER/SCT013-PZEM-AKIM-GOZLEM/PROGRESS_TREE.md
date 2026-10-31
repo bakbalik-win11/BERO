@@ -1,3 +1,11 @@
+## 2026-11-01 — Faz 2 veri hattı ve düşük akım yürütme planı
+
+- [Ayrıntılı yürütme planı](docs/plans/2026-11-01-phase2-data-and-low-current-execution-plan.md) eklendi; STATUS ve ROADMAP'ten bağlandı.
+- Görev sırası korundu: T009 → T010 → T007 → T008 → T006. T010 aktif kalır.
+- 0.4 A fiziksel alt sınır ve güncel Modül 2'de 0.35 A eşik bulunduğu iddiaları kabul edilmedi; mevcut kanıt bunları desteklemiyor.
+- Düşük akım nedeni henüz ayrıştırılmadı; K, firmware, eşik, pin ve deney ayarları değiştirilmedi.
+- Bu değişiklik bir planlama kaydıdır; yeni derleme, OTA veya fiziksel ölçüm değildir.
+
 ## 2026-11-01 — Gün sonu kapanışı
 
 - Bu sohbet kapsamında BERO'ya ait kod, YAML, donanım veya deney değişikliği yapılmadı; Claude hizmeti ve genel kod denetim promptu BERO dışı konulardı.
