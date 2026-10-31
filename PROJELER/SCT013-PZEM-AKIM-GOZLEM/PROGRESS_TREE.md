@@ -1,3 +1,11 @@
+## Modül 2 — SCT Okuma Test Modülü
+
+- **Kutu içeriği:** 3 SCT jack girişi, ESP32D2, bias mini breadboard.
+- **Kutu dışında:** 220 V AC giriş/çıkış, PZEM, SSR ve kutu içi 5 V güç kaynağı.
+- **Besleme:** Bias ayrı Bias Trafosu modülünden; ESP32D2 besleme yöntemi henüz belirlenmedi.
+- **Durum:** Taslak; fiziksel bağlantılar ve jack pin eşlemesi doğrulanmadı.
+- **Karar:** [ADR-012](docs/decisions/ADR-012-sct-test-module-scope.md).
+
 # BERO — İlerleme Ağacı
 
 ## Güncel konum
