@@ -1,28 +1,24 @@
 # T006 — SCT katsayısı/model değerlendirmesi
 
 - **Durum:** PLANLANDI
-- **Faz:** 1.3 ve sonraki analiz aşamalarıyla bağlantılı
-- **Bağımlılık:** T005 ve T003; ilgili kararlı alan/etiketleme yöntemi geliştirilmiş olmalı
-- **Hedef:** PZEM referans akışına göre SCT verisinden model/katsayı çıkarmak ve kullanılan veriyi izlenebilir biçimde kaydetmek.
+- **Faz:** PZEM–SCT kararlı alan etiketleme ve sürekli iyileştirme
+- **Bağımlılık:** T008 — en az bir geçerli PZEM/SCT ortak kararlı alan kaydı ve etiketleme
+- **Hedef:** PZEM referans akışına göre mevcut SCT katsayısını değerlendirmek; veri desteklerse katsayı/modeli yeni calibration_id ile iyileştirmek.
 
 ## Yapılacak
-1. [Kalibrasyon/model prosedürünü](../calibration/PROCEDURE.md) ve T003'teki ±%4 bağıl sapma kararını uygula.
-2. Kullanılan SCT kayıtları ile geçerli PZEM akım okumalarının hangi kararlı alanlar üzerinden ilişkilendirildiğini belgele. Kararlılık ölçütleri deney verisiyle geliştirilecek; burada önceden sabit bir zaman maskesi varsayılmaz.
-3. Kullanılan donanımı, tarihi, yük/olay koşullarını, ham veri konumunu, yazılım/hesaplama sürümünü ve dışlanan geçersiz kayıtları kaydet.
-4. Sensör başına katsayı/model ve kullanılan veriyi yeni bir `calibration_id` ile `calibration/calibrations.csv` içine ekle; eski girdilerin üzerine yazma.
-5. İlk uyum raporunda modeli eğitildiği aynı etiketli kararlı alan verisine yeniden uygula. Geçerli, sıfırdan farklı PZEM referansına göre bağıl sapma %4 veya altındaysa `OK`; aksi durumda `OUT_OF_RANGE`. Sıfır/geçersiz referans bu yüzde kuralıyla sınıflandırılmaz. Sonuç eğitim verisi içi uyumdur; bağımsız genelleme başarımı değildir.
-6. Aynı SSR deneyinin geçişler dahil tam ham SCT akışına eğitilmiş modeli uygula; SCT tahmini ile PZEM zaman serisini aynı zaman ekseninde çiz. Tepki, yerleşme, güncelleme aralığı ve gecikme gözlemlerini ayrı raporla. Bu dinamik grafik, kararlı alanlardaki ±%4 metriğinin yerine geçmez.
-6. Sonuçları ve sınırlamaları raporla. PZEM'e uyum, bağımsız mutlak ölçüm doğruluğu anlamına gelmez.
+1. T008 kapsamında eşleştirilmiş, geçerli PZEM/SCT kararlı alanlarını kullan.
+2. Önce mevcut 24.22 katsayısını değiştirmeden farkı ve bağıl sapmayı hesapla.
+3. Sapmayı yük/akım seviyesi, SCT Raw AC, pencere değişkenliği ve kayıt koşuluna göre incele.
+4. Sistematik ve tekrarlanabilir hata varsa en basit yeterli katsayı/model güncellemesini değerlendir.
+5. Her yeni katsayı/model için yeni calibration_id, veri hash'i, firmware/config sürümü, yöntem ve tarih kaydet. Önceki kayıtları silme.
+6. Eğitim verisi içi uyum ile farklı olay/yükte ayrı doğrulama sonuçlarını ayrı raporla.
+7. Geçiş dinamikleri ayrı tutulur; kararlı etiketli eğitim alanlarıyla karıştırılmaz.
+8. PZEM'e uyum, bağımsız mutlak doğruluk veya kusursuz ground truth iddiası değildir.
 
 ## Kabul ölçütü
-Kullanılan veri ve yöntem kaydedilmiş; modelin aynı etiketli eğitim verisindeki uyumu ±%4 PZEM-referans hedefiyle raporlanmış; aynı olayın ham aç-kapa akışında dinamik gözlem grafiği ve zamanlama incelemesi ayrıca üretilmiş; başarısız örnekler ve sınırlamalar açıkça raporlanmış olmalıdır. Bu ilk kabul bağımsız genelleme kanıtı değildir. Uygun veri/kararlı alanlar henüz mevcut değilse görev PLANLANDI kalır. Harici True-RMS cihazı veya üç yük seviyesinde bağımsız referans ölçümü bu proje için varsayılan zorunluluk değildir.
+En az bir geçerli ortak kararlı alan veri setiyle 24.22 katsayısının sonucu hesaplanmış; gerekiyorsa yeni katsayı/model gerekçelendirilmiş; veri kökeni, calibration_id, hata ölçütleri ve sınırlamalar raporlanmış olmalıdır. Ayrı doğrulama yapılmadıysa açıkça belirtilir. Uygun veri yoksa görev PLANLANDI kalır.
 
 ## HEDEF / LOG / SONUÇ
-- **HEDEF:** PZEM'e uyumu değerlendiren, verisi ve sürümü izlenebilir model oluşturmak.
-- **LOG:** Gerçek kullanılan veriler, ayarlar, yöntem, hesaplama sürümü ve doğrulama ayrımı yazılır; yapılmayan işlemler açıkça belirtilir.
-- **SONUÇ:** Kanıt olmadan başarı/kalibrasyon sonucu ilan edilmez.
-
-## Çıktı / dokunulacak dosyalar
-- calibration/calibrations.csv
-- calibration/PROCEDURE.md
-- STATUS.md ve ROADMAP.md (yalnız kabul ölçütleri kanıtla karşılanırsa)
+- **HEDEF:** Yeni veriler geldikçe izlenebilir ve sürümlü katsayı/model iyileştirmesi yapmak.
+- **LOG:** Gerçek PZEM/SCT eşleşmeleri, dışlanan kayıtlar, hesaplama sürümü ve örnek sonuçlar kaydedilir.
+- **SONUÇ:** Bu kart modelin eğitildiği veya ±%4 başarımın BERO içinde yeniden üretildiği anlamına gelmez.
