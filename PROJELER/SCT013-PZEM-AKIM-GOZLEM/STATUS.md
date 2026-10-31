@@ -1,5 +1,18 @@
 
 
+## 2026-10-31 — FAN-3-3T-001 üç primer tur deneyi açıldı
+
+- **DURUM:** AÇIK; fiziksel sarım ve ölçüm henüz yapılmadı.
+- **AMAÇ:** FAN-3 yükünde mevcut SCT013-030 sensörün düşük akım sinyalini aynı tek yalıtılmış iletkeni CT'den üç kez geçirerek gözlemlemek.
+- **KOD KİLİDİ:** `firmware/esp32d1.yaml` değiştirilmez; K=24.22 korunur; yazılımsal sıfır eşiği eklenmez. Açılış anındaki YAML blob SHA: `e1b110aca2ffa05fa792fd8e4b6248ed986e738c`.
+- **HESAP:** Firmware akım göstergesi ham olarak korunur; gerçek akım için gösterge/3 yalnız analizde deneysel normalizasyon olarak hesaplanır. Bu işlem kalibrasyon değildir.
+- **UNIT:** En güncel kullanıcı bildirimi 0,142 A; eski FAN-3 kaydındaki 0,141 A tarihsel olarak korunur.
+- **ÖNCEKİ TEK TUR:** Raw AC ortalama 0,009273 V; SCT ortalama 0,224612 A.
+- **KURAL:** 0,30 A altındaki düşük akım alanında ±%4 kabul/ret yok.
+- **DOSYA:** [FAN-3-3T-001 test planı](test-loads/fan3-3turn/README.md).
+- **GÜVENLİK:** Enerji kesikken yalnız aynı tek yalıtılmış iletken CT'den üç tur geçirilir; faz ve nötr birlikte geçirilmez.
+
+
 ## 2026-10-31 — 0,30 A altı düşük akım deney sınıflandırması ve FAN-1/FAN-2 düzeltmesi
 
 - **KALICI TEST KURALI:** 0,30 A altındaki akım bölgesinde ±%4 kabul/ret ölçütü uygulanmaz. 0,30 A ve üzerindeki koşullarda, eşleşmiş kararlı referans verisi varsa ±%4 karşılaştırması yapılabilir.
