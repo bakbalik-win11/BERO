@@ -1,3 +1,17 @@
+## 2026-10-31 — Üç kanallı akım okuma yazılımı
+
+Modül 2 firmware'ine ESPHome `ct_clamp` bileşeniyle üç ayrı akım hesabı eklendi:
+- SCT-1 sarı / GPIO32 → `ESP32D1 SCT 1 Current`
+- SCT-2 yeşil / GPIO33 → `ESP32D1 SCT 2 Current`
+- SCT-3 mavi / GPIO34 → `ESP32D1 SCT 3 Current`
+- Ortak bias turuncu / GPIO35 → mevcut voltaj izleme entity'si
+
+Her ct_clamp sensörü 200 ms örnekleme penceresi kullanır. ADC voltaj entity'leri ve GPIO35 bias izleme 1 s aralıkla korunur. Üç akım sensörünün yayın aralıkları 5 s / 5.5 s / 6 s olarak ayrılmıştır.
+
+İlk akım dönüşümü, envanterdeki SCT-013-030 30 A / 1 V nominal oranından 30 A/V olarak tanımlandı. Bu yalnızca başlangıç katsayısıdır; ESP32 ADC ve modül devresinin gerçek ölçeği sahada U200B+ veya PZEM karşılaştırmasıyla doğrulanmalıdır. Kalibrasyon yapılmadan sonuçlar kesin akım ölçümü veya ±%4 doğruluk olarak sunulmaz.
+
+**Beklenen:** Home Assistant'ta üç ayrı A entity'si, üç ADC voltaj entity'si ve ortak bias voltaj entity'si görünür. ESPHome derleme/OTA ve yük testi henüz yapılmadı. Ayrıntı: [ADR-016](../decisions/ADR-016-module2-three-channel-ct-clamp.md).
+
 # BERO Modül 2 — Üçlü SCT Okuma Modülü
 
 **Modül kimliği:** BERO-SCT-OKUMA-TEST-002  
