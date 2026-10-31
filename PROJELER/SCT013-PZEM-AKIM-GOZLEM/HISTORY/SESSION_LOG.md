@@ -1316,3 +1316,19 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **KARAR:** 0,244 A, 0,30 A altı düşük akım gözlem bölgesindedir; ±%4 kabul/ret uygulanmayacak. Firmware, K ve yazılımsal sıfır eşiği değiştirilmeyecek.
 - **DEPO:** [LOAD-57W-001 test dosyası](../test-loads/57w-incandescent/README.md) oluşturuldu; STATUS, test yükleri indeksi, PROGRESS_TREE ve bu oturum günlüğü güncellendi.
 - **SONRAKİ:** SCT logunu al; UNIT ölçümünün aynı kararlı pencereye ait olduğunu doğrula. PZEM varsa ayrı kaydet. Test açık kalır.
+
+
+## 2026-10-31 — LOAD-57W-001 / Log 58 analiz ve ham log arşivi
+
+- **HEDEF:** 57 W akkor ampul testinde gelen ESP32D1 Modül 2 / SCT-1 logunu tam incelemek; kaynak dosyayı, istatistikleri ve yorumunu depoda saklamak.
+- **BAŞLANGIÇ:** Proje `AGENTS.md`, `STATUS.md`, `ROADMAP.md`, LOAD-57W-001 test kaydı ve ilgili indeks/ilerleme dosyaları okundu. Test AÇIK olarak korundu.
+- **GİRDİ:** `esp32d1-logs (58).txt`; 66.456 bayt / 906 satır; SHA-256 `f5a2d958dc2c85ec204516240c99ec2e87b519a422958a9ddd1cf122b4ee8d08`.
+- **LOG:** ESPHome 2026.10.1 / ESP32D1; GPIO32 SCT-1 ADC1_CH4, GPIO35 ortak bias ADC1_CH7; ADC 12 dB / 1 s; ct_clamp 200 ms / 2 s. 116 SCT akım yayını 21:14:44–21:18:34 (+03:00).
+- **İSTATİSTİK:** Ortalama 0,304207 A; medyan 0,303 A; min–maks 0,284–0,348 A; örnek SD 0,009126 A; CV %3,00. Dört 29 örnekli blok ortalaması 0,3061 / 0,3022 / 0,3046 / 0,3040 A.
+- **ANALOG:** Raw AC ortalaması 0,012562 V; GPIO35 bias 1,663073 V; GPIO32 ADC 1,660694 V; log SPS ortalaması 17.768 (17.280–18.260).
+- **REFERANS:** UNIT 0,244 A kullanıcı bildirimi; logla aynı zamanlı kararlı pencere olduğu doğrulanmadı. SCT ortalamasına göre aritmetik fark +0,060207 A / +%24,67; bu doğruluk sonucu değildir. PZEM verisi yoktur.
+- **YORUM:** SCT çıktısı bu oturumda kendi içinde görece topludur; ancak 0,30 A sınırının iki tarafında yayın vardır. Bu sınırın altındaki değerlendirmede ±%4 kabul/ret uygulanmaz. Tek logdan K değişikliği yapılmadı.
+- **HATA / CİHAZ:** Üç framework optimizasyon uyarısı var; ERROR/[E], brownout veya reboot işareti yok. Wi-Fi bağlı, RSSI −60 dB.
+- **ARŞİV:** Tam ham TXT `logs/module2/2026-10-31-load-57w-001-module2-sct1-full.txt` yoluna kaydedildi. [Teknik analiz](../logs/module2/2026-10-31-load-57w-001-module2-sct1-analysis.md); [test kaydı](../test-loads/57w-incandescent/README.md).
+- **DEPO:** Ham log, analiz raporu, test README, test yükleri indeksi, STATUS, PROGRESS_TREE ve bu oturum kaydı güncellendi. Her dosya commit sonrası yeniden okunarak doğrulanacak.
+- **SONRAKİ:** UNIT ölçümünü SCT ile örtüşen kararlı pencerede kaydet; varsa PZEM akım/PF'yi ayrı al. LOAD-57W-001 açık kalır.
