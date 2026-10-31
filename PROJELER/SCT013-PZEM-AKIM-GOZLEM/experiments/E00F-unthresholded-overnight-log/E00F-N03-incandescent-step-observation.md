@@ -68,3 +68,31 @@ Mevcut ESP32D2/E00F ölçüm zincirini değiştirmeden, bilinen 100 W akkor ampu
 - PZEM kaydı bu dosyada yoktur; referans karşılaştırması yapılmamıştır.
 - CT'nin fiziksel konumu ve tur sayısı bilinmemektedir.
 - Yük kapatma/geri dönüş kesiti yoktur.
+
+
+## İkinci log — yük sonrası tabana dönüş gözlemi
+
+### HEDEF
+
+İlk logda 100 W akkor ampul açıldıktan sonra yükselen Raw AC seviyesinin, yük kesildiğinde başlangıçtaki yüksüz davranışına dönüp dönmediğini incelemek. Bu ikinci kayıt, fiziksel kapatma saatini kullanıcı beyanı yerine koymaz; yalnızca log içindeki geçişi gösterir.
+
+### LOG
+
+- **Kaynak:** Kullanıcının yüklediği `esp32d2-logs (15).txt`; 5.000 satır; 375.017 bayt.
+- **SHA-256:** `1ada9e16f102b8a290d2bdc3b8d7572c3ab442561f552acb081ee367f5a23952`.
+- **Zaman:** CT DEBUG pencereleri 10:30:51.840–10:45:59.928; toplam 455 pencere.
+- **Başlangıç kesiti:** 10:30–10:32 aralığında 35 pencere; Raw AC medyanı 0.004 V, ortalaması 0.00423 V.
+- **Yük açık sakin kesit:** 10:35–10:39 aralığında 120 pencere; medyan 0.019 V, ortalama 0.01997 V, p95 0.024 V.
+- **Geçiş:** 10:39:25.820 penceresinde 0.018 V; 10:39:27.837'de 0.006 V; 10:39:29.819'da 0.000 V. Bu, logdan çıkarılan geçiş aralığıdır. Kullanıcı ampulü bu saniyelerde kapattığını henüz ayrıca bildirmedi.
+- **Yük sonrası:** 10:40–10:46 aralığında 180 pencere; Raw AC medyanı 0.000 V, ortalaması 0.00238 V, maksimum 0.011 V. Bu dağılım başlangıç kesitindeki 0.004 V medyanla aynı düşük seviyededir.
+- **Yavaş ADC kanalları (başlangıç / yük açık / yük sonrası medyan):** GPIO32 SCT RAW 1842 / 1852 / 1842 count; GPIO33 SCT voltaj 1.642 / 1.657 / 1.642 V; GPIO34 Bias RAW 1841.5 / 1841 / 1840 count; GPIO35 Bias voltaj 1.653 / 1.653 / 1.653 V. Bu kanallar yaklaşık 1 s aralıkla yayınlanır ve 200 ms CT pencereleriyle eşzamanlı değildir.
+- **Hata satırları:** Bu devam dosyasında ERROR veya [E] satırı yoktur. Dosya cihaz açılışını içermediğinden açılış uyarıları hakkında yeni kanıt sağlamaz.
+- **Arşiv:** Tam TXT dosyası Git deposuna aktarılmadı; dosya boyutu ve SHA-256 rapora kaydedildi.
+
+### SONUÇ
+
+- **ÖLÇÜLDÜ:** İlk kayıtta yük öncesi 0.004 V olan Raw AC medyanı, yük açık sakin bölümde 0.019 V'a yükselmişti. İkinci kayıtta sinyal 10:39:27.837–10:39:29.819 aralığında düşük seviyeye inmiş ve takip eden altı dakikada medyan 0.000 V olmuştur.
+- **YORUM:** Ölçüm zinciri hem yük açıldığında yükselme hem de yük kesildiğinde başlangıç tabanına dönüş davranışı göstermiştir. Bu, 100 W akkor yükün SCT sinyalinde ayrışabilir bir etki oluşturduğunu destekleyen daha güçlü bir aç-kapa gözlemidir.
+- **SINIR:** Logdaki sinyal dönüşü ampulün fiziksel olarak kapatıldığını düşündürür; ancak gerçek anahtarlama zamanı kullanıcı tarafından teyit edilmediği için olay zamanı yalnızca logdan çıkarılmıştır. CT'nin primer iletkeni/tur sayısı doğrulanmamıştır. PZEM verisi ve ham ADC örnek dizisi yoktur. Kalibrasyon veya ±%4 doğruluk sonucu çıkarılamaz.
+- **DURUM:** E00F-N03 kısmi gözlem olarak kalır. Kullanıcıdan yaklaşık 10:39:28'de ampulü kapatıp kapatmadığı teyit edilecek; CT fiziksel konum/tur bilgisi de doğrulanmadan deney TAMAMLANDI sayılmayacak.
+
