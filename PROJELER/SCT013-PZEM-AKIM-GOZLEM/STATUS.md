@@ -1,3 +1,14 @@
+## 2026-10-31 — E00F-N03 100 W akkor yük gözlemi (kısmi)
+
+- **Durum:** E00F-N03 FİZİKSEL TEST DEVAM EDİYOR. Kullanıcı 100 W akkor ampulü 10:32'de açtığını doğruladı; yük kapatma ve kapanış sonrası bölüm henüz kaydedilmedi.
+- **Log:** Kullanıcının `esp32d2-logs (14).txt` dosyası 222.950 bayt / 3.006 satır; SHA-256 `c4131d1d4a6f40f2024c05fa51eeed542cee4cf6b2d4a8f806d6a594ea72280e`. ESPHome 2026.10.1 / ESP32 rev3.1 / esp32d2; CT Clamp 262 adet 200 ms pencereyi 10:30:27.836–10:39:09.831 arasında kaydetti.
+- **Ana bulgu:** Yük öncesi Raw AC medyanı 0.004 V (46 pencere); 10:32 sonrası 0.019 V (215 pencere). 10:35–10:39 daha sakin bölümünde Raw AC medyanı 0.019 V, ortalaması 0.02003 V; akım entity medyanı 0.466 A. Bu, mevcut zincirin akkor yük açılmasına belirgin tepki verdiğini gösterir; kalibrasyon veya ±%4 doğruluk kanıtı değildir.
+- **Aykırı bölüm:** 10:33:53–10:34:21 arasında Raw AC 0.080–0.088 V; en yüksek yayın 2.129 A. N ile Raw AC korelasyonu yaklaşık 0.886; N/SPS ilişkili ve gerçek ADC dönüşüm hızı değildir. Nedeni bilinmiyor, kararlı yük seviyesi sayılmayacak.
+- **Cihaz:** ERROR/[E] yok; üç açılış framework optimizasyon uyarısı var. Dört ADC kanalı çalışıyor; 1 s yavaş ADC yayınları CT'nin 200 ms pencereleriyle eşzamanlı değil.
+- **Sınırlar:** CT'nin fiziksel olarak hangi iletkeni ve kaç turu gördüğü doğrulanmadı. Logda yük kapatma olayı yok. PZEM karşılaştırması ve ham ADC örnek dizisi yok. Tam ham TXT dosyası bu committe Git'e aktarılmadı; kaynak hash'i ve analiz/örnek log satırları rapora kaydedildi.
+- **Sonraki adım:** Ampul kapatıldığında kapanış saatini kaydet; kapanış sonrası kesitle başlangıç tabanına dönüşü incele. Firmware, katsayı 24.22, eşik, pinler ve cihaz kimliği değiştirilmedi.
+- **Ayrıntı:** [E00F-N03 raporu](experiments/E00F-unthresholded-overnight-log/E00F-N03-incandescent-step-observation.md), [deney YAML kaydı](experiments/E00F-unthresholded-overnight-log/E00F-N03-experiment.yaml).
+
 ## 2026-10-31 — E00F-N02 aykırı gözlem değerlendirmesi ve sonraki test
 
 - **Aykırı olay:** 05:24:02 civarındaki 2.665238 A tepe, kullanıcının evde kedi bulunduğu ve tekil sıçramanın öneminin büyütülmemesi gerektiği yönündeki değerlendirmesiyle birlikte ele alındı. Olay ham veriden silinmedi; nedeni doğrulanmadığı için tekil/atıfsız aykırı gözlem olarak tutuldu. Kedi teması kanıtlanmış neden değildir.
