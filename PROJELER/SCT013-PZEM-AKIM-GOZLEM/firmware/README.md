@@ -1,22 +1,34 @@
 # Firmware dosyalari ve dugumler
 
-## ESP32-C3 SSR kontrol dugumu — ilk taslak
+## ESP32-WR1-PZEM — PZEM ölçüm ve SSR UDP olay alıcı düğümü
+
+- YAML: [esp32wr1-pzem.yaml](esp32wr1-pzem.yaml)
+- ESPHome cihaz kimliği: `esphome-web-2a35cc`
+- Home Assistant görünen adı: `ESP32-WR1-PZEM`
+- Donanım: klasik ESP32, ESP-IDF.
+- PZEM-004T V3 UART/Modbus: ESP TX GPIO17, ESP RX GPIO16, 9600 baud, 1 stop bit.
+- PZEM entity'leri: gerilim, akım, güç, enerji, frekans ve güç faktörü; 5 saniye güncelleme.
+- UDP alıcı: 4210/UDP, tüm yerel arayüzlerde bind; beklenen yük `BERO_EVT,BOOT_ID=XXXXXXXX,EVENT_ID=N,STATE=ON|OFF`.
+- UDP datagramı 100 ms aralıkta, bloklamayan soketle, döngü başına en fazla bir mesaj okunarak yalnızca ESPHome loguna yazılır. CSV kaydı ve HA UDP olay entity'si bu sürümde yoktur.
+- Soket oluşturma başarısız olursa 5 saniyede bir yeniden denenir.
+- **Durum: KULLANICININ VERDİĞİ YAML DEPOYA EKLENDİ; derleme ve cihaz doğrulaması bekliyor.**
+- ESPHome kimliği ve pinler sabit kabul edilir; değişiklik öncesi kullanıcı onayı gerekir.
+
+## ESP32-C3 SSR kontrol düğümü — ilk taslak
 
 - YAML: [esp32c3-ssr.yaml](esp32c3-ssr.yaml)
-- ESP32 kimligi: `esphome-web-0424f4`
-- Home Assistant gorunen adi: `ESP32-C3-SSR`
-- Gorev: 40 s ON / 20 s OFF SSR dongusu, BOOT_ID/EVENT_ID olay kimligi,
+- ESP32 kimliği: `esphome-web-0424f4`
+- Home Assistant görünen adı: `ESP32-C3-SSR`
+- Görev: 40 s ON / 20 s OFF SSR döngüsü, BOOT_ID/EVENT_ID olay kimliği,
   UDP broadcast (255.255.255.255:4210), DS3231/NTP saat bilgisi.
-- HA'ya acilan olay alanlari: Boot ID, Event ID, son olay durumu.
-- HA cihaz tanilama alanlari: IP, Wi-Fi SSID, MAC, ESPHome surumu,
+- HA'ya açılan olay alanları: Boot ID, Event ID, son olay durumu.
+- HA cihaz tanılama alanları: IP, Wi-Fi SSID, MAC, ESPHome sürümü,
   uptime ve Wi-Fi sinyal seviyesi.
-- **Durum: KOD DEPOYA EKLENDI; derleme, OTA ve fiziksel SSR testi
-  henuz yapilmadi/dogrulanmadi.**
-- GPIO6 `inverted: true` oldugu icin yazilim ON komutu fiziksel LOW,
-  OFF komutu fiziksel HIGH uretir. GPIO cikis okumasiyla SSR'nin AC
-  tarafinda iletime gectigi kanitlanmaz; yuk teyidi PZEM'den yapilmalidir.
+- **Durum: KOD DEPOYA EKLENDİ; derleme, OTA ve fiziksel SSR testi
+  henüz yapılmadı/doğrulanmadı.**
+- Kullanıcının denediği GPIO6/inverted/readback ayarları korunur; izinsiz değiştirilmez.
 
-## ESP32D2 / SCT dugumu
+## ESP32D2 / SCT düğümü
 
 ## 2026-10-30 — E00F-N01 bias referansı izleme eklentisi
 
