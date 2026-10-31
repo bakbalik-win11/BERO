@@ -323,3 +323,16 @@ Kullanıcı kararıyla yeni firmware hazırlanması/firmware değişikliği erte
 - **Durum etiketi:** ±%4 sonucu KULLANICI RAPORU; harici kodun repo içine alınması/bağımsız derlenmesi YAPILMADI.
 - **Ayrıntı:** [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
 
+
+
+## 2026-10-31 — BREAD-TOASTER-001 / ekmek kızartma makinesi Log 63
+
+- **NEDEN:** 3 A çevresindeki yük aralığına farklı bir rezistif ev yükü örneği eklemek ve Modül 2 SCT-1 davranışını mevcut kodla gözlemek.
+- **TEST AYRIMI:** Bu kayıt, önceki TOASTER-001 tost makinesi testinden ayrıdır; UNIT 3,30 A kullanıcı bildirimiyle yeni BREAD-TOASTER-001 olarak tutulur.
+- **LOG:** `esp32d1-logs (63).txt`; 32.064 bayt / 449 satır; SHA-256 `cf9254185e591650a06a990e5bc0f567ee499ba4ec541c4bb8748b132513f896`; 22:31:30.257–22:33:10.230.
+- **DÜZENEK:** ESP32D1 rev3.1 / ESPHome 2026.10.1 / SCT-1 GPIO32 / bias GPIO35 / ADC 12 dB, 1 s / ct_clamp 200 ms, 2 s / K=24.22.
+- **SONUÇ:** İlk düşük örnek sayılı açılış yayını dışlandıktan sonra 50 SCT yayını ortalama 3,09636 A, medyan 3,094 A, min–maks 3,071–3,144 A, CV %0,433. Raw AC ortalaması 0,127843 V; SPS ortalaması 18.117.
+- **REFERANS SINIRI:** UNIT 3,30 A kullanıcı bildirimi. SCT ortalamasından −%6,17 aritmetik fark; zaman eşleşmesi doğrulanmadığı için doğruluk sonucu değildir. PZEM verisi yok.
+- **KARAR:** K=24.22 ve firmware korunur; katsayı/eğri türetilmez. Test AÇIK; tekrarlı log ve eşzamanlı UNIT/PZEM verisi beklenir.
+- **ARŞİV:** [Test](test-loads/bread-toaster/README.md); [analiz](logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md); [seçilmiş kanıt](logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt). Tam ham TXT bu işlemde GitHub'a yüklenmedi.
+
