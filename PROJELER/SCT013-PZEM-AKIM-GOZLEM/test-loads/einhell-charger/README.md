@@ -43,3 +43,13 @@ Einhell pil şarj cihazının normal şarj sürecinde BERO Modül 2 / ESP32D1 / 
 
 ## Sonuç
 Henüz ölçüm logu yoktur. Bu kayıt yalnız deneyin açılış planıdır; test çalıştırılmış veya tamamlanmış değildir.
+
+
+## 2026-10-31 — İlk kararlı akım gözlemi (kullanıcı bildirimi)
+
+- İlk bildirilen akım: 0,413 A.
+- Son bildirilen akım: **0,419 A — sabitlendi**.
+- Değişim: +0,006 A; ilk değere göre yaklaşık +%1,45.
+- Kaynak sınıfı: KULLANICI BİLDİRİMİ. Ölçüm cihazı henüz doğrulanmadı; bu değer PZEM veya SCT log ölçümü olarak etiketlenmez.
+- Bu, şarj cihazının o andaki kararlı akımına ilişkin ön gözlemdir. Süre, pilin şarj aşaması ve ESP32D1 logu henüz yoktur.
+- Test AÇIK kalır; uzun log ve referans cihaz bilgisi beklenir.
