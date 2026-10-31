@@ -1,0 +1,33 @@
+# LOAD-IDLE-001 — Log kanıt özeti
+
+Kaynak: Yapıştırılan metin(20261031-135010).txt
+Boyut: 36.687 bayt / 514 satır
+SHA-256: 9ac3ece0770a85219e7ad6664f15f1ccc9db9b561d04f6195ef034d4e718e455
+
+## Kurulum kanıtı
+[16:47:54.376][I][app:164]: ESPHome version 2026.10.1 compiled on 2026-10-31 15:55:25 +0300
+[16:47:54.377][I][app:171]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[16:47:54.423][C][adc:017]: ADC Sensor 'ESP32D1 SCT 1 ADC Voltage'
+[16:47:54.445][C][adc:131]: Pin: GPIO32
+[16:47:54.445][C][adc:131]: Channel: 4
+[16:47:54.493][C][adc:131]: Pin: GPIO35
+[16:47:54.493][C][adc:131]: Channel: 7
+[16:47:54.524][C][ct_clamp:013]: Sample Duration: 0.20s
+[16:47:54.524][C][ct_clamp:340]: Update Interval: 2.000s
+
+## Yüksüz sıfır örneği
+[16:47:54.957][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.000A after 3586 different samples (17930 SPS)
+[16:47:55.066][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00000 V
+[16:47:55.066][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.000 A
+
+## Yüksüz sıfır dışı örneği
+[16:48:32.953][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.002A after 3561 different samples (17805 SPS)
+[16:48:33.064][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00213 V
+[16:48:33.065][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.051 A
+
+## Son örnek
+[16:49:52.945][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.002A after 3625 different samples (18125 SPS)
+[16:49:53.052][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.00167 V
+[16:49:53.052][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.040 A
+
+Not: Bu dosya tam ham logun birebir kopyası değildir; seçilmiş gerçek satırlardan oluşan kanıt dökümüdür. Tam kaynak dosyanın adı, boyutu ve SHA-256 değeri korunmuştur.
