@@ -83,3 +83,8 @@ Bu proje enerji analizörü, güç kalitesi analizörü, PF hesaplayıcı, FFT/T
 - [ADR-014 — Faz 2 pratik yeniden başlangıç](docs/decisions/ADR-014-phase2-practical-restart.md)
 - [T009 — Modül/ESP devreye alma](tasks/T009-practical-system-bringup.md)
 - [Faz 1 deney arşivi](experiments/README.md)
+
+
+## 2026-11-01 — Faz 2 veri hattı ve düşük akım uygulama planı
+
+Faz 2 için ayrıntılı yürütme planı [burada](docs/plans/2026-11-01-phase2-data-and-low-current-execution-plan.md) tutulur. Ana görev sırası değişmez: T009 → T010 → T007 → T008 → T006. T010 pratik modül devreye alma tamamlanmadan veri/öğrenme hattı görevleri aktif göreve alınmaz. 0,4 A fiziksel alt sınır olarak kabul edilmez; eski E00F yapılandırmasındaki 0,35 A filtresi güncel ESP32D1 Modül 2'ye atfedilmez. Bölgesel model kararı eşleşmiş ve tekrarlanabilir veriye bağlıdır. Bu planlama kaydı firmware veya ölçüm sonucu değildir.
