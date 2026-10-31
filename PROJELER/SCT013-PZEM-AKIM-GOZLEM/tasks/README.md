@@ -27,14 +27,15 @@ Faz 1 kapanmıştır. Faz 2'nin ilk aktif görevi T009'dur: modül ve ESP düğ�
 | T004 | Analog ön uç belgelemesi | Faz 1 | KAPATILDI / tarihsel kayıt | Faz 1 |
 | T005 | Eski ADC/gürültü tabanı işleri | Faz 1 | KAPATILDI — HEDEFE ULAŞILDI | Eski iş; yeniden açılmayacak |
 | E00A–E08, E00F alt adımları | Eski deney kayıtları | Faz 1 | KAPATILDI — HEDEFE ULAŞILDI | Deney kanıtları arşivde |
-| **T009** | **Pratik modül ve ESP düğümü yeniden devreye alma** | **Faz 2** | **AKTİF** | **1** |
+| T009 | Pratik modül ve ESP düğümlerini devreye alma (üst görev) | Faz 2 | DEVAM EDİYOR / üst görev | Genel çerçeve |
+| **T010** | **Modül 2 — ESP32D1 üçlü SCT okuma modülü** | **Faz 2** | **AKTİF** | **1. modül işi** |
 | T007 | Home Assistant → PC veri aktarımı | Faz 2 | BEKLEMEDE | PZEM/SCT düğümleri çalıştıktan sonra |
 | T008 | PZEM/SCT kararlı alan eşleştirme ve etiketleme | Faz 2 | BEKLEMEDE | T007 aktarımından sonra |
 | T006 | K=24.22 katsayısı/model değerlendirmesi | Faz 2 | BEKLEMEDE | T008 etiketli veri ürettikten sonra |
 
 ## Faz 2 görev bağımlılığı
 
-1. **T009:** Modül kapsamını ve gerçek bağlantıları belirle; çalışan kod/örnek seç; en az uyarlamayla derle ve tekil modül işlevini gerçek donanımda doğrula. Modül sırası kullanıcıyla belirlenir.
+1. **T009/T010:** T009 genel devreye alma çerçevesidir. İlk somut modül işi T010 — Modül 2 ESP32D1 üçlü SCT okuma modülüdür. Gerçek bağlantıları belirle; çalışan kod/örnek seç; en az uyarlamayla derle ve tekil modül işlevini gerçek donanımda doğrula.
 2. **T007:** PZEM/SCT HA entity akışları çalıştığında geçmişi PC'ye al; kaynak alanları koru; aktarımı tekrar çalıştırılabilir yap.
 3. **T008:** PC'deki kayıtta PZEM ve SCT kararlılığını ayrı hesapla; örtüşen alanları eşleştir ve PZEM referansıyla etiketle.
 4. **T006:** Etiketli alanlarda K=24.22'yi değerlendir; veri gerekçelendirirse yeni calibration_id ile iyileştir.
@@ -45,4 +46,4 @@ Göreve dönüşmemiş fikirler [IDEA_BACKLOG.md](../IDEA_BACKLOG.md) içinde tu
 
 ## İlgili karar
 
-Faz 2 çalışma biçimi ve kapsamı [ADR-014](../docs/decisions/ADR-014-phase2-practical-restart.md) ile tanımlanmıştır.
+Faz 2 çalışma biçimi ve kapsamı [ADR-014](../docs/decisions/ADR-014-phase2-practical-restart.md) ile; Modül 2'nin somut donanım tanımı [ADR-015](../docs/decisions/ADR-015-module2-esp32d1-triple-sct.md) ile tanımlanmıştır. İlk modül kartı: [T010](T010-module2-triple-sct-bringup.md).
