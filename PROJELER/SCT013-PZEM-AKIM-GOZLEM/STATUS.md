@@ -1,3 +1,13 @@
+## 2026-10-31 — LOAD-57W-001 / 57 W akkor ampul testi açıldı
+
+- **DURUM:** AÇIK — test yükü ve başlangıç referansı kaydedildi; SCT logu bekleniyor.
+- **YÜK:** 57 W akkor ampul (KULLANICI BİLDİRİMİ).
+- **UNIT:** 0,244 A kullanıcı bildirimi; kararlı pencere/zaman örtüşmesi henüz teyit edilmedi; PZEM değildir.
+- **DÜZENEK:** Modül 2 / ESP32D1 / SCT-1 GPIO32 / ortak bias GPIO35; ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp 200 ms/2 s, K=24.22; yazılımsal sıfır eşiği yok.
+- **DEĞERLENDİRME:** 0,30 A altı düşük akım gözlem bölgesi; ±%4 kabul/ret yok. SCT dağılımı, Raw AC, bias ve zaman içi kararlılık incelenecek. UNIT ve varsa PZEM ayrı tutulacak.
+- **DOSYA:** [LOAD-57W-001](test-loads/57w-incandescent/README.md).
+- **SONRAKİ:** SCT logunu al; UNIT ölçümünün aynı kararlı pencereye ait olduğunu kaydet. Test sonucu olmadan kapatma.
+
 ## 2026-10-31 — LOAD-42W-001 / 42 W ampul düşük akım testi açıldı
 
 - **DURUM:** AÇIK — Log 57 analiz edildi; eşzamanlı referans ve fiziksel ampul ayrıntıları bekleniyor.
