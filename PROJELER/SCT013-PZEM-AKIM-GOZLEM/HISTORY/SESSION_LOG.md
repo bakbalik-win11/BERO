@@ -1305,3 +1305,14 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **KARAR:** Test açık kalır; ±%4 kabul/ret yapılmaz. Firmware ve K=24.22 değiştirilmedi.
 - **DEPO:** Test README, test indeksi, STATUS ve PROGRESS_TREE güncellendi. Ayrı teknik analiz eklenecek. Ham TXT Git'e kopyalanmadı; kaynak adı/boyutu/hash kaydedildi.
 - **SONRAKİ:** UNIT ölçümünü aynı fiziksel yükün SCT loguyla örtüşen kararlı penceresinde al; PZEM varsa ayrı kaydet.
+
+
+## 2026-10-31 — LOAD-57W-001 yeni test yükü açılışı
+
+- **HEDEF:** 57 W akkor ampul yükünde Modül 2 / SCT-1 düşük akım davranışını gözlemek.
+- **KULLANICI BİLDİRİMİ:** Test yükü 57 W akkor ampul; UNIT başlangıç değeri 0,244 A.
+- **REFERANS SINIRI:** UNIT ölçümünün kararlı pencere ortalaması olup olmadığı ve SCT loguyla zaman örtüşmesi henüz teyit edilmedi. PZEM değeri verilmedi.
+- **DÜZENEK:** ESP32D1 / Modül 2 / SCT-1 GPIO32 ADC1_CH4 / ortak bias GPIO35 ADC1_CH7; mevcut ESPHome 2026.10.1, ADC 12 dB/1 s, ct_clamp 200 ms/2 s, K=24.22.
+- **KARAR:** 0,244 A, 0,30 A altı düşük akım gözlem bölgesindedir; ±%4 kabul/ret uygulanmayacak. Firmware, K ve yazılımsal sıfır eşiği değiştirilmeyecek.
+- **DEPO:** [LOAD-57W-001 test dosyası](../test-loads/57w-incandescent/README.md) oluşturuldu; STATUS, test yükleri indeksi, PROGRESS_TREE ve bu oturum günlüğü güncellendi.
+- **SONRAKİ:** SCT logunu al; UNIT ölçümünün aynı kararlı pencereye ait olduğunu doğrula. PZEM varsa ayrı kaydet. Test açık kalır.
