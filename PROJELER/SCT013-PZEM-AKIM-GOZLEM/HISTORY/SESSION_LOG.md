@@ -1,3 +1,16 @@
+## 2026-10-31 — BREAD-TOASTER-001 / Log 63 analiz ve kayıt
+
+- **HEDEF:** 3,30 A UNIT bildirimi çevresindeki ekmek kızartma makinesi yükünde Modül 2 / SCT-1 davranışını mevcut K=24.22 ile gözlemek.
+- **GİRDİ:** `esp32d1-logs (63).txt`; 32.064 bayt / 449 satır / 32.056 UTF-8 karakter; SHA-256 `cf9254185e591650a06a990e5bc0f567ee499ba4ec541c4bb8748b132513f896`.
+- **DÜZENEK:** ESP32D1 rev3.1 / ESPHome 2026.10.1; SCT-1 GPIO32 ADC1_CH4; ortak bias GPIO35 ADC1_CH7; ADC 12 dB / 1 s; ct_clamp 200 ms / 2 s.
+- **LOG:** 51 SCT yayını 22:31:30.257–22:33:10.230. İlk yayın 3,027 A; yalnız 186 örnek / 930 SPS. Sonraki 50 yayın ortalama 3,09636 A; medyan 3,094 A; min–maks 3,071–3,144 A; SD 0,01340 A; CV %0,433.
+- **ANALOG:** Kararlı Raw AC ortalaması 0,127843 V; SPS ortalaması 18.117. GPIO35 bias 101 örnekte medyan 1,664 V, ortalama 1,66203 V; tekil 1,565 V örneği raporda not edildi.
+- **REFERANS:** UNIT 3,30 A kullanıcı bildirimi; PZEM değildir. Aritmetik fark −0,20364 A / −%6,17; zaman eşleşmesi belgelenmediğinden doğruluk sapması değildir. PZEM logu yok.
+- **KOD KARARI:** K=24.22 ve firmware korunmuştur. Katsayı/eğri türetilmedi; Python çalışması yapılmadı.
+- **ARŞİV:** [Test README](../test-loads/bread-toaster/README.md); [analiz](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md); [seçilmiş gerçek satırlar](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt). Tam ham TXT bu işlemde GitHub'a aktarılmadı; kaynak adı, boyutu ve SHA-256 korundu.
+- **AYRIM:** Önceki TOASTER-001 tost makinesi testi (UNIT 7,89 A / Log 62) ayrı kalır; bu yeni ekmek kızartma makinesi kaydı onunla birleştirilmedi.
+- **DURUM:** BREAD-TOASTER-001 AÇIK; tekrarlı SCT logu ve aynı kararlı pencereye ait UNIT/PZEM referansı bekleniyor.
+
 ## 2026-10-31 — Toplu yük ve karma yük karşılaştırması
 
 - Depodaki yük deneyleri tek raporda birleştirildi: [COMPARATIVE-RESULTS-2026-10-31.md](../test-loads/COMPARATIVE-RESULTS-2026-10-31.md).
