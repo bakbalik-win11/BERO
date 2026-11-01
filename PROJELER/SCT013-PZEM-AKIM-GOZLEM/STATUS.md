@@ -1,3 +1,14 @@
+## 2026-11-01 — E11 üç SCT sıralı log analizi
+
+- **LOG:** `esp32d1-logs (64).txt`; 208.718 bayt / 2.795 satır; kaynak SHA-256 `97a36071b8319625df5e717b358c8ec69fea609be928ba71e6e3a5153c081484`. Ağ kimlikleri maskelenmiş tam arşiv ve seçilmiş kanıt [E11 log arşivinde](logs/module2/2026-11-01-e11-three-sct-sequential-analysis.md).
+- **KAPSAM:** 176 çevrim; üç kanal için 528/528 akım ve Raw AC yayını; 176 bias yayını. İlk çevrim açılış verisi olarak ayrıldı; kararlı istatistikler 175 çevrimden.
+- **SONUÇ:** SCT1 ortalama/medyan 0,42141/0,420 A, CV %1,98; SCT2 0,42283/0,422 A, CV %2,36; SCT3 0,42686/0,428 A, CV %2,09. Kanallar arası ortalama farkı SCT1'e göre SCT2 +%0,34, SCT3 +%1,29.
+- **BIAS:** Ortalama 1,66022 V; min–maks 1,642–1,682 V.
+- **ZAMANLAMA:** 159/176 çevrimde üç sıra geçişi 200–300 ms aralığında. 17 çevrimde en az bir sapma var; 12:01:07 çevriminde 16/454/392 ms işaret aralıkları görüldü. Gerçek pencere çakışmasızlığı kesin kabul edilmedi; 50 ms pay azaltılmayacak.
+- **ESKİ KAYIT KIYASI:** LOAD-100W-004 SCT1 ortalama/medyan 0,425/0,423 A; yeni SCT1 0,42141/0,420 A. Yakınlık koşullu kıyastır; yeni logun fiziksel yük ve besleme bilgisi kendi içinde yazılı değildir.
+- **REFERANS SINIRI:** 0,427 A tarihsel UNIT geçici beklentisidir; PZEM değildir. Yeni logda PZEM veya eşzamanlı UNIT kaydı yok. K=24.22 değişmedi; kalibrasyon/±%4 kabul sonucu çıkarılmadı.
+- **DURUM:** E11 üç kanal veri üretimi ve dağılım karşılaştırması logla desteklendi. Zamanlama anomalisi ve SCT2 düşük örnek/SPS sayısı takipte. T010 AKTİF; tüm kabul kapıları kapanmadı.
+
 ## 2026-11-01 — Faz 2 veri hattı ve düşük akım uygulama planı
 
 - **KAYIT:** [Faz 2 veri hattı ve düşük akım uygulama planı](docs/plans/2026-11-01-phase2-data-and-low-current-execution-plan.md).
