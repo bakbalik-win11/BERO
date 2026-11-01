@@ -45,3 +45,10 @@ Faz 2 görev sırası T010 → T007 → T008 → T006 olarak kalır. E10, T010 a
 ## Kayıt standardı
 
 Her yeni deney için amaç/HEDEF, gerçek bağlantı ve ayarlar, LOG, SONUÇ, kaynak veri/hash, kod sürümü ve yorum birlikte saklanır. Yapılmayan adım yapılmış gibi gösterilmez. Ham veri varsayılan olarak Git'e eklenmez; gerekli küçük örnekler ve özetler saklanır.
+
+
+## Faz 2 — Yeni deneyler ve güncel öncelik
+
+- **[E11 — Modül 2/3 birlikte yüksüz hat uzun süreli gözlem ve olay aktarımı](E11-idle-dual-module-observation/README.md): PLANLANDI / ilk ortak deney önceliği.** İki modül birlikte çalışır; ölçülen hatta yük bağlanmaz; Modül 3'ün 40 s ON / 20 s OFF olay döngüsü sürer. PZEM ve üç SCT kanalının yüksüz davranışı ile Modül 3 olay gönderimi/Modül 2 olay alımı karşılaştırılır.
+- Deney sırası sabit değildir; ihtiyaca ve donanım hazır oluşuna göre değişebilir. Bu, Faz 2 görev bağımlılıklarını değiştirmez.
+- E10 (ct_clamp pencere süresi) planlı deney olarak korunur; E11 nedeniyle iptal edilmez veya tamamlandı sayılmaz.
