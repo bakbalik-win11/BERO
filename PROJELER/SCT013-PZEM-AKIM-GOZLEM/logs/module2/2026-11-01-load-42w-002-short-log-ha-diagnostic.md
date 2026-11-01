@@ -54,3 +54,7 @@ Firmware'de `ct_clamp.on_raw_value` içindeki `x`, ct_clamp bileşeninin filtre 
 4. 2T/SCT1 oranını fiziksel primer geçiş ve sensör yerleşimi teyidiyle tekrar gözle.
 
 **Durum:** Kısa firmware/ölçüm döngüsü LOG İLE DESTEKLENDİ. HA geçmiş sorunu ÇÖZÜLMEDİ. Raw AC birim hatası KOD DENETİMİNDE BULUNDU; henüz firmware değiştirilmedi.
+
+
+## Kullanıcı açıklaması — düşük akım testinin amacı
+Kullanıcı, 42 W yükün 0,30 A altında çalıştığını ve sensörün bu bölgede aynı sonucu vermesinin beklenmediğini açıkladı. Bu testte SCT3/SCT1 oranının 2x olmaması hata olarak sınıflandırılmayacaktır. Testin amacı düşük akım bölgesinde 2T kanalını gözlemek ve sensör verilerinin Home Assistant Recorder/History'ye akmasını doğrulamaktır. HA geçmişinin oluşmaması ayrı bir entegrasyon/Recorder sorunudur ve çözülmeden testin kayıt hedefi karşılanmış sayılmaz.
