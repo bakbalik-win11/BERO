@@ -110,3 +110,16 @@ Bu kayıt kodun kullanıcı bildirimiyle derlenip çalıştığını belgelemekt
 - **Kapsam dışı:** UNIT/PZEM doğruluk kıyası, ±%4 kabul kararı, katsayı ayarı veya yeni yük karakterizasyonu yapılmayacak.
 - **Güvenli işlem:** Yük kapalı ve düzenek enerjisizken SCT fişlerini değiştir; bağlantılar kontrol edildikten sonra 100 W deneyi başlat.
 - **Durum:** PLANLANDI; fiziksel değişim ve yeni log bekleniyor.
+
+
+## 2026-11-01 — Log 69: SCT3 iki primer tur gözlemi
+
+- **DÜZEN:** Kullanıcı açıklamasına göre SCT1 mevcut düzende; SCT2 tek primer tur ve kablo düz; SCT3 yük iletkeni CT açıklığından iki kez geçirilmiş. Buradaki iki tur sensörün sekonder kablosunun sarılması değildir.
+- **LOG:** 1.466 satır / 108.063 bayt. Orijinal SHA-256: `2c031c08b333b9f5900e530f053f1c3894bb9fecd6e049394f946f368321a90c`. Ağ kimlikleri maskelenerek arşivlendi: [Log 69 gzip+Base64](../../logs/module2/2026-11-01-e11-log69-sanitized.txt.gz.b64).
+- **NORMAL ÇEVRİM:** 87 çevrim/kanal; SCT3'ün ilk kısmi açılış kaydı dışarıda bırakıldı.
+- **AKIM ORTALAMALARI:** SCT1 0,424793 A; SCT2 0,412862 A; SCT3 iki primer turda 0,857874 A.
+- **İKİ TUR KIYASI:** SCT3/SCT1 = 2,0195. SCT1'in iki katı 0,849586 A; SCT3 farkı yaklaşık +%0,98. İki tur davranışı bu oturumda beklenen yaklaşık 2x ölçeklemeyi gösterdi.
+- **ÖRNEK SAYISI:** SCT1 3393,34; SCT2 3264,95 (SCT1'e göre −%3,78); SCT3 3352,06 (−%1,22) farklı örnek/200 ms. Örnek sayısı farkı, iki tur akım ölçeklemesinden ayrı tutulur.
+- **KARAR SINIRI:** PZEM/UNIT eşzamanlı referansı yok; kalibrasyon veya ±%4 kabul testi değildir. İki tur ölçümleri `primary_turns=2` metadata'sıyla işaretlenmeli; tek tur verileriyle etiketsiz biçimde birleştirilmemeli.
+- **ANALİZ:** [Log 69 iki primer tur analizi](../../logs/module2/2026-11-01-e11-log69-two-primary-turns-analysis.md).
+- **FIRMWARE:** YAML, K=24.22, GPIO eşlemesi, 200 ms pencere, 250 ms slot, 50 ms pay ve 2 s çevrim değiştirilmedi.
