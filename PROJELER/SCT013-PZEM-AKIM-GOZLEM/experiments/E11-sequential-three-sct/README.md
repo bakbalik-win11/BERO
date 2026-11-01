@@ -99,3 +99,14 @@ Bu kayıt kodun kullanıcı bildirimiyle derlenip çalıştığını belgelemekt
 - **KANIT SINIRI:** START/COMPLETE işaretleri doğrudan pencere callback'i değildir; COMPLETE işareti sabit 250 ms delay sonrasında yazılır. Gerçek pencere çakışmasızlığı kesin doğrulanmadı. İki Wi-Fi roaming scan olayı zamanlama sapmalarına yakın görünür; nedensellik kanıtlanmadı.
 - **REFERANS:** PZEM/UNIT kaydı yok; fiziksel yük ve besleme metadata'sı açıkça tanımlı değil. Kalibrasyon veya ±4% kabulü çıkarılmadı.
 - **DURUM:** YAML ve K=24.22 değişmedi. 50 ms geçiş payı azaltılmayacak. T010 AKTİF.
+
+
+## 2026-11-01 — T010 kapatıldı / SCT2-SCT3 soket değişimi gözlem planı
+
+- T010 kapatıldı; E11 üç-SCT okuma kodu 100 W akkor ampul oturumunda üç kanaldan veri üretti.
+- **PLANLANAN SON KANAL GÖZLEMİ:** SCT-2 ve SCT-3 fiziksel fişleri/soketleri yer değiştirilecek; ardından aynı 100 W ampulle kısa bir log alınacak. Yalnız kanal davranışı izlenecek.
+- **Amaç:** Önceki logda SCT2'de görülen yaklaşık %5 düşük kabul edilmiş örnek sayısı sensörle mi, yoksa kanal/GPIO okuma yoluyla mı birlikte hareket ediyor sorusuna gözlemsel veri sağlamak.
+- **Kontrollü sabitler:** YAML/firmware, K=24.22, GPIO32/33/34 eşlemesi, okuma sırası, 200 ms pencere, 250 ms slot ve 2 s çevrim değiştirilmez. Yalnız fiziksel 2 ve 3 numaralı soketlerdeki SCT fişleri yer değiştirilir.
+- **Kapsam dışı:** UNIT/PZEM doğruluk kıyası, ±%4 kabul kararı, katsayı ayarı veya yeni yük karakterizasyonu yapılmayacak.
+- **Güvenli işlem:** Yük kapalı ve düzenek enerjisizken SCT fişlerini değiştir; bağlantılar kontrol edildikten sonra 100 W deneyi başlat.
+- **Durum:** PLANLANDI; fiziksel değişim ve yeni log bekleniyor.
