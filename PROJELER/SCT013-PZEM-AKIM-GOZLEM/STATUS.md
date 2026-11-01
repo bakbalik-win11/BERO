@@ -1,3 +1,16 @@
+## 2026-11-01 — E11 yüksüz iki modül uzun süreli gözlem planı ve esnek deney sırası
+
+- **ÖNCELİK:** Modül 3'ün fiziksel montajı tamamlandıktan sonra ilk ortak deney E11'dir. Önce Modül 2 ve Modül 3 birlikte kısa açılış/log kontrolünden geçecek; uygun bulunursa yüksüz uzun süreli gözlem başlatılacaktır.
+- **E11 HEDEFİ:** Aynı oturumda (1) PZEM'in yüksüz hatta okuduğu akım ile Modül 2'nin üç SCT kanalının yüksüz davranışını görmek, (2) Modül 3'ün ürettiği SSR ON/OFF olaylarından kaçının Modül 2'ye ulaştığını uzun oturumda saymak.
+- **DÜZENEK:** İki modül birlikte çalışır; Modül 3'ün mevcut 40 s ON / 20 s OFF mantıksal döngüsü devam eder. Ölçülen hatta yük bağlanmaz. Modül 2 üç SCT kanalını birlikte okumayı sürdürür; kanal jumper/düğmesi eklenmez.
+- **SÜRE:** Kısa başlangıç kontrolünden sonra hedef ertesi gün akşama kadar yüksüz çalışmadır. Gerçek süre, kopmalar ve yeniden başlatmalar loglardan kaydedilir. Bu henüz plan; test başlamadı.
+- **ÇIKTILAR:** PZEM yüksüz akım davranışı; SCT1/2/3 yüksüz taban davranışı; Modül 3 olay üretim sayısı ile Modül 2 olay alım sayısının BOOT_ID + EVENT_ID + STATE üzerinden karşılaştırması.
+- **SINIR:** Yüksüz deney yük altı eğitim örneği üretmez. Mantıksal SSR ON/OFF kaydı fiziksel SSR anahtarlamasını tek başına kanıtlamaz. Olay gönderim ve alım logları ayrı incelenir.
+- **DENEY SIRASI:** Faz 2 deneyleri sabit bir takvim/sıra değildir; ihtiyaca ve donanım hazırlığına göre öncelikleri değişebilir. Bu esneklik T009/T010/T007/T008/T006 görev bağımlılıklarını, ADR'leri veya kabul koşullarını otomatik değiştirmez.
+- **İŞLETİM MODLARI:** Modül 2 SCT gözlemi için tek başına çalışabilir; Modül 3 PZEM gözlemi için tek başına çalışabilir. Birlikte eğitim/paket eşleştirme oturumunda iki modül ve Modül 3 olay üretimi birlikte aktif olmalıdır. Yalnız PZEM gözleminde SSR döngüsünü ileride devre dışı bırakmak bir seçenek olarak not edildi; bu oturumda kod değişikliği yapılmadı ve mevcut firmware'de bu seçeneğin hazır olduğu iddia edilmiyor.
+- **DURUM:** E11 PLANLANDI. Modül 3 montajı, kısa ortak açılış kontrolü, uzun test, log analizi ve sonuç kaydı bekliyor.
+- **PLAN:** [E11 — Yüksüz iki modül gözlemi](experiments/E11-idle-dual-module-observation/README.md).
+
 ## 2026-11-01 — Python ON/OFF paket bütünlüğü kararı (ADR-024)
 
 - **KARAR:** Mevcut Modül 3 → UDP 4210 → Modül 2 aktarımı korunur; HA merkezli yeni mimari veya yeni helper kurulmaz.
