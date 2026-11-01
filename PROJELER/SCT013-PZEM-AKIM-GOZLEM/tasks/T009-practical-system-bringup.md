@@ -25,8 +25,8 @@ Modül 3 için mevcut fiziksel durum: kullanıcı bildirimi doğrultusunda kart/
 İzlenecek sıra:
 1. Masa üstündeki mevcut bağlantıları ve pin eşleşmelerini doğrula.
 2. Firmware'i hazırla ve yapılandırma/derleme kontrolünü yap.
-3. PZEM okuma, SSR mantıksal ON/OFF, olay mesajı üretimi ve TIME/BOOT_ID/EVENT_ID davranışını ayrı test et.
-4. UDP 4210 gönderim/alımını ve olayın iki modülün HA kayıt akışında ayrı kayıt olarak görünmesini doğrula.
+3. PZEM okuma, SSR mantıksal ON/OFF, TIME içermeyen BERO_EVT üretimi ve BOOT_ID/EVENT_ID/STATE davranışını ayrı test et.
+4. UDP 4210 gönderim/alımını ve olayın iki modülün HA kayıt akışında ayrı kayıt olarak görünmesini doğrula. Eşleştirme anahtarı BOOT_ID + EVENT_ID'dir; TIME protokol alanı değildir.
 5. Gerçek logları ve yorumlarını depoya kaydet.
 6. Ancak bu testler tamamlandıktan sonra kullanıcı nihai fiziksel montajı/toplamayı yapacak. Montaj öncesinde modül tamamlandı veya sahada doğrulandı denmeyecek.
 
