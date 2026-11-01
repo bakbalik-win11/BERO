@@ -109,3 +109,18 @@ Modül 3, olay mesajını kendi PZEM akışına ayrı kayıt olarak ekler ve ayn
 ## 2026-11-01 — Python paket bütünlüğü ve eksik olay davranışı (ADR-024)
 
 Python, Modül 3 PZEM ve Modül 2 SCT akışlarını kendi olay işaretleriyle bağımsız paketler. Bir akışta ON başlangıcı veya OFF bitişi eksik/uyuşmazsa o aralık tamamlanmış paket sayılmaz. İki tarafta aynı BOOT_ID + EVENT_ID paket aralığı doğrulanmadan eğitim örneği üretilmez. Eksik olaylar ve sıra hataları raporlanır; tahminle tamamlanmaz. Yeni ON açık pakete gelirse önceki aralık geçersiz sayılır ve yeni ON yeni paket adayı başlatır. Mevcut UDP ve HA aktarım yapısı korunur; yeni helper/merkezi HA mimarisi kurulmaz. Ayrıntı: [ADR-024](docs/decisions/ADR-024-python-packet-completeness-validation.md). Python uygulaması henüz yapılmamıştır.
+
+
+## 2026-11-01 — Faz 2 deney sırasının esnek yürütülmesi
+
+Faz 2 içindeki deneylerin uygulanma sırası sabit bir takvim değildir. Donanımın hazır oluşu, ortaya çıkan ihtiyaç ve gerçek test bulgularına göre deney öncelikleri değiştirilebilir. Bu, ana görevlerin teknik bağımlılıklarını (T009/T010 ve veri hattı için T007 → T008 → T006), ADR kararlarını veya deney kabul koşullarını kendiliğinden değiştirmez.
+
+İlk ortak deney önceliği **E11 — Modül 2/3 birlikte yüksüz hat uzun süreli gözlem ve olay aktarımı** olarak belirlendi. Modül 3 montajı sonrası kısa eşzamanlı açılış kontrolü yapılacak; uygun bulunursa iki modül ölçülen hatta yük olmadan uzun süre çalıştırılacak. Ayrıntı: [E11 protokolü](experiments/E11-idle-dual-module-observation/README.md).
+
+### İşletim modları
+
+- Modül 2, üç SCT kanalını sürekli okuyarak tek başına gözlem yapabilir.
+- Modül 3, PZEM alanlarını tek başına gözlemleyebilir.
+- İki modül birlikte eğitim verisi/olay paketleri için kullanılacaksa iki ölçüm akışı ve Modül 3'ün BOOT_ID/EVENT_ID/STATE olay üretimi birlikte aktif olmalıdır.
+- Yalnız PZEM gözleminde SSR ON/OFF döngüsünü ileride devreden çıkarmak bir işletim seçeneğidir; E11'de döngü açık kalır. Firmware değişikliği bu kayıtla yapılmamıştır.
+- Modül 2'nin üç SCT kanalı birlikte çalışmaya devam eder; kanal seçici jumper/düğme eklenmesi mevcut ihtiyaç değildir.
