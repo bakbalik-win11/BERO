@@ -1,0 +1,38 @@
+BERO MODUL 2 — UDP EVENT RECEIVER / SELECTED LOG EVIDENCE
+Date: 2026-11-01
+Source: User-provided ESP32D1 log
+Device: esp32d1
+Device IP: 192.168.0.33
+Home Assistant IP: 192.168.0.26
+Modul 3 source IP observed: 192.168.0.70
+ESPHome: 2026.10.1
+Compiled: 2026-11-01 19:15:41 +0300
+
+[19:17:29.323][I][app:164]: ESPHome version 2026.10.1 compiled on 2026-11-01 19:15:41 +0300
+[19:17:29.368][D][api:323]: Accept 192.168.0.26
+[19:17:29.376][D][api.connection:2816]: Home Assistant 2026.10.4 (192.168.0.26): connected
+
+[19:17:30.573][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[19:17:30.776][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.000A after 3349 different samples (16745 SPS)
+[19:17:30.819][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[19:17:31.023][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.001A after 3263 different samples (16315 SPS)
+[19:17:31.074][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[19:17:31.320][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.000A after 3210 different samples (16050 SPS)
+[19:17:31.327][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[19:17:31.386][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66000 V
+[19:18:07.736][I][bero_udp:687]: UDP_EVENT_RECEIVED source=192.168.0.70 packet=BERO_EVT,BOOT_ID=53A14E04372DEB0E67FA07270AC69561,EVENT_ID=59,STATE=ON
+[19:18:07.743][I][bero_event:694]: HA_EVENT_PUBLISHED BOOT_ID=53A14E04372DEB0E67FA07270AC69561 EVENT_ID=59 STATE=ON
+[19:18:07.850][S][text_sensor]: 'BERO Mod2 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=53A14E04372DEB0E67FA07270AC69561,EVENT_ID=59,STATE=ON'
+[19:18:07.851][S][text_sensor]: 'BERO Mod2 Olay BOOT ID' >> '53A14E04372DEB0E67FA07270AC69561'
+[19:18:07.852][S][text_sensor]: 'BERO Mod2 Olay EVENT ID' >> '59'
+[19:18:07.852][S][text_sensor]: 'BERO Mod2 Olay STATE' >> 'ON'
+[19:18:23.980][W][component:419]: safe_mode took a long time for an operation (70 ms), max is 50 ms
+
+SOURCE FILE:
+Yapıştırılan metin(20261101-161914).txt
+Size: 63,333 bytes
+Lines: 823
+SHA-256: b4139aa2e6e6a3efb8bd70d358f7604359d297ad059662652e07c0da58a53d67
+
+NOTE:
+This is a selected evidence extract, not a replacement for the full user-provided source log.
