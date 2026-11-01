@@ -296,3 +296,13 @@
 - Bu kontroller yeniden yapılacak iş değildir. Önceki “kanal/bias/cihaz çıktısı bekliyor” anlatımı güncel kabul edilmeyecek.
 - E10 200→500→1000→200 ms deneyi ayrı olarak PLANLANDI; henüz uygulanmadı.
 - firmware/esp32d1.yaml mevcut hâli tek ct_clamp kanalı GPIO32 + ortak bias GPIO35 gösterir; fiziksel ilk kanal kontrolüyle firmware'in üç kanalı aynı anda ölçtüğü iddiası birbirinden ayrıdır.
+
+
+## 2026-11-01 — Modül 2: taşınabilir tek kablolu ortak bias tasarımı
+
+- Modül 2'nin sahibi ve imalatçısı kullanıcıdır; imalat ve test anlatımları birinci el proje kaynağı olarak ele alınır.
+- Taşınabilirlik için tek bias devresi ve tek ortak bias kablosu kullanılmıştır; bu hat üç SCT kanalına ortak bias dağıtır.
+- Üç SCT sinyal bağlantısı bağımsızdır; bias üç ayrı devre değildir. Breadboard bias görüntüsü daha önce paylaşılmış, ortak bias üretim sırasında ölçülmüştür.
+- İlk üretimde üç SCT kanalının ayrı ayrı okuma kontrolü yapılmış; Modül 2 ile yük testleri çalıştırılmıştır. Mevcut cihaz logları, derleme ve fiziksel çalışma kayıtları depoda bulunur.
+- Bunlar yeniden yapılacak işler değildir. E10 (200 → 500 → 1000 → 200 ms) hâlâ ayrı PLANLANDI deneyidir.
+- Mevcut firmware YAML'ın tek SCT-1 kanalını göstermesi, fiziksel imalat ve ilk kanal kontrollerinin yapılmadığı anlamına gelmez; kod/konfigürasyon kapsamı ayrı bir tutarlılık konusudur.
