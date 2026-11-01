@@ -1600,3 +1600,13 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - Yeni YAML ve test README depoya eklendi; K=24.22, 200 ms, 250 ms slot ve 2 s çevrim korundu.
 - Yeni snapshot'ta filtre öncesi ct_clamp akımı Ham Akim adı ve A birimiyle etiketlendi; eski snapshot değiştirilmedi.
 - 15 W tekil yük UNIT baseline'ı, fiziksel log, derleme çıktısı ve OTA doğrulaması henüz yoktur. Durum PLANLANDI/HAZIRLANDI; OK/başarı iddiası yoktur.
+
+
+## 2026-11-01 — LOAD-15W-004 açılışı / YAML snapshot
+
+- **HEDEF:** LOAD-15W-003'ün 15 W tek ampul, 2T faz / 4T nötr / 3T faz düzenini ayrı bir uzun gözlem oturumunda tekrarlamak.
+- **YAPILAN:** `test-loads/15w-2t-3t-4t/LOAD-15W-004.md` ve `firmware/archive/LOAD-15W-004-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml` eklendi. Önceki LOAD-15W-003 dosyaları değiştirilmedi.
+- **ÖN GÖZLEM:** İlk kullanıcı logu yaklaşık 96 s / 48 yayın-kanal. SCT1 0,18552 A; SCT2 0,24171 A; SCT3 0,07585 A ve 11/48 sıfır; bias 1,66196 V. Faz UNIT 0,057 A ve nötr UNIT 0,059 A kullanıcı bildirimidir.
+- **YORUM:** Tur normalize SCT2 ilk gözlemde UNIT'e yakın (+%2,4); SCT1 yüksek (+%62,7); SCT3 düşük ve sıfır yayınlı (−%55,6). UNIT zaman eşleşmesi kanıtlanmadığı için doğruluk/kalibrasyon sonucu değildir. 0,30 A altı ±%4 kabul/ret uygulanmaz.
+- **DOĞRULAMA:** İki yeni dosya GitHub'a yazıldı. Derleme, OTA, fiziksel uzun test ve HA Recorder/History doğrulanmadı.
+- **SONRAKİ:** Uzun logu ve başlangıç/orta/bitiş UNIT değerlerini ekle; kod/K/pin değişikliği yapma.
