@@ -1,3 +1,15 @@
+## 2026-11-01 — Modül 3 WROOM olay akışı OTA logu
+
+- **HEDEF:** TIME alanı kaldırılmış BOOT_ID + EVENT_ID + STATE olay paketinin Modül 3 WROOM üzerinde çalışmasını ve PZEM/HA/UDP/SSR davranışını gerçek cihaz loguyla incelemek.
+- **DEPO OKUMASI:** AGENTS.md, STATUS.md, ROADMAP.md, README.md ve ADR-022 okundu. ADR-022'nin TIME alanı içeren eski metni, kullanıcı onayıyla ADR-023 üzerinden geçersiz kılındı.
+- **KOD SNAPSHOT:** Kullanıcı loguyla ilişkilendirilen YAML dosyası SHA-256 `14cd0f30c6bf44e452ee06747538f6d8c9915411408e2c67019c3020ce20a476`; dosya bu çalışma oturumunun yerel çalışma alanında bulunuyor. Depoda snapshot manifesti ve hash kaydedildi.
+- **LOG:** Kullanıcı tam log SHA-256 `49d22fc15d18af762637c337ac1269ccbc85be9de6b7869f2e8d74bfdcad60a9`; seçilmiş kanıt satırları depoya eklendi. Tam log eki konuşma dosyası olarak korunuyor.
+- **GÖZLEM:** ESPHome 2026.10.1 derleme/cihaz logu; PZEM sensörleri yayınlanıyor; 32-hex BOOT_ID sabit; EVENT_ID 2→3→4; HA olay yayını ve UDP gönderim çağrısı loglanıyor; TIME alanı yok.
+- **ÇEVRİM:** OFF→ON yaklaşık 20 s ve ON→OFF yaklaşık 40 s; beklenen 40 s ON / 20 s OFF faz sırasıyla uyumlu.
+- **AÇIK BULGU:** İki OFF olayında GPIO_OFF_READBACK_MISMATCH. Switch çıkışının güncellenmesi ile aynı lambda içindeki anlık GPIO okuması arasında yarış olasılığı hipotezdir; kanıtlanmış kök neden değildir. Modül 2 UDP alımı ve fiziksel SSR anahtarlaması doğrulanmadı.
+- **SONUÇ:** Kısmi doğrulama. Tam kabul veya fiziksel test başarısı iddia edilmedi.
+- **SONRAKİ ADIM:** OFF readback kontrolünü gecikmeli/ayrı doğrulama ile incele; ardından fiziksel SSR çıkışını ve Modül 2 UDP alımını ayrı test et.
+
 ## 2026-11-01 — Faz 2 veri hattı / düşük akım planı depo kaydı
 
 - **DURUM:** Kullanıcının sunduğu Faz 2 uygulama taslağı repo kararlarıyla karşılaştırıldı ve düzeltilmiş yürütme planı depoya eklendi.
