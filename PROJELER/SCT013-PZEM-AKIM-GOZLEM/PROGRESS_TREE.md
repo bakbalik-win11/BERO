@@ -1,3 +1,14 @@
+## 2026-11-01 — Modül 2/3 uzun ON/OFF olay aktarımı
+
+- Modül 2 uzun logunda EVENT_ID 59 ON, 61 ON, 62 OFF ve 64 OFF alındı; her biri için HA_EVENT_PUBLISHED var.
+- EVENT_ID 60 ve 63 bu alıcı logunda yok; kayıpsız aktarım sonucu çıkarılamaz.
+- Ayrı HA History ekran görüntüsünde EVENT_ID 70 OFF ve 71 ON, Modül 2 ve Modül 3 olay kayıtlarında görünüyor; SSR HA entity mantıksal Kapalı/Açık durumlarını gösteriyor.
+- 70 OFF → 71 ON arası 20 saniye. Fiziksel SSR kontak anahtarlaması ve Recorder DB kalıcılığı bağımsız doğrulanmadı.
+- Kanıt ve analiz: [uzun ON/OFF analizi](logs/module2/2026-11-01-module2-on-off-extended-analysis.md), [seçilmiş kanıt](logs/module2/2026-11-01-module2-on-off-extended-evidence.log).
+- Modül 2/3 kod başlıkları ve README protokol açıklamaları güncel mimariye göre düzenlendi; kod mantığı değiştirilmedi.
+- T010 kapalı; T007/T008 Python veri aktarımı ve paketleme uygulaması henüz yapılmadı.
+
+
 ## 2026-11-01 — Modül 2 UDP olay alıcısı ilk gerçek paket kanıtı
 
 - Yeni kaynak: [firmware/bero-modul2-esp32d1.yaml](firmware/bero-modul2-esp32d1.yaml). LOAD-15W-003 üç-SCT sıralı ölçüm temeli korunarak UDP 4210 dinleyicisi ve HA olay entity'leri eklendi.
