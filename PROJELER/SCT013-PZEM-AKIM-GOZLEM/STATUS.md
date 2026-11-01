@@ -1,3 +1,13 @@
+## 2026-11-01 — Python ON/OFF paket bütünlüğü kararı (ADR-024)
+
+- **KARAR:** Mevcut Modül 3 → UDP 4210 → Modül 2 aktarımı korunur; HA merkezli yeni mimari veya yeni helper kurulmaz.
+- Modül 3 PZEM ve Modül 2 SCT akışları kendi olay işaretleriyle bağımsız paketlenir. Her akışta ON başlangıcı ve eşleşen OFF bitişi yoksa o aralık tamamlanmış paket sayılmaz.
+- Python iki taraftaki paketleri yalnız BOOT_ID + EVENT_ID ile eşleştirir. Her iki tarafta da aynı paket doğrulanmadan eğitim örneği üretilmez.
+- Eksik ON/OFF, EVENT_ID boşluğu, yinelenen/ters sıralı state ve boot değişiminde açık kalan paketler tanı durumlarıyla raporlanır; tahminle doldurulmaz.
+- Yeni ON açık pakete gelirse önceki aralık geçersiz/eksik işaretlenir; yeni ON yeni paket adayı başlatır. Sonraki tam ON/OFF çifti bağımsız değerlendirilebilir.
+- **DURUM:** Mimari karar kaydedildi. Python uygulaması ve gerçek HA export doğrulaması yapılmadı.
+- Ayrıntı: [ADR-024](docs/decisions/ADR-024-python-packet-completeness-validation.md); [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
+
 ## 2026-11-01 — HA activity.csv ON/OFF karşılaştırması
 
 - [HA activity ON/OFF atlama analizi](logs/module2/2026-11-01-ha-activity-on-off-gap-analysis.md).
