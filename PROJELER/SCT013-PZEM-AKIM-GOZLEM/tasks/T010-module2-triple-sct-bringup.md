@@ -170,7 +170,7 @@ T010 altında, mevcut SCT-1 okuma zincirinin pencere süresine duyarlılığın�
 
 ## 2026-11-01 — Kullanıcı düzeltmesi: Modül 2 üretim ve saha kontrolleri
 
-Bu kayıt, kullanıcının 2026-11-01 tarihli açık düzeltmesine dayanır; geçmişte yapılmış fiziksel işlemlerin bağımsız ölçüm kaydı değildir.
+Bu kayıt, BERO projesinin sahibi ve Modül 2'nin imalatçısı olan kullanıcının 2026-11-01 tarihli birinci el üretim/çalışma beyanına dayanır. Proje sahibinin kendi yaptığı işlemleri bildirmesi olağan birincil proje kaynağıdır; bu beyanı şüpheyle ele almak veya kullanıcıdan aynı işi yeniden kanıtlamasını istemek doğru değildir.
 
 - **ÜÇ SCT KANALI:** Modül ilk üretildiğinde üç kanalın her birinde okuma kontrolü yapıldı. Bu ilk kanal okuma kontrolü tamamlanmış kabul edilir; aynı kontrol yeniden yapılacak iş olarak listelenmeyecek.
 - **ORTAK BIAS:** Bias devresi üç kanala ayrı ayrı ait değildir; tek ortak bias noktası kullanılır. Modül üretiminde bias ölçümü yapıldı ve kullanıcı görsel de paylaştı. Bu ortak yapı ve ilk ölçüm kullanıcı tarafından doğrulandı.
@@ -180,3 +180,13 @@ Bu kayıt, kullanıcının 2026-11-01 tarihli açık düzeltmesine dayanır; ge�
 - **AYRI KALAN İŞ:** E10 pencere deneyi (200 → 500 → 1000 → 200 ms ve 200 ms geri dönüş kontrolü) hâlâ PLANLANDI durumundadır; bu deneyin yapılmış olduğu iddia edilmez.
 - **DOSYA TUTARSIZLIĞI:** firmware/esp32d1.yaml dosyası hâlen tek SCT kanalı GPIO32 ve ortak bias GPIO35 konfigürasyonunu gösteriyor; GPIO33/GPIO34 ilk kanal kontrollerinin yapıldığı kullanıcı beyanını firmware'de üç aktif ct_clamp kanalı bulunduğu şeklinde yorumlamamak gerekir. Üç kanalın mevcut firmware ile temsil edilip edilmediği ayrı bir dokümantasyon/kod tutarlılığı konusudur.
 - **DURUM:** Kullanıcı tarafından bildirilen ilk üretim kontrolleri tamamlandı. E10 ve dosya/konfigürasyon tutarlılığı ayrı takip edilir. Bu kayıt yeni fiziksel ölçüm veya yeni derleme yapıldığı anlamına gelmez.
+
+
+## 2026-11-01 — Tasarım kararı: taşınabilir modülde tek kablolu ortak bias
+
+- **KARAR / FİZİKSEL TASARIM:** Modül 2'yi taşınabilir ve sade tutmak amacıyla bias dağıtımı tek ortak bias hattı üzerinden yapılmıştır. Üç SCT kanalı için üç ayrı bias devresi veya üç ayrı bias kablosu kullanılmamıştır.
+- **İMALAT:** Bias devresi breadboard üzerinde kurulmuş; kullanıcı daha önce bu breadboard bias düzeninin görüntüsünü paylaşmıştır. İmalat sırasında ortak bias ölçümü de yapılmıştır.
+- **MİMARİ:** Üç SCT'nin sinyal yolları birbirinden bağımsızdır; bias referansı tek ortak noktadan/tek kabloyla dağıtılır. GPIO35 bu ortak bias noktasını izleyen giriş olarak tanımlanmıştır.
+- **AMAÇ:** Ayrı ayrı bias modülleri ve kabloları taşımak yerine tek ortak bias dağıtımıyla modülün taşınabilirliğini ve fiziksel sadeliğini korumak.
+- **KAYNAK SINIFI:** Kullanıcının kendi imalatı ve yaptığı ölçüm hakkındaki birinci el beyanı (USER REPORT). Bu, proje sahibinin üretim kaydıdır; yeniden yapılacak doğrulama görevi değildir.
+- **SONUÇ:** Tek kablolu ortak bias, Modül 2'nin bilinçli ve uygulanmış donanım tasarımıdır. Üç ayrı bias devresi/bağlantısı talep edilmeyecek ve bu tasarım eksik bağlantı olarak raporlanmayacaktır.
