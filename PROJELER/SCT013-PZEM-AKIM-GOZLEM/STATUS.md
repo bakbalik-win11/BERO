@@ -1,3 +1,12 @@
+## 2026-11-01 — Gün sonu kapanışı: ADR-025 ve E11 hazırlığı
+
+- **MİMARİ:** ADR-025 ile eğitim ve tam ham kayıt değerlendirmesi ayrımı belgelendi. Eğitimde yalnızca bağımsız kararlı SCT/PZEM alanları eşleştirilir; deneyin ham SCT kaydı korunur ve öğrenilen model tam kayda, geçişler dahil, bilinen deney koşulları çerçevesinde uygulanır. PZEM geçiş okumaları örnek bazlı gerçek akım referansı sayılmaz.
+- **DEPO:** ADR-025, Python veri hattı mimarisi, README ve PROGRESS_TREE güncellendi; değişiklikler GitHub'dan geri okunarak doğrulandı.
+- **AÇIK DOKÜMANTASYON:** Bu gün sonu işlemiyle STATUS ve ROADMAP de güncellendi. Görev tablosundaki T010 durum çelişkisi giderildi.
+- **DENEY:** E11 hâlâ PLANLANDI. Modül 3 nihai montajı, iki modül kısa ortak açılış kontrolü ve uzun yüksüz gözlem henüz yapılmış sayılmaz. Bugün yeni E11 ölçümü başlatılmadı.
+- **KOD / PYTHON:** Yeni firmware veya Python uygulaması yazılmadı; derleme, OTA ya da yeni fiziksel doğrulama iddiası yoktur.
+- **SONRAKİ ADIM:** Modül 3 montajı tamamlanınca önce Modül 2+3 kısa ortak açılış ve olay aktarım kontrolü; bu kontrol uygunsa E11 uzun yüksüz gözlem.
+
 ## 2026-11-01 — E11 yüksüz iki modül uzun süreli gözlem planı ve esnek deney sırası
 
 - **ÖNCELİK:** Modül 3'ün fiziksel montajı tamamlandıktan sonra ilk ortak deney E11'dir. Önce Modül 2 ve Modül 3 birlikte kısa açılış/log kontrolünden geçecek; uygun bulunursa yüksüz uzun süreli gözlem başlatılacaktır.
