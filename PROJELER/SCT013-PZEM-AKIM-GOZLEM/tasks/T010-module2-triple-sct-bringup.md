@@ -1,3 +1,7 @@
+## 2026-11-01 — E11 üç SCT logu
+
+E11 sıralı üç kanal logu analiz edildi. Ayrıntılı kanal istatistikleri, eski kayıt kıyası, zamanlama anomalisi ve kanıt sınırları [analiz raporunda](../logs/module2/2026-11-01-e11-three-sct-sequential-analysis.md); ham log kimliği ve arşiv [E11 README'de](../experiments/E11-sequential-three-sct/README.md) kayıtlıdır. 50 ms geçiş payı azaltılmayacak. 12:01:07 çevrimindeki 16/454/392 ms işaret aralıkları nedeniyle gerçek pencere çakışmasızlığı kesin kabul edilmedi. PZEM verisi yok; K=24.22 değişmedi. T010 AKTİF.
+
 ## 2026-10-31 — BREAD-TOASTER-001 / SCT-1 3,3 A bölgesi gözlemi
 
 - **TEST:** Ekmek kızartma makinesi için ayrı BREAD-TOASTER-001 yük kaydı açıldı; mevcut TOASTER-001 tost makinesi kaydıyla birleştirilmedi.
