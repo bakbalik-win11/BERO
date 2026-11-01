@@ -1536,3 +1536,14 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - Değer TOASTER-001 test README ve STATUS'a kullanıcı bildirimi olarak işlendi; UNIT, PZEM değildir.
 - SCT loguyla eşzamanlılığı henüz doğrulanmadığından sapma/doğruluk hesabı yapılmadı.
 - Test TOASTER-001 olarak açık kalır.
+
+
+## 2026-11-01 — T010 Modül 2 tamamlanmış kontrollerinin kullanıcı teyidi
+
+- **HEDEF:** Gün açılışında T010 durumunu gözden geçirirken kullanıcı tarafından düzeltilen tamamlanmış üretim ve test adımlarını doğru kaydetmek.
+- **KULLANICI TEYİDİ:** Modül ilk üretildiğinde üç SCT kanalının her birinde okuma kontrolü yapıldı. Bias ayrı ayrı üç kanala ait değildir; tek ortak bias noktası üretimde ölçüldü ve görseli daha önce paylaşıldı.
+- **MEVCUT DEPO KANITI:** Modül 2 kullanılarak test yükleri çalıştırıldı; test yüklerinin cihaz logları ve analizleri depoda saklandı. Derleme ve fiziksel çalışma logları da mevcut.
+- **DÜZELTME:** İlk kanal okumaları, ortak bias ölçümü, mevcut test yükü kayıtları ve saklanmış derleme/fiziksel çalışma logları yeniden yapılacak işler olarak listelenmeyecek. Bu kayıt, kullanıcının geçmiş çalışma teyididir; bu oturumda yeni ölçüm yapılmadı.
+- **AYRI BEKLEYEN:** E10 pencere süresi deneyi 200 → 500 → 1000 → 200 ms sırasıyla PLANLANDI; henüz uygulanmadı.
+- **KOD TUTARLILIĞI:** firmware/esp32d1.yaml mevcut içerikte SCT-1 GPIO32 ve ortak bias GPIO35'i gösteriyor; fiziksel ilk üç kanal kontrolü, mevcut YAML'da üç aktif ct_clamp kanalı olduğu anlamına gelmez. Bu fark ayrı ele alınacak.
+- **SONUÇ:** Önceki oturum açılışındaki “üç kanal, bias ve fiziksel testler bekliyor” özeti düzeltilmiştir. T010'un kalan kabul maddeleri mevcut kayıtlarla yeniden eşleştirilmelidir; E10 tek başına tüm T010'un kalan işi olarak varsayılmamıştır.
