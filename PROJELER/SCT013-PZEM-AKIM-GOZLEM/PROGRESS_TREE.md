@@ -332,3 +332,12 @@
 - İlk üretimde üç SCT kanalının ayrı ayrı okuma kontrolü yapılmış; Modül 2 ile yük testleri çalıştırılmıştır. Mevcut cihaz logları, derleme ve fiziksel çalışma kayıtları depoda bulunur.
 - Bunlar yeniden yapılacak işler değildir. E10 (200 → 500 → 1000 → 200 ms) hâlâ ayrı PLANLANDI deneyidir.
 - Mevcut firmware YAML'ın tek SCT-1 kanalını göstermesi, fiziksel imalat ve ilk kanal kontrollerinin yapılmadığı anlamına gelmez; kod/konfigürasyon kapsamı ayrı bir tutarlılık konusudur.
+
+
+## 2026-11-01 — LOAD-15W-004 / 15 W çok turlu uzun gözlem açıldı
+
+- LOAD-15W-003'ten ayrı yeni oturum açıldı; önceki kayıt ve YAML üzerine yazılmadı.
+- Faz UNIT 0,057 A ve nötr UNIT 0,059 A kullanıcı bildirimi olarak kaydedildi; zaman eşleşmesi teyitsiz.
+- İlk yaklaşık 96 s log ön gözlemi: SCT1 0,18552 A, SCT2 0,24171 A, SCT3 0,07585 A; SCT3'te 11/48 sıfır; bias ortalama 1,66196 V.
+- [LOAD-15W-004 deney kaydı](test-loads/15w-2t-3t-4t/LOAD-15W-004.md); [YAML snapshot](firmware/archive/LOAD-15W-004-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml).
+- AÇIK; uzun test, derleme/OTA ve HA Recorder doğrulaması yok. 0,30 A altında ±%4 kabul/ret uygulanmaz.
