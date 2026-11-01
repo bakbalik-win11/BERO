@@ -1,3 +1,12 @@
+## 2026-11-01 — HA activity.csv ON/OFF karşılaştırması
+
+- [HA activity ON/OFF atlama analizi](logs/module2/2026-11-01-ha-activity-on-off-gap-analysis.md).
+- Modül 3 HA ham olay geçmişi EVENT_ID 1–94 arasında kesintisiz.
+- Modül 2 HA ham olay geçmişinde Modül 3 EVENT_ID 59–94 karşılaştırma aralığında 29/36 olay var; 60, 63, 68, 78, 88, 91, 94 görünmüyor (5 OFF, 2 ON).
+- Modül 2'de görülen 29 olayın kimliği ve STATE'i Modül 3 ile eşleşiyor; gecikme 50–273 ms, ortanca 155 ms.
+- CSV tek başına UDP gönderim/alım kaybı ile HA Recorder/export eksikliğini ayırt etmez. UDP send/receive loglarıyla bu yedi EVENT_ID ayrıca karşılaştırılmalı.
+- Fiziksel SSR anahtarlaması bu CSV ile doğrulanmaz.
+
 ## 2026-11-01 — Modül 2/3 uzun ON/OFF olay aktarımı: çoklu paket + HA History
 
 - **ANA KAYIT:** [Uzun Modül 2 log analizi](logs/module2/2026-11-01-module2-on-off-extended-analysis.md); [seçilmiş kanıt satırları](logs/module2/2026-11-01-module2-on-off-extended-evidence.log). [Depo bütünlük denetimi](docs/technical-reviews/2026-11-01-repository-integrity-audit.md).
