@@ -1610,3 +1610,14 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **YORUM:** Tur normalize SCT2 ilk gözlemde UNIT'e yakın (+%2,4); SCT1 yüksek (+%62,7); SCT3 düşük ve sıfır yayınlı (−%55,6). UNIT zaman eşleşmesi kanıtlanmadığı için doğruluk/kalibrasyon sonucu değildir. 0,30 A altı ±%4 kabul/ret uygulanmaz.
 - **DOĞRULAMA:** İki yeni dosya GitHub'a yazıldı. Derleme, OTA, fiziksel uzun test ve HA Recorder/History doğrulanmadı.
 - **SONRAKİ:** Uzun logu ve başlangıç/orta/bitiş UNIT değerlerini ekle; kod/K/pin değişikliği yapma.
+
+
+## 2026-11-01 — Kararlı alan eğitimi ana çerçevesi / ADR-019
+
+- **HEDEF:** Modül 2 ve Modül 3 kayıt akışlarının, Python kararlı alan eşleştirme/eğitim aşamasındaki rollerini netleştirmek.
+- **DEPO İNCELEMESİ:** AGENTS.md, STATUS.md, ROADMAP.md, proje README, ADR-010, T007, Python veri hattı mimarisi, Faz 2 planı ve BERO pencereli sensör mimarisi okundu.
+- **KARAR:** Ölçüm ve olay/yayın kayıtları Modül 2/3 ve HA tarafında bağımsız kalacak. Modül 2 SCT + alınan UDP olaylarını ayrı ayrı HA'ya basacak. Modül 3 UDP paket/zaman/SSR ON-OFF yayınını sürdürecek; PZEM ölçümlerini ve aradaki olay/yayın bilgilerini HA'ya ayrı ayrı aktaracak.
+- **PYTHON:** SCT, PZEM ve olay kayıtlarını sonradan kaynak zaman ve varsa BOOT_ID/EVENT_ID ile ilişkilendirecek; ON/OFF olay çizgisini çıkaracak; SCT/PZEM kararlılığını ayrı belirleyecek; örtüşen kararlı pencereleri eşleştirerek PZEM'i SCT eğitim penceresine proje referans etiketi yapacak.
+- **ÖNEMLİ SINIR:** Olay kaydı bir ölçüm kaydının alt alanı değildir. ESP/HA katmanında birebir eşleştirme yoktur. Zaman toleransı, kararlılık eşiği ve pencere süreleri gerçek veri incelenmeden belirlenmeyecek.
+- **DOSYALAR:** ADR-019, Python veri hattı mimarisi, STATUS, PROGRESS_TREE ve proje README güncellendi.
+- **DOĞRULAMA SINIRI:** Mimari/dokümantasyon kararı kaydedildi. Firmware/YAML, UDP protokolü, donanım bağlantısı, derleme, OTA veya fiziksel deney değiştirilmedi/test edilmedi.
