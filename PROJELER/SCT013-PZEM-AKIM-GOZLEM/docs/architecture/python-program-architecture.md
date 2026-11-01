@@ -53,3 +53,31 @@ Bu kararlar gerçek HA örnek verisi görülmeden varsayılmayacak.
 İlk olarak küçük bir gerçek HA export örneği PC'ye alınır. Python kodu bu dosyayı okur ve entity, satır, zaman aralığı, birim ve geçersiz değer özetini üretir. Kod, gerçek örnek çıktı/log ve yorum depoya eklenmeden T007 tamamlanmış sayılmaz.
 
 Bu belge hedef mimariyi tanımlar; aktarımın veya Python uygulamasının hazır/çalışır olduğunu iddia etmez.
+
+
+## 2026-11-01 — Modül 2/3 olay akışı ve bağımsız kayıt kararı (ADR-019)
+
+Modül 2 ve Modül 3 kayıtları ESP/HA katmanında ölçüm ve olay olarak ayrı tutulur. Python bunları sonradan zaman ve olay bilgisiyle ilişkilendirir.
+
+### Modül 2 kaynakları
+- **SCT ölçüm akışı:** Modül 2'nin mevcut SCT okuma sistemi.
+- **UDP olay akışı:** Modül 3'ten gelen paket kimliği (varsa BOOT_ID/EVENT_ID), kaynak saat bilgisi ve SSR ON/OFF durumu.
+- İki akış HA'ya ayrı kayıtlar olarak gider. UDP olayı SCT ölçümüne zorunlu biçimde bağlanmaz.
+
+### Modül 3 kaynakları
+- **UDP yayın akışı:** Paket/BOOT_ID/EVENT_ID, saat ve SSR ON/OFF olayları.
+- **HA ölçüm akışı:** Modül 3'ün PZEM ölçümleri.
+- **HA olay akışı:** Modül 3'ün yayınladığı/aldığı aradaki olay bilgileri.
+- PZEM ve olay bilgileri HA'da ayrı kayıtlar olarak tutulur; UDP yayın düzeni bu kararla değiştirilmez.
+
+### Python'ın kararlı alan eğitimindeki rolü
+1. HA'dan SCT, PZEM ve olay kayıtlarını ayrı akışlar olarak alır.
+2. Kaynak timestamp/timezone, entity_id, birim, ham state ve varsa BOOT_ID/EVENT_ID korunur.
+3. Olay kayıtlarından ON/OFF ve geçiş zaman çizgisi oluşturulur.
+4. PZEM ve SCT kararlılığı ayrı hesaplanır.
+5. Olay/zaman bilgisi kararlı alanların sınırlarını ve yük durumunu yorumlamak için kullanılır.
+6. Yalnız zaman bakımından örtüşen, kendi akışında kararlı PZEM/SCT pencereleri eşleştirilir; PZEM eşleşen SCT penceresine proje referans etiketi olur.
+
+Bu tasarımda ölçüm ile olay arasında ESP/HA katmanında birebir eşleştirme şartı yoktur. Eşleştirme Python'da sonradan yapılır. Pencere süresi, kararlılık eşikleri ve zaman toleransı gerçek HA verisi incelenmeden sabitlenmez.
+
+Ayrıntı: [ADR-019](../decisions/ADR-019-module2-module3-independent-event-streams.md).
