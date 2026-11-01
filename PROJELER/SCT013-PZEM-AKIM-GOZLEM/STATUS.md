@@ -1070,3 +1070,8 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki kullanıcı bi
 - **KANAL AYRIMI:** Üç SCT sinyal bağlantısı ayrıdır; bias hattı ortaktır. GPIO35 ortak bias izleme girişidir.
 - **İŞ DURUMU:** Ortak bias tasarımı ve üretim ölçümü tamamlanmış kabul edilir. Kullanıcıdan aynı işlemi tekrar yapması veya yeniden kanıtlaması istenmeyecektir.
 - **KAYIT SINIRI:** Bu güncelleme donanım tasarımını ve kullanıcının birinci el imalat beyanını belgeliyor; yeni fiziksel test yapıldığı iddiası değildir. E10 deneyi ayrı olarak PLANLANDI kalır.
+
+
+### Tasarımın kısa ve kesin özeti
+
+Modül 2 taşınabilirlik amacıyla kullanıcı tarafından tek bias devresi ve tek ortak bias kablosu ile imal edilmiştir. Tek bias hattı üç SCT kanalına ortak dağıtılır; SCT sinyal kabloları ayrıdır. Breadboard bias görüntüsü daha önce paylaşılmış, ortak bias üretim sırasında ölçülmüştür. Proje sahibi/imalatçı beyanı bu üretim kaydının birinci el kaynağıdır. Üç ayrı bias devresi veya kablosu istenmeyecek; tamamlanmış bias imalatı yeniden iş olarak açılmayacaktır.
