@@ -190,3 +190,60 @@ Bu kayıt, BERO projesinin sahibi ve Modül 2'nin imalatçısı olan kullanıcı
 - **AMAÇ:** Ayrı ayrı bias modülleri ve kabloları taşımak yerine tek ortak bias dağıtımıyla modülün taşınabilirliğini ve fiziksel sadeliğini korumak.
 - **KAYNAK SINIFI:** Kullanıcının kendi imalatı ve yaptığı ölçüm hakkındaki birinci el beyanı (USER REPORT). Bu, proje sahibinin üretim kaydıdır; yeniden yapılacak doğrulama görevi değildir.
 - **SONUÇ:** Tek kablolu ortak bias, Modül 2'nin bilinçli ve uygulanmış donanım tasarımıdır. Üç ayrı bias devresi/bağlantısı talep edilmeyecek ve bu tasarım eksik bağlantı olarak raporlanmayacaktır.
+
+
+## 2026-11-01 — Üç SCT kanalının sıralı ölçümle sağlıklı okuma doğrulaması
+
+### Amaç
+
+Bu çalışmanın amacı üç SCT kanalının aynı yükü gözlerken **her birinin bağımsız ve sağlıklı ölçüm üretebildiğini** doğrulamaktır. Önceki üç kanalın yazılımda aynı anda örneklenmesi yaklaşımında sağlıklı sonuç alınmadığı kullanıcı tarafından bildirildi. Yeni yaklaşımda sensörler aynı fiziksel yükü aynı anda gözler; ESP32'nin ADC/ct_clamp ölçüm pencereleri ise sırayla açılır. Bir kanalın ölçüm penceresi açıkken diğer iki kanalın penceresi başlatılmaz.
+
+Bu bir eşzamanlı örnekleme deneyi değildir. Amaç, kanalların aynı kararlı yük koşulunda, mümkün olan en küçük ve ölçülebilir zaman kaymasıyla karşılaştırılmasıdır.
+
+### Sabit fiziksel düzen
+
+- Yük: aynı 100 W akkor ampul.
+- SCT-1: sarı sinyal / GPIO32 / ADC1_CH4.
+- SCT-2: yeşil sinyal / GPIO33 / ADC1_CH5.
+- SCT-3: mavi sinyal / GPIO34 / ADC1_CH6.
+- Ortak bias: tek ortak hat; turuncu izleme / GPIO35 / ADC1_CH7.
+- Her kanal ayrı sinyal yoluna, üç kanal tek ortak bias referansına sahiptir. Donanım tekrar imal edilmeyecek ve bias için üç ayrı hat oluşturulmayacaktır.
+- Firmware ortamı: ESPHome 2026.10.1, ESP32D1, ESP-IDF.
+
+### Sıralı okuma yöntemi
+
+1. SCT-1 için `component.update` ile yalnızca SCT-1 `ct_clamp` penceresini başlat.
+2. SCT-1'in 200 ms örnekleme penceresinin tamamlanmasını bekle.
+3. SCT-2 penceresini başlat; SCT-1 artık örnekleme yapmıyor olmalı.
+4. SCT-2 tamamlandıktan sonra SCT-3 penceresini başlat.
+5. Üç kanal tamamlandıktan sonra GPIO35 ortak bias ölçümünü tetikle.
+6. Her çevrimde START/COMPLETE loglarıyla kanal sırası ve zaman damgalarını görünür kıl.
+
+İlk aday zamanlamada her kanal için 200 ms `sample_duration` ve 250 ms tetikleme aralığı kullanılmıştır. Bu, 200 ms ölçüm + 50 ms geçiş payı demektir. İlk ve son kanal ölçüm merkezleri arasında yaklaşık 500 ms bulunur. **Bu değer nihai hedef veya optimum kabul edilmemiştir.** Kullanıcının hedefi küçük senkron kayması olduğundan, ilk derleme/cihaz denemesinden sonra logdaki gerçek başlangıç-bitiş zamanlarına göre güvenli geçiş payı mümkün olan en düşük değere indirilecek; örnekleme pencerelerinin çakışmadığı doğrulanacaktır.
+
+### Başarı ölçütleri
+
+- Üç ayrı kanalın her biri geçerli ve tekrarlanabilir Raw AC / akım çıktısı üretmeli.
+- Kanal etiketleri ve GPIO eşleştirmeleri karışmamalı.
+- Bir kanalın örnekleme penceresi bitmeden sonraki kanal başlamamalı.
+- Log zaman damgaları kanal sırasını ve gerçek kanal merkezleri arasındaki kaymayı hesaplamaya elverişli olmalı.
+- Aynı 100 W ampul ve aynı fiziksel koşul korunmalı; böylece kanallar arası fark sensör/kanal davranışı olarak incelenebilmeli.
+- Bias, üç kanalın ölçümü sırasında ayrı bir ADC örneklemesiyle araya girmemeli; ortak bias çevrim sonunda okunmalı.
+- İlk turda hedef üç kanalın sağlıklı çalışması ve zamanlama ayrışmasıdır; bu test tek başına kalibrasyon veya doğruluk onayı değildir.
+
+### Deney sırası
+
+1. Sıralı üç-kanal YAML adayını ESPHome 2026.10.1 ile derle.
+2. Derleme başarılıysa cihazı yükle ve açılış/kanal START-COMPLETE loglarını al.
+3. Aynı 100 W ampul üç SCT tarafından fiziksel olarak gözlenirken sıralı çevrimi çalıştır.
+4. Her kanalda yeterli sayıda çevrim topla; geçersiz/eksik yayın, kanal karışması, pencere çakışması ve dağılımı incele.
+5. Log zaman damgalarından gerçek merkez-zaman farklarını hesapla.
+6. 50 ms geçiş payı gereğinden büyükse, pencere çakışması olmadan azaltılabilecek en küçük güvenli aralığı belirle.
+7. YAML, derleme sonucu, gerçek cihaz logu ve log yorumu birlikte arşivlenmeden kod başarılı sayılmayacak.
+
+### Durum ve kayıt sınırı
+
+- **DURUM:** Sıralı okuma hedefi ve deney yöntemi kaydedildi; YAML henüz derlenmedi veya cihaza yüklenmedi.
+- **BAŞARI İDDİASI:** Yok. Üç kanalın sıralı firmware ile sağlıklı okuduğu henüz doğrulanmadı.
+- **SONRAKİ ADIM:** Aday YAML'ı derlemek; derleme sonucu uygunsa cihazda kontrollü 100 W testini yapmak.
+- **İLGİLİ KARAR:** [ADR-018](../docs/decisions/ADR-018-module2-sequential-sct-window-test.md).
