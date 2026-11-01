@@ -1,3 +1,17 @@
+## 2026-11-01 — Paket işaretli bağımsız akış mimarisi (ADR-022)
+
+- **KARAR:** Ölçüm akışları bağımsız kalır. PZEM ve SCT örneklerinin içine her örnekte BOOT_ID/EVENT_ID/zaman yazılmaz.
+- **MODÜL 3:** SSR olayı değiştiğinde tek BERO_EVT mesajı oluşturur; aynı mesajı UDP 4210 ile Modül 2'ye gönderir ve kendi PZEM akışına ayrı olay kaydı olarak ekler.
+- **MODÜL 2:** Aldığı aynı UDP olay mesajını kendi SCT akışına ayrı olay kaydı olarak ekler; paket kimliğini yeniden üretmez.
+- **PYTHON:** Her modülün kendi akışını olay işaretleri arasındaki paket aralıklarına böler; aralıkları BOOT_ID + EVENT_ID ile eşleştirir. PZEM/SCT kararlılığını kendi ölçüm değerlerinden bağımsız bulur, geçiş bölgelerini kırpar ve eğitim örneğine paket kimliğini ekler.
+- **EŞLEŞTİRME:** Timestamp, iki sensör ölçümünü eşleştirme anahtarı değildir. HA dışa aktarımında yalnızca aynı modül içindeki kayıtları olay işaretine göre sıralamak için gerekebilir.
+- **ESP SINIRI:** ESP'ler kararlılık analizi, veri kırpma, sensörler arası eşleştirme veya katsayı hesabı yapmaz.
+- **HATA DURUMU:** UDP işareti eksik/uyuşmazsa paket aralığı eksik sayılır; tahminle doldurulmaz ve eğitim dışında tutulur.
+- **DURUM:** ADR-022 mimari kararı ve T008/ROADMAP dokümantasyonu güncellendi. Modül 2/3 firmware'i, derleme, OTA, UDP alımı ve HA Recorder sıralaması henüz değiştirilmedi/doğrulanmadı.
+- **ÖNCEKİ KARAR:** ADR-019 içindeki timestamp kesişimiyle eşleştirme şartı bu ADR ile geçersiz kılındı; bağımsız kararlılık tespiti ilkesi korunuyor.
+
+
+
 ## 2026-11-01 — T008 kararlı alan eşleştirme kuralı netleştirildi (ADR-019)
 
 - **KARAR:** SCT kararlılığı ve PZEM kararlılığı yalnızca kendi ölçüm akışlarından, birbirinden bağımsız tespit edilir. Zaman/UDP/SSR olay bilgisi kararlılığı belirlemez.
