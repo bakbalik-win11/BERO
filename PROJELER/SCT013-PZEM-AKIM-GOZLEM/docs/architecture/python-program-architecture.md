@@ -19,18 +19,20 @@ Home Assistant'ta kayıtlı PZEM-004T V3.0 referans akışı ile mevcut SCT öl�
 7. **Öğrenme:** Önce K=24.22'yi değerlendir; veri desteklerse yeni katsayı/model sürümü üret.
 
 
-## Kararlılık ve eşleştirme kuralı (ADR-019 netleştirmesi)
+## Kararlılık ve eşleştirme kuralı (ADR-022 / ADR-023 — geçerli)
 
-**Kararlılık zaman bazlı değildir.** SCT ve PZEM kararlılığı, her akışın kendi ölçüm değerlerinden bağımsız olarak tespit edilir. UDP paket/zaman/SSR ON-OFF kayıtları deney ve olay çerçevesini gösterir; kararlılık başlangıcını, bitişini veya süresini belirlemez.
+**Önce paket kimliği, sonra bağımsız kararlılık analizi.** ADR-019 tarihsel kararındaki timestamp kesişimiyle iki sensör örneğini eşleştirme yaklaşımı ADR-022 ile geçersiz kılınmıştır. TIME alanı da ADR-023 ile olay protokolünden çıkarılmıştır.
 
-- SCT akışında kendi ölçümüne göre kararlı aralık(lar) bulunur.
-- PZEM akışında kendi ölçümüne göre kararlı aralık(lar) ayrıca bulunur.
-- Eğitim eşleştirmesi, bu iki bağımsız kararlı aralığın zaman kesişimidir. Başlangıç/bitişlerin veya sürelerin aynı olması gerekmez.
-- Örnek: SCT 10–16 s, PZEM 12–14 s aralığında kararlıysa eşleşen eğitim bölümü 12–14 s'dir. Kesişim dışındaki SCT bölümleri PZEM etiketiyle eşleştirilmez.
-- Zaman damgası yalnızca iki kararlı aralığın kesişimini hesaplamak içindir; zaman bazlı kararlılık veya sabit uzunlukta pencere tanımlamaz.
-- ON–OFF olay aralığı tek başına kararlı alan sayılmaz. Geçiş/yerleşme bölümleri ancak ilgili akışın kendi kararlılık analizi onaylarsa kararlı olabilir.
+1. Modül 3 PZEM akışı, kendi olay kayıtlarıyla; Modül 2 SCT akışı, aldığı aynı olay kayıtlarıyla kendi içinde sıralanır.
+2. Her iki akış olay işaretleri arasındaki paket aralıklarına ayrılır.
+3. Paket aralıkları yalnız BOOT_ID + EVENT_ID ile eşleştirilir. EVENT_ID tek başına benzersiz değildir.
+4. PZEM kararlılığı yalnız PZEM değerlerinden; SCT kararlılığı yalnız SCT değerlerinden bağımsız tespit edilir.
+5. Her iki tarafta geçerli ve karşılaştırılabilir kararlı bölge bulunmayan paket eğitim örneği üretmez. Geçiş/yerleşme bölümleri kararlı kabul edilmez.
+6. İki modülün ölçüm örnekleri timestamp ile birebir eşleştirilmez; kararlı pencere başlangıç/bitiş timestamp kesişimi de paket eşleştirme şartı değildir.
+7. Timestamp/timezone yalnızca aynı modül içindeki ölçüm ve olay kayıtlarının yerel sırasını kurmak, paket sınırlarını belirlemek ve kaynak izini korumak için kullanılır.
+8. PZEM akımı geçerli paket aralığındaki SCT kararlı bölgesine proje referans etiketi olur; mutlak ground truth değildir.
 
-Bu ilke herhangi bir eşik, tolerans veya minimum süre belirlemez; bunlar gerçek HA geçmişi incelendikten sonra seçilecektir.
+Güncel olay biçimi: `BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF`. TIME alanı yoktur. Ayrıntı: [ADR-022](../decisions/ADR-022-packet-marker-segmented-training-streams.md) ve [ADR-023](../decisions/ADR-023-event-identity-without-time.md).
 
 ## Şimdilik kesinleştirilmeyenler
 
@@ -56,7 +58,7 @@ Bu kararlar gerçek HA örnek verisi görülmeden varsayılmayacak.
 
 | ID | Parça | Durum | Görev |
 |---|---|---|---|
-| PY-01 | HA geçmişini PC'ye alma | AKTİF | T007 |
+| PY-01 | HA geçmişini PC'ye alma | BEKLEMEDE | T007 |
 | PY-02 | PZEM/SCT kaynak akışlarını inceleme | BEKLEMEDE | T007 |
 | PY-03 | Ayrı kararlılık pencereleri | BEKLEMEDE | T008 |
 | PY-04 | Ortak pencere eşleştirme ve etiketleme | BEKLEMEDE | T008 |
