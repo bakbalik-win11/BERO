@@ -37,3 +37,18 @@ G3MB-202P'nin 5 V kontrol girişli, zero-cross ve 2 A / 100–240 V AC sınıfı
 - Bu nedenle 5 V VCC verilecek olması, tetik girişine de 5 V verilmesi gerektiği anlamına gelmez. ESP32 GPIO'su 5 V'a çekilmez. IN girişinin 3,3 V ile güvenilir ve doğru yönde tetiklenmesi, şebeke bağlantısı yapılmadan önce düşük gerilimli masa testinde doğrulanır.
 
 **Mevcut karar:** Kart beslemesi 5 V DC; kontrol sinyali ESP32'den 3,3 V lojik seviyesinde gelir. Tetik polaritesi/aktif seviyesi ve giriş akımı fiziksel kart üzerinde test edilene kadar kesinleşmiş sayılmaz. Bu not bir bağlantı/test sonucu değil, ürün sayfası bilgisi ve güvenli tasarım ayrımıdır.
+
+## Önceki denemeden kullanıcı hatırlatması — testte doğrulanacak
+
+Kullanıcı, önceki SSR denemelerinde kart beslemesi ile tetik girişinin aynı gerilim seviyesinde olmaması durumunda rölenin açılıp kapanmadığını hatırlıyor. Bu, **kullanıcı hatırlatmasıdır; mevcut kayıtlarda bunu kanıtlayan ölçüm veya test logu bulunmuyor.** Dolayısıyla “VCC ile IN mutlaka aynı gerilim olmalı” şeklinde kesin bir elektriksel gereksinim olarak kabul edilmeyecek; ancak yeni testte özellikle araştırılacak.
+
+Testte ayrı ayrı kaydedilecek durumlar:
+
+1. Kart VCC=5 V iken IN girişine 3,3 V lojik HIGH uygulandığında kanalın davranışı.
+2. Aynı besleme koşulunda IN=LOW uygulandığında kanalın davranışı.
+3. Üretici/ürün belgesinde destekleniyorsa, IN girişinin gerekli tetik akımı ve giriş devresi; yalnızca gerilim seviyesi karşılaştırılmayacak.
+4. Kartın giriş mantığının aktif-HIGH mı aktif-LOW mu olduğu ve kanal LED'i/çıkış davranışı.
+
+**Güvenlik sınırı:** ESP32 GPIO'su 5 V'a doğrudan bağlanmayacak. 5 V tetik seviyesi gerçekten gerekiyorsa, uygun transistor veya seviye dönüştürücü arayüzü ayrıca tasarlanacak. Şebeke yükü bağlanmadan önce düşük gerilimli, izole masa testi yapılacak.
+
+Test sonucu alınana kadar VCC=5 V ve GPIO=3,3 V kombinasyonunun çalıştığı veya çalışmadığı iddia edilmeyecek. Bu kayıt geçmişte yaşandığı hatırlanan sorunu kaybetmemek ve kontrollü biçimde yeniden sınamak içindir.
