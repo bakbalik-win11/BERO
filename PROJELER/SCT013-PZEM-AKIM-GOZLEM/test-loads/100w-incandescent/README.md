@@ -1,3 +1,14 @@
+
+
+## 2026-11-01 — E11 / yeni sıralı üç-SCT kodu / Log 66
+
+- **YÜK KİMLİĞİ:** Kullanıcı, Log 66'nın 100 W akkor ampulle alındığını sonradan teyit etti. Yük bilgisi logun kendi içinde etiketli değildir; kullanıcı bildirimi olarak kaydedilir.
+- **KOD/DÜZENEK:** ESP32D1 Modül 2; E11 sıralı SCT1 GPIO32 / SCT2 GPIO33 / SCT3 GPIO34; ortak bias GPIO35; ESPHome 2026.10.1; 200 ms ct_clamp penceresi, 250 ms kanal slotu, K=24.22. Tam arşiv: [Log 66](../../logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt); [uzatılmış analiz](../../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md).
+- **KARARLI VERİ:** 396 çevrim/kanal. SCT1 ortalama 0,423884 A; SCT2 0,424328 A; SCT3 0,425828 A.
+- **UNIT:** Tarihsel UNIT çalışma referansı 0,427 A; eşzamanlı ölçüm değildir. ±%4 kabul bandı 0,40992–0,44408 A.
+- **SAPMA:** SCT1 −%0,730; SCT2 −%0,626; SCT3 −%0,274. Üç kanalın ortalaması da tarihsel UNIT referansına göre ±%4 içindedir.
+- **KARAR:** Kullanıcının yük teyidiyle yeni E11 kodu, 100 W oturumunda üç kanal ortalaması bakımından tarihsel UNIT referansına göre başarılıdır. Eşzamanlı UNIT ölçümü olmadığı için sonuç eşzamanlı doğrulama veya genel kalibrasyon garantisi değildir.
+- **AÇIK SINIRLAR:** SCT2 kabul edilmiş örnek sayısı yaklaşık %5 düşüktür. Zamanlama işaretlerinde 42/396 çevrimde sapma vardır; gerçek ADC pencere callback sınırları doğrulanmamıştır. 50 ms pay azaltılmayacak. K=24.22 korunmuştur.
 # 100 W Akkor Ampul — Karşılaştırmalı Ölçüm Kaydı
 
 **Yük ID:** LOAD-100W-INC  
