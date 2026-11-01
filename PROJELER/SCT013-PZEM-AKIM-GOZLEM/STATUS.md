@@ -1,6 +1,6 @@
 ## 2026-11-01 — E11 Log 66 / 100 W UNIT karşılaştırması (kullanıcı yük teyidi)
 
-- **YÜK:** Kullanıcı, E11 Log 66'nın 100 W akkor ampulle alındığını teyit etti; logun kendi içinde yük etiketi yoktur, teyit kullanıcı bildirimi olarak sınıflandırılır.
+- **YÜK:** E11 deneyi 100 W akkor ampul yüküyle başlatıldı; Log 66 aynı deney oturumunun uzun kaydıdır. Üç SCT sensörü aynı oturumda kullanıldı ve firmware kanalları sırayla okudu; eşzamanlı ADC örneklemesi değildir.
 - **YENİ KOD SONUCU:** 396 kararlı çevrim/kanal; SCT1 0,423884 A, SCT2 0,424328 A, SCT3 0,425828 A. Tarihsel UNIT 0,427 A referansına sapmalar −%0,730 / −%0,626 / −%0,274. Üç kanal ortalaması ±%4 bandında.
 - **KARAR:** E11 yeni sıralı kodu, bu 100 W oturumunda tarihsel UNIT referansına göre başarılı. Eşzamanlı UNIT ölçümü olmadığı için eşzamanlı doğrulama veya genel kalibrasyon garantisi değildir. K=24.22 değişmedi.
 - **AÇIK:** SCT2 kabul edilen örnek sayısı yaklaşık %5 düşük. 42/396 çevrimde en az bir geçiş işareti 200–300 ms tanısal aralığın dışındadır; gerçek ADC pencere sınırları callback ile doğrulanmadı. 50 ms pay korunur.
