@@ -1190,3 +1190,14 @@ Modül 2 taşınabilirlik amacıyla kullanıcı tarafından tek bias devresi ve 
 - **YORUM SINIRI:** UNIT değerleri zaman eşleşmeli değil; farklar doğruluk/kalibrasyon sonucu değildir. 0,30 A altında ±%4 kabul/ret yok. SCT3 sıfırları doğrulanmadan silinmez.
 - **KOD:** [LOAD-15W-004 YAML](firmware/archive/LOAD-15W-004-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml); [deney kaydı](test-loads/15w-2t-3t-4t/LOAD-15W-004.md). LOAD-15W-003 korunmuştur.
 - **DURUM:** AÇIK / ÖN GÖZLEM KAYDEDİLDİ. Derleme, OTA, HA Recorder/History ve uzun test henüz doğrulanmadı.
+
+
+## 2026-11-01 — ADR-019 / Kararlı alan eğitiminin olay-zaman çerçevesi
+
+- **KARAR:** Modül 2 ve Modül 3'te ölçüm kayıtları ile UDP olay/yayın kayıtları bağımsız akışlardır. ESP/HA tarafında birebir ölçüm-olay eşleştirmesi yapılmaz.
+- **MODÜL 2:** Mevcut SCT okumaları HA'ya ayrı; UDP'den alınan paket, zaman ve SSR ON/OFF olayları ayrı kayıt olarak basılır.
+- **MODÜL 3:** Paket, zaman ve SSR ON/OFF bilgisi UDP ile yayınlanır. PZEM ölçümleri HA'ya ayrı; aradaki yayın/olay bilgileri HA'ya ayrı kayıt olarak aktarılır.
+- **PYTHON:** HA'dan alınan SCT, PZEM ve olay akışlarını kaynak timestamp/timezone ve varsa BOOT_ID/EVENT_ID ile koruyarak işler. Olay çizgisinden yük ON/OFF/geçiş bağlamını çıkarır; SCT ve PZEM kararlılığını ayrı bulur; zaman bakımından örtüşen kararlı pencereleri eşleştirir ve PZEM'i SCT penceresi için proje referans etiketi yapar.
+- **AMAÇ:** Olay/zaman bilgisi kararlı alanların sınırlarını ve eğitim örneğinin yük durumunu belirlemeye yardımcı olur. Ölçüm ile olayın HA'da tek kayıt olması gerekmez; ilişkilendirme Python'da sonradan yapılır.
+- **SINIR:** UDP protokol ayrıntıları, zaman toleransı, kararlılık eşiği ve pencere süreleri bu kararla değiştirilmedi; gerçek HA verisiyle belirlenecek. Donanım/firmware uygulaması veya fiziksel doğrulama yapılmış değildir.
+- **KARAR DOSYASI:** [ADR-019](docs/decisions/ADR-019-module2-module3-independent-event-streams.md).
