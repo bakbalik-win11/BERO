@@ -40,3 +40,15 @@ Kart proje donanım listesine dahil edildi; iki AC yük, kullanılacak çıkış
 - Yalnız AC yük anahtarlanmalı; DC yük kullanımı bu modül için uygun değildir.
 - Şebeke gerilimli çıkışlar MCU/USB/breadboard tarafından fiziksel olarak ayrılmalı; uygun sigorta, muhafaza, yalıtım aralıkları ve yetkin kişi kontrolü sağlanmalı.
 - Kanal başına 2 A değeri, tüm kanalların aynı anda bu akımla sürekli çalışabileceğine dair bağımsız doğrulama değildir.
+
+## Besleme ve tetik gerilimi — önemli ayrım
+
+**Kartın 5 V beslemesi ile tetik girişindeki lojik sinyal aynı bağlantı/aynı işlev değildir.**
+
+- **VCC / kart beslemesi:** Kartın elektronik devresini beslemek için 5 V DC.
+- **IN1 / IN2 tetik girişleri:** ESP32'nin GPIO çıkışlarından gelen kontrol sinyalleri. ESP32 GPIO lojik seviyesi 3,3 V'tur; bu hatlara kartın 5 V beslemesi doğrudan bağlanmaz.
+- **AC yük tarafı:** Anahtarlanan şebeke/yük bağlantısıdır; 5 V kontrol beslemesinden ve ESP32 GPIO sinyalinden ayrı tutulur.
+- Ürün sayfasında giriş için 0–0,5 V LOW, 0,5–2,5 V belirsiz ve 2,5–20 V HIGH değerleri verilir. Bu değerlere göre 3,3 V, HIGH aralığındadır; ancak aynı sayfadaki “low level trigger” ifadesiyle mantık çelişkisi bulunduğundan gerçek aktif seviye henüz doğrulanmış değildir.
+- Bu nedenle 5 V VCC verilecek olması, tetik girişine de 5 V verilmesi gerektiği anlamına gelmez. ESP32 GPIO'su 5 V'a çekilmez. IN girişinin 3,3 V ile güvenilir ve doğru yönde tetiklenmesi, şebeke bağlantısı yapılmadan önce düşük gerilimli masa testinde doğrulanır.
+
+**Mevcut karar:** Kart beslemesi 5 V DC; kontrol sinyali ESP32'den 3,3 V lojik seviyesinde gelir. Tetik polaritesi/aktif seviyesi ve giriş akımı fiziksel kart üzerinde test edilene kadar kesinleşmiş sayılmaz. Bu not bir bağlantı/test sonucu değil, ürün sayfası bilgisi ve güvenli tasarım ayrımıdır.
