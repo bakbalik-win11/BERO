@@ -96,3 +96,12 @@ Bu örnekler mevcut cihaz firmware'lerinin yerine geçmez. Her yeni sensörde pi
 ## Kararlı alan eğitimi — olay ve ölçüm akışlarının ayrılması
 
 Modül 2 ve Modül 3'te ölçüm verileri ile UDP olay/yayın verileri bağımsız kayıt akışlarıdır. Modül 2 SCT okumalarını ve aldığı UDP BERO_EVT/BOOT_ID/EVENT_ID/STATE olaylarını HA'ya ayrı ayrı aktarır. Modül 3 SSR durum değişiminde TIME içermeyen BERO_EVT mesajını UDP ile yayınlar; PZEM ölçümlerini ve olay kaydını HA'ya ayrı ayrı aktarır. Python SCT ve PZEM kararlılığını yalnızca kendi ölçüm akışlarından bağımsız tespit eder. UDP paket/zaman/ON-OFF bilgisi yalnızca deney ve olay çerçevesidir; kararlılığı veya kararlı alan sınırlarını belirlemez. Python önce Modül 2 SCT ve Modül 3 PZEM akışlarını kendi olay işaretleriyle paket aralıklarına böler; paketler BOOT_ID + EVENT_ID ile eşleştirilir. Her akışın kararlılığı yalnız kendi ölçüm değerlerinden bağımsız tespit edilir; ON–OFF aralığı otomatik olarak kararlı sayılmaz. Zaman damgaları akış içi olay sırasını ve paket sınırlarını kurmak için kullanılır; iki sensör örneğini timestamp ile birebir eşleştirme anahtarı değildir. TIME alanı olay protokolünden kaldırılmıştır. Geçerli karar sırası: [ADR-022](docs/decisions/ADR-022-packet-marker-segmented-training-streams.md) ve TIME alanını geçersiz kılan [ADR-023](docs/decisions/ADR-023-event-identity-without-time.md).
+
+
+## Eğitim ve tam ham veri değerlendirmesi (ADR-025)
+
+PZEM, SCT katsayısını/modelini öğrenmek için uygun kararlı alanların eşleştirilmesinde proje referansıdır. Eğitim için kararlı alanlar seçilse bile deneyin ham verisinin tamamı korunur. Öğrenilmiş model, açılma/kapanma ve geçişler dahil tam SCT kaydına ayrıca uygulanır.
+
+Bu ikinci değerlendirmede Python'a deneyin bilinen ON/OFF koşulu ve yük aralığı verilir. PZEM'in geçişteki ardışık okumaları SCT'nin her örneği için noktasal doğruluk referansı yapılmaz. Bilinmeyen ara geçiş akımları uydurulmaz; sonuç bilinen deney koşullarına göre SCT davranış/tutarlılık değerlendirmesidir, mutlak doğruluk iddiası değildir. Tek veya alan bazlı katsayı seçimi gerçek veriye bırakılır.
+
+Ayrıntı: [ADR-025](docs/decisions/ADR-025-raw-data-sct-model-behavior-validation.md).
