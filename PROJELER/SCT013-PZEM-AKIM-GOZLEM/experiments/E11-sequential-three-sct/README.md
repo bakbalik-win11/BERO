@@ -75,3 +75,17 @@ Bu kayıt kodun kullanıcı bildirimiyle derlenip çalıştığını belgelemekt
 - SCT1 ortalama 0.42141 A / CV %1.98; SCT2 0.42283 A / CV %2.36; SCT3 0.42686 A / CV %2.09. Bias ortalaması 1.66022 V.
 - 12:01:07 çevriminde sıra işaretleri 16/454/392 ms aralıkları gösterdi. İşaretler ve debug örnek sayıları çeliştiği için gerçek pencere çakışmasızlığı kesin doğrulanmadı; 50 ms geçiş payı azaltılmayacak.
 - PZEM yoktur; 0.427 A geçici UNIT beklentisidir. Kalibrasyon veya ±%4 kabul sonucu çıkarılmadı. T010 aktif kalır.
+
+
+## 2026-11-01 — Uzatılmış üç SCT logu (Log 66)
+
+- **KAYNAK:** [Log 66 tam arşiv](../../logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt); 5.000 satır / 378.656 bayt. SHA-256: `b1bad3f1a8ef010d4ff5e717b358c8ec69fea609be928ba71e6e3a5153c081484`.
+- **ÖRTÜŞME:** Log 66'nın ilk 1.678 satırı Log 64'ün son 1.678 satırıyla birebir aynıdır; analizde bir kez sayıldı.
+- **ANALİZ:** [Uzatılmış analiz](../../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md); [seçilmiş kanıt](../../logs/module2/2026-11-01-e11-three-sct-sequential-extended-evidence.txt).
+- **KAPSAM:** Birleştirilmiş zaman çizgisinde 397 tamamlanmış çevrim vardır. İlk açılış çevrimi ve son yarım çevrim dışarıda bırakılarak 396 kararlı çevrim/kanal incelendi.
+- **AKIM ORTALAMALARI:** SCT1 0.423884 A (CV %2.646), SCT2 0.424328 A (CV %2.810), SCT3 0.425828 A (CV %2.215). Bias ortalaması 1.660866 V.
+- **ÖRNEK SAYISI:** Ortalama farklı örnekler/200 ms: SCT1 3401.9, SCT2 3235.5, SCT3 3414.9. SCT2 yaklaşık %5 düşük kabul edilmiş örnek sayısıyla önceki logdaki davranışı tekrarladı.
+- **ZAMANLAMA:** 42/396 çevrimde en az bir script geçiş işareti 200–300 ms tanısal aralığının dışındadır. 12:01:07.174 çevriminde 16/454/392 ms; 12:06:06.849 çevriminde 309/393/392 ms görüldü.
+- **KANIT SINIRI:** START/COMPLETE işaretleri doğrudan pencere callback'i değildir; COMPLETE işareti sabit 250 ms delay sonrasında yazılır. Gerçek pencere çakışmasızlığı kesin doğrulanmadı. İki Wi-Fi roaming scan olayı zamanlama sapmalarına yakın görünür; nedensellik kanıtlanmadı.
+- **REFERANS:** PZEM/UNIT kaydı yok; fiziksel yük ve besleme metadata'sı açıkça tanımlı değil. Kalibrasyon veya ±4% kabulü çıkarılmadı.
+- **DURUM:** YAML ve K=24.22 değişmedi. 50 ms geçiş payı azaltılmayacak. T010 AKTİF.
