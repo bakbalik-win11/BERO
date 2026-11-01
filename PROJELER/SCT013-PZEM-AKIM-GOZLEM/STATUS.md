@@ -1,3 +1,19 @@
+## 2026-11-01 — Modül 2/3 uzun ON/OFF olay aktarımı: çoklu paket + HA History
+
+- **ANA KAYIT:** [Uzun Modül 2 log analizi](logs/module2/2026-11-01-module2-on-off-extended-analysis.md); [seçilmiş kanıt satırları](logs/module2/2026-11-01-module2-on-off-extended-evidence.log).
+- **MODÜL 2 KAYNAK LOGU:** Kullanıcı dosyası `esp32d1-logs (74).txt`, 1809 satır / 145178 bayt; SHA-256 `e125e3d471a70abb63407d1ee9c6db82336780fbd93bc26e6f9481681e24dece`. ESPHome 2026.10.1; esp32d1 / 192.168.0.33; Modül 3 kaynak IP 192.168.0.70.
+- **UDP → HA:** Aynı BOOT_ID `53A14E04372DEB0E67FA07270AC69561` altında EVENT_ID 59 ON, 61 ON, 62 OFF ve 64 OFF için UDP_EVENT_RECEIVED ve HA_EVENT_PUBLISHED satırları var. Dört paket alındı ve HA yayın çağrısı yapıldı.
+- **EKSİK DİZİ:** EVENT_ID 60 ve 63 bu uzun Modül 2 logunda görünmüyor. Bu nedenle tüm olayların kayıpsız ulaştığı söylenemez. Eksik olayın Modül 3'te üretilmemesi, UDP kaybı veya alıcı logunda görünmemesi seçenekleri bu tek kaynakla ayrıştırılamaz.
+- **HA HISTORY EKRAN GÖRÜNTÜSÜ:** Ayrı bir zaman kesitinde 19:23:47 EVENT_ID 70 / OFF ve 19:24:07 EVENT_ID 71 / ON; her iki modülün ham olay kayıtları ve Modül 2 STATE entity'leri görünüyor. SSR entity'si OFF için Kapalı, ON için Açık gösteriyor. 70→71 arası 20 s. 19:23:07'de EVENT_ID 69 görülüyor ancak STATE/ham paket ekran kesitinde görünmüyor.
+- **SSR SINIRI:** HA switch durumu mantıksal entity durumudur; fiziksel SSR kontak/yük anahtarlaması bağımsız elektriksel gözlemle doğrulanmış değildir.
+- **RECORDER SINIRI:** History ekran görüntüsü kayıtların HA geçmişinde göründüğünü destekler; DB bütünlüğü/yeniden başlatma sonrası kalıcılık denetimi değildir.
+- **SCT:** Üç kanalın sıralı 200 ms ct_clamp okuması yaklaşık 2 s çevrimle sürüyor. Bu logun yük koşulu ve eşzamanlı PZEM değeri tanımlı değil; akım doğruluğu/kalibrasyon sonucu çıkarılmadı.
+- **UYARI:** Bir adet 70 ms safe_mode operation uyarısı var. Bu kesitte UDP_RECV_FAILED, UDP_INVALID_PACKET, UDP_BIND_FAILED veya ERROR satırı yok. Log başındaki validated config cache nedeniyle bu açılışta config validation atlanmış.
+- **KOD:** [Modül 2 YAML](firmware/bero-modul2-esp32d1.yaml) ve [Modül 3 WROOM YAML](firmware/bero-modul3-wroom.yaml). YAML'lar kaynak snapshot'ıdır; çalışan binary ile byte-byte eşitlik ve güncel bağımsız config check/derleme/OTA bu logla kanıtlanmış değildir.
+- **DURUM:** Modül 2 UDP alımı ve HA yayın çağrısı çoklu ON/OFF olaylarında log ile doğrulandı; HA History ayrıca 70 OFF/71 ON için destek sağlıyor. Kayıpsızlık, fiziksel SSR anahtarlaması ve Python paketleme hattı açık.
+- **MİMARİ:** TIME olay protokolünde yoktur. Geçerli protokol `BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF`; anahtar BOOT_ID + EVENT_ID. ADR-023, ADR-022'deki TIME alanını geçersiz kılar.
+
+
 ## 2026-11-01 — Modül 2 UDP olay alıcısı / ilk gerçek paket alımı
 
 - **KOD:** [Modül 2 ESP32D1 tam YAML](firmware/bero-modul2-esp32d1.yaml). Mevcut LOAD-15W-003 üç-SCT sıralı okuma yapısı üzerine UDP 4210 alıcısı, Wi-Fi bağlantı/kesilme soket yönetimi ve HA olay entity'leri eklendi. Cihaz kimliği `esp32d1`, GPIO32/33/34/35, K=24.22, 200 ms pencere ve 2 s SCT çevrimi korundu.
