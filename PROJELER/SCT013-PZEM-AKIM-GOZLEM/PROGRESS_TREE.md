@@ -1,3 +1,12 @@
+## 2026-11-01 — LOAD-42W-002 kısa log denetimi
+
+- 68 saniyelik kısa logda 34 çevrim tamamlandı; Wi-Fi ve ADC başlatmaları normal, hata satırı yok.
+- Ortalama: SCT1 0.25106 A; SCT2 0.24150 A; SCT3 0.34732 A; bias 1.66147 V.
+- SCT3/SCT1 oranı 1.383; 2T/1T davranışı için takip gerekiyor.
+- Raw AC entity'lerinde birim/semantik hatası tespit edildi: filtre öncesi ham akım A iken entity V olarak etiketlenmiş. Firmware henüz düzeltilmedi.
+- HA Recorder/History kök nedeni doğrulanmadı; API server dinliyor fakat HA client bağlantısı ve Recorder yazımı logla kanıtlanmıyor.
+- [Kısa log ve teşhis notu](logs/module2/2026-11-01-load-42w-002-short-log-ha-diagnostic.md). Test açık.
+
 ## 2026-11-01 — LOAD-42W-002 üç SCT / HA uzun kayıt
 
 - 42 W ampul altında üç kanallı uzun süreli HA geçmiş gözlemi açıldı: [test kaydı](test-loads/42w-bulb/README.md).
