@@ -1567,3 +1567,16 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **TEST KAYDI:** [E11 README](../experiments/E11-sequential-three-sct/README.md).
 - **SONUÇ SINIRI:** Derleme ve çalışma kullanıcı beyanıdır. Ham log/kanal sonuçları bu kayıt sırasında paylaşılmadığından sayısal performans, gerçek senkron kayması ve pencere çakışmasızlığı analizi yapılmadı.
 - **SONRAKİ:** Cihaz logu üzerinden kanal çıktıları ve zaman damgaları incelenecek; ardından 50 ms geçiş payı için daha küçük güvenli değer değerlendirilecek.
+
+## 2026-11-01 — LOAD-42W-002 üç SCT / HA geçmiş kaydı açıldı
+
+- **HEDEF:** 42 W ampul altında Modül 2 üç SCT kanalını kullanarak akım, Raw AC ve ortak bias verilerinin Home Assistant'a yayımlanmasını ve uzun süreli HA geçmişinde tutulmasını gözlemek.
+- **DEPO OKUMASI:** AGENTS.md, STATUS.md, ROADMAP.md, E11 YAML/README, test-loads indeksi ve LOAD-42W-001 / 42 W test kaydı incelendi. LOAD-42W-001 / Log 57 tarihsel kayıt olarak korundu.
+- **TEST:** Yeni oturum [LOAD-42W-002](../test-loads/42w-bulb/README.md) olarak açıldı. SCT1 faz 1T/GPIO32; SCT2 nötr 1T/GPIO33; SCT3 faz 2T/GPIO34; ortak bias GPIO35.
+- **KOD:** Kullanıcı tarafından derlendiği bildirilen üç SCT + HA geçmiş YAML'ı ayrı snapshot olarak [firmware/archive](../firmware/archive/LOAD-42W-002-2026-11-01-esp32d1-three-sct-ha-history.yaml) altına eklendi. Cihaz kimliği `esp32d1`, K=24.22, 200 ms pencere, 250 ms slot ve 2 s çevrim korundu. Akım, Raw AC ve bias sensörlerinde `force_update: true`.
+- **KANIT SINIRI:** Derleme bilgisi kullanıcı bildirimidir; derleme çıktısı/logu bu oturumda paylaşılmadı. OTA/cihaz çalışması, HA Recorder/History aktarımı ve uzun kayıt henüz doğrulanmadı.
+- **KAYIT HEDEFİ:** 60 dakika önerilen başlangıç hedefidir; kesin süre kullanıcı tarafından ayrıca teyit edilmedi. 0,30 A altı düşük akım bölgesinde ±%4 kabul/ret uygulanmaz.
+- **DEPO GÜNCELLEMELERİ:** 42 W test README, test-loads indeksi, STATUS.md, PROGRESS_TREE.md ve bu SESSION_LOG girdisi güncellendi.
+- **SONRAKİ:** HA'da yedi entity'nin adlarını/varlığını ve Recorder geçmişini kontrol et; ardından 42 W yükte uzun kayıt al ve gerçek log/HA geçmişini analiz et.
+- **DURUM:** Test AÇIK; henüz fiziksel uzun kayıt veya sonuç iddiası yoktur.
+
