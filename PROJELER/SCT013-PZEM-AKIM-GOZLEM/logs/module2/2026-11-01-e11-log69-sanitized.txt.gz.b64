@@ -3,7 +3,7 @@
 Bu dosya, kullanıcı tarafından sağlanan `esp32d1-logs (69).txt` dosyasının ağ kimlikleri maskelenmiş kopyasının gzip + Base64 arşividir.
 
 - Açma: `base64 -d 2026-11-01-e11-log69-sanitized.txt.gz.b64 | gunzip > 2026-11-01-e11-log69-sanitized.txt`
-- Açılmış metin boyutu: 108057 bayt
+- Açılmış metin boyutu: 108065 bayt
 - Açılmış metin SHA-256: `2dc20bf5e1407c56b71f222683c6c901981ec5a0495555dbd126ec57e8e5b015`
 - Orijinal yüklenen dosya: 108063 bayt; SHA-256 `2c031c08b333b9f5900e530f053f1c3894bb9fecd6e049394f946f368321a90c`
 - Maskeleme: yerel IP adresleri, MAC/BSSID ve Wi-Fi SSID.
