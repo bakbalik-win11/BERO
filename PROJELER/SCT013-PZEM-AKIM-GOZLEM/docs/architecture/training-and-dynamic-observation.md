@@ -1,5 +1,8 @@
 # BERO — Kararlı alan eğitimi ve aç-kapa ham akış gözlemi
 
+> **DURUM / GEÇERLİLİK NOTU — 2026-11-01:** Bu belge önceki bir kavramsal taslaktır; içindeki sürekli ham ADC akışı, iki ölçümü ortak timestamp ekseninde birebir hizalama ve timestamp kesişimiyle etiketleme önerileri güncel uygulama kararı değildir. Güncel veri politikası sürekli ham ADC/50 Hz dalga arşivini zorunlu kılmaz. Modül 2 SCT ve Modül 3 PZEM akışları ayrı kalır; olay paketleri BOOT_ID + EVENT_ID ile eşleştirilir; her akışın kararlılığı kendi ölçümünden bağımsız belirlenir. İki sensörün örnekleri timestamp ile eşleştirilmez. Güncel kararlar [ADR-022](../decisions/ADR-022-packet-marker-segmented-training-streams.md), [ADR-023](../decisions/ADR-023-event-identity-without-time.md) ve [T008](../../tasks/T008-pzem-sct-stable-window-labeling.md) içindedir. Bu belgenin eski bölümleri yalnız tarihsel tasarım bağlamı olarak okunmalıdır.
+
+
 **Durum:** Kullanıcı tarafından açıklanan hedef çalışma modeli; plan/dokümantasyon aşamasında. Firmware, Python analiz kodu, model ve fiziksel deney henüz uygulanmış değildir.
 
 ## 1. Temel fikir
