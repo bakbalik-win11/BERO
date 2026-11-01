@@ -18,6 +18,20 @@ Home Assistant'ta kayıtlı PZEM-004T V3.0 referans akışı ile mevcut SCT öl�
 6. **Etiketleme:** Geçerli PZEM akımını eşleşen SCT penceresine referans etiketi olarak ekle.
 7. **Öğrenme:** Önce K=24.22'yi değerlendir; veri desteklerse yeni katsayı/model sürümü üret.
 
+
+## Kararlılık ve eşleştirme kuralı (ADR-019 netleştirmesi)
+
+**Kararlılık zaman bazlı değildir.** SCT ve PZEM kararlılığı, her akışın kendi ölçüm değerlerinden bağımsız olarak tespit edilir. UDP paket/zaman/SSR ON-OFF kayıtları deney ve olay çerçevesini gösterir; kararlılık başlangıcını, bitişini veya süresini belirlemez.
+
+- SCT akışında kendi ölçümüne göre kararlı aralık(lar) bulunur.
+- PZEM akışında kendi ölçümüne göre kararlı aralık(lar) ayrıca bulunur.
+- Eğitim eşleştirmesi, bu iki bağımsız kararlı aralığın zaman kesişimidir. Başlangıç/bitişlerin veya sürelerin aynı olması gerekmez.
+- Örnek: SCT 10–16 s, PZEM 12–14 s aralığında kararlıysa eşleşen eğitim bölümü 12–14 s'dir. Kesişim dışındaki SCT bölümleri PZEM etiketiyle eşleştirilmez.
+- Zaman damgası yalnızca iki kararlı aralığın kesişimini hesaplamak içindir; zaman bazlı kararlılık veya sabit uzunlukta pencere tanımlamaz.
+- ON–OFF olay aralığı tek başına kararlı alan sayılmaz. Geçiş/yerleşme bölümleri ancak ilgili akışın kendi kararlılık analizi onaylarsa kararlı olabilir.
+
+Bu ilke herhangi bir eşik, tolerans veya minimum süre belirlemez; bunlar gerçek HA geçmişi incelendikten sonra seçilecektir.
+
 ## Şimdilik kesinleştirilmeyenler
 
 - HA'dan PC'ye aktarım yöntemi (API, geçmiş dışa aktarımı veya dosya aktarımı).
