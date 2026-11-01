@@ -91,3 +91,8 @@ ESPHome `ct_clamp` araştırmasından çıkan ortak sensör okuma yaklaşımı v
 - Analog DC gerilim: [adc-dc-voltage-observer.yaml](firmware/patterns/adc-dc-voltage-observer.yaml)
 
 Bu örnekler mevcut cihaz firmware'lerinin yerine geçmez. Her yeni sensörde pin, elektriksel aralık, sensör transfer fonksiyonu ve uygun sinyal işleme yöntemi doğrulanır. YAML'lar henüz derlenmiş veya fiziksel donanımda test edilmiş değildir.
+
+
+## Kararlı alan eğitimi — olay ve ölçüm akışlarının ayrılması
+
+Modül 2 ve Modül 3'te ölçüm verileri ile UDP olay/yayın verileri bağımsız kayıt akışlarıdır. Modül 2 SCT okumalarını ve aldığı UDP paket/zaman/SSR ON-OFF olaylarını HA'ya ayrı ayrı aktarır. Modül 3 paket/zaman/SSR ON-OFF bilgisini UDP ile yayınlar; PZEM ölçümlerini ve aradaki olay/yayın bilgilerini HA'ya ayrı ayrı aktarır. Python bu akışları sonradan zaman ve varsa BOOT_ID/EVENT_ID ile ilişkilendirir; SCT ve PZEM kararlılığını ayrı belirler, olay çizgisini yük durumunu ve geçişleri yorumlamak için kullanır, yalnız örtüşen kararlı pencereleri eşleştirir ve PZEM'i SCT penceresi için proje referans etiketi yapar. Ölçüm-olay birebir eşleştirmesi ESP/HA tarafında yapılmaz. Ayrıntı: [ADR-019](docs/decisions/ADR-019-module2-module3-independent-event-streams.md).
