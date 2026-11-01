@@ -92,3 +92,14 @@ Paketleme her ölçüm akışında bağımsız yapılır:
 Mevcut Modül 3 → UDP 4210 → Modül 2 aktarımı korunur. Bu karar UDP'yi kaldırmaz, yeni HA helper/merkezi HA mimarisi kurmaz ve olay mesajına TIME alanı eklemez. Güncel protokol ADR-023'teki TIME'sız biçimdir.
 
 **Uygulama durumu:** Bu bölüm kabul kuralıdır. Python kodu, gerçek HA export testi ve örnek çıktı henüz mevcut değildir. Ayrıntı: [ADR-024](../decisions/ADR-024-python-packet-completeness-validation.md).
+
+
+## Tam ham kayıtta öğrenilmiş SCT modelinin değerlendirilmesi (ADR-025)
+
+Eğitim için PZEM ve SCT akışlarının kendi içlerinde kararlı bulunan uygun alanları eşleştirilir; PZEM bu aşamada proje referansıdır. Eğitim alanları seçilse bile deneyin ham kaydının tamamı korunur. Açılma, kapanma ve geçiş bölgeleri de öğrenilmiş katsayı/model ile ayrıca incelenir.
+
+Tam kayıt değerlendirmesinde Python'a deneyin bilinen ON/OFF koşulu ve yük aralığı verilir (örneğin OFF=0 A, ON yaklaşık 1 A). SCT'nin OFF tabanı, ON seviyesi, geçiş davranışı ve bilinen aralıkla tutarlılığı değerlendirilir. PZEM'in geçişteki ardışık okumaları SCT'nin her örneği için noktasal doğruluk referansı yapılmaz; bu değerlerle tam kayıt üzerinde hata puanı üretilmez. Bilinmeyen ara geçiş akımları uydurulmaz. Sonuç, bilinen deney koşullarına göre SCT davranış/tutarlılık değerlendirmesidir; bağımsız örnek referansı olmadan mutlak doğruluk testi değildir.
+
+Tek katsayı veya Python'ın veriden seçeceği alan bazlı katsayılar ve alan sınırları henüz belirlenmemiştir. Algoritma, en küçük kareler yöntemi ve kabul eşiği bu ADR ile seçilmez. Ayrı SCT üzerinde eğitilmiş modeli çalıştıracak olası Modül 4 fikri ayrı bir gelecek önerisidir.
+
+Ayrıntı: [ADR-025](../decisions/ADR-025-raw-data-sct-model-behavior-validation.md). Python uygulaması ve gerçek ham kayıt çıktısı henüz yoktur.
