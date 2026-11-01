@@ -127,3 +127,12 @@ Kullanıcı, ESP32D1 beslemesini PC USB'den masaüstü harici güç kaynağına 
 - **Çalışma mimarisi:** Şimdilik bir ESP düğümünde bir aktif SCT akım kanalı tercih edilir. Bu, üç kanallı okumanın kesinlikle imkânsız olduğuna dair kanıt değildir.
 - K katsayısı değiştirilmedi. Sonraki doğrulama: aynı donanım/kod/yükle PC USB ve harici 5 V koşullarını kontrollü A/B karşılaştırmak; eşzamanlı UNIT/PZEM okumak.
 - Özgün uzun log SHA-256: `de3f2289700f657cfcf1fd8bff816bbd8a8bc05bb2296f349462709cbb42d859`.
+
+
+## 2026-11-01 — E11 üç kanallı logdan koşullu SCT1 kıyası
+
+- E11 logu ilk çevrim hariç SCT1 için 175 yayın: ortalama 0.42141 A; medyan 0.420 A; SD 0.00833 A; min–maks 0.404–0.452 A.
+- Önceki LOAD-100W-004: ortalama 0.425 A; medyan 0.423 A; SD 0.01149 A. Yeni SCT1 ortalaması yaklaşık %0.85, medyanı %0.71 daha düşüktür; SD daha küçüktür.
+- **Sınırlama:** E11 logunun kendi içinde fiziksel yük kimliği ve besleme koşulu açıkça etiketlenmemiştir. Bu, aynı koşulun kesin tekrarı değil, koşullu tarihsel kıyastır.
+- 0.427 A geçici UNIT beklentisidir, PZEM değildir. E11 logunda PZEM/eşzamanlı UNIT yoktur; doğruluk veya ±%4 kabul sonucu çıkarılmaz.
+- Ayrıntı: [E11 üç SCT analiz raporu](../../logs/module2/2026-11-01-e11-three-sct-sequential-analysis.md).
