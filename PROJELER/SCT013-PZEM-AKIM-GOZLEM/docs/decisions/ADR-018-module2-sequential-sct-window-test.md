@@ -1,7 +1,7 @@
 # ADR-018 — Modül 2 üç SCT kanalında sıralı ölçüm pencereleri
 
 - **Tarih:** 2026-11-01
-- **Durum:** KABUL EDİLDİ — sıralı firmware kullanıcı bildirimiyle derlendi ve çalıştı; nicel log doğrulaması bekliyor
+- **Durum:** KABUL EDİLDİ — sıralı firmware derlendi/çalıştı ve kanal logu analiz edildi; gerçek pencere çakışmasızlığı zamanlama anomalisi nedeniyle kesin doğrulanmadı
 - **İlgili görev:** [T010](../../tasks/T010-module2-triple-sct-bringup.md)
 - **İlgili firmware:** [esp32d1.yaml](../../firmware/esp32d1.yaml)
 
@@ -51,3 +51,12 @@ Bu ADR hedefi ve deney yöntemini sabitler. YAML derlemesi, OTA, fiziksel ölç�
 ## Uygulama durumu — 2026-11-01
 
 Kullanıcı, bu ADR'ye dayalı üç kanallı sıralı YAML'ın derlendiğini ve cihazda çalıştığını bildirdi. Kod snapshot ve deney kaydı [E11 klasöründe](../../experiments/E11-sequential-three-sct/README.md) saklanır. Ham log ve kanal bazında sayısal analiz henüz eklenmediği için gerçek zaman kayması, pencere çakışmasızlığı ve kanal tekrarlanabilirliği nicel olarak doğrulanmış değildir. 50 ms geçiş payı ilk çalışan konfigürasyon değeridir; optimum olduğu kabul edilmez.
+
+
+## Log doğrulaması — 2026-11-01
+
+E11 üç kanal logunda 176 çevrim ve her kanal için 176 akım/Raw AC yayını görüldü. İlk çevrim hariç kanal ortalamaları SCT1 0.42141 A, SCT2 0.42283 A, SCT3 0.42686 A; bias ortalaması 1.66022 V'tur. Kanal dağılımları birbirine yakındır.
+
+Bununla birlikte 12:01:07 çevrimindeki sıra işaretleri 16/454/392 ms aralıkları göstermiş, aynı çevrimin debug örnek sayılarıyla çelişmiştir. Dolayısıyla bu log, her çevrimde gerçek pencere çakışmasızlığını kesin kanıtlamaz. 50 ms geçiş payı azaltılmayacak; zamanlama anomalisinin tekrar logla incelenmesi gerekir. PZEM verisi bulunmadığından kalibrasyon veya ±%4 doğruluk sonucu çıkarılmaz.
+
+Ayrıntı: [E11 log analizi](../../logs/module2/2026-11-01-e11-three-sct-sequential-analysis.md).
