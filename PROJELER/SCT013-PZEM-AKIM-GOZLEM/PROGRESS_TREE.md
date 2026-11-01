@@ -286,3 +286,13 @@
 - Kullanıcı raporu, Copilot raporu ve bağımsız teknik inceleme protokolde ayrı ayrı referanslandı; simülasyonlar ölçüm sayılmadı.
 - **Durum:** Yalnız planlandı. YAML/OTA/fiziksel ölçüm/log yok.
 - [E10 protokolü](experiments/E10-ct-clamp-window-duration/README.md); [sonuç defteri](experiments/E10-ct-clamp-window-duration/results.md).
+
+
+## 2026-11-01 — Modül 2 üretim kontrolleri için durum düzeltmesi
+
+- Kullanıcı teyidi: modül ilk üretildiğinde üç SCT kanalının her birinde okuma kontrolü yapıldı.
+- Kullanıcı teyidi: üç kanala ayrı bias değil, tek ortak bias noktası kullanıldı; üretim sırasında ölçüldü ve görseli daha önce paylaşıldı.
+- Modül 2 ile test yükleri çalıştırıldı; gerçek cihaz logları/analizleri ve derleme-fiziksel çalışma kayıtları depoda mevcut.
+- Bu kontroller yeniden yapılacak iş değildir. Önceki “kanal/bias/cihaz çıktısı bekliyor” anlatımı güncel kabul edilmeyecek.
+- E10 200→500→1000→200 ms deneyi ayrı olarak PLANLANDI; henüz uygulanmadı.
+- firmware/esp32d1.yaml mevcut hâli tek ct_clamp kanalı GPIO32 + ortak bias GPIO35 gösterir; fiziksel ilk kanal kontrolüyle firmware'in üç kanalı aynı anda ölçtüğü iddiası birbirinden ayrıdır.
