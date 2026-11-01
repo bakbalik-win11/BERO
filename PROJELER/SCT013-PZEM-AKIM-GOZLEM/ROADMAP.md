@@ -94,3 +94,13 @@ Faz 2 için ayrıntılı yürütme planı [burada](docs/plans/2026-11-01-phase2-
 ## 2026-11-01 — Paket işaretli eğitim akışı kararı
 
 Modül 3, olay mesajını kendi PZEM akışına ayrı kayıt olarak ekler ve aynı mesajı UDP 4210 üzerinden Modül 2'ye yollar. Modül 2 aldığı mesajı kendi SCT akışına aynı biçimde ayrı kayıt olarak ekler. Python her akışı paket işaretleriyle böler, BOOT_ID + EVENT_ID ile aralıkları eşleştirir ve her sensörün kararlılığını kendi verisinden bağımsız bulur. Timestamp, iki sensörün ölçümlerini eşleştirme anahtarı değildir. Ayrıntı ve ADR-019 üzerindeki değişiklik: [ADR-022](docs/decisions/ADR-022-packet-marker-segmented-training-streams.md). Firmware henüz değiştirilmedi.
+
+## 2026-11-01 — Modül 2/3 olay aktarımı güncel durum
+
+- Modül 2 ESP32D1 üç-SCT okuma + UDP 4210 olay alıcısı kaynak dosyası depoda bulunuyor.
+- Modül 3 WROOM PZEM + SSR olay kaynağı kaynak dosyası depoda bulunuyor.
+- Modül 2 uzun logu dört olayın (59 ON, 61 ON, 62 OFF, 64 OFF) UDP alımı ve HA yayın çağrısını destekliyor; 60 ve 63 bu logda görünmüyor.
+- HA History ekran görüntüsü ayrı kesitte 70 OFF ve 71 ON olaylarını iki modülün olay entity'lerinde gösteriyor.
+- Fiziksel SSR anahtarlaması, tüm olayların kayıpsız teslimi, kaynak YAML/binary birebirliği ve Python T007/T008 hattı tamamlanmış değildir.
+- Kanıt: [uzun olay analizi](logs/module2/2026-11-01-module2-on-off-extended-analysis.md).
+- T010 kapalıdır; T007 → T008 → T006 sırası korunur. T009 genel pratik devreye alma üst görevidir.
