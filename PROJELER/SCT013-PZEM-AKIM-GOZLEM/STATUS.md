@@ -1,3 +1,12 @@
+## 2026-11-01 — T008 kararlı alan eşleştirme kuralı netleştirildi (ADR-019)
+
+- **KARAR:** SCT kararlılığı ve PZEM kararlılığı yalnızca kendi ölçüm akışlarından, birbirinden bağımsız tespit edilir. Zaman/UDP/SSR olay bilgisi kararlılığı belirlemez.
+- **OLAY ÇERÇEVESİ:** UDP paket kimliği, zaman ve ON/OFF yalnızca deney/olay bağlamıdır; kararlı alan başlangıç-bitişini veya süresini tayin etmez.
+- **EŞLEŞTİRME:** İki akışın kendi içinde kararlı bulunan zaman aralıklarının kesişimi eğitim verisi olur. Başlangıç, bitiş ve sürelerin eşit olması gerekmez.
+- **ÖRNEK:** SCT 10–16 s, PZEM 12–14 s kararlıysa ortak eğitim aralığı 12–14 s'dir.
+- **SINIR:** Zaman damgaları yalnızca kesişimi hesaplamak içindir; zaman bazlı kararlılık penceresi yoktur. ON–OFF aralığı otomatik olarak kararlı kabul edilmez. Eşik/tolerans/minimum süre gerçek HA verisi görülmeden belirlenmez.
+- **DURUM:** Mimari karar/dokümantasyon netleştirildi. Python uygulaması, HA veri analizi veya yeni firmware/fiziksel test yapılmadı. T007→T008→T006 görev sırası değişmedi.
+
 
 ## 2026-11-01 — LOAD-15W-003 / 15 W çok turlu UNIT karşılaştırma deneyi
 
