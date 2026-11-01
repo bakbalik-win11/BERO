@@ -1,3 +1,10 @@
+## 2026-11-01 — E11 Log 66 / 100 W UNIT karşılaştırması (kullanıcı yük teyidi)
+
+- Kullanıcı, Log 66'nın 100 W akkor ampulle alındığını teyit etti. Bu yük kimliği log içi metadata değil, kullanıcı bildirimidir.
+- 396 kararlı çevrim ortalaması: SCT1 0,423884 A, SCT2 0,424328 A, SCT3 0,425828 A. Tarihsel UNIT 0,427 A referansına sapmalar sırasıyla −%0,730 / −%0,626 / −%0,274; üç kanal ortalaması da ±%4 bandında.
+- **SONUÇ:** Yeni E11 sıralı kodu, 100 W oturumunda tarihsel UNIT referansına göre üç kanal ortalaması bakımından başarılı. Eşzamanlı UNIT ölçümü olmadığı için eşzamanlı doğrulama değildir. Ayrıntı: [100 W yük kaydı](../test-loads/100w-incandescent/README.md), [Log 66 analizi](../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md).
+- **AÇIK:** SCT2 örnek sayısı yaklaşık %5 düşük; 42/396 çevrimde geçiş zamanlama işareti sapması var; gerçek ADC pencere bitiş callback'iyle doğrulanmadı. 50 ms pay korunacak. K=24.22 değişmedi. T010 AKTİF.
+
 ## 2026-11-01 — E11 üç SCT logu
 
 E11 sıralı üç kanal logu analiz edildi. Ayrıntılı kanal istatistikleri, eski kayıt kıyası, zamanlama anomalisi ve kanıt sınırları [analiz raporunda](../logs/module2/2026-11-01-e11-three-sct-sequential-analysis.md); ham log kimliği ve arşiv [E11 README'de](../experiments/E11-sequential-three-sct/README.md) kayıtlıdır. 50 ms geçiş payı azaltılmayacak. 12:01:07 çevrimindeki 16/454/392 ms işaret aralıkları nedeniyle gerçek pencere çakışmasızlığı kesin kabul edilmedi. PZEM verisi yok; K=24.22 değişmedi. T010 AKTİF.
