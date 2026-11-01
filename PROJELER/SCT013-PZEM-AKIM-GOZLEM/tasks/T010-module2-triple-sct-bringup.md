@@ -247,3 +247,13 @@ Bu bir eşzamanlı örnekleme deneyi değildir. Amaç, kanalların aynı kararl�
 - **BAŞARI İDDİASI:** Yok. Üç kanalın sıralı firmware ile sağlıklı okuduğu henüz doğrulanmadı.
 - **SONRAKİ ADIM:** Aday YAML'ı derlemek; derleme sonucu uygunsa cihazda kontrollü 100 W testini yapmak.
 - **İLGİLİ KARAR:** [ADR-018](../docs/decisions/ADR-018-module2-sequential-sct-window-test.md).
+
+
+## 2026-11-01 — E11 sıralı üç kanal firmware derleme ve çalışma bildirimi
+
+- **KULLANICI BİLDİRİMİ:** Kullanıcı, SCT-1 GPIO32 → SCT-2 GPIO33 → SCT-3 GPIO34 sıralı okuma YAML'ının derlendiğini ve cihazda çalıştığını bildirdi.
+- **KOD SNAPSHOT:** [E11 firmware YAML](../experiments/E11-sequential-three-sct/esp32d1-sequential-sct.yaml).
+- **TEST KAYDI:** [E11 — Üç SCT sıralı okuma](../experiments/E11-sequential-three-sct/README.md).
+- **SONUÇ SINIRI:** Derleme ve çalışma kullanıcı beyanı olarak kaydedildi. Bu aşamada ham log ve kanal başına sayısal sonuç sunulmadığından kanal doğruluğu, tekrarlanabilirliği, gerçek zaman kayması ve pencere çakışmasızlığı nicel olarak doğrulanmış sayılmaz.
+- **SONRAKİ:** Cihaz logunu al; üç kanalın Raw AC/akım yayınlarını ve zaman damgalarını incele. Ardından 50 ms geçiş payının azaltılabilirliğini değerlendir.
+- **T010 DURUMU:** Sıralı firmware denemesi çalıştırıldı. T010 genel kabulü, log analizi ve kalan doğrulama maddeleri tamamlanmadan kapatılmaz.
