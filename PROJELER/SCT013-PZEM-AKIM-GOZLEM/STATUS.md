@@ -1060,3 +1060,13 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki kullanıcı bi
 - **AYRI BEKLEYEN:** E10 pencere süresi deneyi 200 → 500 → 1000 → 200 ms sırasıyla hâlâ PLANLANDI; henüz uygulanmış sayılmaz.
 - **TEKNİK NOT:** firmware/esp32d1.yaml dosyasının mevcut içeriği tek SCT-1 kanalını (GPIO32) ve ortak biası (GPIO35) tanımlar. Bu kod/dokümantasyon tutarlılığı, fiziksel olarak ilk üretimde üç kanalda okuma kontrolü yapılmış olmasıyla karıştırılmayacak.
 - **DURUM:** T010'un mevcut kabul kapsamı, tamamlanmış ilk kanal/bias kontrollerini ve arşivlenmiş saha loglarını esas alarak yeniden gözden geçirilecek. E10 ayrı deney olarak beklemede. Yeni ölçüm/derleme bu kayıt sırasında yapılmadı.
+
+
+## 2026-11-01 — Modül 2 ortak bias imalat kararının kesinleştirilmesi
+
+- **PROJE SAHİBİ / İMALATÇI BEYANI:** Modül 2 kullanıcı tarafından tasarlanıp imal edilmiştir. Kullanıcı projede dışarıdan görev yapan bir çalışan değil, projenin sahibidir; kendi imalatı ve testleri hakkındaki anlatımı birinci el proje kaynağıdır.
+- **DONANIM KARARI:** Taşınabilirlik için bias tek devreden, tek kablo/ortak hat üzerinden üç SCT kanalına dağıtılmıştır. Her SCT için ayrı bias devresi veya ayrı bias kablosu yoktur.
+- **İMALAT KAYDI:** Bias breadboard üzerinde kurulmuş, görüntüsü daha önce paylaşılmış ve modül üretiminde ortak bias ölçülmüştür.
+- **KANAL AYRIMI:** Üç SCT sinyal bağlantısı ayrıdır; bias hattı ortaktır. GPIO35 ortak bias izleme girişidir.
+- **İŞ DURUMU:** Ortak bias tasarımı ve üretim ölçümü tamamlanmış kabul edilir. Kullanıcıdan aynı işlemi tekrar yapması veya yeniden kanıtlaması istenmeyecektir.
+- **KAYIT SINIRI:** Bu güncelleme donanım tasarımını ve kullanıcının birinci el imalat beyanını belgeliyor; yeni fiziksel test yapıldığı iddiası değildir. E10 deneyi ayrı olarak PLANLANDI kalır.
