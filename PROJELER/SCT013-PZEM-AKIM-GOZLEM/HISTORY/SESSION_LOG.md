@@ -1,3 +1,26 @@
+## 2026-11-01 — Depo bütünlüğü ve Modül 2/3 olay akışı güncellemesi
+
+### HEDEF
+BERO SCT013-PZEM-AKIM-GOZLEM alt projesinin ana belgelerini, firmware kaynaklarını, ADR zincirini ve yeni ON/OFF kanıtını birbiriyle tutarlı hâle getirmek; eski çelişkileri tarihçeyi silmeden işaretlemek.
+
+### YAPILAN
+- GitHub main ağacındaki proje alt klasörünün 264 dosyalık envanteri çıkarıldı.
+- Ana README, AGENTS, STATUS, ROADMAP, PROGRESS_TREE, firmware README, Modül 2/3 YAML, T009/T010, ADR-019/022/023 ve mevcut olay analizleri incelendi.
+- Yeni Modül 2 uzun logu arşivlendi ve analiz edildi. Kaynak: 1809 satır / 145178 bayt; SHA-256 `e125e3d471a70abb63407d1ee9c6db82336780fbd93bc26e6f9481681e24dece`.
+- Modül 2 logunda 59 ON, 61 ON, 62 OFF, 64 OFF olayları için UDP_EVENT_RECEIVED ve HA_EVENT_PUBLISHED satırları bulundu. 60 ve 63 yok; kayıpsızlık iddia edilmedi.
+- Kullanıcı HA History ekran görüntüsünde 70 OFF ve 71 ON olaylarının iki modül kayıtlarında, SSR entity'sinin Kapalı/Açık durumlarında göründüğü kaydedildi. 69 için STATE ekran kesitinde görünmüyor.
+- README'deki eski timestamp-kesişim anlatımı, ADR-022/023'teki paket kimliği önceliği ve TIME'sız protokolle hizalandı.
+- Modül 2 firmware başlığı, eski LOAD-15W-003 UNIT kıyas deneyi yerine güncel üç-SCT + UDP olay alıcı işlevini açıklayacak şekilde düzeltildi; çalışma mantığı değiştirilmedi.
+- Modül 3 YAML başlığındaki "henüz derleme/yükleme yapılmadı" ifadesi gerçek cihaz loglarıyla uyumlu hâle getirildi; fiziksel SSR anahtarlaması doğrulanmış gibi yazılmadı.
+- T009 içindeki TIME gerekliliği TIME'sız protokole göre düzeltildi.
+
+### SONUÇ
+Olay alımı ve HA yayın çağrısı çoklu olaylar için log ile destekleniyor; ayrıca HA History ekran görüntüsü 70 OFF/71 ON'u gösteriyor. 60/63 eksikleri, fiziksel SSR anahtarlaması, Recorder DB kalıcılığı, kaynak YAML ile çalışan binary'nin birebirliği ve Python T007/T008 hattı açık kalıyor.
+
+### DEĞİŞİKLİK SINIRI
+Bu oturumda ESPHome firmware mantığına müdahale edilmedi; Modül 2 YAML'da yalnız açıklama/başlık güncellendi. Yeni kaynak YAML için bağımsız config check/derleme/OTA kanıtı üretilmedi. Deney/ölçüm kalibrasyonu yapılmadı.
+
+
 ## 2026-11-01 — Modül 2 UDP olay alıcısı / log denetimi ve depo kaydı
 
 - **HEDEF:** Kullanıcının verdiği Modül 2 ESP32D1 YAML'ına Modül 3 UDP olay alıcısı eklemek, logu incelemek ve kaynak/kanıtları depoya kaydetmek.
