@@ -1,0 +1,419 @@
+# ============================================================
+# PROJE BERO — ESP32 WROOM / MODÜL 3
+#
+# AMAÇ:
+# 1. PZEM-004T V3.0 ölçümlerini Home Assistant'a yayınlamak.
+# 2. SSR rölesini 40 saniye ON / 20 saniye OFF çalıştırmak.
+# 3. Her SSR durum değişiminde BERO_EVT mesajı oluşturmak.
+# 4. Aynı mesajı hem kendi HA olay sensörüne hem UDP ile Modül 2'ye göndermek.
+#
+# TASARIM:
+# - PZEM ölçüm akışı ayrı kalır.
+# - Olay kaydı ayrı bir HA text_sensor üzerinden yayınlanır.
+# - UDP gönderimi başarısız olsa bile yerel HA olay yayını yapılır.
+# - RTC, DS3231 ve NTP kullanılmaz.
+# - Olay mesajında saat bilgisi bulunmaz.
+#
+# BAĞLANTILAR:
+# PZEM TX  -> GPIO19
+# PZEM RX  -> GPIO18
+# PZEM Baud -> 9600
+# SSR IN   -> GPIO23
+# SSR      -> inverted: true (aktif LOW)
+#
+# UDP:
+# Broadcast IP -> 255.255.255.255
+# Port          -> 4210
+#
+# OLAY FORMATI:
+# BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF
+#
+# TEST DURUMU:
+# YAML hazırlanmıştır; derleme, yükleme ve fiziksel test henüz yapılmamıştır.
+# ============================================================
+
+esphome:
+  name: bero-modul3-wroom
+  friendly_name: BERO Modul 3 WROOM
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+  on_boot:
+    - priority: -100
+      then:
+        - switch.turn_off: ssr_control
+        - lambda: |-
+            id(bero_event_id) = 0;
+            ESP_LOGI(
+              "bero_event",
+              "BOOT_INIT EVENT_ID_START=0 WAITING_FOR_WIFI_BOOT_ID"
+            );
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # İlk Wi-Fi bağlantısında 128-bit BOOT_ID üret.
+  # Yeniden bağlantıda aynı BOOT_ID korunur.
+  on_connect:
+    - lambda: |-
+        #include "esp_random.h"
+
+        if (id(bero_boot_id).empty()) {
+          uint8_t random_bytes[16] = {};
+          char boot_id[33] = {};
+
+          esp_fill_random(random_bytes, sizeof(random_bytes));
+
+          for (size_t i = 0; i < sizeof(random_bytes); i++) {
+            snprintf(
+              &boot_id[i * 2],
+              3,
+              "%02X",
+              random_bytes[i]
+            );
+          }
+
+          id(bero_boot_id) = std::string(boot_id);
+
+          ESP_LOGI(
+            "bero_event",
+            "BOOT_ID_CREATED=%s EVENT_ID_START=0",
+            id(bero_boot_id).c_str()
+          );
+        } else {
+          ESP_LOGI(
+            "bero_event",
+            "WIFI_RECONNECTED BOOT_ID_PRESERVED=%s",
+            id(bero_boot_id).c_str()
+          );
+        }
+
+# ============================================================
+# PZEM-004T V3.0 — UART / MODBUS
+# ============================================================
+
+uart:
+  id: pzem_uart
+  tx_pin: GPIO19
+  rx_pin: GPIO18
+  baud_rate: 9600
+  stop_bits: 1
+
+modbus:
+  uart_id: pzem_uart
+
+# ============================================================
+# PZEM SENSÖRLERİ
+# 5 saniyelik ölçüm aralığı korunmuştur.
+# Olay mesajı bu sensörleri değiştirmez.
+# ============================================================
+
+sensor:
+  - platform: pzemac
+    voltage:
+      name: "BERO PZEM Gerilim"
+
+    current:
+      name: "BERO PZEM Akım"
+
+    power:
+      name: "BERO PZEM Güç"
+
+    energy:
+      name: "BERO PZEM Enerji"
+
+    frequency:
+      name: "BERO PZEM Frekans"
+
+    power_factor:
+      name: "BERO PZEM Güç Faktörü"
+
+    update_interval: 5s
+
+# ============================================================
+# SSR — GPIO23
+# inverted:true => ON LOW / OFF HIGH
+# ============================================================
+
+switch:
+  - platform: gpio
+    id: ssr_control
+    name: "BERO SSR Kontrol"
+
+    pin:
+      number: GPIO23
+      inverted: true
+
+    restore_mode: ALWAYS_OFF
+
+# ============================================================
+# GLOBAL DEĞİŞKENLER
+# ============================================================
+
+globals:
+  - id: bero_boot_id
+    type: std::string
+    restore_value: no
+    initial_value: '""'
+
+  - id: bero_event_id
+    type: uint32_t
+    restore_value: no
+    initial_value: '0'
+
+  - id: ssr_cycle_start_ms
+    type: uint32_t
+    restore_value: no
+    initial_value: '0'
+
+  - id: ssr_cycle_initialized
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+
+# ============================================================
+# MODÜL 3 — HA OLAY KAYDI
+#
+# PZEM ölçümlerinden bağımsız ayrı entity.
+# Sadece olay oluştuğunda güncellenir.
+# ============================================================
+
+text_sensor:
+  - platform: template
+    id: bero_event_marker
+    name: "BERO Modül 3 Olay Kaydı"
+    update_interval: never
+
+# ============================================================
+# SSR DÖNGÜSÜ VE ORTAK OLAY YAYINLAYICI
+#
+# Her SSR geçişinde:
+# 1. EVENT_ID artırılır.
+# 2. Tek bir BERO_EVT mesajı oluşturulur.
+# 3. Mesaj Modül 3 HA olay sensörüne yayınlanır.
+# 4. Aynı mesaj UDP broadcast ile Modül 2'ye gönderilir.
+# ============================================================
+
+interval:
+  - interval: 1s
+    then:
+      - lambda: |-
+          #include "driver/gpio.h"
+          #include "lwip/sockets.h"
+          #include "lwip/inet.h"
+          #include <errno.h>
+          #include <string>
+          #include <cstdio>
+          #include <cstring>
+
+          // BOOT_ID oluşmadan SSR olay çevrimi başlatılmaz.
+          if (id(bero_boot_id).empty()) {
+            return;
+          }
+
+          // --------------------------------------------------
+          // ORTAK OLAY YAYINLAYICI
+          // --------------------------------------------------
+
+          auto emit_shared_event = [&](const char *state) {
+            id(bero_event_id)++;
+
+            char packet[128];
+
+            snprintf(
+              packet,
+              sizeof(packet),
+              "BERO_EVT,BOOT_ID=%s,EVENT_ID=%u,STATE=%s",
+              id(bero_boot_id).c_str(),
+              (unsigned int) id(bero_event_id),
+              state
+            );
+
+            // 1. Modül 3 kendi olay kaydını HA'ya yayınlar.
+            id(bero_event_marker).publish_state(packet);
+
+            ESP_LOGI(
+              "bero_event",
+              "HA_EVENT_PUBLISHED %s",
+              packet
+            );
+
+            // 2. Aynı mesaj UDP ile Modül 2'ye gönderilir.
+            static int udp_sock = -1;
+
+            if (udp_sock < 0) {
+              udp_sock = ::socket(
+                AF_INET,
+                SOCK_DGRAM,
+                IPPROTO_UDP
+              );
+
+              if (udp_sock >= 0) {
+                int broadcast_enable = 1;
+
+                setsockopt(
+                  udp_sock,
+                  SOL_SOCKET,
+                  SO_BROADCAST,
+                  &broadcast_enable,
+                  sizeof(broadcast_enable)
+                );
+
+              } else {
+                ESP_LOGW(
+                  "bero_udp",
+                  "UDP_SOCKET_CREATE_FAILED errno=%d",
+                  errno
+                );
+              }
+            }
+
+            if (udp_sock >= 0) {
+              struct sockaddr_in destination = {};
+
+              destination.sin_family = AF_INET;
+              destination.sin_port = htons(4210);
+              destination.sin_addr.s_addr =
+                inet_addr("255.255.255.255");
+
+              int sent = sendto(
+                udp_sock,
+                packet,
+                strlen(packet),
+                0,
+                (struct sockaddr *)&destination,
+                sizeof(destination)
+              );
+
+              if (sent >= 0) {
+                ESP_LOGI(
+                  "bero_udp",
+                  "UDP_EVENT_SENT %s",
+                  packet
+                );
+              } else {
+                ESP_LOGW(
+                  "bero_udp",
+                  "UDP_SEND_FAILED errno=%d; HA_EVENT_ALREADY_PUBLISHED",
+                  errno
+                );
+              }
+            }
+
+            ESP_LOGI(
+              "bero_event",
+              "SHARED_EVENT BOOT_ID=%s EVENT_ID=%u STATE=%s",
+              id(bero_boot_id).c_str(),
+              (unsigned int) id(bero_event_id),
+              state
+            );
+          };
+
+          const uint32_t now_ms = millis();
+
+          // --------------------------------------------------
+          // İLK ÇALIŞTIRMA — 40 SANİYE ON
+          // --------------------------------------------------
+
+          if (!id(ssr_cycle_initialized)) {
+            id(ssr_cycle_start_ms) = now_ms;
+            id(ssr_cycle_initialized) = true;
+
+            id(ssr_control).turn_on();
+            emit_shared_event("ON");
+
+            const int gpio_level =
+              gpio_get_level(GPIO_NUM_23);
+
+            if (gpio_level == 0) {
+              ESP_LOGI("bero_ssr", "GPIO_ON_CONFIRMED");
+            } else {
+              ESP_LOGW("bero_ssr", "GPIO_ON_READBACK_MISMATCH");
+            }
+
+            ESP_LOGI("bero_ssr", "CYCLE_START_ON_40S");
+            return;
+          }
+
+          // --------------------------------------------------
+          // DÖNGÜ SÜRESİ
+          // --------------------------------------------------
+
+          const uint32_t elapsed_s =
+            (now_ms - id(ssr_cycle_start_ms)) / 1000;
+
+          // --------------------------------------------------
+          // 0–40 SANİYE — SSR ON
+          // --------------------------------------------------
+
+          if (elapsed_s < 40) {
+            if (!id(ssr_control).state) {
+              id(ssr_control).turn_on();
+              emit_shared_event("ON");
+
+              const int gpio_level =
+                gpio_get_level(GPIO_NUM_23);
+
+              if (gpio_level == 0) {
+                ESP_LOGI("bero_ssr", "GPIO_ON_CONFIRMED");
+              } else {
+                ESP_LOGW("bero_ssr", "GPIO_ON_READBACK_MISMATCH");
+              }
+            }
+          }
+
+          // --------------------------------------------------
+          // 40–60 SANİYE — SSR OFF
+          // --------------------------------------------------
+
+          else if (elapsed_s < 60) {
+            if (id(ssr_control).state) {
+              id(ssr_control).turn_off();
+              emit_shared_event("OFF");
+
+              const int gpio_level =
+                gpio_get_level(GPIO_NUM_23);
+
+              if (gpio_level == 1) {
+                ESP_LOGI("bero_ssr", "GPIO_OFF_CONFIRMED");
+              } else {
+                ESP_LOGW("bero_ssr", "GPIO_OFF_READBACK_MISMATCH");
+              }
+            }
+          }
+
+          // --------------------------------------------------
+          // 60. SANİYE — YENİ DÖNGÜ, SSR ON
+          // --------------------------------------------------
+
+          else {
+            id(ssr_cycle_start_ms) = now_ms;
+
+            id(ssr_control).turn_on();
+            emit_shared_event("ON");
+
+            const int gpio_level =
+              gpio_get_level(GPIO_NUM_23);
+
+            if (gpio_level == 0) {
+              ESP_LOGI("bero_ssr", "GPIO_ON_CONFIRMED");
+            } else {
+              ESP_LOGW("bero_ssr", "GPIO_ON_READBACK_MISMATCH");
+            }
+
+            ESP_LOGI("bero_ssr", "CYCLE_RESTART_ON_40S");
+          }
