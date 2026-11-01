@@ -1580,3 +1580,14 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **SONRAKİ:** HA'da yedi entity'nin adlarını/varlığını ve Recorder geçmişini kontrol et; ardından 42 W yükte uzun kayıt al ve gerçek log/HA geçmişini analiz et.
 - **DURUM:** Test AÇIK; henüz fiziksel uzun kayıt veya sonuç iddiası yoktur.
 
+
+ 
+## 2026-11-01 — LOAD-42W-002 kısa log incelemesi
+
+- Kullanıcının paylaştığı 668 satır / 50.257 bayt kısa log incelendi; SHA-256: `0c316527df2df9105d8745dd1fd009d41c9f7f7150d4e0ea95e0377f8165a3fd`.
+- 13:12:20.893–13:13:28.860 (+03:00) aralığında 34 çevrim tamamlandı. Wi-Fi bağlı; GPIO32/33/34/35 ADC init/config/calibration OK; ERROR/[E]/Disconnected bulunmadı.
+- Ortalama akımlar: SCT1 0.25106 A, SCT2 0.24150 A, SCT3 0.34732 A; bias 1.66147 V. SCT3/SCT1 oranı 1.383; iki tur için beklenen yaklaşık 2x bu kısa logda görülmedi.
+- Kod denetiminde Raw AC birim hatası bulundu: ct_clamp `on_raw_value` değeri logda A olarak belirtilen filtre öncesi ham akımdır; YAML bunu V birimli template entity'ye yayımlıyor. Bu HA Recorder sorunu değildir; firmware düzeltmesi henüz uygulanmadı.
+- HA API server dinliyor; kısa log HA API istemci bağlantısını veya Recorder veritabanı yazımını doğrulamıyor. `force_update` Recorder ayarı değildir. HA Developer Tools → States üzerinden canlı state kontrolü gerekli.
+- Ayrıntı: [LOAD-42W-002 kısa log / kod / HA teşhis notu](../logs/module2/2026-11-01-load-42w-002-short-log-ha-diagnostic.md).
+- **DURUM:** Kısa çalışma döngüsü logla desteklendi; HA geçmiş sorunu çözülmedi; test açık.
