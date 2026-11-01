@@ -55,7 +55,7 @@ Faz 2 yeni bir başlangıçtır; ancak geçmişi silmek anlamına gelmez. Kayıt
    - Entity kimliği, kaynak timestamp, birim ve ham durum korunur.
 4. **T008 — PZEM/SCT kararlı alan eşleştirme ve etiketleme.**
    - İki akışın kararlılığı ayrı değerlendirilir.
-   - Zaman bakımından örtüşen kararlı alanlar eşleştirilir.
+   - Olay işaretleri her iki akışı `BOOT_ID + EVENT_ID` paket aralıklarına böler; aynı paket aralığındaki bağımsız kararlı SCT/PZEM bölgeleri eşleştirilir. Timestamp iki sensör arasında eşleştirme anahtarı değildir.
    - PZEM proje referansı olarak SCT pencerelerine etiketlenir; mutlak ground truth sayılmaz.
 5. **T006 — Katsayı/model değerlendirmesi.**
    - İlk karşılaştırmada K=24.22 başlangıç değeri olarak incelenir.
@@ -81,6 +81,7 @@ Bu proje enerji analizörü, güç kalitesi analizörü, PF hesaplayıcı, FFT/T
 - [ADR-010 — PZEM referanslı kararlı alan öğrenmesi](docs/decisions/ADR-010-pzem-stable-window-learning-focus.md)
 - [ADR-011 — Projeyi iki faza ayırma](docs/decisions/ADR-011-two-phase-project-structure.md)
 - [ADR-014 — Faz 2 pratik yeniden başlangıç](docs/decisions/ADR-014-phase2-practical-restart.md)
+- [ADR-022 — Paket işaretleriyle akış bölümleme ve eğitim verisi oluşturma](docs/decisions/ADR-022-packet-marker-segmented-training-streams.md)
 - [T009 — Modül/ESP devreye alma](tasks/T009-practical-system-bringup.md)
 - [Faz 1 deney arşivi](experiments/README.md)
 
@@ -88,3 +89,8 @@ Bu proje enerji analizörü, güç kalitesi analizörü, PF hesaplayıcı, FFT/T
 ## 2026-11-01 — Faz 2 veri hattı ve düşük akım uygulama planı
 
 Faz 2 için ayrıntılı yürütme planı [burada](docs/plans/2026-11-01-phase2-data-and-low-current-execution-plan.md) tutulur. Ana görev sırası değişmez: T009 → T010 → T007 → T008 → T006. T010 pratik modül devreye alma tamamlanmadan veri/öğrenme hattı görevleri aktif göreve alınmaz. 0,4 A fiziksel alt sınır olarak kabul edilmez; eski E00F yapılandırmasındaki 0,35 A filtresi güncel ESP32D1 Modül 2'ye atfedilmez. Bölgesel model kararı eşleşmiş ve tekrarlanabilir veriye bağlıdır. Bu planlama kaydı firmware veya ölçüm sonucu değildir.
+
+
+## 2026-11-01 — Paket işaretli eğitim akışı kararı
+
+Modül 3, olay mesajını kendi PZEM akışına ayrı kayıt olarak ekler ve aynı mesajı UDP 4210 üzerinden Modül 2'ye yollar. Modül 2 aldığı mesajı kendi SCT akışına aynı biçimde ayrı kayıt olarak ekler. Python her akışı paket işaretleriyle böler, BOOT_ID + EVENT_ID ile aralıkları eşleştirir ve her sensörün kararlılığını kendi verisinden bağımsız bulur. Timestamp, iki sensörün ölçümlerini eşleştirme anahtarı değildir. Ayrıntı ve ADR-019 üzerindeki değişiklik: [ADR-022](docs/decisions/ADR-022-packet-marker-segmented-training-streams.md). Firmware henüz değiştirilmedi.
