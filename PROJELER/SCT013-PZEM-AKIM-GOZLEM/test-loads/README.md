@@ -32,7 +32,8 @@ Bu bölüm, aynı fiziksel test yüküyle farklı ESP kartı, modül, SCT kanal�
 | Test yükü | Ana kayıt |
 |---|---|
 | 100 W akkor ampul | [100 W akkor — karşılaştırmalı ölçüm tablosu](100w-incandescent/README.md) |
-| 150 W akkor ampul | [150 W akkor — karşılaştırmalı ölçüm tablosu](150w-incandescent/README.md) |\n| 57 W akkor ampul | [57 W akkor — düşük akım gözlem kaydı](57w-incandescent/README.md) |
+| 150 W akkor ampul | [150 W akkor — karşılaştırmalı ölçüm tablosu](150w-incandescent/README.md) |\n| 42 W ampul | [42 W ampul — LOAD-42W-001 / LOAD-42W-002](42w-bulb/README.md) |
+| 57 W akkor ampul | [57 W akkor — düşük akım gözlem kaydı](57w-incandescent/README.md) |
 | 57 W + 15 W ampul karma yük | [MIXED-LOAD-57W-15W-001](mixed-57w-15w/README.md) |
 
 ## Her ölçüm satırında tutulacak alanlar
@@ -355,3 +356,11 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - 396 kararlı çevrim/kanal: SCT1 0,423884 A; SCT2 0,424328 A; SCT3 0,425828 A. UNIT 0,427 A çalışma referansına sapmalar −%0,730 / −%0,626 / −%0,274; üç kanal da ±%4 bandında.
 - Firmware: [E11 üç SCT YAML](../experiments/E11-sequential-three-sct/esp32d1-sequential-sct.yaml). Tam log: [Log 66](../logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt). Analiz: [uzatılmış E11 raporu](../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md). Ayrıntılı yük kaydı: [100 W karşılaştırma dosyası](100w-incandescent/README.md).
 - UNIT değeri tarihsel çalışma referansıdır; aynı log aralığında eşzamanlı ölçülmemiştir. Sonuç bu nedenle tarihsel UNIT referansına göre karşılaştırmadır.
+
+
+## 2026-11-01 — LOAD-42W-002 üç SCT / HA uzun kayıt açıldı
+
+- 42 W ampul altında Modül 2 üç kanallı HA geçmiş kaydı için LOAD-42W-002 açıldı.
+- SCT1 faz 1T / GPIO32; SCT2 nötr 1T / GPIO33; SCT3 faz 2T / GPIO34; ortak bias GPIO35.
+- Kullanıcı YAML'ın derlendiğini bildirdi. HA Recorder/History ve uzun süreli cihaz kaydı henüz doğrulanmadı.
+- [Test kaydı](42w-bulb/README.md); [YAML snapshot](../firmware/archive/LOAD-42W-002-2026-11-01-esp32d1-three-sct-ha-history.yaml).
