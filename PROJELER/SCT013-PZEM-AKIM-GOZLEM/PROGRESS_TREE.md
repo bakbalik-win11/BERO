@@ -341,3 +341,14 @@
 - İlk yaklaşık 96 s log ön gözlemi: SCT1 0,18552 A, SCT2 0,24171 A, SCT3 0,07585 A; SCT3'te 11/48 sıfır; bias ortalama 1,66196 V.
 - [LOAD-15W-004 deney kaydı](test-loads/15w-2t-3t-4t/LOAD-15W-004.md); [YAML snapshot](firmware/archive/LOAD-15W-004-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml).
 - AÇIK; uzun test, derleme/OTA ve HA Recorder doğrulaması yok. 0,30 A altında ±%4 kabul/ret uygulanmaz.
+
+
+## 2026-11-01 — Kararlı alan eğitimi ana çerçevesi (ADR-019)
+
+- Modül 2: SCT ölçümleri ile UDP'den alınan paket/zaman/SSR ON-OFF olayları HA'ya **ayrı kayıt akışları** olarak aktarılır.
+- Modül 3: paket/zaman/SSR ON-OFF bilgisini UDP ile yayınlar; PZEM ölçümleri ve aradaki olay/yayın bilgileri HA'ya **ayrı kayıt akışları** olarak aktarılır.
+- Python, SCT + PZEM + olay akışlarını sonradan kaynak zaman ve varsa BOOT_ID/EVENT_ID ile ilişkilendirir; olay çizgisinden yük durumunu çıkarır.
+- SCT ve PZEM kararlılığı ayrı hesaplanır; zaman bakımından örtüşen kararlı pencereler eşleştirilir. PZEM eşleşen SCT penceresinin proje referans etiketidir.
+- ESP/HA tarafında ölçüm ve olayın birebir eşleştirilmesi yoktur. Zaman toleransı/eşik/pencere süresi gerçek veri görülünce belirlenir.
+- [ADR-019](docs/decisions/ADR-019-module2-module3-independent-event-streams.md); [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
+- Bu kayıt mimari karardır; firmware, UDP paketi veya fiziksel test değişikliği değildir.
