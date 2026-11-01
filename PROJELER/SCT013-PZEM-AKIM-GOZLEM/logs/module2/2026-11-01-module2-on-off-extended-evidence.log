@@ -1,0 +1,23 @@
+# Modül 2 — UDP ON/OFF olay alımı seçilmiş kanıtı
+# Kaynak: kullanıcı tarafından sağlanan esp32d1-logs (74).txt
+# Kaynak SHA-256: e125e3d471a70abb63407d1ee9c6db82336780fbd93bc26e6f9481681e24dece
+# Kaynak boyutu: 145178 bayt; 1809 satır
+# Cihaz: esp32d1 / 192.168.0.33; Modül 3 kaynak IP: 192.168.0.70
+# BOOT_ID: 53A14E04372DEB0E67FA07270AC69561
+
+[19:18:07.736] UDP_EVENT_RECEIVED EVENT_ID=59 STATE=ON
+[19:18:07.743] HA_EVENT_PUBLISHED EVENT_ID=59 STATE=ON
+[19:19:07.796] UDP_EVENT_RECEIVED EVENT_ID=61 STATE=ON
+[19:19:07.804] HA_EVENT_PUBLISHED EVENT_ID=61 STATE=ON
+[19:19:47.706] UDP_EVENT_RECEIVED EVENT_ID=62 STATE=OFF
+[19:19:47.716] HA_EVENT_PUBLISHED EVENT_ID=62 STATE=OFF
+[19:20:47.706] UDP_EVENT_RECEIVED EVENT_ID=64 STATE=OFF
+[19:20:47.712] HA_EVENT_PUBLISHED EVENT_ID=64 STATE=OFF
+
+# HA History UI — kullanıcı ekran görüntüsü (1 Kasım 2026)
+# 19:23:07: BERO Mod2 Olay EVENT ID -> 69 (STATE/ham paket bu görüntüde görünmüyor)
+# 19:23:47: Mod2 STATE -> OFF; EVENT_ID -> 70; ham BERO_EVT kaydı OFF;
+#          Modül 3 ham olay kaydı OFF; BERO SSR Kontrol -> Kapalı.
+# 19:24:07: Mod2 STATE -> ON; EVENT_ID -> 71; ham BERO_EVT kaydı ON;
+#          Modül 3 ham olay kaydı ON; BERO SSR Kontrol -> Açık.
+# Görüntüde 70 OFF -> 71 ON aralığı 20 saniyedir.
