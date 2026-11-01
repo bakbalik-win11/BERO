@@ -104,3 +104,8 @@ Modül 3, olay mesajını kendi PZEM akışına ayrı kayıt olarak ekler ve ayn
 - Fiziksel SSR anahtarlaması, tüm olayların kayıpsız teslimi, kaynak YAML/binary birebirliği ve Python T007/T008 hattı tamamlanmış değildir.
 - Kanıt: [uzun olay analizi](logs/module2/2026-11-01-module2-on-off-extended-analysis.md).
 - T010 kapalıdır; T007 → T008 → T006 sırası korunur. T009 genel pratik devreye alma üst görevidir.
+
+
+## 2026-11-01 — Python paket bütünlüğü ve eksik olay davranışı (ADR-024)
+
+Python, Modül 3 PZEM ve Modül 2 SCT akışlarını kendi olay işaretleriyle bağımsız paketler. Bir akışta ON başlangıcı veya OFF bitişi eksik/uyuşmazsa o aralık tamamlanmış paket sayılmaz. İki tarafta aynı BOOT_ID + EVENT_ID paket aralığı doğrulanmadan eğitim örneği üretilmez. Eksik olaylar ve sıra hataları raporlanır; tahminle tamamlanmaz. Yeni ON açık pakete gelirse önceki aralık geçersiz sayılır ve yeni ON yeni paket adayı başlatır. Mevcut UDP ve HA aktarım yapısı korunur; yeni helper/merkezi HA mimarisi kurulmaz. Ayrıntı: [ADR-024](docs/decisions/ADR-024-python-packet-completeness-validation.md). Python uygulaması henüz yapılmamıştır.
