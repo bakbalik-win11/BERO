@@ -76,3 +76,19 @@ Bu belge hedef mimariyi tanımlar; aktarımın veya Python uygulamasının hazı
 ADR-019 ilk tasarım aşamasında iki akışın timestamp bakımından örtüşen kararlı pencerelerini eşleştirmeyi tarif ediyordu. Bu yaklaşım [ADR-022](../decisions/ADR-022-packet-marker-segmented-training-streams.md) ile paket kimliği önceliğine dönüştürüldü; olay mesajındaki TIME alanı da [ADR-023](../decisions/ADR-023-event-identity-without-time.md) ile kaldırıldı.
 
 Bu nedenle bu mimari belgede geçerli tek yöntem yukarıdaki ADR-022/023 bölümüdür: önce akışları BOOT_ID + EVENT_ID ile paketle, sonra her akışta kararlılığı bağımsız belirle. Timestamp iki modülün örneklerini eşleştirmez. ADR-019 yalnız karar tarihçesi olarak korunur.
+
+
+## Paket bütünlüğü ve eksik ON/OFF işaretleri (ADR-024 — geçerli karar)
+
+Paketleme her ölçüm akışında bağımsız yapılır:
+
+- Modül 3 PZEM akışı yalnız Modül 3'ün kendi olay kayıtlarıyla; Modül 2 SCT akışı yalnız Modül 2'nin aldığı olay kayıtlarıyla bölümlenir.
+- Her akışta ON başlangıcı ve onu izleyen OFF bitişi bulunan aralık tamamlanmış paket adayıdır. Eksik başlangıç/bitiş veya tutarsız olay kimliği/sırası varsa aralık tamamlanmış kabul edilmez.
+- Yeni ON, önceki paket kapanmadan gelirse önceki açık aralık eksik/bozuk olarak işaretlenir; yeni ON yeni paket adayı başlatır. BOOT_ID değişiminde açık kalan önceki boot aralığı tamamlanmamış kapatılır.
+- EVENT_ID boşlukları, tekrarlar ve beklenmeyen STATE sırası ayrıca raporlanır. Tanı kodları: INCOMPLETE_EVENT, MISSING_ON, MISSING_OFF, EVENT_ID_GAP, DUPLICATE_EVENT, STATE_ORDER_ERROR, BOOT_CHANGED_WITH_OPEN_PACKET.
+- İki akışın paketleri yalnız BOOT_ID + EVENT_ID ile eşleştirilir. Her iki tarafta aynı paket aralığı doğrulanmadan eğitim örneği oluşturulmaz. Tek taraftaki tam paket, diğer taraftaki eksik aralığı geçerli yapmaz.
+- ON/OFF sınırlarının varlığı kararlılık kanıtı değildir; PZEM ve SCT kararlılığı kendi ölçüm değerlerinden bağımsız belirlenir.
+
+Mevcut Modül 3 → UDP 4210 → Modül 2 aktarımı korunur. Bu karar UDP'yi kaldırmaz, yeni HA helper/merkezi HA mimarisi kurmaz ve olay mesajına TIME alanı eklemez. Güncel protokol ADR-023'teki TIME'sız biçimdir.
+
+**Uygulama durumu:** Bu bölüm kabul kuralıdır. Python kodu, gerçek HA export testi ve örnek çıktı henüz mevcut değildir. Ayrıntı: [ADR-024](../decisions/ADR-024-python-packet-completeness-validation.md).
