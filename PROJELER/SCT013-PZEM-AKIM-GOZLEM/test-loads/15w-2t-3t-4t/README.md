@@ -75,3 +75,8 @@ Tur bağlantılarını değiştirmeden önce yükün enerjisini kesin. Her CT ya
 - [ ] Tur-normalize karşılaştırma ve sınırlamalar raporlandı.
 
 **Şu anki işaret:** PLANLANDI / HAZIRLANDI. Fiziksel test yapılmadı; OK veya başarılı sonucu yok.
+
+
+## LOAD-15W-004 — 2026-11-01 uzun gözlem tekrarı
+
+LOAD-15W-003'ten ayrı oturumdur; aynı 15 W tek ampul ve 2T faz / 4T nötr / 3T faz düzeniyle daha uzun kayıt hedeflenir. İlk kısa log ön gözlemi, kullanıcı UNIT bildirimleri ve açık kabul kapıları [LOAD-15W-004 kaydında](LOAD-15W-004.md) tutulur. [Firmware snapshot](../../firmware/archive/LOAD-15W-004-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml). Durum AÇIK; uzun log, derleme/OTA ve HA geçmiş doğrulaması bekleniyor.
