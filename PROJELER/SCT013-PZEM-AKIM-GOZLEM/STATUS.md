@@ -1,3 +1,15 @@
+## 2026-11-01 — Modül 2 UDP olay alıcısı / ilk gerçek paket alımı
+
+- **KOD:** [Modül 2 ESP32D1 tam YAML](firmware/bero-modul2-esp32d1.yaml). Mevcut LOAD-15W-003 üç-SCT sıralı okuma yapısı üzerine UDP 4210 alıcısı, Wi-Fi bağlantı/kesilme soket yönetimi ve HA olay entity'leri eklendi. Cihaz kimliği `esp32d1`, GPIO32/33/34/35, K=24.22, 200 ms pencere ve 2 s SCT çevrimi korundu.
+- **LOG:** [Seçilmiş gerçek cihaz kanıtı](logs/module2/2026-11-01-module2-udp-event-receiver-evidence.log); [tam log analizi](logs/module2/2026-11-01-module2-udp-event-receiver-log-analysis.md).
+- **KAYNAK:** Kullanıcı logu 823 satır / 63.333 bayt; SHA-256 `b4139aa2e6e6a3efb8bd70d358f7604359d297ad059662652e07c0da58a53d67`. ESPHome 2026.10.1; Modül 2 IP 192.168.0.33; Modül 3 kaynak IP 192.168.0.70.
+- **UDP/HA KANITI:** 19:18:07.736'da EVENT_ID=59 / STATE=ON / BOOT_ID=`53A14E04372DEB0E67FA07270AC69561` paketi Modül 2'ye ulaştı. Ham mesaj, BOOT_ID, EVENT_ID ve STATE ayrı HA text_sensor entity'lerine yayınlandı. Bu tek ON paketi için UDP alımı ve HA yayını **DOĞRULANDI**.
+- **AÇIK:** Bu logda yalnız bir UDP alım olayı var; OFF paketi, çoklu ardışık olay, kayıpsızlık ve HA Recorder kalıcılığı doğrulanmadı. Recorder için HA History ayrıca kontrol edilmeli.
+- **SCT:** Üç kanalın 200 ms pencerelerle sıralı okuma ve HA yayınları logda mevcut. Bias 1.648–1.674 V (n=43). Logun yük koşulu tanımlı olmadığından çoğunlukla sıfır görülen akım değerlerinden donanım arızası veya doğruluk sonucu çıkarılmadı.
+- **UYARI:** Üç ESP32 bellek/IRAM optimizasyon uyarısı ve bir kez 70 ms safe_mode operation uyarısı var. ERROR/UDP receive failure/bind failure/invalid packet görülmedi.
+- **KOD KANIT SINIRI:** Kaydedilen YAML yeni kaynak snapshot'ıdır. Cihaz logu çalışan firmware'de olay alımını doğrular; ancak logdaki binary ile depoya yeni yazılan YAML'ın byte-byte aynı kaynak olduğu kanıtlanmış değildir. Yeni dosya için ayrıca config check/derleme/OTA gerekir.
+- **FAZ/GÖREV:** T010 kapalı durumunu değiştirmez; bu kayıt Modül 2'nin olay alıcısı entegrasyon ekidir. T007 veri aktarımı ve T008 paketleme/eşleştirme uygulaması ayrıca yürütülecek.
+
 ## 2026-11-01 — Modül 3 WROOM olay akışı OTA logu / kısmi doğrulama
 
 - **KAYITLAR:** [Test snapshot manifesti](firmware/archive/2026-11-01-modul3-wroom-event-ha-snapshot.md); [seçilmiş gerçek log kanıtı](logs/module3/2026-11-01-modul3-wroom-event-ha-evidence.log); [log analizi](logs/module3/2026-11-01-modul3-wroom-event-ha-analysis.md); [ADR-023](docs/decisions/ADR-023-event-identity-without-time.md).
