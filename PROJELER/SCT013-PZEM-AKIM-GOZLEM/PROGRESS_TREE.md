@@ -1,3 +1,10 @@
+## 2026-11-01 — ADR-025
+
+- Kararlı SCT/PZEM alanları katsayı öğrenmek için kullanılır; ham kayıt korunur.
+- Öğrenilmiş SCT modeli tam ham kayıtta da incelenir.
+- Bu incelemede Python bilinen yük koşulunu kullanır; PZEM geçiş okumaları örnek başına referans değildir.
+- Mimari karar kaydedildi; uygulama ve gerçek veri testi beklemede. Ayrıntı: [ADR-025](docs/decisions/ADR-025-raw-data-sct-model-behavior-validation.md).
+
 ## 2026-11-01 — E11 yüksüz iki modül uzun süreli gözlem planı
 
 - İlk ortak deney olarak E11 planlandı: Modül 2 ve Modül 3 birlikte çalışacak; ölçülen hatta yük bulunmayacak.
