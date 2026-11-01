@@ -1,0 +1,43 @@
+# E11 — Seçilmiş gerçek log satırları
+
+Kaynak SHA-256: `97a36071b8319625df5e717b358c8ec69fea609be928ba71e6e3a5153c081484`.
+
+## Açılış çevrimi
+
+```text
+[11:57:10.927][I][main:766]: BERO SEQUENCE: SCT1 START
+[11:57:11.114][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.020A after 3333 different samples (16665 SPS)
+[11:57:11.178][I][main:774]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 START
+[11:57:11.208][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.02035 V
+[11:57:11.208][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.493 A
+```
+
+## Son çevrim örneği
+
+```text
+[12:03:00.894][I][main:766]: BERO SEQUENCE: SCT1 START
+[12:03:01.189][I][main:774]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 START
+[12:03:01.191][S][sensor]: 'BERO Mod2 SCT1 Raw AC' >> 0.01738 V
+[12:03:01.191][S][sensor]: 'BERO Mod2 SCT1 Akim' >> 0.421 A
+[12:03:01.402][I][main:782]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 START
+[12:03:01.449][S][sensor]: 'BERO Mod2 SCT2 Raw AC' >> 0.01842 V
+[12:03:01.449][S][sensor]: 'BERO Mod2 SCT2 Akim' >> 0.446 A
+[12:03:01.662][I][main:790]: BERO SEQUENCE: SCT3 COMPLETE / BIAS READ
+[12:03:01.718][S][sensor]: 'BERO Mod2 SCT3 Raw AC' >> 0.01731 V
+[12:03:01.718][S][sensor]: 'BERO Mod2 SCT3 Akim' >> 0.419 A
+[12:03:01.718][S][sensor]: 'ESP32D1 Common Bias ADC Voltage' >> 1.67300 V
+```
+
+## Zamanlama anomalisi
+
+```text
+[12:01:07.174][I][main:766]: BERO SEQUENCE: SCT1 START
+[12:01:07.190][D][ct_clamp:040]: 'BERO Mod2 SCT1 Akim' - Raw AC Value: 0.017A after 3450 different samples (17250 SPS)
+[12:01:07.190][I][main:774]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 START
+[12:01:07.644][I][main:782]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 START
+[12:01:07.656][D][ct_clamp:040]: 'BERO Mod2 SCT3 Akim' - Raw AC Value: 0.017A after 3480 different samples (17400 SPS)
+[12:01:08.036][I][main:790]: BERO SEQUENCE: SCT3 COMPLETE / BIAS READ
+[12:01:08.037][I][main:794]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+```
+
+İşaret aralıkları 16 ms, 454 ms ve 392 ms'dir. Debug örnek sayıları 200 ms pencereyle uyumlu görünse de işaretlerle çelişir; gerçek pencere zamanları bu çevrimde kesinleştirilemez.
