@@ -30,6 +30,14 @@ Olay mesajı yalnızca şu alanları taşır:
 
 ADR-022'nin bağımsız ölçüm akışları, tek olay kaynağı, aynı olay mesajını HA ve UDP'ye yayınlama ve BOOT_ID + EVENT_ID ile paket eşleştirme kararları korunur. Yalnızca TIME alanı ve ona bağlı açıklamalar bu ADR ile geçersizdir. ADR-022 tarihsel kayıt olarak korunur; çelişki halinde ADR-023 geçerlidir.
 
+## Uygulama kanıtı güncellemesi — 2026-11-01
+
+- Modül 2 uzun logunda aynı BOOT_ID ile EVENT_ID 59 ON, 61 ON, 62 OFF ve 64 OFF için UDP alımı ve HA yayın çağrısı görülmüştür.
+- EVENT_ID 60 ve 63 bu alıcı logunda yoktur; bütün olayların kayıpsız iletildiği sonucu çıkarılmaz.
+- Ayrı HA History ekran görüntüsü EVENT_ID 70 OFF ve 71 ON kayıtlarının Modül 2/Modül 3 olay entity'lerinde göründüğünü destekler.
+- Ayrıntı: [Modül 2/3 uzun ON/OFF analizi](../../logs/module2/2026-11-01-module2-on-off-extended-analysis.md).
+- Bu kanıt, TIME'sız protokol biçimini ve BOOT_ID + EVENT_ID anahtarını destekler; fiziksel SSR anahtarlamasını veya Python paketleme hattını doğrulamaz.
+
 ## Doğrulama sınırı
 
 Kullanıcının 2026-11-01 logu TIME'sız mesajın HA ve UDP gönderim loglarını gösterir. Modül 2'nin UDP alımı ve Python paketleme uygulaması henüz doğrulanmış değildir.
