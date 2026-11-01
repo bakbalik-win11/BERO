@@ -1,3 +1,11 @@
+## 2026-11-01 — Modül 2 UDP olay alıcısı ilk gerçek paket kanıtı
+
+- Yeni kaynak: [firmware/bero-modul2-esp32d1.yaml](firmware/bero-modul2-esp32d1.yaml). LOAD-15W-003 üç-SCT sıralı ölçüm temeli korunarak UDP 4210 dinleyicisi ve HA olay entity'leri eklendi.
+- Gerçek Modül 2 logunda Modül 3 kaynak IP 192.168.0.70'ten EVENT_ID=59 / STATE=ON paketi alındı; ham mesaj ile BOOT_ID/EVENT_ID/STATE HA entity'lerine yayınlandı.
+- [Seçilmiş log kanıtı](logs/module2/2026-11-01-module2-udp-event-receiver-evidence.log); [log analizi](logs/module2/2026-11-01-module2-udp-event-receiver-log-analysis.md).
+- **Doğrulama sınırı:** Tek ON paketi doğrulandı. OFF alımı, çoklu olay/kayıpsızlık, Recorder kalıcılığı ve yeni kaydedilen YAML'ın bağımsız derleme/OTA testi açık.
+- T010 kapalı kalır; olay alıcısı bu göreve eklenen yeni bir entegrasyon kaydıdır. T007/T008 veri aktarımı ve Python paketleme işleri ayrı aşamalardır.
+
 ## 2026-11-01 — Paket işaretli akış bölümleme kararı (ADR-022)
 
 - Modül 3, SSR olay değişiminde tek `BERO_EVT` mesajı üretir; aynı mesajı kendi PZEM akışına ayrı kayıt olarak ekler ve UDP 4210 ile Modül 2'ye gönderir.
