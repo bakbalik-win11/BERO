@@ -1621,3 +1621,13 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **ÖNEMLİ SINIR:** Olay kaydı bir ölçüm kaydının alt alanı değildir. ESP/HA katmanında birebir eşleştirme yoktur. Zaman toleransı, kararlılık eşiği ve pencere süreleri gerçek veri incelenmeden belirlenmeyecek.
 - **DOSYALAR:** ADR-019, Python veri hattı mimarisi, STATUS, PROGRESS_TREE ve proje README güncellendi.
 - **DOĞRULAMA SINIRI:** Mimari/dokümantasyon kararı kaydedildi. Firmware/YAML, UDP protokolü, donanım bağlantısı, derleme, OTA veya fiziksel deney değiştirilmedi/test edilmedi.
+
+
+## 2026-11-01 — T008 kararlı alan mantığının netleştirilmesi / ADR-019 eki
+
+- **KULLANICI KARARI:** SCT ve PZEM kararlılığı zaman/olay bilgisine göre değil, her birinin kendi ölçüm verisine göre bağımsız belirlenir.
+- **OLAY BİLGİSİ:** UDP paket kimliği, zaman ve SSR ON/OFF yalnızca deney/olay çerçevesidir; kararlılığı veya kararlı alanın başlangıç/bitişini belirlemez.
+- **EŞLEŞTİRME:** Python iki bağımsız kararlı aralığın zaman kesişimini alır. Başlangıç/bitiş ve süre eşitliği aranmaz. SCT 10–16 s ve PZEM 12–14 s kararlıysa ortak eğitim aralığı 12–14 s olur.
+- **YORUM:** Zaman damgaları yalnızca kesişimi hesaplamak içindir. ON–OFF aralığı otomatik olarak kararlı sayılmaz. Böylece ilke “önce bağımsız kararlılık tespiti, sonra örtüşen kararlı aralığı eşleştirme” olarak kesinleştirildi.
+- **DEPO:** ADR-019, Python mimarisi, STATUS, PROGRESS_TREE ve README güncellendi.
+- **DOĞRULAMA SINIRI:** Yalnız dokümantasyon/mimari kararı işlendi ve geri okuma ile doğrulanacak. Python kodu, HA veri analizi, firmware/YAML, UDP protokolü, derleme, OTA veya fiziksel test yapılmadı. T007→T008→T006 sırası ve belirlenmemiş eşikler/toleranslar değişmedi.
