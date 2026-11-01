@@ -1,3 +1,14 @@
+## 2026-11-01 — Paket işaretli akış bölümleme kararı (ADR-022)
+
+- Modül 3, SSR olay değişiminde tek `BERO_EVT` mesajı üretir; aynı mesajı kendi PZEM akışına ayrı kayıt olarak ekler ve UDP 4210 ile Modül 2'ye gönderir.
+- Modül 2, aldığı aynı mesajı kendi SCT akışına ayrı kayıt olarak ekler; olay kimliğini yeniden üretmez.
+- Ölçüm kayıtlarına örnek başına zaman/paket alanı eklenmez. ESP'ler kararlılık, kırpma, eşleştirme veya katsayı hesabı yapmaz.
+- Python her akışı olay işaretleriyle paket aralıklarına böler; aralıkları BOOT_ID + EVENT_ID ile eşleştirir.
+- PZEM ve SCT kararlılığı kendi akışlarında bağımsız tespit edilir; geçiş/yerleşme bölümleri kırpılır. Eğitim etiketi Python tarafından paket kimliğiyle eklenir.
+- Timestamp iki sensörün ölçümlerini eşleştirme anahtarı değildir; HA dışa aktarımında yalnızca aynı modül içindeki kayıt sırasını yeniden kurmak için gerekebilir.
+- ADR-019'un timestamp kesişimi şartı bu kararla geçersiz kılındı. [ADR-022](docs/decisions/ADR-022-packet-marker-segmented-training-streams.md).
+- **Uygulama durumu:** Yalnızca mimari dokümantasyon. Firmware, derleme, OTA, UDP ve HA kayıt sıralaması henüz değiştirilmedi/doğrulanmadı.
+
 ## 2026-11-01 — T008 kararlı alan eşleştirme prensibi netleştirildi
 
 - SCT ve PZEM kararlılığı kendi ölçüm akışlarından bağımsız tespit edilir; zaman veya UDP olayları kararlılık ölçütü değildir.
