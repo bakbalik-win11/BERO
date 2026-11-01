@@ -1591,3 +1591,12 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - HA API server dinliyor; kısa log HA API istemci bağlantısını veya Recorder veritabanı yazımını doğrulamıyor. `force_update` Recorder ayarı değildir. HA Developer Tools → States üzerinden canlı state kontrolü gerekli.
 - Ayrıntı: [LOAD-42W-002 kısa log / kod / HA teşhis notu](../logs/module2/2026-11-01-load-42w-002-short-log-ha-diagnostic.md).
 - **DURUM:** Kısa çalışma döngüsü logla desteklendi; HA geçmiş sorunu çözülmedi; test açık.
+
+
+## 2026-11-01 — LOAD-15W-003 deney planı ve YAML hazırlandı
+
+- Kullanıcının tek 15 W ampul yükünde 2T faz, 3T faz ve 4T nötr kanallarını aynı test oturumunda UNIT ile karşılaştırma isteği uygulama taslağına dönüştürüldü.
+- SCT1/GPIO32 faz 2T; SCT3/GPIO34 faz 3T; SCT2/GPIO33 nötr 4T. Okuma sıralıdır, aynı çevrimdedir; eşzamanlı ADC değildir.
+- Yeni YAML ve test README depoya eklendi; K=24.22, 200 ms, 250 ms slot ve 2 s çevrim korundu.
+- Yeni snapshot'ta filtre öncesi ct_clamp akımı Ham Akim adı ve A birimiyle etiketlendi; eski snapshot değiştirilmedi.
+- 15 W tekil yük UNIT baseline'ı, fiziksel log, derleme çıktısı ve OTA doğrulaması henüz yoktur. Durum PLANLANDI/HAZIRLANDI; OK/başarı iddiası yoktur.
