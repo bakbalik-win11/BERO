@@ -1,3 +1,12 @@
+## 2026-11-01 — Python ON/OFF paket bütünlüğü kararı (ADR-024)
+
+- Mevcut UDP/HA olay aktarımı korunur; yeni HA helper veya merkezi HA mimarisi kurulmaz.
+- Modül 3 PZEM ve Modül 2 SCT akışları kendi ON/OFF olaylarıyla bağımsız paketlenir.
+- ON başlangıcı veya OFF bitişi eksik/uyuşmazsa ilgili akış aralığı tamamlanmış paket değildir; Python bunu tanı koduyla raporlar.
+- İki akışta aynı BOOT_ID + EVENT_ID paket aralığı doğrulanmadan eğitim örneği oluşturulmaz.
+- Yeni ON açık pakete gelirse önceki paket eksik/bozuk olarak kapatılır ve yeni ON yeni paket adayı başlatır; BOOT_ID değişiminde açık paket tamamlanmamış sayılır.
+- ADR-024 mimari kabul kuralıdır; Python kodu ve gerçek export testi henüz yapılmadı.
+
 ## 2026-11-01 — Modül 2/3 uzun ON/OFF olay aktarımı
 
 - Modül 2 uzun logunda EVENT_ID 59 ON, 61 ON, 62 OFF ve 64 OFF alındı; her biri için HA_EVENT_PUBLISHED var.
