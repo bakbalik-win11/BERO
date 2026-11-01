@@ -56,6 +56,25 @@ HA dışa aktarımında kayıtlar ayrı entity geçmişlerinde bulunuyorsa Pytho
 
 **Eşleştirme anahtarı paket kimliğidir; zaman değildir.** PZEM ve SCT'nin kararlı pencerelerinin timestamp kesişimi, başlangıç/bitiş eşitliği veya sabit gecikme eşleştirme şartı değildir. Zaman damgası paket işaretinin zamanını ve her akışın kendi iç sırasını korumak için tutulur; iki sensörün örneklerini zaman bazında eşleştirmek için kullanılmaz.
 
+## BOOT_ID, EVENT_ID ve TIME alanlarının kesin görevi
+
+- **BOOT_ID:** Modül 3'ün her açılışında/yeniden başlatılmasında bir kez yeni kimlik üretilir. Aynı açılış oturumu boyunca bütün SSR olaylarında sabit kalır. Her ON/OFF olayında yeniden üretilmez.
+- **EVENT_ID:** Modül 3'te her yeni SSR durum değişiminde artan olay/paket numarasıdır. Aynı BOOT_ID oturumunda sıralı ilerler. Yeniden başlatma sonrası sayaç yeniden başlayabilir; bu nedenle tek başına benzersiz değildir.
+- **TIME:** Olayın üretildiği tarih-saat bilgisidir. Her BERO_EVT olay mesajında bulunur ve Modül 2'ye aynı içerikle aktarılır. Oturumun tarih/saat izini ve olayın kendi akışı içindeki yerini korumaya, yeniden başlatma ve tanılama kayıtlarına yarar. TIME, Modül 2 SCT ile Modül 3 PZEM örneklerini zaman üzerinden eşleştirmek için kullanılmaz.
+- **Tekil eşleştirme anahtarı:** BOOT_ID + EVENT_ID birleşimidir. TIME bu anahtarın yerine geçmez; EVENT_ID'nin farklı açılışlarda tekrar edebilmesini ayırt etmeye yardımcı olan BOOT_ID'dir.
+- **Modül 2**, Modül 3'ten aldığı BOOT_ID, EVENT_ID, STATE ve TIME alanlarını aynen korur. Modül 2 kendi BOOT_ID'sini bu olay eşleştirmesinde kullanmaz.
+
+Örnek olay biçimi:
+
+`BERO_EVT,BOOT_ID=XXXXXXXX,EVENT_ID=N,STATE=ON|OFF,TIME=YYYY-MM-DD HH:MM:SS`
+
+## Fiziksel kurulum ve kodlama sırası
+
+- Modül 3 şu anda masa üstünde, nihai fiziksel montajı yapılmamış durumdadır. Bu durum kullanıcı bildirimi olarak kaydedilmiştir.
+- Önce mevcut masa üstü bağlantı düzeninde firmware hazırlanır; yapılandırma/derleme, düşük gerilimli işlev testleri, PZEM okuma, SSR mantıksal ON/OFF ve olay üretimi, UDP gönderim/alım ve HA kayıt davranışı ayrı ayrı doğrulanır.
+- Testler ve kod davranışı doğrulandıktan sonra kullanıcı modülün fiziksel montajını/toplamasını yapacaktır. Montajın tamamlanması veya saha bağlantılarının doğrulanması önceden varsayılmaz.
+- Kodun derlenmesi tek başına donanımın çalıştığını kanıtlamaz. Her aşama gerçek log/çıktı ile kaydedilir; başarısız veya henüz denenmemiş adım açık bırakılır.
+
 ## Hata ve veri bütünlüğü
 
 - UDP olayı Modül 2'ye ulaşmazsa veya iki akıştaki BOOT_ID/EVENT_ID dizisi uyuşmazsa ilgili paket aralığı eksik olarak işaretlenir; tahminle tamamlanmaz ve eğitimden çıkarılır.
