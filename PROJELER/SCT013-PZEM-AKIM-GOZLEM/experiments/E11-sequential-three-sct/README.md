@@ -65,3 +65,13 @@ Bu aşamada ham cihaz logu, kanal başına ölçüm örnekleri, ölçüm dağıl
 ## Kayıt sınırı
 
 Bu kayıt kodun kullanıcı bildirimiyle derlenip çalıştığını belgelemektedir. Henüz kanal karşılaştırma analizi, senkron kayması ölçümü veya kalibrasyon/doğruluk onayı değildir.
+
+
+## 2026-11-01 — İlk üç kanallı log analizi
+
+- Kaynak: `esp32d1-logs (64).txt`; 2.795 satır / 208.718 bayt; SHA-256 `97a36071b8319625df5e717b358c8ec69fea609be928ba71e6e3a5153c081484`.
+- [Maskelenmiş tam log](../../logs/module2/2026-11-01-e11-three-sct-sequential-full-sanitized.txt); [analiz](../../logs/module2/2026-11-01-e11-three-sct-sequential-analysis.md); [kanıt satırları](../../logs/module2/2026-11-01-e11-three-sct-sequential-evidence.txt).
+- 176 çevrimde üç kanalın 176'şar akım ve Raw AC yayını, ayrıca 176 bias yayını görüldü. İlk çevrim açılış verisi olarak ayrıldı; kararlı istatistikler sonraki 175 çevrimden hesaplandı.
+- SCT1 ortalama 0.42141 A / CV %1.98; SCT2 0.42283 A / CV %2.36; SCT3 0.42686 A / CV %2.09. Bias ortalaması 1.66022 V.
+- 12:01:07 çevriminde sıra işaretleri 16/454/392 ms aralıkları gösterdi. İşaretler ve debug örnek sayıları çeliştiği için gerçek pencere çakışmasızlığı kesin doğrulanmadı; 50 ms geçiş payı azaltılmayacak.
+- PZEM yoktur; 0.427 A geçici UNIT beklentisidir. Kalibrasyon veya ±%4 kabul sonucu çıkarılmadı. T010 aktif kalır.
