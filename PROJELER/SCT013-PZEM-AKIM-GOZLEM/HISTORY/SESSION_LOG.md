@@ -1680,3 +1680,27 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **YORUM:** Zaman damgaları yalnızca kesişimi hesaplamak içindir. ON–OFF aralığı otomatik olarak kararlı sayılmaz. Böylece ilke “önce bağımsız kararlılık tespiti, sonra örtüşen kararlı aralığı eşleştirme” olarak kesinleştirildi.
 - **DEPO:** ADR-019, Python mimarisi, STATUS, PROGRESS_TREE ve README güncellendi.
 - **DOĞRULAMA SINIRI:** Yalnız dokümantasyon/mimari kararı işlendi ve geri okuma ile doğrulanacak. Python kodu, HA veri analizi, firmware/YAML, UDP protokolü, derleme, OTA veya fiziksel test yapılmadı. T007→T008→T006 sırası ve belirlenmemiş eşikler/toleranslar değişmedi.
+
+
+## 2026-11-01 — Python ON/OFF paket bütünlüğü kararı ve depo kaydı (ADR-024)
+
+### HEDEF
+Modül 2/3 olay aktarımında gözlenen eksik olayların Python paketleme ve eğitim verisine kabul üzerindeki etkisini netleştirmek; gereksiz firmware/HA mimari değişikliği yapmadan kullanıcı kararını kaydetmek.
+
+### DEPO OKUMASI
+AGENTS.md, STATUS.md, ROADMAP.md, ADR-022, ADR-023, karar dizini, Python veri hattı mimarisi ve PROGRESS_TREE.md okundu. Önceki kararlar ve TIME'sız olay protokolü esas alındı.
+
+### KARAR
+- Mevcut Modül 3 → UDP 4210 → Modül 2 aktarımı korunur.
+- PZEM ve SCT akışları kendi olay işaretleriyle bağımsız paketlenir.
+- ON başlangıcı veya OFF bitişi eksik/uyuşmazsa ilgili akış aralığı tamamlanmış paket sayılmaz.
+- İki akışta aynı BOOT_ID + EVENT_ID paket aralığı doğrulanmadan eğitim örneği üretilmez.
+- Eksik olay, EVENT_ID boşluğu, duplicate, state sıra hatası ve boot değişiminde açık paket Python raporunda görünür.
+- Yeni ON açık pakete gelirse önceki aralık eksik/bozuk işaretlenir; yeni ON yeni paket adayı başlatır.
+- UDP/HA tarafında yeni helper veya merkezi olay mimarisi kurulmaz. TIME alanı eklenmez.
+
+### YAPILAN
+ADR-024 oluşturuldu; STATUS, ROADMAP, PROGRESS_TREE, Python veri hattı mimarisi ve ADR dizini karara göre güncellendi.
+
+### DOĞRULAMA SINIRI
+Yalnızca mimari karar ve dokümantasyon depoya işlendi. Python uygulaması, gerçek HA export üzerinde test, örnek çıktı/log ve eğitim verisi üretimi yapılmadı. Firmware, UDP protokolü ve HA yapılandırması değiştirilmedi.
