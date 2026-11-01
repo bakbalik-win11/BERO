@@ -124,3 +124,19 @@ Faz 2 içindeki deneylerin uygulanma sırası sabit bir takvim değildir. Donan�
 - İki modül birlikte eğitim verisi/olay paketleri için kullanılacaksa iki ölçüm akışı ve Modül 3'ün BOOT_ID/EVENT_ID/STATE olay üretimi birlikte aktif olmalıdır.
 - Yalnız PZEM gözleminde SSR ON/OFF döngüsünü ileride devreden çıkarmak bir işletim seçeneğidir; E11'de döngü açık kalır. Firmware değişikliği bu kayıtla yapılmamıştır.
 - Modül 2'nin üç SCT kanalı birlikte çalışmaya devam eder; kanal seçici jumper/düğme eklenmesi mevcut ihtiyaç değildir.
+
+
+## 2026-11-01 — ADR-025: eğitim ve tam ham kayıt değerlendirmesi
+
+Eğitim aşamasında yalnızca SCT ve PZEM akışlarının kendi içlerinde bağımsız tespit edilen uygun kararlı alanları eşleştirilir; PZEM bu eğitim pencereleri için proje referansıdır. Deneyin ham SCT kaydının tamamı korunur. Öğrenilen katsayı/model daha sonra ON, OFF, açılma, kapanma ve geçişler dahil tam ham SCT kaydına uygulanır.
+
+Tam kayıt davranış değerlendirmesinde Python'a deneyin bilinen ON/OFF koşulu ve bilinen yük aralığı verilir. PZEM'in geçiş sırasındaki ardışık okumaları SCT örnekleri için noktasal referans yapılmaz; bilinmeyen ara akımlar uydurulmaz. Bu değerlendirme bilinen deney koşullarına göre davranış/tutarlılık incelemesidir, bağımsız noktasal referans olmadan mutlak doğruluk iddiası değildir. Tek veya çoklu katsayı seçimi gerçek veriye bırakılır.
+
+Ayrıntı: [ADR-025](docs/decisions/ADR-025-raw-data-sct-model-behavior-validation.md) ve [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
+
+## 2026-11-01 — Gün sonu çalışma durumu
+
+- E11, Modül 3 nihai montajı ve iki modülün kısa ortak açılış kontrolü öncesinde **PLANLANDI** durumundadır; deney sonucu yoktur.
+- T009 pratik modül devreye alma üst görevi **AKTİF** kalır. T010 üçlü SCT okuma görevi kapalıdır; görev tablosu bu durumla tutarlı tutulur.
+- T007/T008/T006 veri hattı sırası ve bağımlılıkları ADR-025 ile değiştirilmemiştir.
+- Bugün yeni firmware/Python uygulaması, derleme/OTA veya fiziksel deney doğrulaması yapılmamıştır.
