@@ -1,3 +1,13 @@
+## 2026-11-01 — LOAD-42W-002 üç SCT / HA uzun kayıt açıldı
+
+- **TEST:** [LOAD-42W-002](test-loads/42w-bulb/README.md) — 42 W ampul altında Modül 2 üç kanallı uzun kayıt.
+- **KANALLAR:** SCT1 faz 1T/GPIO32; SCT2 nötr 1T/GPIO33; SCT3 faz 2T/GPIO34; ortak bias GPIO35.
+- **KOD:** [HA geçmiş YAML snapshot](firmware/archive/LOAD-42W-002-2026-11-01-esp32d1-three-sct-ha-history.yaml). Kullanıcı derlendiğini bildirdi; derleme çıktısı bu kayda eklenmedi.
+- **SABİTLER:** K=24.22, 200 ms ct_clamp, 250 ms slot, 2 s çevrim korunmuştur.
+- **DURUM:** Test AÇIK. HA Recorder/History aktarımı, cihazın uzun süreli çalışması ve log henüz doğrulanmadı. 60 dakika önerilen hedef süredir; kesin oturum süresi henüz teyit edilmedi.
+- **SINIR:** LOAD-42W-001 / Log 57 tarihsel kaydıdır; yeni testin eşzamanlı referansı değildir. 0,30 A altı gözlemde ±%4 kabul/ret uygulanmaz.
+- **T010:** KAPALI kalır; bu yeni yük/HA gözlem testi T010'u yeniden açmaz.
+
 ## 2026-11-01 — E11 Log 69 / SCT3 iki primer tur gözlemi
 
 - **KAYIT:** [Log 69 analizi](logs/module2/2026-11-01-e11-log69-two-primary-turns-analysis.md); [maskelenmiş ham log arşivi](logs/module2/2026-11-01-e11-log69-sanitized.txt.gz.b64).
