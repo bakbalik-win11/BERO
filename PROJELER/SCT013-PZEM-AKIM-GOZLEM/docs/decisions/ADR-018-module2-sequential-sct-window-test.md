@@ -60,3 +60,18 @@ E11 üç kanal logunda 176 çevrim ve her kanal için 176 akım/Raw AC yayını 
 Bununla birlikte 12:01:07 çevrimindeki sıra işaretleri 16/454/392 ms aralıkları göstermiş, aynı çevrimin debug örnek sayılarıyla çelişmiştir. Dolayısıyla bu log, her çevrimde gerçek pencere çakışmasızlığını kesin kanıtlamaz. 50 ms geçiş payı azaltılmayacak; zamanlama anomalisinin tekrar logla incelenmesi gerekir. PZEM verisi bulunmadığından kalibrasyon veya ±%4 doğruluk sonucu çıkarılmaz.
 
 Ayrıntı: [E11 log analizi](../../logs/module2/2026-11-01-e11-three-sct-sequential-analysis.md).
+
+
+## Uzatılmış log doğrulaması — 2026-11-01
+
+Log 64 ve Log 66 birleştirilirken Log 66'nın Log 64 ile birebir aynı olan 1.678 satırlık örtüşmesi tek kez sayıldı. Birleşik zaman çizgisinde 397 tamamlanmış çevrim vardır; ilk açılış çevrimi ve son yarım çevrim hariç 396 çevrim incelendi.
+
+Kanal ortalamaları SCT1 0.423884 A, SCT2 0.424328 A, SCT3 0.425828 A; CV değerleri sırasıyla %2.646, %2.810 ve %2.215'tir. SCT2'nin ortalama kabul edilmiş farklı örnek sayısı 3235/200 ms olup SCT1 ve SCT3'ten yaklaşık %5 daha düşüktür.
+
+200–300 ms tanısal aralığının dışında en az bir geçişi olan çevrim sayısı 42/396'dır. 12:01:07.174 ve 12:06:06.849 çevrimleri belirgin zamanlama sapmaları gösterir. İki Wi-Fi roaming scan kaydı bu sapma kümelerinin yakınındadır; olası etki olarak izlenir, neden kabul edilmez.
+
+YAML'daki COMPLETE işaretleri gerçek pencere bitiş callback'inden değil sabit 250 ms delay sonrasından üretildiği için script işaretleri tek başına ADC pencerelerinin gerçek sınırını kanıtlamaz. 50 ms pay azaltılmaz; gerçek pencere başlangıç/bitişini cycle_id ile callback tabanlı kaydetmeden çakışmasızlık kabul edilmez.
+
+Ayrıntı: [uzatılmış analiz](../../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md), [Log 66 arşivi](../../logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt), [seçilmiş kanıt](../../logs/module2/2026-11-01-e11-three-sct-sequential-extended-evidence.txt).
+
+PZEM/UNIT karşılaştırması yoktur; yük ve besleme metadata'sı logda açıkça tanımlı değildir. K=24.22 ve firmware değişmemiştir. T010 AKTİF kalır.
