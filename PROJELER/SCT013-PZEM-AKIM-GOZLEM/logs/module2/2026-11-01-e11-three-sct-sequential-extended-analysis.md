@@ -9,7 +9,7 @@
 ## 1. Kaynak ve birleştirme
 
 - Önceki kaynak: `esp32d1-logs (64).txt`, 2.795 satır, SHA-256 `97a36071b8319625df5e717b358c8ec69fea609be928ba71e6e3a5153c081484`.
-- Yeni kaynak: `esp32d1-logs (66).txt`, 5.000 satır / 378.656 bayt, SHA-256 `b1bad3f1a8ef010d4ff5e717b358c8ec69fea609be928ba71e6e3a5153c081484` değil; doğrulanmış kaynak SHA-256: `b1bad3f1a8ef010d4ff5e717b358c8ec69fea609be928ba71e6e3a5153c081484`.
+- Yeni kaynak: `esp32d1-logs (66).txt`, 5.000 satır / 378.656 bayt, SHA-256 `b1bad3f1a8ef010d4ff5e717b358c8ec69fea609be928ba71e6e3a5153c081484`.
 - Log 66'nın ilk 1.678 satırı, Log 64'ün son 1.678 satırıyla satır satır birebir aynıdır. Birleştirme sırasında bu örtüşme ikinci kez sayılmadı.
 - Tekilleştirilmiş birleşik zaman çizgisi: 6.117 satır; 11:57:10.927–12:10:25.270.
 - 398 SCT1 START ve 397 ALL CHANNELS COMPLETE kaydı vardır. Son çevrim dosya bittiği için SCT2 debug satırından sonra yarım kalır.
