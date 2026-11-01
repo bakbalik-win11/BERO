@@ -1,3 +1,16 @@
+
+ 
+## 2026-11-01 — LOAD-42W-002 kısa log ve HA geçmiş teşhisi
+
+- **KAYNAK:** `Yapıştırılan metin(20261101-101343).txt`, 50.257 bayt / 668 satır, SHA-256 `0c316527df2df9105d8745dd1fd009d41c9f7f7150d4e0ea95e0377f8165a3fd`.
+- **SÜRE:** 13:12:20.893–13:13:28.860 (+03:00), yaklaşık 68 saniye / 34 çevrim.
+- **ÇALIŞMA:** Wi-Fi YES (-62 dB); GPIO32/33/34/35 ADC init/config/calibration OK; üç SCT çevrimi ve bias okuması tamamlandı; ERROR/[E]/Disconnected bulunmadı.
+- **ORTALAMALAR:** SCT1 0.25106 A; SCT2 0.24150 A; SCT3 0.34732 A; bias 1.66147 V.
+- **ÖNEMLİ GÖZLEM:** SCT3/SCT1 oranı 1.383; bu kısa kesitte 2T/1T için yaklaşık 2x gözlenmedi. Neden henüz belirlenmedi.
+- **KOD DENETİMİ:** `ct_clamp.on_raw_value` ile gelen filtre öncesi ham değer logda A olarak yazılıyor; YAML bu değeri `V` birimli Raw AC entity'ye yayımlıyor. Raw AC entity birimi/semantiği yanlış etiketli. Bu HA Recorder'ı durdurmaz, ancak veriyi yanlış tanımlar. Firmware düzeltmesi henüz yapılmadı.
+- **HA SINIRI:** `api:` sunucusu dinliyor; log ESPHome CLI bağlantısını gösteriyor, HA API istemcisinin bağlantısını kanıtlamıyor. `force_update: true` Recorder ayarını etkinleştirmez. Canlı state ve History ayrımı HA Developer Tools → States ile kontrol edilmeli.
+- **ANALİZ:** [Kısa log / kod denetimi / HA teşhisi](../../logs/module2/2026-11-01-load-42w-002-short-log-ha-diagnostic.md).
+- **DURUM:** Firmware kısa çevrimi LOG İLE DESTEKLENDİ. HA geçmiş sorunu çözülmedi; uzun kayıt doğrulanmadı.
 # 42 W Ampul — Düşük Akım Gözlem Kaydı
 
 **Test ID:** LOAD-42W-001  
