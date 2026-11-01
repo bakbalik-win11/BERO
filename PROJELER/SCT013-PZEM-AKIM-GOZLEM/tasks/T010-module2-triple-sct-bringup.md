@@ -62,7 +62,7 @@ E11 sıralı üç kanal logu analiz edildi. Ayrıntılı kanal istatistikleri, e
 
 # T010 — Modül 2: ESP32D1 üçlü SCT okuma modülünü oluşturma
 
-- **Durum:** AKTİF — firmware/ADC açılışı logla desteklendi; SCT-1 100 W denemesi kullanıcı bildirimiyle yapıldı; SCT-2 ve SCT-3 bekliyor
+- **Durum:** KAPATILDI — mevcut kapsam. Üç SCT kanalının aynı deney oturumunda temel okuma işlevi doğrulandı; sonraki yük/PZEM veri hattı çalışmaları T007/T008 kapsamındadır.
 - **Faz:** Faz 2 — Pratik yeniden kurulum ve sistem geliştirme
 - **Modül:** BERO-SCT-OKUMA-TEST-002
 - **Karar:** [ADR-015](../docs/decisions/ADR-015-module2-esp32d1-triple-sct.md)
