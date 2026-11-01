@@ -1,3 +1,34 @@
+# GÜNCEL AKTİF DÜĞÜMLER — 2026-11-01
+
+## Modül 2 — ESP32D1 SCT gözlem + UDP 4210 olay alıcısı
+- Kaynak: [bero-modul2-esp32d1.yaml](bero-modul2-esp32d1.yaml)
+- Üç SCT kanalı GPIO32/33/34; ortak bias GPIO35.
+- 200 ms ct_clamp penceresi; kanallar 250 ms slotlarla sıralı, yaklaşık 2 s çevrim.
+- K=24.22; üç kanala uygulanır.
+- Modül 3 WROOM'dan TIME içermeyen `BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF` paketi UDP 4210 üzerinden alınır.
+- Ham paket, BOOT_ID, EVENT_ID ve STATE ayrı HA text_sensor entity'lerine yayınlanır.
+- Uzun logda 59 ON, 61 ON, 62 OFF, 64 OFF alımı ve HA yayın çağrısı görülmüştür; 60 ve 63 bu logda yoktur. Kayıpsızlık doğrulanmış değildir.
+- **Durum:** Çoklu olay alımı/HA yayın çağrısı log ile doğrulandı; kaynak YAML ile çalışan binary'nin birebirliği ve bağımsız güncel config check/OTA doğrulaması açık.
+
+## Modül 3 — ESP32 WROOM PZEM + SSR olay kaynağı
+- Kaynak: [bero-modul3-wroom.yaml](bero-modul3-wroom.yaml)
+- PZEM UART TX GPIO19 / RX GPIO18 / 9600 baud; güncelleme 5 s.
+- SSR GPIO23, `inverted: true`; yazılımsal 40 s ON / 20 s OFF çevrimi.
+- Her durum geçişinde tek BOOT_ID/EVENT_ID/STATE mesajı Modül 3 HA entity'sine ve UDP broadcast 255.255.255.255:4210'a gönderilir.
+- BOOT_ID 128-bit / 32 HEX, boot boyunca sabit; EVENT_ID uint32 her durum geçişinde artar.
+- Olay protokolünde TIME alanı yoktur; RTC/NTP bu protokolün parçası değildir.
+- HA History ekran görüntüsü 70 OFF ve 71 ON olaylarını iki modülde, SSR entity mantıksal durumunu Kapalı/Açık gösteriyor.
+- **Durum:** PZEM/olay/UDP gönderim davranışı önceki cihaz loglarıyla; Modül 2 alımı da Modül 2 loguyla destekleniyor. Fiziksel SSR kontak/yük anahtarlaması bağımsız doğrulanmadı.
+
+## Protokol ve ADR önceliği
+- Güncel protokol: `BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF`.
+- Eşleştirme anahtarı: BOOT_ID + EVENT_ID.
+- [ADR-023](../docs/decisions/ADR-023-event-identity-without-time.md), [ADR-022](../docs/decisions/ADR-022-packet-marker-segmented-training-streams.md) içindeki TIME alanı ve TIME içeren örneği geçersiz kılar.
+- [Uzun ON/OFF alım analizi](../logs/module2/2026-11-01-module2-on-off-extended-analysis.md).
+
+---
+
+
 # Firmware dosyalari ve dugumler
 
 ## ESP32-WR1-PZEM — PZEM ölçüm ve SSR UDP olay alıcı düğümü
