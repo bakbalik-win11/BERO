@@ -4,7 +4,7 @@
 BERO SCT013-PZEM-AKIM-GOZLEM alt projesinin ana belgelerini, firmware kaynaklarını, ADR zincirini ve yeni ON/OFF kanıtını birbiriyle tutarlı hâle getirmek; eski çelişkileri tarihçeyi silmeden işaretlemek.
 
 ### YAPILAN
-- GitHub main ağacındaki proje alt klasörünün 264 dosyalık envanteri çıkarıldı.
+- GitHub main ağacındaki proje alt klasörünün ilk 264 dosyalık envanteri çıkarıldı; bu oturumda iki olay kanıt dosyası ve bir bütünlük denetimi raporu eklendi (güncel ağaç: 267 dosya).
 - Ana README, AGENTS, STATUS, ROADMAP, PROGRESS_TREE, firmware README, Modül 2/3 YAML, T009/T010, ADR-019/022/023 ve mevcut olay analizleri incelendi.
 - Yeni Modül 2 uzun logu arşivlendi ve analiz edildi. Kaynak: 1809 satır / 145178 bayt; SHA-256 `e125e3d471a70abb63407d1ee9c6db82336780fbd93bc26e6f9481681e24dece`.
 - Modül 2 logunda 59 ON, 61 ON, 62 OFF, 64 OFF olayları için UDP_EVENT_RECEIVED ve HA_EVENT_PUBLISHED satırları bulundu. 60 ve 63 yok; kayıpsızlık iddia edilmedi.
