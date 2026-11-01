@@ -1075,3 +1075,14 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki kullanıcı bi
 ### Tasarımın kısa ve kesin özeti
 
 Modül 2 taşınabilirlik amacıyla kullanıcı tarafından tek bias devresi ve tek ortak bias kablosu ile imal edilmiştir. Tek bias hattı üç SCT kanalına ortak dağıtılır; SCT sinyal kabloları ayrıdır. Breadboard bias görüntüsü daha önce paylaşılmış, ortak bias üretim sırasında ölçülmüştür. Proje sahibi/imalatçı beyanı bu üretim kaydının birinci el kaynağıdır. Üç ayrı bias devresi veya kablosu istenmeyecek; tamamlanmış bias imalatı yeniden iş olarak açılmayacaktır.
+
+
+## 2026-11-01 — T010 hedefi netleştirildi: üç SCT sıralı okuma doğrulaması
+
+- **HEDEF:** Aynı 100 W akkor ampulü fiziksel olarak aynı anda gözleyen üç SCT kanalının her birinin sağlıklı ve bağımsız okuduğunu doğrulamak.
+- **ÖNCEKİ SORUN:** Üç kanalın yazılımda aynı anda örneklenmesi yaklaşımı kullanıcı denemesinde sağlıklı sonuç vermedi.
+- **YENİ YÖNTEM:** ADC/ct_clamp ölçüm pencereleri SCT-1 GPIO32 → SCT-2 GPIO33 → SCT-3 GPIO34 sırasıyla çalışacak. Bir kanalın penceresi açıkken diğerleri başlatılmayacak. Tek ortak bias GPIO35, üç kanal çevrimi bittikten sonra okunacak.
+- **SENKRON KAYMASI:** İlk aday 200 ms pencere + 50 ms geçiş payıdır; yaklaşık 500 ms ilk-son kanal ölçüm merkezi farkı doğurur. Bu nihai/optimum değer değildir. Logdan gerçek zamanlar ölçülecek ve pencereler çakışmadan geçiş payı küçültülecektir.
+- **KABUL:** Üç kanalın ayrı ve tekrarlanabilir çıktı üretmesi, kanal etiketlerinin doğru olması, pencere çakışmaması ve zaman kaymasının logdan ölçülebilmesi gerekir.
+- **DURUM:** Hedef ve test protokolü depoya işlendi. Sıralı YAML henüz derlenmedi/OTA edilmedi; cihaz testi yapılmadı. Başarı kaydı değildir.
+- **GÖREV:** [T010](tasks/T010-module2-triple-sct-bringup.md); [ADR-018](docs/decisions/ADR-018-module2-sequential-sct-window-test.md).
