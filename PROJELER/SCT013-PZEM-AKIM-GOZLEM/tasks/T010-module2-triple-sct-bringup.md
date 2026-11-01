@@ -166,3 +166,17 @@ T010 altında, mevcut SCT-1 okuma zincirinin pencere süresine duyarlılığın�
 - **AYRI SORU:** last_value tekrar filtresinin ESP32 dahili ADC üzerindeki etkisi E10'dan ayrı, tek değişkenli A/B deneyiyle incelenebilir. Mevcut filtreyi kaldırma kararı alınmadı.
 - **SONRAKİ FAZ 2 SIRASI:** T010 tamamlanmadan T007/T008/T006'ya geçiş yapılmaz; ana görev sırası değişmedi.
 - **DURUM:** Bu not araştırma/planlama kaydıdır. Yeni derleme, OTA, fiziksel test veya firmware değişikliği yapılmadı. T010 AKTİF kalır.
+
+
+## 2026-11-01 — Kullanıcı düzeltmesi: Modül 2 üretim ve saha kontrolleri
+
+Bu kayıt, kullanıcının 2026-11-01 tarihli açık düzeltmesine dayanır; geçmişte yapılmış fiziksel işlemlerin bağımsız ölçüm kaydı değildir.
+
+- **ÜÇ SCT KANALI:** Modül ilk üretildiğinde üç kanalın her birinde okuma kontrolü yapıldı. Bu ilk kanal okuma kontrolü tamamlanmış kabul edilir; aynı kontrol yeniden yapılacak iş olarak listelenmeyecek.
+- **ORTAK BIAS:** Bias devresi üç kanala ayrı ayrı ait değildir; tek ortak bias noktası kullanılır. Modül üretiminde bias ölçümü yapıldı ve kullanıcı görsel de paylaştı. Bu ortak yapı ve ilk ölçüm kullanıcı tarafından doğrulandı.
+- **GERÇEK CİHAZ ÇIKTILARI:** Modül 2 ile test yükleri çalıştırıldı; test yüklerine ait cihaz logları ve analiz kayıtları depoda bulunuyor. Bu kayıtlar yeniden üretilecek testler değil, mevcut kanıtlardır.
+- **DERLEME / FİZİKSEL ÇALIŞMA:** İlgili derleme ve fiziksel çalışma loglarının depoda saklandığı kullanıcı tarafından teyit edildi. Her bir kaydın teknik kapsamı kendi log/analiz dosyasına göre okunmalıdır.
+- **DÜZELTİLEN ÖNCEKİ SONUÇ:** Bu dosyanın önceki “üç kanal 100 W testleri, derleme ve fiziksel doğrulama beklemede” ifadesi, sonraki kullanıcı bildirimleri ve depo test kayıtları ışığında güncel durum özeti olarak kullanılmamalıdır. İlk üretim kanal kontrolleri ve bias kontrolü tamamlanmıştır.
+- **AYRI KALAN İŞ:** E10 pencere deneyi (200 → 500 → 1000 → 200 ms ve 200 ms geri dönüş kontrolü) hâlâ PLANLANDI durumundadır; bu deneyin yapılmış olduğu iddia edilmez.
+- **DOSYA TUTARSIZLIĞI:** firmware/esp32d1.yaml dosyası hâlen tek SCT kanalı GPIO32 ve ortak bias GPIO35 konfigürasyonunu gösteriyor; GPIO33/GPIO34 ilk kanal kontrollerinin yapıldığı kullanıcı beyanını firmware'de üç aktif ct_clamp kanalı bulunduğu şeklinde yorumlamamak gerekir. Üç kanalın mevcut firmware ile temsil edilip edilmediği ayrı bir dokümantasyon/kod tutarlılığı konusudur.
+- **DURUM:** Kullanıcı tarafından bildirilen ilk üretim kontrolleri tamamlandı. E10 ve dosya/konfigürasyon tutarlılığı ayrı takip edilir. Bu kayıt yeni fiziksel ölçüm veya yeni derleme yapıldığı anlamına gelmez.
