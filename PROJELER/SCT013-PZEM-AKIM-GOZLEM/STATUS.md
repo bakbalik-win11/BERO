@@ -1,3 +1,12 @@
+## 2026-11-01 — T010 kapatıldı / SCT2-SCT3 soket değişimi gözlem planı
+
+- **T010:** KAPATILDI. E11 sıralı üç-SCT kodu 100 W akkor ampul oturumunda üç kanaldan veri üretti; mevcut modül devreye alma kapsamı yeterli görüldü.
+- **SONRAKİ YÜK TESTLERİ:** 150 W, tost makinesi, kettle vb. yeni yüklerin UNIT karşılaştırması T010 kapsamında sürdürülmeyecek; PZEM entegrasyonu ve eşleşmiş veri aşamasında yapılacak.
+- **KISA KANAL GÖZLEMİ:** SCT-2 ve SCT-3 fiziksel soketleri kullanıcı tarafından yer değiştirilerek aynı 100 W ampulle bir kez daha gözlenecek. Amaç, örnek sayısı/SPS farkının sensörle mi yoksa kanal/GPIO yoluyla mı hareket ettiğini ayırt etmeye yardımcı olmak.
+- **SINIR:** Bu gözlem doğruluk/kalibrasyon veya ±%4 kabul testi değildir. Henüz yapılmadı. Fiş değişimi yük enerjisizken yapılmalı. Firmware, GPIO eşlemesi, okuma sırası ve K=24.22 değiştirilmeyecek.
+- **SONRA:** PZEM bağlantısı ve HA→PC veri aktarımı için T007/T008 yoluna devam edilecek.
+- **İLGİLİ KAYITLAR:** [T010 kapanış](tasks/T010-module2-triple-sct-bringup.md); [E11 üç SCT deneyi](experiments/E11-sequential-three-sct/README.md); [100 W test kaydı](test-loads/100w-incandescent/README.md).
+
 ## 2026-11-01 — E11 Log 66 / 100 W UNIT karşılaştırması (kullanıcı yük teyidi)
 
 - **YÜK:** E11 deneyi 100 W akkor ampul yüküyle başlatıldı; Log 66 aynı deney oturumunun uzun kaydıdır. Üç SCT sensörü aynı oturumda kullanıldı ve firmware kanalları sırayla okudu; eşzamanlı ADC örneklemesi değildir.
