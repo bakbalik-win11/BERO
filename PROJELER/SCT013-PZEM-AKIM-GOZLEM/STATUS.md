@@ -1,4 +1,15 @@
 
+## 2026-11-01 — LOAD-15W-003 / 15 W çok turlu UNIT karşılaştırma deneyi
+
+- **HEDEF:** Tek 15 W ampul altında 2T faz, 3T faz ve 4T nötr ölçümlerini tek oturumda toplamak; her kanalı UNIT×primer_tur referansıyla karşılaştırmak.
+- **KANALLAR:** SCT1 faz 2T/GPIO32; SCT2 nötr 4T/GPIO33; SCT3 faz 3T/GPIO34; bias GPIO35.
+- **OKUMA:** Aynı 2 s çevriminde sıralı okuma; eşzamanlı ADC değildir. K=24.22, 200 ms pencere, 250 ms slot korunur.
+- **BASELINE:** 15 W tekil yük UNIT başlangıç değeri ve fiziksel log yok; baseline BEKLENİYOR. MIXED-LOAD-57W-15W-001 referans olarak kullanılmayacak.
+- **KOD:** [LOAD-15W-003 YAML](firmware/archive/LOAD-15W-003-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml); [test planı](test-loads/15w-2t-3t-4t/README.md).
+- **DÜZELTME:** Yeni YAML'da filtre öncesi ct_clamp çıktısı Raw AC yerine Ham Akim adıyla ve A birimiyle yayımlanır. Önceki LOAD-42W-002 snapshot değiştirilmedi.
+- **DURUM:** PLANLANDI / HAZIRLANDI. YAML derlemesi, OTA, fiziksel deney, UNIT ve log doğrulanmadı; OK/başarı işareti verilmedi. 0,30 A altında ±%4 kabul/ret uygulanmaz.
+
+
 ## 2026-11-01 — LOAD-42W-002 kısa log denetimi
 
 - **LOG:** [Kısa log ve HA teşhisi](logs/module2/2026-11-01-load-42w-002-short-log-ha-diagnostic.md).
