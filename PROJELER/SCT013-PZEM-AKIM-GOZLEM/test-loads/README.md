@@ -347,3 +347,11 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - K=24.22 değişmedi; test açık.
 - [BREAD-TOASTER-001 test kaydı](bread-toaster/README.md); [analiz](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-analysis.md); [seçilmiş log kanıtı](../logs/module2/2026-10-31-bread-toaster-001-module2-sct1-log63-evidence.txt).
 
+
+
+## 2026-11-01 — LOAD-100W-005 / E11 üç SCT oturumu
+
+- 100 W akkor ampul ile başlatılan aynı deney oturumunda ESP32D1 Modül 2 üzerindeki üç SCT kanalı kullanıldı. Okuma sırası SCT1 GPIO32 → SCT2 GPIO33 → SCT3 GPIO34; kanallar eşzamanlı örneklenmedi, aynı deney çevriminde sırayla okundu.
+- 396 kararlı çevrim/kanal: SCT1 0,423884 A; SCT2 0,424328 A; SCT3 0,425828 A. UNIT 0,427 A çalışma referansına sapmalar −%0,730 / −%0,626 / −%0,274; üç kanal da ±%4 bandında.
+- Firmware: [E11 üç SCT YAML](../experiments/E11-sequential-three-sct/esp32d1-sequential-sct.yaml). Tam log: [Log 66](../logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt). Analiz: [uzatılmış E11 raporu](../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md). Ayrıntılı yük kaydı: [100 W karşılaştırma dosyası](100w-incandescent/README.md).
+- UNIT değeri tarihsel çalışma referansıdır; aynı log aralığında eşzamanlı ölçülmemiştir. Sonuç bu nedenle tarihsel UNIT referansına göre karşılaştırmadır.
