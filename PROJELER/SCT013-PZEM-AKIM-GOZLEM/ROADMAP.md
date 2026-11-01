@@ -45,11 +45,11 @@ Faz 2 yeni bir başlangıçtır; ancak geçmişi silmek anlamına gelmez. Kayıt
 
 1. **T009 — Modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma (üst görev).**
    - Modül modül yürütülecek genel devreye alma çerçevesidir.
-2. **T010 — Modül 2: ESP32D1 üçlü SCT okuma modülü (ilk somut modül işi).**
-   - Üç ayrı SCT sinyali ve tek ortak bias ölçümü için dört ADC giriş noktası hazırlanır.
-   - Harici 5 V besleme ve PC USB erişimi sağlanır; kartın güç yolu doğrulanır.
-   - Gerçek GPIO eşlemesi, çalışan örnek kod, derleme ve donanım testi tamamlanır.
-   - Ayrıntı: [T010](tasks/T010-module2-triple-sct-bringup.md).
+2. **T010 — Modül 2: ESP32D1 üçlü SCT okuma modülü — KAPATILDI.**
+   - E11 sıralı üç-SCT kodu 100 W akkor ampul deneyinde çalıştı; üç kanaldan aynı deney oturumunda veri alındı.
+   - Mevcut kapsam için üç kanallı okuma ve gözlem yeterli kabul edildi. Yeni yüklerin UNIT doğrulaması bu görevin devamı değildir.
+   - Sonraki yük doğrulamaları PZEM ile birlikte T007/T008 veri hattında ele alınacaktır.
+   - Ayrıntı: [T010 kapanış kaydı](tasks/T010-module2-triple-sct-bringup.md).
 3. **T007 — Home Assistant → PC veri aktarımı.**
    - PZEM ve SCT modülleri gerçek veri ürettiğinde HA geçmişi PC'ye alınır.
    - Entity kimliği, kaynak timestamp, birim ve ham durum korunur.
