@@ -1180,3 +1180,13 @@ Modül 2 taşınabilirlik amacıyla kullanıcı tarafından tek bias devresi ve 
 - **KANIT SINIRI:** Kullanıcı derleme/çalışma bildirimini verdi. Ham log ve sayısal kanal karşılaştırması henüz eklenmedi; doğruluk, tekrarlanabilirlik ve pencere çakışmasızlığı nicel olarak doğrulanmış değildir.
 - **SONRAKİ:** Cihaz logunu incele; kanal bazında Raw AC/akım dağılımını ve gerçek zaman farkını hesapla. Sonra geçiş payını azaltma deneyi yap.
 - **T010:** Aktif; genel kabul henüz kapatılmadı.
+
+
+## 2026-11-01 — LOAD-15W-004 / 15 W çok turlu uzun gözlem açıldı
+
+- **HEDEF:** LOAD-15W-003'ün kısa ön gözlemini ayrı ve daha uzun bir oturumda tekrarlamak; 2T faz / 4T nötr / 3T faz kanallarını ve ortak biası aynı düzende izlemek.
+- **REFERANS:** Kullanıcı bildirimi Faz UNIT 0,057 A; Nötr UNIT 0,059 A. Zaman eşleşmesi henüz doğrulanmadı.
+- **İLK LOG ÖN GÖZLEMİ:** Yaklaşık 96 s, 48 yayın/kanal. SCT1 ortalama 0,18552 A (2T normalize 0,09276 A; UNIT'e aritmetik +%62,7); SCT2 0,24171 A (4T normalize 0,06043 A; +%2,4); SCT3 0,07585 A (3T normalize 0,02528 A; −%55,6; 11/48 sıfır). Bias ortalama 1,66196 V. Uzun oturum ham log/hash bekleniyor.
+- **YORUM SINIRI:** UNIT değerleri zaman eşleşmeli değil; farklar doğruluk/kalibrasyon sonucu değildir. 0,30 A altında ±%4 kabul/ret yok. SCT3 sıfırları doğrulanmadan silinmez.
+- **KOD:** [LOAD-15W-004 YAML](firmware/archive/LOAD-15W-004-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml); [deney kaydı](test-loads/15w-2t-3t-4t/LOAD-15W-004.md). LOAD-15W-003 korunmuştur.
+- **DURUM:** AÇIK / ÖN GÖZLEM KAYDEDİLDİ. Derleme, OTA, HA Recorder/History ve uzun test henüz doğrulanmadı.
