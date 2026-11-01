@@ -4,7 +4,7 @@
 
 - GitHub deposu: bakbalik-win11/BERO, varsayılan dal: main.
 - Denetlenen proje kökü: PROJELER/SCT013-PZEM-AKIM-GOZLEM.
-- İlk envanter: 264 dosya. Bu oturumda iki yeni olay kanıt dosyası eklendi; güncel ağaçta 266 dosya var.
+- İlk envanter: 264 dosya. Bu oturumda iki olay kanıt dosyası ve bir bütünlük denetimi raporu eklendi; güncel ağaçta 267 dosya var.
 - Ağaç envanteri çıkarıldı; proje README/AGENTS/STATUS/ROADMAP/PROGRESS_TREE, firmware README, Modül 2/3 YAML kaynakları, T009/T010/T007/T008, ADR-019/022/023, Python mimari belgeleri ve ilgili deney/olay analizleri incelendi.
 - 266 dosyanın tüm ham logları ve tarihsel arşivleri satır satır yeniden analiz edilmiş değildir. Büyük deney/log arşivleri tarihsel kayıt olarak bırakıldı; aktif mimari ve güncel kod bağlantıları öncelikli denetlendi.
 
