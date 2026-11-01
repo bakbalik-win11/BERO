@@ -1050,3 +1050,13 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki kullanıcı bi
 - **REFERANS:** Önceki UNIT 0,174 A kullanıcı bildirimiyle aynı kararlı zaman penceresi teyit edilmedi. Betimleyici ortalama farkı +%45,08; doğruluk/sapma kararı değildir. PZEM yok.
 - **KARAR:** 0,30 A altı gözlem; ±%4 kabul/ret yok. Test açık, K=24.22 ve firmware korunuyor.
 - **DOSYA:** [LOAD-42W-001](test-loads/42w-bulb/README.md); [Log 57 analizi](logs/module2/2026-10-31-load-42w-001-log57-analysis.md).
+
+
+## 2026-11-01 — T010 durum düzeltmesi: mevcut Modül 2 kanıtları
+
+- **KULLANICI DÜZELTMESİ:** Modül ilk üretildiğinde üç SCT kanalının her birinde okuma kontrolü yapıldı; tek ortak bias devresi ölçüldü ve biasın üç kanala ortak olduğu görselle daha önce gösterildi.
+- **MEVCUT KANIT:** Modül 2 ile test yükleri çalıştırıldı; gerçek cihaz logları ve analizleri test yükü kayıtlarında depoda mevcut. Derleme ve fiziksel çalışma logları da saklandı.
+- **DÜZELTME:** Bu ilk üretim kontrolleri ve mevcut test yükü logları yeniden yapılacak işler değildir. Önceki T010 durum metnindeki “üç kanal testi/derleme/fiziksel çalışma bekliyor” ifadesi bu kapsamda güncel değildir.
+- **AYRI BEKLEYEN:** E10 pencere süresi deneyi 200 → 500 → 1000 → 200 ms sırasıyla hâlâ PLANLANDI; henüz uygulanmış sayılmaz.
+- **TEKNİK NOT:** firmware/esp32d1.yaml dosyasının mevcut içeriği tek SCT-1 kanalını (GPIO32) ve ortak biası (GPIO35) tanımlar. Bu kod/dokümantasyon tutarlılığı, fiziksel olarak ilk üretimde üç kanalda okuma kontrolü yapılmış olmasıyla karıştırılmayacak.
+- **DURUM:** T010'un mevcut kabul kapsamı, tamamlanmış ilk kanal/bias kontrollerini ve arşivlenmiş saha loglarını esas alarak yeniden gözden geçirilecek. E10 ayrı deney olarak beklemede. Yeni ölçüm/derleme bu kayıt sırasında yapılmadı.
