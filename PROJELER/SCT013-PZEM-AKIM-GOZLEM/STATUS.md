@@ -1,3 +1,11 @@
+## 2026-11-01 — E11 Log 66 / 100 W UNIT karşılaştırması (kullanıcı yük teyidi)
+
+- **YÜK:** Kullanıcı, E11 Log 66'nın 100 W akkor ampulle alındığını teyit etti; logun kendi içinde yük etiketi yoktur, teyit kullanıcı bildirimi olarak sınıflandırılır.
+- **YENİ KOD SONUCU:** 396 kararlı çevrim/kanal; SCT1 0,423884 A, SCT2 0,424328 A, SCT3 0,425828 A. Tarihsel UNIT 0,427 A referansına sapmalar −%0,730 / −%0,626 / −%0,274. Üç kanal ortalaması ±%4 bandında.
+- **KARAR:** E11 yeni sıralı kodu, bu 100 W oturumunda tarihsel UNIT referansına göre başarılı. Eşzamanlı UNIT ölçümü olmadığı için eşzamanlı doğrulama veya genel kalibrasyon garantisi değildir. K=24.22 değişmedi.
+- **AÇIK:** SCT2 kabul edilen örnek sayısı yaklaşık %5 düşük. 42/396 çevrimde en az bir geçiş işareti 200–300 ms tanısal aralığın dışındadır; gerçek ADC pencere sınırları callback ile doğrulanmadı. 50 ms pay korunur.
+- **KAYITLAR:** [100 W karşılaştırma tablosu](test-loads/100w-incandescent/README.md); [E11 deney kaydı](experiments/E11-sequential-three-sct/README.md); [Log 66 analizi](logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md); [T010](tasks/T010-module2-triple-sct-bringup.md).
+
 ## 2026-11-01 — E11 uzatılmış üç SCT logu
 
 - **KAYNAK:** Log 66, 5.000 satır / 378.656 bayt; SHA-256 `b1bad3f1a8ef010d4ff5e717b358c8ec69fea609be928ba71e6e3a5153c081484`. [Tam arşiv](logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt).
