@@ -1,7 +1,7 @@
 # ADR-018 — Modül 2 üç SCT kanalında sıralı ölçüm pencereleri
 
 - **Tarih:** 2026-11-01
-- **Durum:** KABUL EDİLDİ — deney yöntemi; firmware derleme ve cihaz doğrulaması bekliyor
+- **Durum:** KABUL EDİLDİ — sıralı firmware kullanıcı bildirimiyle derlendi ve çalıştı; nicel log doğrulaması bekliyor
 - **İlgili görev:** [T010](../../tasks/T010-module2-triple-sct-bringup.md)
 - **İlgili firmware:** [esp32d1.yaml](../../firmware/esp32d1.yaml)
 
@@ -46,3 +46,8 @@ Bu yöntem bir hobi düzeneğinde kanal davranışı gözlemidir; laboratuvar e�
 ## Kayıt durumu
 
 Bu ADR hedefi ve deney yöntemini sabitler. YAML derlemesi, OTA, fiziksel ölçüm ve log analizi henüz yapılmadı. Başarı iddiası yoktur.
+
+
+## Uygulama durumu — 2026-11-01
+
+Kullanıcı, bu ADR'ye dayalı üç kanallı sıralı YAML'ın derlendiğini ve cihazda çalıştığını bildirdi. Kod snapshot ve deney kaydı [E11 klasöründe](../../experiments/E11-sequential-three-sct/README.md) saklanır. Ham log ve kanal bazında sayısal analiz henüz eklenmediği için gerçek zaman kayması, pencere çakışmasızlığı ve kanal tekrarlanabilirliği nicel olarak doğrulanmış değildir. 50 ms geçiş payı ilk çalışan konfigürasyon değeridir; optimum olduğu kabul edilmez.
