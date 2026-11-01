@@ -1,3 +1,17 @@
+## 2026-11-01 — E11 uzatılmış üç SCT logu
+
+- **KAYNAK:** Log 66, 5.000 satır / 378.656 bayt; SHA-256 `b1bad3f1a8ef010d4ff5e717b358c8ec69fea609be928ba71e6e3a5153c081484`. [Tam arşiv](logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt).
+- **ÖRTÜŞME:** Log 66'nın ilk 1.678 satırı Log 64'ün son 1.678 satırıyla birebir örtüşür; analizde tekrar sayılmadı.
+- **KAPSAM:** Birleşik zaman çizgisi 6.117 satır ve 11:57:10.927–12:10:25.270 aralığındadır. 397 tamamlanmış çevrim vardır; ilk açılış çevrimi ve son yarım çevrim dışarıda bırakılarak 396 kararlı çevrim incelendi.
+- **AKIM:** SCT1 0.423884 A / CV %2.646; SCT2 0.424328 A / CV %2.810; SCT3 0.425828 A / CV %2.215. Kanal ortalamaları arası fark en fazla %0.459.
+- **ÖRNEKLER:** Ortalama farklı örnek/200 ms: SCT1 3401.9, SCT2 3235.5, SCT3 3414.9. SCT2 yaklaşık %5 düşük; uzun logda tekrarlandı.
+- **BIAS:** Ortalama 1.660866 V; SD 0.008008 V; min–maks 1.636–1.687 V.
+- **ZAMANLAMA:** 42/396 çevrimde en az bir script geçiş işareti 200–300 ms tanısal aralığının dışındadır. 12:01:07.174'te 16/454/392 ms; 12:06:06.849'da 309/393/392 ms.
+- **ROAMING:** 12:01:04.985 ve 12:06:04.908 Wi-Fi roaming scan kayıtları sapma kümelerinin yakınındadır; olası etki, kanıtlanmış neden değil.
+- **KANIT SINIRI:** COMPLETE logları sabit 250 ms delay sonrasından yazılır; gerçek pencere bitiş callback'i değildir. Pencere çakışmasızlığı kesin doğrulanmadı. 50 ms pay azaltılmayacak.
+- **REFERANS:** PZEM/UNIT kaydı yok; yük ve besleme metadata'sı açıkça tanımlanmamış. Kalibrasyon/±4% sonucu çıkarılmadı.
+- **DURUM:** YAML ve K=24.22 değişmedi; E10 uygulanmadı; T010 AKTİF. [Uzatılmış analiz](logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md).
+ 
 ## 2026-11-01 — E11 üç SCT sıralı log analizi
 
 - **LOG:** `esp32d1-logs (64).txt`; 208.718 bayt / 2.795 satır; kaynak SHA-256 `97a36071b8319625df5e717b358c8ec69fea609be928ba71e6e3a5153c081484`. Ağ kimlikleri maskelenmiş tam arşiv ve seçilmiş kanıt [E11 log arşivinde](logs/module2/2026-11-01-e11-three-sct-sequential-analysis.md).
