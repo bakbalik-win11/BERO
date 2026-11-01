@@ -1,3 +1,12 @@
+## 2026-11-01 — T008 kararlı alan eşleştirme prensibi netleştirildi
+
+- SCT ve PZEM kararlılığı kendi ölçüm akışlarından bağımsız tespit edilir; zaman veya UDP olayları kararlılık ölçütü değildir.
+- Paket/zaman/SSR ON-OFF yalnızca deneyin olay çerçevesini sağlar.
+- Eğitim verisi, iki bağımsız kararlı aralığın zaman kesişimidir. Örnek: SCT 10–16 s, PZEM 12–14 s ise ortak bölüm 12–14 s.
+- Eşit başlangıç/bitiş veya eşit süre gerekmez. Zaman damgası yalnız kesişim hesabında kullanılır; zaman bazlı kararlılık penceresi yoktur.
+- ON–OFF aralığı kendiliğinden kararlı değildir. Eşik/tolerans/minimum süre gerçek HA verisinden sonra belirlenecek.
+- [ADR-019](docs/decisions/ADR-019-module2-module3-independent-event-streams.md); [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
+
 
 ## 2026-11-01 — LOAD-15W-003 çok turlu UNIT kıyası hazırlandı
 
