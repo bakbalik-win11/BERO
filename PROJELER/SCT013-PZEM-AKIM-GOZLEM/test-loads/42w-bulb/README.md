@@ -61,3 +61,65 @@ SCT yalnız tek yalıtılmış iletkeni çevrelemelidir; faz ve nötr birlikte g
 - **SONUÇ:** 42 W test yükünde SCT-1 yaklaşık 0,25 A çevresinde düzenli yayın üretmiştir. Bu 0,30 A altı düşük akım gözlemidir; ±%4 kabul/ret, kalibrasyon veya doğruluk onayı değildir. Test açık kalır; K ve firmware değiştirilmez.
 - **ANALİZ:** [Log 57 teknik analiz](../../logs/module2/2026-10-31-load-42w-001-log57-analysis.md).
 - **HAM KAYNAK:** Kullanıcı yüklemesi bu konuşmada korunmaktadır; ham TXT'nin GitHub'a tam kopyası bu güncellemede yapılmadı. Kaynak adı, boyutu ve SHA-256 kaydedildi.
+
+ 
+## 2026-11-01 — LOAD-42W-002 açıldı: üç SCT / HA uzun kayıt
+
+**Test ID:** LOAD-42W-002  
+**Durum:** AÇIK — YAML kullanıcı bildirimiyle derlendi; HA geçmiş aktarımı ve uzun süreli cihaz kaydı henüz doğrulanmadı.
+
+### Amaç
+42 W ampul yükünde Modül 2'nin üç SCT kanalını uzun süreli çalıştırarak akım, Raw AC ve ortak bias değerlerinin Home Assistant'a aktarılmasını ve HA History/Recorder geçmişinde tutulmasını gözlemek. Özellikle SCT3'ün iki primer turdaki davranışının zaman içindeki kararlılığı incelenecek.
+
+### Fiziksel kanal düzeni
+| Kanal | İletken | Primer tur | ESP32D1 pini |
+|---|---|---:|---|
+| SCT1 | Faz | 1T | GPIO32 / ADC1_CH4 |
+| SCT2 | Nötr | 1T | GPIO33 / ADC1_CH5 |
+| SCT3 | Faz | 2T | GPIO34 / ADC1_CH6 |
+| Ortak bias | Ortak bias hattı | — | GPIO35 / ADC1_CH7 |
+
+SCT2 nötrü ayrı izler. Faz ve nötr aynı SCT açıklığından birlikte geçirilmez. SCT3'te iki tur, faz iletkeninin CT açıklığından iki geçişidir; sensörün sekonder kablosu sarılmaz.
+
+### Firmware ve sabitler
+- ESPHome düğümü: `esp32d1` / ESP32D1; Modül 2.
+- ESPHome: 2026.10.1; ESP-IDF.
+- YAML snapshot: [LOAD-42W-002 üç SCT / HA geçmiş YAML](../../firmware/archive/LOAD-42W-002-2026-11-01-esp32d1-three-sct-ha-history.yaml).
+- Derleme durumu: **KULLANICI BİLDİRİMİYLE DERLENDİ.** Derleme çıktısı bu kayıtla birlikte paylaşılmadı; bağımsız derleme doğrulaması yapılmadı.
+- ADC attenuation: 12 dB.
+- ct_clamp penceresi: 200 ms.
+- Kanal slotu: 250 ms (200 ms pencere + 50 ms bekleme payı).
+- Kanal sırası: SCT1 → SCT2 → SCT3 → ortak bias.
+- Çevrim aralığı: 2 saniye.
+- Akım katsayısı: K=24.22; değiştirilmedi.
+- Akım, Raw AC ve bias sensörlerinde `force_update: true`.
+
+### HA sensör adları
+- BERO Mod2 SCT1 Faz 1T Akim
+- BERO Mod2 SCT1 Faz 1T Raw AC
+- BERO Mod2 SCT2 Notr 1T Akim
+- BERO Mod2 SCT2 Notr 1T Raw AC
+- BERO Mod2 SCT3 Faz 2T Akim
+- BERO Mod2 SCT3 Faz 2T Raw AC
+- BERO Mod2 Ortak Bias
+
+### Kayıt protokolü
+- Uzun kayıt için başlangıç hedefi 60 dakikadır; kullanıcı tarafından kesin süre ayrıca teyit edilene kadar öneri/hedef olarak kalır.
+- HA Recorder etkinliği, entity'lerin dışlama listesinde olmaması ve gerçek History güncellemeleri kontrol edilecek.
+- Başlangıç ve bitiş zamanı, saat dilimi, yükün kesintisiz çalışma durumu ve varsa kesintiler kaydedilecek.
+- Üç akım kanalı, üç Raw AC kanalı ve ortak bias için yayın sayısı, ortalama, medyan, min–maks, standart sapma ve CV hesaplanacak.
+- SCT3/SCT1 oranı zaman blokları bazında incelenecek; 2T verisi 1T gibi etiketlenmeyecek.
+- SCT1 faz ve SCT2 nötr değerlerinin eşit olması zorunlu varsayılmayacak; sensör, yön, bağlantı ve sıralı ölçüm etkileri ayrı yorumlanacak.
+- Önceki LOAD-42W-001 / Log 57 verisi tarihsel bağlamdır; yeni oturumla aynı pencereye ait referans değildir.
+- 0,30 A altı BERO düşük akım sınıflandırmasında ±%4 kabul/ret uygulanmaz. Bu deney doğruluk/kalibrasyon testi değildir.
+
+### Beklenen doğrulama
+1. ESPHome cihazı üç akım, üç Raw AC ve bir bias sensörünü yayımlıyor.
+2. Home Assistant'ta yedi sensörün varlığı ve güncellenmesi doğrulanıyor.
+3. Recorder/History geçmişi boyunca zaman damgalı kayıtlar oluşuyor.
+4. Uzun log ve HA geçmiş dışa aktarımı alınarak zaman blokları karşılaştırılıyor.
+
+### Açık kalanlar
+- HA Recorder ayarı ve geçmiş saklama süresi henüz incelenmedi.
+- Cihazda OTA/çalışma ve HA History aktarımı bu kayıtta henüz doğrulanmadı.
+- 60 dakikalık fiziksel kayıt henüz yapılmadı; sonuç/log yok.
