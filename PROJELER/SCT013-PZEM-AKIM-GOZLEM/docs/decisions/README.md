@@ -17,3 +17,11 @@ ADR durumları kararın başlangıç niteliğini korur. Deneyle doğrulanmamış
 - [ADR-010 — PZEM referanslı kararlı alan etiketleme ve sürekli öğrenme](ADR-010-pzem-stable-window-learning-focus.md)
 
 - [ADR-022 — Paket işaretleriyle akış bölümleme ve eğitim verisi oluşturma](ADR-022-packet-marker-segmented-training-streams.md)
+
+## ADR numaralandırma notu
+
+Depoda tarihsel kayıtlar korunurken iki numara birden fazla dosya adına verilmiştir:
+- ADR-017: ADR-017-module2-single-common-bias.md ve ADR-017-module2-single-sct-channel.md
+- ADR-018: ADR-018-module2-four-adc-long-log.md ve ADR-018-module2-sequential-sct-window-test.md
+
+Dosya slug'ları farklıdır ve bağlantılar bu dosya adları üzerinden çalışır. Geçmiş referansları bozmamak için bu oturumda dosyalar yeniden adlandırılmadı. Yeni kararlar ADR-024 ve sonrasından devam etmelidir; mevcut tarihsel numaralar tek başına benzersiz kimlik değildir.
