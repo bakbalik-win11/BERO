@@ -25,3 +25,6 @@ Depoda tarihsel kayıtlar korunurken iki numara birden fazla dosya adına verilm
 - ADR-018: ADR-018-module2-four-adc-long-log.md ve ADR-018-module2-sequential-sct-window-test.md
 
 Dosya slug'ları farklıdır ve bağlantılar bu dosya adları üzerinden çalışır. Geçmiş referansları bozmamak için bu oturumda dosyalar yeniden adlandırılmadı. Yeni kararlar ADR-024 ve sonrasından devam etmelidir; mevcut tarihsel numaralar tek başına benzersiz kimlik değildir.
+
+- [ADR-023 — Olay kimliğinde TIME alanının kaldırılması](ADR-023-event-identity-without-time.md)
+- [ADR-024 — Python tarafında ON/OFF paket bütünlüğü doğrulaması](ADR-024-python-packet-completeness-validation.md)
