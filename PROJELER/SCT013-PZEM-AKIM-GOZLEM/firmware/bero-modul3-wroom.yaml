@@ -28,8 +28,17 @@
 # OLAY FORMATI:
 # BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF
 #
-# TEST DURUMU:
-# YAML hazırlanmıştır; derleme, yükleme ve fiziksel test henüz yapılmamıştır.
+# GÜNCEL TEST DURUMU (2026-11-01):
+# - ESPHome 2026.10.1 cihaz logu PZEM okuma/yayınını, BOOT_ID üretimini,
+#   HA olay yayını ve UDP gönderim çağrısını destekliyor.
+# - Modül 2 logu 59/61 ON ve 62/64 OFF olaylarından dördünün alındığını
+#   gösteriyor; 60 ve 63 bu alıcı logunda görünmüyor.
+# - HA History ekran görüntüsü ayrı bir zaman kesitinde 70 OFF ve 71 ON
+#   olaylarının iki modülde görünmesini destekliyor.
+# - SSR HA entity'si mantıksal durumu gösterir; fiziksel yük anahtarlaması
+#   bağımsız elektriksel gözlemle doğrulanmış sayılmaz.
+# - Kodun güncel depo kopyası, testte kullanılan kaynakla byte-byte aynı
+#   kabul edilmez; bağımsız config check/derleme kaydı ayrıca tutulmalıdır.
 # ============================================================
 
 esphome:
