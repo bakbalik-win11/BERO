@@ -28,7 +28,7 @@ Faz 1 kapanmıştır. Faz 2'nin ilk aktif görevi T009'dur: modül ve ESP düğ�
 | T005 | Eski ADC/gürültü tabanı işleri | Faz 1 | KAPATILDI — HEDEFE ULAŞILDI | Eski iş; yeniden açılmayacak |
 | E00A–E08, E00F alt adımları | Eski deney kayıtları | Faz 1 | KAPATILDI — HEDEFE ULAŞILDI | Deney kanıtları arşivde |
 | T009 | Pratik modül ve ESP düğümlerini devreye alma (üst görev) | Faz 2 | DEVAM EDİYOR / üst görev | Genel çerçeve |
-| **T010** | **Modül 2 — ESP32D1 üçlü SCT okuma modülü** | **Faz 2** | **AKTİF** | **1. modül işi** |
+| **T010** | **Modül 2 — ESP32D1 üçlü SCT okuma modülü** | **Faz 2** | **TAMAMLANDI** | **Üçlü SCT temel işlevi doğrulandı; sonraki veri hattı T007/T008'de** |
 | T007 | Home Assistant → PC veri aktarımı | Faz 2 | BEKLEMEDE | PZEM/SCT düğümleri çalıştıktan sonra |
 | T008 | PZEM/SCT kararlı alan eşleştirme ve etiketleme | Faz 2 | BEKLEMEDE | T007 aktarımından sonra |
 | T006 | K=24.22 katsayısı/model değerlendirmesi | Faz 2 | BEKLEMEDE | T008 etiketli veri ürettikten sonra |
