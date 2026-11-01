@@ -358,6 +358,20 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - UNIT değeri tarihsel çalışma referansıdır; aynı log aralığında eşzamanlı ölçülmemiştir. Sonuç bu nedenle tarihsel UNIT referansına göre karşılaştırmadır.
 
 
+
+| 15 W ampul / çok turlu kıyas | [LOAD-15W-003 — 2T faz / 3T faz / 4T nötr / UNIT](15w-2t-3t-4t/README.md) |
+
+## 2026-11-01 — LOAD-15W-003 açıldı: 2T faz / 3T faz / 4T nötr
+
+- **HEDEF:** Tek 15 W ampul yükünde üç SCT kanalını aynı deney oturumunda kullanıp UNIT referansıyla tur sayısına göre karşılaştırmak.
+- **KANALLAR:** SCT1 faz 2T/GPIO32; SCT2 nötr 4T/GPIO33; SCT3 faz 3T/GPIO34; ortak bias GPIO35.
+- **KIYAS:** SCT1 çıktısı UNIT×2; SCT3 UNIT×3; SCT2 UNIT×4 ile karşılaştırılacak. Ayrıca her SCT çıktısı kendi primer tur sayısına bölünerek UNIT ile normalize kıyaslanacak.
+- **ZAMANLAMA:** Kanallar aynı 2 s çevriminde sıralı okunur; eşzamanlı ADC örneklemesi değildir. 200 ms pencere, 250 ms slot ve K=24.22 korunur.
+- **BASELINE:** 15 W tekil yük için eşleşen UNIT başlangıç değeri ve log henüz yok. 57 W + 15 W karma yük Log 59 bu deneyin baseline'ı değildir.
+- **KOD:** [LOAD-15W-003 YAML](../firmware/archive/LOAD-15W-003-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml). Ham Akim entity'leri filtre öncesi ct_clamp akımını A birimiyle etiketler.
+- **DURUM:** PLANLANDI / HAZIRLANDI. Derleme, OTA, fiziksel bağlantı, UNIT ölçümü ve log henüz doğrulanmadı. 0,30 A altı bölgede ±%4 kabul/ret uygulanmaz.
+- [Deney planı](15w-2t-3t-4t/README.md).
+
 ## 2026-11-01 — LOAD-42W-002 üç SCT / HA uzun kayıt açıldı
 
 - 42 W ampul altında Modül 2 üç kanallı HA geçmiş kaydı için LOAD-42W-002 açıldı.
