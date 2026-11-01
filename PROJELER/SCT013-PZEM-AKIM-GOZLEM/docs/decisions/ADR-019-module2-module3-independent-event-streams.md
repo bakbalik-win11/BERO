@@ -52,6 +52,21 @@ Python, HA'dan alınan bağımsız kayıt akışlarını sonradan zaman ve olay 
 - Sürekli ham ADC dalga biçimi arşivleme kararı değişmez.
 - Bu karar donanım/firmware entegrasyonunun yapıldığı veya test edildiği anlamına gelmez.
 
+
+## Kararlılık tespiti ve örtüşme eşleştirmesi — netleştirme (2026-11-01)
+
+Kararlılık zaman/olay bilgisine bakılarak belirlenmez. SCT ve PZEM akışları kendi ölçüm değerleri üzerinden, birbirinden bağımsız biçimde değerlendirilir:
+
+1. Python, SCT verisinin kendi içindeki kararlı aralıklarını ve bunların başlangıç/bitiş zamanlarını bulur.
+2. Python, PZEM verisinin kendi içindeki kararlı aralıklarını ve bunların başlangıç/bitiş zamanlarını ayrıca bulur.
+3. UDP paket kimliği, zaman ve SSR ON/OFF bilgisi yalnızca deneyin/olayların çerçevesini ve yük durumunu tanımlayan bağlam bilgisidir. Kararlılık ölçütü değildir; kararlı pencerenin başlangıcını, bitişini veya süresini tayin etmez.
+4. Eğitim için iki akışın kendi başına kararlı olduğu zaman aralıklarının kesişimi alınır. Başlangıç ve bitişlerin aynı olması, örnekleme hızlarının eşit olması veya kararlı sürelerin eşit uzunlukta olması gerekmez.
+5. Örnek: SCT 10–16. saniyeler arasında, PZEM 12–14. saniyeler arasında kendi ölçümüne göre kararlıysa ortak eğitim aralığı 12–14. saniyelerdir. SCT'nin yalnız kendisinin kararlı olduğu 10–12 ve 14–16 aralıkları bu PZEM etiketiyle eşleştirilmez.
+
+**Temel ilke:** Önce bağımsız kararlılık tespiti, sonra yalnızca örtüşen kararlı aralığın eşleştirilmesi. Zaman damgaları bu kesişimi hesaplamak için kullanılır; zaman bazlı kararlılık tanımı veya sabit süreli pencere oluşturmak için kullanılmaz. Olay çizgisi yalnızca bağlam sağlar. Hiçbir ON–OFF aralığı kendiliğinden kararlı kabul edilmez.
+
+Bu netleştirme zaman toleransı, kararlılık eşiği veya minimum pencere uzunluğu belirlemez. Bunlar gerçek HA verisi incelendikten sonra kararlaştırılacaktır.
+
 ## Kabul gerekçesi
 
 Bu ayrım, Modül 2 ve Modül 3'ün kendi görevlerini bağımsız sürdürmesini sağlar; olay zaman çizgisi ise Python'da SCT/PZEM kararlı pencerelerini bağlamlandırmak ve eğitim verisini doğru bölmek için kullanılabilir. Ölçüm ve olay kayıtlarının bağımsız saklanması kaynak verinin kaybolmasını ve ESP tarafında hatalı birebir eşleştirme varsayımını önler.
