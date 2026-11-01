@@ -1,3 +1,13 @@
+
+## 2026-11-01 — LOAD-42W-002 kısa log denetimi
+
+- **LOG:** [Kısa log ve HA teşhisi](logs/module2/2026-11-01-load-42w-002-short-log-ha-diagnostic.md).
+- **ÇALIŞMA:** 68 saniyede 34 tam çevrim; Wi-Fi bağlı, ADC init OK, sensör yayınları mevcut, hata satırı görülmedi.
+- **ÖLÇÜM ORTALAMALARI:** SCT1 0.25106 A; SCT2 0.24150 A; SCT3 0.34732 A; bias 1.66147 V.
+- **AÇIK BULGU:** SCT3/SCT1 = 1.383; 2T kanalında kısa kesitte yaklaşık 2x görülmedi.
+- **KOD BULGUSU:** ct_clamp `on_raw_value` ham akımı A olarak üretirken YAML bunu V birimli Raw AC entity'ye yayımlıyor. Birim/semantik hatası; HA geçmiş sorununu açıklamaz. Kod düzeltmesi henüz yapılmadı.
+- **HA:** API server açık; HA API client bağlantısı ve Recorder yazımı logdan doğrulanamadı. `force_update` Recorder ayarı değildir. Kök neden açık.
+- **DURUM:** Kısa çevrim LOG İLE DESTEKLENDİ; HA geçmiş sorunu çözülmedi; LOAD-42W-002 açık kalır.
 ## 2026-11-01 — LOAD-42W-002 üç SCT / HA uzun kayıt açıldı
 
 - **TEST:** [LOAD-42W-002](test-loads/42w-bulb/README.md) — 42 W ampul altında Modül 2 üç kanallı uzun kayıt.
