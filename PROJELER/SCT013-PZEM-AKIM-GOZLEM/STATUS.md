@@ -1,3 +1,17 @@
+## 2026-11-01 — Modül 3 WROOM olay akışı OTA logu / kısmi doğrulama
+
+- **KAYITLAR:** [Test snapshot manifesti](firmware/archive/2026-11-01-modul3-wroom-event-ha-snapshot.md); [seçilmiş gerçek log kanıtı](logs/module3/2026-11-01-modul3-wroom-event-ha-evidence.log); [log analizi](logs/module3/2026-11-01-modul3-wroom-event-ha-analysis.md); [ADR-023](docs/decisions/ADR-023-event-identity-without-time.md).
+- **DONANIM:** ESP32 WROOM / Modül 3. PZEM UART TX GPIO19, RX GPIO18, 9600 baud; SSR GPIO23, inverted/aktif LOW.
+- **DERLEME/OTA KANITI:** Kullanıcı logu ESPHome 2026.10.1, derleme zamanı 2026-11-01 18:47:11 +0300, cihaz IP 192.168.0.70 ve başarılı API bağlantısı gösteriyor.
+- **PZEM:** UART/Modbus başlatılmış; gerilim, akım, güç, enerji, frekans ve PF sensörleri yayınlanmış. Gözlenen boşta akım yaklaşık 0.035–0.036 A; gerilim yaklaşık 227.6–228.2 V.
+- **OLAY KİMLİĞİ:** 32 hex karakter BOOT_ID `53A14E04372DEB0E67FA07270AC69561` sabit kalmış; EVENT_ID 2, 3, 4 sırasıyla OFF, ON, OFF olaylarında ilerlemiş. Mesaj biçiminde TIME alanı yok.
+- **HA/UDP:** Her gözlenen olay için `HA_EVENT_PUBLISHED`, `UDP_EVENT_SENT`, `SHARED_EVENT` ve HA text_sensor yayını loglandı. UDP alıcısı Modül 2 tarafında henüz doğrulanmadı.
+- **SSR ÇEVRİMİ:** Logda OFF→ON yaklaşık 20 s, ON→OFF yaklaşık 40 s; bu, çevrimin beklenen 40 s ON / 20 s OFF faz sırasıyla uyumlu.
+- **AÇIK HATA:** İki OFF geçişinde `GPIO_OFF_READBACK_MISMATCH` uyarısı var. ON geçişlerinde `GPIO_ON_CONFIRMED` görülüyor. Anlık okuma zamanlama yarışı olasılığı yalnız hipotezdir; fiziksel GPIO/SSR doğrulaması değildir.
+- **KANIT SINIRI:** Log boşta/yaklaşık 0.035 A koşulunu gösteriyor; yük altı PZEM davranışı, SSR'nin fiziksel anahtarlaması ve Modül 2 UDP alımı bu logla kanıtlanmış değil. Wi-Fi RSSI -70 dBm.
+- **DURUM:** Modül 3 firmware OTA loguyla KISMEN DOĞRULANDI. Tam kabul verilmedi; OFF readback, fiziksel SSR ve Modül 2 UDP alım testleri açık.
+- **KAYNAK HASH:** Tam kullanıcı log dosyası SHA-256 `49d22fc15d18af762637c337ac1269ccbc85be9de6b7869f2e8d74bfdcad60a9`. Tam ham dosya bu oturumun kullanıcı eki olarak korunur; depoda seçilmiş kanıt satırları arşivlenmiştir. Test YAML snapshot SHA-256 `14cd0f30c6bf44e452ee06747538f6d8c9915411408e2c67019c3020ce20a476`.
+
 ## 2026-11-01 — Modül 3 masa üstü geliştirme ve olay kimliği alanları netleştirildi
 
 - **FİZİKSEL DURUM:** Kullanıcı bildirimi: Modül 3 henüz masa üzerinde; nihai fiziksel montaj/toplama yapılmadı. Kod ve masa üstü testleri tamamlanıp bağlantılar doğrulandıktan sonra kullanıcı modülü toplayacak.
