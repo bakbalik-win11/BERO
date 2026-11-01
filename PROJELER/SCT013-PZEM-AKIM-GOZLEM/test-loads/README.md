@@ -378,3 +378,14 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - SCT1 faz 1T / GPIO32; SCT2 nötr 1T / GPIO33; SCT3 faz 2T / GPIO34; ortak bias GPIO35.
 - Kullanıcı YAML'ın derlendiğini bildirdi. HA Recorder/History ve uzun süreli cihaz kaydı henüz doğrulanmadı.
 - [Test kaydı](42w-bulb/README.md); [YAML snapshot](../firmware/archive/LOAD-42W-002-2026-11-01-esp32d1-three-sct-ha-history.yaml).
+
+
+| 15 W çok turlu uzun gözlem | [LOAD-15W-004](15w-2t-3t-4t/LOAD-15W-004.md) |
+
+## 2026-11-01 — LOAD-15W-004 açıldı
+
+- LOAD-15W-003'ten ayrı uzun gözlem oturumu; önceki test ve kod arşivi korunur.
+- Faz UNIT 0,057 A ve nötr UNIT 0,059 A kullanıcı bildirimi; zaman eşleşmesi teyitsiz.
+- İlk kısa log ön gözlemi test dosyasında; uzun log ve tekrar UNIT okumaları bekleniyor.
+- [Deney kaydı](15w-2t-3t-4t/LOAD-15W-004.md); [YAML snapshot](../firmware/archive/LOAD-15W-004-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml).
+- Durum AÇIK; derleme/OTA/HA Recorder doğrulanmadı; 0,30 A altında ±%4 kabul/ret uygulanmaz.
