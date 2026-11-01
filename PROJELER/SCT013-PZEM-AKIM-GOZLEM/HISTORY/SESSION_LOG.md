@@ -1557,3 +1557,13 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - Üç SCT sinyal bağlantısı ayrıdır. İlk imalatta üç kanalın her biri için okuma kontrolü yapıldı; modül ile yük testleri, derleme ve fiziksel çalışma logları depoda mevcuttur.
 - Önceki kayıtların “kullanıcı teyidi” ifadesi kanıt kaynağını sınıflandırmak içindi; kullanıcının kendi projesindeki beyanını değersizleştirmek veya kuşku belirtmek için kullanılmamalıdır.
 - Bu oturumda yapılan işlem dokümantasyon düzeltmesidir; yeni fiziksel test/derleme yapılmadı. E10 deneyi hâlâ PLANLANDI.
+
+
+## 2026-11-01 — E11 sıralı üç SCT firmware derlendi ve çalıştı
+
+- **KULLANICI BİLDİRİMİ:** Kullanıcı, üç SCT kanalını sırayla okuyan YAML'ın derlendiğini ve cihazda çalıştığını bildirdi.
+- **YÖNTEM:** SCT-1 GPIO32 → SCT-2 GPIO33 → SCT-3 GPIO34; her kanalda 200 ms `ct_clamp` penceresi ve 50 ms geçiş payı; çevrim sonunda ortak bias GPIO35 okunur.
+- **KOD SNAPSHOT:** [E11 firmware](../experiments/E11-sequential-three-sct/esp32d1-sequential-sct.yaml).
+- **TEST KAYDI:** [E11 README](../experiments/E11-sequential-three-sct/README.md).
+- **SONUÇ SINIRI:** Derleme ve çalışma kullanıcı beyanıdır. Ham log/kanal sonuçları bu kayıt sırasında paylaşılmadığından sayısal performans, gerçek senkron kayması ve pencere çakışmasızlığı analizi yapılmadı.
+- **SONRAKİ:** Cihaz logu üzerinden kanal çıktıları ve zaman damgaları incelenecek; ardından 50 ms geçiş payı için daha küçük güvenli değer değerlendirilecek.
