@@ -1,3 +1,11 @@
+## 2026-11-01 — LOAD-42W-002 üç SCT / HA uzun kayıt
+
+- 42 W ampul altında üç kanallı uzun süreli HA geçmiş gözlemi açıldı: [test kaydı](test-loads/42w-bulb/README.md).
+- SCT1 faz 1T/GPIO32; SCT2 nötr 1T/GPIO33; SCT3 faz 2T/GPIO34; ortak bias GPIO35.
+- Kullanıcı YAML'ın derlendiğini bildirdi; [kod snapshot](firmware/archive/LOAD-42W-002-2026-11-01-esp32d1-three-sct-ha-history.yaml).
+- HA Recorder/History, OTA/cihaz çalışması ve uzun kayıt henüz doğrulanmadı. Test AÇIK.
+- Bu yeni test T010'u yeniden açmaz; T010 kapalıdır.
+
 ## 2026-11-01 — Faz 2 veri hattı ve düşük akım yürütme planı
 
 - [Ayrıntılı yürütme planı](docs/plans/2026-11-01-phase2-data-and-low-current-execution-plan.md) eklendi; STATUS ve ROADMAP'ten bağlandı.
