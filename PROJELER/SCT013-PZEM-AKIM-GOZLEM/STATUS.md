@@ -1,6 +1,6 @@
 ## 2026-11-01 — Modül 2/3 uzun ON/OFF olay aktarımı: çoklu paket + HA History
 
-- **ANA KAYIT:** [Uzun Modül 2 log analizi](logs/module2/2026-11-01-module2-on-off-extended-analysis.md); [seçilmiş kanıt satırları](logs/module2/2026-11-01-module2-on-off-extended-evidence.log).
+- **ANA KAYIT:** [Uzun Modül 2 log analizi](logs/module2/2026-11-01-module2-on-off-extended-analysis.md); [seçilmiş kanıt satırları](logs/module2/2026-11-01-module2-on-off-extended-evidence.log). [Depo bütünlük denetimi](docs/technical-reviews/2026-11-01-repository-integrity-audit.md).
 - **MODÜL 2 KAYNAK LOGU:** Kullanıcı dosyası `esp32d1-logs (74).txt`, 1809 satır / 145178 bayt; SHA-256 `e125e3d471a70abb63407d1ee9c6db82336780fbd93bc26e6f9481681e24dece`. ESPHome 2026.10.1; esp32d1 / 192.168.0.33; Modül 3 kaynak IP 192.168.0.70.
 - **UDP → HA:** Aynı BOOT_ID `53A14E04372DEB0E67FA07270AC69561` altında EVENT_ID 59 ON, 61 ON, 62 OFF ve 64 OFF için UDP_EVENT_RECEIVED ve HA_EVENT_PUBLISHED satırları var. Dört paket alındı ve HA yayın çağrısı yapıldı.
 - **EKSİK DİZİ:** EVENT_ID 60 ve 63 bu uzun Modül 2 logunda görünmüyor. Bu nedenle tüm olayların kayıpsız ulaştığı söylenemez. Eksik olayın Modül 3'te üretilmemesi, UDP kaybı veya alıcı logunda görünmemesi seçenekleri bu tek kaynakla ayrıştırılamaz.
