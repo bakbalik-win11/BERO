@@ -40,4 +40,4 @@ ADR-022'nin bağımsız ölçüm akışları, tek olay kaynağı, aynı olay mes
 
 ## Doğrulama sınırı
 
-Kullanıcının 2026-11-01 logu TIME'sız mesajın HA ve UDP gönderim loglarını gösterir. Modül 2'nin UDP alımı ve Python paketleme uygulaması henüz doğrulanmış değildir.
+Karar yazıldığı anda Modül 2 UDP alımı ve Python paketleme uygulaması doğrulanmamıştı. Sonraki 2026-11-01 kanıt güncellemesi Modül 2'nin birden fazla ON/OFF olayını aldığını ve HA yayın çağrısı yaptığını gösterir; ancak EVENT_ID 60 ve 63 bu alıcı logunda yoktur. Python paketleme uygulaması hâlâ yapılmamıştır. Ayrıntı aşağıdaki uygulama kanıtı güncellemesindedir.
