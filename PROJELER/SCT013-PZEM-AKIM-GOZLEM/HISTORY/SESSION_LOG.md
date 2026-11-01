@@ -1547,3 +1547,13 @@ Kullanıcı 0,422 A değerini de gördüğünü bildirdi. Önceki bildirimler 0,
 - **AYRI BEKLEYEN:** E10 pencere süresi deneyi 200 → 500 → 1000 → 200 ms sırasıyla PLANLANDI; henüz uygulanmadı.
 - **KOD TUTARLILIĞI:** firmware/esp32d1.yaml mevcut içerikte SCT-1 GPIO32 ve ortak bias GPIO35'i gösteriyor; fiziksel ilk üç kanal kontrolü, mevcut YAML'da üç aktif ct_clamp kanalı olduğu anlamına gelmez. Bu fark ayrı ele alınacak.
 - **SONUÇ:** Önceki oturum açılışındaki “üç kanal, bias ve fiziksel testler bekliyor” özeti düzeltilmiştir. T010'un kalan kabul maddeleri mevcut kayıtlarla yeniden eşleştirilmelidir; E10 tek başına tüm T010'un kalan işi olarak varsayılmamıştır.
+
+
+## 2026-11-01 — Modül 2: proje sahipliği ve tek kablolu ortak bias düzeltmesi
+
+- Kullanıcı, BERO projesinin sahibi ve Modül 2'nin imalatçısı olduğunu açıkça belirtti. Kendi yaptığı imalat, bağlantı ve testleri birinci elden bildirmektedir; proje sahibinin bu beyanı şüpheyle karşılanmayacak ve aynı işleri tekrar yapması istenmeyecektir.
+- Modül 2 taşınabilir olsun diye tek bias devresi ve tek ortak bias kablosu ile imal edildi. Bu tek hat üç SCT kanalına ortak bias dağıtır; üç ayrı bias devresi/kablosu yoktur.
+- Bias breadboard üzerinde kuruldu; görüntüsü daha önce paylaşıldı ve ortak bias üretim sırasında ölçüldü.
+- Üç SCT sinyal bağlantısı ayrıdır. İlk imalatta üç kanalın her biri için okuma kontrolü yapıldı; modül ile yük testleri, derleme ve fiziksel çalışma logları depoda mevcuttur.
+- Önceki kayıtların “kullanıcı teyidi” ifadesi kanıt kaynağını sınıflandırmak içindi; kullanıcının kendi projesindeki beyanını değersizleştirmek veya kuşku belirtmek için kullanılmamalıdır.
+- Bu oturumda yapılan işlem dokümantasyon düzeltmesidir; yeni fiziksel test/derleme yapılmadı. E10 deneyi hâlâ PLANLANDI.
