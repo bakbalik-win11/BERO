@@ -1,3 +1,13 @@
+## 2026-11-01 — Modül 3 masa üstü geliştirme ve olay kimliği alanları netleştirildi
+
+- **FİZİKSEL DURUM:** Kullanıcı bildirimi: Modül 3 henüz masa üzerinde; nihai fiziksel montaj/toplama yapılmadı. Kod ve masa üstü testleri tamamlanıp bağlantılar doğrulandıktan sonra kullanıcı modülü toplayacak.
+- **UYGULAMA SIRASI:** Önce firmware ve yapılandırma; ardından derleme kontrolü; sonra masa üstünde düşük gerilimli işlev testleri ve gerçek log doğrulaması; en son fiziksel toplama/montaj. Her aşama ayrı raporlanacak.
+- **BOOT_ID:** Modül 3 açılışında bir kez üretilir ve o açılış boyunca sabit kalır; her SSR olayında değişmez.
+- **EVENT_ID:** Her SSR durum değişiminde artar; yeniden başlatma sonrası tekrar başlayabilir.
+- **TIME:** Her olay mesajında olayın tarih-saatini taşır; oturum/diagnostic ve aynı akış içindeki sıra bağlamı içindir. Sensörler arası timestamp eşleştirmesi değildir.
+- **EŞLEŞTİRME ANAHTARI:** BOOT_ID + EVENT_ID; Modül 2 bu alanları ve TIME değerini Modül 3'ten gelen olay mesajından aynen alır, kendi kimliğini üretmez.
+- **DURUM:** Mimari/dokümantasyon netleştirildi. Firmware değişikliği, derleme, UDP alım testi, HA kayıt testi ve fiziksel montaj henüz yapılmadı/doğrulanmadı.
+
 ## 2026-11-01 — Paket işaretli bağımsız akış mimarisi (ADR-022)
 
 - **KARAR:** Ölçüm akışları bağımsız kalır. PZEM ve SCT örneklerinin içine her örnekte BOOT_ID/EVENT_ID/zaman yazılmaz.
