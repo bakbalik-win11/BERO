@@ -2,7 +2,7 @@
 
 ## 2026-11-01 — E11 / yeni sıralı üç-SCT kodu / Log 66
 
-- **YÜK KİMLİĞİ:** Kullanıcı, Log 66'nın 100 W akkor ampulle alındığını sonradan teyit etti. Yük bilgisi logun kendi içinde etiketli değildir; kullanıcı bildirimi olarak kaydedilir.
+- **YÜK KİMLİĞİ:** Log 66, kullanıcı tarafından deney başında 100 W akkor ampul yüküyle başlatılan E11 oturumunun uzun kaydı olarak teyit edilmiştir.
 - **KOD/DÜZENEK:** ESP32D1 Modül 2; E11 sıralı SCT1 GPIO32 / SCT2 GPIO33 / SCT3 GPIO34; ortak bias GPIO35; ESPHome 2026.10.1; 200 ms ct_clamp penceresi, 250 ms kanal slotu, K=24.22. Tam arşiv: [Log 66](../../logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt); [uzatılmış analiz](../../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md).
 - **KARARLI VERİ:** 396 çevrim/kanal. SCT1 ortalama 0,423884 A; SCT2 0,424328 A; SCT3 0,425828 A.
 - **UNIT:** Tarihsel UNIT çalışma referansı 0,427 A; eşzamanlı ölçüm değildir. ±%4 kabul bandı 0,40992–0,44408 A.
@@ -140,10 +140,38 @@ Kullanıcı, ESP32D1 beslemesini PC USB'den masaüstü harici güç kaynağına 
 - Özgün uzun log SHA-256: `de3f2289700f657cfcf1fd8bff816bbd8a8bc05bb2296f349462709cbb42d859`.
 
 
-## 2026-11-01 — E11 üç kanallı logdan koşullu SCT1 kıyası
+## 2026-11-01 — E11 üç kanallı logdan SCT1 kıyası (önceki kısa veri kesiti)
 
 - E11 logu ilk çevrim hariç SCT1 için 175 yayın: ortalama 0.42141 A; medyan 0.420 A; SD 0.00833 A; min–maks 0.404–0.452 A.
 - Önceki LOAD-100W-004: ortalama 0.425 A; medyan 0.423 A; SD 0.01149 A. Yeni SCT1 ortalaması yaklaşık %0.85, medyanı %0.71 daha düşüktür; SD daha küçüktür.
-- **Sınırlama:** E11 logunun kendi içinde fiziksel yük kimliği ve besleme koşulu açıkça etiketlenmemiştir. Bu, aynı koşulun kesin tekrarı değil, koşullu tarihsel kıyastır.
-- 0.427 A geçici UNIT beklentisidir, PZEM değildir. E11 logunda PZEM/eşzamanlı UNIT yoktur; doğruluk veya ±%4 kabul sonucu çıkarılmaz.
+- **Düzeltme:** Bu kısa kesit için önceki analizde yük kimliği belirsiz yazılmıştı. Kullanıcı, uzun Log 66'nın 100 W akkor deneyinin devamı olduğunu ve deneyin 100 W ampulle açıldığını teyit etti.
+- 0.427 A UNIT çalışma referansıdır, PZEM değildir. Uzun Log 66 analizi 396 çevrim/kanal içerir; üç kanal için ±%4 karşılaştırması bu referansa göre raporlanmıştır.
 - Ayrıntı: [E11 üç SCT analiz raporu](../../logs/module2/2026-11-01-e11-three-sct-sequential-analysis.md).
+
+
+## 2026-11-01 — LOAD-100W-005 / E11 üç SCT aynı deney oturumu
+
+- **YÜK:** 100 W akkor ampul. Deney, ampul yükü açıkken başlatıldı; Log 66 bu deney oturumunun uzun kaydıdır. Önceki “logda yük kimliği yok” notu, kullanıcının deney başlangıcını teyit etmesiyle düzeltilmiştir.
+- **DÜZENEK:** ESP32D1 / Modül 2; üç ayrı SCT sensörü: SCT-1 sarı GPIO32, SCT-2 yeşil GPIO33, SCT-3 mavi GPIO34; ortak bias turuncu GPIO35. ESPHome 2026.10.1.
+- **OKUMA ŞEKLİ:** Üç sensör aynı 100 W deney oturumunda kullanıldı; firmware kanalları eşzamanlı değil, SCT1 → SCT2 → SCT3 sırasıyla 200 ms pencerelerle okudu. Bu nedenle “aynı anda” ifadesi eşzamanlı ADC örneklemesi anlamına gelmez.
+- **KOD:** [E11 üç SCT firmware snapshot'ı](../../experiments/E11-sequential-three-sct/esp32d1-sequential-sct.yaml) — ct_clamp 200 ms, kanal slotu 250 ms, çevrim 2 s, K=24.22.
+- **TAM LOG:** [Log 66 — 378.656 bayt / 5.000 satır](../../logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt). SHA-256: `b1bad3f1a8ef010d4ff5e717b358c8ec69fea609be928ba71e6e3a5153c081484`.
+- **ANALİZ:** [Log 66 uzatılmış analiz](../../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md); 396 kararlı çevrim/kanal.
+- **KANAL ORTALAMALARI:** SCT1 0,423884 A; SCT2 0,424328 A; SCT3 0,425828 A.
+- **UNIT KIYASI:** 100 W ampul için UNIT 0,427 A çalışma referansı. Sapmalar sırasıyla −%0,730 / −%0,626 / −%0,274; üç kanal da ±%4 bandında. UNIT değeri bu logla eşzamanlı alınmış değildir; sonuç tarihsel UNIT referansına göre karşılaştırmadır.
+- **KARAR:** Yeni E11 kodu bu 100 W üç-SCT oturumunda tarihsel UNIT referansına göre başarılıdır. K=24.22 korunmuştur; bu sonuç katsayı değişikliği gerektirmemektedir.
+- **AÇIK TEKNİK NOTLAR:** SCT2 örnek sayısı diğer kanallardan yaklaşık %5 düşüktür. 42/396 çevrimde en az bir script geçiş işareti 200–300 ms tanısal aralığın dışındadır. Gerçek ADC pencere sınırları callback ile doğrulanmadığından 50 ms geçiş payı korunur.
+
+
+## 2026-11-01 — LOAD-100W-005 / E11 üç SCT aynı deney oturumu
+
+- **YÜK:** 100 W akkor ampul. Deney, ampul yükü açıkken başlatıldı; Log 66 bu deney oturumunun uzun kaydıdır. Önceki “logda yük kimliği yok” notu, kullanıcının deney başlangıcını teyit etmesiyle düzeltilmiştir.
+- **DÜZENEK:** ESP32D1 / Modül 2; üç ayrı SCT sensörü: SCT-1 sarı GPIO32, SCT-2 yeşil GPIO33, SCT-3 mavi GPIO34; ortak bias turuncu GPIO35. ESPHome 2026.10.1.
+- **OKUMA ŞEKLİ:** Üç sensör aynı 100 W deney oturumunda kullanıldı; firmware kanalları eşzamanlı değil, SCT1 → SCT2 → SCT3 sırasıyla 200 ms pencerelerle okudu. Bu nedenle “aynı anda” ifadesi eşzamanlı ADC örneklemesi anlamına gelmez.
+- **KOD:** [E11 üç SCT firmware snapshot'ı](../../experiments/E11-sequential-three-sct/esp32d1-sequential-sct.yaml) — ct_clamp 200 ms, kanal slotu 250 ms, çevrim 2 s, K=24.22.
+- **TAM LOG:** [Log 66 — 378.656 bayt / 5.000 satır](../../logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt). SHA-256: `b1bad3f1a8ef010d4ff5e717b358c8ec69fea609be928ba71e6e3a5153c081484`.
+- **ANALİZ:** [Log 66 uzatılmış analiz](../../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md); 396 kararlı çevrim/kanal.
+- **KANAL ORTALAMALARI:** SCT1 0,423884 A; SCT2 0,424328 A; SCT3 0,425828 A.
+- **UNIT KIYASI:** 100 W ampul için UNIT 0,427 A çalışma referansı. Sapmalar sırasıyla −%0,730 / −%0,626 / −%0,274; üç kanal da ±%4 bandında. UNIT değeri bu logla eşzamanlı alınmış değildir; sonuç tarihsel UNIT referansına göre karşılaştırmadır.
+- **KARAR:** Yeni E11 kodu bu 100 W üç-SCT oturumunda tarihsel UNIT referansına göre başarılıdır. K=24.22 korunmuştur; bu sonuç katsayı değişikliği gerektirmemektedir.
+- **AÇIK TEKNİK NOTLAR:** SCT2 örnek sayısı diğer kanallardan yaklaşık %5 düşüktür. 42/396 çevrimde en az bir script geçiş işareti 200–300 ms tanısal aralığın dışındadır. Gerçek ADC pencere sınırları callback ile doğrulanmadığından 50 ms geçiş payı korunur.
