@@ -1,3 +1,17 @@
+## 2026-11-01 — Modül 2 UDP olay alıcısı / log denetimi ve depo kaydı
+
+- **HEDEF:** Kullanıcının verdiği Modül 2 ESP32D1 YAML'ına Modül 3 UDP olay alıcısı eklemek, logu incelemek ve kaynak/kanıtları depoya kaydetmek.
+- **DEPO OKUMASI:** AGENTS.md, STATUS.md, ROADMAP.md, ADR-023, mevcut LOAD-15W-003 YAML snapshot'ı ve T010 kaydı okundu. ADR-023 gereği TIME alanı kullanılmadı; olay anahtarı BOOT_ID + EVENT_ID.
+- **KOD:** [firmware/bero-modul2-esp32d1.yaml](../firmware/bero-modul2-esp32d1.yaml) oluşturuldu. Temel üç-SCT YAML'ı üzerine UDP 4210 non-blocking alıcısı, Wi-Fi soket yaşam döngüsü ve ham/ayrıştırılmış HA olay entity'leri eklendi. Cihaz kimliği esp32d1; GPIO32/33/34/35, K=24.22, 200 ms ct_clamp ve 2 s sıralı çevrim korundu.
+- **LOG GİRDİSİ:** Kullanıcı logu 823 satır / 63.333 bayt; SHA-256 `b4139aa2e6e6a3efb8bd70d358f7604359d297ad059662652e07c0da58a53d67`.
+- **UDP SONUCU:** 19:18:07.736'da Modül 2, 192.168.0.70 adresinden EVENT_ID=59 / STATE=ON paketini aldı. Ham BERO_EVT metni ve BOOT_ID/EVENT_ID/STATE ayrı HA entity'lerine yayınlandı. Bu tek paket için UDP alımı ve HA yayını LOG İLE DESTEKLENDİ/DOĞRULANDI.
+- **AÇIK SINIR:** Bu logda OFF paketi veya ikinci bir olay alımı görünmüyor. Kayıpsızlık, uzun süreli olay akışı ve HA Recorder kalıcılığı doğrulanmadı.
+- **SCT/CİHAZ:** 43 örnek/kanal ve 43 bias örneği; bias 1.648–1.674 V. Yük koşulu logda tanımlı değil; akım değerlerinden doğruluk/arıza sonucu çıkarılmadı. Bir defa 70 ms safe_mode operation uyarısı; üç adet ESP32 optimizasyon önerisi var. ERROR/UDP hata kaydı görülmedi.
+- **KANIT DOSYALARI:** [Seçilmiş log kanıtı](../logs/module2/2026-11-01-module2-udp-event-receiver-evidence.log); [log analiz raporu](../logs/module2/2026-11-01-module2-udp-event-receiver-log-analysis.md).
+- **DOĞRULAMA SINIRI:** Log çalışan firmware'de UDP alımını kanıtlıyor. Depoya yeni kaydedilen YAML'ın logdaki binary ile byte-byte aynı kaynak olduğu veya yeni snapshot'ın bağımsız config check/derleme/OTA'dan geçtiği iddia edilmiyor.
+- **DEPO:** Modül 2 YAML, seçilmiş log kanıtı ve analiz raporu oluşturuldu. STATUS/PROGRESS_TREE/SESSION_LOG güncellendi; dosyalar geri okunarak doğrulanacak.
+- **SONRAKİ:** Önce yeni YAML için ESPHome config check/derleme; ardından Modül 3'ten ON ve OFF olaylarının ardışık alımı ve HA Recorder History kontrolü.
+
 ## 2026-11-01 — Modül 3 WROOM olay akışı OTA logu
 
 - **HEDEF:** TIME alanı kaldırılmış BOOT_ID + EVENT_ID + STATE olay paketinin Modül 3 WROOM üzerinde çalışmasını ve PZEM/HA/UDP/SSR davranışını gerçek cihaz loguyla incelemek.
