@@ -18,6 +18,20 @@ BERO donanımını ve ESP düğümlerini kayıtlı kodlardan ve çalışan örne
 6. Gerçek cihaz çıktısı, log, test koşulu ve yorum kaydedilir.
 7. Bir modülün temel işlevi doğrulanmadan diğer modüllerle entegrasyona geçilmez.
 
+## Masa üstü geliştirme ve nihai montaj kapısı
+
+Modül 3 için mevcut fiziksel durum: kullanıcı bildirimi doğrultusunda kart/modül masa üzerinde, henüz nihai olarak toplanmış veya monte edilmiş değildir.
+
+İzlenecek sıra:
+1. Masa üstündeki mevcut bağlantıları ve pin eşleşmelerini doğrula.
+2. Firmware'i hazırla ve yapılandırma/derleme kontrolünü yap.
+3. PZEM okuma, SSR mantıksal ON/OFF, olay mesajı üretimi ve TIME/BOOT_ID/EVENT_ID davranışını ayrı test et.
+4. UDP 4210 gönderim/alımını ve olayın iki modülün HA kayıt akışında ayrı kayıt olarak görünmesini doğrula.
+5. Gerçek logları ve yorumlarını depoya kaydet.
+6. Ancak bu testler tamamlandıktan sonra kullanıcı nihai fiziksel montajı/toplamayı yapacak. Montaj öncesinde modül tamamlandı veya sahada doğrulandı denmeyecek.
+
+Bu sıra, masa üstünde test yapılmasını engellemez; yalnızca nihai montajı kod ve temel işlev doğrulamasından sonraya bırakır.
+
 ## Öncelik ilkeleri
 
 - İlk soru "Bunu çalışan örnekle nasıl ayağa kaldırırız?" olur.
