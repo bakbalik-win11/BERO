@@ -1,3 +1,12 @@
+
+## 2026-11-01 — LOAD-15W-003 çok turlu UNIT kıyası hazırlandı
+
+- Tek 15 W yük için tek oturum planlandı: SCT1 faz 2T, SCT3 faz 3T, SCT2 nötr 4T; UNIT bağımsız referans.
+- Karşılaştırma: SCT1↔UNIT×2, SCT3↔UNIT×3, SCT2↔UNIT×4; ayrıca tur sayısına bölünmüş normalize değerler UNIT ile kıyaslanacak.
+- [Test planı](test-loads/15w-2t-3t-4t/README.md) ve [YAML snapshot](firmware/archive/LOAD-15W-003-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml) eklendi.
+- Kanallar aynı çevrimde sıralı okunur; eşzamanlı örnekleme değildir. K=24.22, 200 ms, 250 ms slot ve 2 s çevrim korunur.
+- 15 W tekil yük UNIT baseline'ı ve fiziksel log yok. Derleme/OTA/deney yapılmadı; durum PLANLANDI/HAZIRLANDI.
+
 ## 2026-11-01 — LOAD-42W-002 kısa log denetimi
 
 - 68 saniyelik kısa logda 34 çevrim tamamlandı; Wi-Fi ve ADC başlatmaları normal, hata satırı yok.
