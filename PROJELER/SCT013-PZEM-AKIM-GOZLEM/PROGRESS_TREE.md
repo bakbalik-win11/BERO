@@ -1,3 +1,13 @@
+## 2026-11-01 — E11 yüksüz iki modül uzun süreli gözlem planı
+
+- İlk ortak deney olarak E11 planlandı: Modül 2 ve Modül 3 birlikte çalışacak; ölçülen hatta yük bulunmayacak.
+- Modül 3 PZEM akım/gerilim/PF akışını, Modül 2 üç SCT kanalını sürekli yayınlayacak.
+- Modül 3'ün 40 s ON / 20 s OFF mantıksal SSR döngüsü sürerken Modül 3 gönderim olayları ile Modül 2 alım olayları BOOT_ID + EVENT_ID + STATE üzerinden karşılaştırılacak.
+- Önce kısa ortak açılış ve log kontrolü; başarılıysa ertesi gün akşama kadar hedeflenen yüksüz uzun gözlem.
+- Deney sırası ihtiyaç ve donanım hazır oluşuna göre değişebilir; bu esneklik Faz 2 görev bağımlılıklarını değiştirmez.
+- Modül 2 üç SCT kanalı açık kalır; kanal seçici jumper/düğme eklenmesi planlanmıyor.
+- **Durum:** Yalnız planlama kaydı. Montaj, deney, log ve sonuç henüz yok. [E11 protokolü](experiments/E11-idle-dual-module-observation/README.md).
+
 ## 2026-11-01 — Python ON/OFF paket bütünlüğü kararı (ADR-024)
 
 - Mevcut UDP/HA olay aktarımı korunur; yeni HA helper veya merkezi HA mimarisi kurulmaz.
