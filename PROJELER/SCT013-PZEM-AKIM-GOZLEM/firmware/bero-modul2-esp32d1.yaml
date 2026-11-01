@@ -1,0 +1,568 @@
+# ============================================================
+# BERO MODÜL 2 — ESP32D1
+# LOAD-15W-003 — 2T FAZ / 3T FAZ / 4T NÖTR / UNIT KIYASI
+# ESPHome 2026.10.1
+# ============================================================
+#
+# AMAÇ:
+# - 15 W ampul yükünde üç SCT kanalını tek deney oturumunda izlemek ve UNIT referansıyla karşılaştırmak.
+# - SCT1: Faz iletkeni, 2 primer tur.
+# - SCT2: Nötr iletkeni, 4 primer tur.
+# - SCT3: Faz iletkeni, 3 primer tur.
+# - Ortak bias değerini GPIO35 üzerinden izlemek.
+# - Akım, Raw AC ve bias sensörlerini Home Assistant'a
+#   yayımlayarak HA Recorder/History geçmişine aktarmak.
+#
+# DONANIM BAĞLANTILARI:
+# - SCT1 sarı sinyal  -> GPIO32 / ADC1_CH4 / Faz 2T
+# - SCT2 yeşil sinyal -> GPIO33 / ADC1_CH5 / Nötr 4T
+# - SCT3 mavi sinyal  -> GPIO34 / ADC1_CH6 / Faz 3T
+# - Ortak bias turuncu -> GPIO35 / ADC1_CH7
+#
+# FİZİKSEL DÜZEN:
+# - Her SCT yalnız kendi izlediği tek yalıtılmış iletkeni kavrar.
+# - Faz ve nötr aynı SCT açıklığından birlikte geçirilmez.
+# - SCT1'de faz iletkeni CT açıklığından iki, SCT3'te üç kez geçirilir; SCT2'de nötr iletkeni dört kez geçirilir.
+# - SCT sekonder kablosu sarılmaz.
+#
+# OKUMA SIRASI:
+# SCT1 Faz 2T -> 250 ms -> SCT2 Nötr 4T -> 250 ms -> SCT3 Faz 3T -> 250 ms -> Bias
+#
+# SABİTLER:
+# - ct_clamp sample_duration: 200ms
+# - Kanal slotu: 250ms (200ms pencere + 50ms bekleme)
+# - Çevrim aralığı: 2s
+# - Katsayı: K=24.22 (değiştirilmedi)
+# - ADC attenuation: 12 dB
+# - ESPHome framework: ESP-IDF
+#
+# HA GEÇMİŞ KAYDI:
+# - Akım, Raw AC ve bias sensörlerinde force_update: true.
+# - Recorder etkin olmalı; sensörler recorder.exclude altında
+#   bulunmamalıdır.
+# - Geçmiş saklama süresi Home Assistant Recorder ayarına bağlıdır.
+# - Ham Akim entity'leri ct_clamp on_raw_value filtresiz akımını A birimiyle gösterir.
+# - force_update, aynı değerin yeniden yayımlanmasını sağlar;
+#   HA veritabanı yazma miktarını artırabilir.
+#
+# BEKLENEN HA SENSÖRLERİ:
+# - BERO Mod2 SCT1 Faz 2T Akim
+# - BERO Mod2 SCT1 Faz 2T Ham Akim
+# - BERO Mod2 SCT2 Notr 4T Akim
+# - BERO Mod2 SCT2 Notr 4T Ham Akim
+# - BERO Mod2 SCT3 Faz 3T Akim
+# - BERO Mod2 SCT3 Faz 3T Ham Akim
+# - BERO Mod2 Ortak Bias
+#
+# GÜVENLİK:
+# - Şebeke bağlantıları kapalı ve uygun korumalı düzende olmalı.
+# - SCT bağlantıları yalnız enerji kesikken değiştirilmelidir.
+# - CT sekonderi üretici talimatı aksini söylemedikçe primer
+#   akım geçerken açık bırakılmamalıdır.
+
+# UNIT KIYASI / DENEY NOTU:
+# - SCT1 faz 2T çıktısı UNIT x 2 ile karşılaştırılır.
+# - SCT3 faz 3T çıktısı UNIT x 3 ile karşılaştırılır.
+# - SCT2 nötr 4T çıktısı UNIT x 4 ile karşılaştırılır.
+# - Aynı tek fazlı yükün faz ve nötr akımları karşılaştırılır; kanallar
+#   aynı çevrimde fakat 250 ms aralıklarla SIRALI okunur, eşzamanlı ADC değildir.
+# - UNIT değeri test boyunca aynı kararlı pencerede not edilir; mümkünse
+#   başlangıç/orta/son değerleri kaydedilir. Her kanal için ham çıktı / tur
+#   sayısı normalize edilerek UNIT ile ayrıca kıyaslanır.
+# - 0.30 A altı BERO düşük akım bölgesinde ±%4 kabul/ret uygulanmaz.
+# ============================================================
+
+esphome:
+  name: esp32d1
+  friendly_name: ESP32D1
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+  # UDP event receiver headers. No external component is required.
+  includes:
+    - <lwip/sockets.h>
+    - <lwip/inet.h>
+    - <fcntl.h>
+    - <unistd.h>
+    - <errno.h>
+    - <cstring>
+    - <cstdint>
+    - <string>
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Modül 3 UDP broadcast paketlerini almak için 4210 portunu aç.
+  # Soket non-blocking çalışır; SCT ölçüm script'ini bekletmez.
+  on_connect:
+    - lambda: |-
+        if (id(bero_udp_socket_fd) >= 0) {
+          ::close(id(bero_udp_socket_fd));
+          id(bero_udp_socket_fd) = -1;
+        }
+
+        const int sock = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+
+        if (sock < 0) {
+          ESP_LOGE("bero_udp", "UDP_SOCKET_CREATE_FAILED errno=%d", errno);
+          id(bero_udp_listener_state).publish_state("SOCKET_CREATE_FAILED");
+          return;
+        }
+
+        int reuse_addr = 1;
+        setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &reuse_addr, sizeof(reuse_addr));
+
+        struct sockaddr_in listen_address = {};
+        listen_address.sin_family = AF_INET;
+        listen_address.sin_port = htons(4210);
+        listen_address.sin_addr.s_addr = htonl(INADDR_ANY);
+
+        if (::bind(sock, (struct sockaddr *)&listen_address, sizeof(listen_address)) < 0) {
+          ESP_LOGE("bero_udp", "UDP_BIND_FAILED port=4210 errno=%d", errno);
+          ::close(sock);
+          id(bero_udp_listener_state).publish_state("BIND_FAILED");
+          return;
+        }
+
+        const int socket_flags = fcntl(sock, F_GETFL, 0);
+        if (socket_flags < 0 || fcntl(sock, F_SETFL, socket_flags | O_NONBLOCK) < 0) {
+          ESP_LOGE("bero_udp", "UDP_NONBLOCK_FAILED errno=%d", errno);
+          ::close(sock);
+          id(bero_udp_listener_state).publish_state("NONBLOCK_FAILED");
+          return;
+        }
+
+        id(bero_udp_socket_fd) = sock;
+        id(bero_udp_listener_state).publish_state("LISTENING_PORT_4210");
+        ESP_LOGI("bero_udp", "UDP_LISTENING address=0.0.0.0 port=4210 nonblocking=YES");
+
+  # Wi-Fi bağlantısı kesildiğinde eski soketi kapat.
+  on_disconnect:
+    - lambda: |-
+        if (id(bero_udp_socket_fd) >= 0) {
+          ::close(id(bero_udp_socket_fd));
+          id(bero_udp_socket_fd) = -1;
+        }
+
+        id(bero_udp_listener_state).publish_state("WIFI_DISCONNECTED");
+        ESP_LOGW("bero_udp", "UDP_LISTENER_CLOSED_WIFI_DISCONNECTED");
+
+# ------------------------------------------------------------
+# UDP ALICI SOKET DURUMU
+# ------------------------------------------------------------
+globals:
+  - id: bero_udp_socket_fd
+    type: int
+    restore_value: no
+    initial_value: '-1'
+
+sensor:
+  # ----------------------------------------------------------
+  # DAHİLİ ADC KAYNAKLARI
+  # ----------------------------------------------------------
+
+  # SCT1 — Faz 2T — GPIO32
+  - platform: adc
+    id: sct_1_voltage_source
+    name: "ESP32D1 SCT1 ADC Source"
+    pin: GPIO32
+    attenuation: 12db
+    raw: false
+    samples: 1
+    internal: true
+    update_interval: never
+
+  # SCT2 — Nötr 4T — GPIO33
+  - platform: adc
+    id: sct_2_voltage_source
+    name: "ESP32D1 SCT2 ADC Source"
+    pin: GPIO33
+    attenuation: 12db
+    raw: false
+    samples: 1
+    internal: true
+    update_interval: never
+
+  # SCT3 — Faz 3T — GPIO34
+  - platform: adc
+    id: sct_3_voltage_source
+    name: "ESP32D1 SCT3 ADC Source"
+    pin: GPIO34
+    attenuation: 12db
+    raw: false
+    samples: 1
+    internal: true
+    update_interval: never
+
+  # ----------------------------------------------------------
+  # ORTAK BIAS — GPIO35
+  # ----------------------------------------------------------
+  - platform: adc
+    id: common_bias_adc_voltage
+    name: "BERO Mod2 Ortak Bias"
+    pin: GPIO35
+    attenuation: 12db
+    raw: false
+    samples: 1
+    accuracy_decimals: 5
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    force_update: true
+    update_interval: never
+
+  # ----------------------------------------------------------
+  # SCT1 — FAZ 2 TUR / GPIO32
+  # ----------------------------------------------------------
+  - platform: template
+    id: sct_1_raw_ac
+    name: "BERO Mod2 SCT1 Faz 2T Ham Akim"
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 5
+    force_update: true
+    update_interval: never
+
+  - platform: ct_clamp
+    id: sct_1_current
+    name: "BERO Mod2 SCT1 Faz 2T Akim"
+    sensor: sct_1_voltage_source
+    sample_duration: 200ms
+    update_interval: never
+    force_update: true
+    on_raw_value:
+      then:
+        - sensor.template.publish:
+            id: sct_1_raw_ac
+            state: !lambda |-
+              return x;
+    filters:
+      - multiply: 24.22
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 3
+
+  # ----------------------------------------------------------
+  # SCT2 — NÖTR 4 TUR / GPIO33
+  # ----------------------------------------------------------
+  - platform: template
+    id: sct_2_raw_ac
+    name: "BERO Mod2 SCT2 Notr 4T Ham Akim"
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 5
+    force_update: true
+    update_interval: never
+
+  - platform: ct_clamp
+    id: sct_2_current
+    name: "BERO Mod2 SCT2 Notr 4T Akim"
+    sensor: sct_2_voltage_source
+    sample_duration: 200ms
+    update_interval: never
+    force_update: true
+    on_raw_value:
+      then:
+        - sensor.template.publish:
+            id: sct_2_raw_ac
+            state: !lambda |-
+              return x;
+    filters:
+      - multiply: 24.22
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 3
+
+  # ----------------------------------------------------------
+  # SCT3 — FAZ 3 TUR / GPIO34
+  # ----------------------------------------------------------
+  - platform: template
+    id: sct_3_raw_ac
+    name: "BERO Mod2 SCT3 Faz 3T Ham Akim"
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 5
+    force_update: true
+    update_interval: never
+
+  - platform: ct_clamp
+    id: sct_3_current
+    name: "BERO Mod2 SCT3 Faz 3T Akim"
+    sensor: sct_3_voltage_source
+    sample_duration: 200ms
+    update_interval: never
+    force_update: true
+    on_raw_value:
+      then:
+        - sensor.template.publish:
+            id: sct_3_raw_ac
+            state: !lambda |-
+              return x;
+    filters:
+      - multiply: 24.22
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 3
+
+# ------------------------------------------------------------
+# MODÜL 3 OLAYI — HOME ASSISTANT ENTITY'LERİ
+# ------------------------------------------------------------
+text_sensor:
+  # Ham mesaj Python paketleme hattında esas olay kaydıdır.
+  - platform: template
+    id: bero_mod2_event_raw
+    name: "BERO Mod2 Olay Kaydi"
+    update_interval: never
+
+  - platform: template
+    id: bero_mod2_event_boot_id
+    name: "BERO Mod2 Olay BOOT ID"
+    update_interval: never
+
+  - platform: template
+    id: bero_mod2_event_id
+    name: "BERO Mod2 Olay EVENT ID"
+    update_interval: never
+
+  - platform: template
+    id: bero_mod2_event_state
+    name: "BERO Mod2 Olay STATE"
+    update_interval: never
+
+  - platform: template
+    id: bero_udp_listener_state
+    name: "BERO Mod2 UDP Dinleyici"
+    update_interval: never
+
+script:
+  - id: sct_sequential_reading
+    mode: single
+    then:
+      - logger.log:
+          level: INFO
+          format: "BERO SEQUENCE: SCT1 FAZ 2T START"
+      - component.update: sct_1_current
+      - delay: 250ms
+
+      - logger.log:
+          level: INFO
+          format: "BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START"
+      - component.update: sct_2_current
+      - delay: 250ms
+
+      - logger.log:
+          level: INFO
+          format: "BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START"
+      - component.update: sct_3_current
+      - delay: 250ms
+
+      - logger.log:
+          level: INFO
+          format: "BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ"
+      - component.update: common_bias_adc_voltage
+
+      - logger.log:
+          level: INFO
+          format: "BERO SEQUENCE: ALL CHANNELS COMPLETE"
+
+interval:
+  # UDP alım kontrolü; non-blocking ve SCT döngüsünden bağımsız.
+  - interval: 100ms
+    then:
+      - lambda: |-
+          if (id(bero_udp_socket_fd) < 0) {
+            return;
+          }
+
+          // Bir kontrolde en fazla dört paket işle.
+          for (int packet_index = 0; packet_index < 4; packet_index++) {
+            char packet[160] = {};
+            struct sockaddr_in source_address = {};
+            socklen_t source_length = sizeof(source_address);
+
+            int received = recvfrom(
+              id(bero_udp_socket_fd),
+              packet,
+              sizeof(packet) - 1,
+              0,
+              (struct sockaddr *)&source_address,
+              &source_length
+            );
+
+            if (received < 0) {
+              if (errno == EWOULDBLOCK || errno == EAGAIN) {
+                break;
+              }
+              ESP_LOGW("bero_udp", "UDP_RECV_FAILED errno=%d", errno);
+              break;
+            }
+
+            if (received == 0) {
+              continue;
+            }
+
+            // Buffer dolduysa olası kesilmiş UDP paketini kabul etme.
+            if (received >= (int)sizeof(packet) - 1) {
+              ESP_LOGW("bero_udp", "UDP_PACKET_TOO_LONG bytes=%d", received);
+              continue;
+            }
+
+            packet[received] = '\0';
+
+            // CR/LF sonlandırıcılarını güvenli biçimde kaldır.
+            int packet_length = received;
+            while (
+              packet_length > 0 &&
+              (
+                packet[packet_length - 1] == '\n' ||
+                packet[packet_length - 1] == '\r'
+              )
+            ) {
+              packet[--packet_length] = '\0';
+            }
+
+            if (packet_length == 0) {
+              continue;
+            }
+
+            bool valid_packet = true;
+            char boot_id[33] = {};
+            char event_state[4] = {};
+            uint32_t event_id = 0;
+
+            const char prefix[] = "BERO_EVT,BOOT_ID=";
+            const char event_prefix[] = ",EVENT_ID=";
+            const char state_prefix[] = ",STATE=";
+
+            const char *cursor = packet;
+
+            if (strncmp(cursor, prefix, sizeof(prefix) - 1) != 0) {
+              valid_packet = false;
+            } else {
+              cursor += sizeof(prefix) - 1;
+            }
+
+            // BOOT_ID tam 32 hexadecimal karakter olmalı.
+            if (valid_packet) {
+              for (int i = 0; i < 32; i++) {
+                const char c = *cursor;
+                const bool is_hex =
+                  (c >= '0' && c <= '9') ||
+                  (c >= 'A' && c <= 'F') ||
+                  (c >= 'a' && c <= 'f');
+
+                if (!is_hex) {
+                  valid_packet = false;
+                  break;
+                }
+
+                boot_id[i] = c;
+                cursor++;
+              }
+              boot_id[32] = '\0';
+            }
+
+            if (valid_packet) {
+              if (strncmp(cursor, event_prefix, sizeof(event_prefix) - 1) != 0) {
+                valid_packet = false;
+              } else {
+                cursor += sizeof(event_prefix) - 1;
+              }
+            }
+
+            // EVENT_ID uint32 aralığında, yalnızca rakamlardan oluşmalı.
+            if (valid_packet) {
+              bool has_digit = false;
+
+              while (*cursor >= '0' && *cursor <= '9') {
+                has_digit = true;
+                const uint32_t digit = (uint32_t)(*cursor - '0');
+
+                if (event_id > (0xFFFFFFFFUL - digit) / 10UL) {
+                  valid_packet = false;
+                  break;
+                }
+
+                event_id = event_id * 10U + digit;
+                cursor++;
+              }
+
+              if (!has_digit) {
+                valid_packet = false;
+              }
+            }
+
+            if (valid_packet) {
+              if (strncmp(cursor, state_prefix, sizeof(state_prefix) - 1) != 0) {
+                valid_packet = false;
+              } else {
+                cursor += sizeof(state_prefix) - 1;
+              }
+            }
+
+            if (valid_packet) {
+              if (strcmp(cursor, "ON") == 0) {
+                strcpy(event_state, "ON");
+              } else if (strcmp(cursor, "OFF") == 0) {
+                strcpy(event_state, "OFF");
+              } else {
+                valid_packet = false;
+              }
+            }
+
+            if (!valid_packet) {
+              ESP_LOGW(
+                "bero_udp",
+                "UDP_INVALID_PACKET source=%s packet=%s",
+                inet_ntoa(source_address.sin_addr),
+                packet
+              );
+              continue;
+            }
+
+            // Ham mesaj aynen korunur; Python için esas kayıt budur.
+            id(bero_mod2_event_raw).publish_state(packet);
+            id(bero_mod2_event_boot_id).publish_state(boot_id);
+            id(bero_mod2_event_id).publish_state(std::to_string(event_id));
+            id(bero_mod2_event_state).publish_state(event_state);
+
+            ESP_LOGI(
+              "bero_udp",
+              "UDP_EVENT_RECEIVED source=%s packet=%s",
+              inet_ntoa(source_address.sin_addr),
+              packet
+            );
+
+            ESP_LOGI(
+              "bero_event",
+              "HA_EVENT_PUBLISHED BOOT_ID=%s EVENT_ID=%lu STATE=%s",
+              boot_id,
+              (unsigned long)event_id,
+              event_state
+            );
+          }
+
+  # Mevcut 2 saniyelik SCT sıralı okuma çevrimi korunur.
+  - interval: 2s
+    then:
+      - script.execute: sct_sequential_reading
