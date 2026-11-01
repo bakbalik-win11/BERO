@@ -1086,3 +1086,14 @@ Modül 2 taşınabilirlik amacıyla kullanıcı tarafından tek bias devresi ve 
 - **KABUL:** Üç kanalın ayrı ve tekrarlanabilir çıktı üretmesi, kanal etiketlerinin doğru olması, pencere çakışmaması ve zaman kaymasının logdan ölçülebilmesi gerekir.
 - **DURUM:** Hedef ve test protokolü depoya işlendi. Sıralı YAML henüz derlenmedi/OTA edilmedi; cihaz testi yapılmadı. Başarı kaydı değildir.
 - **GÖREV:** [T010](tasks/T010-module2-triple-sct-bringup.md); [ADR-018](docs/decisions/ADR-018-module2-sequential-sct-window-test.md).
+
+
+## 2026-11-01 — E11 sıralı üç SCT firmware denemesi çalıştı
+
+- **KULLANICI BİLDİRİMİ:** SCT-1 GPIO32 → SCT-2 GPIO33 → SCT-3 GPIO34 sıralı CT Clamp YAML'ı derlendi ve cihazda çalıştı.
+- **KOD:** [E11 firmware snapshot](experiments/E11-sequential-three-sct/esp32d1-sequential-sct.yaml).
+- **TEST AŞAMASI:** [E11 README](experiments/E11-sequential-three-sct/README.md).
+- **ZAMANLAMA:** 200 ms pencere + 50 ms kanal payı; nominal ilk-son kanal merkez farkı 500 ms. Gerçek zamanlar henüz logdan ölçülmedi.
+- **KANIT SINIRI:** Kullanıcı derleme/çalışma bildirimini verdi. Ham log ve sayısal kanal karşılaştırması henüz eklenmedi; doğruluk, tekrarlanabilirlik ve pencere çakışmasızlığı nicel olarak doğrulanmış değildir.
+- **SONRAKİ:** Cihaz logunu incele; kanal bazında Raw AC/akım dağılımını ve gerçek zaman farkını hesapla. Sonra geçiş payını azaltma deneyi yap.
+- **T010:** Aktif; genel kabul henüz kapatılmadı.
