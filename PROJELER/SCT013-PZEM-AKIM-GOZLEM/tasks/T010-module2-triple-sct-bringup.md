@@ -261,3 +261,15 @@ Bu bir eşzamanlı örnekleme deneyi değildir. Amaç, kanalların aynı kararl�
 - **SONUÇ SINIRI:** Derleme ve çalışma kullanıcı beyanı olarak kaydedildi. Bu aşamada ham log ve kanal başına sayısal sonuç sunulmadığından kanal doğruluğu, tekrarlanabilirliği, gerçek zaman kayması ve pencere çakışmasızlığı nicel olarak doğrulanmış sayılmaz.
 - **SONRAKİ:** Cihaz logunu al; üç kanalın Raw AC/akım yayınlarını ve zaman damgalarını incele. Ardından 50 ms geçiş payının azaltılabilirliğini değerlendir.
 - **T010 DURUMU:** Sıralı firmware denemesi çalıştırıldı. T010 genel kabulü, log analizi ve kalan doğrulama maddeleri tamamlanmadan kapatılmaz.
+
+
+## 2026-11-01 — E11 uzatılmış Log 66 değerlendirmesi
+
+- **KAYNAK:** [Log 66 arşivi](../logs/module2/2026-11-01-e11-three-sct-sequential-log66-full-overlap.txt); [uzatılmış analiz](../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md); [seçilmiş kanıt](../logs/module2/2026-11-01-e11-three-sct-sequential-extended-evidence.txt).
+- **BİRLEŞTİRME:** Log 66'nın ilk 1.678 satırı Log 64 ile birebir örtüştüğü için tekilleştirildi. Birleşik kayıtta 397 tamamlanmış çevrim vardır; ilk açılış ve son yarım çevrim dışarıda bırakılarak 396 kararlı çevrim incelendi.
+- **KANAL ORTALAMALARI:** SCT1 0.423884 A; SCT2 0.424328 A; SCT3 0.425828 A. SCT3 dağılımı en düşük (CV %2.215), SCT2 en yüksek (CV %2.810).
+- **ÖRNEK SAYISI:** SCT2 3235 farklı örnek/200 ms ortalamasıyla SCT1 ve SCT3'ten yaklaşık %5 düşük kalıyor; daha uzun kayıtta da tekrarlandı.
+- **ZAMANLAMA:** 42/396 çevrimde en az bir geçiş işareti 200–300 ms tanısal aralığının dışındadır. START/COMPLETE işaretleri gerçek pencere callback'leri değildir; pencere çakışmasızlığı kesin kabul edilmedi.
+- **ROAMING:** 12:01:04.985 ve 12:06:04.908 Wi-Fi roaming scan kayıtları zamanlama sapmalarına yakındır. Olası etki; neden kanıtlanmadı.
+- **REFERANS SINIRI:** PZEM/UNIT yok; yük ve besleme koşulu açıkça tanımlanmamıştır. Kalibrasyon veya ±4% kabulü çıkarılmadı.
+- **KARAR:** YAML, K=24.22 ve 50 ms geçiş payı değiştirilmedi. T010 AKTİF; sonraki adım gerçek pencere başlangıç/bitişini cycle_id ile callback tabanlı loglamaktır.
