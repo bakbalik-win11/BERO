@@ -1,3 +1,13 @@
+## 2026-11-01 — E11 Log 69 / SCT3 iki primer tur gözlemi
+
+- **KAYIT:** [Log 69 analizi](logs/module2/2026-11-01-e11-log69-two-primary-turns-analysis.md); [maskelenmiş ham log arşivi](logs/module2/2026-11-01-e11-log69-sanitized.txt.gz.b64).
+- **DÜZEN:** Kullanıcı açıklamasına göre SCT3'te şebeke yük iletkeni CT açıklığından iki kez geçirilmiştir; SCT sensör kablosu sarılmamıştır. SCT2 tek tur/düz kablo, SCT1 değişmeden kalmıştır.
+- **SONUÇ:** 87 normal çevrim/kanal. SCT1 ortalama 0,424793 A; SCT2 0,412862 A; SCT3 iki primer turda 0,857874 A. SCT3/SCT1 = 2,0195; ideal 2x değerinden yaklaşık +%0,98 fark. İki primer tur davranışı bu logda beklenen yaklaşık iki kat sonucu verdi.
+- **ÖRNEKLER:** Ortalama farklı örnek/200 ms: SCT1 3393,34; SCT2 3264,95 (−%3,78); SCT3 3352,06 (−%1,22). Örnek sayısı/SPS değerlendirmesi akım ölçeklemesinden ayrıdır.
+- **SINIR:** PZEM/UNIT eşzamanlı referansı yok; kalibrasyon veya ±%4 kabulü değildir. Tek tur ve iki tur kayıtları `primary_turns` metadata'sıyla ayrılmalıdır.
+- **KOD KARARI:** YAML, K=24.22, GPIO, 200 ms pencere, 250 ms slot, 50 ms pay ve 2 s çevrim değiştirilmedi. T010 kapalı kalır; bu kayıt T010'u yeniden açmaz.
+- **KAYNAK HASH:** Orijinal kullanıcı dosyası SHA-256 `2c031c08b333b9f5900e530f053f1c3894bb9fecd6e049394f946f368321a90c`; depodaki maskeli açılmış metin SHA-256 `2dc20bf5e1407c56b71f222683c6c901981ec5a0495555dbd126ec57e8e5b015`.
+
 ## 2026-11-01 — T010 kapatıldı / SCT2-SCT3 soket değişimi gözlem planı
 
 - **T010:** KAPATILDI. E11 sıralı üç-SCT kodu 100 W akkor ampul oturumunda üç kanaldan veri üretti; mevcut modül devreye alma kapsamı yeterli görüldü.
