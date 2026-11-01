@@ -15,3 +15,5 @@ ADR durumları kararın başlangıç niteliğini korur. Deneyle doğrulanmamış
 - [ADR-009 — ±%4 hedefi ve ham edinim ara işlerinin kapatılması](ADR-009-measurement-target-met-close-raw-capture.md)
 
 - [ADR-010 — PZEM referanslı kararlı alan etiketleme ve sürekli öğrenme](ADR-010-pzem-stable-window-learning-focus.md)
+
+- [ADR-022 — Paket işaretleriyle akış bölümleme ve eğitim verisi oluşturma](ADR-022-packet-marker-segmented-training-streams.md)
