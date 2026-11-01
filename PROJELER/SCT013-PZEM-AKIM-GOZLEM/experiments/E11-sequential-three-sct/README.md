@@ -1,3 +1,13 @@
+
+
+## 2026-11-01 — E11 Log 66 / 100 W UNIT karşılaştırması (kullanıcı yük teyidi)
+
+- Kullanıcı, Log 66'nın fiziksel yükünün **100 W akkor ampul** olduğunu sonradan teyit etti. İlk analiz sırasında log içinde yük etiketi bulunmadığı için bu ayrıntı kullanıcı bildirimi olarak eklenmiştir.
+- Tarihsel UNIT referansı 0,427 A; eşzamanlı UNIT ölçümü yoktur. ±%4 bandı 0,40992–0,44408 A.
+- 396 kararlı çevrim ortalamaları: SCT1 0,423884 A (−%0,730), SCT2 0,424328 A (−%0,626), SCT3 0,425828 A (−%0,274).
+- Üç kanalın ortalaması da tarihsel UNIT referansına göre ±%4 içindedir. Bu oturum için yeni sıralı kod başarılı kabul edilir; sonuç eşzamanlı UNIT doğrulaması veya genel kalibrasyon garantisi değildir.
+- SCT2'nin kabul edilmiş örnek sayısı yaklaşık %5 düşüktür; 42/396 çevrimde en az bir script geçiş işareti 200–300 ms tanısal aralığın dışındadır. Gerçek pencere sınırları callback ile doğrulanmadığından 50 ms pay azaltılmaz.
+- K=24.22 değişmedi. Ayrıntı: [Log 66 uzatılmış analiz](../../logs/module2/2026-11-01-e11-three-sct-sequential-extended-analysis.md).
 # E11 — Üç SCT kanalında sıralı CT Clamp okuması
 
 - **Tarih:** 2026-11-01
