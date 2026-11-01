@@ -1,3 +1,39 @@
+## 2026-11-01 — E11 yüksüz iki modül deneyi planlandı; deney sırası esnekleştirildi
+
+### HEDEF
+Kullanıcının belirlediği ilk ortak Modül 2/Modül 3 deneyini, mevcut ADR ve Faz 2 görev bağımlılıklarını bozmadan depoya kaydetmek.
+
+### DEPO OKUMASI
+Proje AGENTS.md, STATUS.md, ROADMAP.md, README.md, PROGRESS_TREE.md, T009, görev indeksi, deney indeksi, E10 ve ADR indeksi okundu. Önceki repo kayıtlarıyla uyum kontrol edildi.
+
+### YAPILAN
+- E11 — Modül 2/3 birlikte yüksüz hat uzun süreli gözlem ve olay aktarımı protokolü oluşturuldu.
+- STATUS.md, PROGRESS_TREE.md, ROADMAP.md ve experiments/README.md güncellendi.
+- Faz 2 deney önceliklerinin sabit takvim olmadığı; donanım hazırlığı ve ihtiyaca göre değişebileceği kaydedildi.
+- Modül 2'nin üç SCT kanalının birlikte çalışmaya devam edeceği; kanal seçici jumper/düğme eklenmesinin şu an gerekli görülmediği kaydedildi.
+- İşletim modları ayrıldı: Modül 2 tek başına SCT gözlemi yapabilir; Modül 3 tek başına PZEM gözlemi yapabilir; birlikte eğitim/paket eşleştirme için iki modül ve Modül 3 olay üretimi birlikte aktif olmalıdır.
+- Yalnız PZEM gözleminde SSR döngüsünü ileride devre dışı bırakmak olası işletim seçeneği olarak not edildi; bu oturumda firmware/YAML değiştirilmedi.
+
+### E11 DÜZENEĞİ
+- Modül 2 ve Modül 3 birlikte çalışacak; ölçülen hatta yük bağlanmayacak.
+- Modül 3'ün 40 s ON / 20 s OFF mantıksal SSR döngüsü açık kalacak.
+- PZEM yüksüz akım davranışı ile Modül 2'nin üç SCT kanalının yüksüz davranışı ayrı incelenecek.
+- Modül 3'ün ürettiği olaylar ile Modül 2'nin aldığı olaylar BOOT_ID + EVENT_ID + STATE üzerinden karşılaştırılacak.
+- Önce kısa eşzamanlı açılış/log kontrolü yapılacak; uygunsa hedef ertesi gün akşama kadar yüksüz uzun gözlem.
+- Bu deney yük altı eğitim verisi üretmez. Mantıksal SSR durumu fiziksel SSR anahtarlamasını kanıtlamaz.
+
+### DURUM VE SINIR
+E11 yalnız PLANLANDI. Modül 3 montajı, kısa kontrol, uzun çalışma, log analizi ve sonuç kaydı henüz yapılmadı. Bu kayıt test sonucu değildir. Ana görev bağımlılıkları ve ADR'ler değiştirilmedi.
+
+### KANIT / DOSYALAR
+- [E11 protokolü](../experiments/E11-idle-dual-module-observation/README.md)
+- [STATUS](../STATUS.md)
+- [ROADMAP](../ROADMAP.md)
+- [PROGRESS_TREE](../PROGRESS_TREE.md)
+- [Deney indeksi](../experiments/README.md)
+
+---
+
 ## 2026-11-01 — Depo bütünlüğü ve Modül 2/3 olay akışı güncellemesi
 
 ### HEDEF
