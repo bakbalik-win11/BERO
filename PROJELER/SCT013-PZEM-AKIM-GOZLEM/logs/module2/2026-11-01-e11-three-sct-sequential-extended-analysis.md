@@ -101,3 +101,14 @@ ct_clamp debug tamamlanma satırlarının ilgili START işaretine uzaklığı me
 - **Repository source:** E11 YAML'ın 200 ms sample_duration, 250 ms delay, START/COMPLETE log sırası ve K=24.22 ayarları.
 - **User-provided:** Log dosyalarının paylaşılması.
 - **Hypothesis:** Wi-Fi roaming'in scheduler gecikmelerine katkı yapmış olabileceği; ek deney olmadan doğrulanmış neden değildir.
+
+
+## 2026-11-01 — E11 Log 66 / 100 W UNIT karşılaştırması (kullanıcı yük teyidi)
+
+- **YÜK KİMLİĞİ:** İlk log incelemesinde fiziksel yük etiketi log içinde bulunmuyordu. Kullanıcı, sonraki mesajında bu uzun logun 100 W akkor ampul deneyi olduğunu teyit etti. Bu bilgi kullanıcı bildirimi olarak sınıflandırılır; log satırlarının içinde bağımsız yük etiketi değildir.
+- **REFERANS:** 100 W akkor için tarihsel UNIT değeri 0,427 A. Bu değer logla eşzamanlı UNIT ölçümü değildir; mevcut test-load kaydındaki geçici çalışma referansıdır.
+- **KARARLI VERİ:** Log 64/66 birleştirilmiş zaman çizgisinde 396 kararlı çevrim/kanal analiz edildi. SCT1 ortalama 0,423884 A; SCT2 0,424328 A; SCT3 0,425828 A.
+- **UNIT KIYASI:** UNIT 0,427 A'ya göre SCT1 −%0,730; SCT2 −%0,626; SCT3 −%0,274. Üç kanal ortalaması da 0,40992–0,44408 A kabul bandındadır.
+- **SONUÇ:** Kullanıcının yük teyidi esas alındığında yeni E11 sıralı üç-SCT kodu, bu 100 W oturumunda üç kanal ortalaması bakımından tarihsel UNIT referansına göre ±%4 hedefini sağlamıştır. Bu, aynı oturumda alınmış UNIT ölçümü değildir; bu nedenle sonuç “tarihsel UNIT referansına göre karşılaştırmalı başarı” olarak kaydedilir, eşzamanlı doğrulama veya genel kalibrasyon garantisi olarak sunulmaz.
+- **DİĞER BULGULAR:** SCT2'nin kabul edilmiş örnek sayısı SCT1/SCT3'ten yaklaşık %5 düşük; 42/396 çevrimde en az bir script geçiş işareti 200–300 ms tanısal aralığın dışındadır. Gerçek ADC pencere sınırları callback ile doğrulanmadığından 50 ms geçiş payı azaltılmaz.
+- **KOD/KATSAYI:** K=24.22 değişmedi. Bu sonuçtan katsayı düzeltmesi çıkarılmadı. PZEM bu kıyasın referansı değildir.
