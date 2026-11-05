@@ -1,6 +1,6 @@
 # E11 — Modül 2/3 birlikte yüksüz hat uzun süreli gözlem ve olay aktarımı
 
-**Durum: PLANLANDI.** Modül 3'ün fiziksel montajı ve iki modülün birlikte ilk açılış kontrolü bekleniyor. Bu kayıt deney planıdır; henüz yeni ölçüm veya uzun süreli log sonucu değildir.
+**Durum: PLANLANDI — fiziksel montaj kullanıcı tarafından tamamlandı olarak bildirildi; kısa ortak açılış kontrolü bekleniyor.** Montaj bilgisi henüz bağlantı incelemesi veya cihaz loguyla bağımsız doğrulanmadı. E11 deney ölçümü ve uzun süreli log henüz başlamadı.
 
 ## 1. HEDEF
 
@@ -20,7 +20,7 @@ Aynı oturumda iki bağımsız çıktıyı incelemek:
 ## 3. UYGULAMA SIRASI
 
 ### A — Fiziksel hazırlık
-Kullanıcı Modül 3'ün montajını ve bağlantılarını tamamlar. Enerjili devrede bağlantı değişikliği yapılmaz.
+**2026-11-05 güncellemesi:** Kullanıcı Modül 3 fiziksel montajının tamamlandığını bildirdi. Bu kullanıcı bildirimidir; bağlantıların doğruluğu ve montajın elektriksel güvenliği ayrıca kontrol edilmelidir. Enerjili devrede bağlantı değişikliği yapılmaz. Bu adımın ardından kısa ortak açılış kontrolüne geçilebilir.
 
 ### B — Kısa eşzamanlı açılış kontrolü
 İki modül aynı anda başlatılır. Uzun teste geçmeden önce:
