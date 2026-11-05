@@ -61,8 +61,8 @@ SCT1'in yayınlanan değerleri üzerinde kayan/ardışık pencereler değerlendi
 
 ## ON/OFF paketleme, eğitim ve OFF alanının kapsamı
 
-1. Her akışta olay işaretlerinin sırasını ve paket bütünlüğünü doğrula. `EVENT_ID` her SSR durum değişiminde artar: ON başlangıç işareti kendi `BOOT_ID + EVENT_ID` kimliğine sahiptir; onu izleyen OFF kapanış işaretinin EVENT_ID değeri farklıdır. Paket kimliği ON başlangıç işaretinin `BOOT_ID + EVENT_ID` birleşimidir. İki modüldeki ON başlangıçları bu kimlikle eşleşmeli; karşılık gelen OFF kapanışları da her iki akışta doğru sıra/kimlikle doğrulanmalıdır.
-2. Eksik ON/OFF işareti, sıra bozukluğu, boot değişimi veya iki modül arasında olay kimliği uyuşmazlığı olan aralıkları tamamlanmış paket/eğitim adayı sayma. Ham kayıt korunur ve dışlama nedeni raporlanır.
+1. Her akışta olay işaretlerinin sırasını ve paket bütünlüğünü doğrula. Paket anahtarı `BOOT_ID + ON_EVENT_ID`'dir; iki modüldeki ON başlangıçları aynı anahtarı taşımalıdır. Her akışta ON'dan sonraki ilk durum olayı OFF olmalı ve iki akıştaki kapanışlar aynı `BOOT_ID + OFF_EVENT_ID` anahtarını taşımalıdır. Normal çevrimde `OFF_EVENT_ID = ON_EVENT_ID + 1` beklenir.
+2. ON ile OFF arasında EVENT_ID boşluğu, beklenmeyen ara durum olayı, farklı OFF kimliği, eksik OFF veya boot değişimi varsa paket kesin olarak reddedilir. Bir akışın OFF kaydı diğer akıştaki eksikliği kapatamaz. Ham kayıt korunur ve `EVENT_ID_GAP`, `OFF_EVENT_MISMATCH`, `MISSING_OFF` gibi paket bütünlüğü nedeni raporlanır.
 3. **OFF alanı eğitim verisi değildir.** OFF okumaları hiçbir koşulda SCT/PZEM kararlı yük eğitim eşleştirmesine veya eğitim örneği üretimine alınmaz. OFF, bu ilk aşamada sıfır/kapalı durum kabulüdür ve ON paket sınırını kapatmak için kullanılır.
 4. SCT kararlı alanlarını yalnız SCT'nin aynı ON paketindeki ölçüm verisinden, PZEM kararlı alanlarını yalnız PZEM'in aynı ON paketindeki ölçüm verisinden bağımsız tespit et.
 5. Paket bütünlüğü doğrulandıktan sonra iki ON kararlı aralığın zaman kesişimini hesapla. Yalnız kesişen zaman aralığı karşılaştırılabilir eğitim adayıdır. Kesişim yoksa eğitim etiketi üretme; ham kayıtları koru ve `NO_STABLE_OVERLAP` gibi açık dışlama nedeni raporla.
@@ -73,6 +73,10 @@ SCT1'in yayınlanan değerleri üzerinde kayan/ardışık pencereler değerlendi
 **OFF/yüksüz taban istatistiği ayrı ve sonraki aşamaya bırakılmış isteğe bağlı bir araştırmadır.** Gerekirse aç-kapa döngüsü olmadan, ölçülen hatta yük bağlı değilken uzun bir kayıt alınır. Bu kayıttan yüksüz taban dağılımı ve olası gürültü/kapalı durum eşiği çıkarılabilir. Bu çalışma E12'nin ilk eğitim hedefi değildir ve OFF verisini eğitim örneğine dönüştürmez.
 
 Bu yaklaşımda paket kimliği zaman damgasından bağımsızdır. Timestamp, iki akışın ölçüm örneklerini birebir eşleştirmek için değil, paket bütünlüğü doğrulandıktan sonra aynı ON paketindeki bağımsız kararlı aralıkların ortak zamanını değerlendirmek için kullanılır. PZEM proje referansıdır; mutlak ground truth değildir.
+
+### Dışlama raporu
+
+Paket bütünlüğü durumları (`MISSING_ON`, `MISSING_OFF`, `EVENT_ID_GAP`, `OFF_EVENT_MISMATCH`, `DUPLICATE_EVENT`, `STATE_ORDER_ERROR`, `BOOT_CHANGED_WITH_OPEN_PACKET`) ile paket tamken ortaya çıkan etiket uygunluğu durumları (`NO_STABLE_SCT`, `NO_STABLE_PZEM`, `NO_STABLE_OVERLAP`) ayrı tutulur. Etiket uygunluğu sorunu paketi bozuk yapmaz; paket bütünlüğü hatası da kararlı alan analiziyle giderilmiş sayılmaz. Ham kayıt korunur.
 
 ## Tepki süresi ve kısa pencere karşılaştırması
 
