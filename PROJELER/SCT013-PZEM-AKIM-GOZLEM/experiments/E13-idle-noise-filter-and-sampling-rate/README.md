@@ -120,3 +120,25 @@ Bu değer **ilk test adayıdır; onaylanmış nihai parametre değildir**. Filtr
 - Tek kanallı canlı ESP'de 4 saniyelik / 8 örnekli kayan filtre adayı, tekil sıçramayı bastırırken gerçek ON başlangıcını geciktirmeme açısından değerlendirilecek.
 
 Açık işler ve kabul ölçütleri buna göre revize edilmelidir. Firmware henüz değiştirilmedi; 2 Hz ve filtre uygulaması test bekliyor.
+
+
+## 2026-11-05 — Süreklilik kararının kullanıcı tarafından netleştirilmesi
+
+Kullanıcı, filtre kararının tek bir 4 saniyelik pencereye bakılarak verilmesini istemediğini netleştirdi. Esas ayrım, 500 ms'lik tekil ve devam etmeyen ölçüm sıçraması ile sonraki örneklerde/pencerelerde de devam eden sistem davranışıdır.
+
+- Canlı örnekleme 500 ms (2 Hz) olacaktır; her tek ölçüm ham veri olarak korunur.
+- Yaklaşık 4 saniyelik kayan pencere ilk tasarım adayıdır (8 örnek). Pencere her yeni örnek geldikçe güncellenebilir.
+- Tek bir 500 ms örneğinde görülen ve sonraki ölçümlerde devam etmeyen sıçrama, çamaşır makinesi gibi hedef yüklerin çalışma durumu olarak kabul edilmemelidir; filtreli karar katmanında geçici anomali olarak işaretlenmesi/bastırılması hedeflenir.
+- Yükseliş sonraki örneklerde veya sonraki kayan pencere değerlendirmelerinde de sürüyorsa artık süreklilik gösteren bir sistem davranışı/yük adayı sayılmalıdır. Böyle bir yükseliş filtre tarafından tekil sıçrama diye silinmemelidir.
+- Bu, tek pencere içinde eşik aşımı aramak değil, ardışık zaman değerlendirmeleri arasında devamlılık aramaktır.
+- Çamaşır makinesi uygulaması için kullanıcı varsayımı: yarım saniyelik tekil bir akım hareketi makinenin anlamlı çalışma durumu değişimi değildir. Bu varsayım hedef uygulama bağlamında kullanılacak; başka yük türlerine genellenmeyecektir.
+
+### E13 filtre doğrulama senaryoları
+
+1. **Tek örnek sıçrama:** Bir 500 ms örnek yüksek, hemen sonraki örnekler normal seviyeye döner. Beklenti: ham kayıtta tutulur; filtreli durum kararında kalıcı yük olarak değerlendirilmez.
+2. **Ardışık devam:** İlk yüksek örnekten sonra yükseliş sonraki örneklerde de sürer. Beklenti: süreklilik algılanır; gerçek yük davranışı adayı korunur.
+3. **Pencere sınırını aşan devam:** Yükseliş bir 4 saniyelik pencere değerlendirmesinden sonraki kayan pencereye de taşar. Beklenti: sonraki pencere değerlendirmesi de yükselişi görür; tekil anomali muamelesi yapılmaz.
+4. **Kısa aralıklı tekrarlar:** Tekil sıçramalar aralarda normale dönerek tekrarlanır. Beklenti: algoritma bunları kesintisiz yük varlığına dönüştürmez; tekrar sıklığı ayrıca raporlanır.
+5. **Gerçek ON geçişi:** Kontrollü SSR ON ile kalıcı yükseliş başlatılır. Beklenti: filtre yükselişi bastırmaz; algılama gecikmesi ölçülür.
+
+Kabul ölçütü: tek örnekli sıçrama ham veriden silinmemeli fakat canlı durum kararında kalıcı yük sayılmamalı; ardışık devam eden gerçek ON yükselişi ise belirlenen ve ölçülen gecikme içinde tanınmalıdır. Kaç ardışık örneğin/sürenin yeterli olacağı deneyle belirlenecek; henüz sabit bir sayı veya amper eşiği tanımlanmamıştır.
