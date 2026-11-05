@@ -84,3 +84,17 @@ depolandığında sonuç raporu hazırlanır. Ölçüm yapılmadan sonuç veya k
 ## 8. GÜVENLİK
 
 220–240 V bağlantıların kurulumu/denetimi yetkin kişi tarafından, uygun muhafaza ve koruma ile yapılmalıdır. Modüllerin ayrı beslemesi ile izlenen hattın ölçüm bağlantıları karıştırılmamalıdır. CT sekonderi üretici talimatına aykırı biçimde açık bırakılmamalıdır. Yüksüz testte hatta yanlışlıkla yük bağlanmadığı ve SSR çıkışının güvenli durumda olduğu montaj öncesi kontrol edilmelidir.
+
+
+## Görsel fiziksel teyit — kullanıcı bildirimi
+
+Kullanıcı, Modül 2 ve Modül 3'ün birlikte çalıştığı bu ilk ortak çalışmada Modül 3'ün SSR çıkışına bağlı akkor ampulün yanıp sönmesini kendi gözleriyle gördüğünü ve fiziksel ON/OFF davranışını teyit ettiğini bildirdi. Bu, logların gösterdiği yazılım/ağ kayıtlarından ayrı bir kullanıcı gözlemidir.
+
+**Kanıtın sınırı:** Kullanıcı görsel teyidi, test sırasında ampulün fiziksel olarak yanıp söndüğünü destekler. Modül 3 logunda OFF geçişlerinde `GPIO_OFF_READBACK_MISMATCH` uyarısı yine mevcuttur; bu uyarı silinmiş veya teknik olarak çözülmüş sayılmaz. Modül 2 logunda EVENT_ID 31, 32 ve 33 alımları vardır; EVENT_ID 34 alıcı logunda görünmediğinden UDP aktarımının bu kısa testte tamamen kayıpsız olduğu iddia edilmez.
+
+Bu kayıt, **Modül 2 + Modül 3 ilk ortak çalışma / fiziksel SSR gözlem teyidi** olarak arşivlenmiştir. E11 yüksüz uzun gözlemi değildir.
+
+Ham loglar:
+- `logs/dual-module/2026-11-05-modul2-ilk-ortak-calisma.txt` (1070 satır)
+- `logs/dual-module/2026-11-05-modul3-ilk-ortak-calisma.txt` (362 satır)
+
