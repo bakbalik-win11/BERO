@@ -63,3 +63,20 @@ Bir sonraki çalışma oturumunun **ilk adımı**, kullanıcıdan bu gece alına
 Tur sayısına bölerek yaklaşık normalize edilmiş bir gürültü karşılaştırması yapılabilir; ancak bu işlem kesin eşdeğerlik sağlamaz. Kanalın fiziksel yerleşimi, hat/faz-nötr konumu, sensör ve analog yol kazancı, K katsayısı ve örnekleme etkileri farklı olabilir. Bu nedenle her raporda ham kanal dağılımı (medyan, üst yüzdelikler/P95-P99, maksimum, saçılım ve zaman davranışı) korunmalı; tur-normalize değer yalnız ek karşılaştırma olarak sunulmalıdır. Bir kanaldaki en yüksek okumanın tek başına eşik seçimi için yeterli olmadığı, tekrar eden oturumların dağılımıyla birlikte değerlendirilmesi gerektiği not edilir.
 
 Bu havuz ON kararlı alan kalibrasyonuna veya PZEM–SCT ON eşleştirmesine katılmaz. Hedef, sistem yüksüzken görülen taban/gürültü alanını ve oturumlar arası değişimini tanımak; daha sonra kapalı durum eşiği veya ayrı OFF sınıflandırıcısı için veri sağlamaktır. Henüz eşik/model belirlenmemiştir.
+
+
+## 2026-11-05 — Uzun süreli fiziksel sıfır akım gürültü bandı toplama kararı
+
+Kullanıcı, yüksüz gözlemin tek gecelik deneyle sınırlanmamasını; başlangıçta yaklaşık bir hafta/10 gün, gerekirse daha uzun süre devam etmesini istedi. Her gün veya uygun oturum sonunda sağlanan Home Assistant History CSV ayrı analiz edilecek ve geçerli satırlar aynı kümülatif yüksüz veri havuzuna eklenecektir.
+
+**Fiziksel referans koşulu kullanıcı tarafından açıkça teyit edilmiştir:** Ölçülen hatta hiçbir yük bağlı değildir; ESP'ler, PZEM ve diğer modüller bu ölçüm hattından beslenmemektedir. Bu nedenle bu deney koşulunda iletkendeki gerçek yük akımı fiziksel olarak 0 A'dır. PZEM'in 0 A göstermesi destekleyici gözlemdir; fiziksel sıfır koşulunun dayanağı değildir. SCT kanallarının sıfırdan farklı çıktıları bu nedenle fiziksel yük akımı değil, sensör/analog ölçüm zincirinin sıfır-akım taban çıktısı ve gürültü davranışı olarak değerlendirilir.
+
+### Kümülatif veri işletimi
+1. Kullanıcı her gün/oturum sonunda HA History CSV sağlar; sürekli başında bekleme veya tek seferde 7–10 gün kayıt şartı yoktur.
+2. Her CSV önce bağımsız oturum olarak doğrulanır ve analiz edilir. Zaman aralığı, entity kapsamı, örnek sayıları, eksik/tekrarlı kayıtlar ve kanal dağılımları raporlanır.
+3. Yeni oturum eklenmeden önce GitHub'daki mevcut kümülatif veri ve oturum indeksi okunur. Yeni oturum kimliği/kaynak dosya bilgisiyle eklenir; yinelenen kayıtlar kontrol edilir; ham değerler değiştirilmeden birleştirilir; kümülatif dosya ve özet yeniden depoya yazılır.
+4. İlk gerçek CSV geldikten sonra HA export'un gerçek kolonlarına göre kalıcı kümülatif şema seçilir. Veri görülmeden sentetik satır veya varsayımsal ölçüm dosyası oluşturulmaz. Kaynak oturum dosyaları da mümkün olduğu ölçüde ayrı ve değişmez arşiv olarak korunur.
+5. Oturum raporları ve kümülatif rapor SCT1/2/3 için medyan, P95, P99, maksimum, saçılım ve zamansal değişimi içerir. Fiziksel tur bilgileri SCT1=1T, SCT2=4T, SCT3=3T'dir; tur-normalize değer yardımcıdır, ham ölçümün yerine geçmez.
+6. Yaklaşık 7–10 günlük başlangıç hedefi sabit bitiş zorunluluğu değildir. Kullanıcı veri toplamayı sürdürdükçe havuz büyütülebilir. Tek maksimumdan veya tek oturumdan eşik çıkarılmaz; yeterli oturumlar arası veri oluşmadan OFF eşiği/modeli belirlenmez.
+
+Bu havuz ON akım kalibrasyonundan ve PZEM–SCT ON eşleştirmesinden ayrıdır. Amaç, fiziksel 0 A koşulundaki SCT ölçüm tabanının uzun dönem dağılımını ve gürültü bandını karakterize etmektir.
