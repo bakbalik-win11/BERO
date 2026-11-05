@@ -1,0 +1,1069 @@
+Logs - ESP32D1
+OTA
+INFO ESPHome 2026.10.2
+INFO Loaded validated config cache for esp32d1.yaml, skipping validation.
+INFO Starting log output from 192.168.0.35 using esphome API
+INFO Successfully resolved esp32d1 @ 192.168.0.35 in 0.000s
+INFO Successfully connected to esp32d1 @ 192.168.0.35 in 0.199s
+INFO Successful handshake with esp32d1 @ 192.168.0.35 in 0.015s
+[18:58:08.013][I][app:164]: ESPHome version 2026.10.1 compiled on 2026-11-01 19:15:41 +0300
+[18:58:08.014][I][app:171]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[18:58:08.014][W][app:189]: Set flash_chip: generic under esp32 > framework > advanced to save IRAM
+[18:58:08.014][W][app:201]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[18:58:08.048][W][app:228]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[18:58:08.049][C][logger:218]: Logger:
+[18:58:08.049][C][logger:218]:   Max Level: DEBUG
+[18:58:08.049][C][logger:218]:   Initial Level: DEBUG
+[18:58:08.049][C][logger:225]:   Log Baud Rate: 115200
+[18:58:08.049][C][logger:225]:   Hardware UART: UART0
+[18:58:08.049][C][logger:234]:   Task Log Buffer Size: 768 bytes
+[18:58:08.064][C][template.sensor:017]: Template Sensor 'BERO Mod2 SCT1 Faz 2T Ham Akim'
+[18:58:08.064][C][template.sensor:017]:   State Class: 'measurement'
+[18:58:08.064][C][template.sensor:017]:   Unit of Measurement: 'A'
+[18:58:08.064][C][template.sensor:017]:   Accuracy Decimals: 5
+[18:58:08.069][C][template.sensor:166]:   Device Class: 'current'
+[18:58:08.069][C][template.sensor:338]:   Update Interval: never
+[18:58:08.070][C][template.sensor:017]: Template Sensor 'BERO Mod2 SCT2 Notr 4T Ham Akim'
+[18:58:08.070][C][template.sensor:017]:   State Class: 'measurement'
+[18:58:08.070][C][template.sensor:017]:   Unit of Measurement: 'A'
+[18:58:08.070][C][template.sensor:017]:   Accuracy Decimals: 5
+[18:58:08.086][C][template.sensor:166]:   Device Class: 'current'
+[18:58:08.089][C][template.sensor:338]:   Update Interval: never
+[18:58:08.110][C][template.sensor:017]: Template Sensor 'BERO Mod2 SCT3 Faz 3T Ham Akim'
+[18:58:08.110][C][template.sensor:017]:   State Class: 'measurement'
+[18:58:08.110][C][template.sensor:017]:   Unit of Measurement: 'A'
+[18:58:08.110][C][template.sensor:017]:   Accuracy Decimals: 5
+[18:58:08.117][C][template.sensor:166]:   Device Class: 'current'
+[18:58:08.118][C][template.sensor:338]:   Update Interval: never
+[18:58:08.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:08.127][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay Kaydi'
+[18:58:08.143][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay BOOT ID'
+[18:58:08.143][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay EVENT ID'
+[18:58:08.143][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay STATE'
+[18:58:08.168][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 UDP Dinleyici'
+[18:58:08.169][C][adc:017]: ADC Sensor 'ESP32D1 SCT1 ADC Source'
+[18:58:08.169][C][adc:017]:   State Class: 'measurement'
+[18:58:08.169][C][adc:017]:   Unit of Measurement: 'V'
+[18:58:08.169][C][adc:017]:   Accuracy Decimals: 2
+[18:58:08.175][C][adc:166]:   Device Class: 'voltage'
+[18:58:08.175][C][adc:131]:   Pin: GPIO32
+[18:58:08.191][C][adc:131]:   Channel:       4
+[18:58:08.191][C][adc:131]:   Unit:          ADC1
+[18:58:08.191][C][adc:131]:   Attenuation:   12 dB
+[18:58:08.191][C][adc:131]:   Samples:       1
+[18:58:08.191][C][adc:131]:   Sampling mode: average
+[18:58:08.191][C][adc:131]:   Setup Status:
+[18:58:08.191][C][adc:131]:     Handle Init:  OK
+[18:58:08.191][C][adc:131]:     Config:       OK
+[18:58:08.191][C][adc:131]:     Calibration:  OK
+[18:58:08.191][C][adc:131]:     Overall Init: OK
+[18:58:08.217][C][adc:338]:   Update Interval: never
+[18:58:08.218][C][adc:017]: ADC Sensor 'ESP32D1 SCT2 ADC Source'
+[18:58:08.218][C][adc:017]:   State Class: 'measurement'
+[18:58:08.218][C][adc:017]:   Unit of Measurement: 'V'
+[18:58:08.218][C][adc:017]:   Accuracy Decimals: 2
+[18:58:08.218][C][adc:166]:   Device Class: 'voltage'
+[18:58:08.223][C][adc:131]:   Pin: GPIO33
+[18:58:08.244][C][adc:131]:   Channel:       5
+[18:58:08.244][C][adc:131]:   Unit:          ADC1
+[18:58:08.244][C][adc:131]:   Attenuation:   12 dB
+[18:58:08.244][C][adc:131]:   Samples:       1
+[18:58:08.244][C][adc:131]:   Sampling mode: average
+[18:58:08.244][C][adc:131]:   Setup Status:
+[18:58:08.244][C][adc:131]:     Handle Init:  OK
+[18:58:08.244][C][adc:131]:     Config:       OK
+[18:58:08.244][C][adc:131]:     Calibration:  OK
+[18:58:08.244][C][adc:131]:     Overall Init: OK
+[18:58:08.245][C][adc:338]:   Update Interval: never
+[18:58:08.245][C][adc:017]: ADC Sensor 'ESP32D1 SCT3 ADC Source'
+[18:58:08.245][C][adc:017]:   State Class: 'measurement'
+[18:58:08.245][C][adc:017]:   Unit of Measurement: 'V'
+[18:58:08.245][C][adc:017]:   Accuracy Decimals: 2
+[18:58:08.252][C][adc:166]:   Device Class: 'voltage'
+[18:58:08.294][C][adc:131]:   Pin: GPIO34
+[18:58:08.295][C][adc:131]:   Channel:       6
+[18:58:08.295][C][adc:131]:   Unit:          ADC1
+[18:58:08.295][C][adc:131]:   Attenuation:   12 dB
+[18:58:08.295][C][adc:131]:   Samples:       1
+[18:58:08.295][C][adc:131]:   Sampling mode: average
+[18:58:08.295][C][adc:131]:   Setup Status:
+[18:58:08.295][C][adc:131]:     Handle Init:  OK
+[18:58:08.295][C][adc:131]:     Config:       OK
+[18:58:08.295][C][adc:131]:     Calibration:  OK
+[18:58:08.295][C][adc:131]:     Overall Init: OK
+[18:58:08.296][C][adc:338]:   Update Interval: never
+[18:58:08.301][C][adc:017]: ADC Sensor 'BERO Mod2 Ortak Bias'
+[18:58:08.301][C][adc:017]:   State Class: 'measurement'
+[18:58:08.301][C][adc:017]:   Unit of Measurement: 'V'
+[18:58:08.301][C][adc:017]:   Accuracy Decimals: 5
+[18:58:08.302][C][adc:166]:   Device Class: 'voltage'
+[18:58:08.306][C][adc:131]:   Pin: GPIO35
+[18:58:08.309][C][adc:131]:   Channel:       7
+[18:58:08.309][C][adc:131]:   Unit:          ADC1
+[18:58:08.309][C][adc:131]:   Attenuation:   12 dB
+[18:58:08.309][C][adc:131]:   Samples:       1
+[18:58:08.309][C][adc:131]:   Sampling mode: average
+[18:58:08.309][C][adc:131]:   Setup Status:
+[18:58:08.309][C][adc:131]:     Handle Init:  OK
+[18:58:08.309][C][adc:131]:     Config:       OK
+[18:58:08.309][C][adc:131]:     Calibration:  OK
+[18:58:08.309][C][adc:131]:     Overall Init: OK
+[18:58:08.331][C][adc:338]:   Update Interval: never
+[18:58:08.353][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.004A after 7 different samples (35 SPS)
+[18:58:08.368][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:08.371][C][ct_clamp:017]: CT Clamp Sensor 'BERO Mod2 SCT1 Faz 2T Akim'
+[18:58:08.371][C][ct_clamp:017]:   State Class: 'measurement'
+[18:58:08.371][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[18:58:08.371][C][ct_clamp:017]:   Accuracy Decimals: 3
+[18:58:08.377][C][ct_clamp:166]:   Device Class: 'current'
+[18:58:08.378][C][ct_clamp:013]:   Sample Duration: 0.20s
+[18:58:08.378][C][ct_clamp:338]:   Update Interval: never
+[18:58:08.385][C][ct_clamp:017]: CT Clamp Sensor 'BERO Mod2 SCT2 Notr 4T Akim'
+[18:58:08.385][C][ct_clamp:017]:   State Class: 'measurement'
+[18:58:08.385][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[18:58:08.385][C][ct_clamp:017]:   Accuracy Decimals: 3
+[18:58:08.400][C][ct_clamp:166]:   Device Class: 'current'
+[18:58:08.406][C][ct_clamp:013]:   Sample Duration: 0.20s
+[18:58:08.409][C][ct_clamp:338]:   Update Interval: never
+[18:58:08.409][C][ct_clamp:017]: CT Clamp Sensor 'BERO Mod2 SCT3 Faz 3T Akim'
+[18:58:08.409][C][ct_clamp:017]:   State Class: 'measurement'
+[18:58:08.409][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[18:58:08.409][C][ct_clamp:017]:   Accuracy Decimals: 3
+[18:58:08.417][C][ct_clamp:166]:   Device Class: 'current'
+[18:58:08.430][C][ct_clamp:013]:   Sample Duration: 0.20s
+[18:58:08.437][C][ct_clamp:338]:   Update Interval: never
+[18:58:08.457][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00353 A
+[18:58:08.457][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.086 A
+[18:58:08.461][C][network:050]: Network:
+[18:58:08.461][C][network:050]:   TCP send buffer: 5760 bytes
+[18:58:08.461][C][wifi:1688]: WiFi:
+[18:58:08.461][C][wifi:1688]:   Local MAC: 70:4B:CA:48:0B:9C
+[18:58:08.461][C][wifi:1688]:   Connected: YES
+[18:58:08.462][C][wifi:1392]:   IP Address: 192.168.0.35
+[18:58:08.462][C][wifi:1403]:   SSID: 'AKFISH'
+[18:58:08.462][C][wifi:1403]:   BSSID: 7E:64:CF:5C:81:73
+[18:58:08.462][C][wifi:1403]:   Hostname: 'esp32d1'
+[18:58:08.462][C][wifi:1403]:   Signal strength: -56 dB ▂▄▆█
+[18:58:08.462][C][wifi:1403]:   Channel: 2
+[18:58:08.462][C][wifi:1403]:   Subnet: 255.255.255.0
+[18:58:08.462][C][wifi:1403]:   Gateway: 192.168.0.1
+[18:58:08.462][C][wifi:1403]:   DNS1: 192.168.0.1
+[18:58:08.462][C][wifi:1403]:   DNS2: 0.0.0.0
+[18:58:08.476][C][esphome.ota:129]: Over-The-Air updates:
+[18:58:08.476][C][esphome.ota:129]:   Address: esp32d1.local:3232
+[18:58:08.476][C][esphome.ota:129]:   Version: 2
+[18:58:08.526][C][safe_mode:058]: Safe Mode:
+[18:58:08.526][C][safe_mode:058]:   Successful after: 60s
+[18:58:08.526][C][safe_mode:058]:   Invoke after: 10 attempts
+[18:58:08.526][C][safe_mode:058]:   Duration: 300s
+[18:58:08.527][C][safe_mode:079]:   Bootloader rollback: support unknown
+[18:58:08.527][C][api:368]: Server:
+[18:58:08.527][C][api:368]:   Address: esp32d1.local:6053
+[18:58:08.527][C][api:368]:   Listen backlog: 4
+[18:58:08.527][C][api:368]:   Max connections: 5
+[18:58:08.535][C][api:380]:   Noise encryption: NO
+[18:58:08.535][C][mdns:324]: mDNS:
+[18:58:08.535][C][mdns:324]:   Hostname: esp32d1
+[18:58:08.574][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.008A after 873 different samples (4365 SPS)
+[18:58:08.624][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:08.678][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00834 A
+[18:58:08.678][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.202 A
+[18:58:08.837][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.006A after 3406 different samples (17030 SPS)
+[18:58:08.878][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:08.883][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:08.936][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00630 A
+[18:58:08.936][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.153 A
+[18:58:08.936][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66000 V
+[18:58:10.124][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:10.330][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.007A after 3459 different samples (17295 SPS)
+[18:58:10.373][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:10.426][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00734 A
+[18:58:10.427][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.178 A
+[18:58:10.578][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.011A after 3373 different samples (16865 SPS)
+[18:58:10.626][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:10.677][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.01127 A
+[18:58:10.678][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.273 A
+[18:58:10.829][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.002A after 3420 different samples (17100 SPS)
+[18:58:10.878][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:10.885][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:10.944][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00167 A
+[18:58:10.944][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.040 A
+[18:58:10.945][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65700 V
+[18:58:12.123][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:12.332][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.005A after 3466 different samples (17330 SPS)
+[18:58:12.374][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:12.423][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00459 A
+[18:58:12.423][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.111 A
+[18:58:12.578][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.011A after 3441 different samples (17205 SPS)
+[18:58:12.626][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:12.677][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.01061 A
+[18:58:12.678][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.257 A
+[18:58:12.830][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.009A after 3399 different samples (16995 SPS)
+[18:58:12.880][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:12.887][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:12.942][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00943 A
+[18:58:12.943][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.228 A
+[18:58:12.943][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.67700 V
+[18:58:14.142][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:14.324][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.007A after 3519 different samples (17595 SPS)
+[18:58:14.377][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:14.426][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00666 A
+[18:58:14.427][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.161 A
+[18:58:14.583][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.010A after 3453 different samples (17265 SPS)
+[18:58:14.626][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:14.677][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.01040 A
+[18:58:14.677][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.252 A
+[18:58:14.831][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.009A after 3427 different samples (17135 SPS)
+[18:58:14.878][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:14.885][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:14.954][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00877 A
+[18:58:14.955][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.212 A
+[18:58:14.955][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65800 V
+[18:58:16.168][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:16.344][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.010A after 3518 different samples (17590 SPS)
+[18:58:16.393][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:16.427][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00983 A
+[18:58:16.428][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.238 A
+[18:58:16.584][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.008A after 3437 different samples (17185 SPS)
+[18:58:16.632][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:16.719][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00782 A
+[18:58:16.720][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.189 A
+[18:58:16.828][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.010A after 3419 different samples (17095 SPS)
+[18:58:16.884][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:16.901][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:16.942][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.01032 A
+[18:58:16.943][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.250 A
+[18:58:16.943][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65500 V
+[18:58:18.128][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:18.334][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.007A after 3487 different samples (17435 SPS)
+[18:58:18.382][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:18.437][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00663 A
+[18:58:18.437][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.161 A
+[18:58:18.577][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.009A after 3419 different samples (17095 SPS)
+[18:58:18.668][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:18.675][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00906 A
+[18:58:18.675][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.219 A
+[18:58:18.831][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.013A after 3399 different samples (16995 SPS)
+[18:58:18.878][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:18.884][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:18.948][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.01332 A
+[18:58:18.948][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.323 A
+[18:58:18.948][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65800 V
+[18:58:20.128][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:20.331][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.007A after 3505 different samples (17525 SPS)
+[18:58:20.385][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:20.437][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00663 A
+[18:58:20.437][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.161 A
+[18:58:20.590][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.007A after 3469 different samples (17345 SPS)
+[18:58:20.646][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:20.684][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00707 A
+[18:58:20.684][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.171 A
+[18:58:20.841][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.011A after 3366 different samples (16830 SPS)
+[18:58:20.889][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:20.924][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:20.945][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.01071 A
+[18:58:20.945][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.259 A
+[18:58:20.946][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66900 V
+[18:58:22.125][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:22.329][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.005A after 3498 different samples (17490 SPS)
+[18:58:22.380][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:22.428][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00469 A
+[18:58:22.428][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.114 A
+[18:58:22.584][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.010A after 3426 different samples (17130 SPS)
+[18:58:22.632][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:22.690][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00962 A
+[18:58:22.690][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.233 A
+[18:58:22.835][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3363 different samples (16815 SPS)
+[18:58:22.843][I][bero_udp:687]: UDP_EVENT_RECEIVED source=192.168.0.74 packet=BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=31,STATE=ON
+[18:58:22.851][I][bero_event:694]: HA_EVENT_PUBLISHED BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72 EVENT_ID=31 STATE=ON
+[18:58:22.893][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:22.901][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:22.929][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02764 A
+[18:58:22.929][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.669 A
+[18:58:22.930][S][text_sensor]: 'BERO Mod2 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=31,STATE=ON'
+[18:58:22.930][S][text_sensor]: 'BERO Mod2 Olay BOOT ID' >> '83DAAD0A8A5C1FE6695D5E1BC1CB1C72'
+[18:58:22.931][S][text_sensor]: 'BERO Mod2 Olay EVENT ID' >> '31'
+[18:58:22.931][S][text_sensor]: 'BERO Mod2 Olay STATE' >> 'ON'
+[18:58:22.931][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66500 V
+[18:58:22.979][D][wifi:2598]: Roam scan (-56 dBm, attempt 3/3)
+[18:58:24.386][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:24.387][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.014A after 3316 different samples (16580 SPS)
+[18:58:24.387][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:24.697][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01435 A
+[18:58:24.697][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.348 A
+[18:58:24.697][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3442 different samples (17210 SPS)
+[18:58:24.698][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:24.698][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02173 A
+[18:58:24.699][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.526 A
+[18:58:24.836][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3209 different samples (16045 SPS)
+[18:58:24.961][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:24.962][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:24.962][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02891 A
+[18:58:24.963][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.700 A
+[18:58:24.963][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66000 V
+[18:58:26.433][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:26.433][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3351 different samples (16755 SPS)
+[18:58:26.434][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:26.434][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01532 A
+[18:58:26.435][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.371 A
+[18:58:26.837][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3395 different samples (16975 SPS)
+[18:58:26.838][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:26.838][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02173 A
+[18:58:26.839][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.526 A
+[18:58:26.846][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3299 different samples (16495 SPS)
+[18:58:26.890][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:26.897][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:26.941][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02916 A
+[18:58:26.941][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.706 A
+[18:58:26.941][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66200 V
+[18:58:28.141][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:28.331][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3248 different samples (16240 SPS)
+[18:58:28.372][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:28.422][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01501 A
+[18:58:28.423][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.364 A
+[18:58:28.573][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3351 different samples (16755 SPS)
+[18:58:28.622][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:28.672][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02204 A
+[18:58:28.673][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.534 A
+[18:58:28.842][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3234 different samples (16170 SPS)
+[18:58:28.881][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:28.887][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:28.941][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02892 A
+[18:58:28.942][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.700 A
+[18:58:28.942][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65100 V
+[18:58:30.122][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:30.325][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.016A after 3274 different samples (16370 SPS)
+[18:58:30.373][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:30.421][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01596 A
+[18:58:30.421][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.387 A
+[18:58:30.578][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3313 different samples (16565 SPS)
+[18:58:30.626][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:30.674][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02208 A
+[18:58:30.674][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.535 A
+[18:58:30.830][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3290 different samples (16450 SPS)
+[18:58:30.878][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:30.883][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:30.942][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02880 A
+[18:58:30.943][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.698 A
+[18:58:30.943][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66400 V
+[18:58:32.131][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:32.327][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3303 different samples (16515 SPS)
+[18:58:32.372][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:32.473][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01543 A
+[18:58:32.474][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.374 A
+[18:58:32.575][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.024A after 3366 different samples (16830 SPS)
+[18:58:32.626][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:32.672][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02364 A
+[18:58:32.673][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.573 A
+[18:58:32.840][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.030A after 3289 different samples (16445 SPS)
+[18:58:32.876][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:32.888][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:32.938][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02983 A
+[18:58:32.939][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.723 A
+[18:58:32.939][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65100 V
+[18:58:34.122][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:34.336][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3346 different samples (16730 SPS)
+[18:58:34.378][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:34.422][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01528 A
+[18:58:34.422][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.370 A
+[18:58:34.578][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3394 different samples (16970 SPS)
+[18:58:34.622][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:34.672][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02204 A
+[18:58:34.673][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.534 A
+[18:58:34.826][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3264 different samples (16320 SPS)
+[18:58:34.874][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:34.880][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:34.945][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02850 A
+[18:58:34.945][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.690 A
+[18:58:34.945][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65000 V
+[18:58:36.120][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:36.338][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.016A after 3305 different samples (16525 SPS)
+[18:58:36.370][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:36.420][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01572 A
+[18:58:36.421][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.381 A
+[18:58:36.579][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3369 different samples (16845 SPS)
+[18:58:36.622][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:36.673][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02203 A
+[18:58:36.674][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.534 A
+[18:58:36.829][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3204 different samples (16020 SPS)
+[18:58:36.878][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:36.886][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:36.926][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02852 A
+[18:58:36.927][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.691 A
+[18:58:36.927][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65700 V
+[18:58:38.124][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:38.328][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.016A after 3336 different samples (16680 SPS)
+[18:58:38.409][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:38.442][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01608 A
+[18:58:38.442][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.390 A
+[18:58:38.589][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3304 different samples (16520 SPS)
+[18:58:38.624][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:38.672][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02201 A
+[18:58:38.673][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.533 A
+[18:58:38.834][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3239 different samples (16195 SPS)
+[18:58:38.874][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:38.889][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:38.943][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02920 A
+[18:58:38.943][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.707 A
+[18:58:38.943][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66400 V
+[18:58:40.121][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:40.324][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3334 different samples (16670 SPS)
+[18:58:40.369][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:40.430][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01499 A
+[18:58:40.431][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.363 A
+[18:58:40.578][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3310 different samples (16550 SPS)
+[18:58:40.622][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:40.675][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02166 A
+[18:58:40.676][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.525 A
+[18:58:40.828][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3224 different samples (16120 SPS)
+[18:58:40.874][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:40.880][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:40.939][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02819 A
+[18:58:40.939][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.683 A
+[18:58:40.939][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65900 V
+[18:58:42.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:42.322][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3304 different samples (16520 SPS)
+[18:58:42.371][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:42.420][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01544 A
+[18:58:42.421][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.374 A
+[18:58:42.572][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.023A after 3381 different samples (16905 SPS)
+[18:58:42.629][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:42.671][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02271 A
+[18:58:42.671][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.550 A
+[18:58:42.830][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3251 different samples (16255 SPS)
+[18:58:42.878][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:42.887][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:42.944][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02856 A
+[18:58:42.944][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.692 A
+[18:58:42.944][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.67800 V
+[18:58:44.121][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:44.328][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3358 different samples (16790 SPS)
+[18:58:44.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:44.419][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01498 A
+[18:58:44.419][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.363 A
+[18:58:44.573][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3355 different samples (16775 SPS)
+[18:58:44.624][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:44.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02221 A
+[18:58:44.668][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.538 A
+[18:58:44.830][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3223 different samples (16115 SPS)
+[18:58:44.874][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:44.880][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:44.938][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02804 A
+[18:58:44.939][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.679 A
+[18:58:44.939][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65900 V
+[18:58:46.160][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:46.374][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3309 different samples (16545 SPS)
+[18:58:46.466][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:46.467][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01489 A
+[18:58:46.467][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.361 A
+[18:58:46.578][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3338 different samples (16690 SPS)
+[18:58:46.681][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:46.681][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02188 A
+[18:58:46.682][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.530 A
+[18:58:46.830][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3236 different samples (16180 SPS)
+[18:58:46.872][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:46.880][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:46.936][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02857 A
+[18:58:46.936][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.692 A
+[18:58:46.937][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66900 V
+[18:58:48.130][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:48.322][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3286 different samples (16430 SPS)
+[18:58:48.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:48.414][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01508 A
+[18:58:48.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.365 A
+[18:58:48.576][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3349 different samples (16745 SPS)
+[18:58:48.622][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:48.670][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02211 A
+[18:58:48.671][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.535 A
+[18:58:48.825][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.031A after 3233 different samples (16165 SPS)
+[18:58:48.873][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:48.879][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:48.933][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.03074 A
+[18:58:48.933][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.745 A
+[18:58:48.934][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66800 V
+[18:58:50.122][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:50.327][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.014A after 3360 different samples (16800 SPS)
+[18:58:50.378][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:50.414][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01442 A
+[18:58:50.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.349 A
+[18:58:50.622][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3351 different samples (16755 SPS)
+[18:58:50.670][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:50.671][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02216 A
+[18:58:50.671][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.537 A
+[18:58:50.826][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3222 different samples (16110 SPS)
+[18:58:50.871][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:50.890][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:50.944][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02814 A
+[18:58:50.944][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.682 A
+[18:58:50.945][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65900 V
+[18:58:52.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:52.323][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3273 different samples (16365 SPS)
+[18:58:52.374][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:52.425][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01516 A
+[18:58:52.426][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.367 A
+[18:58:52.581][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3336 different samples (16680 SPS)
+[18:58:52.618][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:52.668][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02193 A
+[18:58:52.668][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.531 A
+[18:58:52.830][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3223 different samples (16115 SPS)
+[18:58:52.870][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:52.887][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:52.938][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02864 A
+[18:58:52.939][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.694 A
+[18:58:52.939][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66400 V
+[18:58:54.121][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:54.344][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3370 different samples (16850 SPS)
+[18:58:54.373][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:54.429][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01541 A
+[18:58:54.429][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.373 A
+[18:58:54.579][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3339 different samples (16695 SPS)
+[18:58:54.638][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:54.678][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02203 A
+[18:58:54.679][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.534 A
+[18:58:54.841][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3222 different samples (16110 SPS)
+[18:58:54.869][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:54.887][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:54.970][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02846 A
+[18:58:54.971][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.689 A
+[18:58:54.971][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66000 V
+[18:58:56.122][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:56.320][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3309 different samples (16545 SPS)
+[18:58:56.368][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:56.417][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01491 A
+[18:58:56.418][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.361 A
+[18:58:56.605][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.024A after 3387 different samples (16935 SPS)
+[18:58:56.622][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:56.678][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02372 A
+[18:58:56.679][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.575 A
+[18:58:56.828][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3258 different samples (16290 SPS)
+[18:58:56.906][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:56.922][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:56.933][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02871 A
+[18:58:56.933][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.695 A
+[18:58:56.933][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66500 V
+[18:58:58.124][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:58:58.322][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.016A after 3313 different samples (16565 SPS)
+[18:58:58.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:58:58.416][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01560 A
+[18:58:58.417][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.378 A
+[18:58:58.571][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3385 different samples (16925 SPS)
+[18:58:58.636][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:58:58.682][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02207 A
+[18:58:58.682][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.535 A
+[18:58:58.830][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3191 different samples (15955 SPS)
+[18:58:58.883][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:58:58.942][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:58:58.943][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02826 A
+[18:58:58.943][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.685 A
+[18:58:58.943][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65900 V
+[18:59:00.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:00.318][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3261 different samples (16305 SPS)
+[18:59:00.384][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:00.422][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01509 A
+[18:59:00.423][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.365 A
+[18:59:00.594][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3367 different samples (16835 SPS)
+[18:59:00.625][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:00.735][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02216 A
+[18:59:00.735][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.537 A
+[18:59:00.822][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3199 different samples (15995 SPS)
+[18:59:00.901][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:00.909][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:00.930][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02833 A
+[18:59:00.930][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.686 A
+[18:59:00.931][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65900 V
+[18:59:02.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:02.324][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3303 different samples (16515 SPS)
+[18:59:02.373][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:02.451][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01542 A
+[18:59:02.451][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.374 A
+[18:59:02.608][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3347 different samples (16735 SPS)
+[18:59:02.653][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:02.665][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02244 A
+[18:59:02.666][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.544 A
+[18:59:02.826][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.037A after 3123 different samples (15615 SPS)
+[18:59:02.838][I][bero_udp:687]: UDP_EVENT_RECEIVED source=192.168.0.74 packet=BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=32,STATE=OFF
+[18:59:02.846][I][bero_event:694]: HA_EVENT_PUBLISHED BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72 EVENT_ID=32 STATE=OFF
+[18:59:02.867][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:02.873][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:02.933][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.03681 A
+[18:59:02.933][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.892 A
+[18:59:02.933][S][text_sensor]: 'BERO Mod2 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=32,STATE=OFF'
+[18:59:02.934][S][text_sensor]: 'BERO Mod2 Olay BOOT ID' >> '83DAAD0A8A5C1FE6695D5E1BC1CB1C72'
+[18:59:02.934][S][text_sensor]: 'BERO Mod2 Olay EVENT ID' >> '32'
+[18:59:02.935][S][text_sensor]: 'BERO Mod2 Olay STATE' >> 'OFF'
+[18:59:02.935][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66500 V
+[18:59:04.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:04.320][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.008A after 3472 different samples (17360 SPS)
+[18:59:04.370][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:04.416][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00807 A
+[18:59:04.416][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.196 A
+[18:59:04.578][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.009A after 3450 different samples (17250 SPS)
+[18:59:04.616][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:04.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00900 A
+[18:59:04.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.218 A
+[18:59:04.822][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.006A after 3368 different samples (16840 SPS)
+[18:59:04.873][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:04.886][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:04.939][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00607 A
+[18:59:04.939][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.147 A
+[18:59:04.939][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65000 V
+[18:59:06.120][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:06.326][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.004A after 3489 different samples (17445 SPS)
+[18:59:06.373][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:06.502][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00437 A
+[18:59:06.503][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.106 A
+[18:59:06.686][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.005A after 3487 different samples (17435 SPS)
+[18:59:06.686][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:06.686][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00530 A
+[18:59:06.687][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.128 A
+[18:59:06.821][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.008A after 3362 different samples (16810 SPS)
+[18:59:06.869][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:06.890][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:06.932][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00799 A
+[18:59:06.932][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.194 A
+[18:59:06.933][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65900 V
+[18:59:08.126][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:08.322][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.000A after 3516 different samples (17580 SPS)
+[18:59:08.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:08.418][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00000 A
+[18:59:08.419][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.000 A
+[18:59:08.570][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.009A after 3438 different samples (17190 SPS)
+[18:59:08.670][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:08.673][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00929 A
+[18:59:08.674][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.225 A
+[18:59:08.823][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.014A after 3392 different samples (16960 SPS)
+[18:59:08.872][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:08.879][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:08.929][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.01357 A
+[18:59:08.930][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.329 A
+[18:59:08.930][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.64900 V
+[18:59:10.116][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:10.317][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.007A after 3506 different samples (17530 SPS)
+[18:59:10.368][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:10.414][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00699 A
+[18:59:10.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.169 A
+[18:59:10.576][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.009A after 3472 different samples (17360 SPS)
+[18:59:10.617][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:10.666][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00929 A
+[18:59:10.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.225 A
+[18:59:10.821][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.009A after 3398 different samples (16990 SPS)
+[18:59:10.874][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:10.879][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:10.938][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00949 A
+[18:59:10.938][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.230 A
+[18:59:10.939][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66600 V
+[18:59:12.114][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:12.322][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.007A after 3454 different samples (17270 SPS)
+[18:59:12.365][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:12.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00676 A
+[18:59:12.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.164 A
+[18:59:12.610][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.009A after 3506 different samples (17530 SPS)
+[18:59:12.620][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:12.666][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00867 A
+[18:59:12.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.210 A
+[18:59:12.822][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.012A after 3355 different samples (16775 SPS)
+[18:59:12.868][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:12.877][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:12.932][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.01152 A
+[18:59:12.933][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.279 A
+[18:59:12.933][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65700 V
+[18:59:14.115][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:14.318][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.004A after 3478 different samples (17390 SPS)
+[18:59:14.365][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:14.414][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00398 A
+[18:59:14.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.096 A
+[18:59:14.570][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.007A after 3480 different samples (17400 SPS)
+[18:59:14.617][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:14.666][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00675 A
+[18:59:14.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.164 A
+[18:59:14.821][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.007A after 3364 different samples (16820 SPS)
+[18:59:14.872][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:14.878][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:14.934][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00674 A
+[18:59:14.935][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.163 A
+[18:59:14.935][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66100 V
+[18:59:16.116][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:16.317][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.008A after 3495 different samples (17475 SPS)
+[18:59:16.365][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:16.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00758 A
+[18:59:16.416][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.184 A
+[18:59:16.570][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.008A after 3434 different samples (17170 SPS)
+[18:59:16.613][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:16.666][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00799 A
+[18:59:16.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.194 A
+[18:59:16.822][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.010A after 3397 different samples (16985 SPS)
+[18:59:16.869][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:16.874][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:16.932][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00978 A
+[18:59:16.933][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.237 A
+[18:59:16.933][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66700 V
+[18:59:18.114][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:18.316][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.006A after 3465 different samples (17325 SPS)
+[18:59:18.365][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:18.414][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00613 A
+[18:59:18.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.148 A
+[18:59:18.568][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.010A after 3474 different samples (17370 SPS)
+[18:59:18.642][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:18.670][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00992 A
+[18:59:18.670][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.240 A
+[18:59:18.848][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.015A after 3404 different samples (17020 SPS)
+[18:59:18.866][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:18.872][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:18.931][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.01492 A
+[18:59:18.931][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.361 A
+[18:59:18.931][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66200 V
+[18:59:20.125][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:20.318][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.007A after 3517 different samples (17585 SPS)
+[18:59:20.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:20.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00748 A
+[18:59:20.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.181 A
+[18:59:20.594][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.007A after 3446 different samples (17230 SPS)
+[18:59:20.615][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:20.702][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00716 A
+[18:59:20.702][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.174 A
+[18:59:20.822][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.009A after 3334 different samples (16670 SPS)
+[18:59:20.870][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:20.877][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:20.934][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00927 A
+[18:59:20.935][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.225 A
+[18:59:20.935][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66200 V
+[18:59:22.121][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:22.324][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.005A after 3490 different samples (17450 SPS)
+[18:59:22.386][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:22.414][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00495 A
+[18:59:22.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.120 A
+[18:59:22.569][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.012A after 3469 different samples (17345 SPS)
+[18:59:22.618][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:22.669][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.01227 A
+[18:59:22.669][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.297 A
+[18:59:22.822][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.027A after 3383 different samples (16915 SPS)
+[18:59:22.843][I][bero_udp:687]: UDP_EVENT_RECEIVED source=192.168.0.74 packet=BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=33,STATE=ON
+[18:59:22.856][I][bero_event:694]: HA_EVENT_PUBLISHED BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72 EVENT_ID=33 STATE=ON
+[18:59:22.865][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:22.871][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:22.921][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02657 A
+[18:59:22.921][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.644 A
+[18:59:22.922][S][text_sensor]: 'BERO Mod2 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=33,STATE=ON'
+[18:59:22.922][S][text_sensor]: 'BERO Mod2 Olay BOOT ID' >> '83DAAD0A8A5C1FE6695D5E1BC1CB1C72'
+[18:59:22.922][S][text_sensor]: 'BERO Mod2 Olay EVENT ID' >> '33'
+[18:59:22.923][S][text_sensor]: 'BERO Mod2 Olay STATE' >> 'ON'
+[18:59:22.923][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.67400 V
+[18:59:24.124][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:24.329][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3271 different samples (16355 SPS)
+[18:59:24.377][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:24.417][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01548 A
+[18:59:24.417][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.375 A
+[18:59:24.596][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3337 different samples (16685 SPS)
+[18:59:24.638][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:24.707][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02193 A
+[18:59:24.708][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.531 A
+[18:59:24.821][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3176 different samples (15880 SPS)
+[18:59:24.869][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:24.884][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:24.952][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02840 A
+[18:59:24.953][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.688 A
+[18:59:24.953][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.67300 V
+[18:59:26.136][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:26.325][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.016A after 3350 different samples (16750 SPS)
+[18:59:26.370][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:26.420][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01588 A
+[18:59:26.421][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.385 A
+[18:59:26.588][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3359 different samples (16795 SPS)
+[18:59:26.625][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:26.714][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02227 A
+[18:59:26.714][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.539 A
+[18:59:26.822][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3296 different samples (16480 SPS)
+[18:59:26.873][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:26.883][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:26.942][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02921 A
+[18:59:26.943][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.707 A
+[18:59:26.943][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65800 V
+[18:59:28.114][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:28.321][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3299 different samples (16495 SPS)
+[18:59:28.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:28.419][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01500 A
+[18:59:28.419][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.363 A
+[18:59:28.570][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3379 different samples (16895 SPS)
+[18:59:28.625][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:28.674][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02216 A
+[18:59:28.674][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.537 A
+[18:59:28.841][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3276 different samples (16380 SPS)
+[18:59:28.867][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:28.877][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:28.948][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02836 A
+[18:59:28.948][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.687 A
+[18:59:28.948][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66100 V
+[18:59:30.116][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:30.320][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3304 different samples (16520 SPS)
+[18:59:30.365][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:30.421][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01539 A
+[18:59:30.422][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.373 A
+[18:59:30.572][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.021A after 3354 different samples (16770 SPS)
+[18:59:30.623][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:30.688][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02139 A
+[18:59:30.688][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.518 A
+[18:59:30.829][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3201 different samples (16005 SPS)
+[18:59:30.877][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:30.892][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:30.931][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02882 A
+[18:59:30.931][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.698 A
+[18:59:30.931][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65700 V
+[18:59:32.116][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:32.386][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3264 different samples (16320 SPS)
+[18:59:32.397][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:32.434][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01533 A
+[18:59:32.434][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.371 A
+[18:59:32.591][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.023A after 3266 different samples (16330 SPS)
+[18:59:32.641][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:32.666][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02255 A
+[18:59:32.666][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.546 A
+[18:59:32.840][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3214 different samples (16070 SPS)
+[18:59:32.869][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:32.876][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:32.930][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02876 A
+[18:59:32.931][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.697 A
+[18:59:32.931][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65500 V
+[18:59:34.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:34.350][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3332 different samples (16660 SPS)
+[18:59:34.417][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:34.417][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01508 A
+[18:59:34.418][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.365 A
+[18:59:34.579][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3386 different samples (16930 SPS)
+[18:59:34.625][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:34.676][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02182 A
+[18:59:34.677][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.529 A
+[18:59:34.820][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3239 different samples (16195 SPS)
+[18:59:34.874][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:34.882][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:34.930][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02925 A
+[18:59:34.930][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.708 A
+[18:59:34.931][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65900 V
+[18:59:36.169][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:36.318][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3267 different samples (16335 SPS)
+[18:59:36.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:36.414][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01550 A
+[18:59:36.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.375 A
+[18:59:36.572][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3330 different samples (16650 SPS)
+[18:59:36.620][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:36.668][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02162 A
+[18:59:36.668][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.524 A
+[18:59:36.833][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3223 different samples (16115 SPS)
+[18:59:36.870][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:36.877][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:36.936][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02843 A
+[18:59:36.937][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.689 A
+[18:59:36.937][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66800 V
+[18:59:38.119][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:38.344][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3297 different samples (16485 SPS)
+[18:59:38.418][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:38.418][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01536 A
+[18:59:38.419][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.372 A
+[18:59:38.569][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.023A after 3327 different samples (16635 SPS)
+[18:59:38.616][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:38.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02259 A
+[18:59:38.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.547 A
+[18:59:38.820][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3236 different samples (16180 SPS)
+[18:59:38.868][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:38.876][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:38.936][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02837 A
+[18:59:38.937][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.687 A
+[18:59:38.937][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66900 V
+[18:59:40.116][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:40.320][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.016A after 3348 different samples (16740 SPS)
+[18:59:40.370][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:40.416][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01568 A
+[18:59:40.417][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.380 A
+[18:59:40.570][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.023A after 3381 different samples (16905 SPS)
+[18:59:40.620][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:40.666][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02261 A
+[18:59:40.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.548 A
+[18:59:40.822][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3245 different samples (16225 SPS)
+[18:59:40.870][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:40.877][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:40.929][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02860 A
+[18:59:40.930][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.693 A
+[18:59:40.930][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65700 V
+[18:59:42.116][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:42.320][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3285 different samples (16425 SPS)
+[18:59:42.370][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:42.414][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01517 A
+[18:59:42.414][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.367 A
+[18:59:42.576][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3407 different samples (17035 SPS)
+[18:59:42.654][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:42.664][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02208 A
+[18:59:42.664][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.535 A
+[18:59:42.825][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3231 different samples (16155 SPS)
+[18:59:42.870][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:42.884][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:42.934][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02873 A
+[18:59:42.935][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.696 A
+[18:59:42.935][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66700 V
+[18:59:44.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:44.321][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.016A after 3332 different samples (16660 SPS)
+[18:59:44.365][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:44.416][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01566 A
+[18:59:44.416][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.379 A
+[18:59:44.578][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3344 different samples (16720 SPS)
+[18:59:44.624][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:44.677][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02162 A
+[18:59:44.677][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.524 A
+[18:59:44.826][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3241 different samples (16205 SPS)
+[18:59:44.870][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:44.879][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:44.984][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02841 A
+[18:59:44.984][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.688 A
+[18:59:44.985][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66900 V
+[18:59:46.113][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:46.322][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3314 different samples (16570 SPS)
+[18:59:46.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:46.414][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01531 A
+[18:59:46.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.371 A
+[18:59:46.569][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.023A after 3397 different samples (16985 SPS)
+[18:59:46.615][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:46.674][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02256 A
+[18:59:46.675][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.546 A
+[18:59:46.822][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3250 different samples (16250 SPS)
+[18:59:46.873][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:46.889][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:46.935][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02898 A
+[18:59:46.935][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.702 A
+[18:59:46.935][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66400 V
+[18:59:48.160][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:48.318][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3289 different samples (16445 SPS)
+[18:59:48.363][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:48.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01455 A
+[18:59:48.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.352 A
+[18:59:48.571][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.023A after 3333 different samples (16665 SPS)
+[18:59:48.618][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:48.668][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02270 A
+[18:59:48.669][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.550 A
+[18:59:48.821][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.032A after 3259 different samples (16295 SPS)
+[18:59:48.870][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:48.880][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:48.937][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.03169 A
+[18:59:48.938][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.767 A
+[18:59:48.938][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66100 V
+[18:59:50.130][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:50.318][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.016A after 3378 different samples (16890 SPS)
+[18:59:50.372][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:50.416][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01550 A
+[18:59:50.416][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.375 A
+[18:59:50.570][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3383 different samples (16915 SPS)
+[18:59:50.622][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:50.689][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02207 A
+[18:59:50.690][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.535 A
+[18:59:50.833][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3257 different samples (16285 SPS)
+[18:59:50.881][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:50.930][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:50.931][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02832 A
+[18:59:50.931][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.686 A
+[18:59:50.931][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.64400 V
+[18:59:52.116][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:52.318][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3361 different samples (16805 SPS)
+[18:59:52.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:52.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01493 A
+[18:59:52.415][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.362 A
+[18:59:52.570][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.023A after 3334 different samples (16670 SPS)
+[18:59:52.618][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:52.666][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02262 A
+[18:59:52.667][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.548 A
+[18:59:52.824][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3207 different samples (16035 SPS)
+[18:59:52.868][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:52.875][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:52.991][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02912 A
+[18:59:52.991][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.705 A
+[18:59:52.991][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66200 V
+[18:59:54.140][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:54.317][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3311 different samples (16555 SPS)
+[18:59:54.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:54.412][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01516 A
+[18:59:54.413][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.367 A
+[18:59:54.584][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3352 different samples (16760 SPS)
+[18:59:54.619][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:54.670][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02208 A
+[18:59:54.670][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.535 A
+[18:59:54.820][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3259 different samples (16295 SPS)
+[18:59:54.881][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:54.891][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:54.933][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02833 A
+[18:59:54.933][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.686 A
+[18:59:54.934][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.67100 V
+[18:59:56.121][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:56.324][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3359 different samples (16795 SPS)
+[18:59:56.380][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:56.417][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01526 A
+[18:59:56.417][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.370 A
+[18:59:56.570][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3361 different samples (16805 SPS)
+[18:59:56.622][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:56.665][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02238 A
+[18:59:56.666][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.542 A
+[18:59:56.841][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.029A after 3270 different samples (16350 SPS)[18:59:56.942][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:56.943][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:56.943][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02871 A
+[18:59:56.944][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.695 A
+[18:59:56.944][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66500 V
+[18:59:58.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[18:59:58.324][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3337 different samples (16685 SPS)
+[18:59:58.371][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[18:59:58.430][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01482 A
+[18:59:58.431][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.359 A
+[18:59:58.577][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.023A after 3366 different samples (16830 SPS)
+[18:59:58.617][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[18:59:58.664][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02260 A
+[18:59:58.664][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.547 A
+[18:59:58.824][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3237 different samples (16185 SPS)
+[18:59:58.872][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[18:59:58.885][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[18:59:58.938][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02821 A
+[18:59:58.939][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.683 A
+[18:59:58.939][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.67000 V
+[19:00:00.117][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[19:00:00.318][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.015A after 3293 different samples (16465 SPS)
+[19:00:00.392][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[19:00:00.423][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01545 A
+[19:00:00.423][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.374 A
+[19:00:00.591][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3368 different samples (16840 SPS)
+[19:00:00.622][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[19:00:00.698][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02229 A
+[19:00:00.699][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.540 A
+[19:00:00.830][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.028A after 3229 different samples (16145 SPS)
+[19:00:00.872][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[19:00:00.884][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[19:00:00.935][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.02814 A
+[19:00:00.936][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.682 A
+[19:00:00.936][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66200 V
+[19:00:02.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[19:00:02.322][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.016A after 3318 different samples (16590 SPS)
+[19:00:02.366][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[19:00:02.422][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.01560 A
+[19:00:02.423][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.378 A
+[19:00:02.594][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.022A after 3331 different samples (16655 SPS)
+[19:00:02.649][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[19:00:02.673][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.02181 A
+[19:00:02.674][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.528 A
+[19:00:02.833][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.037A after 3244 different samples (16220 SPS)
+[19:00:02.879][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[19:00:02.886][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[19:00:02.970][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.03682 A
+[19:00:02.971][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.892 A
+[19:00:02.971][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66900 V
+[19:00:04.118][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[19:00:04.318][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.007A after 3497 different samples (17485 SPS)
+[19:00:04.398][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+[19:00:04.424][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Ham Akim' >> 0.00742 A
+[19:00:04.425][S][sensor]: 'BERO Mod2 SCT1 Faz 2T Akim' >> 0.180 A
+[19:00:04.587][D][ct_clamp:040]: 'BERO Mod2 SCT2 Notr 4T Akim' - Raw AC Value: 0.009A after 3469 different samples (17345 SPS)
+[19:00:04.630][I][main:1254]: BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START
+[19:00:04.714][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Ham Akim' >> 0.00944 A
+[19:00:04.714][S][sensor]: 'BERO Mod2 SCT2 Notr 4T Akim' >> 0.229 A
+[19:00:04.827][D][ct_clamp:040]: 'BERO Mod2 SCT3 Faz 3T Akim' - Raw AC Value: 0.008A after 3281 different samples (16405 SPS)
+[19:00:04.885][I][main:1262]: BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ
+[19:00:04.897][I][main:1266]: BERO SEQUENCE: ALL CHANNELS COMPLETE
+[19:00:04.934][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Ham Akim' >> 0.00781 A
+[19:00:04.934][S][sensor]: 'BERO Mod2 SCT3 Faz 3T Akim' >> 0.189 A
+[19:00:04.934][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65900 V
+[19:00:06.160][I][main:1238]: BERO SEQUENCE: SCT1 FAZ 2T START
+[19:00:06.320][D][ct_clamp:040]: 'BERO Mod2 SCT1 Faz 2T Akim' - Raw AC Value: 0.009A after 3472 different samples (17360 SPS)
+[19:00:06.374][I][main:1246]: BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START
+
+States
