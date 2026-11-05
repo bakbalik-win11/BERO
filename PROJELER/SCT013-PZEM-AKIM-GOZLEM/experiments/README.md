@@ -52,3 +52,8 @@ Her yeni deney için amaç/HEDEF, gerçek bağlantı ve ayarlar, LOG, SONUÇ, ka
 - **[E11 — Modül 2/3 birlikte yüksüz hat uzun süreli gözlem ve olay aktarımı](E11-idle-dual-module-observation/README.md): PLANLANDI / ilk ortak deney önceliği.** İki modül birlikte çalışır; ölçülen hatta yük bağlanmaz; Modül 3'ün 40 s ON / 20 s OFF olay döngüsü sürer. PZEM ve üç SCT kanalının yüksüz davranışı ile Modül 3 olay gönderimi/Modül 2 olay alımı karşılaştırılır.
 - Deney sırası sabit değildir; ihtiyaca ve donanım hazır oluşuna göre değişebilir. Bu, Faz 2 görev bağımlılıklarını değiştirmez.
 - E10 (ct_clamp pencere süresi) planlı deney olarak korunur; E11 nedeniyle iptal edilmez veya tamamlandı sayılmaz.
+
+
+- **[E12 — SCT kararlı alan tespiti, PZEM örtüşmesi ve tepki süresi](E12-sct-stability-window-and-response/README.md): PLANLANDI / ilk gözlem oturumu 2026-11-05.** Üç inceleme: SCT istatistiksel kararlılık algoritması; bağımsız SCT/PZEM kararlı alanlarının zaman örtüşmesi; SCT tepki süresi ve daha kısa sample_duration olasılığı. 20:07–20:37 100 W oturumu ilk gözlem adayı; 20:12 kablo değişikliği öncesi/sonrası ayrı incelenecek. Tam log ve sonuç analizi bekleniyor.
+
+**Deney sırası ilkesi:** Deney numaraları tarihsel kimliktir; zorunlu çalışma sırası değildir. Kullanıcı ve asistan, ihtiyaca ve donanım hazır oluşuna göre bir deneyi diğerinin önüne alabilir. Bu esneklik Faz 2 görev bağımlılıklarını veya mimari kabul kurallarını kendiliğinden değiştirmez.
