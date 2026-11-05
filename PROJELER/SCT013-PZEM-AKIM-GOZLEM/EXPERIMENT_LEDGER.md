@@ -346,3 +346,16 @@ Kullanıcı kararıyla yeni firmware hazırlanması/firmware değişikliği erte
 - **KAPSAM:** Gözlem; kalibrasyon veya PZEM doğruluk deneyi değil. K değişmez; diğer ayarlar değişmez.
 - **DURUM:** PLANLANDI; YAML/OTA/fiziksel ölçüm/log henüz yok.
 - **PROTOKOL:** [E10 README](experiments/E10-ct-clamp-window-duration/README.md); [sonuç defteri](experiments/E10-ct-clamp-window-duration/results.md).
+
+
+## 2026-11-05 — E12: SCT kararlı alan, PZEM örtüşmesi ve tepki süresi deneyi açıldı
+
+- **HEDEF:** SCT1'in (sarı/GPIO32) geçişten sonra kararlı alan üretme süresini ve istatistiksel tanımlanabilirliğini incelemek; SCT/PZEM bağımsız kararlı alanlarının zaman örtüşmesini değerlendirmek; SCT'nin PZEM'e göre daha hızlı tepki potansiyelini ve daha kısa ölçüm penceresi olasılığını ayrı deney sorusu olarak kaydetmek.
+- **ÜÇ ANA İNCELEME:** (1) SCT kayan/ardışık pencerelerinde ortalama, standart sapma/dağılım ve ortalama değişimi ile kararlılık tespiti; (2) PZEM ve SCT kararlılığını kendi akışlarında bağımsız belirleyip yalnız zaman kesişimini eşleştirme; (3) tepki/yerleşme süresi ve 200 ms'den kısa sample_duration koşullarında kararlılık/tekrarlanabilirlik.
+- **İLK OTURUM:** 2026-11-05, 20:07–20:37 (+03:00), 100 W akkor, 40 s ON / 20 s OFF. Tam Modül 2/3 logları ve sonuç analizi henüz bu kayda eklenmedi; oturum tamamlandı/başarılı ilan edilmedi.
+- **FİZİKSEL NOT:** Kullanıcı 20:12 civarında kablo yapısında küçük değişiklik yaptığını bildirdi; ayrıntısı belirtilmedi. Analiz 20:12 öncesi/sonrası ayrımıyla yapılmalı. Kullanıcı SCT1 kod tanımının 2T, fiziksel geçişin 1 tur olduğunu ve yaklaşık 0,470 A civarında gözlem yaptığını bildirdi; bu değer log teyidi olmadan kalibrasyon sonucu değildir.
+- **REFERANS AYARLAR:** 200 ms sample_duration, 2 s update_interval, K=24.22; ilk referans analizinde firmware ayarı değiştirilmeyecek. Üç SCT kanalı sıralı okunduğu için örnekler eşzamanlı varsayılmayacak.
+- **EŞLEŞTİRME KURALI:** ADR-024/025 korunur. Tam ON/OFF paketleri olay kimliğiyle doğrulanır; SCT ve PZEM kararlılığı bağımsız tespit edilir; yalnız kararlı aralıkların zaman kesişimi eğitim adayıdır. Geçiş örnekleri noktasal PZEM referansı yapılmaz; ham kayıt korunur.
+- **SONRAKİ KAPI:** Tam loglardan SCT1 kararlılık ve tepki süresi ön değerlendirmesi; sonra Python fonksiyon taslağı. Daha kısa sample_duration karşılaştırması ayrı kontrollü alt deney olarak, referans sonuçları incelendikten sonra.
+- **DURUM:** PLANLANDI / veri analizi bekliyor. Python kodu, firmware değişikliği, derleme veya OTA yapılmadı.
+- **Protokol:** [E12](experiments/E12-sct-stability-window-and-response/README.md).
