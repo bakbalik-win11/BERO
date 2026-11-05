@@ -1740,3 +1740,14 @@ ADR-024 oluşturuldu; STATUS, ROADMAP, PROGRESS_TREE, Python veri hattı mimaris
 
 ### DOĞRULAMA SINIRI
 Yalnızca mimari karar ve dokümantasyon depoya işlendi. Python uygulaması, gerçek HA export üzerinde test, örnek çıktı/log ve eğitim verisi üretimi yapılmadı. Firmware, UDP protokolü ve HA yapılandırması değiştirilmedi.
+
+
+## 2026-11-05 — E12 deney fikrinin ve protokolünün kaydı
+
+- **HEDEF:** SCT'nin daha sık ölçüm sonucu üretmesinin kararlı alan tespiti ve yük değişimine tepki bakımından PZEM'e göre ne sağladığını incelemek.
+- **KARAR:** Üç araştırma sorusu E12 altında kaydedildi: (1) SCT1 için ortalama, standart sapma/dağılım ve ardışık pencere ortalaması değişimiyle kararlılık algoritması; (2) SCT/PZEM kararlılığını ayrı ayrı bulup yalnız zaman kesişimlerini eşleştirme; (3) SCT tepki süresi ve daha kısa sample_duration koşullarında doğruluk/kararlılık korunumu.
+- **İLK OTURUM:** 20:07–20:37 (+03:00), 100 W akkor, 40 s ON / 20 s OFF olarak planlandı. Tam logların analizi bekleniyor.
+- **KULLANICI BİLDİRİMİ:** 20:12 civarında kablo yapısında küçük değişiklik yapıldı; tam değişiklik tanımı henüz alınmadı. SCT1 kod tanımı 2T iken fiziksel geçişin tek tur olduğu ve yaklaşık 0,470 A civarı gözlendiği bildirildi.
+- **REFERANS:** 200 ms sample_duration, 2 s update_interval, K=24.22; ilk incelemede kod/firmware değiştirilmemesi.
+- **SONUÇ:** Henüz ölçüm sonucu veya algoritma başarısı iddiası yok. E12 PLANLANDI; Python kodu yazılmadı, firmware/OTA yapılmadı.
+- **DEPO:** E12 protokolü, deney indeksi ve EXPERIMENT_LEDGER güncellendi; STATUS ve PROGRESS_TREE bu oturumla güncellendi.
