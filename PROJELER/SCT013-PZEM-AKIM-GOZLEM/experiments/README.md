@@ -57,3 +57,6 @@ Her yeni deney için amaç/HEDEF, gerçek bağlantı ve ayarlar, LOG, SONUÇ, ka
 - **[E12 — SCT kararlı alan tespiti, PZEM örtüşmesi ve tepki süresi](E12-sct-stability-window-and-response/README.md): PLANLANDI / ilk gözlem oturumu 2026-11-05.** Üç inceleme: SCT istatistiksel kararlılık algoritması; bağımsız SCT/PZEM kararlı alanlarının zaman örtüşmesi; SCT tepki süresi ve daha kısa sample_duration olasılığı. 20:07–20:37 100 W oturumu ilk gözlem adayı; 20:12 kablo değişikliği öncesi/sonrası ayrı incelenecek. Tam log ve sonuç analizi bekleniyor.
 
 **Deney sırası ilkesi:** Deney numaraları tarihsel kimliktir; zorunlu çalışma sırası değildir. Kullanıcı ve asistan, ihtiyaca ve donanım hazır oluşuna göre bir deneyi diğerinin önüne alabilir. Bu esneklik Faz 2 görev bağımlılıklarını veya mimari kabul kurallarını kendiliğinden değiştirmez.
+
+
+- **[E13 — Yüksüz gürültü filtresi ve SCT örnekleme hızı](E13-idle-noise-filter-and-sampling-rate/README.md): PLANLANDI.** I007 ham yüksüz kayıtlarından ayrı filtrelenmiş türev akış oluşturma ve SCT için kullanıcı tarafından önerilen 2 Hz (500 ms) çıktı hedefinin tek kanal/üç kanal koşullarında fizibilitesini ölçme. Ham veri korunur; filtre parametreleri ve firmware değişikliği henüz yoktur.
