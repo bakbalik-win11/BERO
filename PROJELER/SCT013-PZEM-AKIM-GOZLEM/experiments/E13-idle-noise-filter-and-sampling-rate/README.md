@@ -142,3 +142,21 @@ Kullanıcı, filtre kararının tek bir 4 saniyelik pencereye bakılarak verilme
 5. **Gerçek ON geçişi:** Kontrollü SSR ON ile kalıcı yükseliş başlatılır. Beklenti: filtre yükselişi bastırmaz; algılama gecikmesi ölçülür.
 
 Kabul ölçütü: tek örnekli sıçrama ham veriden silinmemeli fakat canlı durum kararında kalıcı yük sayılmamalı; ardışık devam eden gerçek ON yükselişi ise belirlenen ve ölçülen gecikme içinde tanınmalıdır. Kaç ardışık örneğin/sürenin yeterli olacağı deneyle belirlenecek; henüz sabit bir sayı veya amper eşiği tanımlanmamıştır.
+
+
+## 2026-11-05 — Tasarım yaklaşımı: kararlı pratik ölçüm, yöntem henüz açık
+
+Kullanıcı, yüksüz gürültü konusunun tek başına büyük bir araştırma hedefine dönüştürülmemesi gerektiğini netleştirdi. BERO'nun ana hedefi, ev makinelerinin çalışma durumlarını gözlemleyebilecek kadar kararlı ve kullanışlı bir akım ölçüm sistemi geliştirmektir; gürültüyü teorik olarak tamamen açıklamak veya her düşük akımlı olayı mutlaka yakalamak değildir.
+
+Henüz karar verilmemiş alternatifler:
+- Ölçüm kodunda tekil/aşırı okumaları bastırmak veya filtrelemek.
+- Ölçüm kodunda kısa bir süre boyunca örnek toplayıp daha kararlı bir çıktı üretmek.
+- Süreklilik kontrolü uygulamak.
+- Pratik bir akım eşiğinin altını yüksüz kabul etmek.
+- Bu yöntemleri birlikte veya ayrı kullanmak.
+
+Bunlar tasarım seçenekleri ve deney konularıdır; hiçbiri şu aşamada kesin mimari kararı değildir. Tek kanalda 500 ms'de bir ölçüm hedefi ayrı bir örnekleme hedefi olarak durur; 500 ms ham ölçümün mutlaka filtresiz biçimde üst katmana aktarılacağı anlamına gelmez.
+
+Uygulama bağlamı: çamaşır makinesi su giriş solenoidi gibi düşük akımlı bir olay basit yüksüz eşiğinin altında kalabilir. Bu olayın kaçırılması, su sesi gibi başka bir gözlem sinyaliyle yakalanabiliyorsa kabul edilebilir bir mühendislik ödünleşimi olabilir. Sistem hedefi tüm olası düşük akım olaylarını tek SCT kanalıyla yakalamak değil, makinenin anlamlı çalışma durumlarını yeterli güvenilirlikle gözlemlemektir.
+
+Dolayısıyla I007 yüksüz kayıtları faydalı bir veri havuzudur; ancak bu konu projenin ana hedefinin önüne geçmeyecek. Filtre türü, eşik, pencere süresi ve süreklilik şartı deneylerle belirlenecek. Mevcut 4 saniye/8 örnek önerisi yalnızca bir adaydır; zorunlu veya nihai karar değildir.
