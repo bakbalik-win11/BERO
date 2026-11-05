@@ -203,3 +203,37 @@ Bu özellikler, CO₂'nin tekil bir anlık değerinden daha açıklayıcı olabi
 Örnek olarak Senseair S8 bir NDIR CO₂ sensör ailesidir ve UART/Modbus üzerinden dijital ölçüm verir. S8 varyantları arasında ölçüm aralığı, doğruluk ve tepki süresi farklılıkları bulunabilir; ürün varyantı kesinleşmeden tek bir teknik değer varsayılmaz. Üretici ürün sayfası ve ilgili varyantın veri sayfası esas alınmalıdır: https://senseair.com/product/s8/.
 
 Bu yaklaşım BERO'da bir **veri değerlendirme disiplini** oluşturur: ham ölçüm sensöre özgü biçimde alınır ve korunur; sensöre uygun zaman pencerelerinde türetilmiş özellikler üretilir; daha üst katmanda tek veya çoklu sensör davranışları değerlendirilir. Böylece aynı yazılım/mimari ilkeler farklı sensörlere uyarlanabilir, ancak sensörlerin fiziksel özellikleri ve parametreleri birbirine kopyalanmaz.
+
+
+## 11. ct_clamp araştırmasından çıkan algoritma okuryazarlığı ve sensörler arası uyarlama
+
+SCT013 çalışmasının önemli çıktılarından biri yalnızca çalışan bir akım okuma kodu bulmak değildir. ESPHome ct_clamp bileşeninin kaynak kodu, geçmiş PR'ları ve farklı yapay zekâ incelemeleri birlikte araştırılarak algoritmanın içindeki işlemler, bunların gerekçeleri ve sınır durumları incelenmiştir. Araştırma sentezi: [ct_clamp üç kaynaklı teknik sentez](../../PROJELER/SCT013-PZEM-AKIM-GOZLEM/docs/research/ct-clamp/2026-10-31-synthesis-copilot-claude-independent.md).
+
+Bu incelemede somut olarak:
+- CT örneklerinden DC ofseti ayırıp AC bileşeninin RMS değerini standart sapma yaklaşımıyla hesaplama,
+- örnekleme penceresi ile yeni ölçümün başlama/yayın aralığının farklı kavramlar olması,
+- ADC'nin aynı sayısal değeri tekrar vermesi durumunda yinelenen örneğin istatistiğe ikinci kez katılmaması,
+- NaN/negatif karekök gibi sayısal sınır durumlarının ele alınması,
+- çoklu CT örnekleyicilerinin eşzamanlı çalışmasından doğan örnekleme sorunları
+araştırılmıştır.
+
+Bu araştırma, bir algoritmanın adını veya kodunu başka sensöre kopyalamak anlamına gelmez. Asıl kazanım, bir ölçüm algoritmasının hangi aşamalardan oluştuğunu ve her işlemin hangi fiziksel/veri koşulunda anlamlı olduğunu anlayabilmektir. Örneğin aynı sayısal sıcaklık değerinin tekrar gelmesi çoğu zaman gerçek ve geçerli bir sabit durumu gösterebilir; ct_clamp içindeki tekrar eleme davranışı sıcaklık veya basınç sensörüne otomatik olarak taşınamaz.
+
+### PZEM ve SCT'nin zaman davranışından öğrenilenler
+
+PZEM ve SCT karşılaştırması, farklı sensör/ölçüm zincirlerinin aynı fiziksel olay karşısında farklı güncelleme sıklığı ve yerleşme davranışı gösterebileceğini ortaya koymuştur. BERO bu nedenle tekil örnekleri doğrudan birbirine eşlemek yerine her ölçüm akışının kendi zaman davranışını ve kararlılığını ayrı değerlendirmeyi benimser. Kararlı alanların zaman örtüşmesi daha sonra bulunur. PZEM'in burada kullanılması, onun bütün sensörler için mutlak ground truth olduğu anlamına gelmez.
+
+SCT'nin daha hızlı sonuç üretmesi kısa süreli geçişleri daha ayrıntılı gözlemleme olanağı sağlar; daha yavaş tepki veren CO₂, sıcaklık veya başka sensörlerde ise uygun pencere ve karar süresi daha uzun olabilir. Örnekleme hızı, özellik penceresi ve yayın aralığı her sensör için ayrı belirlenmelidir.
+
+### Titreşim verisine olası uyarlama
+
+İvmeölçer/titreşim verisi de zaman serisi olarak benzer üst düzey değerlendirme akışına alınabilir:
+- ham ivme örneklerini ve zaman damgalarını koruma,
+- sensör bant genişliği ve ölçülmek istenen mekanik olaya uygun örnekleme,
+- uygun pencerelerde RMS, standart sapma, tepe değer, tepe faktörü veya gerektiğinde frekans özellikleri çıkarma,
+- ardışık pencerelerde seviye ve dağılım değişimini izleme,
+- motorun çalışma/duruş çevrimlerini ve uzun dönem titreşim eğilimlerini değerlendirme.
+
+Titreşim için ct_clamp RMS formülü, 200 ms pencere, ADC tekrar filtresi veya SCT eşikleri doğrudan kopyalanmaz. İvmeölçer eksenleri, montaj yeri, örnekleme frekansı, sensör bant genişliği, mekanik rezonanslar ve hedeflenen arıza/olay türü ayrı değerlendirilir. RMS tek başına tüm mekanik arızaları ayırt etmez; tepe, kurtosis ve frekans alanı özellikleri ancak ihtiyaç ve veri gerekçelendirirse eklenir.
+
+**Mimari sonuç:** BERO sensörler arasında tek bir sabit algoritma kullanmaz; sensör fiziğine göre uyarlanan ortak bir veri değerlendirme metodolojisi kullanır. Ortak disiplin; ham veriyi koruma, geçerlilik kontrolü, zaman penceresi kurma, sinyale uygun özellik çıkarma ve zaman içindeki davranışı yorumlamadır. Sensöre özgü parametreler ve matematiksel işlemler ayrı doğrulanır.
