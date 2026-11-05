@@ -103,3 +103,12 @@ Tam kayıt değerlendirmesinde Python'a deneyin bilinen ON/OFF koşulu ve yük a
 Tek katsayı veya Python'ın veriden seçeceği alan bazlı katsayılar ve alan sınırları henüz belirlenmemiştir. Algoritma, en küçük kareler yöntemi ve kabul eşiği bu ADR ile seçilmez. Ayrı SCT üzerinde eğitilmiş modeli çalıştıracak olası Modül 4 fikri ayrı bir gelecek önerisidir.
 
 Ayrıntı: [ADR-025](../decisions/ADR-025-raw-data-sct-model-behavior-validation.md). Python uygulaması ve gerçek ham kayıt çıktısı henüz yoktur.
+
+
+## İki ayrı öğrenme hedefi ve gelecekteki saha ESP'si
+
+**Birinci ve mevcut hedef — ON akım ölçüm doğruluğu:** PZEM'in kararlı yükte verdiği akım referansıyla SCT'nin aynı kararlı yük koşulunda doğru akımı verebilmesi. Eğitim yalnız ON dönemindeki kararlı SCT/PZEM alanlarının geçerli eşleştirmesinden oluşur. İlk modelin kabulü bu hedefe göre değerlendirilir.
+
+**İkinci ve sonraki hedef — OFF/gürültü ayrımı:** Deney paketlerindeki OFF okumaları ON akım kalibrasyonuna karıştırılmaz. Ancak zaman içinde biriken OFF örnekleri ayrı bir veri havuzunda saklanıp birleştirilebilir. İleride bu veriyle yüksüz/gürültü dağılımı, kapalı durum eşiği veya ayrı bir sınıflandırıcı geliştirilebilir. Gerekirse ayrıca aç-kapa döngüsü olmadan, ölçülen hatta yük yokken uzun süreli yüksüz kayıt alınır. Bu çalışma ilk hedefin parçası değildir.
+
+**Gelecek çalışma mimarisi fikri:** Python, yeni veriler geldikçe analiz/model geliştirme tarafı olabilir; doğrulanmış eşik veya model sürümü ileride sahada hesaplama ve sınıflandırma yapan bir ESP'ye aktarılabilir. Bu ESP, model aktarım yöntemi, güncelleme güvenliği ve çalışma mimarisi henüz tasarlanmamış bir gelecek hedeftir. Mevcut Python hattı veya ESP firmware'i bu kabiliyete sahipmiş gibi kabul edilmez.
