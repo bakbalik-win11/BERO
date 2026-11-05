@@ -111,3 +111,8 @@ Ham loglar:
 - Sonuç, olay aktarımının tamamen kayıpsız olduğunu kanıtlamaz. Fiziksel SSR gözlemi ayrıca 2026-11-05 ilk ortak yüklü çalışma kaydında tutulur; bu E11 yüksüz deneyiyle karıştırılmaz.
 
 **E11 sonucu:** Yüksüz ölçüm tabanı ve olay görünürlüğü için gözlem tamamlandı. Daha sonra Python'da olay paket bütünlüğü değerlendirmesine girdi olabilir; OFF/yüksüz örnekleri ON kalibrasyon eğitimine katılmaz.
+
+
+## Sonraki oturum — yüksüz gürültü havuzu başlangıcı
+
+Bir sonraki oturumun ilk adımı, kullanıcıdan 2026-11-05 gecesi alınan sistem yüksüz HA History CSV kaydını istemektir. Dosya geldikten sonra üç SCT kanalının ham yüksüz dağılımları ayrı ayrı incelenecek ve ilk gürültü havuzu girdisi olarak saklanacaktır. SCT1 fiziksel 1T, SCT2 nötr 4T, SCT3 faz 3T'dir. Tur-normalize karşılaştırma ek analiz olabilir; ham kanal değerleri asıl kayıt olarak korunur. Her yeni yüksüz oturum aynı havuza eklenerek oturumlar arası gürültü tabanı ve üst uç davranışı değerlendirilecektir. Bu çalışma ON kalibrasyonundan ayrıdır.
