@@ -139,3 +139,19 @@ Bu aşamada amaç, geçiş örneklerini interpolasyonla çoğaltıp kalibrasyon 
 - Canlı çamaşır makinesi verisi, sabit yüklerle kurulan referans modelin daha sonraki bağımsız davranış/doğrulama aşamasıdır; ilk kalibrasyon veri setinin yerine geçmez.
 
 **Durum:** İlk CSV ön değerlendirmesi yapıldı; E12 tamamlanmadı. Python algoritması/eğitimi, farklı yük doğrulaması ve tepki süresi alt deneyi açık.
+
+
+## 2026-11-05 — Kullanıcı örnekleme hızı hedefi: 2 Hz
+
+Kullanıcı, SCT akım akışında yaklaşık 0,5 saniyede bir yeni çıktı (2 Hz) üretilmesini hedef olarak önerdi. Bu hedef E12'nin tepki süresi başlığına eklendi; mevcut sistemin bunu sağladığı henüz söylenemez.
+
+Mevcut Modül 2 kaynak YAML'ında interval=2s ile üç SCT kanalı sıralı okunur; sample_duration=200ms ve kanallar arasında 250 ms gecikmeler vardır. Dolayısıyla mevcut nominal kanal güncellemesi yaklaşık 2 saniyede birdir (0,5 Hz). Yalnızca ana interval'i 500 ms'ye çekmek, üç kanalın her birine 2 Hz sağlayacağı anlamına gelmez: mevcut sıralı çevrimin kendisi 3 adet 200 ms örnek ve aradaki beklemelerden oluşur.
+
+Test hedefleri ayrıştırılacaktır:
+- SCT1 öncelikli tek kanalında 500 ms çıktı aralığı / 2 Hz sürdürülebilir mi?
+- Üç SCT kanalı açıkken her kanalın gerçek çıktı hızı, zaman damgası kayması ve kayıp oranı ne olur?
+- Daha yüksek çıktı hızı, ölçüm dağılımını, kararlı alanı veya mevcut K=24.22 ile ölçüm seviyesini bozuyor mu?
+
+sample_duration (her ölçümün örnekleme süresi) ile update_interval/çıktı periyodu (yeni sonucun ne sıklıkta üretildiği) birbirinden ayrı kavramlardır. İlk hız denemesinde K=24.22 ve 200 ms örnekleme penceresi mümkün olduğunca sabit tutulacak; önce mimari ve scheduler kapasitesi incelenecek. Firmware değişikliği henüz yapılmadı.
+
+Ayrıca I007 yüksüz verisinde ham akış korunarak ayrı filtrelenmiş türev akış üretme yaklaşımı kullanıcı tarafından kabul edildi. Kayan pencere, sağlam merkez/dağılım, sapma sınırı ve süre koşulu birlikte değerlendirilecek; kısa tekil sıçramalar işaretlenebilir ancak kalıcı yükseliş korunmalıdır. Parametreler henüz belirlenmedi. Ayrıntı ve bağımsız test planı: [E13 — yüksüz gürültü filtresi ve örnekleme hızı](../E13-idle-noise-filter-and-sampling-rate/README.md).
