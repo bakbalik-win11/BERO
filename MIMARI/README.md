@@ -40,3 +40,21 @@ Bu sensörler aynı fiziksel büyüklüğü ölçmez ve aynı algoritmayı kulla
 Şu anki SCT013-PZEM çalışması, kullanıcının diğer evde yürüttüğü hazırlık/geliştirme çalışmasıdır. Bu ortamda ölçüm zinciri, veri toplama, arşivleme ve analiz yöntemleri hazırlanıp doğrulanmaktadır. Kullanıcı açıkça belirtmiştir: şu anda canlı BERO kurulumunda çoklu sensörlerle birlikte çalışan bir uygulama yürütülmemektedir.
 
 Dolayısıyla yukarıdaki çoklu sensör örnekleri BERO'nun sistem kapsamını ve hedeflenen sensör ailesini açıklar; mevcut canlı sistemde bu sensörlerin entegre olduğu veya ortak algoritmayla çalıştığı anlamına gelmez. Sensör entegrasyonları aşamalı ve ayrı ayrı doğrulanacaktır.
+
+
+## Havalandırma ve iç ortam gözlemi — çoklu sensör örneği
+
+Kullanıcının belirttiği önemli kullanım alanlarından biri binanın iç ortam hava kalitesi ve havalandırma sistemidir. Bu alan yalnızca CO₂ ölçümünden ibaret değildir; temiz hava besleme ve egzoz kanalları, fan/motor davranışı, gürültü ve titreşim birlikte gözlemlenebilir.
+
+Olası ölçüm katmanları:
+- **CO₂:** İç ortam hava kalitesinin ve havalandırma ihtiyacının göstergelerinden biri.
+- **Akım:** Fan/motorun devrede olma durumu, yük çekişi, çalışma süresi ve zaman içindeki elektriksel davranış değişimi.
+- **Gürültü:** Havalandırma sisteminin ses seviyesindeki ve ses karakterindeki değişimler.
+- **Titreşim:** Fan, motor, yataklama ve bağlantıların mekanik davranışındaki değişimler.
+- **Hava akışı/debi ve basınç:** Temiz hava beslemesi ile egzozun gerçekten ne kadar hava taşıdığını değerlendirmek için ayrı ölçüm katmanı.
+
+Akım sensörünün BERO'daki rolü bu örnekte özellikle önemlidir: Akım ölçümü yalnızca bir cihazın elektrik tüketimini okumak için değil, evdeki farklı motorlu/elektrikli ekipmanların çalışma karakterini izlemek ve diğer sensörlerin gözlemleriyle ilişkilendirmek için tekrar kullanılabilir bir parametredir. Bu nedenle SCT/akım ölçümü, çoklu sensörlü sistemde farklı kullanım alanlarına taşınabilecek ortak bir gözlem girdisi olarak ele alınır.
+
+Sensörler birbirinin yerine geçmez. Örneğin fan akımı motorun elektriksel olarak çalıştığına dair kanıt sağlayabilir; fakat tek başına yeterli hava debisi veya doğru temiz hava beslemesini kanıtlamaz. CO₂, akım, gürültü, titreşim ve gerekiyorsa debi/basınç verileri zaman ilişkileriyle birlikte değerlendirilmelidir. Birden fazla sensörün aynı anda gözlem yapması, tek bir ölçümden çıkarılamayacak davranış değişimlerini araştırma imkânı sağlar.
+
+Bu havalandırma senaryosu BERO'nun hedeflenen kullanım alanlarından biridir; mevcut canlı BERO kurulumunda entegre ve çalışan bir havalandırma uygulaması olduğu anlamına gelmez. Mevcut SCT013-PZEM çalışması diğer evdeki hazırlık/geliştirme çalışması olarak kalır; bu vizyon kısa vadeli SCT veri toplama görevlerini değiştirmez.
