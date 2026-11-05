@@ -1324,3 +1324,15 @@ Modül 2 taşınabilirlik amacıyla kullanıcı tarafından tek bias devresi ve 
 - **AMAÇ:** Olay/zaman bilgisi kararlı alanların sınırlarını ve eğitim örneğinin yük durumunu belirlemeye yardımcı olur. Ölçüm ile olayın HA'da tek kayıt olması gerekmez; ilişkilendirme Python'da sonradan yapılır.
 - **SINIR:** UDP protokol ayrıntıları, zaman toleransı, kararlılık eşiği ve pencere süreleri bu kararla değiştirilmedi; gerçek HA verisiyle belirlenecek. Donanım/firmware uygulaması veya fiziksel doğrulama yapılmış değildir.
 - **KARAR DOSYASI:** [ADR-019](docs/decisions/ADR-019-module2-module3-independent-event-streams.md).
+
+## 2026-11-05 — Modül 2 + Modül 3 kısa ortak yük testi
+
+- **KAPSAM:** Kullanıcının paylaştığı Modül 2/3 logları birlikte incelendi. SSR çıkışında akkor ampul bulunduğu ve amaç fiziksel yanıp sönmeyi görmek olduğu kullanıcı tarafından bildirildi. Bu test E11 yüksüz deneyi değildir.
+- **MODÜL 3:** PZEM ON sırasında 0.186–0.187 A / 42.0–42.6 W; OFF sırasında 0.000 A / 0.00 W gösterdi. UART/Wi-Fi ve olay üretimi çalıştı. OFF geçişlerinde `GPIO_OFF_READBACK_MISMATCH` tekrarladı.
+- **MODÜL 2:** Üç SCT sıralı çevrimi çalıştı; 59 tam kanal çevrimi kaydedildi. Ortak bias 1.644–1.678 V aralığında (ortalama yaklaşık 1.66185 V).
+- **UDP:** Ortak BOOT_ID `83DAAD0A8A5C1FE6695D5E1BC1CB1C72`. EVENT_ID 31 ON, 32 OFF, 33 ON Modül 2 tarafından alındı. EVENT_ID 30 Modül 2 log başlamadan gönderildi. EVENT_ID 34 gönderildi ancak alıcı logunda görünmüyor. EVENT_ID 35 gönderildiğinde Modül 2 logu bitmişti. Ortak aralıkta 3/4 olay alıcı logunda mevcut; bu uzun dönem kayıp oranı değildir.
+- **SCT NOTU:** ON bölümünde tipik SCT1 0.35–0.39 A, SCT2 0.52–0.55 A, SCT3 0.68–0.71 A. OFF sonrası ilk çevrimde sırasıyla 0.180 / 0.229 / 0.189 A görüldü; PZEM aynı dönemde 0.000 A. Farklı sarım/iletken yerleşimleri ve sıralı ölçüm nedeniyle kalibrasyon sonucu çıkarılmadı.
+- **KARAR:** İki modülün ağ bağlantısı ve UDP olay alışverişi doğrulandı; kısa kayıtta EVENT_ID 34 alıcıda görünmüyor. OFF GPIO uyarısı açık. E11 yüksüz testi başlamış sayılmaz.
+- **ANALİZ:** [2026-11-05 kısa ortak test analizi](logs/dual-module/2026-11-05-short-joint-test-analysis.md).
+- **SONRAKİ:** Akkor ampulü güvenli biçimde devreden çıkarıp E11 kısa yüksüz ortak kontrolünü yap; uzun gözleme ancak bu kontrol kabul edilirse geç.
+
