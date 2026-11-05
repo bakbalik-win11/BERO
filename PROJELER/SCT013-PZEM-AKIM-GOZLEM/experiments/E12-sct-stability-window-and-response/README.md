@@ -61,17 +61,18 @@ SCT1'in yayınlanan değerleri üzerinde kayan/ardışık pencereler değerlendi
 
 ## ON/OFF paketleme, eğitim ve OFF alanının kapsamı
 
-1. Her akışta BOOT_ID + EVENT_ID ile tam ON/OFF paket bütünlüğünü doğrula. ON olayı paketi başlatır; eşleşen OFF olayı paketi kapatır.
-2. Eksik açılış/kapanış, sıra bozukluğu veya boot değişimi olan aralıkları tamamlanmış paket/eğitim adayı sayma; ham kaydı koru.
-3. **OFF alanı eğitim verisi değildir.** OFF okumaları hiçbir koşulda SCT/PZEM eğitim eşleştirmesine veya eğitim örneği üretimine alınmaz. OFF, bu ilk aşamada sıfır/kapalı durum kabulüdür ve paket sınırını kapatmak için kullanılır.
-4. SCT kararlı alanlarını yalnız SCT'nin ON ölçüm verisinden, PZEM kararlı alanlarını yalnız PZEM'in ON ölçüm verisinden bağımsız tespit et.
-5. İki ON kararlı aralığın zaman kesişimini hesapla. Yalnız kesişen bölüm eşleşmiş eğitim penceresi adayıdır.
-6. PZEM geçiş/yerleşme örneklerini SCT örnekleri için noktasal referans yapma.
-7. Ham kayıt kesilmez/silinmez. Eğitim yalnız ON kararlı örtüşmesinden oluşur; modelin sonraki davranış testi tam ham kayda, ON/OFF ve geçişler dahil, uygulanabilir.
+1. Her akışta olay işaretlerinin sırasını ve paket bütünlüğünü doğrula. `EVENT_ID` her SSR durum değişiminde artar: ON başlangıç işareti kendi `BOOT_ID + EVENT_ID` kimliğine sahiptir; onu izleyen OFF kapanış işaretinin EVENT_ID değeri farklıdır. Paket kimliği ON başlangıç işaretinin `BOOT_ID + EVENT_ID` birleşimidir. İki modüldeki ON başlangıçları bu kimlikle eşleşmeli; karşılık gelen OFF kapanışları da her iki akışta doğru sıra/kimlikle doğrulanmalıdır.
+2. Eksik ON/OFF işareti, sıra bozukluğu, boot değişimi veya iki modül arasında olay kimliği uyuşmazlığı olan aralıkları tamamlanmış paket/eğitim adayı sayma. Ham kayıt korunur ve dışlama nedeni raporlanır.
+3. **OFF alanı eğitim verisi değildir.** OFF okumaları hiçbir koşulda SCT/PZEM kararlı yük eğitim eşleştirmesine veya eğitim örneği üretimine alınmaz. OFF, bu ilk aşamada sıfır/kapalı durum kabulüdür ve ON paket sınırını kapatmak için kullanılır.
+4. SCT kararlı alanlarını yalnız SCT'nin aynı ON paketindeki ölçüm verisinden, PZEM kararlı alanlarını yalnız PZEM'in aynı ON paketindeki ölçüm verisinden bağımsız tespit et.
+5. Paket bütünlüğü doğrulandıktan sonra iki ON kararlı aralığın zaman kesişimini hesapla. Yalnız kesişen zaman aralığı karşılaştırılabilir eğitim adayıdır. Kesişim yoksa eğitim etiketi üretme; ham kayıtları koru ve `NO_STABLE_OVERLAP` gibi açık dışlama nedeni raporla.
+6. PZEM geçiş/yerleşme örneklerini SCT örnekleri için noktasal referans yapma; tekil örnekleri timestamp ile birebir eşleştirme veya interpolasyon uygulama.
+7. HA timestamp'lerinin iki akış arasında karşılaştırılabilirliği, olay sıralaması ve kararlı aralık sınırlarının güvenilirliği gerçek dışa aktarım üzerinde doğrulanmalıdır. Bu doğrulama yapılmadan örnekleme hızı veya zaman hassasiyeti hakkında ek iddia kurulmaz.
+8. Ham kayıt kesilmez/silinmez. Eğitim yalnız aynı ON paketindeki bağımsız SCT/PZEM kararlı alanların ortak zaman aralığından oluşur; modelin sonraki davranış testi tam ham kayda, ON/OFF ve geçişler dahil, uygulanabilir.
 
 **OFF/yüksüz taban istatistiği ayrı ve sonraki aşamaya bırakılmış isteğe bağlı bir araştırmadır.** Gerekirse aç-kapa döngüsü olmadan, ölçülen hatta yük bağlı değilken uzun bir kayıt alınır. Bu kayıttan yüksüz taban dağılımı ve olası gürültü/kapalı durum eşiği çıkarılabilir. Bu çalışma E12'nin ilk eğitim hedefi değildir ve OFF verisini eğitim örneğine dönüştürmez.
 
-Bu yaklaşım ADR-024 ve güncellenmiş ADR-025 ile uyumludur. Timestamp tekil örnekleri birebir eşleştirmek için değil, bağımsız ON kararlı aralıkların kesişimini bulmak için kullanılır.
+Bu yaklaşımda paket kimliği zaman damgasından bağımsızdır. Timestamp, iki akışın ölçüm örneklerini birebir eşleştirmek için değil, paket bütünlüğü doğrulandıktan sonra aynı ON paketindeki bağımsız kararlı aralıkların ortak zamanını değerlendirmek için kullanılır. PZEM proje referansıdır; mutlak ground truth değildir.
 
 ## Tepki süresi ve kısa pencere karşılaştırması
 
