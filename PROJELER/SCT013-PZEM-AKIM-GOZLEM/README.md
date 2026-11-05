@@ -102,7 +102,7 @@ Modül 2 ve Modül 3'te ölçüm verileri ile UDP olay/yayın verileri bağıms�
 
 BERO'nun bu projesinde eğitim verisi **yalnız yükün açık (ON) olduğu dönemdeki kararlı SCT/PZEM alanlarının zaman örtüşmesinden** oluşturulur. Kapalı (OFF) alanlar hiçbir zaman eğitim verisi değildir ve iki sensör arasında eşleştirilmez. OFF olayı, ON paketini kapatır; ilk aşamada kapalı durum sıfır kabul edilir. Tam ON/OFF paket bütünlüğü, eğitim örneğinin geçerli deney aralığından geldiğini doğrulamak içindir; OFF okumalarını eğitime katmak için değildir.
 
-OFF/yüksüz okumaların istatistiği ileride ayrı bir araştırma olabilir. Bunun için aç-kapa döngüsü olmadan, ölçülen hatta yük bağlı değilken uzun bir yüksüz kayıt alınır; taban dağılımı ve olası gürültü/kapalı durum eşiği incelenir. Bu çalışma ilk aşamanın eğitim hedefi değildir.
+OFF/yüksüz okumalar ON akım kalibrasyonuna katılmaz. Ancak farklı deneylerde biriken OFF örnekleri ileride ayrı bir veri havuzunda birleştirilerek gürültü tabanı ve kapalı durum eşiği/sınıflandırması için kullanılabilir. Gerekirse aç-kapa döngüsü olmadan, hatta yük bağlı değilken uzun bir yüksüz kayıt alınır. Bu ikinci öğrenme hedefi ilk aşama değildir. Uzun vadede Python'da geliştirilen ve doğrulanan eşik/modelin sahada hesaplama yapan ESP'ye aktarılması hedeflenebilir; bu mimari henüz tasarlanmamış/uygulanmamıştır.
 
 Ayrıntı ve uygulama kuralı: [ADR-025](docs/decisions/ADR-025-raw-data-sct-model-behavior-validation.md) ve [E12](experiments/E12-sct-stability-window-and-response/README.md).
 
