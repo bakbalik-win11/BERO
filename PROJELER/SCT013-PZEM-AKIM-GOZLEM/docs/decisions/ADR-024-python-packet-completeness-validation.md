@@ -14,11 +14,25 @@ Modül 3 SSR durum değişiminde BERO_EVT olayı üretir; aynı olayı kendi HA/
 1. Mevcut Modül 3 → UDP 4210 → Modül 2 olay aktarımı korunur. Bu karar UDP'yi kaldırmaz, HA merkezli yeni bir olay mimarisi kurmaz ve yeni HA helper gerektirmez.
 2. Modül 3 kendi PZEM akışını; Modül 2 kendi SCT akışını, yalnızca kendi akışında kayıtlı olay işaretlerine göre bağımsız paketler.
 3. Bir paket, ilgili akışta geçerli ON başlangıcı ve onu izleyen geçerli OFF bitişiyle sınırlandırılır. Başlangıç veya bitiş işareti eksikse, olay kimliği uyuşmuyorsa ya da sıra tutarsızsa o akış aralığı tamamlanmış paket sayılmaz.
-4. Python, paket kimliğini ON başlangıç işaretinin BOOT_ID + EVENT_ID birleşimi olarak tanımlar; çünkü EVENT_ID her SSR durum değişiminde artar ve karşılık gelen OFF kapanış işaretinin EVENT_ID değeri farklıdır. İki akışın ON başlangıçları bu kimlikle eşleşmeli, OFF kapanışları ise her akışta doğru sıra ve kimlikle ayrıca doğrulanmalıdır. İki tarafta da aynı ON paketi bütünlüğü doğrulanmadan SCT verisi PZEM etiketiyle eğitim örneğine alınmaz.
+4. Python, paket kimliğini ON başlangıç işaretinin `BOOT_ID + ON_EVENT_ID` birleşimi olarak tanımlar. İki akışın ON başlangıçları bu anahtarla aynı olmalıdır. Her akışta ON'dan sonraki ilk durum olayı OFF olmalı; OFF işaretinin `BOOT_ID + OFF_EVENT_ID` anahtarı iki akışta da aynı olmalıdır. Modül 3 her SSR durum değişiminde EVENT_ID'yi bir artırdığı için normal ON→OFF çevriminde `OFF_EVENT_ID = ON_EVENT_ID + 1` beklenir. Arada başka EVENT_ID, atlama, farklı OFF kimliği, BOOT_ID değişimi veya eksik OFF varsa paket kesin olarak reddedilir; diğer akışın kaydıyla tamamlanmaz. İki tarafta da aynı ON ve OFF anahtarlarıyla paket bütünlüğü doğrulanmadan SCT verisi PZEM etiketiyle eğitim örneğine alınmaz.
 5. Eksik/uyuşmayan paketler tahminle tamamlanmaz ve sessizce atlanmaz; INCOMPLETE_EVENT, MISSING_ON, MISSING_OFF, EVENT_ID_GAP, DUPLICATE_EVENT, STATE_ORDER_ERROR, BOOT_CHANGED_WITH_OPEN_PACKET gibi tanı durumlarıyla raporlanır.
 6. Bir akışta yeni ON olayı açık paket varken gelirse önceki aralık tamamlanmamış/bozuk olarak işaretlenir; yeni ON yeni paket başlangıcı olarak değerlendirilir. Bu kurtarma kuralı, önceki paketi geçerli kılmaz.
-7. BOOT_ID değiştiğinde önceki boot oturumunda açık kalan paket tamamlanmamış olarak kapatılır. EVENT_ID boşlukları ayrıca olay dizisi eksikliği olarak raporlanır.
+7. BOOT_ID değiştiğinde önceki boot oturumunda açık kalan paket tamamlanmamış olarak kapatılır. ON ile OFF arasında EVENT_ID boşluğu paketi reddettirir (`EVENT_ID_GAP`); paket dışındaki olay dizisi boşlukları da ayrıca raporlanır ve ilgili aralık değerlendirmeye alınmadan önce incelenir.
 8. ON/OFF işaretlerinin bulunması paketin kararlı olduğu anlamına gelmez. PZEM ve SCT kararlılığı kendi ölçüm akışlarında bağımsız değerlendirilir; geçiş/yerleşme bölümleri eğitim alanından çıkarılır.
+
+## Dışlama durumlarının sınıflandırılması
+
+Paket bütünlüğü ve etiket uygunluğu ayrı sonuç alanları olarak raporlanır; biri diğerinin yerine geçmez.
+
+**Paket bütünlüğü durumları (örnek kodlar):**
+- `MISSING_ON`, `MISSING_OFF`, `EVENT_ID_GAP`, `OFF_EVENT_MISMATCH`, `DUPLICATE_EVENT`, `STATE_ORDER_ERROR`, `BOOT_CHANGED_WITH_OPEN_PACKET`, `INCOMPLETE_EVENT`.
+
+**Etiket uygunluğu durumları (paket bütünlüğü geçtikten sonra):**
+- `NO_STABLE_SCT`: SCT akışında uygun kararlı ON alanı bulunamadı.
+- `NO_STABLE_PZEM`: PZEM akışında uygun kararlı ON alanı bulunamadı.
+- `NO_STABLE_OVERLAP`: Her iki akışta ayrı ayrı kararlı alan bulundu ancak zaman kesişimi yok.
+
+Etiket uygunluğu nedeniyle reddedilen tam paket, paket bütünlüğü hatası olarak raporlanmaz. Ham kayıt her durumda korunur. Bu kodlar uygulama raporlaması için ortak sözlüktür; Python uygulamasında kod adları tek yerde tanımlanmalıdır.
 
 ## Örnek davranış
 
