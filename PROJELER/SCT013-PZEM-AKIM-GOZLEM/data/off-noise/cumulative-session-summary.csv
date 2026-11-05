@@ -1,0 +1,2 @@
+date,session_id,intervals_local,sct1_n,sct1_median_A,sct1_p95_A,sct1_p99_A,sct1_max_A,sct2_n,sct2_median_A,sct2_p95_A,sct2_p99_A,sct2_max_A,sct3_n,sct3_median_A,sct3_p95_A,sct3_p99_A,sct3_max_A,bias_n,bias_median_V,bias_mean_V,bias_std_V
+2026-11-05,I007-2026-11-05-01,"19:08:27.603-20:03:53.275;20:54:08.307-21:16:05.326",2264,0.1603217,0.3326789,0.4157866,0.5060912,2259,0.1697970,0.2930447,0.3700730,0.6550620,2235,0.1566819,0.2549519,0.2922825,0.4234996,2113,1.6630,1.6624548,0.0069926
