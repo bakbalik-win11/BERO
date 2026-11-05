@@ -118,3 +118,16 @@ Ayrıntı: [ADR-025](docs/decisions/ADR-025-raw-data-sct-model-behavior-validati
 ## 2026-11-05 — Kalibrasyon ve eğitim yaklaşımının güncel özeti
 
 Sabit yükler nihai kullanımın sınırı değil, PZEM ve SCT'nin aynı fiziksel koşuldaki bağımsız kararlı ON alanlarını güvenilir biçimde eşleştirerek doğru kalibrasyon referansı üretmenin aracıdır. Farklı fiziksel tepki ve hesaplama yöntemleri nedeniyle geçiş/interpolasyon değerleri katsayı eğitimine katılmaz. İlk 100 W ön karşılaştırması yaklaşık %3.34 merkez farkı göstermiştir; bu henüz Python eğitimi veya tüm aralık doğrulaması değildir. K=24.22 korunur. Farklı yüklerden yeterli veri toplandıktan sonra tek katsayı, doğrusal, polinom veya parçalı model seçenekleri bağımsız doğrulamayla değerlendirilecektir. Canlı çamaşır makinesi kaydı sonraki davranış/doğrulama aşamasıdır. Ayrıntı: [E12](experiments/E12-sct-stability-window-and-response/README.md).
+
+
+## Uzun vadeli kullanım vizyonu — davranış izleme ve anomali tespiti
+
+Bu alt proje, BERO'nun daha geniş hedefinin ilk akım ölçüm uygulamasıdır. BERO yalnızca ev makinelerinin programını veya çalışma evresini tahmin etmek için tasarlanmamaktadır. Uzun vadeli kullanım alanları şunlardır:
+
+- **Çalışma karakteri çıkarımı:** çamaşır makinesi gibi cihazların çalışma evrelerini ve normal çevrim davranışlarını tanımak.
+- **Ekipman anomali/arıza belirtileri:** havalandırma motoru veya kuyu hidroforu gibi ekipmanlarda akım seviyesi, çalışma süresi, devreye girme sıklığı ve davranış örüntüsündeki sapmaları izlemek. Sistem ilk aşamada kesin arıza teşhisi iddiasında bulunmaz; olası anomaliyi/bakım ihtiyacını işaretler.
+- **Uzun dönem trend takibi:** hat veya ekipmanın akım seviyesinin günler/haftalar/aylar içindeki değişimini grafiklemek; kademeli yükselişleri, ani değişimleri ve normal çalışma bandından sapmaları görünür kılmak.
+
+Çamaşır makinesi programı/evresi tahmini bu hedeflerden yalnızca biridir ve mevcut geliştirme için pratik bir başlangıç senaryosudur. Kısa vadeli testlerin hedefi ölçüm zincirini ve veri altyapısını güvenilir hâle getirmektir; uzun vadeli anomali analizi için de aynı tarihçeli ham veriden yararlanılacaktır.
+
+Ölçüm kararlılığı yalnızca boş/yüklü ayrımı değildir. Tekil sıçrama filtreleme, örnekleri kısa süre toplama, süreklilik kontrolü ve pratik eşik gibi seçenekler deneylerle karşılaştırılabilir. Henüz belirli bir algoritma veya eşik seçilmemiştir. Ham ölçümler korunur; filtrelenmiş, özellik çıkarılmış ve trend verileri ayrı türetilmiş katmanlar olarak ele alınır.
