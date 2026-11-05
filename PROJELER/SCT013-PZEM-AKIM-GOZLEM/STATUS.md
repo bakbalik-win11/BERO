@@ -1350,3 +1350,15 @@ Ham loglar:
 - `logs/dual-module/2026-11-05-modul2-ilk-ortak-calisma.txt` (1070 satır)
 - `logs/dual-module/2026-11-05-modul3-ilk-ortak-calisma.txt` (362 satır)
 
+
+
+## 2026-11-05 — E12 deney planı kaydedildi
+
+- E12 açıldı: SCT1 kararlı alan algoritması, PZEM/SCT bağımsız kararlı alanlarının zaman örtüşmesi ve SCT tepki süresi/kısa ölçüm penceresi araştırması.
+- İlk gözlem oturumu: 20:07–20:37, 100 W akkor, 40 s ON / 20 s OFF. Tam log analizi bekleniyor; deney tamamlandı sayılmıyor.
+- Kullanıcı 20:12 civarında kablo yapısında küçük değişiklik bildirdi; ayrıntı henüz yok. Analiz öncesi/sonrası ayrı yapılacak.
+- İlk referans ayarları: sample_duration 200 ms, update_interval 2 s, K=24.22. İlk analizde firmware değişikliği yapılmayacak.
+- Sonraki adım: Modül 2/3 tam loglarından özellikle SCT1'in ortalama, dağılım ve ardışık pencere değişimiyle kararlılığını; PZEM kararlı alanıyla zaman kesişimini ve tepki süresini ön değerlendirmek.
+- Deney numaraları çalışma sırasını belirlemez; kullanıcı ve asistan ihtiyaç/altyapı durumuna göre deneyleri öne alabilir. Faz 2 görev bağımlılıkları değişmez.
+- [E12 protokolü](experiments/E12-sct-stability-window-and-response/README.md).
+- Python algoritması yazılmadı; firmware/YAML, derleme ve OTA değiştirilmedi.
