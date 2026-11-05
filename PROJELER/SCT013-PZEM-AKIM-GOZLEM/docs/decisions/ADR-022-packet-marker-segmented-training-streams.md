@@ -61,7 +61,7 @@ HA dışa aktarımında kayıtlar ayrı entity geçmişlerinde bulunuyorsa Pytho
 ## BOOT_ID, EVENT_ID ve TIME alanlarının kesin görevi
 
 - **BOOT_ID:** Modül 3'ün her açılışında/yeniden başlatılmasında bir kez yeni kimlik üretilir. Aynı açılış oturumu boyunca bütün SSR olaylarında sabit kalır. Her ON/OFF olayında yeniden üretilmez.
-- **EVENT_ID:** Modül 3'te her yeni SSR durum değişiminde artan olay/paket numarasıdır. Aynı BOOT_ID oturumunda sıralı ilerler. Yeniden başlatma sonrası sayaç yeniden başlayabilir; bu nedenle tek başına benzersiz değildir.
+- **EVENT_ID:** Modül 3'te her yeni SSR durum değişiminde artan olay işareti numarasıdır; ON ve OFF işaretlerinin EVENT_ID değerleri farklıdır. ON işaretinin EVENT_ID değeri ilgili ON paketinin kimliğini belirlemede kullanılır; karşılık gelen OFF işareti kapanış olayı olarak ayrıca doğrulanır. Aynı BOOT_ID oturumunda sıralı ilerler. Yeniden başlatma sonrası sayaç yeniden başlayabilir; bu nedenle tek başına benzersiz değildir.
 - **TIME:** Olayın üretildiği tarih-saat bilgisidir. Her BERO_EVT olay mesajında bulunur ve Modül 2'ye aynı içerikle aktarılır. Oturumun tarih/saat izini ve olayın kendi akışı içindeki yerini korumaya, yeniden başlatma ve tanılama kayıtlarına yarar. TIME, Modül 2 SCT ile Modül 3 PZEM örneklerini zaman üzerinden eşleştirmek için kullanılmaz.
 - **Tekil eşleştirme anahtarı:** BOOT_ID + EVENT_ID birleşimidir. TIME bu anahtarın yerine geçmez; EVENT_ID'nin farklı açılışlarda tekrar edebilmesini ayırt etmeye yardımcı olan BOOT_ID'dir.
 - **Modül 2**, Modül 3'ten aldığı BOOT_ID, EVENT_ID, STATE ve TIME alanlarını aynen korur. Modül 2 kendi BOOT_ID'sini bu olay eşleştirmesinde kullanmaz.
