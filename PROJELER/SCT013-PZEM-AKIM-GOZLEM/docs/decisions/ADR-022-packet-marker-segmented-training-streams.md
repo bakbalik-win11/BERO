@@ -48,13 +48,15 @@ HA dışa aktarımında kayıtlar ayrı entity geçmişlerinde bulunuyorsa Pytho
 
 1. Modül 3 PZEM akışındaki olay işaretlerini okuyarak PZEM kayıtlarını ardışık paket aralıklarına ayırır.
 2. Modül 2 SCT akışındaki aynı olay işaretlerini okuyarak SCT kayıtlarını aynı paket aralıklarına ayırır.
-3. İki modülün aralıklarını `BOOT_ID + EVENT_ID` ile eşleştirir.
-4. Her paket aralığında PZEM kararlılığını yalnız PZEM değerlerinden; SCT kararlılığını yalnız SCT değerlerinden bağımsız tespit eder.
-5. PZEM'in yükseliş/düşüş ve yerleşme geçişlerini; SCT'nin kendi geçiş/yerleşme bölümlerini eğitim kararlı alanından çıkarır.
-6. Aynı paket/olay içindeki karşılaştırılabilir kararlı yük bölgelerinden eğitim örneği oluşturur. PZEM değeri bu örneğin proje referans etiketidir; mutlak ground truth değildir.
-7. Eğitim çıktısına `BOOT_ID` ve `EVENT_ID` bilgisini Python ekler. Paket numarası eğitim örneğinin deney/olay kimliğidir; her ham ölçümün içine ESP tarafından yazılmaz.
+3. Her iki akışta aynı fiziksel ON başlangıç işaretini `BOOT_ID + EVENT_ID` ile doğrular. Paket kimliği, ON başlangıç işaretinin kimliğidir; çünkü `EVENT_ID` her SSR durum değişiminde artar ve onu izleyen OFF işaretinin kendi farklı `EVENT_ID` değeri vardır. OFF işareti, ilgili akışta ON paketini kapatan beklenen sonraki durum olayı olarak ayrıca doğrulanır.
+4. Her iki modülde ON başlangıcı ve karşılık gelen OFF kapanışı aynı kimlik/sıra düzeniyle doğrulanmışsa paket bütünlüğünü kabul eder; eksik veya uyumsuz işaretli aralıkları eğitim dışı bırakır ve nedenini raporlar.
+5. Her ON paketinde PZEM kararlılığını yalnız PZEM değerlerinden; SCT kararlılığını yalnız SCT değerlerinden bağımsız tespit eder.
+6. PZEM'in yükseliş/düşüş ve yerleşme geçişlerini; SCT'nin kendi geçiş/yerleşme bölümlerini eğitim kararlı alanından çıkarır.
+7. Aynı ON paketindeki bağımsız SCT ve PZEM kararlı aralıklarının zaman kesişimini hesaplar. Yalnız kesişen zaman aralığı karşılaştırılabilir eğitim adayıdır. Kesişim yoksa etiket üretilmez; ham kayıt korunur ve `NO_STABLE_OVERLAP` gibi açık bir dışlama nedeni raporlanır.
+8. PZEM değeri bu örneğin proje referans etiketidir; mutlak ground truth değildir.
+9. Eğitim çıktısına paket kimliği olan ON başlangıcının `BOOT_ID` ve `EVENT_ID` bilgilerini Python ekler. Ham ölçüm kayıtlarının içine ESP tarafından sürekli olay kimliği yazılmaz.
 
-**Eşleştirme anahtarı paket kimliğidir; zaman değildir.** PZEM ve SCT'nin kararlı pencerelerinin timestamp kesişimi, başlangıç/bitiş eşitliği veya sabit gecikme eşleştirme şartı değildir. Zaman damgası paket işaretinin zamanını ve her akışın kendi iç sırasını korumak için tutulur; iki sensörün örneklerini zaman bazında eşleştirmek için kullanılmaz.
+**Paket eşleştirme anahtarı `BOOT_ID + ON_EVENT_ID` birleşimidir; zaman değildir.** Bu kimlik, iki modüldeki aynı fiziksel ON başlangıç işaretini ve dolayısıyla paket başlangıcını tanımlar. Karşılık gelen OFF kapanış işareti her akışta ayrıca doğrulanır; OFF işaretinin EVENT_ID değeri ON ile aynı değildir. Paket bütünlüğü doğrulandıktan sonra zaman damgaları, aynı ON paketi içindeki SCT ve PZEM kararlı aralıklarının zaman bakımından kesişip kesişmediğini belirlemek için kullanılır. Bu kesişim paket eşleştirme anahtarı değil, eğitim etiketi üretmeye uygunluk koşuludur. Tekil SCT/PZEM örnekleri timestamp üzerinden birebir eşleştirilmez, interpolasyonla eşleştirilmez ve sabit gecikme varsayılmaz. HA timestamp'lerinin iki akış arasında karşılaştırılabilirliği, olay sırası ve kararlı aralık sınırları gerçek dışa aktarım üzerinde doğrulanmadan zaman hassasiyeti hakkında ek iddia kurulmaz.
 
 ## BOOT_ID, EVENT_ID ve TIME alanlarının kesin görevi
 
@@ -84,7 +86,7 @@ HA dışa aktarımında kayıtlar ayrı entity geçmişlerinde bulunuyorsa Pytho
 
 ## ADR-019 ile ilişki
 
-Bu karar, ADR-019'un bağımsız ölçüm akışları ve ayrı olay işaretleri ilkesini korur. Ancak ADR-019 içindeki iki akışın timestamp bakımından örtüşen kararlı pencerelerinin kesişimini eğitim eşleştirme şartı yapan bölümünü **geçersiz kılar ve onun yerine paket aralığı eşleştirmesini getirir**. ADR-019 tarihsel kayıt olarak korunur; çelişki halinde bu ADR-022 geçerlidir.
+Bu karar, ADR-019'un bağımsız ölçüm akışları ve ayrı olay işaretleri ilkesini korur. ADR-022, paket/olay kimliğinin nasıl doğrulanacağını netleştirir: iki akışın ON başlangıç işaretleri `BOOT_ID + EVENT_ID` ile eşleştirilir; OFF kapanışları her akışta ayrıca doğrulanır. Timestamp örtüşmesi paket kimliği veya paket eşleştirme anahtarı değildir. Bununla birlikte, aynı ve bütünlüğü doğrulanmış ON paketi içindeki bağımsız SCT/PZEM kararlı aralıklarının zaman kesişimi, eğitim etiketi üretmeye uygunluğun zorunlu koşuludur. Kesişim yoksa etiket üretilmez. ADR-019 tarihsel kayıt olarak korunur; paket kimliği ile eğitim adayı uygunluğunu ayıran bu açıklama ADR-022'de geçerlidir.
 
 ## Uygulama durumu ve kanıt sınırı
 
