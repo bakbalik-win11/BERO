@@ -1,3 +1,13 @@
+## 2026-11-05 — Güncel durum: E11 sonucu, E12 ilk gözlem ve T007 veri erişimi
+
+- **E11:** Yüksüz uzun gözlem analiz edildi. Modül 3'te 92 olay gönderimi, Modül 2 alıcı logunda 85 görünür olay (%92.4); görünmeyen 7 olay kesin UDP kaybı olarak sınıflandırılmadı. PZEM 0.0 A; SCT1/2/3 medyanları yaklaşık 0.163/0.170/0.157 A. E11 yük altı eğitim verisi değildir.
+- **İLK ORTAK YÜKLÜ ÇALIŞMA:** Modül 2 + Modül 3 birlikte 100 W akkorla gözlendi. PZEM ON yaklaşık 0.186–0.187 A / 42.0–42.6 W; SCT kanalları farklı fiziksel tur/hat düzenlerine sahip olduğundan doğrudan birbirinin yerine değerlendirilmez. SSR ampulünün fiziksel yanıp sönmesi kullanıcı tarafından gözlendi. OFF readback mismatch ve bazı olayların alıcı logunda görünmemesi açık tanı konularıdır.
+- **E12 / CSV:** HA History `history (32).csv` üzerinden SCT1/PZEM ön karşılaştırması yapıldı. 35 ON penceresi; SCT merkez değeri yaklaşık 0.4553–0.4554 A, PZEM 0.4700 A; merkez farkı yaklaşık %3.34. 35 pencerenin 24'ü ±%4 bandında, 11'i dışında. 20:12 öncesi/sonrası ayrı raporlandı; kablo değişikliğiyle nedensellik kurulmadı.
+- **METODOLOJİ:** Bu, olay sınırları ve geçiş kırpmasıyla yapılmış ilk ön elemedir; bağımsız istatistiksel kararlılık algoritması değildir. Kalibrasyon referansı yalnız ON içindeki bağımsız SCT/PZEM kararlı alanlarının gerçek zaman örtüşmesidir. Geçiş/interpolasyon değerleri katsayı öğrenimine katılmaz; ham kayıt korunur. OFF yalnız paketi kapatır.
+- **T007:** Kullanıcı HA History'den kod/otomasyon yazmadan CSV dışa aktarabildi. Manuel veri erişimi kanıtlandı; otomatik/tekrarlanabilir aktarım ve Python okuma hattı henüz kurulmadı. T007 bu nedenle DEVAM EDİYOR.
+- **KATSAYI / MODEL:** K=24.22 değiştirilmedi; tek yükten optimizasyon yapılmadı. Farklı kararlı yüklerden veri toplanacak. Yeterli veri sonrasında tek katsayı, doğrusal, polinom veya parçalı model seçenekleri karşılaştırılabilir.
+- **SONRAKİ:** Hafta sonu farklı sabit yüklerle kararlı ON alanları toplamak; Python'da önce CSV okuma, paket bütünlüğü, bağımsız SCT/PZEM kararlılığı ve örtüşme raporlamasını kurmak. Eğitim/optimizasyon daha sonra. Canlı çamaşır makinesi verisi sonraki doğrulama aşamasıdır.
+
 ## 2026-11-05 — Modül 3 fiziksel montaj bildirimi
 
 - **FİZİKSEL DURUM:** Kullanıcı, Modül 3 fiziksel montajının tamamlandığını bildirdi. Bu bilgi kullanıcı bildirimi olarak kaydedildi; fotoğraf, bağlantı kontrolü veya cihaz loguyla bağımsız doğrulama bu kayıt kapsamında yapılmadı.
@@ -1364,7 +1374,7 @@ Ham loglar:
 - Python algoritması yazılmadı; firmware/YAML, derleme ve OTA değiştirilmedi.
 
 
-## 2026-11-05 — E11 tamamlandı; E12 ilk 100 W ön değerlendirmesi
+
 
 - **E11:** Modül 2/3 yüksüz uzun gözlem ve olay görünürlüğü analizi yapıldı. Modül 3'te 92 gönderim, Modül 2 alıcı logunda 85 görünür olay (%92.4 görünür eşleşme); 7 olayın görünmemesi kesin UDP kaybı olarak sınıflandırılmadı. PZEM 0.0 A; SCT1/2/3 medyanları yaklaşık 0.163/0.170/0.157 A. E11 yük altı eğitim verisi değildir.
 - **İLK ORTAK YÜKLÜ ÇALIŞMA:** Modül 2 + Modül 3 birlikte 100 W akkorla gözlendi. PZEM ON yaklaşık 0.186–0.187 A / 42.0–42.6 W; SCT kanalları farklı fiziksel tur/hat düzenlerine sahip olduğundan doğrudan birbirinin yerine değerlendirilmez. SSR ampulünün fiziksel yanıp sönmesi kullanıcı tarafından gözlendi. Modül 3 OFF readback mismatch ve bazı olayların alıcı logunda görünmemesi açık tanı konularıdır.
