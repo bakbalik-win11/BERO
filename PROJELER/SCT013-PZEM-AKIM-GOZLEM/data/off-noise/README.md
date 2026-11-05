@@ -1,0 +1,33 @@
+# I007 — Uzun dönem fiziksel sıfır-akım SCT gürültü havuzu
+
+Bu dizin, ölçülen iletkende fiziksel yük akımının 0 A olduğu uzun süreli gözlem oturumlarını ve bunlardan oluşturulacak kümülatif veri havuzunu barındırır.
+
+## İş akışı
+
+1. Kullanıcı her gün veya uygun oturum sonunda Home Assistant History CSV sağlar.
+2. Her kaynak CSV önce bağımsız incelenir ve oturum raporu hazırlanır.
+3. Mevcut kümülatif dosya ve oturum indeksi depodan okunur.
+4. Yeni oturumun ham kayıtları değiştirilmeden eklenir; zaman/entity/değer tekrarları kontrol edilir.
+5. Kaynak oturum arşivi, oturum indeksi, kümülatif veri ve özet güncellenerek depoya yazılır.
+6. İlk CSV'nin gerçek kolonları görülmeden kümülatif veri şeması sabitlenmez. Ölçüm içermeyen boş veya sentetik veri dosyası oluşturulmaz.
+
+## Fiziksel ve ölçümsel bağlam
+
+- Ölçülen hatta yük bağlı değildir; ESP, PZEM ve modüller bu ölçüm hattından beslenmez. Kullanıcının teyidine göre gerçek yük akımı fiziksel olarak 0 A'dır.
+- SCT1 sarı/GPIO32: fiziksel 1T.
+- SCT2 yeşil/GPIO33: nötr hattı, 4T.
+- SCT3 mavi/GPIO34: faz hattı, 3T.
+- GPIO35: ortak bias.
+- Ham kanal ölçümleri korunur. Tur başına normalize edilmiş değer yalnız yardımcı kıyaslamadır.
+- Her oturum ve kümülatif rapor kanal başına örnek sayısı, medyan, P95, P99, maksimum, saçılım ve zaman davranışını içerir.
+- Havuz ON kalibrasyonundan ve PZEM–SCT ON eşleştirmesinden ayrıdır. İlk hedef yaklaşık 7–10 gün; kullanıcı isterse daha uzun devam eder. Yeterli oturumlar arası veri oluşmadan eşik/model belirlenmez.
+
+## Dosya düzeni
+
+İlk gerçek HA CSV'si geldikten sonra gerçek veri kolonları, boyut ve satır yapısına göre aşağıdaki içerik oluşturulacaktır:
+- oturum bazlı değişmez kaynak CSV arşivleri;
+- oturum indeksi ve kalite kontrol/özet kayıtları;
+- ham kayıtları bir araya getiren kümülatif veri dosyası;
+- kümülatif istatistik/dağılım raporu.
+
+Henüz CSV gelmediği için bu dizinde ölçüm verisi veya kümülatif sayısal sonuç bulunmamaktadır.
