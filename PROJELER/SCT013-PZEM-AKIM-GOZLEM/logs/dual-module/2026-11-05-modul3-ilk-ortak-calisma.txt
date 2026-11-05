@@ -1,0 +1,361 @@
+Logs - BERO Modul 3 WROOM
+OTA
+INFO ESPHome 2026.10.2
+INFO Loaded validated config cache for esphome-web-2a35cc.yaml, skipping validation.
+INFO Starting log output from 192.168.0.74 using esphome API
+INFO Successfully resolved bero-modul3-wroom @ 192.168.0.74 in 0.000s
+INFO Successfully connected to bero-modul3-wroom @ 192.168.0.74 in 0.106s
+INFO Successful handshake with bero-modul3-wroom @ 192.168.0.74 in 0.009s
+[18:57:30.292][I][app:164]: ESPHome version 2026.10.1 compiled on 2026-11-01 18:47:11 +0300
+[18:57:30.292][I][app:171]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[18:57:30.292][W][app:189]: Set flash_chip: generic under esp32 > framework > advanced to save IRAM
+[18:57:30.292][W][app:201]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[18:57:30.298][W][app:228]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[18:57:30.331][C][logger:218]: Logger:
+[18:57:30.331][C][logger:218]:   Max Level: DEBUG
+[18:57:30.331][C][logger:218]:   Initial Level: DEBUG
+[18:57:30.332][C][logger:225]:   Log Baud Rate: 115200
+[18:57:30.332][C][logger:225]:   Hardware UART: UART0
+[18:57:30.333][C][logger:234]:   Task Log Buffer Size: 768 bytes
+[18:57:30.440][C][uart:349]: UART Bus 1:
+[18:57:30.441][C][uart:131]:   TX Pin: GPIO19
+[18:57:30.441][C][uart:131]:   RX Pin: GPIO18
+[18:57:30.441][C][uart:354]:   RX Buffer Size: 256
+[18:57:30.441][C][uart:354]:   RX Full Threshold: 8
+[18:57:30.441][C][uart:354]:   RX Timeout: 2
+[18:57:30.446][C][uart:366]:   Baud Rate: 9600 baud
+[18:57:30.446][C][uart:366]:   Data Bits: 8
+[18:57:30.446][C][uart:366]:   Parity: NONE
+[18:57:30.446][C][uart:366]:   Stop bits: 1
+[18:57:30.446][C][uart:366]:   Clock Source: APB
+[18:57:30.446][C][uart:366]:   Wake on data RX: ENABLED
+[18:57:30.447][C][modbus:855]: Modbus:
+[18:57:30.447][C][modbus:855]:   Send Wait Time: 2000 ms
+[18:57:30.447][C][modbus:855]:   Turnaround Time: 600 ms
+[18:57:30.447][C][modbus:855]:   Frame Delay: 3646 us
+[18:57:30.447][C][modbus:855]:   Long Rx Buffer Delay: 8334 us
+[18:57:30.447][C][modbus:855]:   Bits Per Character: 10
+[18:57:30.447][C][modbus:855]:   Rx Detect Latency: 2083 us
+[18:57:30.447][C][switch.gpio:086]: GPIO Switch 'BERO SSR Kontrol'
+[18:57:30.447][C][switch.gpio:086]:   Restore Mode: always OFF
+[18:57:30.447][C][switch.gpio:131]:   Pin: GPIO23
+[18:57:30.451][C][template.text_sensor:016]: Template Sensor 'BERO Modül 3 Olay Kaydı'
+[18:57:30.451][C][pzemac:068]: PZEMAC:
+[18:57:30.451][C][pzemac:068]:   Address: 0x01
+[18:57:30.451][C][pzemac:017]: Voltage 'BERO PZEM Gerilim'
+[18:57:30.451][C][pzemac:017]:   State Class: 'measurement'
+[18:57:30.451][C][pzemac:017]:   Unit of Measurement: 'V'
+[18:57:30.451][C][pzemac:017]:   Accuracy Decimals: 1
+[18:57:30.452][C][pzemac:166]:   Device Class: 'voltage'
+[18:57:30.462][C][pzemac:017]: Current 'BERO PZEM Akım'
+[18:57:30.462][C][pzemac:017]:   State Class: 'measurement'
+[18:57:30.462][C][pzemac:017]:   Unit of Measurement: 'A'
+[18:57:30.462][C][pzemac:017]:   Accuracy Decimals: 3
+[18:57:30.462][C][pzemac:166]:   Device Class: 'current'
+[18:57:30.462][C][pzemac:017]: Power 'BERO PZEM Güç'
+[18:57:30.462][C][pzemac:017]:   State Class: 'measurement'
+[18:57:30.462][C][pzemac:017]:   Unit of Measurement: 'W'
+[18:57:30.462][C][pzemac:017]:   Accuracy Decimals: 2
+[18:57:30.462][C][pzemac:166]:   Device Class: 'power'
+[18:57:30.466][C][pzemac:017]: Energy 'BERO PZEM Enerji'
+[18:57:30.466][C][pzemac:017]:   State Class: 'total_increasing'
+[18:57:30.466][C][pzemac:017]:   Unit of Measurement: 'Wh'
+[18:57:30.466][C][pzemac:017]:   Accuracy Decimals: 0
+[18:57:30.466][C][pzemac:166]:   Device Class: 'energy'
+[18:57:30.466][C][pzemac:017]: Frequency 'BERO PZEM Frekans'
+[18:57:30.466][C][pzemac:017]:   State Class: 'measurement'
+[18:57:30.466][C][pzemac:017]:   Unit of Measurement: 'Hz'
+[18:57:30.466][C][pzemac:017]:   Accuracy Decimals: 1
+[18:57:30.466][C][pzemac:166]:   Device Class: 'frequency'
+[18:57:30.515][C][pzemac:157]:   Icon: 'mdi:current-ac'
+[18:57:30.516][C][pzemac:017]: Power Factor 'BERO PZEM Güç Faktörü'
+[18:57:30.516][C][pzemac:017]:   State Class: 'measurement'
+[18:57:30.516][C][pzemac:017]:   Unit of Measurement: ''
+[18:57:30.516][C][pzemac:017]:   Accuracy Decimals: 2
+[18:57:30.516][C][pzemac:166]:   Device Class: 'power_factor'
+[18:57:30.602][C][network:050]: Network:
+[18:57:30.602][C][network:050]:   TCP send buffer: 5760 bytes
+[18:57:30.620][C][wifi:1688]: WiFi:
+[18:57:30.620][C][wifi:1688]:   Local MAC: 20:50:0D:2A:35:CC
+[18:57:30.620][C][wifi:1688]:   Connected: YES
+[18:57:30.623][C][wifi:1392]:   IP Address: 192.168.0.74
+[18:57:30.623][C][wifi:1403]:   SSID: 'AKFISH'
+[18:57:30.623][C][wifi:1403]:   BSSID: 7E:64:CF:5C:81:73
+[18:57:30.623][C][wifi:1403]:   Hostname: 'bero-modul3-wroom'
+[18:57:30.623][C][wifi:1403]:   Signal strength: -64 dB ▂▄▆█
+[18:57:30.623][C][wifi:1403]:   Channel: 2
+[18:57:30.623][C][wifi:1403]:   Subnet: 255.255.255.0
+[18:57:30.623][C][wifi:1403]:   Gateway: 192.168.0.1
+[18:57:30.623][C][wifi:1403]:   DNS1: 192.168.0.1
+[18:57:30.623][C][wifi:1403]:   DNS2: 0.0.0.0
+[18:57:30.640][C][esphome.ota:129]: Over-The-Air updates:
+[18:57:30.640][C][esphome.ota:129]:   Address: bero-modul3-wroom.local:3232
+[18:57:30.640][C][esphome.ota:129]:   Version: 2
+[18:57:30.662][C][safe_mode:058]: Safe Mode:
+[18:57:30.662][C][safe_mode:058]:   Successful after: 60s
+[18:57:30.662][C][safe_mode:058]:   Invoke after: 10 attempts
+[18:57:30.662][C][safe_mode:058]:   Duration: 300s
+[18:57:30.670][C][safe_mode:079]:   Bootloader rollback: support unknown
+[18:57:30.685][C][api:368]: Server:
+[18:57:30.685][C][api:368]:   Address: bero-modul3-wroom.local:6053
+[18:57:30.685][C][api:368]:   Listen backlog: 4
+[18:57:30.685][C][api:368]:   Max connections: 5
+[18:57:30.690][C][api:380]:   Noise encryption: NO
+[18:57:30.706][C][mdns:324]: mDNS:
+[18:57:30.706][C][mdns:324]:   Hostname: bero-modul3-wroom
+[18:57:32.426][S][sensor]: 'BERO PZEM Gerilim' >> 227.3 V
+[18:57:32.426][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:57:32.427][S][sensor]: 'BERO PZEM Güç' >> 42.30 W
+[18:57:32.427][S][sensor]: 'BERO PZEM Enerji' >> 10645 Wh
+[18:57:32.428][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:57:32.428][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:57:37.420][S][sensor]: 'BERO PZEM Gerilim' >> 227.5 V
+[18:57:37.420][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:57:37.421][S][sensor]: 'BERO PZEM Güç' >> 42.30 W
+[18:57:37.421][S][sensor]: 'BERO PZEM Enerji' >> 10645 Wh
+[18:57:37.422][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:57:37.422][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:57:42.410][S][sensor]: 'BERO PZEM Gerilim' >> 227.0 V
+[18:57:42.410][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:57:42.411][S][sensor]: 'BERO PZEM Güç' >> 42.20 W
+[18:57:42.411][S][sensor]: 'BERO PZEM Enerji' >> 10645 Wh
+[18:57:42.411][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:57:42.412][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:57:47.422][S][sensor]: 'BERO PZEM Gerilim' >> 227.3 V
+[18:57:47.422][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:57:47.423][S][sensor]: 'BERO PZEM Güç' >> 42.30 W
+[18:57:47.423][S][sensor]: 'BERO PZEM Enerji' >> 10645 Wh
+[18:57:47.424][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:57:47.425][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:57:52.421][S][sensor]: 'BERO PZEM Gerilim' >> 226.7 V
+[18:57:52.421][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:57:52.422][S][sensor]: 'BERO PZEM Güç' >> 42.10 W
+[18:57:52.422][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:57:52.422][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:57:52.423][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:57:57.411][S][sensor]: 'BERO PZEM Gerilim' >> 226.5 V
+[18:57:57.412][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:57:57.412][S][sensor]: 'BERO PZEM Güç' >> 42.00 W
+[18:57:57.413][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:57:57.413][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:57:57.414][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:58:02.418][S][sensor]: 'BERO PZEM Gerilim' >> 227.2 V
+[18:58:02.418][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:58:02.419][S][sensor]: 'BERO PZEM Güç' >> 42.20 W
+[18:58:02.419][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:02.419][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:58:02.420][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:58:02.756][I][bero_event:249]: HA_EVENT_PUBLISHED BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=30,STATE=OFF
+[18:58:02.760][I][bero_udp:303]: UDP_EVENT_SENT BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=30,STATE=OFF
+[18:58:02.761][I][bero_event:317]: SHARED_EVENT BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72 EVENT_ID=30 STATE=OFF
+[18:58:02.761][W][bero_ssr:394]: GPIO_OFF_READBACK_MISMATCH
+[18:58:02.855][S][switch]: 'BERO SSR Kontrol' >> OFF
+[18:58:02.855][S][text_sensor]: 'BERO Modül 3 Olay Kaydı' >> 'BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=30,STATE=OFF'
+[18:58:07.451][S][sensor]: 'BERO PZEM Gerilim' >> 227.8 V
+[18:58:07.452][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[18:58:07.452][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[18:58:07.452][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:07.452][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:58:07.453][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[18:58:12.417][S][sensor]: 'BERO PZEM Gerilim' >> 227.7 V
+[18:58:12.417][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[18:58:12.418][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[18:58:12.418][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:12.419][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:58:12.419][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[18:58:17.428][S][sensor]: 'BERO PZEM Gerilim' >> 227.9 V
+[18:58:17.429][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[18:58:17.429][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[18:58:17.430][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:17.431][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:58:17.431][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[18:58:22.690][D][wifi:2598]: Roam scan (-66 dBm, attempt 3/3)
+[18:58:22.691][S][sensor]: 'BERO PZEM Gerilim' >> 227.6 V
+[18:58:22.692][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[18:58:22.693][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[18:58:22.694][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:22.695][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:58:22.696][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[18:58:22.822][I][bero_event:249]: HA_EVENT_PUBLISHED BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=31,STATE=ON
+[18:58:22.822][I][bero_udp:303]: UDP_EVENT_SENT BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=31,STATE=ON
+[18:58:22.822][I][bero_event:317]: SHARED_EVENT BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72 EVENT_ID=31 STATE=ON
+[18:58:22.823][I][bero_ssr:413]: GPIO_ON_CONFIRMED
+[18:58:22.838][I][bero_ssr:418]: CYCLE_RESTART_ON_40S
+[18:58:22.943][S][switch]: 'BERO SSR Kontrol' >> ON
+[18:58:22.943][S][text_sensor]: 'BERO Modül 3 Olay Kaydı' >> 'BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=31,STATE=ON'
+[18:58:27.428][S][sensor]: 'BERO PZEM Gerilim' >> 227.6 V
+[18:58:27.428][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:58:27.429][S][sensor]: 'BERO PZEM Güç' >> 42.40 W
+[18:58:27.429][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:27.429][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:58:27.430][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:58:32.473][S][sensor]: 'BERO PZEM Gerilim' >> 227.8 V
+[18:58:32.474][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:58:32.474][S][sensor]: 'BERO PZEM Güç' >> 42.40 W
+[18:58:32.475][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:32.475][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:58:32.476][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:58:37.409][S][sensor]: 'BERO PZEM Gerilim' >> 227.6 V
+[18:58:37.410][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:58:37.410][S][sensor]: 'BERO PZEM Güç' >> 42.30 W
+[18:58:37.411][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:37.411][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:58:37.412][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:58:42.420][S][sensor]: 'BERO PZEM Gerilim' >> 227.5 V
+[18:58:42.421][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:58:42.421][S][sensor]: 'BERO PZEM Güç' >> 42.30 W
+[18:58:42.421][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:42.422][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:58:42.422][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:58:47.412][S][sensor]: 'BERO PZEM Gerilim' >> 227.3 V
+[18:58:47.413][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:58:47.413][S][sensor]: 'BERO PZEM Güç' >> 42.20 W
+[18:58:47.414][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:47.414][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:58:47.415][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:58:52.425][S][sensor]: 'BERO PZEM Gerilim' >> 227.0 V
+[18:58:52.426][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:58:52.426][S][sensor]: 'BERO PZEM Güç' >> 42.20 W
+[18:58:52.427][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:52.427][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:58:52.427][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:58:57.414][S][sensor]: 'BERO PZEM Gerilim' >> 227.3 V
+[18:58:57.415][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:58:57.415][S][sensor]: 'BERO PZEM Güç' >> 42.20 W
+[18:58:57.416][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:58:57.416][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:58:57.416][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:59:02.451][S][sensor]: 'BERO PZEM Gerilim' >> 227.3 V
+[18:59:02.451][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:59:02.451][S][sensor]: 'BERO PZEM Güç' >> 42.20 W
+[18:59:02.452][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:02.452][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:59:02.453][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:59:02.753][I][bero_event:249]: HA_EVENT_PUBLISHED BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=32,STATE=OFF
+[18:59:02.753][I][bero_udp:303]: UDP_EVENT_SENT BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=32,STATE=OFF
+[18:59:02.753][I][bero_event:317]: SHARED_EVENT BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72 EVENT_ID=32 STATE=OFF
+[18:59:02.753][W][bero_ssr:394]: GPIO_OFF_READBACK_MISMATCH
+[18:59:02.854][S][switch]: 'BERO SSR Kontrol' >> OFF
+[18:59:02.854][S][text_sensor]: 'BERO Modül 3 Olay Kaydı' >> 'BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=32,STATE=OFF'
+[18:59:07.440][S][sensor]: 'BERO PZEM Gerilim' >> 227.4 V
+[18:59:07.440][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[18:59:07.440][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[18:59:07.441][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:07.441][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:59:07.442][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[18:59:12.410][S][sensor]: 'BERO PZEM Gerilim' >> 227.4 V
+[18:59:12.411][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[18:59:12.411][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[18:59:12.411][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:12.412][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:59:12.412][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[18:59:17.446][S][sensor]: 'BERO PZEM Gerilim' >> 227.4 V
+[18:59:17.447][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[18:59:17.447][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[18:59:17.447][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:17.447][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:59:17.447][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[18:59:22.409][S][sensor]: 'BERO PZEM Gerilim' >> 227.5 V
+[18:59:22.409][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[18:59:22.409][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[18:59:22.410][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:22.410][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:59:22.411][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[18:59:22.750][I][bero_event:249]: HA_EVENT_PUBLISHED BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=33,STATE=ON
+[18:59:22.753][I][bero_udp:303]: UDP_EVENT_SENT BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=33,STATE=ON
+[18:59:22.754][I][bero_event:317]: SHARED_EVENT BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72 EVENT_ID=33 STATE=ON
+[18:59:22.754][I][bero_ssr:413]: GPIO_ON_CONFIRMED
+[18:59:22.759][I][bero_ssr:418]: CYCLE_RESTART_ON_40S
+[18:59:22.846][S][switch]: 'BERO SSR Kontrol' >> ON
+[18:59:22.847][S][text_sensor]: 'BERO Modül 3 Olay Kaydı' >> 'BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=33,STATE=ON'
+[18:59:27.422][S][sensor]: 'BERO PZEM Gerilim' >> 227.3 V
+[18:59:27.422][S][sensor]: 'BERO PZEM Akım' >> 0.187 A
+[18:59:27.423][S][sensor]: 'BERO PZEM Güç' >> 42.40 W
+[18:59:27.423][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:27.423][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:59:27.424][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:59:32.434][S][sensor]: 'BERO PZEM Gerilim' >> 226.9 V
+[18:59:32.434][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:59:32.435][S][sensor]: 'BERO PZEM Güç' >> 42.20 W
+[18:59:32.435][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:32.435][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:59:32.436][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:59:37.413][S][sensor]: 'BERO PZEM Gerilim' >> 227.3 V
+[18:59:37.413][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:59:37.413][S][sensor]: 'BERO PZEM Güç' >> 42.30 W
+[18:59:37.414][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:37.414][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:59:37.414][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:59:42.408][S][sensor]: 'BERO PZEM Gerilim' >> 227.2 V
+[18:59:42.408][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:59:42.409][S][sensor]: 'BERO PZEM Güç' >> 42.20 W
+[18:59:42.409][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:42.410][S][sensor]: 'BERO PZEM Frekans' >> 50.0 Hz
+[18:59:42.410][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:59:47.418][S][sensor]: 'BERO PZEM Gerilim' >> 227.0 V
+[18:59:47.419][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:59:47.419][S][sensor]: 'BERO PZEM Güç' >> 42.10 W
+[18:59:47.420][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:47.420][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:59:47.420][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:59:52.415][S][sensor]: 'BERO PZEM Gerilim' >> 227.3 V
+[18:59:52.415][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:59:52.415][S][sensor]: 'BERO PZEM Güç' >> 42.20 W
+[18:59:52.416][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:52.416][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:59:52.417][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[18:59:57.414][S][sensor]: 'BERO PZEM Gerilim' >> 227.4 V
+[18:59:57.415][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[18:59:57.415][S][sensor]: 'BERO PZEM Güç' >> 42.30 W
+[18:59:57.416][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[18:59:57.416][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[18:59:57.416][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[19:00:02.428][S][sensor]: 'BERO PZEM Gerilim' >> 227.5 V
+[19:00:02.428][S][sensor]: 'BERO PZEM Akım' >> 0.186 A
+[19:00:02.428][S][sensor]: 'BERO PZEM Güç' >> 42.30 W
+[19:00:02.429][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[19:00:02.429][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[19:00:02.429][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
+[19:00:02.751][I][bero_event:249]: HA_EVENT_PUBLISHED BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=34,STATE=OFF
+[19:00:02.752][I][bero_udp:303]: UDP_EVENT_SENT BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=34,STATE=OFF
+[19:00:02.752][I][bero_event:317]: SHARED_EVENT BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72 EVENT_ID=34 STATE=OFF
+[19:00:02.752][W][bero_ssr:394]: GPIO_OFF_READBACK_MISMATCH
+[19:00:02.855][S][switch]: 'BERO SSR Kontrol' >> OFF
+[19:00:02.856][S][text_sensor]: 'BERO Modül 3 Olay Kaydı' >> 'BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=34,STATE=OFF'
+[19:00:07.417][S][sensor]: 'BERO PZEM Gerilim' >> 228.4 V
+[19:00:07.418][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[19:00:07.418][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[19:00:07.418][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[19:00:07.419][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[19:00:07.419][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[19:00:12.428][S][sensor]: 'BERO PZEM Gerilim' >> 228.2 V
+[19:00:12.428][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[19:00:12.428][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[19:00:12.429][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[19:00:12.429][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[19:00:12.429][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[19:00:17.466][S][sensor]: 'BERO PZEM Gerilim' >> 228.0 V
+[19:00:17.466][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[19:00:17.467][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[19:00:17.467][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[19:00:17.467][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[19:00:17.468][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[19:00:22.417][S][sensor]: 'BERO PZEM Gerilim' >> 228.2 V
+[19:00:22.418][S][sensor]: 'BERO PZEM Akım' >> 0.000 A
+[19:00:22.418][S][sensor]: 'BERO PZEM Güç' >> 0.00 W
+[19:00:22.419][S][sensor]: 'BERO PZEM Enerji' >> 10646 Wh
+[19:00:22.419][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[19:00:22.420][S][sensor]: 'BERO PZEM Güç Faktörü' >> 0.00 
+[19:00:22.753][I][bero_event:249]: HA_EVENT_PUBLISHED BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=35,STATE=ON
+[19:00:22.756][I][bero_udp:303]: UDP_EVENT_SENT BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=35,STATE=ON
+[19:00:22.757][I][bero_event:317]: SHARED_EVENT BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72 EVENT_ID=35 STATE=ON
+[19:00:22.757][I][bero_ssr:413]: GPIO_ON_CONFIRMED
+[19:00:22.761][I][bero_ssr:418]: CYCLE_RESTART_ON_40S
+[19:00:22.852][S][switch]: 'BERO SSR Kontrol' >> ON
+[19:00:22.853][S][text_sensor]: 'BERO Modül 3 Olay Kaydı' >> 'BERO_EVT,BOOT_ID=83DAAD0A8A5C1FE6695D5E1BC1CB1C72,EVENT_ID=35,STATE=ON'
+[19:00:27.414][S][sensor]: 'BERO PZEM Gerilim' >> 228.1 V
+[19:00:27.415][S][sensor]: 'BERO PZEM Akım' >> 0.187 A
+[19:00:27.415][S][sensor]: 'BERO PZEM Güç' >> 42.60 W
+[19:00:27.416][S][sensor]: 'BERO PZEM Enerji' >> 10647 Wh
+[19:00:27.416][S][sensor]: 'BERO PZEM Frekans' >> 49.9 Hz
+[19:00:27.416][S][sensor]: 'BERO PZEM Güç Faktörü' >> 1.00 
