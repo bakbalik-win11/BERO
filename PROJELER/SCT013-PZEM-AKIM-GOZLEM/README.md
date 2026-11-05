@@ -142,3 +142,19 @@ BERO'nun olası yaklaşımı anlık bir akım değerinden arıza teşhisi koymak
 Sık çevrime girme tek başına tank arızasını kanıtlamaz; su kaçağı, çekvalf, basınç şalteri, pompa kapasitesi veya tüketim düzeni gibi başka nedenler de araştırılmalıdır. Bu nedenle bildirim, kesin arıza teşhisi değil, ölçülen davranışa dayalı bakım/inceleme uyarısı olarak tasarlanmalıdır. Kullanıcı eşik ve bildirim sıklığını belirleyebilmelidir.
 
 Bu örnek BERO'nun temel fikrini genişletir: ev ve ekipmanlar uzun dönemli elektriksel davranışlarıyla izlenir; geçmiş veriden yeni özellikler ve uyarılar üretilir. Ev, zaman içinde öğrenilen ve değişimi izlenen yaşayan bir sistem gibi ele alınır.
+
+
+## Temel veri ilkesi — ham veriyi uzun süreli koruma ve geçmişten yeniden bilgi üretme
+
+BERO'da ham ölçüm kayıtları uzun süreli ve değişmez biçimde korunur. Ham veri, yalnızca bugünkü analiz için kullanılan geçici girdi değildir; gelecekte geliştirilecek yeni filtreler, özellik çıkarım yöntemleri, davranış modelleri ve karşılaştırmalar için tarihsel kaynaktır.
+
+Bugün gürültü, anlamsız veya kullanılmayan veri gibi görünen bir kayıt, ileride yeni bir analiz yaklaşımıyla anlamlı bir davranış göstergesine dönüşebilir. Bu nedenle geçmiş kayıtlar yeni yöntemlerle yeniden işlenebilir; geçmişteki ham veriden sonradan yeni özellikler, eğilimler, sınıflandırmalar ve bakım/anomali göstergeleri üretilebilir. Bu yaklaşım, geçmiş veriyi yeniden kullanılabilir bir bilgi kaynağı olarak ele alır.
+
+Uygulama ilkeleri:
+- Ham kayıtlar üzerine yazılmaz ve filtreleme/temizleme sırasında kaybedilmez.
+- Filtrelenmiş, normalize edilmiş, etiketlenmiş ve özellik çıkarılmış veriler ham kayıttan ayrı türetilmiş çıktılar olarak saklanır.
+- Her türetilmiş çıktının hangi ham veri aralığına ve hangi işlem/model sürümüne dayandığı izlenebilir olmalıdır.
+- Yeni bir algoritma geliştirildiğinde, mümkün olduğu ölçüde yalnızca canlı veriye değil geçmiş ham veri arşivine de uygulanarak sonuçlar karşılaştırılır.
+- Saklama süresi ve kapasite planı, uzun dönemli davranış analizi ihtiyacını gözetir; veri saklama mimarisi netleştirilirken zaman damgası, kaynak/kanal kimliği ve veri bütünlüğü korunur.
+
+BERO bir hobi ve araştırma platformudur. Yanlış veya gereksiz bir anomali uyarısının servis çağrısı ya da otomatik bir ekonomik/operasyonel işlem başlatması söz konusu değildir. Bu nedenle farklı analiz yöntemleri ve eşikler rahatça denenebilir; sonuçları karşılaştırılır ve yorumlanır. Deney özgürlüğü, ham verinin korunması ve sonuçların dürüstçe değerlendirilmesiyle birlikte yürütülür.
