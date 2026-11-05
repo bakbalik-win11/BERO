@@ -131,3 +131,14 @@ Bu alt proje, BERO'nun daha geniş hedefinin ilk akım ölçüm uygulamasıdır.
 Çamaşır makinesi programı/evresi tahmini bu hedeflerden yalnızca biridir ve mevcut geliştirme için pratik bir başlangıç senaryosudur. Kısa vadeli testlerin hedefi ölçüm zincirini ve veri altyapısını güvenilir hâle getirmektir; uzun vadeli anomali analizi için de aynı tarihçeli ham veriden yararlanılacaktır.
 
 Ölçüm kararlılığı yalnızca boş/yüklü ayrımı değildir. Tekil sıçrama filtreleme, örnekleri kısa süre toplama, süreklilik kontrolü ve pratik eşik gibi seçenekler deneylerle karşılaştırılabilir. Henüz belirli bir algoritma veya eşik seçilmemiştir. Ham ölçümler korunur; filtrelenmiş, özellik çıkarılmış ve trend verileri ayrı türetilmiş katmanlar olarak ele alınır.
+
+
+## Örnek uzun dönem kullanım: hidrofor ve basınç tankı davranışının izlenmesi
+
+Kuyu hidroforunun kısa aralıklarla sık devreye girip çıkması, basınçlı tankın hava ön şarjını kaybetmesi, diyafram hasarı veya tankın suyla dolması gibi durumlarla ilişkili olabilir. Benzer biçimde kat kaloriferi/ısıtma devresindeki genleşme tankının davranışı da uzun dönemli pompa çevrimleri ve basınç davranışıyla birlikte izlenebilir.
+
+BERO'nun olası yaklaşımı anlık bir akım değerinden arıza teşhisi koymak değildir. Ekipmanın kendi normal davranışını zaman içinde öğrenmek; devreye girme sayısı, çalışma süresi, duruş aralığı ve akım karakterindeki değişimleri gün/hafta/ay ölçeğinde karşılaştırmaktır. Kullanıcı belirlediği koşullarda, örneğin normal döneme göre belirgin ve kalıcı sık çevrime girme görüldüğünde bildirim isteyebilir: "Hidrofor normalden sık devreye giriyor; basınç tankı, diyafram, ön şarj ve tesisat kontrolü önerilir."
+
+Sık çevrime girme tek başına tank arızasını kanıtlamaz; su kaçağı, çekvalf, basınç şalteri, pompa kapasitesi veya tüketim düzeni gibi başka nedenler de araştırılmalıdır. Bu nedenle bildirim, kesin arıza teşhisi değil, ölçülen davranışa dayalı bakım/inceleme uyarısı olarak tasarlanmalıdır. Kullanıcı eşik ve bildirim sıklığını belirleyebilmelidir.
+
+Bu örnek BERO'nun temel fikrini genişletir: ev ve ekipmanlar uzun dönemli elektriksel davranışlarıyla izlenir; geçmiş veriden yeni özellikler ve uyarılar üretilir. Ev, zaman içinde öğrenilen ve değişimi izlenen yaşayan bir sistem gibi ele alınır.
