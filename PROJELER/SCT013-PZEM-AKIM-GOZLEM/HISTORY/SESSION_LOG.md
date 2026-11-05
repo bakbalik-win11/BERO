@@ -1751,3 +1751,32 @@ Yalnızca mimari karar ve dokümantasyon depoya işlendi. Python uygulaması, ge
 - **REFERANS:** 200 ms sample_duration, 2 s update_interval, K=24.22; ilk incelemede kod/firmware değiştirilmemesi.
 - **SONUÇ:** Henüz ölçüm sonucu veya algoritma başarısı iddiası yok. E12 PLANLANDI; Python kodu yazılmadı, firmware/OTA yapılmadı.
 - **DEPO:** E12 protokolü, deney indeksi ve EXPERIMENT_LEDGER güncellendi; STATUS ve PROGRESS_TREE bu oturumla güncellendi.
+
+
+## 2026-11-05 — E11 sonuçları, HA CSV erişimi ve E12 ilk 100 W karşılaştırması
+
+### HEDEF
+Modül 2/3 ortak çalışma ve ilk 100 W sabit yük gözlemini değerlendirmek; HA geçmişinin veri kaynağı olarak kullanılabilirliğini ve katsayı eğitimine ilişkin doğru referans yöntemini netleştirmek.
+
+### DEPO OKUMASI
+Proje README, STATUS, PROGRESS_TREE, E11/E12, ADR-024, ADR-025, Python veri hattı mimarisi, görev indeksi ve ilgili firmware/olay mimarisi incelendi. Eski E11 plan metinlerinin güncel sonuçlardan geride kaldığı tespit edildi.
+
+### BULGULAR
+- E11 yüksüz uzun gözlem: 92 Modül 3 olay gönderimi, Modül 2 logunda 85 görünür olay (%92.4); 7 olay görünmüyor. Bu tek başına kesin UDP kaybı kanıtı değildir. PZEM 0.0 A; SCT medyanları yaklaşık 0.163/0.170/0.157 A.
+- Modül 2 + Modül 3 ilk ortak yüklü çalışmada 100 W akkor gözlendi; kullanıcı SSR ampulünün fiziksel yanıp sönmesini gördü. Bu oturum E11 yüksüz deneyi olarak sınıflandırılmaz.
+- HA History'den `history (32).csv` özel HA otomasyonu/kodu olmadan elle dışa aktarılabildi. İki modülün ölçüm ve olay entity'leri aynı dosyada bulunur. Otomatik aktarım ve Python işleme henüz yoktur.
+- İlk SCT1/PZEM ön karşılaştırmasında 35 ON penceresi; SCT merkez değeri yaklaşık 0.4553–0.4554 A, PZEM 0.4700 A; merkez farkı yaklaşık %3.34. 24/35 pencere ±%4 içinde, 11 pencere dışında.
+- Ön analiz olay sınırları ve geçiş kırpmasına dayalıdır; bağımsız istatistiksel kararlılık algoritması değildir. 20:12 öncesi/sonrası ayrı incelenmiş, fiziksel kablo değişikliğiyle nedensellik iddia edilmemiştir.
+
+### MİMARİ NETLEŞTİRME
+- Sabit yükler, nihai sistemin yalnız sabit yüklerde çalışması için değil, doğru kalibrasyon referansı/eğitim alanları üretmek için kullanılır.
+- PZEM ve SCT'nin fiziksel tepki ve hesaplama yöntemleri farklıdır. Geçiş örnekleri ve interpolasyonla üretilmiş ara değerler kalibrasyon referansına katılmaz.
+- Eğitim yalnız geçerli ON/OFF paketleri içindeki bağımsız SCT ve PZEM kararlı ON alanlarının zaman örtüşmesinden yapılır. OFF yalnız paketi kapatır; ayrı OFF/gürültü havuzu sonraki hedeftir.
+- Ham veri korunur. Öğrenilen model daha sonra değişken canlı kayda uygulanabilir; çamaşır makinesi gibi gerçek yükler sonraki doğrulama aşamasıdır.
+- Model tek katsayı, doğrusal, polinom veya parçalı/alan bazlı olabilir; seçim yeterli farklı yük verisi ve bağımsız doğrulama sonrasında yapılır.
+
+### SONRAKİ
+Hafta sonu farklı sabit yüklerle kararlı ON alanları toplamak; Python'da önce HA CSV okuma, tam paket kontrolü, bağımsız SCT/PZEM kararlılık tespiti ve gerçek zaman örtüşmesini raporlamak. K=24.22 şimdilik korunur. Eğitim/optimizasyon, veri hattı ve etiketleme doğrulandıktan sonra başlar.
+
+### SINIR
+Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmware/YAML değiştirilmedi. %3.34 değeri ilk 100 W ön karşılaştırmasının merkez farkıdır, tüm pencereler/tüm akım aralığı için başarı iddiası değildir.
