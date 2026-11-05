@@ -21,3 +21,22 @@ Mimari belgelerde bir sensöre ait pin, katsayı veya özel algoritma evrensel k
 ## Durum
 
 Bu klasör mimari tasarım ve yönlendirme kaydıdır. Burada tanımlanan genel davranış sınıflandırma sistemi henüz tamamlanmış/çalışan bir ürün değildir. Her uygulama, kod, derleme ve gerçek donanım kanıtıyla ayrı doğrulanır.
+
+
+## BERO'nun kapsamı: çoklu sensörlü ev gözlem sistemi
+
+BERO tek bir akım ölçer veya yalnızca SCT013 projesi değildir. Hedef, farklı fiziksel değişkenleri ölçen sensörlerin ortak bir gözlem ve davranış çıkarımı çatısı altında bir araya gelmesidir. Akım ölçümü bu sensörlerden yalnızca biridir; AC akımın yanında uygun sensör ve ölçüm ön ucuyla DC akımın izlenmesi de olası kullanım alanıdır.
+
+Kullanıcının belirttiği mevcut/planlanan sensör örnekleri:
+- Su kuyusunda sıcaklık değişimini izleyen sensör.
+- Kuyudaki basınçtan su seviyesini/su derinliğini çıkaran basınç sensörü.
+- Evin girişinde şehir şebekesi su basıncını ölçen sensör.
+- Elektriksel yüklerin AC akımını izleyen SCT tabanlı ölçüm; uygun donanımla DC akım ölçümü de.
+
+Bu sensörler aynı fiziksel büyüklüğü ölçmez ve aynı algoritmayı kullanmaz. Her sensör kendi birimi, kalibrasyonu, örnekleme aralığı, geçerlilik kontrolü ve özellik çıkarma yöntemiyle ele alınır. Ortak BERO mimarisi, bu farklı ölçümleri zaman ve kaynak kimliği korunarak bir araya getirip daha üst düzey davranışlar hakkında çıkarım yapmayı hedefler.
+
+## Geliştirme ortamı ile canlı kurulumun ayrımı
+
+Şu anki SCT013-PZEM çalışması, kullanıcının diğer evde yürüttüğü hazırlık/geliştirme çalışmasıdır. Bu ortamda ölçüm zinciri, veri toplama, arşivleme ve analiz yöntemleri hazırlanıp doğrulanmaktadır. Kullanıcı açıkça belirtmiştir: şu anda canlı BERO kurulumunda çoklu sensörlerle birlikte çalışan bir uygulama yürütülmemektedir.
+
+Dolayısıyla yukarıdaki çoklu sensör örnekleri BERO'nun sistem kapsamını ve hedeflenen sensör ailesini açıklar; mevcut canlı sistemde bu sensörlerin entegre olduğu veya ortak algoritmayla çalıştığı anlamına gelmez. Sensör entegrasyonları aşamalı ve ayrı ayrı doğrulanacaktır.
