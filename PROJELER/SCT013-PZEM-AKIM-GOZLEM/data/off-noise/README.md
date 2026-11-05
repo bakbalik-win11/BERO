@@ -31,3 +31,13 @@ Bu dizin, ölçülen iletkende fiziksel yük akımının 0 A olduğu uzun sürel
 - kümülatif istatistik/dağılım raporu.
 
 Henüz CSV gelmediği için bu dizinde ölçüm verisi veya kümülatif sayısal sonuç bulunmamaktadır.
+
+
+## İlk oturum kaydı — 2026-11-05
+
+İlk deneme verisi işlendi. PZEM akımının 0.0 A olarak kaldığı iki uzun aralık seçildi: 19:08:27–20:03:53 ve 20:54:08–21:16:05 (Europe/Istanbul). Aradaki yük çevrimleri bu ilk sıfır-akım özetine alınmadı. Kullanıcının fiziksel düzenek teyidi: hatta yük yok ve modüller bu hattan beslenmiyor; gerçek yük akımı 0 A.
+
+- Oturum raporu: [sessions/2026-11-05-session-01.md](sessions/2026-11-05-session-01.md)
+- Kümülatif oturum özeti: [cumulative-session-summary.csv](cumulative-session-summary.csv)
+
+İlk oturumdaki akım entity medyanları SCT1=0.1603 A, SCT2=0.1698 A, SCT3=0.1567 A; P95 değerleri sırasıyla 0.3327 A, 0.2930 A, 0.2550 A'dır. Bunlar ilk gözlem özetidir; eşik değildir. Yeni oturumlarda bu CSV'ye yeni satır eklenecek, ham oturum raporları ayrı korunacaktır.
