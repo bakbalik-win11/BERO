@@ -59,16 +59,19 @@ SCT1'in yayınlanan değerleri üzerinde kayan/ardışık pencereler değerlendi
 - Pencere boyu, minimum süre ve eşikler gerçek veri incelendikten sonra seçilir; şimdiden sayısal eşik uydurulmaz.
 - Benzer ortalamaya sahip ancak dağılımı farklı pencereler ayrıştırılır; yinelenen değer/quantization ve güncelleme sıklığı dikkate alınır.
 
-## PZEM–SCT eşleştirme yöntemi
+## ON/OFF paketleme, eğitim ve OFF alanının kapsamı
 
-1. İki akışta BOOT_ID + EVENT_ID ile tam ON/OFF paket bütünlüğünü doğrula.
-2. Eksik açılış/kapanış, sıra bozukluğu veya boot değişimi olan aralıkları eğitim adayı paket sayma; ham kaydı koru.
-3. SCT kararlı alanlarını yalnız SCT akışından, PZEM kararlı alanlarını yalnız PZEM akışından tespit et.
-4. İki kararlı aralığın zaman kesişimini hesapla. Yalnız kesişen bölüm eşleşmiş kararlı pencere adayıdır.
-5. PZEM geçiş/yerleşme örneklerini SCT örnekleri için noktasal referans yapma.
-6. Ham SCT kaydını kesme/silme; sonraki model değerlendirmesinde tüm ON/OFF ve geçiş kaydı korunur.
+1. Her akışta BOOT_ID + EVENT_ID ile tam ON/OFF paket bütünlüğünü doğrula. ON olayı paketi başlatır; eşleşen OFF olayı paketi kapatır.
+2. Eksik açılış/kapanış, sıra bozukluğu veya boot değişimi olan aralıkları tamamlanmış paket/eğitim adayı sayma; ham kaydı koru.
+3. **OFF alanı eğitim verisi değildir.** OFF okumaları hiçbir koşulda SCT/PZEM eğitim eşleştirmesine veya eğitim örneği üretimine alınmaz. OFF, bu ilk aşamada sıfır/kapalı durum kabulüdür ve paket sınırını kapatmak için kullanılır.
+4. SCT kararlı alanlarını yalnız SCT'nin ON ölçüm verisinden, PZEM kararlı alanlarını yalnız PZEM'in ON ölçüm verisinden bağımsız tespit et.
+5. İki ON kararlı aralığın zaman kesişimini hesapla. Yalnız kesişen bölüm eşleşmiş eğitim penceresi adayıdır.
+6. PZEM geçiş/yerleşme örneklerini SCT örnekleri için noktasal referans yapma.
+7. Ham kayıt kesilmez/silinmez. Eğitim yalnız ON kararlı örtüşmesinden oluşur; modelin sonraki davranış testi tam ham kayda, ON/OFF ve geçişler dahil, uygulanabilir.
 
-Bu yaklaşım ADR-024 ve ADR-025 ile uyumludur. Timestamp tekil örnekleri birebir eşleştirmek için değil, bağımsız kararlı aralıkların kesişimini bulmak için kullanılır.
+**OFF/yüksüz taban istatistiği ayrı ve sonraki aşamaya bırakılmış isteğe bağlı bir araştırmadır.** Gerekirse aç-kapa döngüsü olmadan, ölçülen hatta yük bağlı değilken uzun bir kayıt alınır. Bu kayıttan yüksüz taban dağılımı ve olası gürültü/kapalı durum eşiği çıkarılabilir. Bu çalışma E12'nin ilk eğitim hedefi değildir ve OFF verisini eğitim örneğine dönüştürmez.
+
+Bu yaklaşım ADR-024 ve güncellenmiş ADR-025 ile uyumludur. Timestamp tekil örnekleri birebir eşleştirmek için değil, bağımsız ON kararlı aralıkların kesişimini bulmak için kullanılır.
 
 ## Tepki süresi ve kısa pencere karşılaştırması
 
@@ -78,10 +81,10 @@ Karşılaştırmada mümkün olduğunca aynı yük ve fiziksel düzen korunur; y
 
 ## Kabul ve karar soruları
 
-- SCT1 ON ve OFF dönemlerinde tekrarlanabilir kararlı alanlar üretiyor mu?
+- SCT1 ON döneminde tekrarlanabilir kararlı alanlar üretiyor mu? OFF kararlılığı eğitim kabul ölçütü değildir.
 - Kararlı alan başlangıcı/bitişi istatistiksel olarak belirlenebilir mi?
 - SCT1 kararlı alanı PZEM kararlı alanıyla yeterli zaman örtüşmesi gösteriyor mu?
-- Tam ON/OFF olay paketleri eğitim adayı üretmeye elverişli mi?
+- Tam ON/OFF olay paketleri ON kararlı alanlarını doğru sınırlandırıyor mu? Eğitim adayı yalnız ON kararlı SCT/PZEM örtüşmesinden mi oluşuyor?
 - 20:12 kablo değişikliği öncesi/sonrası ölçülebilir fark var mı?
 - SCT'nin olaydan sonra kararlı alana ulaşma süresi nedir?
 - Daha kısa örnekleme penceresi denenmeye değer mi?
@@ -90,7 +93,9 @@ Karşılaştırmada mümkün olduğunca aynı yük ve fiziksel düzen korunur; y
 
 - [ ] 20:07–20:37 Modül 2 ve Modül 3 tam loglarını al.
 - [ ] 20:12 öncesi/sonrası SCT1 karşılaştırmasını yap.
-- [ ] Her ON/OFF çevriminde tam olay paketi ve olay alımını kontrol et.
+- [ ] Her ON/OFF çevriminde tam olay paketi ve olay alımını kontrol et; OFF yalnız paket kapatma için kullanılsın.
+- [ ] Eğitim adaylarının yalnız ON içindeki bağımsız SCT/PZEM kararlı alan kesişimlerinden oluştuğunu doğrula.
+- [ ] OFF/yüksüz taban istatistiğini ilk aşama dışında, ayrı ve isteğe bağlı yüksüz uzun kayıt çalışması olarak tut.
 - [ ] SCT1 kararlı alan adaylarını ortalama, dağılım ve ardışık pencere değişimiyle çıkar.
 - [ ] PZEM kararlı alanlarını bağımsız çıkar ve zaman kesişimini hesapla.
 - [ ] İlk ön değerlendirme raporunu oluştur; eşikleri kanıta göre belirle.
