@@ -7,20 +7,24 @@
 
 ## Bağlam
 
-Eğitim aşamasında sabit yük deneylerinden elde edilen PZEM ve SCT kayıtları kullanılır. Her iki akış kendi içinde değerlendirilir; uygun kararlı alanlar eşleştirilerek PZEM akımı SCT eğitim penceresine referans etiketi olur. Bu aşama katsayı veya katsayı/alan modeli üretmek içindir.
+Eğitim aşamasında sabit yük deneylerinden elde edilen PZEM ve SCT kayıtları kullanılır. Her iki akış kendi içinde değerlendirilir; **yalnız ON (yük açık) dönemindeki uygun kararlı alanlar** eşleştirilerek PZEM akımı SCT eğitim penceresine referans etiketi olur. **OFF/kapalı alanlar hiçbir zaman eğitim verisi veya SCT–PZEM eşleştirme adayı değildir.** OFF olayı ON paketini kapatır; ilk aşamada OFF durumu sıfır/kapalı kabul edilir. Bu aşama katsayı veya katsayı/alan modeli üretmek içindir.
 
 Ancak deneyin ham kaydı yalnızca eğitimde seçilen kararlı alanlardan ibaret değildir. Açılma, kapanma ve geçiş bölgeleri de dahil olmak üzere ham veri korunur. PZEM, yük geçişlerinde kendi güncelleme/ölçüm davranışı nedeniyle örneğin 0,8 → 0,6 → 0,8 → 1,0 A gibi değişken okumalar gösterebilir. Bu geçiş okumaları, her anın kesin akım gerçeği veya SCT modelini değerlendirmek için noktasal referans kabul edilmez.
 
 ## Karar
 
-1. **Ham kayıt korunur.** Eğitim için kararlı alanlar seçilse bile deneyin geri kalan ham verisi silinmez veya eğitim dışı diye değersiz sayılmaz.
+1. **Ham kayıt korunur.** Eğitim için kararlı alanlar seçilse bile deneyin geri kalan ham verisi silinmez veya eğitim dışı diye değersiz sayılmaz. Ancak ham kaydın korunması, OFF alanlarının eğitim verisine alınacağı anlamına gelmez.
 2. **Öğrenme ve tam kayıt değerlendirmesi ayrı işlemlerdir.** Önce eşleştirilmiş kararlı SCT/PZEM alanlarından katsayı veya alan bazlı model öğrenilir. Daha sonra öğrenilmiş model aynı deneyin tam ham SCT kaydına, açılma/kapanma/geçişler dahil uygulanarak incelenir.
 3. **Tam kayıt değerlendirmesinde PZEM geçiş örnekleri noktasal doğruluk referansı değildir.** PZEM'in geçişteki anlık/ardışık okumalarıyla SCT'nin her örneğini birebir karşılaştırıp hata veya başarı puanı üretmek, PZEM'in geçiş davranışını doğruluk ölçütü haline getirir; bu yöntem kabul edilmez.
-4. **Python'a deneyin bilinen yük koşulu verilir.** Örneğin deney düzeninde yükün kapalı durumu 0 A, açık durumu yaklaşık 1 A olarak tanımlanmışsa Python tam SCT kaydını bu bilinen ON/OFF ve yük aralığı bağlamında değerlendirir. SCT'nin kapalı/açık durum tepkisi, geçiş davranışı, aralıkta kalması ve model tutarlılığı incelenir. Bu değerlendirme PZEM'in geçiş okumalarını yeniden referans yapmaz.
+4. **Python'a deneyin bilinen yük koşulu verilir.** Öğrenilmiş modelin tam ham kayıtta ON/OFF davranışı ve geçişleri incelenebilir. Bu, OFF alanlarını eğitim örneği yapmaz: eğitim yalnız ON içindeki kararlı SCT/PZEM örtüşmesinden oluşur; OFF yalnız olay paketini kapatır ve ilk aşamada sıfır/kapalı kabul edilir. Tam kayıt değerlendirmesinde modelin OFF tepkisi, ON algısı ve geçiş davranışı gözlenebilir. Bu değerlendirme PZEM'in geçiş okumalarını yeniden referans yapmaz.
 5. **Bilinen deney koşulu, örnek başına gerçek akım dalga şekli anlamına gelmez.** Yükün açık/kapalı bilgisi veya nominal/önceden belirlenmiş akım aralığı, her ara örneğin kesin amper değerini vermez. Python raporu bu sınırı korur; bilinmeyen ara akım değerlerini uydurmaz.
 6. **PZEM'in rolü ortadan kalkmaz.** PZEM, öğrenme için eşleştirilmiş kararlı alanlarda proje referansıdır. Yalnızca sonradan tam ham kayıt üzerinde yapılan geçiş/ON-OFF davranış değerlendirmesinde PZEM'in geçiş okumaları doğruluk hakemi olarak tekrar kullanılmaz.
 7. **Model alanları veriden seçilebilir.** Tek katsayı veya birden fazla akım alanı/katsayı kullanımı (ör. düşük, orta, yüksek aralıklar) önceden sabitlenmez. Python, yeterli veri ve ayrılmış değerlendirme sonuçlarıyla alan ihtiyacını inceleyebilir; alan sınırları kanıt olmadan belirlenmez.
 8. **Başarım dili doğru seçilir.** Bu tam kayıt incelemesi, bilinen deney koşullarına karşı SCT modelinin davranış/tutarlılık değerlendirmesidir. Örnek başına bağımsız, izlenebilir akım referansı bulunmadıkça mutlak doğruluk veya gerçek dalga şekli doğrulaması olarak adlandırılmaz.
+
+## OFF/yüksüz taban istatistiği — ayrı ve sonraki aşama
+
+OFF alanlarının eğitimde kullanılmaması, yüksüz davranışın hiçbir zaman incelenemeyeceği anlamına gelmez. İleride ayrı bir araştırma olarak, ölçülen hatta yük bağlı değilken ve aç-kapa döngüsü çalıştırmadan uzun süreli kayıt alınabilir. Bu kayıttan yüksüz taban dağılımı ve olası gürültü/kapalı durum eşiği türetilebilir. Bu çalışma ilk aşamanın eğitim hedefi değildir; OFF verisini eğitim örneğine dönüştürmez.
 
 ## Örnek
 
