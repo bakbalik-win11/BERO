@@ -1,3 +1,10 @@
+## 2026-11-05 — Modül 3 fiziksel montaj bildirimi
+
+- **FİZİKSEL DURUM:** Kullanıcı, Modül 3 fiziksel montajının tamamlandığını bildirdi. Bu bilgi kullanıcı bildirimi olarak kaydedildi; fotoğraf, bağlantı kontrolü veya cihaz loguyla bağımsız doğrulama bu kayıt kapsamında yapılmadı.
+- **E11 DURUMU:** Fiziksel montaj bekleme adımı kullanıcı bildirimine göre tamamlandı. E11 henüz başlamadı; Modül 2 + Modül 3 kısa ortak açılış ve olay aktarım kontrolü bekliyor.
+- **SONRAKİ ADIM:** İki modülün güvenli bağlantı kontrolü ve kısa ortak açılışı. Modül 3 PZEM yayınları, Modül 2 üç SCT kanalı, BOOT_ID/EVENT_ID/STATE üretimi ve UDP 4210 ON/OFF alımı loglarla kontrol edilecek. Kısa kontrol başarılı olmadan uzun yüksüz gözlem başlatılmayacak.
+- **KOD / TEST:** Bu kayıtla firmware veya YAML değiştirilmedi; derleme, OTA, fiziksel çalışma ve olay aktarımı doğrulaması yapılmadı.
+
 ## 2026-11-01 — Gün sonu kapanışı: ADR-025 ve E11 hazırlığı
 
 - **MİMARİ:** ADR-025 ile eğitim ve tam ham kayıt değerlendirmesi ayrımı belgelendi. Eğitimde yalnızca bağımsız kararlı SCT/PZEM alanları eşleştirilir; deneyin ham SCT kaydı korunur ve öğrenilen model tam kayda, geçişler dahil, bilinen deney koşulları çerçevesinde uygulanır. PZEM geçiş okumaları örnek bazlı gerçek akım referansı sayılmaz.
