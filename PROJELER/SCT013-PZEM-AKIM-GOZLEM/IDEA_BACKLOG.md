@@ -44,3 +44,6 @@ Yeni fikirleri kaydet; yalnızca kullanıcı öncelik belirlediğinde veya yeni 
 
 
 | I006 | SCT1 kararlı alan tespiti ve tepki süresi algoritması; PZEM ile bağımsız kararlı alan örtüşmesi ve kısa sample_duration değerlendirmesi | P1 | GÖREVE ALINDI | 2026-11-05 kullanıcı kararı: üç soru E12 deneyinde birlikte araştırılacak. İlk veri 20:07–20:37 100 W oturumu; tam log analizi sonrası Python fonksiyonu ve kısa pencere alt deneyi planlanacak. | E12 |
+
+
+| I007 | Modül 2 üç SCT kanalından toplanan yüksüz/OFF kayıtlarıyla ayrı gürültü tabanı havuzu oluşturmak; fiziksel tur sayılarını dikkate alarak kanal bazlı dağılım ve eşik analizi yapmak | P2 | BEKLİYOR | 2026-11-05 kullanıcı kararı: bir sonraki oturumun ilk adımı bu gece alınan sistem yüksüz HA History CSV kaydını kullanıcıdan istemek. Her yeni yüksüz kayıt ayrı analiz edilip zaman içinde aynı havuzda biriktirilecek. SCT1 fiziksel 1 geçiş; SCT2 4 geçiş; SCT3 3 geçiş. Tur sayısına bölme yalnız yaklaşık normalize edilmiş karşılaştırma sağlar; kanal kazancı/K, hat yerleşimi ve örnekleme farkları nedeniyle ham ölçüm deima korunacak ve doğrudan tek bir gürültü eşiği varsayılmayacak. | ADR-025 / E11 |
