@@ -1362,3 +1362,14 @@ Ham loglar:
 - Deney numaraları çalışma sırasını belirlemez; kullanıcı ve asistan ihtiyaç/altyapı durumuna göre deneyleri öne alabilir. Faz 2 görev bağımlılıkları değişmez.
 - [E12 protokolü](experiments/E12-sct-stability-window-and-response/README.md).
 - Python algoritması yazılmadı; firmware/YAML, derleme ve OTA değiştirilmedi.
+
+
+## 2026-11-05 — E11 tamamlandı; E12 ilk 100 W ön değerlendirmesi
+
+- **E11:** Modül 2/3 yüksüz uzun gözlem ve olay görünürlüğü analizi yapıldı. Modül 3'te 92 gönderim, Modül 2 alıcı logunda 85 görünür olay (%92.4 görünür eşleşme); 7 olayın görünmemesi kesin UDP kaybı olarak sınıflandırılmadı. PZEM 0.0 A; SCT1/2/3 medyanları yaklaşık 0.163/0.170/0.157 A. E11 yük altı eğitim verisi değildir.
+- **İLK ORTAK YÜKLÜ ÇALIŞMA:** Modül 2 + Modül 3 birlikte 100 W akkorla gözlendi. PZEM ON yaklaşık 0.186–0.187 A / 42.0–42.6 W; SCT kanalları farklı fiziksel tur/hat düzenlerine sahip olduğundan doğrudan birbirinin yerine değerlendirilmez. SSR ampulünün fiziksel yanıp sönmesi kullanıcı tarafından gözlendi. Modül 3 OFF readback mismatch ve bazı olayların alıcı logunda görünmemesi açık tanı konularıdır.
+- **E12 / CSV:** HA History `history (32).csv` üzerinden SCT1 ve PZEM ön karşılaştırması yapıldı. 35 ON penceresi; SCT merkez medyanı yaklaşık 0.4553–0.4554 A, PZEM medyanı 0.4700 A; göreli merkez farkı yaklaşık %3.34. 35 pencerenin 24'ü ±%4 bandında, 11'i dışında. 20:12 öncesi/sonrası ayrı raporlandı; kablo değişikliğiyle nedensellik kurulmadı.
+- **METODOLOJİ:** Bu, olay sınırları ve geçiş kırpmasıyla yapılmış ilk ön elemedir; bağımsız istatistiksel kararlılık algoritması henüz yazılmadı. Kararlı ON alanlarının kesişimi eğitim referansı olacak; geçiş/interpolasyon değerleri katsayı öğrenimine karıştırılmayacak. OFF yalnız paket kapatır; ayrı OFF veri havuzu ileride değerlendirilebilir.
+- **KATSAYI:** K=24.22 değiştirilmedi. Tek yükten katsayı/model optimize edilmedi. Farklı kararlı yükler toplanacak; model biçimi (tek katsayı/doğrusal/polinom/parçalı) yeterli veri sonrasında seçilecek.
+- **VERİ AKTARIMI:** Kullanıcı HA History'den kod/otomasyon yazmadan CSV dışa aktarabildi. Bu, manuel veri erişimini gösterir; tekrarlanabilir otomatik aktarım ve Python veri hattı henüz kurulmuş değildir.
+- **SONRAKİ:** Hafta sonu farklı sabit yüklerle eşleşmiş ON kararlı alanları toplamak; Python'da önce CSV okuma, paket bütünlüğü, bağımsız SCT/PZEM kararlılığı ve örtüşme raporlamasını kurmak. Canlı çamaşır makinesi doğrulaması daha sonraki aşamadır.
