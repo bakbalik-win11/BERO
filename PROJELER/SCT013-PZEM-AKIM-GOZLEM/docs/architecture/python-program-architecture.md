@@ -112,3 +112,19 @@ Ayrıntı: [ADR-025](../decisions/ADR-025-raw-data-sct-model-behavior-validation
 **İkinci ve sonraki hedef — OFF/gürültü ayrımı:** Deney paketlerindeki OFF okumaları ON akım kalibrasyonuna karıştırılmaz. Ancak zaman içinde biriken OFF örnekleri ayrı bir veri havuzunda saklanıp birleştirilebilir. İleride bu veriyle yüksüz/gürültü dağılımı, kapalı durum eşiği veya ayrı bir sınıflandırıcı geliştirilebilir. Gerekirse ayrıca aç-kapa döngüsü olmadan, ölçülen hatta yük yokken uzun süreli yüksüz kayıt alınır. Bu çalışma ilk hedefin parçası değildir.
 
 **Gelecek çalışma mimarisi fikri:** Python, yeni veriler geldikçe analiz/model geliştirme tarafı olabilir; doğrulanmış eşik veya model sürümü ileride sahada hesaplama ve sınıflandırma yapan bir ESP'ye aktarılabilir. Bu ESP, model aktarım yöntemi, güncelleme güvenliği ve çalışma mimarisi henüz tasarlanmamış bir gelecek hedeftir. Mevcut Python hattı veya ESP firmware'i bu kabiliyete sahipmiş gibi kabul edilmez.
+
+
+## Kalibrasyon referansının niteliği ve model seçimi
+
+Kalibrasyonun amacı yalnız sabit yüklerde çalışacak bir SCT sistemi üretmek değildir. Sabit/kararlı yükler, eğitim sırasında PZEM ve SCT'nin aynı fiziksel koşulu temsil eden ölçüm alanlarını güvenilir biçimde eşleştirmek için kontrollü referans sağlar. PZEM ve SCT'nin fiziksel tepki, örnekleme ve hesaplama yöntemleri farklı olduğundan açılma/kapanma geçişleri veya bu geçişler arasında interpolasyonla üretilen değerler katsayı öğrenme referansına katılmaz.
+
+Eğitim adayı yalnızca:
+1. Tam ve geçerli ON/OFF olay paketi,
+2. SCT'nin kendi ON ölçüm akışında bağımsız tespit edilmiş kararlı alanı,
+3. PZEM'in kendi ON ölçüm akışında bağımsız tespit edilmiş kararlı alanı,
+4. Bu iki kararlı alanın zaman bakımından gerçek örtüşmesi
+koşullarını sağlayan bölümdür. OFF olayı paketi kapatır; OFF örnekleri ON akım kalibrasyonuna katılmaz.
+
+Model biçimi önceden sabitlenmez. Yeterli farklı yük ve akım aralığı verisi biriktikten sonra tek katsayı, doğrusal hata modeli, polinom veya parçalı/akım alanına özgü doğrusal modeller karşılaştırılabilir. Model seçimi yalnız eğitim uyumuna göre değil, ayrılmış yük/oturum doğrulamasına göre yapılmalıdır. Sabit yükler eğitim referansını üretir; nihai kullanımda değişken canlı yük davranışı ayrıca sınanır.
+
+2026-11-05 ilk 100 W ön karşılaştırması yaklaşık %3.34 merkez farkı göstermiştir; bu ilk gözlemdir, eğitim sonucu veya tüm aralık doğruluğu değildir. K=24.22 korunmuştur. Ayrıntı: [E12 ilk CSV değerlendirmesi](../../experiments/E12-sct-stability-window-and-response/README.md).
