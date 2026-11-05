@@ -113,3 +113,8 @@ PZEM, SCT katsayısını/modelini öğrenmek için uygun kararlı alanların eş
 Bu ikinci değerlendirmede Python'a deneyin bilinen ON/OFF koşulu ve yük aralığı verilir. PZEM'in geçişteki ardışık okumaları SCT'nin her örneği için noktasal doğruluk referansı yapılmaz. Bilinmeyen ara geçiş akımları uydurulmaz; sonuç bilinen deney koşullarına göre SCT davranış/tutarlılık değerlendirmesidir, mutlak doğruluk iddiası değildir. Tek veya alan bazlı katsayı seçimi gerçek veriye bırakılır.
 
 Ayrıntı: [ADR-025](docs/decisions/ADR-025-raw-data-sct-model-behavior-validation.md).
+
+
+## 2026-11-05 — Kalibrasyon ve eğitim yaklaşımının güncel özeti
+
+Sabit yükler nihai kullanımın sınırı değil, PZEM ve SCT'nin aynı fiziksel koşuldaki bağımsız kararlı ON alanlarını güvenilir biçimde eşleştirerek doğru kalibrasyon referansı üretmenin aracıdır. Farklı fiziksel tepki ve hesaplama yöntemleri nedeniyle geçiş/interpolasyon değerleri katsayı eğitimine katılmaz. İlk 100 W ön karşılaştırması yaklaşık %3.34 merkez farkı göstermiştir; bu henüz Python eğitimi veya tüm aralık doğrulaması değildir. K=24.22 korunur. Farklı yüklerden yeterli veri toplandıktan sonra tek katsayı, doğrusal, polinom veya parçalı model seçenekleri bağımsız doğrulamayla değerlendirilecektir. Canlı çamaşır makinesi kaydı sonraki davranış/doğrulama aşamasıdır. Ayrıntı: [E12](experiments/E12-sct-stability-window-and-response/README.md).
