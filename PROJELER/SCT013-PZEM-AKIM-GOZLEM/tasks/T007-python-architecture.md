@@ -1,9 +1,13 @@
 # T007 — Home Assistant verisini PC'ye aktarma ve Python başlangıcı
 
-- **Durum:** BEKLEMEDE — pratik modül devreye alma sonrasında
+- **Durum:** DEVAM EDİYOR — HA History'den manuel CSV dışa aktarımı kullanıcı tarafından gösterildi; tekrarlanabilir Python okuma/aktarım hattı bekliyor
 - **Faz:** Faz 2 — Pratik yeniden kurulum ve sistem geliştirme (veri aktarımı alt aşaması)
 - **Bağımlılık:** T009 kapsamında PZEM ve SCT düğümlerinin temel işlevlerinin gerçek donanımda çalışması ve Home Assistant'ta gerçek entity üretmesi.
 - **Hedef:** Home Assistant'ta kaydedilen PZEM ve SCT entity geçmişlerini PC'ye taşıyacak, kaynak bilgilerini koruyacak ve aynı veri üzerinde tekrar çalıştırılabilecek en küçük Python veri giriş hattını kurmak.
+
+## Mevcut ilerleme — 2026-11-05
+
+Kullanıcı, Home Assistant History arayüzünden Modül 2 SCT ve Modül 3 PZEM/SSR/olay geçmişini aynı CSV dosyasına herhangi bir HA otomasyonu veya özel kod yazmadan dışa aktarabildi. `history (32).csv` ilk gerçek örnektir. Böylece veriye manuel erişim yolu gösterilmiştir. Bu, T007'nin tamamlandığı anlamına gelmez: dosyayı kaynak olarak koruyan, tekrar çalıştırılabilir Python okuma/inceleme hattı henüz oluşturulmamıştır.
 
 ## Neden T009 sonrasında?
 
