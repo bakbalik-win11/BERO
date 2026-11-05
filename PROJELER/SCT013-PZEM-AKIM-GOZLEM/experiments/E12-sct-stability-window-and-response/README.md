@@ -1,6 +1,6 @@
 # E12 — SCT kararlı alan tespiti, PZEM örtüşmesi ve tepki süresi
 
-**Durum:** PLANLANDI / ilk gözlem oturumu verisi bekleniyor  
+**Durum:** DEVAM EDİYOR — ilk 100 W gözleminde umut verici ön karşılaştırma; Python kararlılık/eşleştirme uygulaması ve farklı yük doğrulaması bekliyor  
 **Tarih:** 2026-11-05  
 **Faz:** Faz 2  
 **İlişkili işler:** T007 (HA → PC), T008 (kararlı alan eşleştirme/etiketleme), T006 (sonraki katsayı/model değerlendirmesi)
@@ -107,3 +107,35 @@ Karşılaştırmada mümkün olduğunca aynı yük ve fiziksel düzen korunur; y
 - [ADR-024 — Python ON/OFF paket bütünlüğü](../../docs/decisions/ADR-024-python-packet-completeness-validation.md)
 - [ADR-025 — ham kayıtta model davranışı değerlendirmesi](../../docs/decisions/ADR-025-raw-data-sct-model-behavior-validation.md)
 - [Python veri hattı mimarisi](../../docs/architecture/python-program-architecture.md)
+
+
+## 2026-11-05 — İlk 100 W gözleminin CSV ön değerlendirmesi
+
+### Kaynak ve yöntem sınırı
+- Kaynak: Home Assistant History dışa aktarımı `history (32).csv`; Modül 2 SCT1 ve Modül 3 PZEM/SSR/olay entity'leri aynı CSV içindedir.
+- Kullanıcı, HA arayüzünden bu geçmişi özel otomasyon veya HA kodu yazmadan dışa aktarabildiğini gösterdi. Bu, veri kaynağına manuel erişimin mümkün olduğunu kanıtlar; otomatik aktarım veya Python hattı henüz kurulmuş değildir.
+- SCT1: sarı kanal / GPIO32. YAML/entity adında 2T yazsa da kullanıcı fiziksel kabloda tek geçiş olduğunu bildirdi. K=24.22, sample_duration=200 ms, update_interval=2 s korunmuştur.
+- İlk karşılaştırma, olay pencereleri ve ON geçişinden sonraki ilk 12 s ile OFF öncesi son 3 s dışarıda bırakılarak yapılan ön elemedir. PZEM tarafında >0.40 A filtresi kullanılmış, seyrek History değerlerinde son geçerli değerin ileri taşınması uygulanmıştır. Bu işlem henüz bağımsız istatistiksel kararlılık algoritması değildir; PZEM örnek yaşına/toleransına ilişkin sınırlama korunmalıdır.
+
+### Ön sonuç
+- 35 ON penceresi karşılaştırılabilir ön değerlendirme kümesine alındı.
+- SCT1 pencere medyanlarının ortalaması yaklaşık 0.4554 A (genel özet medyanı 0.4553 A); PZEM pencere medyanlarının medyanı yaklaşık 0.4700 A.
+- Merkez değerler arasındaki fark yaklaşık 0.0147 A; SCT1'in PZEM'e göre göreli düşük farkı yaklaşık %3.34.
+- 35 pencerenin 24'ü ±%4 bandında, 11'i bandın dışında kaldı. Dolayısıyla merkez değer yakınlığı, her pencerenin ±%4 içinde olduğu anlamına gelmez.
+- SCT pencere medyanlarının standart sapması yaklaşık 0.0072 A; SCT pencere medyanları yaklaşık 0.4400–0.4676 A, PZEM pencere medyanları yaklaşık 0.468–0.473 A aralığındadır.
+- 20:12 öncesi 8 pencere: SCT ortalama medyanı 0.4510 A, PZEM medyanı 0.4715 A; 8 pencerenin 4'ü ±%4 içinde.
+- 20:12 sonrası 27 pencere: SCT ortalama medyanı 0.4567 A, PZEM medyanı 0.4700 A; 27 pencerenin 20'si ±%4 içinde. Kullanıcı 20:12 civarında kablo yapısında küçük değişiklik bildirmiştir; öncesi/sonrası farkın nedeni olduğu kanıtlanmış değildir.
+
+### Yorum ve kanıt sınırı
+Bu ilk oturum, henüz Python eğitimi veya yeni katsayı optimizasyonu yapılmadan, mevcut K=24.22 ile 100 W sabit yükte hedeflenen ±%4 bandının altında bir merkez farkı göstermiştir. Bu nedenle ilk gözlem umut verici/başarılı bir başlangıçtır. Ancak bu, tüm pencerelerin veya tüm akım aralığının ±%4 doğruluğunu kanıtlamaz. PZEM proje referansıdır; iki cihazın fiziksel tepki ve hesaplama yöntemleri farklıdır.
+
+Bu aşamada amaç, geçiş örneklerini interpolasyonla çoğaltıp kalibrasyon hesabına katmak değildir. Eğitim referansı, aynı fiziksel yükün ON durumunda SCT ve PZEM'in kendi ölçüm akışlarında bağımsız biçimde kararlı bulunduğu ve zaman bakımından örtüşen alanlardan kurulacaktır. Geçiş/yerleşme örnekleri katsayı öğrenme referansına karıştırılmaz. Tam ham veri korunur ve öğrenilen model daha sonra canlı/değişken kayıtlarda ayrıca değerlendirilir.
+
+### Sonraki çalışma
+- K=24.22 ve mevcut firmware ayarları şimdilik korunur; tek yükten katsayı güncellenmez.
+- Farklı kararlı yüklerde (özellikle mevcut 0.3–7 A pratik hedef aralığını örnekleyen yükler ve kombinasyonlar) aynı yöntemle veri toplanır.
+- Python başlangıcında önce HA CSV okuma/koruma, olay paket bütünlüğü, her akışta bağımsız kararlılık tespiti ve ON kararlı alanların örtüşmesini raporlama yapılır. Eğitim/optimizasyon bu altyapı doğrulandıktan sonra başlar.
+- Veri yeterli olduğunda tek katsayı, doğrusal model, polinom veya parçalı/alan bazlı modeller karşılaştırılabilir; yöntem bugünden seçilmez. Eğitim ve doğrulama verileri ayrılır.
+- Canlı çamaşır makinesi verisi, sabit yüklerle kurulan referans modelin daha sonraki bağımsız davranış/doğrulama aşamasıdır; ilk kalibrasyon veri setinin yerine geçmez.
+
+**Durum:** İlk CSV ön değerlendirmesi yapıldı; E12 tamamlanmadı. Python algoritması/eğitimi, farklı yük doğrulaması ve tepki süresi alt deneyi açık.
