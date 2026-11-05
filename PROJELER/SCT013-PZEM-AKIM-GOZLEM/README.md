@@ -158,3 +158,12 @@ Uygulama ilkeleri:
 - Saklama süresi ve kapasite planı, uzun dönemli davranış analizi ihtiyacını gözetir; veri saklama mimarisi netleştirilirken zaman damgası, kaynak/kanal kimliği ve veri bütünlüğü korunur.
 
 BERO bir hobi ve araştırma platformudur. Yanlış veya gereksiz bir anomali uyarısının servis çağrısı ya da otomatik bir ekonomik/operasyonel işlem başlatması söz konusu değildir. Bu nedenle farklı analiz yöntemleri ve eşikler rahatça denenebilir; sonuçları karşılaştırılır ve yorumlanır. Deney özgürlüğü, ham verinin korunması ve sonuçların dürüstçe değerlendirilmesiyle birlikte yürütülür.
+
+
+## Bu alt projenin BERO içindeki yeri ve geliştirme ortamı
+
+BERO, tek bir akım ölçer değil, farklı fiziksel değişkenleri izleyen sensörlerden oluşması hedeflenen çoklu sensörlü bir ev gözlem sistemidir. Akım sensörü bu sensörlerden yalnızca biridir. BERO kapsamındaki sensör örnekleri arasında su kuyusunda sıcaklık değişimi, kuyudaki basınçtan su derinliği çıkarımı ve ev girişinde şehir şebekesi su basıncı ölçümü de bulunur. Elektrik tarafında AC akım gözleminin yanında uygun sensör/ön uç ile DC akım ölçümü de ayrı bir yetenek alanıdır.
+
+SCT013 + PZEM alt projesi bu geniş sistemin ilk ve teknik açıdan zor başlangıç uygulamasıdır. Buradan başlanmasının nedeni BERO'nun akım ölçümünden ibaret olması değil; akımı güvenilir biçimde ölçmek, canlı okumak ve zaman içinde başka programların/algoritmaların çıktılarıyla ilişkilendirmek zor bir mühendislik problemi olduğu için önce bu temel hattın hazırlanmasının tercih edilmesidir.
+
+**Geliştirme ortamı / canlı sistem ayrımı:** Bu SCT013-PZEM çalışması kullanıcının diğer evinde yürüttüğü hazırlık ve geliştirme ortamıdır. Şu anda canlı BERO sisteminde çoklu sensörlü bir uygulama çalıştırılmamaktadır. Bu depodaki çoklu sensör vizyonu hedeflenen genel mimariyi anlatır; mevcut canlı kurulumda sensörlerin entegre ve birlikte çalışır olduğu iddiası değildir. Bu alt projenin mevcut görevi SCT akım ölçüm yolunu, veri toplama ve analiz altyapısını hazırlamaktır.
