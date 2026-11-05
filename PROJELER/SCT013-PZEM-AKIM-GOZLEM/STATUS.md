@@ -77,3 +77,12 @@ Kullanıcı, BERO'nun yalnızca ev makinelerinin programını veya çalışma ev
 Bu vizyon mevcut SCT013-PZEM alt projesinin anlık görevlerini değiştirmez; mevcut odak ölçüm yolunu güvenilir kılmak, veri toplamak ve davranış çıkarımına uygun veri altyapısını oluşturmaktır. Kısa vadeli çamaşır makinesi denemeleri daha geniş sistemin ilk kullanım senaryolarından biridir; nihai ürün tanımı değildir.
 
 Ölçüm kararlılığı bu nedenle yalnızca yüksüz/yüklü ayrımına indirgenmez. Tekil sıçramaları filtreleme, kısa süreli örnek toplama, süreklilik kontrolü, pratik eşik kullanımı ve uzun dönem trend analizi ileride deneyle değerlendirilebilecek yöntemlerdir. Şu aşamada belirli bir filtre, eşik, algoritma veya arıza sınıflandırma yöntemi kesinleştirilmemiştir. Ham ölçümlerin korunması ve türetilmiş/filtrelenmiş verinin ayrı tutulması esastır.
+
+
+## 2026-11-05 — E14 kısa tek-kanal 2 Hz denemesi kaydedildi
+
+Kullanıcı kararı: 2026-11-06 akşamı, veri/donanım durumu uygunsa kısa bir deney yapılabilir. Modül 2 bu amaçla deney alanı olarak kullanılabilir; yalnız SCT1 (sarı/GPIO32, fiziksel 1 geçiş) okunarak yaklaşık 500 ms / 2 Hz yeni ölçüm sonucu hedeflenecek. İlk karşılaştırmada K=24.22 ve sample_duration=200 ms sabit tutulacak; gerçek çıktı aralığı HA timestamp'leriyle doğrulanacak.
+
+Bu çalışma E14 olarak kaydedildi. Mevcut üç kanallı çalışan YAML korunacak; deney sürümü ayrı tutulacak ve gerekirse geri dönülebilecek. Firmware değişikliği, derleme veya OTA henüz yapılmadı. E14 kısa akşam oturumu adayıdır; Cumartesi uzun çalışma önceliğini değiştirmez. Deneyler arasında öncelik, kullanıcının o günkü veri ve donanım durumuna göre esnekçe belirlenebilir.
+
+Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experiments/E14-module2-single-channel-2hz/README.md).
