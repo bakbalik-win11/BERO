@@ -41,3 +41,6 @@ Yeni kararları şu biçimde ekle:
 ## Gözden geçirme
 
 Yeni fikirleri kaydet; yalnızca kullanıcı öncelik belirlediğinde veya yeni bilgi sıralamayı değiştirmeyi gerektirdiğinde öncelikleri değiştir. Aktif görev sayısını şişirme. Bu dosya fikirlerin geçmişini korur; `tasks/README.md` uygulanacak işlerin listesidir.
+
+
+| I006 | SCT1 kararlı alan tespiti ve tepki süresi algoritması; PZEM ile bağımsız kararlı alan örtüşmesi ve kısa sample_duration değerlendirmesi | P1 | GÖREVE ALINDI | 2026-11-05 kullanıcı kararı: üç soru E12 deneyinde birlikte araştırılacak. İlk veri 20:07–20:37 100 W oturumu; tam log analizi sonrası Python fonksiyonu ve kısa pencere alt deneyi planlanacak. | E12 |
