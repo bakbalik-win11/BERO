@@ -1,6 +1,6 @@
 # E11 — Modül 2/3 birlikte yüksüz hat uzun süreli gözlem ve olay aktarımı
 
-**Durum: PLANLANDI — fiziksel montaj kullanıcı tarafından tamamlandı olarak bildirildi; kısa ortak açılış kontrolü bekleniyor.** Montaj bilgisi henüz bağlantı incelemesi veya cihaz loguyla bağımsız doğrulanmadı. E11 deney ölçümü ve uzun süreli log henüz başlamadı.
+**Durum: UYGULANDI — 2026-11-05 yüksüz uzun gözlem ve olay karşılaştırması analiz edildi.** Aşağıdaki eski hazırlık adımları tarihsel plan olarak korunur; sonuç özeti en alttadır.
 
 ## 1. HEDEF
 
@@ -98,3 +98,16 @@ Ham loglar:
 - `logs/dual-module/2026-11-05-modul2-ilk-ortak-calisma.txt` (1070 satır)
 - `logs/dual-module/2026-11-05-modul3-ilk-ortak-calisma.txt` (362 satır)
 
+
+
+## 2026-11-05 — Yüksüz uzun gözlem sonucu
+
+- Modül 3 EVENT_ID 6–97 aralığında 92 olay gönderimi kaydedildi; Modül 2 alıcı logunda 85 olay göründü. Görünmeyenler: 14, 16, 24, 34, 36, 41, 42. Görünür eşleşme 85/92 = %92.4'tür.
+- Bu fark kesin UDP kaybı olarak adlandırılmaz; HA alıcı geçmişinde/logunda görünmeme ile gerçek ağ kaybı bu veriyle ayrıştırılamaz.
+- Yüksüz SCT medyanları yaklaşık: SCT1 0.163 A, SCT2 0.170 A, SCT3 0.157 A. P95: SCT1 0.341 A, SCT2 0.306 A, SCT3 0.259 A.
+- Ortak bias yaklaşık 1.663 V (min 1.573 V, max 1.729 V, std yaklaşık 0.0069 V).
+- PZEM yüksüz akım 0.0 A kaydetti.
+- Bu E11 verisi yüksüz taban/olay aktarım gözlemidir; ON akım kalibrasyonu veya eğitim verisi değildir.
+- Sonuç, olay aktarımının tamamen kayıpsız olduğunu kanıtlamaz. Fiziksel SSR gözlemi ayrıca 2026-11-05 ilk ortak yüklü çalışma kaydında tutulur; bu E11 yüksüz deneyiyle karıştırılmaz.
+
+**E11 sonucu:** Yüksüz ölçüm tabanı ve olay görünürlüğü için gözlem tamamlandı. Daha sonra Python'da olay paket bütünlüğü değerlendirmesine girdi olabilir; OFF/yüksüz örnekleri ON kalibrasyon eğitimine katılmaz.
