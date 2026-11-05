@@ -48,3 +48,18 @@ Nominal olarak yaklaşık 1 A çeken sabit bir yükün açılıp kapatıldığı
 ## Uygulama ve doğrulama durumu
 
 Bu ADR mimari/değerlendirme kuralını kaydeder. Python uygulaması, gerçek ham kayıt üzerinde model çalıştırma, örnek çıktı/log ve başarı ölçütü henüz oluşturulmamıştır.
+
+
+## 2026-11-05 — Ayrı yüksüz/gürültü veri havuzu için kullanıcı talimatı
+
+Bir sonraki çalışma oturumunun **ilk adımı**, kullanıcıdan bu gece alınan sistem yüksüz Home Assistant History CSV kaydını istemektir. Kullanıcı dosyayı sağlayacaktır. Bu kayıt, ON akım kalibrasyonundan ayrı bir yüksüz/gürültü veri havuzunun ilk girdisi olarak analiz edilecektir. Her yeni yüksüz kayıt ayrı ayrı değerlendirilecek, sonuçlar zaman içinde aynı havuzda biriktirilerek gürültü dağılımının oturumlar arası değişimi izlenecektir.
+
+### Kanal ve fiziksel tur bilgisi
+- SCT1 / sarı / GPIO32: fiziksel tek geçiş (1T); YAML/entity adında 2T ifadesi kalmış olabilir.
+- SCT2 / yeşil / GPIO33: nötr hattında 4 geçiş (4T).
+- SCT3 / mavi / GPIO34: faz hattında 3 geçiş (3T).
+- GPIO35: ortak bias.
+
+Tur sayısına bölerek yaklaşık normalize edilmiş bir gürültü karşılaştırması yapılabilir; ancak bu işlem kesin eşdeğerlik sağlamaz. Kanalın fiziksel yerleşimi, hat/faz-nötr konumu, sensör ve analog yol kazancı, K katsayısı ve örnekleme etkileri farklı olabilir. Bu nedenle her raporda ham kanal dağılımı (medyan, üst yüzdelikler/P95-P99, maksimum, saçılım ve zaman davranışı) korunmalı; tur-normalize değer yalnız ek karşılaştırma olarak sunulmalıdır. Bir kanaldaki en yüksek okumanın tek başına eşik seçimi için yeterli olmadığı, tekrar eden oturumların dağılımıyla birlikte değerlendirilmesi gerektiği not edilir.
+
+Bu havuz ON kararlı alan kalibrasyonuna veya PZEM–SCT ON eşleştirmesine katılmaz. Hedef, sistem yüksüzken görülen taban/gürültü alanını ve oturumlar arası değişimini tanımak; daha sonra kapalı durum eşiği veya ayrı OFF sınıflandırıcısı için veri sağlamaktır. Henüz eşik/model belirlenmemiştir.
