@@ -426,3 +426,12 @@
 - İlk analizde 200 ms sample_duration, 2 s update_interval ve K=24.22 referans alınır.
 - Deney sırası sabit değildir; kullanıcı ve asistan deneyleri ihtiyaca göre öne alabilir. Faz 2 görev bağımlılıkları korunur.
 - **Durum:** Protokol kaydedildi; tam log analizi ve Python uygulaması beklemede. [E12](experiments/E12-sct-stability-window-and-response/README.md).
+
+
+## 2026-11-05 — E11 sonucu ve E12 ilk veri gözlemi
+
+- E11 yüksüz uzun gözlem analiz edildi: PZEM 0.0 A; SCT1/2/3 medyanları yaklaşık 0.163/0.170/0.157 A; olay görünürlüğü 85/92 (%92.4), kesin UDP kaybı hükmü verilmedi.
+- E12 ilk 100 W CSV ön karşılaştırmasında 35 ON penceresi incelendi; SCT1/PZEM merkez farkı yaklaşık %3.34, 24/35 pencere ±%4 içinde. Bu ilk ön elemedir; bağımsız kararlılık algoritması ve Python eğitimi henüz yoktur.
+- Kalibrasyon referansı yalnızca ON içindeki bağımsız SCT/PZEM kararlı alanlarının örtüşmesidir. Geçiş/interpolasyon değerleri katsayı öğrenimine katılmaz; ham kayıt korunur.
+- K=24.22 değiştirilmedi. Hafta sonu farklı sabit yükler ve ilk Python veri hattı önceliklidir; canlı makine doğrulaması sonraki aşamadır.
+- Ayrıntı: [E11](experiments/E11-idle-dual-module-observation/README.md), [E12](experiments/E12-sct-stability-window-and-response/README.md).
