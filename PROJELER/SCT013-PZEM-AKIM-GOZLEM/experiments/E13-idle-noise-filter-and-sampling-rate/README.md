@@ -90,3 +90,33 @@ Bu belge yalnız deney planıdır. Firmware YAML henüz değiştirilmedi, derlem
 - [ ] Deney sonuçlarını ve gerçek log örneklerini depoya ekle.
 
 **Sonuç:** Henüz yok. E13 tamamlanmış değildir.
+
+
+## 2026-11-05 — Canlı ESP mimarisi netleştirildi: tek kanal, 2 Hz
+
+Kullanıcı açıklamasıyla hedef mimari kesinleştirildi:
+- Eğitim/veri toplama aşamasında üç SCT kanalının okunması yararlıdır; mevcut Modül 2 bu amaçla kullanılabilir.
+- Canlı çalışacak eğitilmiş ESP üç kanalı okumayacak. Tek bir SCT kanalından her 500 ms'de bir yeni ölçüm alacak: 2 Hz.
+- Dolayısıyla canlı ESP için üç kanalın her birinde 2 Hz sağlama gereksinimi yoktur. E13'ün canlı örnekleme fizibilitesi tek kanal odağına indirgenmiştir.
+- Mevcut Modül 2 üç kanallı eğitim firmware'i olduğu gibi kalır; bu hedef nedeniyle değiştirilmez. Tek kanallı canlı ESP ayrı hedef mimaridir ve henüz uygulanmış değildir.
+
+## 4 saniyelik kayan filtre penceresi — ilk tasarım adayı
+
+Kullanıcı, 2 Hz canlı ölçüm akışında yaklaşık 4 saniyelik kayan pencere kullanmayı önerdi. 2 Hz'de pencere başına 8 örnek bulunur. Amaç tekil kısa süreli sıçramaları karakterize edip yüksüz durum kararını daha kararlı hale getirmektir.
+
+Bu değer **ilk test adayıdır; onaylanmış nihai parametre değildir**. Filtre tasarımında:
+- Ham ölçüm her zaman ayrı ve değişmez tutulur.
+- Sekiz örnekli kayan pencereden sağlam merkez/dağılım (ör. medyan ve MAD) çıkarılır.
+- Tekil aykırı örnek ham akıştan silinmez; türetilmiş akışta işaretlenir veya filtreli durum değerine katılmaz.
+- Ardışık örneklerde devam eden yükseliş, gerçek yük başlangıcı olabileceğinden otomatik olarak bastırılmaz.
+- Pencere dolum süresi, filtre gecikmesi ve yük başlangıcını algılama gecikmesi ayrıca raporlanır.
+
+4 saniye pencere ile sekiz örnek olması, sistemin mutlaka 4 saniye gecikmeli karar vereceği anlamına gelmez. Kayan pencere her 500 ms'de güncellenebilir; ancak hangi kararın ne zaman kesinleşeceği seçilen süre/ardışıklık mantığına bağlıdır. Bu davranış kontrollü ON/OFF geçişiyle test edilmelidir.
+
+## E13 kapsam düzeltmesi
+
+- Deney A: I007 ham yüksüz kayıtları üzerinde çevrimdışı filtre karşılaştırması; ham veriyi değiştirmez.
+- Deney B: canlı hedef ESP için tek SCT kanalında 500 ms çıktı aralığının (2 Hz) sağlanması. Üç kanal hız testi canlı hedef için gerekli değildir; üç kanallı Modül 2 yalnız eğitim/veri toplama düzeni olarak kalır.
+- Tek kanallı canlı ESP'de 4 saniyelik / 8 örnekli kayan filtre adayı, tekil sıçramayı bastırırken gerçek ON başlangıcını geciktirmeme açısından değerlendirilecek.
+
+Açık işler ve kabul ölçütleri buna göre revize edilmelidir. Firmware henüz değiştirilmedi; 2 Hz ve filtre uygulaması test bekliyor.
