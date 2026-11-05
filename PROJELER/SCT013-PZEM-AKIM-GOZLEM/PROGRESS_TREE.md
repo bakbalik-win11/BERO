@@ -417,3 +417,12 @@
 - ESP/HA tarafında ölçüm ve olayın birebir eşleştirilmesi yoktur. Zaman toleransı/eşik/pencere süresi gerçek veri görülünce belirlenir.
 - [ADR-019](docs/decisions/ADR-019-module2-module3-independent-event-streams.md); [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
 - Bu kayıt mimari karardır; firmware, UDP paketi veya fiziksel test değişikliği değildir.
+
+
+## 2026-11-05 — E12 SCT kararlılık ve tepki süresi araştırması
+
+- E12 planlandı: SCT1 kararlı alan tespiti; PZEM ve SCT kararlı alanlarının bağımsız belirlenip zaman kesişimiyle eşleştirilmesi; SCT tepki/yerleşme süresi ve daha kısa ölçüm penceresi araştırması.
+- İlk gözlem adayı 20:07–20:37 100 W akkor oturumudur; 20:12 kablo değişikliği öncesi/sonrası ayrı incelenecek.
+- İlk analizde 200 ms sample_duration, 2 s update_interval ve K=24.22 referans alınır.
+- Deney sırası sabit değildir; kullanıcı ve asistan deneyleri ihtiyaca göre öne alabilir. Faz 2 görev bağımlılıkları korunur.
+- **Durum:** Protokol kaydedildi; tam log analizi ve Python uygulaması beklemede. [E12](experiments/E12-sct-stability-window-and-response/README.md).
