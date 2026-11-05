@@ -22,9 +22,13 @@ Ancak deneyin ham kaydı yalnızca eğitimde seçilen kararlı alanlardan ibaret
 7. **Model alanları veriden seçilebilir.** Tek katsayı veya birden fazla akım alanı/katsayı kullanımı (ör. düşük, orta, yüksek aralıklar) önceden sabitlenmez. Python, yeterli veri ve ayrılmış değerlendirme sonuçlarıyla alan ihtiyacını inceleyebilir; alan sınırları kanıt olmadan belirlenmez.
 8. **Başarım dili doğru seçilir.** Bu tam kayıt incelemesi, bilinen deney koşullarına karşı SCT modelinin davranış/tutarlılık değerlendirmesidir. Örnek başına bağımsız, izlenebilir akım referansı bulunmadıkça mutlak doğruluk veya gerçek dalga şekli doğrulaması olarak adlandırılmaz.
 
-## OFF/yüksüz taban istatistiği — ayrı ve sonraki aşama
+## OFF verisinin gelecekteki ayrı kullanım alanı — gürültü/kapalı durum modeli
 
-OFF alanlarının eğitimde kullanılmaması, yüksüz davranışın hiçbir zaman incelenemeyeceği anlamına gelmez. İleride ayrı bir araştırma olarak, ölçülen hatta yük bağlı değilken ve aç-kapa döngüsü çalıştırmadan uzun süreli kayıt alınabilir. Bu kayıttan yüksüz taban dağılımı ve olası gürültü/kapalı durum eşiği türetilebilir. Bu çalışma ilk aşamanın eğitim hedefi değildir; OFF verisini eğitim örneğine dönüştürmez.
+OFF örnekleri ON akım kalibrasyonuna veya PZEM–SCT kararlı yük eşleştirmesine katılmaz. Bununla birlikte, farklı deneylerde zaman içinde biriken OFF okumaları kaybolmayacak; ayrı etiketli bir OFF/yüksüz veri havuzunda birleştirilebilir. Bu havuz ileride gürültü tabanını tanımlamak ve "bu aralık gürültü/kapalı durumdur" sınıflandırması için eşik veya ayrı bir model geliştirmek amacıyla kullanılabilir.
+
+Gerekirse bu amaç için ayrıca aç-kapa döngüsü çalıştırmadan, ölçülen hatta yük bağlı değilken uzun süreli yüksüz kayıt alınır. Böylece doğal yüksüz taban dağılımı daha temiz incelenebilir. Bu, ilk aşamanın hedefi değildir ve ON akım doğruluğu çalışmasının yerine geçmez.
+
+İleriye dönük mimari fikir: Python tarafında biriken verilerle geliştirilen model/eşik, ileride ölçümü sahada yapan ve sınıflandırma/akım hesabı gerçekleştiren ESP'ye aktarılabilir. ESP'nin model yükleme, güncelleme ve çalışma biçimi henüz tasarlanmış veya uygulanmış değildir; bu bir gelecek hedefidir.
 
 ## Örnek
 
