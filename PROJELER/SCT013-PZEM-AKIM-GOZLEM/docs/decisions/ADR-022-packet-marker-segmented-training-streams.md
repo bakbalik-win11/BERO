@@ -24,7 +24,7 @@ ESP'lerin her ölçüm kaydına sürekli zaman/paket bilgisi eklemesi de gereksi
 
 SSR durumu değiştiğinde Modül 3 tek bir olay mesajı oluşturur. Mesajın biçimi mevcut UDP protokolüyle aynıdır:
 
-`BERO_EVT,BOOT_ID=XXXXXXXX,EVENT_ID=N,STATE=ON|OFF,TIME=YYYY-MM-DD HH:MM:SS`
+`BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF`
 
 - Modül 3 aynı olay mesajını UDP port 4210 üzerinden Modül 2'ye yayınlar.
 - Modül 3 aynı mesajı kendi PZEM kayıt akışına, PZEM ölçümlerinin arasına ayrı bir olay kaydı olarak ekler.
@@ -82,7 +82,7 @@ ADR-023, ADR-022'nin önceki TIME içeren olay biçimini ve TIME alanı açıkla
 
 ## Hata ve veri bütünlüğü
 
-- UDP olayı Modül 2'ye ulaşmazsa veya iki akıştaki BOOT_ID/EVENT_ID dizisi uyuşmazsa ilgili paket aralığı eksik olarak işaretlenir; tahminle tamamlanmaz ve eğitimden çıkarılır.
+- UDP olayı Modül 2'ye ulaşmazsa, ON başlangıç anahtarları uyuşmazsa, iki akışın OFF kapanış anahtarları aynı değilse veya ON ile OFF arasında `EVENT_ID` boşluğu varsa ilgili paket reddedilir; `MISSING_OFF`, `EVENT_ID_GAP` veya `OFF_EVENT_MISMATCH` gibi nedenlerle raporlanır. Eksik kayıt tahminle tamamlanmaz ve eğitimden çıkarılır.
 - Aynı olay mesajının yinelenmesi, Python tarafında aynı BOOT_ID/EVENT_ID için tekrar olarak tanınır; yinelenen işaret yeni paket aralığı oluşturmaz.
 - Geçersiz/eksik olay mesajı normal SCT/PZEM ölçüm kaydı gibi yorumlanmaz.
 - ON–OFF aralığı otomatik olarak kararlı kabul edilmez. Kararlılık algoritmaları, toleranslar ve minimum süre gerçek HA verisi üzerinde Python tarafında geliştirilecektir.
