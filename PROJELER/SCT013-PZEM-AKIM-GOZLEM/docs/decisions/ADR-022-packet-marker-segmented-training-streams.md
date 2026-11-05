@@ -49,7 +49,7 @@ HA dışa aktarımında kayıtlar ayrı entity geçmişlerinde bulunuyorsa Pytho
 1. Modül 3 PZEM akışındaki olay işaretlerini okuyarak PZEM kayıtlarını ardışık paket aralıklarına ayırır.
 2. Modül 2 SCT akışındaki aynı olay işaretlerini okuyarak SCT kayıtlarını aynı paket aralıklarına ayırır.
 3. Her iki akışta aynı fiziksel ON başlangıç işaretini `BOOT_ID + EVENT_ID` ile doğrular. Paket kimliği, ON başlangıç işaretinin kimliğidir; çünkü `EVENT_ID` her SSR durum değişiminde artar ve onu izleyen OFF işaretinin kendi farklı `EVENT_ID` değeri vardır. OFF işareti, ilgili akışta ON paketini kapatan beklenen sonraki durum olayı olarak ayrıca doğrulanır.
-4. Her iki modülde ON başlangıcı ve karşılık gelen OFF kapanışı aynı kimlik/sıra düzeniyle doğrulanmışsa paket bütünlüğünü kabul eder; eksik veya uyumsuz işaretli aralıkları eğitim dışı bırakır ve nedenini raporlar.
+4. Her iki modülde ON başlangıç işaretinin `BOOT_ID + ON_EVENT_ID` kimliği aynı olmalıdır. Her akışta bu ON olayını izleyen OFF kapanışı ayrıca doğrulanır; karşılık gelen OFF işaretleri iki akışta da aynı `BOOT_ID + OFF_EVENT_ID` kimliğini taşımalıdır. Normal ON→OFF çevriminde `OFF_EVENT_ID = ON_EVENT_ID + 1` olmalıdır. ON ile OFF arasında olay numarası boşluğu, farklı OFF kimliği veya eksik kapanış varsa paket bütünlüğü reddedilir; neden raporlanır.
 5. Her ON paketinde PZEM kararlılığını yalnız PZEM değerlerinden; SCT kararlılığını yalnız SCT değerlerinden bağımsız tespit eder.
 6. PZEM'in yükseliş/düşüş ve yerleşme geçişlerini; SCT'nin kendi geçiş/yerleşme bölümlerini eğitim kararlı alanından çıkarır.
 7. Aynı ON paketindeki bağımsız SCT ve PZEM kararlı aralıklarının zaman kesişimini hesaplar. Yalnız kesişen zaman aralığı karşılaştırılabilir eğitim adayıdır. Kesişim yoksa etiket üretilmez; ham kayıt korunur ve `NO_STABLE_OVERLAP` gibi açık bir dışlama nedeni raporlanır.
@@ -58,17 +58,20 @@ HA dışa aktarımında kayıtlar ayrı entity geçmişlerinde bulunuyorsa Pytho
 
 **Paket eşleştirme anahtarı `BOOT_ID + ON_EVENT_ID` birleşimidir; zaman değildir.** Bu kimlik, iki modüldeki aynı fiziksel ON başlangıç işaretini ve dolayısıyla paket başlangıcını tanımlar. Karşılık gelen OFF kapanış işareti her akışta ayrıca doğrulanır; OFF işaretinin EVENT_ID değeri ON ile aynı değildir. Paket bütünlüğü doğrulandıktan sonra zaman damgaları, aynı ON paketi içindeki SCT ve PZEM kararlı aralıklarının zaman bakımından kesişip kesişmediğini belirlemek için kullanılır. Bu kesişim paket eşleştirme anahtarı değil, eğitim etiketi üretmeye uygunluk koşuludur. Tekil SCT/PZEM örnekleri timestamp üzerinden birebir eşleştirilmez, interpolasyonla eşleştirilmez ve sabit gecikme varsayılmaz. HA timestamp'lerinin iki akış arasında karşılaştırılabilirliği, olay sırası ve kararlı aralık sınırları gerçek dışa aktarım üzerinde doğrulanmadan zaman hassasiyeti hakkında ek iddia kurulmaz.
 
-## BOOT_ID, EVENT_ID ve TIME alanlarının kesin görevi
+## BOOT_ID, EVENT_ID ve zaman damgasının kesin görevi
 
-- **BOOT_ID:** Modül 3'ün her açılışında/yeniden başlatılmasında bir kez yeni kimlik üretilir. Aynı açılış oturumu boyunca bütün SSR olaylarında sabit kalır. Her ON/OFF olayında yeniden üretilmez.
-- **EVENT_ID:** Modül 3'te her yeni SSR durum değişiminde artan olay işareti numarasıdır; ON ve OFF işaretlerinin EVENT_ID değerleri farklıdır. ON işaretinin EVENT_ID değeri ilgili ON paketinin kimliğini belirlemede kullanılır; karşılık gelen OFF işareti kapanış olayı olarak ayrıca doğrulanır. Aynı BOOT_ID oturumunda sıralı ilerler. Yeniden başlatma sonrası sayaç yeniden başlayabilir; bu nedenle tek başına benzersiz değildir.
-- **TIME:** Olayın üretildiği tarih-saat bilgisidir. Her BERO_EVT olay mesajında bulunur ve Modül 2'ye aynı içerikle aktarılır. Oturumun tarih/saat izini ve olayın kendi akışı içindeki yerini korumaya, yeniden başlatma ve tanılama kayıtlarına yarar. TIME, Modül 2 SCT ile Modül 3 PZEM örneklerini zaman üzerinden eşleştirmek için kullanılmaz.
-- **Paket eşleştirme anahtarı:** ON başlangıç işaretinin `BOOT_ID + EVENT_ID` birleşimidir (`BOOT_ID + ON_EVENT_ID`). Karşılık gelen OFF kapanış işareti farklı EVENT_ID taşır ve ayrıca doğrulanır. TIME bu anahtarın yerine geçmez; EVENT_ID'nin farklı açılışlarda tekrar edebilmesini ayırt etmeye yardımcı olan BOOT_ID'dir.
-- **Modül 2**, Modül 3'ten aldığı BOOT_ID, EVENT_ID, STATE ve TIME alanlarını aynen korur. Modül 2 kendi BOOT_ID'sini bu olay eşleştirmesinde kullanmaz.
+- **BOOT_ID:** Modül 3'ün her açılışında/yeniden başlatılmasında bir kez yeni kimlik üretilir. Aynı açılış oturumu boyunca bütün SSR olaylarında sabit kalır.
+- **EVENT_ID:** Modül 3'te her SSR durum değişiminde artan uint32 olay numarasıdır. Normal SSR çevrimi ON→OFF şeklinde ilerlediği için bir ON olayını izleyen OFF olayının numarası bir sonraki değerdir. ON ve OFF farklı EVENT_ID taşır.
+- **Olay mesajı:** ADR-023 uyarınca yalnızca `BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF` alanlarını taşır. Mesajda TIME alanı yoktur.
+- **HA timestamp'i:** Home Assistant Recorder'ın her entity kaydına verdiği timestamp, olay mesajının alanı değildir. Yalnızca ilgili modülün kendi kayıtlarını sıralamak ve gerçek dışa aktarımda karşılaştırılabilirliği ayrıca doğrulandıktan sonra aynı ON paketi içindeki kararlı aralıkların zaman kesişimini incelemek için kullanılabilir.
+- **Paket eşleştirme anahtarı:** ON başlangıç işaretinin `BOOT_ID + ON_EVENT_ID` birleşimidir. Karşılık gelen OFF kapanış anahtarı `BOOT_ID + OFF_EVENT_ID` olarak ayrı doğrulanır. İki akışta ON anahtarları aynı; OFF anahtarları da aynı olmalıdır. Normal çevrimde OFF_EVENT_ID, ON_EVENT_ID'nin bir fazlasıdır. Bu şart sağlanmıyorsa paket reddedilir.
+- **Modül 2:** Modül 3'ten aldığı BOOT_ID, EVENT_ID ve STATE alanlarını aynen korur. Modül 2 kendi BOOT_ID'sini veya EVENT_ID'sini üretmez; olaya TIME eklemez.
 
 Örnek olay biçimi:
 
-`BERO_EVT,BOOT_ID=XXXXXXXX,EVENT_ID=N,STATE=ON|OFF,TIME=YYYY-MM-DD HH:MM:SS`
+`BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF`
+
+ADR-023, ADR-022'nin önceki TIME içeren olay biçimini ve TIME alanı açıklamalarını geçersiz kılar. Çelişki halinde TIME'sız mesaj biçimi ve ADR-023 geçerlidir.
 
 ## Fiziksel kurulum ve kodlama sırası
 
