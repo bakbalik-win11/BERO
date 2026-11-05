@@ -41,3 +41,29 @@ Henüz CSV gelmediği için bu dizinde ölçüm verisi veya kümülatif sayısal
 - Kümülatif oturum özeti: [cumulative-session-summary.csv](cumulative-session-summary.csv)
 
 İlk oturumdaki akım entity medyanları SCT1=0.1603 A, SCT2=0.1698 A, SCT3=0.1567 A; P95 değerleri sırasıyla 0.3327 A, 0.2930 A, 0.2550 A'dır. Bunlar ilk gözlem özetidir; eşik değildir. Yeni oturumlarda bu CSV'ye yeni satır eklenecek, ham oturum raporları ayrı korunacaktır.
+
+
+## Filtrelenmiş türev veri kararı — 2026-11-05
+
+Kullanıcı kararı: kaynak/ham I007 kayıtları hiçbir zaman filtrelenerek üzerine yazılmayacak veya silinmeyecek. Ham akış değişmez kanıt olarak tutulacak; bunun yanında aynı kayıttan ayrı bir **filtrelenmiş/türetilmiş yüksüz akış** üretilebilecek. Filtreli akışın amacı fiziksel sıfır akım koşulunda kısa süreli sıçramaları bastırıp sistemin yüksüz durumunu daha kararlı temsil etmektir. Bu türev akış ON kalibrasyonuna veya ON eğitim eşleştirmesine eklenmez.
+
+Önerilen analiz yaklaşımı (henüz kodlanmadı ve parametreleri belirlenmedi):
+- Kayan pencere içinde merkez/dağılım hesapla; tekil uç değerlere duyarlı basit ortalama yerine medyan ve MAD gibi sağlam istatistikleri de değerlendir.
+- Merkezden sapmayı tek başına yeterli sayma: sapmanın büyüklüğü ve ardışık örneklerde ne kadar süre devam ettiği birlikte değerlendirilsin.
+- Kısa süreli tekil sıçramayı filtreli akışta bastır/işaretle; devam eden yükselişi gerçek durum değişimi adayı olarak koru.
+- Her örnek için ham değer, filtrelenmiş değer, aykırı-değer bayrağı ve kullanılan pencere/parametre kimliği izlenebilir olsun.
+- Filtre penceresi, sapma sınırı ve devam süresi deneyle seçilecek; henüz sabit eşik yok.
+
+Bu tasarımın amacı ham veriyi kaybetmeden ikinci bir analiz katmanı oluşturmaktır. İlk deneme I007 oturumlarının kopyası üzerinde çevrimdışı yapılmalı; firmware'e filtre gömülmesi ancak çevrimdışı sonuçlar ve yük geçişi testleri görüldükten sonra değerlendirilmeli.
+
+## Örnekleme hızı hedefi — kullanıcı önerisi, test bekliyor
+
+Kullanıcı, SCT akım akışında yaklaşık her 0,5 saniyede bir yeni ölçüm çıktısı, yani saniyede 2 örnek (2 Hz) hedefini önerdi. Bu henüz ölçülmüş/uygulanmış bir performans değildir; test hedefidir.
+
+Mevcut Modül 2 firmware kaynağında interval=2s ile üç SCT kanalı sıralı okunuyor; bu, her kanal için nominal yaklaşık 0,5 Hz (2 saniyede bir) güncelleme demektir. Her kanalın sample_duration değeri 200 ms. SCT1→SCT2→SCT3 arasında 250 ms bekleme bulunduğundan mevcut üç kanal sıralı çevrimi, her kanala 500 ms'de bir güncelleme verecek şekilde yalnızca interval değerini değiştirmekle hızlandırılamaz. Üç kanalın her birinde 2 Hz hedefi için edinim sırası, örnek süresi ve kanal eşzamanlılığı/önceliği yeniden tasarlanıp ölçülmelidir.
+
+İlk testte iki ayrı hedef raporlanmalı:
+1. Öncelikli tek kanal (SCT1) için 2 Hz çıktının gerçek zaman damgalarıyla sağlanıp sağlanamadığı.
+2. Üç kanal birlikte açıkken her kanalın sürdürülebilir güncelleme hızı, zaman kayması, örnek kaybı, gürültü ve akım değerlerinin mevcut referansa göre değişimi.
+
+2 Hz veri üretmek, her ölçümün 500 ms boyunca örneklendiği anlamına gelmez. Mevcut 200 ms sample_duration korunarak 500 ms aralıklarla sonuç üretmek ayrı bir tasarım hedefidir. K=24.22 ve diğer koşullar ilk hız testinde sabit tutulmalı; firmware değişikliği kullanıcı onayıyla ayrı kontrollü testte yapılmalıdır.
