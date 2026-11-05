@@ -183,3 +183,23 @@ PZEM'in rolü de sınırlıdır: mevcut SCT projesinde kararlı pencerelerin kar
 Bu mimari belgesi bir tasarım yönüdür; çalışan yazılım, ESPHome bileşeni veya tamamlanmış davranış sınıflandırma sistemi değildir. Her yeni uygulama için kaynak kod/şablonun derlenmesi, gerçek bağlantı ve donanım testi, gerçek çıktı/log ve beklenen-gözlenen davranış karşılaştırması ayrı ayrı kaydedilir. Bir aşamanın tamamlanması diğer aşamaların da tamamlandığı anlamına gelmez.
 
 SCT013-PZEM uygulamasının görev sırası ve aktif işleri kendi [STATUS](../../PROJELER/SCT013-PZEM-AKIM-GOZLEM/STATUS.md) ve [ROADMAP](../../PROJELER/SCT013-PZEM-AKIM-GOZLEM/ROADMAP.md) dosyalarında yönetilmeye devam eder. Bu mimari kaydı T010 veya diğer Faz 2 görevlerinin sırasını değiştirmez.
+
+
+## 10. Sensörden bağımsız veri değerlendirme disiplini
+
+SCT013 çalışmasında geliştirilen yaklaşım yalnız akım sensörüne özgü değildir. BERO'nun farklı sensörlerinden gelen zaman serileri de ham ölçümün korunması, uygun pencerelerde özellik çıkarılması ve zaman içindeki davranışın değerlendirilmesi ilkeleriyle ele alınabilir.
+
+Örneğin CO₂ sensörü de zaman içinde değişen bir fiziksel büyüklük ölçer. Tek bir ppm değerine bakmak yerine, sensörün tepki süresi ve ortamın değişim dinamiğine uygun pencerelerde şu özellikler hesaplanabilir:
+- Ortalama ve medyan CO₂ seviyesi.
+- Pencere içindeki minimum ve maksimum.
+- Değişim aralığı ve değişim hızı (ppm/dakika gibi).
+- Belirli bir seviyenin üzerinde geçirilen süre.
+- Havalandırma açılmadan önceki ve açıldıktan sonraki eğilim farkı.
+
+Bu özellikler, CO₂'nin tekil bir anlık değerinden daha açıklayıcı olabilir. Örneğin havalandırma başladıktan sonra CO₂'nin düşüş eğimi ve belirli bir aralığa dönme süresi, hava değişiminin davranışını incelemek için kullanılabilir. Ancak CO₂ düşüşü tek başına fanın debisini veya havalandırma verimini kanıtlamaz; oda hacmi, kişi sayısı, kapı/pencere durumu, dış ortam CO₂ seviyesi ve hava akış yolu gibi koşullar da sonucu etkiler.
+
+**Ortak olan yöntem; pencereleme, özellik çıkarma, kalite kontrolü, zaman ilişkisi kurma ve davranış değerlendirmesidir. Sensöre özel olan ise örnekleme sıklığı, pencere uzunluğu, fiziksel birim, tepki süresi, filtre ve geçerlilik koşullarıdır.** SCT'nin 200 ms özellik penceresi CO₂'ye taşınmaz. Her sensör için üretici özellikleri ve gerçek ortam davranışı dikkate alınarak ayrı parametre seçilir.
+
+Örnek olarak Senseair S8 bir NDIR CO₂ sensör ailesidir ve UART/Modbus üzerinden dijital ölçüm verir. S8 varyantları arasında ölçüm aralığı, doğruluk ve tepki süresi farklılıkları bulunabilir; ürün varyantı kesinleşmeden tek bir teknik değer varsayılmaz. Üretici ürün sayfası ve ilgili varyantın veri sayfası esas alınmalıdır: https://senseair.com/product/s8/.
+
+Bu yaklaşım BERO'da bir **veri değerlendirme disiplini** oluşturur: ham ölçüm sensöre özgü biçimde alınır ve korunur; sensöre uygun zaman pencerelerinde türetilmiş özellikler üretilir; daha üst katmanda tek veya çoklu sensör davranışları değerlendirilir. Böylece aynı yazılım/mimari ilkeler farklı sensörlere uyarlanabilir, ancak sensörlerin fiziksel özellikleri ve parametreleri birbirine kopyalanmaz.
