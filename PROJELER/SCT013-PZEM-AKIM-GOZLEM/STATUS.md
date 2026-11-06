@@ -553,3 +553,14 @@ Bir pencere akım varlığını gösterebilir ama amper hesabı için kararsız 
 Kullanıcı 18:00'de mevcut veriyi paylaşacak; bu ilk kontrol noktasıdır. Sonrasında uzun 18 W ON/OFF aç-kapa testine devam edecek. İlk veri kesiti ve devam kaydı aynı I010 deneyinde ayrı veri dilimleri olarak tutulacak. 15 W içeren dönemler kontrollü I010 karşılaştırmasından hariç tutulacak; ham veri silinmeyecek.
 
 Ayrıntı: [I010 — 18 W deney kaydı](experiments/I010-13W-incandescent-low-load/README.md).
+
+
+## 2026-11-06 — I010 Oturum 1 kapatıldı: 18 W ON/OFF ayrışma raporu
+
+- Ana veri: kullanıcı yüklemesi `history (50).csv`; SHA-256 `fb92ba4b1acaf1fe470b33419f37f1b38cdabf32061e8a9babe01755acc9c8cc`.
+- 15 W ve 57 W+15 W dönemleri kontrollü karşılaştırmadan çıkarıldı.
+- 18 W döneminde 16 ON/OFF çevrimi incelendi. Kararlı pencerelerde K=24.22 uygulanmış CH1 çevrim medyanlarının medyanı ON `0.2557 A`, OFF `0.1850 A`; ON pencereleri 16/16 kez 0.20 A üstü, OFF medyanları 16/16 kez 0.20 A altıdır. OFF pencerelerinde 0.20 A üstü kısa süreli okumalar görüldü; en uzun ardışık bölüm yaklaşık 2 saniyeydi.
+- PZEM aktif güç ON pencerelerinde yaklaşık `17.95 W`, OFF pencerelerinde `0 W` ile ayrımı destekledi.
+- Kritik sınırlama: 18 W öncesi uzun OFF penceresinde CH1 medyanı `0.2532 A`, zamanın `%78.6`'sı 0.20 A üstü ve en uzun ardışık eşik üstü bölüm yaklaşık `42 s` idi. Bu nedenle `0.20 A` mutlak/global OFF eşiği değildir. 18 W çevrimleri içinde yerel ON/OFF ayrımı başarılıdır; genel sınıflandırma için adaptif baz çizgisi ve süre-temelli karar gerekir.
+- I010 Oturum 1 kapatıldı. Kullanıcı 18:00 sonrası uzun 18 W ON/OFF testine devam edecek; bu sonraki veri ayrı oturum olarak kaydedilecek.
+- Ayrıntılı rapor: [I010 Oturum 1 raporu](experiments/I010-13W-incandescent-low-load/REPORT-2026-11-06-session-01.md).
