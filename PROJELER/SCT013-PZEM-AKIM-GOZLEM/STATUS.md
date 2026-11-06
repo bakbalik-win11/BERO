@@ -278,3 +278,13 @@ Kullanıcı onayıyla E15'ten ayrı E16 deneyi planlandı. E15 A/B/C'de `sample_
 - D firmware açıklamalarındaki E16 değişken tanımı düzeltildi; yapılandırma değerleri değiştirilmedi. YAML: `firmware/experiments/bero-modul2-e16-single-sct-window-d-50ms.yaml`.
 - **Kanıt sınırı:** Başlangıç zamanı kullanıcı bildirimidir. Bu kayıt cihaz logu, OTA doğrulaması veya 10 dakikalık HA History kaydının tamamlandığı anlamına gelmez. Veri/log geldiğinde ayrıca incelenecek.
 - Ayrıntı: [E16 deney kaydı](experiments/E16-single-sct-window-duration/README.md).
+
+
+## 2026-11-06 — E16 D ön test kontrol logu incelendi
+
+- Kullanıcının sağladığı kısa ESPHome logu 15:00:21.591–15:00:52.446 aralığını kapsıyor; 15:01 D turu başlangıcından hemen önce alınmış kontrol kaydıdır.
+- ESPHome 2026.10.2, build 14:59:40; API bağlantısı/handshake başarılı; GPIO32 / ADC1_CH4, 12dB ADC init/config/calibration OK; ct_clamp sample_duration=50ms.
+- 31 katsayısız CH1 yayını; medyan aralık 1.0005s (0.969–1.031s). Farklı ADC örnek sayısı 588–658 / 50ms (medyan 621).
+- Kısa katsayısız çıktı özeti n=31, ortalama 0.014573, medyan 0.018340, popülasyon SD 0.006285, min 0.004460, max 0.021140. İlk düşük değerlerden sonra 15:00:32 civarında üst seviyeye geçiş var; kısa kesit tek kararlı pencere kabul edilmedi.
+- Log validated config cache'in `esp32d1.yaml` için kullanıldığını söylüyor; depodaki D YAML ile binary arasında birebir hash eşleşmesi kanıtlanmıyor. Kısa kontrol logu 10 dakikalık D kaydı değildir.
+- Ham log: [kontrol logu](logs/module2/2026-11-06-e16-d-50ms-pretest-control-log.txt); [analiz](logs/module2/2026-11-06-e16-d-50ms-pretest-control-log-analysis.md). Kaynak SHA-256: `f6b799c818552b7b14dd6bb42a4d7aeb1d4c18e72e6208efa0a4670da9355a60`.
