@@ -189,3 +189,18 @@ Karar ilkeleri:
 Karar [ADR-030](docs/decisions/ADR-030-resumable-small-python-jobs.md), [Python mimarisi](docs/architecture/python-program-architecture.md) ve [T007](tasks/T007-python-architecture.md) belgelerine işlendi.
 
 **Uygulama durumu:** Yalnız mimari karar kaydedildi. Görev çalıştırıcı, checkpoint, atomik çıktı ve kurtarma mekanizması henüz uygulanmadı/test edilmedi. T007 devam ediyor.
+
+
+## 2026-11-06 — Python programları ve alt görevleri taslaklandı
+
+Kullanıcı isteğiyle Python kodlamasına geçmeden önce program envanteri açıldı. Mevcut iki ana program sınırı taslak olarak korundu:
+- PY-01 — BERO Importer: gelen-kutu dosyalarının güvenli kabulü, hash/tekrar kontrolü, CSV doğrulama, RAW arşiv ve karantina.
+- PY-02 — BERO Analyzer: arşiv envanteri, veri profili, olay paket doğrulama, ayrı PZEM/SCT kararlılık analizi, örtüşme, tek kanallı etiketleme, tam kayıt değerlendirmesi ve raporlama.
+
+Her ana program küçük görev modüllerine ayrıldı. Program tanımları ve görev listeleri taslak durumundadır; kullanıcıyla okunup kontrol edilecek, gerekirse değiştirilecektir. Kodlama veya algoritma doğrulaması yapılmadı.
+
+- [Python program envanteri](docs/python-programs/README.md)
+- [PY-01 — BERO Importer](docs/python-programs/PY-01-importer.md)
+- [PY-02 — BERO Analyzer](docs/python-programs/PY-02-analyzer.md)
+
+**Sonraki çalışma:** Envanter ve PY-01/PY-02 tanımları kullanıcıyla sırayla gözden geçirilecek. Görev sınırları onaylanmadan kodlamaya başlanmayacak.
