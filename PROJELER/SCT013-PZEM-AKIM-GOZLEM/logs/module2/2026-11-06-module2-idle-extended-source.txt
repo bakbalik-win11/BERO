@@ -997,7 +997,8 @@ INFO Successful handshake with esp32d1 @ 192.168.0.35 in 0.014s
 [10:56:48.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1425 different samples (14250 SPS)
 [10:56:48.993][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00781 A
 [10:56:48.994][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.189 A
-[10:56:49.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1436 different samples (14360 SPS)[10:56:49.482][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00774 A
+[10:56:49.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1436 different samples (14360 SPS)
+[10:56:49.482][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00774 A
 [10:56:49.483][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.187 A
 [10:56:49.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1427 different samples (14270 SPS)
 [10:56:49.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00779 A
@@ -1996,7 +1997,8 @@ INFO Successful handshake with esp32d1 @ 192.168.0.35 in 0.014s
 [10:58:14.448][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.243 A
 [10:58:14.459][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.010A after 1225 different samples (12250 SPS)
 [10:58:14.465][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
-[10:58:14.465][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE[10:58:14.571][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00990 A
+[10:58:14.465][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:58:14.571][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00990 A
 [10:58:14.571][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.240 A
 [10:58:14.572][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66000 V
 [10:58:14.878][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.015A after 1427 different samples (14270 SPS)
@@ -2995,7 +2997,8 @@ INFO Successful handshake with esp32d1 @ 192.168.0.35 in 0.014s
 [10:59:40.246][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
 [10:59:40.345][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.006A after 906 different samples (9060 SPS)
 [10:59:40.352][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
-[10:59:40.372][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 776 different samples (7760 SPS)[10:59:40.443][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00624 A
+[10:59:40.372][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 776 different samples (7760 SPS)
+[10:59:40.443][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00624 A
 [10:59:40.443][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.151 A
 [10:59:40.444][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00745 A
 [10:59:40.444][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.180 A
@@ -3994,7 +3997,8 @@ INFO Successful handshake with esp32d1 @ 192.168.0.35 in 0.014s
 [11:01:04.989][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01257 A
 [11:01:04.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.305 A
 [11:01:05.362][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.013A after 1429 different samples (14290 SPS)
-[11:01:05.476][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01287 A[11:01:05.477][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.312 A
+[11:01:05.476][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01287 A
+[11:01:05.477][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.312 A
 [11:01:05.869][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 1439 different samples (14390 SPS)
 [11:01:05.982][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01625 A
 [11:01:05.983][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.393 A
