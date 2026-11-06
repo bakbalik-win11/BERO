@@ -120,3 +120,28 @@ Bu kayıt, yeni üç hız revizyonunun öncesindeki yüksüz baz çizgi kanıtı
 1. PZEM History geçişlerinde paket ortalaması/önceki örneklerin etkisi gözlemi; geçiş değerleri anlık akım kabul edilmeyecek.
 2. Üç farklı SCT yayın hızının karşılaştırılması; ilk kullanıcı gözleminde CH2 daha az sapıyor, sayısal doğrulama bekliyor.
 3. Fiziksel SCT kanallarının yer değiştirilmesi; donanım etkisini ayırmak için yeni kayıt bekleniyor.
+
+## 2026-11-06 — E14 üçüncü adım: örnekleme profilinin kod kanalları arasında kaydırılması
+
+### Deney zinciri
+1. **PZEM History:** Geçiş kenarındaki ara değerler anlık akım veya kararlı pencere istatistiği olarak kullanılmayacak. İç ortalama algoritması kaynak koddan doğrulanmış değildir; kayıt kullanıcı gözlemi ve yorumudur.
+2. **Fiziksel sensör değişimi:** Kod/GPIO eşlemesi ve hızlar sabitken sensörler değiştirildi. İlk değişim SCT1→CH3, SCT2→CH1, SCT3→CH2; 12:15 ikinci değişim SCT1→CH2, SCT2→CH3, SCT3→CH1. Kullanıcı, ikinci yerleşimde de CH2'nin daha kararlı göründüğünü bildirdi. Takma/çıkarma sıçramaları ham veride korunur, kararlı pencere istatistiğine alınmaz.
+3. **Kodda örnekleme profili değişimi:** Son fiziksel sensör yerleşimi sabit kalır; yalnız örnekleme profilleri kaydırılır. Beklenti, önceki CH2 avantajının 1 Hz profilini izleyerek CH1'e taşınmasıdır.
+
+### Yeni kod düzeni
+| Kanal | Önceki | Yeni |
+|---|---:|---:|
+| CH1-1T / GPIO32 | 2 Hz | **1 Hz** |
+| CH2-1T / GPIO33 | 1 Hz | **0,5 Hz** |
+| CH3-1T / GPIO34 | 0,5 Hz | **2 Hz** |
+- sample_duration=100ms ve K=24.22 sabit.
+- Son fiziksel eşleme: CH1←SCT3, CH2←SCT1, CH3←SCT2.
+- CH1 her 1 saniyede; CH2 her ikinci çevrimde (2 saniyede); CH3 bağımsız 500 ms aralıkla okunur.
+- Ortak bias, CH2'nin okunduğu 2 saniyelik çevrimde okunur.
+- Aynı kararlı pencere değerlendirme yöntemi korunur; PZEM üç SCT hızının sıralamasında ölçüt değildir.
+
+### Beklenti ve doğrulama sınırı
+- Kararlılık avantajı CH1'e taşınırsa 1 Hz profil hipotezi desteklenir.
+- Avantaj CH2'de kalırsa GPIO/ADC veya kanala özgü etki olasılığı güçlenir.
+- Sonuçlar yakınsa örnekleme hızı tek başına belirleyici olmayabilir.
+- YAML kaynak değişikliği depoya yazıldı. Validate, Compile, OTA ve fiziksel cihaz testi henüz yapılmadı.
