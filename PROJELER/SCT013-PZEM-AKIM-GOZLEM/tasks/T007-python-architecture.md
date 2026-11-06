@@ -91,3 +91,18 @@ Veri aktarımı için önce PZEM ve SCT düğümlerinin gerçek veriyi Home Assi
 - Kalıcı kanal kimlikleri `CH1`, `CH2`, `CH3` olacaktır. Fiziksel geçiş/sarım sayısı `turn_count` olarak ayrı metadata tutulur; değişebilir. Mevcut 1/4/3 geçiş eşlemesi yalnız o anki donanım kaydıdır, sabit kanal adı değildir. Her veri seti kendi toplandığı `turn_count` değerini korur. Firmware/entity isimleri bu kararla değiştirilmemiştir.
 
 Ayrıntı: [ADR-027](../docs/decisions/ADR-027-single-channel-training-datasets.md).
+
+
+## Taşınabilir SSD ve çift platform hedefi — ADR-029 (2026-11-06)
+
+Kullanıcı kararıyla Python-1 ve Python-2'nin çalışma ortamı ve BERO verileri harici SSD üzerinde tutulacaktır. Hedef bilgisayarlar:
+- Microsoft Surface 11 — Snapdragon X Elite / Windows ARM64.
+- Mac mini 2024 — Apple M4 / macOS ARM64.
+
+Windows ve macOS için ayrı platforma özgü başlatıcı/çalıştırma paketleri hazırlanacak; ortak Python kaynak kodu ve veri yapısı korunacaktır. Programlar SSD köküne göre göreli yollar kullanacak, sabit disk harfine veya bilgisayara özgü mutlak yola bağlanmayacaktır.
+
+SSD üzerinde işlem belirgin yavaşlıyorsa geçici veriler RAM veya bilgisayarın yerel geçici alanında işlenebilir. Kalıcı sonuçlar, ham arşiv, türetilmiş veri ve loglar SSD'ye yazılacaktır. Yerel geçici alan kalıcı saklama alanı değildir.
+
+**Henüz yapılmayanlar:** SSD dosya sistemi, Python runtime/bağımlılık paketleme yöntemi, başlatıcı biçimi, çevrimdışı kurulum ve performans testleri belirlenmedi. Klasörler, program paketleri veya çalıştırma testleri henüz oluşturulmadı. T007'nin uygulama ve doğrulama kabul ölçütleri geçerlidir.
+
+Ayrıntı: [ADR-029](../docs/decisions/ADR-029-portable-ssd-python-runtime.md) ve [Python veri hattı mimarisi](../docs/architecture/python-program-architecture.md).
