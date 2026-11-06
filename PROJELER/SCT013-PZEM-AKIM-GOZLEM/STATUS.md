@@ -226,3 +226,13 @@ Kullanıcının gün sonu değerlendirmesi:
 - PY-01 taslağı kullanıcı incelemesinde kalır; arşiv/oturum tasarımı yarın örnek/prototip üzerinden denenerek kararlaştırılacaktır.
 
 **Durum sınırı:** Bu oturumda yeni SCT/PZEM CSV analizi, Python algoritması, eğitim etiketi/modeli, firmware/YAML değişikliği, derleme veya OTA yapılmadı. Eğitim verisi henüz üretilmiş/sabitlenmiş değildir. T007 → T008 → T006 görev sırası korunur.
+
+
+## 2026-11-06 — E16 planlandı: yüksüz/düşük akım ON/OFF davranışı
+
+- Kullanıcının HA ekran görüntüsünde PZEM 230,2 V / 0,000 A; Modül 2 CH1-1T akım göstergesi 0,204 A ve Raw AC göstergesi 0,00842 olarak görünüyordu (Raw AC birimi ekran görüntüsünden kesinleştirilmedi). SCT grafiğinde yaklaşık 0,18–0,30 A çevresinde basamaklı seviye ve tekil sıçramalar vardı. Bunlar tek ekran gözlemidir, deney sonucu değildir.
+- Kullanıcı, 18 W yükte SCT'nin akım genliğini doğru okumaktan ziyade ON/OFF değişimini algılıyor olabileceğini bildirdi. Bu ayrı ve henüz doğrulanmamış hipotezdir.
+- [E16](experiments/E16-sct-on-off-response-idle-low-current/README.md) açıldı. Gece boyunca PZEM V/A, SCT CH1 akım/Raw AC ve Modül 3 gönderim + Modül 2 alım olayları HA History'de kaydedilecek; sabah CSV dışa aktarılıp analiz edilecek.
+- Fiziksel yük koşulu ayrıca not edilecek; PZEM 0,000 A tek başına fiziksel yüksüzlüğün kanıtı kabul edilmeyecek. 18 W koşulu bu geceki yüksüz kayıtla karıştırılmayacak.
+- Firmware/K/sample_duration/update_interval/pin ve olay döngüsünde değişiklik yapılması planlanmıyor. Eğitim etiketi veya katsayı üretilmeyecek.
+- **Durum:** PLANLANDI; gece kaydı ve CSV henüz alınmadı, analiz yapılmadı.
