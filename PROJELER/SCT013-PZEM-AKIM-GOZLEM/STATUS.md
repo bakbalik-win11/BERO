@@ -418,3 +418,16 @@ Belgeler:
 - 15 W / OFF karşılaştırma protokolü: [I007 15 W deneyi](experiments/I007-15W-off-separation/README.md).
 
 **Durum:** Kullanıcı çıktı sözleşmesini onayladı; dokümantasyon ve konfigürasyon taslağı depoya yazıldı ve yeniden okunarak doğrulanacak. Sınıflandırma algoritması/eşikleri henüz uygulanmadı.
+
+
+## 2026-11-06 17:00 — I008 42 W yük deneyi başladı
+
+- Kullanıcı 47 W tahminini düzeltti: mevcut yük 42 W.
+- Fiziksel yük başlangıcı kullanıcı bildirimiyle 17:00 (+03:00).
+- Kullanıcı 15 W deneyindeki kodun değiştirilmediğini bildirdi; firmware hash'i/build logu bu notta bağımsız doğrulanmadı.
+- Deney, OFF ve 15 W'tan ayrı 42 W yük sınıfı olarak tutulacak. ON/OFF çevrimleri ayrı segmentlenecek; geçiş örnekleri kararlı alan istatistiklerine katılmayacak.
+- Amaç yalnız amper doğruluğu değil; OFF / 15 W / 42 W dağılımlarının ayrışmasını ve kısa/uzun karar pencerelerinde ayırt edilebilirliği incelemek.
+- Analiz aday pencereleri: 5, 10, 20, 30 ve 60 saniye. Bunlar analiz planıdır; henüz onaylanmış karar süreleri değildir.
+- Ham veri korunacak; her çevrim için medyan, MAD, yüzdelikler, n ve zaman kararlılığı raporlanacak.
+- Deney raporu: [I008 — 42 W yük davranışı](experiments/I008-42W-load-separation/README.md).
+- **Durum:** BAŞLADI. Şu an yalnızca kullanıcı tarafından bildirilen 17:00 başlangıcı ve 42 W yük bilgisi kayıtlıdır; CSV/istatistik sonucu henüz yoktur.
