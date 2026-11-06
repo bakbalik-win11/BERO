@@ -189,3 +189,30 @@ Bu oturum, E13'te tanımlanan tek kanallı canlı ESP 2 Hz mimarisinin testi de�
 - [ ] Masa/kurulum yeri değişikliğini kayıt koşulu olarak koru; etkisini veri olmadan varsayma.
 
 **Durum:** Test planı güncellendi; kod değişikliği, derleme/OTA ve test sonucu henüz kaydedilmedi. E13 tamamlanmış değildir.
+
+## 2026-11-06 — Kullanıcı kararı: üç kanalda toplam 2 çevrim/s hedefi
+
+Önceki tek kanallı canlı 2 Hz hedefi bu deneme için tek başına yeterli kabul edilmeyecek. Kullanıcı öncelikle Modül 2 üzerinde mümkünse üç SCT kanalının da dahil olduğu bir çevrimin saniyede iki kez üretilmesini denemek istiyor. Amaç, bu edinim düzeni sağlıklı çalışırsa aynı kodu akşamki yüksüz gözlemde de kullanmak; başarısız veya kararsızsa sonraki mimariyi ölçüm sonuçlarına göre değerlendirmektir.
+
+### Deneme tanımı
+
+- Hedef: SCT1, SCT2 ve SCT3'ün her birinden yeni ölçüm alınan tam sıralı çevrimin yaklaşık 500 ms'de bir tamamlanması (toplam çevrim hızı 2 Hz).
+- Kanallar eşzamanlı değildir. Her kanalın kendi gerçek yayın zamanı ve örnek aralığı ayrı değerlendirilir.
+- İlk canlı deneme 100 W sabit yük altında yapılır.
+- Akşam yüksüz gözleminde aynı firmware/zamanlama korunması hedeflenir.
+- Üç SCT fiziksel olarak birer tur (1T) kullanılacaktır: GPIO32 sarı, GPIO33 yeşil, GPIO34 mavi.
+- K=24.22 sabit tutulur.
+- Mevcut 200 ms ölçüm penceresi üç kanalın seri toplamında tek başına 600 ms gerektirdiğinden, 500 ms çevrim hedefiyle uyumlu değildir. İlk prototipte 100 ms sample_duration ve kanallar arası ilave 250 ms gecikmelerin kaldırılması değerlendirilecektir.
+- 100 ms pencere 50 Hz'de yaklaşık beş şebeke periyodudur. Bu, mevcut 200 ms pencereye göre daha az örnekleme süresi sağlar; ölçüm kararlılığı ve 100 W yükteki merkez/dağılım sonuçları özellikle karşılaştırılmalıdır.
+- 500 ms interval tek başına başarı kanıtı değildir. Üç kanalın gerçek HA timestamp aralıkları, çevrim tamamlama süresi, eksik/tekrarlı yayın ve kanal sırası incelenmeden 2 Hz sağlandı denmeyecektir.
+- İlk denemede yalnız örnekleme süresi ve sıralama/zamanlama değişir; K ve fiziksel tur sayısı değiştirilmez. Kurulum ve kablo koşulları test boyunca sabit tutulur.
+
+### Başarı değerlendirmesi
+
+1. Üç kanalın her birinde yeni değerlerin yaklaşık 500 ms aralıklarla üretildiği gerçek timestamp'lerle doğrulanmalı.
+2. Bir çevrimin bir sonraki çevrim başlamadan tamamlandığı; script çakışması, atlanan çevrim veya kanal güncelleme kaybı olmadığı gösterilmeli.
+3. 100 W sabit yükte kanal başına merkez, dağılım, uç değer ve örnek aralığı raporlanmalı.
+4. 100 ms pencerenin 200 ms referansa kıyasla ölçümü kabul edilemez ölçüde oynatıp oynatmadığı değerlendirilmeli. Bu karşılaştırma için mümkünse aynı CT/yük/yerleşim koşulundaki önceki 200 ms kayıt referans alınmalı; farklı koşullar varsa doğrudan eşdeğer deney gibi sunulmamalı.
+5. Deneme sağlıklıysa aynı firmware ile yüksüz oturuma geçilmeli. Sağlıklı değilse akşam testine otomatik olarak devam edilmemeli; sonuç ve sınırlama kaydedilip mimari yeniden görüşülmeli.
+
+**Durum:** Hedef ve test sırası kullanıcı tarafından belirlendi. Firmware henüz değiştirilmedi; derleme, OTA ve gerçek cihaz testi yapılmadı. Sonuç yok. E13 açık durumdadır.
