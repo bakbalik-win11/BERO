@@ -14,6 +14,20 @@
 - YAML commit / içerik SHA: 
 - Ortak koşul sapması veya test arası müdahale: 
 
+## İlk cihaz çalışma kontrolü — 2026-11-06
+
+**Durum:** Kısa cihaz ön kontrolü LOG İLE DESTEKLENDİ; 10 dakikalık A turu henüz tamamlanmadı.
+
+- ESPHome 2026.10.2; API bağlantısı/handshake başarılı.
+- GPIO32 / ADC1_CH4 başlatma, konfigürasyon ve kalibrasyon OK.
+- ct_clamp sample_duration=100ms; update_interval=never.
+- 28.492 saniyede 58 CH1 akım yayını; medyan yayın aralığı 0.500s (min 0.427s, max 0.577s).
+- UDP EVENT_ID=314 / STATE=OFF paketi alındı ve HA text_sensor alanlarına yayınlandı.
+- UDP OFF işareti fiziksel yükün kapandığını kanıtlamaz.
+- Bu kısa log sıçrama karşılaştırması veya 10 dakikalık A turu sonucu değildir.
+
+Kaynaklar: [ham cihaz logu](../../logs/module2/2026-11-06-e15-a-500ms-initial-device-log.txt), [log analizi](../../logs/module2/2026-11-06-e15-a-500ms-initial-device-log-analysis.md).
+
 ## Tur A — 500 ms / 2 Hz
 
 - Başlangıç / bitiş (yerel saat +03:00):
