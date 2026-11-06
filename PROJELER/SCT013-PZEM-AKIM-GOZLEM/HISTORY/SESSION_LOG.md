@@ -1860,3 +1860,8 @@ Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmwa
 - **YORUM SINIRI:** 2s örnekleme iki yayın arasında oluşup kaybolan kısa olayları kaçırabilir. Bu nedenle analiz yalnız yayın akışında gözlenen sıçramaları karşılaştırır; fiziksel sıçramaların tam olay sayısı veya aradaki tepe genliği iddiası üretmez.
 - **DOKÜMANTASYON:** [E15 protokolü](../experiments/E15-single-sct-publish-interval/README.md), [sonuç defteri](../experiments/E15-single-sct-publish-interval/results.md), [deney listesi](../experiments/README.md), [STATUS](../STATUS.md), [PROGRESS_TREE](../PROGRESS_TREE.md) güncellendi.
 - **DOĞRULAMA SINIRI:** Dosyalar GitHub deney dalına yazıldı ve geri okunarak incelendi. ESPHome Validate/Compile, OTA, cihaz çalışması ve üç fiziksel kayıt turu henüz yapılmadı. E15 PLANLANDI/HAZIRLANDI; tamamlanmadı.
+
+
+## 2026-11-06 — E15 süre kararı
+
+Kullanıcı kararı: Üç tur 30 dakika değil, 10'ar dakika. A/B/C aralıkları 500 ms / 1 s / 2 s olarak kalır. Nominal CH1 yayın adetleri yaklaşık 1.200 / 600 / 300. Diğer deney değişkenleri sabittir.
