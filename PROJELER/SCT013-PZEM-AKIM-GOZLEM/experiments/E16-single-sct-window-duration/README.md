@@ -101,3 +101,12 @@ Her tur 10 dakika sürer. HA zaman damgalarıyla gerçek yayın aralığı ve ge
 - Çevrim içi ardışık fark P95 0.002772 A, P99 0.006566 A. Önceden tanımlı ortak sıçrama eşiği olmadığından sıçrama adedi verilmedi.
 - E sonucu tek başına pencere seçimi değildir; D/F aynı yöntemle karşılaştırılmalı.
 - Analiz: [E16-E HA History](../../logs/module2/2026-11-06-e16-e-100ms-ha-history-analysis.md). Kaynak CSV SHA-256: `3338f48b30c6db379797bed89ffd6b68dcd04384ead8e1f31e6c9cb10be6dde3`. Ham CSV 3.86 MB; bu commit'e kopyalanmadı.
+
+
+### F turu — firmware hazırlandı (2026-11-06)
+
+- F turu YAML: `firmware/experiments/bero-modul2-e16-single-sct-window-f-200ms.yaml`.
+- Ayarlar: CH1-1T / GPIO32 / ADC1_CH4; `sample_duration=200ms`; `interval=1s`; K=24.22; ADC 12dB; UDP 4210 alıcısı ve 100ms non-blocking alım kontrolü korunur.
+- E turuna göre tek ölçüm ayarı farkı `sample_duration: 100ms → 200ms`; yayın aralığı 1s sabit. CH2/CH3 ve ayrı GPIO35 bias ADC okuması bulunmaz.
+- Analiz odağı fiziksel olarak doğrulanmış kararlı ON bölümlerindeki katsayısız ct_clamp çıktısıdır. OFF verisi saklanır, ON kararlılığı ölçütüne katılmaz.
+- **Durum:** YAML depoya eklendi; derleme, OTA ve F turu başlangıcı henüz doğrulanmadı.
