@@ -111,3 +111,17 @@ K=24.22 uygulanmış/hesaplanmış CH1 değeri **0.20 A'nın altındaysa OFF** o
 İki HA History CSV birleştirilerek 18:00–20:39 aralığındaki yaklaşık 160 ON ve 160 OFF çevrimi analiz edildi. ON çevrim medyanları 160/160 kez 0.20 A veya üzerindeydi; fiziksel OFF çevrim medyanlarının 135/160'ı 0.20 A altındaydı, 25'i eşik altında değildi. Eşik üstü OFF pencereleri otomatik ON sayılmadı. PZEM ON gücü yaklaşık 18.10 W, OFF kayıtları 0 W ile uyumluydu. PZEM gerilimi mevcut, ayrı bias entity'si yoktu. CSV sonunda çevrim sürdüğünden uzun sürekli yüksüz kayıt bu oturumda yer almıyor.
 
 Ayrıntılı istatistikler, kaynak SHA-256 değerleri ve yöntem: [I010 Oturum 2 raporu](REPORT-2026-11-06-session-02.md).
+
+
+## Nihai karar ve deney kapanışı — 6 Kasım 2026
+
+Kullanıcının nihai sınıflandırma kararı:
+- **0.21 A altı:** Kararlı alanlarda KAPALI/OFF.
+- **0.21 A–0.41 A:** HESAPLANAMADI.
+- **0.41 A üstü:** HESAPLANIR.
+
+Tam 0.21 A ve 0.41 A değerleri hesaplanamadı aralığına dahildir. Kararlı alanın tanımı (süre, örnek sayısı, tolerans ve benzeri koşullar) henüz belirlenmemiştir; sonraki açık araştırmada tanımlanacaktır.
+
+**I010 deneyi SONLANDIRILDI.** 18 W ON/OFF deneyi ve bu deneyin veri değerlendirmesi kapatılmıştır. Önceki 0.20 A aday eşiği bu kararla değiştirilmiştir.
+
+**Tek açık araştırma konusu:** 0.21–0.41 A hesaplanamadı bölgesinin istatistiksel olarak incelenmesi ve kararlı alan tanımının oluşturulması. Bu konu I010'un devam eden deney faaliyeti değildir; ayrı sonraki araştırma olarak ele alınacaktır.
