@@ -14,7 +14,7 @@
 #
 # DONANIM BAĞLANTILARI:
 # - CH1-1T sarı sinyal  -> GPIO32 / ADC1_CH4 / Faz
-# - Ortak bias turuncu -> GPIO35 / ADC1_CH7
+# - Ortak bias turuncu -> GPIO35 fiziksel bias bağlantısı; bu firmware'de ADC okunmaz
 # - UDP olay kaynağı Modül 3 WROOM; hedef port 4210/UDP.
 #
 # OKUMA:
@@ -88,7 +88,7 @@ wifi:
   password: !secret wifi_password
 
   # Modül 3 UDP broadcast paketlerini almak için 4210 portunu aç.
-  # Soket non-blocking çalışır; SCT ölçüm script'ini bekletmez.
+  # Soket non-blocking çalışır; SCT ölçüm döngüsünü bekletmez.
   on_connect:
     - lambda: |-
         if (id(bero_udp_socket_fd) >= 0) {
