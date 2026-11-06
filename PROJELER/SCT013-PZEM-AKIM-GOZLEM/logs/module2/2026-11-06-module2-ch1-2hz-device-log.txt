@@ -1,0 +1,910 @@
+INFO ESPHome 2026.10.2
+INFO Loaded validated config cache for esp32d1.yaml, skipping validation.
+INFO Starting log output from 192.168.0.35 using esphome API
+INFO Successfully resolved esp32d1 @ 192.168.0.35 in 0.000s
+INFO Successfully connected to esp32d1 @ 192.168.0.35 in 4.282s
+INFO Successful handshake with esp32d1 @ 192.168.0.35 in 0.014s
+[10:55:37.651][I][app:164]: ESPHome version 2026.10.2 compiled on 2026-11-06 10:54:01 +0300
+[10:55:37.652][I][app:171]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[10:55:37.652][W][app:189]: Set flash_chip: generic under esp32 > framework > advanced to save IRAM
+[10:55:37.652][W][app:201]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[10:55:37.659][W][app:228]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[10:55:37.683][C][logger:218]: Logger:
+[10:55:37.683][C][logger:218]:   Max Level: DEBUG
+[10:55:37.683][C][logger:218]:   Initial Level: DEBUG
+[10:55:37.684][C][logger:225]:   Log Baud Rate: 115200
+[10:55:37.684][C][logger:225]:   Hardware UART: UART0
+[10:55:37.684][C][logger:234]:   Task Log Buffer Size: 768 bytes
+[10:55:37.698][C][template.sensor:017]: Template Sensor 'BERO Mod2 CH1-1T Faz Ham Akim'
+[10:55:37.698][C][template.sensor:017]:   State Class: 'measurement'
+[10:55:37.698][C][template.sensor:017]:   Unit of Measurement: 'A'
+[10:55:37.698][C][template.sensor:017]:   Accuracy Decimals: 5
+[10:55:37.732][C][template.sensor:166]:   Device Class: 'current'
+[10:55:37.733][C][template.sensor:338]:   Update Interval: never
+[10:55:37.733][C][template.sensor:017]: Template Sensor 'BERO Mod2 CH2-1T Notr Ham Akim'
+[10:55:37.733][C][template.sensor:017]:   State Class: 'measurement'
+[10:55:37.733][C][template.sensor:017]:   Unit of Measurement: 'A'
+[10:55:37.733][C][template.sensor:017]:   Accuracy Decimals: 5
+[10:55:37.737][C][template.sensor:166]:   Device Class: 'current'
+[10:55:37.737][C][template.sensor:338]:   Update Interval: never
+[10:55:37.767][C][template.sensor:017]: Template Sensor 'BERO Mod2 CH3-1T Faz Ham Akim'
+[10:55:37.767][C][template.sensor:017]:   State Class: 'measurement'
+[10:55:37.767][C][template.sensor:017]:   Unit of Measurement: 'A'
+[10:55:37.767][C][template.sensor:017]:   Accuracy Decimals: 5
+[10:55:37.768][C][template.sensor:166]:   Device Class: 'current'
+[10:55:37.768][C][template.sensor:338]:   Update Interval: never
+[10:55:37.768][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay Kaydi'
+[10:55:37.780][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay BOOT ID'
+[10:55:37.784][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay EVENT ID'
+[10:55:37.784][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay STATE'
+[10:55:37.784][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 UDP Dinleyici'
+[10:55:37.794][C][adc:017]: ADC Sensor 'ESP32D1 SCT1 ADC Source'
+[10:55:37.794][C][adc:017]:   State Class: 'measurement'
+[10:55:37.794][C][adc:017]:   Unit of Measurement: 'V'
+[10:55:37.794][C][adc:017]:   Accuracy Decimals: 2
+[10:55:37.817][C][adc:166]:   Device Class: 'voltage'
+[10:55:37.817][C][adc:131]:   Pin: GPIO32
+[10:55:37.818][C][adc:131]:   Channel:       4
+[10:55:37.818][C][adc:131]:   Unit:          ADC1
+[10:55:37.818][C][adc:131]:   Attenuation:   12 dB
+[10:55:37.818][C][adc:131]:   Samples:       1
+[10:55:37.818][C][adc:131]:   Sampling mode: average
+[10:55:37.818][C][adc:131]:   Setup Status:
+[10:55:37.818][C][adc:131]:     Handle Init:  OK
+[10:55:37.818][C][adc:131]:     Config:       OK
+[10:55:37.818][C][adc:131]:     Calibration:  OK
+[10:55:37.818][C][adc:131]:     Overall Init: OK
+[10:55:37.837][C][adc:338]:   Update Interval: never
+[10:55:37.857][C][adc:017]: ADC Sensor 'ESP32D1 SCT2 ADC Source'
+[10:55:37.857][C][adc:017]:   State Class: 'measurement'
+[10:55:37.857][C][adc:017]:   Unit of Measurement: 'V'
+[10:55:37.857][C][adc:017]:   Accuracy Decimals: 2
+[10:55:37.858][C][adc:166]:   Device Class: 'voltage'
+[10:55:37.858][C][adc:131]:   Pin: GPIO33
+[10:55:37.863][C][adc:131]:   Channel:       5
+[10:55:37.863][C][adc:131]:   Unit:          ADC1
+[10:55:37.863][C][adc:131]:   Attenuation:   12 dB
+[10:55:37.863][C][adc:131]:   Samples:       1
+[10:55:37.863][C][adc:131]:   Sampling mode: average
+[10:55:37.863][C][adc:131]:   Setup Status:
+[10:55:37.863][C][adc:131]:     Handle Init:  OK
+[10:55:37.863][C][adc:131]:     Config:       OK
+[10:55:37.863][C][adc:131]:     Calibration:  OK
+[10:55:37.863][C][adc:131]:     Overall Init: OK
+[10:55:37.891][C][adc:338]:   Update Interval: never
+[10:55:37.892][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.006A after 6 different samples (60 SPS)
+[10:55:37.892][C][adc:017]: ADC Sensor 'ESP32D1 SCT3 ADC Source'
+[10:55:37.892][C][adc:017]:   State Class: 'measurement'
+[10:55:37.892][C][adc:017]:   Unit of Measurement: 'V'
+[10:55:37.892][C][adc:017]:   Accuracy Decimals: 2
+[10:55:37.902][C][adc:166]:   Device Class: 'voltage'
+[10:55:37.929][C][adc:131]:   Pin: GPIO34
+[10:55:37.929][C][adc:131]:   Channel:       6
+[10:55:37.929][C][adc:131]:   Unit:          ADC1
+[10:55:37.929][C][adc:131]:   Attenuation:   12 dB
+[10:55:37.929][C][adc:131]:   Samples:       1
+[10:55:37.929][C][adc:131]:   Sampling mode: average
+[10:55:37.929][C][adc:131]:   Setup Status:
+[10:55:37.929][C][adc:131]:     Handle Init:  OK
+[10:55:37.929][C][adc:131]:     Config:       OK
+[10:55:37.929][C][adc:131]:     Calibration:  OK
+[10:55:37.929][C][adc:131]:     Overall Init: OK
+[10:55:37.930][C][adc:338]:   Update Interval: never
+[10:55:37.955][C][adc:017]: ADC Sensor 'BERO Mod2 Ortak Bias'
+[10:55:37.955][C][adc:017]:   State Class: 'measurement'
+[10:55:37.955][C][adc:017]:   Unit of Measurement: 'V'
+[10:55:37.955][C][adc:017]:   Accuracy Decimals: 5
+[10:55:37.960][C][adc:166]:   Device Class: 'voltage'
+[10:55:37.960][C][adc:131]:   Pin: GPIO35
+[10:55:37.961][C][adc:131]:   Channel:       7
+[10:55:37.961][C][adc:131]:   Unit:          ADC1
+[10:55:37.961][C][adc:131]:   Attenuation:   12 dB
+[10:55:37.961][C][adc:131]:   Samples:       1
+[10:55:37.961][C][adc:131]:   Sampling mode: average
+[10:55:37.961][C][adc:131]:   Setup Status:
+[10:55:37.961][C][adc:131]:     Handle Init:  OK
+[10:55:37.961][C][adc:131]:     Config:       OK
+[10:55:37.961][C][adc:131]:     Calibration:  OK
+[10:55:37.961][C][adc:131]:     Overall Init: OK
+[10:55:37.995][C][adc:338]:   Update Interval: never
+[10:55:37.995][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00585 A
+[10:55:37.996][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.142 A
+[10:55:38.056][C][ct_clamp:017]: CT Clamp Sensor 'BERO Mod2 CH1-1T Faz Akim'
+[10:55:38.056][C][ct_clamp:017]:   State Class: 'measurement'
+[10:55:38.056][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[10:55:38.056][C][ct_clamp:017]:   Accuracy Decimals: 3
+[10:55:38.056][C][ct_clamp:166]:   Device Class: 'current'
+[10:55:38.057][C][ct_clamp:013]:   Sample Duration: 0.10s
+[10:55:38.057][C][ct_clamp:338]:   Update Interval: never
+[10:55:38.080][C][ct_clamp:017]: CT Clamp Sensor 'BERO Mod2 CH2-1T Notr Akim'
+[10:55:38.080][C][ct_clamp:017]:   State Class: 'measurement'
+[10:55:38.080][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[10:55:38.080][C][ct_clamp:017]:   Accuracy Decimals: 3
+[10:55:38.089][C][ct_clamp:166]:   Device Class: 'current'
+[10:55:38.089][C][ct_clamp:013]:   Sample Duration: 0.10s
+[10:55:38.089][C][ct_clamp:338]:   Update Interval: never
+[10:55:38.101][C][ct_clamp:017]: CT Clamp Sensor 'BERO Mod2 CH3-1T Faz Akim'
+[10:55:38.101][C][ct_clamp:017]:   State Class: 'measurement'
+[10:55:38.101][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[10:55:38.101][C][ct_clamp:017]:   Accuracy Decimals: 3
+[10:55:38.103][C][ct_clamp:166]:   Device Class: 'current'
+[10:55:38.103][C][ct_clamp:013]:   Sample Duration: 0.10s
+[10:55:38.104][C][ct_clamp:338]:   Update Interval: never
+[10:55:38.133][C][network:050]: Network:
+[10:55:38.133][C][network:050]:   TCP send buffer: 5760 bytes
+[10:55:38.141][C][wifi:1688]: WiFi:
+[10:55:38.141][C][wifi:1688]:   Local MAC: 70:4B:CA:48:0B:9C
+[10:55:38.141][C][wifi:1688]:   Connected: YES
+[10:55:38.141][C][wifi:1392]:   IP Address: 192.168.0.35
+[10:55:38.142][C][wifi:1403]:   SSID: 'AKFISH'
+[10:55:38.142][C][wifi:1403]:   BSSID: 3C:64:CF:5C:81:73
+[10:55:38.142][C][wifi:1403]:   Hostname: 'esp32d1'
+[10:55:38.142][C][wifi:1403]:   Signal strength: -59 dB ▂▄▆█
+[10:55:38.142][C][wifi:1403]:   Channel: 2
+[10:55:38.142][C][wifi:1403]:   Subnet: 255.255.255.0
+[10:55:38.142][C][wifi:1403]:   Gateway: 192.168.0.1
+[10:55:38.142][C][wifi:1403]:   DNS1: 192.168.0.1
+[10:55:38.142][C][wifi:1403]:   DNS2: 0.0.0.0
+[10:55:38.158][C][esphome.ota:129]: Over-The-Air updates:
+[10:55:38.158][C][esphome.ota:129]:   Address: esp32d1.local:3232
+[10:55:38.158][C][esphome.ota:129]:   Version: 2
+[10:55:38.198][C][safe_mode:058]: Safe Mode:
+[10:55:38.198][C][safe_mode:058]:   Successful after: 60s
+[10:55:38.198][C][safe_mode:058]:   Invoke after: 10 attempts
+[10:55:38.198][C][safe_mode:058]:   Duration: 300s
+[10:55:38.199][C][safe_mode:079]:   Bootloader rollback: supported
+[10:55:38.199][C][api:368]: Server:
+[10:55:38.199][C][api:368]:   Address: esp32d1.local:6053
+[10:55:38.199][C][api:368]:   Listen backlog: 4
+[10:55:38.199][C][api:368]:   Max connections: 5
+[10:55:38.205][C][api:380]:   Noise encryption: NO
+[10:55:38.256][C][mdns:324]: mDNS:
+[10:55:38.256][C][mdns:324]:   Hostname: esp32d1
+[10:55:38.257][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:38.350][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.008A after 904 different samples (9040 SPS)
+[10:55:38.357][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:38.368][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 763 different samples (7630 SPS)
+[10:55:38.470][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00771 A
+[10:55:38.471][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.187 A
+[10:55:38.471][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00653 A
+[10:55:38.472][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.158 A
+[10:55:38.483][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.007A after 1248 different samples (12480 SPS)
+[10:55:38.484][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:38.484][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:38.572][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00717 A
+[10:55:38.572][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.174 A
+[10:55:38.573][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66000 V
+[10:55:38.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.006A after 1428 different samples (14280 SPS)
+[10:55:39.000][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00630 A
+[10:55:39.000][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.153 A
+[10:55:39.371][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1412 different samples (14120 SPS)
+[10:55:39.489][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00849 A
+[10:55:39.489][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.206 A
+[10:55:39.941][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1412 different samples (14120 SPS)
+[10:55:40.037][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00781 A
+[10:55:40.038][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.189 A
+[10:55:40.250][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:40.353][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.007A after 909 different samples (9090 SPS)
+[10:55:40.360][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:40.370][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 786 different samples (7860 SPS)
+[10:55:40.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00684 A
+[10:55:40.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.166 A
+[10:55:40.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00728 A
+[10:55:40.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.176 A
+[10:55:40.464][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.007A after 1231 different samples (12310 SPS)
+[10:55:40.470][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:40.470][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:40.573][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00675 A
+[10:55:40.574][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.163 A
+[10:55:40.574][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65800 V
+[10:55:40.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 1445 different samples (14450 SPS)
+[10:55:40.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00749 A
+[10:55:40.989][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.181 A
+[10:55:41.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 1418 different samples (14180 SPS)
+[10:55:41.483][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00678 A
+[10:55:41.484][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.164 A
+[10:55:41.879][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1397 different samples (13970 SPS)
+[10:55:41.991][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00832 A
+[10:55:41.991][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.201 A
+[10:55:42.297][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:42.350][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.004A after 894 different samples (8940 SPS)
+[10:55:42.358][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:42.370][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 771 different samples (7710 SPS)
+[10:55:42.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00438 A
+[10:55:42.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.106 A
+[10:55:42.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00719 A
+[10:55:42.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.174 A
+[10:55:42.458][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.006A after 1253 different samples (12530 SPS)
+[10:55:42.470][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:42.476][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:42.575][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00624 A
+[10:55:42.576][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.151 A
+[10:55:42.576][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65500 V
+[10:55:42.876][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.006A after 1426 different samples (14260 SPS)
+[10:55:42.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00596 A
+[10:55:42.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.144 A
+[10:55:43.424][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1399 different samples (13990 SPS)
+[10:55:43.547][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00821 A
+[10:55:43.547][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.199 A
+[10:55:43.913][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 1418 different samples (14180 SPS)
+[10:55:44.007][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00742 A
+[10:55:44.009][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.180 A
+[10:55:44.249][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:44.349][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.006A after 920 different samples (9200 SPS)
+[10:55:44.356][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:44.381][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 775 different samples (7750 SPS)
+[10:55:44.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00620 A
+[10:55:44.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.150 A
+[10:55:44.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00656 A
+[10:55:44.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.159 A
+[10:55:44.465][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.007A after 1266 different samples (12660 SPS)
+[10:55:44.484][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:44.484][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:44.576][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00699 A
+[10:55:44.576][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.169 A
+[10:55:44.577][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66900 V
+[10:55:44.876][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 1414 different samples (14140 SPS)
+[10:55:44.997][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00719 A
+[10:55:44.998][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.174 A
+[10:55:45.371][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 1402 different samples (14020 SPS)
+[10:55:45.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00705 A
+[10:55:45.488][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.171 A
+[10:55:45.892][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1412 different samples (14120 SPS)
+[10:55:45.984][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00770 A
+[10:55:45.984][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.186 A
+[10:55:46.256][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:46.360][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.006A after 916 different samples (9160 SPS)
+[10:55:46.370][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:46.370][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 785 different samples (7850 SPS)
+[10:55:46.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00594 A
+[10:55:46.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.144 A
+[10:55:46.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00752 A
+[10:55:46.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.182 A
+[10:55:46.458][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.009A after 1214 different samples (12140 SPS)
+[10:55:46.465][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:46.470][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:46.575][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00852 A
+[10:55:46.576][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.206 A
+[10:55:46.577][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66000 V
+[10:55:46.876][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 1437 different samples (14370 SPS)
+[10:55:46.989][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00690 A
+[10:55:46.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.167 A
+[10:55:47.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1441 different samples (14410 SPS)
+[10:55:47.486][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00826 A
+[10:55:47.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.200 A
+[10:55:47.877][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.006A after 1463 different samples (14630 SPS)
+[10:55:47.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00559 A
+[10:55:47.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.135 A
+[10:55:48.246][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:48.349][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.006A after 902 different samples (9020 SPS)
+[10:55:48.386][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:48.399][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.005A after 789 different samples (7890 SPS)
+[10:55:48.448][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00579 A
+[10:55:48.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.140 A
+[10:55:48.449][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00533 A
+[10:55:48.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.129 A
+[10:55:48.459][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.008A after 1255 different samples (12550 SPS)
+[10:55:48.475][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:48.482][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:48.583][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00759 A
+[10:55:48.583][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.184 A
+[10:55:48.584][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65800 V
+[10:55:48.877][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 1442 different samples (14420 SPS)
+[10:55:48.996][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00928 A
+[10:55:48.997][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.225 A
+[10:55:49.376][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 1415 different samples (14150 SPS)
+[10:55:49.485][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00693 A
+[10:55:49.486][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.168 A
+[10:55:49.875][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 1423 different samples (14230 SPS)
+[10:55:49.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00660 A
+[10:55:49.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.160 A
+[10:55:50.249][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:50.350][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.006A after 912 different samples (9120 SPS)
+[10:55:50.360][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:50.376][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.006A after 786 different samples (7860 SPS)
+[10:55:50.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00626 A
+[10:55:50.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.152 A
+[10:55:50.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00646 A
+[10:55:50.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.157 A
+[10:55:50.457][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.007A after 1244 different samples (12440 SPS)
+[10:55:50.466][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:50.478][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:50.573][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00694 A
+[10:55:50.574][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.168 A
+[10:55:50.574][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66200 V
+[10:55:50.846][I][bero_udp:520]: UDP_EVENT_RECEIVED source=192.168.0.74 packet=BERO_EVT,BOOT_ID=8E809736A273DDC25CF41462945DEE69,EVENT_ID=1897,STATE=ON
+[10:55:50.853][I][bero_event:527]: HA_EVENT_PUBLISHED BOOT_ID=8E809736A273DDC25CF41462945DEE69 EVENT_ID=1897 STATE=ON
+[10:55:50.870][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 1336 different samples (13360 SPS)
+[10:55:50.957][S][text_sensor]: 'BERO Mod2 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=8E809736A273DDC25CF41462945DEE69,EVENT_ID=1897,STATE=ON'
+[10:55:50.958][S][text_sensor]: 'BERO Mod2 Olay BOOT ID' >> '8E809736A273DDC25CF41462945DEE69'
+[10:55:50.958][S][text_sensor]: 'BERO Mod2 Olay EVENT ID' >> '1897'
+[10:55:50.959][S][text_sensor]: 'BERO Mod2 Olay STATE' >> 'ON'
+[10:55:50.959][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00853 A
+[10:55:50.960][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.207 A
+[10:55:51.376][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.017A after 1443 different samples (14430 SPS)
+[10:55:51.490][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01696 A
+[10:55:51.491][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.411 A
+[10:55:51.877][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.011A after 1397 different samples (13970 SPS)
+[10:55:51.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01074 A
+[10:55:51.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.260 A
+[10:55:52.251][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:52.354][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.009A after 916 different samples (9160 SPS)
+[10:55:52.369][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:52.370][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.013A after 791 different samples (7910 SPS)
+[10:55:52.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00900 A
+[10:55:52.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.218 A
+[10:55:52.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01303 A
+[10:55:52.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.316 A
+[10:55:52.459][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.013A after 1226 different samples (12260 SPS)
+[10:55:52.471][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:52.471][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:52.577][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01284 A
+[10:55:52.578][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.311 A
+[10:55:52.578][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66200 V
+[10:55:52.882][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.014A after 1432 different samples (14320 SPS)
+[10:55:52.984][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01381 A
+[10:55:52.985][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.335 A
+[10:55:53.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.014A after 1431 different samples (14310 SPS)
+[10:55:53.501][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01404 A
+[10:55:53.502][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.340 A
+[10:55:53.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.011A after 1419 different samples (14190 SPS)
+[10:55:53.989][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01065 A
+[10:55:53.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.258 A
+[10:55:54.250][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:54.362][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.008A after 891 different samples (8910 SPS)
+[10:55:54.393][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:54.394][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 787 different samples (7870 SPS)
+[10:55:54.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00777 A
+[10:55:54.451][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.188 A
+[10:55:54.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01247 A
+[10:55:54.452][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.302 A
+[10:55:54.456][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.010A after 1261 different samples (12610 SPS)
+[10:55:54.481][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:54.487][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:54.577][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00981 A
+[10:55:54.578][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.238 A
+[10:55:54.579][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66900 V
+[10:55:54.914][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.015A after 1414 different samples (14140 SPS)
+[10:55:54.994][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01492 A
+[10:55:54.994][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.361 A
+[10:55:55.378][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.020A after 1438 different samples (14380 SPS)
+[10:55:55.508][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01955 A
+[10:55:55.508][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.473 A
+[10:55:55.873][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 1435 different samples (14350 SPS)
+[10:55:55.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00902 A
+[10:55:55.989][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.218 A
+[10:55:56.249][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:56.354][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.011A after 905 different samples (9050 SPS)
+[10:55:56.368][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:56.368][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 768 different samples (7680 SPS)
+[10:55:56.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01059 A
+[10:55:56.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.256 A
+[10:55:56.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01218 A
+[10:55:56.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.295 A
+[10:55:56.466][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.012A after 1252 different samples (12520 SPS)
+[10:55:56.474][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:56.474][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:56.644][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01249 A
+[10:55:56.645][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.303 A
+[10:55:56.645][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66700 V
+[10:55:56.876][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.011A after 1411 different samples (14110 SPS)
+[10:55:56.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01111 A
+[10:55:56.991][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.269 A
+[10:55:57.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.013A after 1479 different samples (14790 SPS)
+[10:55:57.535][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01313 A
+[10:55:57.535][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.318 A
+[10:55:57.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.010A after 1426 different samples (14260 SPS)
+[10:55:57.989][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01028 A
+[10:55:57.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.249 A
+[10:55:58.253][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:55:58.357][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.008A after 905 different samples (9050 SPS)
+[10:55:58.369][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:55:58.370][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 785 different samples (7850 SPS)
+[10:55:58.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00840 A
+[10:55:58.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.204 A
+[10:55:58.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01756 A
+[10:55:58.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.425 A
+[10:55:58.459][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.012A after 1230 different samples (12300 SPS)
+[10:55:58.470][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:55:58.471][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:55:58.583][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01171 A
+[10:55:58.583][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.284 A
+[10:55:58.583][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66400 V
+[10:55:58.882][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.013A after 1416 different samples (14160 SPS)
+[10:55:58.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01262 A
+[10:55:58.991][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.306 A
+[10:55:59.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.014A after 1420 different samples (14200 SPS)
+[10:55:59.493][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01380 A
+[10:55:59.494][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.334 A
+[10:55:59.912][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.013A after 1406 different samples (14060 SPS)
+[10:55:59.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01306 A
+[10:55:59.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.316 A
+[10:56:00.293][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:00.355][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.007A after 913 different samples (9130 SPS)
+[10:56:00.363][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:00.372][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 781 different samples (7810 SPS)
+[10:56:00.463][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00706 A
+[10:56:00.463][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.171 A
+[10:56:00.464][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01565 A
+[10:56:00.464][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.379 A
+[10:56:00.469][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.013A after 1226 different samples (12260 SPS)
+[10:56:00.470][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:00.470][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:00.573][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01256 A
+[10:56:00.574][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.304 A
+[10:56:00.575][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66600 V
+[10:56:00.873][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.010A after 1412 different samples (14120 SPS)
+[10:56:00.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00962 A
+[10:56:00.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.233 A
+[10:56:01.389][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 1433 different samples (14330 SPS)
+[10:56:01.486][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01598 A
+[10:56:01.486][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.387 A
+[10:56:01.876][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.010A after 1413 different samples (14130 SPS)
+[10:56:01.994][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00998 A
+[10:56:01.995][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.242 A
+[10:56:02.249][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:02.350][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.010A after 907 different samples (9070 SPS)
+[10:56:02.360][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:02.369][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 772 different samples (7720 SPS)
+[10:56:02.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01038 A
+[10:56:02.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.251 A
+[10:56:02.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00865 A
+[10:56:02.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.209 A
+[10:56:02.464][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.013A after 1214 different samples (12140 SPS)
+[10:56:02.470][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:02.470][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:02.578][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01343 A
+[10:56:02.578][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.325 A
+[10:56:02.578][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66400 V
+[10:56:02.878][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.010A after 1444 different samples (14440 SPS)
+[10:56:02.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00967 A
+[10:56:02.991][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.234 A
+[10:56:03.376][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 1410 different samples (14100 SPS)
+[10:56:03.490][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01235 A
+[10:56:03.491][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.299 A
+[10:56:03.877][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.011A after 1432 different samples (14320 SPS)
+[10:56:03.992][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01114 A
+[10:56:03.992][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.270 A
+[10:56:04.285][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:04.354][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.012A after 906 different samples (9060 SPS)
+[10:56:04.366][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:04.368][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.015A after 765 different samples (7650 SPS)
+[10:56:04.454][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01220 A
+[10:56:04.455][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.296 A
+[10:56:04.455][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01498 A
+[10:56:04.456][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.363 A
+[10:56:04.463][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.010A after 1225 different samples (12250 SPS)
+[10:56:04.470][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:04.470][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:04.575][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00983 A
+[10:56:04.575][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.238 A
+[10:56:04.575][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66700 V
+[10:56:04.879][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 1423 different samples (14230 SPS)
+[10:56:04.989][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01627 A
+[10:56:04.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.394 A
+[10:56:05.376][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.020A after 1441 different samples (14410 SPS)
+[10:56:05.490][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01951 A
+[10:56:05.490][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.472 A
+[10:56:05.875][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 1410 different samples (14100 SPS)
+[10:56:06.023][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01222 A
+[10:56:06.023][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.296 A
+[10:56:06.254][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:06.360][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.011A after 913 different samples (9130 SPS)
+[10:56:06.366][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:06.368][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 779 different samples (7790 SPS)
+[10:56:06.448][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01132 A
+[10:56:06.448][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.274 A
+[10:56:06.449][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01232 A
+[10:56:06.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.298 A
+[10:56:06.456][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.012A after 1224 different samples (12240 SPS)
+[10:56:06.465][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:06.473][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:06.570][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01155 A
+[10:56:06.571][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.280 A
+[10:56:06.571][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65500 V
+[10:56:06.877][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.013A after 1416 different samples (14160 SPS)
+[10:56:06.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01310 A
+[10:56:06.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.317 A
+[10:56:07.384][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.014A after 1422 different samples (14220 SPS)
+[10:56:07.484][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01427 A
+[10:56:07.484][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.346 A
+[10:56:07.876][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.011A after 1412 different samples (14120 SPS)
+[10:56:08.012][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01061 A
+[10:56:08.012][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.257 A
+[10:56:08.284][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:08.394][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.008A after 895 different samples (8950 SPS)
+[10:56:08.405][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:08.406][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.010A after 788 different samples (7880 SPS)
+[10:56:08.494][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00757 A
+[10:56:08.495][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.183 A
+[10:56:08.496][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01038 A
+[10:56:08.496][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.252 A
+[10:56:08.503][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.011A after 1264 different samples (12640 SPS)
+[10:56:08.504][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:08.504][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:08.608][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01088 A
+[10:56:08.609][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.263 A
+[10:56:08.609][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66400 V
+[10:56:08.970][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 1415 different samples (14150 SPS)
+[10:56:09.074][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01156 A
+[10:56:09.075][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.280 A
+[10:56:09.504][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 1407 different samples (14070 SPS)
+[10:56:09.505][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01578 A
+[10:56:09.505][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.382 A
+[10:56:10.003][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.015A after 1434 different samples (14340 SPS)
+[10:56:10.174][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01475 A
+[10:56:10.174][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.357 A
+[10:56:10.340][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:10.370][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.009A after 906 different samples (9060 SPS)
+[10:56:10.371][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:10.371][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 786 different samples (7860 SPS)
+[10:56:10.508][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00879 A
+[10:56:10.508][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.213 A
+[10:56:10.509][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00872 A
+[10:56:10.510][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.211 A
+[10:56:10.517][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.010A after 1243 different samples (12430 SPS)
+[10:56:10.517][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:10.517][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:10.677][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00952 A
+[10:56:10.677][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.231 A
+[10:56:10.678][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66400 V
+[10:56:10.869][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 1397 different samples (13970 SPS)
+[10:56:11.016][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01606 A
+[10:56:11.017][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.389 A
+[10:56:11.373][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.014A after 1430 different samples (14300 SPS)
+[10:56:11.522][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01390 A
+[10:56:11.522][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.337 A
+[10:56:11.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 1382 different samples (13820 SPS)
+[10:56:12.029][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01187 A
+[10:56:12.030][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.288 A
+[10:56:12.364][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:12.372][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.014A after 927 different samples (9270 SPS)
+[10:56:12.373][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:12.373][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.017A after 815 different samples (8150 SPS)
+[10:56:12.448][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01364 A
+[10:56:12.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.330 A
+[10:56:12.449][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01652 A
+[10:56:12.449][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.400 A
+[10:56:12.457][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.011A after 1250 different samples (12500 SPS)
+[10:56:12.469][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:12.482][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:12.571][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01141 A
+[10:56:12.571][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.276 A
+[10:56:12.572][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66100 V
+[10:56:12.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 1393 different samples (13930 SPS)
+[10:56:12.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01196 A
+[10:56:12.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.290 A
+[10:56:13.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.011A after 1422 different samples (14220 SPS)
+[10:56:13.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01141 A
+[10:56:13.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.276 A
+[10:56:13.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.013A after 1398 different samples (13980 SPS)
+[10:56:14.050][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01345 A
+[10:56:14.051][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.326 A
+[10:56:14.250][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:14.349][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.010A after 917 different samples (9170 SPS)
+[10:56:14.359][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:14.369][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 777 different samples (7770 SPS)
+[10:56:14.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01045 A
+[10:56:14.451][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.253 A
+[10:56:14.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01787 A
+[10:56:14.452][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.433 A
+[10:56:14.462][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.008A after 1236 different samples (12360 SPS)
+[10:56:14.469][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:14.469][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:14.570][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00821 A
+[10:56:14.571][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.199 A
+[10:56:14.571][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66000 V
+[10:56:14.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 1414 different samples (14140 SPS)
+[10:56:14.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01189 A
+[10:56:14.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.288 A
+[10:56:15.373][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 1393 different samples (13930 SPS)
+[10:56:15.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01831 A
+[10:56:15.488][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.444 A
+[10:56:15.878][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.010A after 1383 different samples (13830 SPS)
+[10:56:15.985][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01035 A
+[10:56:15.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.251 A
+[10:56:16.246][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:16.353][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.011A after 901 different samples (9010 SPS)
+[10:56:16.359][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:16.371][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.019A after 760 different samples (7600 SPS)
+[10:56:16.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01092 A
+[10:56:16.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.264 A
+[10:56:16.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01908 A
+[10:56:16.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.462 A
+[10:56:16.458][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.010A after 1244 different samples (12440 SPS)
+[10:56:16.467][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:16.474][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:16.576][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00972 A
+[10:56:16.577][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.235 A
+[10:56:16.577][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65400 V
+[10:56:16.873][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.010A after 1403 different samples (14030 SPS)
+[10:56:16.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01040 A
+[10:56:16.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.252 A
+[10:56:17.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 1427 different samples (14270 SPS)
+[10:56:17.491][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01588 A
+[10:56:17.492][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.385 A
+[10:56:17.881][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 1454 different samples (14540 SPS)
+[10:56:17.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01565 A
+[10:56:17.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.379 A
+[10:56:18.245][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:18.350][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.009A after 917 different samples (9170 SPS)
+[10:56:18.357][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:18.380][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 770 different samples (7700 SPS)
+[10:56:18.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00877 A
+[10:56:18.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.212 A
+[10:56:18.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01833 A
+[10:56:18.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.444 A
+[10:56:18.458][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.014A after 1239 different samples (12390 SPS)
+[10:56:18.468][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:18.526][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:18.585][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01436 A
+[10:56:18.585][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.348 A
+[10:56:18.586][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65500 V
+[10:56:18.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 1414 different samples (14140 SPS)
+[10:56:19.014][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00948 A
+[10:56:19.014][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.230 A
+[10:56:19.376][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 1429 different samples (14290 SPS)
+[10:56:19.538][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01800 A
+[10:56:19.539][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.436 A
+[10:56:19.877][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 1409 different samples (14090 SPS)
+[10:56:19.985][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01575 A
+[10:56:19.985][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.381 A
+[10:56:20.248][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:20.350][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.014A after 903 different samples (9030 SPS)
+[10:56:20.358][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:20.369][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 778 different samples (7780 SPS)
+[10:56:20.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01414 A
+[10:56:20.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.342 A
+[10:56:20.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01182 A
+[10:56:20.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.286 A
+[10:56:20.459][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.013A after 1233 different samples (12330 SPS)
+[10:56:20.467][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:20.472][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:20.574][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01325 A
+[10:56:20.575][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.321 A
+[10:56:20.575][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65200 V
+[10:56:20.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 1425 different samples (14250 SPS)
+[10:56:20.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01180 A
+[10:56:20.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.286 A
+[10:56:21.381][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 1417 different samples (14170 SPS)
+[10:56:21.486][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01555 A
+[10:56:21.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.377 A
+[10:56:21.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.010A after 1403 different samples (14030 SPS)
+[10:56:21.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01009 A
+[10:56:21.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.244 A
+[10:56:22.251][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:22.349][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.008A after 916 different samples (9160 SPS)
+[10:56:22.357][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:22.372][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.014A after 776 different samples (7760 SPS)
+[10:56:22.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00761 A
+[10:56:22.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.184 A
+[10:56:22.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01448 A
+[10:56:22.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.351 A
+[10:56:22.457][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.015A after 1245 different samples (12450 SPS)
+[10:56:22.484][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:22.490][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:22.578][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01459 A
+[10:56:22.579][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.353 A
+[10:56:22.579][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66900 V
+[10:56:22.878][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.012A after 1433 different samples (14330 SPS)
+[10:56:22.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01239 A
+[10:56:22.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.300 A
+[10:56:23.380][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.014A after 1412 different samples (14120 SPS)
+[10:56:23.486][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01406 A
+[10:56:23.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.341 A
+[10:56:23.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.011A after 1391 different samples (13910 SPS)
+[10:56:23.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01101 A
+[10:56:23.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.267 A
+[10:56:24.250][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:24.351][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.010A after 909 different samples (9090 SPS)
+[10:56:24.358][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:24.379][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.017A after 770 different samples (7700 SPS)
+[10:56:24.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01010 A
+[10:56:24.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.245 A
+[10:56:24.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01671 A
+[10:56:24.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.405 A
+[10:56:24.458][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.011A after 1262 different samples (12620 SPS)
+[10:56:24.466][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:24.478][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:24.572][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01070 A
+[10:56:24.573][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.259 A
+[10:56:24.573][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66000 V
+[10:56:24.875][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.013A after 1424 different samples (14240 SPS)
+[10:56:24.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01280 A
+[10:56:24.991][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.310 A
+[10:56:25.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.011A after 1416 different samples (14160 SPS)
+[10:56:25.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01146 A
+[10:56:25.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.277 A
+[10:56:25.877][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.015A after 1392 different samples (13920 SPS)
+[10:56:25.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01512 A
+[10:56:25.989][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.366 A
+[10:56:26.248][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:26.350][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.008A after 917 different samples (9170 SPS)
+[10:56:26.371][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:26.371][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.013A after 783 different samples (7830 SPS)
+[10:56:26.450][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00844 A
+[10:56:26.451][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.204 A
+[10:56:26.451][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01302 A
+[10:56:26.452][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.315 A
+[10:56:26.466][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.011A after 1244 different samples (12440 SPS)
+[10:56:26.474][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:26.474][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:26.574][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01123 A
+[10:56:26.575][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.272 A
+[10:56:26.575][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.65600 V
+[10:56:26.881][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.014A after 1401 different samples (14010 SPS)
+[10:56:26.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01391 A
+[10:56:26.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.337 A
+[10:56:27.371][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 1396 different samples (13960 SPS)
+[10:56:27.496][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00876 A
+[10:56:27.496][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.212 A
+[10:56:27.871][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.017A after 1410 different samples (14100 SPS)
+[10:56:27.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01727 A
+[10:56:27.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.418 A
+[10:56:28.254][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:28.356][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.015A after 919 different samples (9190 SPS)
+[10:56:28.382][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:28.383][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 802 different samples (8020 SPS)
+[10:56:28.479][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01479 A
+[10:56:28.479][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.358 A
+[10:56:28.480][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01615 A
+[10:56:28.480][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.391 A
+[10:56:28.498][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.012A after 1229 different samples (12290 SPS)
+[10:56:28.499][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:28.499][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:28.579][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.01192 A
+[10:56:28.579][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.289 A
+[10:56:28.580][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66600 V
+[10:56:28.872][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.014A after 1417 different samples (14170 SPS)
+[10:56:28.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01398 A
+[10:56:28.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.339 A
+[10:56:29.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.011A after 1426 different samples (14260 SPS)
+[10:56:29.486][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01068 A
+[10:56:29.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.259 A
+[10:56:29.873][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.016A after 1421 different samples (14210 SPS)
+[10:56:29.990][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01550 A
+[10:56:29.991][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.375 A
+[10:56:30.258][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:30.426][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.011A after 907 different samples (9070 SPS)
+[10:56:30.428][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:30.428][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 790 different samples (7900 SPS)
+[10:56:30.447][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.01063 A
+[10:56:30.447][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.257 A
+[10:56:30.448][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01778 A
+[10:56:30.448][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.431 A
+[10:56:30.464][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.007A after 1276 different samples (12760 SPS)
+[10:56:30.472][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:30.472][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:30.574][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00693 A
+[10:56:30.575][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.168 A
+[10:56:30.575][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66500 V
+[10:56:30.876][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1412 different samples (14120 SPS)
+[10:56:30.948][I][bero_udp:520]: UDP_EVENT_RECEIVED source=192.168.0.74 packet=BERO_EVT,BOOT_ID=8E809736A273DDC25CF41462945DEE69,EVENT_ID=1898,STATE=OFF
+[10:56:30.954][I][bero_event:527]: HA_EVENT_PUBLISHED BOOT_ID=8E809736A273DDC25CF41462945DEE69 EVENT_ID=1898 STATE=OFF
+[10:56:30.985][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00802 A
+[10:56:30.985][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.194 A
+[10:56:30.986][S][text_sensor]: 'BERO Mod2 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=8E809736A273DDC25CF41462945DEE69,EVENT_ID=1898,STATE=OFF'
+[10:56:30.986][S][text_sensor]: 'BERO Mod2 Olay BOOT ID' >> '8E809736A273DDC25CF41462945DEE69'
+[10:56:30.986][S][text_sensor]: 'BERO Mod2 Olay EVENT ID' >> '1898'
+[10:56:30.987][S][text_sensor]: 'BERO Mod2 Olay STATE' >> 'OFF'
+[10:56:31.419][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1426 different samples (14260 SPS)
+[10:56:31.489][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00844 A
+[10:56:31.489][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.204 A
+[10:56:31.876][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1388 different samples (13880 SPS)
+[10:56:31.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00805 A
+[10:56:31.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.195 A
+[10:56:32.137][I][safe_mode:154]: Boot seems successful; resetting boot loop counter
+[10:56:32.206][W][component:419]: safe_mode took a long time for an operation (69 ms), max is 50 ms
+[10:56:32.246][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:32.349][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.005A after 930 different samples (9300 SPS)
+[10:56:32.364][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:32.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.006A after 793 different samples (7930 SPS)
+[10:56:32.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00541 A
+[10:56:32.449][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.131 A
+[10:56:32.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00619 A
+[10:56:32.450][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.150 A
+[10:56:32.465][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.007A after 1237 different samples (12370 SPS)
+[10:56:32.472][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:32.472][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:32.572][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00722 A
+[10:56:32.573][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.175 A
+[10:56:32.573][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66200 V
+[10:56:32.878][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 1432 different samples (14320 SPS)
+[10:56:32.991][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00903 A
+[10:56:32.991][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.219 A
+[10:56:33.390][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 1404 different samples (14040 SPS)
+[10:56:33.492][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00693 A
+[10:56:33.493][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.168 A
+[10:56:33.597][D][preferences:254]: Writing 1 items: 0 cached, 1 written, 0 failed
+[10:56:33.873][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.020A after 1469 different samples (14690 SPS)
+[10:56:33.985][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.02028 A
+[10:56:33.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.491 A
+[10:56:34.274][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:34.438][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.007A after 877 different samples (8770 SPS)
+[10:56:34.440][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:34.441][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.006A after 742 different samples (7420 SPS)
+[10:56:34.455][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00714 A
+[10:56:34.456][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.173 A
+[10:56:34.456][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00638 A
+[10:56:34.456][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.155 A
+[10:56:34.536][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.007A after 1270 different samples (12700 SPS)
+[10:56:34.536][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:34.536][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:34.598][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00654 A
+[10:56:34.599][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.158 A
+[10:56:34.600][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66700 V
+[10:56:34.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 1415 different samples (14150 SPS)
+[10:56:34.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00916 A
+[10:56:34.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.222 A
+[10:56:35.378][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1427 different samples (14270 SPS)
+[10:56:35.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00802 A
+[10:56:35.487][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.194 A
+[10:56:35.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 1363 different samples (13630 SPS)
+[10:56:36.009][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00895 A
+[10:56:36.011][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.217 A
+[10:56:36.258][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:36.348][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.007A after 906 different samples (9060 SPS)
+[10:56:36.367][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:36.368][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 759 different samples (7590 SPS)
+[10:56:36.452][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00706 A
+[10:56:36.453][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.171 A
+[10:56:36.453][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00680 A
+[10:56:36.454][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.165 A
+[10:56:36.463][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.007A after 1226 different samples (12260 SPS)
+[10:56:36.473][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:36.473][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:36.573][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00731 A
+[10:56:36.574][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.177 A
+[10:56:36.574][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66900 V
+[10:56:36.875][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1421 different samples (14210 SPS)
+[10:56:36.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00785 A
+[10:56:36.986][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.190 A
+[10:56:37.375][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1409 different samples (14090 SPS)
+[10:56:37.488][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00792 A
+[10:56:37.488][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.192 A
+[10:56:37.871][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1381 different samples (13810 SPS)
+[10:56:37.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00785 A
+[10:56:37.988][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.190 A
+[10:56:38.262][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:38.363][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.006A after 900 different samples (9000 SPS)
+[10:56:38.370][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:38.370][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.006A after 781 different samples (7810 SPS)
+[10:56:38.464][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00629 A
+[10:56:38.465][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.152 A
+[10:56:38.465][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00583 A
+[10:56:38.466][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.141 A
+[10:56:38.475][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.006A after 1239 different samples (12390 SPS)
+[10:56:38.475][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:38.475][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:38.575][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00628 A
+[10:56:38.575][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.152 A
+[10:56:38.576][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66200 V
+[10:56:38.929][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1435 different samples (14350 SPS)
+[10:56:39.044][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00757 A
+[10:56:39.044][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.183 A
+[10:56:39.398][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.008A after 1415 different samples (14150 SPS)
+[10:56:39.484][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00800 A
+[10:56:39.484][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.194 A
+[10:56:39.897][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 1429 different samples (14290 SPS)
+[10:56:39.996][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00921 A
+[10:56:39.997][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.223 A
+[10:56:40.257][I][main:914]: BERO SLOW SCAN: CH2-1T NOTR START
+[10:56:40.353][D][ct_clamp:040]: 'BERO Mod2 CH2-1T Notr Akim' - Raw AC Value: 0.006A after 896 different samples (8960 SPS)
+[10:56:40.370][I][main:922]: BERO SLOW SCAN: CH3-1T FAZ START
+[10:56:40.370][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.005A after 798 different samples (7980 SPS)
+[10:56:40.454][S][sensor]: 'BERO Mod2 CH2-1T Notr Ham Akim' >> 0.00640 A
+[10:56:40.454][S][sensor]: 'BERO Mod2 CH2-1T Notr Akim' >> 0.155 A
+[10:56:40.455][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00533 A
+[10:56:40.455][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.129 A
+[10:56:40.462][D][ct_clamp:040]: 'BERO Mod2 CH3-1T Faz Akim' - Raw AC Value: 0.007A after 1227 different samples (12270 SPS)
+[10:56:40.468][I][main:930]: BERO SLOW SCAN: COMMON BIAS READ
+[10:56:40.469][I][main:934]: BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE
+[10:56:40.572][S][sensor]: 'BERO Mod2 CH3-1T Faz Ham Akim' >> 0.00678 A
+[10:56:40.573][S][sensor]: 'BERO Mod2 CH3-1T Faz Akim' >> 0.164 A
+[10:56:40.574][S][sensor]: 'BERO Mod2 Ortak Bias' >> 1.66500 V
+[10:56:40.874][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.009A after 1440 different samples (14400 SPS)
+[10:56:40.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00877 A
+[10:56:40.987][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.212 A
+[10:56:41.374][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 1399 different samples (13990 SPS)
+[10:56:41.483][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00673 A
+[10:56:41.484][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.163 A
