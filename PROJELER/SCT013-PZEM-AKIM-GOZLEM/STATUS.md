@@ -394,3 +394,27 @@ Medyan tabanlı ON çevrimi SCT–PZEM çifti yöntemi ilk aşamada sabit yükle
 - Kaynak CSV SHA-256: `235ad89116f3d0a36205acafbe4eec1f29baa9043567e59f71b3d12835c45e74`. Ham CSV commit'e eklenmedi; rapor ve kaynak hash'i kaydedildi.
 - Rapor: [I007 CH1-1T OFF oturumu](data/off-noise/sessions/2026-11-06-session-02-ch1-1t-off.md); indeks: [tek kanal oturum özeti](data/off-noise/single-channel-session-summary.csv).
 - Sonraki deney planı: [15 W / OFF ayrışma deneyi](experiments/I007-15W-off-separation/README.md). Durum PLANLANDI; henüz çalıştırılmadı.
+
+
+## 2026-11-06 — BERO üç durumlu akım sonucu
+
+Kullanıcı tarafından belirlenen çıktı sözleşmesi:
+1. `CURRENT_PRESENT` — **AKIM VAR**: Akım varlığına yeterli kanıt var ve mevcut çalışma koşulunda ölçüm hesaplanabilir.
+2. `NO_CURRENT` — **AKIM YOK**: OFF referansına göre fiziksel akım yokluğu için yeterli istatistiksel kanıt var.
+3. `CURRENT_NOT_COMPUTABLE` — **AKIM HESAPLANAMADI**: Akım olabilir; ancak kararsızlık, OFF/yüklü dağılımların örtüşmesi, yetersiz veri veya ölçüm çalışma sınırı nedeniyle güvenilir değer üretilemiyor.
+
+**Değişmez anlam:** AKIM HESAPLANAMADI, AKIM YOK demek değildir. Sistem belirsizliği zorla ikili karara çevirmeyecektir.
+
+- Üç durumlu sınıflandırma, ON eğitimindeki SCT/PZEM medyan çifti ve K katsayısı hesabından ayrı bir katmandır.
+- I007 OFF dağılımı ayrı referanstır; ON eğitim çiftlerine katılmaz.
+- 0.3 A altı, önceki deneylerden gelen aday hesaplanabilirlik sınırıdır; doğrulanmış eşik değildir ve fiziksel sıfır anlamına gelmez.
+- OFF medyan/MAD/P95/P99, yüklü dağılımlar, zaman kararlılığı ve dağılım örtüşmesi birlikte değerlendirilecektir.
+- Sayısal eşikler, minimum örnek sayıları ve karar süreleri henüz belirlenmedi. Sınıflandırma konfigürasyonda taslak/kapalı durumdadır; çalışan algoritma olarak sunulmaz.
+
+Belgeler:
+- [Üç durumlu akım sınıflandırması](docs/current-state-classification.md)
+- [training_config.yaml](config/training_config.yaml) — `current_state_classifier` taslak parametreleri.
+- Önceki OFF referans raporu: [I007 CH1-1T OFF](data/off-noise/sessions/2026-11-06-session-02-ch1-1t-off.md).
+- 15 W / OFF karşılaştırma protokolü: [I007 15 W deneyi](experiments/I007-15W-off-separation/README.md).
+
+**Durum:** Kullanıcı çıktı sözleşmesini onayladı; dokümantasyon ve konfigürasyon taslağı depoya yazıldı ve yeniden okunarak doğrulanacak. Sınıflandırma algoritması/eşikleri henüz uygulanmadı.
