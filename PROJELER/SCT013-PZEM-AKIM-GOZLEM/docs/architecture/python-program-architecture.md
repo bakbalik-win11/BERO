@@ -208,3 +208,15 @@ Görev kayıtları en azından girdi kimliği/hash'i, görev adı/sürümü, dur
 Örnek görev sınırları: dosya keşfi, CSV doğrulama, hash/tekrar kontrolü, ham arşivleme, veri inceleme, paket bütünlüğü, SCT ve PZEM kararlılık analizi, örtüşme/etiket üretimi ve raporlama. Nihai görev listesi ve sayısal retry/timeout/paralellik ayarları uygulama ve gerçek iş yükü görüldükten sonra belirlenecektir.
 
 Bu kayıt mimari karardır; checkpoint, görev çalıştırıcı, atomik çıktı ve kurtarma testleri henüz uygulanmamıştır. Ayrıntı: [ADR-030](../decisions/ADR-030-resumable-small-python-jobs.md).
+
+
+## Python program envanteri — tasarım taslağı (2026-11-06)
+
+İki kullanıcı giriş noktası taslak olarak ayrıldı: **PY-01 BERO Importer** (gelen-kutu, doğrulama, hash/tekrar kontrolü, RAW arşiv ve karantina) ve **PY-02 BERO Analyzer** (arşiv envanteri, veri profili, paket doğrulama, bağımsız PZEM/SCT kararlılık analizi, örtüşme, etiketleme, tam kayıt değerlendirmesi ve raporlama).
+
+Bu iki giriş noktası tek parça büyük program olmayacaktır. Her sorumluluk küçük, bağımsız, yeniden çalıştırılabilir görev modüllerine ayrılır. Görev kataloğu ve ayrıntılı program tanımları:
+- [Python program envanteri](../python-programs/README.md)
+- [PY-01 — BERO Importer](../python-programs/PY-01-importer.md)
+- [PY-02 — BERO Analyzer](../python-programs/PY-02-analyzer.md)
+
+**Durum:** TASLAK — kullanıcıyla görev sınırları, giriş/çıkışlar ve çalıştırma sırası gözden geçirilecek. Bu dosyalar çalışan Python kodu veya kesinleşmiş algoritma anlamına gelmez.
