@@ -435,3 +435,12 @@
 - Kalibrasyon referansı yalnızca ON içindeki bağımsız SCT/PZEM kararlı alanlarının örtüşmesidir. Geçiş/interpolasyon değerleri katsayı öğrenimine katılmaz; ham kayıt korunur.
 - K=24.22 değiştirilmedi. Hafta sonu farklı sabit yükler ve ilk Python veri hattı önceliklidir; canlı makine doğrulaması sonraki aşamadır.
 - Ayrıntı: [E11](experiments/E11-idle-dual-module-observation/README.md), [E12](experiments/E12-sct-stability-window-and-response/README.md).
+
+
+## 2026-11-06 — E14 Modül 2 CH1-1T 2 Hz kısa cihaz doğrulaması
+
+- Deney firmware'i ayrı dalda: `exp/modul2-ch1-2hz-20261106`; [Modül 2 YAML](firmware/bero-modul2-esp32d1.yaml).
+- Cihaz logunda CH1 128 yayın / 0,500 s medyan, CH2 32 yayın / 2,000 s medyan, CH3 32 yayın / 2,001 s medyan. Nominal CH1 2 Hz kısa logla desteklendi; uzun süreli devamlılık açık.
+- Modül 3 EVENT_ID 1897 ON ve 1898 OFF paketleri Modül 2 tarafından alındı ve HA'ya yayınlandı.
+- Yüksüz koşulda ON aralığında üç kanal medyanları yükseldi; OFF sonrası yaklaştı. Tek çevrim neden tayinine yetmez. Ham log ve analiz: [log](logs/module2/2026-11-06-module2-ch1-2hz-device-log.txt), [rapor](logs/module2/2026-11-06-module2-ch1-2hz-log-analysis.md).
+- **Durum:** Kısa cihaz ön kontrolü LOG İLE DESTEKLENDİ; E14 açık. Uzun log, tekrarlı olay çevrimleri ve PZEM/HA History karşılaştırması bekliyor.
