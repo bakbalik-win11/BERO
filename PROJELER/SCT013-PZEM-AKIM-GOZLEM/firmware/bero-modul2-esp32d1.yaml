@@ -1,12 +1,14 @@
 # ============================================================
 # BERO MODÜL 2 — ESP32D1
-# ÜÇ SCT SIRALI OKUMA + UDP 4210 OLAY ALICISI
+# CH1-1T 2 Hz + CH2/CH3 0.5 Hz + UDP 4210 OLAY ALICISI
 # ESPHome 2026.10.1
 # ============================================================
 #
 # AMAÇ:
-# - Üç SCT kanalını 200 ms ct_clamp pencereleriyle sırayla okumak.
-# - SCT1/SCT2/SCT3 akım ve filtre öncesi Ham Akim değerlerini HA'ya yayımlamak.
+# - CH1-1T kanalını 500 ms aralıkla (2 Hz) okumak.
+# - CH2-1T ve CH3-1T kanallarını 2 saniyelik aralıkla izlemeyi sürdürmek.
+# - Üç kanalda da 100 ms ct_clamp ölçüm penceresi kullanmak.
+# - CH1-1T / CH2-1T / CH3-1T akım ve filtre öncesi Ham Akim değerlerini HA'ya yayımlamak.
 # - GPIO35 ortak bias gerilimini izlemek.
 # - Modül 3'ten UDP 4210 ile gelen BERO_EVT olayını aynen alıp HA'ya
 #   ham paket, BOOT_ID, EVENT_ID ve STATE entity'leriyle aktarmak.
@@ -14,18 +16,19 @@
 #   için olay kimliğini korumak.
 #
 # DONANIM BAĞLANTILARI:
-# - SCT1 sarı sinyal  -> GPIO32 / ADC1_CH4 / Faz 1T
-# - SCT2 yeşil sinyal -> GPIO33 / ADC1_CH5 / Nötr 1T
-# - SCT3 mavi sinyal  -> GPIO34 / ADC1_CH6 / Faz 1T
+# - CH1-1T sarı sinyal  -> GPIO32 / ADC1_CH4 / Faz
+# - CH2-1T yeşil sinyal -> GPIO33 / ADC1_CH5 / Nötr
+# - CH3-1T mavi sinyal  -> GPIO34 / ADC1_CH6 / Faz
 # - Ortak bias turuncu -> GPIO35 / ADC1_CH7
 # - UDP olay kaynağı Modül 3 WROOM; hedef port 4210/UDP.
 #
 # OKUMA:
-# - Her kanal ct_clamp sample_duration: 100ms.
-# - Kanallar sırayla taranır: SCT1 -> 110ms -> SCT2 -> 110ms -> SCT3 -> 110ms -> bias.
-# - Her kanal kendi başına yaklaşık 2 saniyede bir okunur (kanal başına yaklaşık 0.5 Hz).
-# - Bu üç kanallı tarama, tek kanal 2 Hz hedefinin testi değildir.
-# - Katsayı K=24.22; bu firmware'de üç kanala da uygulanır.
+# - Üç kanalın sample_duration değeri 100ms olarak korunur.
+# - CH1-1T: interval 500ms; hedef okuma sıklığı 2 Hz.
+# - CH2-1T ve CH3-1T: ayrı düşük hızlı tarama, yaklaşık 2 saniyede bir.
+# - CH2/CH3 taraması CH1'in 500ms döngüsünü bekletmez.
+# - Katsayı K=24.22; üç kanala da uygulanır.
+# - Bu aşamada yalnız okuma sıklığı değiştirilmiştir; K ve pencere değişmemiştir.
 #
 # HA OLAY ENTITY'LERİ:
 # - BERO Mod2 Olay Kaydi (ham BERO_EVT)
@@ -45,6 +48,7 @@
 #   olasılığı ayrıca izlenir. Fiziksel SSR anahtarlaması bu YAML'ın işi değildir.
 #
 # GÜVENLİK:
+# - Her SCT tek geçiştir (1T); kanal adları CH1-1T, CH2-1T, CH3-1T'dir.
 # - SCT yalnız tek yalıtılmış iletkeni kavrar; faz ve nötr birlikte geçirilmez.
 # - SCT bağlantıları yük enerjisizken değiştirilir; CT sekonderi açık bırakılmaz.
 # ============================================================
@@ -207,7 +211,7 @@ sensor:
   # ----------------------------------------------------------
   - platform: template
     id: sct_1_raw_ac
-    name: "BERO Mod2 SCT1 Faz 1T Ham Akim"
+    name: "BERO Mod2 CH1-1T Faz Ham Akim"
     unit_of_measurement: "A"
     device_class: current
     state_class: measurement
@@ -217,7 +221,7 @@ sensor:
 
   - platform: ct_clamp
     id: sct_1_current
-    name: "BERO Mod2 SCT1 Faz 1T Akim"
+    name: "BERO Mod2 CH1-1T Faz Akim"
     sensor: sct_1_voltage_source
     sample_duration: 100ms
     update_interval: never
@@ -240,7 +244,7 @@ sensor:
   # ----------------------------------------------------------
   - platform: template
     id: sct_2_raw_ac
-    name: "BERO Mod2 SCT2 Notr 1T Ham Akim"
+    name: "BERO Mod2 CH2-1T Notr Ham Akim"
     unit_of_measurement: "A"
     device_class: current
     state_class: measurement
@@ -250,7 +254,7 @@ sensor:
 
   - platform: ct_clamp
     id: sct_2_current
-    name: "BERO Mod2 SCT2 Notr 1T Akim"
+    name: "BERO Mod2 CH2-1T Notr Akim"
     sensor: sct_2_voltage_source
     sample_duration: 100ms
     update_interval: never
@@ -273,7 +277,7 @@ sensor:
   # ----------------------------------------------------------
   - platform: template
     id: sct_3_raw_ac
-    name: "BERO Mod2 SCT3 Faz 1T Ham Akim"
+    name: "BERO Mod2 CH3-1T Faz Ham Akim"
     unit_of_measurement: "A"
     device_class: current
     state_class: measurement
@@ -283,7 +287,7 @@ sensor:
 
   - platform: ct_clamp
     id: sct_3_current
-    name: "BERO Mod2 SCT3 Faz 1T Akim"
+    name: "BERO Mod2 CH3-1T Faz Akim"
     sensor: sct_3_voltage_source
     sample_duration: 100ms
     update_interval: never
@@ -332,38 +336,34 @@ text_sensor:
     update_interval: never
 
 script:
-  - id: sct_sequential_reading
+  # CH2 ve CH3 düşük hızlı izleme döngüsü.
+  # CH1'in 500ms döngüsünden bağımsızdır.
+  - id: sct_slow_channels_reading
     mode: single
     then:
       - logger.log:
           level: INFO
-          format: "BERO SEQUENCE: SCT1 FAZ 1T START"
-      - component.update: sct_1_current
-      - delay: 110ms
-
-      - logger.log:
-          level: INFO
-          format: "BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 1T START"
+          format: "BERO SLOW SCAN: CH2-1T NOTR START"
       - component.update: sct_2_current
       - delay: 110ms
 
       - logger.log:
           level: INFO
-          format: "BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 1T START"
+          format: "BERO SLOW SCAN: CH3-1T FAZ START"
       - component.update: sct_3_current
       - delay: 110ms
 
       - logger.log:
           level: INFO
-          format: "BERO SEQUENCE: SCT3 COMPLETE / COMMON BIAS READ"
+          format: "BERO SLOW SCAN: COMMON BIAS READ"
       - component.update: common_bias_adc_voltage
 
       - logger.log:
           level: INFO
-          format: "BERO SEQUENCE: ALL CHANNELS COMPLETE"
+          format: "BERO SLOW SCAN: CH2 CH3 BIAS COMPLETE"
 
 interval:
-  # UDP alım kontrolü; non-blocking ve SCT döngüsünden bağımsız.
+  # UDP alım kontrolü; non-blocking ve SCT ölçüm döngülerinden bağımsız.
   - interval: 100ms
     then:
       - lambda: |-
@@ -371,7 +371,6 @@ interval:
             return;
           }
 
-          // Bir kontrolde en fazla dört paket işle.
           for (int packet_index = 0; packet_index < 4; packet_index++) {
             char packet[160] = {};
             struct sockaddr_in source_address = {};
@@ -398,7 +397,6 @@ interval:
               continue;
             }
 
-            // Buffer dolduysa olası kesilmiş UDP paketini kabul etme.
             if (received >= (int)sizeof(packet) - 1) {
               ESP_LOGW("bero_udp", "UDP_PACKET_TOO_LONG bytes=%d", received);
               continue;
@@ -406,7 +404,6 @@ interval:
 
             packet[received] = '\0';
 
-            // CR/LF sonlandırıcılarını güvenli biçimde kaldır.
             int packet_length = received;
             while (
               packet_length > 0 &&
@@ -439,7 +436,6 @@ interval:
               cursor += sizeof(prefix) - 1;
             }
 
-            // BOOT_ID tam 32 hexadecimal karakter olmalı.
             if (valid_packet) {
               for (int i = 0; i < 32; i++) {
                 const char c = *cursor;
@@ -467,7 +463,6 @@ interval:
               }
             }
 
-            // EVENT_ID uint32 aralığında, yalnızca rakamlardan oluşmalı.
             if (valid_packet) {
               bool has_digit = false;
 
@@ -517,7 +512,6 @@ interval:
               continue;
             }
 
-            // Ham mesaj aynen korunur; Python için esas kayıt budur.
             id(bero_mod2_event_raw).publish_state(packet);
             id(bero_mod2_event_boot_id).publish_state(boot_id);
             id(bero_mod2_event_id).publish_state(std::to_string(event_id));
@@ -539,7 +533,12 @@ interval:
             );
           }
 
-  # Üç kanalı sıralı tarayan eğitim döngüsü; tek kanal 2 Hz hedefinden ayrıdır.
+  # CH1-1T bağımsız 2 Hz okuma döngüsü: 500ms aralık.
+  - interval: 500ms
+    then:
+      - component.update: sct_1_current
+
+  # CH2-1T, CH3-1T ve ortak bias düşük hızlı gözlem: 2 saniye.
   - interval: 2s
     then:
-      - script.execute: sct_sequential_reading
+      - script.execute: sct_slow_channels_reading
