@@ -341,3 +341,15 @@ Kullanıcı kararıyla eğitim/kalibrasyon istatistiği ile ilerideki canlı yü
 - Her veri setinde SCT/sensör ve sarım bilgisi, GPIO/ADC, attenuation, sample_duration, interval, update_interval, K, YAML/commit/build, PZEM zaman serisi, yük, ON aralıkları, BOOT_ID/EVENT_ID, saat dilimi, kaynak CSV hash'i ve calibration_id kaydedilir.
 - E15/E16 okuma parametrelerini değerlendirmeye veri sağlar; tek başına nihai K istatistiğini seçmez. Canlı yük değişimi algoritması bu belgenin kapsamı dışındadır.
 - Ayrıntılı yöntem ve parametre kayıt şeması: [SCT ON eğitim verisi ve katsayı belirleme istatistiği](docs/ON-training-calibration-statistics.md).
+
+
+## 2026-11-06 — E15 A/B/C + E16 D/E/F kararlı ON karşılaştırması
+
+- Kullanıcının sağladığı `history (48).csv` (4,123,366 byte; SHA-256 `53bdf3315195688a1e6f47f9cebb6c46db95d1b7a4bb5029e4e183a457db01b5`) analiz edildi.
+- Karşılaştırma yalnız katsayısız ct_clamp ON ölçümlerini içerir. Her SSR ON çevriminin ilk/son 5 saniyesi çıkarıldı; test penceresinden önce başlamış ON çevrimleri dışlandı; PZEM akımı seçilmiş ON aralıklarında kontrol edildi. OFF sonrası veriler ana istatistiğe alınmadı.
+- A/B/C (100ms sample_duration; interval 500ms/1s/2s): ON n=581/271/135; medyan 0.019185/0.018939/0.018892 A; SD 0.001237/0.000712/0.000811 A.
+- D/E/F (interval 1s; sample_duration 50/100/200ms): ON n=292/293/300; medyan 0.018682/0.019118/0.018869 A; SD 0.001745/0.001034/0.000820 A.
+- D turunun SD'si 0.035284 A maksimum tekil değer nedeniyle belirgin yükseldi; D MAD 0.000572 A. IQR dışı değerler silinmedi, yalnız işaretlendi.
+- Altı turda PZEM ON örnekleri yaklaşık 0.463–0.469 A. K oranları aday gösterge olarak hesaplandı; nihai katsayı seçilmedi.
+- F aralığı CSV'deki 15:36:16–15:46:16 1 Hz segmentinden eşleştirildi; kullanıcı başlangıç bildirimi ve cihaz build/OTA logu ayrıca doğrulanmadı. A/B/C aralıkları cadence geçişlerinden eşleştirildi; binary/YAML hash doğrulaması yok.
+- Tam yöntem, tablolar, trimmed mean, IQR işaretleri, K oranları ve yorum: [A–F kararlı ON karşılaştırma raporu](logs/module2/2026-11-06-e15-e16-a-f-on-only-comparison.md).
