@@ -370,3 +370,14 @@ Ayrıntı: [ON eğitim verisi ve katsayı belirleme istatistiği](docs/ON-traini
 ## 2026-11-06 — Sabit yükle ilk eğitim kapsamı
 
 Medyan tabanlı ON çevrimi SCT–PZEM çifti yöntemi ilk aşamada sabit yükle eğitim içindir. Aynı fiziksel yük ve çalışma koşulunda tekrarlanan ON çevrimleri ayrı eğitim çiftleri üretir. Farklı yük/akım seviyeleri aynı havuzda birleştirilmez; sonraki aşamada her sabit yük seviyesi ayrı eğitim grubu olarak incelenir. Tek bir sabit yükte elde edilen K sonucu tüm akım aralığına genellenmez. Ayrıntı: [eğitim istatistiği](docs/ON-training-calibration-statistics.md).
+
+## 2026-11-06 — İlk sabit yük eğitimi için training_config.yaml
+
+- `config/training_config.yaml` oluşturuldu. Dosya, sabit yükte her ON–OFF çevrimi için tek SCT–PZEM medyan çifti üretme kararının Python parametre sözleşmesidir.
+- Eğitim penceresi başlangıcı: SCT ve PZEM'in bağımsız kararlılık başlangıçlarından daha geç olanı. Bitiş: SCT akım kesilme anı; PZEM'in gecikmeli OFF düşüşü beklenmez.
+- Merkez kestiricisi `median`; yayılım raporu MAD/IQR. Aritmetik ortalama eğitim merkez değeri değildir.
+- Fiziksel sıfır-akım referansı I007 yüksüz havuzuna bağlandı. Bu referans ON eğitim çiftine katılmaz; SCT'nin ON sonundaki akım kesilmesini belirleme eşiğinin ileride türetilmesine kaynak olur.
+- I007 taban dağılımı, SCT/PZEM kararlılık yöntemi/eşikleri ve minimum örnek sayıları henüz belirlenmedi. Bunlar `null` bırakıldı; ölçülmemiş eşik veya çalışır algoritma uydurulmadı.
+- Entity kimlikleri T007 gerçek HA dışa aktarımıyla doldurulacak. Bu dosya parametre taslağıdır; uçtan uca çalışan Python uygulaması değildir.
+- **Durum:** Yapılandırma dosyası depoya eklendi ve yeniden okunarak doğrulandı. Python uygulaması ve eşiklerin veriyle belirlenmesi beklemede.
+- Dosya: [training_config.yaml](config/training_config.yaml).
