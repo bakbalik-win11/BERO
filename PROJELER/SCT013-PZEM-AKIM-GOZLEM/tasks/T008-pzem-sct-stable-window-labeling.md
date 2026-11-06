@@ -80,3 +80,20 @@ Paket bütünlüğü doğrulandıktan sonraki etiket uygunluğu kodları: `NO_ST
 ## 2026-11-06 — Katsayı terminolojisi düzeltmesi
 
 Önceki kayıtlarda geçen **“katsayısız”** ifadesi yanlıştı ve düzeltildi. E15/T008 kapsamında değerlendirilen SCT akım çıktısı, firmware'de `ct_clamp` filtresindeki `multiply: 24.22` ile katsayı uygulanmış değerdir. Amaç katsayıyı yok saymak değil; PZEM referanslı kararlı alanlardan mevcut K=24.22 katsayısını değerlendirmek ve gerekirse iyileştirmektir. Ham ADC/ct_clamp öncesi değer ile katsayı uygulanmış akım çıktısı birbirine karıştırılmayacaktır. Bu düzeltme ölçüm akışının ne olduğuna ilişkindir; yeni katsayı henüz hesaplanmış veya kabul edilmiş değildir.
+
+
+## 2026-11-06 — Sabit yük eğitim penceresi ve medyan çifti: güncel kural
+
+Bu bölüm, belgenin önceki simetrik kararlı-aralık kesişimi ve yalnız SCT eğitim alt kümesi tariflerini ilk sabit yük katsayı eğitimi bakımından günceller. Önceki metin tarihçe olarak korunur; uygulamada bu güncel kural esas alınır.
+
+1. Aynı `BOOT_ID + ON_EVENT_ID` ile eşleşen ve iki akışta da doğru OFF kapanışı bulunan ON–OFF paketi gerekir.
+2. SCT ve PZEM kararlılığı kendi akışlarından bağımsız bulunur.
+3. Eğitim penceresi başlangıcı `max(SCT_STABLE_START, PZEM_STABLE_START)`; yani iki akışın da kararlı olduğu daha geç başlangıçtır.
+4. Eğitim penceresi bitişi `SCT_CURRENT_CUTOFF` anıdır. PZEM'in gecikmeli kapanışı pencereyi uzatmaz.
+5. Aynı `[window_start, window_end)` aralığındaki SCT ve geçerli PZEM değerleri ayrı ayrı medyanlanır. Her ON çevrimi bir `(sct_median, pzem_median)` eğitim çifti üretir.
+6. `K_candidate = pzem_median / sct_median`. Her iki örnek sayısı (`n_sct`, `n_pzem`) ve MAD ayrı kaydedilir. Tekil yayınlar bağımsız deney tekrarı sayılmaz.
+7. İlk eğitim sabit yük koşulundadır. Farklı yük profilleri aynı grupta birleştirilmez.
+8. Fiziksel 0 A I007 yüksüz referansı ON eğitim çiftine katılmaz. Yalnız SCT'nin akım kesilme anını belirlemeye yarayacak OFF tabanını/sonlandırma koşulunu ileride veriden türetmek için kullanılır. I007'den eşik türetilene kadar SCT cutoff eşiği tanımlı değildir.
+9. Aritmetik ortalama eğitim merkezi değildir; merkez kestiricisi medyandır. Ham veri korunur, uç değerler otomatik silinmez.
+
+Parametre kaynağı: [`config/training_config.yaml`](../config/training_config.yaml). Bu yapılandırma şu an taslaktır; kararlılık yöntemi/eşikleri, cutoff eşiği ve minimum örnek sayıları gerçek veriden sonra doldurulacaktır. Python uygulaması henüz tamamlanmış değildir.
