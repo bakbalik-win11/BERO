@@ -48,3 +48,37 @@ Temel soru, 18 W ON durumunun OFF referansından yeterli süre ve kararlılıkla
 - 0.20 A sınırı şimdilik bu deney için desteklenen aday OFF eşiği olarak not edilir; genellenmiş veya nihai eşik ilan edilmez.
 - Doğrulamada tekil sıçramalar değil, 0.20 A çevresindeki seviyenin ne kadar süre devam ettiği, pencere medyanı/MAD ve ON/OFF çevrimlerinin tekrarlanabilirliği incelenecek.
 - 18 W ON durumunun OFF'tan ayrılması, yalnızca mevcut ampul ve ölçüm koşulları için gözlemdir; diğer yük seviyelerine genellenmez.
+
+
+## Analiz hedeflerinin ayrılması — iki bağımsız soru
+
+I010 verisi iki ayrı istatistiksel hedef için kullanılacaktır. Bu hedefler birbirinin yerine geçmez:
+
+### A. Akım var / akım yok kararını öğrenmek
+
+- Amaç: Fiziksel OFF ile 18 W ON durumunu zaman içinde güvenilir biçimde ayırabilecek kanıtı bulmak.
+- Referans: PZEM akım ve güç serileri ile kullanıcı tarafından bildirilen fiziksel ON/OFF zamanları birlikte kullanılacak; PZEM pratik referanstır, mutlak ground truth değildir.
+- CH1 karar girdisi: K=24.22 uygulanmış akım çıktısı.
+- 0.20 A, kullanıcı gözlemine dayalı **aday OFF sınırıdır**. Tekil örneğe uygulanmayacak; süre, ardışık devamlılık ve zaman penceresi davranışıyla sınanacak.
+- Uzun 18 W ON/OFF çevrimleri, kararın çevrimler arasında tekrarlanabilirliğini ölçmek için sürdürülecek.
+
+### B. Akım hesaplanamadı alanını çerçevelemek
+
+Bu hedef, ON/OFF kararından ayrıdır. Amaç yalnızca sınıf etiketi vermek değil; ölçümün OFF referansına ne kadar yakın, ne kadar dalgalı ve ne kadar kararsız olduğunu nicel olarak tarif etmektir.
+
+Her zaman penceresi için en az şu özetler üretilecek:
+- pencere medyanı ve OFF medyanından farkı;
+- MAD ve mümkünse IQR/P05/P95;
+- pencere içi tepe-tepe aralığı ve zamana göre medyan değişimi;
+- eşik çevresinde geçirilen süre ve en uzun kesintisiz süre;
+- OFF referans dağılımıyla örtüşme/ayrışma;
+- ölçüm sayısı, gerçek kapsanan süre ve timestamp boşlukları.
+
+Bu çerçeve, `CURRENT_NOT_COMPUTABLE` alanını tanımlamaya yardım eder. Tek bir sayı veya tek eşik şimdiden belirlenmeyecek; pencere uzunlukları ve karar sınırları deney sonuçlarıyla seçilecek.
+
+## 18:00 veri kontrol noktası ve devam planı
+
+- Kullanıcı 18:00'de mevcut veriyi paylaşacağını bildirdi. Bu veri ilk analiz/kontrol noktası olarak ele alınacak; deneyin tamamlandığı anlamına gelmez.
+- İlk veri kontrolünden sonra kullanıcı uzun 18 W ON/OFF aç-kapa testine devam edecek.
+- İlk veri kesiti ile sonraki uzun aç-kapa kaydı ayrı veri bölümleri olarak saklanacak ve zaman damgaları korunacak; analizde aynı I010 deneyinin ayrı kayıt dilimleri olarak ilişkilendirilecek.
+- 15 W içeren tüm dönemler I010 kontrollü karşılaştırmasından hariç tutulacak; ham veri silinmeyecek.
