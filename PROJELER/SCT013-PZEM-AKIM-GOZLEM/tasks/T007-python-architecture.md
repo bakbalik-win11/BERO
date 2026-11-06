@@ -19,6 +19,19 @@ Kullanıcı HA dışa aktarım dosyasını kendisi belirlenen gelen-kutu klasör
 - Arşivleme öncesinde dosya bütünlüğü doğrulanmadan kaynak dosya taşınmaz veya silinmez. Başarılı işlemde kaynak dosyanın kendisi arşivde korunur; içerik yeniden yazılmaz.
 - Home Assistant Recorder veritabanı bu iş akışında doğrudan okunmaz, değiştirilmez veya temizlenmez. HA History'den dışa aktarılan dosya kullanıcı tarafından gelen kutusuna bırakılır.
 
+
+## Eğitim amaçlı kanal adları ve History seçimi — ADR-027
+
+- Günlük deney/gözlem kodlarında Home Assistant History kanal adları genel kalır: `CH1`, `CH2`, `CH3`. Gün içinde birden fazla deney kaydı oluşabilir; bu kayıtların tamamı eğitim verisi değildir.
+- Kod/ölçüm yapılandırması kesinleşip özellikle eğitim verisi toplanacağı zaman ilgili kodda küçük bir adlandırma değişikliği yapılır. Eğitim amaçlı History akışları `CH1-E`, `CH2-E`, `CH3-E` adlarıyla yayınlanır.
+- `-E` eğitim işaretidir; fiziksel kanal kimliği veya sarım/hesaplama tanımı değildir. Sarım sayısı, katsayı ve hesaplama yöntemi gerektiğinde ilgili kodda kalır.
+- Python-1, CSV'yi bu isimleri aramadan da doğrulayıp ham haliyle arşivleyebilir; kaynak entity adlarını değiştirmez.
+- Python-2/eğitim hazırlama kodu, eğitim akışlarını bu üç açık ad üzerinden seçer. Genel `CH1` / `CH2` / `CH3` kayıtları açıkça eğitim akışına dönüştürülmedikçe eğitim setine alınmaz.
+- Eski bir deney kaydı sonradan eğitim için kullanılacaksa ham arşiv dosyası korunur; kanal seçimi ve eğitim adı yalnız ayrı türetilmiş kopyaya uygulanır.
+
+Bu yaklaşım History'deki deney kayıtlarını eğitim kaydıyla karıştırmadan, eğitim alınacak oturumları kodda küçük bir değişiklikle görünür kılar.
+
+
 ## Neden T009 sonrasında?
 
 Veri aktarımı için önce PZEM ve SCT düğümlerinin gerçek veriyi Home Assistant'a yayınlıyor olması gerekir. Faz 2'nin ilk hedefi veri analizi değil, modülleri pratik olarak yeniden devreye alıp temel işlevlerini doğrulamaktır. T009 kabul koşulları karşılandıktan ve gerçek entity listesi görüldükten sonra T007 başlatılır.
