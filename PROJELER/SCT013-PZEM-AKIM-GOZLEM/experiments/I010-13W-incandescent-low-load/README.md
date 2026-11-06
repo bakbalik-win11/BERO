@@ -27,7 +27,7 @@ Mevcut 15 W ampulün HA grafiklerinde kirli/bozucu davranış gösterdiğine ili
 
 Temel soru, 18 W ON durumunun OFF referansından yeterli süre ve kararlılıkla ayrışıp ayrışmadığıdır. Sonuç yalnızca bu 18 W yük ve mevcut ölçüm zinciri için geçerli olacaktır; tek başına genel eşik oluşturmaz.
 
-**Durum: SEÇİLDİ / BAĞLANTI VE VERİ BEKLENİYOR.**
+**Durum: BAŞLADI — ilk görsel gözlem mevcut, toplu veri analizi bekleniyor.**
 
 ## Düzeltme kaydı
 
@@ -39,3 +39,12 @@ Temel soru, 18 W ON durumunun OFF referansından yeterli süre ve kararlılıkla
 - Kullanıcı bildirimi: **17:43 (+03:00), 6 Kasım 2026 — 18 W ON.**
 - Bu zaman kullanıcı bildirimidir; saniye hassasiyeti ve CSV/PZEM zaman serisiyle doğrulama henüz yoktur.
 - Analiz, I010 planındaki süre-temelli ON/OFF karşılaştırmasına göre yapılacaktır. Tekil sıçramalar sınıflandırma kararı sayılmayacak.
+
+
+## İlk kullanıcı gözlemi — 18 W ON/OFF ayrımı
+
+- Kullanıcının 6 Kasım 2026 tarihli gözlemi: **K=24.22 uygulanmış CH1 çıktısında 0.20 A altı OFF davranışıyla uyumlu; 18 W yükte ON/OFF ayrımı grafikte görülüyor.**
+- Bu, ilk görsel/operasyonel gözlemdir; henüz CSV üzerinden süre-temelli istatistiksel doğrulama değildir.
+- 0.20 A sınırı şimdilik bu deney için desteklenen aday OFF eşiği olarak not edilir; genellenmiş veya nihai eşik ilan edilmez.
+- Doğrulamada tekil sıçramalar değil, 0.20 A çevresindeki seviyenin ne kadar süre devam ettiği, pencere medyanı/MAD ve ON/OFF çevrimlerinin tekrarlanabilirliği incelenecek.
+- 18 W ON durumunun OFF'tan ayrılması, yalnızca mevcut ampul ve ölçüm koşulları için gözlemdir; diğer yük seviyelerine genellenmez.
