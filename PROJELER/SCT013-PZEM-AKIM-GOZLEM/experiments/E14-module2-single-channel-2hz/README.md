@@ -1,6 +1,6 @@
 # E14 — Modül 2 CH1-1T 2 Hz ölçüm denemesi
 
-**Durum:** KISA CİHAZ ÖN KONTROLÜ LOG İLE DESTEKLENDİ; E14 AÇIK  
+**Durum:** İLK CİHAZ LOGU DEĞERLENDİRİLDİ; ÜÇ HIZLI KARŞILAŞTIRMA REVİZYONU DERLENECEK; E14 AÇIK  
 **İlk cihaz kaydı:** 2026-11-06 10:55:37–10:56:41 (+03:00)  
 **Faz:** Faz 2  
 **İlişkili işler:** T010 Modül 2, E13 örnekleme hızı ve yüksüz veri gözlemi
@@ -16,14 +16,14 @@ Bu, kısa bir fizibilite/çalışma kontrolüdür; uzun süreli kararlılık, ka
 | Kanal | Fiziksel bağlantı | Deney davranışı |
 |---|---|---|
 | CH1-1T | Sarı, GPIO32, 1 geçiş | 500 ms hedef; nominal 2 Hz |
-| CH2-1T | Yeşil, GPIO33, 1 geçiş | Yaklaşık 2 saniyede bir |
-| CH3-1T | Mavi, GPIO34, 1 geçiş | Yaklaşık 2 saniyede bir |
+| CH2-1T | Yeşil, GPIO33, 1 geçiş | 1 saniyede bir (1 Hz) |
+| CH3-1T | Mavi, GPIO34, 1 geçiş | 2 saniyede bir (0,5 Hz) |
 | Ortak bias | Turuncu, GPIO35 | Ortak bias ölçümü |
 
 - K=24.22, tüm kanallarda sabit.
 - Gerçek uygulamada üç kanalın `sample_duration` değeri 100 ms'dir.
 - CH1 bağımsız 500 ms aralıklı tetiklenir.
-- CH2/CH3 yavaş taraması 2 saniyelik çevrimde sürer.
+- CH2 her 1 saniyede bir okunur; her ikinci çevrimde CH3 ve ortak bias da okunur (2 saniye).
 - Modül 3'ün UDP 4210 ON/OFF olay alıcısı korunmuştur.
 - Olay eşleştirme anahtarı `BOOT_ID + EVENT_ID`; paket formatında TIME alanı yoktur.
 
@@ -69,6 +69,20 @@ Kullanıcı bu log koşulunu sistem boşta/yüksüz olarak tanımlamıştır. ON
 - [ ] PZEM ve HA History zaman aralığıyla çapraz kontrol yap.
 - [ ] Uzun kayıt sonrasında CPU/safe_mode uyarılarının tekrarını kontrol et.
 
+## 2026-11-06 — Üç örnekleme hızı karşılaştırması revizyonu
+
+Kullanıcı fiziksel olarak hattın yüksüz olduğunu doğruladı; 100 W akkor ampul yalnızca kullanıcıya "aç" denildiğinde fiziksel olarak devreye alınacak. Modül 3 ON/OFF mesajı fiziksel yükün açık/kapalı olduğunun kanıtı sayılmayacak; yalnızca olay işaretidir.
+
+Yeni deney düzeni:
+- CH1-1T: 500 ms (2 Hz).
+- CH2-1T: 1 saniye (1 Hz).
+- CH3-1T: 2 saniye (0,5 Hz).
+- Üç kanal sample_duration: 100 ms.
+- K: 24.22.
+- CH2 her saniyelik script çevriminde okunur; her ikinci çevrimde CH3 ve ortak bias da okunur. CH1 bağımsız 500 ms döngüsünde kalır.
+
+Bu değişiklik yalnızca deney dalındaki YAML'a işlendi; henüz ESPHome Validate/Compile, OTA veya fiziksel cihaz testi yapılmadı. Yeni firmware doğrulanmadan ampul testi başlatılmayacak.
+
 ## Sonraki adım
 
-K, 100 ms sample_duration ve kanal zamanlamalarını şimdilik değiştirme. Aynı fiziksel yüksüz koşulda daha uzun kayıt al; birden fazla Modül 3 ON/OFF çevrimi ve üç SCT kanalının tepkisi birlikte incelensin.
+Önce yeni YAML'ı ESPHome Validate ve Compile ile doğrula. Cihaza yüklendikten sonra yüksüz baz çizgiyi kaydet; ardından kullanıcı ampulü fiziksel olarak açtığında 100 W akkor yük aşamasını başlat. Kararlı bölüm boyunca veri topla, sonra ampulü kapatıp kapanış davranışını kaydet.
