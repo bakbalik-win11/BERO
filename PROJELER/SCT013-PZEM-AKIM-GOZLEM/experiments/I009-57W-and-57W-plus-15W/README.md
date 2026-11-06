@@ -14,7 +14,7 @@ Amaç yalnızca amper değerinin doğruluğunu ölçmek değildir. Her yük koş
 - Tarih: 2026-11-06
 - Kullanıcı planı: 42 W deneyinden sonra yaklaşık 5 dakika içinde 57 W deneyine geçmek; ardından 57 W + 15 W denemek.
 - Gerçek 57 W başlangıç saati: **bekleniyor**.
-- Gerçek birleşik yük başlangıç saati: **bekleniyor**.
+- Gerçek birleşik yük başlangıç saati: **17:30 (+03:00), kullanıcı bildirimi**.
 - Ölçüm kodu: Kullanıcı, mevcut kodun aynı kalacağını belirtti. Firmware/build hash'i ayrıca doğrulanmadı.
 - Ölçüm kanalı: Önceki CH1-1T deney zinciri; yeni fiziksel bağlantı teyidi yok.
 - Analiz edilen SCT sinyali: K çarpımı öncesindeki katsayısız ct_clamp çıktısı; tekil ADC ham örneği değildir.
@@ -68,3 +68,13 @@ OFF / 15 W / 42 W / 57 W / 57 W+15 W dağılımları ayrı gruplar olarak karş�
 - Dakika bilgisi mevcut; saniye düzeyinde başlangıç zamanı bilinmiyor.
 - 57 W + 15 W birleşik yük basamağının başlangıcı henüz bildirilmedi.
 - CSV ve PZEM zaman serisi geldiğinde gerçek ON/OFF çevrimleri ayrıca doğrulanacak.
+
+
+## Gerçek başlangıç kaydı — 57 W + 15 W
+
+- Kullanıcı bildirimi: **6 Kasım 2026 saat 17:30 (+03:00) itibarıyla 57 W + 15 W birleşik yüke geçildi.**
+- Saniye düzeyinde geçiş zamanı bilinmiyor; 17:30 dakika hassasiyetinde kullanıcı bildirimidir.
+- Kullanıcı, birleşik yükte daha doğru/ayırt edilebilir bir çıktı elde etmeyi umut ediyor. Bu beklenti deney sonucu değildir; CSV analiziyle sınanacaktır.
+- Sonraki karşılaştırma denemesi: farklı fiziksel boyut/geometriye sahip mevcut 15 W akkor ampule karşı, boyutları/filament yapısı benzer olduğu belirtilen ayrı bir **13 W akkor ampul** kullanılacak. Amaç, benzer fiziksel ampul yapısında 13 W yükün OFF/ON dağılımlarını ayırıp ayıramadığını gözlemlemektir.
+- 13 W deneyi henüz başlamadı. Ampulün fiziksel özellikleri kullanıcı tarifidir; ölçü veya üretici verisiyle doğrulanmadı.
+- CSV geldiğinde 57 W, 57 W+15 W ve 13 W ayrı gruplar olarak analiz edilecek; geçişler kararlı alan özetlerine katılmayacak.
