@@ -182,3 +182,16 @@ Eğitim çıktısı seçilen kanal kimliğini, fiziksel geçiş/sarım bilgisini
 Kalıcı kanal kimliği `CH1`, `CH2`, `CH3` olmalıdır. Fiziksel geçiş/sarım sayısı (`turn_count`) kanal kimliğine gömülmez; deney/kurulum bazında değişebilir metadata olarak tutulur. Depodaki mevcut 1/4/3 geçiş değerleri yalnız mevcut kayıtlı durumu gösterir. Değişiklik olduğunda yeni deney kayıtları yeni `turn_count` değerini taşır; geçmiş kayıtlar değiştirilmez. `CH1-1T` benzeri birleşik adlar kalıcı kanal veya eğitim seti anahtarı olarak kullanılmaz.
 
 Ayrıntı: [ADR-027](../decisions/ADR-027-single-channel-training-datasets.md).
+
+
+## Taşınabilir SSD çalışma ortamı — ADR-029 (2026-11-06)
+
+BERO Python-1 ve Python-2 için SSD ana çalışma ve veri alanıdır. Kaynak kodları, bağımlılıklar/çalışma paketleri, yapılandırmalar, gelen-kutu, ham arşiv, işlenmiş veriler, eğitim çıktıları ve loglar SSD üzerinde tutulacaktır. Hedef platformlar Microsoft Surface 11 (Snapdragon X Elite, Windows ARM64) ve Mac mini 2024 (Apple M4, macOS ARM64) olarak belirlenmiştir.
+
+Windows ve macOS için ayrı platforma özgü çalıştırma paketleri/başlatıcılar hazırlanacaktır; ortak Python kaynak kodu ve veri yapısı korunacaktır. Programlar sabit sürücü harfine veya bilgisayara özgü mutlak yollara bağımlı olmayacak, SSD kökünden türetilen göreli yolları kullanacaktır.
+
+SSD üzerinde işlem belirgin performans kaybı yaratırsa geçici veriler RAM'de veya bilgisayarın yerel geçici alanında işlenebilir; kalıcı sonuçlar, arşiv ve loglar SSD'ye yazılır. Yerel geçici alan kalıcı veri deposu değildir.
+
+**Açık uygulama kararları:** SSD dosya sistemi, runtime/bağımlılık paketleme yöntemi, başlatıcı biçimi, çevrimdışı ilk kurulum ve geçici alanın temizleme politikası henüz seçilmemiştir. Bu belge mimari kararı kaydeder; çalışan paket veya platform testi bulunduğu anlamına gelmez.
+
+Ayrıntı: [ADR-029](../decisions/ADR-029-portable-ssd-python-runtime.md).
