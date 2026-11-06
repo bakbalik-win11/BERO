@@ -8,7 +8,7 @@ Mevcut 15 W ampulün HA grafiklerinde kirli/bozucu davranış gösterdiğine ili
 
 - Önceki 13 W planı kullanıcı tarafından düzeltildi; **yeni test yükü 18 W'tır**.
 - Kullanıcı 6 Kasım 2026 tarihinde 18 W yük ile yeni teste geçileceğini bildirdi.
-- **Deney henüz başlamış sayılmaz.** Fiziksel bağlantı ve gerçek ON başlangıç zamanı bekleniyor.
+- Kullanıcı bildirimi: **6 Kasım 2026 saat 17:43 (+03:00) itibarıyla 18 W yük ON yapıldı; I010 başladı.** Saniye düzeyinde zaman bilinmiyor.
 - Mevcut 15 W ampul kullanılmayacak.
 - 18 W tek başına test edilecek; 57 W veya başka yükle birleştirilmeyecek.
 - CH1-1T, firmware ve ölçüm parametreleri mümkün olduğunca sabit tutulmalı; gerçek bağlantı ve yazılım koşulları başlangıçta ayrıca kaydedilecek.
@@ -32,3 +32,10 @@ Temel soru, 18 W ON durumunun OFF referansından yeterli süre ve kararlılıkla
 ## Düzeltme kaydı
 
 Önceki taslakta 13 W yazılmıştı. Kullanıcının son bildirimiyle deney yükü **18 W** olarak düzeltildi. 13 W deneyi plan kapsamında değildir.
+
+
+## Gerçek başlangıç kaydı — 18 W
+
+- Kullanıcı bildirimi: **17:43 (+03:00), 6 Kasım 2026 — 18 W ON.**
+- Bu zaman kullanıcı bildirimidir; saniye hassasiyeti ve CSV/PZEM zaman serisiyle doğrulama henüz yoktur.
+- Analiz, I010 planındaki süre-temelli ON/OFF karşılaştırmasına göre yapılacaktır. Tekil sıçramalar sınıflandırma kararı sayılmayacak.
