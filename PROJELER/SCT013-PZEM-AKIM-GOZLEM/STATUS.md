@@ -353,3 +353,16 @@ Kullanıcı kararıyla eğitim/kalibrasyon istatistiği ile ilerideki canlı yü
 - Altı turda PZEM ON örnekleri yaklaşık 0.463–0.469 A. K oranları aday gösterge olarak hesaplandı; nihai katsayı seçilmedi.
 - F aralığı CSV'deki 15:36:16–15:46:16 1 Hz segmentinden eşleştirildi; kullanıcı başlangıç bildirimi ve cihaz build/OTA logu ayrıca doğrulanmadı. A/B/C aralıkları cadence geçişlerinden eşleştirildi; binary/YAML hash doğrulaması yok.
 - Tam yöntem, tablolar, trimmed mean, IQR işaretleri, K oranları ve yorum: [A–F kararlı ON karşılaştırma raporu](logs/module2/2026-11-06-e15-e16-a-f-on-only-comparison.md).
+
+## 2026-11-06 — Eğitim yöntemi kararı: her ON çevriminde SCT–PZEM medyan çifti
+
+Kullanıcı kararı: İlk katsayı eğitiminde her fiziksel olarak doğrulanmış kararlı ON çevrimi ayrı bir eğitim gözlemidir. Aynı kararlı zaman aralığında SCT ve PZEM okumalarının medyanları ayrı ayrı hesaplanır. Her ON çevriminin eğitim girdisi tek bir (SCT medyanı, PZEM medyanı) çiftidir; aritmetik ortalama merkez kestiricisi olarak kullanılmaz.
+
+- Başlangıç SCT okuma tercihi tek kanal/tek yayın ve 500 ms aralıktır. Paket içine çoklu örnek eklenmeyecek; paket boyutu ve ESP firmware yükü artırılmayacaktır.
+- 30 saniyelik kararlı aralıkta SCT için nominal yaklaşık 60 yayın beklenir. PZEM aynı zaman aralığındaki kendi geçerli okumalarıyla ayrı medyanlanır; SCT ile aynı örnek sayısına sahip olduğu varsayılmaz.
+- Her çevrim için n_SCT, n_PZEM, ortak kararlı zaman aralığı, iki medyan ve yayılım ölçüleri kaydedilir. Çevrim katsayısı adayı K_j = PZEM_medyan / SCT_medyan olarak türetilebilir.
+- Tek tek yayınlar bağımsız deney tekrarı sayılmaz; ON çevrimleri tekrarlı gözlemlerdir. Çevrimler arası nihai K birleştirme yöntemi henüz kararlaştırılmamıştır.
+- Medyan merkezdir; MAD ve diğer yayılım ölçüleri medyanın tutarlılığını değerlendirmek için raporlanır. PZEM pratik referanstır, mutlak ground truth değildir.
+- Minimum geçerli PZEM örnek sayısı ve kararlı pencere/yerleşme parametreleri henüz belirlenmemiştir.
+
+Ayrıntı: [ON eğitim verisi ve katsayı belirleme istatistiği](docs/ON-training-calibration-statistics.md).
