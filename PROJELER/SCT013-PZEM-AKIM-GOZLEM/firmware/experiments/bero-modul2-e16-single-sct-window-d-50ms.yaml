@@ -404,7 +404,7 @@ interval:
             );
           }
 
-  # E16 B turu: 1s (1 Hz). E15 A/B/C turlarıyla karşılaştırmada yalnız yayın aralığı değişir.
+  # E16 D turu: 50ms ölçüm penceresi; yayın aralığı 1s (1 Hz) sabit.
   - interval: 1s
     then:
       - component.update: sct_1_current
