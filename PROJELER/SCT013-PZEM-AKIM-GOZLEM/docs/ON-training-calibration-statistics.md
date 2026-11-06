@@ -103,3 +103,28 @@ Bir ölçüm parametresi değiştiğinde aynı kalibrasyon serisiymiş gibi birl
 birlikte arşivlenir.
 
 **Nihai medyan/ortalama/trimmed mean seçimi, IQR/Hampel eşikleri, minimum örnek sayısı, ON yerleşme süresi ve kabul toleransı henüz kesinleştirilmemiştir.** Bunlar E16 ve sonraki kontrollü ON verileri üzerinde karşılaştırılarak karara bağlanacaktır.
+
+## 2026-11-06 — ON çevrimi bazında SCT–PZEM medyan eğitim çifti
+
+**Kullanıcı kararı:** İlk katsayı eğitiminde her fiziksel olarak doğrulanmış kararlı ON çevrimi ayrı bir eğitim gözlemi olacaktır. Aynı kararlı zaman aralığı içinde SCT ve PZEM serileri ayrı ayrı medyanla özetlenecek; o ON çevriminin eğitim kaydı bu iki medyandan oluşan SCT–PZEM çifti olacaktır.
+
+### Uygulama sırası
+
+1. Fiziksel olarak doğrulanmış ON çevriminin kararlı ortak zaman aralığı belirlenir. ON geçişi ve kararlı olmayan PZEM geçiş değerleri dahil edilmez.
+2. SCT için tek kanal/tek yayın akışı korunur. Başlangıç okuma tercihi 500 ms yayın aralığıdır; paket içine birden fazla ölçüm doldurulmaz. Paket boyutu ve firmware yükü artırılmaz.
+3. 500 ms aralıkla 30 saniyelik kararlı SCT bölümünde nominal yaklaşık 60 yayın bulunur. Bu bölümün medyanı, o ON çevriminin SCT temsilî değeridir.
+4. Aynı kararlı zaman aralığına düşen geçerli PZEM akım okumalarının medyanı ayrıca hesaplanır. PZEM örnek sayısı SCT'den az olabilir; PZEM'e 60 örnek varmış gibi davranılmaz.
+5. Her ON çevrimi için tek eğitim çifti kaydedilir: (SCT_cycle_median, PZEM_cycle_median). Çevrim katsayısı adayı K_j = PZEM_cycle_median / SCT_cycle_median olarak hesaplanabilir.
+6. Birden fazla ON çevrimi, birbirinden bağımsız tekil yayınlar gibi değil, tekrarlı çevrim gözlemleri olarak değerlendirilir. Çevrimler arası nihai K birleştirme yöntemi ayrıca kararlaştırılacaktır.
+
+### İstatistiksel sınırlar
+
+- Aritmetik ortalama, ilk eğitim temsilî değeri olarak kullanılmayacaktır. Kullanıcı kararıyla merkez kestirici medyandır.
+- Medyanın kaç değerden hesaplandığı her iki kaynak için ayrı n_SCT ve n_PZEM alanlarıyla kaydedilir. SCT için 30 saniyelik kararlı aralıkta 500 ms yayınla yaklaşık 60 değer beklenir; bu sayı sabit garanti değil, nominal beklentidir.
+- SCT ve PZEM medyanları aynı kararlı zaman aralığından hesaplanır; yayın zamanları bire bir eşleşmiş kabul edilmez. Zaman aralığı kesişimi ve geçerli örnek sayıları kaydedilir.
+- Her ON çevriminin medyanı eğitim çiftidir. Çevrimler arası medyan, ancak çevrim bazlı eğitim çiftleri oluştuktan sonra ayrı bir özet olarak kullanılabilir; ham çevrim çiftlerinin yerini almaz.
+- MAD ve diğer yayılım ölçüleri medyanın güvenilirliğini/tekrarlanabilirliğini değerlendirmek için raporlanır; merkez değer yerine geçirilmez.
+- PZEM bu proje için pratik referanstır, mutlak ground truth değildir. Geçerli PZEM örnek sayısı için asgari eşik henüz belirlenmemiştir; bu eşik sonuçlara bakıldıktan sonra seçilmeyecektir.
+- 500 ms yayın tercihi daha fazla gözlem sağlar; daha fazla örnek bağımsız deney sayısını artırmaz. Tekrarlı ON çevrimleri esas deney birimidir.
+
+**Durum:** Medyan tabanlı ON-çevrimi eğitim çifti yöntemi kullanıcı tarafından onaylandı. 500 ms SCT yayın aralığı başlangıç tercihi olarak kabul edildi. Kararlı pencere süresi/yerleşme kuralı, minimum PZEM örnek sayısı ve çevrimler arası nihai K birleştirme yöntemi açık parametrelerdir.
