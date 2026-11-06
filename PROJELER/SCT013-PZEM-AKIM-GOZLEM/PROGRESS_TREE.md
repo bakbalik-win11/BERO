@@ -469,3 +469,15 @@
 3. Fiziksel SCT kanal değişimi: CH1←önceki SCT3, CH2←önceki SCT1, CH3←önceki SCT2. Yeni CSV, donanım/kanal etkisini karşılaştırmak için bekleniyor.
 
 Ayrıntı: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.md).
+
+
+## 2026-11-06 — E15 tek kanal / yayın aralığı karşılaştırması
+
+- E14 üç kanal gözlemlerinde yayın aralığıyla sıçrama davranışı arasında görünen farkın kanal sıralaması/ortak ESP32 çalışma düzeniyle ilişkili olup olmadığı ayrı test edilecek.
+- Tek ölçüm kanalı: CH1-1T / sarı / GPIO32 / ADC1_CH4. Aynı SCT ve 1T yerleşimi üç turda korunacak.
+- Üç tur: 500 ms, 1 s, 2 s; her biri 30 dakika. sample_duration=100 ms ve K=24.22 sabit. Sadece interval değişkeni değişecek.
+- E15 ayrı YAML hazırlandı; ana üç kanallı firmware değiştirilmedi. CH2/CH3 ve GPIO35 bias ADC okumaları yok; UDP 4210 olay alıcısı korunuyor.
+- Ölçütler: ardışık akım farklarının dağılımı, sıçrama genliği, ortak eşik üstü adet, dakika başına ve 1.000 yayın başına oran, SD ve gerçek timestamp aralıkları.
+- Seyrek örnekleme arada oluşup kaybolan kısa sıçramaları gözlem dışı bırakabilir; rapor yalnız yayımlanan seride gözlenen sıçramalar hakkında hüküm verecek.
+- **Durum:** PLANLANDI/HAZIRLANDI. YAML Validate/Compile, OTA, cihaz testi ve üç tur logu bekliyor.
+- [E15 protokolü](experiments/E15-single-sct-publish-interval/README.md); [YAML](firmware/experiments/bero-modul2-e15-single-sct-interval.yaml); [sonuç defteri](experiments/E15-single-sct-publish-interval/results.md).
