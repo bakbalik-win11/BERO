@@ -366,3 +366,7 @@ Kullanıcı kararı: İlk katsayı eğitiminde her fiziksel olarak doğrulanmı�
 - Minimum geçerli PZEM örnek sayısı ve kararlı pencere/yerleşme parametreleri henüz belirlenmemiştir.
 
 Ayrıntı: [ON eğitim verisi ve katsayı belirleme istatistiği](docs/ON-training-calibration-statistics.md).
+
+## 2026-11-06 — Sabit yükle ilk eğitim kapsamı
+
+Medyan tabanlı ON çevrimi SCT–PZEM çifti yöntemi ilk aşamada sabit yükle eğitim içindir. Aynı fiziksel yük ve çalışma koşulunda tekrarlanan ON çevrimleri ayrı eğitim çiftleri üretir. Farklı yük/akım seviyeleri aynı havuzda birleştirilmez; sonraki aşamada her sabit yük seviyesi ayrı eğitim grubu olarak incelenir. Tek bir sabit yükte elde edilen K sonucu tüm akım aralığına genellenmez. Ayrıntı: [eğitim istatistiği](docs/ON-training-calibration-statistics.md).
