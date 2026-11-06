@@ -540,3 +540,16 @@ Kullanıcının ek talebi: aynı uzun süreli yüksüz testte CH1 katsayısız/k
 - Doğrulama; tekil sıçramalar yerine eşik davranışının süresi, pencere medyanı/MAD ve tekrarlı ON/OFF çevrimleriyle yapılacak.
 - I010 durumu: BAŞLADI; ilk görsel gözlem mevcut, toplu veri analizi bekleniyor.
 - Ayrıntı: [I010 — 18 W deney kaydı](experiments/I010-13W-incandescent-low-load/README.md).
+
+
+## 2026-11-06 — I010 analiz hedefleri ayrıldı
+
+I010 için iki ayrı istatistiksel hedef belirlendi:
+1. **Akım var/yok kararı:** OFF ile 18 W ON durumunu, K=24.22 uygulanmış CH1 ve PZEM pratik referans kayıtlarıyla zaman/süre temelli ayırmak. 0.20 A aday sınırı tekil örnek eşiği olarak kullanılmayacak.
+2. **Hesaplanamayan alanın çerçevesi:** OFF referansına yakınlık, pencere medyanı farkı, MAD, IQR/P05/P95, tepe-tepe aralığı, dalgalanma, eşik çevresinde kalınan süre, en uzun devam süresi, dağılım örtüşmesi ve timestamp kapsamasıyla belirsizlik/kararsızlığı tarif etmek.
+
+Bir pencere akım varlığını gösterebilir ama amper hesabı için kararsız olabilir; bu nedenle `CURRENT_PRESENT` ile hesaplanabilirlik aynı karar değildir. `CURRENT_NOT_COMPUTABLE` ayrı tutulacak.
+
+Kullanıcı 18:00'de mevcut veriyi paylaşacak; bu ilk kontrol noktasıdır. Sonrasında uzun 18 W ON/OFF aç-kapa testine devam edecek. İlk veri kesiti ve devam kaydı aynı I010 deneyinde ayrı veri dilimleri olarak tutulacak. 15 W içeren dönemler kontrollü I010 karşılaştırmasından hariç tutulacak; ham veri silinmeyecek.
+
+Ayrıntı: [I010 — 18 W deney kaydı](experiments/I010-13W-incandescent-low-load/README.md).
