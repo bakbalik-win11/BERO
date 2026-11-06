@@ -151,3 +151,14 @@ Model biçimi önceden sabitlenmez. Yeterli farklı yük ve akım aralığı ver
 - Gelen-kutu/arşiv/hata/log klasörlerinin gerçek yolu ve alt klasörleme politikası henüz seçilmemiştir.
 
 Ayrıntı: [ADR-026](../decisions/ADR-026-python-inbox-archive-workflow.md). Bu karar mimari sınırı belirler; iki programın kodlandığı veya test edildiği anlamına gelmez.
+
+
+## Tek kanallı SCT eğitim veri setleri (ADR-027 — kabul edildi)
+
+Üç kanallı test firmware'i ve çok kanallı ham arşiv korunabilir; ancak her eğitim veri seti yalnızca tek SCT kanalını içerir. CH1, CH2 ve CH3 ayrı veri setleri ve ayrı model değerlendirmeleri üretir. Bir kanalda öğrenilen model başka kanala otomatik uygulanmaz. PZEM akımı proje referans akışıdır ve seçilen SCT kanalının kararlı alanlarıyla mevcut BOOT_ID + EVENT_ID paket kuralları içinde eşleştirilir.
+
+Eğitim çıktısı seçilen kanal kimliğini, fiziksel geçiş/sarım bilgisini, kaynak dosya/hash'i, firmware/kod sürümünü, calibration_id bilgisini (gerçekse) ve PZEM referans akışını izlenebilir tutmalıdır. Ham arşiv değiştirilmez; kanal seçimi ayrı türetilmiş çıktıdır.
+
+Önerilen ortak kanal adı biçimi `CH1-1T`, `CH2-4T`, `CH3-3T` şeklindedir. Mevcut donanım notlarındaki fiziksel eşleme kod/entity adlarına uygulanmadan önce doğrulanmalıdır. Bu adlandırma önerisidir; firmware ve HA entity'leri henüz değiştirilmemiştir.
+
+Ayrıntı: [ADR-027](../decisions/ADR-027-single-channel-training-datasets.md).
