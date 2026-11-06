@@ -176,3 +176,10 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - **Yorum sınırı:** 2 saniyelik örnekleme iki yayın arasında oluşup kaybolan kısa olayları kaçırabilir. Bu nedenle sayımlar gerçek fiziksel sıçrama olaylarının tam sayısı değil, yayın akışında gözlenen sıçramalardır. Ortak sıçrama eşiği sonuçlar görülmeden belirlenecek.
 - **KANIT / DURUM:** Protokol ve ayrı YAML depoya eklendi. ESPHome Validate/Compile, OTA ve fiziksel ölçüm yapılmadı. E15 PLANLANDI/HAZIRLANDI; test başladı veya tamamlandı denemez.
 - Ayrıntı: [E15 protokolü](experiments/E15-single-sct-publish-interval/README.md), [sonuç defteri](experiments/E15-single-sct-publish-interval/results.md).
+
+
+## 2026-11-06 — E15 tur süresi revizyonu
+
+- Kullanıcı kararıyla E15'in her tur süresi 30 dakikadan **10 dakikaya** indirildi. A/B/C sırası ve 500ms → 1s → 2s aralıkları değişmedi.
+- Nominal kayıt beklentileri: A yaklaşık 1.200, B 600, C 300 CH1 sonucu. Gerçek kayıt adedi HA timestamp'lerinden belirlenecek.
+- sample_duration=100ms, K=24.22 ve tek SCT/CH1 donanım koşulu sabit. Yalnız tur süresi revize edildi.
