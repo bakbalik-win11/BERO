@@ -435,3 +435,12 @@
 - Kalibrasyon referansı yalnızca ON içindeki bağımsız SCT/PZEM kararlı alanlarının örtüşmesidir. Geçiş/interpolasyon değerleri katsayı öğrenimine katılmaz; ham kayıt korunur.
 - K=24.22 değiştirilmedi. Hafta sonu farklı sabit yükler ve ilk Python veri hattı önceliklidir; canlı makine doğrulaması sonraki aşamadır.
 - Ayrıntı: [E11](experiments/E11-idle-dual-module-observation/README.md), [E12](experiments/E12-sct-stability-window-and-response/README.md).
+
+
+## 2026-11-06 — Eğitim yaklaşımı ve sonraki çalışma
+
+- Kullanıcı, genel akım okuma aşamasına ulaşıldığını ve eğitim için kullanılabilecek kararlılıkta alanları hedeflediğimizi teyit etti; sayısal kararlılık algoritması henüz tamamlanmış değildir.
+- Kullanıcı, eğitim felsefesinin ve istenen veri yaklaşımının bugün ekran görüntüsüyle de sabitlendiğini bildirdi.
+- Yarın ilk iş, eğitim için kullanılacak SCT ve PZEM verisini gerçek kayıtlar üzerinden seçmek ve sabitlemek; kararlı alanların uygunluğunu değerlendirmektir.
+- PY-01 arşiv/oturum tasarımı çalışan örnek üzerinden denenecek; henüz kesinleştirilmedi.
+- Python eğitim/etiketleme uygulaması veya yeni model çıktısı bu oturumda üretilmedi. T007 → T008 → T006 sırası korunur.
