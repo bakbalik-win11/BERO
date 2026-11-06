@@ -85,3 +85,6 @@ Her yeni deney için amaç/HEDEF, gerçek bağlantı ve ayarlar, LOG, SONUÇ, ka
 **Zaman notu / kullanıcı bildirimi:** Görseldeki mevcut katsayısız kararlı durum gözlemi 2026-11-06 saat 13:49'da başladı. Kullanıcı 14:00'te yeni koda geçmeyi planladığını bildirdi. Bu zaman bilgisi kullanıcı beyanıdır; görsel tek başına tam kayıt aralığı veya 10 dakikalık tur tamamlandığını kanıtlamaz.
 
 **Yorum sınırı:** Daha seyrek yayın aralığı iki yayın arasında oluşup kaybolan sapmaları örneklemeyebilir. Bu nedenle üç turdaki benzerlik/farklılık yalnız yayımlanmış tekil değerlerin gözlenen davranışı için yorumlanacaktır; örneklenmeyen fiziksel olayların yokluğu anlamına gelmez.
+
+
+- **[E16 — Tek SCT kanalında ct_clamp ölçüm penceresi karşılaştırması](E16-single-sct-window-duration/README.md): PLANLANDI.** E15'in tersine bu deneyde yayın aralığı 1s sabit tutulacak; yalnız `sample_duration` D=50ms, E=100ms, F=200ms olarak üç ayrı 10 dakikalık turda değişecek. İlk D firmware'i hazırlandığında derleme/OTA/cihaz doğrulaması ayrıca yapılacaktır.
