@@ -192,3 +192,22 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - Modül 3 UDP EVENT_ID=314 / STATE=OFF paketi alındı ve olay text_sensor alanlarına yayınlandı. UDP STATE fiziksel yük durumunun kanıtı değildir.
 - **Durum:** İlk cihaz çalışma kontrolü LOG İLE DESTEKLENDİ. Bu kayıt 10 dakikalık A turu değildir; A/B/C tur sonuçları ve sıçrama karşılaştırması bekliyor. Logdaki yapılandırma adı esp32d1.yaml olduğundan depo E15 YAML snapshot'ı ile binary arasında birebir hash bağı kurulmadı.
 - [Ham log](logs/module2/2026-11-06-e15-a-500ms-initial-device-log.txt); [analiz](logs/module2/2026-11-06-e15-a-500ms-initial-device-log-analysis.md); [E15 sonuç defteri](experiments/E15-single-sct-publish-interval/results.md).
+
+
+## E15 ana hedef ve üç yayın aralığı için beklenen sonuç — 2026-11-06
+
+**Kullanıcı tarafından netleştirilen ana hedef:** Katsayısız CH1-1T akım çıktısında, kararlı fiziksel koşul içindeki tekil ölçümlerin kendi ortalamasına yakınlığını iyileştirmek. Değerlendirme standart sapmayı tek başına hedef almayacaktır. Esas konu, ortalamadan sapmaların **ne sıklıkta** oluştuğu ve oluştuğunda **ne kadar büyük** olduğudur.
+
+**E15'in bu üç turlu deneyine ait beklenti:** 500 ms, 1 s ve 2 s yayın aralıklarında bu sapma davranışının belirgin biçimde değişmemesi beklenmektedir. Deneyin sorusu, yayın aralığını değiştirmekle tekil ölçümlerin ortalamaya yakınlığının değişip değişmediğidir. Üç turda benzer sonuç çıkması, yayın aralığının bu kararlı durum sapma davranışında belirgin etkisi olmadığı yönünde kanıt sağlayacaktır; farklılık çıkması ise ayrıca incelenecektir. Bu beklenti sonuç değildir ve ölçümle sınanacaktır.
+
+**Ana değerlendirme ölçütleri:**
+- Her turun aynı kuralla seçilmiş kararlı bölümlerinde ortalama akım referans alınır; her tekil ölçüm için mutlak ortalamadan sapma hesaplanır: |I[n] − ortalama|.
+- Önceden belirlenmiş ortak tolerans bandının dışında kalan tekil ölçümlerin adedi ve toplam geçerli ölçümlere oranı: sapma sıklığı.
+- Tolerans dışı ölçümlerin ortalama, P95 ve maksimum mutlak sapması: sapma miktarı.
+- Tüm ölçümlerde mutlak sapmanın medyanı ve P95'i de raporlanır; böylece yalnız eşik dışındaki değerler değil genel yakınlık da görünür.
+- Tur süreleri ve yayın adetleri farklı olduğundan sıklık hem ölçüm başına oran (%) hem 1.000 yayın başına adet olarak verilir. Dakika başına adet yardımcı göstergedir.
+- Tolerans bandı sonuçlar görülmeden, üç tur için ortak biçimde belirlenmelidir. Sayısal tolerans henüz kararlaştırılmamıştır; belirlenmeden eşik dışı sayım üzerinden üstünlük ilan edilmeyecektir.
+
+**Zaman notu / kullanıcı bildirimi:** Görseldeki mevcut katsayısız kararlı durum gözlemi 2026-11-06 saat 13:49'da başladı. Kullanıcı 14:00'te yeni koda geçmeyi planladığını bildirdi. Bu zaman bilgisi kullanıcı beyanıdır; görsel tek başına tam kayıt aralığı veya 10 dakikalık tur tamamlandığını kanıtlamaz.
+
+**Yorum sınırı:** Daha seyrek yayın aralığı iki yayın arasında oluşup kaybolan sapmaları örneklemeyebilir. Bu nedenle üç turdaki benzerlik/farklılık yalnız yayımlanmış tekil değerlerin gözlenen davranışı için yorumlanacaktır; örneklenmeyen fiziksel olayların yokluğu anlamına gelmez.
