@@ -104,3 +104,10 @@ K=24.22 uygulanmış/hesaplanmış CH1 değeri **0.20 A'nın altındaysa OFF** o
 6. Ham kayıtlar değişmeden korunacak; Oturum 2 ve uzun OFF kaydı ayrı veri kesitleri olarak raporlanacaktır.
 
 **Güvenlik sınırı:** OFF yazılım sınıfı, hattın enerjisiz veya dokunmaya güvenli olduğu anlamına gelmez.
+
+
+## Oturum 2 raporu — 6 Kasım 2026, uzun 18 W ON/OFF çevrimleri
+
+İki HA History CSV birleştirilerek 18:00–20:39 aralığındaki yaklaşık 160 ON ve 160 OFF çevrimi analiz edildi. ON çevrim medyanları 160/160 kez 0.20 A veya üzerindeydi; fiziksel OFF çevrim medyanlarının 135/160'ı 0.20 A altındaydı, 25'i eşik altında değildi. Eşik üstü OFF pencereleri otomatik ON sayılmadı. PZEM ON gücü yaklaşık 18.10 W, OFF kayıtları 0 W ile uyumluydu. PZEM gerilimi mevcut, ayrı bias entity'si yoktu. CSV sonunda çevrim sürdüğünden uzun sürekli yüksüz kayıt bu oturumda yer almıyor.
+
+Ayrıntılı istatistikler, kaynak SHA-256 değerleri ve yöntem: [I010 Oturum 2 raporu](REPORT-2026-11-06-session-02.md).
