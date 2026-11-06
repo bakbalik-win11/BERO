@@ -99,6 +99,8 @@ Sıçrama eşiği sonuçlar görüldükten sonra seçilmeyecek. Analiz başlamad
 
 Deney firmware'i: [bero-modul2-e15-single-sct-interval.yaml](../../firmware/experiments/bero-modul2-e15-single-sct-interval.yaml)
 
+B turu için `interval: 1s` içeren ayrı ve tam YAML snapshot'ı: [bero-modul2-e15-single-sct-interval-b-1s.yaml](../../firmware/experiments/bero-modul2-e15-single-sct-interval-b-1s.yaml). A turu YAML'ı değiştirilmeden korunur.
+
 Bu dosya mevcut üç kanallı ana firmware'in üzerine yazmaz. ESPHome cihaz kimliği `esp32d1` korunmuştur; aynı fiziksel cihaza yalnız bir yapılandırma yüklenmelidir. Dosyanın başlangıç hali A turu için 500ms'dir.
 
 ## Sonuç durumu
