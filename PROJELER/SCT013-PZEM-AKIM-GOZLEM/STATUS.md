@@ -183,3 +183,12 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - Kullanıcı kararıyla E15'in her tur süresi 30 dakikadan **10 dakikaya** indirildi. A/B/C sırası ve 500ms → 1s → 2s aralıkları değişmedi.
 - Nominal kayıt beklentileri: A yaklaşık 1.200, B 600, C 300 CH1 sonucu. Gerçek kayıt adedi HA timestamp'lerinden belirlenecek.
 - sample_duration=100ms, K=24.22 ve tek SCT/CH1 donanım koşulu sabit. Yalnız tur süresi revize edildi.
+
+## 2026-11-06 — E15 ilk cihaz çalışma kontrolü
+
+- E15 A turu için ESPHome 2026.10.2 cihaz logu incelendi. API bağlantısı/handshake başarılı; ESP32D1 Wi-Fi bağlantısı mevcut.
+- GPIO32 / ADC1_CH4, 12 dB ADC başlatma, config ve calibration durumları OK. ct_clamp sample_duration=100ms ve update_interval=never olarak raporlandı.
+- 28.492 saniyelik kısa logda 58 CH1 akım yayını bulundu; medyan yayın aralığı 0.500s, gözlenen aralık 0.427–0.577s.
+- Modül 3 UDP EVENT_ID=314 / STATE=OFF paketi alındı ve olay text_sensor alanlarına yayınlandı. UDP STATE fiziksel yük durumunun kanıtı değildir.
+- **Durum:** İlk cihaz çalışma kontrolü LOG İLE DESTEKLENDİ. Bu kayıt 10 dakikalık A turu değildir; A/B/C tur sonuçları ve sıçrama karşılaştırması bekliyor. Logdaki yapılandırma adı esp32d1.yaml olduğundan depo E15 YAML snapshot'ı ile binary arasında birebir hash bağı kurulmadı.
+- [Ham log](logs/module2/2026-11-06-e15-a-500ms-initial-device-log.txt); [analiz](logs/module2/2026-11-06-e15-a-500ms-initial-device-log-analysis.md); [E15 sonuç defteri](experiments/E15-single-sct-publish-interval/results.md).
