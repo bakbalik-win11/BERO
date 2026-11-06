@@ -73,3 +73,12 @@ Her tur 10 dakika sürer. HA zaman damgalarıyla gerçek yayın aralığı ve ge
 - Log, `esp32d1.yaml` validated config cache kullandığını bildiriyor; çalışan binary ile depodaki E16 D YAML arasında birebir hash eşleşmesi kanıtlanmıyor.
 - Bu 31 saniyelik ön test, 15:01'de başlayan 10 dakikalık D turunun yerine geçmez.
 - [Ham kontrol logu](../../logs/module2/2026-11-06-e16-d-50ms-pretest-control-log.txt) · [Analiz](../../logs/module2/2026-11-06-e16-d-50ms-pretest-control-log-analysis.md)
+
+
+### E turu — firmware hazırlandı (2026-11-06)
+
+- E turu için ayrı firmware dosyası oluşturuldu: `firmware/experiments/bero-modul2-e16-single-sct-window-e-100ms.yaml`.
+- Ayarlar: CH1-1T / GPIO32 / ADC1_CH4; `sample_duration=100ms`; `interval=1s`; K=24.22; ADC 12dB; UDP 4210 alıcısı ve 100ms non-blocking alım kontrolü korunur.
+- D turundan yalnızca `sample_duration` 50ms → 100ms olarak değiştirildi. CH2/CH3 ve ayrı GPIO35 bias ADC okuması bulunmaz.
+- Öncelikli değerlendirme fiziksel olarak doğrulanmış kararlı ON bölümlerindeki katsayısız ct_clamp çıktısının dağılımıdır. OFF verisi korunur ancak ON kararlılığı başarı ölçütü değildir.
+- **Durum:** Kod depoya eklendi; bu kayıt derleme, OTA veya E turunun başlatıldığını göstermez.
