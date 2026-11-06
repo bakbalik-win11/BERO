@@ -456,3 +456,14 @@ Kullanıcının 42 W deneyinden sonraki planı:
 - Saniye düzeyinde başlangıç bilinmiyor; CSV/PZEM zaman serisiyle doğrulanacak.
 - 57 W + 15 W birleşik yük basamağı henüz başlamadı/bildirilmedi.
 - Ayrıntı: [I009 deney kaydı](experiments/I009-57W-and-57W-plus-15W/README.md).
+
+
+## 2026-11-06 17:30 — I009 birleşik yük basamağı başladı
+
+- Kullanıcı bildirimi: **17:30 (+03:00) itibarıyla 57 W + 15 W birleşik yüke geçildi.** Saniye düzeyinde başlangıç bilinmiyor.
+- 57 W tekil yük başlangıcı daha önce 17:17 sonrasında bildirilmişti.
+- Kullanıcı birleşik yükün daha doğru/ayırt edilebilir çıktı vermesini bekliyor; bu bir beklentidir, doğrulanmış sonuç değildir.
+- Sonraki deney adayı: ayrı bir **13 W akkor ampul**. Kullanıcının gerekçesi, bu ampulün fiziksel boyutlarının mevcut 15 W akkor ampule benzer olması; böylece watt farkı ile ampul fiziksel yapısının etkisini daha kontrollü karşılaştırabilmek. Bu deney henüz başlamadı.
+- 13 W deneyi ayrı yük sınıfı olarak tutulacak. OFF/ON dağılımları, zaman kararlılığı ve kısa/uzun pencerelerde ayrışma karşılaştırılacak.
+- CSV/HA History verileri geldikten sonra 57 W, 57 W+15 W ve 13 W ayrı gruplar halinde analiz edilecek. Kullanıcı bildirimi dışında henüz sayısal sonuç veya ampul geometrisi doğrulaması yoktur.
+- Ayrıntı: [I009 deney kaydı](experiments/I009-57W-and-57W-plus-15W/README.md).
