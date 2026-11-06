@@ -586,3 +586,12 @@ I010 Oturum 2 planı:
 - Ayrı bias entity/serisi CSV'lerde bulunamadı. Bu nedenle bias ilişkisi henüz incelenemiyor. Dakikalık CH1 ve gerilim medyanları korelasyonu yaklaşık 0.13; tek oturumda güçlü doğrusal ilişki kanıtı yok, nedensellik sonucu çıkarılamaz.
 - CSV sonuna kadar 40/20 saniyelik çevrim sürdüğü ve PZEM yaklaşık 18 W gösterdiği için bu veri dilimi uzun ON/OFF oturumudur; sonraki çok uzun sürekli fiziksel yüksüz kayıt henüz alınmamıştır.
 - Rapor: [I010 Oturum 2](experiments/I010-13W-incandescent-low-load/REPORT-2026-11-06-session-02.md).
+
+
+## 2026-11-06 — I010 deneyi sonlandırıldı; çalışma sınıfları sabitlendi
+
+Kullanıcının nihai kararıyla K=24.22 uygulanmış CH1 hesaplanmış akım çıktısı şu şekilde sınıflandırılacaktır: **0.21 A altı = kararlı alanlarda KAPALI/OFF; 0.21–0.41 A = HESAPLANAMADI; 0.41 A üstü = HESAPLANIR.** Tam 0.21 A ve tam 0.41 A hesaplanamadı aralığına dahildir. Kararlı alanın süre/örnek/tolerans tanımı henüz yapılmamıştır.
+
+I010 18 W uzun ON/OFF deneyi ve mevcut veri değerlendirmesi SONLANDIRILDI. Önceki 0.20 A aday kuralı bu nihai kararla geçersiz kılınmıştır.
+
+**Açık kalan tek araştırma:** 0.21–0.41 A hesaplanamadı bölgesinin istatistiksel analizi ve kararlı alan tanımının oluşturulması. Bunun dışındaki I010 deney hedefleri kapatılmıştır. Ayrıntı: [sınıflandırma kararı](docs/current-state-classification.md) ve [I010 Oturum 2 raporu](experiments/I010-13W-incandescent-low-load/REPORT-2026-11-06-session-02.md).
