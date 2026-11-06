@@ -59,6 +59,31 @@ SCT1'in yayınlanan değerleri üzerinde kayan/ardışık pencereler değerlendi
 - Pencere boyu, minimum süre ve eşikler gerçek veri incelendikten sonra seçilir; şimdiden sayısal eşik uydurulmaz.
 - Benzer ortalamaya sahip ancak dağılımı farklı pencereler ayrıştırılır; yinelenen değer/quantization ve güncelleme sıklığı dikkate alınır.
 
+## Kullanıcı tarafından netleştirilen eğitim penceresi sınırı — 2026-11-06
+
+Bu kural, önceki simetrik SCT/PZEM kararlı-aralık kesişimi tarifini **eğitim penceresinin sınırlandırılması bakımından** ayrıntılandırır:
+
+- Açılışta SCT ve PZEM kendi akışlarında bağımsız değerlendirilir.
+- SCT kararlı duruma ulaşmış olsa bile PZEM henüz kararlı değilse eğitim başlamaz; PZEM'in kararlı olması beklenir.
+- **Eğitim başlangıcı:** SCT kararlı VE PZEM kararlı koşullarının ikisi de ilk kez sağlandığında, yani iki kararlılık başlangıcının daha geç olanı.
+- **Eğitim bitişi:** SCT akımın kesildiğini algıladığı anda. PZEM'in kapanış gecikmesi veya mavi serinin daha sonra düşmesi beklenmez.
+- Eğitim çıktısına yalnızca bu başlangıç ve bitiş arasında kalan katsayısız SCT tekil ölçümleri alınır. PZEM ölçümleri kararlılık/etiket referansı olarak kullanılır; SCT tekil değerleri PZEM'e eşitlenmez, timestamp üzerinden birebir eşleştirilmez ve interpolasyon yapılmaz.
+- Sabit bir süre, önceden seçilmiş zaman dilimi veya PZEM'in gecikmeli kapanış zamanı pencere sınırı değildir. Süre, verideki koşulların gerçekleşmesinin sonucudur.
+- SCT kararlılık tespitinde tekil sıçramaların nasıl tolere edileceği henüz belirlenmemiştir. Bu istisna/kararlılık algoritması ayrı bir tasarım kararıdır; eşik veya pencere parametresi uydurulmayacaktır.
+- Ham CSV ve tüm özgün ölçümler korunur; yalnızca seçilen SCT eğitim alt kümesi ayrı türetilmiş çıktı olarak üretilir.
+
+Mantıksal ifade:
+
+`start = max(SCT_STABLE_START, PZEM_STABLE_START)`
+
+`end = SCT_CURRENT_CUTOFF`
+
+Seçim aralığı `[start, end)` biçimindedir. `start >= end` ise eğitim örneği üretilmez ve açık dışlama nedeni raporlanır.
+
+**Görsel yorum:** Kırmızı seri SCT, mavi seri PZEM'dir. Açılışta kırmızı önce yükselip kararlı olabilir; mavi daha sonra kararlı yatay seviyeye gelir. Eğitim ancak ikisi de kararlı olduğunda başlar. Kapanışta kırmızı SCT daha erken düşer; pencere orada biter, mavi PZEM'in gecikmeli düşüşü eğitim aralığını uzatmaz.
+
+**Uygulama durumu:** Bu kayıt kullanıcı tarafından onaylanan pencere mantığıdır. SCT tekil sıçramalarına tolerans gösterecek kararlılık tespit algoritması ve parametreleri henüz belirlenmemiştir; otomatik uçtan uca Python uygulaması tamamlanmış sayılmaz.
+
 ## ON/OFF paketleme, eğitim ve OFF alanının kapsamı
 
 1. Her akışta olay işaretlerinin sırasını ve paket bütünlüğünü doğrula. Paket anahtarı `BOOT_ID + ON_EVENT_ID`'dir; iki modüldeki ON başlangıçları aynı anahtarı taşımalıdır. Her akışta ON'dan sonraki ilk durum olayı OFF olmalı ve iki akıştaki kapanışlar aynı `BOOT_ID + OFF_EVENT_ID` anahtarını taşımalıdır. Normal çevrimde `OFF_EVENT_ID = ON_EVENT_ID + 1` beklenir.
