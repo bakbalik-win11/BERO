@@ -307,3 +307,14 @@ Kullanıcı onayıyla E15'ten ayrı E16 deneyi planlandı. E15 A/B/C'de `sample_
 - Öncelikli analiz, fiziksel olarak doğrulanmış kararlı ON bölümlerindeki katsayısız ct_clamp çıktısının kararlılığıdır. OFF verisi korunur fakat ON kararlılığı başarı ölçütüne katılmaz.
 - **Kanıt sınırı:** Başlangıç saati kullanıcı bildirimidir; cihaz logu, OTA/build doğrulaması veya 10 dakikalık HA History kaydı henüz görülmedi.
 - Ayrıntı: [E16 deney kaydı](experiments/E16-single-sct-window-duration/README.md).
+
+
+## 2026-11-06 — E16 E turu HA History analizi
+
+- 15:16:00–15:26:00 (+03:00) aralığında 600 katsayısız CH1 yayını bulundu; medyan yayın aralığı 1.000s.
+- Kararlı ON seçiminde SSR çevrimleri sınır olarak, PZEM akımı yükün kararlılığını kontrol etmek için kullanıldı. ON çevrimlerinin ilk/son 5 saniyesi çıkarıldı; 293 SCT değeri analiz edildi.
+- PZEM 0.465–0.469 A. Katsayısız SCT ortalama 0.019264 A, medyan 0.019118 A, popülasyon SD 0.001034 A, CV %5.37, P05–P95 0.018083–0.020759 A, maksimum 0.027513 A.
+- Çevrim içi ardışık farkların P95'i 0.002772 A, P99'u 0.006566 A. Ortak sıçrama eşiği önceden tanımlanmadığı için sıçrama adedi raporlanmadı.
+- E sonucu tek başına pencere seçimi değildir; D/F aynı yöntemle karşılaştırılmalı.
+- Analiz: [E16-E HA History](logs/module2/2026-11-06-e16-e-100ms-ha-history-analysis.md).
+- Kaynak CSV SHA-256: `3338f48b30c6db379797bed89ffd6b68dcd04384ead8e1f31e6c9cb10be6dde3`. Ham CSV 3.86 MB; bu commit'e kopyalanmadı.
