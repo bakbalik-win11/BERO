@@ -575,3 +575,14 @@ I010 Oturum 2 planı:
 - CH1 ile aynı zaman ekseninde PZEM gerilimi ve varsa bias ölçümü de değerlendirilecek. Gerilim/bias ile CH1 tabanındaki değişim ilişkisi araştırılacak; veri kanıtlamadan düzeltme katsayısı veya kompanzasyon uygulanmayacak.
 - history (50).csv incelemesinde PZEM gerilimi bulundu; ayrı bias entity/serisi tespit edilmedi. Biasın firmware'de okunması, HA History'ye kaydedildiğini tek başına kanıtlamaz.
 - 0.20 A altı OFF kararı güvenlik kararı değildir. Hat üzerinde çalışma/dokunma güvenliği bu sınıflandırmadan çıkarılamaz.
+
+
+## 2026-11-06 — I010 Oturum 2: 18 W uzun ON/OFF çevrim analizi
+
+- Kullanıcının sağladığı iki HA History dosyası (`history (51).csv` ve `history (52).csv`) birleştirilerek incelendi; ham dosyalar değiştirilmedi. SHA-256 değerleri Oturum 2 raporunda kayıtlıdır.
+- 18:00–20:39 arasında SSR geçişlerinden yaklaşık 160 ON (40 s) ve 160 OFF (20 s) penceresi çıkarıldı. Geçiş etkisini azaltmak için her pencerenin ilk 3 ve son 2 saniyesi kararlı özetten çıkarıldı.
+- K=24.22 uygulanmış CH1 çevrim medyanı ON için 0.26534 A (MAD 0.00433), OFF için 0.19332 A (MAD 0.00418). ON medyanları 160/160 kez 0.20 A veya üzerindeydi. OFF medyanlarının 135/160'ı 0.20 A altındaydı; 25'i eşik altında değildi ve otomatik ON sayılmadı.
+- PZEM aktif güç ON pencerelerinde çevrim medyanı olarak yaklaşık 18.10 W; OFF pencerelerinde geçerli kayıtlar 0 W. PZEM gerilimi medyanı 228.8 V; P05–P95 227.4–230.1 V.
+- Ayrı bias entity/serisi CSV'lerde bulunamadı. Bu nedenle bias ilişkisi henüz incelenemiyor. Dakikalık CH1 ve gerilim medyanları korelasyonu yaklaşık 0.13; tek oturumda güçlü doğrusal ilişki kanıtı yok, nedensellik sonucu çıkarılamaz.
+- CSV sonuna kadar 40/20 saniyelik çevrim sürdüğü ve PZEM yaklaşık 18 W gösterdiği için bu veri dilimi uzun ON/OFF oturumudur; sonraki çok uzun sürekli fiziksel yüksüz kayıt henüz alınmamıştır.
+- Rapor: [I010 Oturum 2](experiments/I010-13W-incandescent-low-load/REPORT-2026-11-06-session-02.md).
