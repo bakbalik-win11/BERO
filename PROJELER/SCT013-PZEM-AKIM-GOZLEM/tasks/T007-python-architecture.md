@@ -106,3 +106,21 @@ SSD üzerinde işlem belirgin yavaşlıyorsa geçici veriler RAM veya bilgisayar
 **Henüz yapılmayanlar:** SSD dosya sistemi, Python runtime/bağımlılık paketleme yöntemi, başlatıcı biçimi, çevrimdışı kurulum ve performans testleri belirlenmedi. Klasörler, program paketleri veya çalıştırma testleri henüz oluşturulmadı. T007'nin uygulama ve doğrulama kabul ölçütleri geçerlidir.
 
 Ayrıntı: [ADR-029](../docs/decisions/ADR-029-portable-ssd-python-runtime.md) ve [Python veri hattı mimarisi](../docs/architecture/python-program-architecture.md).
+
+
+## Küçük görevler, checkpoint ve hata sonrası devam — ADR-030 (2026-11-06)
+
+Python-1 ve Python-2 tek parça, uzun süre çalışan kırılgan programlar olarak tasarlanmayacaktır. Dosya alımı ve analiz adımları küçük, bağımsız, açık girdi/çıktı sözleşmeli görevlere ayrılır. Bir görev kilitlenirse veya hata verirse daha önce başarıyla işlenmiş veri ve sonuçlar korunur; yeniden çalıştırma son güvenli checkpoint'ten devam edebilir.
+
+- RAW kaynak dosyalar değiştirilmez veya başarısız işlem nedeniyle silinmez.
+- Her görev kendi türetilmiş çıktısını üretir; yarım yazılmış çıktı tamamlanmış sonuç olarak yayımlanmaz. Önce geçici konuma yazma, doğrulama ve ardından nihai çıktıya geçiş ilkesi uygulanır.
+- Görev durumu, girdi hash'i, görev sürümü, çıktı hash'i/konumu ve hata bilgisi SSD'de saklanır.
+- Aynı girdinin yeniden işlenmesi yinelenen arşiv/çıktı üretmemelidir.
+- Tek bir bozuk dosya diğer bağımsız dosyaların işlenmesini durdurmamalıdır.
+- Küçük görevleri sıraya koyan hafif bir çalıştırıcı olabilir; görev mantıkları bağımsız kalır.
+
+Örnek alt görevler: keşif, CSV doğrulama, hash/tekrar kontrolü, arşivleme, veri özeti, olay paketi doğrulama, SCT/PZEM kararlılık analizi, eşleştirme/etiketleme ve raporlama. Bu örnekler nihai görev listesi değildir.
+
+**Uygulama durumu:** Mimari karar kaydedildi; görev çalıştırıcı, checkpoint, hata izolasyonu ve kesinti/kilitlenme kurtarma kodu henüz yazılmadı veya test edilmedi. T007 devam ediyor.
+
+Ayrıntı: [ADR-030](../docs/decisions/ADR-030-resumable-small-python-jobs.md).
