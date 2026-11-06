@@ -18,7 +18,7 @@
 # - UDP olay kaynağı Modül 3 WROOM; hedef port 4210/UDP.
 #
 # OKUMA:
-# - CH1-1T sample_duration=50ms sabit; K=24.22 sabit.
+# - CH1-1T sample_duration=100ms sabit; K=24.22 sabit.
 # - Bu dosya E turu içindir: sample_duration 100ms. D=50ms ve F=200ms ayrı sürümlerdir.
 # - Her turda yalnız sample_duration satırı değiştirilir; her tur 10 dakika kaydedilir.
 # - Bu E yapılandırmasında sample_duration=100ms ve interval=1s ayarlanmıştır.
@@ -404,7 +404,7 @@ interval:
             );
           }
 
-  # E16 E turu: 50ms ölçüm penceresi; yayın aralığı 1s (1 Hz) sabit.
+  # E16 E turu: 100ms ölçüm penceresi; yayın aralığı 1s (1 Hz) sabit.
   - interval: 1s
     then:
       - component.update: sct_1_current
