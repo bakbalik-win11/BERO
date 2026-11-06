@@ -67,7 +67,7 @@ Bu kural, önceki simetrik SCT/PZEM kararlı-aralık kesişimi tarifini **eğiti
 - SCT kararlı duruma ulaşmış olsa bile PZEM henüz kararlı değilse eğitim başlamaz; PZEM'in kararlı olması beklenir.
 - **Eğitim başlangıcı:** SCT kararlı VE PZEM kararlı koşullarının ikisi de ilk kez sağlandığında, yani iki kararlılık başlangıcının daha geç olanı.
 - **Eğitim bitişi:** SCT akımın kesildiğini algıladığı anda. PZEM'in kapanış gecikmesi veya mavi serinin daha sonra düşmesi beklenmez.
-- Eğitim çıktısına yalnızca bu başlangıç ve bitiş arasında kalan katsayısız SCT tekil ölçümleri alınır. PZEM ölçümleri kararlılık/etiket referansı olarak kullanılır; SCT tekil değerleri PZEM'e eşitlenmez, timestamp üzerinden birebir eşleştirilmez ve interpolasyon yapılmaz.
+- Eğitim çıktısına yalnızca bu başlangıç ve bitiş arasında kalan K=24.22 katsayısı uygulanmış SCT tekil ölçümleri alınır. PZEM ölçümleri kararlılık/etiket referansı olarak kullanılır; SCT tekil değerleri PZEM'e eşitlenmez, timestamp üzerinden birebir eşleştirilmez ve interpolasyon yapılmaz.
 - Sabit bir süre, önceden seçilmiş zaman dilimi veya PZEM'in gecikmeli kapanış zamanı pencere sınırı değildir. Süre, verideki koşulların gerçekleşmesinin sonucudur.
 - SCT kararlılık tespitinde tekil sıçramaların nasıl tolere edileceği henüz belirlenmemiştir. Bu istisna/kararlılık algoritması ayrı bir tasarım kararıdır; eşik veya pencere parametresi uydurulmayacaktır.
 - Ham CSV ve tüm özgün ölçümler korunur; yalnızca seçilen SCT eğitim alt kümesi ayrı türetilmiş çıktı olarak üretilir.
@@ -185,3 +185,8 @@ Test hedefleri ayrıştırılacaktır:
 sample_duration (her ölçümün örnekleme süresi) ile update_interval/çıktı periyodu (yeni sonucun ne sıklıkta üretildiği) birbirinden ayrı kavramlardır. İlk hız denemesinde K=24.22 ve 200 ms örnekleme penceresi mümkün olduğunca sabit tutulacak; önce mimari ve scheduler kapasitesi incelenecek. Firmware değişikliği henüz yapılmadı.
 
 Ayrıca I007 yüksüz verisinde ham akış korunarak ayrı filtrelenmiş türev akış üretme yaklaşımı kullanıcı tarafından kabul edildi. Kayan pencere, sağlam merkez/dağılım, sapma sınırı ve süre koşulu birlikte değerlendirilecek; kısa tekil sıçramalar işaretlenebilir ancak kalıcı yükseliş korunmalıdır. Parametreler henüz belirlenmedi. Ayrıntı ve bağımsız test planı: [E13 — yüksüz gürültü filtresi ve örnekleme hızı](../E13-idle-noise-filter-and-sampling-rate/README.md).
+
+
+## 2026-11-06 — Katsayı terminolojisi düzeltmesi
+
+Önceki kayıtlarda geçen **“katsayısız”** ifadesi yanlıştı ve düzeltildi. E15/T008 kapsamında değerlendirilen SCT akım çıktısı, firmware'de `ct_clamp` filtresindeki `multiply: 24.22` ile katsayı uygulanmış değerdir. Amaç katsayıyı yok saymak değil; PZEM referanslı kararlı alanlardan mevcut K=24.22 katsayısını değerlendirmek ve gerekirse iyileştirmektir. Ham ADC/ct_clamp öncesi değer ile katsayı uygulanmış akım çıktısı birbirine karıştırılmayacaktır. Bu düzeltme ölçüm akışının ne olduğuna ilişkindir; yeni katsayı henüz hesaplanmış veya kabul edilmiş değildir.
