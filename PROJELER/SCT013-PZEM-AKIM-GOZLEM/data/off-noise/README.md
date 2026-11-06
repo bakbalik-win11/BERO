@@ -67,3 +67,17 @@ Mevcut Modül 2 firmware kaynağında interval=2s ile üç SCT kanalı sıralı 
 2. Üç kanal birlikte açıkken her kanalın sürdürülebilir güncelleme hızı, zaman kayması, örnek kaybı, gürültü ve akım değerlerinin mevcut referansa göre değişimi.
 
 2 Hz veri üretmek, her ölçümün 500 ms boyunca örneklendiği anlamına gelmez. Mevcut 200 ms sample_duration korunarak 500 ms aralıklarla sonuç üretmek ayrı bir tasarım hedefidir. K=24.22 ve diğer koşullar ilk hız testinde sabit tutulmalı; firmware değişikliği kullanıcı onayıyla ayrı kontrollü testte yapılmalıdır.
+
+
+## Tek kanal CH1-1T oturumları — 2026-11-06
+
+2026-11-06 tarihli uzun OFF gözlemi, önceki 2026-11-05 çok kanallı oturumla doğrudan aynı dağılım havuzuna eklenmez. Bu oturum CH1-1T / GPIO32 / ADC1_CH4 tek kanal ölçümüdür ve ayrı tek-kanal indeksinde tutulur.
+
+- Oturum raporu: [2026-11-06-session-02-ch1-1t-off.md](sessions/2026-11-06-session-02-ch1-1t-off.md)
+- Tek kanal oturum özeti: [single-channel-session-summary.csv](single-channel-session-summary.csv)
+- İncelenen aralık: 16:14:00.752–16:34:59.754 (+03:00); n=1,260; medyan=0.009918 A; MAD=0.001950 A; P95=0.013439 A; P99=0.015288 A.
+- Kaynak: `history (49).csv`; SHA-256 `235ad89116f3d0a36205acafbe4eec1f29baa9043567e59f71b3d12835c45e74`. Kaynak CSV bu commit'e eklenmedi.
+- Timestamp medyanı 1.000 s olduğundan bu dışa aktarımda CH1 gözlenen yayın hızı yaklaşık 1 Hz'dir; 2 Hz varsayılmaz.
+- PZEM akım entity'sinin son kaydı 16:13:12.898'dir; OFF aralığı boyunca PZEM'in sıfır kaldığı bu CSV'den doğrulanamaz.
+- 16:14 sonrası SSR/UDP olayları sürmektedir; bunlar fiziksel yükün durumu kanıtı değildir. Fiziksel OFF bilgisi kullanıcı bildirimidir.
+- İlk ve ikinci zaman dilimlerinin MAD değerleri farklıdır; yüksüz davranışın zaman içinde durağan olmadığına dair işaret vardır. Tek oturumdan eşik türetilmez.
