@@ -530,3 +530,13 @@ Kullanıcının ek talebi: aynı uzun süreli yüksüz testte CH1 katsayısız/k
 - Mevcut 15 W ampul test yükü değildir; 18 W ayrı ve tekil yük sınıfı olarak analiz edilecek.
 - Süre-temelli yöntem uygulanacak; tekil sıçramalar karar sayılmayacak.
 - Deney kaydı: [I010 — 18 W düşük yük ayrışma deneyi](experiments/I010-13W-incandescent-low-load/README.md).
+
+
+### I010 ilk gözlem — 18 W ON/OFF ayrımı ve 0.20 A
+
+- Kullanıcı gözlemi: K=24.22 uygulanmış CH1 çıktısında **0.20 A altı OFF ile uyumlu** ve **18 W yükte ON/OFF ayrımı görünür**.
+- Bu, ilk grafik/operasyonel gözlemdir; CSV üzerinden süre-temelli istatistiksel doğrulama henüz yapılmadı.
+- 0.20 A şimdilik aday OFF eşiği olarak destekleniyor; nihai/genel eşik değildir.
+- Doğrulama; tekil sıçramalar yerine eşik davranışının süresi, pencere medyanı/MAD ve tekrarlı ON/OFF çevrimleriyle yapılacak.
+- I010 durumu: BAŞLADI; ilk görsel gözlem mevcut, toplu veri analizi bekleniyor.
+- Ayrıntı: [I010 — 18 W deney kaydı](experiments/I010-13W-incandescent-low-load/README.md).
