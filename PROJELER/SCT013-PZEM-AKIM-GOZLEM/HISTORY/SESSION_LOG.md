@@ -1839,3 +1839,12 @@ Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmwa
 - **KOD:** Önce CH1=2 Hz, CH2=1 Hz, CH3=0,5 Hz idi. Yeni YAML: CH1=1 Hz, CH2=0,5 Hz, CH3=2 Hz. sample_duration=100ms, K=24.22, GPIO32/33/34 ve entity adları değişmedi. CH1 1 saniyede; CH2 her ikinci çevrimde (2 saniye); CH3 bağımsız 500 ms döngüde okunur. Bias CH2 çevriminde okunur.
 - **BEKLENTİ:** Kararlılık avantajı CH2'den CH1'e taşınırsa 1 Hz profili desteklenir; CH2'de kalırsa GPIO/ADC veya kanala özgü etki olasılığı artar. Tek başına kesin nedensellik değildir.
 - **DOĞRULAMA:** Yalnız YAML ve deney belgeleri güncellendi. Validate, Compile, OTA ve fiziksel cihaz testi yapılmadı.
+
+## 2026-11-06 — E14 uzun CSV değerlendirmesi ve 1 Hz profilinin CH3'e taşınması
+
+- **VERİ:** Kullanıcının sağladığı 12:30 sonrası HA History CSV'si 12:30:00–12:47:15 aralığı. CH1 1.036, CH2 518, CH3 2.072, PZEM 105 kayıt.
+- **ANALİZ:** PZEM yaklaşık 0,46–0,48 A kararlı bölümlerinde baş/son ikişer saniye dışlanarak standart sapma: CH1 0,0212 A; CH2 0,0340 A; CH3 0,0191 A. Bu kayıt için en düşük sapma CH3; CH1 yakın. Bu, örnekleme hızının tek başına nedensel etkisini kanıtlamaz.
+- **KULLANICI KARARI:** 1 Hz örnekleme CH1'den CH3'e taşınacak. Profil değişimi CH1=2 Hz, CH2=0,5 Hz, CH3=1 Hz olarak uygulanır; CH1 eski CH3'ün 2 Hz profilini devralır.
+- **KOD:** Modül 2 YAML deney dalında güncellendi. CH1 GPIO32 interval 500ms; CH3 GPIO34 interval 1s; CH2 GPIO33 ve GPIO35 bias 2s yavaş taramada. sample_duration=100ms, K=24.22, GPIO/entity ve fiziksel sensör eşlemesi değişmedi. UDP 4210 alıcısı korundu.
+- **DOĞRULAMA SINIRI:** YAML GitHub'a yazıldı; Validate/Compile, OTA ve fiziksel cihaz testi henüz yapılmadı. Çalıştığı veya yeni profilin daha iyi olduğu iddia edilmez.
+- Ayrıntı: [E14](../experiments/E14-module2-single-channel-2hz/README.md), [firmware](../firmware/bero-modul2-esp32d1.yaml).
