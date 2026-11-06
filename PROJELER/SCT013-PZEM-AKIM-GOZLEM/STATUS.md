@@ -564,3 +564,14 @@ Ayrıntı: [I010 — 18 W deney kaydı](experiments/I010-13W-incandescent-low-lo
 - Kritik sınırlama: 18 W öncesi uzun OFF penceresinde CH1 medyanı `0.2532 A`, zamanın `%78.6`'sı 0.20 A üstü ve en uzun ardışık eşik üstü bölüm yaklaşık `42 s` idi. Bu nedenle `0.20 A` mutlak/global OFF eşiği değildir. 18 W çevrimleri içinde yerel ON/OFF ayrımı başarılıdır; genel sınıflandırma için adaptif baz çizgisi ve süre-temelli karar gerekir.
 - I010 Oturum 1 kapatıldı. Kullanıcı 18:00 sonrası uzun 18 W ON/OFF testine devam edecek; bu sonraki veri ayrı oturum olarak kaydedilecek.
 - Ayrıntılı rapor: [I010 Oturum 1 raporu](experiments/I010-13W-incandescent-low-load/REPORT-2026-11-06-session-01.md).
+
+## 2026-11-06 — 0.20 A OFF sınıflandırma kuralı ve sonraki veri planı
+
+Kullanıcı kararı: K=24.22 uygulanmış/hesaplanmış CH1 değeri **0.20 A'nın altındaysa OFF** sınıfına alınacaktır. Bu, BERO'nun ölçüm çıktısına ilişkin algoritmik sınıflandırma kuralıdır; elektriksel güvenlik veya hattın enerjisiz olduğunun fiziksel garantisi değildir. 0.20 A ve üzerindeki değerler otomatik olarak AKIM VAR ya da doğru amper ölçümü sayılmaz; ayrıca kanıt değerlendirmesi yapılır.
+
+I010 Oturum 2 planı:
+- 18:00 sonrası uzun 18 W ON/OFF çevrimleri, Oturum 1'den ayrı veri dilimi olarak kaydedilecek.
+- Ardından çok uzun süreli fiziksel yüksüz/OFF kayıt alınacak. Amaç, uzun OFF koşulunda 0.20 A ve üzeri sahte ON göstergesi oluşup oluşmadığını ve bunun süre/tekrarlanma karakterini incelemektir.
+- CH1 ile aynı zaman ekseninde PZEM gerilimi ve varsa bias ölçümü de değerlendirilecek. Gerilim/bias ile CH1 tabanındaki değişim ilişkisi araştırılacak; veri kanıtlamadan düzeltme katsayısı veya kompanzasyon uygulanmayacak.
+- history (50).csv incelemesinde PZEM gerilimi bulundu; ayrı bias entity/serisi tespit edilmedi. Biasın firmware'de okunması, HA History'ye kaydedildiğini tek başına kanıtlamaz.
+- 0.20 A altı OFF kararı güvenlik kararı değildir. Hat üzerinde çalışma/dokunma güvenliği bu sınıflandırmadan çıkarılamaz.
