@@ -327,3 +327,17 @@ Kullanıcı onayıyla E15'ten ayrı E16 deneyi planlandı. E15 A/B/C'de `sample_
 - Tek kanal CH1-1T / GPIO32 / ADC1_CH4; K=24.22; ADC 12dB; UDP 4210 alıcısı korunur. CH2/CH3 ve ayrı GPIO35 ADC okuması yok.
 - Analiz odağı fiziksel olarak doğrulanmış kararlı ON bölümlerindeki katsayısız ct_clamp çıktısıdır. OFF verisi saklanır ancak ON kararlılığı ölçütüne katılmaz.
 - YAML depoya eklendi; derleme, OTA veya F turu başlangıcı henüz doğrulanmadı.
+
+
+## 2026-11-06 — İlk aşama: SCT ON eğitim istatistiği ve K katsayısı belirleme ilkeleri
+
+Kullanıcı kararıyla eğitim/kalibrasyon istatistiği ile ilerideki canlı yük-değişimi istatistiği birbirinden ayrıldı. İlk aşamanın hedefi, fiziksel yük ON ve kararlı iken SCT'nin katsayısız ct_clamp çıktısından temsilî değer üretmek ve PZEM referansıyla K katsayısını belirlemektir.
+
+- Eğitim verisine yalnız fiziksel olarak doğrulanmış, PZEM kararlılığıyla kontrol edilmiş ON alanları alınır. ON başlangıç geçişi ve OFF sonrası ölçümler eğitim hesabına girmez; OFF ham verisi arşivde korunur.
+- UDP STATE fiziksel yük durumunun kanıtı değildir; olay işaretleyicisi olarak kullanılır. PZEM referanstır, mutlak ground truth olarak tanımlanmaz.
+- Aday merkez kestiriciler: aritmetik ortalama, medyan ve önceden oranı belirlenmiş trimmed mean. Yayılım: SD, MAD / 1.4826×MAD, IQR, P05/P95. IQR uç değerleri otomatik silmez; işaretler. Ham veri değişmez kalır.
+- Ardışık SCT yayınları bağımsız deney örnekleri sayılmaz; ON çevrimleri ayrı tekrarlar olarak özetlenir ve çevrimler arası tutarlılık değerlendirilir.
+- K için aynı kararlı ON aralığından PZEM/SCT oranları çevrim bazında hesaplanır. Nihai kestirici, birleştirme yöntemi, minimum örnek sayısı, ON yerleşme süresi ve tolerans henüz kesinleştirilmemiştir. Birden fazla yük seviyesinde doğrulama gerekir.
+- Her veri setinde SCT/sensör ve sarım bilgisi, GPIO/ADC, attenuation, sample_duration, interval, update_interval, K, YAML/commit/build, PZEM zaman serisi, yük, ON aralıkları, BOOT_ID/EVENT_ID, saat dilimi, kaynak CSV hash'i ve calibration_id kaydedilir.
+- E15/E16 okuma parametrelerini değerlendirmeye veri sağlar; tek başına nihai K istatistiğini seçmez. Canlı yük değişimi algoritması bu belgenin kapsamı dışındadır.
+- Ayrıntılı yöntem ve parametre kayıt şeması: [SCT ON eğitim verisi ve katsayı belirleme istatistiği](docs/ON-training-calibration-statistics.md).
