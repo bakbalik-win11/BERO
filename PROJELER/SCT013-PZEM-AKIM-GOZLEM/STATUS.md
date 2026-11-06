@@ -155,3 +155,19 @@ Karar [ADR-028](docs/decisions/ADR-028-stable-window-sct-boundaries.md) olarak k
 **Henüz belirlenmeyenler:** SCT kararlılık kaybının istatistiksel tanımı, pencere boyu, dağılım/ortalama değişimi sınırları ve devam süresi. Bunlar veriden belirlenecek; eşik uydurulmayacak.
 
 **Uygulama durumu:** Python algoritması yazılmadı. Firmware/YAML değişikliği, derleme veya OTA yapılmadı. E12 devam ediyor; tamamlanmış değildir.
+
+
+## 2026-11-06 — Python çalışma ortamı için taşınabilir SSD kararı (ADR-029)
+
+Kullanıcı kararı:
+- BERO Python-1 ve Python-2'nin kaynak kodları, çalışma paketleri/bağımlılıkları, yapılandırmaları, gelen-kutu, ham arşiv, işlenmiş veriler, eğitim çıktıları ve logları harici SSD üzerinde tutulacaktır.
+- Hedef platformlar Microsoft Surface 11 (Snapdragon X Elite, Windows ARM64) ve Mac mini 2024 (Apple M4, macOS ARM64) olarak belirlendi.
+- Windows ve macOS için ayrı platforma özgü başlatıcı/çalıştırma paketleri hazırlanacak; ortak Python kaynak kodu ve veri yapısı korunacaktır.
+- Programlar sabit sürücü harfine veya bilgisayara özgü mutlak yola bağımlı olmayacak; SSD köküne göre göreli yollar kullanacaktır.
+- SSD üzerinde işlem belirgin performans kaybı yaratırsa geçici veriler RAM'de veya bilgisayarın yerel geçici alanında işlenebilir. Kalıcı sonuçlar ve kayıtlar SSD'ye yazılır; yerel geçici alan kalıcı depo değildir.
+
+**Açık teknik kararlar:** SSD dosya sistemi, runtime/bağımlılık paketleme yöntemi, başlatıcı biçimi, çevrimdışı ilk kurulum ve geçici alan politikası henüz belirlenmedi.
+
+Karar [ADR-029](docs/decisions/ADR-029-portable-ssd-python-runtime.md) ve [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md) ile [T007](tasks/T007-python-architecture.md) belgelerine işlendi.
+
+**Uygulama durumu:** Yalnız mimari karar kaydedildi. SSD klasörleri, Python paketleri ve Windows/macOS çalıştırma testleri henüz oluşturulmadı. T007 devam ediyor.
