@@ -1,7 +1,7 @@
 # ============================================================
 # BERO MODÜL 2 — ESP32D1
 # E15 — TEK SCT KANALI / YAYIN ARALIĞI KARŞILAŞTIRMASI
-# ESPHome 2026.10.1
+# ESPHome 2026.10.2 (ilk cihaz logunda doğrulandı)
 # ============================================================
 #
 # AMAÇ:
@@ -41,11 +41,13 @@
 # TIME alanı yoktur. Eşleştirme anahtarı BOOT_ID + EVENT_ID'dir.
 #
 # KANIT SINIRI:
-# - Bu dosya deney kaynak snapshot'ıdır; henüz Validate/Compile/OTA yapılmamıştır.
-# - Kullanıcı logundaki çalışan binary
-#   ile byte-byte aynı olduğu bağımsız olarak kanıtlanmış değildir.
-# - UDP alım/HA yayını gerçek cihaz loglarıyla gözlenmiştir; olay kaybı
-#   olasılığı ayrıca izlenir. Fiziksel SSR anahtarlaması bu YAML'ın işi değildir.
+# - 2026-11-06 ilk cihaz logunda ESPHome 2026.10.2 bağlantısı,
+#   GPIO32 ADC başlatması, CH1 yayınları ve UDP EVENT_ID=314 OFF alımı gözlendi.
+# - Bu log kısa ilk çalışma kontrolüdür; 10 dakikalık A turu değildir.
+# - Logda yapılandırma adı esp32d1.yaml olarak geçer; bu kaynak snapshot ile
+#   çalışan binary arasında birebir hash eşleştirmesi kanıtlanmış değildir.
+# - UDP STATE fiziksel yük durumunu kanıtlamaz. Fiziksel SSR anahtarlaması
+#   bu YAML'ın işi değildir.
 #
 # GÜVENLİK:
 # - Deneyde tek SCT kullanılır: CH1-1T, sarı kablo, GPIO32.
