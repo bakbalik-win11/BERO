@@ -113,3 +113,17 @@ Kullanıcı düzeltmesi: CH2 için kayıtlı 4 geçiş ve CH3 için kayıtlı 3 
 - `CH1-1T`, `CH2-4T`, `CH3-3T` birleşik biçimleri kalıcı kanal kimliği olarak kullanılmayacaktır.
 
 ADR-027 ve Python mimarisi bu ayrımla güncellendi. Firmware ve HA entity isimleri değiştirilmedi.
+
+
+## 2026-11-06 — Eğitim verisi için History kanal adlandırması netleştirildi (ADR-027)
+
+Kullanıcı kararı:
+- Gün içindeki genel deneylerde ve gözlemde History kanal adları genel kalır: `CH1`, `CH2`, `CH3`. History'de çok sayıda deney kaydı bulunabilir; bunlar otomatik olarak eğitim verisi değildir.
+- Kod/ölçüm yapılandırması kesinleştikten ve özellikle eğitim verisi toplanmasına karar verildikten sonra ilgili kodda küçük bir adlandırma değişikliği yapılır. Eğitim amaçlı akış adı `CH1-E`, `CH2-E` veya `CH3-E` olur.
+- `-E` eki eğitim amacıyla yayınlanan History akışını işaretler; fiziksel kanal kimliğini, sarım sayısını veya hesaplama yöntemini tanımlamaz.
+- Python-1 kaynak CSV'yi içerik/entity adlarını değiştirmeden arşivler; bu üç eğitim adının CSV'de bulunması Python-1'in genel dosya kabul koşulu değildir.
+- Python-2/eğitim hazırlama aşaması `CH1-E`, `CH2-E`, `CH3-E` adlarını açık seçim anahtarları olarak kullanır. Genel `CH1` / `CH2` / `CH3` deney kayıtları kendiliğinden eğitim setine alınmaz.
+- Eski bir deney kaydı sonradan eğitim için seçilirse kaynak arşiv değiştirilmez; kanal seçimi ve eğitim adı ayrı türetilmiş kopyada uygulanır.
+- Sarım sayısı, katsayı ve hesaplama yöntemi gerektiğinde deney/eğitim kodunda tanımlanır; kanal adına eklenmez.
+
+Bu karar ADR-027, Python mimarisi, T007, ROADMAP ve STATUS belgelerine işlendi. Firmware/HA entity kodu değiştirilmedi; gerçek eğitim kaydı henüz başlatılmadı.
