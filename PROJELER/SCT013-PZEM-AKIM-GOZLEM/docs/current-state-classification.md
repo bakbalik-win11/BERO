@@ -144,3 +144,22 @@ Uzun OFF ve ON/OFF oturumlarında CH1 tabanının değişimini açıklamak için
 Bu değişkenler önce açıklayıcı/karşılaştırmalı değişkenler olarak ele alınır. Yalnız korelasyon görülmesi bias veya şebeke geriliminin CH1 değişimine neden olduğunu kanıtlamaz. Veri ve deney kanıtı oluşmadan otomatik düzeltme/kompanzasyon uygulanmaz.
 
 **Veri mevcudiyeti notu:** history (50).csv için yapılan önceki kolon/entity incelemesinde PZEM gerilim serisi bulundu; ayrı bir bias entity/serisi tespit edilmedi. Firmware içinde biasın okunması, bu değerin HA History'ye ayrı entity olarak kaydedildiğini kanıtlamaz. Sonraki CSV'de bias serisi ayrıca doğrulanmalıdır. Yoksa biası analiz etmek için sonraki kayıt mimarisinde ayrı yayın/entity gereksinimi değerlendirilecektir.
+
+
+## 2026-11-06 — Kullanıcı nihai çalışma sınıfları: 0.21 A / 0.41 A
+
+Bu karar, önceki 0.20 A aday/eşik ifadesinin yerine geçer. K=24.22 uygulanmış/hesaplanmış CH1 akım çıktısı için çalışma sınıfları:
+
+| Hesaplanmış CH1 değeri | Sınıf | İşlem |
+|---|---|---|
+| **0.21 A altı** | **KAPALI / OFF** | Yalnızca kararlı alanlarda kapalı kabul edilir. Kararlı alanın süre, örnek sayısı ve tolerans tanımı henüz yapılmamıştır. |
+| **0.21 A–0.41 A** | **HESAPLANAMADI** | Amper hesabı üretilmez; bu bölgenin davranışı daha sonra ayrıca analiz edilecektir. |
+| **0.41 A üstü** | **HESAPLANIR** | Ölçüm mevcut deney kapsamındaki hesaplanabilir bölge olarak kabul edilir. |
+
+Sınırların yorumu: tam 0.21 A, hesaplanamadı aralığına; tam 0.41 A da hesaplanamadı aralığına dahildir. Hesaplanabilir sınıf yalnızca 0.41 A üzerindedir. 0.21 A altı kararının uygulanması kararlı alan koşuluna bağlıdır; kararlılık tanımı sonraki çalışmada belirlenecektir.
+
+**Deney durumu:** Mevcut 18 W ON/OFF deneyi ve bu veri dilimine ilişkin değerlendirme SONLANDIRILDI. Yeni bir ölçüm/kalibrasyon eşiği arayışı bu deney kapsamında sürdürülmeyecek.
+
+**Açık kalan tek araştırma:** 0.21–0.41 A hesaplanamadı bölgesinin istatistiksel davranışını, OFF dağılımına yakınlığını, yükler arası ayrışmasını ve hangi koşullarda güvenilir biçimde tanımlanabileceğini incelemek. Kararlı alanın operasyonel tanımı da bu sonraki çalışmada belirlenecektir. 0.41 A üzerindeki hesaplanabilir alan bu aşamada açık araştırma konusu değildir.
+
+Bu sınıflar BERO'nun ölçüm/yorumlama kurallarıdır; elektriksel güvenlik veya fiziksel enerjisizlik garantisi değildir.
