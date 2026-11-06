@@ -195,3 +195,16 @@ SSD üzerinde işlem belirgin performans kaybı yaratırsa geçici veriler RAM'd
 **Açık uygulama kararları:** SSD dosya sistemi, runtime/bağımlılık paketleme yöntemi, başlatıcı biçimi, çevrimdışı ilk kurulum ve geçici alanın temizleme politikası henüz seçilmemiştir. Bu belge mimari kararı kaydeder; çalışan paket veya platform testi bulunduğu anlamına gelmez.
 
 Ayrıntı: [ADR-029](../decisions/ADR-029-portable-ssd-python-runtime.md).
+
+
+## Küçük ve kaldığı yerden devam edebilen Python görevleri — ADR-030 (2026-11-06)
+
+Python veri hattı tek ve uzun çalışan kırılgan bir programa dönüştürülmeyecektir. İşler küçük, bağımsız, tek sorumluluklu görevlere ayrılır. Bir görevin hata vermesi veya kilitlenmesi, diğer görevlerin tamamlanmış sonuçlarını ve kaynak veriyi kaybettirmemelidir.
+
+Her görev açık girdi/çıktı sözleşmesine sahip olur. Başarılı adımların durumu ve checkpoint bilgisi SSD'de saklanır; yeniden başlatma son güvenli kontrol noktasından devam eder. Kaynak RAW dosyalar değişmez. Görev çıktıları ayrı türetilmiş çıktılardır; önce geçici konuma yazılır, doğrulama başarılı olunca nihai çıktı olarak yayımlanır. Yarım çıktı tamamlanmış sonuç sayılmaz. Aynı girdi/görev sürümü tekrar çalıştırıldığında yinelenen veya çakışan sonuç oluşturmaması için idempotent davranış tasarlanır.
+
+Görev kayıtları en azından girdi kimliği/hash'i, görev adı/sürümü, durum, çıktı konumu/hash'i ve hata bilgisini taşımalıdır. Hatalı tek dosya karantinaya alınabilir; diğer bağımsız dosyaların işlenmesi sürer. Görevleri sıraya koyan hafif bir çalıştırıcı kullanılabilir; görevlerin iç mantıkları birbirinden ayrı kalır.
+
+Örnek görev sınırları: dosya keşfi, CSV doğrulama, hash/tekrar kontrolü, ham arşivleme, veri inceleme, paket bütünlüğü, SCT ve PZEM kararlılık analizi, örtüşme/etiket üretimi ve raporlama. Nihai görev listesi ve sayısal retry/timeout/paralellik ayarları uygulama ve gerçek iş yükü görüldükten sonra belirlenecektir.
+
+Bu kayıt mimari karardır; checkpoint, görev çalıştırıcı, atomik çıktı ve kurtarma testleri henüz uygulanmamıştır. Ayrıntı: [ADR-030](../decisions/ADR-030-resumable-small-python-jobs.md).
