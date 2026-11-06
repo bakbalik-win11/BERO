@@ -516,3 +516,8 @@ Ayrıntı: [I009 deney kaydı](experiments/I009-57W-and-57W-plus-15W/README.md).
 - Korelasyon nedensellik veya gerçek akım kanıtı değildir. Tekil sıçramalar karar sayılmayacak; süre ve pencere davranışı esas alınacak.
 - Başlangıç/bitiş ve veri dosyası henüz bekleniyor; test başlamış/tamamlanmış sayılmıyor.
 - Deney planı: [I011 — uzun süreli boşta CH1–PZEM gerilim korelasyonu](experiments/I011-idle-ch1-pzem-voltage-correlation/README.md).
+
+
+### I011 kapsam genişletmesi — Bias korelasyonu
+
+Kullanıcının ek talebi: aynı uzun süreli yüksüz testte CH1 katsayısız/katsayılı çıktıları, PZEM RMS gerilimi ve **gerçek bias gerilimi** birlikte korele edilecek. Bias için gerçek ADC bias noktasını temsil eden HA entity/telemetri doğrulanmalı; katsayısız ct_clamp çıktısı bias gerilimi değildir ve yerine kullanılamaz. Bias DC seviyesi ile dalgalanması ayrı analiz edilecek. Pearson/Spearman, detrend edilmiş pencere değişimleri, gecikme ve kararlılık değerlendirilecek. Bias korelasyonu nedensellik veya gerçek akım kanıtı sayılmayacak.
