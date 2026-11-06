@@ -19,19 +19,23 @@ Modül 2'nin üç SCT kanalını birlikte okuyan test/ölçüm kodu, donanım ve
 6. Her eğitim seti ve türetilmiş kayıt, en azından seçilen kanal kimliğini, fiziksel sarım/geçiş bilgisini, kaynak dosya/hash bilgisini, firmware/kod sürümünü, calibration_id bilgisini (varsa gerçek değer; yoksa uydurulmaz) ve kullanılan PZEM referans akışını izlenebilir biçimde taşımalıdır.
 7. Ham kayıt, tek kanal seçimi veya eğitim için dönüştürülürken değiştirilmez. Kanal seçimi ve eğitim verisi ayrı türetilmiş çıktılardır.
 
-## Kanal kimliği ve değişebilir fiziksel yapılandırma
+## Kanal kimliği, eğitim işareti ve değişebilir fiziksel yapılandırma
 
-Kanalın kalıcı kimliği yalnızca `CH1`, `CH2`, `CH3` olmalıdır. Fiziksel geçiş/sarım sayısı kanal kimliğinin parçası değildir; kullanıcı tarafından değiştirilebilir bir donanım yapılandırmasıdır.
+Fiziksel kanal kimliği `CH1`, `CH2`, `CH3` olarak kalır. Günlük deney ve gözlem sırasında Home Assistant History'de genel kanal adları kullanılır; örneğin `CH1`. Bu kayıtlar eğitim verisi olarak işaretlenmiş sayılmaz ve gün içindeki farklı deneylerin birlikte bulunmasına engel olmaz.
 
-Eğitim kayıtlarında bu iki bilgi ayrı alanlarda tutulur:
-- `channel_id`: `CH1`, `CH2` veya `CH3` — fiziksel ölçüm girişini tanımlar.
-- `turn_count`: ilgili deney/kurulum sırasında doğrulanmış fiziksel geçiş/sarım sayısı — zaman içinde değişebilir.
+Bir kod/ölçüm yapılandırması kesinleştirilip özellikle eğitim verisi toplanmasına karar verildiğinde, ilgili kodda küçük bir adlandırma değişikliği yapılır. Eğitim amaçlı History kayıtları şu üç açık adla yayınlanır:
 
-Geçiş sayısı değiştiğinde kanal kimliği sabit kalır; donanım yapılandırma kaydı ve ilgili deney/eğitim metadata'sı yeni değerle güncellenir. Eski veriler kendi toplandıkları dönemin `turn_count` değeriyle korunur; geçmiş kayıtlar yeni geçiş sayısına göre geriye dönük değiştirilmez. Mümkünse yapılandırma değişikliği tarih/saat ve deney kimliğiyle ilişkilendirilir.
+- `CH1-E` — CH1 kanalından eğitim amacıyla alınan kayıtlar.
+- `CH2-E` — CH2 kanalından eğitim amacıyla alınan kayıtlar.
+- `CH3-E` — CH3 kanalından eğitim amacıyla alınan kayıtlar.
 
-Depodaki mevcut donanım notlarında başlangıç eşlemesi CH1 sarı/GPIO32 = 1 geçiş, CH2 yeşil/GPIO33 = 4 geçiş, CH3 mavi/GPIO34 = 3 geçiş olarak kayıtlıdır. Bu değerler yalnız mevcut kayıtlı durumdur; kalıcı özellik veya değişmez kanal adı değildir. Gerçek bağlantı ve geçiş sayısı her deney/kurulum değişikliğinde doğrulanmalıdır.
+Buradaki `-E` eki eğitim verisi işaretidir; fiziksel kanal kimliğini, sarım sayısını veya hesaplama yöntemini tanımlamaz. Eğitim için seçilmiş kanalın History kayıtlarında bu adların kullanılması, Python analiz aşamasının çok sayıdaki genel deney kaydı arasından amaçlanan eğitim akışını açıkça ayırmasını sağlar. Kod/HA entity adlandırması bu amaçla değiştirilebilir; ham History dışa aktarım dosyası yine değiştirilmeden arşivlenir.
 
-`CH1-1T`, `CH2-4T`, `CH3-3T` biçimleri kalıcı kanal kimliği olarak kullanılmayacaktır. Bunlar en fazla belirli bir tarihteki kanal + fiziksel yapılandırmayı anlatan geçici gösterimler olabilir; kod, entity ve eğitim seti anahtarlarında `channel_id` ile `turn_count` ayrı tutulmalıdır.
+Python tarafındaki kanal eşlemesi kodda açıkça tanımlanır: `CH1-E`, `CH2-E`, `CH3-E`. Python-1'in genel dosya alımı ve arşivlemesi bu adların kaynak CSV'de bulunmasına bağlı değildir. Python-2/eğitim veri hazırlama aşaması, mevcut kaynakta bu adlarla yayınlanmış eğitim akışlarını seçer. Eğitim işareti bulunmayan genel `CH1` / `CH2` / `CH3` kayıtları kendiliğinden eğitim verisi sayılmaz. Gerekirse eski/genel bir deney kaydından eğitim kopyası hazırlanacaksa bu işlem ayrı türetilmiş çıktı üzerinde, açık kanal seçimi ve adlandırmayla yapılır; arşivdeki kaynak dosya değiştirilmez.
+
+Fiziksel geçiş/sarım sayısı kanal kimliğinin parçası değildir; kullanıcı tarafından değiştirilebilir donanım/deney yapılandırmasıdır. Gerekli olduğunda deney veya eğitim kodunda tanımlanır; eğitim kanal adının içine gömülmez. Eski kayıtlar toplandıkları dönemin fiziksel yapılandırmasını korur; kod veya kanal adı değişikliği geçmiş ham kayıtları geriye dönük değiştirmez.
+
+Depodaki mevcut donanım notlarında başlangıç eşlemesi CH1 sarı/GPIO32 = 1 geçiş, CH2 yeşil/GPIO33 = 4 geçiş, CH3 mavi/GPIO34 = 3 geçiş olarak kayıtlıdır. Bu değerler yalnız mevcut kayıtlı durumdur; kalıcı özellik değildir. Gerçek bağlantı ve geçiş sayısı her deney/kurulum değişikliğinde doğrulanmalıdır.
 
 ## Kapsam dışı / değiştirmeyen kararlar
 
