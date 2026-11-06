@@ -1,12 +1,12 @@
 # ============================================================
 # BERO MODÜL 2 — ESP32D1
-# CH1-1T 1 Hz + CH2-1T 0.5 Hz + CH3-1T 2 Hz + UDP 4210 OLAY ALICISI
+# CH1-1T 2 Hz + CH2-1T 0.5 Hz + CH3-1T 1 Hz + UDP 4210 OLAY ALICISI
 # ESPHome 2026.10.1
 # ============================================================
 #
 # AMAÇ:
-# - CH1-1T kanalını 1 saniyede bir (1 Hz) okumak.
-# - CH2-1T kanalını 2 saniyede bir (0,5 Hz), CH3-1T kanalını 500 ms aralıkla (2 Hz) okumak.
+# - CH1-1T kanalını 500 ms aralıkla (2 Hz) okumak.
+# - CH2-1T kanalını 2 saniyede bir (0,5 Hz), CH3-1T kanalını 1 saniyede bir (1 Hz) okumak.
 # - Üç kanalda da 100 ms ct_clamp ölçüm penceresi kullanmak.
 # - CH1-1T / CH2-1T / CH3-1T akım ve filtre öncesi Ham Akim değerlerini HA'ya yayımlamak.
 # - GPIO35 ortak bias gerilimini izlemek.
@@ -24,11 +24,10 @@
 #
 # OKUMA:
 # - Üç kanalın sample_duration değeri 100ms olarak korunur.
-# - CH1-1T: 1 saniyelik aralıkla (1 Hz).
+# - CH1-1T: interval 500ms; hedef okuma sıklığı 2 Hz.
 # - CH2-1T: 2 saniyelik aralıkla (0,5 Hz).
-# - CH3-1T: interval 500ms; hedef okuma sıklığı 2 Hz.
-# - CH1 ve CH2 okumaları tek yavaş tarama script'inde sıralanır; CH1 her 1 saniyede, CH2 her 2 saniyede okunur.
-# - CH3'ün 500ms döngüsü bağımsız kalır.
+# - CH3-1T: 1 saniyelik aralıkla (1 Hz).
+# - CH1 ve CH3 bağımsız aralıklarla okunur; CH2 ve ortak bias 2 saniyelik yavaş taramada okunur.
 # - Katsayı K=24.22; üç kanala da uygulanır.
 # - Bu aşamada yalnız okuma sıklığı değiştirilmiştir; K ve pencere değişmemiştir.
 #
@@ -153,7 +152,7 @@ globals:
     restore_value: no
     initial_value: '-1'
 
-  # CH1 her saniye okunur; sayaç CH2'nin iki saniyede bir okunmasını sağlar.
+  # CH2'nin iki saniyede bir okunmasını sağlayan yavaş tarama sayacı.
   - id: sct_slow_scan_cycle
     type: uint32_t
     restore_value: no
@@ -344,43 +343,23 @@ text_sensor:
     update_interval: never
 
 script:
-  # CH1 her 1 saniyede bir okunur.
-  # Her ikinci çevrimde CH2 ve ortak bias da okunur (2 saniye).
-  # CH3'ün 500ms döngüsü bağımsızdır.
+  # CH2 her 2 saniyede bir okunur; aynı çevrimde ortak bias da okunur.
+  # CH1 (500ms) ve CH3 (1s) bağımsız interval döngülerindedir.
   - id: sct_slow_channels_reading
     mode: single
     then:
       - logger.log:
           level: INFO
-          format: "BERO SLOW SCAN: CH1-1T FAZ START"
-      - component.update: sct_1_current
+          format: "BERO SLOW SCAN: CH2-1T NOTR START"
+      - component.update: sct_2_current
       - delay: 110ms
-
-      - lambda: |-
-          id(sct_slow_scan_cycle)++;
-
-      - if:
-          condition:
-            lambda: 'return (id(sct_slow_scan_cycle) % 2U) == 0U;'
-          then:
-            - logger.log:
-                level: INFO
-                format: "BERO SLOW SCAN: CH2-1T NOTR START"
-            - component.update: sct_2_current
-            - delay: 110ms
-
-            - logger.log:
-                level: INFO
-                format: "BERO SLOW SCAN: COMMON BIAS READ"
-            - component.update: common_bias_adc_voltage
-
-            - logger.log:
-                level: INFO
-                format: "BERO SLOW SCAN: CH1 CH2 BIAS COMPLETE"
-          else:
-            - logger.log:
-                level: INFO
-                format: "BERO SLOW SCAN: CH1 COMPLETE; CH2 SKIPPED THIS CYCLE"
+      - logger.log:
+          level: INFO
+          format: "BERO SLOW SCAN: COMMON BIAS READ"
+      - component.update: common_bias_adc_voltage
+      - logger.log:
+          level: INFO
+          format: "BERO SLOW SCAN: CH2 BIAS COMPLETE"
 
 interval:
   # UDP alım kontrolü; non-blocking ve SCT ölçüm döngülerinden bağımsız.
@@ -553,12 +532,17 @@ interval:
             );
           }
 
-  # CH3-1T bağımsız 2 Hz okuma döngüsü: 500ms aralık.
+  # CH1-1T bağımsız 2 Hz okuma döngüsü: 500ms aralık.
   - interval: 500ms
+    then:
+      - component.update: sct_1_current
+
+  # CH3-1T bağımsız 1 Hz okuma döngüsü: 1 saniye aralık.
+  - interval: 1s
     then:
       - component.update: sct_3_current
 
-  # CH1-1T: 1 Hz; script içindeki her ikinci çevrimde CH2-1T ve bias okunur.
-  - interval: 1s
+  # CH2-1T ve ortak bias 2 saniyede bir aynı yavaş taramada okunur.
+  - interval: 2s
     then:
       - script.execute: sct_slow_channels_reading
