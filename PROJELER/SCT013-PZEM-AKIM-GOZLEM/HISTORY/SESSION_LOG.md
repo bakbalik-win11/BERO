@@ -1800,3 +1800,24 @@ Eğitim amacıyla kullanılacak SCT ve PZEM verilerini gerçek kayıtlar üzerin
 - Eğitim etiketli veri seti veya model üretilmedi.
 - Bu oturumda yeni CSV analizi, firmware/YAML değişikliği, derleme veya OTA yapılmadı.
 - T007 → T008 → T006 görev sırası korunur; PY-01 taslağı kullanıcı incelemesindedir.
+
+
+## 2026-11-06 — E16 gece gözlemi açıldı
+
+### HEDEF
+PZEM sıfır/sıfıra yakın akım gösterirken SCT CH1 çıktısının Modül 3 ON/OFF olaylarıyla ilişkisini gece boyu HA History kaydında gözlemek. 18 W yükte aç/kapa algılama gözlemini ayrı hipotez olarak korumak.
+
+### BAŞLANGIÇ EKRAN GÖZLEMİ
+- PZEM gerilimi 230,2 V; PZEM akımı 0,000 A.
+- Modül 2 CH1-1T akım göstergesi 0,204 A; Raw AC göstergesi 0,00842 (birim kesinleştirilmedi).
+- SCT grafiği yaklaşık 0,18–0,30 A çevresinde basamaklı; tekil daha yüksek sıçramalar var.
+- Bu değerler tek ekran görüntüsünden gözlemdir; uzun kayıt sonucu değildir.
+
+### KAYIT PLANI
+PZEM V/A, SCT CH1 akım/Raw AC ve Modül 3 gönderim + Modül 2 alım ON/OFF olayları gece boyunca HA History'de tutulacak. Sabah CSV dışa aktarımı ham haliyle korunup analiz edilecek. Fiziksel yük koşulu ayrıca kaydedilecek. Firmware ve ölçüm ayarları değiştirilmeyecek.
+
+### AYRI HİPOTEZ
+Kullanıcı 18 W yükte SCT'nin akım genliğini doğru okumaktan ziyade açma-kapama değişimini algılıyor olabileceğini bildirdi. Bu, E16 yüksüz gece kaydıyla doğrulanmış sayılmayacak; ayrı kontrollü tekrar gerektirir.
+
+### SINIR
+E16 PLANLANDI. Gece CSV'si henüz alınmadı; analiz, kararlılık algoritması, eğitim etiketi veya katsayı üretimi yapılmadı.
