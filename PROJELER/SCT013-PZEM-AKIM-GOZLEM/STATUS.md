@@ -431,3 +431,20 @@ Belgeler:
 - Ham veri korunacak; her çevrim için medyan, MAD, yüzdelikler, n ve zaman kararlılığı raporlanacak.
 - Deney raporu: [I008 — 42 W yük davranışı](experiments/I008-42W-load-separation/README.md).
 - **Durum:** BAŞLADI. Şu an yalnızca kullanıcı tarafından bildirilen 17:00 başlangıcı ve 42 W yük bilgisi kayıtlıdır; CSV/istatistik sonucu henüz yoktur.
+
+
+## 2026-11-06 — I009 planı: 57 W ve 57 W + 15 W
+
+Kullanıcının 42 W deneyinden sonraki planı:
+1. 57 W tekil yük deneyi.
+2. Ardından 57 W + 15 W birleşik yük deneyi.
+
+- Kullanıcı mevcut ölçüm kodunun aynı kalacağını belirtti; firmware/build hash'i bağımsız doğrulanmadı.
+- İki yük basamağı ayrı deney sınıflarıdır; verileri tek dağılımda birleştirilmeyecek.
+- Amaç OFF referansından düşük yüke, oradan hesaplanabilir akım bölgesine geçişi incelemek; özellikle OFF / 15 W / 42 W / 57 W / 57 W+15 W dağılımlarını karşılaştırmaktır.
+- Her fiziksel ON/OFF çevrimi ayrı segmentlenecek. SCT medyanı, MAD, P05/P95/P99, örnek sayısı, zaman dilimli medyan ve ON–OFF farkı hesaplanacak. PZEM değerleri aynı zaman pencerelerinde kendi geçerli örnekleriyle ayrı özetlenecek.
+- Aynı kayıtlarda 5, 10, 20, 30 ve 60 saniyelik analiz pencereleri denenecek. Bunlar aday analiz pencereleridir; onaylanmış karar süresi/eşiği değildir.
+- 57 W veya 57 W+15 W için hesaplanabilirlik varsayılmayacak; üç durumlu çıktı sözleşmesi korunacak.
+- **Gerçek başlangıç saatleri henüz bildirilmedi.** Kullanıcının “5 dakika sonra” ifadesi plan bilgisidir; başlangıç zamanı olarak kaydedilmedi.
+- Deney planı: [I009 — 57 W ve 57 W + 15 W](experiments/I009-57W-and-57W-plus-15W/README.md).
+- **Durum: PLANLANDI; henüz başlatıldığına dair kayıt yok.**
