@@ -126,3 +126,21 @@ Bu parametreler gerçek verilerden önce sonuçlara bakarak keyfî biçimde ayar
 **B. Hesaplanamayan alanın istatistiksel çerçevesi:** `CURRENT_NOT_COMPUTABLE` için ölçümün OFF referansına yakınlığı, dağılım genişliği, dalgalanması, zaman içi kararlılığı ve ON/OFF dağılım örtüşmesi nicel tarif edilir. Her pencerede medyan, OFF medyanından fark, MAD, IQR/P05/P95, tepe-tepe aralığı, eşik çevresinde kalınan süre, en uzun devam süresi, örnek sayısı, gerçek zaman kapsaması ve timestamp boşlukları kaydedilir.
 
 Bu iki hedef birbirine karıştırılmaz: bir pencere akım varlığını gösterebilir ancak amper hesabı için kararsız/uygunsuz olabilir. Benzer şekilde OFF referansına yakınlık tek başına fiziksel akımın kesin yokluğunu kanıtlamaz; zaman sürekliliği ve referans dağılımı ile birlikte değerlendirilir.
+
+## 9. Kullanıcı tarafından belirlenen 0.20 A OFF sınıflandırma kuralı
+
+Kullanıcı kararı: K=24.22 uygulanmış/hesaplanmış CH1 çıktısı **0.20 A'nın altındaysa OFF** olarak sınıflandırılacaktır. Bu, BERO'nun sayısal ölçüm çıktısına ilişkin operasyonel sınıflandırma kuralıdır. Elektriksel güvenlik kararı değildir; fiziksel hattın enerjisiz olduğunu veya dokunmanın güvenli olduğunu göstermez.
+
+0.20 A ve üzerindeki değerler tek başına CURRENT_PRESENT veya hesaplanabilir akım kanıtı sayılmaz. Bu bölge için süreklilik, pencere davranışı, PZEM referansları ve ölçüm belirsizliği ayrıca değerlendirilir. Bu karar, önceki taslaktaki “0.20 A yalnız adaydır” ifadesini kullanıcı sınıflandırma tercihi bakımından netleştirir; eşik üstü bölgenin yorumunu otomatikleştirmez.
+
+## 10. Gerilim ve bias değişkenlerinin birlikte değerlendirilmesi
+
+Uzun OFF ve ON/OFF oturumlarında CH1 tabanının değişimini açıklamak için aşağıdaki yardımcı değişkenler eşzamanlı incelenecektir:
+
+- PZEM şebeke gerilimi (V): seviye, zaman içi değişim ve CH1 merkezi/dağılımıyla eşzamanlı ilişki.
+- Bias gerilimi (V): mevcutsa ham zaman serisi, medyanı, MAD'si ve zaman içi değişimi.
+- CH1: K uygulanmış çıktı yanında mümkün olduğunda katsayı öncesi ct_clamp çıktısı; medyan, MAD, yüzdelikler ve zaman davranışı.
+
+Bu değişkenler önce açıklayıcı/karşılaştırmalı değişkenler olarak ele alınır. Yalnız korelasyon görülmesi bias veya şebeke geriliminin CH1 değişimine neden olduğunu kanıtlamaz. Veri ve deney kanıtı oluşmadan otomatik düzeltme/kompanzasyon uygulanmaz.
+
+**Veri mevcudiyeti notu:** history (50).csv için yapılan önceki kolon/entity incelemesinde PZEM gerilim serisi bulundu; ayrı bir bias entity/serisi tespit edilmedi. Firmware içinde biasın okunması, bu değerin HA History'ye ayrı entity olarak kaydedildiğini kanıtlamaz. Sonraki CSV'de bias serisi ayrıca doğrulanmalıdır. Yoksa biası analiz etmek için sonraki kayıt mimarisinde ayrı yayın/entity gereksinimi değerlendirilecektir.
