@@ -160,3 +160,32 @@ Bunlar tasarım seçenekleri ve deney konularıdır; hiçbiri şu aşamada kesin
 Uygulama bağlamı: çamaşır makinesi su giriş solenoidi gibi düşük akımlı bir olay basit yüksüz eşiğinin altında kalabilir. Bu olayın kaçırılması, su sesi gibi başka bir gözlem sinyaliyle yakalanabiliyorsa kabul edilebilir bir mühendislik ödünleşimi olabilir. Sistem hedefi tüm olası düşük akım olaylarını tek SCT kanalıyla yakalamak değil, makinenin anlamlı çalışma durumlarını yeterli güvenilirlikle gözlemlemektir.
 
 Dolayısıyla I007 yüksüz kayıtları faydalı bir veri havuzudur; ancak bu konu projenin ana hedefinin önüne geçmeyecek. Filtre türü, eşik, pencere süresi ve süreklilik şartı deneylerle belirlenecek. Mevcut 4 saniye/8 örnek önerisi yalnızca bir adaydır; zorunlu veya nihai karar değildir.
+
+
+
+## 2026-11-06 — Yüksüz gözlem oturumu: üç SCT kanalında tek geçiş
+
+Kullanıcı, bu oturum için test yaklaşımını değiştirdi. Önceki farklı sarım sayılarıyla (2, 3 ve 4 geçiş) yapılan kanal karşılaştırması yerine, akşamki yüksüz gözlemde üç SCT kanalının da **tek geçiş (1 turn)** olacak şekilde kullanılması planlandı.
+
+### Güncel test düzeni
+- Modül 2'nin üç SCT kanalı da kullanılacak: SCT1 GPIO32 (sarı), SCT2 GPIO33 (yeşil), SCT3 GPIO34 (mavi).
+- Her üç kanalın fiziksel iletken geçiş sayısı: **1 tur**.
+- Akşam kullanılacak kod, üç kanalın da tek geçiş düzenine göre okunmasını sağlayacak. Bu kayıt, firmware'in şimdiden değiştirildiği veya yüklendiği anlamına gelmez.
+- Testin odağı, tek geçişte üç kanalın yüksüz davranışını açık biçimde gözlemlemek ve kanalların verdiği sonuçlardan genel bir karşılaştırma fikri edinmektir.
+- Üç kanal sıralı okunduğundan örnekler eşzamanlı kabul edilmeyecek; her kanalın kendi timestamp'i ve gerçek güncelleme aralığı korunacak.
+- Kullanıcı masanın/kurulum yerinin değiştiğini bildirdi. Bu fiziksel yerleşim, oturum koşulu olarak not edilir; ölçüm farkının nedeni olduğu peşinen kabul edilmez.
+
+### Testin kapsamı ve yorum sınırı
+Bu oturum, E13'te tanımlanan tek kanallı canlı ESP 2 Hz mimarisinin testi değildir. Üç kanallı Modül 2 üzerinde, üç SCT'nin aynı tek geçiş düzenindeki yüksüz davranışını gözlemleme çalışmasıdır. Bu nedenle sonuçlar tek kanal canlı mimarinin 2 Hz başarısını kanıtlamaz.
+
+Üç kanalın birbirine yakın sonuç vermesi kanallar arası tutarlılık için ön gösterge olabilir; mutlak akım doğruluğunu veya kalibrasyonu tek başına kanıtlamaz. Kanallar arasında fark görülürse ham kayıt, kanal bazlı zaman aralıkları ve fiziksel bağlantı koşulları birlikte incelenir. Bu oturumda K veya filtre eşiği güncellendiği varsayılmaz.
+
+### Açık işler
+- [ ] Akşamki Modül 2 kodunu üç kanalda da 1 tur varsayımına göre hazırla ve yükle.
+- [ ] Test öncesi üç SCT'nin fiziksel geçiş sayısının 1 olduğunu doğrula.
+- [ ] Yüksüz oturumun ham HA/ESP kayıtlarını sakla.
+- [ ] Her kanal için örnek sayısı, timestamp aralığı, merkez/dağılım ve uç değerleri ayrı değerlendir.
+- [ ] Kanallar arası benzerlik/farkları gözlemle; tek oturumdan kalibrasyon sonucu çıkarma.
+- [ ] Masa/kurulum yeri değişikliğini kayıt koşulu olarak koru; etkisini veri olmadan varsayma.
+
+**Durum:** Test planı güncellendi; kod değişikliği, derleme/OTA ve test sonucu henüz kaydedilmedi. E13 tamamlanmış değildir.
