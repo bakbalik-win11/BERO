@@ -297,3 +297,13 @@ Kullanıcı onayıyla E15'ten ayrı E16 deneyi planlandı. E15 A/B/C'de `sample_
 - Tek kanal CH1-1T / GPIO32 / ADC1_CH4; K=24.22; ADC 12dB; UDP 4210 alıcısı korunuyor. CH2/CH3 ve ayrı GPIO35 ADC okuması yok.
 - E16 değerlendirmesinin odağı fiziksel olarak doğrulanmış kararlı ON bölümlerindeki katsayısız ct_clamp çıktısının kararlılığıdır. OFF davranışı saklanır, ancak ON kararlılığı ölçütüne katılmaz.
 - Kod depoya eklendi; derleme, OTA veya E turu başlangıcı henüz doğrulanmadı.
+
+
+## 2026-11-06 — E16 E turu başlatıldı
+
+- Kullanıcı bildirimi: yeni E16 kodu 15:16'da teste alındı.
+- Yapılandırma: CH1-1T / GPIO32 / ADC1_CH4; `sample_duration=100ms`; `interval=1s`; K=24.22; ADC 12dB; UDP 4210 alıcısı korunur.
+- Hedef süre 10 dakika; yaklaşık bitiş 15:26 (+03:00).
+- Öncelikli analiz, fiziksel olarak doğrulanmış kararlı ON bölümlerindeki katsayısız ct_clamp çıktısının kararlılığıdır. OFF verisi korunur fakat ON kararlılığı başarı ölçütüne katılmaz.
+- **Kanıt sınırı:** Başlangıç saati kullanıcı bildirimidir; cihaz logu, OTA/build doğrulaması veya 10 dakikalık HA History kaydı henüz görülmedi.
+- Ayrıntı: [E16 deney kaydı](experiments/E16-single-sct-window-duration/README.md).
