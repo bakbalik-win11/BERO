@@ -444,3 +444,11 @@
 - Modül 3 EVENT_ID 1897 ON ve 1898 OFF paketleri Modül 2 tarafından alındı ve HA'ya yayınlandı.
 - Yüksüz koşulda ON aralığında üç kanal medyanları yükseldi; OFF sonrası yaklaştı. Tek çevrim neden tayinine yetmez. Ham log ve analiz: [log](logs/module2/2026-11-06-module2-ch1-2hz-device-log.txt), [rapor](logs/module2/2026-11-06-module2-ch1-2hz-log-analysis.md).
 - **Durum:** Kısa cihaz ön kontrolü LOG İLE DESTEKLENDİ; E14 açık. Uzun log, tekrarlı olay çevrimleri ve PZEM/HA History karşılaştırması bekliyor.
+
+
+## 2026-11-06 — E14 üç örnekleme hızı planı
+
+- Kullanıcı fiziksel olarak ölçüm hattında yük olmadığını doğruladı; Modül 3 ON/OFF mesajı fiziksel yükün durumunu kanıtlamaz. 100 W akkor ampul kullanıcı fiziksel olarak açtığında yük aşaması başlayacak.
+- E14 deney YAML'ı CH1=500 ms (2 Hz), CH2=1 s (1 Hz), CH3=2 s (0,5 Hz) olacak şekilde güncellendi. Üç kanal sample_duration=100 ms ve K=24.22 sabit.
+- Yeni YAML blob SHA: `9bc6237ea9a312b6ff22a4f16c99c0f5f96fd382` (yorum düzeltmesi sonrası yeni SHA ayrıca doğrulanacak).
+- **Durum:** Yalnızca deney dalında kod değişikliği. Validate/Compile, OTA ve cihaz testi henüz yapılmadı. Sonraki sıra: doğrulama → yüksüz baz çizgi → kullanıcı komutuyla 100 W ampul ON → kararlı yük → ampul OFF.
