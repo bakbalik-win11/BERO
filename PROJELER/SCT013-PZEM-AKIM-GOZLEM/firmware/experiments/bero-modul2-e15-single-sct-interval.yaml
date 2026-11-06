@@ -7,7 +7,7 @@
 # AMAÇ:
 # - Yalnız CH1-1T / GPIO32 üzerinden tek SCT ölçüm kanalı çalıştırmak.
 # - sample_duration=100ms ve K=24.22 sabitken tetikleme aralığını
-#   500ms, 1s ve 2s olarak üç ayrı 30 dakikalık turda karşılaştırmak.
+#   500ms, 1s ve 2s olarak üç ayrı 10 dakikalık turda karşılaştırmak.
 # - Ölçüm penceresi, ADC yapılandırması, sensör ve fiziksel yük koşulunu sabit tutmak.
 # - Modül 3 UDP 4210 olay alıcısını koruyarak olay işaretlerini HA'ya aktarmak.
 # - CH2, CH3 ve ortak bias ADC okumalarını bu deney firmware'inde çalıştırmamak.
@@ -20,7 +20,7 @@
 # OKUMA:
 # - CH1-1T sample_duration=100ms sabit; K=24.22 sabit.
 # - A turu: interval 500ms; B turu: interval 1s; C turu: interval 2s.
-# - Her turda yalnız interval satırı değiştirilir; her tur 30 dakika kaydedilir.
+# - Her turda yalnız interval satırı değiştirilir; her tur 10 dakika kaydedilir.
 # - Başlangıç yapılandırması A turu içindir (500ms). B/C öncesi interval sırasıyla
 #   1s/2s yapılır; kullanılan YAML ve log sürümü kaydedilir.
 # - UDP 4210 olay alıcısı her turda korunur.
