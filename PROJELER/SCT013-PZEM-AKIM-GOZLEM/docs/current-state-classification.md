@@ -115,3 +115,14 @@ Bu parametreler gerçek verilerden önce sonuçlara bakarak keyfî biçimde ayar
 5. Eşik ve karar sürelerini belirle; farklı oturumlarda doğrula.
 
 **Sonuç:** BERO üç çıktı üretmeyi hedefler: AKIM VAR, AKIM YOK, AKIM HESAPLANAMADI. Özellikle son sınıf, fiziksel akım yokluğu ile ölçüm yetersizliğini birbirine karıştırmamak için zorunludur.
+
+
+## 6.1 İki istatistiksel hedefin ayrılması
+
+Üç durumlu sınıflandırma geliştirilirken iki ayrı problem çözülmelidir:
+
+**A. Fiziksel akım var/yok karar kanıtı:** `NO_CURRENT` ile `CURRENT_PRESENT` ayrımı. K=24.22 uygulanmış CH1 serisi, OFF referansı ve yük ON/OFF pencereleriyle karşılaştırılır. Kullanıcının 0.20 A gözlemi aday sınırdır; tekil örnek eşiği değildir. Süreklilik, eşik çevresinde kalma süresi, pencere medyanı/MAD ve tekrarlı çevrim tutarlılığı değerlendirilir.
+
+**B. Hesaplanamayan alanın istatistiksel çerçevesi:** `CURRENT_NOT_COMPUTABLE` için ölçümün OFF referansına yakınlığı, dağılım genişliği, dalgalanması, zaman içi kararlılığı ve ON/OFF dağılım örtüşmesi nicel tarif edilir. Her pencerede medyan, OFF medyanından fark, MAD, IQR/P05/P95, tepe-tepe aralığı, eşik çevresinde kalınan süre, en uzun devam süresi, örnek sayısı, gerçek zaman kapsaması ve timestamp boşlukları kaydedilir.
+
+Bu iki hedef birbirine karıştırılmaz: bir pencere akım varlığını gösterebilir ancak amper hesabı için kararsız/uygunsuz olabilir. Benzer şekilde OFF referansına yakınlık tek başına fiziksel akımın kesin yokluğunu kanıtlamaz; zaman sürekliliği ve referans dağılımı ile birlikte değerlendirilir.
