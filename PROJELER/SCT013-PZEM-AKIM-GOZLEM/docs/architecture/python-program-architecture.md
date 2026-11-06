@@ -46,6 +46,26 @@ Gelen-kutu, arşiv, hata/karantina ve log alanları mantıksal rollerdir. Gerçe
 
 Güncel olay biçimi: `BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF`. TIME alanı yoktur. Ayrıntı: [ADR-022](../decisions/ADR-022-packet-marker-segmented-training-streams.md) ve [ADR-023](../decisions/ADR-023-event-identity-without-time.md).
 
+
+## Eğitim akışlarının History'de açık adlandırılması (ADR-027)
+
+Gün içindeki deneyler ve genel gözlem için History'de fiziksel kanal adları `CH1`, `CH2`, `CH3` kullanılır. Birden fazla deney aynı History dışa aktarımında bulunabilir; bunların tümü eğitim verisi değildir.
+
+Bir kod/ölçüm yapılandırması kesinleştikten ve özellikle eğitim verisi alınmasına karar verildikten sonra, ilgili ESPHome/kaynak kodundaki kanal/entity adı küçük bir değişiklikle eğitim işaretli ada çevrilir. Kullanılacak adlar sabittir:
+
+| Eğitim akışı adı | Fiziksel kanal |
+|---|---|
+| `CH1-E` | CH1 |
+| `CH2-E` | CH2 |
+| `CH3-E` | CH3 |
+
+`-E` eki yalnız eğitim amacıyla yayınlanan History akışını ayırt eder. Sarım/geçiş sayısı, katsayı, filtre veya hesaplama yöntemi bu adın parçası değildir; gerekiyorsa ilgili deney/eğitim kodunda tanımlanır. Kodda eğitim işareti bulunmayan genel `CH1` / `CH2` / `CH3` akışları otomatik olarak eğitim verisi kabul edilmez.
+
+Python-1 dosyayı, içerik ve entity adlarını değiştirmeden doğrular ve arşivler; kaynak CSV'de `CH1-E`, `CH2-E`, `CH3-E` bulunmasını kabul koşulu yapmaz. Python-2 eğitim hazırlama aşamasında bu üç adı açık eşleme listesi olarak kullanır ve yalnız ilgili eğitim akışını seçer. Eski bir genel deney kaydından eğitim kopyası üretilecekse kaynak arşiv korunur; isimlendirme ve kanal seçimi ayrı türetilmiş kopyada yapılır.
+
+Bu adlandırma, History'de biriken çok sayıdaki deney kaydı arasından yalnızca eğitim amacıyla özellikle işaretlenmiş akışı seçmek içindir. Firmware/HA entity değişikliği kullanıcı tarafından eğitim kaydı başlatılmasına karar verildiğinde yapılır; mevcut çalışan deney kodları kendiliğinden değiştirilmez.
+
+
 ## Şimdilik kesinleştirilmeyenler
 
 - HA'dan PC'ye aktarım yöntemi (API, geçmiş dışa aktarımı veya dosya aktarımı).
