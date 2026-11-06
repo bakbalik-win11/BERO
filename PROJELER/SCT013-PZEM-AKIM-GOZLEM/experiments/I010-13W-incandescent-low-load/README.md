@@ -89,3 +89,18 @@ Bu çerçeve, `CURRENT_NOT_COMPUTABLE` alanını tanımlamaya yardım eder. Tek 
 İlk ana veri dilimi raporlandı ve kapatıldı: [I010 Oturum 1 — 18 W ON/OFF ayrışma raporu](REPORT-2026-11-06-session-01.md). Bu oturumda 16 ON/OFF çevrimi incelendi. 18 W çevrimleri içinde CH1 ON/OFF ayrımı tutarlı bulundu; ancak 0.20 A mutlak eşik olarak uzun OFF baz çizgisinde başarısız oldu. Ayrıntılar ve sayısal sonuçlar rapordadır.
 
 **Oturum 2:** Kullanıcı 18:00 sonrasında uzun 18 W ON/OFF testine devam edeceğini bildirdi. Sonraki veri ayrı oturum olarak alınacak; Oturum 1 raporu değiştirilmeyecek.
+
+## Kullanıcı kararı — 0.20 A OFF sınıflandırması
+
+K=24.22 uygulanmış/hesaplanmış CH1 değeri **0.20 A'nın altındaysa OFF** olarak sınıflandırılacaktır. Bu karar BERO ölçüm çıktısının algoritmik sınıflandırmasıdır; elektriksel güvenlik veya hattın enerjisiz olduğunun garantisi değildir. 0.20 A ve üzerindeki değerler kendiliğinden AKIM VAR veya doğru amper hesabı anlamına gelmez; ayrıca incelenir.
+
+## Oturum 2 ve uzun yüksüz doğrulama planı
+
+1. 18:00 sonrası uzun 18 W ON/OFF çevrimleri Oturum 2 olarak alınacak; Oturum 1'in ham verisi ve raporu değiştirilmeden korunacaktır.
+2. Sonrasında çok uzun süreli fiziksel yüksüz/OFF kayıt alınacaktır. Bu kayıtta amaç, OFF koşulunda 0.20 A ve üzeri sahte ON göstergesi oluşup oluşmadığını; oluşuyorsa ne kadar sürdüğünü, ne sıklıkta tekrarlandığını ve pencere medyanı/dağılımının nasıl davrandığını belirlemektir.
+3. Her iki veri diliminde CH1 ile aynı zaman ekseninde PZEM gerilimi ve varsa bias gerilimi incelenecektir.
+4. Gerilim/bias ilişkileri önce açıklayıcı değişken olarak analiz edilecek; yalnız korelasyona dayanarak CH1'e düzeltme uygulanmayacaktır.
+5. Bias serisinin CSV/HA History'de gerçekten bulunduğu doğrulanacaktır. history (50).csv için önceki kolon incelemesinde PZEM gerilimi görülmüş, ayrı bias entity/serisi tespit edilmemiştir. Firmware'de bias okunması, HA'ya kaydedildiği anlamına gelmez.
+6. Ham kayıtlar değişmeden korunacak; Oturum 2 ve uzun OFF kaydı ayrı veri kesitleri olarak raporlanacaktır.
+
+**Güvenlik sınırı:** OFF yazılım sınıfı, hattın enerjisiz veya dokunmaya güvenli olduğu anlamına gelmez.
