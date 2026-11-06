@@ -85,3 +85,10 @@ Dakika bazlı medyanlar yaklaşık 0.00787–0.01097 A, dakika bazlı MAD değer
 ## Sonuç durumu
 
 **OFF oturumu sayısal olarak işlendi ve kaydedildi.** Bu rapor tek oturumdur; sıfır eşiği belirlemek veya 15 W algılanabilirliği hakkında nihai hüküm vermek için yeterli değildir. I007'nin önceki çok kanallı 2026-11-05 oturumuyla doğrudan havuzlanmamalıdır; mevcut oturum CH1-1T tek kanal ölçümüdür.
+
+
+## Sonradan eklenen yöntem düzeltmesi — 2026-11-06
+
+Bu raporun önceki yorumunda tekil örnek dağılımı ve yüzdelikler, K uygulanmış 0.20 A sınırıyla doğrudan ilişkilendirilemez. Raporun ölçtüğü seri **K öncesi katsayısız ct_clamp çıktısıdır**. Ayrıca tekil örneklerin eşik üstünde görülmesi süreklilik kanıtı değildir. Bu nedenle rapordaki tekil yüzdelikler yalnızca katsayısız OFF dağılımının betimleyici istatistikleri olarak kalır; 0.20 A sınıflandırma kuralını doğrulamaz veya çürütmez.
+
+İlerideki sınıflandırma değerlendirmesi için K dönüşümü doğru uygulanmalı ve eşik davranışı zaman pencereleri, eşik üstünde kalma süresi, devamlılık, medyan/MAD ve zaman kararlılığıyla analiz edilmelidir. Ham veri değişmez; kısa sıçramalar tek başına durum değişimi sayılmaz. Süre/pencere parametreleri henüz belirlenmemiştir.
