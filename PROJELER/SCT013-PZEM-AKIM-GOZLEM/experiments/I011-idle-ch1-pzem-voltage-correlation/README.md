@@ -47,3 +47,21 @@ Bu kayıt sonunda şu sorular yanıtlanacak:
 4. Dalgalanma, PZEM geriliminden bağımsız bir CH1/ADC/ölçüm zinciri davranışı gibi mi görünüyor?
 
 **Durum: TEST PLANI HAZIR / UZUN SÜRELİ BOŞTA KAYIT BEKLENİYOR.**
+
+
+## Ek ölçüm serisi — Bias korelasyonu
+
+Kullanıcının ek talebiyle aynı uzun süreli yüksüz testte **bias gerilimi** de CH1 ve PZEM gerilimiyle birlikte incelenecek.
+
+Kaydedilecek ek seri:
+- CH1 ADC girişinin ortak bias noktasındaki gerçek gerilim ölçümü (V), timestamp ile.
+- Bias ölçümü ayrı bir HA sensörü/telemetri olarak mevcut değilse, bu seri varmış gibi kabul edilmeyecek; test öncesinde hangi entity'nin gerçek bias voltajını temsil ettiği doğrulanacak. Katsayısız ct_clamp akım çıktısı bias gerilimi değildir ve onun yerine kullanılamaz.
+
+Genişletilmiş analiz:
+1. Bias seviyesi ve değişimi ile CH1 katsayısız ct_clamp çıktısı arasındaki ilişki.
+2. Bias ile K uygulanmış CH1 çıktısı arasındaki ilişki.
+3. PZEM RMS gerilimi ile bias değişimi arasındaki ilişki.
+4. Üç seri için ortak zaman pencerelerinde Pearson/Spearman, detrend edilmiş değişim korelasyonu, gecikme ve kararlılık analizi.
+5. Bias'ın DC merkez seviyesi ile dalgalanma/genlik davranışı ayrı ele alınacak; sabit bias seviyesi ile bias dalgalanması birbirine karıştırılmayacak.
+
+**Önemli:** Bias, ADC sinyalinin merkezleme gerilimidir. Bias–CH1 korelasyonu görülmesi tek başına şebeke kaynaklı girişim veya fiziksel akım kanıtı değildir; yalnızca olası bağlantıyı gösterir. Sensörün hangi elektriksel noktayı ölçtüğü ve örnekleme/güncelleme hızı raporlanacaktır.
