@@ -109,3 +109,13 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 
 - 2026-11-06 genişletilmiş yüksüz kayıt (5 dk 37 sn, 4.104 satır) arşivlendi: [ham log](logs/module2/2026-11-06-module2-idle-extended-source.txt), [analiz](logs/module2/2026-11-06-module2-ch1-2hz-log-analysis.md). Kullanıcı kayıt boyunca fiziksel yük olmadığını doğruladı; UDP ON/OFF yalnız olay işaretidir.
 - Eski firmware ile CH1 674 yayın / 0,500 s medyan; CH2 169 / 2,000 s; CH3 168 / 2,000 s. CH1 tekil aralıkları 0,004–1,158 s; düzenli 2 Hz garantisi henüz yok. Yüksüz gösterge medyanları CH1 0,2725 A, CH2 0,216 A, CH3 0,252 A; fiziksel akım olarak yorumlanmaz.
+
+
+## 2026-11-06 — PZEM History geçiş değerlerinin paket ortalaması olarak değerlendirilmesi
+
+- Kullanıcı, PZEM History grafiğinde açma/kapama geçişlerinde görünen akımın anlık fiziksel akım olarak yorumlanmaması gerektiğini belirtti. Tarif edilen beşli örnek: `1,1,1,1,1 → 1,0`; `1,1,1,1,0 → 0,8`. Bu, önceki örneklerin geçiş sonrasındaki değere katkı verdiği paket/beşli ortalama davranışıyla uyumludur.
+- **KULLANICI GÖZLEMİ / HESAP:** Geçiş kenarındaki PZEM ara değerleri kararlı SCT/PZEM alan istatistiklerine katılmayacak. PZEM'in kararlı açık/kapalı alanları durum ve zaman aralığı belirlemede kullanılabilir; PZEM mutlak ground truth değildir.
+- PZEM'in iç firmware/Modbus ortalama algoritması incelenmedi. Kesin iç algoritma iddiası yoktur; kayıt gözlenen History davranışının yorumudur.
+- SCT örnekleme hızı karşılaştırmasında PZEM referans ölçütü değildir. Üç SCT kanalı kendi kararlı ON alanlarında ayrı ayrı ve ortak yük davranışına göre değerlendirilecektir.
+- Ayrıntı: [PZEM History geçiş davranışı gözlemi](logs/module3/2026-11-06-pzem-history-packet-average-observation.md).
+- Sonraki kanal eşleştirme deneyi için kullanıcı başlangıcı 2026-11-06 12:01:00 (+03:00); CH1←önceki SCT3, CH2←önceki SCT1, CH3←önceki SCT2. Yeni CSV bekleniyor.
