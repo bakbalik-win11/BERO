@@ -82,3 +82,10 @@ Bu çerçeve, `CURRENT_NOT_COMPUTABLE` alanını tanımlamaya yardım eder. Tek 
 - İlk veri kontrolünden sonra kullanıcı uzun 18 W ON/OFF aç-kapa testine devam edecek.
 - İlk veri kesiti ile sonraki uzun aç-kapa kaydı ayrı veri bölümleri olarak saklanacak ve zaman damgaları korunacak; analizde aynı I010 deneyinin ayrı kayıt dilimleri olarak ilişkilendirilecek.
 - 15 W içeren tüm dönemler I010 kontrollü karşılaştırmasından hariç tutulacak; ham veri silinmeyecek.
+
+
+## Oturum 1 raporu — 6 Kasım 2026, 18:00 öncesi
+
+İlk ana veri dilimi raporlandı ve kapatıldı: [I010 Oturum 1 — 18 W ON/OFF ayrışma raporu](REPORT-2026-11-06-session-01.md). Bu oturumda 16 ON/OFF çevrimi incelendi. 18 W çevrimleri içinde CH1 ON/OFF ayrımı tutarlı bulundu; ancak 0.20 A mutlak eşik olarak uzun OFF baz çizgisinde başarısız oldu. Ayrıntılar ve sayısal sonuçlar rapordadır.
+
+**Oturum 2:** Kullanıcı 18:00 sonrasında uzun 18 W ON/OFF testine devam edeceğini bildirdi. Sonraki veri ayrı oturum olarak alınacak; Oturum 1 raporu değiştirilmeyecek.
