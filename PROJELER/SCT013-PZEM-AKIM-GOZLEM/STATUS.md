@@ -521,3 +521,12 @@ Ayrıntı: [I009 deney kaydı](experiments/I009-57W-and-57W-plus-15W/README.md).
 ### I011 kapsam genişletmesi — Bias korelasyonu
 
 Kullanıcının ek talebi: aynı uzun süreli yüksüz testte CH1 katsayısız/katsayılı çıktıları, PZEM RMS gerilimi ve **gerçek bias gerilimi** birlikte korele edilecek. Bias için gerçek ADC bias noktasını temsil eden HA entity/telemetri doğrulanmalı; katsayısız ct_clamp çıktısı bias gerilimi değildir ve yerine kullanılamaz. Bias DC seviyesi ile dalgalanması ayrı analiz edilecek. Pearson/Spearman, detrend edilmiş pencere değişimleri, gecikme ve kararlılık değerlendirilecek. Bias korelasyonu nedensellik veya gerçek akım kanıtı sayılmayacak.
+
+
+## 2026-11-06 17:43 — I010 18 W ON başladı
+
+- Kullanıcı bildirimi: **17:43 (+03:00) itibarıyla 18 W yük ON yapıldı.** Saniye düzeyinde başlangıç bilinmiyor.
+- I010 artık BAŞLADI durumundadır; CSV/PZEM zaman serisiyle zaman ve çevrim doğrulaması bekleniyor.
+- Mevcut 15 W ampul test yükü değildir; 18 W ayrı ve tekil yük sınıfı olarak analiz edilecek.
+- Süre-temelli yöntem uygulanacak; tekil sıçramalar karar sayılmayacak.
+- Deney kaydı: [I010 — 18 W düşük yük ayrışma deneyi](experiments/I010-13W-incandescent-low-load/README.md).
