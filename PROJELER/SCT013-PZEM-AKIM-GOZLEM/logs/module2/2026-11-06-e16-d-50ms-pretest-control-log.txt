@@ -1,0 +1,173 @@
+Logs - ESP32D1
+OTA
+INFO ESPHome 2026.10.2
+INFO Loaded validated config cache for esp32d1.yaml, skipping validation.
+INFO Starting log output from 192.168.0.35 using esphome API
+INFO Successfully resolved esp32d1 @ 192.168.0.35 in 0.000s
+INFO Successfully connected to esp32d1 @ 192.168.0.35 in 4.349s
+INFO Successful handshake with esp32d1 @ 192.168.0.35 in 0.095s
+[15:00:21.591][I][app:164]: ESPHome version 2026.10.2 compiled on 2026-11-06 14:59:40 +0300
+[15:00:21.591][I][app:171]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[15:00:21.591][W][app:189]: Set flash_chip: generic under esp32 > framework > advanced to save IRAM
+[15:00:21.592][W][app:201]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[15:00:21.598][W][app:228]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[15:00:21.598][C][logger:218]: Logger:
+[15:00:21.598][C][logger:218]:   Max Level: DEBUG
+[15:00:21.598][C][logger:218]:   Initial Level: DEBUG
+[15:00:21.598][C][logger:225]:   Log Baud Rate: 115200
+[15:00:21.598][C][logger:225]:   Hardware UART: UART0
+[15:00:21.599][C][logger:234]:   Task Log Buffer Size: 768 bytes
+[15:00:21.630][C][template.sensor:017]: Template Sensor 'BERO Mod2 CH1-1T Faz Ham Akim'
+[15:00:21.630][C][template.sensor:017]:   State Class: 'measurement'
+[15:00:21.630][C][template.sensor:017]:   Unit of Measurement: 'A'
+[15:00:21.630][C][template.sensor:017]:   Accuracy Decimals: 5
+[15:00:21.636][C][template.sensor:166]:   Device Class: 'current'
+[15:00:21.636][C][template.sensor:338]:   Update Interval: never
+[15:00:21.654][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay Kaydi'
+[15:00:21.702][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay BOOT ID'
+[15:00:21.703][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay EVENT ID'
+[15:00:21.703][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 Olay STATE'
+[15:00:21.717][C][template.text_sensor:016]: Template Sensor 'BERO Mod2 UDP Dinleyici'
+[15:00:21.724][C][adc:017]: ADC Sensor 'ESP32D1 SCT1 ADC Source'
+[15:00:21.724][C][adc:017]:   State Class: 'measurement'
+[15:00:21.724][C][adc:017]:   Unit of Measurement: 'V'
+[15:00:21.724][C][adc:017]:   Accuracy Decimals: 2
+[15:00:21.724][C][adc:166]:   Device Class: 'voltage'
+[15:00:21.724][C][adc:131]:   Pin: GPIO32
+[15:00:21.731][C][adc:131]:   Channel:       4
+[15:00:21.731][C][adc:131]:   Unit:          ADC1
+[15:00:21.731][C][adc:131]:   Attenuation:   12 dB
+[15:00:21.731][C][adc:131]:   Samples:       1
+[15:00:21.731][C][adc:131]:   Sampling mode: average
+[15:00:21.731][C][adc:131]:   Setup Status:
+[15:00:21.731][C][adc:131]:     Handle Init:  OK
+[15:00:21.731][C][adc:131]:     Config:       OK
+[15:00:21.731][C][adc:131]:     Calibration:  OK
+[15:00:21.731][C][adc:131]:     Overall Init: OK
+[15:00:21.739][C][adc:338]:   Update Interval: never
+[15:00:21.805][C][ct_clamp:017]: CT Clamp Sensor 'BERO Mod2 CH1-1T Faz Akim'
+[15:00:21.805][C][ct_clamp:017]:   State Class: 'measurement'
+[15:00:21.805][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[15:00:21.805][C][ct_clamp:017]:   Accuracy Decimals: 3
+[15:00:21.805][C][ct_clamp:166]:   Device Class: 'current'
+[15:00:21.818][C][ct_clamp:013]:   Sample Duration: 0.05s
+[15:00:21.818][C][ct_clamp:338]:   Update Interval: never
+[15:00:21.824][C][network:050]: Network:
+[15:00:21.824][C][network:050]:   TCP send buffer: 5760 bytes
+[15:00:21.838][C][wifi:1688]: WiFi:
+[15:00:21.838][C][wifi:1688]:   Local MAC: 70:4B:CA:48:0B:9C
+[15:00:21.838][C][wifi:1688]:   Connected: YES
+[15:00:21.845][C][wifi:1392]:   IP Address: 192.168.0.35
+[15:00:21.846][C][wifi:1403]:   SSID: 'AKFISH'
+[15:00:21.846][C][wifi:1403]:   BSSID: 3C:64:CF:5C:81:73
+[15:00:21.846][C][wifi:1403]:   Hostname: 'esp32d1'
+[15:00:21.846][C][wifi:1403]:   Signal strength: -55 dB ▂▄▆█
+[15:00:21.846][C][wifi:1403]:   Channel: 2
+[15:00:21.846][C][wifi:1403]:   Subnet: 255.255.255.0
+[15:00:21.867][C][esphome.ota:129]: Over-The-Air updates:
+[15:00:21.867][C][esphome.ota:129]:   Address: esp32d1.local:3232
+[15:00:21.867][C][esphome.ota:129]:   Version: 2
+[15:00:21.880][C][safe_mode:058]: Safe Mode:
+[15:00:21.880][C][safe_mode:058]:   Successful after: 60s
+[15:00:21.880][C][safe_mode:058]:   Invoke after: 10 attempts
+[15:00:21.880][C][safe_mode:058]:   Duration: 300s
+[15:00:21.890][C][safe_mode:079]:   Bootloader rollback: supported
+[15:00:21.899][C][api:368]: Server:
+[15:00:21.899][C][api:368]:   Address: esp32d1.local:6053
+[15:00:21.899][C][api:368]:   Listen backlog: 4
+[15:00:21.899][C][api:380]:   Noise encryption: NO
+[15:00:21.906][C][mdns:324]: mDNS:
+[15:00:21.906][C][mdns:324]:   Hostname: esp32d1
+[15:00:22.317][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.005A after 627 different samples (12540 SPS)
+[15:00:22.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00518 A
+[15:00:22.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.126 A
+[15:00:23.310][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.005A after 635 different samples (12700 SPS)
+[15:00:23.424][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00451 A
+[15:00:23.424][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.109 A
+[15:00:24.322][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.004A after 617 different samples (12340 SPS)
+[15:00:24.429][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00446 A
+[15:00:24.429][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.108 A
+[15:00:25.311][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 630 different samples (12600 SPS)
+[15:00:25.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00710 A
+[15:00:25.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.172 A
+[15:00:26.308][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.005A after 588 different samples (11760 SPS)
+[15:00:26.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00468 A
+[15:00:26.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.113 A
+[15:00:27.310][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 627 different samples (12540 SPS)
+[15:00:27.424][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00676 A
+[15:00:27.425][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.164 A
+[15:00:28.386][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.006A after 637 different samples (12740 SPS)
+[15:00:28.453][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00584 A
+[15:00:28.453][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.142 A
+[15:00:29.312][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.005A after 629 different samples (12580 SPS)
+[15:00:29.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00546 A
+[15:00:29.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.132 A
+[15:00:30.310][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.007A after 608 different samples (12160 SPS)
+[15:00:30.424][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00707 A
+[15:00:30.425][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.171 A
+[15:00:31.314][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.005A after 602 different samples (12040 SPS)
+[15:00:31.419][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.00493 A
+[15:00:31.419][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.119 A
+[15:00:32.310][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.017A after 621 different samples (12420 SPS)
+[15:00:32.449][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01718 A
+[15:00:32.449][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.416 A
+[15:00:33.308][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 626 different samples (12520 SPS)
+[15:00:33.421][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01838 A
+[15:00:33.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.445 A
+[15:00:34.317][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 628 different samples (12560 SPS)
+[15:00:34.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01839 A
+[15:00:34.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.446 A
+[15:00:35.310][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 621 different samples (12420 SPS)
+[15:00:35.424][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01791 A
+[15:00:35.425][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.434 A
+[15:00:36.313][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.019A after 632 different samples (12640 SPS)
+[15:00:36.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01879 A
+[15:00:36.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.455 A
+[15:00:37.310][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.019A after 615 different samples (12300 SPS)
+[15:00:37.428][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01855 A
+[15:00:37.429][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.449 A
+[15:00:38.311][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.020A after 609 different samples (12180 SPS)
+[15:00:38.428][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01966 A
+[15:00:38.428][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.476 A
+[15:00:39.318][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.019A after 625 different samples (12500 SPS)
+[15:00:39.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01911 A
+[15:00:39.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.463 A
+[15:00:40.413][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.021A after 626 different samples (12520 SPS)
+[15:00:40.416][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.02114 A
+[15:00:40.417][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.512 A
+[15:00:41.318][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 617 different samples (12340 SPS)
+[15:00:41.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01834 A
+[15:00:41.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.444 A
+[15:00:42.312][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.020A after 635 different samples (12700 SPS)
+[15:00:42.421][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.02002 A
+[15:00:42.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.485 A
+[15:00:43.314][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.019A after 658 different samples (13160 SPS)
+[15:00:43.429][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01898 A
+[15:00:43.430][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.460 A
+[15:00:44.312][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.020A after 621 different samples (12420 SPS)
+[15:00:44.424][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.02010 A
+[15:00:44.424][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.487 A
+[15:00:45.313][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.019A after 633 different samples (12660 SPS)
+[15:00:45.425][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01907 A
+[15:00:45.426][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.462 A
+[15:00:46.312][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 615 different samples (12300 SPS)
+[15:00:46.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01766 A
+[15:00:46.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.428 A
+[15:00:47.311][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.019A after 607 different samples (12140 SPS)
+[15:00:47.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01945 A
+[15:00:47.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.471 A
+[15:00:48.348][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.017A after 611 different samples (12220 SPS)
+[15:00:48.453][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01658 A
+[15:00:48.454][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.402 A
+[15:00:49.310][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.019A after 615 different samples (12300 SPS)
+[15:00:49.422][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01896 A
+[15:00:49.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.459 A
+[15:00:50.310][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.020A after 627 different samples (12540 SPS)
+[15:00:50.433][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01976 A
+[15:00:50.434][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.479 A
+[15:00:51.313][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.020A after 616 different samples (12320 SPS)
+[15:00:51.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.02039 A
+[15:00:51.423][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.494 A
+[15:00:52.336][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.017A after 611 different samples (12220 SPS)
+[15:00:52.446][S][sensor]: 'BERO Mod2 CH1-1T Faz Ham Akim' >> 0.01735 A
+[15:00:52.446][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.420 A
