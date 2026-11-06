@@ -448,3 +448,11 @@ Kullanıcının 42 W deneyinden sonraki planı:
 - **Gerçek başlangıç saatleri henüz bildirilmedi.** Kullanıcının “5 dakika sonra” ifadesi plan bilgisidir; başlangıç zamanı olarak kaydedilmedi.
 - Deney planı: [I009 — 57 W ve 57 W + 15 W](experiments/I009-57W-and-57W-plus-15W/README.md).
 - **Durum: PLANLANDI; henüz başlatıldığına dair kayıt yok.**
+
+
+### I009 zaman güncellemesi — 57 W
+
+- Kullanıcı bildirimi: 57 W yük 2026-11-06 saat **17:17 sonrasında** devreye alındı (+03:00).
+- Saniye düzeyinde başlangıç bilinmiyor; CSV/PZEM zaman serisiyle doğrulanacak.
+- 57 W + 15 W birleşik yük basamağı henüz başlamadı/bildirilmedi.
+- Ayrıntı: [I009 deney kaydı](experiments/I009-57W-and-57W-plus-15W/README.md).
