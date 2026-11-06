@@ -1865,3 +1865,14 @@ Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmwa
 ## 2026-11-06 — E15 süre kararı
 
 Kullanıcı kararı: Üç tur 30 dakika değil, 10'ar dakika. A/B/C aralıkları 500 ms / 1 s / 2 s olarak kalır. Nominal CH1 yayın adetleri yaklaşık 1.200 / 600 / 300. Diğer deney değişkenleri sabittir.
+
+## 2026-11-06 — E15 ilk cihaz çalışma kontrolü ve log arşivi
+
+- Kullanıcı ESPHome 2026.10.2 ESP32D1 cihaz logunu paylaştı. API bağlantısı/handshake başarılı; ESP32 rev3.1 ve Wi-Fi bağlantısı logda görüldü.
+- GPIO32 / ADC1_CH4 ADC init/config/calibration OK; ct_clamp sample_duration=100ms, update_interval=never.
+- CH1-1T akım entity'si 28.492 saniyede 58 yayın üretti. Yayın aralığı medyanı 0.500s; min 0.427s, max 0.577s.
+- UDP EVENT_ID=314 / STATE=OFF paketi alındı; ham mesaj, BOOT_ID, EVENT_ID ve STATE HA text_sensor alanlarına yayınlandı.
+- Logun olay zamanına göre betimleyici ayrımı: OFF öncesi n=33, ortalama 0.4639 A; OFF ve sonrası n=25, ortalama 0.1655 A. Bu, UDP OFF'un fiziksel yük durumunu kanıtladığı anlamına gelmez.
+- İlk çalışma kontrolü başarılı kabul edildi; 10 dakikalık A turu tamamlandı denmedi. Bu kısa log sıçrama karşılaştırması için kullanılmayacak.
+- Logda yapılandırma adı esp32d1.yaml; depodaki E15 YAML snapshot'ı ile çalışan binary arasında birebir hash eşleştirmesi kanıtlanmış değildir.
+- [Ham log](../logs/module2/2026-11-06-e15-a-500ms-initial-device-log.txt); [analiz](../logs/module2/2026-11-06-e15-a-500ms-initial-device-log-analysis.md); [E15 sonuç defteri](../experiments/E15-single-sct-publish-interval/results.md).
