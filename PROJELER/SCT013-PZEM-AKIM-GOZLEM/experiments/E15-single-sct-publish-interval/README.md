@@ -117,3 +117,17 @@ E15'in üç adet 10 dakikalık kayıt turu henüz tamamlanmadı.
 ## 2026-11-06 — Katsayı terminolojisi düzeltmesi
 
 Önceki kayıtlarda geçen **“katsayısız”** ifadesi yanlıştı ve düzeltildi. E15/T008 kapsamında değerlendirilen SCT akım çıktısı, firmware'de `ct_clamp` filtresindeki `multiply: 24.22` ile katsayı uygulanmış değerdir. Amaç katsayıyı yok saymak değil; PZEM referanslı kararlı alanlardan mevcut K=24.22 katsayısını değerlendirmek ve gerekirse iyileştirmektir. Ham ADC/ct_clamp öncesi değer ile katsayı uygulanmış akım çıktısı birbirine karıştırılmayacaktır. Bu düzeltme ölçüm akışının ne olduğuna ilişkindir; yeni katsayı henüz hesaplanmış veya kabul edilmiş değildir.
+
+
+## E15 B — 1 saniye kısa cihaz kontrolü (2026-11-06)
+
+- Kullanıcı B turu kodunu cihaza yükledi ve kısa kontrol logunu paylaştı.
+- ESPHome 2026.10.2; ESP32 rev3.1; derleme zamanı 14:12:57 +03:00. API çözümleme/bağlantı/handshake başarılı.
+- GPIO32 / ADC1_CH4, 12 dB ADC init/config/calibration OK. ct_clamp sample_duration=100ms ve update_interval=never.
+- CH1 katsayı uygulanmış akım entity'si 44 kez yayımlandı; 14:13:38.343–14:14:21.374 aralığında yaklaşık 43.0 saniye.
+- Gerçek yayın aralığı medyanı 1.000 s; min 0.966 s; max 1.038 s; ortalama yaklaşık 1.001 s. Kısa kontrol B'nin 1 Hz ritmini doğruluyor.
+- UDP EVENT_ID=370 / STATE=OFF alındı ve HA olay entity'lerine aktarıldı.
+- OFF öncesi 33 ölçümün ortalaması yaklaşık 0.47085 A; OFF sonrası ilk değer 0.196 A. Bu yalnız betimleyici olay öncesi/sonrası gözlemidir; UDP STATE tek başına fiziksel yük durumunu kanıtlamaz.
+- Log yaklaşık 43 saniyedir; 10 dakikalık B turu veya A/B/C sapma karşılaştırması değildir.
+- ESPHome logu validated config cache'in esp32d1.yaml için kullanıldığını bildiriyor. Çalışan binary'nin depodaki B YAML snapshot'ıyla birebir hash eşleşmesi bu logla kanıtlanmıyor.
+- [Ham log](../../logs/module2/2026-11-06-e15-b-1s-short-device-check.txt) ve [teknik analiz](../../logs/module2/2026-11-06-e15-b-1s-short-device-check-analysis.md) arşivlendi. B turunun resmi 10 dakikalık kaydı henüz tamamlanmadı.
