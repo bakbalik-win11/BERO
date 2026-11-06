@@ -117,3 +117,16 @@ Her tur 10 dakika sürer. HA zaman damgalarıyla gerçek yayın aralığı ve ge
 E16, eğitimde kullanılacak ölçüm penceresi/okuma parametrelerinin değerlendirilmesine veri sağlar; tek başına nihai merkez kestiriciyi veya K katsayısı hesaplama yöntemini seçmez. Eğitimde yalnız fiziksel olarak doğrulanmış kararlı ON alanları kullanılacak; ON başlangıç geçişi ve OFF sonrası örnekler katsayı hesabına alınmayacak. OFF ham verisi korunacaktır. Eğitim/kalibrasyon istatistiği ile gelecekteki canlı yük değişimi istatistiği ayrı ele alınacaktır.
 
 Aday merkez kestiriciler (ortalama, medyan, trimmed mean), yayılım ölçüleri (SD, MAD, IQR, yüzdelikler), çevrim bazında değerlendirme ve kaydedilecek okuma parametreleri için [SCT ON eğitim verisi ve katsayı belirleme istatistiği](../../docs/ON-training-calibration-statistics.md) belgesine bakın. Nihai yöntem ve sayısal eşikler henüz kararlaştırılmamıştır.
+
+
+## D/E/F kararlı ON sonuçları — HA History 2026-11-06
+
+D=50ms, E=100ms, F=200ms; interval=1s. Her SSR ON çevriminde ilk/son 5 saniye çıkarıldı ve test penceresinden önce başlamış ON çevrimleri dışarıda bırakıldı. Katsayısız ct_clamp ON serisi:
+
+| Tur | n | ON çevrimi | Ortalama (A) | Medyan (A) | SD (A) | MAD (A) | P05–P95 (A) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| D | 292 | 10 | 0.018985 | 0.018682 | 0.001745 | 0.000572 | 0.017483–0.020649 |
+| E | 293 | 10 | 0.019264 | 0.019118 | 0.001034 | 0.000481 | 0.018083–0.020759 |
+| F | 300 | 10 | 0.019053 | 0.018869 | 0.000820 | 0.000407 | 0.018126–0.020336 |
+
+F, CSV'deki 15:36:16–15:46:16 segmentinden eşleştirildi; F başlangıç bildirimi/cihaz logu ayrıca doğrulanmış değildir. Tam A–F karşılaştırması, PZEM kontrolü, IQR uç değer işaretleri, K oranları ve kanıt sınırları [ortak raporda](../../logs/module2/2026-11-06-e15-e16-a-f-on-only-comparison.md) bulunur. Bu analiz tek oturumluk karşılaştırmadır; nihai ölçüm penceresi veya K seçimi değildir.
