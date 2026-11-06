@@ -505,3 +505,14 @@ Ayrıntı: [I009 deney kaydı](experiments/I009-57W-and-57W-plus-15W/README.md).
 - Kullanıcı bağlama kararı verdi; ancak fiziksel bağlantı ve deney başlangıcı henüz bildirilmedi. Bu nedenle deney BAŞLADI olarak işaretlenmedi.
 - Analiz süre-temelli olacak: tekil sıçramalar karar sayılmayacak; pencere medyanı, MAD, eşik üstünde kalma süresi, devamlılık ve OFF/ON örtüşmesi incelenecek.
 - Deney planı: [I010 — 18 W düşük yük ayrışma deneyi](experiments/I010-13W-incandescent-low-load/README.md).
+
+
+## 2026-11-06 — I011: uzun süreli boşta CH1–PZEM gerilim korelasyonu
+
+- Kullanıcı, yük gücü kesildikten sonra K uygulanmış CH1 çıktısında sinüzoidal görünümlü dalgalanma gözlemledi.
+- Yeni test: fiziksel yük olmadan sistem uzun süre boşta çalışırken CH1 K öncesi/K sonrası serileri ile PZEM 220–230 V gerilim serisinin timestamp bazında korelasyonu incelenecek.
+- PZEM gerilimi RMS telemetrisi olarak ele alınacak; 50 Hz anlık dalga biçimi gibi yorumlanmayacak.
+- Farklı örnekleme/güncelleme hızları bire bir eşleştirilmeyecek. Pencere özetleri, detrend edilmiş değişimler, Pearson/Spearman, otokorelasyon ve gerekirse gecikmeli çapraz korelasyon değerlendirilecek.
+- Korelasyon nedensellik veya gerçek akım kanıtı değildir. Tekil sıçramalar karar sayılmayacak; süre ve pencere davranışı esas alınacak.
+- Başlangıç/bitiş ve veri dosyası henüz bekleniyor; test başlamış/tamamlanmış sayılmıyor.
+- Deney planı: [I011 — uzun süreli boşta CH1–PZEM gerilim korelasyonu](experiments/I011-idle-ch1-pzem-voltage-correlation/README.md).
