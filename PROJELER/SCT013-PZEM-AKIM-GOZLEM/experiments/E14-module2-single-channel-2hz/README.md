@@ -184,3 +184,35 @@ Kullanıcı, uzun kayıt karşılaştırmasından sonra 1 Hz profilini CH1'den C
 - Deney hedefi tek bir kanalı kazanan seçmek değildir. Üç kanalın da aynı koşullarda tutarlı, tekrarlanabilir ve düşük saçılımlı ölçüm üretmesi hedeflenir.
 - Bu saat, kullanıcı tarafından bildirilen kayıt başlangıcıdır; cihaz logu/HA CSV henüz bu kayda eklenmedi. Fiziksel yük durumu bu başlangıç notunda belirtilmemiştir; UDP ON/OFF mesajları fiziksel yük durumunun kanıtı sayılmayacaktır.
 - Sonraki analizde yeni profilin gerçekten çalıştığı yayın timestamp aralıklarından kontrol edilecek; karşılaştırma aynı fiziksel koşul ve kararlı pencereler üzerinden yapılacaktır.
+
+
+## 2026-11-06 — 12:52 sonrası yeni profil HA History ilk analizi
+
+### Kaynak ve kapsam
+- **KAYNAK: KULLANICININ SAĞLADIĞI HA HISTORY CSV** `history (41).csv`; toplam 57.116 satır, 3 sütun. Dosyanın tamamı yerel saatle 11:00:00–12:59:09 (+03:00) aralığını kapsıyor.
+- Bu analiz yalnız yeni kod başlangıcı olan 12:52:00 sonrasını kapsar: 12:52:04–12:59:09. Eski firmware verileri yeni profil karşılaştırmasına karıştırılmadı.
+- Yeni profil aralıkları HA timestamp'lerinden doğrulandı: CH1 852 kayıt / medyan 0,500 s; CH2 214 kayıt / medyan 2,000 s; CH3 426 kayıt / medyan 1,000 s. Hedefler sırasıyla 2 Hz, 0,5 Hz ve 1 Hz. Bu, yayın ritminin HA tarafındaki doğrulamasıdır; ölçüm doğruluğu kanıtı değildir.
+- Ortak bias 200 kayıt, medyan 2,000 s; gözlenen aralık 1,646–1,680 V.
+
+### PZEM ve olay gözlemi
+- PZEM akımında 0,470–0,473 A yüksek seviyeleri ve 0 A düşük seviyeleri gözlendi; yüksek seviyelerde 26 örneğin ortalaması 0,4715 A, standart sapması 0,00086 A. PZEM aktif güç yüksek örneklerde yaklaşık 91,2–110,4 W aralığındadır.
+- Modül 3 ve Modül 2 olay kayıtları aynı BOOT_ID ile 206–219 EVENT_ID aralığında ON/OFF işaretlerini gösteriyor. Olay işaretleri tek başına fiziksel yük durumu kanıtı değildir; PZEM akım/güç değişimleri elektriksel yük çevrimleriyle uyumlu ek gözlemdir.
+
+### İlk altı ON kararlı alanı
+Olay ON başlangıcından 8 saniye sonrası ile eşleşen OFF işaretinden 5 saniye öncesi arasındaki örnekler alındı. Böylece geçiş kenarları ana istatistik dışında bırakıldı. Altı tam ON çevrimi kullanıldı:
+
+| Kanal | Örnek | Ortalama (A) | Std. sapma (A) | Medyan (A) |
+|---|---:|---:|---:|---:|
+| CH1-1T / 2 Hz | 324 | 0,4758 | 0,0274 | 0,4701 |
+| CH2-1T / 0,5 Hz | 78 | 0,4737 | 0,0261 | 0,4713 |
+| CH3-1T / 1 Hz | 162 | 0,4699 | 0,0226 | 0,4653 |
+
+- Aynı seçilmiş alanlardaki PZEM yüksek akım örnekleri 0,470–0,473 A bandında, ortalama 0,4715 A'dır.
+- Bu ilk altı çevrimde CH3'ün standart sapması en düşüktür. Bununla birlikte üç kanalın medyanları PZEM yüksek seviye ortalamasına yakındır; çevrim bazında kanal ortalamaları da değişmektedir.
+- **YORUM / SINIR:** Bu sonuç tek bir kısa kayıt ve altı çevrime dayanır. Örnekleme hızının nedensel etkisini, kanal üstünlüğünü veya uzun dönem tekrarlanabilirliği kanıtlamaz. Kullanıcının hedefi tek kazanan kanal seçmek değil, üç kanalın da tutarlı ve tekrarlanabilir veri üretmesidir. Bu nedenle profil değiştirme veya kanal eleme kararı çıkarılmadı.
+- Kayıt fiziksel yükün kim tarafından/neyin anahtarladığına ilişkin ayrıca bir kullanıcı teyidi içermiyor; fiziksel yük kimliği varsayılmadı.
+
+### Sonraki değerlendirme
+- Daha uzun yeni profil kaydı alınmalı; aynı kararlı pencere seçim yöntemi ve fiziksel koşul korunmalı.
+- Üç kanalın çevrimler arası ortalama değişimi, saçılımı, aykırı örnekleri ve PZEM'e göre farkı birlikte incelenmeli. PZEM referans kaydıdır; mutlak ground truth değildir.
+- Ham CSV bu commit'e eklenmedi; kaynak kullanıcı tarafından bu konuşmada sağlanan dosyadır. Yukarıdaki sayımlar ve istatistikler bu dosyadan hesaplanmıştır.
