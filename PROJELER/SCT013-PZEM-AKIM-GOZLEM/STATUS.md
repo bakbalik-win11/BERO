@@ -127,3 +127,15 @@ Kullanıcı kararı:
 - Sarım sayısı, katsayı ve hesaplama yöntemi gerektiğinde deney/eğitim kodunda tanımlanır; kanal adına eklenmez.
 
 Bu karar ADR-027, Python mimarisi, T007, ROADMAP ve STATUS belgelerine işlendi. Firmware/HA entity kodu değiştirilmedi; gerçek eğitim kaydı henüz başlatılmadı.
+
+
+## 2026-11-06 — E15 eğitim kanal adı / History doğrulama deneyi planlandı
+
+Kullanıcı isteğiyle E15 oluşturuldu: günlük deney adları CH1/CH2/CH3 olarak kalırken, eğitim verisi alınmasına karar verildiğinde kodda küçük adlandırma değişikliği yapılarak CH1-E/CH2-E/CH3-E akışlarının Home Assistant History'de görünmesi ve CSV dışa aktarımında gerçek entity_id değerleriyle doğrulanması sınanacak.
+
+- Deney dosyası: [E15 — Eğitim işaretli kanal adlarının Home Assistant History doğrulaması](experiments/E15-training-channel-history-naming/README.md).
+- Yalnız adlandırma alanları değişecek; pin, ölçüm hesabı, K, sample_duration, update_interval, okuma sırası ve olay protokolü korunacak.
+- Önce çalışan YAML ve Git SHA sabitlenecek; deney YAML ayrı dosyada hazırlanacak.
+- Görünen ad ile gerçek entity_id ayrı ayrı kontrol edilecek; HA entity registry'nin eski entity_id'yi koruma ihtimali varsayılmayacak.
+- Python ve eğitim veri üretimi bu deneyin kapsamı değildir.
+- **Durum: PLANLANDI.** Kod değişikliği, derleme, OTA, History kaydı ve CSV doğrulaması yapılmadı.
