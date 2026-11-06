@@ -119,3 +119,19 @@ Dolayısıyla bu log, fiziksel yüksüz baz çizgi kaydıdır. Modül 3 olay iş
 - Modül 3'ün birden fazla ON/OFF çevrimini yakala; olay ID sırası ve akım değişiminin tekrar edip etmediğini incele.
 - CH1 timestamp aralıklarının 500 ms çevresindeki dağılımını daha uzun kayıtla değerlendir.
 - Bu aşamada K, sample_duration veya filtre eşiğini değiştirme.
+
+## Genişletilmiş yüksüz log — 2026-11-06 10:55:37–11:01:14
+
+Kullanıcının fiziksel gözlemine göre bu 5 dakika 37 saniyelik kaydın tamamında hatta yük bağlı değildir. Modül 3 ON/OFF olayları yalnızca mantıksal olay işaretleridir.
+
+- Kaynak: [genişletilmiş yüksüz cihaz logu](2026-11-06-module2-idle-extended-source.txt)
+- 4.104 satır; 335.541 karakter (depo arşiv kopyası).
+- CH1-1T: 674 akım yayını; medyan yayın aralığı 0,500 s. Tekil aralıklar 0,004–1,158 s aralığına yayıldı; bu nedenle medyan 2 Hz görünse de aralık dağılımında kümelenme/uzama örnekleri ayrıca izlenmelidir.
+- CH2-1T: 169 yayın; medyan aralık 2,000 s.
+- CH3-1T: 168 yayın; medyan aralık 2,000 s.
+- Yüksüz gösterge değerleri: CH1 medyan 0,2725 A (min 0,120 / max 0,910); CH2 medyan 0,216 A (min 0,106 / max 0,406); CH3 medyan 0,252 A (min 0,139 / max 0,443). Bunlar fiziksel yük akımı değildir; yüksüz koşulda sensör zincirinin gösterdiği değerlerdir.
+- Bias: 168 yayın; 1,615–1,675 V; ortalama 1,6617 V.
+- UDP olayları: 6 ON, 5 OFF alındı. Bu olaylar fiziksel yük durumunu değiştirmemiştir.
+- Bu log mevcut eski firmware ile alındı: CH1 yaklaşık 2 Hz, CH2 ve CH3 yaklaşık 0,5 Hz. CH2=1 Hz / CH3=0,5 Hz yeni firmware revizyonu henüz bu logda denenmedi.
+
+Bu uzun kayıt yüksüz baz çizgi için daha fazla veri sağlar. CH1'de medyan 500 ms olumlu olmakla birlikte 4 ms gibi kısa aralıklar ve 1,158 s gibi uzun aralıklar bulunduğundan yalnız medyanla kesintisiz 2 Hz garantisi verilmez.
