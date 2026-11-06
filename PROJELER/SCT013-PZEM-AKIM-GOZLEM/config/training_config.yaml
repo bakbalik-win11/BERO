@@ -141,3 +141,48 @@ validation:
   retain_raw_records: true
   different_load_profiles_are_separate_groups: true
   generalize_single_load_k_to_full_range: false
+
+# Eğitim katsayısı üretiminden bağımsız canlı/sonuç durum sınıflandırması.
+# Bu bölümün eşikleri OFF ve yük testleriyle doğrulanmadan etkinleştirilmemelidir.
+current_state_classifier:
+  enabled: false
+  output_states:
+    - CURRENT_PRESENT
+    - NO_CURRENT
+    - CURRENT_NOT_COMPUTABLE
+  semantics:
+    CURRENT_PRESENT: "Akım varlığına yeterli kanıt var; ölçüm hesaplanabilir."
+    NO_CURRENT: "Fiziksel akım yok kararı için OFF referansıyla yeterli kanıt var."
+    CURRENT_NOT_COMPUTABLE: "Akım olabilir; ancak kararsızlık, dağılım örtüşmesi veya ölçüm çalışma sınırı nedeniyle güvenilir değer üretilemiyor."
+  decision_inputs:
+    - off_reference_distribution
+    - loaded_state_distribution
+    - temporal_stability
+    - valid_sample_count
+    - measurement_operating_range
+  off_reference:
+    dataset: data/off-noise/
+    estimator: median
+    spread_estimator: MAD
+    upper_quantiles:
+      - P95
+      - P99
+    threshold: null
+    threshold_status: pending_validation
+  low_current_operating_region:
+    candidate_boundary_a: 0.3
+    status: hypothesis_from_prior_observations
+    action: CURRENT_NOT_COMPUTABLE
+    note: "0.3 A aday çalışma sınırıdır; doğrulanmış evrensel eşik değildir. Gerçek akımın yokluğu anlamına gelmez."
+  overlap_policy:
+    if_off_and_loaded_distributions_overlap: CURRENT_NOT_COMPUTABLE
+    force_binary_decision: false
+  temporal_policy:
+    require_stability: true
+    stability_window: null
+    confirmation_duration_seconds: null
+  minimum_samples:
+    sct: null
+    pzem: null
+  preserve_raw_records: true
+  status: design_only_thresholds_pending
