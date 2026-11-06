@@ -483,3 +483,15 @@ Kullanıcı düzeltmesi ve bağlayıcı analiz kuralı:
 **Önemli veri ayrımı:** I007 oturum raporu K=24.22 öncesi katsayısız ct_clamp değerlerini içerir. Bu nedenle 0.20 A (K uygulanmış CH1) sınırını doğrudan I007 katsayısız değerlerle karşılaştırmak ölçek hatasıdır. Önce K dönüşümü uygulanmalı, sonra süre-temelli analiz yapılmalıdır. I007 tekil örnek oranı OFF sınıflandırmasının başarısızlığı olarak yorumlanmayacak.
 
 Ayrıntı ve bağlayıcı kural: [Akım durum sınıflandırması — süre-temelli karar ilkesi](docs/current-state-classification.md).
+
+
+## 2026-11-06 — Mevcut 15 W ampul kontrollü test yükü olmaktan çıkarıldı
+
+Kullanıcı kararı: Mevcut 15 W akkor ampulün HA grafiklerinde kirli/bozucu davranış oluşturduğu gözlemi nedeniyle bu ampul bundan sonraki kontrollü eşik, sınıflandırma ve kalibrasyon deneylerinde standart test yükü olarak kullanılmayacak.
+
+- 15 W geçmiş ham verisi silinmeyecek; keşifsel/şüpheli veri olarak saklanacak ve temiz referans yük/eşik doğrulamasına otomatik katılmayacak.
+- 17:30'da başlatılan 57 W + mevcut 15 W oturumu korunacak, ancak temiz 72 W referans veya 57 W kontrollü doğrulaması sayılmayacak.
+- Sonraki aday ayrı 13 W akkor ampuldür. Benzer fiziksel boyut/filament yapısı kullanıcı gözlemidir; 13 W deney sonucu henüz yoktur. Bu ampulün test yükü olarak uygunluğu kendi ON/OFF verisiyle değerlendirilecek.
+- Bu, 15 W ampulün fiziksel arızasının kanıtlandığı iddiası değil; ölçüm davranışı nedeniyle alınmış deney tasarımı kararıdır.
+
+Ayrıntı: [I009 deney kaydı](experiments/I009-57W-and-57W-plus-15W/README.md).
