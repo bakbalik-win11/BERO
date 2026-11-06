@@ -135,3 +135,16 @@ Henüz sonuç yok. Herhangi bir yayın aralığının daha kararlı olduğu veya
 - Log yaklaşık 43 saniyedir; 10 dakikalık B turu veya A/B/C sapma karşılaştırması değildir.
 - ESPHome logu validated config cache'in esp32d1.yaml için kullanıldığını bildiriyor. Çalışan binary'nin depodaki B YAML snapshot'ıyla birebir hash eşleşmesi bu logla kanıtlanmıyor.
 - [Ham log](../../logs/module2/2026-11-06-e15-b-1s-short-device-check.txt) ve [teknik analiz](../../logs/module2/2026-11-06-e15-b-1s-short-device-check-analysis.md) arşivlendi. B turunun resmi 10 dakikalık kaydı henüz tamamlanmadı.
+
+
+## A/B/C kararlı ON sonuçları — HA History 2026-11-06
+
+A=500ms, B=1s, C=2s pencereleri HA timestamp cadence geçişlerinden eşleştirildi. Her SSR ON çevriminde ilk/son 5 saniye çıkarıldı; test penceresinden önce başlamış ON çevrimleri dışarıda bırakıldı. Katsayısız ct_clamp ON serisi:
+
+| Tur | n | ON çevrimi | Ortalama (A) | Medyan (A) | SD (A) | MAD (A) | P05–P95 (A) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| A | 581 | 10 | 0.019405 | 0.019185 | 0.001237 | 0.000491 | 0.018150–0.021124 |
+| B | 271 | 10 | 0.019044 | 0.018939 | 0.000712 | 0.000451 | 0.018048–0.020301 |
+| C | 135 | 9 | 0.018972 | 0.018892 | 0.000811 | 0.000518 | 0.017789–0.020225 |
+
+Bu sonuçlar yalnız ON kararlı alt aralıkları içindir; tam A/B/C karşılaştırması, PZEM kontrolü, IQR uç değer işaretleri ve kanıt sınırları [A–F ortak raporunda](../../logs/module2/2026-11-06-e15-e16-a-f-on-only-comparison.md) bulunur. A/B/C build/hash doğrulaması CSV ile yapılamamıştır.
