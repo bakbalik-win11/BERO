@@ -140,3 +140,10 @@ Ayrıntı: [ADR-025](docs/decisions/ADR-025-raw-data-sct-model-behavior-validati
 - T009 pratik modül devreye alma üst görevi **AKTİF** kalır. T010 üçlü SCT okuma görevi kapalıdır; görev tablosu bu durumla tutarlı tutulur.
 - T007/T008/T006 veri hattı sırası ve bağımlılıkları ADR-025 ile değiştirilmemiştir.
 - Bugün yeni firmware/Python uygulaması, derleme/OTA veya fiziksel deney doğrulaması yapılmamıştır.
+
+
+## 2026-11-06 — Eğitim veri seti kanal kapsamı (ADR-027)
+
+Test firmware'i üç SCT kanalını birlikte okuyabilir ve ham arşiv tüm kanalları koruyabilir. Buna karşılık her eğitim veri seti tek bir SCT kanalını içerir; kanallar ayrı veri setleri ve ayrı model değerlendirmeleri üretir. PZEM akımı proje referansıdır. Önerilen kanal kimliği biçimi `CH1-1T`, `CH2-4T`, `CH3-3T` olup fiziksel eşleme kod/entity adlarına uygulanmadan önce doğrulanmalıdır. Firmware ve entity isimleri bu kayıtla değiştirilmiş değildir.
+
+Ayrıntı: [ADR-027](docs/decisions/ADR-027-single-channel-training-datasets.md).
