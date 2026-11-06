@@ -164,3 +164,15 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - Bu kısa kayıtta CH3 std sapması en düşük olsa da altı çevrim örnekleme hızının nedensel etkisini veya kanal üstünlüğünü kanıtlamaz. Kullanıcı hedefi üç kanalın birlikte tutarlı ve tekrarlanabilir olmasıdır; profil değişikliği/kanal eleme kararı alınmadı.
 - Ham CSV bu commit'e eklenmedi; analiz kullanıcı tarafından sağlanan konuşma dosyasından yapıldı.
 - Ayrıntı ve yöntem: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.md).
+
+
+## 2026-11-06 — E15 tek SCT kanalında yayın aralığı deneyi açıldı
+
+- **HEDEF:** Üç kanallı ortak çalışma düzenini devreden çıkarıp yalnız CH1-1T/GPIO32 ile yayın aralığının gözlenen sıçrama davranışına etkisini incelemek.
+- **Deney matrisi:** A=500 ms (2 Hz), B=1 s (1 Hz), C=2 s (0,5 Hz); her tur 30 dakika. Sıra A→B→C.
+- **Sabitler:** sample_duration=100 ms, K=24.22, aynı fiziksel SCT/1T/kablo/ADC pin/ölçülen iletken ve aynı fiziksel yük/kararlı koşul. Turlar arasında yalnız interval satırı değişecek.
+- **Deney kodu:** [E15 tek kanal YAML](firmware/experiments/bero-modul2-e15-single-sct-interval.yaml). Ana üç kanallı firmware üzerine yazılmadı. ESPHome cihaz kimliği esp32d1 korundu. CH2/CH3 SCT ve GPIO35 bias ADC okumaları kapalı; UDP 4210 olay alıcısı tüm turlarda aynı bırakıldı.
+- **Değerlendirme:** Ardışık yayın farkı dağılımı, sıçrama genliği yüzdelikleri, ortak eşik üzerindeki sıçrama sayısı, dakika başına ve 1.000 yayın başına oranlar, SD ve gerçek HA timestamp aralıkları.
+- **Yorum sınırı:** 2 saniyelik örnekleme iki yayın arasında oluşup kaybolan kısa olayları kaçırabilir. Bu nedenle sayımlar gerçek fiziksel sıçrama olaylarının tam sayısı değil, yayın akışında gözlenen sıçramalardır. Ortak sıçrama eşiği sonuçlar görülmeden belirlenecek.
+- **KANIT / DURUM:** Protokol ve ayrı YAML depoya eklendi. ESPHome Validate/Compile, OTA ve fiziksel ölçüm yapılmadı. E15 PLANLANDI/HAZIRLANDI; test başladı veya tamamlandı denemez.
+- Ayrıntı: [E15 protokolü](experiments/E15-single-sct-publish-interval/README.md), [sonuç defteri](experiments/E15-single-sct-publish-interval/results.md).
