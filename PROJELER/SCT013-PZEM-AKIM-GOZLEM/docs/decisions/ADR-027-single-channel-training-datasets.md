@@ -19,17 +19,19 @@ Modül 2'nin üç SCT kanalını birlikte okuyan test/ölçüm kodu, donanım ve
 6. Her eğitim seti ve türetilmiş kayıt, en azından seçilen kanal kimliğini, fiziksel sarım/geçiş bilgisini, kaynak dosya/hash bilgisini, firmware/kod sürümünü, calibration_id bilgisini (varsa gerçek değer; yoksa uydurulmaz) ve kullanılan PZEM referans akışını izlenebilir biçimde taşımalıdır.
 7. Ham kayıt, tek kanal seçimi veya eğitim için dönüştürülürken değiştirilmez. Kanal seçimi ve eğitim verisi ayrı türetilmiş çıktılardır.
 
-## Kanal kimliği ve adlandırma
+## Kanal kimliği ve değişebilir fiziksel yapılandırma
 
-Kod, HA entity ve Python veri hattında aynı kanal kimliğinin kullanılması hedeflenir. Önerilen okunabilir kimlik biçimi:
+Kanalın kalıcı kimliği yalnızca `CH1`, `CH2`, `CH3` olmalıdır. Fiziksel geçiş/sarım sayısı kanal kimliğinin parçası değildir; kullanıcı tarafından değiştirilebilir bir donanım yapılandırmasıdır.
 
-- `CH1-1T`
-- `CH2-4T`
-- `CH3-3T`
+Eğitim kayıtlarında bu iki bilgi ayrı alanlarda tutulur:
+- `channel_id`: `CH1`, `CH2` veya `CH3` — fiziksel ölçüm girişini tanımlar.
+- `turn_count`: ilgili deney/kurulum sırasında doğrulanmış fiziksel geçiş/sarım sayısı — zaman içinde değişebilir.
 
-Bu biçimde CH numarası fiziksel ölçüm kanalını, T sayısı fiziksel geçiş/sarım bilgisini belirtir. Depodaki mevcut donanım notlarında başlangıç eşlemesi CH1 sarı/GPIO32 = 1 geçiş, CH2 yeşil/GPIO33 = 4 geçiş, CH3 mavi/GPIO34 = 3 geçiş olarak kayıtlıdır. Bu eşleme kod/entity adlarına uygulanmadan önce gerçek bağlantıyla doğrulanmalıdır; mevcut YAML/entity etiketinde eski veya farklı bir ad bulunabilir. Fiziksel bağlantı ya da geçiş sayısı değişirse donanım kaydı, kod kimliği ve veri metadata'sı birlikte güncellenir.
+Geçiş sayısı değiştiğinde kanal kimliği sabit kalır; donanım yapılandırma kaydı ve ilgili deney/eğitim metadata'sı yeni değerle güncellenir. Eski veriler kendi toplandıkları dönemin `turn_count` değeriyle korunur; geçmiş kayıtlar yeni geçiş sayısına göre geriye dönük değiştirilmez. Mümkünse yapılandırma değişikliği tarih/saat ve deney kimliğiyle ilişkilendirilir.
 
-`CH1-1T` biçimi bu ADR'de **önerilen adlandırma standardıdır**; mevcut firmware, entity veya klasör adlarının bu standarda dönüştürüldüğü iddia edilmez.
+Depodaki mevcut donanım notlarında başlangıç eşlemesi CH1 sarı/GPIO32 = 1 geçiş, CH2 yeşil/GPIO33 = 4 geçiş, CH3 mavi/GPIO34 = 3 geçiş olarak kayıtlıdır. Bu değerler yalnız mevcut kayıtlı durumdur; kalıcı özellik veya değişmez kanal adı değildir. Gerçek bağlantı ve geçiş sayısı her deney/kurulum değişikliğinde doğrulanmalıdır.
+
+`CH1-1T`, `CH2-4T`, `CH3-3T` biçimleri kalıcı kanal kimliği olarak kullanılmayacaktır. Bunlar en fazla belirli bir tarihteki kanal + fiziksel yapılandırmayı anlatan geçici gösterimler olabilir; kod, entity ve eğitim seti anahtarlarında `channel_id` ile `turn_count` ayrı tutulmalıdır.
 
 ## Kapsam dışı / değiştirmeyen kararlar
 
@@ -42,4 +44,4 @@ Bu biçimde CH numarası fiziksel ölçüm kanalını, T sayısı fiziksel geçi
 
 ## Uygulama durumu
 
-Bu ADR veri mimarisi kararıdır. Firmware, HA entity adları veya Python kodu bu kararla değiştirilmiş değildir. Gerçek kanal bağlantıları ve sarım/geçiş sayıları kod standardına geçirilmeden önce teyit edilmelidir. T007/T008 uygulaması ve gerçek tek-kanal eğitim çıktısı henüz tamamlanmamıştır.
+Bu ADR veri mimarisi kararıdır. Firmware, HA entity adları veya Python kodu bu kararla değiştirilmiş değildir. Gerçek kanal bağlantıları ve her deneydeki sarım/geçiş sayıları doğrulanmalıdır; geçiş sayısı kanal kimliğinden bağımsız ve değişebilir metadata'dır. T007/T008 uygulaması ve gerçek tek-kanal eğitim çıktısı henüz tamamlanmamıştır.
