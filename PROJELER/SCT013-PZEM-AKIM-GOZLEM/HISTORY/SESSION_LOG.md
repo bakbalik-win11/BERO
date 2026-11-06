@@ -1780,3 +1780,18 @@ Hafta sonu farklı sabit yüklerle kararlı ON alanları toplamak; Python'da ön
 
 ### SINIR
 Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmware/YAML değiştirilmedi. %3.34 değeri ilk 100 W ön karşılaştırmasının merkez farkıdır, tüm pencereler/tüm akım aralığı için başarı iddiası değildir.
+
+
+## 2026-11-06 — E14 Modül 2 CH1-1T 2 Hz ilk cihaz logu
+
+- **HEDEF:** Yeni Modül 2 firmware'inin gerçek cihazda çalışmasını; CH1'in 500 ms hedefini, CH2/CH3 yavaş taramasını ve Modül 3 UDP ON/OFF olay alımını logla doğrulamak.
+- **KOD:** `exp/modul2-ch1-2hz-20261106` dalındaki `firmware/bero-modul2-esp32d1.yaml`; YAML blob SHA `afe5a689832b4d78b78c1bd1a0d8971301d2caaf`. CH1 GPIO32 500 ms; CH2 GPIO33 ve CH3 GPIO34 yaklaşık 2 s; üç kanal sample_duration 100 ms; K=24.22; bias GPIO35; UDP 4210 alıcısı korundu.
+- **DERLEME/CIHAZ:** Log ESPHome 2026.10.2 ve 2026-11-06 10:54:01 +0300 derleme zamanını gösteriyor. ESP32D1 API bağlantısı başarılı; GPIO32/33/34/35 ADC init/config/calibration OK.
+- **LOG:** 910 satır / 71.312 bayt kullanıcı kaydı. Kaynak SHA-256 `b2f0e86f0053eb24c3455a7ee279cbdc1805c72dae5e7b4f8dbacc130a4d562d`. Arşiv: [ham log](../logs/module2/2026-11-06-module2-ch1-2hz-device-log.txt).
+- **ÖRNEKLEME:** CH1 128 yayın; medyan aralık 0,500 s, gözlenen aralık 0,335–0,669 s. CH2 32 yayın / 2,000 s medyan; CH3 32 yayın / 2,001 s medyan. Kısa logda CH1 nominal 2 Hz hedefi desteklendi; uzun süreli garanti değil.
+- **BIAS:** 32 yayın; 1,652–1,669 V; ortalama 1,6621 V.
+- **OLAY:** EVENT_ID 1897 ON ve 1898 OFF aynı BOOT_ID ile alındı ve HA entity'lerine yayınlandı. Bu logda iki olay için kayıp görülmedi; fiziksel SSR anahtarlaması kanıtlanmadı.
+- **YÜKSÜZ ÖN GÖZLEM:** Kullanıcının boşta/yüksüz koşul tanımına göre ON aralığında üç kanal medyanları yükseldi, OFF sonrası yaklaştı. OFF'tan yaklaşık 3 s sonra CH1 0,491 A tekil tepe verdi. Tek çevrim neden tayini için yetersiz; filtre/eşik belirlenmedi. [Analiz raporu](../logs/module2/2026-11-06-module2-ch1-2hz-log-analysis.md).
+- **UYARILAR:** ERROR/[E]/FAILED yok. Üç ESP32 optimizasyon önerisi ve bir adet safe_mode 69 ms uzun işlem uyarısı var.
+- **SONUÇ:** Kısa cihaz ön kontrolü LOG İLE DESTEKLENDİ; E14 açık. Binary hash bulunmadığından çalışan binary ile YAML byte-byte aynı denmiyor. PZEM karşılaştırması, HA Recorder kalıcılığı ve uzun süreli örnekleme doğrulanmadı.
+- **SONRAKİ:** K, sample_duration ve aralıkları değiştirmeden daha uzun yüksüz log ve birden fazla ON/OFF çevrimi topla; sonra PZEM/HA History ile karşılaştır.
