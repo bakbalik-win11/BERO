@@ -1780,3 +1780,23 @@ Hafta sonu farklı sabit yüklerle kararlı ON alanları toplamak; Python'da ön
 
 ### SINIR
 Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmware/YAML değiştirilmedi. %3.34 değeri ilk 100 W ön karşılaştırmasının merkez farkıdır, tüm pencereler/tüm akım aralığı için başarı iddiası değildir.
+
+
+## 2026-11-06 — Gün sonu kapanışı: eğitim verisine geçiş hazırlığı
+
+### HEDEF
+Gün içinde netleşen eğitim yaklaşımını ve ertesi günün ilk çalışma hedefini kayda almak; PY-01 tasarımının örnekle doğrulanması gereğini korumak.
+
+### YAPILAN
+- PY-01 ilk sürüm davranışı: kullanıcı başlatınca gelen-kutusunu bir kez tarama ve kapanma kararı, PY-01 belgesine işlendi.
+- Arşiv klasörlemesi ve oturum/deney referansı tasarımı soyut biçimde kesinleştirilmedi; yarın çalışan örnek/prototip ve gerçek CSV ile denenerek sabitlenecek notu PY-01 ve STATUS'a işlendi.
+- Kullanıcı, genel akım okuma aşamasında olduklarını, eğitim için kullanılabilecek kararlılıkta alanları hedeflediklerini ve eğitim felsefesinin bugün ekran görüntüsüyle de sabitlendiğini teyit etti.
+
+### YARININ İLK HEDEFİ
+Eğitim amacıyla kullanılacak SCT ve PZEM verilerini gerçek kayıtlar üzerinden seçmek/sabitlemek; bağımsız kararlı alanların uygunluğunu ve eğitim kapsamını netleştirmek. PY-01 örneğini de deneyerek arşiv/oturum tasarımını değerlendirmek.
+
+### SINIR / AÇIK İŞLER
+- Kararlılık algoritmasının sayısal ölçütleri ve Python uygulaması tamamlanmadı.
+- Eğitim etiketli veri seti veya model üretilmedi.
+- Bu oturumda yeni CSV analizi, firmware/YAML değişikliği, derleme veya OTA yapılmadı.
+- T007 → T008 → T006 görev sırası korunur; PY-01 taslağı kullanıcı incelemesindedir.
