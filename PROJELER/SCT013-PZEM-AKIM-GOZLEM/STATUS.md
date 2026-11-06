@@ -96,3 +96,12 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - Kullanıcının yüksüz olarak tanımladığı koşulda ON aralığında üç kanal medyanları yükseldi; OFF sonrası yaklaştı. OFF'tan yaklaşık 3 s sonra CH1'de 0,491 A tekil tepe görüldü. Tek çevrim neden tayini için yeterli değildir; ham veri korunacak, filtre/eşik kararı verilmeyecek.
 - Ham log ve ön analiz: [cihaz logu](logs/module2/2026-11-06-module2-ch1-2hz-device-log.txt), [analiz](logs/module2/2026-11-06-module2-ch1-2hz-log-analysis.md). Kaynak log SHA-256 `b2f0e86f0053eb24c3455a7ee279cbdc1805c72dae5e7b4f8dbacc130a4d562d`.
 - **Durum:** Kısa cihaz çalışma doğrulaması LOG İLE DESTEKLENDİ; E14 açık. Uzun süreli 2 Hz, tekrarlı ON/OFF çevrimleri, PZEM/HA History eşleşmesi ve fiziksel SSR doğrulaması bekliyor.
+
+
+## 2026-11-06 — E14 üç örnekleme hızı karşılaştırması
+
+- Kullanıcı fiziksel olarak ölçüm hattında yük olmadığını doğruladı. Modül 3 ON/OFF mesajları fiziksel yükün açık/kapalı olduğu anlamına gelmez; yalnızca olay işaretidir. 100 W akkor ampul kullanıcı tarafından yalnızca test başlatma talimatı verildiğinde fiziksel olarak açılacak.
+- E14 deney YAML'ı ayrı dalda güncellendi: `exp/modul2-ch1-2hz-20261106`. Yeni düzen CH1=500 ms (2 Hz), CH2=1 s (1 Hz), CH3=2 s (0,5 Hz). Üç kanalda sample_duration=100 ms, K=24.22 sabit.
+- CH2 her 1 saniyede okunur; her ikinci çevrimde CH3 ve ortak bias da okunur. CH1 bağımsız 500 ms aralığını korur.
+- Yeni YAML blob SHA: `9bc6237ea9a312b6ff22a4f16c99c0f5f96fd382`. Henüz Validate/Compile, OTA veya cihaz testi yapılmadı.
+- **Sonraki sıra:** YAML Validate + Compile → OTA → yüksüz baz çizgi → kullanıcı talimatıyla 100 W akkor ampul ON → kararlı yük kaydı → ampul OFF ve kapanış kaydı. Fiziksel açma/kapama kullanıcı kontrolündedir.
