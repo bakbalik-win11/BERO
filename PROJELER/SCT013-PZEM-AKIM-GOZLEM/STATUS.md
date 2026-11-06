@@ -153,3 +153,14 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - Deney amacı tek bir kanalı seçmek değil, üç kanalın da aynı fiziksel koşullarda tutarlı ve tekrarlanabilir ölçüm üretmesini değerlendirmektir.
 - Bu kayıt başlangıcı kullanıcı bildirimidir; yeni cihaz logu/HA History verisi henüz incelenmedi. Fiziksel yük durumu ayrıca doğrulanmadan varsayılmayacaktır.
 - Ayrıntı: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.md).
+
+
+## 2026-11-06 — E14 12:52 sonrası yeni profil ilk HA History analizi
+
+- Kullanıcının sağladığı `history (41).csv` toplam 57.116 satır ve 11:00:00–12:59:09 (+03:00) aralığını kapsıyor. Yeni profil analizi yalnız 12:52:00 sonrasına uygulandı.
+- HA timestamp'lerinde yayın ritmi: CH1 852 kayıt / 0,500 s medyan; CH2 214 kayıt / 2,000 s; CH3 426 kayıt / 1,000 s. Yeni 2 Hz / 0,5 Hz / 1 Hz profilinin HA tarafında çalıştığı destekleniyor.
+- İlk altı tam ON kararlı alanında (ON+8 s ile OFF−5 s): CH1 n=324, ortalama 0,4758 A, std 0,0274 A; CH2 n=78, ortalama 0,4737 A, std 0,0261 A; CH3 n=162, ortalama 0,4699 A, std 0,0226 A. Medyanlar sırasıyla 0,4701 / 0,4713 / 0,4653 A.
+- PZEM yüksek akım örnekleri 0,470–0,473 A bandında, ortalama 0,4715 A. PZEM yüksek güç örnekleri yaklaşık 91,2–110,4 W.
+- Bu kısa kayıtta CH3 std sapması en düşük olsa da altı çevrim örnekleme hızının nedensel etkisini veya kanal üstünlüğünü kanıtlamaz. Kullanıcı hedefi üç kanalın birlikte tutarlı ve tekrarlanabilir olmasıdır; profil değişikliği/kanal eleme kararı alınmadı.
+- Ham CSV bu commit'e eklenmedi; analiz kullanıcı tarafından sağlanan konuşma dosyasından yapıldı.
+- Ayrıntı ve yöntem: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.md).
