@@ -25,8 +25,10 @@
 # OKUMA:
 # - Üç kanalın sample_duration değeri 100ms olarak korunur.
 # - CH1-1T: interval 500ms; hedef okuma sıklığı 2 Hz.
-# - CH2-1T: 1 saniyelik aralıkla (1 Hz).\n# - CH3-1T: 2 saniyelik aralıkla (0.5 Hz).
-# - CH2 ve CH3 okumaları tek yavaş tarama script'inde sıralanır; CH2 her 1 saniyede, CH3 her 2 saniyede okunur.\n# - CH1'in 500ms döngüsü bağımsız kalır.
+# - CH2-1T: 1 saniyelik aralıkla (1 Hz).
+# - CH3-1T: 2 saniyelik aralıkla (0.5 Hz).
+# - CH2 ve CH3 okumaları tek yavaş tarama script'inde sıralanır; CH2 her 1 saniyede, CH3 her 2 saniyede okunur.
+# - CH1'in 500ms döngüsü bağımsız kalır.
 # - Katsayı K=24.22; üç kanala da uygulanır.
 # - Bu aşamada yalnız okuma sıklığı değiştirilmiştir; K ve pencere değişmemiştir.
 #
