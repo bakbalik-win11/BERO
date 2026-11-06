@@ -75,6 +75,6 @@ Veri aktarımı için önce PZEM ve SCT düğümlerinin gerçek veriyi Home Assi
 - Python-2'nin eğitim veri seti üretiminde kanal seçimi açık olmalıdır. Her eğitim seti yalnızca bir SCT kanalından oluşur; CH1, CH2 ve CH3 için ayrı setler ve ayrı model değerlendirmeleri hazırlanır.
 - Seçilen kanalın SCT kararlı alanları, PZEM referans akışının geçerli kararlı alanlarıyla ADR-022/023/024/025 paket ve pencere kuralları içinde değerlendirilir.
 - Kanal kimliği, fiziksel geçiş/sarım bilgisi, kaynak CSV/hash, firmware/kod sürümü ve calibration_id izlenebilir metadata olmalıdır.
-- Önerilen adlandırma: `CH1-1T`, `CH2-4T`, `CH3-3T`. Mevcut fiziksel bağlantı/sarım eşlemesi kod ve entity adlarına uygulanmadan önce doğrulanacaktır. Bu aşamada firmware/entity isimleri değiştirilmemiştir.
+- Kalıcı kanal kimlikleri `CH1`, `CH2`, `CH3` olacaktır. Fiziksel geçiş/sarım sayısı `turn_count` olarak ayrı metadata tutulur; değişebilir. Mevcut 1/4/3 geçiş eşlemesi yalnız o anki donanım kaydıdır, sabit kanal adı değildir. Her veri seti kendi toplandığı `turn_count` değerini korur. Firmware/entity isimleri bu kararla değiştirilmemiştir.
 
 Ayrıntı: [ADR-027](../docs/decisions/ADR-027-single-channel-training-datasets.md).
