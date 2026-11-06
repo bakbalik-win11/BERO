@@ -83,3 +83,14 @@ CSV'nin sonuna kadar SSR yaklaşık 40 s ON / 20 s OFF çevrimi sürmektedir. So
 5. Uzun fiziksel yüksüz veri, bu çevrim oturumundan ayrı kayıt dilimi olarak tutulacak.
 
 **Güvenlik notu:** Yazılımın OFF sınıfı elektriksel güvenlik veya hattın enerjisiz olduğunun garantisi değildir.
+
+
+## Nihai kullanıcı kararı — deney kapanışı ve çalışma aralıkları
+
+Bu raporun üretildiği I010 18 W ON/OFF deneyi kullanıcı kararıyla sonlandırılmıştır. K=24.22 uygulanmış CH1 çıktısı için nihai çalışma sınıfları:
+
+- **0.21 A altı:** yalnız kararlı alanlarda KAPALI/OFF.
+- **0.21 A–0.41 A:** HESAPLANAMADI.
+- **0.41 A üstü:** HESAPLANIR.
+
+Tam 0.21 A ve 0.41 A hesaplanamadı aralığındadır. Kararlı alan tanımı henüz yapılmamıştır. Önceki 0.20 A kuralı artık geçerli değildir. Açık bırakılan tek sonraki araştırma, 0.21–0.41 A hesaplanamadı bölgesinin istatistiksel analizidir. Bu kararlar elektriksel güvenlik göstergesi değildir.
