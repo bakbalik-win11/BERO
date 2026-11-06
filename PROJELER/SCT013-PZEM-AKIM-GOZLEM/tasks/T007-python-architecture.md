@@ -124,3 +124,17 @@ Python-1 ve Python-2 tek parça, uzun süre çalışan kırılgan programlar ola
 **Uygulama durumu:** Mimari karar kaydedildi; görev çalıştırıcı, checkpoint, hata izolasyonu ve kesinti/kilitlenme kurtarma kodu henüz yazılmadı veya test edilmedi. T007 devam ediyor.
 
 Ayrıntı: [ADR-030](../docs/decisions/ADR-030-resumable-small-python-jobs.md).
+
+
+## Python programlarının görev tanımları — taslak (2026-11-06)
+
+T007 kapsamında iki kullanıcı giriş noktası ve alt görev listesi dokümante edildi:
+- PY-01 BERO Importer: gelen-kutu tarama, hash/tekrar kontrolü, CSV doğrulama, RAW arşivleme, hata/karantina.
+- PY-02 BERO Analyzer: arşiv envanteri, veri profili, olay paketi doğrulama, PZEM kararlılık, SCT kararlılık, kararlı alan örtüşmesi, eğitim etiketi, tam kayıt değerlendirmesi ve raporlama.
+
+Tanımlar taslaktır; kullanıcıyla okunup kontrol edilerek görev sınırları ve bağımlılıklar netleştirilecektir. Kodlama başlamadı. Her alt görevin bağımsız, checkpoint destekli ve tekrar çalıştırılabilir olması ADR-030 gereğidir.
+
+Belgeler:
+- [Python program envanteri](../docs/python-programs/README.md)
+- [PY-01 — BERO Importer](../docs/python-programs/PY-01-importer.md)
+- [PY-02 — BERO Analyzer](../docs/python-programs/PY-02-analyzer.md)
