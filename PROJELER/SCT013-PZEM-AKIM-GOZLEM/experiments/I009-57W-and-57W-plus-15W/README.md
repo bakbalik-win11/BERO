@@ -78,3 +78,13 @@ OFF / 15 W / 42 W / 57 W / 57 W+15 W dağılımları ayrı gruplar olarak karş�
 - Sonraki karşılaştırma denemesi: farklı fiziksel boyut/geometriye sahip mevcut 15 W akkor ampule karşı, boyutları/filament yapısı benzer olduğu belirtilen ayrı bir **13 W akkor ampul** kullanılacak. Amaç, benzer fiziksel ampul yapısında 13 W yükün OFF/ON dağılımlarını ayırıp ayıramadığını gözlemlemektir.
 - 13 W deneyi henüz başlamadı. Ampulün fiziksel özellikleri kullanıcı tarifidir; ölçü veya üretici verisiyle doğrulanmadı.
 - CSV geldiğinde 57 W, 57 W+15 W ve 13 W ayrı gruplar olarak analiz edilecek; geçişler kararlı alan özetlerine katılmayacak.
+
+
+## 15 W ampul hakkında kullanıcı kararı — test yükü olarak kullanımdan çıkarıldı
+
+- Kullanıcı, mevcut 15 W akkor ampulün HA grafiklerinde kirli/bozucu ölçüm davranışı oluşturduğuna dair güçlü gözlemini bildirdi. CSV henüz bu oturumda yeniden analiz edilmedi; bu nedenle neden/etki istatistiksel olarak doğrulanmış değildir.
+- **Deney protokolü kararı:** Mevcut 15 W ampul bundan sonraki kontrollü eşik, sınıflandırma veya kalibrasyon deneylerinde standart test yükü olarak kullanılmayacaktır.
+- 15 W'a ait geçmiş ham kayıtlar silinmeyecek. Mevcut kayıtlar yalnızca keşifsel/şüpheli veri olarak saklanacak; temiz referans yük gruplarına ve eşik doğrulamasına otomatik olarak katılmayacaktır.
+- 17:30'da başlatıldığı bildirilen 57 W + mevcut 15 W birleşik yük oturumu da geçmiş/keşifsel kayıt olarak korunur. Bu oturum, 57 W tekil yükün kontrollü doğrulaması veya temiz 72 W referans grubu olarak kabul edilmeyecektir.
+- Kullanıcının sonraki adayı, mevcut 15 W ampule fiziksel boyut/filament yapısı bakımından daha benzer olduğu belirtilen ayrı 13 W akkor ampuldür. 13 W ampul henüz denenmemiştir; test yükü olarak kabul edilmesi, ON/OFF verisi görüldükten sonra değerlendirilecektir.
+- Bu karar, 15 W ampulün fiziksel kusurunun kanıtlandığı anlamına gelmez; ölçüm davranışı bakımından güvenilir test yükü olmadığı yönündeki kullanıcı gözlemine dayalı deney tasarımı kararıdır.
