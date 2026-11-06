@@ -105,3 +105,7 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - CH2 her 1 saniyede okunur; her ikinci çevrimde CH3 ve ortak bias da okunur. CH1 bağımsız 500 ms aralığını korur.
 - Yeni YAML blob SHA: `9bc6237ea9a312b6ff22a4f16c99c0f5f96fd382`. Henüz Validate/Compile, OTA veya cihaz testi yapılmadı.
 - **Sonraki sıra:** YAML Validate + Compile → OTA → yüksüz baz çizgi → kullanıcı talimatıyla 100 W akkor ampul ON → kararlı yük kaydı → ampul OFF ve kapanış kaydı. Fiziksel açma/kapama kullanıcı kontrolündedir.
+
+
+- 2026-11-06 genişletilmiş yüksüz kayıt (5 dk 37 sn, 4.104 satır) arşivlendi: [ham log](logs/module2/2026-11-06-module2-idle-extended-source.txt), [analiz](logs/module2/2026-11-06-module2-ch1-2hz-log-analysis.md). Kullanıcı kayıt boyunca fiziksel yük olmadığını doğruladı; UDP ON/OFF yalnız olay işaretidir.
+- Eski firmware ile CH1 674 yayın / 0,500 s medyan; CH2 169 / 2,000 s; CH3 168 / 2,000 s. CH1 tekil aralıkları 0,004–1,158 s; düzenli 2 Hz garantisi henüz yok. Yüksüz gösterge medyanları CH1 0,2725 A, CH2 0,216 A, CH3 0,252 A; fiziksel akım olarak yorumlanmaz.
