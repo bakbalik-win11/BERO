@@ -1814,3 +1814,14 @@ Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmwa
 - Eski firmware yayınları: CH1 674 / medyan 0,500 s; CH2 169 / 2,000 s; CH3 168 / 2,000 s. CH1 aralıkları 0,004–1,158 s olduğundan medyan 2 Hz tek başına düzenli örnekleme garantisi değildir.
 - Yüksüz gösterge medyanları: CH1 0,2725 A, CH2 0,216 A, CH3 0,252 A. Fiziksel akım değil; ölçüm zincirinin yüksüz gösterimidir. Bias 1,615–1,675 V (ortalama 1,6617 V). 6 ON / 5 OFF olay paketi alındı.
 - Yeni firmware düzeni CH1=2 Hz, CH2=1 Hz, CH3=0,5 Hz; henüz Validate/Compile/OTA/cihaz testi bekliyor.
+
+
+## 2026-11-06 — PZEM History geçiş değerleri ve ilk deney sonucu
+
+- **HEDEF:** PZEM History açma/kapama geçiş değerlerinin anlık akım olarak yorumlanıp yorumlanamayacağını ayırmak.
+- **GÖZLEM:** Kullanıcı beşli örnek davranışını `1,1,1,1,1 → 1,0` ve `1,1,1,1,0 → 0,8` şeklinde açıkladı. Bu, beş örnekli paket ortalaması/önceki örneklerin etkisinin geçişten sonra sürmesiyle uyumludur.
+- **SONUÇ:** Geçiş kenarındaki PZEM değerleri anlık fiziksel akım olarak kullanılmayacak ve kararlı alan istatistiklerine katılmayacak. PZEM'in kararlı açık/kapalı alanları zaman/durum belirleme amacıyla kullanılabilir; mutlak ground truth değildir.
+- **KANIT SINIRI:** PZEM iç firmware/Modbus algoritması kaynak koddan doğrulanmadı. Beşli ortalama ifadesi kullanıcının gözlemi ve verdiği örneğin yorumudur; iç algoritma kesinliği iddia edilmez.
+- **SCT ANALİZ İLKESİ:** Örnekleme hızı karşılaştırmasında PZEM ölçüt olmayacak. CH1/CH2/CH3 kendi kararlı ON örneklerinden ayrı ayrı değerlendirilecek; ortak yük değeri üç SCT kanalından türetilecek.
+- Ayrıntı: [PZEM History gözlem kaydı](../logs/module3/2026-11-06-pzem-history-packet-average-observation.md).
+- **SONRAKİ DENEY:** 2026-11-06 12:01:00 başlangıçlı yeniden kanal eşleştirmesi; CH1←SCT3, CH2←SCT1, CH3←SCT2. Yeni HA History CSV bekleniyor.
