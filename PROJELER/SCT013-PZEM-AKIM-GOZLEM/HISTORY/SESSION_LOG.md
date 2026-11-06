@@ -1848,3 +1848,15 @@ Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmwa
 - **KOD:** Modül 2 YAML deney dalında güncellendi. CH1 GPIO32 interval 500ms; CH3 GPIO34 interval 1s; CH2 GPIO33 ve GPIO35 bias 2s yavaş taramada. sample_duration=100ms, K=24.22, GPIO/entity ve fiziksel sensör eşlemesi değişmedi. UDP 4210 alıcısı korundu.
 - **DOĞRULAMA SINIRI:** YAML GitHub'a yazıldı; Validate/Compile, OTA ve fiziksel cihaz testi henüz yapılmadı. Çalıştığı veya yeni profilin daha iyi olduğu iddia edilmez.
 - Ayrıntı: [E14](../experiments/E14-module2-single-channel-2hz/README.md), [firmware](../firmware/bero-modul2-esp32d1.yaml).
+
+
+## 2026-11-06 — E15 tek SCT kanalında yayın aralığı deneyi hazırlandı
+
+- **HEDEF:** E14 üç kanal düzeninde gözlenen yayın aralığı/sıçrama ilişkisini, kanal sıralaması ve çoklu SCT okuması olmadan sınamak. İlk seri boyunca sample_duration sabit 100ms; yalnız yayın tetikleme aralığı değişir.
+- **KULLANICI KARARI:** Tek kanalda üç tur: 500ms, 1s ve 2s. Her tur 30 dakika. Tur sırası 500ms → 1s → 2s. Sonraki aşamada, bu seri değerlendirildikten sonra sample_duration değiştirilecek.
+- **DENEY DÜZENİ:** CH1-1T sarı/GPIO32/ADC1_CH4 tek SCT kanalı. Aynı fiziksel SCT, 1T geçiş, kablo/yerleşim, ölçülen iletken ve aynı fiziksel yük/kararlı koşul korunacak. K=24.22, ADC 12dB, raw:false ve ADC samples=1 sabit.
+- **KOD:** Ayrı [E15 YAML](../firmware/experiments/bero-modul2-e15-single-sct-interval.yaml) oluşturuldu. A turu başlangıç interval'i 500ms. B/C turu için yalnızca bu interval satırı sırasıyla 1s/2s yapılacak. CH2/CH3 SCT ADC ölçümleri ve GPIO35 bias ADC okuması kaldırıldı; ortak bias devresi fiziksel olarak bağlı kalır. UDP 4210 olay alıcısı tüm turlarda korundu. Ana üç kanallı YAML üzerine yazılmadı; esphome.name=esp32d1 korundu.
+- **ANALİZ PLANI:** Ardışık yayımlanmış akım farklarının dağılımı; P95/P99/maksimum sıçrama genliği; sonuçlar görülmeden belirlenecek ortak eşik üzerindeki sıçrama adedi; dakika ve 1.000 yayın başına oran; SD ve gerçek HA timestamp aralıkları.
+- **YORUM SINIRI:** 2s örnekleme iki yayın arasında oluşup kaybolan kısa olayları kaçırabilir. Bu nedenle analiz yalnız yayın akışında gözlenen sıçramaları karşılaştırır; fiziksel sıçramaların tam olay sayısı veya aradaki tepe genliği iddiası üretmez.
+- **DOKÜMANTASYON:** [E15 protokolü](../experiments/E15-single-sct-publish-interval/README.md), [sonuç defteri](../experiments/E15-single-sct-publish-interval/results.md), [deney listesi](../experiments/README.md), [STATUS](../STATUS.md), [PROGRESS_TREE](../PROGRESS_TREE.md) güncellendi.
+- **DOĞRULAMA SINIRI:** Dosyalar GitHub deney dalına yazıldı ve geri okunarak incelendi. ESPHome Validate/Compile, OTA, cihaz çalışması ve üç fiziksel kayıt turu henüz yapılmadı. E15 PLANLANDI/HAZIRLANDI; tamamlanmadı.
