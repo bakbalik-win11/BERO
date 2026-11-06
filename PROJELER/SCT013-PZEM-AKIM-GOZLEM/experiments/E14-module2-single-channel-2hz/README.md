@@ -99,3 +99,24 @@ Kullanıcı fiziksel olarak bu 5 dakika 37 saniyelik kayıt boyunca hatta yük b
 - 6 ON / 5 OFF UDP olayı alındı; fiziksel yük geçişi olarak yorumlanmayacak.
 
 Bu kayıt, yeni üç hız revizyonunun öncesindeki yüksüz baz çizgi kanıtıdır. Yeni YAML doğrulandıktan sonra aynı fiziksel koşulda yeni baz çizgi alınacak; ardından kullanıcı 100 W akkor ampulü açarak yük aşamasını başlatacak.
+
+## 2026-11-06 — Üç adımlı karşılaştırmanın ikinci ve üçüncü gözlemleri
+
+### 2. Farklı örnekleme hızlarının karşılaştırılması
+
+- Üç kanal aynı deney düzeninde farklı yayın hızlarında çalıştırıldı: CH1 2 Hz, CH2 1 Hz, CH3 0,5 Hz hedefi.
+- **KULLANICI GÖZLEMİ:** İlk karşılaştırmada CH2'nin sapması diğer kanallara göre daha az gözlendi.
+- Bu, şu aşamada nitel bir gözlemdir. Hangi referansa göre sapma, sayısal fark ve dağılım ölçüleri yeni kayıt üzerinden ayrıca hesaplanmalıdır. Bu nedenle CH2'nin kesin olarak daha doğru olduğu veya 1 Hz'in en iyi hız olduğu sonucu çıkarılmaz.
+
+### 3. Fiziksel SCT kanallarının yer değiştirmesi
+
+- Kullanıcı fiziksel sensör/kanal bağlantılarını değiştirdi; yeni eşleştirme kaydı 2026-11-06 12:01 (+03:00) itibarıyla başlatıldı.
+- Yeni eşleştirme: CH1 ← önceki fiziksel SCT3; CH2 ← önceki fiziksel SCT1; CH3 ← önceki fiziksel SCT2.
+- Amaç, ölçüm farklarının ESP/ADC kanalına mı yoksa fiziksel SCT sensörüne/yerleşimine mi bağlı olduğunu ayırmaya yardımcı olmaktır.
+- Yeni HA History CSV gelmeden donanım etkisi hakkında sonuç verilmeyecek. Önceki ve yeni kayıt aynı yük/koşul ve karşılaştırılabilir zaman aralıkları üzerinden incelenecek.
+
+### Üç adımın mevcut sırası
+
+1. PZEM History geçişlerinde paket ortalaması/önceki örneklerin etkisi gözlemi; geçiş değerleri anlık akım kabul edilmeyecek.
+2. Üç farklı SCT yayın hızının karşılaştırılması; ilk kullanıcı gözleminde CH2 daha az sapıyor, sayısal doğrulama bekliyor.
+3. Fiziksel SCT kanallarının yer değiştirilmesi; donanım etkisini ayırmak için yeni kayıt bekleniyor.
