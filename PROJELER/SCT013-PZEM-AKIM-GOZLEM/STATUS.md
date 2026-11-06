@@ -144,3 +144,12 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - Güncel profil: CH1 GPIO32=2 Hz (500 ms), CH2 GPIO33=0,5 Hz (2 s), CH3 GPIO34=1 Hz (1 s). sample_duration=100ms, K=24.22, GPIO/entity ve fiziksel sensör eşlemesi sabit. Bias CH2 ile 2 saniyelik taramada okunur.
 - Firmware YAML deney dalına işlendi. **Validate/Compile, OTA ve fiziksel cihaz testi henüz yapılmadı.** E14 açık.
 - Ayrıntı: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.md).
+
+
+## 2026-11-06 12:52 — E14 yeni örnekleme koduyla kayıt başlangıcı
+
+- Kullanıcı, yeni kodla kayıt başlangıcını 12:52 (+03:00) olarak bildirdi.
+- Aktif profil: CH1=2 Hz, CH2=0,5 Hz, CH3=1 Hz; her kanalda sample_duration=100 ms, K=24.22.
+- Deney amacı tek bir kanalı seçmek değil, üç kanalın da aynı fiziksel koşullarda tutarlı ve tekrarlanabilir ölçüm üretmesini değerlendirmektir.
+- Bu kayıt başlangıcı kullanıcı bildirimidir; yeni cihaz logu/HA History verisi henüz incelenmedi. Fiziksel yük durumu ayrıca doğrulanmadan varsayılmayacaktır.
+- Ayrıntı: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.md).
