@@ -84,4 +84,10 @@ Bu dosya mevcut üç kanallı ana firmware'in üzerine yazmaz. ESPHome cihaz kim
 
 ## Sonuç durumu
 
-Henüz ölçüm yapılmadı. YAML kaynak taslağının depoya eklenmesi, derleme veya cihaz doğrulaması anlamına gelmez. Tur sonuçları [results.md](results.md) dosyasına ham kayıt referansı, SHA-256, gerçek örnek sayısı, gerçek aralıklar ve yorumla eklenecektir.
+2026-11-06 tarihinde ilk kısa cihaz çalışma kontrolü yapıldı. ESPHome 2026.10.2 ile cihaz API bağlantısı, GPIO32 ADC başlatması, CH1 yayınları ve UDP EVENT_ID=314 / STATE=OFF alımı logda görüldü. Bu kayıt yaklaşık 28.5 saniyedir; 10 dakikalık A turu değildir ve sıçrama karşılaştırması sonucu üretmez. Yapılandırma adı logda esp32d1.yaml olarak geçtiğinden depodaki E15 YAML kaynak snapshot'ı ile çalışan binary'nin birebir hash eşleşmesi kanıtlanmış değildir.
+
+- [İlk cihaz logu](../../logs/module2/2026-11-06-e15-a-500ms-initial-device-log.txt)
+- [İlk log analizi](../../logs/module2/2026-11-06-e15-a-500ms-initial-device-log-analysis.md)
+- Tur A/B/C ölçümleri ve karşılaştırma için [sonuç defteri](results.md) kullanılacaktır.
+
+E15'in üç adet 10 dakikalık kayıt turu henüz tamamlanmadı.
