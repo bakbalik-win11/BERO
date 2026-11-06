@@ -204,3 +204,14 @@ Her ana program küçük görev modüllerine ayrıldı. Program tanımları ve g
 - [PY-02 — BERO Analyzer](docs/python-programs/PY-02-analyzer.md)
 
 **Sonraki çalışma:** Envanter ve PY-01/PY-02 tanımları kullanıcıyla sırayla gözden geçirilecek. Görev sınırları onaylanmadan kodlamaya başlanmayacak.
+
+
+## 2026-11-06 — PY-01 arşiv/oturum tasarımı örnekle sabitlenecek
+
+Kullanıcı kararı ve çalışma yöntemi:
+- PY-01 ilk aşamada kullanıcı tarafından başlatılacak; gelen-kutusunu bir kez tarayıp bulunan dosyaları işleyecek ve tamamlanınca kapanacak. Sürekli izleme ilk sürüm kapsamında değildir; veri doğrudan bu çalışma alanında oluşursa ileride yeniden değerlendirilebilir.
+- Arşiv klasörlemesi (tarih/oturum/hash) ve deney/oturum bilgisinin program ekranında nasıl seçileceği veya manifestte nasıl tutulacağı henüz kesinleştirilmedi.
+- Bu tasarım soyut anlatımla sabitlenmeyecek. Yarın çalışan bir örnek/prototip hazırlanıp gerçek CSV akışı üzerinde denenecek; kullanıcı örneği görüp deneyerek uygun yapıyı belirledikten sonra karar depoda sabitlenecek.
+- Örnekle deneme yapılmadan arşiv klasör yapısı, oturum alanları veya manifest biçimi hakkında nihai karar alınmayacak.
+
+PY-01 taslağı kullanıcı incelemesinde kalır. Kodlama ve gerçek dosya testi henüz yapılmadı.
