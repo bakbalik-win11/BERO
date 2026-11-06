@@ -46,6 +46,24 @@ OFF ve yüklü dağılımlar örtüşüyorsa tek bir ölçüm değerinden kesin 
 
 Tek bir örnekle durum değiştirilmez. Kararlılık penceresi, doğrulama süresi ve minimum örnek sayısı deneylerle seçilecektir. Kısa sıçramalar ve geçişler ham veride korunur; sınıflandırma için ayrı türetilmiş özellikler/işaretler üretilebilir.
 
+
+## 3.5 Süre-temelli karar ilkesi — sıçrama tuzağına karşı zorunlu kural
+
+**Kullanıcı tarafından açıkça belirlenen analiz ilkesi:** K=24.22 uygulanmış CH1 akım çıktısında 0.20 A sınırı değerlendirilirken tekil örneklerin eşik üstüne çıkması, tek başına akım varlığı veya OFF sınıflandırmasının başarısızlığı sayılmaz. Karar, eşik davranışının zaman içindeki süresine ve pencere kararlılığına dayanmalıdır.
+
+Zorunlu uygulama kuralları:
+
+1. Tekil yüksek örnekler ve kısa süreli sıçramalar ham veride aynen korunur; ancak tek başlarına CURRENT_PRESENT veya NO_CURRENT kararı verdirmez.
+2. Her aday zaman penceresinde eşik üstünde kalma süresi, ardışık devam süresi ve pencere içindeki zaman oranı hesaplanır. Kayıt aralığı düzensizse süre, örnek adedinden değil timestamp farklarından türetilir.
+3. Pencere medyanı, MAD ve zaman dilimli medyan değişimi birlikte incelenir. Tek bir eşik üstü örnek veya yalnızca eşik üstü örnek yüzdesi karar ölçütü değildir.
+4. OFF, 15 W, 42 W, 57 W ve 57 W+15 W gibi her fiziksel koşul ayrı gruplar halinde ve aynı pencere yöntemiyle karşılaştırılır.
+5. Kısa/uzun pencere karşılaştırmaları yapılır; pencere uzunluğu, minimum devam süresi, izin verilen kesinti ve zaman oranı henüz belirlenmiş değildir. Bu parametreler deneylerle belirlenecek ve ayrı kayıtlarda doğrulanacaktır.
+6. Sıçramalar filtrelenerek ham kayıttan silinmez. Gerekirse türetilmiş analiz katmanında sıçrama olarak işaretlenir; karar algoritması süreklilik/kararlılık koşulunu uygular.
+
+**0.20 A hipotezinin doğru yorumu:** Kullanıcının gözlemi, K uygulanmış CH1 çıktısının 0.20 A altındaki davranışının fiziksel OFF ile uyumlu olabileceğidir. Bu, tekil örnek bazında mutlak cutoff olarak değil, zaman penceresi ve süre koşuluyla sınanacak aday sınıflandırma kuralıdır. 0.20 A üzerinde kısa sıçrama görülmesi bu hipotezi tek başına çürütmez.
+
+**Önceki değerlendirme düzeltmesi:** I007 raporundaki tekil örnek yüzdelikleri veya 0.20 A üstü örnek oranı, OFF sınıflandırmasının başarısızlığı şeklinde yorumlanamaz. I007 raporu K öncesi katsayısız ct_clamp verisini içerir; K=24.22 uygulanmış eşik değerlendirmesi için önce doğru ölçek dönüşümü yapılmalı, ardından süre-temelli analiz uygulanmalıdır. Tekil örnek oranı yalnız betimleyici bilgidir.
+
 ## 4. 0.3 A aday çalışma sınırı
 
 Önceki deneylerde yaklaşık 0.3 A altındaki ölçüm bölgesi belirsiz/kararsız aday alan olarak tartışılmıştır. Bu değer:
@@ -81,7 +99,7 @@ Bu sıra kavramsal taslaktır; henüz çalışan algoritma veya doğrulanmış k
 - OFF dağılımından türetilecek karar eşiği/yöntemi.
 - OFF referansının zamanla değişimini ele alma yöntemi.
 - Dağılım örtüşmesini nicel ölçme yöntemi.
-- Kararlılık penceresi ve doğrulama süresi.
+- Kararlılık penceresi, eşik üstü devam süresi, izin verilen kesinti ve doğrulama süresi (süre-temelli; henüz belirlenmedi).
 - Minimum SCT/PZEM örnek sayıları.
 - 0.3 A aday çalışma sınırının deneylerle doğrulanması.
 - Üç sınıfın gerçek OFF, 15 W ve daha yüksek yük verilerindeki hata/karışıklık oranları.
