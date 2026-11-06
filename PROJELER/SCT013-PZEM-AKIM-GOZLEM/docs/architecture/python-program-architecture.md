@@ -2,21 +2,33 @@
 
 **Faz:** Faz 2 — Bulunan kodu PZEM ile eğitmek  
 **İlk görev:** [T007 — Home Assistant verisini PC'ye aktarma](../../tasks/T007-python-architecture.md)  
-**Durum:** Taslak; gerçek HA dışa aktarımı görülünce somutlaştırılacak.
+**Durum:** Taslak; 2026-11-06 tarihinde iki bağımsız Python programı ve kullanıcı kontrollü gelen-kutu/arşiv akışı kararlaştırıldı. Fiziksel klasör yolları ve uygulama henüz belirlenmedi.
 
 ## Amaç
 
-Home Assistant'ta kayıtlı PZEM-004T V3.0 referans akışı ile mevcut SCT ölçüm kodunun entity geçmişlerini PC'ye taşımak. Python tarafında önce kaynak veriyi koruyarak okumak; sonraki adımlarda PZEM ve SCT akışlarını BOOT_ID + EVENT_ID ile paketlemek, kararlılıklarını kendi ölçümlerinden bağımsız belirlemek ve eşleşen paket aralığında PZEM akımıyla SCT verisini etiketlemek.
+Home Assistant'tan kullanıcı tarafından dışa aktarılarak PC'deki gelen-kutu klasörüne bırakılan PZEM-004T V3.0 referans akışı ile mevcut SCT ölçüm kodunun entity geçmişlerini kalıcı yerel arşive almak. Bu iş iki bağımsız Python programına ayrılır: Python-1 gelen-kutudaki dosyaları doğrulayıp arşivler; Python-2 yalnız arşivlenmiş veriyi analiz eder. Analiz aşamasında PZEM ve SCT akışları BOOT_ID + EVENT_ID ile paketlenir, kararlılıkları bağımsız belirlenir ve geçerli eşleşen kararlı alanlarda PZEM akımı SCT verisine referans etiketi olur.
 
 ## Veri akışının hedef sırası
 
-1. **Alma:** HA geçmişini dışa aktar; kaynak dosyayı değiştirmeden sakla.
-2. **İnceleme:** Dosya biçimi, entity_id, birim, timestamp, boşluk, tekrar ve geçersiz state dağılımını raporla.
-3. **Hazırlama:** PZEM ve SCT kayıtlarını ayrı veri akışları olarak ayır; zaman damgalarını ve kaynak kökenini koru.
-4. **Kararlılık:** Her akışın kararlı pencerelerini kendi güncelleme hızına ve gözlenen dağılımına göre belirle.
-5. **Eşleştirme:** Aynı BOOT_ID + EVENT_ID paket aralığında iki tarafta da geçerli/kararlı bölge olup olmadığını değerlendir; timestamp kesişimi eşleştirme şartı değildir.
-6. **Etiketleme:** Geçerli PZEM akımını eşleşen SCT penceresine referans etiketi olarak ekle.
-7. **Öğrenme:** Önce K=24.22'yi değerlendir; veri desteklerse yeni katsayı/model sürümü üret.
+### Aşama A — Python-1: gelen-kutu ve arşivleme
+
+1. **Kullanıcı bırakır:** Kullanıcı HA History'den aldığı dışa aktarım dosyasını belirlenen gelen-kutu klasörüne kendisi bırakır.
+2. **Dosya alımı:** Python-1 gelen-kutudaki yeni dosyayı bulur; HA'ya bağlanmaz ve Recorder veritabanına erişmez.
+3. **Doğrulama:** Dosya biçimi, okunabilirlik, kayıt yapısı ve dosya hash'i kontrol edilir. PZEM/SCT entity kayıtları, timestamp ve birimler korunur.
+4. **Arşivleme:** Doğrulama başarılıysa kaynak dosya içeriği değiştirilmeden yerel arşivin uygun alt klasörüne taşınır. Gelen-kutu işlenmiş dosya bakımından boşalır.
+5. **Hata/tekrar yönetimi:** Doğrulanamayan dosya silinmez; hata/karantina alanında tutulur veya güvenli biçimde gelen-kutuda bırakılır. Aynı hash'e sahip dosya ikinci kez arşivlenmez. Her işlem loglanır.
+
+### Aşama B — Python-2: analiz
+
+6. **İnceleme ve hazırlama:** Python-2 yalnızca Python-1'in arşivine bakar; dosya biçimi, entity_id, birim, timestamp, boşluk, tekrar ve geçersiz state dağılımını raporlar.
+7. **Kararlılık:** Her akışın kararlı pencerelerini kendi güncelleme hızına ve gözlenen dağılımına göre belirler.
+8. **Eşleştirme:** Aynı BOOT_ID + EVENT_ID paket aralığında iki tarafta da geçerli/kararlı bölge olup olmadığını değerlendirir; geçerli protokolde tanımlanan gerçek örtüşme koşulu ayrıca uygulanır.
+9. **Etiketleme:** Geçerli PZEM akımını eşleşen SCT penceresine referans etiketi olarak ekler.
+10. **Öğrenme:** Önce K=24.22'yi değerlendirir; veri desteklerse yeni katsayı/model sürümü üretir.
+
+### Klasör kararının sınırı
+
+Gelen-kutu, arşiv, hata/karantina ve log alanları mantıksal rollerdir. Gerçek klasör yolu, klasörlerin fiziksel konumu, arşiv alt klasörleme kuralı ve Python-1'in klasörü tarama/izleme biçimi terminalde birlikte kararlaştırılacaktır. Bu belge henüz fiziksel klasör oluşturulduğunu veya çalışan bir izleyici bulunduğunu iddia etmez.
 
 
 ## Kararlılık ve eşleştirme kuralı (ADR-022 / ADR-023 — geçerli)
@@ -58,15 +70,15 @@ Bu kararlar gerçek HA örnek verisi görülmeden varsayılmayacak.
 
 | ID | Parça | Durum | Görev |
 |---|---|---|---|
-| PY-01 | HA geçmişini PC'ye alma | BEKLEMEDE | T007 |
-| PY-02 | PZEM/SCT kaynak akışlarını inceleme | BEKLEMEDE | T007 |
+| PY-01 | Python-1: gelen-kutudan dosya alımı, doğrulama ve arşivleme | BEKLEMEDE | T007 |
+| PY-02 | Python-2: arşivlenmiş PZEM/SCT kaynak akışlarını inceleme | BEKLEMEDE | T007 |
 | PY-03 | Ayrı kararlılık pencereleri | BEKLEMEDE | T008 |
 | PY-04 | Ortak pencere eşleştirme ve etiketleme | BEKLEMEDE | T008 |
 | PY-05 | K=24.22 ve model değerlendirme | BEKLEMEDE | T006 |
 
 ## İlk teslimat
 
-İlk olarak küçük bir gerçek HA export örneği PC'ye alınır. Python kodu bu dosyayı okur ve entity, satır, zaman aralığı, birim ve geçersiz değer özetini üretir. Kod, gerçek örnek çıktı/log ve yorum depoya eklenmeden T007 tamamlanmış sayılmaz.
+İlk olarak kullanıcı küçük bir gerçek HA export örneğini gelen-kutu klasörüne bırakır. Python-1 dosyayı doğrulayıp arşive taşır; Python-2 arşivdeki dosyayı okur ve entity, satır, zaman aralığı, birim ve geçersiz değer özetini üretir. Kod, gerçek örnek çıktı/log ve yorum depoya eklenmeden T007 tamamlanmış sayılmaz.
 
 Bu belge hedef mimariyi tanımlar; aktarımın veya Python uygulamasının hazır/çalışır olduğunu iddia etmez.
 
@@ -128,3 +140,14 @@ koşullarını sağlayan bölümdür. OFF olayı paketi kapatır; OFF örnekleri
 Model biçimi önceden sabitlenmez. Yeterli farklı yük ve akım aralığı verisi biriktikten sonra tek katsayı, doğrusal hata modeli, polinom veya parçalı/akım alanına özgü doğrusal modeller karşılaştırılabilir. Model seçimi yalnız eğitim uyumuna göre değil, ayrılmış yük/oturum doğrulamasına göre yapılmalıdır. Sabit yükler eğitim referansını üretir; nihai kullanımda değişken canlı yük davranışı ayrıca sınanır.
 
 2026-11-05 ilk 100 W ön karşılaştırması yaklaşık %3.34 merkez farkı göstermiştir; bu ilk gözlemdir, eğitim sonucu veya tüm aralık doğruluğu değildir. K=24.22 korunmuştur. Ayrıntı: [E12 ilk CSV değerlendirmesi](../../experiments/E12-sct-stability-window-and-response/README.md).
+
+
+## İki programın sınırları ve veri güvenliği (ADR-026 — kabul edildi)
+
+- Python-1 yalnızca kullanıcının gelen-kutu klasörüne bıraktığı dosyaları işler. Home Assistant Recorder veritabanına doğrudan erişmez; HA geçmişini kendiliğinden silmez veya HA'ya yazmaz.
+- Başarılı doğrulamadan sonra dosyanın kendisi, içeriği değiştirilmeden arşive taşınır. Kaynak dosyanın hash'i, dosya adı, işlem zamanı, kod sürümü ve doğrulama sonucu loglanır.
+- Başarısız veya okunamayan dosya kaybolmaz. Hata/karantina davranışı ve fiziksel klasör yolu terminaldeki klasör tasarımında kesinleştirilecektir.
+- Python-2 yalnız arşivden okur; HA'ya bağlanmaz, gelen-kutuyu boşaltmaz ve arşivdeki kaynak dosyayı değiştirmez.
+- Gelen-kutu/arşiv/hata/log klasörlerinin gerçek yolu ve alt klasörleme politikası henüz seçilmemiştir.
+
+Ayrıntı: [ADR-026](../decisions/ADR-026-python-inbox-archive-workflow.md). Bu karar mimari sınırı belirler; iki programın kodlandığı veya test edildiği anlamına gelmez.
