@@ -159,6 +159,6 @@ Ayrıntı: [ADR-026](../decisions/ADR-026-python-inbox-archive-workflow.md). Bu 
 
 Eğitim çıktısı seçilen kanal kimliğini, fiziksel geçiş/sarım bilgisini, kaynak dosya/hash'i, firmware/kod sürümünü, calibration_id bilgisini (gerçekse) ve PZEM referans akışını izlenebilir tutmalıdır. Ham arşiv değiştirilmez; kanal seçimi ayrı türetilmiş çıktıdır.
 
-Önerilen ortak kanal adı biçimi `CH1-1T`, `CH2-4T`, `CH3-3T` şeklindedir. Mevcut donanım notlarındaki fiziksel eşleme kod/entity adlarına uygulanmadan önce doğrulanmalıdır. Bu adlandırma önerisidir; firmware ve HA entity'leri henüz değiştirilmemiştir.
+Kalıcı kanal kimliği `CH1`, `CH2`, `CH3` olmalıdır. Fiziksel geçiş/sarım sayısı (`turn_count`) kanal kimliğine gömülmez; deney/kurulum bazında değişebilir metadata olarak tutulur. Depodaki mevcut 1/4/3 geçiş değerleri yalnız mevcut kayıtlı durumu gösterir. Değişiklik olduğunda yeni deney kayıtları yeni `turn_count` değerini taşır; geçmiş kayıtlar değiştirilmez. `CH1-1T` benzeri birleşik adlar kalıcı kanal veya eğitim seti anahtarı olarak kullanılmaz.
 
 Ayrıntı: [ADR-027](../decisions/ADR-027-single-channel-training-datasets.md).
