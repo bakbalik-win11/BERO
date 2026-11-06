@@ -82,3 +82,12 @@ Her tur 10 dakika sürer. HA zaman damgalarıyla gerçek yayın aralığı ve ge
 - D turundan yalnızca `sample_duration` 50ms → 100ms olarak değiştirildi. CH2/CH3 ve ayrı GPIO35 bias ADC okuması bulunmaz.
 - Öncelikli değerlendirme fiziksel olarak doğrulanmış kararlı ON bölümlerindeki katsayısız ct_clamp çıktısının dağılımıdır. OFF verisi korunur ancak ON kararlılığı başarı ölçütü değildir.
 - **Durum:** Kod depoya eklendi; bu kayıt derleme, OTA veya E turunun başlatıldığını göstermez.
+
+
+### E turu — yeni firmware ile test başlangıcı (2026-11-06)
+
+- **Başlangıç:** 15:16 (+03:00); kullanıcı bildirimi: “yeni kod”.
+- **Test:** E16-E, CH1-1T, `sample_duration=100ms`, `interval=1s`, K=24.22.
+- **Hedef bitiş:** yaklaşık 15:26 (+03:00), 10 dakika.
+- **Kanıt durumu:** Yeni kodun 15:16'da teste alındığı kullanıcı bildirimiyle kaydedildi. Derleme/OTA logu ve HA History verisi henüz bu başlangıç kaydına eklenmedi.
+- **Analiz odağı:** Fiziksel olarak doğrulanmış kararlı ON aralıklarındaki katsayısız ct_clamp çıktısı. OFF verisi saklanır, ON kararlılığı ölçütüne dahil edilmez.
