@@ -12,7 +12,7 @@ SCT'nin PZEM'e göre daha sık ölçüm sonucu üretmesinin, yük değişimlerin
 Bu deney üç teknik soruyu kapsar:
 
 1. **SCT kararlı alan algoritması:** Geçişten sonra SCT değerleri ne kadar sürede belirli bir seviye çevresinde toplanıyor? Ortalama, standart sapma/dağılım ve ardışık pencere ortalamalarının değişimi ile tekrarlanabilir kararlı alan bulunabilir mi?
-2. **PZEM–SCT kararlı alan örtüşmesi:** PZEM ve SCT kararlılığı kendi akışlarında bağımsız tespit edildiğinde, zaman bakımından örtüşen bölümler eğitim adayı oluşturuyor mu? Aynı timestamp'e denk gelen tekil örnekler doğrudan eşleştirilmeyecek.
+2. **Kararlı alanın başlangıç/bitiş kuralı:** Kararlı alan, SCT ve PZEM aynı ON paketi içinde birlikte kararlı olduğunda açılır; SCT kararlılığını kaybettiğinde kapanır. PZEM'in gecikmeli OFF tepkisi bitişi belirlemez. Aynı timestamp'e denk gelen tekil örnekler doğrudan eşleştirilmeyecek.
 3. **SCT tepki süresi ve kısa ölçüm penceresi:** SCT yük değişimini PZEM'den daha erken yakalıyor mu? 200 ms'den kısa sample_duration ile kararlılık ve tekrarlanabilirlik korunabiliyor mu?
 
 ## Neden SCT?
@@ -65,7 +65,7 @@ SCT1'in yayınlanan değerleri üzerinde kayan/ardışık pencereler değerlendi
 2. ON ile OFF arasında EVENT_ID boşluğu, beklenmeyen ara durum olayı, farklı OFF kimliği, eksik OFF veya boot değişimi varsa paket kesin olarak reddedilir. Bir akışın OFF kaydı diğer akıştaki eksikliği kapatamaz. Ham kayıt korunur ve `EVENT_ID_GAP`, `OFF_EVENT_MISMATCH`, `MISSING_OFF` gibi paket bütünlüğü nedeni raporlanır.
 3. **OFF alanı eğitim verisi değildir.** OFF okumaları hiçbir koşulda SCT/PZEM kararlı yük eğitim eşleştirmesine veya eğitim örneği üretimine alınmaz. OFF, bu ilk aşamada sıfır/kapalı durum kabulüdür ve ON paket sınırını kapatmak için kullanılır.
 4. SCT kararlı alanlarını yalnız SCT'nin aynı ON paketindeki ölçüm verisinden, PZEM kararlı alanlarını yalnız PZEM'in aynı ON paketindeki ölçüm verisinden bağımsız tespit et.
-5. Paket bütünlüğü doğrulandıktan sonra iki ON kararlı aralığın zaman kesişimini hesapla. Yalnız kesişen zaman aralığı karşılaştırılabilir eğitim adayıdır. Kesişim yoksa eğitim etiketi üretme; ham kayıtları koru ve `NO_STABLE_OVERLAP` gibi açık dışlama nedeni raporla.
+5. Kararlı alanın açılma anı, aynı ON paketi içinde SCT ve PZEM'in kendi akışlarında kararlı olma koşullarının ilk kez birlikte sağlandığı andır. Alanın kapanışı SCT'nin kararlılığını kaybettiği andır. PZEM'in kararlı alanının sona ermesi veya OFF sonrasında gecikmeli güncellenmesi SCT alanını kapatmaz. PZEM, başlangıç kapısı geçildikten sonra bu alan boyunca proje referansı/etiket kaynağıdır; PZEM'in gecikmeli geçiş değerleri ayrıca işaretlenmeli ve referansın geçerliliği analizde korunmalıdır.
 6. PZEM geçiş/yerleşme örneklerini SCT örnekleri için noktasal referans yapma; tekil örnekleri timestamp ile birebir eşleştirme veya interpolasyon uygulama.
 7. HA timestamp'lerinin iki akış arasında karşılaştırılabilirliği, olay sıralaması ve kararlı aralık sınırlarının güvenilirliği gerçek dışa aktarım üzerinde doğrulanmalıdır. Bu doğrulama yapılmadan örnekleme hızı veya zaman hassasiyeti hakkında ek iddia kurulmaz.
 8. Ham kayıt kesilmez/silinmez. Eğitim yalnız aynı ON paketindeki bağımsız SCT/PZEM kararlı alanların ortak zaman aralığından oluşur; modelin sonraki davranış testi tam ham kayda, ON/OFF ve geçişler dahil, uygulanabilir.
@@ -99,7 +99,7 @@ Karşılaştırmada mümkün olduğunca aynı yük ve fiziksel düzen korunur; y
 - [ ] 20:07–20:37 Modül 2 ve Modül 3 tam loglarını al.
 - [ ] 20:12 öncesi/sonrası SCT1 karşılaştırmasını yap.
 - [ ] Her ON/OFF çevriminde tam olay paketi ve olay alımını kontrol et; OFF yalnız paket kapatma için kullanılsın.
-- [ ] Eğitim adaylarının yalnız ON içindeki bağımsız SCT/PZEM kararlı alan kesişimlerinden oluştuğunu doğrula.
+- [ ] Eğitim adaylarının aynı ON paketi içinde SCT+PZEM birlikte kararlı olduğunda açılıp SCT kararsızlaştığında kapandığını doğrula; PZEM gecikmeli OFF tepkisinin bitiş sınırını uzatmadığını kontrol et.
 - [ ] OFF/yüksüz taban istatistiğini ilk aşama dışında, ayrı ve isteğe bağlı yüksüz uzun kayıt çalışması olarak tut.
 - [ ] SCT1 kararlı alan adaylarını ortalama, dağılım ve ardışık pencere değişimiyle çıkar.
 - [ ] PZEM kararlı alanlarını bağımsız çıkar ve zaman kesişimini hesapla.
@@ -160,3 +160,17 @@ Test hedefleri ayrıştırılacaktır:
 sample_duration (her ölçümün örnekleme süresi) ile update_interval/çıktı periyodu (yeni sonucun ne sıklıkta üretildiği) birbirinden ayrı kavramlardır. İlk hız denemesinde K=24.22 ve 200 ms örnekleme penceresi mümkün olduğunca sabit tutulacak; önce mimari ve scheduler kapasitesi incelenecek. Firmware değişikliği henüz yapılmadı.
 
 Ayrıca I007 yüksüz verisinde ham akış korunarak ayrı filtrelenmiş türev akış üretme yaklaşımı kullanıcı tarafından kabul edildi. Kayan pencere, sağlam merkez/dağılım, sapma sınırı ve süre koşulu birlikte değerlendirilecek; kısa tekil sıçramalar işaretlenebilir ancak kalıcı yükseliş korunmalıdır. Parametreler henüz belirlenmedi. Ayrıntı ve bağımsız test planı: [E13 — yüksüz gürültü filtresi ve örnekleme hızı](../E13-idle-noise-filter-and-sampling-rate/README.md).
+
+
+## 2026-11-06 — Kararlı alan sınır kuralı (ADR-028)
+
+Kullanıcı kararı: Kararlı alanın başlangıcı ve bitişi farklı işaretlerle belirlenir.
+
+- **Başlangıç:** Aynı ON paketi içinde SCT kendi ölçüm akışında kararlı ve PZEM kendi ölçüm akışında kararlı olma koşullarını birlikte sağladığında kararlı alan açılır.
+- **Bitiş:** SCT kendi ölçüm akışında kararlılığını kaybettiğinde kararlı alan kapanır.
+- **PZEM'in rolü:** PZEM kararlılığı alanı açmak için başlangıç koşuludur. PZEM'in kararsızlaşması alanın bitiş koşulu değildir.
+- **Gerekçe:** Yük OFF olduğunda PZEM akımı gecikmeli gösterebilir; SCT yük değişimini daha erken yakalar. PZEM'in OFF/kararsız görünmesini beklemek alanın bitişini geciktirir ve SCT'nin gözlediği geçişi doğru sınırlandırmaz.
+- Bu kural kararlı alanın mantıksal sınırını tanımlar. SCT kararlılığını kaybetmenin istatistiksel ölçütü, pencere boyu, tolerans ve süre eşikleri henüz belirlenmemiştir; gerçek veriden çıkarılacaktır.
+- Olay paketinin ON/OFF bütünlüğü ADR-022'deki gibi ayrıca doğrulanır. OFF olayı paket kapatma işaretidir; eğitim kararlı alanının bitişini belirleyen ölçüt değildir.
+
+Bu karar ADR-028 ile kaydedilmiştir. Python uygulaması henüz yapılmamıştır; E12 devam etmektedir.
