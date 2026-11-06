@@ -33,7 +33,7 @@ Bu, kısa bir fizibilite/çalışma kontrolüdür; uzun süreli kararlılık, ka
 
 - Deney dalı: `exp/modul2-ch1-2hz-20261106`
 - Firmware: [bero-modul2-esp32d1.yaml](../../firmware/bero-modul2-esp32d1.yaml)
-- YAML blob SHA: `afe5a689832b4d78b78c1bd1a0d8971301d2caaf`
+- İlk cihaz logunun kaynak YAML SHA: `afe5a689832b4d78b78c1bd1a0d8971301d2caaf`. Üç hızlı yeni deney revizyonunun güncel SHA, YAML geri okunup doğrulandıktan sonra eklenecek.
 - Ham cihaz logu: [2026-11-06 cihaz logu](../../logs/module2/2026-11-06-module2-ch1-2hz-device-log.txt)
 - Ön analiz: [2026-11-06 log analizi](../../logs/module2/2026-11-06-module2-ch1-2hz-log-analysis.md)
 
@@ -49,7 +49,7 @@ Log ESPHome 2026.10.2 ile 2026-11-06 10:54:01 +0300 tarihinde derlenmiş cihaz y
 - Modül 3 EVENT_ID=1897 ON ve EVENT_ID=1898 OFF paketleri aynı BOOT_ID ile alındı ve HA entity'lerine yayınlandı.
 - Logda ERROR/[E]/FAILED yok; bir safe_mode uzun işlem uyarısı (69 ms) ve üç ESP32 optimizasyon önerisi var.
 
-Kullanıcı bu log koşulunu sistem boşta/yüksüz olarak tanımlamıştır. ON aralığında üç kanalın medyan değerleri ON öncesine göre yükselmiş; OFF sonrasında tekrar yaklaşmıştır. OFF'tan yaklaşık 3 saniye sonra CH1'de 0,491 A tekil tepe görülmüştür. Bu tek çevrim, olayla akım değişimi arasında zamansal ilişki gösterir; neden/SSR kaynaklı girişim/fiziksel akım ayrımı için yeterli değildir. PZEM kaydı yoktur; kalibrasyon veya ±%4 sonucu çıkarılmaz.
+Kullanıcı, kayıt boyunca hatta fiziksel olarak yük olmadığını ve bunu cihazın başında gözlemlediğini doğruladı. Modül 3 ON/OFF UDP mesajları fiziksel yük açma/kapama değildir; yalnızca mantıksal olay işaretleridir. Bu nedenle ON öncesi / ON aralığı / OFF sonrası medyan farkları yük geçişi olarak yorumlanmaz. OFF'tan yaklaşık 3 saniye sonra CH1'de 0,491 A tekil tepe görülmüştür; bu yüksüz koşuldaki bir ölçüm gözlemidir, nedeni bilinmemektedir. PZEM kaydı yoktur; kalibrasyon veya ±%4 sonucu çıkarılmaz.
 
 ## Değerlendirme
 
