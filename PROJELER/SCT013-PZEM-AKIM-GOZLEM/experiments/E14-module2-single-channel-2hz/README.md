@@ -174,3 +174,13 @@ Kullanıcı, uzun kayıt karşılaştırmasından sonra 1 Hz profilini CH1'den C
 - UDP 4210 olay alıcısı korunur.
 
 **Doğrulama durumu:** YAML deney dalına yazıldı. ESPHome Validate/Compile, OTA ve fiziksel cihaz testi henüz yapılmadı. Yeni profilin çalıştığı veya ölçüm avantajı sağladığı iddia edilmez; bunlar sonraki doğrulama adımlarıdır.
+
+
+## 2026-11-06 — 12:52 yeni kodla kayıt başlangıcı
+
+- **KULLANICI BİLDİRİMİ:** Yeni örnekleme profiline ait kodla kayıt başlangıcı 12:52 (+03:00) olarak bildirildi.
+- Başlangıç profili: CH1-1T / GPIO32 = 2 Hz (500 ms); CH2-1T / GPIO33 = 0,5 Hz (2 s); CH3-1T / GPIO34 = 1 Hz (1 s).
+- Her üç kanalda sample_duration=100 ms ve K=24.22 korunmuştur. Ortak bias, CH2 ile aynı 2 saniyelik taramada okunur.
+- Deney hedefi tek bir kanalı kazanan seçmek değildir. Üç kanalın da aynı koşullarda tutarlı, tekrarlanabilir ve düşük saçılımlı ölçüm üretmesi hedeflenir.
+- Bu saat, kullanıcı tarafından bildirilen kayıt başlangıcıdır; cihaz logu/HA CSV henüz bu kayda eklenmedi. Fiziksel yük durumu bu başlangıç notunda belirtilmemiştir; UDP ON/OFF mesajları fiziksel yük durumunun kanıtı sayılmayacaktır.
+- Sonraki analizde yeni profilin gerçekten çalıştığı yayın timestamp aralıklarından kontrol edilecek; karşılaştırma aynı fiziksel koşul ve kararlı pencereler üzerinden yapılacaktır.
