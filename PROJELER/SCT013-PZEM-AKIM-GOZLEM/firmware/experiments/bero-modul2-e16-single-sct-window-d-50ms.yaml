@@ -6,7 +6,7 @@
 #
 # AMAÇ:
 # - Yalnız CH1-1T / GPIO32 üzerinden tek SCT ölçüm kanalı çalıştırmak.
-# - sample_duration=50ms ve K=24.22 sabitken tetikleme aralığını
+# - interval=1s ve K=24.22 sabitken ct_clamp ölçüm penceresini
 #   50ms, 100ms ve 200ms olarak üç ayrı 10 dakikalık turda karşılaştırmak.
 # - Ölçüm penceresi, ADC yapılandırması, sensör ve fiziksel yük koşulunu sabit tutmak.
 # - Modül 3 UDP 4210 olay alıcısını koruyarak olay işaretlerini HA'ya aktarmak.
@@ -21,8 +21,8 @@
 # - CH1-1T sample_duration=50ms sabit; K=24.22 sabit.
 # - Bu dosya D turu içindir: sample_duration 50ms. E=100ms ve F=200ms ayrı sürümlerdir.
 # - Her turda yalnız sample_duration satırı değiştirilir; her tur 10 dakika kaydedilir.
-# - Bu B yapılandırmasında yalnız interval 1s olarak ayarlanmıştır; sample_duration=50ms,
-#   K=24.22, ADC ve fiziksel bağlantı E15 A/B/C turlarıyla aynı kalır.
+# - Bu D yapılandırmasında sample_duration=50ms ve interval=1s ayarlanmıştır.
+#   E16 E/F turlarında yalnız sample_duration değişecek; interval=1s sabit kalacaktır.
 # - UDP 4210 olay alıcısı her turda korunur.
 #
 # HA ENTITY'LERİ:
