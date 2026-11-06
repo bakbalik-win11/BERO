@@ -84,13 +84,14 @@ ON olayından önceki, olay aralığındaki ve OFF sonrasındaki yayınlar ayrı
 | CH2-1T | 0,150 A (7) | 0,248 A (20) | 0,155 A (5) |
 | CH3-1T | 0,169 A (7) | 0,278 A (20) | 0,164 A (5) |
 
-Önemli gözlem:
-- Modül 3 ON olayıyla aynı zaman aralığında üç kanalın görünen akım medyanları yükselmiştir.
-- OFF sonrasında medyanlar önceki seviyelere yaklaşmıştır.
-- OFF olayından yaklaşık 3 saniye sonra CH1'de 0,491 A tekil tepe görülmüştür (10:56:33.986).
-- Tek olay çevrimi ve kısa kayıt, bu yükselişin nedenini açıklamaya yetmez. SSR/olay durumuyla zamansal ilişki gözlenmiştir; nedensellik veya fiziksel yük akımı sonucu çıkarılmaz.
+Önemli bağlam düzeltmesi (kullanıcının fiziksel gözlemi):
+- Kullanıcı, bu kayıt boyunca hatta fiziksel olarak hiçbir yük bulunmadığını ve bunu cihazın başında gözlemlediğini açıkça doğruladı.
+- Modül 3'ün ON/OFF UDP mesajları bu kayıtta fiziksel yükün açılıp kapanması değildir; yalnızca mantıksal deney olay işaretleridir.
+- Bu nedenle ON öncesi / ON aralığı / OFF sonrası medyan farkları bir yük geçişi olarak yorumlanamaz. Bu bölümler fiziksel olarak yüksüz koşulun farklı olay-zaman dilimleridir.
+- OFF olayından yaklaşık 3 saniye sonra CH1'de 0,491 A tekil tepe görülmüştür (10:56:33.986). Bu, yüksüz kayıttaki tekil ölçüm gözlemidir; nedeni bilinmemektedir.
+- Üç kanalda olay-zaman dilimleri arasında görülen farklar gürültü, ölçüm zinciri davranışı, besleme/ortam etkisi veya başka bir etkenden kaynaklanabilir; bu log tek başına ayrıştırmaz.
 
-Bu nedenle log, yalnız "sabit yüksüz gürültü" olarak özetlenmemelidir. Modül 3'ün ON/OFF döngüsüyle ilişkili olabilecek bir ortak değişim ve OFF sonrası tekil CH1 sıçraması ayrıca incelenmelidir. Ham veri korunmalıdır; eşik veya filtre bu logdan seçilmemiştir.
+Dolayısıyla bu log, fiziksel yüksüz baz çizgi kaydıdır. Modül 3 olay işaretleri yalnızca zaman bölümlendirme için kullanılabilir; fiziksel yük durumu kullanıcının gözlemine göre etiketlenir. Ham veri korunur; eşik veya filtre bu logdan seçilmez.
 
 ## UYARILAR VE SINIRLAR
 
