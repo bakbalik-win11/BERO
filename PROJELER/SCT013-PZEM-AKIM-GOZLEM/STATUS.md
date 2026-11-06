@@ -119,3 +119,10 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - SCT örnekleme hızı karşılaştırmasında PZEM referans ölçütü değildir. Üç SCT kanalı kendi kararlı ON alanlarında ayrı ayrı ve ortak yük davranışına göre değerlendirilecektir.
 - Ayrıntı: [PZEM History geçiş davranışı gözlemi](logs/module3/2026-11-06-pzem-history-packet-average-observation.md).
 - Sonraki kanal eşleştirme deneyi için kullanıcı başlangıcı 2026-11-06 12:01:00 (+03:00); CH1←önceki SCT3, CH2←önceki SCT1, CH3←önceki SCT2. Yeni CSV bekleniyor.
+
+
+## 2026-11-06 — E14 ikinci ve üçüncü karşılaştırma gözlemleri
+
+- **2. Üç örnekleme hızı:** CH1=2 Hz, CH2=1 Hz, CH3=0,5 Hz düzeninde kullanıcı ilk gözleminde CH2'nin daha az sapma gösterdiğini bildirdi. Bu henüz nitel gözlemdir; referans ve sayısal sapma yeni veriyle hesaplanacak. CH2'nin daha doğru olduğu veya 1 Hz'in üstünlüğü henüz kanıtlanmış değildir.
+- **3. Fiziksel kanal değişimi:** Donanım kanalları değiştirildi. Yeni eşleştirme 12:01 (+03:00) itibarıyla CH1←önceki SCT3, CH2←önceki SCT1, CH3←önceki SCT2. Amaç sensör/yerleşim etkisini ESP/ADC kanal etkisinden ayırmaktır. Yeni CSV bekleniyor.
+- E14'nin üç adımı ve kanıt sınırları: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.md).
