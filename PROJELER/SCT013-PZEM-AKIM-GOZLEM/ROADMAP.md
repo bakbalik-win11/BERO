@@ -142,8 +142,12 @@ Ayrıntı: [ADR-025](docs/decisions/ADR-025-raw-data-sct-model-behavior-validati
 - Bugün yeni firmware/Python uygulaması, derleme/OTA veya fiziksel deney doğrulaması yapılmamıştır.
 
 
-## 2026-11-06 — Eğitim veri seti kanal kapsamı (ADR-027)
+## 2026-11-06 — Eğitim veri seti kanal kapsamı ve History işaretlemesi (ADR-027)
 
-Test firmware'i üç SCT kanalını birlikte okuyabilir ve ham arşiv tüm kanalları koruyabilir. Buna karşılık her eğitim veri seti tek bir SCT kanalını içerir; kanallar ayrı veri setleri ve ayrı model değerlendirmeleri üretir. PZEM akımı proje referansıdır. Önerilen kanal kimliği biçimi `CH1-1T`, `CH2-4T`, `CH3-3T` olup fiziksel eşleme kod/entity adlarına uygulanmadan önce doğrulanmalıdır. Firmware ve entity isimleri bu kayıtla değiştirilmiş değildir.
+Test ve günlük deney kodları üç SCT kanalını birlikte okuyabilir. Gün içindeki deneylerde Home Assistant History'de genel kanal adları `CH1`, `CH2`, `CH3` kullanılır; bu kayıtlar kendiliğinden eğitim verisi sayılmaz. Bir kod/ölçüm yapılandırması kesinleşip özellikle eğitim verisi toplanmasına karar verildiğinde, ilgili kodda küçük bir adlandırma değişikliği yapılarak eğitim akışı `CH1-E`, `CH2-E` veya `CH3-E` adıyla yayınlanır. `-E` eğitim işaretidir; fiziksel kanal kimliği, sarım sayısı veya hesaplama yöntemi değildir.
 
-Ayrıntı: [ADR-027](docs/decisions/ADR-027-single-channel-training-datasets.md).
+Python-1 kaynak History CSV'sini değiştirmeden doğrular ve arşivler; bu üç adın dosyada bulunması Python-1 kabul koşulu değildir. Python-2/eğitim hazırlama aşaması bu adları açık seçim/eşleme anahtarı olarak kullanır. Genel deney kayıtları eğitim setine otomatik alınmaz. Eski bir deneyden eğitim kopyası üretilecekse kaynak arşiv korunur; seçim ve adlandırma ayrı türetilmiş kopyada yapılır. Sarım sayısı, katsayı ve hesaplama yöntemi gerektiğinde ilgili kodda tanımlanır; kanal adına gömülmez.
+
+Her eğitim veri seti tek bir SCT kanalından oluşur; CH1, CH2 ve CH3 için ayrı setler ve ayrı model değerlendirmeleri yürütülür. PZEM akımı proje referansıdır. Üç kanallı test firmware'i, günlük deney adları ve ham arşiv bu kararla değiştirilmez.
+
+Ayrıntı: [ADR-027](docs/decisions/ADR-027-single-channel-training-datasets.md) ve [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md). T007/T008 uygulaması ve gerçek eğitim çıktısı tamamlanmış değildir.
