@@ -66,3 +66,15 @@ Veri aktarımı için önce PZEM ve SCT düğümlerinin gerçek veriyi Home Assi
 - **HEDEF:** Faz 2'nin ilk veri yolunu kurmak.
 - **LOG:** Kullanıcının manuel HA History CSV dışa aktarımı daha önce gösterildi. 2026-11-06 tarihinde iki bağımsız Python programı ve gelen-kutu/arşiv iş akışı kararlaştırıldı. Fiziksel klasör yapısı ve Python kodu henüz oluşturulmadı.
 - **SONUÇ:** T007 DEVAM EDİYOR. Mimari kararı kaydedildi; uygulama ve gerçek dosya testi tamamlanmadı.
+
+
+## Tek kanallı eğitim veri seti kararı — ADR-027 (2026-11-06)
+
+- Üç SCT kanalını birlikte okuyan test/veri toplama kodu korunabilir; bu kodun üç kanallı olması eğitim verisinin de üç kanallı olacağı anlamına gelmez.
+- Kaynak HA CSV'si ve arşiv, içerdiği tüm SCT kanallarını ham haliyle koruyabilir.
+- Python-2'nin eğitim veri seti üretiminde kanal seçimi açık olmalıdır. Her eğitim seti yalnızca bir SCT kanalından oluşur; CH1, CH2 ve CH3 için ayrı setler ve ayrı model değerlendirmeleri hazırlanır.
+- Seçilen kanalın SCT kararlı alanları, PZEM referans akışının geçerli kararlı alanlarıyla ADR-022/023/024/025 paket ve pencere kuralları içinde değerlendirilir.
+- Kanal kimliği, fiziksel geçiş/sarım bilgisi, kaynak CSV/hash, firmware/kod sürümü ve calibration_id izlenebilir metadata olmalıdır.
+- Önerilen adlandırma: `CH1-1T`, `CH2-4T`, `CH3-3T`. Mevcut fiziksel bağlantı/sarım eşlemesi kod ve entity adlarına uygulanmadan önce doğrulanacaktır. Bu aşamada firmware/entity isimleri değiştirilmemiştir.
+
+Ayrıntı: [ADR-027](../docs/decisions/ADR-027-single-channel-training-datasets.md).
