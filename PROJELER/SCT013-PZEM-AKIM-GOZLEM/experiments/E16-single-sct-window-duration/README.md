@@ -91,3 +91,13 @@ Her tur 10 dakika sürer. HA zaman damgalarıyla gerçek yayın aralığı ve ge
 - **Hedef bitiş:** yaklaşık 15:26 (+03:00), 10 dakika.
 - **Kanıt durumu:** Yeni kodun 15:16'da teste alındığı kullanıcı bildirimiyle kaydedildi. Derleme/OTA logu ve HA History verisi henüz bu başlangıç kaydına eklenmedi.
 - **Analiz odağı:** Fiziksel olarak doğrulanmış kararlı ON aralıklarındaki katsayısız ct_clamp çıktısı. OFF verisi saklanır, ON kararlılığı ölçütüne dahil edilmez.
+
+
+### E turu — HA History analizi (2026-11-06)
+
+- 15:16:00–15:26:00 (+03:00) aralığında 600 katsayısız CH1 yayını; medyan yayın aralığı 1.000s.
+- Kararlı ON seçimi: SSR çevrimleri sınır olarak kullanıldı, PZEM akımıyla kontrol edildi; ON çevrimlerinin ilk/son 5 saniyesi çıkarıldı. 10 çevrimden 293 SCT değeri kaldı.
+- Seçilmiş ON aralıklarında PZEM 0.465–0.469 A. Katsayısız SCT: ortalama 0.019264 A, medyan 0.019118 A, popülasyon SD 0.001034 A, CV %5.37, P05–P95 0.018083–0.020759 A, maksimum 0.027513 A.
+- Çevrim içi ardışık fark P95 0.002772 A, P99 0.006566 A. Önceden tanımlı ortak sıçrama eşiği olmadığından sıçrama adedi verilmedi.
+- E sonucu tek başına pencere seçimi değildir; D/F aynı yöntemle karşılaştırılmalı.
+- Analiz: [E16-E HA History](../../logs/module2/2026-11-06-e16-e-100ms-ha-history-analysis.md). Kaynak CSV SHA-256: `3338f48b30c6db379797bed89ffd6b68dcd04384ead8e1f31e6c9cb10be6dde3`. Ham CSV 3.86 MB; bu commit'e kopyalanmadı.
