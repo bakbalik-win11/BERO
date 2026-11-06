@@ -288,3 +288,12 @@ Kullanıcı onayıyla E15'ten ayrı E16 deneyi planlandı. E15 A/B/C'de `sample_
 - Kısa katsayısız çıktı özeti n=31, ortalama 0.014573, medyan 0.018340, popülasyon SD 0.006285, min 0.004460, max 0.021140. İlk düşük değerlerden sonra 15:00:32 civarında üst seviyeye geçiş var; kısa kesit tek kararlı pencere kabul edilmedi.
 - Log validated config cache'in `esp32d1.yaml` için kullanıldığını söylüyor; depodaki D YAML ile binary arasında birebir hash eşleşmesi kanıtlanmıyor. Kısa kontrol logu 10 dakikalık D kaydı değildir.
 - Ham log: [kontrol logu](logs/module2/2026-11-06-e16-d-50ms-pretest-control-log.txt); [analiz](logs/module2/2026-11-06-e16-d-50ms-pretest-control-log-analysis.md). Kaynak SHA-256: `f6b799c818552b7b14dd6bb42a4d7aeb1d4c18e72e6208efa0a4670da9355a60`.
+
+
+## 2026-11-06 — E16 E turu firmware hazırlandı
+
+- E turu YAML dosyası eklendi: `firmware/experiments/bero-modul2-e16-single-sct-window-e-100ms.yaml`.
+- D turuna göre tek ayar farkı `ct_clamp.sample_duration: 50ms → 100ms`; SCT yayın aralığı `interval=1s` sabit.
+- Tek kanal CH1-1T / GPIO32 / ADC1_CH4; K=24.22; ADC 12dB; UDP 4210 alıcısı korunuyor. CH2/CH3 ve ayrı GPIO35 ADC okuması yok.
+- E16 değerlendirmesinin odağı fiziksel olarak doğrulanmış kararlı ON bölümlerindeki katsayısız ct_clamp çıktısının kararlılığıdır. OFF davranışı saklanır, ancak ON kararlılığı ölçütüne katılmaz.
+- Kod depoya eklendi; derleme, OTA veya E turu başlangıcı henüz doğrulanmadı.
