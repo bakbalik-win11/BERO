@@ -1876,3 +1876,14 @@ Kullanıcı kararı: Üç tur 30 dakika değil, 10'ar dakika. A/B/C aralıkları
 - İlk çalışma kontrolü başarılı kabul edildi; 10 dakikalık A turu tamamlandı denmedi. Bu kısa log sıçrama karşılaştırması için kullanılmayacak.
 - Logda yapılandırma adı esp32d1.yaml; depodaki E15 YAML snapshot'ı ile çalışan binary arasında birebir hash eşleştirmesi kanıtlanmış değildir.
 - [Ham log](../logs/module2/2026-11-06-e15-a-500ms-initial-device-log.txt); [analiz](../logs/module2/2026-11-06-e15-a-500ms-initial-device-log-analysis.md); [E15 sonuç defteri](../experiments/E15-single-sct-publish-interval/results.md).
+
+
+## 2026-11-06 — E15 ana hedefin ve üç tur beklentisinin netleştirilmesi
+
+- Kullanıcı ana hedefi netleştirdi: katsayısız CH1-1T akım çıktısında kararlı durumdaki tekil ölçümlerin ortalamaya yakınlığını artırmak; sapmaları standart sapma ile sınırlamadan sıklık ve miktar açısından değerlendirmek.
+- Ana göstergeler: ortak tolerans bandı dışındaki ölçüm adedi/oranı (sapma sıklığı), tolerans dışı sapmaların ortalama/P95/maksimum mutlak miktarı ve tüm tekil ölçümlerin mutlak ortalamadan sapma dağılımı.
+- Tolerans bandı sonuçlar görülmeden ortak biçimde belirlenmeli; sayısal değer henüz kararlaştırılmadı.
+- **E15'e özel beklenti:** 500 ms, 1 s ve 2 s yayın aralıklarında kararlı durumdaki ortalamadan sapma sıklığı ve miktarının belirgin değişmemesi. Bu bir ön beklentidir, sonuç değildir.
+- Kullanıcı bildirimi: mevcut katsayısız gözlem 13:49'da başladı; 14:00'te yeni koda geçiş planlandı. Görsel tek başına tur süresini veya tamamlandığını kanıtlamaz.
+- Örnekleme sınırı korundu: seyrek yayın, iki yayın arasında oluşup kaybolan sapmaları kaçırabilir; sonuçlar yalnız yayımlanmış değerlerin davranışını kapsar.
+- E15 protokolü, sonuç defteri, deney indeksi ve STATUS güncellendi.
