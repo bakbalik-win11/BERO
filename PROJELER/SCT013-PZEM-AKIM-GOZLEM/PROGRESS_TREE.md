@@ -488,3 +488,10 @@ Ayrıntı: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.
 - Kullanıcı, 30 dakikalık turları uzun bulduğu için her turu 10 dakika olarak revize etti.
 - A/B/C: 500ms (~1.200 kayıt), 1s (~600 kayıt), 2s (~300 kayıt). Yalnız tur süresi değişti; sample_duration=100ms, K=24.22 ve diğer deney koşulları aynı.
 - Gerçek yayın ve kayıt sayıları HA timestamp'lerinden doğrulanacak.
+
+## 2026-11-06 — E15 ilk cihaz kontrolü
+
+- ESPHome 2026.10.2 logunda ESP32D1 API bağlantısı, GPIO32 ADC başlatması, CH1 yayınları ve UDP EVENT_ID=314 / STATE=OFF alımı gözlendi.
+- 28.492 saniyede 58 akım yayını; medyan aralık 0.500s. Bu yalnız kısa çalışma kontrolüdür; 10 dakikalık A turu değildir.
+- Ham log ve sayısal yorum [burada](logs/module2/2026-11-06-e15-a-500ms-initial-device-log.txt) ve [burada](logs/module2/2026-11-06-e15-a-500ms-initial-device-log-analysis.md).
+- **Durum:** İlk cihaz kontrolü desteklendi; A/B/C deney turları sürüyor/bekliyor.
