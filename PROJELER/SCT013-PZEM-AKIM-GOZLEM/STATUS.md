@@ -86,3 +86,13 @@ Kullanıcı kararı: 2026-11-06 akşamı, veri/donanım durumu uygunsa kısa bir
 Bu çalışma E14 olarak kaydedildi. Mevcut üç kanallı çalışan YAML korunacak; deney sürümü ayrı tutulacak ve gerekirse geri dönülebilecek. Firmware değişikliği, derleme veya OTA henüz yapılmadı. E14 kısa akşam oturumu adayıdır; Cumartesi uzun çalışma önceliğini değiştirmez. Deneyler arasında öncelik, kullanıcının o günkü veri ve donanım durumuna göre esnekçe belirlenebilir.
 
 Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experiments/E14-module2-single-channel-2hz/README.md).
+
+
+## 2026-11-06 — Modül 2 CH1-1T 2 Hz ilk cihaz logu
+
+- E14 deney firmware'i `exp/modul2-ch1-2hz-20261106` dalında korundu; YAML blob SHA `afe5a689832b4d78b78c1bd1a0d8971301d2caaf`. Cihaz logu ESPHome 2026.10.2 derleme zamanını, API bağlantısını ve GPIO32/33/34/35 ADC init OK sonuçlarını gösteriyor.
+- Kısa cihaz logunda CH1 128 yayın ve 0,500 s medyan aralıkla nominal 2 Hz; CH2 32 yayın / 2,000 s; CH3 32 yayın / 2,001 s gözlendi. CH1 tek tek aralıkları 0,335–0,669 s olduğundan uzun süreli tam zamanlama garantisi verilmez.
+- Modül 3 EVENT_ID 1897 ON ve 1898 OFF paketleri aynı BOOT_ID ile Modül 2'ye ulaştı ve HA entity'lerine yayınlandı. Bu iki olay için kayıp görülmedi; genel kayıpsızlık veya fiziksel SSR anahtarlaması kanıtlanmadı.
+- Kullanıcının yüksüz olarak tanımladığı koşulda ON aralığında üç kanal medyanları yükseldi; OFF sonrası yaklaştı. OFF'tan yaklaşık 3 s sonra CH1'de 0,491 A tekil tepe görüldü. Tek çevrim neden tayini için yeterli değildir; ham veri korunacak, filtre/eşik kararı verilmeyecek.
+- Ham log ve ön analiz: [cihaz logu](logs/module2/2026-11-06-module2-ch1-2hz-device-log.txt), [analiz](logs/module2/2026-11-06-module2-ch1-2hz-log-analysis.md). Kaynak log SHA-256 `b2f0e86f0053eb24c3455a7ee279cbdc1805c72dae5e7b4f8dbacc130a4d562d`.
+- **Durum:** Kısa cihaz çalışma doğrulaması LOG İLE DESTEKLENDİ; E14 açık. Uzun süreli 2 Hz, tekrarlı ON/OFF çevrimleri, PZEM/HA History eşleşmesi ve fiziksel SSR doğrulaması bekliyor.
