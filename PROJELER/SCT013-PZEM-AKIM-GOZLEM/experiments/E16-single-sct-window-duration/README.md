@@ -110,3 +110,10 @@ Her tur 10 dakika sürer. HA zaman damgalarıyla gerçek yayın aralığı ve ge
 - E turuna göre tek ölçüm ayarı farkı `sample_duration: 100ms → 200ms`; yayın aralığı 1s sabit. CH2/CH3 ve ayrı GPIO35 bias ADC okuması bulunmaz.
 - Analiz odağı fiziksel olarak doğrulanmış kararlı ON bölümlerindeki katsayısız ct_clamp çıktısıdır. OFF verisi saklanır, ON kararlılığı ölçütüne katılmaz.
 - **Durum:** YAML depoya eklendi; derleme, OTA ve F turu başlangıcı henüz doğrulanmadı.
+
+
+## E16'nın kalibrasyon sürecindeki yeri
+
+E16, eğitimde kullanılacak ölçüm penceresi/okuma parametrelerinin değerlendirilmesine veri sağlar; tek başına nihai merkez kestiriciyi veya K katsayısı hesaplama yöntemini seçmez. Eğitimde yalnız fiziksel olarak doğrulanmış kararlı ON alanları kullanılacak; ON başlangıç geçişi ve OFF sonrası örnekler katsayı hesabına alınmayacak. OFF ham verisi korunacaktır. Eğitim/kalibrasyon istatistiği ile gelecekteki canlı yük değişimi istatistiği ayrı ele alınacaktır.
+
+Aday merkez kestiriciler (ortalama, medyan, trimmed mean), yayılım ölçüleri (SD, MAD, IQR, yüzdelikler), çevrim bazında değerlendirme ve kaydedilecek okuma parametreleri için [SCT ON eğitim verisi ve katsayı belirleme istatistiği](../../docs/ON-training-calibration-statistics.md) belgesine bakın. Nihai yöntem ve sayısal eşikler henüz kararlaştırılmamıştır.
