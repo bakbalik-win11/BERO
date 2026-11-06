@@ -1,84 +1,74 @@
-# E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi
+# E14 — Modül 2 CH1-1T 2 Hz ölçüm denemesi
 
-**Durum:** PLANLANDI — kısa oturum / öncelik kullanıcı tarafından esnek bırakıldı  
-**Planlanan oturum:** 2026-11-06 akşamı (uygunluk ve veri durumuna bağlı)  
+**Durum:** KISA CİHAZ ÖN KONTROLÜ LOG İLE DESTEKLENDİ; E14 AÇIK  
+**İlk cihaz kaydı:** 2026-11-06 10:55:37–10:56:41 (+03:00)  
 **Faz:** Faz 2  
-**İlişkili kayıtlar:** E13 örnekleme hızı hedefi, E12 SCT tepki/kararlılık gözlemi, T010 Modül 2
+**İlişkili işler:** T010 Modül 2, E13 örnekleme hızı ve yüksüz veri gözlemi
 
 ## Amaç
 
-Mevcut Modül 2'yi deney alanı olarak kullanarak üç kanallı sıralı okuma yerine tek SCT kanalını daha sık okumak ve yaklaşık her 500 ms'de bir yeni ölçüm sonucu (2 Hz) üretmenin pratikte mümkün olup olmadığını görmek.
+Modül 2 üzerinde CH1-1T kanalının yaklaşık 500 ms'de bir yeni ölçüm üretmesini (nominal 2 Hz) gerçek cihaz loguyla doğrulamak. CH2 ve CH3 kanallarını daha düşük hızda çalışır durumda tutarak üç kanalın aynı firmware içinde birlikte yürüyüp yürümediğini ve Modül 3 olay alımının etkilenip etkilenmediğini görmek.
 
-Bu, gelecekteki tek kanallı canlı ESP hedefi için erken bir fizibilite denemesidir. Modül 2'nin kalıcı mimarisini veya canlı ESP firmware'ini tanımlamaz. Modül 2 deney amacıyla değiştirilebilir; mevcut çalışan YAML değişiklik öncesi Git'te korunur ve deney sürümü ayrı dosya/commit olarak saklanır. Deney sonunda gerekirse önceki çalışan sürüme geri dönülebilir.
+Bu, kısa bir fizibilite/çalışma kontrolüdür; uzun süreli kararlılık, kalibrasyon veya nihai canlı mimari kabulü değildir.
 
-## Deney kapsamı
+## Gerçek uygulama ve bağlantılar
 
-- Yalnızca **SCT1 / sarı kanal / GPIO32** okunacak.
-- Kullanıcının son fiziksel beyanına göre SCT1 primer iletkeninde **1 geçiş** vardır. YAML içindeki eski 2T adlandırması fiziksel sarım sayısı olarak kabul edilmeyecektir.
-- SCT2 (yeşil/GPIO33) ve SCT3 (mavi/GPIO34) bu denemede ölçüm döngüsüne katılmayacaktır.
-- Ortak bias GPIO35 mevcut bağlantısında kalır.
-- İlk karşılaştırmada K=24.22 ve sample_duration=200 ms korunması hedeflenir. Değişken olarak yalnız ölçümün yeniden çağrılma/yayın aralığı ele alınır.
-- Hedef: yeni SCT1 ölçüm sonucunun yaklaşık 500 ms aralıkla üretilmesi (2 Hz). Bu hedef henüz kanıtlanmış değildir.
-- 4 saniye / 8 örnek kayan pencere bu deneyin zorunlu kapsamı değildir; filtreleme ayrı E13 değerlendirmesidir.
-
-## Bağlantılar ve mevcut referans
-
-| Kanal | Fiziksel bağlantı | E14 kullanımı |
+| Kanal | Fiziksel bağlantı | Deney davranışı |
 |---|---|---|
-| SCT1 | Sarı kablo, GPIO32, 1 fiziksel geçiş | Aktif |
-| SCT2 | Yeşil kablo, GPIO33, 4 fiziksel geçiş | Devre dışı / okunmayacak |
-| SCT3 | Mavi kablo, GPIO34, 3 fiziksel geçiş | Devre dışı / okunmayacak |
-| Ortak bias | Turuncu kablo, GPIO35 | Mevcut bias devresi korunur |
+| CH1-1T | Sarı, GPIO32, 1 geçiş | 500 ms hedef; nominal 2 Hz |
+| CH2-1T | Yeşil, GPIO33, 1 geçiş | Yaklaşık 2 saniyede bir |
+| CH3-1T | Mavi, GPIO34, 1 geçiş | Yaklaşık 2 saniyede bir |
+| Ortak bias | Turuncu, GPIO35 | Ortak bias ölçümü |
 
-Mevcut Modül 2 kodu üç kanalı sıralı okur; ct_clamp sample_duration 200 ms'dir ve SCT1→SCT2→SCT3 arasında 250 ms beklenir. Sıralı döngü 2 saniyede bir çağrıldığı için kanal başına mevcut nominal çıktı yaklaşık 0,5 Hz'dir. E14'te tek kanala geçilerek bu zaman bütçesi yeniden değerlendirilecektir.
+- K=24.22, tüm kanallarda sabit.
+- Gerçek uygulamada üç kanalın `sample_duration` değeri 100 ms'dir.
+- CH1 bağımsız 500 ms aralıklı tetiklenir.
+- CH2/CH3 yavaş taraması 2 saniyelik çevrimde sürer.
+- Modül 3'ün UDP 4210 ON/OFF olay alıcısı korunmuştur.
+- Olay eşleştirme anahtarı `BOOT_ID + EVENT_ID`; paket formatında TIME alanı yoktur.
 
-## Deney yöntemi
+**Plan değişikliği:** İlk E14 taslağında 200 ms sample_duration ve yalnız SCT1'in aktif olması yazılmıştı. Kullanıcının son uygulama kararıyla CH2/CH3 yavaş taramada tutuldu ve üç kanalın sample_duration değeri 100 ms oldu. Bu deney raporu gerçek uygulamayı esas alır; ilk taslak tarihsel plandır.
 
-1. Deney öncesinde depodaki çalışan bero-modul2-esp32d1.yaml sürümünü ve SHA/commit bilgisini kaydet; bu dosyanın üzerine doğrudan deney sonucu yazma.
-2. Deney firmware'ini ayrı bir E14 dosyası veya açıkça tanımlanmış deney commit'i olarak hazırla.
-3. Ölçüm script'inde yalnız SCT1 component.update çağrısını çalıştır; SCT2/SCT3 çağrılarını bu deney döngüsünden çıkar.
-4. Hedef çağrı aralığını 500 ms yap. sample_duration=200ms, K=24.22 ve fiziksel düzeni ilk denemede sabit tut.
-5. Derleme ve OTA/cihaz yükleme öncesinde YAML kontrolü yap; donanım değişikliği kullanıcı onayıyla uygulanır.
-6. Home Assistant History veya eşdeğer timestamp'li kayıtla gerçek SCT1 güncelleme aralıklarını ölç. Yalnız ayar değerine bakarak 2 Hz gerçekleştiğini kabul etme.
-7. Kısa yüksüz gözlem ve kullanıcı tarafından seçilen sabit yük koşulunda kayıt al. Yük, başlangıç/bitiş zamanı ve fiziksel düzen log notuna yazılır.
-8. Mevcut 2 saniyelik referansla karşılaştırma gerekiyorsa aynı SCT, aynı sarım, aynı K, aynı sample_duration ve aynı yük korunur; mümkün olduğunca yalnız çağrı aralığı değişir.
+## Kod ve kanıt
 
-## Ölçülecek göstergeler
+- Deney dalı: `exp/modul2-ch1-2hz-20261106`
+- Firmware: [bero-modul2-esp32d1.yaml](../../firmware/bero-modul2-esp32d1.yaml)
+- YAML blob SHA: `afe5a689832b4d78b78c1bd1a0d8971301d2caaf`
+- Ham cihaz logu: [2026-11-06 cihaz logu](../../logs/module2/2026-11-06-module2-ch1-2hz-device-log.txt)
+- Ön analiz: [2026-11-06 log analizi](../../logs/module2/2026-11-06-module2-ch1-2hz-log-analysis.md)
 
-- SCT1 ardışık kayıt timestamp farklarının medyanı, dağılımı ve uç değerleri.
-- 500 ms hedefinden sapma; eksik, tekrarlı veya düzensiz güncelleme olup olmadığı.
-- Yüksek/kararlı yük koşulunda ölçüm medyanı ve standart sapması.
-- Yüksüz koşulda ölçüm dağılımı; I007 ham yüksüz veri havuzuyla karıştırmadan ayrı raporlama.
-- Başlangıç ve yük geçişi gözlenirse ilk tepki zamanı ve kararlı seviyeye yerleşme.
-- ESP loglarında script çakışması, atlanan çevrim veya hata olup olmadığı.
+Log ESPHome 2026.10.2 ile 2026-11-06 10:54:01 +0300 tarihinde derlenmiş cihaz yazılımını gösterir. Cihaz API bağlantısı kurmuş ve ADC başlangıçları OK olmuştur. Logda binary hash bulunmadığı için çalışan binary ile YAML'ın byte-byte aynı olduğu iddia edilmez.
 
-## Kabul / değerlendirme
+## İlk cihaz logu — 2026-11-06
 
-- 2 Hz hedefi ancak HA/cihaz timestamp'leri yaklaşık 500 ms yeni ölçüm aralığını gösterirse sağlanmış sayılır.
-- Kısa oturumda elde edilen sonuç ön fizibilite bulgusudur; uzun süreli sürdürülebilirlik kanıtı değildir.
-- Ölçüm dağılımı veya kararlı yük merkezi belirgin biçimde bozulursa daha sık güncelleme tek başına başarı sayılmaz.
-- Başarısızlık da sonuçtur: gerçek aralık, sınırlayıcı neden ve sonraki deneme önerisi kaydedilir.
-- Bu deneme E13'teki filtre algoritmasını seçmez; 4 saniye/8 örnek pencereyi veya herhangi bir eşik değerini onaylamaz.
+- 910 satır / 71.312 bayt kaynak log; SHA-256: `b2f0e86f0053eb24c3455a7ee279cbdc1805c72dae5e7b4f8dbacc130a4d562d`.
+- CH1-1T: 128 yayın; medyan yayın aralığı 0,500 s; gözlenen aralık 0,335–0,669 s. Kısa logda nominal 2 Hz desteklendi.
+- CH2-1T: 32 yayın; medyan aralık 2,000 s.
+- CH3-1T: 32 yayın; medyan aralık 2,001 s.
+- Bias: 32 yayın; 1,652–1,669 V; ortalama 1,6621 V.
+- Modül 3 EVENT_ID=1897 ON ve EVENT_ID=1898 OFF paketleri aynı BOOT_ID ile alındı ve HA entity'lerine yayınlandı.
+- Logda ERROR/[E]/FAILED yok; bir safe_mode uzun işlem uyarısı (69 ms) ve üç ESP32 optimizasyon önerisi var.
 
-## Güvenlik ve geri dönüş
+Kullanıcı bu log koşulunu sistem boşta/yüksüz olarak tanımlamıştır. ON aralığında üç kanalın medyan değerleri ON öncesine göre yükselmiş; OFF sonrasında tekrar yaklaşmıştır. OFF'tan yaklaşık 3 saniye sonra CH1'de 0,491 A tekil tepe görülmüştür. Bu tek çevrim, olayla akım değişimi arasında zamansal ilişki gösterir; neden/SSR kaynaklı girişim/fiziksel akım ayrımı için yeterli değildir. PZEM kaydı yoktur; kalibrasyon veya ±%4 sonucu çıkarılmaz.
 
-- Yalnız düşük gerilimli ESP/SCT analog tarafında yazılım değişikliği yapılır; şebeke bağlantısına müdahale edilmez.
-- OTA/firmware değişikliği öncesi mevcut çalışan YAML ve geri dönüş sürümü korunur.
-- Deney bitince Modül 2'nin önceki çalışan üç kanallı firmware'ine dönülebilir.
-- E14 sonucu görülmeden kalıcı canlı ESP mimarisi veya yeni varsayılan ölçüm ayarı ilan edilmez.
+## Değerlendirme
 
-## Sonuç ve kanıt
+**Kısa cihaz ön kontrolü LOG İLE DESTEKLENDİ.** CH1 nominal 2 Hz, CH2/CH3 yavaş tarama ve Modül 3 ON/OFF paket alımı birlikte gözlenmiştir.
 
-Henüz deney yapılmadı. Firmware değişikliği, derleme, OTA ve fiziksel test gerçekleşmiş değildir. Sonuçlar; kullanılan YAML/commit, HA CSV veya log örneği, timestamp analizi ve yorumla birlikte bu dosyaya eklenecektir.
+**E14 TAMAMLANMADI.** 64 saniyelik kayıt uzun süreli örnekleme kararlılığını, HA Recorder kalıcılığını, olay kayıpsızlığını veya fiziksel SSR anahtarlamasını kanıtlamaz. PZEM ile eşleşme yapılmamıştır.
 
 ## Açık işler
 
-- [ ] Deney öncesi çalışan Modül 2 YAML sürümünü SHA/commit ile sabitle.
-- [ ] SCT1 tek kanallı deney YAML'ını ayrı dosyada hazırla.
-- [ ] Derleme ve OTA öncesi kullanıcıyla ayarları doğrula.
-- [ ] SCT1 için 500 ms çağrı aralığını dene.
-- [ ] HA timestamp'lerinden gerçek çıktı hızını ve kayıp/tekrarları hesapla.
-- [ ] Kısa yüksüz ve uygun sabit yük gözlemlerini karşılaştır.
-- [ ] Sonuç, gerçek log örneği ve yorumunu depoya ekle.
+- [x] Deney firmware'ini ayrı dalda koru.
+- [x] ESP32D1 cihaz logunda CH1 yaklaşık 500 ms yayın aralığını incele.
+- [x] CH2/CH3 yavaş taramasının sürdüğünü incele.
+- [x] Modül 3 ON/OFF paketlerinin Modül 2'ye ulaştığını incele.
+- [ ] Daha uzun süreli log/HA History ile CH1 2 Hz devamlılığını ölç.
+- [ ] Birden fazla ON/OFF çevrimini karşılaştır.
+- [ ] Yüksüz koşulda ON ile görülen kanal artışının tekrarlanabilirliğini araştır.
+- [ ] PZEM ve HA History zaman aralığıyla çapraz kontrol yap.
+- [ ] Uzun kayıt sonrasında CPU/safe_mode uyarılarının tekrarını kontrol et.
 
-**Durum notu:** E14 kısa akşam oturumu için adaydır; Cumartesi planlanan uzun çalışmanın önüne geçmez. Kullanıcı, deneyler arasında önceliği o günkü veri/donanım durumuna göre değiştirebilir.
+## Sonraki adım
+
+K, 100 ms sample_duration ve kanal zamanlamalarını şimdilik değiştirme. Aynı fiziksel yüksüz koşulda daha uzun kayıt al; birden fazla Modül 3 ON/OFF çevrimi ve üç SCT kanalının tepkisi birlikte incelensin.
