@@ -126,3 +126,12 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - **2. Üç örnekleme hızı:** CH1=2 Hz, CH2=1 Hz, CH3=0,5 Hz düzeninde kullanıcı ilk gözleminde CH2'nin daha az sapma gösterdiğini bildirdi. Bu henüz nitel gözlemdir; referans ve sayısal sapma yeni veriyle hesaplanacak. CH2'nin daha doğru olduğu veya 1 Hz'in üstünlüğü henüz kanıtlanmış değildir.
 - **3. Fiziksel kanal değişimi:** Donanım kanalları değiştirildi. Yeni eşleştirme 12:01 (+03:00) itibarıyla CH1←önceki SCT3, CH2←önceki SCT1, CH3←önceki SCT2. Amaç sensör/yerleşim etkisini ESP/ADC kanal etkisinden ayırmaktır. Yeni CSV bekleniyor.
 - E14'nin üç adımı ve kanıt sınırları: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.md).
+
+## 2026-11-06 — E14 üçüncü test basamağı: kodda örnekleme profilini kaydırma
+- Deney zinciri: (1) PZEM History geçiş davranışını değerlendirme ve geçiş örneklerini kararlı istatistiklerden dışlama; (2) kod/GPIO eşlemesi sabitken üç fiziksel SCT sensörünü değiştirerek sensör etkisini araştırma; (3) fiziksel sensör yerleşimini sabit tutup örnekleme profillerini kodda kaydırma.
+- Sensör eşlemeleri: ilk yerleşim SCT1→CH1, SCT2→CH2, SCT3→CH3; ilk değişim SCT1→CH3, SCT2→CH1, SCT3→CH2; 12:15 ikinci değişim SCT1→CH2, SCT2→CH3, SCT3→CH1. Son yerleşim bu aşamada sabit.
+- Kullanıcı gözlemi: sensörler değişmesine rağmen CH2 tekrar daha az sapmalı/kararlı göründü; neden henüz kesin değil.
+- Yeni firmware profili: CH1=1 Hz, CH2=0,5 Hz, CH3=2 Hz. Önceki sıra CH1=2 Hz, CH2=1 Hz, CH3=0,5 Hz.
+- sample_duration=100ms, K=24.22, GPIO ve entity eşlemesi sabit. CH1 1 s, CH2 2 s, CH3 500 ms. Ortak bias CH2'nin okunduğu çevrimde okunur.
+- Beklenti: avantaj CH1'e taşınırsa 1 Hz profil hipotezi desteklenir; CH2'de kalırsa GPIO/ADC veya kanala özgü etki olasılığı güçlenir.
+- YAML yazıldı; Validate/Compile, OTA ve cihaz testi henüz yapılmadı.
