@@ -460,3 +460,12 @@
 - PZEM kararlı açık/kapalı alanları durum/zaman aralığı belirlemede yardımcıdır; SCT örnekleme hızı ve SCT kararlılık istatistiğinin ölçütü değildir.
 - SCT hız karşılaştırması üç kanalın kendi kararlı ON kayıtları ve üç kanalın ortak yük davranışı üzerinden yapılır.
 - Yeni fiziksel SCT eşleştirme deneyi başlangıcı 12:01 (+03:00): CH1←önceki SCT3, CH2←önceki SCT1, CH3←önceki SCT2. Yeni HA History CSV bekleniyor.
+
+
+## 2026-11-06 — E14 üç adımın güncel durumu
+
+1. PZEM History geçişleri: paket ortalaması/önceki örnek etkisi gözlemi kaydedildi; geçiş kenarları anlık akım olarak kullanılmayacak.
+2. Üç farklı SCT yayın hızı: CH1=2 Hz, CH2=1 Hz, CH3=0,5 Hz. Kullanıcı ilk gözleminde CH2'nin daha az sapma gösterdiğini bildirdi; sayısal doğrulama bekliyor.
+3. Fiziksel SCT kanal değişimi: CH1←önceki SCT3, CH2←önceki SCT1, CH3←önceki SCT2. Yeni CSV, donanım/kanal etkisini karşılaştırmak için bekleniyor.
+
+Ayrıntı: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.md).
