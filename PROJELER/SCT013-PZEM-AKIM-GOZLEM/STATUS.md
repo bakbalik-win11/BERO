@@ -381,3 +381,16 @@ Medyan tabanlı ON çevrimi SCT–PZEM çifti yöntemi ilk aşamada sabit yükle
 - Entity kimlikleri T007 gerçek HA dışa aktarımıyla doldurulacak. Bu dosya parametre taslağıdır; uçtan uca çalışan Python uygulaması değildir.
 - **Durum:** Yapılandırma dosyası depoya eklendi ve yeniden okunarak doğrulandı. Python uygulaması ve eşiklerin veriyle belirlenmesi beklemede.
 - Dosya: [training_config.yaml](config/training_config.yaml).
+
+
+## 2026-11-06 — I007 CH1-1T uzun OFF oturumu (16:14–16:35)
+
+- Kullanıcı fiziksel yükü 16:14'te kapattığını bildirdi. `history (49).csv` içinden 16:14:00.752–16:34:59.754 arası CH1-1T katsayısız ct_clamp çıktısı incelendi: n=1,260.
+- Medyan 0.009918 A; MAD 0.001950 A; P05 0.004407 A; P95 0.013439 A; P99 0.015288 A; min 0; max 0.017821 A. 0.015 A üzeri oran %1.35. 0.015 A eşik olarak seçilmedi.
+- İlk 16:14–16:21 bölümünde medyan/MAD 0.010574/0.002364 A; 16:22–16:35 bölümünde 0.009575/0.001614 A. Zamanla merkez ve yayılım değişimi gözlendi; neden tayini yapılmadı.
+- SCT timestamp medyan aralığı 1.000 s; bu CSV'de gözlenen hız yaklaşık 1 Hz. 500 ms/2 Hz varsayılmadı.
+- PZEM akım entity'sinin son kaydı 16:13:12.898 ve 0.000 A; 16:14 sonrası PZEM akım güncellemesi yok. Bu nedenle PZEM'in OFF penceresi boyunca sıfır olduğu CSV ile doğrulanamaz.
+- SSR/UDP 40s OFF / 20s ON olayları fiziksel yükü kanıtlamaz; fiziksel OFF kullanıcı bildirimidir.
+- Kaynak CSV SHA-256: `235ad89116f3d0a36205acafbe4eec1f29baa9043567e59f71b3d12835c45e74`. Ham CSV commit'e eklenmedi; rapor ve kaynak hash'i kaydedildi.
+- Rapor: [I007 CH1-1T OFF oturumu](data/off-noise/sessions/2026-11-06-session-02-ch1-1t-off.md); indeks: [tek kanal oturum özeti](data/off-noise/single-channel-session-summary.csv).
+- Sonraki deney planı: [15 W / OFF ayrışma deneyi](experiments/I007-15W-off-separation/README.md). Durum PLANLANDI; henüz çalıştırılmadı.
