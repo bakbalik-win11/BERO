@@ -1825,3 +1825,11 @@ Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmwa
 - **SCT ANALİZ İLKESİ:** Örnekleme hızı karşılaştırmasında PZEM ölçüt olmayacak. CH1/CH2/CH3 kendi kararlı ON örneklerinden ayrı ayrı değerlendirilecek; ortak yük değeri üç SCT kanalından türetilecek.
 - Ayrıntı: [PZEM History gözlem kaydı](../logs/module3/2026-11-06-pzem-history-packet-average-observation.md).
 - **SONRAKİ DENEY:** 2026-11-06 12:01:00 başlangıçlı yeniden kanal eşleştirmesi; CH1←SCT3, CH2←SCT1, CH3←SCT2. Yeni HA History CSV bekleniyor.
+
+
+## 2026-11-06 — E14 üç adımlı karşılaştırma: hız ve donanım etkisi
+
+- **1. PZEM History:** Geçiş değerlerinin paket ortalaması/önceki örnek etkisi taşıdığı kullanıcı gözlemi kaydedildi. Geçiş kenarları anlık akım kabul edilmeyecek; iç algoritma kaynak koddan doğrulanmış değildir.
+- **2. Örnekleme hızları:** CH1=2 Hz, CH2=1 Hz, CH3=0,5 Hz karşılaştırmasında kullanıcı CH2'nin daha az sapma gösterdiğini gözledi. Bu nitel ilk gözlemdir; sayısal sapma ve referans yeni log üzerinden hesaplanacaktır.
+- **3. Donanım kanal değişimi:** Kullanıcı fiziksel SCT bağlantılarını değiştirdi. 12:01 (+03:00) itibarıyla yeni eşleştirme CH1←önceki SCT3, CH2←önceki SCT1, CH3←önceki SCT2. Yeni kayıt, sensör/yerleşim etkisini ESP/ADC kanal etkisinden ayırmaya yardımcı olacak; CSV analizi olmadan sonuç çıkarılmayacak.
+- Ayrıntı ve üç adımın sırası: [E14](../experiments/E14-module2-single-channel-2hz/README.md).
