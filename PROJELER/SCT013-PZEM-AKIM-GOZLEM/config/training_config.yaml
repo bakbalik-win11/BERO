@@ -1,0 +1,143 @@
+# BERO — İlk aşama sabit yük ON eğitim yapılandırması
+#
+# AMAÇ
+# Her fiziksel ON-OFF çevriminden, SCT ve PZEM'in birlikte kararlı olduğu
+# başlangıçtan SCT akımının kesildiği ana kadar tek bir eğitim çifti üretmek.
+#
+# EĞİTİM KURALI
+# - Her iki akış BOOT_ID + ON_EVENT_ID ile aynı olaya ait olmalıdır.
+# - SCT ve PZEM kararlılığı kendi akışlarından bağımsız belirlenir.
+# - Başlangıç: iki akışın kararlı olduğu daha geç an.
+# - Bitiş: SCT akımının kesildiği an; PZEM'in gecikmeli OFF düşüşü beklenmez.
+# - Aynı pencerede SCT ve PZEM medyanları ayrı hesaplanır.
+# - Her ON çevrimi bir eğitim çiftidir; tekil yayınlar bağımsız deney sayılmaz.
+#
+# DONANIM / VERİ AKIŞI
+# - İlk uygulama: CH1-1T, SCT013 30A/1V, GPIO32 / ADC1_CH4.
+# - SCT yayın tercihi: 500 ms (2 Hz), tek ölçüm / tek yayın.
+# - PZEM ve SCT örnekleri timestamp ile birebir eşleştirilmez; interpolasyon yoktur.
+#
+# DURUM
+# Bu dosya parametre sözleşmesidir. null bırakılan kararlılık ve sıfır-kesim
+# eşikleri I007 yüksüz veri havuzu ve gerçek ON/OFF kayıtları incelenmeden
+# doldurulmayacaktır. Bu haliyle uçtan uca eğitim çalıştırma konfigürasyonu değildir.
+
+config_version: 1
+status: draft_parameters_pending
+
+experiment:
+  stage: first_stage_training
+  load_mode: fixed_load
+  load_profile_id: null          # Her sabit fiziksel yük deneyi için ayrı kimlik
+  calibration_id: null           # Gerçek calibration_id; uydurulmaz
+  timezone: Europe/Istanbul
+
+source:
+  sct_entity_id: null            # T007 gerçek HA export ile doldurulacak
+  pzem_current_entity_id: null   # T007 gerçek HA export ile doldurulacak
+  sct_channel: CH1
+  sct_winding: 1T
+  sct_gpio: 32
+  sct_adc_channel: ADC1_CH4
+  sct_publish_interval_ms: 500
+  preserve_source_records: true
+
+event_packet:
+  enabled: true
+  pairing_key:
+    - BOOT_ID
+    - ON_EVENT_ID
+  require_matching_off_event: true
+  reject_incomplete_packets: true
+  reject_event_id_gap: true
+  reject_duplicate_or_out_of_order_events: true
+
+training_window:
+  # start = max(SCT_STABLE_START, PZEM_STABLE_START)
+  start_rule: both_streams_stable_later_start
+  # end = SCT_CURRENT_CUTOFF
+  end_rule: sct_current_cutoff
+  pzem_delayed_off_extends_window: false
+  require_positive_duration: true
+  require_same_on_event_packet: true
+  timestamp_pairing_of_individual_samples: false
+  interpolation: false
+
+stability:
+  sct:
+    method: null               # Gerçek veriden sonra seçilecek
+    window_samples: null
+    threshold: null
+    minimum_duration_seconds: null
+    allowed_outlier_policy: null
+  pzem:
+    method: null               # Gerçek veriden sonra seçilecek
+    window_samples: null
+    threshold: null
+    minimum_duration_seconds: null
+    valid_reading_minimum: null
+
+zero_reference:
+  # Fiziksel 0 A koşulundaki SCT tabanı, ON eğitim verisinden ayrı tutulur.
+  source_dataset: data/off-noise/
+  source_experiment: I007
+  status: pending_idle_dataset_review
+  physical_current_reference_a: 0.0
+  use_for_sct_cutoff_detection: true
+  use_as_on_training_pair: false
+  cutoff_method: null          # I007 dağılımı görülmeden eşik atanmayacak
+  cutoff_threshold: null
+  cutoff_confirmation_duration_seconds: null
+  notes:
+    - I007 yüksüz ham verisi değiştirilmez.
+    - Sıfır referansı, SCT'nin ON sonundaki akım kesilmesini tanımaya yardım eder.
+    - PZEM'in gecikmeli kapanışı SCT eğitim penceresini uzatmaz.
+    - I007 verisi ON medyan çiftlerine karıştırılmaz.
+
+statistics:
+  center_estimator: median
+  spread_estimators:
+    - MAD
+    - IQR
+  arithmetic_mean_as_training_center: false
+  report_arithmetic_mean_as_descriptive_metric: true
+  flag_iqr_outliers_only: true
+  delete_outliers_from_source: false
+
+sample_requirements:
+  sct_minimum_count: null       # Kararlı pencere ve 500 ms akış üzerinden belirlenecek
+  pzem_minimum_count: null      # PZEM'in gerçek güncelleme hızına göre belirlenecek
+  count_sct_and_pzem_separately: true
+
+training_output:
+  one_record_per_on_cycle: true
+  fields:
+    - BOOT_ID
+    - ON_EVENT_ID
+    - OFF_EVENT_ID
+    - load_profile_id
+    - calibration_id
+    - window_start
+    - window_end
+    - sct_median
+    - pzem_median
+    - n_sct
+    - n_pzem
+    - sct_mad
+    - pzem_mad
+    - candidate_k
+    - source_file_sha256
+    - exclusion_or_quality_flags
+  candidate_k_formula: pzem_median / sct_median
+  final_cross_cycle_k_aggregation: pending_evidence
+
+validation:
+  reject_zero_or_nonpositive_sct_median: true
+  reject_invalid_pzem_values:
+    - -1.0
+    - NaN
+    - timeout
+    - parse_error
+  retain_raw_records: true
+  different_load_profiles_are_separate_groups: true
+  generalize_single_load_k_to_full_range: false
