@@ -495,3 +495,13 @@ Kullanıcı kararı: Mevcut 15 W akkor ampulün HA grafiklerinde kirli/bozucu da
 - Bu, 15 W ampulün fiziksel arızasının kanıtlandığı iddiası değil; ölçüm davranışı nedeniyle alınmış deney tasarımı kararıdır.
 
 Ayrıntı: [I009 deney kaydı](experiments/I009-57W-and-57W-plus-15W/README.md).
+
+
+## 2026-11-06 — I010: 13 W akkor düşük yük deneyi seçildi
+
+- Kullanıcı, mevcut 15 W ampulün grafiklerde kirli/bozucu davranış gösterdiği gözlemi nedeniyle kontrollü test yükü olarak kullanılmamasını istedi.
+- Sonraki kontrollü düşük yük adayı olarak ayrı **13 W akkor ampul** seçildi. Kullanıcının gerekçesi fiziksel boyut/filament yapısının mevcut 15 W ampule benzer olmasıdır; bu benzerlik henüz bağımsız olarak doğrulanmadı.
+- 13 W ampul tek başına denenecek; 57 W veya başka yükle birleştirilmeyecek.
+- Kullanıcı bağlama kararı verdi; ancak fiziksel bağlantı ve deney başlangıcı henüz bildirilmedi. Bu nedenle deney BAŞLADI olarak işaretlenmedi.
+- Analiz süre-temelli olacak: tekil sıçramalar karar sayılmayacak; pencere medyanı, MAD, eşik üstünde kalma süresi, devamlılık ve OFF/ON örtüşmesi incelenecek.
+- Deney planı: [I010 — 13 W akkor düşük yük ayrışma deneyi](experiments/I010-13W-incandescent-low-load/README.md).
