@@ -318,3 +318,12 @@ Kullanıcı onayıyla E15'ten ayrı E16 deneyi planlandı. E15 A/B/C'de `sample_
 - E sonucu tek başına pencere seçimi değildir; D/F aynı yöntemle karşılaştırılmalı.
 - Analiz: [E16-E HA History](logs/module2/2026-11-06-e16-e-100ms-ha-history-analysis.md).
 - Kaynak CSV SHA-256: `3338f48b30c6db379797bed89ffd6b68dcd04384ead8e1f31e6c9cb10be6dde3`. Ham CSV 3.86 MB; bu commit'e kopyalanmadı.
+
+
+## 2026-11-06 — E16 F turu firmware hazırlandı
+
+- F turu YAML eklendi: `firmware/experiments/bero-modul2-e16-single-sct-window-f-200ms.yaml`.
+- E turuna göre tek ölçüm ayarı farkı `ct_clamp.sample_duration: 100ms → 200ms`; SCT yayın aralığı `interval=1s` sabit.
+- Tek kanal CH1-1T / GPIO32 / ADC1_CH4; K=24.22; ADC 12dB; UDP 4210 alıcısı korunur. CH2/CH3 ve ayrı GPIO35 ADC okuması yok.
+- Analiz odağı fiziksel olarak doğrulanmış kararlı ON bölümlerindeki katsayısız ct_clamp çıktısıdır. OFF verisi saklanır ancak ON kararlılığı ölçütüne katılmaz.
+- YAML depoya eklendi; derleme, OTA veya F turu başlangıcı henüz doğrulanmadı.
