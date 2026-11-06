@@ -268,3 +268,13 @@ Kullanıcı onayıyla E15'ten ayrı E16 deneyi planlandı. E15 A/B/C'de `sample_
 - Öncelikli analiz çıktısı ct_clamp `on_raw_value` katsayısız çıktısıdır; ham ADC örneği olarak adlandırılmaz.
 - D firmware dosyası oluşturuldu. Derleme, OTA ve gerçek cihaz doğrulaması henüz yapılmadı.
 - Deney planı: [E16 README](experiments/E16-single-sct-window-duration/README.md); D YAML: [firmware](firmware/experiments/bero-modul2-e16-single-sct-window-d-50ms.yaml).
+
+
+## 2026-11-06 15:01 — E16 D turu başladı
+
+- Kullanıcı bildirimi: E16 D testi 15:01 (+03:00) itibarıyla başlatıldı.
+- Aktif deney ayarı: tek SCT CH1-1T / sarı / GPIO32 (ADC1_CH4); `sample_duration=50ms`; yayın aralığı `interval=1s` (nominal 1 Hz); K=24.22; ADC attenuation 12dB.
+- D turu hedef süresi 10 dakika; yaklaşık hedef bitiş 15:11 (+03:00). Ardından E=100ms ve F=200ms turları aynı 1s yayın aralığıyla yürütülecek.
+- D firmware açıklamalarındaki E16 değişken tanımı düzeltildi; yapılandırma değerleri değiştirilmedi. YAML: `firmware/experiments/bero-modul2-e16-single-sct-window-d-50ms.yaml`.
+- **Kanıt sınırı:** Başlangıç zamanı kullanıcı bildirimidir. Bu kayıt cihaz logu, OTA doğrulaması veya 10 dakikalık HA History kaydının tamamlandığı anlamına gelmez. Veri/log geldiğinde ayrıca incelenecek.
+- Ayrıntı: [E16 deney kaydı](experiments/E16-single-sct-window-duration/README.md).
