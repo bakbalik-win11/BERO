@@ -86,3 +86,17 @@ Kullanıcı kararı: 2026-11-06 akşamı, veri/donanım durumu uygunsa kısa bir
 Bu çalışma E14 olarak kaydedildi. Mevcut üç kanallı çalışan YAML korunacak; deney sürümü ayrı tutulacak ve gerekirse geri dönülebilecek. Firmware değişikliği, derleme veya OTA henüz yapılmadı. E14 kısa akşam oturumu adayıdır; Cumartesi uzun çalışma önceliğini değiştirmez. Deneyler arasında öncelik, kullanıcının o günkü veri ve donanım durumuna göre esnekçe belirlenebilir.
 
 Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experiments/E14-module2-single-channel-2hz/README.md).
+
+
+## 2026-11-06 — Tek kanallı SCT eğitim verisi kararı (ADR-027)
+
+Kullanıcı kararı:
+- Test ve veri toplama firmware'i üç SCT kanalını birlikte okuyabilir.
+- Ham HA dışa aktarımı ve arşiv birden fazla SCT kanalının kayıtlarını koruyabilir.
+- Her eğitim veri seti yalnızca tek bir SCT kanalından oluşur. CH1, CH2 ve CH3 ayrı veri setleri ve ayrı model değerlendirmeleri üretir.
+- PZEM akımı proje referansıdır; seçilen kanalın SCT kararlı alanları mevcut BOOT_ID + EVENT_ID paket kuralları içinde PZEM kararlı alanlarıyla değerlendirilir.
+- Kanal kimliği ve fiziksel geçiş/sarım bilgisi eğitim çıktısında izlenebilir olmalıdır.
+
+Önerilen ortak kanal kimliği biçimi `CH1-1T`, `CH2-4T`, `CH3-3T` şeklindedir. Depodaki fiziksel eşleme (CH1 sarı/GPIO32 = 1 geçiş; CH2 yeşil/GPIO33 = 4 geçiş; CH3 mavi/GPIO34 = 3 geçiş) kod/entity adlarına uygulanmadan önce doğrulanmalıdır. Bu adlandırma standardı önerilmiştir; firmware veya HA entity adları henüz değiştirilmemiştir.
+
+Ayrıntı: [ADR-027](docs/decisions/ADR-027-single-channel-training-datasets.md). T007/T008 veri hattı uygulaması ve gerçek eğitim çıktısı tamamlanmış değildir.
