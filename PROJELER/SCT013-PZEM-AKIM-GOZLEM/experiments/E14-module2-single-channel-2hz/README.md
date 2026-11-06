@@ -145,3 +145,32 @@ Bu kayıt, yeni üç hız revizyonunun öncesindeki yüksüz baz çizgi kanıtı
 - Avantaj CH2'de kalırsa GPIO/ADC veya kanala özgü etki olasılığı güçlenir.
 - Sonuçlar yakınsa örnekleme hızı tek başına belirleyici olmayabilir.
 - YAML kaynak değişikliği depoya yazıldı. Validate, Compile, OTA ve fiziksel cihaz testi henüz yapılmadı.
+
+## 2026-11-06 — 12:30 sonrası uzun kayıt ve örnekleme profilinin CH3'e taşınması
+
+### Uzun kayıt değerlendirmesi
+Kullanıcının sağladığı 12:30 sonrası HA History CSV'si 12:30:00–12:47:15 aralığını kapsıyor. Kayıtta CH1 1.036, CH2 518, CH3 2.072 ve PZEM 105 akım kaydı bulunuyor.
+
+PZEM'in yaklaşık 0,46–0,48 A kararlı bölümleri incelenirken geçişlerin başı ve sonundan ikişer saniye dışlandı. Bu seçilmiş bölümlerde gözlenen standart sapmalar:
+- CH1 (1 Hz): 0,0212 A
+- CH2 (0,5 Hz): 0,0340 A
+- CH3 (2 Hz): 0,0191 A
+
+Bu kayıt içinde en düşük sapma CH3'te; CH1 çok yakındır. Bu sonuç örnekleme hızının tek başına nedensel etkisini kanıtlamaz. Önceki kısa kayıtta CH1 lehine görülen fark uzun kayıtta aynı biçimde sürmemiştir. PZEM burada kararlı bölgeyi seçmeye yardımcı olmuştur; SCT kanallarının sıralamasında mutlak doğruluk ölçütü değildir.
+
+### Kullanıcı kararı ve yeni kod düzeni
+Kullanıcı, uzun kayıt karşılaştırmasından sonra 1 Hz profilini CH1'den CH3'e taşımayı onayladı. CH1, eski CH3'ün 2 Hz profilini devralır; CH2'nin 0,5 Hz profili korunur:
+| Kanal | Önceki profil | Yeni profil |
+|---|---:|---:|
+| CH1-1T / GPIO32 | 1 Hz | 2 Hz |
+| CH2-1T / GPIO33 | 0,5 Hz | 0,5 Hz |
+| CH3-1T / GPIO34 | 2 Hz | 1 Hz |
+
+- CH1 bağımsız 500 ms interval ile okunur.
+- CH3 bağımsız 1 s interval ile okunur.
+- CH2 ve GPIO35 ortak bias aynı 2 s yavaş tarama script'inde okunur.
+- Üç kanalda sample_duration=100ms ve K=24.22 korunur.
+- GPIO/entity eşlemesi ve fiziksel sensör yerleşimi değiştirilmez.
+- UDP 4210 olay alıcısı korunur.
+
+**Doğrulama durumu:** YAML deney dalına yazıldı. ESPHome Validate/Compile, OTA ve fiziksel cihaz testi henüz yapılmadı. Yeni profilin çalıştığı veya ölçüm avantajı sağladığı iddia edilmez; bunlar sonraki doğrulama adımlarıdır.
