@@ -16,11 +16,11 @@ Başlangıç hipotezi: Aynı tek kanal ve aynı 100 ms ölçüm penceresinde, ö
 
 | Tur | Tek kanal | Ölçüm penceresi | Tetikleme aralığı | Nominal sonuç hızı | Süre |
 |---|---|---:|---:|---:|---:|
-| A | CH1-1T / GPIO32 | 100 ms | 500 ms | 2 Hz | 30 dk |
-| B | CH1-1T / GPIO32 | 100 ms | 1 s | 1 Hz | 30 dk |
-| C | CH1-1T / GPIO32 | 100 ms | 2 s | 0,5 Hz | 30 dk |
+| A | CH1-1T / GPIO32 | 100 ms | 500 ms | 2 Hz | 10 dk |
+| B | CH1-1T / GPIO32 | 100 ms | 1 s | 1 Hz | 10 dk |
+| C | CH1-1T / GPIO32 | 100 ms | 2 s | 0,5 Hz | 10 dk |
 
-Her tur yaklaşık olarak sırasıyla 3.600, 1.800 ve 900 sonuç üretir. Bunlar nominal hesaptır; gerçek adet ve aralıklar HA timestamp'lerinden hesaplanacaktır.
+Her tur yaklaşık olarak sırasıyla 1.200, 600 ve 300 sonuç üretir. Bunlar nominal hesaptır; gerçek adet ve aralıklar HA timestamp'lerinden hesaplanacaktır.
 
 **Sıra sabittir:** A → B → C. Her turun başında yapılandırma/OTA sonrası başlangıç ve yerleşme bölümü ayrıca işaretlenir; analizde bu bölümün dışlanıp dışlanmayacağı aynı kuralla uygulanır.
 
@@ -74,7 +74,7 @@ Sıçrama eşiği sonuçlar görüldükten sonra seçilmeyecek. Analiz başlamad
 - SCT yalnız CH1 girişinde ve 1T olarak bağlıdır. CT sekonderi açık bırakılmaz; bağlantı değişikliği yük enerjisizken yapılır.
 - Deney YAML'ı ESPHome Validate ve Compile kontrolünden geçirilir.
 - OTA sonrası cihaz kimliği, Wi-Fi/API, CH1 ADC ve HA entity yayınları kontrol edilir.
-- A/B/C arasında yalnızca `interval` satırı değiştirilir; her turda kullanılan YAML içeriği/commit ve HA kayıt zaman aralığı kaydedilir.
+- A/B/C arasında yalnızca `interval` satırı değiştirilir; her tur 10 dakika sürer. Kullanılan YAML içeriği/commit ve HA kayıt zaman aralığı kaydedilir.
 
 ## Kod
 
