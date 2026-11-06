@@ -215,3 +215,14 @@ Kullanıcı kararı ve çalışma yöntemi:
 - Örnekle deneme yapılmadan arşiv klasör yapısı, oturum alanları veya manifest biçimi hakkında nihai karar alınmayacak.
 
 PY-01 taslağı kullanıcı incelemesinde kalır. Kodlama ve gerçek dosya testi henüz yapılmadı.
+
+
+## 2026-11-06 — Gün sonu: eğitim yaklaşımı netleşti, yarın SCT/PZEM eğitim verisi sabitleme
+
+Kullanıcının gün sonu değerlendirmesi:
+- Genel akım okuma aşamasında sistemden SCT verisi alınabiliyor; eğitim için kullanılabilecek kararlılıkta alanları belirleme hedefi tanımlı. Kararlılık algoritmasının sayısal ölçütleri ve uygulaması henüz tamamlanmış değildir.
+- Kullanıcı, eğitim felsefesinin ve ne tür veri istendiğinin bugün paylaşılan ekran görüntüsüyle de sabitlendiğini belirtti. Bu kayıt, ekran görüntüsünün içeriğine dair yeni teknik ayrıntı üretmez; kullanıcı teyidini gün sonu ilerleme notu olarak kaydeder.
+- Yarınki ilk çalışma: eğitim amacıyla kullanılacak SCT ve PZEM verilerinin seçilmesi/sabitlenmesi. Öncelik, uygun kararlı alanların gerçek veride belirlenmesi ve eğitim için kullanılacak veri kapsamının netleştirilmesidir.
+- PY-01 taslağı kullanıcı incelemesinde kalır; arşiv/oturum tasarımı yarın örnek/prototip üzerinden denenerek kararlaştırılacaktır.
+
+**Durum sınırı:** Bu oturumda yeni SCT/PZEM CSV analizi, Python algoritması, eğitim etiketi/modeli, firmware/YAML değişikliği, derleme veya OTA yapılmadı. Eğitim verisi henüz üretilmiş/sabitlenmiş değildir. T007 → T008 → T006 görev sırası korunur.
