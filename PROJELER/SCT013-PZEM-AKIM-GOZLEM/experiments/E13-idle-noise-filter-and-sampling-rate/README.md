@@ -232,3 +232,13 @@ Firmware commit: `85e4fcb3c170f17ffca91b3d662743bb039b4912`
 Bu dosya GitHub'dan tekrar okunarak üç adet 100 ms sample_duration, üç adet 110 ms bekleme ve 500 ms interval bulunduğu doğrulandı.
 
 **Önemli doğrulama sınırı:** Bu değişiklik yalnızca depodaki YAML prototipidir. ESPHome derlemesi, cihaz yüklemesi/OTA ve gerçek HA timestamp testi henüz yapılmadı. Dolayısıyla üç kanalda 2 Hz üretildiği veya ölçümün sağlıklı olduğu iddia edilmez. Kullanıcı 100 W sabit yük altında ilk denemeyi yapacak; akşam yüksüz oturumuna ancak bu deneme sağlıklı bulunursa aynı kodla geçilecek.
+
+### 2026-11-06 — Örnekleme hedefi düzeltmesi: tek kanal 2 Hz
+
+Kullanıcı hedefi yeniden netleştirdi: amaç üç kanalın toplamda iki değer üretmesi veya üç kanalın her birinin 2 Hz çalışması değildir. Esas hedef, **tek bir SCT kanalının saniyede iki yeni değer (yaklaşık 500 ms örnek aralığı) üretmesidir**. Üç kanalın aynı anda örneklenmesi gerekmez; kanalların ölçüm zamanları birbirinden kayabilir.
+
+Bu nedenle üç kanallı Modül 2 sıralı tarama firmware'inin 500 ms çevrimle çalıştırılması doğru yaklaşım değildir. Firmware tekrar 2 saniyelik üç kanal tarama düzenine alındı; 100 ms ölçüm penceresi ve 110 ms kanal arası bekleme prototip değişiklikleri korunmuştur. Böylece her kanal sıralı taramada yaklaşık 2 saniyede bir okunur. Bu düzen tek kanal 2 Hz hedefini sağlamaz.
+
+Tek kanal 2 Hz fizibilitesi ayrı bir deneme olarak ele alınmalıdır: önce 100 W sabit yükte tek bir SCT kanalının 500 ms aralıkla sürdürülebilir ölçüm üretmesi doğrulanır. Sonrasında diğer kanalların aynı ESP'de sıralı ve kaymalı biçimde taranması, seçilen kanal başına hız korunarak tasarlanır. Üç kanala da 2 Hz zorunluluğu yoktur.
+
+**Durum:** Önceki yanlış yorum düzeltilmiştir. Firmware henüz derlenmedi veya cihaza yüklenmedi. 100 W testi yapılmadı. Akşam yüksüz testine geçiş, tek kanal 2 Hz denemesinin sonucuna bağlıdır.
