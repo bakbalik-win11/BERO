@@ -1795,3 +1795,12 @@ Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmwa
 - **UYARILAR:** ERROR/[E]/FAILED yok. Üç ESP32 optimizasyon önerisi ve bir adet safe_mode 69 ms uzun işlem uyarısı var.
 - **SONUÇ:** Kısa cihaz ön kontrolü LOG İLE DESTEKLENDİ; E14 açık. Binary hash bulunmadığından çalışan binary ile YAML byte-byte aynı denmiyor. PZEM karşılaştırması, HA Recorder kalıcılığı ve uzun süreli örnekleme doğrulanmadı.
 - **SONRAKİ:** K, sample_duration ve aralıkları değiştirmeden daha uzun yüksüz log ve birden fazla ON/OFF çevrimi topla; sonra PZEM/HA History ile karşılaştır.
+
+
+## 2026-11-06 — E14 CH2 1 Hz / üç örnekleme hızı planı
+
+- Kullanıcı fiziksel olarak hattın yüksüz olduğunu doğruladı. Modül 3 ON/OFF UDP olayı fiziksel yük anahtarlaması değildir; olay işareti olarak ele alınacak. Kullanıcı 100 W akkor ampulü yalnızca açık talimat verildiğinde fiziksel olarak açacak.
+- Yeni deney tasarımı: CH1-1T 500 ms (2 Hz), CH2-1T 1 s (1 Hz), CH3-1T 2 s (0,5 Hz). sample_duration 100 ms ve K=24.22 sabit tutulur.
+- Firmware değişikliği: CH2 her 1 saniyede bir tetiklenir; her ikinci çevrimde CH3 ve ortak bias okunur. CH1'in 500 ms döngüsü bağımsızdır. YAML blob SHA `9bc6237ea9a312b6ff22a4f16c99c0f5f96fd382`.
+- **Doğrulama durumu:** Kod deney dalına yazıldı; Validate/Compile, OTA ve fiziksel cihaz testi henüz yapılmadı. Önce doğrulama; sonra yüksüz baz çizgi; sonra kullanıcı komutuyla 100 W ampul ON; ardından OFF gözlemi.
+- **Önemli ayrım:** Modül 3'ün mantıksal ON/OFF olayları ampulün fiziksel durumunu kanıtlamaz. Test aşamaları kullanıcının fiziksel gözlemine göre etiketlenecek.
