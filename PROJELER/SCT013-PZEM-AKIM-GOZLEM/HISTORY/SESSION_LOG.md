@@ -1804,3 +1804,13 @@ Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmwa
 - Firmware değişikliği: CH2 her 1 saniyede bir tetiklenir; her ikinci çevrimde CH3 ve ortak bias okunur. CH1'in 500 ms döngüsü bağımsızdır. YAML blob SHA `9bc6237ea9a312b6ff22a4f16c99c0f5f96fd382`.
 - **Doğrulama durumu:** Kod deney dalına yazıldı; Validate/Compile, OTA ve fiziksel cihaz testi henüz yapılmadı. Önce doğrulama; sonra yüksüz baz çizgi; sonra kullanıcı komutuyla 100 W ampul ON; ardından OFF gözlemi.
 - **Önemli ayrım:** Modül 3'ün mantıksal ON/OFF olayları ampulün fiziksel durumunu kanıtlamaz. Test aşamaları kullanıcının fiziksel gözlemine göre etiketlenecek.
+
+
+
+## 2026-11-06 — E14 genişletilmiş yüksüz kayıt
+
+- Kullanıcı fiziksel olarak kayıt boyunca hatta yük olmadığını doğruladı. Modül 3 ON/OFF UDP mesajları yalnız mantıksal olay işaretidir; fiziksel yük değişimi değildir.
+- 5 dk 37 sn / 4.104 satırlık log [ham kaynak](../logs/module2/2026-11-06-module2-idle-extended-source.txt) olarak arşivlendi. [Analiz](../logs/module2/2026-11-06-module2-ch1-2hz-log-analysis.md) güncellendi.
+- Eski firmware yayınları: CH1 674 / medyan 0,500 s; CH2 169 / 2,000 s; CH3 168 / 2,000 s. CH1 aralıkları 0,004–1,158 s olduğundan medyan 2 Hz tek başına düzenli örnekleme garantisi değildir.
+- Yüksüz gösterge medyanları: CH1 0,2725 A, CH2 0,216 A, CH3 0,252 A. Fiziksel akım değil; ölçüm zincirinin yüksüz gösterimidir. Bias 1,615–1,675 V (ortalama 1,6617 V). 6 ON / 5 OFF olay paketi alındı.
+- Yeni firmware düzeni CH1=2 Hz, CH2=1 Hz, CH3=0,5 Hz; henüz Validate/Compile/OTA/cihaz testi bekliyor.
