@@ -142,6 +142,10 @@ Ayrıntı: [ADR-025](docs/decisions/ADR-025-raw-data-sct-model-behavior-validati
 - Bugün yeni firmware/Python uygulaması, derleme/OTA veya fiziksel deney doğrulaması yapılmamıştır.
 
 
+## 2026-11-06 — E15 eğitim kanal adlandırma doğrulaması planlandı
+
+Eğitim amaçlı `CH1-E`, `CH2-E`, `CH3-E` adlarının koddan Home Assistant cihaz/entity kayıtlarına ve History CSV dışa aktarımına doğru taşındığını doğrulamak için [E15](experiments/E15-training-channel-history-naming/README.md) planlandı. Deneyde yalnız adlandırma alanları değiştirilecek; ölçüm hesabı, pinler ve zamanlama korunacak. Kod değişikliği, derleme, OTA ve fiziksel doğrulama henüz yapılmadı.
+
 ## 2026-11-06 — Eğitim veri seti kanal kapsamı ve History işaretlemesi (ADR-027)
 
 Test ve günlük deney kodları üç SCT kanalını birlikte okuyabilir. Gün içindeki deneylerde Home Assistant History'de genel kanal adları `CH1`, `CH2`, `CH3` kullanılır; bu kayıtlar kendiliğinden eğitim verisi sayılmaz. Bir kod/ölçüm yapılandırması kesinleşip özellikle eğitim verisi toplanmasına karar verildiğinde, ilgili kodda küçük bir adlandırma değişikliği yapılarak eğitim akışı `CH1-E`, `CH2-E` veya `CH3-E` adıyla yayınlanır. `-E` eğitim işaretidir; fiziksel kanal kimliği, sarım sayısı veya hesaplama yöntemi değildir.
