@@ -100,3 +100,16 @@ Kullanıcı kararı:
 Önerilen ortak kanal kimliği biçimi `CH1-1T`, `CH2-4T`, `CH3-3T` şeklindedir. Depodaki fiziksel eşleme (CH1 sarı/GPIO32 = 1 geçiş; CH2 yeşil/GPIO33 = 4 geçiş; CH3 mavi/GPIO34 = 3 geçiş) kod/entity adlarına uygulanmadan önce doğrulanmalıdır. Bu adlandırma standardı önerilmiştir; firmware veya HA entity adları henüz değiştirilmemiştir.
 
 Ayrıntı: [ADR-027](docs/decisions/ADR-027-single-channel-training-datasets.md). T007/T008 veri hattı uygulaması ve gerçek eğitim çıktısı tamamlanmış değildir.
+
+
+## 2026-11-06 — ADR-027 kanal kimliği / değişebilir geçiş sayısı netleştirmesi
+
+Kullanıcı düzeltmesi: CH2 için kayıtlı 4 geçiş ve CH3 için kayıtlı 3 geçiş değerleri ileride değişebilir. Bu nedenle geçiş sayısı kalıcı kanal kimliğine eklenmeyecek.
+
+- Kalıcı kanal kimliği yalnız `CH1`, `CH2`, `CH3` olacaktır.
+- Fiziksel geçiş/sarım sayısı `turn_count` adıyla ayrı, değişebilir donanım/deney metadata'sı olarak tutulacaktır.
+- Mevcut 1/4/3 geçiş bilgisi yalnız mevcut kayıtlı fiziksel durumu ifade eder; sabit özellik değildir.
+- Yapılandırma değiştiğinde yeni kayıtlar yeni `turn_count` değerini taşır; eski eğitim/ham veriler toplandıkları zamanki değerle korunur.
+- `CH1-1T`, `CH2-4T`, `CH3-3T` birleşik biçimleri kalıcı kanal kimliği olarak kullanılmayacaktır.
+
+ADR-027 ve Python mimarisi bu ayrımla güncellendi. Firmware ve HA entity isimleri değiştirilmedi.
