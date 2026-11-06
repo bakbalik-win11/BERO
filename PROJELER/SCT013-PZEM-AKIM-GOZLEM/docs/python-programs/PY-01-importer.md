@@ -57,9 +57,15 @@ Yalnız dosya kabulü, kaynak bütünlüğü, CSV doğrulaması, tekrar kontrol�
 
 HA API/Recorder erişimi; HA tarafında veri silme; kaynak CSV'yi dönüştürme; SCT/PZEM analizi, kararlılık ve eğitim.
 
+## İnceleme sırasında alınan kararlar ve ertelenen tasarım konuları
+
+- **Gelen-kutu taraması:** PY-01 kullanıcı tarafından başlatıldığında gelen-kutusunu bir kez tarar, bulunan dosyaları işler ve işlem bitince kapanır. Sürekli izleme ilk sürüm kapsamında değildir. Gerekçe: İlk aşamada veriyi kullanıcı HA'dan dışa aktararak SSD'ye koyacaktır; sürekli izleme ancak veri doğrudan burada oluşursa anlamlı hale gelebilir.
+- **Arşiv klasörlemesi / oturum tanımı:** Henüz sabitlenmedi. Tarih, oturum ve hash seçenekleri soyut olarak tartışıldı; kullanıcı arayüzü ve gerçek dosya akışı görülmeden kesin karar verilmeyecek.
+- **Deney/oturum ilişkilendirmesi:** Depodaki deney kaydına atıf yapan bir veri alanı ve program içinden deney seçimi olasılığı değerlendirildi. Alanların, seçim ekranının ve manifestteki karşılığının nasıl olacağı henüz tasarım kararı değildir.
+- **Karar yöntemi:** Arşivleme ve oturum tasarımı, yarın hazırlanacak çalışan örnek/prototip üzerinden denenecek. Kullanıcı örneği görüp gerçek CSV ile akışı deneyerek değerlendirdikten sonra uygun yapı sabitlenecek. Örnekle doğrulanmadan bu konuda nihai mimari kararı alınmayacak.
+
 ## Açık sorular
 
-- Gelen-kutu tek seferlik mi taranacak, kullanıcı başlatınca izlenecek mi?
-- Arşiv klasörlemesi tarih, oturum veya hash üzerinden mi?
+- Arşiv klasörlemesi ve oturum tanımı, yarınki örnek üzerinden nasıl sabitlenecek?
 - Dosya kopyasının tamamlandığı nasıl anlaşılacak?
 - Manifest JSON Lines mı, SQLite mı olacak?
