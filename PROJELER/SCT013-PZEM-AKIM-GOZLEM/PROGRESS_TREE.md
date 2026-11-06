@@ -481,3 +481,10 @@ Ayrıntı: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.
 - Seyrek örnekleme arada oluşup kaybolan kısa sıçramaları gözlem dışı bırakabilir; rapor yalnız yayımlanan seride gözlenen sıçramalar hakkında hüküm verecek.
 - **Durum:** PLANLANDI/HAZIRLANDI. YAML Validate/Compile, OTA, cihaz testi ve üç tur logu bekliyor.
 - [E15 protokolü](experiments/E15-single-sct-publish-interval/README.md); [YAML](firmware/experiments/bero-modul2-e15-single-sct-interval.yaml); [sonuç defteri](experiments/E15-single-sct-publish-interval/results.md).
+
+
+## 2026-11-06 — E15 tur süresi 10 dakikaya indirildi
+
+- Kullanıcı, 30 dakikalık turları uzun bulduğu için her turu 10 dakika olarak revize etti.
+- A/B/C: 500ms (~1.200 kayıt), 1s (~600 kayıt), 2s (~300 kayıt). Yalnız tur süresi değişti; sample_duration=100ms, K=24.22 ve diğer deney koşulları aynı.
+- Gerçek yayın ve kayıt sayıları HA timestamp'lerinden doğrulanacak.
