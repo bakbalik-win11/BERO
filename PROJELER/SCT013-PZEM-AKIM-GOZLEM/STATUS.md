@@ -467,3 +467,19 @@ Kullanıcının 42 W deneyinden sonraki planı:
 - 13 W deneyi ayrı yük sınıfı olarak tutulacak. OFF/ON dağılımları, zaman kararlılığı ve kısa/uzun pencerelerde ayrışma karşılaştırılacak.
 - CSV/HA History verileri geldikten sonra 57 W, 57 W+15 W ve 13 W ayrı gruplar halinde analiz edilecek. Kullanıcı bildirimi dışında henüz sayısal sonuç veya ampul geometrisi doğrulaması yoktur.
 - Ayrıntı: [I009 deney kaydı](experiments/I009-57W-and-57W-plus-15W/README.md).
+
+
+## 2026-11-06 — Sınıflandırmada süre-temelli karar ilkesi / sıçrama tuzağı düzeltmesi
+
+Kullanıcı düzeltmesi ve bağlayıcı analiz kuralı:
+- K=24.22 uygulanmış CH1 çıktısında 0.20 A eşiği tekil örnek bazında yorumlanmayacak.
+- Tekil yüksek okumalar ve kısa süreli sıçramalar ham veride korunur; tek başlarına akım var/yok kararı oluşturmaz.
+- Analiz; eşik üstünde kalma süresi, ardışık devam süresi, pencere içi zaman oranı, pencere medyanı, MAD ve zaman içi kararlılığı birlikte değerlendirecek.
+- Düzensiz timestamp durumunda süre örnek sayısından değil gerçek timestamp farklarından hesaplanacak.
+- OFF ve her yük seviyesi aynı pencere yöntemiyle, ayrı gruplar halinde karşılaştırılacak.
+- Pencere uzunluğu, minimum devam süresi, izin verilen kesinti ve zaman oranı henüz belirlenmedi; bunlar deneyle belirlenecek.
+- Ham sıçramalar silinmeyecek. Türetilmiş analizde işaretlenebilir; sınıflandırma tekil sıçramaya dayanmayacak.
+
+**Önemli veri ayrımı:** I007 oturum raporu K=24.22 öncesi katsayısız ct_clamp değerlerini içerir. Bu nedenle 0.20 A (K uygulanmış CH1) sınırını doğrudan I007 katsayısız değerlerle karşılaştırmak ölçek hatasıdır. Önce K dönüşümü uygulanmalı, sonra süre-temelli analiz yapılmalıdır. I007 tekil örnek oranı OFF sınıflandırmasının başarısızlığı olarak yorumlanmayacak.
+
+Ayrıntı ve bağlayıcı kural: [Akım durum sınıflandırması — süre-temelli karar ilkesi](docs/current-state-classification.md).
