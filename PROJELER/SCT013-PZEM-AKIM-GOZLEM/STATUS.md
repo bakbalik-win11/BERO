@@ -139,3 +139,19 @@ Kullanıcı isteğiyle E15 oluşturuldu: günlük deney adları CH1/CH2/CH3 olar
 - Görünen ad ile gerçek entity_id ayrı ayrı kontrol edilecek; HA entity registry'nin eski entity_id'yi koruma ihtimali varsayılmayacak.
 - Python ve eğitim veri üretimi bu deneyin kapsamı değildir.
 - **Durum: PLANLANDI.** Kod değişikliği, derleme, OTA, History kaydı ve CSV doğrulaması yapılmadı.
+
+
+## 2026-11-06 — ADR-028: Kararlı alan SCT ile kapanacak
+
+Kullanıcı kararı:
+- Kararlı alan, aynı ON paketi içinde SCT ve PZEM kendi akışlarında birlikte kararlı olduğunda açılır.
+- Kararlı alan, SCT kendi akışında kararlılığını kaybettiğinde kapanır.
+- PZEM kararlılığı yalnızca başlangıç koşuludur; bitiş tetikleyicisi değildir.
+- Gerekçe: Yük OFF olduğunda PZEM akımı gecikmeli gösterebilir. SCT yük değişimini daha erken yakaladığı için PZEM'in OFF/kararsız görünmesi beklenmez.
+- OFF olay işareti ON paket bütünlüğünü kapatma/doğrulama görevini sürdürür; kararlı alanın istatistiksel bitiş ölçütü değildir.
+
+Karar [ADR-028](docs/decisions/ADR-028-stable-window-sct-boundaries.md) olarak kaydedildi ve [E12](experiments/E12-sct-stability-window-and-response/README.md) deney belgesine işlendi.
+
+**Henüz belirlenmeyenler:** SCT kararlılık kaybının istatistiksel tanımı, pencere boyu, dağılım/ortalama değişimi sınırları ve devam süresi. Bunlar veriden belirlenecek; eşik uydurulmayacak.
+
+**Uygulama durumu:** Python algoritması yazılmadı. Firmware/YAML değişikliği, derleme veya OTA yapılmadı. E12 devam ediyor; tamamlanmış değildir.
