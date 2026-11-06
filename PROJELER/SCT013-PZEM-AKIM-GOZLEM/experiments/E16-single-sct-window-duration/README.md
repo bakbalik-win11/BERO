@@ -62,3 +62,14 @@ Her tur 10 dakika sürer. HA zaman damgalarıyla gerçek yayın aralığı ve ge
 ## D turu firmware
 
 [bero-modul2-e16-single-sct-window-d-50ms.yaml](../../firmware/experiments/bero-modul2-e16-single-sct-window-d-50ms.yaml)
+
+
+### D turu — ön test kontrol logu (15:00:21–15:00:52)
+
+- Kullanıcının 15:01 D turu başlangıcından hemen önce alınan kısa ESPHome OTA/API kontrol logu arşivlendi.
+- ESPHome 2026.10.2; derleme zamanı 14:59:40; API bağlantısı/handshake başarılı; GPIO32 ADC1_CH4 12dB init/config/calibration OK.
+- ct_clamp `sample_duration=50ms`; 31 katsayısız yayın; medyan yayın aralığı 1.0005s (0.969–1.031s). 50ms pencerede farklı ADC örnek sayısı 588–658 (medyan 621).
+- Katsayısız kısa kontrol çıktısı: n=31, ortalama 0.014573, medyan 0.018340, popülasyon SD 0.006285, min 0.004460, max 0.021140. İlk 10 değer düşük seviyedeyken 15:00:32 sonrasında yaklaşık 0.017–0.021 bandına geçiyor; bu kısa kesit tek bir kararlı alan olarak yorumlanmadı.
+- Log, `esp32d1.yaml` validated config cache kullandığını bildiriyor; çalışan binary ile depodaki E16 D YAML arasında birebir hash eşleşmesi kanıtlanmıyor.
+- Bu 31 saniyelik ön test, 15:01'de başlayan 10 dakikalık D turunun yerine geçmez.
+- [Ham kontrol logu](../../logs/module2/2026-11-06-e16-d-50ms-pretest-control-log.txt) · [Analiz](../../logs/module2/2026-11-06-e16-d-50ms-pretest-control-log-analysis.md)
