@@ -22,9 +22,9 @@
 #
 # OKUMA:
 # - Her kanal ct_clamp sample_duration: 100ms.
-# - Sıra: SCT1 -> 110ms bekleme -> SCT2 -> 110ms bekleme -> SCT3 -> 110ms bekleme -> ortak bias.
-# - Tam üç kanal çevrimi 500ms aralıkla başlatılır (hedef 2 Hz); kanallar eşzamanlı örneklenmez.
-# - 110ms bekleme, 100ms asenkron ct_clamp ölçümünün tamamlanması için 10ms pay bırakır.
+# - Kanallar sırayla taranır: SCT1 -> 110ms -> SCT2 -> 110ms -> SCT3 -> 110ms -> bias.
+# - Her kanal kendi başına yaklaşık 2 saniyede bir okunur (kanal başına yaklaşık 0.5 Hz).
+# - Bu üç kanallı tarama, tek kanal 2 Hz hedefinin testi değildir.
 # - Katsayı K=24.22; bu firmware'de üç kanala da uygulanır.
 #
 # HA OLAY ENTITY'LERİ:
@@ -539,7 +539,7 @@ interval:
             );
           }
 
-  # Üç SCT kanalı için hedef 500ms çevrim aralığı (toplam 2 çevrim/s).
-  - interval: 500ms
+  # Üç kanalı sıralı tarayan eğitim döngüsü; tek kanal 2 Hz hedefinden ayrıdır.
+  - interval: 2s
     then:
       - script.execute: sct_sequential_reading
