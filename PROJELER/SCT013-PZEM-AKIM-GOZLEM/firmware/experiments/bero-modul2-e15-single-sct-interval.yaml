@@ -65,7 +65,7 @@ esphome:
     - <lwip/inet.h>
     - <fcntl.h>
     - <unistd.h>
-    - <errno.h>
+    - <cerrno>
     - <cstring>
     - <cstdint>
     - <string>
