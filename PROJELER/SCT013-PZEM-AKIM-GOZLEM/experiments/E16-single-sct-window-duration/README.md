@@ -1,6 +1,6 @@
 # E16 — Tek SCT kanalında ct_clamp ölçüm penceresi karşılaştırması
 
-**Durum:** PLANLANDI  
+**Durum:** AKTİF — D turu başladı  
 **Dal:** `exp/modul2-ch1-2hz-20261106`  
 **Tarih:** 2026-11-06
 
@@ -40,12 +40,22 @@ Yalnızca `ct_clamp.sample_duration`: D=50ms, E=100ms, F=200ms. Her turda başka
 
 Her tur 10 dakika sürer. HA zaman damgalarıyla gerçek yayın aralığı ve geçerli kayıt sayısı doğrulanır. Aynı seçim kuralıyla kararlı bölümler karşılaştırılır. Ortalama, medyan, SD, MAD, P95/P99, maksimum, mutlak ortalamadan sapma dağılımı ve ardışık yayın farkları raporlanır. Sıçrama eşiği kullanılacaksa sonuçlar incelenmeden önce üç tur için ortak belirlenir; eşik sonradan veriye göre seçilmez.
 
+## Gerçekleşen test kaydı
+
+### D turu — 2026-11-06
+
+- **Başlangıç:** 15:01 (+03:00); kullanıcı bildirimi.
+- **Durum:** D turu başlatıldı; 10 dakikalık kayıt hedefleniyor. Beklenen bitiş yaklaşık 15:11 (+03:00).
+- **Yapılandırma:** CH1-1T / GPIO32, `sample_duration=50ms`, `interval=1s`, K=24.22, ADC 12dB.
+- **Firmware:** `firmware/experiments/bero-modul2-e16-single-sct-window-d-50ms.yaml`.
+- **Kanıt durumu:** Başlangıç saati ve testin başlatıldığı kullanıcı bildirimiyle kaydedildi. Bu kayıt tek başına derleme/OTA, cihaz logu veya 10 dakikalık veri toplamanın tamamlandığını kanıtlamaz; log ve HA History verisi geldiğinde ayrıca eklenecek.
+
 ## Kanıt sınırları
 
 - E15 A/B/C, `sample_duration=100ms` sabitken yayın aralığını 500ms/1s/2s olarak değiştirdi.
 - E16 D/E/F, yayın aralığını 1s sabit tutup ölçüm penceresini değiştirecektir.
 - 50ms, 100ms ve 200ms pencereler aynı sayıda şebeke periyodu içermez; bu fark deneyin değişkenidir.
-- Bu plan henüz cihazda derlenmiş, yüklenmiş veya test edilmiş değildir.
+- D turunun 15:01'de başlatıldığı kullanıcı tarafından bildirildi. Cihaz logu ve 10 dakikalık HA History kaydı henüz bu notla doğrulanmış değildir.
 - UDP STATE fiziksel yükün açık/kapalı olduğunu kanıtlamaz.
 - 1s yayın aralığı, iki yayın arasında oluşup kaybolan olayları göstermeyebilir. Sonuçlar yayımlanan değerler için yorumlanacaktır.
 
