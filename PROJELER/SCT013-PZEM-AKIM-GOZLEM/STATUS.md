@@ -211,3 +211,30 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 **Zaman notu / kullanıcı bildirimi:** Görseldeki mevcut katsayısız kararlı durum gözlemi 2026-11-06 saat 13:49'da başladı. Kullanıcı 14:00'te yeni koda geçmeyi planladığını bildirdi. Bu zaman bilgisi kullanıcı beyanıdır; görsel tek başına tam kayıt aralığı veya 10 dakikalık tur tamamlandığını kanıtlamaz.
 
 **Yorum sınırı:** Daha seyrek yayın aralığı iki yayın arasında oluşup kaybolan sapmaları örneklemeyebilir. Bu nedenle üç turdaki benzerlik/farklılık yalnız yayımlanmış tekil değerlerin gözlenen davranışı için yorumlanacaktır; örneklenmeyen fiziksel olayların yokluğu anlamına gelmez.
+
+
+## Kullanıcı tarafından netleştirilen eğitim penceresi sınırı — 2026-11-06
+
+Bu kural, önceki simetrik SCT/PZEM kararlı-aralık kesişimi tarifini **eğitim penceresinin sınırlandırılması bakımından** ayrıntılandırır:
+
+- Açılışta SCT ve PZEM kendi akışlarında bağımsız değerlendirilir.
+- SCT kararlı duruma ulaşmış olsa bile PZEM henüz kararlı değilse eğitim başlamaz; PZEM'in kararlı olması beklenir.
+- **Eğitim başlangıcı:** SCT kararlı VE PZEM kararlı koşullarının ikisi de ilk kez sağlandığında, yani iki kararlılık başlangıcının daha geç olanı.
+- **Eğitim bitişi:** SCT akımın kesildiğini algıladığı anda. PZEM'in kapanış gecikmesi veya mavi serinin daha sonra düşmesi beklenmez.
+- Eğitim çıktısına yalnızca bu başlangıç ve bitiş arasında kalan katsayısız SCT tekil ölçümleri alınır. PZEM ölçümleri kararlılık/etiket referansı olarak kullanılır; SCT tekil değerleri PZEM'e eşitlenmez, timestamp üzerinden birebir eşleştirilmez ve interpolasyon yapılmaz.
+- Sabit bir süre, önceden seçilmiş zaman dilimi veya PZEM'in gecikmeli kapanış zamanı pencere sınırı değildir. Süre, verideki koşulların gerçekleşmesinin sonucudur.
+- SCT kararlılık tespitinde tekil sıçramaların nasıl tolere edileceği henüz belirlenmemiştir. Bu istisna/kararlılık algoritması ayrı bir tasarım kararıdır; eşik veya pencere parametresi uydurulmayacaktır.
+- Ham CSV ve tüm özgün ölçümler korunur; yalnızca seçilen SCT eğitim alt kümesi ayrı türetilmiş çıktı olarak üretilir.
+
+Mantıksal ifade:
+
+`start = max(SCT_STABLE_START, PZEM_STABLE_START)`
+
+`end = SCT_CURRENT_CUTOFF`
+
+Seçim aralığı `[start, end)` biçimindedir. `start >= end` ise eğitim örneği üretilmez ve açık dışlama nedeni raporlanır.
+
+**Görsel yorum:** Kırmızı seri SCT, mavi seri PZEM'dir. Açılışta kırmızı önce yükselip kararlı olabilir; mavi daha sonra kararlı yatay seviyeye gelir. Eğitim ancak ikisi de kararlı olduğunda başlar. Kapanışta kırmızı SCT daha erken düşer; pencere orada biter, mavi PZEM'in gecikmeli düşüşü eğitim aralığını uzatmaz.
+
+**Uygulama durumu:** Bu kayıt kullanıcı tarafından onaylanan pencere mantığıdır. SCT tekil sıçramalarına tolerans gösterecek kararlılık tespit algoritması ve parametreleri henüz belirlenmemiştir; otomatik uçtan uca Python uygulaması tamamlanmış sayılmaz.
+
