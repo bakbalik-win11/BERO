@@ -128,3 +128,9 @@ birlikte arşivlenir.
 - 500 ms yayın tercihi daha fazla gözlem sağlar; daha fazla örnek bağımsız deney sayısını artırmaz. Tekrarlı ON çevrimleri esas deney birimidir.
 
 **Durum:** Medyan tabanlı ON-çevrimi eğitim çifti yöntemi kullanıcı tarafından onaylandı. 500 ms SCT yayın aralığı başlangıç tercihi olarak kabul edildi. Kararlı pencere süresi/yerleşme kuralı, minimum PZEM örnek sayısı ve çevrimler arası nihai K birleştirme yöntemi açık parametrelerdir.
+
+### Sabit yük koşulu — önemli kapsam sınırı
+
+Bu medyan çifti yöntemi **sabit yükle yapılan ilk eğitim/kalibrasyon deneyi** içindir. Tek bir test serisinde yük tipi, fiziksel bağlantı ve çalışma koşulu sabit tutulur; aynı yükün tekrarlanan ON çevrimlerinden SCT–PZEM medyan çiftleri üretilir. Böylece aynı çalışma noktasında ölçüm zincirinin tekrarlanabilirliği ve o nokta için K adayı değerlendirilir.
+
+Farklı güç/akım seviyelerindeki yükler aynı havuzda tek medyana indirgenmez. Daha sonra farklı sabit yük seviyeleri ayrı eğitim grupları olarak ölçülür; her seviyenin ON çevrim medyan çiftleri ve K davranışı kendi içinde değerlendirilir. Katsayının çalışma aralığı boyunca sabit kalıp kalmadığı ancak bu ayrı çalışma noktaları karşılaştırıldıktan sonra söylenebilir. Tek bir sabit yük deneyinden tüm akım aralığına genelleme yapılmaz.
