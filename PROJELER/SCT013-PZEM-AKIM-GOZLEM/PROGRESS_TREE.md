@@ -452,3 +452,11 @@
 - E14 deney YAML'ı CH1=500 ms (2 Hz), CH2=1 s (1 Hz), CH3=2 s (0,5 Hz) olacak şekilde güncellendi. Üç kanal sample_duration=100 ms ve K=24.22 sabit.
 - Yeni YAML blob SHA: `9bc6237ea9a312b6ff22a4f16c99c0f5f96fd382` (yorum düzeltmesi sonrası yeni SHA ayrıca doğrulanacak).
 - **Durum:** Yalnızca deney dalında kod değişikliği. Validate/Compile, OTA ve cihaz testi henüz yapılmadı. Sonraki sıra: doğrulama → yüksüz baz çizgi → kullanıcı komutuyla 100 W ampul ON → kararlı yük → ampul OFF.
+
+
+## 2026-11-06 — PZEM History geçiş yorumu / kanal eşleştirme deneyi
+
+- PZEM History açma-kapama geçiş değerleri, kullanıcının beşli örnek gözlemine göre paket ortalaması/önceki örneklerin etkisini taşıyan değerler olarak ele alınacak; anlık fiziksel akım kabul edilmeyecek. İç algoritma kaynak koddan doğrulanmış değildir. [Gözlem kaydı](logs/module3/2026-11-06-pzem-history-packet-average-observation.md).
+- PZEM kararlı açık/kapalı alanları durum/zaman aralığı belirlemede yardımcıdır; SCT örnekleme hızı ve SCT kararlılık istatistiğinin ölçütü değildir.
+- SCT hız karşılaştırması üç kanalın kendi kararlı ON kayıtları ve üç kanalın ortak yük davranışı üzerinden yapılır.
+- Yeni fiziksel SCT eşleştirme deneyi başlangıcı 12:01 (+03:00): CH1←önceki SCT3, CH2←önceki SCT1, CH3←önceki SCT2. Yeni HA History CSV bekleniyor.
