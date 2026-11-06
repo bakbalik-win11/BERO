@@ -14,16 +14,17 @@
 #   için olay kimliğini korumak.
 #
 # DONANIM BAĞLANTILARI:
-# - SCT1 sarı sinyal  -> GPIO32 / ADC1_CH4 / Faz 2T
-# - SCT2 yeşil sinyal -> GPIO33 / ADC1_CH5 / Nötr 4T
-# - SCT3 mavi sinyal  -> GPIO34 / ADC1_CH6 / Faz 3T
+# - SCT1 sarı sinyal  -> GPIO32 / ADC1_CH4 / Faz 1T
+# - SCT2 yeşil sinyal -> GPIO33 / ADC1_CH5 / Nötr 1T
+# - SCT3 mavi sinyal  -> GPIO34 / ADC1_CH6 / Faz 1T
 # - Ortak bias turuncu -> GPIO35 / ADC1_CH7
 # - UDP olay kaynağı Modül 3 WROOM; hedef port 4210/UDP.
 #
 # OKUMA:
-# - Her kanal ct_clamp sample_duration: 200ms.
-# - Sıra: SCT1 -> 250ms -> SCT2 -> 250ms -> SCT3 -> 250ms -> ortak bias.
-# - Çevrim yaklaşık 2s; kanallar eşzamanlı örneklenmez.
+# - Her kanal ct_clamp sample_duration: 100ms.
+# - Sıra: SCT1 -> 110ms bekleme -> SCT2 -> 110ms bekleme -> SCT3 -> 110ms bekleme -> ortak bias.
+# - Tam üç kanal çevrimi 500ms aralıkla başlatılır (hedef 2 Hz); kanallar eşzamanlı örneklenmez.
+# - 110ms bekleme, 100ms asenkron ct_clamp ölçümünün tamamlanması için 10ms pay bırakır.
 # - Katsayı K=24.22; bu firmware'de üç kanala da uygulanır.
 #
 # HA OLAY ENTITY'LERİ:
@@ -151,7 +152,7 @@ sensor:
   # DAHİLİ ADC KAYNAKLARI
   # ----------------------------------------------------------
 
-  # SCT1 — Faz 2T — GPIO32
+  # SCT1 — Faz 1T — GPIO32
   - platform: adc
     id: sct_1_voltage_source
     name: "ESP32D1 SCT1 ADC Source"
@@ -162,7 +163,7 @@ sensor:
     internal: true
     update_interval: never
 
-  # SCT2 — Nötr 4T — GPIO33
+  # SCT2 — Nötr 1T — GPIO33
   - platform: adc
     id: sct_2_voltage_source
     name: "ESP32D1 SCT2 ADC Source"
@@ -173,7 +174,7 @@ sensor:
     internal: true
     update_interval: never
 
-  # SCT3 — Faz 3T — GPIO34
+  # SCT3 — Faz 1T — GPIO34
   - platform: adc
     id: sct_3_voltage_source
     name: "ESP32D1 SCT3 ADC Source"
@@ -202,11 +203,11 @@ sensor:
     update_interval: never
 
   # ----------------------------------------------------------
-  # SCT1 — FAZ 2 TUR / GPIO32
+  # SCT1 — FAZ 1 TUR / GPIO32
   # ----------------------------------------------------------
   - platform: template
     id: sct_1_raw_ac
-    name: "BERO Mod2 SCT1 Faz 2T Ham Akim"
+    name: "BERO Mod2 SCT1 Faz 1T Ham Akim"
     unit_of_measurement: "A"
     device_class: current
     state_class: measurement
@@ -216,9 +217,9 @@ sensor:
 
   - platform: ct_clamp
     id: sct_1_current
-    name: "BERO Mod2 SCT1 Faz 2T Akim"
+    name: "BERO Mod2 SCT1 Faz 1T Akim"
     sensor: sct_1_voltage_source
-    sample_duration: 200ms
+    sample_duration: 100ms
     update_interval: never
     force_update: true
     on_raw_value:
@@ -235,11 +236,11 @@ sensor:
     accuracy_decimals: 3
 
   # ----------------------------------------------------------
-  # SCT2 — NÖTR 4 TUR / GPIO33
+  # SCT2 — NÖTR 1 TUR / GPIO33
   # ----------------------------------------------------------
   - platform: template
     id: sct_2_raw_ac
-    name: "BERO Mod2 SCT2 Notr 4T Ham Akim"
+    name: "BERO Mod2 SCT2 Notr 1T Ham Akim"
     unit_of_measurement: "A"
     device_class: current
     state_class: measurement
@@ -249,9 +250,9 @@ sensor:
 
   - platform: ct_clamp
     id: sct_2_current
-    name: "BERO Mod2 SCT2 Notr 4T Akim"
+    name: "BERO Mod2 SCT2 Notr 1T Akim"
     sensor: sct_2_voltage_source
-    sample_duration: 200ms
+    sample_duration: 100ms
     update_interval: never
     force_update: true
     on_raw_value:
@@ -268,11 +269,11 @@ sensor:
     accuracy_decimals: 3
 
   # ----------------------------------------------------------
-  # SCT3 — FAZ 3 TUR / GPIO34
+  # SCT3 — FAZ 1 TUR / GPIO34
   # ----------------------------------------------------------
   - platform: template
     id: sct_3_raw_ac
-    name: "BERO Mod2 SCT3 Faz 3T Ham Akim"
+    name: "BERO Mod2 SCT3 Faz 1T Ham Akim"
     unit_of_measurement: "A"
     device_class: current
     state_class: measurement
@@ -282,9 +283,9 @@ sensor:
 
   - platform: ct_clamp
     id: sct_3_current
-    name: "BERO Mod2 SCT3 Faz 3T Akim"
+    name: "BERO Mod2 SCT3 Faz 1T Akim"
     sensor: sct_3_voltage_source
-    sample_duration: 200ms
+    sample_duration: 100ms
     update_interval: never
     force_update: true
     on_raw_value:
@@ -336,21 +337,21 @@ script:
     then:
       - logger.log:
           level: INFO
-          format: "BERO SEQUENCE: SCT1 FAZ 2T START"
+          format: "BERO SEQUENCE: SCT1 FAZ 1T START"
       - component.update: sct_1_current
-      - delay: 250ms
+      - delay: 110ms
 
       - logger.log:
           level: INFO
-          format: "BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 4T START"
+          format: "BERO SEQUENCE: SCT1 COMPLETE / SCT2 NOTR 1T START"
       - component.update: sct_2_current
-      - delay: 250ms
+      - delay: 110ms
 
       - logger.log:
           level: INFO
-          format: "BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 3T START"
+          format: "BERO SEQUENCE: SCT2 COMPLETE / SCT3 FAZ 1T START"
       - component.update: sct_3_current
-      - delay: 250ms
+      - delay: 110ms
 
       - logger.log:
           level: INFO
@@ -538,7 +539,7 @@ interval:
             );
           }
 
-  # Mevcut 2 saniyelik SCT sıralı okuma çevrimi korunur.
-  - interval: 2s
+  # Üç SCT kanalı için hedef 500ms çevrim aralığı (toplam 2 çevrim/s).
+  - interval: 500ms
     then:
       - script.execute: sct_sequential_reading
