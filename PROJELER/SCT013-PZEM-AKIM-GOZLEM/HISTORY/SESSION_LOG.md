@@ -1887,3 +1887,13 @@ Kullanıcı kararı: Üç tur 30 dakika değil, 10'ar dakika. A/B/C aralıkları
 - Kullanıcı bildirimi: mevcut katsayısız gözlem 13:49'da başladı; 14:00'te yeni koda geçiş planlandı. Görsel tek başına tur süresini veya tamamlandığını kanıtlamaz.
 - Örnekleme sınırı korundu: seyrek yayın, iki yayın arasında oluşup kaybolan sapmaları kaçırabilir; sonuçlar yalnız yayımlanmış değerlerin davranışını kapsar.
 - E15 protokolü, sonuç defteri, deney indeksi ve STATUS güncellendi.
+
+
+## 2026-11-06 — T008 eğitim penceresi için asimetrik başlangıç/bitiş kuralı
+
+- Kullanıcı görsellerle SCT/PZEM zaman davranışını netleştirdi: kırmızı seri SCT, mavi seri PZEM'dir. Açılışta SCT önce kararlı olabilir; PZEM gecikmeli kararlı hâle gelir. Eğitim iki taraf da kararlı olduktan sonra başlar.
+- Eğitim başlangıcı `max(SCT_STABLE_START, PZEM_STABLE_START)` olarak tanımlandı. SCT kararlı olsa bile PZEM kararlı olana kadar beklenir.
+- Kapanışta SCT akımın kesildiğini algıladığı anda eğitim biter. PZEM'in gecikmeli kapanış/iniş zamanı beklenmez. Eğitim aralığı `[start, end)`; `end = SCT_CURRENT_CUTOFF`.
+- Eğitim örnekleri yalnız bu aralıktaki katsayısız SCT tekil ölçümleridir. PZEM, başlangıç kararlılığı ve referans etiket için kullanılır; SCT değerleri PZEM'e eşitlenmez, tekil timestamp eşleştirmesi/interpolasyon yapılmaz.
+- Sabit süreyle pencere seçilmez. SCT tekil sıçramalarına tolerans verecek kararlılık istisnası henüz belirlenmedi; eşik/pencere parametresi uydurulmadı.
+- T008 ve E12 belgeleri ile STATUS güncellendi. Python otomatik kararlılık tespiti ve uçtan uca etiketleme henüz uygulanmadı/ doğrulanmadı.
