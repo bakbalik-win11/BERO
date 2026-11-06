@@ -1833,3 +1833,9 @@ Bu oturumda Python eğitim modeli yazılmadı; yeni katsayı üretilmedi; firmwa
 - **2. Örnekleme hızları:** CH1=2 Hz, CH2=1 Hz, CH3=0,5 Hz karşılaştırmasında kullanıcı CH2'nin daha az sapma gösterdiğini gözledi. Bu nitel ilk gözlemdir; sayısal sapma ve referans yeni log üzerinden hesaplanacaktır.
 - **3. Donanım kanal değişimi:** Kullanıcı fiziksel SCT bağlantılarını değiştirdi. 12:01 (+03:00) itibarıyla yeni eşleştirme CH1←önceki SCT3, CH2←önceki SCT1, CH3←önceki SCT2. Yeni kayıt, sensör/yerleşim etkisini ESP/ADC kanal etkisinden ayırmaya yardımcı olacak; CSV analizi olmadan sonuç çıkarılmayacak.
 - Ayrıntı ve üç adımın sırası: [E14](../experiments/E14-module2-single-channel-2hz/README.md).
+
+## 2026-11-06 — E14 üçüncü basamak kod örnekleme profili kaydırıldı
+- **TEST SIRASI:** 1) PZEM History geçiş değerleri incelendi; geçiş örnekleri kararlı pencere istatistiğinden ayrı tutulacak. 2) Yazılım kanal eşlemesi sabitken üç fiziksel sensör farklı kanallarda denendi; ilk değişim SCT1→CH3, SCT2→CH1, SCT3→CH2; 12:15 ikinci değişim SCT1→CH2, SCT2→CH3, SCT3→CH1. Kullanıcı, sensör yerleri değişmesine rağmen CH2'nin yine daha az sapmalı göründüğünü bildirdi. 3) Fiziksel sensör yerleşimi sabit tutularak örnekleme profilleri kodda kaydırıldı.
+- **KOD:** Önce CH1=2 Hz, CH2=1 Hz, CH3=0,5 Hz idi. Yeni YAML: CH1=1 Hz, CH2=0,5 Hz, CH3=2 Hz. sample_duration=100ms, K=24.22, GPIO32/33/34 ve entity adları değişmedi. CH1 1 saniyede; CH2 her ikinci çevrimde (2 saniye); CH3 bağımsız 500 ms döngüde okunur. Bias CH2 çevriminde okunur.
+- **BEKLENTİ:** Kararlılık avantajı CH2'den CH1'e taşınırsa 1 Hz profili desteklenir; CH2'de kalırsa GPIO/ADC veya kanala özgü etki olasılığı artar. Tek başına kesin nedensellik değildir.
+- **DOĞRULAMA:** Yalnız YAML ve deney belgeleri güncellendi. Validate, Compile, OTA ve fiziksel cihaz testi yapılmadı.
