@@ -60,3 +60,11 @@ OFF / 15 W / 42 W / 57 W / 57 W+15 W dağılımları ayrı gruplar olarak karş�
 - Firmware/build doğrulaması varsa ilgili log ve hash.
 
 **Durum: PLANLANDI.** Bu dosya deney planıdır; deneylerin başladığını veya tamamlandığını göstermez.
+
+## Gerçek başlangıç kaydı — 57 W
+
+- Kullanıcı bildirimi: **17:17 (+03:00) sonrasında 57 W yük devreye alındı.**
+- Bu kayıt, planlanan 57 W basamağının başlangıç zamanını kullanıcı gözlemiyle günceller.
+- Dakika bilgisi mevcut; saniye düzeyinde başlangıç zamanı bilinmiyor.
+- 57 W + 15 W birleşik yük basamağının başlangıcı henüz bildirilmedi.
+- CSV ve PZEM zaman serisi geldiğinde gerçek ON/OFF çevrimleri ayrıca doğrulanacak.
