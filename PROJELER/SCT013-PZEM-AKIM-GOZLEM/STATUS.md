@@ -135,3 +135,12 @@ Ayrıntı: [E14 — Modül 2 tek SCT kanalında 2 Hz ölçüm denemesi](experime
 - sample_duration=100ms, K=24.22, GPIO ve entity eşlemesi sabit. CH1 1 s, CH2 2 s, CH3 500 ms. Ortak bias CH2'nin okunduğu çevrimde okunur.
 - Beklenti: avantaj CH1'e taşınırsa 1 Hz profil hipotezi desteklenir; CH2'de kalırsa GPIO/ADC veya kanala özgü etki olasılığı güçlenir.
 - YAML yazıldı; Validate/Compile, OTA ve cihaz testi henüz yapılmadı.
+
+## 2026-11-06 — E14 uzun kayıt sonrası örnekleme profilinin CH3'e taşınması
+
+- 12:30 sonrası HA History CSV'si 12:30:00–12:47:15 aralığını kapsıyor: CH1 1.036, CH2 518, CH3 2.072, PZEM 105 kayıt.
+- PZEM yaklaşık 0,46–0,48 A kararlı bölümlerinde, bölüm başı/sonundan ikişer saniye dışlanarak hesaplanan standart sapmalar: CH1 0,0212 A; CH2 0,0340 A; CH3 0,0191 A. Bu kayıtta en düşük sapma CH3'tedir; CH1 yakındır. Önceki kısa kayıt sonucu uzun kayıtta aynı şekilde sürmemiştir.
+- Kullanıcı kararı: 1 Hz profil CH1'den CH3'e taşınacak. CH1 eski CH3'ün 2 Hz profilini alır; CH2 0,5 Hz'de kalır; CH3 1 Hz olur.
+- Güncel profil: CH1 GPIO32=2 Hz (500 ms), CH2 GPIO33=0,5 Hz (2 s), CH3 GPIO34=1 Hz (1 s). sample_duration=100ms, K=24.22, GPIO/entity ve fiziksel sensör eşlemesi sabit. Bias CH2 ile 2 saniyelik taramada okunur.
+- Firmware YAML deney dalına işlendi. **Validate/Compile, OTA ve fiziksel cihaz testi henüz yapılmadı.** E14 açık.
+- Ayrıntı: [E14 deney kaydı](experiments/E14-module2-single-channel-2hz/README.md).
