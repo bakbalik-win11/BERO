@@ -171,3 +171,21 @@ Kullanıcı kararı:
 Karar [ADR-029](docs/decisions/ADR-029-portable-ssd-python-runtime.md) ve [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md) ile [T007](tasks/T007-python-architecture.md) belgelerine işlendi.
 
 **Uygulama durumu:** Yalnız mimari karar kaydedildi. SSD klasörleri, Python paketleri ve Windows/macOS çalıştırma testleri henüz oluşturulmadı. T007 devam ediyor.
+
+
+## 2026-11-06 — Küçük Python görevleri ve kesinti sonrası güvenli devam kararı (ADR-030)
+
+Kullanıcı kararı: Python hattı tek ve uzun çalışan bir programa dönüşmemeli. Küçük, bağımsız görev Python'ları kullanılmalı; bir görev kilitlendiğinde veya hata verdiğinde sistemin geri kalanı durmamalı ve daha önce işlenen veri/çıktı kaybolmamalıdır.
+
+Karar ilkeleri:
+- Her görev tek sorumluluklu, açık girdili/çıktılı ve yeniden başlatılabilir olur.
+- RAW kaynaklar değişmez korunur.
+- Başarılı görev adımları ve checkpoint bilgileri SSD'de tutulur; yeniden çalıştırma son güvenli noktadan devam eder.
+- Yarım çıktı tamamlanmış sonuç olarak yayımlanmaz; çıktı doğrulandıktan sonra nihai konuma alınır.
+- Girdi hash'i, görev/sürüm, durum, çıktı ve hata bilgisi işlem kaydına yazılır.
+- Aynı girdi yeniden işlendiğinde yinelenen çıktı/arşiv oluşturulmaz.
+- Tek dosyanın veya görevin hatası diğer bağımsız işleri durdurmaz.
+
+Karar [ADR-030](docs/decisions/ADR-030-resumable-small-python-jobs.md), [Python mimarisi](docs/architecture/python-program-architecture.md) ve [T007](tasks/T007-python-architecture.md) belgelerine işlendi.
+
+**Uygulama durumu:** Yalnız mimari karar kaydedildi. Görev çalıştırıcı, checkpoint, atomik çıktı ve kurtarma mekanizması henüz uygulanmadı/test edilmedi. T007 devam ediyor.
