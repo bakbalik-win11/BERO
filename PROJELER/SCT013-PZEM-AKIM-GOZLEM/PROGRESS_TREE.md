@@ -444,3 +444,12 @@
 - Yarın ilk iş, eğitim için kullanılacak SCT ve PZEM verisini gerçek kayıtlar üzerinden seçmek ve sabitlemek; kararlı alanların uygunluğunu değerlendirmektir.
 - PY-01 arşiv/oturum tasarımı çalışan örnek üzerinden denenecek; henüz kesinleştirilmedi.
 - Python eğitim/etiketleme uygulaması veya yeni model çıktısı bu oturumda üretilmedi. T007 → T008 → T006 sırası korunur.
+
+
+## 2026-11-06 — E16: yüksüz/düşük akım ON/OFF davranışı planlandı
+
+- HA ekran görüntüsünde PZEM 230,2 V / 0,000 A iken CH1 SCT akımı 0,204 A ve Raw AC göstergesi 0,00842 görünüyordu; grafikte SCT yaklaşık 0,18–0,30 A çevresinde basamaklıydı. Tek ekran görüntüsü sonuç değildir.
+- Kullanıcının 18 W'ta SCT'nin genlik yerine aç/kapa değişimini algıladığı gözlemi doğrulanmamış hipotez olarak ayrı tutuldu.
+- E16 gece boyu PZEM V/A, SCT CH1 akım/Raw AC ve iki modülün ON/OFF olay kayıtlarını toplama planıdır. Sabah HA History CSV'si incelenecek.
+- Fiziksel yük koşulu ayrıca kaydedilecek; eğitim/kalibrasyon etiketi bu deneyden otomatik üretilmeyecek.
+- Ayrıntı: [E16](experiments/E16-sct-on-off-response-idle-low-current/README.md). Durum PLANLANDI; veri ve analiz bekleniyor.
