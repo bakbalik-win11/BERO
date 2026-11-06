@@ -216,3 +216,19 @@ Bu oturum, E13'te tanımlanan tek kanallı canlı ESP 2 Hz mimarisinin testi de�
 5. Deneme sağlıklıysa aynı firmware ile yüksüz oturuma geçilmeli. Sağlıklı değilse akşam testine otomatik olarak devam edilmemeli; sonuç ve sınırlama kaydedilip mimari yeniden görüşülmeli.
 
 **Durum:** Hedef ve test sırası kullanıcı tarafından belirlendi. Firmware henüz değiştirilmedi; derleme, OTA ve gerçek cihaz testi yapılmadı. Sonuç yok. E13 açık durumdadır.
+
+### 2026-11-06 — İlk üç kanal 2 Hz firmware prototipi depoya işlendi
+
+Modül 2 firmware dosyasında ilk prototip düzenlemesi yapıldı:
+- Üç kanalın da `sample_duration` değeri 100 ms olarak ayarlandı.
+- Her `component.update` çağrısından sonra 110 ms beklenecek şekilde sıralama düzenlendi. Böylece asenkron 100 ms ct_clamp ölçümünün tamamlanması için yaklaşık 10 ms pay bırakılır.
+- Önceki 250 ms kanal arası beklemeler kaldırıldı.
+- Tam sıralı çevrim 500 ms aralıkla başlatılacak şekilde ayarlandı.
+- Üç kanalın firmware açıklama ve HA entity adları 1T olarak güncellendi: SCT1 GPIO32 sarı, SCT2 GPIO33 yeşil, SCT3 GPIO34 mavi.
+- K=24.22 değiştirilmedi; UDP olay alıcısı ve diğer ağ/olay davranışı değiştirilmedi.
+
+Kaynak firmware: `firmware/bero-modul2-esp32d1.yaml`  
+Firmware commit: `85e4fcb3c170f17ffca91b3d662743bb039b4912`  
+Bu dosya GitHub'dan tekrar okunarak üç adet 100 ms sample_duration, üç adet 110 ms bekleme ve 500 ms interval bulunduğu doğrulandı.
+
+**Önemli doğrulama sınırı:** Bu değişiklik yalnızca depodaki YAML prototipidir. ESPHome derlemesi, cihaz yüklemesi/OTA ve gerçek HA timestamp testi henüz yapılmadı. Dolayısıyla üç kanalda 2 Hz üretildiği veya ölçümün sağlıklı olduğu iddia edilmez. Kullanıcı 100 W sabit yük altında ilk denemeyi yapacak; akşam yüksüz oturumuna ancak bu deneme sağlıklı bulunursa aynı kodla geçilecek.
