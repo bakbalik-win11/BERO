@@ -257,3 +257,14 @@ Seçim aralığı `[start, end)` biçimindedir. `start >= end` ise eğitim örne
 - Log yaklaşık 43 saniyedir; 10 dakikalık B turu veya A/B/C sapma karşılaştırması değildir.
 - ESPHome logu validated config cache'in esp32d1.yaml için kullanıldığını bildiriyor. Çalışan binary'nin depodaki B YAML snapshot'ıyla birebir hash eşleşmesi bu logla kanıtlanmıyor.
 - [Ham log](../../logs/module2/2026-11-06-e15-b-1s-short-device-check.txt) ve [teknik analiz](../../logs/module2/2026-11-06-e15-b-1s-short-device-check-analysis.md) arşivlendi. B turunun resmi 10 dakikalık kaydı henüz tamamlanmadı.
+
+
+## 2026-11-06 — E16 D/E/F ölçüm penceresi deneyi planlandı
+
+Kullanıcı onayıyla E15'ten ayrı E16 deneyi planlandı. E15 A/B/C'de `sample_duration=100ms` sabit, yayın aralığı 500ms/1s/2s idi. E16 D/E/F'de bunun tersi uygulanacak: `interval=1s` sabit; yalnız `sample_duration` D=50ms, E=100ms, F=200ms olacak. Her tur 10 dakika; sıra D → E → F; toplam nominal kayıt 30 dakika.
+
+- Tek kanal CH1-1T / sarı / GPIO32 (ADC1_CH4), K=24.22, 12dB ADC, aynı SCT ve fiziksel koşullar sabit.
+- UDP 4210 olay alıcısı korunur; UDP kontrol döngüsü 100ms kalır. CH2/CH3 ve ayrı GPIO35 bias ADC okuması devre dışıdır.
+- Öncelikli analiz çıktısı ct_clamp `on_raw_value` katsayısız çıktısıdır; ham ADC örneği olarak adlandırılmaz.
+- D firmware dosyası oluşturuldu. Derleme, OTA ve gerçek cihaz doğrulaması henüz yapılmadı.
+- Deney planı: [E16 README](experiments/E16-single-sct-window-duration/README.md); D YAML: [firmware](firmware/experiments/bero-modul2-e16-single-sct-window-d-50ms.yaml).
