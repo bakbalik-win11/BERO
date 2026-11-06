@@ -86,3 +86,16 @@ Bu değişiklik yalnızca deney dalındaki YAML'a işlendi; henüz ESPHome Valid
 ## Sonraki adım
 
 Önce yeni YAML'ı ESPHome Validate ve Compile ile doğrula. Cihaza yüklendikten sonra yüksüz baz çizgiyi kaydet; ardından kullanıcı ampulü fiziksel olarak açtığında 100 W akkor yük aşamasını başlat. Kararlı bölüm boyunca veri topla, sonra ampulü kapatıp kapanış davranışını kaydet.
+
+## Genişletilmiş yüksüz kayıt — 2026-11-06
+
+Kullanıcı fiziksel olarak bu 5 dakika 37 saniyelik kayıt boyunca hatta yük bağlı olmadığını doğruladı. Modül 3 ON/OFF mesajları fiziksel yük durumunu değiştirmedi; yalnızca olay işaretidir.
+
+- [Genişletilmiş ham log](../../logs/module2/2026-11-06-module2-idle-extended-source.txt), 4.104 satır.
+- CH1: 674 yayın; medyan aralık 0,500 s. Tekil aralıklar 0,004–1,158 s; dağılımda düzensiz örnek aralıkları var.
+- CH2: 169 yayın; medyan 2,000 s. CH3: 168 yayın; medyan 2,000 s. Bu log yeni CH2=1 Hz revizyonundan önceki firmware ile alındı.
+- Yüksüz gösterge medyanları CH1 0,2725 A; CH2 0,216 A; CH3 0,252 A. Bunlar fiziksel akım değil, yüksüz ölçüm zinciri göstergeleridir.
+- Bias 168 yayın; 1,615–1,675 V; ortalama 1,6617 V.
+- 6 ON / 5 OFF UDP olayı alındı; fiziksel yük geçişi olarak yorumlanmayacak.
+
+Bu kayıt, yeni üç hız revizyonunun öncesindeki yüksüz baz çizgi kanıtıdır. Yeni YAML doğrulandıktan sonra aynı fiziksel koşulda yeni baz çizgi alınacak; ardından kullanıcı 100 W akkor ampulü açarak yük aşamasını başlatacak.
