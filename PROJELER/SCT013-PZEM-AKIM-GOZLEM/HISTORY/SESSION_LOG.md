@@ -1876,3 +1876,13 @@ Kullanıcı 18 W kaydından sonra 15 W mini buzdolabı ampulünü sürekli açı
 
 ### SINIR
 E17-A açık deneydir. CSV analizi, kararlılık sonucu, tekrarlanabilirlik, firmware/YAML değişikliği, K katsayısı güncellemesi veya eğitim etiketi üretimi yapılmadı.
+
+
+
+## 2026-11-07 — E17-A 18 W sürekli yük: sonraki ekran gözlemi
+
+- HA History ekranının son lejant değerleri: PZEM 226,2 V / 0,078 A; CH1 hesaplanmış akım 0,325 A; CH1 ham SCT 0,01341 A.
+- Güç grafiği yük devredeyken yaklaşık 17,5–17,8 W gösteriyor. Zaman grafiğinde güç yaklaşık 10:20 civarında yükseliyor; kullanıcının bildirdiği 10:21 deney başlangıç saati değiştirilmedi.
+- CH1 eğrisi yük devredeyken yaklaşık 0,28–0,33 A bandında; tekil tepe değerleri yaklaşık 0,5 A'ya yaklaşıyor. Bunlar ekran üzerinden yaklaşık gözlemlerdir, CSV istatistiği değildir.
+- 0,325 A değeri 0,24–0,41 A hesaplanmadı alanındadır. Tepki gözlenmesi doğru akım ölçümü anlamına gelmez; bu aralıkta değer kabul edilmeyecek.
+- E17-A devam ediyor; nihai kararlılık/tekrar edilebilirlik değerlendirmesi CSV sonrasında yapılacak.
