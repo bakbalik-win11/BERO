@@ -18,6 +18,15 @@ BERO, farklı ölçüm kaynakları ve ESP tabanlı bölgesel düğümlerden olu�
 5. PZEM-014 AC RS485 Modbus Güç Tüketim Ölçer + USB ile yapılacak çalışma, RS485 tabanlı haberleşmenin ilk uygulama alanlarından biridir. Cihaz henüz kullanılmamıştır; devreye alma ve gerçek haberleşme testi ileride yapılacaktır.
 6. Ekranlı ESP'ler, ölçümlerin yerel/canlı görüntülenmesi için sistemin parçası olarak değerlendirilecektir. Kullanılacak ekran/kart modeli ve düğüm rolleri henüz kesinleştirilmemiştir.
 
+## Wi-Fi bakım modu
+
+- **Kullanıcı kararı:** Normal işletimde düğümler arası ölçüm/veri aktarımı RS485 A/B üzerinden yapılır; Wi-Fi normal işletimde kapalı tutulur.
+- Bakım veya yazılım güncellemesi gerektiğinde ilgili düğüm, RS485 üzerinden gelen kontrollü komutla geçici Wi-Fi bakım moduna alınır.
+- Güncelleme/bakım tamamlandığında Wi-Fi kapatılır ve düğüm normal RS485 işletimine döner.
+- Wi-Fi, ölçüm verisinin alternatif/kalıcı taşıma yolu değildir; yalnızca geçici bakım erişimidir.
+- Bu davranış mimari karardır; RS485 komut çerçevesi, yetkilendirme, bakım modu zaman aşımı, güncelleme bütünlüğü/doğrulaması, başarısız güncellemede geri dönüş ve firmware uygulaması henüz tasarlanmamış veya test edilmemiştir.
+- RS485 üzerinden güvenilir aktarım için mesaj sıra/kimliklendirme, CRC veya eşdeğer hata tespiti, alındı onayı ve gerektiğinde yeniden gönderim kuralları ayrıca tasarlanacaktır. Wi-Fi'ın kapalı olması tek başına veri kayıpsızlığını garanti etmez.
+
 ## Katman ve protokol ayrımı
 
 - **RS485**, fiziksel/elektriksel haberleşme katmanını ve çok noktalı kablolu omurga tercihinin kendisini tanımlar.
@@ -33,7 +42,7 @@ Bu karar aşağıdakileri henüz belirlemez:
 - Bölgesel düğüm sayısı, yerleşimi ve görev dağılımı.
 - RS485 transceiver/modül modeli ve ESP pin eşlemesi.
 - Modbus RTU'nun BERO düğümleri arası genel protokol olarak kullanılması.
-- Wi-Fi'ın ne zaman ve hangi aşamada kaldırılacağı.
+- Wi-Fi bakım modunun firmware uygulaması ve bakım güvenlik kuralları.
 - Ekran modelleri, kullanıcı arayüzü ve canlı gösterim tasarımı.
 - CAT kablonun kesin damar/pair tahsisi, 24 V DC ana beslemenin kapasitesi ve 24 V→5 V dönüştürücü tasarımı.
 - Gerçek donanım bağlantısı, firmware, derleme, saha testi veya performans kabul ölçütleri.
