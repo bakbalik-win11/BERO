@@ -71,3 +71,6 @@ Her yeni deney için amaç/HEDEF, gerçek bağlantı ve ayarlar, LOG, SONUÇ, ka
 
 
 - **[E17 — CH1 düşük akım bölgesi: sürekli küçük yük gözlemleri](E17-low-current-continuous-load-observation/README.md): AÇIK — E17-A 18 W sürekli açık kayıt (2026-11-07 10:21).** Röle devrede değil; ilk ekranda PZEM 227,1 V / 0,078 A, CH1 yaklaşık 0,28–0,30 A. 0,24–0,41 A hesaplanmadı alanında sayısal akım değeri kabul edilmeyecek. CSV analizi bekleniyor. Sonraki ayrı kayıt adayı 15 W mini buzdolabı ampulü.
+
+
+- **[E18 — CH1 SCT çıkarılmış, bias hattı üzerinden uzun süreli kontrol](E18-ch1-bias-line-control/README.md): PLANLANDI.** CH1 SCT sensörü çıkarılacak; CH1 ölçüm girişi ortak bias okuyan hatta bağlanarak uzun HA History kaydı alınacak. Amaç, SCT sinyali olmadan ölçüm zincirinde sıçrama görülüp görülmediğini incelemek. Fiziksel bağlantı, kayıt ve analiz henüz yapılmadı.
