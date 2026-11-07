@@ -453,3 +453,14 @@
 - E16 gece boyu PZEM V/A, SCT CH1 akım/Raw AC ve iki modülün ON/OFF olay kayıtlarını toplama planıdır. Sabah HA History CSV'si incelenecek.
 - Fiziksel yük koşulu ayrıca kaydedilecek; eğitim/kalibrasyon etiketi bu deneyden otomatik üretilmeyecek.
 - Ayrıntı: [E16](experiments/E16-sct-on-off-response-idle-low-current/README.md). Durum PLANLANDI; veri ve analiz bekleniyor.
+
+
+## 2026-11-07 — CH1 yüksüz kapalı alan eşiği (ADR-031)
+
+- Yaklaşık 10 saatlik fiziksel yüksüz CH1 HA History kaydı incelendi: 36.002 ham SCT ve 36.002 K uygulanmış akım örneği.
+- K=24.22 uygulanmış akım P95=0,23587365 A; ham SCT P95=0,00973880.
+- Kullanıcı kararıyla CH1 kapalı alan sınırı 0,24 A seçildi; örneklerin %96,33'ü bu değerin altında/eşit.
+- Sıçramalar filtrelenmedi. Ham CSV depoya eklenmedi; yalnız istatistiksel özet saklandı.
+- 0,24 A ile ilk güvenilir okuma arasındaki bölge hesaplanmadı alanıdır; ilk güvenilir okuma ve üzeri hesaplanacak.
+- İlk güvenilir okuma eşiği henüz bilinmiyor; sonraki deney hedefi bu sınırı bulmak.
+- [I007 istatistik özeti](data/off-noise/sessions/2026-11-07-ch1-closed-area-threshold.md), [ADR-031](docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md).
