@@ -148,14 +148,10 @@ HA History kaydı bir süre daha sürdürülecek. Ham CSV kullanıcı tarafında
 - 18 W'a göre dağılım daha dar ve büyük sıçramalar daha azdır. Bu, iki farklı oturum arasındaki gözlemdir; tek başına nedensellik kanıtı değildir.
 - Ayrıntı: [LOAD-57W-002](../../test-loads/57w-incandescent/README.md).
 
-## E17-C — 15 W mini buzdolabı ampulü, sürekli açık (sonraki ayrı deney)
+## E17-C — 15 W mini buzdolabı ampulü: yapılmayacak
 
-Kullanıcı, 18 W ve 57 W kayıtlarından sonra 15 W mini buzdolabı ampulüyle sürekli açık ayrı bir kayıt almayı planladı. Ampulün farklı tepki verebileceği kullanıcı ön beklentisidir; yeni kayıtla doğrulanmış değildir.
+Kullanıcı kararıyla E17-C kapatıldı. 18 W ve 57 W kayıtları CH1'in alt sınır/hesaplanmayan bölge davranışını göstermiştir. 15 W ile yeni bir sürekli yük oturumu aynı düşük akım bölgesini tekrar edeceğinden yeni bir karar veya teknik ayrım üretmesi beklenmiyor. Bu nedenle deney gereksiz kabul edildi ve yapılmadan kapatıldı.
 
-- E17-C, E17-A ve E17-B'den ayrı oturum olarak kaydedilecek.
-- Ampulün tam çalışma koşulu ve deney başlangıç saati o oturumda not edilecek.
-- 18 W, 57 W ve 15 W verileri tek zaman serisi veya tek deney sonucu gibi birleştirilmeyecek.
+## Sonuç durumu ve kapanış
 
-## Sonuç durumu
-
-E17-A (18 W) ve E17-B (57 W) CSV oturumları analiz edilip test-yükü kayıtlarına işlendi. İki kayıt da düşük akım davranış gözlemidir; CH1 hesaplanmadı alanında kaldığından kalibrasyon/±%4 doğrulaması değildir. E17-C (15 W mini buzdolabı ampulü) henüz başlatılmadı.
+E17-A (18 W) ve E17-B (57 W) CSV oturumları analiz edilip test-yükü kayıtlarına işlendi. İki kayıt da düşük akım davranış gözlemidir; CH1 hesaplanmadı alanında kaldığından kalibrasyon/±%4 doğrulaması değildir. Kullanıcı kararıyla E17-C (15 W mini buzdolabı ampulü) aynı gerekçeyle tekrar niteliğinde ve yeni bilgi üretmeyecek kabul edilerek yapılmadan kapatıldı. E17 bütünüyle KAPATILDI.
