@@ -474,3 +474,11 @@
 - 18 W uzun kayıt sürüyor; CSV analizi ve kararlılık değerlendirmesi beklemede.
 - Sonraki ayrı oturum adayı E17-B: 15 W mini buzdolabı ampulü sürekli açık. Farklı tepki gözlemi henüz yeni kayıtla doğrulanmadı.
 - Ayrıntı: [E17](experiments/E17-low-current-continuous-load-observation/README.md).
+
+
+## 2026-11-07 — E18 CH1 bias hattı kontrol deneyi planlandı
+
+- CH1 SCT sensörsüz kontrol deneyi açıldı. CH1 girişi boşta bırakılmayacak; ortak bias okuyan hatta bağlanacak.
+- Uzun HA History kaydında CH1 ham SCT/hesaplanmış akım ile mevcutsa ortak bias ve CH2/CH3 serileri karşılaştırılacak.
+- Amaç sensör sinyali olmadan ölçüm zinciri sıçramalarını araştırmak; tek başına ESP ADC arızası hükmü vermek değildir.
+- Firmware ve ölçüm ayarları sabit kalacak. Fiziksel bağlantı, kayıt ve analiz bekliyor. [E18](experiments/E18-ch1-bias-line-control/README.md).
