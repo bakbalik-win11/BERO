@@ -1,3 +1,12 @@
+## 2026-11-07 — Ölçülebilir alan başlangıcı 78 W olarak kabul edildi (LOAD-78W-001)
+
+- Kullanıcı kararı: mevcut CH1 kurulumunda ölçülebilir alanın başlangıcı 78 W'tır; bu noktadan itibaren sayısal akım değeri verilecek.
+- Düzenek: 57 W + 18 W akkor ampul, sürekli açık; PZEM aktif güç kullanıcı bildirimi 78,10 W.
+- Paylaşılan HA ekranının son değerleri: PZEM 0,341 A, CH1 0,366 A, ham SCT 0,01512 A. Anlık ekran değerleri arasındaki fark yaklaşık %7,33; ±%4 doğrulaması değildir.
+- 78 W için CSV ve kararlı pencere istatistiği yoktur; bu nedenle karar mevcut sabit yük gözlemleri ve ekran kanıtıyla sınırlıdır.
+- 18 W ve 57 W hesaplanmadı karakteristiği korunur; 100 W kısa CSV güçlü karşılaştırma kaydıdır.
+- K=24.22/firmware değiştirilmedi. Ayrıntı: [LOAD-78W-001](test-loads/78w-mixed-incandescent/README.md).
+
 ## 2026-11-07 — E17 sürekli düşük yük gözlemleri: 18 W ve 57 W
 
 - E17-A 18 W sürekli açık oturumunun 10:30–12:00 (+03:00) CSV bölümü analiz edildi: PZEM ortalama 0,07824 A / 17,635 W; CH1 5.401 örnek, ortalama 0,30571 A, SD 0,04477 A, CV %14,64, P95 0,36962 A, maksimum 1,29129 A.
