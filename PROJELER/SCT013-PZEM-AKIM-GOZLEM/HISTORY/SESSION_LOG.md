@@ -1910,3 +1910,10 @@ E17-A açık deneydir. CSV analizi, kararlılık sonucu, tekrarlanabilirlik, fir
 - Önce kolon/birim/timestamp ve örnekleme-güncelleme aralıkları doğrulanacak; piklerin öncesi-sırası-sonrası ve olası gecikmeler incelenecek.
 - SSR ON/OFF olayları ayrı metadata olarak tutulacak ve olası anahtarlama etkisi pencerelerini işaretlemek için kullanılacak; ölçüm hattının yük ON/OFF etiketi olmayacak.
 - Korelasyon nedensellik kanıtı sayılmayacak. PZEM çözünürlüğü veya güncelleme sıklığı yeterli değilse sonuç “mevcut kayıtla ayırt edilemedi” olarak verilecek. CSV henüz gelmedi; analiz yapılmadı.
+
+
+### E17-A — PZEM ve SCT güncelleme hızlarının farklı olması
+
+- Kullanıcı, PZEM akımının paket halinde daha seyrek, SCT verisinin ise daha sık yenilendiğini belirtti.
+- Korelasyonda iki akışın gerçek timestamp/güncelleme aralıkları ayrı incelenecek. Aynı PZEM değerinin birkaç SCT örneği boyunca görünmesi, arada PZEM'in tekrar ölçüm yaptığı anlamına gelmez.
+- SCT pikleri arasında yeni PZEM paketi yoksa bire bir anlık eşleştirme yapılmayacak; son yayınlanan PZEM değeri “son bilinen değer” olarak ayrıştırılacak. İnterpolasyonla ölçüm uydurulmayacak.
