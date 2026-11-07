@@ -34,13 +34,29 @@ Bu sınırlar mevcut CH1 kurulumu ve K=24.22 bağlamındadır; diğer kanallara 
 - 10:14 civarındaki grafik hareketi PZEM'i devreye alma/bağlantı denemeleriyle ilişkilendirildi; deney başlangıcı sayılmayacak ve E17-A verisine dahil edilmeyecek.
 - Firmware, K katsayısı ve örnekleme ayarlarında bu deney için değişiklik bildirimi yoktur; gerçek ayarlar CSV geldiğinde doğrulanacaktır.
 
+
+### SSR anahtarlama etkisi — deneyden ayrıştırma
+
+Bu deney, SSR anahtarlamasının SCT üzerindeki etkisini incelemek için değil, bu etkiden mümkün olduğunca bağımsız biçimde sürekli bağlı küçük yükün davranışını gözlemek için yürütülmektedir.
+
+Kullanıcının önceki günkü gözlemine göre SSR anahtarlaması CH1 sinyalini etkileyebilmektedir. Anahtarlama sırasında CH1 sinyali normal yüksüz/kapalı alan seviyesinin de belirgin biçimde altına inebilmektedir. Kullanıcı, paylaşılan grafikte yaklaşık 10:19 civarındaki keskin düşüşü bu anahtarlama etkisiyle ilişkilendirmiştir.
+
+Bu nedenle:
+- SSR, 18 W ampulün bağlı olduğu ölçüm hattını anahtarlamaz; ampul sürekli yanık kalır.
+- SSR'nin ayrı arka plan ON/OFF olayları veri içinde bulunabilir; ancak bu olaylar E17-A'nın yük ON/OFF durumu değildir.
+- SSR anahtarlamasıyla ilişkili geçici CH1 düşüşleri, 18 W sürekli yükün kararlı seviyesi veya kapalı alan tabanı olarak değerlendirilmez.
+- E17-A'nın temel değerlendirme aralığı, SSR anahtarlama geçişlerinden etkilenmeyen sürekli yük davranışıdır. Olay zamanları CSV analizinde işaretlenerek olası etkilenmiş örnekler ayrı tutulur.
+- Anahtarlama etkisinin kendisi ayrı bir araştırma konusudur; E17-A'nın ana amacı değildir.
+
+**Kanıt niteliği:** SSR anahtarlamasının CH1'i etkilediği önceki deney gözlemi kullanıcı tarafından bildirilmiştir. 10:19 civarındaki grafik düşüşü ekran görüntüsünden görülen olaydır; zaman eşleşmesi ve etki büyüklüğü ham CSV ile doğrulanmalıdır.
+
 ### SSR olay akışı — fiziksel yük hattından bağımsız
 
 Deney sırasında arka planda bir SSR ON/OFF döngüsü çalışmaktadır; ancak bu SSR, 18 W ampulün bağlı olduğu ve PZEM/SCT CH1 tarafından gözlenen ölçüm hattını anahtarlamamaktadır. 18 W ampul deney boyunca sürekli yanık kalır.
 
 Bu nedenle:
 - SSR ON/OFF olayları HA/veri kaydında bulunabilir; bunlar ayrı olay akışı/arka plan bilgisi olarak korunur.
-- Bu olaylar 18 W ölçüm hattındaki fiziksel yükün ON/OFF durumu veya deney yükünün geçiş zamanları olarak etiketlenmeyecektir.
+- Bu olaylar 18 W ölçüm hattındaki fiziksel yükün ON/OFF durumu veya deney yükünün geçiş zamanları olarak etiketlenmeyecektir. Önceki gözlemlerde SSR anahtarlamasının SCT sinyalini etkilediği bildirildiğinden, olay zamanları olası parazit/etki zamanlarını ayırmak için metadata olarak korunacaktır.
 - CH1 sıçramaları SSR olaylarıyla zaman bakımından çakışsa bile tek başına nedensellik veya yük anahtarlaması kanıtı sayılmaz.
 - İleride istenirse SSR olay zamanları ile CH1 değişimleri ayrı bir korelasyon incelemesinde karşılaştırılabilir; ancak bu deneyde olay akışı yük durumunu belirlemek için kullanılmaz.
 
