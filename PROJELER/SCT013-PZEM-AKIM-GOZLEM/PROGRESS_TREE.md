@@ -1,3 +1,10 @@
+## 2026-11-07 — 78 W ölçülebilir alan başlangıcı
+
+- Kullanıcı kararı: mevcut CH1 kurulumunda sayısal değer verilecek ölçülebilir alan 78 W'ta başlar.
+- 57 W + 18 W karma yükte PZEM gücü 78,10 W bildirildi; HA ekran son değerleri PZEM 0,341 A / CH1 0,366 A / ham SCT 0,01512 A.
+- Ekran son değerleri farkı yaklaşık %7,33; ±%4 doğrulaması değildir. 78 W CSV/kararlı pencere istatistiği henüz yoktur.
+- Ayrıntı: [LOAD-78W-001](test-loads/78w-mixed-incandescent/README.md). K=24.22 değişmedi.
+
 ## 2026-11-07 — E17 18 W ve 57 W sürekli yük istatistikleri
 
 - 18 W ve 57 W HA History CSV kayıtları analiz edilerek ayrı test-yükü karakteristiklerine dönüştürüldü.
