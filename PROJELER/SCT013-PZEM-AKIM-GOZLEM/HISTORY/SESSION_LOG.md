@@ -1,3 +1,14 @@
+## 2026-11-07 — RS485 kontrollü geçici Wi-Fi bakım modu
+
+### KARAR
+Normal işletimde veri omurgası RS485 A/B'dir ve Wi-Fi kapalı tutulur. Bakım/yazılım güncellemesi gerektiğinde ilgili düğüm RS485 üzerinden komut alarak geçici Wi-Fi bakım modunu açar. Bakım tamamlandığında Wi-Fi kapanır ve düğüm RS485 normal işletimine döner.
+
+### SINIRLAR
+Bu mimari kararı firmware özelliğinin uygulandığı veya test edildiği anlamına gelmez. Bakım komutunun yetkilendirilmesi, zaman aşımı, güncelleme bütünlüğü/doğrulaması ve başarısız güncellemede geri dönüş davranışı daha sonra tasarlanacaktır. RS485 üzerinde veri kaybını azaltmak/doğrulamak için mesaj hata kontrolü, alındı onayı ve yeniden gönderim kuralları ayrıca gereklidir; Wi-Fi'ın kapalı olması tek başına kayıpsız aktarımı garanti etmez.
+
+### İLGİLİ KARAR
+[ADR-001 — BERO kalıcı haberleşme omurgası olarak RS485](../../../MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md)
+
 ## 2026-11-01 — E11 yüksüz iki modül deneyi planlandı; deney sırası esnekleştirildi
 
 ### HEDEF
