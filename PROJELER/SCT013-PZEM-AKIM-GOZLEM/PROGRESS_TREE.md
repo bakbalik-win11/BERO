@@ -1,11 +1,3 @@
-## 2026-11-07 — Wi-Fi bakım modu mimari kararı
-
-- Normal işletimde ölçüm/veri aktarımı RS485 A/B üzerinden yürütülür; Wi-Fi kapalıdır.
-- Bakım veya yazılım güncellemesi için ilgili düğüm RS485 komutuyla geçici Wi-Fi bakım moduna alınır.
-- İşlem tamamlandığında Wi-Fi kapatılır ve normal RS485 işletimine dönülür.
-- Wi-Fi kalıcı veri taşıma yolu değildir. Bakım komutu, yetkilendirme, zaman aşımı, güncelleme doğrulaması ve geri dönüş davranışları henüz tasarlanmamış/uygulanmamıştır.
-- RS485 veri bütünlüğü için hata tespiti, alındı onayı ve yeniden gönderim mekanizmaları ayrıca tasarlanacaktır.
-
 ## 2026-11-01 — ADR-025
 
 - Kararlı SCT/PZEM alanları katsayı öğrenmek için kullanılır; ham kayıt korunur.
