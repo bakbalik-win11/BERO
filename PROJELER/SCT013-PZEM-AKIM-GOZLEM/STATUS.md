@@ -304,3 +304,12 @@ Kullanıcının gün sonu değerlendirmesi:
 - PZEM'de aynı değerin birden fazla SCT örneği boyunca görünmesi, her SCT pikinde yeni PZEM ölçümü yapıldığı anlamına gelmez. Timestamp ve gerçek güncelleme aralıkları ayrı çıkarılacak.
 - SCT pikleri PZEM güncellemeleri arasında ise bire bir anlık eşleştirme yapılmayacak; son yayınlanan PZEM değeri ile yeni PZEM ölçümünü birbirinden ayıracağız. Aradaki PZEM ölçümleri interpolasyonla uydurulmayacak.
 - Veri çözünürlüğü hızlı pik korelasyonuna yetmiyorsa bu sınırlılık sonuçta açıkça belirtilecek. Ayrıntı: [E17](experiments/E17-low-current-continuous-load-observation/README.md).
+
+
+## 2026-11-07 — E18 CH1 bias hattı kontrol deneyi planlandı
+
+- Kullanıcı, E17 düşük akım ampul deneylerinden ayrı olarak CH1 SCT sensörünü çıkarmayı ve uzun kayıt almayı önerdi.
+- Bağlantı yöntemi netleştirildi: CH1 SCT çıkarılacak; CH1 ölçüm noktası boşta bırakılmayacak, ortak bias okuyan hatta bağlanacak.
+- Amaç, SCT sinyali olmadan CH1 ölçüm zincirinin sıçrama üretip üretmediğini gözlemek. Bu deney ESP ADC arızasını tek başına kanıtlamaz; bias hattı, bağlantı, ortak parazit ve yazılım etkileri de değerlendirme kapsamındadır.
+- Firmware/YAML, K, sample_duration, update_interval ve diğer kanallar değiştirilmeden uzun Home Assistant History kaydı alınacak. Ortak bias ve varsa CH2/CH3 kontrol serileri korunacak.
+- Fiziksel bağlantı ve kayıt henüz yapılmadı; deney **PLANLANDI** durumundadır. [E18 protokolü](experiments/E18-ch1-bias-line-control/README.md).
