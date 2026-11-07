@@ -57,9 +57,3 @@ Kullanıcı gözlemine göre bias hattı üzerinden CH1, tekil sıçramalar dı�
 
 **SONUÇ:** KAPATILDI — yeni bias hattı gözlemi planlanmayacak.
 
-
-## Kapanış — kullanıcı kararı
-
-E18, bias hattı gözleminin sıçramalar dışında stabil olması ve kalan düşük akım belirsizliğinin CH1 sensörünün ölçüm alt sınırı/ölü bölgesiyle ilgili kabul edilmesi nedeniyle kapatıldı. Bu sonuç ADC, kablolama veya tüm analog ölçüm zincirinin kusursuz olduğunu kanıtlamaz; yalnızca bias hattını ana şüpheli olarak araştırmayı sürdürmek için gerekçe kalmadığını belirtir. Yeni bir tekrarlı bias kontrolü planlanmayacaktır.
-
-**SONUÇ:** KAPATILDI — kullanıcı gözlemi esas alındı; ayrıca sayısal CSV istatistiği veya donanım arızası teşhisi iddia edilmez.
