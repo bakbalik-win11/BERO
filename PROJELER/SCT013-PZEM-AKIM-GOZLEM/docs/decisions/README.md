@@ -28,3 +28,5 @@ Dosya slug'ları farklıdır ve bağlantılar bu dosya adları üzerinden çalı
 
 - [ADR-023 — Olay kimliğinde TIME alanının kaldırılması](ADR-023-event-identity-without-time.md)
 - [ADR-024 — Python tarafında ON/OFF paket bütünlüğü doğrulaması](ADR-024-python-packet-completeness-validation.md)
+
+- [ADR-031 — CH1 yüksüz kapalı alan eşiği](ADR-031-ch1-idle-closed-area-threshold.md)
