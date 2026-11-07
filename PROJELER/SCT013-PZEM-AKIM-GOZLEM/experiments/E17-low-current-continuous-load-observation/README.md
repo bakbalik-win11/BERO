@@ -44,6 +44,22 @@ Kullanıcının paylaştığı HA grafiğinin lejantındaki son değerler:
 
 Grafikte CH1 hesaplanmış akım eğrisi 10:21 sonrasında yaklaşık 0,28–0,30 A çevresinde seyrediyor. Bu, CH1'in fiziksel yük varlığına tepki verdiğine ilişkin **ilk ekran gözlemidir**; kararlılık veya tekrar edilebilirlik sonucu değildir. PZEM'in 0,078 A okuması 18 W / 227,1 V için beklenen yaklaşık 0,079 A düzeyiyle uyumludur (basit güç/gerilim hesabı; ampulün gerçek çalışma gücü ayrıca ölçülmedi).
 
+
+### Güncel ekran gözlemi — 2026-11-07, yaklaşık 10:26
+
+Kullanıcının sonraki HA History ekran görüntüsündeki lejant son değerleri:
+- PZEM gerilimi: 226,2 V.
+- PZEM akımı: 0,078 A.
+- PZEM aktif güç grafiği: yük devredeyken yaklaşık 17,5–17,8 W.
+- CH1 hesaplanmış akım: 0,325 A.
+- CH1 ham SCT değeri: 0,01341 A.
+
+Grafikte PZEM güç çizgisi yaklaşık 10:20 civarında 17,5–17,8 W seviyesine çıkıyor. CH1 hesaplanmış akımı bu geçişte kısa süreli değişim gösterdikten sonra yaklaşık 0,28–0,33 A bandında seyrediyor; tekil tepe değerleri yaklaşık 0,5 A'ya yaklaşıyor. Bu zaman grafiği gözlemidir; CSV istatistiği değildir.
+
+**Yorum:** PZEM'in 0,078 A / yaklaşık 17,5–17,8 W gösterimi ile CH1'in 0,325 A göstermesi, CH1'in bu küçük yükte tepki verdiğini ancak akım genliğini PZEM referansıyla uyumlu ölçmediğini gösteren ek bir ekran kanıtıdır. 0,325 A, 0,24–0,41 A hesaplanmadı alanındadır; sayısal akım olarak kabul edilmez. Ham SCT 0,01341 A ayrı ham entity değeridir; amper cinsinden PZEM akımıyla doğrudan karşılaştırılmaz.
+
+Bu ekran görüntüsü E17-A'nın devam eden aynı oturumuna ait ek gözlemdir. 10:20 civarındaki güç yükselişi grafikte görünmektedir; kullanıcının bildirdiği deney başlangıç saati 10:21 olarak korunur. Ekran çözünürlüğünden daha kesin olay zamanı çıkarılmaz. Kararlılık/tekrar edilebilirlik için HA History CSV analizi beklenir.
+
 ### Geçici yorum ve kullanıcı kararı
 
 CH1'in 18 W yükte tepki verdiği görülüyor; ancak 0,277–0,30 A çıktısı 0,24–0,41 A hesaplanmadı alanına düşüyor. Bu nedenle:
