@@ -287,3 +287,12 @@ Kullanıcının gün sonu değerlendirmesi:
 - Kullanıcı, önceki gün SSR anahtarlamasının CH1 sinyalini etkilediğini ve anahtarlama sırasında sinyalin normal kapalı alan seviyesinin de altına düşebildiğini bildirdi. Grafikte yaklaşık 10:19'daki belirgin düşüş bu etkiyle ilişkilendirildi; zaman eşleşmesi CSV ile doğrulanacaktır.
 - SSR, 18 W ampulün ölçüm hattına bağlı değildir; ampul sürekli yanar. SSR ON/OFF olayları ayrı metadata olarak tutulur; yük durumu etiketi yapılmaz. Anahtarlama geçişleriyle ilişkili CH1 düşüşleri sürekli yükün kararlı seviyesi/kapalı tabanı sayılmaz.
 - Ayrıntı: [E17](experiments/E17-low-current-continuous-load-observation/README.md).
+
+
+
+## 2026-11-07 — E17-A CSV analizi için PZEM/SCT pik korelasyonu planlandı
+
+- CSV geldiğinde CH1 ham SCT ve hesaplanmış akım pikleri; PZEM gerilim, akım, aktif güç, PF ve frekans serileriyle zaman ekseninde karşılaştırılacak.
+- Gerçek kolonlar, birimler, timestamp ve her serinin güncelleme/örnekleme aralığı doğrulanacak. Piklerin öncesi-sırası-sonrası, tepe genliği, aralıkları, eşzamanlılık ve olası gecikme incelenecek.
+- SSR olayları ayrı metadata olarak kalacak; ölçüm hattının yük durumu etiketi yapılmayacak. Anahtarlama zamanları olası etki pencerelerini ayırmak için kullanılabilir.
+- Korelasyon nedensellik sayılmayacak; PZEM çözünürlüğü/güncelleme hızı yetersizse sonuç “ayırt edilemedi” olarak raporlanacak. CSV henüz gelmedi; analiz yapılmadı. [E17](experiments/E17-low-current-continuous-load-observation/README.md).
