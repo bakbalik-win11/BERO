@@ -1893,3 +1893,11 @@ E17-A açık deneydir. CSV analizi, kararlılık sonucu, tekrarlanabilirlik, fir
 - Kullanıcı, arka planda SSR ON/OFF döngüsü bulunduğunu; ancak SSR'nin 18 W ampulün bağlı olduğu ölçüm hattını anahtarlamadığını açıkladı.
 - 18 W ampul sürekli yanık kalır. SSR ON/OFF olayları veri kaydında görünebilir, fakat ölçüm hattının yük durumu olarak yorumlanmayacaktır.
 - CH1 sivri sıçramaları SSR olaylarıyla çakışsa dahi doğrudan fiziksel yük geçişi veya nedensellik kabul edilmeyecek. Olay akışı ayrı metadata olarak korunacaktır.
+
+
+
+### E17-A — SSR anahtarlama etkisini sürekli yük gözleminden ayırma
+
+- Kullanıcı, önceki gün SSR anahtarlamasının SCT CH1'i etkilediğini; anahtarlama sırasında sinyalin normal kapalı alan seviyesinden de daha aşağı düşebildiğini belirtti.
+- Paylaşılan grafikte yaklaşık 10:19 civarındaki keskin düşüş bu etkiyle ilişkilendirildi. Bu yorum kullanıcı gözlemi olarak kaydedildi; kesin zaman korelasyonu ve etki büyüklüğü CSV ile doğrulanacak.
+- E17-A'nın amacı SSR anahtarlamasını incelemek değil, 18 W sürekli yükün SCT davranışını anahtarlama etkisinden mümkün olduğunca ayrı gözlemlemektir. SSR olayları ayrı metadata olarak saklanacak; yük ON/OFF etiketi veya sürekli yükün kararlı seviyesi olarak yorumlanmayacak.
