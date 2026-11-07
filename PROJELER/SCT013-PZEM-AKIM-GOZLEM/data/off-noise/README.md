@@ -67,3 +67,17 @@ Mevcut Modül 2 firmware kaynağında interval=2s ile üç SCT kanalı sıralı 
 2. Üç kanal birlikte açıkken her kanalın sürdürülebilir güncelleme hızı, zaman kayması, örnek kaybı, gürültü ve akım değerlerinin mevcut referansa göre değişimi.
 
 2 Hz veri üretmek, her ölçümün 500 ms boyunca örneklendiği anlamına gelmez. Mevcut 200 ms sample_duration korunarak 500 ms aralıklarla sonuç üretmek ayrı bir tasarım hedefidir. K=24.22 ve diğer koşullar ilk hız testinde sabit tutulmalı; firmware değişikliği kullanıcı onayıyla ayrı kontrollü testte yapılmalıdır.
+
+
+## 2026-11-07 — CH1 yüksüz 10 saat kaydı ve kapalı alan kararı (ADR-031)
+
+Kullanıcı kararı: Bu 10 saatlik CH1 fiziksel yüksüz kayıt, ilk kapalı alan sınırını belirlemek için yeterli kabul edildi. Bu karar için 7–10 günlük çoklu oturum bekleme koşulu aranmayacaktır. Çoklu oturum verileri ileride oturumlar arası değişimi incelemek için eklenebilir; mevcut CH1 kararının ön koşulu değildir.
+
+- 36.002 CH1 akım örneği ve 36.002 CH1 ham SCT örneği incelendi.
+- K=24.22 uygulanmış akım P95: 0,23587365 A; ham SCT P95: 0,00973880.
+- Seçilen kapalı alan üst sınırı: **0,24 A**. Bu eşikte örneklerin %96,33'ü eşik altında/eşit; %3,67'si üzerindedir.
+- Sıçramalar temizlenmedi; karar P95 ve pratik yuvarlama ile verildi.
+- Kaynak CSV kullanıcı isteğiyle depoya eklenmedi; yalnızca istatistiksel özet saklandı.
+- Ayrıntı: [CH1 istatistik özeti](sessions/2026-11-07-ch1-closed-area-threshold.md), [ADR-031](../../docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md).
+
+Bu karar CH1 ve bu yüksüz koşulla sınırlıdır; diğer kanallara otomatik genellenmez. I007 çoklu oturum karakterizasyonu ek araştırma olarak sürebilir, ancak mevcut kapalı alan kararının ön koşulu değildir.
