@@ -155,3 +155,10 @@ Python-1 kaynak History CSV'sini değiştirmeden doğrular ve arşivler; bu üç
 Her eğitim veri seti tek bir SCT kanalından oluşur; CH1, CH2 ve CH3 için ayrı setler ve ayrı model değerlendirmeleri yürütülür. PZEM akımı proje referansıdır. Üç kanallı test firmware'i, günlük deney adları ve ham arşiv bu kararla değiştirilmez.
 
 Ayrıntı: [ADR-027](docs/decisions/ADR-027-single-channel-training-datasets.md) ve [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md). T007/T008 uygulaması ve gerçek eğitim çıktısı tamamlanmış değildir.
+
+
+## 2026-11-07 — CH1 yüksüz kapalı alan sınırı ve sonraki deney hedefi
+
+CH1 için fiziksel yüksüz koşulda alınan yaklaşık 10 saatlik HA History kaydı (36.002 örnek) üzerinden K=24.22 uygulanmış akımın P95 değeri 0,23587365 A bulundu. Kullanıcı kararıyla CH1 kapalı alan üst sınırı **0,24 A** olarak sabitlendi. Bu eşikte ölçümlerin %96,33'ü 0,24 A veya altındadır. Ham CSV depoya eklenmedi; istatistiksel özet [I007 raporunda](data/off-noise/sessions/2026-11-07-ch1-closed-area-threshold.md) tutulur.
+
+Sonraki ölçüm hedefi, **0,24 A ile ilk güvenilir akım okuması arasındaki hesaplanmadı alanının** üst sınırını kontrollü yük deneyleriyle belirlemektir. İlk güvenilir okumanın sayısal değeri henüz belirlenmedi. Bu karar yalnız CH1 ve incelenen yüksüz koşula aittir; CH2/CH3'e genellenmez. Ayrıntı: [ADR-031](docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md).
