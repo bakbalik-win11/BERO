@@ -20,17 +20,17 @@ Bu dizin, ölçülen iletkende fiziksel yük akımının 0 A olduğu uzun sürel
 - GPIO35: ortak bias.
 - Ham kanal ölçümleri korunur. Tur başına normalize edilmiş değer yalnız yardımcı kıyaslamadır.
 - Her oturum ve kümülatif rapor kanal başına örnek sayısı, medyan, P95, P99, maksimum, saçılım ve zaman davranışını içerir.
-- Havuz ON kalibrasyonundan ve PZEM–SCT ON eşleştirmesinden ayrıdır. İlk hedef yaklaşık 7–10 gün; kullanıcı isterse daha uzun devam eder. Yeterli oturumlar arası veri oluşmadan eşik/model belirlenmez.
+- Havuz ON kalibrasyonundan ve PZEM–SCT ON eşleştirmesinden ayrıdır. Başlangıçta 7–10 günlük çoklu oturum hedefi, oturumlar arası gürültü değişimini karakterize etmek içindir. 2026-11-07 tarihli kullanıcı kararıyla CH1'in ilk kapalı alan eşiği için 10 saatlik tek yüksüz kayıt yeterli kabul edilmiş ve 0,24 A eşiği belirlenmiştir; çoklu oturum birikimi bu ilk kararın ön koşulu değildir. Çoklu oturumlar ileride eşik dayanıklılığını/oturumlar arası değişimi incelemek için sürdürülebilir.
 
 ## Dosya düzeni
 
-İlk gerçek HA CSV'si geldikten sonra gerçek veri kolonları, boyut ve satır yapısına göre aşağıdaki içerik oluşturulacaktır:
+İlk gerçek HA CSV'si geldiğinde gerçek veri kolonları, boyut ve satır yapısına göre aşağıdaki içerik planlanmıştı; mevcut durumda ilk CH1 istatistik özeti oluşturulmuştur:
 - oturum bazlı değişmez kaynak CSV arşivleri;
 - oturum indeksi ve kalite kontrol/özet kayıtları;
 - ham kayıtları bir araya getiren kümülatif veri dosyası;
 - kümülatif istatistik/dağılım raporu.
 
-Henüz CSV gelmediği için bu dizinde ölçüm verisi veya kümülatif sayısal sonuç bulunmamaktadır.
+Kaynak CSV kullanıcı isteğiyle GitHub'a eklenmedi. İlk CH1 yüksüz oturumunun yalnızca istatistiksel özeti [oturum raporunda](sessions/2026-11-07-ch1-closed-area-threshold.md) tutulur. Kümülatif çoklu oturum ham veri havuzu henüz oluşturulmamıştır.
 
 
 ## İlk oturum kaydı — 2026-11-05
