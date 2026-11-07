@@ -58,3 +58,12 @@ Akım sensörünün BERO'daki rolü bu örnekte özellikle önemlidir: Akım öl
 Sensörler birbirinin yerine geçmez. Örneğin fan akımı motorun elektriksel olarak çalıştığına dair kanıt sağlayabilir; fakat tek başına yeterli hava debisi veya doğru temiz hava beslemesini kanıtlamaz. CO₂, akım, gürültü, titreşim ve gerekiyorsa debi/basınç verileri zaman ilişkileriyle birlikte değerlendirilmelidir. Birden fazla sensörün aynı anda gözlem yapması, tek bir ölçümden çıkarılamayacak davranış değişimlerini araştırma imkânı sağlar.
 
 Bu havalandırma senaryosu BERO'nun hedeflenen kullanım alanlarından biridir; mevcut canlı BERO kurulumunda entegre ve çalışan bir havalandırma uygulaması olduğu anlamına gelmez. Mevcut SCT013-PZEM çalışması diğer evdeki hazırlık/geliştirme çalışması olarak kalır; bu vizyon kısa vadeli SCT veri toplama görevlerini değiştirmez.
+
+
+## Kalıcı haberleşme omurgası
+
+BERO'nun kalıcı haberleşme omurgası **RS485** olarak kararlaştırılmıştır. ESP tabanlı ölçüm düğümleri verilerini RS485 üzerinden bölgesel düğümlere aktaracak şekilde geliştirilecektir. Wi-Fi şimdilik geçici haberleşme/aktarım yoludur; kalıcı omurga değildir.
+
+RS485 fiziksel haberleşme katmanıdır. PZEM-014 ile RS485 üzerinden kullanılacak Modbus RTU, BERO bölgesel düğümleri arasındaki uygulama mesajlaşma protokolüyle aynı karar değildir. Düğümler arası mesaj çerçevesi, adresleme, bus erişimi, baud hızı, topoloji ve elektriksel ayrıntılar henüz belirlenmemiştir. PZEM-014 henüz kullanılmamış; ekranlı ESP'ler de henüz devreye alınmamıştır.
+
+Karar kaydı: [ADR-001 — BERO kalıcı haberleşme omurgası olarak RS485](DECISIONS/ADR-001-rs485-communication-backbone.md).
