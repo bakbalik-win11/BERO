@@ -1953,3 +1953,12 @@ RS485 fiziksel/elektriksel katmandır. PZEM-014'ün Modbus RTU protokolü ile BE
 
 ### DEPO / DOĞRULAMA
 MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md oluşturuldu; MIMARI README, proje STATUS, PROGRESS_TREE ve bu oturum kaydı güncellendi. Bu yalnızca mimari dokümantasyon değişikliğidir. PZEM-014, RS485 hattı, ESP düğümleri ve ekranlar üzerinde fiziksel test yapılmadı.
+
+
+### RS485 kablolama yaklaşımı — kullanıcı kararı
+
+- RS485 A/B haberleşmesi CAT kablo üzerinden taşınacak.
+- Transformatör besleme gerilimi aynı kablo üzerinden bölgesel düğüme ulaştırılacak; düğümde 5 V'a düşürülecek.
+- Bu kablo mevcut Ethernet kablosundan dış kılıf rengiyle ayrılacak.
+- Kesin kablo/pair tahsisi, transformatör çıkışı, yük akımı, mesafe-gerilim düşümü, dönüştürücü ve koruma tasarımı açık kaldı.
+- Güvenlik notu: BERO kablosu Ethernet/LAN portlarına bağlanmamalı; renk ayrımına ek olarak her iki uç etiketlenmeli. Gerilim ve akım değerleri belirlenmeden kablo beslemesi devreye alınmamalı.
