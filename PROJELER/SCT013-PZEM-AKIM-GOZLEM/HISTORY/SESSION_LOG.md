@@ -1960,5 +1960,5 @@ MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md oluşturuldu; MIMARI RE
 - RS485 A/B haberleşmesi CAT kablo üzerinden taşınacak.
 - Transformatör besleme gerilimi aynı kablo üzerinden bölgesel düğüme ulaştırılacak; düğümde 5 V'a düşürülecek.
 - Bu kablo mevcut Ethernet kablosundan dış kılıf rengiyle ayrılacak.
-- Kesin kablo/pair tahsisi, transformatör çıkışı, yük akımı, mesafe-gerilim düşümü, dönüştürücü ve koruma tasarımı açık kaldı.
+- Kesin kablo/pair tahsisi, 24 V DC ana beslemenin kapasitesi, yük akımı, mesafe-gerilim düşümü, dönüştürücü ve koruma tasarımı açık kaldı.
 - Güvenlik notu: BERO kablosu Ethernet/LAN portlarına bağlanmamalı; renk ayrımına ek olarak her iki uç etiketlenmeli. Gerilim ve akım değerleri belirlenmeden kablo beslemesi devreye alınmamalı.
