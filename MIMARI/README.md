@@ -67,3 +67,10 @@ BERO'nun kalıcı haberleşme omurgası **RS485** olarak kararlaştırılmışt�
 RS485 fiziksel haberleşme katmanıdır. PZEM-014 ile RS485 üzerinden kullanılacak Modbus RTU, BERO bölgesel düğümleri arasındaki uygulama mesajlaşma protokolüyle aynı karar değildir. Düğümler arası mesaj çerçevesi, adresleme, bus erişimi, baud hızı, topoloji ve elektriksel ayrıntılar henüz belirlenmemiştir. PZEM-014 henüz kullanılmamış; ekranlı ESP'ler de henüz devreye alınmamıştır.
 
 Karar kaydı: [ADR-001 — BERO kalıcı haberleşme omurgası olarak RS485](DECISIONS/ADR-001-rs485-communication-backbone.md).
+
+
+### RS485 omurga kablolama yaklaşımı
+
+Kullanıcı kararı: RS485 A/B hattı CAT kablo üzerinden taşınacak; aynı kablo ile transformatör kaynaklı besleme gerilimi de bölgesel düğüme götürülecek ve düğüm noktasında 5 V'a düşürülecek. Bu özel BERO kablosu, mevcut Ethernet kablosundan dış kılıf rengiyle ayırt edilecek. CAT kablonun kesin kategorisi/damar tahsisi, transformatör çıkış gerilimi, akım ve mesafeye göre gerilim düşümü, yerel dönüştürücü ve koruma tasarımı henüz belirlenmedi. Bu kablo Ethernet/LAN portlarına takılmayacak; fiziksel renk ayrımı yanında uçlar da açıkça etiketlenmeli.
+
+Ayrıntı: [ADR-001 — RS485 omurgası ve kablolama kararı](DECISIONS/ADR-001-rs485-communication-backbone.md).
