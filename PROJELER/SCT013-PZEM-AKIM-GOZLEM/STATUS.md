@@ -327,3 +327,15 @@ Kullanıcı kararı:
 Bu kayıt mimari kararıdır. RS485 bağlantısı, düğümler arası aktarım, PZEM-014 okuması ve ekranlar henüz fiziksel olarak devreye alınmamış/doğrulanmamıştır. Topoloji, adresleme, mesaj çerçevesi, baud hızı ve transceiver seçimi açık bırakılmıştır.
 
 Ayrıntı: [MIMARI/DECISIONS/ADR-001](../../MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md).
+
+
+## 2026-11-07 — RS485 omurga kablo yaklaşımı netleştirildi
+
+Kullanıcı tarafından belirlenen fiziksel yaklaşım:
+- RS485 A/B haberleşmesi CAT kablo üzerinden taşınacak.
+- Transformatörden gelen besleme gerilimi aynı kabloyla bölgesel düğüme taşınacak; düğüm noktasında 5 V'a dönüştürülecek.
+- Bu BERO kablosu, mevcut Ethernet kablosundan dış kılıf rengiyle ayırt edilecek.
+
+Kesin CAT tipi ve damar/pair tahsisi, transformatör sekonder gerilimi, düğüm akımı, kablo mesafesi/gerilim düşümü, 5 V dönüştürücü, sigorta/koruma ve referans-topraklama ayrıntıları henüz hesaplanmadı. Kablo uçları Ethernet/LAN portlarına bağlanmamalı; farklı renk tek başına yeterli güvenlik önlemi sayılmayıp uçlar da etiketlenmelidir.
+
+Bu kayıt kablolama yaklaşımını belgeliyor; gerçek kablo kurulumu veya elektriksel doğrulama yapıldığı anlamına gelmez. [ADR-001](../../MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md).
