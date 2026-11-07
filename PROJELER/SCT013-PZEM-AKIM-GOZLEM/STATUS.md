@@ -333,9 +333,9 @@ Ayrıntı: [MIMARI/DECISIONS/ADR-001](../../MIMARI/DECISIONS/ADR-001-rs485-commu
 
 Kullanıcı tarafından belirlenen fiziksel yaklaşım:
 - RS485 A/B haberleşmesi CAT kablo üzerinden taşınacak.
-- Transformatörden gelen besleme gerilimi aynı kabloyla bölgesel düğüme taşınacak; düğüm noktasında 5 V'a dönüştürülecek.
+- RS485 A/B hattının yanında 24 V DC ana besleme aynı CAT kabloyla bölgesel düğüme taşınacak; düğüm noktasında DC-DC dönüştürücüyle 5 V'a indirilecek.
 - Bu BERO kablosu, mevcut Ethernet kablosundan dış kılıf rengiyle ayırt edilecek.
 
-Kesin CAT tipi ve damar/pair tahsisi, transformatör sekonder gerilimi, düğüm akımı, kablo mesafesi/gerilim düşümü, 5 V dönüştürücü, sigorta/koruma ve referans-topraklama ayrıntıları henüz hesaplanmadı. Kablo uçları Ethernet/LAN portlarına bağlanmamalı; farklı renk tek başına yeterli güvenlik önlemi sayılmayıp uçlar da etiketlenmelidir.
+Kesin CAT tipi ve damar/pair tahsisi, 24 V DC ana beslemenin kapasitesi, düğüm akımı, kablo mesafesi/gerilim düşümü, 5 V dönüştürücü, sigorta/koruma ve referans-topraklama ayrıntıları henüz hesaplanmadı. Kablo uçları Ethernet/LAN portlarına bağlanmamalı; farklı renk tek başına yeterli güvenlik önlemi sayılmayıp uçlar da etiketlenmelidir.
 
 Bu kayıt kablolama yaklaşımını belgeliyor; gerçek kablo kurulumu veya elektriksel doğrulama yapıldığı anlamına gelmez. [ADR-001](../../MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md).
