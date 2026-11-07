@@ -1901,3 +1901,12 @@ E17-A açık deneydir. CSV analizi, kararlılık sonucu, tekrarlanabilirlik, fir
 - Kullanıcı, önceki gün SSR anahtarlamasının SCT CH1'i etkilediğini; anahtarlama sırasında sinyalin normal kapalı alan seviyesinden de daha aşağı düşebildiğini belirtti.
 - Paylaşılan grafikte yaklaşık 10:19 civarındaki keskin düşüş bu etkiyle ilişkilendirildi. Bu yorum kullanıcı gözlemi olarak kaydedildi; kesin zaman korelasyonu ve etki büyüklüğü CSV ile doğrulanacak.
 - E17-A'nın amacı SSR anahtarlamasını incelemek değil, 18 W sürekli yükün SCT davranışını anahtarlama etkisinden mümkün olduğunca ayrı gözlemlemektir. SSR olayları ayrı metadata olarak saklanacak; yük ON/OFF etiketi veya sürekli yükün kararlı seviyesi olarak yorumlanmayacak.
+
+
+
+### E17-A — PZEM değişkenleri ile SCT pik korelasyonu (CSV bekleniyor)
+
+- Kullanıcı isteğiyle, CSV geldiğinde CH1 ham SCT ve hesaplanmış akım pikleri PZEM gerilim, akım, aktif güç, PF ve frekans serileriyle zaman bakımından korele edilecek.
+- Önce kolon/birim/timestamp ve örnekleme-güncelleme aralıkları doğrulanacak; piklerin öncesi-sırası-sonrası ve olası gecikmeler incelenecek.
+- SSR ON/OFF olayları ayrı metadata olarak tutulacak ve olası anahtarlama etkisi pencerelerini işaretlemek için kullanılacak; ölçüm hattının yük ON/OFF etiketi olmayacak.
+- Korelasyon nedensellik kanıtı sayılmayacak. PZEM çözünürlüğü veya güncelleme sıklığı yeterli değilse sonuç “mevcut kayıtla ayırt edilemedi” olarak verilecek. CSV henüz gelmedi; analiz yapılmadı.
