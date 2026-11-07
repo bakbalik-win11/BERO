@@ -74,5 +74,3 @@ Karar kaydı: [ADR-001 — BERO kalıcı haberleşme omurgası olarak RS485](DEC
 Kullanıcı kararı: RS485 A/B hattı CAT kablo üzerinden taşınacak; aynı kablo ile transformatör kaynaklı besleme gerilimi de bölgesel düğüme götürülecek ve düğüm noktasında 5 V'a düşürülecek. Bu özel BERO kablosu, mevcut Ethernet kablosundan dış kılıf rengiyle ayırt edilecek. CAT kablonun kesin kategorisi/damar tahsisi, 24 V DC kaynağın kapasitesi, akım ve mesafeye göre gerilim düşümü, yerel dönüştürücü ve koruma tasarımı henüz belirlenmedi. Bu kablo Ethernet/LAN portlarına takılmayacak; fiziksel renk ayrımı yanında uçlar da açıkça etiketlenmeli.
 
 Ayrıntı: [ADR-001 — RS485 omurgası ve kablolama kararı](DECISIONS/ADR-001-rs485-communication-backbone.md).
-- **Wi-Fi işletim ilkesi:** Normal işletimde kapalıdır. Bakım/yazılım güncellemesi gerektiğinde ilgili düğüm RS485 komutuyla geçici Wi-Fi bakım moduna alınır; işlem tamamlanınca Wi-Fi kapatılarak RS485 normal işletimine dönülür. Wi-Fi, kalıcı veri taşıma yolu değildir. Bakım komutunun yetkilendirilmesi, zaman aşımı, güncelleme doğrulaması ve geri dönüş davranışı uygulama tasarımında belirlenecektir.
-
