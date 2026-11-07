@@ -518,3 +518,13 @@
 - BERO RS485/besleme kablosu, mevcut Ethernet hattından dış kılıf rengiyle ayrılacak; uçlar ayrıca etiketlenecek ve LAN portlarına takılmayacak.
 - CAT tipi/pair tahsisi, 24 V DC ana beslemenin kapasitesi, akım, mesafe-gerilim düşümü, dönüştürücü ve koruma tasarımı henüz belirlenmedi.
 - **Durum:** Kablolama yaklaşımı kullanıcı kararı olarak kaydedildi; fiziksel kurulum ve elektriksel/haberleşme testi yapılmadı. [ADR-001](../../MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md).
+
+
+## 2026-11-07 — E16, E17 ve E18 kapatıldı; Python/eğitim odağı
+
+- **E16 KAPATILDI:** Kullanıcı kararıyla CH1 alt sınırı ve ölü/hesaplanmayan alan belirlendi; aynı alan için ayrı ON/OFF gözlemi tekrarlanmayacak.
+- **E17 KAPATILDI:** E17-A 18 W ve E17-B 57 W analizleri mevcut; E17-C 15 W mini buzdolabı ampulü deneyi yeni bilgi üretmeyeceği ve aynı düşük akım alanını tekrar edeceği için yapılmadan kapatıldı.
+- **E18 KAPATILDI:** Kullanıcı gözleminde bias hattı CH1'de tekil sıçramalar dışında stabil. Dalgalanmanın ana kaynağı bias hattı olarak sürdürülmeyecek; sıçramaların kesin nedeni teşhis edilmiş sayılmaz.
+- **Yeni odak:** T007 Python-1 HA History alım/doğrulama/arşiv; T008 paket bütünlüğü, SCT/PZEM kararlı alan analizi ve etiketleme; ardından cihaz program evreleri için eğitim/bağımsız test.
+- **Araştırma sorusu:** Çamaşır makinesi gibi programlı cihazlarda rezistans, motor, pompa, valf ve yardımcı yükler hangi akım/genlik/zaman örüntülerini üretir; bu örüntüler SCT verisinden ayırt edilebilir mi?
+- SCT'nin 2 A altındaki performansı açık sorudur. Ölçüm doğruluğu, güç/akım gözlemi, geçiş tepkisi ve program evresi sınıflandırma başarısı ayrı ölçütlerdir. Yeterlilik sonucu veri analizi ve eğitim testinden sonra verilecektir.
