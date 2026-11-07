@@ -62,3 +62,63 @@ SCT yalnız tek yalıtılmış iletkeni çevrelemelidir; faz ve nötr birlikte g
 - **DURUM:** Test AÇIK kalır; UNIT'in aynı zamanlı kararlı pencerede tekrar kaydı ve mümkünse PZEM akım/PF verisi beklenir.
 - **ANALİZ:** [Log 58 teknik analiz](../../logs/module2/2026-10-31-load-57w-001-module2-sct1-analysis.md).
 - **HAM LOG:** [Log 58 tam ham TXT](../../logs/module2/2026-10-31-load-57w-001-module2-sct1-full.txt); dosya GitHub'a eksiksiz kaydedildi.
+
+
+## 2026-11-07 — LOAD-57W-002 / 57 W sürekli açık, PZEM + CH1 HA History
+
+### HEDEF VE KOŞUL
+
+- **Yük:** 57 W akkor ampul; kullanıcı bildirimi.
+- **İşletim:** Ampul sürekli açık; test yükü için aç/kapa çevrimi uygulanmadı.
+- **Düzenek:** ESP32D1 / Modül 2 / CH1-1T Faz (GPIO32) ve Modül 3 WROOM / PZEM-004T V3.0.
+- **Zaman:** 2026-11-07 13:00:00–14:09:59.705 (Europe/Istanbul), yaklaşık 70 dakika.
+- **Kaynak:** Home Assistant History CSV, `57w 1 saat.csv`; 10.947 satır / 945.098 bayt; SHA-256 `53afb448f95a722c37680511f1e2ad7cce8c32ee190b7828be6d7f17a2cea50c`.
+- **Ham CSV:** Kullanıcı kaynağı olarak korunur; bu kayıt istatistik/yorum özetidir. CSV Git'e eklenmedi.
+
+### PZEM — LOG İLE DESTEKLENDİ
+
+| Parametre | Örnek | Ortalama | Min–Maks |
+|---|---:|---:|---:|
+| Akım | 192 | 0,26307 A | 0,261–0,265 A |
+| Güç | 642 | 59,8405 W | 58,6–60,9 W |
+| Gerilim | 752 | 227,7117 V | 224,8–230,4 V |
+| Frekans | 179 | 49,9503 Hz | 49,9–50,0 Hz |
+| Güç faktörü | 1 | 1,00 | Tek kayıt; istatistiksel temsil gücü yok |
+
+### CH1 — LOG İLE DESTEKLENDİ
+
+Entity: `sensor.esp32d1_bero_mod2_ch1_1t_faz_akim`; ham SCT entity'si ayrıca kaydedildi.
+
+| İstatistik | CH1 hesaplanan akım |
+|---|---:|
+| Örnek sayısı | 4.201 |
+| Ortalama | 0,35550 A |
+| Medyan | 0,35403 A |
+| Standart sapma (örnek) | 0,01786 A |
+| Değişim katsayısı | %5,02 |
+| P95 | 0,38632 A |
+| P99 | 0,40664 A |
+| Min–Maks | 0,31097–0,49263 A |
+| 0,41 A üzeri | 32 / 4.201 (%0,76) |
+| 0,45 A üzeri | 2 / 4.201 (%0,048) |
+| 0,50 A üzeri | 0 |
+
+Ham SCT entity ortalaması: 0,014678 A (4.201 örnek). Ham SCT entity değeri, CH1 hesaplanan akım entity'si ve PZEM akımı farklı ölçüm/işleme katmanlarıdır; doğrudan birbirinin yerine kullanılmaz.
+
+### ZAMAN İÇİNDE DAVRANIŞ
+
+10 dakikalık CH1 ortalamaları: 0,3542 / 0,3540 / 0,3540 / 0,3574 / 0,3577 / 0,3557 / 0,3554 A. Ortalama seviye yaklaşık sabit kalmıştır. 18 W oturumuna göre sıçrama dağılımı ve standart sapma daha düşüktür.
+
+### YORUM VE SINIR
+
+- PZEM, 70 dakika boyunca yaklaşık 0,263 A / 59,84 W düzeyinde kararlı yük kaydı üretmiştir.
+- CH1 yaklaşık 0,3555 A ortalama ve %5,02 CV ile bu oturumda daha dar bir dağılım göstermiştir.
+- CH1'in 0,24–0,41 A aralığı mevcut proje kararı gereği **hesaplanmadı alanıdır**. Ortalama 0,3555 A bir doğru akım ölçümü/kalibrasyon sonucu değildir.
+- P99 değeri 0,41 A sınırının hemen altındadır; 32 örnek bu sınırı aşmış, maksimum 0,4926 A olmuştur. Sıçramalar tamamen kaybolmamıştır.
+- PZEM PF için tek kayıt vardır; PF kararlılığı veya PF etkisi hakkında sonuç çıkarılmaz.
+- 18 W ve 57 W oturumları farklı zamanlarda yapılmıştır. Dağılım farkı gözlenmiştir; yük gücünün tek başına bu farka neden olduğu kanıtlanmamıştır.
+- Firmware/K=24.22 değiştirilmedi; filtre veya sıfır eşiği eklenmedi.
+
+### SONUÇ
+
+LOAD-57W-002, 57 W sürekli yükte CH1 davranışının 70 dakikalık gözlem kaydı olarak **analiz edildi**. Düşük akım hesaplanmadı alanı sınıflandırması değişmez. Bu kayıt kalibrasyon veya ±%4 doğrulaması değildir.
