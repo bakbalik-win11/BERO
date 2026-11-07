@@ -1821,3 +1821,35 @@ Kullanıcı 18 W yükte SCT'nin akım genliğini doğru okumaktan ziyade açma-k
 
 ### SINIR
 E16 PLANLANDI. Gece CSV'si henüz alınmadı; analiz, kararlılık algoritması, eğitim etiketi veya katsayı üretimi yapılmadı.
+
+
+## 2026-11-07 — CH1 yüksüz 10 saat kaydı analiz edildi; kapalı alan kararı verildi
+
+### HEDEF
+Enerji/akım bulunmayan fiziksel hatta CH1 SCT çıktısının dağılımından kapalı alan üst sınırını belirlemek. Tekil sıçramaları temizlemek değil, ölçümlerin en az %95'inin altında kalacağı uygulanabilir bir eşik seçmek.
+
+### KAYIT VE İSTATİSTİK
+- Kullanıcı tarafından sağlanan HA History CSV yaklaşık 10 saatlik kayıt içeriyor (2026-11-06 21:00:00 UTC – 2026-11-07 06:59:59.863 UTC).
+- CH1 akım entity: 36.002 örnek; CH1 ham SCT entity: 36.002 örnek.
+- K=24.22 uygulanmış akım P95: 0,23587365 A.
+- Ham SCT P95: 0,00973880.
+- K uygulanmış akım P99: 0,27521688 A; maksimum: 0,96086776 A.
+- 0,24 A eşiğinde ölçümlerin %96,33'ü eşik altında/eşit, %3,67'si üzerindedir.
+
+### KARAR
+Kullanıcı onayıyla CH1 kapalı alan üst sınırı **0,24 A** olarak seçildi. P95'in hemen üzerinde yuvarlak ve pratik bir sınırdır. Sıçramalar filtrelenmedi; ham dağılımın içinde bırakıldı.
+
+### SONRAKİ HEDEF
+- 0–0,24 A: kapalı alan.
+- 0,24 A ile ilk güvenilir akım okuması arası: hesaplanmadı alanı.
+- İlk güvenilir akım okuması ve üzeri: hesaplanacak alan.
+
+İlk güvenilir akım okumasının sayısal sınırı henüz belirlenmedi. Sonraki kontrollü yük deneyleri bu seviyeyi bulmaya odaklanacak.
+
+### KAYIT SINIRI
+Kullanıcı ham CSV'nin depoya eklenmesini istemedi; CSV arşivlenmedi. Yalnız istatistiksel özet ve karar kaydedildi. Bu sonuç CH1 ve incelenen fiziksel yüksüz koşula özgüdür; diğer kanallara genellenmez. E16 ON/OFF gözlemi ayrı deney olarak kalır. I007 çoklu oturum gürültü karakterizasyonu bu karar için ön koşul değildir.
+
+### DEPO DOSYALARI
+- [I007 istatistik özeti](../data/off-noise/sessions/2026-11-07-ch1-closed-area-threshold.md)
+- [ADR-031](../docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md)
+- [I007 indeksi](../data/off-noise/README.md)
