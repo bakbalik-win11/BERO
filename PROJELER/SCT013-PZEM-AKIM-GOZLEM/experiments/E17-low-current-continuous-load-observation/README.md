@@ -117,6 +117,17 @@ CH1'in 18 W yükte tepki verdiği görülüyor; ancak 0,277–0,30 A çıktısı
 6. SSR ON/OFF olayları ayrı metadata olarak kullanılır. SSR ölçüm hattını anahtarlamadığı için olaylar yük durumu etiketi sayılmaz; anahtarlama anları olası etki/parazit pencerelerini ayırmak için ayrıca işaretlenir.
 7. Sonuç, elektriksel değişimle uyumlu bulgu, SCT/ölçüm zinciri davranışıyla uyumlu bulgu veya mevcut veri çözünürlüğüyle ayırt edilemeyen durum olarak sınıflandırılır.
 
+### Örnekleme/güncelleme hızı farkı — korelasyon yöntemi
+
+PZEM ve SCT serileri aynı zaman çözünürlüğünde değildir: PZEM akımı paket/okuma döngüsüyle daha seyrek güncellenir; SCT CH1 akım ve ham SCT akışı daha sık yenilenir. Bu nedenle PZEM'de aynı değerin art arda görünmesi, aradaki her SCT pikinde PZEM'in yeniden ölçüm yapıp aynı sonucu verdiği anlamına gelmez; yalnızca son yayınlanan PZEM değerinin yeni güncellemeye kadar korunmuş olabileceğini gösterir.
+
+Analizde:
+- Her iki serinin gerçek timestamp'leri ve güncelleme aralıkları ayrı çıkarılır; PZEM'in paket/okuma zamanları belirlenebildiği ölçüde kullanılır.
+- PZEM değeri, geçerli olduğu varsayılan aralık boyunca “son bilinen/yayınlanmış değer” olarak gösterilebilir; bu aralık yeni ölçüm yapılmış gibi yorumlanmaz.
+- SCT pikleri PZEM örneklerinin arasına düşüyorsa doğrudan bire bir eşleşme yapılmaz. Pikler, PZEM güncellemesine göre hangi zaman aralığında olduklarıyla raporlanır.
+- Korelasyon yalnızca iki serinin zaman çözünürlüğünün izin verdiği ölçekte hesaplanır. PZEM'in seyrek verisi hızlı SCT piklerinin anlık karşılığını doğrulamaya yetmiyorsa bu açıkça belirtilir.
+- Gerekirse pik çevresindeki PZEM'in önceki/sonraki gerçek güncellemeleri karşılaştırılır; aradaki değerler interpolasyonla ölçülmüş gibi üretilmez.
+
 ### Yorum sınırı
 Korelasyon tek başına nedensellik kanıtı değildir. PZEM Hz ve PF gibi değerlerin çözünürlüğü/güncelleme sıklığı CH1 piklerini yakalamaya yetmeyebilir; bu durumda “ilişki yok” değil, “mevcut kayıt çözünürlüğüyle gösterilemedi” denir. Bu analiz E17-A'nın 0,24–0,41 A hesaplanmadı alanında sayısal akım üretme kararını değiştirmez.
 
