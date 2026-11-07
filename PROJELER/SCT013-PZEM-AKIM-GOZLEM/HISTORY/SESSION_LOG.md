@@ -1853,3 +1853,26 @@ Kullanıcı ham CSV'nin depoya eklenmesini istemedi; CSV arşivlenmedi. Yalnız 
 - [I007 istatistik özeti](../data/off-noise/sessions/2026-11-07-ch1-closed-area-threshold.md)
 - [ADR-031](../docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md)
 - [I007 indeksi](../data/off-noise/README.md)
+
+
+## 2026-11-07 — E17 18 W sürekli yük deneyi başlangıcı
+
+### HEDEF
+CH1'in 0,24 A kapalı alan sınırı üzerindeki düşük akım bölgesinde küçük ve sürekli bağlı yüke verdiği tepkiyi gözlemek; fiziksel yük varlığını algılama ile sayısal akım ölçümünü birbirinden ayırmak.
+
+### DEPO OKUMASI
+Proje AGENTS.md, STATUS.md, ROADMAP.md, PROGRESS_TREE.md, deney indeksi, I007 kapalı alan kararı ve E16 kaydı okundu. E16 yüksüz/ON-OFF gözlemi ile bu sürekli yük deneyi birbirinden ayrı tutuldu.
+
+### E17-A — 18 W sürekli açık
+- Kullanıcı başlangıç saatini 10:21 (Europe/Istanbul) olarak bildirdi.
+- Ampul sürekli yanıyor; röle bu deneyde kullanılmıyor. Röle kaynaklı anahtarlama/tetikleme etkisi yok.
+- 10:14 civarında grafikte görülen hareket PZEM'i devreye alma/bağlantı denemesi hazırlık sürecidir; 18 W deney başlangıcı değildir.
+- İlk HA ekranında PZEM gerilimi 227,1 V, PZEM akımı 0,078 A; CH1 akım entity'si 0,277 A, ham SCT entity'si 0,01145 A olarak görünüyordu. CH1 yaklaşık 0,28–0,30 A çevresinde seyrediyor.
+- Kullanıcı kararı: 0,24–0,41 A hesaplanmadı alanında değer verilmeyecek. CH1 tepkisi yük/ana akım varlığını gösterebilir; ancak sayısal akım ölçümü olarak kabul edilmeyecek. Bölge ileride başka sensörle araştırılabilir.
+- Kayıt bir süre daha sürdürülecek; ham CSV gelince zaman serisi/dağılım/kararlılık incelenecek. Şimdilik nihai sonuç yok.
+
+### SONRAKİ AYRI DENEY
+Kullanıcı 18 W kaydından sonra 15 W mini buzdolabı ampulünü sürekli açık koşulda denemek istiyor. Bu ampulün farklı tepki verdiği kullanıcı tarafından bildirildi; yeni kayıtla henüz doğrulanmadı. Ayrı deney/oturum olarak tutulacak.
+
+### SINIR
+E17-A açık deneydir. CSV analizi, kararlılık sonucu, tekrarlanabilirlik, firmware/YAML değişikliği, K katsayısı güncellemesi veya eğitim etiketi üretimi yapılmadı.
