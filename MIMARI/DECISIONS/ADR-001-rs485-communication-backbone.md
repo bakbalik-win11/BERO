@@ -23,7 +23,9 @@ BERO, farklı ölçüm kaynakları ve ESP tabanlı bölgesel düğümlerden olu�
 - **RS485**, fiziksel/elektriksel haberleşme katmanını ve çok noktalı kablolu omurga tercihinin kendisini tanımlar.
 - **Modbus RTU**, PZEM-014 gibi cihazlarla RS485 üzerinden haberleşmek için kullanılabilecek protokoldür.
 - PZEM-014 ile Modbus RTU haberleşmesi, BERO bölgesel düğümleri arasındaki uygulama mesajlaşma protokolünü kendiliğinden belirlemez.
-- BERO düğümleri arası adresleme, mesaj çerçevesi, veri modeli, bus erişim yöntemi, baud hızı, kablo/topoloji, terminasyon, bias ve hata/yeniden deneme davranışları bu ADR ile karara bağlanmamıştır.
+- **Kablo yaklaşımı (kullanıcı kararı):** RS485 A/B diferansiyel haberleşmesi CAT kablo üzerinden taşınacaktır. Aynı kablo güzergâhında/altyapısında transformatörden gelen besleme gerilimi de bölgesel düğüme taşınacak; düğüm noktasında 5 V seviyesine dönüştürülecektir. Bu RS485/besleme kablosu, mevcut Ethernet kablosundan dış kılıf rengiyle ayırt edilecektir.
+- Kablo yaklaşımı belirlenmiş olsa da CAT kablonun kesin tipi/kategori ve damar eşlemesi, transformatör sekonder gerilimi, düğüm başına akım/güç, hat uzunluğu ve gerilim düşümü hesabı, yerel dönüştürücü tipi, koruma/sigorta, topraklama/referans ve aşırı gerilim önlemleri henüz belirlenmemiştir.
+- BERO düğümleri arası adresleme, mesaj çerçevesi, veri modeli, bus erişim yöntemi, baud hızı, terminasyon, bias ve hata/yeniden deneme davranışları bu ADR ile karara bağlanmamıştır.
 
 ## Kapsam dışı / henüz kararlaştırılmamış
 
@@ -33,6 +35,7 @@ Bu karar aşağıdakileri henüz belirlemez:
 - Modbus RTU'nun BERO düğümleri arası genel protokol olarak kullanılması.
 - Wi-Fi'ın ne zaman ve hangi aşamada kaldırılacağı.
 - Ekran modelleri, kullanıcı arayüzü ve canlı gösterim tasarımı.
+- CAT kablonun kesin damar/pair tahsisi, transformatör sekonder gerilimi ve 5 V dönüştürücü tasarımı.
 - Gerçek donanım bağlantısı, firmware, derleme, saha testi veya performans kabul ölçütleri.
 
 ## Uygulama ilkesi
@@ -41,4 +44,4 @@ Bu karar aşağıdakileri henüz belirlemez:
 
 ## Doğrulama sınırı
 
-Bu kayıt bir **mimari karar**dır. PZEM-014 henüz kullanılmamıştır. RS485 hattı kurulmamış, ESP düğümleri arası veri aktarımı denenmemiş, ekranlar devreye alınmamış ve firmware/derleme/fiziksel test yapılmamıştır.
+Bu kayıt bir **mimari/kablolama kararıdır**. CAT kablo üzerinden RS485 A/B ve transformatör beslemesinin birlikte taşınması, beslemenin düğümde 5 V'a dönüştürülmesi ve kablonun Ethernet hattından dış kılıf rengiyle ayrılması kullanıcı tarafından belirlenmiştir. PZEM-014 henüz kullanılmamıştır. Hat kurulmamış; gerilim düşümü, besleme kapasitesi, koruma ve haberleşme performansı hesaplanıp test edilmemiştir. ESP düğümleri arası veri aktarımı denenmemiş, ekranlar devreye alınmamış ve firmware/derleme/fiziksel test yapılmamıştır.
