@@ -2,7 +2,7 @@
 
 **Tarih:** 2026-11-07  
 **Faz:** Faz 2  
-**Durum:** 18 W ve 57 W sürekli yük kayıtları analiz edildi; E17-C sonraki ayrı 15 W oturumu için açık  
+**Durum:** KAPATILDI — E17-A ve E17-B analiz edildi; E17-C yapılmayacak  
 **İlişkili karar:** [ADR-031 — CH1 kapalı alan üst sınırı](../../docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md)
 
 ## Amaç
