@@ -2,7 +2,7 @@
 
 **Tarih:** 2026-11-07  
 **Faz:** Faz 2  
-**Durum:** AÇIK — 18 W kaydı sürüyor  
+**Durum:** 18 W ve 57 W sürekli yük kayıtları analiz edildi; E17-C sonraki ayrı 15 W oturumu için açık  
 **İlişkili karar:** [ADR-031 — CH1 kapalı alan üst sınırı](../../docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md)
 
 ## Amaç
@@ -137,15 +137,25 @@ Korelasyon tek başına nedensellik kanıtı değildir. PZEM Hz ve PF gibi değe
 
 HA History kaydı bir süre daha sürdürülecek. Ham CSV kullanıcı tarafından sağlandığında gerçek kolonlar, zaman damgaları, örnek sayısı, dağılım ve zaman içindeki kararlılık incelenecek. Ham CSV varsayılan olarak depoya eklenmeyecek; kullanıcı tercihi doğrultusunda istatistik ve yorum saklanacak.
 
-## E17-B — 15 W mini buzdolabı ampulü, sürekli açık (sonraki ayrı deney)
+## E17-B — 57 W akkor ampul, sürekli açık
 
-Kullanıcı, 18 W kaydından sonra 15 W mini buzdolabı ampulüyle sürekli açık ayrı bir kayıt almak istedi. Kullanıcı bu ampulün farklı tepkiler verdiğini belirtti.
+- 57 W ampul E17-A'dan ayrı, sürekli açık oturumda gözlendi; test yükü için aç/kapa çevrimi uygulanmadı.
+- Zaman: 2026-11-07 13:00–14:10 (Europe/Istanbul), yaklaşık 70 dakika.
+- PZEM ortalama akım 0,26307 A; ortalama güç 59,8405 W.
+- CH1: 4.201 örnek; ortalama 0,35550 A; medyan 0,35403 A; SD 0,01786 A; CV %5,02; P95 0,38632 A; P99 0,40664 A; min–maks 0,31097–0,49263 A.
+- 0,41 A üzeri 32 örnek (%0,76); 0,45 A üzeri 2; 0,50 A üzeri yok.
+- CH1 ortalaması hâlâ 0,24–0,41 A hesaplanmadı alanındadır; bu kayıt akım doğruluğu veya kalibrasyon sonucu değildir.
+- 18 W'a göre dağılım daha dar ve büyük sıçramalar daha azdır. Bu, iki farklı oturum arasındaki gözlemdir; tek başına nedensellik kanıtı değildir.
+- Ayrıntı: [LOAD-57W-002](../../test-loads/57w-incandescent/README.md).
 
-- E17-B, E17-A'dan ayrı oturum olarak kaydedilecek.
+## E17-C — 15 W mini buzdolabı ampulü, sürekli açık (sonraki ayrı deney)
+
+Kullanıcı, 18 W ve 57 W kayıtlarından sonra 15 W mini buzdolabı ampulüyle sürekli açık ayrı bir kayıt almayı planladı. Ampulün farklı tepki verebileceği kullanıcı ön beklentisidir; yeni kayıtla doğrulanmış değildir.
+
+- E17-C, E17-A ve E17-B'den ayrı oturum olarak kaydedilecek.
 - Ampulün tam çalışma koşulu ve deney başlangıç saati o oturumda not edilecek.
-- 18 W ve 15 W verileri tek zaman serisi veya tek deney sonucu gibi birleştirilmeyecek.
-- Farklı tepki gözlemi şu an **kullanıcı bildirimi/ön beklenti** niteliğindedir; henüz yeni 15 W kaydıyla doğrulanmış değildir.
+- 18 W, 57 W ve 15 W verileri tek zaman serisi veya tek deney sonucu gibi birleştirilmeyecek.
 
 ## Sonuç durumu
 
-E17-A açıktır. Şu an yalnızca ekran görüntüsü üzerinden ilk tepki gözlemi vardır. Uzun kayıt analizi, istatistiksel kararlılık, tekrarlanabilirlik ve nihai deney sonucu henüz yoktur. E17-B henüz başlatılmamıştır.
+E17-A (18 W) ve E17-B (57 W) CSV oturumları analiz edilip test-yükü kayıtlarına işlendi. İki kayıt da düşük akım davranış gözlemidir; CH1 hesaplanmadı alanında kaldığından kalibrasyon/±%4 doğrulaması değildir. E17-C (15 W mini buzdolabı ampulü) henüz başlatılmadı.
