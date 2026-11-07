@@ -1,6 +1,6 @@
 # E16 — Yüksüz/düşük akım koşulunda SCT'nin ON/OFF davranışını gözlemleme
 
-**Durum:** PLANLANDI — gece boyu kayıt kullanıcı tarafından başlatılacak; CSV ve olay kayıtları bekleniyor  
+**Durum:** KAPATILDI — CH1 alt sınırı belirlendi; ayrı ON/OFF gözlemine gerek kalmadı  
 **Tarih:** 2026-11-06  
 **Faz:** Faz 2  
 **İlişkili işler:** T007 (HA → PC), T008 (kararlılık/eşleştirme), E12 (SCT kararlılık ve tepki davranışı)
@@ -66,9 +66,13 @@ Bu henüz tekrarlanmış/CSV ile doğrulanmış sonuç değildir. E16'nın gece 
 
 Kaynak CSV ilk haliyle korunacak; dosya hash'i ve boyutu alım sırasında kaydedilecek.
 
-## Sonuç
+## Kapanış — kullanıcı kararı
 
-**Henüz sonuç yok.** Bu belge deney planı ve ilk ekran gözleminin kaydıdır. Gece kaydı alınmadı/analiz edilmedi; SCT'nin ON/OFF algılama başarısı doğrulanmış değildir. Python algoritması, eğitim verisi veya yeni katsayı üretilmemiştir.
+E16, CH1'in yüksüz/ölçülemeyen düşük akım bölgesini yeniden ON/OFF döngüsüyle araştırma ihtiyacı kalmadığı için kapatıldı. Projenin ihtiyacı sensörün olay değişimini ayrıca kanıtlamak değil, mevcut CH1 kurulumunun ölçüm alt sınırını ve bunun altındaki ölü/hesaplanmayan bölgeyi tanımlamaktır. Kullanıcı kararıyla bu sınır belirlenmiştir.
+
+Bu kapanış, SCT'nin her düşük akımda genlik ölçebildiği veya tüm ON/OFF koşullarında sınıflandırma yaptığı anlamına gelmez. Alt sınır ve hesaplanmayan bölge yalnız mevcut CH1 kurulumuna aittir. Sonraki aşama Python veri analizi ve yük davranışlarının eğitim/sınıflandırma açısından incelenmesidir.
+
+**SONUÇ:** KAPATILDI — tekrar deney planlanmayacak. Ham kayıt varsa kaynak niteliğini korur; yeni etiket veya kalibrasyon bu deneyden üretilmez.
 
 ## İlgili kararlar
 - [ADR-024 — Python ON/OFF paket bütünlüğü](../../docs/decisions/ADR-024-python-packet-completeness-validation.md)
