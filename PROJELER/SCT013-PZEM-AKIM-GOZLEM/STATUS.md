@@ -296,3 +296,11 @@ Kullanıcının gün sonu değerlendirmesi:
 - Gerçek kolonlar, birimler, timestamp ve her serinin güncelleme/örnekleme aralığı doğrulanacak. Piklerin öncesi-sırası-sonrası, tepe genliği, aralıkları, eşzamanlılık ve olası gecikme incelenecek.
 - SSR olayları ayrı metadata olarak kalacak; ölçüm hattının yük durumu etiketi yapılmayacak. Anahtarlama zamanları olası etki pencerelerini ayırmak için kullanılabilir.
 - Korelasyon nedensellik sayılmayacak; PZEM çözünürlüğü/güncelleme hızı yetersizse sonuç “ayırt edilemedi” olarak raporlanacak. CSV henüz gelmedi; analiz yapılmadı. [E17](experiments/E17-low-current-continuous-load-observation/README.md).
+
+
+## 2026-11-07 — E17 korelasyonunda PZEM/SCT zaman çözünürlüğü ayrımı
+
+- Kullanıcı, PZEM akımının paket/okuma döngüsüyle daha seyrek; SCT verisinin daha sık yenilendiğini belirtti. Analiz bu asenkron güncelleme yapısını dikkate alacak.
+- PZEM'de aynı değerin birden fazla SCT örneği boyunca görünmesi, her SCT pikinde yeni PZEM ölçümü yapıldığı anlamına gelmez. Timestamp ve gerçek güncelleme aralıkları ayrı çıkarılacak.
+- SCT pikleri PZEM güncellemeleri arasında ise bire bir anlık eşleştirme yapılmayacak; son yayınlanan PZEM değeri ile yeni PZEM ölçümünü birbirinden ayıracağız. Aradaki PZEM ölçümleri interpolasyonla uydurulmayacak.
+- Veri çözünürlüğü hızlı pik korelasyonuna yetmiyorsa bu sınırlılık sonuçta açıkça belirtilecek. Ayrıntı: [E17](experiments/E17-low-current-continuous-load-observation/README.md).
