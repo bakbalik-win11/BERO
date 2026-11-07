@@ -271,3 +271,10 @@ Kullanıcının gün sonu değerlendirmesi:
 - CH1 eğrisi yük devredeyken yaklaşık 0,28–0,33 A bandında; tekil tepe değerleri yaklaşık 0,5 A'ya yaklaşıyor. Yaklaşık grafik gözlemidir, CSV istatistiği değildir.
 - CH1 0,325 A değeri 0,24–0,41 A hesaplanmadı alanındadır. Tepki, doğru genlik ölçümü olarak yorumlanmayacak.
 - E17-A kaydı sürüyor; nihai sonuç için CSV analizi bekleniyor. [E17](experiments/E17-low-current-continuous-load-observation/README.md).
+
+
+## 2026-11-07 — E17-A SSR arka plan olaylarının ayrıştırılması
+
+- Arka planda SSR ON/OFF döngüsü vardır; SSR, 18 W ampulün ve PZEM/SCT tarafından gözlenen ölçüm hattının anahtarlayıcısı değildir.
+- Ampul sürekli yanık kalır. SSR olayları veri kaydında ayrı olay akışı olarak korunur ancak ölçüm hattının yük ON/OFF etiketi olarak kullanılmaz.
+- CH1 sıçramalarının SSR olaylarıyla zaman çakışması tek başına nedensellik göstermez. Ayrıntı: [E17](experiments/E17-low-current-continuous-load-observation/README.md).
