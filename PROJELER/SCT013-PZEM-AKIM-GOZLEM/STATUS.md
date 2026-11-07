@@ -356,3 +356,21 @@ Kullanıcı tarafından belirlenen fiziksel yaklaşım:
 Kesin CAT tipi ve damar/pair tahsisi, 24 V DC ana beslemenin kapasitesi, düğüm akımı, kablo mesafesi/gerilim düşümü, 5 V dönüştürücü, sigorta/koruma ve referans-topraklama ayrıntıları henüz hesaplanmadı. Kablo uçları Ethernet/LAN portlarına bağlanmamalı; farklı renk tek başına yeterli güvenlik önlemi sayılmayıp uçlar da etiketlenmelidir.
 
 Bu kayıt kablolama yaklaşımını belgeliyor; gerçek kablo kurulumu veya elektriksel doğrulama yapıldığı anlamına gelmez. [ADR-001](../../MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md).
+
+
+## 2026-11-07 — E16, E17 ve E18 kapatıldı; odak Python ve yük davranışı eğitimine geçti
+
+Kullanıcı kararları:
+- **E16 KAPATILDI:** CH1 alt sınırı ve bunun altındaki ölü/hesaplanmayan bölge belirlendi. Aynı düşük akım alanında ON/OFF gözlemini tekrar etmek artık yeni karar üretmeyecek.
+- **E17 KAPATILDI:** E17-A 18 W ve E17-B 57 W kayıtları analiz edildi. E17-C 15 W mini buzdolabı ampulü deneyi aynı gerekçeyle tekrarlı/anlamsız bulundu ve yapılmadan kapatıldı.
+- **E18 KAPATILDI:** Kullanıcı gözlemine göre bias hattı üzerinden CH1, tekil sıçramalar dışında stabil. Dalgalanmanın ana kaynağı bias hattı olarak değerlendirilmiyor; kalan alt akım davranışı sensörün ölçüm alt sınırı/ölü bölgesi kapsamında ele alınacak. Bu, sıçramaların fiziksel nedeninin kesin teşhisi değildir.
+
+### Yeni çalışma odağı
+
+Öncelik artık **Python veri hattı ve eğitim/analiz aşamasıdır**:
+1. T007 — Home Assistant History verisini PC'ye alma, doğrulama ve değişmez ham arşiv.
+2. T008 — SCT/PZEM akışlarını olay paketleriyle bölümleme, bağımsız kararlı alan analizi ve etiketleme.
+3. Eğitim/analiz araştırması — çamaşır makinesi gibi programlı cihazların gerçek yük bileşenleri ve evreleri (rezistans, motor, pompa, valf vb.) hangi akım davranışlarını üretir; bu davranışlar SCT verisinde birbirinden ayrılabilir mi?
+4. SCT uygunluk değerlendirmesi — gözlem, güç/akım genliği ve geçiş tepkisi kabiliyetlerini ayrı ayrı incele. Özellikle 2 A altındaki performansın hangi aralıkta güvenilir olduğu henüz kanıtlanmış değildir; eğitim verisiyle araştırılacaktır.
+
+**Kapsam notu:** SCT'nin düşük akımda sayısal ölçüm doğruluğu ile cihaz/program evresi sınıflandırmasına yetecek davranış bilgisini taşıması farklı sorulardır. Birincisindeki sınırlılık ikincisini otomatik olarak başarısız kılmaz; sınıflandırma başarısı da ölçüm doğruluğunu kanıtlamaz. Sonuçlar gerçek veri analiziyle verilecektir. Bu aşamada 2 A altında SCT yeterlidir/yetersizdir hükmü verilmemiştir.
