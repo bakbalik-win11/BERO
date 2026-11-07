@@ -236,3 +236,16 @@ Kullanıcının gün sonu değerlendirmesi:
 - Fiziksel yük koşulu ayrıca not edilecek; PZEM 0,000 A tek başına fiziksel yüksüzlüğün kanıtı kabul edilmeyecek. 18 W koşulu bu geceki yüksüz kayıtla karıştırılmayacak.
 - Firmware/K/sample_duration/update_interval/pin ve olay döngüsünde değişiklik yapılması planlanmıyor. Eğitim etiketi veya katsayı üretilmeyecek.
 - **Durum:** PLANLANDI; gece kaydı ve CSV henüz alınmadı, analiz yapılmadı.
+
+
+## 2026-11-07 — CH1 kapalı alan eşiği belirlendi (ADR-031)
+
+- Kullanıcının sağladığı HA History kaydında fiziksel olarak akım bulunmayan hatta yaklaşık 10 saatlik CH1 verisi incelendi: 36.002 CH1 akım ve 36.002 CH1 ham SCT örneği.
+- K=24.22 uygulanmış akım P95 değeri 0,23587365 A; ham SCT P95 değeri 0,00973880.
+- Kullanıcı kararı: **CH1 kapalı alan üst sınırı 0,24 A**. Bu eşikte örneklerin %96,33'ü 0,24 A veya altında; %3,67'si üzerindedir. Sıçramalar temizlenmedi ve karar için ayrıca filtrelenmedi.
+- Ham CSV depoya eklenmedi; kullanıcı isteği doğrultusunda yalnızca istatistiksel dayanak kaydedildi.
+- Yeni alan ayrımı: 0–0,24 A kapalı; 0,24 A ile ilk güvenilir akım okuması arası hesaplanmadı; ilk güvenilir okuma ve üzeri hesaplanacak.
+- İlk güvenilir akım okumasının sayısal sınırı henüz belirlenmedi. Sonraki deneylerin hedefi bu sınırı kontrollü yüklerle bulmaktır.
+- Bu eşik CH1 ve bu yüksüz kayıt koşuluna özgüdür; CH2/CH3'e genellenmez. E16 ON/OFF gözlemi ayrı kalır.
+- I007 çoklu oturum gürültü karakterizasyonu bu ilk karar için ön koşul olmaktan çıkarıldı; ileride oturumlar arası değişimi incelemek için sürdürülebilir.
+- Ayrıntı: [I007 özet](data/off-noise/sessions/2026-11-07-ch1-closed-area-threshold.md), [ADR-031](docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md).
