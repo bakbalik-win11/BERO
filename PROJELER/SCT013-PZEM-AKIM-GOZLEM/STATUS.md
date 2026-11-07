@@ -262,3 +262,12 @@ Kullanıcının gün sonu değerlendirmesi:
 - Ayrıntı: [E17 protokolü ve ilk gözlem](experiments/E17-low-current-continuous-load-observation/README.md).
 
 **Durum sınırı:** E17-A AÇIK; E17-B BAŞLATILMADI. Firmware, YAML, K katsayısı veya eşik değiştirilmedi. Kalibrasyon/eğitim etiketi üretilmedi.
+
+
+
+## 2026-11-07 — E17-A 18 W kaydında ek ekran gözlemi
+
+- Sonraki HA History ekranında PZEM 226,2 V / 0,078 A; güç yaklaşık 17,5–17,8 W; CH1 akım 0,325 A; ham SCT 0,01341 A olarak görünüyor.
+- CH1 eğrisi yük devredeyken yaklaşık 0,28–0,33 A bandında; tekil tepe değerleri yaklaşık 0,5 A'ya yaklaşıyor. Yaklaşık grafik gözlemidir, CSV istatistiği değildir.
+- CH1 0,325 A değeri 0,24–0,41 A hesaplanmadı alanındadır. Tepki, doğru genlik ölçümü olarak yorumlanmayacak.
+- E17-A kaydı sürüyor; nihai sonuç için CSV analizi bekleniyor. [E17](experiments/E17-low-current-continuous-load-observation/README.md).
