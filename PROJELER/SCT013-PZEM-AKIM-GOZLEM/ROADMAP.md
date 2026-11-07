@@ -162,3 +162,31 @@ Ayrıntı: [ADR-027](docs/decisions/ADR-027-single-channel-training-datasets.md)
 CH1 için fiziksel yüksüz koşulda alınan yaklaşık 10 saatlik HA History kaydı (36.002 örnek) üzerinden K=24.22 uygulanmış akımın P95 değeri 0,23587365 A bulundu. Kullanıcı kararıyla CH1 kapalı alan üst sınırı **0,24 A** olarak sabitlendi. Bu eşikte ölçümlerin %96,33'ü 0,24 A veya altındadır. Ham CSV depoya eklenmedi; istatistiksel özet [I007 raporunda](data/off-noise/sessions/2026-11-07-ch1-closed-area-threshold.md) tutulur.
 
 Sonraki ölçüm hedefi, **0,24 A ile ilk güvenilir akım okuması arasındaki hesaplanmadı alanının** üst sınırını kontrollü yük deneyleriyle belirlemektir. İlk güvenilir okumanın sayısal değeri henüz belirlenmedi. Bu karar yalnız CH1 ve incelenen yüksüz koşula aittir; CH2/CH3'e genellenmez. Ayrıntı: [ADR-031](docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md).
+
+
+## 2026-11-07 — E16/E17/E18 kapanışı ve program davranışı araştırması
+
+E16, E17 ve E18 kullanıcı kararıyla kapatıldı. CH1'in yüksüz kapalı alan sınırı ve düşük akım hesaplanmayan bölgesi mevcut kurulum için tanımlanmıştır; aynı bölgeyi tekrarlayan deneyler açılmayacaktır. E18 bias hattı gözleminde tekil sıçramalar dışında stabil davranış bildirilmiştir; bias hattı ana dalgalanma kaynağı olarak araştırılmayacaktır.
+
+### Yeni araştırma sorusu: SCT programlı cihaz davranışını ayırt edebilir mi?
+
+Çamaşır makinesi benzeri cihazlarda program boyunca devreye giren yükler ve alt sistemler ayrı ayrı incelenecek: örneğin rezistans/ısıtıcı, tambur motoru, tahliye veya devirdaim pompası, su giriş valfi ve kilit/yardımcı yükler. Bunların gerçek güç/akım değerleri, aynı anda çalışma durumları, açma-kapama örüntüleri ve süreleri cihaz modeline/programına göre değişir; bu nedenle şimdiden sabit akım seviyeleri veya evre imzaları varsayılmayacaktır.
+
+Araştırma şu soruları cevaplamalı:
+- Hangi alt yükler programın hangi evrelerinde çalışıyor; aynı anda hangileri birleşiyor?
+- Her evrede SCT akım genliği, kararlı dağılımı, geçiş yönü/süresi ve tekrar düzeni nasıl görünüyor?
+- PZEM proje referansı ve SCT akışı birlikte kullanıldığında evreleri etiketlemek mümkün mü?
+- Eğitim ve test kayıtları arasında cihaz/program/evre ayrımı korunarak genellenebilirlik ölçülebilir mi?
+- SCT'nin özellikle 2 A altındaki ölçüm ve davranış ayırt etme kabiliyeti hangi aralıkta yeterli? Bu henüz açık araştırma sorusudur.
+
+**Önemli ayrım:** SCT'nin güç/akım genliğini doğru hesaplaması, geçişleri gözlemlemesi ve program evresini sınıflandırmaya yetecek örüntü üretmesi üç ayrı performans ölçütüdür. Her biri ayrı veri ve metriklerle değerlendirilecektir. Bu aşamada SCT'nin 2 A altında yeterli veya yetersiz olduğu sonucuna varılmamıştır.
+
+### Uygulama sırası
+
+1. T007 — HA History CSV alımını, kaynak doğrulamasını ve ham arşivi kur.
+2. T008 — olay paket bütünlüğü, bağımsız kararlılık analizi ve PZEM referans etiketlemesini uygula.
+3. Gerçek cihaz yük/evre envanterini ve deney senaryolarını araştır; önce mevcut SCT/PZEM kayıtlarıyla veri analizi yap.
+4. Eğitim ve bağımsız test kümeleri oluştur; sınıflandırma başarısını ve hata türlerini ölç.
+5. Bulgulara göre SCT'nin kullanım alanını tanımla; gerekirse farklı sensörlerle karşılaştırmayı ayrı karar olarak aç.
+
+Bu çalışma, Faz 2'nin Python/veri/öğrenme odağıdır. E16/E17/E18 yeniden açılmamıştır.
