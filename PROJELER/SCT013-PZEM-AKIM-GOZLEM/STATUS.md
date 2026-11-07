@@ -1,3 +1,13 @@
+## 2026-11-07 — Wi-Fi yalnızca RS485 kontrollü bakım modu
+
+Kullanıcı mimari kararı:
+- Normal işletimde düğümler arası veri aktarım omurgası RS485 A/B'dir; Wi-Fi kapalı tutulur.
+- Yazılım güncellemesi/bakım gerektiğinde ilgili düğüm RS485 komutuyla geçici Wi-Fi bakım moduna alınır.
+- Bakım tamamlanınca Wi-Fi kapatılır ve düğüm normal RS485 işletimine döner.
+- Wi-Fi ölçüm verisi için alternatif/kalıcı haberleşme yolu değildir.
+- Bu karar mimari seviyededir; firmware, komut protokolü ve saha testi yapılmış değildir.
+- Güvenilir RS485 aktarımı için hata tespiti, alındı onayı ve yeniden gönderim kuralları ayrıca tasarlanmalıdır; yalnız Wi-Fi'ı kapatmak kayıpsızlığı kanıtlamaz.
+
 ## 2026-11-05 — BERO kapsamı ve hazırlık ortamı / canlı sistem ayrımı
 
 Kullanıcı açıklaması ve kapsam kararı:
