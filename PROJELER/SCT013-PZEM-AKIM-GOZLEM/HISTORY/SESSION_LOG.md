@@ -1935,3 +1935,21 @@ CH1'deki sıçramaların SCT sensörü olmadan, ortak bias hattı üzerinden öl
 E18 **PLANLANDI**. Fiziksel bağlantı, uzun kayıt, CSV analizi ve sonuç henüz yok. E17 düşük akım ampul kayıtlarından ayrı tutulacak; kalibrasyon veya eğitim etiketi üretmeyecek.
 
 [ E18 deney protokolü ](../experiments/E18-ch1-bias-line-control/README.md).
+
+
+## 2026-11-07 — BERO RS485 haberleşme omurgası kararı
+
+### HEDEF
+BERO'nun kalıcı düğümler arası haberleşme omurgasını belirlemek ve Wi-Fi'ın geçici rolünü ayırmak.
+
+### KULLANICI KARARI
+- Kalıcı haberleşme omurgası RS485.
+- ESP tabanlı düğümler verilerini RS485 üzerinden bölgesel düğümlere aktaracak.
+- Wi-Fi şimdilik geçici haberleşme/aktarım yolu.
+- PZEM-014 AC RS485 Modbus Güç Tüketim Ölçer + USB henüz hiç kullanılmadı. PZEM-014 ile RS485/Modbus okuma ve ekranlı ESP'leri canlı gösterimde kullanma sonraki uygulama hedefleri.
+
+### MİMARİ AYRIM
+RS485 fiziksel/elektriksel katmandır. PZEM-014'ün Modbus RTU protokolü ile BERO bölgesel düğümleri arasındaki uygulama mesajlaşma protokolü aynı karar değildir. Düğümler arası mesaj biçimi ve elektriksel/lojik ayrıntılar açık bırakıldı.
+
+### DEPO / DOĞRULAMA
+MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md oluşturuldu; MIMARI README, proje STATUS, PROGRESS_TREE ve bu oturum kaydı güncellendi. Bu yalnızca mimari dokümantasyon değişikliğidir. PZEM-014, RS485 hattı, ESP düğümleri ve ekranlar üzerinde fiziksel test yapılmadı.
