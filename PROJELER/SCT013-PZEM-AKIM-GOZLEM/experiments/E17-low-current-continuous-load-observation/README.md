@@ -96,6 +96,32 @@ CH1'in 18 W yükte tepki verdiği görülüyor; ancak 0,277–0,30 A çıktısı
 - Bu bölge daha sonra farklı/daha hassas bir sensörle ayrı çalışma konusu olabilir.
 - Bu gözlem K=24.22 kalibrasyonuna veya CH1'in düşük akımda doğru ölçtüğü iddiasına kanıt değildir.
 
+## CSV geldiğinde yapılacak korelasyon incelemesi — PLAN
+
+18 W sürekli yük oturumunda CH1 ham SCT ve hesaplanmış akım serisindeki tepe/sıçrama zamanları, aynı zaman aralığındaki PZEM değişkenleriyle karşılaştırılacaktır.
+
+### Karşılaştırılacak kanallar
+- PZEM gerilimi (V)
+- PZEM akımı (A)
+- PZEM aktif gücü (W)
+- PZEM güç faktörü (PF)
+- PZEM frekansı (Hz)
+- SCT CH1 ham SCT serisi ve CH1 hesaplanmış akım serisi
+
+### İnceleme adımları
+1. CSV'de gerçek entity/kolon adları, birimler, timestamp ve örnekleme aralıkları doğrulanır.
+2. Zaman damgaları ortak zaman eksenine taşınır; PZEM ve SCT güncelleme hızları farklıysa bu fark açıkça raporlanır. Veri olmayan noktalara ölçüm uydurulmaz.
+3. CH1 pikleri ham SCT ve hesaplanmış akım serilerinde ayrı ayrı belirlenir; pik zamanları, genlikleri ve aralıkları çıkarılır.
+4. Her pik çevresinde PZEM V/A/W/PF/Hz değerlerinin öncesi-sırası-sonrası karşılaştırılır. Yalnız aynı zaman damgasındaki tek noktaya bakılmaz; mevcut örnekleme çözünürlüğüne uygun zaman pencereleri kullanılır.
+5. Piklerin PZEM değişimleriyle eşzamanlılığı, gecikmesi ve tekrarlanabilirliği incelenir. Uygunsa korelasyon/çapraz korelasyon ve pik dışı temel dönem karşılaştırmaları yapılır.
+6. SSR ON/OFF olayları ayrı metadata olarak kullanılır. SSR ölçüm hattını anahtarlamadığı için olaylar yük durumu etiketi sayılmaz; anahtarlama anları olası etki/parazit pencerelerini ayırmak için ayrıca işaretlenir.
+7. Sonuç, elektriksel değişimle uyumlu bulgu, SCT/ölçüm zinciri davranışıyla uyumlu bulgu veya mevcut veri çözünürlüğüyle ayırt edilemeyen durum olarak sınıflandırılır.
+
+### Yorum sınırı
+Korelasyon tek başına nedensellik kanıtı değildir. PZEM Hz ve PF gibi değerlerin çözünürlüğü/güncelleme sıklığı CH1 piklerini yakalamaya yetmeyebilir; bu durumda “ilişki yok” değil, “mevcut kayıt çözünürlüğüyle gösterilemedi” denir. Bu analiz E17-A'nın 0,24–0,41 A hesaplanmadı alanında sayısal akım üretme kararını değiştirmez.
+
+**Durum:** CSV bekleniyor; analiz henüz yapılmadı.
+
 ### Kayıt planı
 
 HA History kaydı bir süre daha sürdürülecek. Ham CSV kullanıcı tarafından sağlandığında gerçek kolonlar, zaman damgaları, örnek sayısı, dağılım ve zaman içindeki kararlılık incelenecek. Ham CSV varsayılan olarak depoya eklenmeyecek; kullanıcı tercihi doğrultusunda istatistik ve yorum saklanacak.
