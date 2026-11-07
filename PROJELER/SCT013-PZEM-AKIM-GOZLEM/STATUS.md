@@ -278,3 +278,12 @@ Kullanıcının gün sonu değerlendirmesi:
 - Arka planda SSR ON/OFF döngüsü vardır; SSR, 18 W ampulün ve PZEM/SCT tarafından gözlenen ölçüm hattının anahtarlayıcısı değildir.
 - Ampul sürekli yanık kalır. SSR olayları veri kaydında ayrı olay akışı olarak korunur ancak ölçüm hattının yük ON/OFF etiketi olarak kullanılmaz.
 - CH1 sıçramalarının SSR olaylarıyla zaman çakışması tek başına nedensellik göstermez. Ayrıntı: [E17](experiments/E17-low-current-continuous-load-observation/README.md).
+
+
+
+## 2026-11-07 — E17-A amacı netleştirildi: SSR anahtarlama etkisini ayır
+
+- E17-A'nın amacı SSR anahtarlamasının SCT üzerindeki etkisini incelemek değil, sürekli bağlı 18 W yükün davranışını bu etkiden mümkün olduğunca bağımsız gözlemlemektir.
+- Kullanıcı, önceki gün SSR anahtarlamasının CH1 sinyalini etkilediğini ve anahtarlama sırasında sinyalin normal kapalı alan seviyesinin de altına düşebildiğini bildirdi. Grafikte yaklaşık 10:19'daki belirgin düşüş bu etkiyle ilişkilendirildi; zaman eşleşmesi CSV ile doğrulanacaktır.
+- SSR, 18 W ampulün ölçüm hattına bağlı değildir; ampul sürekli yanar. SSR ON/OFF olayları ayrı metadata olarak tutulur; yük durumu etiketi yapılmaz. Anahtarlama geçişleriyle ilişkili CH1 düşüşleri sürekli yükün kararlı seviyesi/kapalı tabanı sayılmaz.
+- Ayrıntı: [E17](experiments/E17-low-current-continuous-load-observation/README.md).
