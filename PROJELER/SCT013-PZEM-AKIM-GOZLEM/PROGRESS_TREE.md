@@ -482,3 +482,13 @@
 - Uzun HA History kaydında CH1 ham SCT/hesaplanmış akım ile mevcutsa ortak bias ve CH2/CH3 serileri karşılaştırılacak.
 - Amaç sensör sinyali olmadan ölçüm zinciri sıçramalarını araştırmak; tek başına ESP ADC arızası hükmü vermek değildir.
 - Firmware ve ölçüm ayarları sabit kalacak. Fiziksel bağlantı, kayıt ve analiz bekliyor. [E18](experiments/E18-ch1-bias-line-control/README.md).
+
+
+## 2026-11-07 — BERO kalıcı haberleşme omurgası RS485 olarak kararlaştırıldı
+
+- RS485, BERO'nun kalıcı haberleşme omurgasıdır.
+- ESP tabanlı ölçüm düğümleri verilerini RS485 üzerinden bölgesel düğümlere aktaracaktır.
+- Wi-Fi geçici haberleşme/aktarım yolu olarak kalır; kalıcı omurga değildir.
+- PZEM-014 henüz kullanılmamıştır. Modbus RTU ile PZEM okuma ve ekranlı ESP canlı gösterimi sonraki uygulama işleridir.
+- BERO düğümleri arası mesajlaşma protokolü, adresleme, topoloji, baud hızı ve fiziksel katman ayrıntıları henüz kararlaştırılmamıştır.
+- **Durum:** Mimari karar depoya işlendi; donanım/firmware/iletişim testi yapılmadı. [ADR-001](../../MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md).
