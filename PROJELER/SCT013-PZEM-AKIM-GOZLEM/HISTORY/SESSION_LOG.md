@@ -1917,3 +1917,21 @@ E17-A açık deneydir. CSV analizi, kararlılık sonucu, tekrarlanabilirlik, fir
 - Kullanıcı, PZEM akımının paket halinde daha seyrek, SCT verisinin ise daha sık yenilendiğini belirtti.
 - Korelasyonda iki akışın gerçek timestamp/güncelleme aralıkları ayrı incelenecek. Aynı PZEM değerinin birkaç SCT örneği boyunca görünmesi, arada PZEM'in tekrar ölçüm yaptığı anlamına gelmez.
 - SCT pikleri arasında yeni PZEM paketi yoksa bire bir anlık eşleştirme yapılmayacak; son yayınlanan PZEM değeri “son bilinen değer” olarak ayrıştırılacak. İnterpolasyonla ölçüm uydurulmayacak.
+
+
+## 2026-11-07 — E18 CH1 bias hattı kontrol deneyi planlandı
+
+### HEDEF
+CH1'deki sıçramaların SCT sensörü olmadan, ortak bias hattı üzerinden ölçüm yapılırken de görülüp görülmediğini incelemek.
+
+### KARAR VE PROTOKOL
+- CH1 SCT çıkarılacak; CH1 ölçüm noktası boşta bırakılmayıp ortak bias okuyan hatta bağlanacak.
+- Firmware/YAML, K, sample_duration, update_interval ve diğer kanallar değiştirilmeyecek.
+- Uzun HA History kaydında CH1 ham SCT ve hesaplanmış akım; mevcutsa ortak bias, CH2 ve CH3 serileri korunacak.
+- Sıçramalar ham kayıttan silinmeyecek; dağılım ve sıçrama istatistikleri ayrıca çıkarılacak.
+- Sıçrama görülmesi SCT'nin o davranış için gerekli olmadığını gösterebilir; tek başına ESP ADC arızası kanıtı değildir. Bias, kablolama, parazit ve yazılım da olası kaynaklardır.
+
+### DURUM / SINIR
+E18 **PLANLANDI**. Fiziksel bağlantı, uzun kayıt, CSV analizi ve sonuç henüz yok. E17 düşük akım ampul kayıtlarından ayrı tutulacak; kalibrasyon veya eğitim etiketi üretmeyecek.
+
+[ E18 deney protokolü ](../experiments/E18-ch1-bias-line-control/README.md).
