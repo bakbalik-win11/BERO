@@ -40,4 +40,4 @@ Bu istatistik CH1 ve bu fiziksel yüksüz kayıt koşuluna aittir. CH2/CH3'e vey
 
 İlk güvenilir okumanın sayısal sınırı henüz bilinmiyor; sonraki kontrollü yük deneylerinin hedefi bu sınırı bulmaktır.
 
-**İlgili karar:** [ADR-031 — CH1 yüksüz kapalı alan eşiği](../../docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md).
+**İlgili karar:** [ADR-031 — CH1 yüksüz kapalı alan eşiği](../../../docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md).
