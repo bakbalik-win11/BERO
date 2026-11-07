@@ -35,6 +35,7 @@ Bu bölüm, aynı fiziksel test yüküyle farklı ESP kartı, modül, SCT kanal�
 | 150 W akkor ampul | [150 W akkor — karşılaştırmalı ölçüm tablosu](150w-incandescent/README.md) |\n| 42 W ampul | [42 W ampul — LOAD-42W-001 / LOAD-42W-002](42w-bulb/README.md) |
 | 18 W akkor ampul | [18 W sürekli açık — E17-A düşük akım gözlem kaydı](18w-incandescent/README.md) |\n| 57 W akkor ampul | [57 W akkor — düşük akım gözlem kaydı](57w-incandescent/README.md) |
 | 57 W + 15 W ampul karma yük | [MIXED-LOAD-57W-15W-001](mixed-57w-15w/README.md) |
+| 57 W + 18 W ampul karma yük (78,10 W PZEM) | [LOAD-78W-001 — ölçülebilir alan başlangıcı](78w-mixed-incandescent/README.md) |
 
 ## Her ölçüm satırında tutulacak alanlar
 
@@ -399,3 +400,13 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - İki oturumda da CH1 ortalaması 0,24–0,41 A hesaplanmadı alanındadır; sayısal akım doğruluğu/kalibrasyon sonucu değildir.
 - 57 W oturumunda CH1 dağılımı daha dardır ve büyük sıçramalar daha azdır. Oturumlar arası gözlemsel farktır; tek başına yük gücünün nedensel etkisini kanıtlamaz.
 - Ayrıntılar: [18 W](18w-incandescent/README.md), [57 W](57w-incandescent/README.md), [E17](../experiments/E17-low-current-continuous-load-observation/README.md).
+
+
+## 2026-11-07 — LOAD-78W-001 / ölçülebilir alan başlangıç kararı
+
+- 57 W + 18 W akkor ampul birlikte, sürekli açık test edildi; kullanıcı PZEM aktif gücünü 78,10 W olarak bildirdi.
+- Paylaşılan HA ekranının son değerleri: PZEM 0,341 A; CH1 0,366 A; ham SCT 0,01512 A.
+- Ekran son değerleri arasındaki fark 0,025 A / PZEM'e göre yaklaşık %7,33'tür; bu bir CSV kararlı pencere istatistiği veya ±%4 doğrulaması değildir.
+- Kullanıcı kararı: mevcut CH1 kurulumunda sayısal değer verilebilen ölçülebilir alanın başlangıcı 78 W olarak kabul edilir.
+- 78 W noktası için CSV/uzun kararlı pencere istatistiği henüz yoktur. K=24.22 değiştirilmedi.
+- [LOAD-78W-001 ayrıntılı kayıt](78w-mixed-incandescent/README.md).
