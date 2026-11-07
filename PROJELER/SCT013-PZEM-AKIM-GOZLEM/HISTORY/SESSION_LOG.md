@@ -1,3 +1,22 @@
+## 2026-11-07 — 78 W ölçülebilir alan başlangıç kararı kaydedildi
+
+### KARAR
+Kullanıcı, mevcut sabit test yükleri ve CH1 gözlemlerine dayanarak sayısal akım değeri verilecek ölçülebilir alanın başlangıcını 78 W olarak belirledi. Deney yükü 57 W + 18 W akkor ampul; kullanıcı PZEM aktif gücünü 78,10 W olarak bildirdi. Yük sürekli açık, aç/kapa çevrimi yok.
+
+### KANIT VE SINIR
+- Paylaşılan HA ekranının son değerleri: PZEM akımı 0,341 A; CH1 hesaplanan akım 0,366 A; ham SCT entity 0,01512 A.
+- Son değerler arasındaki fark 0,025 A, PZEM'e göre yaklaşık %7,33'tür. Bunlar ekranın son yayın değerleridir; CSV kararlı pencere istatistiği değildir ve ±%4 kabulünü kanıtlamaz.
+- 78 W oturumuna ait CSV henüz sağlanmadı; örnek sayısı, zaman aralığı, ortalama/medyan/SD/P95 hesaplanmadı.
+- 18 W ve 57 W kayıtları hesaplanmadı bölgede kalır. 100 W kısa CSV ayrı güçlü karşılaştırma kaydıdır.
+- K=24.22 ve firmware değiştirilmedi.
+
+### DEPO KAYDI
+- [LOAD-78W-001 — 78,10 W karma yük](../test-loads/78w-mixed-incandescent/README.md)
+- [Test yükleri indeksi](../test-loads/README.md)
+
+### DURUM
+78 W, mevcut CH1 kurulumunun **kullanıcı tarafından kabul edilen deneysel ölçülebilir alan başlangıcıdır**. Evrensel sensör alt sınırı veya ±%4 doğrulanmış sınır olarak yorumlanmaz. CSV geldiğinde istatistiklerle ek doğrulama yapılabilir.
+
 ## 2026-11-07 — 18 W ve 57 W sürekli açık test yükü karakteristikleri depoya işlendi
 
 ### HEDEF
