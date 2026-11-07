@@ -1886,3 +1886,10 @@ E17-A açık deneydir. CSV analizi, kararlılık sonucu, tekrarlanabilirlik, fir
 - CH1 eğrisi yük devredeyken yaklaşık 0,28–0,33 A bandında; tekil tepe değerleri yaklaşık 0,5 A'ya yaklaşıyor. Bunlar ekran üzerinden yaklaşık gözlemlerdir, CSV istatistiği değildir.
 - 0,325 A değeri 0,24–0,41 A hesaplanmadı alanındadır. Tepki gözlenmesi doğru akım ölçümü anlamına gelmez; bu aralıkta değer kabul edilmeyecek.
 - E17-A devam ediyor; nihai kararlılık/tekrar edilebilirlik değerlendirmesi CSV sonrasında yapılacak.
+
+
+### SSR arka plan olaylarının yorumlanması — E17-A
+
+- Kullanıcı, arka planda SSR ON/OFF döngüsü bulunduğunu; ancak SSR'nin 18 W ampulün bağlı olduğu ölçüm hattını anahtarlamadığını açıkladı.
+- 18 W ampul sürekli yanık kalır. SSR ON/OFF olayları veri kaydında görünebilir, fakat ölçüm hattının yük durumu olarak yorumlanmayacaktır.
+- CH1 sivri sıçramaları SSR olaylarıyla çakışsa dahi doğrudan fiziksel yük geçişi veya nedensellik kabul edilmeyecek. Olay akışı ayrı metadata olarak korunacaktır.
