@@ -34,6 +34,18 @@ Bu sınırlar mevcut CH1 kurulumu ve K=24.22 bağlamındadır; diğer kanallara 
 - 10:14 civarındaki grafik hareketi PZEM'i devreye alma/bağlantı denemeleriyle ilişkilendirildi; deney başlangıcı sayılmayacak ve E17-A verisine dahil edilmeyecek.
 - Firmware, K katsayısı ve örnekleme ayarlarında bu deney için değişiklik bildirimi yoktur; gerçek ayarlar CSV geldiğinde doğrulanacaktır.
 
+### SSR olay akışı — fiziksel yük hattından bağımsız
+
+Deney sırasında arka planda bir SSR ON/OFF döngüsü çalışmaktadır; ancak bu SSR, 18 W ampulün bağlı olduğu ve PZEM/SCT CH1 tarafından gözlenen ölçüm hattını anahtarlamamaktadır. 18 W ampul deney boyunca sürekli yanık kalır.
+
+Bu nedenle:
+- SSR ON/OFF olayları HA/veri kaydında bulunabilir; bunlar ayrı olay akışı/arka plan bilgisi olarak korunur.
+- Bu olaylar 18 W ölçüm hattındaki fiziksel yükün ON/OFF durumu veya deney yükünün geçiş zamanları olarak etiketlenmeyecektir.
+- CH1 sıçramaları SSR olaylarıyla zaman bakımından çakışsa bile tek başına nedensellik veya yük anahtarlaması kanıtı sayılmaz.
+- İleride istenirse SSR olay zamanları ile CH1 değişimleri ayrı bir korelasyon incelemesinde karşılaştırılabilir; ancak bu deneyde olay akışı yük durumunu belirlemek için kullanılmaz.
+
+**Deney koşulu / kullanıcı bildirimi:** SSR arka planda anahtarlama yapıyor; ölçüm hattına bağlı değil.
+
 ### İlk ekran gözlemi — 10:21 sonrası
 
 Kullanıcının paylaştığı HA grafiğinin lejantındaki son değerler:
