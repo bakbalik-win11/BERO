@@ -1,3 +1,13 @@
+## 2026-11-07 — E17 18 W ve 57 W sürekli yük istatistikleri
+
+- 18 W ve 57 W HA History CSV kayıtları analiz edilerek ayrı test-yükü karakteristiklerine dönüştürüldü.
+- 18 W: 90 dk (10:30–12:00 +03:00), PZEM 0,07824 A / 17,635 W; CH1 n=5.401, ortalama 0,30571 A, medyan 0,29920 A, SD 0,04477 A, CV %14,64, P95 0,36962 A, maksimum 1,29129 A.
+- 57 W: 70 dk (13:00–14:10 +03:00), PZEM 0,26307 A / 59,8405 W; CH1 n=4.201, ortalama 0,35550 A, medyan 0,35403 A, SD 0,01786 A, CV %5,02, P95 0,38632 A, maksimum 0,49263 A.
+- İki oturumda CH1 ortalaması 0,24–0,41 A hesaplanmadı alanındadır. Ölçüm doğruluğu/kalibrasyon iddiası yoktur.
+- 57 W dağılımı 18 W'a göre daha dardır; oturum farkı gözlemdir, nedensellik kanıtı değildir.
+- Ham CSV dosyaları Git'e eklenmedi; dosya adları, boyutları ve SHA-256 değerleri test-yükü kayıtlarına yazıldı.
+- Ayrıntılar: [18 W](../test-loads/18w-incandescent/README.md), [57 W](../test-loads/57w-incandescent/README.md), [E17](../experiments/E17-low-current-continuous-load-observation/README.md).
+
 ## 2026-11-01 — ADR-025
 
 - Kararlı SCT/PZEM alanları katsayı öğrenmek için kullanılır; ham kayıt korunur.
