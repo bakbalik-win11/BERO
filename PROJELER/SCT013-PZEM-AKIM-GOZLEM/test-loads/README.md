@@ -33,7 +33,7 @@ Bu bölüm, aynı fiziksel test yüküyle farklı ESP kartı, modül, SCT kanal�
 |---|---|
 | 100 W akkor ampul | [100 W akkor — karşılaştırmalı ölçüm tablosu](100w-incandescent/README.md) |
 | 150 W akkor ampul | [150 W akkor — karşılaştırmalı ölçüm tablosu](150w-incandescent/README.md) |\n| 42 W ampul | [42 W ampul — LOAD-42W-001 / LOAD-42W-002](42w-bulb/README.md) |
-| 57 W akkor ampul | [57 W akkor — düşük akım gözlem kaydı](57w-incandescent/README.md) |
+| 18 W akkor ampul | [18 W sürekli açık — E17-A düşük akım gözlem kaydı](18w-incandescent/README.md) |\n| 57 W akkor ampul | [57 W akkor — düşük akım gözlem kaydı](57w-incandescent/README.md) |
 | 57 W + 15 W ampul karma yük | [MIXED-LOAD-57W-15W-001](mixed-57w-15w/README.md) |
 
 ## Her ölçüm satırında tutulacak alanlar
@@ -389,3 +389,13 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - İlk kısa log ön gözlemi test dosyasında; uzun log ve tekrar UNIT okumaları bekleniyor.
 - [Deney kaydı](15w-2t-3t-4t/LOAD-15W-004.md); [YAML snapshot](../firmware/archive/LOAD-15W-004-2026-11-01-esp32d1-15w-2t-3t-4t-unit.yaml).
 - Durum AÇIK; derleme/OTA/HA Recorder doğrulanmadı; 0,30 A altında ±%4 kabul/ret uygulanmaz.
+
+
+## 2026-11-07 — 18 W ve 57 W sürekli açık yük karakteristikleri
+
+- 18 W ve 57 W akkor ampuller için aynı CH1-1T Faz ölçüm zincirinden, PZEM-004T V3.0 referans akışıyla ayrı sürekli-açık HA History oturumları kaydedildi.
+- 18 W: 10:30–12:00 (+03:00), 90 dk; PZEM akım ortalaması 0,07824 A, güç 17,635 W; CH1 ortalama 0,30571 A, SD 0,04477 A, CV %14,64, P95 0,36962 A, maksimum 1,29129 A.
+- 57 W: 13:00–14:10 (+03:00), 70 dk; PZEM akım ortalaması 0,26307 A, güç 59,8405 W; CH1 ortalama 0,35550 A, SD 0,01786 A, CV %5,02, P95 0,38632 A, maksimum 0,49263 A.
+- İki oturumda da CH1 ortalaması 0,24–0,41 A hesaplanmadı alanındadır; sayısal akım doğruluğu/kalibrasyon sonucu değildir.
+- 57 W oturumunda CH1 dağılımı daha dardır ve büyük sıçramalar daha azdır. Oturumlar arası gözlemsel farktır; tek başına yük gücünün nedensel etkisini kanıtlamaz.
+- Ayrıntılar: [18 W](18w-incandescent/README.md), [57 W](57w-incandescent/README.md), [E17](../experiments/E17-low-current-continuous-load-observation/README.md).
