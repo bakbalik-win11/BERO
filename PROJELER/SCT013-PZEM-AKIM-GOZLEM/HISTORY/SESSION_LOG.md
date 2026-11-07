@@ -1,3 +1,28 @@
+## 2026-11-07 — 18 W ve 57 W sürekli açık test yükü karakteristikleri depoya işlendi
+
+### HEDEF
+Kullanıcının isteğiyle 18 W ve 57 W sürekli açık yük deneylerini test-yükü alanında ayrı karakteristik kayıtları olarak saklamak; PZEM ve CH1 istatistiklerini, kaynak CSV kimliklerini ve yorum sınırlarını korumak.
+
+### KAYNAK VE ANALİZ
+- 18 W CSV: `18w 3 saat.csv`, 1.200.152 bayt, SHA-256 `7a6c63e48891a7bc92fdc705d70c6b2db8e8a2e88e204a43de10ff71e1e8ce52`. Analiz aralığı 10:30–12:00 (+03:00), 90 dk; PZEM devreye alma geçişi öncesi kayıt dışarıda bırakıldı.
+- 18 W PZEM: akım ort. 0,07824 A; güç ort. 17,6350 W. CH1 n=5.401; ort. 0,30571 A; medyan 0,29920 A; SD 0,04477 A; CV %14,64; P95 0,36962 A; maksimum 1,29129 A.
+- 57 W CSV: `57w 1 saat.csv`, 945.098 bayt, SHA-256 `53afb448f95a722c37680511f1e2ad7cce8c32ee190b7828be6d7f17a2cea50c`. Analiz aralığı 13:00–14:10 (+03:00), 70 dk.
+- 57 W PZEM: akım ort. 0,26307 A; güç ort. 59,8405 W. CH1 n=4.201; ort. 0,35550 A; medyan 0,35403 A; SD 0,01786 A; CV %5,02; P95 0,38632 A; maksimum 0,49263 A.
+
+### YORUM
+57 W oturumunda CH1 dağılımı 18 W oturumuna göre daha dar, yüksek sıçramalar daha azdır. Bu iki farklı oturumun gözlemsel karşılaştırmasıdır; yük gücünün tek başına nedensel etkisini kanıtlamaz. Her iki CH1 ortalaması da 0,24–0,41 A hesaplanmadı alanındadır; ölçüm doğruluğu veya kalibrasyon sonucu değildir. Firmware/K ve filtre değiştirilmedi.
+
+### DEPO DEĞİŞİKLİKLERİ
+- [18 W test yükü kaydı](../test-loads/18w-incandescent/README.md) oluşturuldu.
+- [57 W test yükü kaydı](../test-loads/57w-incandescent/README.md) LOAD-57W-002 ile güncellendi; önceki LOAD-57W-001 tarihçesi korundu.
+- [Test yükleri indeksi](../test-loads/README.md), [E17 deney kaydı](../experiments/E17-low-current-continuous-load-observation/README.md), STATUS ve PROGRESS_TREE güncellendi.
+- Ham CSV dosyaları Git'e eklenmedi; kaynak adı, boyutu ve SHA-256 özet kayıtlara yazıldı.
+
+### DOĞRULAMA SINIRI
+Yazılan dosyalar geri okunarak kontrol edildi. Bu kayıtlar gözlem/karakteristik kayıtlarıdır; 0,24–0,41 A hesaplanmadı alanı kararını veya katsayıyı değiştirmez. 15 W mini buzdolabı ampulü deneyi henüz yapılmadı.
+
+---
+
 ## 2026-11-01 — E11 yüksüz iki modül deneyi planlandı; deney sırası esnekleştirildi
 
 ### HEDEF
