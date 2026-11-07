@@ -68,3 +68,6 @@ Her yeni deney için amaç/HEDEF, gerçek bağlantı ve ayarlar, LOG, SONUÇ, ka
 
 
 - **[E16 — Yüksüz/düşük akım koşulunda SCT'nin ON/OFF davranışını gözlemleme](E16-sct-on-off-response-idle-low-current/README.md): PLANLANDI — 2026-11-06 gece kaydı.** PZEM sıfır/sıfıra yakın akım gösterirken SCT CH1'in ON/OFF olaylarıyla değişip değişmediği ve tekrarlanabilir seviyelere yerleşip yerleşmediği incelenecek. Kullanıcının 18 W gözlemi ayrı doğrulanmamış hipotez olarak tutulur; gece yüksüz kaydıyla karıştırılmaz. HA History CSV ve iki modülün olay kayıtları sabah analiz edilecek. Eğitim etiketi/katsayı üretimi bu deneyin kapsamında değildir.
+
+
+- **[E17 — CH1 düşük akım bölgesi: sürekli küçük yük gözlemleri](E17-low-current-continuous-load-observation/README.md): AÇIK — E17-A 18 W sürekli açık kayıt (2026-11-07 10:21).** Röle devrede değil; ilk ekranda PZEM 227,1 V / 0,078 A, CH1 yaklaşık 0,28–0,30 A. 0,24–0,41 A hesaplanmadı alanında sayısal akım değeri kabul edilmeyecek. CSV analizi bekleniyor. Sonraki ayrı kayıt adayı 15 W mini buzdolabı ampulü.
