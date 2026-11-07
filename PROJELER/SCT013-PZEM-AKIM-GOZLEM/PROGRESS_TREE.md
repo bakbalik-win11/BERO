@@ -464,3 +464,13 @@
 - 0,24 A ile ilk güvenilir okuma arasındaki bölge hesaplanmadı alanıdır; ilk güvenilir okuma ve üzeri hesaplanacak.
 - İlk güvenilir okuma eşiği henüz bilinmiyor; sonraki deney hedefi bu sınırı bulmak.
 - [I007 istatistik özeti](data/off-noise/sessions/2026-11-07-ch1-closed-area-threshold.md), [ADR-031](docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md).
+
+
+## 2026-11-07 — E17 CH1 düşük akım sürekli yük gözlemi
+
+- E17 açıldı: CH1'in 0,24 A kapalı alan sınırı üzerindeki düşük akım davranışı sürekli küçük yüklerle incelenecek.
+- E17-A: 18 W akkor ampul, 10:21 (Europe/Istanbul) başlangıç; ampul sürekli açık, röle devre dışı. 10:14 civarı PZEM devreye alma hazırlığı deney verisine dahil edilmiyor.
+- İlk ekran gözlemi: PZEM 227,1 V / 0,078 A; CH1 yaklaşık 0,277–0,30 A bandında. Kullanıcı kararıyla 0,24–0,41 A aralığı hesaplanmadı alanıdır; burada fiziksel tepki görülse de sayısal akım değeri üretilmeyecek.
+- 18 W uzun kayıt sürüyor; CSV analizi ve kararlılık değerlendirmesi beklemede.
+- Sonraki ayrı oturum adayı E17-B: 15 W mini buzdolabı ampulü sürekli açık. Farklı tepki gözlemi henüz yeni kayıtla doğrulanmadı.
+- Ayrıntı: [E17](experiments/E17-low-current-continuous-load-observation/README.md).
