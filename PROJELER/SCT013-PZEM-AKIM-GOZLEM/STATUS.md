@@ -1,3 +1,11 @@
+## 2026-11-07 — E17 sürekli düşük yük gözlemleri: 18 W ve 57 W
+
+- E17-A 18 W sürekli açık oturumunun 10:30–12:00 (+03:00) CSV bölümü analiz edildi: PZEM ortalama 0,07824 A / 17,635 W; CH1 5.401 örnek, ortalama 0,30571 A, SD 0,04477 A, CV %14,64, P95 0,36962 A, maksimum 1,29129 A.
+- E17-B 57 W sürekli açık oturumu 13:00–14:10 (+03:00) analiz edildi: PZEM ortalama 0,26307 A / 59,8405 W; CH1 4.201 örnek, ortalama 0,35550 A, SD 0,01786 A, CV %5,02, P95 0,38632 A, maksimum 0,49263 A.
+- 57 W oturumunda CH1 dağılımı 18 W'a göre daha dar; büyük sıçramalar daha azdır. Bu iki oturumun gözlemsel karşılaştırmasıdır, nedensellik kanıtı değildir.
+- Her iki CH1 ortalaması 0,24–0,41 A hesaplanmadı alanındadır; akım doğruluğu/kalibrasyon sonucu çıkarılmaz.
+- Test yükü kayıtları: [18 W](test-loads/18w-incandescent/README.md), [57 W](test-loads/57w-incandescent/README.md). Deney kaydı: [E17](experiments/E17-low-current-continuous-load-observation/README.md).
+
 ## 2026-11-05 — BERO kapsamı ve hazırlık ortamı / canlı sistem ayrımı
 
 Kullanıcı açıklaması ve kapsam kararı:
