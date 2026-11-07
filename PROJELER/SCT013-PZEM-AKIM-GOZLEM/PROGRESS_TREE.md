@@ -499,5 +499,5 @@
 - RS485 A/B, CAT kablo üzerinden taşınacak.
 - Transformatör beslemesi aynı kabloyla düğüme götürülecek ve yerinde 5 V'a dönüştürülecek.
 - BERO RS485/besleme kablosu, mevcut Ethernet hattından dış kılıf rengiyle ayrılacak; uçlar ayrıca etiketlenecek ve LAN portlarına takılmayacak.
-- CAT tipi/pair tahsisi, transformatör gerilimi, akım, mesafe-gerilim düşümü, dönüştürücü ve koruma tasarımı henüz belirlenmedi.
+- CAT tipi/pair tahsisi, 24 V DC ana beslemenin kapasitesi, akım, mesafe-gerilim düşümü, dönüştürücü ve koruma tasarımı henüz belirlenmedi.
 - **Durum:** Kablolama yaklaşımı kullanıcı kararı olarak kaydedildi; fiziksel kurulum ve elektriksel/haberleşme testi yapılmadı. [ADR-001](../../MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md).
