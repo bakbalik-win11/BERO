@@ -249,3 +249,16 @@ Kullanıcının gün sonu değerlendirmesi:
 - Bu eşik CH1 ve bu yüksüz kayıt koşuluna özgüdür; CH2/CH3'e genellenmez. E16 ON/OFF gözlemi ayrı kalır.
 - I007 çoklu oturum gürültü karakterizasyonu bu ilk karar için ön koşul olmaktan çıkarıldı; ileride oturumlar arası değişimi incelemek için sürdürülebilir.
 - Ayrıntı: [I007 özet](data/off-noise/sessions/2026-11-07-ch1-closed-area-threshold.md), [ADR-031](docs/decisions/ADR-031-ch1-idle-closed-area-threshold.md).
+
+
+## 2026-11-07 — E17 18 W sürekli yük gözlemi açıldı
+
+- Kullanıcı 18 W akkor ampul deneyini 10:21'de başlattı (Europe/Istanbul). Ampul deney boyunca sürekli yanıyor; röle devrede değil ve röle anahtarlama etkisi bulunmuyor.
+- 10:14 civarındaki grafikteki hareket PZEM'i devreye alma/bağlantı denemeleriyle ilişkili hazırlık dönemi olarak ayrıldı; deney başlangıcı kabul edilmedi.
+- İlk HA ekran gözleminde PZEM 227,1 V / 0,078 A; CH1 akım entity'si yaklaşık 0,277 A ve ham SCT entity'si 0,01145 A gösteriyordu. CH1 eğrisi 10:21 sonrasında yaklaşık 0,28–0,30 A çevresinde görünüyor.
+- Kullanıcı kararı: CH1'in 0,24–0,41 A hesaplanmadı alanında fiziksel tepki görülse bile sayısal akım değeri kabul edilmeyecek/üretilmeyecek. Bölge ileride farklı sensörle ele alınabilir.
+- 18 W kaydı sürüyor; ekran görüntüsü ilk gözlemdir, kararlılık/tekrar edilebilirlik sonucu değildir. CSV analizi bekleniyor.
+- Sonraki ayrı deney adayı: 15 W mini buzdolabı ampulü sürekli açık kayıt. Kullanıcı bu ampulün farklı tepki verdiğini bildirdi; bu henüz yeni kayıtla doğrulanmış sonuç değildir.
+- Ayrıntı: [E17 protokolü ve ilk gözlem](experiments/E17-low-current-continuous-load-observation/README.md).
+
+**Durum sınırı:** E17-A AÇIK; E17-B BAŞLATILMADI. Firmware, YAML, K katsayısı veya eşik değiştirilmedi. Kalibrasyon/eğitim etiketi üretilmedi.
