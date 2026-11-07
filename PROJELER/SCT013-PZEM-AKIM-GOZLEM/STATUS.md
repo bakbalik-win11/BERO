@@ -313,3 +313,17 @@ Kullanıcının gün sonu değerlendirmesi:
 - Amaç, SCT sinyali olmadan CH1 ölçüm zincirinin sıçrama üretip üretmediğini gözlemek. Bu deney ESP ADC arızasını tek başına kanıtlamaz; bias hattı, bağlantı, ortak parazit ve yazılım etkileri de değerlendirme kapsamındadır.
 - Firmware/YAML, K, sample_duration, update_interval ve diğer kanallar değiştirilmeden uzun Home Assistant History kaydı alınacak. Ortak bias ve varsa CH2/CH3 kontrol serileri korunacak.
 - Fiziksel bağlantı ve kayıt henüz yapılmadı; deney **PLANLANDI** durumundadır. [E18 protokolü](experiments/E18-ch1-bias-line-control/README.md).
+
+
+## 2026-11-07 — BERO kalıcı haberleşme omurgası: RS485 (ADR-001)
+
+Kullanıcı kararı:
+- BERO'nun kalıcı haberleşme omurgası RS485 olacaktır.
+- ESP tabanlı düğümler ölçüm/veri kayıtlarını RS485 üzerinden bölgesel düğümlere aktaracaktır.
+- Wi-Fi şimdilik geçici haberleşme/aktarım yoludur; kalıcı omurga değildir.
+- PZEM-014 AC RS485 Modbus Güç Tüketim Ölçer + USB henüz hiç kullanılmamıştır; RS485/Modbus RTU okuma çalışması ve ekranlı ESP'lerin canlı gösterimi sonraki uygulama adımlarıdır.
+- Modbus RTU cihaz okuma protokolü ile BERO düğümleri arası mesajlaşma protokolü birbirine karıştırılmayacaktır.
+
+Bu kayıt mimari kararıdır. RS485 bağlantısı, düğümler arası aktarım, PZEM-014 okuması ve ekranlar henüz fiziksel olarak devreye alınmamış/doğrulanmamıştır. Topoloji, adresleme, mesaj çerçevesi, baud hızı ve transceiver seçimi açık bırakılmıştır.
+
+Ayrıntı: [MIMARI/DECISIONS/ADR-001](../../MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md).
