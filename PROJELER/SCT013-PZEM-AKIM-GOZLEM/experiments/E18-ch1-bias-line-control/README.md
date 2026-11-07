@@ -47,10 +47,11 @@ Bu deney E17 düşük akım yük deneylerinden ayrıdır. 15 W ampul deneyi değ
 - Bu deney CH1'e ait mevcut donanım/bağlantı düzeni için kontrol niteliğindedir; diğer kanallara genellenmez.
 - Deney E17-A/E17-B düşük akım sonuçlarıyla birleştirilmez; kalibrasyon, K değişikliği veya eğitim etiketi üretmez.
 
-## LOG
+## LOG / kullanıcı gözlemi
 
-Henüz fiziksel bağlantı yapılmadı ve kayıt alınmadı. Gerçek başlangıç/bitiş zamanı, süre, CSV örnek sayısı, istatistikler ve log örneği deney sonrasında eklenecek.
+Kullanıcı, CH1'in bias hattı üzerinden yapılan gözleminde tekil sıçramalar dışında stabil seyrettiğini bildirdi. Bu gözlem, dalgalanmanın ana kaynağının bias hattı olmadığını ve yeni bir bias hattı araştırmasının mevcut proje hedefi açısından anlamlı olmadığını düşündürmektedir. Tekil sıçramaların fiziksel nedeni bu deneyle kesin olarak belirlenmiş değildir. Gerçek başlangıç/bitiş zamanı, süre, CSV örnek sayısı, istatistikler ve log örneği deney sonrasında eklenecek.
 
 ## SONUÇ
 
 Henüz sonuç yok. Deney yalnızca planlandı.
+\n\n## Kapanış — kullanıcı kararı\n\nE18, bias hattı gözleminin sıçramalar dışında stabil olması ve kalan düşük akım belirsizliğinin CH1 sensörünün ölçüm alt sınırı/ölü bölgesiyle ilgili kabul edilmesi nedeniyle kapatıldı. Bu sonuç ADC, kablolama veya tüm analog ölçüm zincirinin kusursuz olduğunu kanıtlamaz; yalnızca bias hattını ana şüpheli olarak araştırmayı sürdürmek için gerekçe kalmadığını belirtir. Yeni bir tekrarlı bias kontrolü planlanmayacaktır.\n\n**SONUÇ:** KAPATILDI — kullanıcı gözlemi esas alındı; ayrıca sayısal CSV istatistiği veya donanım arızası teşhisi iddia edilmez.\n
