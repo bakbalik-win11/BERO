@@ -29,3 +29,9 @@ Henüz sonuç yok. Sipariş verilmesi veya deney planının hazırlanması, dona
 Kullanıcı, ADS1115 alternatifi işe yararsa uygun kalibrasyon katsayısıyla yaklaşık 2 A civarında da kullanılabileceğini değerlendirmeyi istedi. Bu hedef E19'a ikincil doğrulama bölgesi olarak eklendi.
 
 Henüz ölçüm veya katsayı yoktur. Kartın giriş aralığı/gain ayarı, SCT çıkış tepe değeri, clipping, kararlılık ve PZEM referansına göre sapma ölçülecek. Düşük akım ve yaklaşık 2 A aralıklarında tek katsayının geçerli olduğu varsayılmayacak.
+
+## 2026-11-09 — Çift yol / aralık seçimi fikri (henüz uygulanmadı)
+
+Kullanıcının mimari tarifi: Aynı ESP üzerinde mevcut ESP32 ADC ölçüm yolu ve I²C ADS1115 ikinci ölçüm yolu birlikte bulunabilir. Yaklaşık 1 A altına inildiğinde kullanılacak ölçüm ADS1115 yolundan, eşik üstünde mevcut dahili ADC yolundan seçilecek. Hedef, iki yolun güçlü olduğu akım bölgelerini birleştirmek.
+
+Bu henüz deney sonucu veya kesin mimari kararı değildir. İlk olarak aynı SCT sinyalinin iki ön uca güvenli biçimde verilip verilemeyeceği incelenecek. Bias/common-mode ve giriş yüklemesi doğrulanmadan paralel bağlantı yapılmayacak. Eşik 1 A başlangıç fikridir; histerezis ve geçiş davranışı ölçümle belirlenecek. Her iki yolun ham kayıtları ayrı tutulacak.
