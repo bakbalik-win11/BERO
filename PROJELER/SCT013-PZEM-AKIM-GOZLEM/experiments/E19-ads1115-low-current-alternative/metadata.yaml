@@ -1,0 +1,28 @@
+id: E19
+slug: ads1115-low-current-alternative
+title: ADS1115 ile düşük akım ölçüm alternatifi
+status: planned
+phase: 2
+created: 2026-11-09
+hardware:
+  adc: ADS1115 breakout board
+  current_sensor: SCT-013 30A/1V
+  reference: PZEM-004T V3.0
+  existing_path: SCT-013 + bias midpoint + ESP32 ADC
+budget:
+  reported_try_budget_tl: 250
+schedule:
+  target: hafta sonu, teslimat ve güvenli hazırlığa bağlı
+scope:
+  target_region: "0.5 A altı öncelikli; geçiş için 0.5 A çevresi ve üstü kontrol"
+  compare_existing_adc: true
+  investigate_external_bias_free_operation: true
+  investigate_single_ended_and_differential: true
+  investigate_pga_and_data_rate: true
+constraints:
+  - "Mevcut BERO ölçüm yolu değiştirilmeyecek."
+  - "MCP3208 bu deneyin kapsamında değildir."
+  - "SCT modeli 30A/1V olarak doğrulanacak."
+  - "Giriş common-mode ve AIN pin sınırları doğrulanmadan doğrudan bağlantı yapılmayacak."
+  - "PZEM karşılaştırma referansıdır; mutlak ground truth varsayılmaz."
+  - "Deney sonucu olmadan ±4% başarı iddia edilmeyecek."
