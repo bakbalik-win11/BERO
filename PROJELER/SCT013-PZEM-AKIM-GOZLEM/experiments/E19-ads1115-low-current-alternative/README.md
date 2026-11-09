@@ -128,3 +128,18 @@ Kullanıcı fikri: ADS1115 alternatifi düşük akım denemesinde işe yararsa, 
 - Farklı akım aralıklarında tek doğrusal katsayının yeterli olup olmadığı ayrıca kontrol edilecek. Gerekirse kalibrasyon aralığı ve doğrusal olmayan davranış raporlanacak.
 - 2 A civarında kullanılabilirlik; girişte clipping olmaması, kararlılık/tekrar edilebilirlik ve PZEM'e göre sapma birlikte değerlendirilerek karara bağlanacak.
 - **Durum:** Yalnızca deney hedefi olarak kaydedildi. ADS1115 kartı henüz fiziksel olarak test edilmedi; katsayı veya 2 A başarısı iddia edilmiyor.
+
+## 2026-11-09 — Aynı ESP üzerinde çift ölçüm yolu ve yazılımsal aralık seçimi fikri
+
+Kullanıcının tarif ettiği olası mimari:
+
+- Mevcut ESP32 dahili ADC + bias ölçüm yolu normal ölçüm akışını izlemeye devam eder.
+- Aynı ESP32'ye I²C üzerinden ADS1115 bağlanır; ADS1115 ikinci bir ölçüm yolu olarak aynı SCT kanalını ölçer.
+- Akım yaklaşık 1 A eşiğinin altına indiğinde yayımlanan/tercih edilen ölçüm ADS1115 yolundan; eşik üstünde mevcut ESP32 ADC yolundan seçilir.
+- Böylece ADS1115'in düşük akım bölgesinde, mevcut yolun ise daha yüksek akım bölgesinde kullanılması hedeflenir. Yaklaşık 2 A çevresi ayrıca doğrulanacak.
+
+Bu fikir şu aşamada **yazılımsal ölçüm yolu seçimi** olarak ele alınır; analog sinyali fiziksel olarak anahtarlayan bir röle/multiplexer kararı verilmiş değildir. İlk geliştirme adımında iki yolun paralel ölçüm yapıp ham/işlenmiş sonuçlarının ayrı izlenmesi, seçimin ise yazılımda yapılması tercih edilebilir. Geçişte ani değer sıçramalarını önlemek için eşik çevresinde histerezis ve yol geçişi doğrulaması gerekecek; 1 A şimdilik kullanıcı tarafından önerilen başlangıç eşiğidir, deneyle sabitlenmiş değildir.
+
+**Elektriksel ön koşul:** Aynı SCT sekonder çıkışını iki analog ön uca bağlamadan önce her iki giriş devresinin empedansı, bias/common-mode yapısı, koruma elemanları ve giriş sınırları birlikte incelenmelidir. Mevcut ESP32 bias ağı ile ADS1115 diferansiyel girişinin paralel bağlanmasının sinyali yüklemeyeceği veya iki devrenin birbirini etkilemeyeceği varsayılmayacaktır. Gerekirse tamponlama/ayırma veya kontrollü analog anahtarlama tasarlanır. Kart ve bağlantı şeması görülmeden paralel bağlantı yapılmaz.
+
+**Durum:** Mimari fikir kaydedildi; eşik, histerezis, analog bağlantı ve yazılım seçimi henüz tasarım/deney aşamasında. Donanımda uygulanmış değildir.
