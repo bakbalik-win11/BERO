@@ -74,3 +74,6 @@ Her yeni deney için amaç/HEDEF, gerçek bağlantı ve ayarlar, LOG, SONUÇ, ka
 
 
 - **[E18 — CH1 SCT çıkarılmış, bias hattı üzerinden uzun süreli kontrol](E18-ch1-bias-line-control/README.md): PLANLANDI.** CH1 SCT sensörü çıkarılacak; CH1 ölçüm girişi ortak bias okuyan hatta bağlanarak uzun HA History kaydı alınacak. Amaç, SCT sinyali olmadan ölçüm zincirinde sıçrama görülüp görülmediğini incelemek. Fiziksel bağlantı, kayıt ve analiz henüz yapılmadı.
+
+
+- **[E19 — ADS1115 ile düşük akım ölçüm alternatifi](E19-ads1115-low-current-alternative/README.md): PLANLANDI — kullanıcı bir adet ADS1115 kartı sipariş etti (yaklaşık 250 TL); hafta sonu ilk denemeler hedefleniyor. Mevcut SCT + bias + ESP32 ADC yolu korunacak. SCT-013 30A/1V + ADS1115 alternatifi özellikle 0,5 A altı için PZEM referansıyla karşılaştırılacak. Bias'sız bağlantı yalnızca kartın giriş ağı ve AIN common-mode güvenliği doğrulanırsa denenecek. Fiziksel deney/ölçüm henüz yapılmadı. [Protokol](E19-ads1115-low-current-alternative/protocol.md) · [Sonuç defteri](E19-ads1115-low-current-alternative/results.md).
