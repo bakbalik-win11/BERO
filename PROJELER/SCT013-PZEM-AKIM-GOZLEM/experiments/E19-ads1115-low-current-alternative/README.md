@@ -118,3 +118,13 @@ Bu yalnızca bileşen bağlantı iskeletidir; I²C pinleri ve kart beslemesi ger
 - **Gain:** `gain: 0.256`, ±0.256 V tam ölçek aralığıdır; 16 kat analog yükseltme değildir. SCT çıkışının tepe değeri bu aralığı aşarsa kırpılma/taşma oluşabilir.
 
 **Kaynaklar:** ESPHome ADS1115 dokümantasyonu; ESPHome CT Clamp dokümantasyonu; ESPHome 2026.10.2 ct_clamp ve ads1115 C++ kaynak kodu. Bu kayıt kaynak kod incelemesidir; gerçek kartta derleme/ölçüm doğrulaması değildir.
+
+## 2026-11-09 — İkincil değerlendirme hedefi: yaklaşık 2 A bölgesi
+
+Kullanıcı fikri: ADS1115 alternatifi düşük akım denemesinde işe yararsa, yalnızca 0,5 A altındaki bölge için değil, uygun ölçüm aralığı ve deneysel kalibrasyon katsayısıyla yaklaşık 2 A civarında da kullanılabilirliği değerlendirilecek.
+
+- 2 A civarı ayrı bir doğrulama noktası/bölgesi olarak deneye eklenecek; mevcut düşük akım hedefinin yerine geçmez.
+- Katsayı önceden seçilmeyecek veya teorik olarak atanmayacak. Gerçek SCT çıkışı, ADS1115 ham/ct_clamp çıktısı ve aynı kararlı yük koşulundaki PZEM referans ölçümleriyle belirlenecek.
+- Farklı akım aralıklarında tek doğrusal katsayının yeterli olup olmadığı ayrıca kontrol edilecek. Gerekirse kalibrasyon aralığı ve doğrusal olmayan davranış raporlanacak.
+- 2 A civarında kullanılabilirlik; girişte clipping olmaması, kararlılık/tekrar edilebilirlik ve PZEM'e göre sapma birlikte değerlendirilerek karara bağlanacak.
+- **Durum:** Yalnızca deney hedefi olarak kaydedildi. ADS1115 kartı henüz fiziksel olarak test edilmedi; katsayı veya 2 A başarısı iddia edilmiyor.
