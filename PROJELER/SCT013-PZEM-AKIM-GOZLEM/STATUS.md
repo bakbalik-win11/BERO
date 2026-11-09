@@ -408,3 +408,17 @@ Kullanıcı kararı/fikri: ADS1115 alternatifi düşük akım denemesinde başar
 - Düşük akım ve 2 A bölgesinde tek katsayının yeterli olduğu varsayılmayacak; aralıklar arası doğrusal davranış ayrıca incelenecek.
 - **Durum:** Fikir ve test hedefi kaydedildi. ADS1115 kartı henüz teslim/deney aşamasında; 2 A performansı ve katsayı doğrulanmış değildir.
 - Ayrıntı: [E19 README](experiments/E19-ads1115-low-current-alternative/README.md), [protokol](experiments/E19-ads1115-low-current-alternative/protocol.md), [sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md).
+
+## 2026-11-09 — E19 sonrası aday mimari: aynı ESP'de çift ölçüm yolu
+
+Kullanıcı, ADS1115 başarılı olursa aynı ESP üzerinde iki ölçüm yolunun kullanılabileceği bir yapı tarif etti:
+- Mevcut ESP32 dahili ADC + bias yolu normal/yüksek akım ölçümünü izler.
+- I²C ADS1115 aynı SCT kanalını ikinci yoldan ölçer.
+- Yaklaşık 1 A altındaki bölgede yazılım ADS1115 sonucunu; eşik üstünde mevcut ESP32 ADC sonucunu kullanır.
+- Yaklaşık 2 A çevresi ADS1115 için ayrıca doğrulanacak; tek katsayı varsayılmayacak.
+
+Bu, şu aşamada **aday yazılımsal aralık seçimi mimarisidir**; fiziksel analog anahtarlama kararı değildir. Eşik 1 A olarak önerilmiştir ancak henüz doğrulanmamıştır. Eşik çevresinde histerezis, zamanlama/ölçüm penceresi uyumu ve yol değişiminde süreksizlik testleri gereklidir.
+
+**Elektriksel ön koşul:** SCT sinyalini ESP32 ADC bias ağı ve ADS1115 girişine aynı anda vermeden önce iki analog ön ucun giriş empedansı, bias/common-mode, koruma ve gerilim sınırları incelenecek. Paralel bağlantı otomatik olarak güvenli kabul edilmeyecek; gerekirse tamponlama/ayırma veya analog anahtarlama çözülecek.
+
+**Durum:** Yalnızca fikir ve sonraki mimari adım kaydedildi. Kart teslimi, bağlantı, firmware, derleme ve ölçüm doğrulaması bekleniyor. Ayrıntılar E19 README ve protokolüne eklendi.
