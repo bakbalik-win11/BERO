@@ -99,3 +99,23 @@ ADS1115 alternatifi 0,5 A altındaki hedef bölgede işe yararsa, yaklaşık 2 A
 2 A çevresinde en az bir kararlı yük noktası ve mümkünse bu noktanın alt/üst komşu noktaları kaydedilecek. ADS1115 gain seçimi, SCT çıkış tepe değeri ve clipping payı dikkate alınacak. Katsayı; ham ölçüm, gerçek bağlantı/tur sayısı ve aynı kararlı koşuldaki PZEM referansı üzerinden hesaplanacak. Tek katsayının hem düşük akım hem 2 A civarında yeterli olduğu varsayılmayacak; aralıklar arası sapma ayrıca raporlanacak.
 
 Kabul için elektriksel giriş güvenliği, clipping olmaması, tekrar edilebilirlik ve PZEM'e göre sapma birlikte incelenecek. Katsayı ve 2 A uygunluğu deney öncesinde belirlenmiş değildir.
+
+## Aday mimari — aynı ESP üzerinde çift ölçüm yolu
+
+E19 başarılı olursa sonraki adımda aynı ESP32 üzerinde iki yolun birlikte çalışması değerlendirilecek:
+
+1. Mevcut dahili ADC + bias yolu.
+2. I²C üzerinden ADS1115 ölçüm yolu.
+
+İki yol aynı SCT kanalını izleyebiliyorsa, ilk doğrulama aşamasında ikisi de paralel ölçüm yapıp ayrı değer/log üretebilir. Yazılım, yaklaşık 1 A altındaki bölgede ADS1115 değerini; bu eşik üstünde mevcut ESP32 ADC değerini seçebilir. Bu, fiziksel bağlantıyı değiştirmek değil, hangi ölçüm sonucunun kullanılacağını yazılımla seçmek şeklinde tasarlanacak.
+
+### Geçiş mantığı için açık konular
+
+- 1 A yalnızca başlangıç önerisidir; PZEM referanslı kararlı yük testleriyle doğrulanacak.
+- Eşik çevresinde iki yol arasında sık gidip gelmeyi önlemek için histerezis gerekir. Alt/üst geçiş eşikleri deney verisinden seçilecek; henüz sayısal histerezis değeri yoktur.
+- Her iki yolun timestamp, örnekleme penceresi ve gecikmesi karşılaştırılmalı; geçiş anında eski/yeni değerler arasında süreksizlik olup olmadığı kaydedilmelidir.
+- ADS1115 yaklaşık 2 A civarında da sınanacak; gain ve giriş headroom'u clipping olmayacak şekilde seçilecek.
+
+### Analog bağlantı güvenlik kapısı
+
+Aynı SCT çıkışını iki ADC ön ucuna paralel bağlamak otomatik olarak güvenli/doğru kabul edilmez. ESP32 tarafındaki bias ağı ve ADS1115 tarafındaki giriş/common-mode ağı birlikte analiz edilmeden bağlantı yapılmayacak. Gerekirse tampon, uygun ayırma veya analog anahtarlama kullanılacak. Bu inceleme tamamlanana kadar şema/YAML kesinleştirilmeyecek.
