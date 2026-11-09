@@ -62,3 +62,59 @@ Mümkün olduğunda aynı fiziksel yük ve aynı hat koşulu kullanılacaktır. 
 - Deney sonunda: düşük akım alternatifi olarak kabul, kısmi kabul veya reddetme kararı.
 
 **Sonuç durumu:** Henüz ölçüm yok. Bu kayıt yalnızca sipariş ve deney planını belgeliyor.
+
+
+## ESPHome ADS1115 + ct_clamp YAML incelemesi (2026-11-09)
+
+ESPHome 2026.10.2 resmi dokümantasyonu ve C++ kaynak kodu incelendi. Mimari fikir **geçerli ve ESPHome tarafından destekleniyor**: ADS1115 sensör platformu, ct_clamp için gerilim örnekleme kaynağı olabilir; ADS1115 hub üzerinde `continuous_mode: true` özellikle ct_clamp kullanımı için önerilir.
+
+Ancak paylaşılan YAML tek blok olarak doğru değil. Yapı iki sensör platformuna ayrılmalıdır:
+
+1. `platform: ads1115` kaynak gerilim sensörü oluşturur; `id`, `ads1115_id`, `multiplexer`, `gain` ve `sample_rate` burada tanımlanır.
+2. `platform: ct_clamp` kaynak sensörü `sensor: ads1115_diferansiyel_giris` ile kullanır. `sensor_id`, `ads1115_id`, `multiplexer` ve `gain` ct_clamp seçenekleri değildir.
+3. ADS1115 hub'da `continuous_mode: true` açılır.
+4. ESPHome dokümanına göre ADS1115 örnekleme hızı 860 SPS'ye kadar seçilebilir; gerçek alınan farklı örnek sayısı ct_clamp debug logundan doğrulanmalıdır.
+
+### Düzeltilmiş bileşen yapısı — henüz donanımda test edilmedi
+
+```yaml
+ads1115:
+  - id: ads1115_hub
+    i2c_id: bus_a
+    address: 0x48
+    continuous_mode: true
+
+sensor:
+  # ADS1115 diferansiyel gerilim kaynağı
+  - platform: ads1115
+    id: ads1115_diferansiyel_giris
+    ads1115_id: ads1115_hub
+    multiplexer: 'A0_A1'
+    gain: 0.256
+    sample_rate: 860
+
+  # CT RMS hesabı ve akım kalibrasyonu
+  - platform: ct_clamp
+    name: "BERO ADS1115 SCT Akım"
+    sensor: ads1115_diferansiyel_giris
+    sample_duration: 200ms
+    update_interval: 2s
+    filters:
+      # Kalibrasyon noktaları PZEM karşılaştırmasıyla ölçülerek belirlenecek.
+      # Örnek 0.1 -> 0.4 değerleri deneysel veri olmadan kullanılmayacak.
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 0.1 -> 0.4
+```
+
+Bu yalnızca bileşen bağlantı iskeletidir; I²C pinleri ve kart beslemesi gerçek ESP32 kartına göre ayrıca tanımlanmalıdır. 0.1 → 0.4 kalibrasyon çifti örnek olarak gösterilmiştir, gerçek katsayı değildir. Beş tur etkisi de otomatik olarak bu kalibrasyon noktasıyla giderilmiş sayılmaz; gerçek yükte ölçülen ham ct_clamp çıktısı ile PZEM referansına göre kalibrasyon yapılmalıdır.
+
+### Mimari iddiaların teknik değerlendirmesi
+
+- **İşlemci yükü:** ct_clamp, örnekleme sırasında yüksek frekanslı ESPHome loop'u kullanır ve her farklı örnekte toplam/kare toplamı biriktirip pencere sonunda RMS hesaplar. Bu, optimize edilmiş C++ uygulamasıdır; ancak işlemci yükünü sıfırlamaz veya hesabı ADC'nin içine taşımaz.
+- **Diferansiyel/parazit:** A0_A1 diferansiyel ölçüm ortak-mod bileşenlerini reddetmeye yardımcı olabilir; her türlü EMI/paraziti sıfırlamaz. İki AIN pininin de GND–VDD aralığında kalması gerekir. Kartın gerçek giriş ağı görülmeden bias'sız bağlantı kabul edilmez.
+- **Zaman davranışı:** `update_interval: 2s` sonuç yayınlama/ölçüm çevrim aralığıdır; `sample_duration: 200ms` ise her çevrimdeki örnek toplama penceresidir. Bu ayar 2 saniye boyunca kesintisiz dalga kaydı değildir; yaklaşık 200 ms ölçüm penceresi, ardından çevrim aralığına kadar bekleme söz konusudur. Kısa geçişleri kaçırma ihtimali deneyde incelenecek.
+- **Örnekleme:** ADS1115 860 SPS ayarı ADC dönüşüm hızıdır; ct_clamp'in logladığı gerçek farklı örnek sayısı ve SPS değeri esas alınmalıdır. Aynı değerin tekrarları ct_clamp içinde atlanır.
+- **Gain:** `gain: 0.256`, ±0.256 V tam ölçek aralığıdır; 16 kat analog yükseltme değildir. SCT çıkışının tepe değeri bu aralığı aşarsa kırpılma/taşma oluşabilir.
+
+**Kaynaklar:** ESPHome ADS1115 dokümantasyonu; ESPHome CT Clamp dokümantasyonu; ESPHome 2026.10.2 ct_clamp ve ads1115 C++ kaynak kodu. Bu kayıt kaynak kod incelemesidir; gerçek kartta derleme/ölçüm doğrulaması değildir.
