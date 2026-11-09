@@ -23,3 +23,9 @@ Henüz ölçüm yapılmadı. Her deney oturumu için tarih/saat, gerçek bağlan
 ## Sonuç / yorum
 
 Henüz sonuç yok. Sipariş verilmesi veya deney planının hazırlanması, donanımın çalıştığı ya da bias'sız ölçümün mümkün olduğu anlamına gelmez.
+
+## 2026-11-09 — Yeni hedef notu: yaklaşık 2 A civarı
+
+Kullanıcı, ADS1115 alternatifi işe yararsa uygun kalibrasyon katsayısıyla yaklaşık 2 A civarında da kullanılabileceğini değerlendirmeyi istedi. Bu hedef E19'a ikincil doğrulama bölgesi olarak eklendi.
+
+Henüz ölçüm veya katsayı yoktur. Kartın giriş aralığı/gain ayarı, SCT çıkış tepe değeri, clipping, kararlılık ve PZEM referansına göre sapma ölçülecek. Düşük akım ve yaklaşık 2 A aralıklarında tek katsayının geçerli olduğu varsayılmayacak.
