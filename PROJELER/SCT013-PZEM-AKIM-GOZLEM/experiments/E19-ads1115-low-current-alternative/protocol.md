@@ -78,3 +78,16 @@ ADS1115 düşük akım alternatifi olarak ancak şu bulgular birlikte değerlend
 - bias'sız çalışma iddiası varsa bu durum kart bağlantısı ve ölçümle kanıtlanmış.
 
 ±%4 hedefi bir deney kabul ölçütüdür; sonuçlar görülmeden başarı ilan edilmez.
+
+
+## ESPHome ct_clamp + ADS1115 uygulama notu
+
+ESPHome resmi bileşen yapısı doğrulandı: ADS1115 ayrı bir `platform: ads1115` gerilim kaynağı olarak tanımlanır; ct_clamp bu kaynağı `sensor:` alanıyla tüketir. ADS1115 hub için `continuous_mode: true` ct_clamp kullanımı sırasında önerilir. Paylaşılan taslaktaki `sensor_id`, `ads1115_id`, `multiplexer` ve `gain` alanlarının tek ct_clamp bloğunda verilmesi doğru değildir.
+
+İlk yazılım denemesinde aday ayarlar: ADS1115 differential A0_A1, gain 0.256 V, sample_rate 860 SPS; ct_clamp sample_duration 200 ms ve update_interval 2 s. Bu ayarlar donanım giriş sınırları ve tepe gerilim ölçülmeden kesinleştirilmiş değildir. Gain 0.256 V aralık seçimidir; harici/16x analog yükselteç değildir.
+
+Önemli zaman ayrımı: 2 s update_interval, 2 saniye boyunca kesintisiz örnekleme anlamına gelmez. ct_clamp her güncellemede sample_duration boyunca örnek toplar; 200 ms pencere + 2 s çevrimde arada örneklenmeyen zaman kalır. Gerçek örnek sayısı ve SPS, ct_clamp debug logundan kaydedilecektir.
+
+ESPHome 2026.10.2 kaynak kodu incelemesine göre ct_clamp, örnekleme penceresinde yüksek frekanslı loop ister; ADS1115 continuous mode ile her sample çağrısında dönüşüm register'ından okuma yapar. ct_clamp aynı ADC değerinin tekrarını atlar, farklı örneklerin toplamını ve kare toplamını biriktirir, pencere sonunda DC ortalamasını çıkarıp RMS hesaplar. Dolayısıyla işlemci yükü optimize edilmiş olsa da sıfır değildir.
+
+Kalibrasyon filtresi için 0.1 → 0.4 yalnız örnek çifttir; 5 tur kullanımıyla otomatik doğru kalibrasyon anlamına gelmez. Gerçek ham ct_clamp sonucu, bilinen yük ve PZEM referansı ile kalibrasyon noktaları çıkarılacaktır.
