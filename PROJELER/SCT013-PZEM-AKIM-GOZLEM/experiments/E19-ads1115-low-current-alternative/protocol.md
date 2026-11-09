@@ -91,3 +91,11 @@ ESPHome resmi bileşen yapısı doğrulandı: ADS1115 ayrı bir `platform: ads11
 ESPHome 2026.10.2 kaynak kodu incelemesine göre ct_clamp, örnekleme penceresinde yüksek frekanslı loop ister; ADS1115 continuous mode ile her sample çağrısında dönüşüm register'ından okuma yapar. ct_clamp aynı ADC değerinin tekrarını atlar, farklı örneklerin toplamını ve kare toplamını biriktirir, pencere sonunda DC ortalamasını çıkarıp RMS hesaplar. Dolayısıyla işlemci yükü optimize edilmiş olsa da sıfır değildir.
 
 Kalibrasyon filtresi için 0.1 → 0.4 yalnız örnek çifttir; 5 tur kullanımıyla otomatik doğru kalibrasyon anlamına gelmez. Gerçek ham ct_clamp sonucu, bilinen yük ve PZEM referansı ile kalibrasyon noktaları çıkarılacaktır.
+
+## Ek deney hedefi — yaklaşık 2 A bölgesi
+
+ADS1115 alternatifi 0,5 A altındaki hedef bölgede işe yararsa, yaklaşık 2 A civarında da kullanılabilirliği ayrıca test edilecek. Bu, 0,5 A altı deneyinin yerine geçmeyen ikincil bir doğrulama hedefidir.
+
+2 A çevresinde en az bir kararlı yük noktası ve mümkünse bu noktanın alt/üst komşu noktaları kaydedilecek. ADS1115 gain seçimi, SCT çıkış tepe değeri ve clipping payı dikkate alınacak. Katsayı; ham ölçüm, gerçek bağlantı/tur sayısı ve aynı kararlı koşuldaki PZEM referansı üzerinden hesaplanacak. Tek katsayının hem düşük akım hem 2 A civarında yeterli olduğu varsayılmayacak; aralıklar arası sapma ayrıca raporlanacak.
+
+Kabul için elektriksel giriş güvenliği, clipping olmaması, tekrar edilebilirlik ve PZEM'e göre sapma birlikte incelenecek. Katsayı ve 2 A uygunluğu deney öncesinde belirlenmiş değildir.
