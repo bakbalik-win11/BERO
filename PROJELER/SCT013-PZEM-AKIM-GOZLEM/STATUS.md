@@ -397,3 +397,14 @@ Kullanıcı kararları:
 4. SCT uygunluk değerlendirmesi — gözlem, güç/akım genliği ve geçiş tepkisi kabiliyetlerini ayrı ayrı incele. Özellikle 2 A altındaki performansın hangi aralıkta güvenilir olduğu henüz kanıtlanmış değildir; eğitim verisiyle araştırılacaktır.
 
 **Kapsam notu:** SCT'nin düşük akımda sayısal ölçüm doğruluğu ile cihaz/program evresi sınıflandırmasına yetecek davranış bilgisini taşıması farklı sorulardır. Birincisindeki sınırlılık ikincisini otomatik olarak başarısız kılmaz; sınıflandırma başarısı da ölçüm doğruluğunu kanıtlamaz. Sonuçlar gerçek veri analiziyle verilecektir. Bu aşamada 2 A altında SCT yeterlidir/yetersizdir hükmü verilmemiştir.
+
+## 2026-11-09 — E19'a yaklaşık 2 A ikincil doğrulama hedefi eklendi
+
+Kullanıcı kararı/fikri: ADS1115 alternatifi düşük akım denemesinde başarılı olursa, uygun deneysel kalibrasyon katsayısıyla yaklaşık 2 A civarında da kullanılabilirliği araştırılacak.
+
+- Bu hedef, E19'un 0,5 A altı ana hedefini değiştirmez; ikincil doğrulama bölgesidir.
+- Kalibrasyon katsayısı önceden belirlenmeyecek. SCT gerçek çıkışı, ADS1115 ham/ct_clamp verisi ve aynı kararlı yük koşulundaki PZEM referansı kullanılarak çıkarılacak.
+- Yaklaşık 2 A'da gain/headroom, clipping, kararlılık, tekrar edilebilirlik ve PZEM'e göre sapma kontrol edilecek.
+- Düşük akım ve 2 A bölgesinde tek katsayının yeterli olduğu varsayılmayacak; aralıklar arası doğrusal davranış ayrıca incelenecek.
+- **Durum:** Fikir ve test hedefi kaydedildi. ADS1115 kartı henüz teslim/deney aşamasında; 2 A performansı ve katsayı doğrulanmış değildir.
+- Ayrıntı: [E19 README](experiments/E19-ads1115-low-current-alternative/README.md), [protokol](experiments/E19-ads1115-low-current-alternative/protocol.md), [sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md).
