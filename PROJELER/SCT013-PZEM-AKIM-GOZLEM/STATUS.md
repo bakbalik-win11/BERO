@@ -1,3 +1,14 @@
+## 2026-11-09 — E19 ADS1115 düşük akım alternatifi planlandı
+
+- Kullanıcı bir adet ADS1115 kartı sipariş ettiğini bildirdi; yaklaşık bütçe 250 TL.
+- Hedef: mevcut SCT-013 + bias + ESP32 ADC yolunu değiştirmeden, SCT-013 30A/1V + ADS1115 alternatifini özellikle 0,5 A altında denemek.
+- Mevcut ölçüm yolu referans olarak korunacak; aynı yük/hat koşullarında PZEM karşılaştırma referansı olacak.
+- Harici bias olmadan çalışma araştırılacak; ADS1115 kartının gerçek giriş devresi, AIN pin sınırları ve common-mode yolu doğrulanmadan doğrudan bağlantı yapılmayacak.
+- İlk koşulda tur sayısı sabit tutulacak; PGA, veri hızı, RMS penceresi ve single-ended/differential seçenekleri kontrollü değişkenler olarak ayrı incelenecek.
+- Kullanıcının hedefi hafta sonu ilk denemeleri yapmak; kesin deney tarihi teslimat ve güvenli hazırlığa bağlı.
+- **Durum:** PLANLANDI. Kart henüz teslim alınmadı; fiziksel bağlantı, kod, derleme, ölçüm ve log yok. ±%4 başarı veya bias'sız çalışma sonucu iddia edilmiyor.
+- Kayıt: [E19 README](experiments/E19-ads1115-low-current-alternative/README.md), [protokol](experiments/E19-ads1115-low-current-alternative/protocol.md), [sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md).
+
 ## 2026-11-07 — Ölçülebilir alan başlangıcı 78 W olarak kabul edildi (LOAD-78W-001)
 
 - Kullanıcı kararı: mevcut CH1 kurulumunda ölçülebilir alanın başlangıcı 78 W'tır; bu noktadan itibaren sayısal akım değeri verilecek.
