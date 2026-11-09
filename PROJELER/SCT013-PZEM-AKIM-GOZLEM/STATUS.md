@@ -1,3 +1,15 @@
+## 2026-11-09 — E19 için ESPHome ADS1115 + ct_clamp mimarisi kaynak koduyla doğrulandı
+
+- ESPHome 2026.10.2 resmi dokümanı ADS1115 gerilim sensörünün ct_clamp kaynağı olarak kullanılabildiğini doğruluyor. ADS1115 hub'da `continuous_mode: true` özellikle ct_clamp için öneriliyor.
+- Doğru YAML yapısı iki sensör platformudur: `platform: ads1115` (differential A0_A1, gain/sample_rate ve kaynak ID) → `platform: ct_clamp` (`sensor: kaynak_id`, sample_duration, update_interval ve kalibrasyon).
+- Paylaşılan taslaktaki `sensor_id` alanı ve ADS1115'e ait `multiplexer/gain/ads1115_id` alanlarının ct_clamp altında tanımlanması düzeltilmelidir.
+- `gain: 0.256` ±0.256 V tam ölçek aralığıdır; 16x harici analog yükseltme değildir. Diferansiyel okuma ortak-mod parazitini reddetmeye yardımcı olabilir; paraziti sıfırlamaz. AIN pinleri GND–VDD sınırları içinde kalmalıdır.
+- `update_interval: 2s` ile `sample_duration: 200ms` iki ayrı parametredir: her 2 saniyelik çevrimde 200 ms örnek penceresi alınır; bu kesintisiz 2 saniyelik kayıt değildir.
+- ESPHome 2026.10.2 C++ kaynak kodu incelendi: ct_clamp örnekleme sırasında yüksek frekanslı loop kullanır, tekrar eden aynı ADC değerlerini atlar, kare toplamı/ortalama ile pencere sonunda RMS hesaplar. İşlemci yükü optimize edilmiştir fakat sıfır değildir.
+- Kalibrasyon örnek noktaları (0.1 → 0.4) deneysel değer değildir; gerçek yük ve PZEM karşılaştırmasıyla çıkarılacak.
+- **Durum:** Kaynak kod/dokümantasyon incelemesi tamamlandı; YAML henüz gerçek ESP32/ADS1115 donanımında derlenmedi veya ölçülmedi. Bias'sız bağlantı kart incelemesi ve güvenli giriş kontrolü bekliyor.
+- Ayrıntı: [E19 deney notu](experiments/E19-ads1115-low-current-alternative/README.md) ve [protokol](experiments/E19-ads1115-low-current-alternative/protocol.md).
+
 ## 2026-11-09 — E19 ADS1115 düşük akım alternatifi planlandı
 
 - Kullanıcı bir adet ADS1115 kartı sipariş ettiğini bildirdi; yaklaşık bütçe 250 TL.
