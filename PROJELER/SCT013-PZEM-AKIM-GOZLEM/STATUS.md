@@ -506,3 +506,16 @@ Bu, şu aşamada **aday yazılımsal aralık seçimi mimarisidir**; fiziksel ana
 - Amaç: mevcut ayar/katsayıyı değiştirmeden 42 W seviyesinde çalışma kararlılığını gözlemek; katsayı belirleme/kalibrasyon yapılmıyor.
 - CSV, PZEM/ADS ortak zaman aralığı, kapanış saati ve istatistik bekleniyor.
 - Ayrıntı: [42 W test kaydı](logs/ads1115/2026-11-13-E19-42w-test.md).
+
+
+## 2026-11-13 — E19 42 W sabit yük testi kapandı ve CSV sonucu kaydedildi
+
+- Kullanıcı bildirimi: 42 W nominal yük oturumu 18:44'te başladı, **18:50 (+03:00)** itibarıyla kapatıldı.
+- `history (58).csv` (19.183 satır; SHA-256 `df278701f3dc4a317dd70716f0e192436c82cb334d6c1a6919f4a9e4af8811be`) 18:44:07–18:49:59 ortak gözlem kesitinde analiz edildi.
+- ADS1115 + SCT n=176, ortalama 0.189236 A, SD=0.001014 A, min–maks 0.186221–0.192013 A, CV=%0.536.
+- PZEM akım n=9, ortalama 0.189000 A, SD=0.001000 A, min–maks 0.188–0.191 A. Ortalama fark +0.000236 A / yaklaşık +%0.125 (HESAP); örnek sayıları farklı olduğundan doğruluk sonucu değildir.
+- PZEM aktif güç n=31, ortalama 43.452 W, SD=0.115 W. 42 W nominal yük tanımı ile ölçülen aktif güç ayrı tutulur.
+- Modül 2 CH1-1T n=352, ortalama 0.257694 A, SD=0.030760 A, CV=%11.937; bu yalnız aynı oturumdaki farklı mimari karşılaştırmasıdır.
+- Kullanıcı fiziksel düzeni teyidi: aynı SCT; ADS1115 yolunda bias devresi ve harici transformatör yok. Bu, girişlerin elektriksel güvenliğini kanıtlamaz; A0/A1 ortak-mod ve giriş ray doğrulaması açık kalır.
+- Katsayı ve ayarlar değiştirilmedi; deney düşük akım çalışma davranışı karakterizasyonudur, kalibrasyon değildir.
+- Ayrıntı: [42 W test raporu](logs/ads1115/2026-11-13-E19-42w-test.md), [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md).
