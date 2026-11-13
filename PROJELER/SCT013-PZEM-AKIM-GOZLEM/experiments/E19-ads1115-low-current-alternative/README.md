@@ -274,3 +274,8 @@ Kullanıcı bildirimi: PZEM 0,265 A, ADS1115 + SCT 0,270 A. Mevcut katsayı kaba
 - Eski Modül 2 CH1-1T aynı ortak pencerede belirgin daha geniş dağılım gösterdi. ADS1115 yolu BERO için umut verici ana ölçüm adayı olarak değerlendirilmeye alındı; nihai seçim yapılmadı.
 - Katsayı, gain, filtre ve zaman ayarları değiştirilmedi. Sıradaki aşama fiziksel aç/kapa davranışı, sıfıra dönüş ve tepki süresi.
 - ADS1115 A0/A1 common-mode ve GND–VDD giriş sınırı güvenlik doğrulaması açık kalır.
+
+
+## Sonraki deney — E20 fiziksel aç/kapa tepki testi
+
+18 W sabit yük baz gözlemi tamamlandı. Aynı sensör ve ADS1115 ayarları korunarak fiziksel ON/OFF geçişi, OFF sonrası sıfıra/yüksüz tabana dönüş ve çevrimler arası tekrarlanabilirlik E20 altında incelenecek. [E20 protokolü](../E20-ads1115-18w-on-off-response/README.md) ve [E20 sonuç defteri](../E20-ads1115-18w-on-off-response/results.md).
