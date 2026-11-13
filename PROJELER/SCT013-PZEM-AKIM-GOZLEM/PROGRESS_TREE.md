@@ -1,3 +1,12 @@
+## 2026-11-13 — E19 100 W yorum düzeltmesi ve 150 W test planı
+- 100 W ortak oturumda ADS1115 0.469881 A (n=84), PZEM 0.469882 A (n=34), Modül 2 CH1-1T 0.434240 A (n=167) ortalamaları kaydedildi. Bu tek oturum gözlemidir; aynı noktadan türetilen katsayı bağımsız doğrulama değildir.
+- ADS1115 açılış logundaki Sample rate: 7 değeri 7 SPS değil, 860 SPS enum/register kodudur; 200 ms'de 174–177 farklı örnek bununla uyumludur. Önceki hız uyuşmazlığı yorumu düzeltildi.
+- Depodaki E19 YAML 30.0 doğrusu içerirken log değerlendirmesinde 27.60 geçmektedir; çalışan binary/katsayı kaynağı eşleştirilmedi. K değiştirilmedi.
+- Gain 2.048, 200 ms, 2 s, 0.05 A filtre ve 2 basamak yayın korunuyor. Gain 0.512 veya diğer değişiklikler uygulanmadı; bias/common-mode güvenliği açık.
+- SSR fiziksel OFF doğrulanmadı; UDP olayları yük ON/OFF etiketi sayılmıyor.
+- **Aşama 3: 150 W sabit yük testi PLANLANDI.** Mevcut ayarlar korunarak ADS1115/PZEM ortak kararlı alanı kaydedilecek; sonuç/log henüz yok.
+- Ayrıntı: [E19 README](experiments/E19-ads1115-low-current-alternative/README.md), [sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md), [100 W raporu](logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md).
+
 ## 2026-11-13 — E19 üç modül ortak yük karşılaştırması
 - Ortak 17:48:27–17:51:13 penceresinde ADS1115 0.469881 A (n=84), PZEM 0.469882 A (n=34), ESP32D1 CH1-1T 0.434240 A (n=167) ortalama verdi.
 - ESP32D1 CH1-1T, PZEM ortalamasından yaklaşık %7.59 düşük ve daha değişkendi; bu tek oturum sonucu, katsayı kararı değildir.
