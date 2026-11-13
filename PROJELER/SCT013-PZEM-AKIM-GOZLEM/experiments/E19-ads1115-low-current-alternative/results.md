@@ -185,3 +185,21 @@ Ayrıntılı oturum kaydı: [E19 42 W test raporu](../../logs/ads1115/2026-11-13
 - **Yorum:** ADS1115 + SCT yolu bu 42 W oturumunda dar dağılım ve PZEM'e yakın ortalama verdi. 57 W ile birlikte düşük akım davranışı açısından olumlu gözlemdir; kalibrasyon, bağımsız doğruluk, ±%4 genel kabulü veya alt sınır kanıtı değildir.
 - Katsayı/ayar değiştirilmedi. ADS1115 A0/A1 ortak-mod ve giriş ray güvenliği doğrulanmış sayılmaz; güvenlik ön koşulu açık kalır.
 - CSV yeniden sayımında ADS örnek sayısı 176'dır; önceki sohbet ön özetindeki 177 sayısı düzeltilmiştir.
+
+
+## 2026-11-13 — Aşama 7: 18 W sabit yük gözlemi tamamlandı
+
+Ayrıntılı rapor: [E19 18 W test raporu](../../logs/ads1115/2026-11-13-E19-18w-test.md).
+
+- **Durum:** SABİT YÜK GÖZLEMİ TAMAMLANDI; aç/kapa tepki deneyi sonraki aşama.
+- Kaynak CSV: `history (59).csv`; 3.798 satır, SHA-256 `64de1d73afa4f716eef93793d62911b247dd18dd4d2063efd8aec077da5c9b52`.
+- Ortak pencere: 18:54:17.903–19:00:02.859 (+03:00).
+- ADS1115 + SCT: n=173, ortalama 0.078715 A, örnek SD=0.000373 A, min–maks 0.077580–0.079561 A.
+- PZEM akım: n=18, ortalama 0.079500 A, örnek SD=0.000514 A, min–maks 0.079–0.080 A. PZEM aktif güç n=32, ortalama 18.269 W, SD=0.074 W.
+- ADS1115 ortalaması PZEM'den −0.000785 A / yaklaşık −%0.99 farklıdır (HESAP); bu oturumda ±%4 beklentisinin içindedir. PZEM örnek sayısı ADS'den düşüktür; sonuç tek oturumluk karşılaştırmadır.
+- ADS1115 akım entity'sinde 4 adet 0.00 A kaydı vardır; 18W ortak kararlı pencerede sıfır yoktur. Yük öncesi 0.00 A'dan yük altında yaklaşık 0.0787 A'ya geçiş görülmüştür.
+- Aynı SCT-013 30A/1V sensör kullanıldı; kullanıcı teyidine göre ADS1115 yolunda harici bias ve harici transformatör yoktur.
+- Eski Modül 2 CH1-1T aynı pencerede n=346, ortalama 0.185460 A, SD=0.042098 A; ADS1115 zinciri bu oturumda çok daha dar dağılım göstermiştir. Bu betimleyici mimari karşılaştırmadır.
+- **Karar:** 18 W sabit yük verisi kapatıldı ve ADS1115 yolu BERO için umut verici ana ölçüm adayı olarak işaretlendi. Nihai donanım/kalibrasyon onayı verilmedi. Katsayı ve ayarlar değiştirilmedi.
+- **Sonraki deney:** aç/kapa tepki davranışı; sıfıra dönüş, açılma/kapanma gecikmesi, sıçrama ve tekrarlanabilirlik. SSR/UDP olayları fiziksel yük durumunun tek kanıtı sayılmayacak; CSV'de OFF olaylarından sonra PZEM yaklaşık 18 W göstermeye devam etmiştir.
+- ADS1115 A0/A1 common-mode ve GND–VDD giriş sınırlarının fiziksel doğrulaması açık kalır.
