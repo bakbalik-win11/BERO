@@ -1,6 +1,6 @@
 # E19 — ADS1115 ile düşük akım ölçüm alternatifi
 
-- **Durum:** PLANLANDI — ADS1115 kartı kullanıcı tarafından sipariş edildi; fiziksel teslimat ve deney henüz yapılmadı.
+- **Durum:** AÇIK — ADS1115 I2C ve diferansiyel okuma ilk logla gözlendi; 100 W ortak alan/katsayı aşaması PLANLANDI. Yeni YAML'ın derleme ve donanım doğrulaması bekliyor.
 - **Öncelik:** Düşük akım ölçüm zinciri için sınırlı bütçeli alternatif araştırması.
 - **Bütçe:** Kullanıcı bildirimi yaklaşık 250 TL.
 - **Zamanlama:** Kullanıcının hedefi hafta sonu ilk denemeleri yapmak; kesin tarih teslimat ve hazırlığa bağlı.
