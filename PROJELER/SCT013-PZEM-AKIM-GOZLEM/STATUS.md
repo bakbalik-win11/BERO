@@ -1,5 +1,16 @@
 
 
+## 2026-11-13 — E19 57 W sabit yük testi açıldı
+
+- Kullanıcı düzeltmesi: sıradaki yük 58 W değil **57 W**; başlangıç saati **18:32 (+03:00)**.
+- 57 W sürekli bağlı sabit yük oturumu açıldı; bu aşamada yalnız başlangıç bildirimi vardır, cihaz logu/CSV veya ölçüm sonucu yoktur.
+- 150 W CSV deneyiminden sabit yük yöntemine eklenen not: ilk yaklaşık iki dakikada PZEM akım/güç yükselişi gözlendi. Yeni testlerde ilk 3 dakika geçici bölge sayılacak; kararlı pencere saatle değil, PZEM ve ADS/SCT serilerinin gerçekten oturmasıyla seçilecek.
+- PZEM aynı ortak kararlı pencerenin referansıdır; nominal watt teorik akım hesabı kalibrasyon girdisi değildir.
+- İlk 57 W karşılaştırmasında gain 2.048, 860 SPS, 200 ms, 2 s, accuracy_decimals 2, 0.05 A filtre ve çalışan katsayı korunacak. 0.512 gain / 3 basamak yayın ertelendi.
+- Bias/common-mode ve ADS1115 A0/A1 giriş sınırları fiziksel olarak doğrulanmadan enerjili teste devam edilmemeli.
+- Rapor: [E19 57 W test kaydı](logs/ads1115/2026-11-13-E19-57w-test.md); sabit yük yöntem notları: [test yükleri indeksi](test-loads/README.md).
+
+
 ## 2026-11-13 — E19 150 W sonucu kaydedildi; 58 W testi açıldı
 
 - 150 W sabit yük CSV'si (`history (56).csv`) ortak kararlı 18:16:30–18:24:30 (+03:00) penceresinde analiz edildi.
