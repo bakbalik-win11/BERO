@@ -1,3 +1,13 @@
+
+
+## 2026-11-13 — E19 150 W sabit yük sonucu ve 58 W sonraki test
+- 150 W CSV ortak kararlı penceresi 18:16:30–18:24:30 (+03:00): PZEM 0.65472 A (n=39), ADS1115 0.66279 A (n=241, +%1.23), Modül 2 CH1-1T 0.60402 A (n=480, -%7.74).
+- PZEM güç ortalaması 149.69 W; ilk yaklaşık iki dakika lamba oturma dönemi karşılaştırma penceresinden çıkarıldı.
+- K=27.60 çalışan binary ile eşleştirilmedi; K≈27.26 yalnız koşullu hesap, uygulanmadı. Firmware/katsayı değiştirilmedi.
+- Gain 2.048, 860 SPS, 200 ms, 2 s, accuracy_decimals 2 ve 0.05 A filtre korundu.
+- **Sonraki: 58 W sabit yük testi PLANLANDI.** İlk turda aynı ayarlar korunacak; gain 0.512 ve accuracy_decimals 3 değişiklikleri ertelendi.
+- Bias/common-mode ve ADS1115 giriş gerilimi güvenliği enerjili test öncesi doğrulanmalı.
+- Rapor: [150 W](logs/ads1115/2026-11-13-E19-150w-comparison.md); [58 W planı](logs/ads1115/2026-11-13-E19-58w-test-plan.md).
 ## 2026-11-13 — E19 100 W yorum düzeltmesi ve 150 W test planı
 - 100 W ortak oturumda ADS1115 0.469881 A (n=84), PZEM 0.469882 A (n=34), Modül 2 CH1-1T 0.434240 A (n=167) ortalamaları kaydedildi. Bu tek oturum gözlemidir; aynı noktadan türetilen katsayı bağımsız doğrulama değildir.
 - ADS1115 açılış logundaki Sample rate: 7 değeri 7 SPS değil, 860 SPS enum/register kodudur; 200 ms'de 174–177 farklı örnek bununla uyumludur. Önceki hız uyuşmazlığı yorumu düzeltildi.
