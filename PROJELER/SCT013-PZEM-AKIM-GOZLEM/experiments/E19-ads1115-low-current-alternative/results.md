@@ -127,3 +127,23 @@ Ayrıntılı rapor: [E19 150 W karşılaştırma raporu](../../logs/ads1115/2026
 - PZEM aynı kararlı pencerenin referansıdır; nominal 57 W'tan hesaplanan akım kalibrasyon girdisi değildir.
 - A0/A1 bias/common-mode ve giriş gerilimi güvenliği doğrulanmadan enerjili teste devam edilmemeli.
 - Ayrıntı: [57 W test kaydı](../../logs/ads1115/2026-11-13-E19-57w-test.md).
+
+## 2026-11-13 — 57 W düşük akım ön gözlemi ve deney amacı düzeltmesi
+
+**Deney amacı:** Bu aşamada katsayı belirlenmiyor. Mevcut ADS1115 + SCT ölçüm zincirinin ayar/katsayı değiştirilmeden düşük akımdaki kararlılığı ve alt çalışma sınırı araştırılıyor. Katsayı belirleme daha sonraki ayrı aşamadır.
+
+### 57 W kullanıcı bildirimi
+- Yük: 57 W nominal sabit akkor yük; sürekli bağlı, ON/OFF deneyi değil.
+- PZEM akımı: **0,265 A**.
+- ADS1115 + SCT akımı: **0,270 A**.
+- Katsayı durumu: kaba/başlangıç katsayısı; henüz kalibrasyon yapılmadı.
+- Fark: +0,005 A; PZEM'e göre yaklaşık +%1,89 (**HESAP**).
+- Kullanıcı gözlemi: ADS1115 değeri kararlı görünüyor (**KULLANICI BİLDİRİMİ**).
+
+### Yorum ve sınırlar
+Bu, eski SCT + ESP32 dahili ADC yolunun düşük akım bölgesinde sorun yaşadığı aralıkta yeni yol için olumlu bir ilk gözlemdir. Eski sistemin 100 W noktasında kısa kalibre edilmiş olmasına rağmen düşük akımda kararlı/hassas sonuç vermediği bilgisi karşılaştırma bağlamı olarak korunur. İki ölçüm yolu farklı mimarilerdir.
+
+Tek bir 57 W bildirimi, ortak zaman penceresi CSV analizi ve tekrar olmadan doğrulanmış kararlı alan değildir. +%1,89 fark kalibrasyon başarısı veya ±%4 genel doğrulaması olarak yorumlanamaz. Katsayıya dokunulmayacak; yük kademeli azaltılarak çalışma davranışı gözlenecek.
+
+### Sonraki adım
+Mevcut ayarları ve katsayıyı değiştirmeden bir alt yük basamağına geç; PZEM ve ADS/SCT ortak zaman kaydını al. Güvenlik ön koşulu olan ADS1115 A0/A1 giriş ortak-mod/bias ve ray sınırlarının fiziksel doğrulaması ayrıca açık kalır.
