@@ -1,6 +1,6 @@
 # E19 — ADS1115 ile düşük akım ölçüm alternatifi
 
-- **Durum:** AÇIK — ADS1115 I2C ve diferansiyel okuma ilk logla gözlendi; 100 W ortak alan/katsayı aşaması PLANLANDI. Yeni YAML'ın derleme ve donanım doğrulaması bekliyor.
+- **Durum:** AÇIK — 100/150/57/42/18 W gözlemleri kaydedildi. 18 W sabit yük basamağı umut verici sonuçla tamamlandı; sıradaki aşama aç/kapa tepki testi. Nihai donanım, kalibrasyon ve ADS1115 giriş güvenliği onayı bekliyor.
 - **Öncelik:** Düşük akım ölçüm zinciri için sınırlı bütçeli alternatif araştırması.
 - **Bütçe:** Kullanıcı bildirimi yaklaşık 250 TL.
 - **Zamanlama:** Kullanıcının hedefi hafta sonu ilk denemeleri yapmak; kesin tarih teslimat ve hazırlığa bağlı.
@@ -262,3 +262,15 @@ Kullanıcı bildirimi: PZEM 0,265 A, ADS1115 + SCT 0,270 A. Mevcut katsayı kaba
 - **Yorum sınırı:** 18:35–18:40 ADS1115 serisi bu oturumda dar dağılımlı/kararlı gözüküyor ve PZEM ortalamasına yakın. Bu, 100 W'ta yapılan kaba referans ayarından sonra düşük akımda çalışma davranışına ilişkin gözlemdir; bağımsız kalibrasyon, ±%4 genel doğrulaması veya alt çalışma sınırının kesin belirlenmesi değildir. Daha düşük basamaklar ve tekrarlar gerekir.
 - Bu aşamanın yöntemi: her ölçüm yapısı PZEM'e karşı yaklaşık 100 W noktasında kaba kalibre edilir; ardından katsayı değiştirilmeden daha düşük akım basamaklarında davranışı tanınır. Düşük akım aşamasında amaç yeniden kalibrasyon değil, kararlılık ve kullanılabilir alt sınırı bulmaktır. Kullanıcı bu yöntemi her ölçüm yapısı için geçerli olarak netleştirdi.
 - Güvenlik ön koşulu (ADS1115 A0/A1 ortak-mod/bias ve giriş ray sınırlarının fiziksel doğrulaması) ayrıca açık kalır.
+
+
+## 2026-11-13 — 18 W sabit yük sonucu ve ölçüm zinciri değerlendirmesi
+
+18 W oturumunun ayrıntılı analizi [E19 18 W test raporunda](../../logs/ads1115/2026-11-13-E19-18w-test.md), tüm düşük yük sonuçları [sonuç defterinde](results.md) tutulur.
+
+- Aynı SCT-013 30A/1V sensör, ADS1115 + ESP32D2 ölçüm yolunda 18 W yükte ortalama 0.078715 A verdi; PZEM ortalaması 0.079500 A.
+- Ortalama fark yaklaşık −%0.99; bu oturum için ±%4 beklentisinin içindedir. Bu, tek oturumluk karşılaştırmadır; tüm aralık doğrulaması veya kalibrasyon değildir.
+- Yüksüz bölümde ADS1115 0.00 A kayıtları, yük altında yaklaşık 0.0787 A kararlı okuma gözlendi.
+- Eski Modül 2 CH1-1T aynı ortak pencerede belirgin daha geniş dağılım gösterdi. ADS1115 yolu BERO için umut verici ana ölçüm adayı olarak değerlendirilmeye alındı; nihai seçim yapılmadı.
+- Katsayı, gain, filtre ve zaman ayarları değiştirilmedi. Sıradaki aşama fiziksel aç/kapa davranışı, sıfıra dönüş ve tepki süresi.
+- ADS1115 A0/A1 common-mode ve GND–VDD giriş sınırı güvenlik doğrulaması açık kalır.
