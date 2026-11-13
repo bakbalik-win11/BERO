@@ -1,0 +1,14 @@
+--- kullanıcı tarafından sağlanan 606 satırlık ESP32D2 YAML
++++ E19 düşük akım / 1 saniye deneme sürümü
+@@ ct_clamp sensor
+-    update_interval: 2s
++    update_interval: 1s
+
+@@ ct_clamp filters (calibrate_linear sonrasında)
+-          if (x < 0.05) return 0.0;
++          if (x < 0.03) return 0.0;
+
+NOT:
+- Diğer tüm satırlar ve ayarlar korunmuştur.
+- Bu patch yalnızca kullanıcı tarafından sağlanan 606 satırlık yapılandırmaya uygulanmalıdır.
+- Depodaki kısa referans YAML ile aynı kaynak dosya değildir.
