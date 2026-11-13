@@ -499,3 +499,10 @@ Bu, şu aşamada **aday yazılımsal aralık seçimi mimarisidir**; fiziksel ana
 - **Yorum sınırı:** 18:35–18:40 ADS1115 serisi bu oturumda dar dağılımlı/kararlı gözüküyor ve PZEM ortalamasına yakın. Bu, 100 W'ta yapılan kaba referans ayarından sonra düşük akımda çalışma davranışına ilişkin gözlemdir; bağımsız kalibrasyon, ±%4 genel doğrulaması veya alt çalışma sınırının kesin belirlenmesi değildir. Daha düşük basamaklar ve tekrarlar gerekir.
 - Bu aşamanın yöntemi: her ölçüm yapısı PZEM'e karşı yaklaşık 100 W noktasında kaba kalibre edilir; ardından katsayı değiştirilmeden daha düşük akım basamaklarında davranışı tanınır. Düşük akım aşamasında amaç yeniden kalibrasyon değil, kararlılık ve kullanılabilir alt sınırı bulmaktır. Kullanıcı bu yöntemi her ölçüm yapısı için geçerli olarak netleştirdi.
 - Güvenlik ön koşulu (ADS1115 A0/A1 ortak-mod/bias ve giriş ray sınırlarının fiziksel doğrulaması) ayrıca açık kalır.
+
+## 2026-11-13 — E19 42 W düşük akım basamağı açıldı
+- Kullanıcı bildirimi: 42 W nominal yük, başlangıç 18:44 (+03:00).
+- Önceki 57 W basamağı 18:40'ta kapatıldı.
+- Amaç: mevcut ayar/katsayıyı değiştirmeden 42 W seviyesinde çalışma kararlılığını gözlemek; katsayı belirleme/kalibrasyon yapılmıyor.
+- CSV, PZEM/ADS ortak zaman aralığı, kapanış saati ve istatistik bekleniyor.
+- Ayrıntı: [42 W test kaydı](logs/ads1115/2026-11-13-E19-42w-test.md).
