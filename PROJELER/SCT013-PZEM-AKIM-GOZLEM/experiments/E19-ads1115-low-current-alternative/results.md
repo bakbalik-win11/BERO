@@ -74,3 +74,27 @@ Gerçek log özeti ve sınırları [ilk log kaydında](../../logs/ads1115/2026-1
 - Modül 3 OFF readback mismatch uyarıları verdi; OFF sonrasında PZEM akımı yaklaşık 0.470 A sürdü. Fiziksel OFF doğrulanmadı; olay etiketi eğitimde yükün fiziksel durumu sayılmayacak.
 - **Sonuç:** Üç cihaz ortak oturumda veri üretti. Bu kesitte ADS1115 ve PZEM ortalamaları örtüşüyor; ESP32D1 CH1-1T ortalaması PZEM'den yaklaşık %7.59 düşük. Katsayı değişikliği yapılmadı; ADS1115 katsayısı ve ±%4 kabul kararı beklemede.
 - Ayrıntı: [üç modül karşılaştırma raporu](../../logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md).
+
+
+## 2026-11-13 — 100 W ortak test: ek yorum ve düzeltmeler
+
+[Üç modül karşılaştırma raporunun 8. bölümü](../../logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md) önceki teknik yorumları düzeltir.
+
+- 200 ms'de 174–177 farklı örnek yaklaşık 870–885 SPS'tir ve ADS1115'in 860 SPS ayarıyla uyumludur. Açılış logundaki `Sample rate: 7`, enum/register kodudur; 7 SPS olarak okunması yanlıştır.
+- ADS1115 ortalaması 0.469881 A (n=84), PZEM ortalaması 0.469882 A (n=34). Yakınlık bu oturuma ait gözlemdir; katsayı aynı çalışma noktasından türetildiyse bağımsız kalibrasyon kanıtı değildir.
+- Depodaki E19 YAML'da katsayı doğrusu halen 1.0 -> 30.0 olarak kayıtlıdır. Log yorumunda geçen 27.60 ile çalışan binary eşleştirmesi açık kalır; firmware kaynağı doğrulanmadan hangi katsayının kullanıldığı kesinleştirilmez.
+- `accuracy_decimals: 2` yayın çözünürlüğünü sınırlar. 3 basamaklı yayın daha fazla gösterim ayrıntısı verir, ölçüm doğruluğunu kendiliğinden artırmaz.
+- Gain 0.512 daha dar tam ölçek aralığı sağlar; fiziksel sinyali yükseltmez ve clipping payını azaltır. Giriş tepe değeri ve common-mode doğrulanmadan uygulanmayacaktır.
+- 0.05 A filtresi değiştirilmez; önce yüksüz taban kaydı gerekir.
+- SSR OFF sonrası akım sürmesi fiziksel anahtarlamanın doğrulanmadığını gösterir. UDP olay akışı çalışmış olsa da olaylar fiziksel yük etiketi değildir.
+
+## 2026-11-13 — Aşama 3: 150 W sabit yük testi
+
+- **Durum:** PLANLANDI; ölçüm/log bekleniyor.
+- **Yük:** 150 W akkor lamba, sürekli bağlı.
+- **Amaç:** 100 W karşılaştırmasının devamı olarak ADS1115 ve PZEM'in 150 W kararlı yükteki davranışını gözlemek.
+- **Sabitler:** Gain 2.048, sample_rate 860, continuous_mode true, A0_A1, 200 ms pencere, 2 s update, accuracy_decimals 2, mevcut filtre ve YAML'da kayıtlı katsayı. Firmware/binary kaynağı ve uygulanan K test loguyla eşleştirilecek.
+- **Kayıt:** ADS1115, PZEM ve mevcutsa Modül 2 logları; ortak zaman aralığı, ortalama/SD/min-maks, örnek sayısı/SPS, gerilim/akım/güç, I2C uyarıları ve UDP olayları.
+- **Kabul sınırı:** Bu tek nokta çok noktalı kalibrasyon veya ±%4 başarısı değildir. 100 W ile birlikte iki gözlem noktası sağlar.
+- **Güvenlik:** A0/A1 giriş common-mode/bias ve gerilim sınırları doğrulanmadan enerjili ölçüme geçilmez; şebeke bağlantısı uygun koruma/muhafaza altında yapılır.
+
