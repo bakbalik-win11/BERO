@@ -1,5 +1,15 @@
 
 
+## 2026-11-13 — E19 57 W sabit yük oturumu açıldı
+- Yük düzeltmesi: 58 W değil 57 W; başlangıç 18:32 (+03:00), kullanıcı bildirimi.
+- 57 W sabit yük testi AÇILDI; log/CSV ve sonuç bekleniyor.
+- 150 W gözleminden yöntem notu: ilk ~2 dakika PZEM akım/güç yükselişi; yeni sabit yüklerde ilk 3 dakika geçici bölge kabul edilecek, kararlılık ayrıca zaman serilerinden doğrulanacak.
+- PZEM ortak kararlı pencerenin referansı; nominal watt teorik akım hesabı referans değildir.
+- İlk karşılaştırmada ADS1115/ct_clamp ayarları ve çalışan K sabit; gain 0.512 ve accuracy_decimals 3 ertelendi.
+- Bias/common-mode ve A0/A1 gerilim güvenliği doğrulanmadan enerjili test sürdürülmemeli.
+- [57 W kayıt](logs/ads1115/2026-11-13-E19-57w-test.md); [sabit yük yöntem notları](test-loads/README.md).
+
+
 ## 2026-11-13 — E19 150 W sabit yük sonucu ve 58 W sonraki test
 - 150 W CSV ortak kararlı penceresi 18:16:30–18:24:30 (+03:00): PZEM 0.65472 A (n=39), ADS1115 0.66279 A (n=241, +%1.23), Modül 2 CH1-1T 0.60402 A (n=480, -%7.74).
 - PZEM güç ortalaması 149.69 W; ilk yaklaşık iki dakika lamba oturma dönemi karşılaştırma penceresinden çıkarıldı.
