@@ -2083,3 +2083,37 @@ Proje AGENTS.md, STATUS.md, ROADMAP.md, E19 README/results, 100 W karşılaştı
 
 ### SINIR
 Bu oturum dokümantasyon ve test planı güncellemesidir. YAML/firmware değiştirilmedi; derleme, OTA, fiziksel 150 W testi veya yeni katsayı yapılmadı.
+
+
+## 2026-11-13 — E19 150 W CSV analizi ve 58 W testinin açılması
+
+### HEDEF
+150 W sabit yük CSV'sini 100 W karşılaştırmasıyla aynı yaklaşımla analiz etmek; PZEM'i proje referansı alarak ADS1115 ve ESP32D1 sonuçlarını ortak kararlı zaman aralığında karşılaştırmak; sıradaki 58 W testini mevcut ayarları koruyarak planlamak.
+
+### DEPO OKUMASI
+AGENTS.md, STATUS.md, ROADMAP.md, E19 README/results, 100 W karşılaştırma raporu, 150 W test planı ve PROGRESS_TREE okundu. Faz 2 görev sırası değiştirilmedi; E19 karşılaştırması deney kaydı olarak tutuldu.
+
+### 150 W CSV SONUCU
+- Kaynak: kullanıcı dosyası `history (56).csv`.
+- Yük: 150 W nominal akkor lamba, sürekli bağlı sabit yük; ON/OFF geçiş deneyi değil.
+- Kararlı ortak pencere: 18:16:30–18:24:30 (+03:00). İlk yaklaşık iki dakika lamba oturma bölümü karşılaştırma dışında bırakıldı.
+- PZEM: n=39, ortalama 0.65472 A, SD=0.00092 A; güç ortalaması 149.69 W, SD=0.45 W.
+- ADS1115: n=241, ortalama 0.66279 A, SD=0.00172 A; PZEM'e göre +%1.23.
+- Modül 2 CH1-1T: n=480, ortalama 0.60402 A, SD=0.01357 A; PZEM'e göre -%7.74.
+- PZEM, BERO karşılaştırma referansıdır; mutlak ground truth değildir.
+
+### K VE YAPILANDIRMA SINIRI
+- K=27.60'ın bu oturumun çalışan firmware/binary'sinde kullanıldığı kesinleştirilmedi. Depodaki E19 YAML doğrusu 0.0 → 0.0 / 1.0 → 30.0'dır.
+- K=27.60 varsayımıyla PZEM ortalamasına göre hesaplanan düzeltme K≈27.26'dır; koşullu hesap olarak kaydedildi, uygulanmadı.
+- Gain 2.048, sample_rate 860, continuous_mode true, A0_A1, 200 ms, 2 s, accuracy_decimals 2 ve 0.05 A filtre değişmedi.
+- 0.512 gain ve accuracy_decimals 3 önerileri sonraki testten önce uygulanmayacak.
+
+### SONRAKİ TEST — 58 W
+- 58 W nominal akkor lamba sürekli bağlı sabit yük olarak planlandı; ON/OFF geçişi yok.
+- İlk yaklaşık 3 dakika oturma, ardından en az 5 dakika kararlı kayıt hedefleniyor.
+- İlk karşılaştırmada aynı firmware/ayarlar korunacak; PZEM aynı kararlı zaman aralığında referans olacak.
+- A0/A1 giriş bias/common-mode ve gerilim güvenliği fiziksel olarak doğrulanmadan enerjili teste geçilmeyecek.
+- Ayrıntılar: [150 W raporu](../logs/ads1115/2026-11-13-E19-150w-comparison.md), [58 W planı](../logs/ads1115/2026-11-13-E19-58w-test-plan.md).
+
+### DOĞRULAMA SINIRI
+Bu oturum dokümantasyon güncellemesidir. Firmware/YAML değiştirilmedi, derleme/OTA yapılmadı, 58 W fiziksel testi henüz yapılmadı. Ham CSV'nin kendisi depoya kopyalanmadı; dosya adı ve analiz sonuçları raporda saklandı.
