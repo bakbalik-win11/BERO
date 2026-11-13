@@ -1,3 +1,18 @@
+## 2026-11-13 — E22 planlandı: SCT 100 A / 1 V – ADS1115 karakterizasyonu
+
+- Kullanıcı bildirimi: elinde **8 adet 100 A / 1 V SCT** bulunuyor. Adet/model etiketi fiziksel envanter kontrolünde teyit edilecek.
+- Kullanıcı kararı: 100 A / 1 V sensör için mevcut 30 A / 1 V firmware'inden ayrı bir YAML/kod snapshot'ı tutulacak; iki sensörün katsayıları ve sonuçları birbirine karıştırılmayacak.
+- Kullanım fikri: 100 A / 1 V sensör, ileride ana hat gibi daha yüksek akım aralığı beklenen noktalarda değerlendirilebilir. Kullanıcıya göre 30 A / 1 V sensör mevcut kullanım noktalarının çoğuna yeterli; 100 A sensörler alternatif/yüksek aralık stoğu olarak korunacak.
+- **Önemli teknik beklenti:** 100 A / 1 V sensörün akım başına çıkışı, 30 A / 1 V sensöre göre nominal olarak daha düşüktür. Bu nedenle 100 A modeli düşük akım hassasiyetini otomatik olarak iyileştirmez; yüksek akım aralığı/headroom açısından değerlendirilir.
+- Deney amacı: 100 A / 1 V sensörün ADS1115 + ESP32 + mevcut RMS yazılım zincirindeki çalışma aralığını, kararlılığını, gürültüsünü, tekrarlanabilirliğini ve PZEM referansına göre davranışını karakterize etmek.
+- Deneyde sensör modeli, bağlantı, ADS1115 gain/rate, ct_clamp penceresi, update interval ve kalibrasyon katsayısı ayrı kaydedilecek. 30 A / 1 V katsayısı 100 A / 1 V'e kopyalanmayacak; 100 A kodu ayrı katsayı alanı taşıyacak. Katsayı test verisi olmadan belirlenmiş sayılmayacak.
+- Planlanan ayrı firmware yolu: `firmware/experiments/esp32d2-ads1115-sct100a-1v.yaml`. Bu dosya henüz oluşturulmadı; test öncesi mevcut çalışan ADS1115 YAML'ı temel alınarak ayrı snapshot üretilecek. Canlı 30 A / 1 V kodu üzerine yazılmayacak.
+- Karşılaştırma: mümkünse aynı kararlı yük koşullarında 30 A / 1 V ve 100 A / 1 V ayrı oturumlarda PZEM'e karşı gözlenecek. Düşük, orta ve güvenli biçimde erişilebilen daha yüksek akım noktaları seçilecek; gerçek akım her basamakta PZEM ile kaydedilecek.
+- **Güvenlik kapısı:** SCT sekonderi, primer iletkenden akım geçerken açık devre bırakılmayacak. ADS1115 giriş ortak-mod ve GND–VDD sınırları, sensör çıkış seviyesi ve giriş koruması fiziksel olarak doğrulanmadan enerjili test yapılmayacak. Test akımı/hat bağlantısı uygun koruma ve güvenli düzenekle sınırlanacak.
+- Durum: **PLANLANDI — kod, derleme, OTA ve fiziksel test yapılmadı.** Sonuç veya kalibrasyon iddiası yok.
+- Ayrıntılı protokol: [E22 README](experiments/E22-sct100a-1v-ads1115-characterization/README.md).
+
+
 ## 2026-11-13 — E19 ADS1115 enerjili-yüksüz hat / 1 s yayın ve alt eşik kararı
 
 - ESP32D2 OTA logu ve 1 saniyelik ct_clamp yayın yapılandırması kaydedildi: [rapor](logs/ads1115/2026-11-13-E19-energized-no-load-1s-raw-log-report.md), [tam log](logs/ads1115/2026-11-13-E19-energized-no-load-1s-ota-log.txt).
