@@ -1,5 +1,10 @@
 ## Güncel çalışma hedefi — Çamaşır makinesi program davranışı analizi
 
+### Sonraki bakım işi — ON/OFF olay altyapısının aktif koddan çıkarılması
+
+Kullanıcı kararı: ON/OFF olay mekanizmasına artık ihtiyaç yoktur. Modül 2, Modül 3 ve ilişkili aktif kodlar taranarak UDP olay gönderme/alma, olay çözümleme, BOOT_ID/EVENT_ID/STATE alanları, olay entity'leri ve yalnız bu akışa bağlı yardımcı kodlar kaldırılacaktır. Akım ölçümü, sensör okuma ve Home Assistant ölçüm/veri kayıt akışı korunacaktır. Tarihsel ADR'ler, deney protokolleri, loglar ve arşiv kodları kanıt/tarihçe olarak silinmeyecektir. Bu iş henüz uygulanmamıştır; kaldırma öncesi bağımlılık taraması, sonrasında derleme ve gerçek cihaz doğrulaması gerekir.
+
+
 <badge color="success"> AKTİF HEDEF </badge>
 
 Önceki PZEM kararlı-alan eşleştirmesiyle eğitim/kalibrasyon üretme iş akışı, kullanıcının 13 Kasım 2026 tarihli kararıyla kapatılmıştır. Mevcut SCT-013 + ADS1115 zincirinin farklı yük ve akım seviyelerindeki pratik gözlemleri hedefi karşılamıştır. Bu karar geçmiş deneylerin silinmesi veya ölçüm zincirinin laboratuvar düzeyinde doğrulanması anlamına gelmez.
