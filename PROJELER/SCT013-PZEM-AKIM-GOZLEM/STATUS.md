@@ -1,5 +1,17 @@
 
 
+## 2026-11-13 — E20 18 W fiziksel aç/kapa tepki deneyi açıldı
+
+- E19 18 W sabit yük baz gözlemi tamamlandıktan sonra yeni ve ayrı dinamik tepki deneyi E20 açıldı.
+- Amaç: aynı SCT-013 30A/1V + ADS1115 zincirinin 18 W fiziksel yük açma/kapatma geçişini, OFF sonrası yüksüz tabana dönüşünü, gecikme/sıçrama ve beş çevrimde tekrarlanabilirliğini incelemek.
+- Önerilen sıra: başlangıç OFF 180 s; 5 çevrim × (ON 60 s + OFF 60 s); son OFF 180 s. Gerçek süreler oturumda kaydedilecek.
+- ADS1115 gain 2.048, 860 SPS, continuous, 200 ms pencere, 2 s yayın, accuracy_decimals 2 ve 0.05 A filtre korunacak; katsayı değiştirilmeyecek.
+- Fiziksel yük anahtarlaması operatörce doğrulanacak. PZEM akım/güç geçişi fiziksel ON/OFF doğrulaması; SSR/UDP olayları tek başına fiziksel durum kanıtı değildir.
+- E20 dinamik geçiş testi olduğundan geçiş örneklerine ±%4 uygulanmaz; kararlı ON/OFF seviyeleri ve çevrimler ayrı analiz edilir.
+- **Durum:** PLANLANDI; fiziksel test ve CSV henüz yok.
+- [E20 deney protokolü](experiments/E20-ads1115-18w-on-off-response/README.md); [sonuç defteri](experiments/E20-ads1115-18w-on-off-response/results.md).
+
+
 ## 2026-11-13 — E19 18 W sabit yük gözlemi tamamlandı; aç/kapa testine geçiş
 
 - `history (59).csv` analiz edildi (3.798 satır; SHA-256 `64de1d73afa4f716eef93793d62911b247dd18dd4d2063efd8aec077da5c9b52`).
