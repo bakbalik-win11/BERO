@@ -54,6 +54,6 @@ Bu kayıt kod değişikliğinin amacını ve test değerlendirmesini belgelendir
 
 ## KOD KAYNAĞI NOTU
 
-Kullanıcının paylaştığı 606 satırlık tam yapılandırma konuşma eki olarak mevcuttur. Depodaki kısa referans YAML bu yapılandırmayla birebir aynı değildir: kısa referansta katsayı 30.0'dır ve UDP alıcısı yoktur. Bu nedenle kısa referans dosyası, 27.60 katsayılı ve UDP alıcılı canlı yapılandırmanın yerine geçmez.
+Kullanıcının paylaştığı 606 satırlık tam yapılandırmanın kopyası [canlı YAML snapshot'ı](../../firmware/experiments/esp32d2-ads1115-ct-clamp-live-27.60-003A-1s.yaml) olarak depoya kaydedildi. Bu dosyada yalnızca yukarıdaki iki satır değiştirildi; 27.60 katsayısı ve UDP alıcısı korundu. Depodaki kısa referans YAML farklıdır: katsayı 30.0'dır ve UDP alıcısı yoktur; canlı yapılandırmanın yerine kullanılmamalıdır.
 
 İki satırlık değişiklik kaydı: [2026-11-13-e19-ads1115-003a-1s.patch](2026-11-13-e19-ads1115-003a-1s.patch).
