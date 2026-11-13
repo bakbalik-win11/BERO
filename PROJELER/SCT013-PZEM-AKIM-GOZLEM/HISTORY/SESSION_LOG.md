@@ -2006,3 +2006,28 @@ MIMARI/DECISIONS/ADR-001-rs485-communication-backbone.md oluşturuldu; MIMARI RE
 - Bu kablo mevcut Ethernet kablosundan dış kılıf rengiyle ayrılacak.
 - Kesin kablo/pair tahsisi, 24 V DC ana beslemenin kapasitesi, yük akımı, mesafe-gerilim düşümü, dönüştürücü ve koruma tasarımı açık kaldı.
 - Güvenlik notu: BERO kablosu Ethernet/LAN portlarına bağlanmamalı; renk ayrımına ek olarak her iki uç etiketlenmeli. Gerilim ve akım değerleri belirlenmeden kablo beslemesi devreye alınmamalı.
+
+## 2026-11-13 — E19 ADS1115 ilk donanım kaydı ve 100 W ikinci aşama
+
+### HEDEF
+ADS1115'in ilk donanım bağlantısını ve diferansiyel okumayı kanıtıyla kaydetmek; ardından mevcut ESP32D1 ile ortak ölçüm alanında 100 W sabit yük üzerinden ADS1115 katsayısını belirlemek.
+
+### AŞAMA 1 — GERÇEK LOG GÖZLEMİ
+- ADS1115 I2C taramasında 0x48 adresinde bulundu. ESP32D2 GPIO21 SDA, GPIO22 SCL, 3.3 V besleme ve ADDR-GND bağlantısı kullanıcı tarafından bildirildi; SCT uçları A0/A1'e bağlandı.
+- Önceki düşük hızlı testte yüksüz diferansiyel değerler 8–39 µV aralığındaydı.
+- Yaklaşık 60 W yükte PZEM 228.1–227.8 V, 0.264 A, 60.20–60.00 W, 50 Hz ve PF 1.00 gösterdi. Önceki ADS logu yaklaşık -12.8 mV ile +13.1 mV arasında değişti; 7 SPS ve yaklaşık 1 s yayın aralığı nedeniyle RMS akım/katsayı ölçümü değildir.
+- Mevcut ESP32D1 logu ham ct_clamp 0.13757–0.13954 A, K uygulanmış 3.332–3.380 A ve 6.700–6.920 SPS gösterdi. Bu log kesitinde eşzamanlı PZEM olmadığı için 3.35 A gerçek akım kabul edilmedi.
+- Tam özet/yorum: [E19 ilk ADS1115 logu](logs/ads1115/2026-11-13-E19-ads1115-first-bringup.md).
+
+### KOD
+- Kullanıcının sağladığı ESP32D2 yapılandırması firmware/experiments/esp32d2-ads1115-ct-clamp.yaml dosyasına amacı/bağlantıları/beklentileri ve güvenlik sınırlarıyla kaydedildi.
+- Bu yeni YAML'ın derleme, OTA ve 860 SPS ile fiziksel çalışma doğrulaması henüz yapılmadı.
+
+### AŞAMA 2 — 100 W ORTAK ALAN TESTİ AÇILDI
+- 100 W akkor ampul sürekli açık sabit yük olacak.
+- ESP32D1 mevcut ADC yolu, ESP32D2 ADS1115 yolu ve PZEM aynı kararlı koşulda karşılaştırılacak.
+- Mevcut D1 K=24.22 değiştirilmeyecek. ADS1115 katsayısı PZEM kararlı akım referansıyla ölçümden sonra hesaplanacak.
+- Tek 100 W noktası başlangıç katsayısı verir; diğer akım aralıklarına genelleme yapmaz. Tekrar ve kararlılık kontrolü gerekir.
+
+### SINIR
+Aşama 1 bağlantı ve sayısal okuma gözlemidir; RMS akım doğruluğu veya katsayı başarısı değildir. Aşama 2 yalnızca PLANLANDI; 100 W ölçümü, katsayı hesabı, derleme/OTA doğrulaması ve ±%4 kabul sonucu henüz yok.
