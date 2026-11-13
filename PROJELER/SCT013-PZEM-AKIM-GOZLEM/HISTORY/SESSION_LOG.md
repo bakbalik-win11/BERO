@@ -1,3 +1,14 @@
+## 2026-11-13 — ADS1115 filtresiz enerjili-yüksüz hat gözlemi ve yeni tek-modül planı
+
+- Kullanıcı bildirimi/grafik gözlemi: ESP32D2 + ADS1115 + SCT, 200 ms ct_clamp penceresi ve 1 s yayınla çalıştırıldı; yazılımsal alt eşik ve spike filtresi kaldırılmış durumda.
+- Test koşulu: hat enerjili, ölçülen iletkende yük/akım yok; PZEM grafikte 0.000 A gösteriyor.
+- HA grafiklerinde normal ADS1115 tabanı yaklaşık 0.001 A; yaklaşık 0.048 A seviyesinde seyrek, dar sıçramalar görüldü. İlk yaklaşık 10 dakikalık kesitte 1, sonraki yaklaşık 13 dakikalık kesitte 2 sıçrama gözlendi. Ham CSV olmadığı için örnek sayısı, kesin spike genişliği ve istatistiksel dağılım hesaplanmadı.
+- Kullanıcı kararı: alt eşik, ortalama veya spike filtresi eklenmeyecek; ham ölçüm korunacak. Bu, mevcut gözlem koşuluna ait geçici işletim kararıdır; spike nedeni teşhis edilmedi.
+- Sonraki deney: aynı ölçüm zinciriyle, ölçülen hattın enerjisiz olduğu ayrı taban gözlemi. Enerjili-yüksüz ve enerjisiz koşullar ayrı değerlendirilecek.
+- Yarın için tasarım planı: tek ESP32 üzerinde 2 SCT kanalı + 1 ADS1115 + PZEM-004T V3; harici bias olmadan ölçüm hedefi; 1 s yayın; alt eşik/spike filtresi yok. Pinler, UART, I²C, giriş ortak-mod/rail güvenliği ve zamanlama henüz tasarlanıp doğrulanmadı. Kod/derleme/OTA/entegrasyon yapılmadı.
+- [Deney raporu](logs/ads1115/2026-11-13-E19-energized-no-load-unthresholded-observation.md).
+- Depodaki 27.60/0.03A/1s YAML snapshot'ı bu geceki filtresiz sürüm değildir; bu nedenle onu filtresiz kod diye kullanmayın. Filtresiz tam YAML snapshot henüz depoya kaydedilmedi.
+
 ## 2026-11-07 — 78 W ölçülebilir alan başlangıç kararı kaydedildi
 
 ### KARAR
