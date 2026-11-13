@@ -14,6 +14,18 @@
 
 > Not: Bu kayıt, imal edilmiş taşınabilir güç kutusunu envanter varlığı olarak tanımlar. GPIO32/33/34 üzerindeki 1.65 V okumaları, güç kutusunun 3.30 V çıkışından ayrı ölçüm noktalarıdır.
 
+
+## BERO ölçüm modülleri — güncel durum (13.11.2026)
+
+| Modül | Önceki işlev / donanım | Güncel durum | Not |
+|---|---|---|---|
+| **Modül 1** | Bağımsız bias trafosu / taşınabilir bias güç kutusu | **KALACAK** | Fiziksel envanter varlığı korunuyor. Modül 2'nin içine entegre edilmiş bias devresiyle aynı kayıt değildir; Modül 1 bağımsız donanım olarak tutulur. |
+| **Modül 2** | Üç kanallı biaslı SCT okuma; Modül 1'in bias yapısını da içeren eski kurulum/kod | **İMHA EDİLDİ (kullanıcı bildirimi)** | Eski üç kanallı firmware yeni Modül 4'e taşınmayacak. Kod, YAML, log ve deney kayıtları tarihsel arşiv olarak korunur; fiziksel modülün imha bildirimi kaynaklı durumdur. |
+| **Modül 3** | PZEM ve aç/kapa rölesi içeren eski modül | **İMHA EDİLDİ (kullanıcı bildirimi)** | Eski modül/kod düzeni devreden çıkarıldı. PZEM-004T V3 ölçüm cihazı Modül 4 tasarımında yeniden kullanılacak bileşen olarak planlanmıştır; Modül 3'ün eski kontrol/röle yapısı taşınmayacaktır. |
+| **Modül 4** | Yeni ESP32 tabanlı ölçüm modülü: ADS1115 + 100 A / 1 V SCT + PZEM-004T V3 | **OLUŞTURULACAK** | Yeni ve bağımsız YAML/firmware hazırlanacak. 30 A / 1 V çalışan kodu ve eski Modül 2/3 kodları üzerine yazılmayacak. Pinler, UART/I²C, PZEM haberleşmesi ve giriş güvenliği test öncesi doğrulanacak. |
+
+**Kod ve arşiv ilkesi:** Modül 2 ve Modül 3'ün eski kodları fiziksel modüllerin imha edilmesi nedeniyle depodan silinmez. Eski YAML, log, deney ve karar kayıtları tarihsel izlenebilirlik için korunur; yeni geliştirme Modül 4 adıyla ayrı dosyalarda yürütülür.
+
 ## Ölçüm ve deney ekipmanları
 
 Bu bölüm, BERO geliştirme ve genel elektronik deneylerinde kullanılan mevcut ölçüm, sinyal üretme ve yük oluşturma araçlarını kaydeder. Cihazların varlığı, ölçüm doğruluğunun veya belirli bir deneyde uygunluğunun önceden doğrulandığı anlamına gelmez.
