@@ -172,3 +172,30 @@ ESP32D2 açılış logu ADS1115 Gain 2 / Sample rate 7 gösterirken depodaki E19
 Modül 3 OFF komutlarında GPIO_OFF_READBACK_MISMATCH uyarıları ve OFF sonrası PZEM akımının sürmesi nedeniyle fiziksel yük kesilmesi doğrulanmadı. Olay akışı aktarımı çalıştı; ancak fiziksel ON/OFF etiketi sayılmayacak. Katsayılar değişmedi ve ±%4 başarısı ilan edilmedi.
 
 Ayrıntı: [E19 üç modül karşılaştırma kaydı](../../logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md).
+
+
+## 2026-11-13 — 100 W ortak testinin yorum güncellemesi ve 150 W takip testi
+
+100 W üç-modül logu artık yalnızca gözlemsel ortak-yük karşılaştırması olarak değerlendirilir. Ayrıntılı düzeltme [100 W karşılaştırma raporunun 8. bölümünde](../../logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md) tutulur.
+
+- 200 ms'de 174–177 farklı örnek, ADS1115 860 SPS seçimiyle uyumludur. Açılış logundaki `Sample rate: 7` değeri 7 SPS değildir; önceki hız uyuşmazlığı yorumu geri çekilmiştir.
+- ADS1115 0.469881 A ve PZEM 0.469882 A ortalamaları bu yük/oturumda yakındır. Katsayı aynı 0.47 A noktasından türetildiyse bu bağımsız doğrulama değildir.
+- Kullanıcı değerlendirmesinde 27.60 katsayısı geçse de depodaki E19 YAML halen 30.0 başlangıç doğrusu içerir. Çalışan binary/katsayı kaynağı henüz birebir eşleştirilmedi.
+- `accuracy_decimals: 3` yayın çözünürlüğünü artırabilir; gerçek ölçüm doğruluğunu artırmaz. 150 W karşılaştırmasında mevcut 2 basamak korunacaktır.
+- Gain 0.512 önerisi henüz uygulanmayacaktır. Dar ADC aralığı fiziksel sinyali büyütmez; clipping/headroom ve A0/A1 common-mode güvenliği önce doğrulanmalıdır.
+- 0.05 A filtresi ve mevcut gain korunur. Yüksüz taban ölçümü olmadan eşik düşürülmez.
+- SSR fiziksel OFF doğrulanmadığından 100 W kaydı SSR ON/OFF etiketli deney sayılmaz.
+
+### Aşama 3 — 150 W sabit yük karşılaştırması açıldı
+
+- **Durum:** PLANLANDI.
+- **Hedef:** 100 W oturumundan sonra aynı ADS1115 ölçüm zincirinin daha yüksek ve güvenli ölçüm alanındaki davranışını görmek; 100 W ile karşılaştırılabilir kararlı kayıt üretmek.
+- **Yük:** 150 W akkor lamba; yük sürekli bağlı ve fiziksel olarak devrede olduğu bağımsız biçimde kontrol edilecek.
+- **Karşılaştırma:** ESP32D2 ADS1115/ct_clamp ve Modül 3 PZEM; Modül 2 CH1-1T logu varsa ek gözlem kanalı olarak saklanır, ana kabul ölçütü değildir.
+- **Değişmeyecek ayarlar:** ADS1115 gain 2.048, sample_rate 860, continuous_mode true, A0_A1, ct_clamp sample_duration 200 ms, update_interval 2 s, accuracy_decimals 2, mevcut filtre ve depodaki YAML katsayı ayarı. Kayıt öncesi gerçek çalışan firmware/katsayı kaynağı ayrıca not edilecek.
+- **Toplanacaklar:** cihaz logları ve ortak zaman aralığı; PZEM gerilim/akım/güç; ADS1115 yayımlanan akım; ct_clamp örnek sayısı/SPS; ortalama, SD, min-maks; I2C/timeout/clipping belirtileri; UDP gönderim/alım durumu.
+- **Yorum sınırı:** 150 W tek başına çok noktalı kalibrasyon veya ±%4 başarısı değildir. 100 W ve 150 W birlikte iki yük noktasında gözlemsel karşılaştırma sağlar; bağımsız tekrar ve daha fazla yük noktası gerekir.
+- **SSR:** Fiziksel anahtarlama doğrulanana kadar olaylar yük durumunu temsil etmez. Mümkünse test boyunca yük sürekli bağlı tutulur; SSR'ın mantıksal durumu veri etiketine dönüştürülmez.
+- **Güvenlik ön koşulu:** A0/A1 girişlerinin bias/common-mode ve gerilim sınırları doğrulanmamışsa ADS1115 bağlantısı enerjili deneye alınmaz. Şebeke bağlantısı uygun muhafaza ve koruma altında yapılır.
+
+**Bu kayıt yalnızca test planının açıldığını gösterir. 150 W ölçümü, log, derleme/OTA veya cihaz doğrulaması henüz yoktur.**
