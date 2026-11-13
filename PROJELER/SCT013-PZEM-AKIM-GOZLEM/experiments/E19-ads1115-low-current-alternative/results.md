@@ -167,3 +167,21 @@ Mevcut ayarları ve katsayıyı değiştirmeden bir alt yük basamağına geç; 
 - Bu aşama çalışma sınırı karakterizasyonudur; katsayı/ayar değiştirilmez ve kalibrasyon yapılmaz.
 - Kapanış, PZEM/ADS ortak CSV ve kararlı pencere analizi bekleniyor.
 - Ayrıntı: [42 W test kaydı](../../logs/ads1115/2026-11-13-E19-42w-test.md).
+
+
+## 2026-11-13 — Aşama 6: 42 W sabit yük testi kapandı ve CSV analizi
+
+Ayrıntılı oturum kaydı: [E19 42 W test raporu](../../logs/ads1115/2026-11-13-E19-42w-test.md).
+
+- **Durum:** LOG İLE DESTEKLENDİ — 42 W nominal basamak oturumu 18:44–18:50 (+03:00) arasında yürütüldü ve kullanıcı tarafından kapatıldı.
+- Kaynak CSV: `history (58).csv`; 19.183 satır, SHA-256 `df278701f3dc4a317dd70716f0e192436c82cb334d6c1a6919f4a9e4af8811be`.
+- Ortak analiz penceresi: 18:44:07–18:49:59 (+03:00).
+- ADS1115 + SCT: n=176, ortalama 0.189236 A, örnek SD=0.001014 A, min–maks 0.186221–0.192013 A, CV=%0.536.
+- PZEM: n=9, ortalama 0.189000 A, örnek SD=0.001000 A, min–maks 0.188–0.191 A, CV=%0.529.
+- ADS1115 ortalaması PZEM ortalamasından +0.000236 A / yaklaşık +%0.125 yüksek (HESAP). Örnek sayıları belirgin biçimde farklıdır; bu fark doğruluk iddiası değildir.
+- PZEM aktif güç: n=31, ortalama 43.452 W, SD=0.115 W, min–maks 43.3–43.8 W. 42 W nominal yük tanımı ile PZEM'in ölçtüğü aktif güç ayrı tutulur.
+- Eski Modül 2 CH1-1T: n=352, ortalama 0.257694 A, SD=0.030760 A, min–maks 0.200736–0.418209 A, CV=%11.937. Bu yalnız aynı oturumdaki farklı ölçüm mimarisi karşılaştırmasıdır.
+- Fiziksel düzen kullanıcı bildirimi: aynı SCT; ADS1115 ölçüm yolunda bias devresi yok ve harici transformatör yok.
+- **Yorum:** ADS1115 + SCT yolu bu 42 W oturumunda dar dağılım ve PZEM'e yakın ortalama verdi. 57 W ile birlikte düşük akım davranışı açısından olumlu gözlemdir; kalibrasyon, bağımsız doğruluk, ±%4 genel kabulü veya alt sınır kanıtı değildir.
+- Katsayı/ayar değiştirilmedi. ADS1115 A0/A1 ortak-mod ve giriş ray güvenliği doğrulanmış sayılmaz; güvenlik ön koşulu açık kalır.
+- CSV yeniden sayımında ADS örnek sayısı 176'dır; önceki sohbet ön özetindeki 177 sayısı düzeltilmiştir.
