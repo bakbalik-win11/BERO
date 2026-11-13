@@ -74,6 +74,13 @@ Bu bölüm, BERO geliştirme ve genel elektronik deneylerinde kullanılan mevcut
 - Modeli veya teknik özelliği henüz kesinleşmeyen cihazlarda tahmin yürütülmez; doğrulama sonrasında kayıt güncellenir.
 
 
+## Enerji ölçüm cihazları
+
+| Cihaz | Model / tanım | Haberleşme | Durum | Not |
+|---|---|---|---|---|
+| AC güç/enerji ölçer | **PZEM-014 AC RS485 Modbus Güç Tüketim Ölçer + USB** | RS485 / Modbus RTU; USB arayüzü/adaptörü ürün seti kapsamında | **Mevcut — kullanıcı bildirimi; hiç kullanılmadı** | Fiziksel olarak mevcut olduğu kullanıcı tarafından teyit edildi. Henüz devreye alınmadı veya haberleşme testi yapılmadı. Slave adresi, baud/parity/stop bit, register haritası ve USB'nin işlevi cihaz etiketi/kılavuz ve ilk testle doğrulanacak. |
+| AC güç/enerji ölçer | PZEM-004T V3 | UART / TTL seri haberleşme | Modül 4 için planlanan bileşen | PZEM-014 ile aynı cihaz değildir; Modül 4 ESP32 + ADS1115 + 100 A / 1 V SCT tasarımında ayrı bileşen olarak ele alınır. |
+
 ## Modbus ve saha haberleşme donanımları
 
 Aşağıdaki adetler kullanıcı tarafından bildirilen fiziksel envanterdir. Tam model/SKU ve cihaz revizyonu, cihaz etiketleri veya üretici dokümanları üzerinden ayrıca doğrulanacaktır.
