@@ -59,8 +59,9 @@ sensor:
       - calibrate_linear:
           - 0.0 -> 0.0
           - 1.0 -> 30.0
+      # 0.03 A altındaki değerleri sıfırla.
       - lambda: |-
-          if (x < 0.05) return 0.0;
+          if (x < 0.03) return 0.0;
           return x;
 
   - platform: uptime
