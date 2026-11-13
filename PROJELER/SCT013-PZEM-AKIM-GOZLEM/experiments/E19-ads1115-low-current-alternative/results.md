@@ -61,3 +61,16 @@ Gerçek log özeti ve sınırları [ilk log kaydında](../../logs/ads1115/2026-1
 - **Katsayı:** Birimler ve dönüşüm doğrulandıktan sonra ADS1115 ham ct_clamp kararlı ortalaması PZEM kararlı ortalamasıyla karşılaştırılarak hesaplanacak.
 - **Kabul:** Tekrarlı ölçümlerde kararlılık, girişte clipping olmaması ve PZEM'e göre sapmanın raporlanması. ±%4 hedefi henüz sonuç değildir.
 - **Sonuç:** Ölçüm ve katsayı henüz yok.
+
+
+## 2026-11-13 — Üç modül ortak yük logu ve ilk karşılaştırma
+
+- **Ortak pencere:** 17:48:27–17:51:13 (+03:00).
+- **ESP32D2 / ADS1115:** n=84, ortalama 0.469881 A, SD=0.001091 A, min–maks 0.46–0.47 A.
+- **Modül 3 / PZEM:** n=34, ortalama 0.469882 A, SD=0.000537 A, min–maks 0.469–0.471 A.
+- **Modül 2 / CH1-1T:** n=167, ortalama 0.434240 A, SD=0.013698 A, min–maks 0.410–0.498 A.
+- ADS1115 sensör accuracy_decimals: 2 olduğundan yayın çözünürlüğü küçük sapma hesabını sınırlar. PZEM'e yakın ortalama, 860 SPS yapılandırmasının veya RMS doğruluğunun kanıtı değildir.
+- ESP32D2 açılış logunda ADS1115 Gain 2 / Sample rate 7 görülür; depodaki E19 YAML Gain 2.048 / 860 bekler. Çalışan YAML/binary kaynağı doğrulanmadı.
+- Modül 3 OFF readback mismatch uyarıları verdi; OFF sonrasında PZEM akımı yaklaşık 0.470 A sürdü. Fiziksel OFF doğrulanmadı; olay etiketi eğitimde yükün fiziksel durumu sayılmayacak.
+- **Sonuç:** Üç cihaz ortak oturumda veri üretti. Bu kesitte ADS1115 ve PZEM ortalamaları örtüşüyor; ESP32D1 CH1-1T ortalaması PZEM'den yaklaşık %7.59 düşük. Katsayı değişikliği yapılmadı; ADS1115 katsayısı ve ±%4 kabul kararı beklemede.
+- Ayrıntı: [üç modül karşılaştırma raporu](../../logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md).
