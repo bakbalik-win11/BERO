@@ -1,3 +1,13 @@
+## 2026-11-13 — E19 100 W yorum düzeltmesi ve 150 W testinin açılması
+
+- 100 W ortak pencerede ADS1115 ortalaması 0.469881 A (n=84), PZEM 0.469882 A (n=34), Modül 2 CH1-1T 0.434240 A (n=167). Bu, aynı oturumdaki gözlemsel karşılaştırmadır; aynı noktadan türetilen K ile uyum bağımsız kalibrasyon doğrulaması değildir.
+- ADS1115 açılış logundaki `Sample rate: 7` değeri 7 SPS değil, 860 SPS enum/register kodudur. 200 ms'de 174–177 farklı örnek logu 860 SPS ayarıyla uyumludur. Önceki hız uyuşmazlığı yorumu geri çekildi.
+- Depodaki E19 YAML katsayısı 30.0 başlangıç doğrusu; yorumda geçen 27.60 ile çalışan binary eşleştirilmedi. K değişmedi.
+- ADS1115 gain 2.048, 200 ms pencere, 2 s güncelleme, 0.05 A filtresi ve accuracy_decimals 2 korunuyor. Gain 0.512, filtre veya yayın hassasiyeti değişikliği yapılmadı.
+- SSR OFF sonrası akım ve GPIO readback mismatch nedeniyle fiziksel anahtarlama doğrulanmadı; UDP olayları fiziksel yük etiketi değil.
+- **Aşama 3 açıldı: 150 W akkor sabit yük testi — PLANLANDI.** Mevcut ADS1115/PZEM ayarları değiştirilmeden ortak kararlı kayıt alınacak. Ölçüm/log henüz yok.
+- Ayrıntı: [E19 README](experiments/E19-ads1115-low-current-alternative/README.md), [sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md), [100 W düzeltme raporu](logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md).
+
 ## 2026-11-13 — E19 üç modül ortak yük karşılaştırması kaydedildi
 
 - Ortak kesişim 17:48:27–17:51:13 (+03:00): ADS1115 ortalaması 0.469881 A (n=84), PZEM 0.469882 A (n=34), Modül 2 CH1-1T 0.434240 A (n=167). Modül 2/PZEM farkı yaklaşık -7.59%; yalnız bu oturum için gözlemsel sonuçtur.
