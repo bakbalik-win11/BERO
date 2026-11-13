@@ -90,7 +90,7 @@ Modül 3 / SSR:
 Modül 2:
 ```text
 [17:48:27.876][D][ct_clamp:040]: 'BERO Mod2 CH1-1T Faz Akim' - Raw AC Value: 0.018A after 2891 different samples (14455 SPS)
-[17:48:28.142][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.434 A
+[17:48:27.142][S][sensor]: 'BERO Mod2 CH1-1T Faz Akim' >> 0.437 A
 ```
 
 Not: Temsilî satırlar kullanıcı tarafından sağlanan tam cihaz loglarından seçilmiştir. Tam ham log dosyaları ayrı Git dosyaları olarak saklanmadı; bu rapor istatistikleri, yapılandırma satırlarını, olayları ve yorumları saklar.
