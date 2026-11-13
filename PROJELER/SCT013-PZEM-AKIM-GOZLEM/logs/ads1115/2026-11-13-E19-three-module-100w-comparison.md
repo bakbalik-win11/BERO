@@ -94,3 +94,39 @@ Modül 2:
 ```
 
 Not: Temsilî satırlar kullanıcı tarafından sağlanan tam cihaz loglarından seçilmiştir. Tam ham log dosyaları ayrı Git dosyaları olarak saklanmadı; bu rapor istatistikleri, yapılandırma satırlarını, olayları ve yorumları saklar.
+
+
+## 8. Sonradan yapılan teknik yorum ve düzeltme (2026-11-13)
+
+Bu bölüm, yukarıdaki ilk rapor yorumunu silmeden düzeltir. Kullanıcı tarafından paylaşılan ek log değerlendirmesi ve kod incelemesi dikkate alınmıştır.
+
+### Örnekleme hızı — önceki yorum düzeltildi
+- Açılış logundaki `Sample rate: 7`, 7 SPS anlamına gelen fiziksel hız değeri olarak yorumlanmamalıdır. ESPHome ADS1115 yapılandırmasında bu değer veri-hızı enum/register kodudur; 7 (0b111) seçimi 860 SPS'e karşılık gelir.
+- 200 ms pencerede 174–177 farklı örnek (yaklaşık 870–885 örnek/s) görülmesi 860 SPS ayarıyla uyumludur.
+- Dolayısıyla önceki “7 SPS ile 860 SPS YAML uyuşmazlığı” ve “örnek akışı açıklanamıyor” sonuçları geri çekilmiştir. Bu log, 860 SPS sürekli modla uyumlu örnek akışını destekler. Ancak çalışan binary'nin depodaki deney YAML'ından üretildiğini tek başına kanıtlamaz.
+
+### Akım uyumu ve katsayı sınırı
+- Ortak pencerede ADS1115 0.469881 A (n=84), PZEM 0.469882 A (n=34) yayımlamıştır. Ortalamaların yakınlığı bu oturum için gözlemsel uyumdur.
+- Kullanıcı değerlendirmesine göre yaklaşık 0.017 V ham RMS değeri × 27.60 ≈ 0.469 A'dır. Ancak katsayı 0.47 A civarındaki aynı noktadan türetildiyse bu uyum bağımsız kalibrasyon doğrulaması değildir; hesaplanan katsayının aynı noktayı geri üretmesidir.
+- Önemli yapılandırma notu: Depodaki E19 YAML dosyasının mevcut sürümünde `calibrate_linear: 0.0 -> 0.0, 1.0 -> 30.0` yazmaktadır. Kullanıcının log değerlendirmesinde 27.60 katsayısı anılmaktadır. Çalışan firmware/cache kaynağı ve uygulanan katsayı, depodaki YAML ile birebir eşleştirilmeden 27.60'ın bu oturumda hangi binary'de kullanıldığı kesinleştirilmeyecektir.
+- Tek nokta, çoklu akım aralığı doğrusallığını veya ±%4 kabulünü kanıtlamaz. Katsayı değişikliği yapılmamıştır.
+
+### Yayın çözünürlüğü
+- E19 YAML'daki `accuracy_decimals: 2`, yayınlanan akımı 0.01 A basamaklarla gösterir. `accuracy_decimals: 3` daha ince sayısal yayın sağlar; ADC'nin fiziksel doğruluğunu veya gürültü tabanını tek başına iyileştirmez.
+- Kontrollü 150 W karşılaştırması için mevcut ayar korunacak; yayın hassasiyeti değişikliği ayrı bir yazılım değişkeni olarak ele alınacaktır.
+
+### SSR ve UDP yorumu
+- Olayların UDP ile alınıp ayrıştırılması haberleşme zincirini destekler; olay durumu fiziksel yük ON/OFF kanıtı değildir.
+- OFF sonrasında PZEM akımının sürmesi ve GPIO readback mismatch uyarıları nedeniyle SSR'ın yükü fiziksel olarak kestiği doğrulanmamıştır. `gpio_get_level()` yalnızca GPIO seviyesine ilişkin kanıttır; SSR kontak/iletim durumunu kanıtlamaz.
+- Bu nedenle 100 W kaydı sabit yükte ölçüm zinciri karşılaştırması olarak kullanılabilir; SSR anahtarlama deneyi veya doğrulanmış ON/OFF etiketli veri olarak kullanılamaz.
+
+### ADS1115 gain ve giriş güvenliği
+- `gain: 0.512`, `gain: 2.048` ayarına göre daha dar tam ölçek aralığı ve daha küçük nominal LSB sağlar; sensör sinyalini fiziksel olarak 4 kat büyütmez. Dar aralık clipping/headroom riskini azaltmaz, artırır.
+- Bu nedenle gain değişikliği yapılmayacak. SCT sinyalinin tepe değeri, iki AIN pininin ortak-mod seviyesi ve giriş sınırları doğrulanmadan 0.512 V aralığına geçilmeyecek.
+- A0/A1 bias/common-mode bağlantısı donanım üzerinden ayrıca doğrulanmalıdır. Mevcut YAML tek başına fiziksel bias devresini kanıtlamaz.
+
+### Güncel sonuç
+- Örnek akışı 860 SPS ile uyumludur; ADS1115/PZEM ortalama uyumu tek yük/tek oturum gözlemidir.
+- Katsayı bağımsız doğrulanmamıştır; çalışan firmware'in katsayı kaynağı da ayrıca eşleştirilmelidir.
+- ADS1115 bias/common-mode güvenliği ve SSR fiziksel anahtarlaması açık konudur.
+- K, gain, filtre ve firmware değiştirilmemiştir. 100 W testi bu yorumla **gözlemsel karşılaştırma olarak işlendi**; çok noktalı kalibrasyon tamamlanmadı.
