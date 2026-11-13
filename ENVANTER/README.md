@@ -28,7 +28,22 @@ Bu bölüm, BERO geliştirme ve genel elektronik deneylerinde kullanılan mevcut
 | USB lojik analizör | SANEC, 24 MHz, 8 kanal | UART, I²C, SPI ve diğer dijital lojik sinyallerin zamanlama/protokol incelemesi; analog dalga biçimi ölçmez | Mevcut |
 | AC güç kontrolü / dimmer | SANEC, SCR, 220 V AC, ilan edilen 4000 W, manuel ve dokunmatik kontrol | Uyumlu rezistif yüklerde ayarlanabilir deney yükü oluşturma. Faz kontrolü nedeniyle akım dalga biçimini kesebilir; dimmerli kayıtlar normal sinüs beslemeli temel deney verilerinden ayrı tutulmalı | Mevcut |
 
-### Deney yükleri ve kullanım notları
+## Akım sensörleri
+
+| Sensör | Tanım | Kullanım amacı | Durum |
+|---|---|---|---|
+| SCT013 | 30 A / 1 V | Mevcut SCT ölçüm zincirinde kullanılan akım trafosu; düşük akım bölgesindeki davranışı inceleniyor | Mevcut |
+| SCT013 | 5 A sınıfı; sipariş edilen ürünün tam model/çıkış etiketi teslimatta doğrulanacak | 30 A / 1 V sensörle düşük akım bölgesinde karşılaştırmalı deney; aynı yük koşulunda duyarlılık ve kararlılık gözlemi | **5 adet sipariş edildi; uluslararası taşımada (13.11.2026)** |
+
+### 5 A SCT sevkiyat kaydı
+
+- **Sipariş miktarı:** 5 adet (kullanıcı bildirimi).
+- **Takip ekranı:** 13.11.2026 tarihinde China Post / uluslararası taşıma durumunda.
+- **Son görülen olay:** Guangzhou Uluslararası Takas Bürosu'na ulaştı; Türkiye'ye giriş veya Türkiye gümrük işlemi henüz görünmüyor.
+- **Teslimat durumu:** Teslim alınmadı; ürün etiketi, tam model, çıkış tipi, fiziksel durum ve adet teslimatta kontrol edilecek.
+- **Gizlilik:** Takip numarası kamuya açık envanter dosyasına yazılmadı.
+
+## Deney yükleri ve kullanım notları
 
 - Akkor ampuller: 15 W, 42 W, 57 W, 100 W ve 150 W sınıflarında daha önce deneylerde kullanılmış yükler.
 - 100 W + 150 W akkor ampul kombinasyonu ile yaklaşık 250 W toplam nominal yük elde edilebilir. 230 V varsayımıyla yaklaşık akım 1,09 A'dir; gerçek değer PZEM ile kaydedilmelidir.
@@ -38,8 +53,8 @@ Bu bölüm, BERO geliştirme ve genel elektronik deneylerinde kullanılan mevcut
 - Dimmerin üzerinde yazan 4000 W değeri, BERO deneylerinde bu güce çıkılacağı anlamına gelmez. Gerçek sürekli kapasite, soğutma ve koruma koşulları doğrulanmadan etiket değeri çalışma sınırı kabul edilmez.
 - Şebeke gerilimiyle yapılan deneylerde uygun muhafaza, sigorta, bağlantı ve elektrik güvenliği sağlanmalıdır. FNIRSI 2D15P osiloskop probunun toprak klipsi doğrudan şebeke fazına veya nötrüne bağlanmayacaktır.
 
-### Ekipman sınıflandırma ilkesi
+## Ekipman sınıflandırma ilkesi
 
 - **Mevcut:** Kullanıcının elinde bulunduğu bildirilen cihaz.
-- **Satın alındı; teslimat bekleniyor:** Sipariş verilmiş ancak fiziksel teslim ve kutu içeriği kontrolü yapılmamış cihaz.
+- **Sipariş edildi / taşımada:** Sipariş verilmiş, ancak fiziksel teslim ve kutu/etiket kontrolü yapılmamış ekipman.
 - Modeli veya teknik özelliği henüz kesinleşmeyen cihazlarda tahmin yürütülmez; doğrulama sonrasında kayıt güncellenir.
