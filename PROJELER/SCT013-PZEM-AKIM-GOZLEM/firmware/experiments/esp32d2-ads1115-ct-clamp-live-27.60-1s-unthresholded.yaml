@@ -1,0 +1,528 @@
+
+# ============================================================
+# BERO E19 - ESP32D2 / ADS1115 / SCT013 30A-1V
+# ALT EŞİK YOK / 1 SANİYE YAYIN
+# ============================================================
+#
+# AMAÇ:
+# ADS1115 üzerinden SCT013 akım trafosunun diferansiyel
+# çıkışını okuyup ct_clamp ile 200 ms RMS akım hesabı yapmak.
+#
+# Bu sürümde yazılımsal alt eşik ve spike filtresi yoktur.
+# ct_clamp sonucu kalibrasyonla yayınlanır; sonuç 0.000 A ise
+# Home Assistant'a 0.000 A yazılır.
+#
+# BAĞLANTILAR:
+# ESP32D2 GPIO21 -> ADS1115 SDA
+# ESP32D2 GPIO22 -> ADS1115 SCL
+# ESP32D2 3.3V   -> ADS1115 VDD
+# ESP32D2 GND    -> ADS1115 GND
+# ADS1115 ADDR   -> GND (I2C adresi 0x48)
+# SCT013 iki çıkış ucu -> ADS1115 A0 ve A1
+#
+# ÖNEMLİ:
+# ADS1115 girişleri GND-0.3V ile VDD+0.3V sınırları
+# içinde kalmalıdır. PGA kazanç ayarı bu sınırı değiştirmez.
+#
+# ÖLÇÜM AYARLARI:
+# ADS1115 diferansiyel A0-A1
+# Gain: 2.048
+# Sample rate: 860 SPS
+# Continuous mode: true
+# ct_clamp örnekleme penceresi: 200 ms
+# Sensör güncelleme aralığı: 1 saniye
+# Kalibrasyon katsayısı: 27.60
+# Alt eşik: YOK
+#
+# KATSAYI NOTU:
+# Önceki katsayı: 30.00
+# ADS1115 gözlemi: yaklaşık 0.513 A
+# PZEM gözlemi: yaklaşık 0.472 A
+# Yeni katsayı = 30.00 * (0.472 / 0.513) = 27.60
+#
+# Bu katsayı tek karşılaştırmadan türetilmiştir.
+# Farklı akım seviyelerinde tekrar doğrulanmalıdır.
+# PZEM referanstır; kusursuz ground truth değildir.
+#
+# UDP OLAY PROTOKOLÜ:
+# BERO_EVT,BOOT_ID=<32 HEX>,EVENT_ID=N,STATE=ON|OFF
+# Kaynak: Modül 3 WROOM
+# Hedef port: 4210/UDP
+# Soket: Non-blocking
+# Kontrol aralığı: 100 ms
+# Her kontrolde en fazla 4 paket işlenir.
+#
+# HOME ASSISTANT OLAY ENTITY'LERİ:
+# - BERO E19 Olay Kaydi
+# - BERO E19 Olay BOOT ID
+# - BERO E19 Olay EVENT ID
+# - BERO E19 Olay STATE
+# - BERO E19 UDP Dinleyici
+#
+# BEKLENEN DAVRANIŞ:
+# 1. ADS1115 ölçümü devam eder.
+# 2. Her 1 saniyede yeni akım sonucu yayınlanır.
+# 3. Yazılımsal alt eşik uygulanmaz; ct_clamp sonucu korunur.
+# 4. Ölçüm sonucu 0.000 A ise 0.000 A yayınlanır.
+# 5. Spike filtresi yoktur; belirgin sıçramalar korunur.
+# 6. Modül 3 ON/OFF olayları UDP ile alınır.
+#
+# GÜVENLİK:
+# ADS1115 girişlerinin ortak-mod ve besleme rayı sınırları
+# fiziksel olarak doğrulanmalıdır.
+# Şebeke bağlantıları enerjisiz ve uygun izolasyonla yapılmalı.
+# CT sekonderi üretici talimatına aykırı biçimde açık bırakılmamalı.
+#
+# DURUM:
+# Bu depolanan snapshot'ta yazılımsal alt eşik/spike filtresi yoktur.
+# 2026-11-13 logu, hemen önceki 0.005 A filtreli OTA sürümünden
+# alınmıştır; filtresiz snapshot ayrıca OTA edilip doğrulanmamıştır.
+# ============================================================
+
+esphome:
+  name: esp32d2
+  friendly_name: ESP32D2
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+  includes:
+    - <lwip/sockets.h>
+    - <lwip/inet.h>
+    - <fcntl.h>
+    - <unistd.h>
+    - <errno.h>
+    - <cstring>
+    - <cstdint>
+    - <string>
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  on_connect:
+    - lambda: |-
+        if (id(bero_udp_socket_fd) >= 0) {
+          ::close(id(bero_udp_socket_fd));
+          id(bero_udp_socket_fd) = -1;
+        }
+
+        const int sock = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+
+        if (sock < 0) {
+          ESP_LOGE(
+            "bero_udp",
+            "UDP_SOCKET_CREATE_FAILED errno=%d",
+            errno
+          );
+
+          id(bero_udp_listener_state).publish_state(
+            "SOCKET_CREATE_FAILED"
+          );
+
+          return;
+        }
+
+        int reuse_addr = 1;
+
+        setsockopt(
+          sock,
+          SOL_SOCKET,
+          SO_REUSEADDR,
+          &reuse_addr,
+          sizeof(reuse_addr)
+        );
+
+        struct sockaddr_in listen_address = {};
+
+        listen_address.sin_family = AF_INET;
+        listen_address.sin_port = htons(4210);
+        listen_address.sin_addr.s_addr = htonl(INADDR_ANY);
+
+        if (
+          ::bind(
+            sock,
+            (struct sockaddr *)&listen_address,
+            sizeof(listen_address)
+          ) < 0
+        ) {
+          ESP_LOGE(
+            "bero_udp",
+            "UDP_BIND_FAILED port=4210 errno=%d",
+            errno
+          );
+
+          ::close(sock);
+
+          id(bero_udp_listener_state).publish_state(
+            "BIND_FAILED"
+          );
+
+          return;
+        }
+
+        const int socket_flags = fcntl(sock, F_GETFL, 0);
+
+        if (
+          socket_flags < 0 ||
+          fcntl(sock, F_SETFL, socket_flags | O_NONBLOCK) < 0
+        ) {
+          ESP_LOGE(
+            "bero_udp",
+            "UDP_NONBLOCK_FAILED errno=%d",
+            errno
+          );
+
+          ::close(sock);
+
+          id(bero_udp_listener_state).publish_state(
+            "NONBLOCK_FAILED"
+          );
+
+          return;
+        }
+
+        id(bero_udp_socket_fd) = sock;
+
+        id(bero_udp_listener_state).publish_state(
+          "LISTENING_PORT_4210"
+        );
+
+        ESP_LOGI(
+          "bero_udp",
+          "UDP_LISTENING address=0.0.0.0 port=4210 nonblocking=YES"
+        );
+
+  on_disconnect:
+    - lambda: |-
+        if (id(bero_udp_socket_fd) >= 0) {
+          ::close(id(bero_udp_socket_fd));
+          id(bero_udp_socket_fd) = -1;
+        }
+
+        id(bero_udp_listener_state).publish_state(
+          "WIFI_DISCONNECTED"
+        );
+
+        ESP_LOGW(
+          "bero_udp",
+          "UDP_LISTENER_CLOSED_WIFI_DISCONNECTED"
+        );
+
+globals:
+  - id: bero_udp_socket_fd
+    type: int
+    restore_value: no
+    initial_value: '-1'
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+  frequency: 400kHz
+
+ads1115:
+  - address: 0x48
+    continuous_mode: true
+
+sensor:
+  - platform: ads1115
+    multiplexer: A0_A1
+    gain: 2.048
+    sample_rate: 860
+    id: ads_sct_raw
+    internal: true
+
+  - platform: ct_clamp
+    sensor: ads_sct_raw
+    name: "BERO Akim Sensoru"
+    id: bero_akim
+    sample_duration: 200ms
+    update_interval: 1s
+    accuracy_decimals: 3
+
+    filters:
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 1.0 -> 27.60
+
+
+  - platform: uptime
+    name: "ESP32D2 Calisma Suresi"
+    update_interval: 30s
+
+  - platform: wifi_signal
+    name: "ESP32D2 WiFi Sinyali"
+    update_interval: 30s
+
+text_sensor:
+  - platform: template
+    id: bero_e19_event_raw
+    name: "BERO E19 Olay Kaydi"
+    update_interval: never
+
+  - platform: template
+    id: bero_e19_event_boot_id
+    name: "BERO E19 Olay BOOT ID"
+    update_interval: never
+
+  - platform: template
+    id: bero_e19_event_id
+    name: "BERO E19 Olay EVENT ID"
+    update_interval: never
+
+  - platform: template
+    id: bero_e19_event_state
+    name: "BERO E19 Olay STATE"
+    update_interval: never
+
+  - platform: template
+    id: bero_udp_listener_state
+    name: "BERO E19 UDP Dinleyici"
+    update_interval: never
+
+interval:
+  - interval: 100ms
+    then:
+      - lambda: |-
+          if (id(bero_udp_socket_fd) < 0) {
+            return;
+          }
+
+          // Bir kontrolde en fazla dört paket işlenir.
+          for (int packet_index = 0; packet_index < 4; packet_index++) {
+
+            char packet[160] = {};
+
+            struct sockaddr_in source_address = {};
+            socklen_t source_length = sizeof(source_address);
+
+            const int received = recvfrom(
+              id(bero_udp_socket_fd),
+              packet,
+              sizeof(packet) - 1,
+              0,
+              (struct sockaddr *)&source_address,
+              &source_length
+            );
+
+            if (received < 0) {
+
+              if (errno == EWOULDBLOCK || errno == EAGAIN) {
+                break;
+              }
+
+              ESP_LOGW(
+                "bero_udp",
+                "UDP_RECV_FAILED errno=%d",
+                errno
+              );
+
+              break;
+            }
+
+            if (received == 0) {
+              continue;
+            }
+
+            if (received >= (int)sizeof(packet) - 1) {
+
+              ESP_LOGW(
+                "bero_udp",
+                "UDP_PACKET_TOO_LONG bytes=%d",
+                received
+              );
+
+              continue;
+            }
+
+            packet[received] = '\0';
+
+            int packet_length = received;
+
+            while (
+              packet_length > 0 &&
+              (
+                packet[packet_length - 1] == '\n' ||
+                packet[packet_length - 1] == '\r'
+              )
+            ) {
+              packet[--packet_length] = '\0';
+            }
+
+            if (packet_length == 0) {
+              continue;
+            }
+
+            bool valid_packet = true;
+
+            char boot_id[33] = {};
+            char event_state[4] = {};
+
+            uint32_t event_id = 0;
+
+            const char prefix[] = "BERO_EVT,BOOT_ID=";
+            const char event_prefix[] = ",EVENT_ID=";
+            const char state_prefix[] = ",STATE=";
+
+            const char *cursor = packet;
+
+            if (
+              strncmp(
+                cursor,
+                prefix,
+                sizeof(prefix) - 1
+              ) != 0
+            ) {
+              valid_packet = false;
+            } else {
+              cursor += sizeof(prefix) - 1;
+            }
+
+            if (valid_packet) {
+
+              for (int i = 0; i < 32; i++) {
+
+                const char c = *cursor;
+
+                const bool is_hex =
+                  (c >= '0' && c <= '9') ||
+                  (c >= 'A' && c <= 'F') ||
+                  (c >= 'a' && c <= 'f');
+
+                if (!is_hex) {
+                  valid_packet = false;
+                  break;
+                }
+
+                boot_id[i] = c;
+                cursor++;
+              }
+
+              boot_id[32] = '\0';
+            }
+
+            if (valid_packet) {
+
+              if (
+                strncmp(
+                  cursor,
+                  event_prefix,
+                  sizeof(event_prefix) - 1
+                ) != 0
+              ) {
+                valid_packet = false;
+              } else {
+                cursor += sizeof(event_prefix) - 1;
+              }
+            }
+
+            if (valid_packet) {
+
+              bool has_digit = false;
+
+              while (*cursor >= '0' && *cursor <= '9') {
+
+                has_digit = true;
+
+                const uint32_t digit =
+                  (uint32_t)(*cursor - '0');
+
+                if (event_id > (0xFFFFFFFFUL - digit) / 10UL) {
+                  valid_packet = false;
+                  break;
+                }
+
+                event_id = event_id * 10U + digit;
+                cursor++;
+              }
+
+              if (!has_digit) {
+                valid_packet = false;
+              }
+            }
+
+            if (valid_packet) {
+
+              if (
+                strncmp(
+                  cursor,
+                  state_prefix,
+                  sizeof(state_prefix) - 1
+                ) != 0
+              ) {
+                valid_packet = false;
+              } else {
+                cursor += sizeof(state_prefix) - 1;
+              }
+            }
+
+            if (valid_packet) {
+
+              if (strcmp(cursor, "ON") == 0) {
+
+                strcpy(event_state, "ON");
+
+              } else if (strcmp(cursor, "OFF") == 0) {
+
+                strcpy(event_state, "OFF");
+
+              } else {
+
+                valid_packet = false;
+              }
+            }
+
+            if (!valid_packet) {
+
+              ESP_LOGW(
+                "bero_udp",
+                "UDP_INVALID_PACKET source=%s packet=%s",
+                inet_ntoa(source_address.sin_addr),
+                packet
+              );
+
+              continue;
+            }
+
+            id(bero_e19_event_raw).publish_state(packet);
+
+            id(bero_e19_event_boot_id).publish_state(
+              boot_id
+            );
+
+            id(bero_e19_event_id).publish_state(
+              std::to_string(event_id)
+            );
+
+            id(bero_e19_event_state).publish_state(
+              event_state
+            );
+
+            ESP_LOGI(
+              "bero_udp",
+              "UDP_EVENT_RECEIVED source=%s packet=%s",
+              inet_ntoa(source_address.sin_addr),
+              packet
+            );
+
+            ESP_LOGI(
+              "bero_event",
+              "HA_EVENT_PUBLISHED BOOT_ID=%s EVENT_ID=%lu STATE=%s",
+              boot_id,
+              (unsigned long)event_id,
+              event_state
+            );
+          }
