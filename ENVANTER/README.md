@@ -60,3 +60,28 @@ Bu bölüm, BERO geliştirme ve genel elektronik deneylerinde kullanılan mevcut
 - **Mevcut:** Kullanıcının elinde bulunduğu bildirilen cihaz.
 - **Sipariş edildi / taşımada:** Sipariş verilmiş, ancak fiziksel teslim ve kutu/etiket kontrolü yapılmamış ekipman.
 - Modeli veya teknik özelliği henüz kesinleşmeyen cihazlarda tahmin yürütülmez; doğrulama sonrasında kayıt güncellenir.
+
+
+## Modbus ve saha haberleşme donanımları
+
+Aşağıdaki adetler kullanıcı tarafından bildirilen fiziksel envanterdir. Tam model/SKU ve cihaz revizyonu, cihaz etiketleri veya üretici dokümanları üzerinden ayrıca doğrulanacaktır.
+
+| Donanım | Model / tanım | Adet | Kapasite / arayüz | Durum ve not |
+|---|---|---:|---|---|
+| Dijital I/O | Waveshare Modbus RTU IO 8CH | 2 | Her modülde 8 DI + 8 DO; RS485 / Modbus RTU | Mevcut; toplam 16 DI + 16 DO |
+| Analog giriş | Waveshare Modbus RTU Analog Input 8CH | 2 | Her modülde 8 kanal; 0–5 V, 1–5 V, 0–20 mA veya 4–20 mA modları | Mevcut; toplam 16 analog giriş |
+| Analog çıkış | Waveshare Modbus RTU Analog Output 8CH (B) | 1 | 8 kanal, 0–10 V | Mevcut |
+| RS485–Ethernet dönüştürücü | Waveshare 2-CH RS485 TO ETH (B) | 1 | 2 RS485 kanalı, Ethernet | Mevcut; seri sunucu/gateway çalışma modu konfigürasyonla doğrulanacak |
+| Ethernet röle | Waveshare Modbus POE ETH Relay 30CH | 1 | 30 röle çıkışı, Ethernet/PoE | Mevcut; röle kontak sınırları ve Modbus çalışma modu ürün revizyonunun kılavuzundan doğrulanacak |
+| Dokunmatik HMI | ESP32-S3, 7 inç ekran | 1 | Tam model, çözünürlük ve arayüzler henüz teyit edilmedi | Mevcut; kart üzerindeki RS485/CAN/GPIO bağlantıları SKU üzerinden doğrulanacak |
+| Dokunmatik HMI | ESP32-P4, 7 inç ekran | 1 | Tam model, çözünürlük ve arayüzler henüz teyit edilmedi | Mevcut; kablosuz haberleşme ve yardımcı bağlantı mimarisi kart modeline göre doğrulanacak |
+
+### Modbus envanteri kullanım ilkesi
+
+- Waveshare dijital ve analog I/O modülleri saha I/O birimleri olarak değerlendirilecek.
+- 2-CH RS485–ETH cihazı, RS485 segmentlerini Ethernet'e taşımak için kullanılabilir; gerçek Modbus TCP gateway işlevi ile şeffaf seri sunucu modu birbirinden ayrılarak test edilecek.
+- 30CH PoE röle cihazı Ethernet tabanlı röle düğümüdür; RS485 saha hattı cihazı olarak sayılmayacak.
+- ESP32-S3 ve ESP32-P4 7 inç ekranlı kartlar yerel HMI/operatör paneli adayıdır. İki kartın da tam ürün kodu ve teknik revizyonu henüz kaydedilmedi.
+- Bu donanımların envanterde bulunması, aynı RS485 hattında birlikte çalıştıklarının veya register haritalarının doğrulandığının kanıtı değildir. Slave adresleri, baud/parity/stop bit ayarları, register adresleri, izolasyon ve hat sonlandırması saha testinde doğrulanacaktır.
+- Bu bölümdeki adetler kullanıcı bildirimi esaslıdır; fiziksel etiket/fotoğraf doğrulaması tamamlandıkça model ayrıntıları güncellenecektir.
+
