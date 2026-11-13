@@ -1,3 +1,11 @@
+## 2026-11-13 — E19 üç modül ortak yük karşılaştırması kaydedildi
+
+- Ortak kesişim 17:48:27–17:51:13 (+03:00): ADS1115 ortalaması 0.469881 A (n=84), PZEM 0.469882 A (n=34), Modül 2 CH1-1T 0.434240 A (n=167). Modül 2/PZEM farkı yaklaşık -7.59%; yalnız bu oturum için gözlemsel sonuçtur.
+- ADS1115 yayın hassasiyeti 0.01 A'dır. Açılış logu Gain 2 / Sample rate 7 gösterirken depodaki E19 YAML 2.048 / 860 bekliyor; 860 SPS uygulandığı doğrulanmadı.
+- UDP olayları alınıp HA'ya yayımlandı. Modül 3'te OFF readback mismatch uyarıları var; PZEM akımı OFF sonrasında sürüyor. Fiziksel OFF doğrulanmadı; olaylar gerçek yük ON/OFF etiketi olarak kullanılmayacak.
+- Katsayı değiştirilmedi; ESP32D1 K=24.22 korunuyor. ADS1115 katsayısı ve ±%4 kabul sonucu henüz belirlenmedi.
+- Ayrıntı: [E19 üç modül karşılaştırma kaydı](logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md).
+
 ## 2026-11-13 — E19 Aşama 1 ilk ADS1115 logu kaydedildi; Aşama 2 100 W katsayı testi açıldı
 
 - ADS1115 I2C taramasında 0x48 bulundu; ESP32D2 GPIO21 SDA / GPIO22 SCL, 3.3 V ve ADDR-GND bağlantısı kullanıcı loguyla desteklendi.
