@@ -1,0 +1,72 @@
+# BERO E19 - ESP32D2 / ADS1115 / SCT013 30A-1V
+# Amaç: ADS1115 A0-A1 diferansiyel kaynağından ct_clamp ile 200 ms RMS akım hesabı.
+# Bağlantılar: GPIO21=SDA, GPIO22=SCL, 3.3V=VDD, GND=GND, ADDR=GND (0x48).
+# SCT013 iki ucu: A0 ve A1. AIN pinleri GND-0.3V ile VDD+0.3V sınırlarında kalmalı.
+# Beklenti: 860 SPS ADC dönüşümü, 200 ms ct_clamp penceresi, 2 s güncelleme.
+# Kalibrasyon: 30A/1V nominal başlangıç doğrusu; 100 W sabit yükte PZEM ile belirlenecek.
+
+esphome:
+  name: esp32d2
+  friendly_name: ESP32D2
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+  frequency: 400kHz
+
+ads1115:
+  - address: 0x48
+    continuous_mode: true
+
+sensor:
+  # ADS1115 ham diferansiyel okuma kaynağı
+  - platform: ads1115
+    multiplexer: A0_A1
+    gain: 2.048
+    sample_rate: 860
+    id: ads_sct_raw
+    internal: true
+
+  # RMS akım hesabı; nominal 30A/1V oranı deneyde doğrulanacak
+  - platform: ct_clamp
+    sensor: ads_sct_raw
+    name: "BERO Akim Sensoru"
+    id: bero_akim
+    sample_duration: 200ms
+    update_interval: 2s
+    accuracy_decimals: 2
+    filters:
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 1.0 -> 30.0
+      - lambda: |-
+          if (x < 0.05) return 0.0;
+          return x;
+
+  - platform: uptime
+    name: "ESP32D2 Calisma Suresi"
+    update_interval: 30s
+
+  - platform: wifi_signal
+    name: "ESP32D2 WiFi Sinyali"
+    update_interval: 30s
