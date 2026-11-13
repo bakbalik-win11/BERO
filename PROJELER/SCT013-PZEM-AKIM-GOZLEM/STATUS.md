@@ -1,3 +1,17 @@
+
+
+## 2026-11-13 — E19 150 W sonucu kaydedildi; 58 W testi açıldı
+
+- 150 W sabit yük CSV'si (`history (56).csv`) ortak kararlı 18:16:30–18:24:30 (+03:00) penceresinde analiz edildi.
+- PZEM n=39, ortalama 0.65472 A, SD=0.00092 A; güç ortalaması 149.69 W.
+- ADS1115 n=241, ortalama 0.66279 A, SD=0.00172 A; PZEM'e göre +%1.23.
+- Modül 2 CH1-1T n=480, ortalama 0.60402 A, SD=0.01357 A; PZEM'e göre -%7.74.
+- İlk yaklaşık iki dakikadaki lamba oturma bölümü kararlı karşılaştırma dışında tutuldu. Yük deney boyunca sürekli bağlı sabit yük olarak ele alındı; SSR olayları yük ON/OFF etiketi yapılmadı.
+- K=27.60'ın çalışan binary'de kullanıldığı henüz doğrulanmadı. Bu varsayımla hesaplanan K≈27.26 koşullu hesaptır; hiçbir katsayı değiştirilmedi.
+- Gain 2.048, 860 SPS, 200 ms pencere, 2 s güncelleme, accuracy_decimals 2 ve 0.05 A filtre korundu.
+- **Aşama 4: 58 W sabit yük testi PLANLANDI.** İlk karşılaştırmada aynı firmware/ayarlar korunacak; 0.512 gain ve accuracy_decimals 3 değişiklikleri ertelendi.
+- Bias/common-mode ve A0/A1 giriş güvenliği enerjili test öncesi açık ön koşuldur.
+- Rapor: [150 W karşılaştırma](logs/ads1115/2026-11-13-E19-150w-comparison.md); [58 W planı](logs/ads1115/2026-11-13-E19-58w-test-plan.md).
 ## 2026-11-13 — E19 100 W yorum düzeltmesi ve 150 W testinin açılması
 
 - 100 W ortak pencerede ADS1115 ortalaması 0.469881 A (n=84), PZEM 0.469882 A (n=34), Modül 2 CH1-1T 0.434240 A (n=167). Bu, aynı oturumdaki gözlemsel karşılaştırmadır; aynı noktadan türetilen K ile uyum bağımsız kalibrasyon doğrulaması değildir.
