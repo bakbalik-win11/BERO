@@ -228,3 +228,24 @@ Ayrıntı: [E19 üç modül karşılaştırma kaydı](../../logs/ads1115/2026-11
 Kullanıcı, sıradaki yükün **57 W** olduğunu ve testin **18:32 (+03:00)** saatinde açıldığını bildirdi. Önceki 58 W planı uygulanmadı; 57 W test kaydı esas alınır: [E19 57 W test kaydı](../../logs/ads1115/2026-11-13-E19-57w-test.md).
 
 150 W deneyiminden sabit yük yöntemine eklenen not: ilk yaklaşık iki dakikada PZEM akım/güç yükselişi görüldüğü için yeni testlerde ilk 3 dakika geçici bölge kabul edilecek; kararlılık yalnız süreye göre değil, PZEM ve ADS/SCT zaman serilerinin gerçekten oturmasına göre belirlenecek. İlk karşılaştırmada mevcut ayarlar korunacak; gain 0.512 ve accuracy_decimals 3 ertelendi.
+
+## 2026-11-13 — Deney amacı ve sıra düzeltmesi: önce çalışma sınırı, sonra katsayı
+
+Önceki aşama metinlerinde 100 W testinden itibaren katsayı belirleme hedefi öne çıkarılmıştı. Kullanıcının son kararıyla E19'un mevcut çalışma aşamasının amacı netleştirilmiştir:
+
+**Mevcut aşamanın hedefi kalibrasyon değildir.** ADS1115 + SCT zincirinin mevcut yapılandırma ve mevcut kaba/başlangıç katsayısıyla düşük akımda çalışma davranışını belirlemek; kararlılık, tekrarlanabilirlik, sıçrama/okuma kaybı ve kullanılabilir alt sınırı gözlemlemektir.
+
+- Yükler kademeli olarak aşağı indirilecek.
+- Her basamakta ADS1115 gain, sample rate, continuous mode, ct_clamp penceresi, güncelleme aralığı, filtre ve katsayı sabit tutulacak.
+- PZEM aynı zaman aralığındaki karşılaştırma referansı olarak kullanılacak; bu aşamada PZEM'e göre fark raporlanır, katsayı bu farka göre ayarlanmaz.
+- Bir basamakta kararlı görünmek tek başına alt sınırın kanıtı değildir; mümkün olduğunda yeterli süre ve tekrar gözlemi aranır.
+- Sistem kararsızlaşmaya başladığında o nokta ve bir önceki kararlı basamak ayrı kaydedilecek. Alt çalışma sınırı, mevcut kurulum/ayarlar için deneysel gözlem olarak ifade edilecek.
+- Katsayı belirleme ve kalibrasyon, bu çalışma sınırı deneyi bittikten sonra ayrı aşamadır. Tek noktaya göre katsayı ayarlanmayacak.
+
+### İlk düşük akım gözlemi — 57 W
+
+Kullanıcı bildirimi: PZEM 0,265 A, ADS1115 + SCT 0,270 A. Mevcut katsayı kaba/kalibre edilmemiştir. Fark +0,005 A ve PZEM'e göre yaklaşık +%1,89 (**HESAP**). Bu tek nokta, kalibrasyon başarısı, ±%4 genel kabulü veya alt sınır doğrulaması değildir. Tam zaman serisi/CSV ve ortak kararlı pencere istatistiği henüz bu kısa bildirime eşlik etmiyor.
+
+### Eski sistemle karşılaştırma notu
+
+İlk SCT + ESP32 dahili ADC yolu 100 W noktasında kısa kalibre edilmişti; buna rağmen düşük akım bölgesinde kararlılık/hassasiyet sorunu sürmüştü. Bu nedenle yeni ADS1115 yolunun 57 W'taki kararlı görünümü, henüz kalibre edilmemiş katsayıya rağmen ayrı ve anlamlı bir gözlemdir. İki mimariyi aynı sonuç dosyasında birleştirmeden, farklı ölçüm zincirleri olarak karşılaştır.
