@@ -592,3 +592,12 @@
 - Kullanıcı bildirimi: 42 W nominal yük, başlangıç 18:44 (+03:00); 57 W basamağı 18:40'ta kapatıldı.
 - Mevcut katsayı/ayar sabit; bu basamak kalibrasyon değil, düşük akım çalışma davranışı karakterizasyonudur.
 - CSV ve kapanış bilgisi bekleniyor: [42 W test kaydı](logs/ads1115/2026-11-13-E19-42w-test.md).
+
+
+## 2026-11-13 — E19 42 W sabit yük basamağı tamamlandı
+
+- 42 W nominal yük oturumu kullanıcı tarafından 18:50'de kapatıldı (başlangıç 18:44, +03:00).
+- CSV ortak kesiti 18:44:07–18:49:59: ADS1115 + SCT n=176, ortalama 0.189236 A, SD=0.001014 A, CV=%0.536; PZEM n=9, ortalama 0.189000 A, SD=0.001000 A.
+- Ortalama fark yaklaşık +%0.125; PZEM örnek sayısı düşük olduğundan doğruluk kanıtı değildir. PZEM aktif güç ortalaması 43.452 W (n=31).
+- Katsayı ve ayarlar değiştirilmedi. Sonuç düşük akım karakterizasyonu olarak kaydedildi; kalibrasyon/±%4 kabulü veya alt sınır kararı değildir.
+- Ayrıntılar: [42 W test raporu](PROJELER/SCT013-PZEM-AKIM-GOZLEM/logs/ads1115/2026-11-13-E19-42w-test.md), [E19 sonuç defteri](PROJELER/SCT013-PZEM-AKIM-GOZLEM/experiments/E19-ads1115-low-current-alternative/results.md).
