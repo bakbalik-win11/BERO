@@ -1,3 +1,13 @@
+## 2026-11-13 — E19 Aşama 1 ilk ADS1115 logu kaydedildi; Aşama 2 100 W katsayı testi açıldı
+
+- ADS1115 I2C taramasında 0x48 bulundu; ESP32D2 GPIO21 SDA / GPIO22 SCL, 3.3 V ve ADDR-GND bağlantısı kullanıcı loguyla desteklendi.
+- Önceki düşük hızlı A0-A1 denemesinde yüksüz 8–39 µV; yaklaşık 60 W yükte -12.8 mV ile +13.1 mV arasında değişen okumalar görüldü. Bu log 7 SPS ve yaklaşık 1 s yayın aralığındadır; RMS akım/katsayı ölçümü değildir. Seyrek örnekleme aliasing görünümü oluşturabilir.
+- Mevcut ESP32D1 logunda ham ct_clamp 0.13757–0.13954 A, K uygulanmış çıktı 3.332–3.380 A; loglanan hız 6.700–6.920 SPS. Aynı zamanlı PZEM bu kesitte yoktur; 3.35 A gerçek akım diye kabul edilmedi.
+- Yeni ESP32D2 ADS1115 + ct_clamp YAML depoya eklendi: 860 SPS, A0_A1, gain 2.048, continuous mode, 200 ms pencere, 2 s güncelleme. Derleme ve yeni YAML ile fiziksel çalışma henüz doğrulanmadı.
+- **Aşama 2 açıldı:** 100 W akkor sabit yükte ESP32D1 + ESP32D2 + PZEM ortak kararlı alan karşılaştırması. Amaç ADS1115 katsayısını PZEM referansıyla belirlemek; mevcut D1 K=24.22 değiştirilmez.
+- **Durum:** Aşama 1 LOG İLE DESTEKLENDİ; Aşama 2 PLANLANDI. 100 W ölçümü, katsayı ve ±%4 sonucu yok.
+- Kayıtlar: [E19 README](experiments/E19-ads1115-low-current-alternative/README.md), [sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md), [ilk log](logs/ads1115/2026-11-13-E19-ads1115-first-bringup.md), [YAML](firmware/experiments/esp32d2-ads1115-ct-clamp.yaml).
+
 ## 2026-11-09 — E19 için ESPHome ADS1115 + ct_clamp mimarisi kaynak koduyla doğrulandı
 
 - ESPHome 2026.10.2 resmi dokümanı ADS1115 gerilim sensörünün ct_clamp kaynağı olarak kullanılabildiğini doğruluyor. ADS1115 hub'da `continuous_mode: true` özellikle ct_clamp için öneriliyor.
