@@ -221,3 +221,10 @@ Ayrıntı: [E19 üç modül karşılaştırma kaydı](../../logs/ads1115/2026-11
 - PZEM aynı kararlı pencerede referans olacak; teorik yük akımı kalibrasyon girdisi değildir.
 - A0/A1 bias/common-mode ve giriş gerilimi güvenliği fiziksel olarak doğrulanmadan enerjili teste başlanmaz.
 - Protokol: [58 W test planı](../../logs/ads1115/2026-11-13-E19-58w-test-plan.md).
+
+
+## 2026-11-13 — Aşama 4 düzeltmesi: 58 W yerine 57 W
+
+Kullanıcı, sıradaki yükün **57 W** olduğunu ve testin **18:32 (+03:00)** saatinde açıldığını bildirdi. Önceki 58 W planı uygulanmadı; 57 W test kaydı esas alınır: [E19 57 W test kaydı](../../logs/ads1115/2026-11-13-E19-57w-test.md).
+
+150 W deneyiminden sabit yük yöntemine eklenen not: ilk yaklaşık iki dakikada PZEM akım/güç yükselişi görüldüğü için yeni testlerde ilk 3 dakika geçici bölge kabul edilecek; kararlılık yalnız süreye göre değil, PZEM ve ADS/SCT zaman serilerinin gerçekten oturmasına göre belirlenecek. İlk karşılaştırmada mevcut ayarlar korunacak; gain 0.512 ve accuracy_decimals 3 ertelendi.
