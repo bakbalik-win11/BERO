@@ -1,3 +1,10 @@
+## 2026-11-13 — E21 ilk test kapsamı netleştirildi
+
+- İlk test yalnızca **bir çamaşır makinesi programının baştan sona kaba kaydıdır**; ayrıntılı evre sınıflandırması, tekrar testi veya eğitim modeli hedeflenmiyor.
+- İlk çıktı: tek akım grafiği, belirgin genel değişimler ve dikkat çeken zaman aralıkları.
+- İlk kayıttan sonra farklı sensörler seçilip sisteme aşamalı olarak eklenecek; çoklu sensör kombinasyonları sonraki aşamadır. Sensör türü/bağlantısı henüz kararlaştırılmadı.
+- [E21 güncel protokolü](experiments/E21-washing-machine-program-analysis/README.md).
+
 ## 2026-11-13 — Yeni hedef E21: çamaşır makinesi program davranışı analizi
 
 - **AKTİF HEDEF:** Çamaşır makinesinin seçilen bir programını baştan sona SCT-013 + ADS1115 akım zaman serisiyle gözlemlemek; elektriksel davranış evrelerini, sürelerini, geçişlerini ve tekrar eden örüntülerini çıkarmak.
