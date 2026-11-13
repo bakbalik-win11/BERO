@@ -89,7 +89,7 @@ Aşağıdaki adetler kullanıcı tarafından bildirilen fiziksel envanterdir. Ta
 |---|---|---:|---|---|
 | Dijital I/O | Waveshare Modbus RTU IO 8CH | 2 | Her modülde 8 DI + 8 DO; RS485 / Modbus RTU | Mevcut; toplam 16 DI + 16 DO |
 | Analog giriş | Waveshare Modbus RTU Analog Input 8CH | 2 | Her modülde 8 kanal; 0–5 V, 1–5 V, 0–20 mA veya 4–20 mA modları | Mevcut; toplam 16 analog giriş |
-| Analog çıkış | Waveshare Modbus RTU Analog Output 8CH (B) | 1 | 8 kanal, 0–10 V | Mevcut |
+| Analog çıkış | Waveshare Modbus RTU Analog Output 8CH (B) | 1 | 8 kanal, 0–10 V | Mevcut; kullanıcı bildirimi: havalandırma motorlarının akıma bağlı hız referansını üretmek/yönetmek için değerlendirilecek. Motoru doğrudan sürmez; uygun sürücü veya 0–10 V girişli fan kontrolcüsüne referans sinyali vermesi hedefleniyor. Uygulama ve kontrol mantığı henüz doğrulanmadı. |
 | RS485–Ethernet dönüştürücü | Waveshare 2-CH RS485 TO ETH (B) | 1 | 2 RS485 kanalı, Ethernet | Mevcut; seri sunucu/gateway çalışma modu konfigürasyonla doğrulanacak |
 | Ethernet röle | Waveshare Modbus POE ETH Relay 30CH | 1 | 30 röle çıkışı, Ethernet/PoE | Mevcut; röle kontak sınırları ve Modbus çalışma modu ürün revizyonunun kılavuzundan doğrulanacak |
 | Dokunmatik HMI | ESP32-S3, 7 inç ekran | 1 | Tam model, çözünürlük ve arayüzler henüz teyit edilmedi | Mevcut; kart üzerindeki RS485/CAN/GPIO bağlantıları SKU üzerinden doğrulanacak |
