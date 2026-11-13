@@ -581,3 +581,9 @@
 - [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md): 57 W ön gözlemi 0,265 A PZEM / 0,270 A ADS1115+SCT; kaba katsayı, kalibrasyon yapılmadı.
 - [57 W test kaydı](logs/ads1115/2026-11-13-E19-57w-test.md): kullanıcı bildirimi, +0,005 A / yaklaşık +%1,89 hesap ve kanıt sınırı.
 - [Oturum kaydı](HISTORY/SESSION_LOG-2026-11-13-E19-low-current-range.md).
+
+### E19 — 57 W oturum kapanışı (18:40)
+- Kullanıcı oturumu 18:40 (+03:00) itibarıyla kapattı.
+- `history (57).csv` ön analizi: 18:35–18:40 ADS1115 n=150, mean 0.266212 A, SD 0.000985 A; PZEM n=18, mean 0.264500 A, SD 0.000514 A; fark yaklaşık +%0.647.
+- Bu, 100 W'taki kaba PZEM ayarından sonra düşük akım karakterizasyonudur; bu aşamada katsayı değiştirilmez.
+- Ayrıntı: [57 W test raporu](logs/ads1115/2026-11-13-E19-57w-test.md), [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md), [oturum kaydı](HISTORY/SESSION_LOG-2026-11-13-E19-low-current-range.md).
