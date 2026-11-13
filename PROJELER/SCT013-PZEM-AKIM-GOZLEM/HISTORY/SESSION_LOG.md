@@ -2051,3 +2051,35 @@ ESP32D2 ADS1115, Modül 3 PZEM ve Modül 2 ESP32D1 loglarını aynı zaman pence
 - ADS1115'in 860 SPS ile çalıştığı, gerçek RMS doğruluğu veya yeni katsayı doğrulanmadı.
 - SSR fiziksel OFF doğrulanmadı; ON/OFF olayları yük etiketi olarak kabul edilmeyecek.
 - Katsayılar ve firmware değiştirilmedi; ±%4 başarısı ilan edilmedi.
+
+
+## 2026-11-13 — E19 100 W log yorumları işlendi; 150 W testi açıldı
+
+### HEDEF
+100 W üç-modül karşılaştırmasını sonradan gelen teknik yorumlarla düzeltmek; yanlış örnekleme hızı yorumunu gidermek; sonraki kontrollü 150 W sabit yük testini mevcut ayarları değiştirmeden açmak.
+
+### DEPO OKUMASI
+Proje AGENTS.md, STATUS.md, ROADMAP.md, E19 README/results, 100 W karşılaştırma raporu ve PROGRESS_TREE okundu. Proje görev sırası ve E19 deney kapsamı korundu.
+
+### 100 W KAYDININ GÜNCELLENEN YORUMU
+- ADS1115/PZEM ortak penceresi: ADS1115 0.469881 A (n=84), PZEM 0.469882 A (n=34); Modül 2 CH1-1T 0.434240 A (n=167).
+- Açılış logundaki Sample rate: 7 değeri 7 SPS değil, ADS1115 860 SPS enum/register kodudur. 200 ms'de 174–177 farklı örnek (yaklaşık 870–885 SPS) 860 SPS ayarıyla uyumludur. Önceki hız uyuşmazlığı iddiası düzeltildi.
+- ADS1115/PZEM ortalama yakınlığı aynı çalışma noktasından türetilen K ile bağımsız kalibrasyon doğrulaması değildir.
+- Depodaki E19 YAML 30.0 başlangıç doğrusu içerirken yorumda 27.60 katsayısı geçmektedir. Çalışan binary/cache kaynağı ile depodaki YAML eşleştirilmeden uygulanan katsayı kesinleştirilmedi.
+- accuracy_decimals 2 yayın çözünürlüğüdür; 3 yapılması yalnız gösterim çözünürlüğünü artırır. 0.512 gain daha dar tam ölçek aralığıdır, analog yükseltme değildir ve clipping payını azaltır. Bu değişiklikler yapılmadı.
+- Bias/common-mode giriş güvenliği açık kontrol maddesi olarak kaldı. SSR fiziksel OFF doğrulanmadı; GPIO readback fiziksel SSR kanıtı değildir. UDP olay alımı fiziksel yük etiketi sayılmadı.
+
+### AŞAMA 3 — 150 W TESTİ
+- 150 W akkor lamba sürekli bağlı sabit yük olarak planlandı.
+- Gain 2.048, sample_rate 860, continuous_mode true, A0_A1, 200 ms pencere, 2 s güncelleme, accuracy_decimals 2, mevcut filtre ve YAML katsayısı değişmeden tutulacak.
+- ADS1115/PZEM ortak zaman aralığı, akım/güç/gerilim, ortalama/SD/min-maks, örnek sayısı/SPS, I2C uyarıları ve UDP olay durumu kaydedilecek.
+- Test yalnız PLANLANDI; 150 W logu, derleme/OTA veya fiziksel sonuç bu oturumda yok.
+
+### DEPO DEĞİŞİKLİKLERİ
+- 100 W karşılaştırma raporuna düzeltme/yorum bölümü eklendi.
+- E19 README ve results dosyaları güncellendi.
+- 150 W test protokolü ayrı kayıt olarak oluşturuldu.
+- STATUS.md ve PROGRESS_TREE.md güncellendi.
+
+### SINIR
+Bu oturum dokümantasyon ve test planı güncellemesidir. YAML/firmware değiştirilmedi; derleme, OTA, fiziksel 150 W testi veya yeni katsayı yapılmadı.
