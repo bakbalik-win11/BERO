@@ -1,3 +1,11 @@
+## 2026-11-13 — E21 ilk çamaşır makinesi kaydı başladı; ON/OFF kod temizliği yapılacak
+
+- Kullanıcı bildirimi: kayıt 20:42'de, çamaşır makinesi programı devam ederken ortasından başlatıldı; bu nedenle **kaba ve kısmi kayıt** olarak değerlendirilecek. Program bitene kadar kayıt sürdürülecek.
+- **YAPILACAK İŞ:** Artık ihtiyaç kalmadığı için canlı/aktif firmware ve ilgili kodlardan ON/OFF olay mekanizması tamamen çıkarılacak.
+- Kapsam taraması: Modül 2, Modül 3 ve bunlarla ilişkili diğer kodlar; UDP ON/OFF gönderme/alma, olay parser'ı, BOOT_ID/EVENT_ID/STATE alanları, olay entity'leri ve yalnız bu mekanizmaya bağlı yardımcı değişkenler.
+- Ölçüm, sensör okuma, HA akım verisi ve kayıt akışı korunacak. Tarihsel ADR, deney, log ve arşiv dosyaları silinmeyecek; yalnız aktif koddan çıkarılacak.
+- Bu bir yapılacak iş kaydıdır; henüz kod değişikliği, derleme, OTA veya fiziksel doğrulama yapılmadı.
+
 ## 2026-11-13 — E21 ilk test kapsamı netleştirildi
 
 - İlk test yalnızca **bir çamaşır makinesi programının baştan sona kaba kaydıdır**; ayrıntılı evre sınıflandırması, tekrar testi veya eğitim modeli hedeflenmiyor.
