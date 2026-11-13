@@ -1,3 +1,12 @@
+## 2026-11-13 — Modül 1–4 yaşam döngüsü ve E22 Modül 4 olarak güncellendi
+
+- Modül 1 bağımsız bias trafosu/güç kutusu korunacak.
+- Modül 2 (üç kanallı biaslı eski SCT modülü) ve Modül 3 (PZEM + aç/kapa rölesi eski modülü) kullanıcı bildirimiyle imha edildi. Eski kod ve kayıtlar depodan silinmeyecek; tarihsel arşivdir.
+- Yeni Modül 4: ESP32 + ADS1115 + 100 A / 1 V SCT + PZEM-004T V3. Ayrı YAML/firmware kimliğiyle hazırlanacak; eski Modül 2/3 kodu taşınmayacak.
+- Modül 3'ün eski röle/kontrol düzeni Modül 4'e dahil değil. PZEM-004T V3'ün Modül 4'te yeniden kullanımı plan; fiziksel bağlantı ve haberleşme doğrulaması bekliyor.
+- Modül 4 pinleri, ADS1115 giriş güvenliği ve PZEM UART ayarları henüz belirlenmedi. Kod/derleme/OTA/ölçüm yapılmış değildir.
+- Ayrıntı: [E22 Modül 4 protokolü](experiments/E22-sct100a-1v-ads1115-characterization/README.md).
+
 ## 2026-11-13 — E19 ADS1115 enerjili-yüksüz hat / 1 s yayın ve alt eşik kararı
 
 - ESP32D2 OTA logu ve 1 saniyelik ct_clamp yayın yapılandırması kaydedildi: [rapor](logs/ads1115/2026-11-13-E19-energized-no-load-1s-raw-log-report.md), [tam log](logs/ads1115/2026-11-13-E19-energized-no-load-1s-ota-log.txt).
