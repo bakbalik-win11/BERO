@@ -52,3 +52,19 @@ Güvenlik ön koşulu doğrulandıktan sonra mevcut ayar/katsayıyı değiştirm
 - Katsayı ve ayarlar sabit; hedef düşük akım çalışma davranışını gözlemek, kalibrasyon yapmak değil.
 - CSV, kapanış saati ve sonuç analizi bekleniyor.
 - Test kaydı: [E19 42 W](../logs/ads1115/2026-11-13-E19-42w-test.md).
+
+
+## 2026-11-13 — 42 W oturumu kapandı (18:50) ve CSV analizi
+
+- Kullanıcı bildirimi: 42 W nominal yük oturumu 18:44'te başladı ve 18:50 (+03:00) itibarıyla kapatıldı.
+- Kaynak CSV: `history (58).csv`; 19.183 satır, 3 sütun; SHA-256 `df278701f3dc4a317dd70716f0e192436c82cb334d6c1a6919f4a9e4af8811be`.
+- Ortak analiz penceresi: 18:44:07–18:49:59 (+03:00). ADS1115 son örneği 18:49:57.913; PZEM akım son örneği 18:49:57.867.
+- ADS1115 + SCT: n=176, ortalama 0.189236 A, örnek SD=0.001014 A, min–maks 0.186221–0.192013 A, CV=%0.536.
+- PZEM akım: n=9, ortalama 0.189000 A, örnek SD=0.001000 A, min–maks 0.188–0.191 A, CV=%0.529.
+- Ortalama fark +0.000236 A / PZEM'e göre yaklaşık +%0.125 (HESAP); PZEM örnek sayısı düşük ve örnekleme yoğunluğu ADS1115'ten farklıdır.
+- PZEM aktif güç n=31, ortalama 43.452 W, SD=0.115 W, min–maks 43.3–43.8 W.
+- Modül 2 CH1-1T n=352, ortalama 0.257694 A, SD=0.030760 A, min–maks 0.200736–0.418209 A, CV=%11.937. Bu farklı ölçüm mimarisinin aynı oturumdaki betimleyici karşılaştırmasıdır.
+- CSV yeniden sayımında ADS örnek sayısı 176 bulundu; önceki sohbet ön özetindeki 177 sayısı düzeltilmiştir.
+- **Sonuç:** 42 W basamağında ADS1115 + SCT yolu dar dağılım ve PZEM'e yakın ortalama gösterdi. Bu, düşük akım çalışma davranışı açısından olumlu gözlemdir; kalibrasyon, bağımsız doğruluk veya ±%4 genel kabulü değildir. Katsayı/ayar değiştirilmedi.
+- Fiziksel düzen kullanıcı bildirimi: aynı SCT, bias devresi yok, harici transformatör yok. ADS1115 A0/A1 ortak-mod ve GND–VDD giriş güvenliği ayrıca doğrulanmalıdır.
+- Ayrıntı: [42 W test raporu](../logs/ads1115/2026-11-13-E19-42w-test.md); [E19 sonuç defteri](../experiments/E19-ads1115-low-current-alternative/results.md).
