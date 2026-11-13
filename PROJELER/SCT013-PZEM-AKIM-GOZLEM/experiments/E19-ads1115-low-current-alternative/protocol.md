@@ -190,3 +190,29 @@ Bir değişkeni değiştirmek gerekirse o seri mevcut basamak karşılaştırmas
 
 ### Sonuç sınırı
 Bu deney kalibrasyon doğruluğu, ±%4 genel kabulü veya PZEM'in mutlak doğruluğunu kanıtlamaz. Yalnız mevcut yapılandırmanın düşük akım çalışma davranışını ve gözlenen sınırını belirler.
+
+## 2026-11-13 — Genel deney sırası: 100 W kaba kalibrasyon → düşük akımda karakterizasyon
+
+Kullanıcının netleştirdiği yöntem, yalnız ADS1115'e özgü değil, karşılaştırılan her ölçüm yapısı için geçerlidir:
+
+1. Her ölçüm yapısı yaklaşık 100 W sabit yükte PZEM referansına karşı kaba kalibre edilir.
+2. Bu başlangıç ayarı/katsayısı o yapının düşük akım karakterizasyonu boyunca sabit tutulur.
+3. Yük kademeli olarak azaltılır; her basamakta aynı zaman aralığındaki PZEM ve sensör serileri karşılaştırılır.
+4. Amaç düşük akımda tekrar kalibrasyon yapmak değil; kararlılık, dağılım, sıçrama/okuma kaybı, tekrarlanabilirlik ve kullanılabilir alt sınırı tanımaktır.
+5. Gerekirse yeni katsayı/kalibrasyon çalışması, düşük akım karakterizasyonundan sonra ayrı bir aşama olarak yürütülür.
+
+100 W'taki kaba kalibrasyon, bağımsız doğruluk doğrulaması veya tüm akım aralığı için katsayı geçerliliği anlamına gelmez.
+
+
+## 2026-11-13 — 57 W oturumu kapandı (18:40) ve CSV ön analizi
+
+- Kullanıcı bildirimi: 57 W nominal akkor yük oturumu **18:40 (+03:00)** itibarıyla kapatıldı.
+- Kaynak CSV: `history (57).csv`; SHA-256: `5945b3731a86408db84426f140c6b71869dd5e43b885514aa060e8d9a892a78b`; 5.441 satır, 3 sütun. CSV zamanları UTC'den Europe/Istanbul'a çevrilerek incelendi.
+- İncelenen oturum aralığı: 18:32:00–18:40:00 (+03:00). Kullanıcı yükü 57 W nominal olarak tanımladı; CSV'deki PZEM aktif güç bu aralıkta yaklaşık 60,1–61,0 W (18:32–18:40 ortalama 60,58 W) gösteriyor. Nominal lamba etiketi ile PZEM'in ölçtüğü aktif güç birbirinden ayrıdır.
+- 18:35:00–18:40:00 ortak gözlem kesiti: ADS1115 + SCT n=150, ortalama 0,266212 A, örnek SD=0,000985 A, min–maks 0,263838–0,269036 A. PZEM akım n=18, ortalama 0,264500 A, örnek SD=0,000514 A, min–maks 0,264–0,265 A. Ortalama fark +0,001712 A; PZEM'e göre yaklaşık +%0,647 (**HESAP**).
+- 18:32:00–18:40:00 tam kesitinde ADS1115 n=239, ortalama 0,266547 A, SD=0,001108 A; PZEM n=23, ortalama 0,264783 A, SD=0,000795 A. Ortalama fark +0,001764 A; yaklaşık +%0,666 (**HESAP**).
+- Aynı 18:35–18:40 aralığında eski ESP32D1 dahili ADC CH1-1T serisi n=300, ortalama 0,305881 A, SD=0,021954 A, min–maks 0,277557–0,439324 A. Bu seri ADS1115'ten belirgin biçimde daha geniş dağılım gösteriyor; farklı ölçüm mimarileri ayrı tutulur.
+- CSV'nin son ADS1115 örneği 18:39:59.927, son PZEM akım örneği 18:39:57.857; kullanıcının 18:40'ta kapatma bildirimiyle uyumlu kayıt sonu.
+- **Yorum sınırı:** 18:35–18:40 ADS1115 serisi bu oturumda dar dağılımlı/kararlı gözüküyor ve PZEM ortalamasına yakın. Bu, 100 W'ta yapılan kaba referans ayarından sonra düşük akımda çalışma davranışına ilişkin gözlemdir; bağımsız kalibrasyon, ±%4 genel doğrulaması veya alt çalışma sınırının kesin belirlenmesi değildir. Daha düşük basamaklar ve tekrarlar gerekir.
+- Bu aşamanın yöntemi: her ölçüm yapısı PZEM'e karşı yaklaşık 100 W noktasında kaba kalibre edilir; ardından katsayı değiştirilmeden daha düşük akım basamaklarında davranışı tanınır. Düşük akım aşamasında amaç yeniden kalibrasyon değil, kararlılık ve kullanılabilir alt sınırı bulmaktır. Kullanıcı bu yöntemi her ölçüm yapısı için geçerli olarak netleştirdi.
+- Güvenlik ön koşulu (ADS1115 A0/A1 ortak-mod/bias ve giriş ray sınırlarının fiziksel doğrulaması) ayrıca açık kalır.
