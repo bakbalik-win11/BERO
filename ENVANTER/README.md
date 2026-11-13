@@ -33,6 +33,8 @@ Bu bölüm, BERO geliştirme ve genel elektronik deneylerinde kullanılan mevcut
 | Sensör | Tanım | Kullanım amacı | Durum |
 |---|---|---|---|
 | SCT013 | 30 A / 1 V | Mevcut SCT ölçüm zincirinde kullanılan akım trafosu; düşük akım bölgesindeki davranışı inceleniyor | Mevcut |
+
+| SCT013 | 100 A / 1 V | İleride ana hat gibi daha yüksek akım aralığı beklenen noktalarda değerlendirme; 30 A / 1 V ile ayrı ADS1115 karakterizasyonu | **8 adet mevcut (kullanıcı bildirimi; fiziksel model/etiket teyidi bekliyor)** |
 | SCT013 | 5 A sınıfı; sipariş edilen ürünün tam model/çıkış etiketi teslimatta doğrulanacak | 30 A / 1 V sensörle düşük akım bölgesinde karşılaştırmalı deney; aynı yük koşulunda duyarlılık ve kararlılık gözlemi | **5 adet sipariş edildi; uluslararası taşımada (13.11.2026)** |
 
 ### 5 A SCT sevkiyat kaydı
