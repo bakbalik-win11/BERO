@@ -87,7 +87,7 @@ Aşağıdaki adetler kullanıcı tarafından bildirilen fiziksel envanterdir. Ta
 
 | Donanım | Model / tanım | Adet | Kapasite / arayüz | Durum ve not |
 |---|---|---:|---|---|
-| Dijital I/O | Waveshare Modbus RTU IO 8CH | 2 | Her modülde 8 DI + 8 DO; RS485 / Modbus RTU | Mevcut; toplam 16 DI + 16 DO |
+| Dijital I/O | Waveshare Modbus RTU IO 8CH | 2 | Her modülde 8 DI + 8 DO; RS485 / Modbus RTU | Mevcut; toplam 16 DI + 16 DO. Kullanıcı kullanım alanları: kapı zili, kapı/pencere/cam kontakları, akım gerektirmeyen butonlar ve diğer kuru kontak/dijital durum bildirimleri. Giriş elektriksel tipi, izolasyon, ortak uç ve kontak bağlantı sınırları ürün revizyonunun kılavuzundan doğrulanacak. Çıkışlar uygun arayüz ve yük sınırları doğrulanmadan doğrudan saha yüküne bağlanmayacak. |
 | Analog giriş | Waveshare Modbus RTU Analog Input 8CH | 2 | Her modülde 8 kanal; 0–5 V, 1–5 V, 0–20 mA veya 4–20 mA modları | Mevcut; toplam 16 analog giriş |
 | Analog çıkış | Waveshare Modbus RTU Analog Output 8CH (B) | 1 | 8 kanal, 0–10 V | Mevcut; kullanıcı bildirimi: havalandırma motorlarının akıma bağlı hız referansını üretmek/yönetmek için değerlendirilecek. Motoru doğrudan sürmez; uygun sürücü veya 0–10 V girişli fan kontrolcüsüne referans sinyali vermesi hedefleniyor. Uygulama ve kontrol mantığı henüz doğrulanmadı. |
 | RS485–Ethernet dönüştürücü | Waveshare 2-CH RS485 TO ETH (B) | 1 | 2 RS485 kanalı, Ethernet | Mevcut; seri sunucu/gateway çalışma modu konfigürasyonla doğrulanacak |
