@@ -1,3 +1,15 @@
+## 2026-11-13 — Yeni hedef E21: çamaşır makinesi program davranışı analizi
+
+- **AKTİF HEDEF:** Çamaşır makinesinin seçilen bir programını baştan sona SCT-013 + ADS1115 akım zaman serisiyle gözlemlemek; elektriksel davranış evrelerini, sürelerini, geçişlerini ve tekrar eden örüntülerini çıkarmak.
+- Kullanıcı kararı: PZEM ile bağımsız kararlı alan eşleştirmesi/eğitim ve bu amaçla aç-kapa deneyleri artık gerekli değil; mevcut ölçüm zinciri pratik hedefi karşılıyor.
+- Önceki kararlı-alan eğitim/kalibrasyon iş akışı **KAPATILDI — HEDEFE ULAŞILDI**. Bu ifade tüm olası akım koşullarında laboratuvar doğruluğu veya nihai donanım güvenliği sertifikası değildir; 13 Kasım testlerinin pratik hedefi karşıladığına dair kullanıcı kararıdır.
+- E20, 18 W aç/kapa tepki deneyi plan aşamasındaydı; yeni hedef için gereksiz bulunduğu için **KAPATILDI — YAPILMADI**. Fiziksel deney tamamlanmış sayılmaz.
+- E19, E20, T008/T006, ADR'ler, loglar, eski protokoller ve ham veriler silinmez; tarihsel arşiv olarak korunur. Firmware, YAML, katsayı ve ayarlar bu kararla değiştirilmedi.
+- PZEM yeni hedefte zorunlu eğitim referansı değildir; varsa yardımcı karşılaştırma/bağlam verisi olarak korunabilir.
+- **E21 protokolü:** [Çamaşır makinesi program davranışı analizi](experiments/E21-washing-machine-program-analysis/README.md).
+- **Karar kaydı:** [ADR-026](docs/decisions/ADR-026-close-stable-window-training-open-washer-analysis.md).
+- **Açık güvenlik koşulu:** ADS1115 A0/A1 ortak-mod ve giriş ray sınırlarının fiziksel doğrulaması yapılmış sayılmaz; uygun doğrulama olmadan enerjili test güvenli kabul edilmez.
+
 
 
 ## 2026-11-13 — E20 18 W fiziksel aç/kapa tepki deneyi açıldı
