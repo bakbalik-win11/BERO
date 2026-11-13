@@ -156,3 +156,37 @@ ADS1115 + ct_clamp zinciri, mevcut ESP32D1 SCT/ADC zinciriyle ikisinin de kararl
 - I2C bağlantısı RMS akım ölçümünü kanıtlamaz.
 - Tek 100 W noktası yalnız başlangıç katsayısını belirler; farklı akım aralığına genelleme yapmaz.
 - ±%4 hedefi yalnız ölçüm ve tekrarlar sonrası değerlendirilecek.
+
+## 2026-11-13 — Kullanıcı kararı: çalışma sınırı testi kalibrasyondan önce gelir
+
+Bu bölüm, protokoldeki önceki katsayı belirleme odaklı aşama tariflerini mevcut deney için sınırlar ve günceller.
+
+### Birincil soru
+ADS1115 + SCT + ESP32D2 ölçüm zinciri, **mevcut ayarlar ve mevcut kalibre edilmemiş/kaba katsayı değiştirilmeden**, düşük akımda hangi seviyeye kadar kararlı ve kullanılabilir veri üretebiliyor?
+
+### Deney boyunca sabitlenecekler
+- ADS1115 gain ve sample_rate.
+- continuous_mode ve A0_A1 diferansiyel giriş seçimi.
+- ct_clamp sample_duration ve update_interval.
+- accuracy_decimals, filtre/eşik ve çalışan katsayı.
+- SCT tur sayısı, fiziksel konum ve kablolama.
+
+Bir değişkeni değiştirmek gerekirse o seri mevcut basamak karşılaştırmasından ayrılır ve yeni koşul olarak etiketlenir. Katsayıyı PZEM'e göre ayarlamak bu aşamada yapılmaz.
+
+### Basamak yöntemi
+1. Mevcut 57 W sabit yük gözlemini başlangıç düşük-akım noktası olarak kaydet.
+2. Her yeni yük seviyesinde PZEM ve ADS/SCT kayıtlarının aynı zaman aralığını al.
+3. Geçici/ısınma davranışını kararlı bölümden ayır; kararlılık yalnız geçen süreye göre varsayılmaz.
+4. Her akış için n, ortalama, SD, CV, min–maks, sıçrama/boşluk ve mümkünse kararlı zaman aralığını kaydet.
+5. PZEM'e göre mutlak fark ve yüzde farkı yalnız betimleyici karşılaştırma olarak hesapla; katsayıyı değiştirmek için kullanma.
+6. Yükü kademeli azalt. Kararlı ve kararsız basamakları ayır; mevcut konfigürasyon için gözlenen alt çalışma sınırını raporla.
+7. Alt sınır gözlemi tamamlandıktan sonra katsayı belirleme ayrı deney/iş aşaması olarak planlanır.
+
+### 57 W ön gözlemi
+- PZEM: 0,265 A (**KULLANICI BİLDİRİMİ**).
+- ADS1115 + SCT: 0,270 A (**KULLANICI BİLDİRİMİ**); mevcut kaba/başlangıç katsayısı kullanılmış, kalibrasyon yapılmamış.
+- Fark: +0,005 A; PZEM'e göre yaklaşık +%1,89 (**HESAP**).
+- Bu kısa bildirim kararlılık izlenimini içerir; ham CSV/zaman serisi istatistikleri olmadan tam kararlı pencere doğrulaması değildir.
+
+### Sonuç sınırı
+Bu deney kalibrasyon doğruluğu, ±%4 genel kabulü veya PZEM'in mutlak doğruluğunu kanıtlamaz. Yalnız mevcut yapılandırmanın düşük akım çalışma davranışını ve gözlenen sınırını belirler.
