@@ -1,3 +1,14 @@
+## 2026-11-13 — Modül envanteri yeniden düzenlendi: Modül 4 planı
+
+- **Modül 1:** bağımsız bias trafosu / taşınabilir bias güç kutusu korunacak. Envanterde mevcut fiziksel varlık olarak kalır.
+- **Modül 2:** üç kanallı biaslı SCT okuma modülü; Modül 1'in bias yapısını da içeren eski kurulum. Kullanıcı bildirimi: fiziksel modül **İMHA EDİLDİ**.
+- **Modül 3:** PZEM ve aç/kapa rölesi içeren eski kurulum. Kullanıcı bildirimi: eski modül **İMHA EDİLDİ**. Modül 3'ün eski röle/kontrol yapısı yeni modüle taşınmayacak.
+- **Modül 4:** yeni ESP32 + ADS1115 + 100 A / 1 V SCT + PZEM-004T V3 ölçüm modülü olarak oluşturulacak. PZEM-004T V3, yeni Modül 4 tasarımında kullanılacak bileşen olarak planlandı; fiziksel yeniden bağlantı/çalışma henüz doğrulanmadı.
+- Modül 2 ve 3'ün eski firmware/YAML, log, deney ve karar kayıtları **silinmeyecek**; tarihsel arşiv olarak korunacak. Modül 4 ayrı YAML ve ayrı firmware kimliğiyle geliştirilecek.
+- 30 A / 1 V ADS1115 kodu değiştirilmeden korunacak. 100 A / 1 V için ayrı sensör tanımı ve ayrı kalibrasyon/sonuç kaydı tutulacak.
+- Modül 4'ün pinleri, ADS1115 giriş bağlantısı/güvenliği, PZEM UART pinleri ve seri haberleşme ayarları donanım kontrolü sonrasında belirlenecek. Bu kayıt kodun hazır, derlenmiş veya cihaza yüklenmiş olduğu anlamına gelmez.
+- İlgili çalışma: [E22 — 100 A / 1 V SCT + ADS1115 karakterizasyonu](experiments/E22-sct100a-1v-ads1115-characterization/README.md).
+
 ## 2026-11-13 — E22 planlandı: SCT 100 A / 1 V – ADS1115 karakterizasyonu
 
 - Kullanıcı bildirimi: elinde **8 adet 100 A / 1 V SCT** bulunuyor. Adet/model etiketi fiziksel envanter kontrolünde teyit edilecek.
