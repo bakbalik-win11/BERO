@@ -613,3 +613,15 @@
 - Sonraki aşama: aç/kapa tepki deneyi. Fiziksel ON/OFF, PZEM akım/güç ve SCT davranışıyla doğrulanacak; UDP/SSR olayı tek başına fiziksel durum kanıtı değildir. CSV'deki SSR OFF olaylarından sonra PZEM'in 18 W göstermeyi sürdürmesi bu ayrımı doğruluyor.
 - ADS1115 A0/A1 common-mode ve giriş ray güvenliği fiziksel doğrulaması açık kalır.
 - Ayrıntı: [E19 18 W test raporu](logs/ads1115/2026-11-13-E19-18w-test.md), [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md), [oturum kaydı](HISTORY/SESSION_LOG-2026-11-13-E19-low-current-range.md).
+
+
+## 2026-11-13 — E20 18 W fiziksel aç/kapa tepki deneyi açıldı
+
+- E19 18 W sabit yük baz gözlemi tamamlandıktan sonra yeni ve ayrı dinamik tepki deneyi E20 açıldı.
+- Amaç: aynı SCT-013 30A/1V + ADS1115 zincirinin 18 W fiziksel yük açma/kapatma geçişini, OFF sonrası yüksüz tabana dönüşünü, gecikme/sıçrama ve beş çevrimde tekrarlanabilirliğini incelemek.
+- Önerilen sıra: başlangıç OFF 180 s; 5 çevrim × (ON 60 s + OFF 60 s); son OFF 180 s. Gerçek süreler oturumda kaydedilecek.
+- ADS1115 gain 2.048, 860 SPS, continuous, 200 ms pencere, 2 s yayın, accuracy_decimals 2 ve 0.05 A filtre korunacak; katsayı değiştirilmeyecek.
+- Fiziksel yük anahtarlaması operatörce doğrulanacak. PZEM akım/güç geçişi fiziksel ON/OFF doğrulaması; SSR/UDP olayları tek başına fiziksel durum kanıtı değildir.
+- E20 dinamik geçiş testi olduğundan geçiş örneklerine ±%4 uygulanmaz; kararlı ON/OFF seviyeleri ve çevrimler ayrı analiz edilir.
+- **Durum:** PLANLANDI; fiziksel test ve CSV henüz yok.
+- [E20 deney protokolü](experiments/E20-ads1115-18w-on-off-response/README.md); [sonuç defteri](experiments/E20-ads1115-18w-on-off-response/results.md).
