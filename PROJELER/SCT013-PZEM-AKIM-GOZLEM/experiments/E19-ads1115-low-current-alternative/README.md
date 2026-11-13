@@ -199,3 +199,25 @@ Ayrıntı: [E19 üç modül karşılaştırma kaydı](../../logs/ads1115/2026-11
 - **Güvenlik ön koşulu:** A0/A1 girişlerinin bias/common-mode ve gerilim sınırları doğrulanmamışsa ADS1115 bağlantısı enerjili deneye alınmaz. Şebeke bağlantısı uygun muhafaza ve koruma altında yapılır.
 
 **Bu kayıt yalnızca test planının açıldığını gösterir. 150 W ölçümü, log, derleme/OTA veya cihaz doğrulaması henüz yoktur.**
+
+
+## 2026-11-13 — Aşama 3 sonucu: 150 W sabit yük
+
+150 W sabit yük CSV analizi [ayrı karşılaştırma raporunda](../../logs/ads1115/2026-11-13-E19-150w-comparison.md) saklanır.
+
+- Ortak kararlı pencere 18:16:30–18:24:30 (+03:00).
+- PZEM ortalama 0.65472 A; ADS1115 0.66279 A (+%1.23); Modül 2 CH1-1T 0.60402 A (-%7.74).
+- İlk yaklaşık iki dakikadaki lamba ısınma/oturma davranışı kalibrasyon penceresine dahil edilmedi.
+- ADS1115 için K=27.60'ın çalışan binary'de kullanıldığı henüz kesin eşleştirilmedi. Bu varsayımla hesaplanan K≈27.26 yalnız koşullu hesaptır; katsayı değiştirilmedi.
+- Ayarlar değiştirilmedi; 0.512 gain ve accuracy_decimals 3 uygulanmadı.
+
+### Aşama 4 — 58 W sabit yük karşılaştırması açıldı
+
+- **Durum:** PLANLANDI.
+- 58 W nominal akkor yük sürekli bağlı olacak; ON/OFF geçiş deneyi yapılmayacak.
+- İlk yaklaşık 3 dakika oturma süresi; ardından en az 5 dakika kararlı kayıt hedeflenir.
+- İlk karşılaştırma için 150 W ile aynı gain 2.048, sample_rate 860, continuous_mode, 200 ms pencere, 2 s update, accuracy_decimals 2, 0.05 A filtre ve mevcut katsayı korunur.
+- Gain 0.512 ve accuracy_decimals 3 önerileri bu testten önce uygulanmayacak; ayrı değişken deneyi olarak ertelenmiştir.
+- PZEM aynı kararlı pencerede referans olacak; teorik yük akımı kalibrasyon girdisi değildir.
+- A0/A1 bias/common-mode ve giriş gerilimi güvenliği fiziksel olarak doğrulanmadan enerjili teste başlanmaz.
+- Protokol: [58 W test planı](../../logs/ads1115/2026-11-13-E19-58w-test-plan.md).
