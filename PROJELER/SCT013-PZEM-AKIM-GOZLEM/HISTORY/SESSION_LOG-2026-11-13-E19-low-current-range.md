@@ -45,3 +45,10 @@ Güvenlik ön koşulu doğrulandıktan sonra mevcut ayar/katsayıyı değiştirm
 - **Yorum sınırı:** 18:35–18:40 ADS1115 serisi bu oturumda dar dağılımlı/kararlı gözüküyor ve PZEM ortalamasına yakın. Bu, 100 W'ta yapılan kaba referans ayarından sonra düşük akımda çalışma davranışına ilişkin gözlemdir; bağımsız kalibrasyon, ±%4 genel doğrulaması veya alt çalışma sınırının kesin belirlenmesi değildir. Daha düşük basamaklar ve tekrarlar gerekir.
 - Bu aşamanın yöntemi: her ölçüm yapısı PZEM'e karşı yaklaşık 100 W noktasında kaba kalibre edilir; ardından katsayı değiştirilmeden daha düşük akım basamaklarında davranışı tanınır. Düşük akım aşamasında amaç yeniden kalibrasyon değil, kararlılık ve kullanılabilir alt sınırı bulmaktır. Kullanıcı bu yöntemi her ölçüm yapısı için geçerli olarak netleştirdi.
 - Güvenlik ön koşulu (ADS1115 A0/A1 ortak-mod/bias ve giriş ray sınırlarının fiziksel doğrulaması) ayrıca açık kalır.
+
+## 42 W basamağı açıldı
+- 18:44 (+03:00), 42 W nominal yük: kullanıcı bildirimi.
+- 57 W önceki basamak 18:40'ta kapatıldı.
+- Katsayı ve ayarlar sabit; hedef düşük akım çalışma davranışını gözlemek, kalibrasyon yapmak değil.
+- CSV, kapanış saati ve sonuç analizi bekleniyor.
+- Test kaydı: [E19 42 W](../logs/ads1115/2026-11-13-E19-42w-test.md).
