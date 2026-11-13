@@ -1,3 +1,12 @@
+
+## 2026-11-13 — E19 ADS1115 ilk donanım logu ve 100 W katsayı testi
+- ADS1115 I2C 0x48 bulundu; A0-A1 diferansiyel okumalar yüksüz durumda 8–39 µV, yaklaşık 60 W yükte önceki düşük hızlı logda yaklaşık -12.8 mV ile +13.1 mV arasında değişti.
+- Önceki ADS logu 7 SPS / yaklaşık 1 s yayın aralığı olduğundan RMS akım veya katsayı ölçümü değildir; aliasing olasılığı not edildi.
+- ESP32D1 mevcut zincir logunda ham ct_clamp 0.13757–0.13954 A; K uygulanmış çıktı 3.332–3.380 A; 6.700–6.920 SPS. Aynı kesitte PZEM referansı bulunmadığından sonuç gerçek akım sayılmadı.
+- ESP32D2 ADS1115 + ct_clamp YAML kaydedildi; henüz derleme/OTA/860 SPS donanım doğrulaması yok.
+- E19 Aşama 2 açıldı: 100 W akkor sabit yükte ESP32D1, ESP32D2 ve PZEM ortak kararlı alanını karşılaştırıp ADS1115 katsayısını belirlemek. Test henüz yapılmadı.
+- Ayrıntılar: [E19](experiments/E19-ads1115-low-current-alternative/README.md), [ilk log](logs/ads1115/2026-11-13-E19-ads1115-first-bringup.md), [YAML](firmware/experiments/esp32d2-ads1115-ct-clamp.yaml).
+
 ## 2026-11-07 — 78 W ölçülebilir alan başlangıcı
 
 - Kullanıcı kararı: mevcut CH1 kurulumunda sayısal değer verilecek ölçülebilir alan 78 W'ta başlar.
