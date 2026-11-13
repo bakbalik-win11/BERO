@@ -475,3 +475,14 @@ Bu, şu aşamada **aday yazılımsal aralık seçimi mimarisidir**; fiziksel ana
 **Elektriksel ön koşul:** SCT sinyalini ESP32 ADC bias ağı ve ADS1115 girişine aynı anda vermeden önce iki analog ön ucun giriş empedansı, bias/common-mode, koruma ve gerilim sınırları incelenecek. Paralel bağlantı otomatik olarak güvenli kabul edilmeyecek; gerekirse tamponlama/ayırma veya analog anahtarlama çözülecek.
 
 **Durum:** Yalnızca fikir ve sonraki mimari adım kaydedildi. Kart teslimi, bağlantı, firmware, derleme ve ölçüm doğrulaması bekleniyor. Ayrıntılar E19 README ve protokolüne eklendi.
+
+## 2026-11-13 — E19 amaç düzeltmesi: çalışma sınırını belirleme
+
+- **Deney amacı düzeltildi:** Bu aşamanın hedefi ADS1115 katsayısı belirlemek veya kalibrasyon yapmak değildir. Hedef, ADS1115 + SCT ölçüm zincirinin mevcut ayar/katsayıyla düşük akımda nasıl davrandığını, hangi seviyeye kadar kararlı veri ürettiğini ve alt çalışma sınırının nerede başladığını deneysel olarak gözlemlemektir.
+- 57 W sabit yükte kullanıcı bildirimi: PZEM **0,265 A**, ADS1115 + SCT **0,270 A**. Kullanılan katsayı henüz kalibre edilmemiştir; değerler mevcut kaba/başlangıç katsayısıyla alınmıştır.
+- Aritmetik fark: +0,005 A; PZEM'e göre yaklaşık +%1,89 (**HESAP**). Bu tek nokta, katsayı kalibrasyonu veya ±%4 genel doğrulaması değildir.
+- İlk SCT/ESP32 dahili ADC yolu 100 W noktasında kısa kalibre edilmiş olmasına rağmen düşük akım alanında kararlı/hassas sonuç üretememişti; bu tarihsel karşılaştırma E19'da ayrı mimari olarak tutulur.
+- **Deney yöntemi:** Yük kademeli olarak aşağı indirilecek. Her basamakta ayarlar ve katsayı sabit tutulacak; PZEM aynı zaman penceresinin karşılaştırma referansı olacak. Kararlılık, dağılım, sıçrama/okuma kaybı ve PZEM'e göre mevcut fark kaydedilecek.
+- Katsayı belirleme/kalibrasyon, bu çalışma sınırı deneyi tamamlandıktan sonra ayrı bir aşama olarak ele alınacaktır.
+- Güvenlik kapısı değişmedi: ADS1115 A0/A1 girişlerinin ortak-mod/bias ve GND–VDD sınırları fiziksel olarak doğrulanmadan enerjili teste devam edilmemeli.
+- Ayrıntı: [E19 deney tanımı](experiments/E19-ads1115-low-current-alternative/README.md), [protokol](experiments/E19-ads1115-low-current-alternative/protocol.md), [sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md), [57 W kaydı](logs/ads1115/2026-11-13-E19-57w-test.md).
