@@ -1,3 +1,14 @@
+## 2026-11-13 — E19 ADS1115 alt eşik 0,03 A ve 1 saniye yayın canlı denemesi
+
+- Kullanıcı bildirimi: yeni ESP32D2/ADS1115 kodu, tekil sıçramalar (spike) hariç genel olarak başarılı bulundu.
+- Değişiklik nedeni: PZEM akım göstermeye devam ederken ADS1115/ct_clamp tarafının yazılım eşiği nedeniyle 0,00 A yayınlaması. Alt eşik 0,05 A'dan 0,03 A'ya indirildi.
+- Aynı denemede ct_clamp yayın aralığı 2 saniyeden 1 saniyeye alındı. 200 ms RMS örnekleme penceresi, 860 SPS, gain 2.048, katsayı 27.60 ve UDP 4210 olay alıcısı korunuyor.
+- 1 saniye yayın aralığı daha sık sonuç üretir; 200 ms ölçüm penceresini değiştirmez.
+- Spike'lar başarılı kararlı davranış değerlendirmesine dahil edilmedi; ham log/CSV ve spike sayısı/büyüklüğü henüz sağlanmadığından nedenleri hakkında yorum yapılmadı.
+- [Canlı test raporu](logs/ads1115/2026-11-13-E19-003A-threshold-1s-live-test.md) · [iki satırlık değişiklik kaydı](logs/ads1115/2026-11-13-e19-ads1115-003a-1s.patch).
+- Kaynak ayrımı: kullanıcının 606 satırlık çalışan YAML'ı 27.60 katsayısı ve UDP alıcısı içerir; depodaki kısa referans YAML farklıdır. Bu committe tam 606 satırlık YAML snapshot'ı depoya kopyalanmadı; değişiklik patch'i ve test raporu saklandı.
+- Derleme/OTA çıktısı bu oturumda mevcut değildir; kodun cihazda çalışması kullanıcı canlı test bildirimiyle desteklenmektedir, bağımsız derleme doğrulaması değildir.
+
 ## 2026-11-13 — E21 ilk çamaşır makinesi kaydı başladı; ON/OFF kod temizliği yapılacak
 
 - Kullanıcı bildirimi: kayıt 20:42'de, çamaşır makinesi programı devam ederken ortasından başlatıldı; bu nedenle **kaba ve kısmi kayıt** olarak değerlendirilecek. Program bitene kadar kayıt sürdürülecek.
