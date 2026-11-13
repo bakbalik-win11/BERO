@@ -2117,3 +2117,30 @@ AGENTS.md, STATUS.md, ROADMAP.md, E19 README/results, 100 W karşılaştırma ra
 
 ### DOĞRULAMA SINIRI
 Bu oturum dokümantasyon güncellemesidir. Firmware/YAML değiştirilmedi, derleme/OTA yapılmadı, 58 W fiziksel testi henüz yapılmadı. Ham CSV'nin kendisi depoya kopyalanmadı; dosya adı ve analiz sonuçları raporda saklandı.
+
+
+## 2026-11-13 — E19 sabit yük oturumu 57 W olarak düzeltildi ve yöntem tecrübesi işlendi
+
+### KULLANICI BİLDİRİMİ
+- Sıradaki test yükü 58 W değil **57 W**.
+- Yükün açıldığı saat **18:32 (+03:00)**.
+- Yük sürekli bağlı sabit yük testi olarak ele alınıyor; bu mesajda CSV veya cihaz logu paylaşılmadı.
+
+### 150 W DENEYİMİNDEN SABİT YÜK YÖNTEMİNE EKLENENLER
+- 150 W CSV'sinde PZEM akım/güç ilk yaklaşık iki dakika yükselmiş, ardından daha kararlı seviyeye oturmuştur.
+- Bu nedenle yeni sabit yük oturumlarında ilk 3 dakika geçici/ısınma bölgesi olarak işaretlenecek; 3 dakika dolması tek başına kararlılık kanıtı değildir.
+- Kararlı pencere, PZEM ve ADS/SCT zaman serilerinin gerçekten oturduğu ortak zaman kesişiminden seçilecek.
+- Nominal watt test kimliğidir; kalibrasyon kıyası aynı penceredeki PZEM ortalama akımıyla yapılır.
+- SD/CV (kendi iç kararlılığı) ve PZEM'e göre fark (referans uyumu) ayrı değerlendirilir.
+- Sabit yükte SSR/UDP olayları fiziksel yük anahtarlaması kanıtı olmadıkça ON/OFF etiketi sayılmaz.
+- İlk karşılaştırma sırasında gain, örnekleme, pencere, filtre, katsayı ve yayın hassasiyeti sabit tutulur; değişiklikler ayrı deneydir.
+
+### 57 W TEST PLANI
+- Önceki 58 W planı kullanıcı düzeltmesiyle supersede edildi; geçmiş kaydı silinmedi.
+- 57 W nominal akkor ampul, 18:32 başlangıç; ilk 3 dakika geçici bölge, sonra PZEM/ADS serileri oturduğunda en az 5 dakika ortak kararlı kayıt hedefi.
+- Gain 2.048, 860 SPS, 200 ms, 2 s, accuracy_decimals 2, 0.05 A filtre ve çalışan katsayı korunacak. Gain 0.512 ve accuracy_decimals 3 uygulanmayacak.
+- Bias/common-mode ve A0/A1 giriş güvenliği doğrulanmadan enerjili teste devam edilmemeli.
+- Ayrıntılar: [57 W test kaydı](../logs/ads1115/2026-11-13-E19-57w-test.md), [sabit yük yöntem notları](../test-loads/README.md).
+
+### DURUM
+Yalnız test başlangıcı kullanıcı bildirimi kaydedildi. Cihaz logu/CSV, ortak kararlı pencere, istatistik, PZEM farkı veya kalibrasyon sonucu yoktur.
