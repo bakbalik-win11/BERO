@@ -2,12 +2,15 @@
 
 - **Durum:** PLANLANDI
 - **Açılış tarihi:** 2026-11-13
-- **Hedef:** Çamaşır makinesinin seçilen bir yıkama programını baştan sona SCT-013 + ADS1115 akım zaman serisi üzerinden gözlemlemek; programın elektriksel davranış evrelerini, sürelerini, geçişlerini ve tekrar eden örüntülerini çıkarmak.
+- **Hedef:** İlk etapta çamaşır makinesinin yalnızca bir programını kaba/keşif amaçlı olarak baştan sona kaydetmek. İlk kayıt ayrıntılı program çözümlemesi veya sınıflandırma projesi değildir.
+- **İlerideki yön:** İlk akım kaydından sonra farklı sensörler sisteme aşamalı olarak eklenip birlikte değerlendirilebilir. Sensör türleri ve bağlantıları henüz belirlenmedi; bu aşamada varsayılmayacak.
 - **Önceki hedef:** PZEM kararlı-alan eşleştirmesiyle eğitim/kalibrasyon verisi üretme iş akışı ADR-026 ile kapatıldı. Bu işin eski kayıtları silinmez.
 
-## 1. Araştırma sorusu
+## 1. İlk testin amacı ve sınırı
 
-Bir çamaşır makinesi programı boyunca akım davranışından hangi çalışma evreleri birbirinden ayırt edilebilir? Aynı program tekrarlandığında evre sırası, süreleri ve akım örüntüleri ne kadar benzer?
+İlk test yalnızca **bir programın kaba kaydıdır**. Amaç, programın başından sonuna kadar akımın genel davranışını görmek ve ilerideki sensör entegrasyonu için başlangıç verisi oluşturmaktır. Bu ilk oturumda tüm evreleri kesin tanımlamak, makine durumlarını sınıflandırmak, aynı programı tekrarlamak veya eğitim modeli oluşturmak zorunlu değildir.
+
+İlk kayıt sonrasında hangi ek sensörlerin anlamlı olacağı değerlendirilecektir. Farklı sensörlerle kombinasyon, ayrı bir sonraki aşamadır; ilk testin ön koşulu değildir.
 
 Bu çalışma enerji tüketimi veya güç kalitesi analizi değildir. SCT zincirinin ürettiği akım gözlemi, cihazın çalışma karakterini incelemek için kullanılacaktır.
 
@@ -34,18 +37,20 @@ Kayıt öncesi not edilecekler:
 - Makinenin program evreleri yalnız akım değerinden kesin adlandırılmaz. Akım örüntüsü önce tarafsız biçimde bölümlenir; isimler panel bilgisi ve kullanıcı gözlemiyle ilişkilendirilir.
 - OFF/yüksüz alanlar eğitim etiketi değildir; ancak tam program davranışını anlamak için ham zaman serisinde korunur.
 
-## 4. İlk analiz çıktıları
+## 4. İlk kaba kayıttan beklenen çıktı
 
-İlk tam kayıt geldikten sonra:
-1. CSV bütünlüğü, kolonlar, entity'ler, zaman aralığı ve örnek sayıları doğrulanır.
-2. Akım zaman serisi çizilir; boşluklar, sıfıra inişler, darbeler ve kararlı seviyeler belirlenir.
-3. Gözlenen evre adayları sıralanır; her biri için başlangıç/bitiş, süre, medyan/ortalama, dağılım ve tepe değerler raporlanır.
-4. Tekrarlayan motor/rezistans/pompa benzeri örüntüler yalnız kanıt düzeyine uygun ifadelerle adlandırılır.
-5. Kullanıcı gözlemleriyle eşleştirme yapılır; doğrulanmayan evre isimleri “aday/hipotez” olarak kalır.
+İlk tek program kaydından sonra:
+1. CSV bütünlüğü, zaman aralığı ve akım entity'si doğrulanır.
+2. Program boyunca akımın genel grafiği çıkarılır.
+3. Belirgin yükselme, düşme, bekleme ve tekrar eden hareketler kabaca işaretlenir.
+4. Programın toplam kayıt süresi ve dikkat çeken zaman aralıkları not edilir.
+5. Makinenin iç işlemleri hakkında kesin olmayan yorumlar hipotez olarak bırakılır.
 
-## 5. Tekrar ve karşılaştırma
+Bu aşamada ayrıntılı evre sınıflandırması, tekrar testi veya ek sensör entegrasyonu yapılması beklenmez.
 
-İlk program kaydı bir keşif/baseline oturumudur. Aynı programın sonraki tekrarları, mümkünse benzer sıcaklık, sıkma devri, seçenek ve yük koşuluyla karşılaştırılır. Farklı programlar daha sonra ayrı oturumlar olarak eklenir. Tek programdan bütün makine davranışı hakkında genelleme yapılmaz.
+## 5. Sonraki aşamalar
+
+İlk kayıt değerlendirildikten sonra kullanıcıyla birlikte uygun farklı sensörler seçilecek ve aşamalı biçimde sisteme eklenerek kombinasyonları incelenecektir. Sensör seçimi, bağlantı ve kayıt yöntemi ayrı karar/protokolle belirlenecektir. Aynı programı tekrar etme veya başka programları kaydetme ihtiyacı ilk kaba testin sonucuna göre kararlaştırılır. Tek programdan bütün makine davranışı hakkında genelleme yapılmaz.
 
 ## 6. Güvenlik ve sınırlar
 
@@ -63,4 +68,4 @@ E21 ilk oturumu ancak aşağıdakiler tamamlandığında “ilk kayıt analiz ed
 - Gözlem, kullanıcı bildirimi ve hipotezler birbirinden ayrılmış.
 - Ham veri ve analiz özeti depoda birbirine bağlanmış.
 
-**Mevcut durum:** Program kaydı ve analiz henüz yok; bu belge yalnızca yeni hedefin protokolüdür.
+**Mevcut durum:** İlk kaba tek-program kaydı bekleniyor. Ek sensörler ve çoklu sensör analizi sonraki aşamadır.
