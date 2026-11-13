@@ -6,7 +6,7 @@
 - 1 saniye yayın aralığı daha sık sonuç üretir; 200 ms ölçüm penceresini değiştirmez.
 - Spike'lar başarılı kararlı davranış değerlendirmesine dahil edilmedi; ham log/CSV ve spike sayısı/büyüklüğü henüz sağlanmadığından nedenleri hakkında yorum yapılmadı.
 - [Canlı test raporu](logs/ads1115/2026-11-13-E19-003A-threshold-1s-live-test.md) · [iki satırlık değişiklik kaydı](logs/ads1115/2026-11-13-e19-ads1115-003a-1s.patch).
-- Kaynak ayrımı: kullanıcının 606 satırlık çalışan YAML'ı 27.60 katsayısı ve UDP alıcısı içerir; depodaki kısa referans YAML farklıdır. Bu committe tam 606 satırlık YAML snapshot'ı depoya kopyalanmadı; değişiklik patch'i ve test raporu saklandı.
+- Kaynak ayrımı: kullanıcının 606 satırlık çalışan YAML'ı 27.60 katsayısı ve UDP alıcısı içerir; iki değişiklik uygulanmış tam 606 satırlık snapshot [burada](firmware/experiments/esp32d2-ads1115-ct-clamp-live-27.60-003A-1s.yaml) saklandı. Depodaki kısa referans YAML farklıdır.
 - Derleme/OTA çıktısı bu oturumda mevcut değildir; kodun cihazda çalışması kullanıcı canlı test bildirimiyle desteklenmektedir, bağımsız derleme doğrulaması değildir.
 
 ## 2026-11-13 — E21 ilk çamaşır makinesi kaydı başladı; ON/OFF kod temizliği yapılacak
