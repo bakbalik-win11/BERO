@@ -574,3 +574,10 @@
 - **Yeni odak:** T007 Python-1 HA History alım/doğrulama/arşiv; T008 paket bütünlüğü, SCT/PZEM kararlı alan analizi ve etiketleme; ardından cihaz program evreleri için eğitim/bağımsız test.
 - **Araştırma sorusu:** Çamaşır makinesi gibi programlı cihazlarda rezistans, motor, pompa, valf ve yardımcı yükler hangi akım/genlik/zaman örüntülerini üretir; bu örüntüler SCT verisinden ayırt edilebilir mi?
 - SCT'nin 2 A altındaki performansı açık sorudur. Ölçüm doğruluğu, güç/akım gözlemi, geçiş tepkisi ve program evresi sınıflandırma başarısı ayrı ölçütlerdir. Yeterlilik sonucu veri analizi ve eğitim testinden sonra verilecektir.
+
+## 2026-11-13 — E19 düşük akım çalışma sınırı aşaması
+- [E19 deney tanımı](experiments/E19-ads1115-low-current-alternative/README.md): mevcut aşama katsayı kalibrasyonu değil; mevcut ayar/katsayıyla düşük akım davranışı ve alt çalışma sınırını belirleme.
+- [E19 protokolü](experiments/E19-ads1115-low-current-alternative/protocol.md): ayarlar/katsayı sabit, yük basamakları aşağı doğru, PZEM aynı zaman penceresinde karşılaştırma referansı.
+- [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md): 57 W ön gözlemi 0,265 A PZEM / 0,270 A ADS1115+SCT; kaba katsayı, kalibrasyon yapılmadı.
+- [57 W test kaydı](logs/ads1115/2026-11-13-E19-57w-test.md): kullanıcı bildirimi, +0,005 A / yaklaşık +%1,89 hesap ve kanıt sınırı.
+- [Oturum kaydı](HISTORY/SESSION_LOG-2026-11-13-E19-low-current-range.md).
