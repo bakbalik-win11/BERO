@@ -1,3 +1,22 @@
+## Güncel çalışma hedefi — Çamaşır makinesi program davranışı analizi
+
+<badge color="success"> AKTİF HEDEF </badge>
+
+Önceki PZEM kararlı-alan eşleştirmesiyle eğitim/kalibrasyon üretme iş akışı, kullanıcının 13 Kasım 2026 tarihli kararıyla kapatılmıştır. Mevcut SCT-013 + ADS1115 zincirinin farklı yük ve akım seviyelerindeki pratik gözlemleri hedefi karşılamıştır. Bu karar geçmiş deneylerin silinmesi veya ölçüm zincirinin laboratuvar düzeyinde doğrulanması anlamına gelmez.
+
+**Yeni hedef:** Çamaşır makinesinin seçilen bir programını baştan sona akım zaman serisiyle izlemek; çalışma evrelerini, sürelerini, geçişlerini ve tekrar eden örüntülerini tanımak.
+
+- İlk adım tek bir tam programın ham HA geçmişini kaydetmek.
+- Program adı, sıcaklık, sıkma devri, seçenekler ve yaklaşık yük kullanıcıdan kaydedilecek.
+- Evre adları yalnız akım eğrisinden kesin varsayılmayacak; kullanıcı gözlemi/panel bilgisiyle doğrulanacak.
+- Ham CSV korunacak; türetilmiş evre tablosu ve yorum ayrı saklanacak.
+- PZEM zorunlu eğitim kaynağı değil; mevcutsa yardımcı karşılaştırma olarak tutulabilir.
+- Ölçüm firmware'i/katsayısı değiştirilmeden ilk program kaydı alınacak.
+- E21 kabul ölçütleri ve sınırlar: [E21 protokolü](experiments/E21-washing-machine-program-analysis/README.md).
+- Karar: [ADR-026](docs/decisions/ADR-026-close-stable-window-training-open-washer-analysis.md).
+
+**Önceki iş akışının kapanışı:** PZEM/SCT kararlı alanlarını eşleştirip eğitim etiketi üretme ve bu amaçla E20 aç/kapa deneyi yürütme gereği kapatıldı. E20 fiziksel olarak yapılmadı; planı tarihsel kayıt olarak korunur. E19 ölçümleri ve önceki tüm deneyler silinmez. T008/T006'nın bu eski eğitim hedefiyle ilgili kalan işleri yeni hedefin ön koşulu değildir.
+
 # SCT-013 – PZEM Akım Gözlem | Yol Haritası
 
 Bu projede yalnızca **iki ana faz** vardır. Faz 1 kodu bulup ±%4 hedefini sağlama aşamasıydı. Faz 2 ise BERO sistemini pratik biçimde yeniden kurma, modülleri devreye alma ve çalışan sistemi geliştirme aşamasıdır. Eski deney kayıtları tarihsel arşiv olarak korunur.
