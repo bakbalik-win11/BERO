@@ -1,3 +1,11 @@
+## 2026-11-13 — E19 üç modül ortak yük karşılaştırması
+- Ortak 17:48:27–17:51:13 penceresinde ADS1115 0.469881 A (n=84), PZEM 0.469882 A (n=34), ESP32D1 CH1-1T 0.434240 A (n=167) ortalama verdi.
+- ESP32D1 CH1-1T, PZEM ortalamasından yaklaşık %7.59 düşük ve daha değişkendi; bu tek oturum sonucu, katsayı kararı değildir.
+- ESP32D2 açılış logu Gain 2 / 7 SPS gösterdi; depodaki E19 YAML 2.048 / 860 ayarıyla eşleşme kanıtlanmadı.
+- UDP olay aktarımı loglandı; SSR OFF readback mismatch ve OFF sonrası akım nedeniyle fiziksel yük kesilmesi doğrulanmadı.
+- Katsayılar değiştirilmedi; ADS1115 katsayısı ve ±%4 başarısı ilan edilmedi.
+- Ayrıntı: [E19 üç modül karşılaştırma kaydı](logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md).
+
 
 ## 2026-11-13 — E19 ADS1115 ilk donanım logu ve 100 W katsayı testi
 - ADS1115 I2C 0x48 bulundu; A0-A1 diferansiyel okumalar yüksüz durumda 8–39 µV, yaklaşık 60 W yükte önceki düşük hızlı logda yaklaşık -12.8 mV ile +13.1 mV arasında değişti.
