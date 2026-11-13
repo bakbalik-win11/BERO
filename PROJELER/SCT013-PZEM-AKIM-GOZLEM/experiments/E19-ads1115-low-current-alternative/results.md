@@ -98,3 +98,19 @@ Gerçek log özeti ve sınırları [ilk log kaydında](../../logs/ads1115/2026-1
 - **Kabul sınırı:** Bu tek nokta çok noktalı kalibrasyon veya ±%4 başarısı değildir. 100 W ile birlikte iki gözlem noktası sağlar.
 - **Güvenlik:** A0/A1 giriş common-mode/bias ve gerilim sınırları doğrulanmadan enerjili ölçüme geçilmez; şebeke bağlantısı uygun koruma/muhafaza altında yapılır.
 
+
+
+## 2026-11-13 — Aşama 4: 150 W sabit yük karşılaştırması (CSV sonucu)
+
+Ayrıntılı rapor: [E19 150 W karşılaştırma raporu](../../logs/ads1115/2026-11-13-E19-150w-comparison.md).
+
+- **Durum:** LOG İLE DESTEKLENDİ — sabit yük karşılaştırması yapıldı.
+- Kaynak: `history (56).csv`; ortak kararlı pencere 18:16:30–18:24:30 (+03:00).
+- PZEM: n=39, ortalama 0.65472 A, SD=0.00092 A; güç ortalaması 149.69 W, SD=0.45 W.
+- ADS1115: n=241, ortalama 0.66279 A, SD=0.00172 A; PZEM'e göre +%1.23.
+- Modül 2 CH1-1T: n=480, ortalama 0.60402 A, SD=0.01357 A; PZEM'e göre -%7.74.
+- İlk yaklaşık iki dakikadaki PZEM akım/güç yükselişi lamba oturma bölümü olarak ayrıldı; kararlı karşılaştırma bu bölümden sonra yapıldı.
+- K=27.60'ın çalışan firmware'de uygulandığı henüz depo YAML/binary eşleştirmesiyle doğrulanmadı. Bu K varsayımıyla 150 W noktasından hesaplanan düzeltme K≈27.26'dır; **uygulanmadı ve kabul edilmiş katsayı değildir**.
+- Gain 2.048, 860 SPS, 200 ms, 2 s, accuracy_decimals 2 ve 0.05 A filtresi değişmedi. 0.512 gain ve 3 basamak yayın uygulanmadı.
+- **Sonuç sınırı:** 100 W ve 150 W iki gözlemsel nokta sağlar; bağımsız doğrulama, tüm aralık doğrusallığı veya ±%4 genel kabulü değildir.
+- Sonraki deney: 58 W sürekli sabit yük. Ayrıntı: [58 W test planı](../../logs/ads1115/2026-11-13-E19-58w-test-plan.md).
