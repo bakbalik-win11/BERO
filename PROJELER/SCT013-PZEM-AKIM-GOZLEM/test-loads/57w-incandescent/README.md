@@ -122,3 +122,18 @@ Ham SCT entity ortalaması: 0,014678 A (4.201 örnek). Ham SCT entity değeri, C
 ### SONUÇ
 
 LOAD-57W-002, 57 W sürekli yükte CH1 davranışının 70 dakikalık gözlem kaydı olarak **analiz edildi**. Düşük akım hesaplanmadı alanı sınıflandırması değişmez. Bu kayıt kalibrasyon veya ±%4 doğrulaması değildir.
+
+
+## 2026-11-13 — E19 ADS1115 ile yeni 57 W oturumu (ayrı deney)
+
+Bu kayıt, eski LOAD-57W-001/002 ESP32D1 dahili ADC deneylerini değiştirmez veya onlarla birleştirmez.
+
+- **Yük:** 57 W nominal akkor ampul; kullanıcı düzeltmesi.
+- **Başlangıç:** 18:32 (+03:00), kullanıcı bildirimi.
+- **Ölçüm mimarisi:** ESP32D2 ADS1115 + ct_clamp; Modül 3 PZEM proje referansı; Modül 2 CH1-1T varsa ikincil kanal.
+- **İşletim:** sürekli bağlı sabit yük; aç/kapa geçiş deneyi değil.
+- 150 W E19 deneyiminden hareketle ilk 3 dakika geçici/ısınma bölgesi kabul edilir; kararlı pencere PZEM ve ADS/SCT serileri oturduktan sonra seçilir.
+- İlk karşılaştırmada E19 ayarları korunur; gain 2.048, 860 SPS, 200 ms, 2 s, accuracy_decimals 2 ve 0.05 A filtre değiştirilmez.
+- PZEM ile karşılaştırma yalnız ortak kararlı zaman penceresinde yapılır. Nominal 57 W teorik akım hesabı referans değildir.
+- **Durum:** Başlangıç bildirimi kaydedildi; yeni E19 logu/CSV henüz yok. Eski 2026-11-07 LOAD-57W-002 sonuçları tarihsel Modül 2 kaydıdır.
+- Ayrıntı: [E19 57 W oturum planı](../../logs/ads1115/2026-11-13-E19-57w-test.md).
