@@ -161,3 +161,14 @@ E19 fiziksel deneme aşamasına geçti. Çalışma iki soruya ayrıldı:
 - Kabul: Tekrarlı kararlı sonuç, clipping/taşma olmaması ve PZEM'e göre sapmanın raporlanması. ±%4 hedefi sonuç görülmeden başarı sayılmaz.
 
 **Durum:** Aşama 1 LOG İLE DESTEKLENDİ. Aşama 2 PLANLANDI; 100 W ölçümü ve katsayı hesabı beklemede.
+
+
+## 2026-11-13 — Üç modül ortak yük karşılaştırması
+
+Üç cihaz logu ortak 17:48:27–17:51:13 (+03:00) penceresinde karşılaştırıldı. ADS1115 yayımlanan akım ortalaması 0.469881 A (n=84), PZEM 0.469882 A (n=34), ESP32D1 CH1-1T 0.434240 A (n=167) oldu. ESP32D1/PZEM farkı yaklaşık -7.59%; bu tek oturum gözlemidir ve katsayı kararı değildir.
+
+ESP32D2 açılış logu ADS1115 Gain 2 / Sample rate 7 gösterirken depodaki E19 YAML Gain 2.048 / 860 bekler. Log esp32d2.yaml doğrulanmış cache'inden açıldığını bildirir; depodaki deney YAML'ının cihaza yüklendiğini kanıtlamaz. 860 SPS doğrulanmış değildir.
+
+Modül 3 OFF komutlarında GPIO_OFF_READBACK_MISMATCH uyarıları ve OFF sonrası PZEM akımının sürmesi nedeniyle fiziksel yük kesilmesi doğrulanmadı. Olay akışı aktarımı çalıştı; ancak fiziksel ON/OFF etiketi sayılmayacak. Katsayılar değişmedi ve ±%4 başarısı ilan edilmedi.
+
+Ayrıntı: [E19 üç modül karşılaştırma kaydı](../../logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md).
