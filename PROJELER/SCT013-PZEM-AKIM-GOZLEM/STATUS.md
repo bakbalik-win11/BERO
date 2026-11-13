@@ -1,5 +1,17 @@
 
 
+## 2026-11-13 — E19 18 W sabit yük gözlemi tamamlandı; aç/kapa testine geçiş
+
+- `history (59).csv` analiz edildi (3.798 satır; SHA-256 `64de1d73afa4f716eef93793d62911b247dd18dd4d2063efd8aec077da5c9b52`).
+- Ortak pencere 18:54:17.903–19:00:02.859 (+03:00): ADS1115 + aynı SCT n=173, ortalama 0.078715 A, SD=0.000373 A; PZEM n=18, ortalama 0.079500 A, SD=0.000514 A; PZEM güç n=32, ortalama 18.269 W.
+- ADS1115/PZEM ortalama farkı −0.000785 A / yaklaşık −%0.99; bu 18 W oturumunda ±%4 beklentisinin içindedir. Bu tek oturumluk gözlemdir; tüm aralık için kabul veya kalibrasyon değildir.
+- Yüksüz ön bölümde ADS1115 0.00 A kayıtları, yük oturduktan sonra yaklaşık 0.0787 A kararlı değerler gözlendi. Aynı SCT sensörünün ADS1115 ölçüm zinciriyle eski dahili ADC yolunda sorun yaşanan düşük akım bölgesine indiği yönünde umut verici kanıt oluştu.
+- 18 W sabit yük baz gözlemi kapatıldı; ADS1115 zinciri BERO için umut verici ana ölçüm adayı olarak değerlendirilecek. Nihai donanım onayı verilmedi.
+- Sonraki aşama: aç/kapa tepki deneyi. Fiziksel ON/OFF, PZEM akım/güç ve SCT davranışıyla doğrulanacak; UDP/SSR olayı tek başına fiziksel durum kanıtı değildir. CSV'deki SSR OFF olaylarından sonra PZEM'in 18 W göstermeyi sürdürmesi bu ayrımı doğruluyor.
+- ADS1115 A0/A1 common-mode ve giriş ray güvenliği fiziksel doğrulaması açık kalır.
+- Ayrıntı: [E19 18 W test raporu](logs/ads1115/2026-11-13-E19-18w-test.md), [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md), [oturum kaydı](HISTORY/SESSION_LOG-2026-11-13-E19-low-current-range.md).
+
+
 ## 2026-11-13 — E19 57 W sabit yük testi açıldı
 
 - Kullanıcı düzeltmesi: sıradaki yük 58 W değil **57 W**; başlangıç saati **18:32 (+03:00)**.
