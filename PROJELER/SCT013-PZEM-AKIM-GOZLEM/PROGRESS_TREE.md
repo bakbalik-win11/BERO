@@ -587,3 +587,8 @@
 - `history (57).csv` ön analizi: 18:35–18:40 ADS1115 n=150, mean 0.266212 A, SD 0.000985 A; PZEM n=18, mean 0.264500 A, SD 0.000514 A; fark yaklaşık +%0.647.
 - Bu, 100 W'taki kaba PZEM ayarından sonra düşük akım karakterizasyonudur; bu aşamada katsayı değiştirilmez.
 - Ayrıntı: [57 W test raporu](logs/ads1115/2026-11-13-E19-57w-test.md), [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md), [oturum kaydı](HISTORY/SESSION_LOG-2026-11-13-E19-low-current-range.md).
+
+### E19 — 42 W basamağı açıldı (18:44)
+- Kullanıcı bildirimi: 42 W nominal yük, başlangıç 18:44 (+03:00); 57 W basamağı 18:40'ta kapatıldı.
+- Mevcut katsayı/ayar sabit; bu basamak kalibrasyon değil, düşük akım çalışma davranışı karakterizasyonudur.
+- CSV ve kapanış bilgisi bekleniyor: [42 W test kaydı](logs/ads1115/2026-11-13-E19-42w-test.md).
