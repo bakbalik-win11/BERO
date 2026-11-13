@@ -1,3 +1,10 @@
+
+
+## Yeni hedef — E21 Çamaşır makinesi program davranışı analizi
+
+- **[E21 — Çamaşır makinesi program davranışı analizi](E21-washing-machine-program-analysis/README.md): AKTİF / PLANLANDI.** Bir tam programın SCT-013 + ADS1115 akım zaman serisi kaydedilecek; gözlenen evre adayları, süreleri, geçişleri ve tekrar eden örüntüleri çıkarılacak. Program adı/ayar/yük bilgileri kullanıcıdan alınacak; yalnız akım grafiğinden makine içi durum kesin varsayılmayacak.
+- PZEM kararlı-alan eşleştirmesiyle eğitim/kalibrasyon iş akışı kullanıcı kararıyla kapatıldı. E20 aç/kapa deneyi plan aşamasında kaldığı için yapılmadan kapatıldı. Eski protokoller ve sonuçlar tarihsel arşiv olarak korunur.
+- Karar: [ADR-026](../docs/decisions/ADR-026-close-stable-window-training-open-washer-analysis.md).
 # Deney arşivi
 
 Bu klasör Faz 1'deki tarihsel deney ve gözlem kayıtlarını korur. **Faz 1 kapalıdır.** Aşağıdaki kayıtlar yeni aktif deney planı değildir; yapılmış çalışmaların logları ve sonuçları ile hedefe ulaşıldığı için yapılmadan kapatılan planlar aynı tarihçe altında korunur.
