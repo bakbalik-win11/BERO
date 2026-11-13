@@ -1,3 +1,12 @@
+## 2026-11-13 — E19 ADS1115 enerjili-yüksüz hat / 1 s yayın ve alt eşik kararı
+
+- ESP32D2 OTA logu ve 1 saniyelik ct_clamp yayın yapılandırması kaydedildi: [rapor](logs/ads1115/2026-11-13-E19-energized-no-load-1s-raw-log-report.md), [tam log](logs/ads1115/2026-11-13-E19-energized-no-load-1s-ota-log.txt).
+- Logda ESPHome 2026.10.2, ADS1115 I²C 0x48, 200 ms ct_clamp penceresi ve 1.000 s update interval görülüyor. Tekrarlanan ct_clamp ham çıktısı ve HA sensör yayını 0.000 A.
+- Kullanıcı kararı: 0.005 A alt eşik kaldırıldı; alt eşik ve spike filtresi yok. ct_clamp sonucu 0.000 A ise 0.000 A yayınlanır.
+- [Alt eşiksiz 27.60 / 1 s YAML snapshot](firmware/experiments/esp32d2-ads1115-ct-clamp-live-27.60-1s-unthresholded.yaml) depoya kaydedildi. Bu snapshot ayrıca derlenip OTA edilmedi; mevcut log, 0.005 A filtreli sürümden.
+- Test koşulu enerjili hat / ölçülen iletkende yük yok. Enerjisiz hat testi ayrı yapılacak.
+- ADS1115 A0/A1 ortak-mod ve giriş ray sınırı güvenlik doğrulaması hâlâ açık.
+
 ## 2026-11-13 — ADS1115 filtresiz enerjili-yüksüz hat gözlemi ve yeni tek-modül planı
 
 - Kullanıcı bildirimi/grafik gözlemi: ESP32D2 + ADS1115 + SCT, 200 ms ct_clamp penceresi ve 1 s yayınla çalıştırıldı; yazılımsal alt eşik ve spike filtresi kaldırılmış durumda.
