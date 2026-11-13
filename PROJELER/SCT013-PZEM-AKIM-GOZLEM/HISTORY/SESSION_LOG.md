@@ -2031,3 +2031,23 @@ ADS1115'in ilk donanım bağlantısını ve diferansiyel okumayı kanıtıyla ka
 
 ### SINIR
 Aşama 1 bağlantı ve sayısal okuma gözlemidir; RMS akım doğruluğu veya katsayı başarısı değildir. Aşama 2 yalnızca PLANLANDI; 100 W ölçümü, katsayı hesabı, derleme/OTA doğrulaması ve ±%4 kabul sonucu henüz yok.
+
+
+## 2026-11-13 — E19 üç modül ortak yük loglarının analizi
+
+### HEDEF
+ESP32D2 ADS1115, Modül 3 PZEM ve Modül 2 ESP32D1 loglarını aynı zaman penceresinde karşılaştırmak; olay aktarımını ve fiziksel SSR durumuna ilişkin kanıtı ayırmak.
+
+### YAPILAN
+- Proje AGENTS.md, STATUS.md, ROADMAP.md, PROGRESS_TREE.md ve E19 deney/sonuç belgeleri okundu.
+- Üç kullanıcı logu incelendi; ortak pencere 17:48:27–17:51:13 (+03:00) seçildi.
+- Ortak pencere ortalamaları: ADS1115 0.469881 A (n=84), PZEM 0.469882 A (n=34), Modül 2 CH1-1T 0.434240 A (n=167). ESP32D1/PZEM farkı yaklaşık -7.59%.
+- ADS1115 açılış logu Gain 2 / 7 SPS gösterdi; depodaki E19 YAML Gain 2.048 / 860 bekliyor. Log esp32d2.yaml cache'inden açıldığını bildirdi; depodaki deney YAML'ının yüklendiği kanıtlanmadı.
+- Modül 3 OFF readback mismatch uyarıları ve OFF sonrası PZEM akımının sürmesi kaydedildi. UDP olaylarının alımı/yayımı gözlendi, fiziksel yük kesilmesi doğrulanmadı.
+- Rapor: [E19 üç modül ortak yük karşılaştırması](../logs/ads1115/2026-11-13-E19-three-module-100w-comparison.md).
+
+### SONUÇ / SINIR
+- Üç cihaz ortak zaman penceresinde veri üretti; ADS1115 ve PZEM yayımlanan ortalamaları örtüşürken Modül 2 CH1-1T ortalaması daha düşük ve daha değişkendi.
+- ADS1115'in 860 SPS ile çalıştığı, gerçek RMS doğruluğu veya yeni katsayı doğrulanmadı.
+- SSR fiziksel OFF doğrulanmadı; ON/OFF olayları yük etiketi olarak kabul edilmeyecek.
+- Katsayılar ve firmware değiştirilmedi; ±%4 başarısı ilan edilmedi.
