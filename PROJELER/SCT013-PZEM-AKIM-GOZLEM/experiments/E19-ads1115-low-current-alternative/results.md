@@ -2,9 +2,9 @@
 
 ## Durum
 
-**PLANLANDI — henüz fiziksel deney yapılmadı.**
+**AÇIK — Aşama 1 loglandı; Aşama 2 (100 W ortak alan/katsayı) PLANLANDI.**
 
-Kullanıcı 2026-11-09 tarihinde yaklaşık 250 TL tutarında bir ADS1115 kartı sipariş ettiğini ve hafta sonu denemeyi hedeflediğini bildirdi.
+İlk donanım gözlemleri 2026-11-13 tarihli kayıt altında eklendi. Önceki sipariş bilgisi tarihsel nottur.
 
 ## Deney öncesi kayıt
 
