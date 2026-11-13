@@ -114,3 +114,16 @@ Ayrıntılı rapor: [E19 150 W karşılaştırma raporu](../../logs/ads1115/2026
 - Gain 2.048, 860 SPS, 200 ms, 2 s, accuracy_decimals 2 ve 0.05 A filtresi değişmedi. 0.512 gain ve 3 basamak yayın uygulanmadı.
 - **Sonuç sınırı:** 100 W ve 150 W iki gözlemsel nokta sağlar; bağımsız doğrulama, tüm aralık doğrusallığı veya ±%4 genel kabulü değildir.
 - Sonraki deney: 58 W sürekli sabit yük. Ayrıntı: [58 W test planı](../../logs/ads1115/2026-11-13-E19-58w-test-plan.md).
+
+
+## 2026-11-13 — Aşama 5: 57 W sabit yük testi açıldı
+
+- **Durum:** AÇILDI; başlangıç kullanıcı bildirimi, log/analiz bekleniyor.
+- Önceki 58 W planı kullanıcı düzeltmesiyle 57 W olarak değiştirildi; 58 W planı tarihçe olarak korunur, uygulanmadı.
+- Başlangıç saati: 18:32 (+03:00), kullanıcı bildirimi.
+- Yük sürekli bağlı sabit 57 W nominal akkor ampul; aç/kapa geçiş deneyi değil.
+- İlk 3 dakika geçici/ısınma bölgesi olarak ayrılacak; 18:35 otomatik kararlı başlangıç sayılmayacak. PZEM ve ADS/SCT eğrileri oturduktan sonra en az 5 dakikalık ortak kararlı pencere seçilecek.
+- Gain 2.048, 860 SPS, continuous_mode, 200 ms, 2 s, accuracy_decimals 2, 0.05 A filtre ve çalışan katsayı korunacak. Gain 0.512 ve 3 basamak yayın uygulanmayacak.
+- PZEM aynı kararlı pencerenin referansıdır; nominal 57 W'tan hesaplanan akım kalibrasyon girdisi değildir.
+- A0/A1 bias/common-mode ve giriş gerilimi güvenliği doğrulanmadan enerjili teste devam edilmemeli.
+- Ayrıntı: [57 W test kaydı](../../logs/ads1115/2026-11-13-E19-57w-test.md).
