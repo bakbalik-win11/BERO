@@ -119,3 +119,40 @@ E19 başarılı olursa sonraki adımda aynı ESP32 üzerinde iki yolun birlikte 
 ### Analog bağlantı güvenlik kapısı
 
 Aynı SCT çıkışını iki ADC ön ucuna paralel bağlamak otomatik olarak güvenli/doğru kabul edilmez. ESP32 tarafındaki bias ağı ve ADS1115 tarafındaki giriş/common-mode ağı birlikte analiz edilmeden bağlantı yapılmayacak. Gerekirse tampon, uygun ayırma veya analog anahtarlama kullanılacak. Bu inceleme tamamlanana kadar şema/YAML kesinleştirilmeyecek.
+
+## 2026-11-13 — Aşama 2 protokolü: 100 W ortak alan / katsayı
+
+### Soru
+ADS1115 + ct_clamp zinciri, mevcut ESP32D1 SCT/ADC zinciriyle ikisinin de kararlı değer ürettiği 100 W yük alanında PZEM referansına göre nasıl davranıyor? ADS1115 için uygun katsayı nedir?
+
+### Sabit koşul
+- Yük: 100 W akkor ampul, sürekli açık.
+- Referans: PZEM-004T V3.0.
+- Sistem A: ESP32D1 mevcut SCT/ADC/ct_clamp firmware'i; K=24.22 korunur.
+- Sistem B: ESP32D2 + ADS1115 A0_A1 + ct_clamp; depodaki YAML.
+- ADS1115 ayar adayı: gain 2.048, sample_rate 860, continuous_mode true, sample_duration 200 ms, update_interval 2 s.
+- İlk testte kablo tur sayısı, sensör konumu ve diğer ayarlar değiştirilmez.
+
+### Uygulama sırası
+1. ADS1115 girişlerinin besleme raylarına göre güvenli common-mode aralığında olduğu doğrulanır. Diferansiyel çıktı tek başına bu güvenliği kanıtlamaz.
+2. 100 W akkor sürekli yakılır; açılış/geçiş dönemi kararlı alan hesabına alınmaz.
+3. ESP32D1, ESP32D2 ve PZEM zaman damgalı kayıtları aynı oturumda alınır. İki CT kullanılıyorsa aynı tek yalıtılmış iletken üzerindeki sensör konumu ve tur sayısı kaydedilir. Tek CT ile ardışık ölçüm yapılırsa bağlantı değişimi enerjisiz yapılır ve her koşulda PZEM kararlılığı yeniden kontrol edilir.
+4. Her akışın kararlılığı ayrı değerlendirilir; yalnız ortak kararlı zaman aralığı katsayı karşılaştırmasına alınır.
+5. Ham ct_clamp ve kalibrasyon sonrası değerler ayrı tutulur. Katsayı, birimler doğrulandıktan sonra PZEM kararlı ortalamasına göre hesaplanır.
+6. En az bir tekrar alınır; tek oturumdan genel katsayı kararı çıkarılmaz.
+
+### Kayıt alanları
+- Oturum tarihi/saat ve timezone.
+- SCT modeli, tur sayısı, fiziksel konum ve kanal.
+- ESPHome sürümü, YAML dosya yolu ve commit.
+- ADS1115 gain, SPS, gerçek ct_clamp farklı örnek sayısı ve loglanan SPS.
+- PZEM V/A/W ve zaman damgaları.
+- ESP32D1 ve ESP32D2 ham/kalibreli değerleri.
+- Kararlı alan başlangıç/bitişleri, n, ortalama, SD, CV, min/maks.
+- PZEM'e göre fark ve tekrarlar arası fark.
+
+### Sonuç kapısı
+- Derleme başarılı olması donanımda çalıştığını kanıtlamaz.
+- I2C bağlantısı RMS akım ölçümünü kanıtlamaz.
+- Tek 100 W noktası yalnız başlangıç katsayısını belirler; farklı akım aralığına genelleme yapmaz.
+- ±%4 hedefi yalnız ölçüm ve tekrarlar sonrası değerlendirilecek.
