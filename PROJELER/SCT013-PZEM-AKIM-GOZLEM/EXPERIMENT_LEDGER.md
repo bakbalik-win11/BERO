@@ -1,3 +1,13 @@
+
+## 2026-11-13 — E19 Aşama 1 donanım logu ve Aşama 2 100 W katsayı deneyi
+- **NEDEN:** ADS1115 I2C/diferansiyel okuma yolunu gerçek donanımda görmek ve ardından mevcut ESP32D1 ile ortak ölçüm alanında katsayı belirlemek.
+- **AŞAMA 1 LOG:** I2C 0x48 bulundu. Önceki düşük hızlı A0-A1 ölçümünde yüksüz 8–39 µV; yaklaşık 60 W yükte yaklaşık -12.8 mV ile +13.1 mV değişim gözlendi. 7 SPS / yaklaşık 1 s yayın aralığı nedeniyle RMS akım/katsayı sonucu değildir; aliasing olasılığı vardır.
+- **KARŞILAŞTIRMA TABANI:** ESP32D1 logunda ham ct_clamp 0.13757–0.13954 A; K uygulanmış çıktı 3.332–3.380 A; 6.700–6.920 SPS. Aynı zamanlı PZEM bu log kesitinde yoktur; 3.35 A gerçek akım olarak kabul edilmedi.
+- **KOD:** [ESP32D2 ADS1115 + ct_clamp YAML](firmware/experiments/esp32d2-ads1115-ct-clamp.yaml) depoya eklendi. Bu yeni YAML için derleme veya donanım doğrulaması henüz yapılmadı.
+- **AŞAMA 2:** 100 W akkor sabit yükte ESP32D1 + ESP32D2 + PZEM ortak kararlı alan testi açıldı. Amaç ADS1115 katsayısını PZEM referansıyla belirlemek. Mevcut D1 K=24.22 sabit kalacak; katsayı ve ±%4 sonucu henüz yok.
+- **DURUM:** Aşama 1 LOG İLE DESTEKLENDİ; Aşama 2 PLANLANDI.
+- **KAYITLAR:** [E19](experiments/E19-ads1115-low-current-alternative/README.md), [ilk log](logs/ads1115/2026-11-13-E19-ads1115-first-bringup.md), [YAML](firmware/experiments/esp32d2-ads1115-ct-clamp.yaml).
+
 # Deney ve karar izleme defteri
 
 > **Güncel yapı — 2026-10-31:** Proje yalnızca iki ana fazdan oluşur. **Faz 1 tamamlandı:** dış kaynaklı çalışan kodla ±%4 hedefi sağlandı; Faz 1 kapsamındaki yapılmamış işler hedefe ulaşıldığı için kapatıldı. **Faz 2 aktif:** önce HA geçmişini PC'ye aktarma (T007), sonra PZEM/SCT kararlı alan eşleştirme ve etiketleme (T008), ardından K=24.22 katsayı/model değerlendirmesi (T006). Bu dosyanın aşağıdaki eski basamak ve deney anlatımları tarihsel arşivdir; aktif iş sırası değildir. Güncel yön için [ROADMAP](ROADMAP.md), [STATUS](STATUS.md) ve [ADR-011](docs/decisions/ADR-011-two-phase-project-structure.md) esas alınır.
