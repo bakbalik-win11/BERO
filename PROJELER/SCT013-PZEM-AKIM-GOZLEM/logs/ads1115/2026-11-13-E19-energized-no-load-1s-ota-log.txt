@@ -1,0 +1,397 @@
+Logs - ESP32D2
+OTA
+INFO ESPHome 2026.10.2
+INFO Loaded validated config cache for esp32d2.yaml, skipping validation.
+INFO Starting log output from 192.168.0.80 using esphome API
+INFO Successfully resolved esp32d2 @ 192.168.0.80 in 0.000s
+INFO Successfully connected to esp32d2 @ 192.168.0.80 in 3.201s
+INFO Successful handshake with esp32d2 @ 192.168.0.80 in 0.013s
+[22:26:16.596][I][app:164]: ESPHome version 2026.10.2 compiled on 2026-11-13 22:25:39 +0300
+[22:26:16.597][I][app:171]: ESP32 Chip: ESP32 rev3.1, 2 core(s)
+[22:26:16.597][W][app:189]: Set flash_chip: generic under esp32 > framework > advanced to save IRAM
+[22:26:16.597][W][app:201]: Chip rev >= 3.0 detected. Set minimum_chip_revision: "3.1" under esp32 > framework > advanced to reduce binary size
+[22:26:16.605][W][app:228]: Bootloader supports SRAM1 as IRAM (+40KB). Set sram1_as_iram: true under esp32 > framework > advanced
+[22:26:16.626][C][logger:218]: Logger:
+[22:26:16.626][C][logger:218]:   Max Level: DEBUG
+[22:26:16.626][C][logger:218]:   Initial Level: DEBUG
+[22:26:16.627][C][logger:225]:   Log Baud Rate: 115200
+[22:26:16.627][C][logger:225]:   Hardware UART: UART0
+[22:26:16.627][C][logger:234]:   Task Log Buffer Size: 768 bytes
+[22:26:16.701][C][i2c:092]: I2C Bus:
+[22:26:16.702][C][i2c:093]:   SDA Pin: GPIO21
+[22:26:16.702][C][i2c:093]:   SCL Pin: GPIO22
+[22:26:16.702][C][i2c:093]:   Frequency: 400000 Hz
+[22:26:16.702][C][i2c:103]:   Recovery: bus successfully recovered
+[22:26:16.702][C][i2c:113]: Results from bus scan:
+[22:26:16.705][C][i2c:119]: Found device at address 0x48
+[22:26:16.705][C][uptime.sensor:017]: Uptime Sensor 'ESP32D2 Calisma Suresi'
+[22:26:16.705][C][uptime.sensor:017]:   State Class: 'total_increasing'
+[22:26:16.705][C][uptime.sensor:017]:   Unit of Measurement: 's'
+[22:26:16.705][C][uptime.sensor:017]:   Accuracy Decimals: 0
+[22:26:16.706][C][uptime.sensor:166]:   Device Class: 'duration'
+[22:26:16.706][C][uptime.sensor:157]:   Icon: 'mdi:timer-outline'
+[22:26:16.714][C][uptime.sensor:019]:   Type: Seconds
+[22:26:16.715][C][template.text_sensor:016]: Template Sensor 'BERO E19 Olay Kaydi'
+[22:26:16.726][C][template.text_sensor:016]: Template Sensor 'BERO E19 Olay BOOT ID'
+[22:26:16.744][C][template.text_sensor:016]: Template Sensor 'BERO E19 Olay EVENT ID'
+[22:26:16.783][C][template.text_sensor:016]: Template Sensor 'BERO E19 Olay STATE'
+[22:26:16.783][C][template.text_sensor:016]: Template Sensor 'BERO E19 UDP Dinleyici'
+[22:26:16.783][C][ads1115:067]: ADS1115:
+[22:26:16.790][C][ads1115:068]:   Address: 0x48
+[22:26:16.801][C][ads1115.sensor:017]:   ADS1115 Sensor 'ads_sct_raw'
+[22:26:16.801][C][ads1115.sensor:017]:     State Class: 'measurement'
+[22:26:16.801][C][ads1115.sensor:017]:     Unit of Measurement: 'V'
+[22:26:16.801][C][ads1115.sensor:017]:     Accuracy Decimals: 3
+[22:26:16.801][C][ads1115.sensor:166]:     Device Class: 'voltage'
+[22:26:16.802][C][ads1115.sensor:023]:     Multiplexer: 0
+[22:26:16.802][C][ads1115.sensor:023]:     Gain: 2
+[22:26:16.802][C][ads1115.sensor:023]:     Resolution: 16
+[22:26:16.802][C][ads1115.sensor:023]:     Sample rate: 7
+[22:26:16.843][C][ct_clamp:017]: CT Clamp Sensor 'BERO Akim Sensoru'
+[22:26:16.843][C][ct_clamp:017]:   State Class: 'measurement'
+[22:26:16.843][C][ct_clamp:017]:   Unit of Measurement: 'A'
+[22:26:16.843][C][ct_clamp:017]:   Accuracy Decimals: 3
+[22:26:16.847][C][ct_clamp:166]:   Device Class: 'current'
+[22:26:16.847][C][ct_clamp:013]:   Sample Duration: 0.20s
+[22:26:16.847][C][ct_clamp:340]:   Update Interval: 1.000s
+[22:26:16.865][C][network:050]: Network:
+[22:26:16.865][C][network:050]:   TCP send buffer: 5760 bytes
+[22:26:16.871][C][wifi:1688]: WiFi:
+[22:26:16.871][C][wifi:1688]:   Local MAC: E0:8C:FE:5C:F4:E4
+[22:26:16.871][C][wifi:1688]:   Connected: YES
+[22:26:16.872][C][wifi:1392]:   IP Address: 192.168.0.80
+[22:26:16.872][C][wifi:1403]:   SSID: 'AKFISH'
+[22:26:16.872][C][wifi:1403]:   BSSID: 3C:64:CF:5C:81:73
+[22:26:16.872][C][wifi:1403]:   Hostname: 'esp32d2'
+[22:26:16.872][C][wifi:1403]:   Signal strength: -60 dB ▂▄▆█
+[22:26:16.872][C][wifi:1403]:   Channel: 2
+[22:26:16.872][C][wifi:1403]:   Subnet: 255.255.255.0
+[22:26:16.872][C][wifi:1403]:   Gateway: 192.168.0.1
+[22:26:16.872][C][wifi:1403]:   DNS1: 192.168.0.1
+[22:26:16.872][C][wifi:1403]:   DNS2: 0.0.0.0
+[22:26:16.889][C][esphome.ota:129]: Over-The-Air updates:
+[22:26:16.889][C][esphome.ota:129]:   Address: esp32d2.local:3232
+[22:26:16.889][C][esphome.ota:129]:   Version: 2
+[22:26:16.930][C][safe_mode:058]: Safe Mode:
+[22:26:16.930][C][safe_mode:058]:   Successful after: 60s
+[22:26:16.930][C][safe_mode:058]:   Invoke after: 10 attempts
+[22:26:16.930][C][safe_mode:058]:   Duration: 300s
+[22:26:16.931][C][safe_mode:079]:   Bootloader rollback: supported
+[22:26:16.931][C][api:368]: Server:
+[22:26:16.931][C][api:368]:   Address: esp32d2.local:6053
+[22:26:16.931][C][api:368]:   Listen backlog: 4
+[22:26:16.931][C][api:368]:   Max connections: 5
+[22:26:16.951][C][api:380]:   Noise encryption: NO
+[22:26:16.951][C][wifi_signal.sensor:017]: WiFi Signal 'ESP32D2 WiFi Sinyali'
+[22:26:16.951][C][wifi_signal.sensor:017]:   State Class: 'measurement'
+[22:26:16.951][C][wifi_signal.sensor:017]:   Unit of Measurement: 'dBm'
+[22:26:16.951][C][wifi_signal.sensor:017]:   Accuracy Decimals: 0
+[22:26:16.951][C][wifi_signal.sensor:166]:   Device Class: 'signal_strength'
+[22:26:16.951][C][mdns:324]: mDNS:
+[22:26:16.951][C][mdns:324]:   Hostname: esp32d2
+[22:26:17.549][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 89 different samples (445 SPS)
+[22:26:17.671][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:18.483][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 83 different samples (415 SPS)
+[22:26:18.586][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:18.951][I][bero_udp:518]: UDP_EVENT_RECEIVED source=192.168.0.82 packet=BERO_EVT,BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A,EVENT_ID=210,STATE=OFF
+[22:26:18.961][I][bero_event:525]: HA_EVENT_PUBLISHED BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A EVENT_ID=210 STATE=OFF
+[22:26:19.054][S][text_sensor]: 'BERO E19 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A,EVENT_ID=210,STATE=OFF'
+[22:26:19.054][S][text_sensor]: 'BERO E19 Olay BOOT ID' >> '7F923BF9529906787F56BEAEFF55CE6A'
+[22:26:19.055][S][text_sensor]: 'BERO E19 Olay EVENT ID' >> '210'
+[22:26:19.056][S][text_sensor]: 'BERO E19 Olay STATE' >> 'OFF'
+[22:26:19.470][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 84 different samples (420 SPS)
+[22:26:19.586][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:20.537][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 82 different samples (410 SPS)
+[22:26:20.591][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:21.473][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 88 different samples (440 SPS)
+[22:26:21.596][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:22.504][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 95 different samples (475 SPS)
+[22:26:22.608][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:24.699][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 84 different samples (420 SPS)
+[22:26:24.699][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:24.700][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 92 different samples (460 SPS)
+[22:26:24.700][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:25.516][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 81 different samples (405 SPS)
+[22:26:25.686][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:26.474][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 102 different samples (510 SPS)
+[22:26:26.600][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:27.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 77 different samples (385 SPS)
+[22:26:27.584][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:28.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 81 different samples (405 SPS)
+[22:26:28.585][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:29.477][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 85 different samples (425 SPS)
+[22:26:29.586][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:30.485][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 76 different samples (380 SPS)
+[22:26:30.593][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:31.473][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 73 different samples (365 SPS)
+[22:26:31.592][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:32.479][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 87 different samples (435 SPS)
+[22:26:32.585][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:33.470][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 97 different samples (485 SPS)
+[22:26:33.583][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:34.475][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 90 different samples (450 SPS)
+[22:26:34.581][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:35.484][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 79 different samples (395 SPS)
+[22:26:35.583][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:36.473][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 83 different samples (415 SPS)
+[22:26:36.585][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:37.519][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 76 different samples (380 SPS)
+[22:26:37.582][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:38.479][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 92 different samples (460 SPS)
+[22:26:38.582][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:39.050][I][bero_udp:518]: UDP_EVENT_RECEIVED source=192.168.0.82 packet=BERO_EVT,BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A,EVENT_ID=211,STATE=ON
+[22:26:39.062][I][bero_event:525]: HA_EVENT_PUBLISHED BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A EVENT_ID=211 STATE=ON
+[22:26:39.169][S][text_sensor]: 'BERO E19 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A,EVENT_ID=211,STATE=ON'
+[22:26:39.169][S][text_sensor]: 'BERO E19 Olay BOOT ID' >> '7F923BF9529906787F56BEAEFF55CE6A'
+[22:26:39.170][S][text_sensor]: 'BERO E19 Olay EVENT ID' >> '211'
+[22:26:39.170][S][text_sensor]: 'BERO E19 Olay STATE' >> 'ON'
+[22:26:39.473][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 88 different samples (440 SPS)
+[22:26:39.586][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:40.477][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 69 different samples (345 SPS)
+[22:26:40.590][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:41.479][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 92 different samples (460 SPS)
+[22:26:41.587][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:42.475][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 98 different samples (490 SPS)
+[22:26:42.589][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:43.489][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 77 different samples (385 SPS)
+[22:26:43.592][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:43.593][S][sensor]: 'ESP32D2 WiFi Sinyali' >> -61 dBm
+[22:26:44.469][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 81 different samples (405 SPS)
+[22:26:44.600][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:45.473][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 82 different samples (410 SPS)
+[22:26:45.518][S][sensor]: 'ESP32D2 Calisma Suresi' >> 33 s
+[22:26:45.518][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:46.508][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 79 different samples (395 SPS)
+[22:26:46.584][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:47.533][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 96 different samples (480 SPS)
+[22:26:47.651][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:48.877][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 91 different samples (455 SPS)
+[22:26:48.881][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:49.499][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 88 different samples (440 SPS)
+[22:26:49.586][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:50.719][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 97 different samples (485 SPS)
+[22:26:50.826][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:51.489][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 71 different samples (355 SPS)
+[22:26:51.609][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:52.504][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 90 different samples (450 SPS)
+[22:26:53.012][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:53.512][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 94 different samples (470 SPS)
+[22:26:53.590][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:54.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 88 different samples (440 SPS)
+[22:26:54.609][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:55.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 81 different samples (405 SPS)
+[22:26:55.879][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:56.526][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 80 different samples (400 SPS)
+[22:26:56.611][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:57.495][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 96 different samples (480 SPS)
+[22:26:57.631][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:58.559][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 82 different samples (410 SPS)
+[22:26:58.769][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:26:59.503][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 100 different samples (500 SPS)
+[22:26:59.859][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:00.492][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 94 different samples (470 SPS)
+[22:27:00.624][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:01.479][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 82 different samples (410 SPS)
+[22:27:01.614][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:02.486][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 90 different samples (450 SPS)
+[22:27:02.602][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:03.467][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 87 different samples (435 SPS)
+[22:27:03.595][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:04.479][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 81 different samples (405 SPS)
+[22:27:04.599][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:05.493][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 95 different samples (475 SPS)
+[22:27:05.595][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:06.470][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 75 different samples (375 SPS)
+[22:27:06.671][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:07.474][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 83 different samples (415 SPS)
+[22:27:07.593][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:08.484][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 87 different samples (435 SPS)
+[22:27:08.603][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:09.588][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 90 different samples (450 SPS)
+[22:27:09.657][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:10.477][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 82 different samples (410 SPS)
+[22:27:10.608][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:11.469][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 73 different samples (365 SPS)
+[22:27:11.591][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:12.127][I][safe_mode:154]: Boot seems successful; resetting boot loop counter
+[22:27:12.485][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 77 different samples (385 SPS)
+[22:27:12.597][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:13.679][D][preferences:254]: Writing 1 items: 0 cached, 1 written, 0 failed
+[22:27:13.680][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 96 different samples (480 SPS)
+[22:27:13.680][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:13.681][S][sensor]: 'ESP32D2 WiFi Sinyali' >> -64 dBm
+[22:27:14.471][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 91 different samples (455 SPS)
+[22:27:14.583][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:15.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 88 different samples (440 SPS)
+[22:27:15.519][S][sensor]: 'ESP32D2 Calisma Suresi' >> 63 s
+[22:27:15.520][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:16.103][D][ads1115.sensor:016]: 'ads_sct_raw': Got Voltage=0.000000V
+[22:27:16.471][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 70 different samples (350 SPS)
+[22:27:16.586][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:17.497][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 80 different samples (400 SPS)
+[22:27:17.602][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:18.480][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 96 different samples (480 SPS)
+[22:27:18.669][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:18.995][I][bero_udp:518]: UDP_EVENT_RECEIVED source=192.168.0.82 packet=BERO_EVT,BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A,EVENT_ID=212,STATE=OFF
+[22:27:19.002][I][bero_event:525]: HA_EVENT_PUBLISHED BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A EVENT_ID=212 STATE=OFF
+[22:27:19.104][S][text_sensor]: 'BERO E19 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A,EVENT_ID=212,STATE=OFF'
+[22:27:19.104][S][text_sensor]: 'BERO E19 Olay BOOT ID' >> '7F923BF9529906787F56BEAEFF55CE6A'
+[22:27:19.105][S][text_sensor]: 'BERO E19 Olay EVENT ID' >> '212'
+[22:27:19.105][S][text_sensor]: 'BERO E19 Olay STATE' >> 'OFF'
+[22:27:19.468][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 82 different samples (410 SPS)
+[22:27:19.582][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:20.649][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 88 different samples (440 SPS)
+[22:27:20.896][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:21.521][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 84 different samples (420 SPS)
+[22:27:21.626][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:22.492][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 77 different samples (385 SPS)
+[22:27:22.637][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:23.484][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 87 different samples (435 SPS)
+[22:27:23.595][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:24.471][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 89 different samples (445 SPS)
+[22:27:24.590][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:25.478][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 89 different samples (445 SPS)
+[22:27:25.592][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:26.471][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 83 different samples (415 SPS)
+[22:27:26.583][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:27.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 99 different samples (495 SPS)
+[22:27:27.597][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:28.482][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 88 different samples (440 SPS)
+[22:27:28.578][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:29.497][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 91 different samples (455 SPS)
+[22:27:29.584][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:30.474][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 93 different samples (465 SPS)
+[22:27:30.597][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:31.475][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 87 different samples (435 SPS)
+[22:27:31.588][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:32.487][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 80 different samples (400 SPS)
+[22:27:32.587][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:33.471][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 96 different samples (480 SPS)
+[22:27:33.586][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:34.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 102 different samples (510 SPS)
+[22:27:34.591][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:35.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 78 different samples (390 SPS)
+[22:27:35.624][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:36.480][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 82 different samples (410 SPS)
+[22:27:36.596][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:37.469][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 76 different samples (380 SPS)
+[22:27:37.580][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:38.488][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 96 different samples (480 SPS)
+[22:27:38.598][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:38.995][I][bero_udp:518]: UDP_EVENT_RECEIVED source=192.168.0.82 packet=BERO_EVT,BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A,EVENT_ID=213,STATE=ON
+[22:27:39.002][I][bero_event:525]: HA_EVENT_PUBLISHED BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A EVENT_ID=213 STATE=ON
+[22:27:39.094][S][text_sensor]: 'BERO E19 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A,EVENT_ID=213,STATE=ON'
+[22:27:39.095][S][text_sensor]: 'BERO E19 Olay BOOT ID' >> '7F923BF9529906787F56BEAEFF55CE6A'
+[22:27:39.095][S][text_sensor]: 'BERO E19 Olay EVENT ID' >> '213'
+[22:27:39.096][S][text_sensor]: 'BERO E19 Olay STATE' >> 'ON'
+[22:27:39.473][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 77 different samples (385 SPS)
+[22:27:39.587][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:40.473][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 88 different samples (440 SPS)
+[22:27:40.593][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:41.477][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 95 different samples (475 SPS)
+[22:27:41.604][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:42.477][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 81 different samples (405 SPS)
+[22:27:42.586][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:43.481][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 92 different samples (460 SPS)
+[22:27:43.599][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:43.600][S][sensor]: 'ESP32D2 WiFi Sinyali' >> -65 dBm
+[22:27:44.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 92 different samples (460 SPS)
+[22:27:44.607][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:45.489][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 92 different samples (460 SPS)
+[22:27:45.562][S][sensor]: 'ESP32D2 Calisma Suresi' >> 93 s
+[22:27:45.563][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:46.497][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 89 different samples (445 SPS)
+[22:27:46.585][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:47.493][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 105 different samples (525 SPS)
+[22:27:47.590][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:48.470][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 84 different samples (420 SPS)
+[22:27:48.583][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:49.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 86 different samples (430 SPS)
+[22:27:49.584][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:50.497][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 97 different samples (485 SPS)
+[22:27:50.587][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:51.525][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 92 different samples (460 SPS)
+[22:27:51.597][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:52.473][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 91 different samples (455 SPS)
+[22:27:52.700][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:53.487][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 93 different samples (465 SPS)
+[22:27:53.582][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:54.501][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 85 different samples (425 SPS)
+[22:27:54.584][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:55.477][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 91 different samples (455 SPS)
+[22:27:55.580][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:56.475][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 79 different samples (395 SPS)
+[22:27:56.590][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:57.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 80 different samples (400 SPS)
+[22:27:57.592][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:58.482][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 88 different samples (440 SPS)
+[22:27:58.604][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:27:59.482][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 84 different samples (420 SPS)
+[22:27:59.602][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:00.483][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 79 different samples (395 SPS)
+[22:28:00.666][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:01.480][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 87 different samples (435 SPS)
+[22:28:01.619][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:02.491][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 81 different samples (405 SPS)
+[22:28:02.586][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:03.489][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 81 different samples (405 SPS)
+[22:28:03.591][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:04.504][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 70 different samples (350 SPS)
+[22:28:04.623][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:05.478][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 92 different samples (460 SPS)
+[22:28:05.620][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:06.479][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 74 different samples (370 SPS)
+[22:28:06.581][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:07.512][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 87 different samples (435 SPS)
+[22:28:07.577][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:08.480][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 97 different samples (485 SPS)
+[22:28:08.588][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:09.482][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 85 different samples (425 SPS)
+[22:28:09.585][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:10.513][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 88 different samples (440 SPS)
+[22:28:10.791][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:11.475][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 101 different samples (505 SPS)
+[22:28:11.612][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:12.809][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 91 different samples (455 SPS)
+[22:28:12.810][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:13.473][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 89 different samples (445 SPS)
+[22:28:13.585][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:13.585][S][sensor]: 'ESP32D2 WiFi Sinyali' >> -62 dBm
+[22:28:14.475][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 89 different samples (445 SPS)
+[22:28:14.588][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:15.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 94 different samples (470 SPS)
+[22:28:15.513][S][sensor]: 'ESP32D2 Calisma Suresi' >> 123 s
+[22:28:15.514][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:16.102][D][ads1115.sensor:016]: 'ads_sct_raw': Got Voltage=0.000063V
+[22:28:16.505][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 90 different samples (450 SPS)
+[22:28:16.716][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:17.477][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 93 different samples (465 SPS)
+[22:28:17.579][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:18.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 84 different samples (420 SPS)
+[22:28:18.585][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:18.999][I][bero_udp:518]: UDP_EVENT_RECEIVED source=192.168.0.82 packet=BERO_EVT,BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A,EVENT_ID=214,STATE=OFF
+[22:28:19.011][I][bero_event:525]: HA_EVENT_PUBLISHED BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A EVENT_ID=214 STATE=OFF
+[22:28:19.099][S][text_sensor]: 'BERO E19 Olay Kaydi' >> 'BERO_EVT,BOOT_ID=7F923BF9529906787F56BEAEFF55CE6A,EVENT_ID=214,STATE=OFF'
+[22:28:19.100][S][text_sensor]: 'BERO E19 Olay BOOT ID' >> '7F923BF9529906787F56BEAEFF55CE6A'
+[22:28:19.101][S][text_sensor]: 'BERO E19 Olay EVENT ID' >> '214'
+[22:28:19.101][S][text_sensor]: 'BERO E19 Olay STATE' >> 'OFF'
+[22:28:19.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 94 different samples (470 SPS)
+[22:28:19.582][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:20.476][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 83 different samples (415 SPS)
+[22:28:20.606][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:21.492][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 83 different samples (415 SPS)
+[22:28:21.617][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:22.485][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 75 different samples (375 SPS)
+[22:28:22.656][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:23.472][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 89 different samples (445 SPS)
+[22:28:23.585][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:24.470][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 101 different samples (505 SPS)
+[22:28:24.582][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:25.478][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 84 different samples (420 SPS)
+[22:28:25.585][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+[22:28:26.471][D][ct_clamp:040]: 'BERO Akim Sensoru' - Raw AC Value: 0.000A after 87 different samples (435 SPS)
+[22:28:26.590][S][sensor]: 'BERO Akim Sensoru' >> 0.000 A
+
+Back to install
+
+Stat
