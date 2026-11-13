@@ -600,7 +600,7 @@
 - CSV ortak kesiti 18:44:07–18:49:59: ADS1115 + SCT n=176, ortalama 0.189236 A, SD=0.001014 A, CV=%0.536; PZEM n=9, ortalama 0.189000 A, SD=0.001000 A.
 - Ortalama fark yaklaşık +%0.125; PZEM örnek sayısı düşük olduğundan doğruluk kanıtı değildir. PZEM aktif güç ortalaması 43.452 W (n=31).
 - Katsayı ve ayarlar değiştirilmedi. Sonuç düşük akım karakterizasyonu olarak kaydedildi; kalibrasyon/±%4 kabulü veya alt sınır kararı değildir.
-- Ayrıntılar: [42 W test raporu](PROJELER/SCT013-PZEM-AKIM-GOZLEM/logs/ads1115/2026-11-13-E19-42w-test.md), [E19 sonuç defteri](PROJELER/SCT013-PZEM-AKIM-GOZLEM/experiments/E19-ads1115-low-current-alternative/results.md).
+- Ayrıntılar: [42 W test raporu](logs/ads1115/2026-11-13-E19-42w-test.md), [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md).
 
 
 ## 2026-11-13 — E19 18 W sabit yük gözlemi tamamlandı; aç/kapa testine geçiş
@@ -612,4 +612,4 @@
 - 18 W sabit yük baz gözlemi kapatıldı; ADS1115 zinciri BERO için umut verici ana ölçüm adayı olarak değerlendirilecek. Nihai donanım onayı verilmedi.
 - Sonraki aşama: aç/kapa tepki deneyi. Fiziksel ON/OFF, PZEM akım/güç ve SCT davranışıyla doğrulanacak; UDP/SSR olayı tek başına fiziksel durum kanıtı değildir. CSV'deki SSR OFF olaylarından sonra PZEM'in 18 W göstermeyi sürdürmesi bu ayrımı doğruluyor.
 - ADS1115 A0/A1 common-mode ve giriş ray güvenliği fiziksel doğrulaması açık kalır.
-- Ayrıntı: [E19 18 W test raporu](PROJELER/SCT013-PZEM-AKIM-GOZLEM/logs/ads1115/2026-11-13-E19-18w-test.md), [E19 sonuç defteri](PROJELER/SCT013-PZEM-AKIM-GOZLEM/experiments/E19-ads1115-low-current-alternative/results.md), [oturum kaydı](PROJELER/SCT013-PZEM-AKIM-GOZLEM/HISTORY/SESSION_LOG-2026-11-13-E19-low-current-range.md).
+- Ayrıntı: [E19 18 W test raporu](logs/ads1115/2026-11-13-E19-18w-test.md), [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md), [oturum kaydı](HISTORY/SESSION_LOG-2026-11-13-E19-low-current-range.md).
