@@ -143,3 +143,21 @@ Bu fikir şu aşamada **yazılımsal ölçüm yolu seçimi** olarak ele alınır
 **Elektriksel ön koşul:** Aynı SCT sekonder çıkışını iki analog ön uca bağlamadan önce her iki giriş devresinin empedansı, bias/common-mode yapısı, koruma elemanları ve giriş sınırları birlikte incelenmelidir. Mevcut ESP32 bias ağı ile ADS1115 diferansiyel girişinin paralel bağlanmasının sinyali yüklemeyeceği veya iki devrenin birbirini etkilemeyeceği varsayılmayacaktır. Gerekirse tamponlama/ayırma veya kontrollü analog anahtarlama tasarlanır. Kart ve bağlantı şeması görülmeden paralel bağlantı yapılmaz.
 
 **Durum:** Mimari fikir kaydedildi; eşik, histerezis, analog bağlantı ve yazılım seçimi henüz tasarım/deney aşamasında. Donanımda uygulanmış değildir.
+
+## 2026-11-13 — İlk donanım bağlantısı ve iki aşamalı test planı
+
+E19 fiziksel deneme aşamasına geçti. Çalışma iki soruya ayrıldı:
+
+1. **Aşama 1 — ADS1115 bağlantı/okuma doğrulaması:** I2C adresi 0x48 bulundu. A0-A1 diferansiyel okuma yüksüz koşulda mikrovolt seviyesinde çıktı verdi. Yaklaşık 60 W yükte önceki düşük hızlı testte değerler yaklaşık -12.8 mV ile +13.1 mV arasında değişti. Bu aşama yalnız bağlantı ve sinyal tepkisi gözlemidir; RMS akım/katsayı doğrulaması değildir. [İlk log ve yorum](../../logs/ads1115/2026-11-13-E19-ads1115-first-bringup.md).
+2. **Aşama 2 — 100 W ortak ölçüm alanı ve katsayı belirleme:** ESP32D1 mevcut ölçüm zinciri, ESP32D2 ADS1115 zinciri ve PZEM aynı 100 W sabit yük koşulunda karşılaştırılacaktır. Amaç, her iki SCT yolunun kararlı değer ürettiği ortak alanda ADS1115 katsayısını PZEM referansıyla belirlemektir. Test henüz yapılmadı.
+
+### Aşama 2 test kararı
+
+- Yük: 100 W akkor ampul, sürekli açık.
+- Karşılaştırma: ESP32D1 mevcut SCT/ADC/ct_clamp yolu, ESP32D2 ADS1115/ct_clamp yolu ve PZEM-004T V3.0.
+- Kayıt: Zaman damgalı kararlı değerler; gerilim, akım ve aktif güç; firmware ayarları ve bağlantı/tur sayısı.
+- Kalibrasyon: YAML'daki nominal 30A/1V başlangıç doğrusu ölçüm sonucu değildir. Katsayı ADS1115 ham ct_clamp kararlı ortalaması ile PZEM kararlı akım referansından belirlenecek. Mevcut ESP32D1 K=24.22 değiştirilmeyecek.
+- İki CT kullanılırsa konum ve tur sayısı kaydedilir. Tek CT ile ardışık ölçüm yapılırsa bağlantı değişiklikleri enerjisiz koşulda yapılır ve PZEM/yük kararlılığı yeniden doğrulanır.
+- Kabul: Tekrarlı kararlı sonuç, clipping/taşma olmaması ve PZEM'e göre sapmanın raporlanması. ±%4 hedefi sonuç görülmeden başarı sayılmaz.
+
+**Durum:** Aşama 1 LOG İLE DESTEKLENDİ. Aşama 2 PLANLANDI; 100 W ölçümü ve katsayı hesabı beklemede.
