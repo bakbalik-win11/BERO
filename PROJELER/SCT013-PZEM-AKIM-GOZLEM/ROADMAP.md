@@ -1,3 +1,16 @@
+## Sonraki donanım tasarımı — tek ESP32 ölçüm düğümü (PLANLANDI)
+
+Kullanıcının 2026-11-13 tarihli kararı:
+- Tek ESP32 üzerinde iki SCT kanalı.
+- Bir ADS1115.
+- PZEM-004T V3 aynı ESP32'ye UART üzerinden bağlanacak.
+- Harici bias devresi olmadan ölçüm hedefleniyor.
+- 1 saniye yayın; yazılımsal alt eşik ve spike filtresi yok, ham ölçüm korunacak.
+
+Bu aşama yalnız mimari planıdır. Kart/Modül 1 pinleri, UART TX/RX, I²C pinleri/adresi, ADS1115 giriş eşlemesi, kanal tarama zamanlaması, PZEM güncelleme sıklığı ve ADS1115 ortak-mod/giriş ray güvenliği doğrulanmadan YAML hazırlanmış veya entegrasyon tamamlanmış sayılmaz.
+
+Ön koşul: ADS1115 enerjili-yüksüz gözleminden ayrı olarak ölçülen hattın enerjisiz olduğu taban testi yapılacak. İki test ayrı raporlanacak. [13 Kasım filtresiz gözlem raporu](logs/ads1115/2026-11-13-E19-energized-no-load-unthresholded-observation.md).
+
 ## Güncel çalışma hedefi — Çamaşır makinesi program davranışı analizi
 
 ### Sonraki bakım işi — ON/OFF olay altyapısının aktif koddan çıkarılması
