@@ -84,3 +84,15 @@ Güvenlik ön koşulu doğrulandıktan sonra mevcut ayar/katsayıyı değiştirm
 - **Sonraki iş:** aç/kapa tepki deneyi. Fiziksel yük açılıp kapanması PZEM ve SCT akım/güç davranışıyla teyit edilecek. SSR/UDP olayı tek başına fiziksel ON/OFF kanıtı değildir; CSV'de SSR OFF olaylarından sonra PZEM 18 W seviyesinde kalmıştır.
 - Güvenlik: ADS1115 A0/A1 ortak-mod ve GND–VDD giriş ray sınırlarının fiziksel doğrulaması hâlâ açık.
 - Rapor: [E19 18 W test raporu](../logs/ads1115/2026-11-13-E19-18w-test.md).
+
+
+## 2026-11-13 — Enerjili-yüksüz hat / 1 saniye yayın ve alt eşik kaldırma
+
+- Kullanıcının paylaştığı ESP32D2 OTA logu (397 satır) ve YAML taslağı (532 satır) incelendi.
+- OTA logu: ESPHome 2026.10.2, ESP32D2 192.168.0.80; ADS1115 0x48 bulundu; ct_clamp 200 ms / 1.000 s; log kesitinde ham AC ve HA akım yayını 0.000 A. UDP 4210 olayları da alındı.
+- Kaynak log SHA-256: `18a0b7c47b92b5447d2c778917e4f4e738a9279d47c7827bf85f766701efda54`.
+- Kullanıcı kararı: 0.005 A yazılım eşiği gereksiz; kaldırılacak. Alt eşik ve spike filtresi yok; ölçüm 0.000 A ise 0.000 A yayınlanacak.
+- 27.60 katsayısı, 200 ms pencere, 1 s yayın ve UDP 4210 olay alıcısı korunarak alt eşiksiz YAML snapshot oluşturuldu: `firmware/experiments/esp32d2-ads1115-ct-clamp-live-27.60-1s-unthresholded.yaml`.
+- Önemli doğrulama ayrımı: paylaşılan OTA logu, 0.005 A filtresi bulunan yüklenmiş YAML taslağından alınmıştı. Depoya kaydedilen alt eşiksiz snapshot ayrıca derlenip/OTA edilmedi; log bu snapshot'ın çalıştığını kanıtlamaz.
+- Rapor: [enerjili-yüksüz 1 s gözlemi](../logs/ads1115/2026-11-13-E19-energized-no-load-1s-raw-log-report.md); [tam OTA logu](../logs/ads1115/2026-11-13-E19-energized-no-load-1s-ota-log.txt).
+- Enerjisiz hat testi ve tek ESP + 2 SCT + ADS1115 + PZEM tasarımı açık iş olarak kaldı. ADS1115 giriş ortak-mod/rail güvenliği fiziksel doğrulaması da açık.
