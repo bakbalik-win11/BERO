@@ -35,3 +35,29 @@ Henüz ölçüm veya katsayı yoktur. Kartın giriş aralığı/gain ayarı, SCT
 Kullanıcının mimari tarifi: Aynı ESP üzerinde mevcut ESP32 ADC ölçüm yolu ve I²C ADS1115 ikinci ölçüm yolu birlikte bulunabilir. Yaklaşık 1 A altına inildiğinde kullanılacak ölçüm ADS1115 yolundan, eşik üstünde mevcut dahili ADC yolundan seçilecek. Hedef, iki yolun güçlü olduğu akım bölgelerini birleştirmek.
 
 Bu henüz deney sonucu veya kesin mimari kararı değildir. İlk olarak aynı SCT sinyalinin iki ön uca güvenli biçimde verilip verilemeyeceği incelenecek. Bias/common-mode ve giriş yüklemesi doğrulanmadan paralel bağlantı yapılmayacak. Eşik 1 A başlangıç fikridir; histerezis ve geçiş davranışı ölçümle belirlenecek. Her iki yolun ham kayıtları ayrı tutulacak.
+
+## 2026-11-13 — Aşama 1: ADS1115 ilk donanım okuma gözlemleri
+
+Gerçek log özeti ve sınırları [ilk log kaydında](../../logs/ads1115/2026-11-13-E19-ads1115-first-bringup.md) tutulur.
+
+- I2C taraması ADS1115'i 0x48 adresinde buldu.
+- GPIO21 SDA, GPIO22 SCL, 3.3 V besleme, ADDR-GND; SCT uçları A0/A1 olarak bildirildi.
+- Yüksüz diferansiyel ölçümde 8–39 µV aralığında değerler görüldü.
+- Yaklaşık 60 W yükte PZEM 0.264 A / yaklaşık 60 W gösterirken önceki düşük hızlı ADS logu yaklaşık -12.8 mV ile +13.1 mV arasında değişti. 7 SPS ve yaklaşık 1 s yayın aralığı nedeniyle bu RMS akım/katsayı ölçümü değildir; aliasing olasılığı vardır.
+- ESP32D1 logunda ham ct_clamp 0.13757–0.13954 A, K uygulanmış çıktı 3.332–3.380 A ve 6.700–6.920 SPS görüldü. Aynı zamanlı PZEM bu log kesitinde bulunmadığından 3.35 A gerçek akım kabul edilmedi.
+- Yeni YAML: [esp32d2-ads1115-ct-clamp.yaml](../../firmware/experiments/esp32d2-ads1115-ct-clamp.yaml). Depoya eklenmesi derlendiği veya 100 W testinin yapıldığı anlamına gelmez.
+
+**Aşama 1 yorumu:** I2C haberleşmesi ve diferansiyel sayısal okuma gözlendi. Yük değişiminde giriş çıktısının değiştiği logla destekleniyor. RMS ölçüm, 860 SPS gerçek örnek akışı, giriş common-mode güvenliği ve kalibrasyon doğrulanmadı.
+
+## 2026-11-13 — Aşama 2: 100 W ortak ölçüm alanı testi açıldı
+
+- **Durum:** PLANLANDI.
+- **Hedef:** ADS1115/ct_clamp ölçüm yolunu mevcut ESP32D1 yolu ve PZEM ile ortak ölçüm alanında karşılaştırmak; ADS1115 katsayısını belirlemek.
+- **Yük:** 100 W akkor ampul, sürekli açık.
+- **Referans:** PZEM-004T V3.0; mutlak ground truth değil, BERO karşılaştırma referansı.
+- **Karşılaştırma:** ESP32D1 mevcut SCT/ADC/ct_clamp; ESP32D2 ADS1115/ct_clamp; PZEM akım/gerilim/güç.
+- **Sabitler:** İlk testte bağlantı/tur sayısı ve firmware ayarları sabit tutulacak. ESP32D1 K=24.22 değişmez. ADS1115 YAML'daki 30A/1V doğrusu yalnız başlangıç ayarıdır.
+- **Toplanacak veri:** Zaman damgalı kararlı değerler, her iki SCT yolunun ham ct_clamp çıktısı, kalibre edilmiş akım, PZEM akımı/gücü/gerilimi, örnek sayısı/SPS, minimum/ortalama/maksimum ve standart sapma.
+- **Katsayı:** Birimler ve dönüşüm doğrulandıktan sonra ADS1115 ham ct_clamp kararlı ortalaması PZEM kararlı ortalamasıyla karşılaştırılarak hesaplanacak.
+- **Kabul:** Tekrarlı ölçümlerde kararlılık, girişte clipping olmaması ve PZEM'e göre sapmanın raporlanması. ±%4 hedefi henüz sonuç değildir.
+- **Sonuç:** Ölçüm ve katsayı henüz yok.
