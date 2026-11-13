@@ -410,3 +410,18 @@ Her test yükü için önce o yüke ait UNIT ölçümü alınır ve SCT sonucu b
 - Kullanıcı kararı: mevcut CH1 kurulumunda sayısal değer verilebilen ölçülebilir alanın başlangıcı 78 W olarak kabul edilir.
 - 78 W noktası için CSV/uzun kararlı pencere istatistiği henüz yoktur. K=24.22 değiştirilmedi.
 - [LOAD-78W-001 ayrıntılı kayıt](78w-mixed-incandescent/README.md).
+
+
+## 2026-11-13 — Sabit yük deneylerinden yöntemsel tecrübe (E19 / ADS1115)
+
+150 W E19 oturumunun CSV incelemesinden sonra sabit yük testlerinde aşağıdaki uygulama notları eklendi. Bunlar deneysel gözlemden çıkarılan yöntem notlarıdır; her lamba/yük için aynı oturma süresi garanti edilmez.
+
+1. **Nominal watt, referans akım değildir.** Ampulün üzerinde yazan 57/100/150 W değeri test kimliğini tanımlar. Karşılaştırma ve kalibrasyon girdisi, aynı kararlı zaman penceresindeki PZEM akım ortalamasıdır. PZEM BERO proje referansıdır; mutlak ground truth değildir.
+2. **Açılış/ısınma bölgesini kararlı alana karıştırma.** 150 W oturumunda PZEM akım ve güç ilk yaklaşık iki dakika yükselmiş, ardından oturmuştur. Yeni sabit yük kayıtlarında ilk 3 dakika geçici bölge olarak işaretlenir; fakat yalnız saat doldu diye kararlı kabul edilmez. PZEM ve SCT/ADS akışlarının zaman serileri gerçekten oturduktan sonra kararlı pencere seçilir.
+3. **Ortak pencere şartı.** PZEM, ADS1115 ve varsa ESP32D1 verileri yalnız zaman aralıklarının kesiştiği kararlı bölümde karşılaştırılır. Farklı zamanlardaki son değerleri veya nominal yük hesabını eşzamanlı ölçüm gibi kullanma.
+4. **Yük sabit kalmalı.** Sabit yük deneyinde lamba sürekli bağlı tutulur. SSR/UDP ON-OFF işaretleri fiziksel yük anahtarlaması kanıtı değilse yük durumu etiketi yapılmaz.
+5. **Yapılandırma sabitliği.** Bir yük noktasının ilk karşılaştırmasında gain, sample_rate, ct_clamp penceresi, update interval, filtre, yayın hassasiyeti, katsayı ve SCT tur sayısı değiştirilmez. İyileştirme önerileri taban kayıt alındıktan sonra ayrı deney olarak sınanır.
+6. **Kararlılık ve referans uyumu ayrı raporlanır.** SD/CV sensör yolunun kendi iç dağılımını gösterir; PZEM'e göre fark ise referans uyumunu gösterir. Düşük SD tek başına doğruluk veya ±%4 başarısı değildir.
+7. **Ham kaynak korunur.** CSV/log kaynağı, timestamp/timezone, entity ve ayarlar kaydedilir; geçici bölge dışarı atılmaz, yalnız kararlı pencere istatistiğinden ayrı sınıflandırılır.
+
+150 W raporu: [E19 150 W karşılaştırması](../logs/ads1115/2026-11-13-E19-150w-comparison.md). Yeni 57 W oturumu: [E19 57 W test kaydı](../logs/ads1115/2026-11-13-E19-57w-test.md).
