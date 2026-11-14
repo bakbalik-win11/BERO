@@ -1,3 +1,10 @@
+## 2026-11-14 — E23 ADS1115 sıçrama araştırması yeni modülle devam edecek
+- E19 enerjili-hat/yüksüz-iletken uzun kayıt analizi kapalı; fiziksel sıçrama nedeni açık.
+- Kullanıcı kararı: aç/kapa mekanizması/kodları çıkarılmış yeni modül yapısıyla uzun kayıt alınacak ve E19 baseline'ıyla istatistiksel karşılaştırma yapılacak.
+- Ölçülen hatta röle bağlı değil ve bu hatta aç/kapa yapılmıyor; ayrı ESP'deki anahtarlamayla zaman yakınlığı nedensellik sayılmayacak.
+- **E23 PLANLANDI**; yeni modül, kayıt ve analiz henüz gerçekleştirilmedi.
+- [E23 protokolü](experiments/E23-ads1115-spike-new-module-comparison/README.md).
+
 ## 2026-11-14 — ADS1115 enerjili-yüksüz uzun gözlem kapatıldı
 
 - Uzun HA History CSV istatistiksel olarak analiz edildi; ADS1115 taban grubu (n=1.592, ort. 0,00122955 A, SD 0,00028426 A) ve 0,040 A üzeri 72 sapma örneği raporlandı.
