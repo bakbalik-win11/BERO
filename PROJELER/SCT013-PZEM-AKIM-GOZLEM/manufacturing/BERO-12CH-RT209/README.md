@@ -69,3 +69,29 @@ BERO için iki aynı ölçüm düğümünü tek, servis edilebilir bir ana modü
 - Sonraki adım olarak **1 adet RT-209 numune alıp fiziksel yerleşim denemesi yapmak** uygun görüldü. Bu, seri alım veya nihai kutu onayı değildir.
 - Numune üzerinde önce iki terminal shield'ın gerçek ölçüleriyle yerleşim, ADS1115/RS485 alanı, kablo payı ve panel jack/buton geometrisi kontrol edilecek. Uymayan yerleşim zorlanmayacak; sonuçlara göre kutu adayı yeniden değerlendirilecek.
 - **Satın alma henüz yapılmadı;** bu kayıt kullanıcı niyetini/planını gösterir, sipariş veya fiziksel test kanıtı değildir.
+
+
+## 2026-11-15 — Kâğıt yerleşim provası ve termal tasarım notu
+
+### Kâğıt prova — numune öncesi
+- RT-209 PDF çizimindeki taşıyıcı taban, **%100 / gerçek ölçekte** yazdırılarak ilk yerleşim şablonu olarak kullanılabilir.
+- Yazdırılan şablonda çizimdeki bilinen 150 × 85,5 mm ölçü cetvelle kontrol edilmeden yerleşim ölçüsü kabul edilmeyecek. Yazıcı sürücüsünün “sayfaya sığdır” ölçeklemesi kapalı olmalı.
+- ESP32 terminal shield, ADS1115 ve RS485 kartlarının gerçek dış ölçülerinde ayrı kâğıt şablonlar hazırlanıp taban üzerinde denenmeli. Sadece kart gövdesi değil; soket, USB erişimi, klemens, konnektör ve kablo çıkış payları da gösterilmeli.
+- Kâğıt prova, taban alanı ve kaba yerleşim çakışmalarını eler; kutunun iç yüksekliğini, kapak çakışmasını, gerçek montaj toleransını veya sıcaklık davranışını kanıtlamaz.
+
+### Isıl tasarım — açık kontrol maddeleri
+- ESP32 kartlarının regülatörleri ve Wi-Fi kullanımı, ADS1115 analog ön uçları ve RS485 dönüştürücüleri aynı kapalı hacimde ısı kaynağı/ısıya duyarlı bileşenler olarak birlikte değerlendirilmeli.
+- Güç dönüştürme/regülasyon bölümü ile düşük seviyeli SCT analog giriş/ADS1115 bölümü mümkün olduğunca fiziksel olarak ayrılmalı. Bu ayrım hem ısı hem de elektriksel gürültü açısından yerleşim hedefidir; nihai mesafe ölçüm ve testle belirlenecek.
+- Kartların üst üste gelmesi, havalandırma boşluklarının kapanması ve sıcak bileşenlerin doğrudan ADS1115/analog giriş bölgesine yakın yerleştirilmesi önlenmeli.
+- Kutu içi hava dolaşımı ve doğal taşınım için kapak/taban yönü, montaj yönü ve boşluklar incelenmeli. RT-209 üzerinde havalandırma deliği açılması şu aşamada kararlaştırılmadı; muhafaza koruması ve güvenlik etkileri değerlendirilmeden delik açılmayacak.
+- Kâğıt prova ısınma değerlendirmesi değildir. Numune temin edilirse, gerçek yük altında kapak kapalı ve kararlı çalışma koşulunda ESP32, regülatör/güç bölümü, ADS1115 yakını ve kutu iç havası sıcaklıkları ölçülmeli; ortam sıcaklığı ve çalışma süresiyle birlikte kaydedilmeli.
+- Kabul edilebilir sıcaklık sınırları, kullanılacak kart/modül üretici verileri ve gerçek ölçümler görülmeden sayısal olarak belirlenmeyecek.
+
+### Sıradaki sıra
+1. PDF taban şablonunu 1:1 yazdır ve ölçüyü doğrula.
+2. Gerçek kartların dış ölçülerini alıp kâğıt şablonlarını hazırla.
+3. Taban ve panel yerleşimini kâğıt üzerinde ele.
+4. Uygun görünürse 1 adet RT-209 numune al; kapak/iç yükseklik ve montajı fiziksel doğrula.
+5. Elektronik çalışırken kapalı kutu termal denemesi yap; sonuçtan önce seri imalat kararı verme.
+
+**Durum:** Bunlar tasarım kontrol maddeleridir. PDF çıktısı alınmadı, kâğıt prova yapılmadı, termal ölçüm yapılmadı.
