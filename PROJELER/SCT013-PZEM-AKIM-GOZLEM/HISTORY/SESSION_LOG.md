@@ -2338,3 +2338,4 @@ PLANLANDI / başlatma haberi bekleniyor. Makine çalıştırılmadı; kayıt, CS
 ### SINIR
 Bu oturumda yalnız test planı ve depo dokümantasyonu güncellendi. Sipariş teslimi, firmware, pin planı, derleme, fiziksel bağlantı ve ölçüm testi yapılmadı.
 - Ayrıntı: [E24 protokolü](../experiments/E24-ads1115-multi-bus-expansion/README.md).
+undefined
