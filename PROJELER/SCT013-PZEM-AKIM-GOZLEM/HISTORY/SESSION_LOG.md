@@ -2315,3 +2315,26 @@ E23 PLANLANDI. Yeni modülün fiziksel kurulumu, firmware, uzun kayıt, CSV anal
 
 ### DURUM
 PLANLANDI / başlatma haberi bekleniyor. Makine çalıştırılmadı; kayıt, CSV ve analiz henüz yok.
+
+
+
+## 2026-11-14 — E24 test hedefi üç ADS1115 ve tek ESP32 olarak güncellendi
+
+### KULLANICI BİLDİRİMİ / KARAR
+- Kullanıcı netleştirdi: eldeki iki ADS1115'ten biri çalışıyor, diğeri arızalı.
+- Yeni siparişlerin teslimi bekleniyor. Siparişlerin adet/model/teslim durumu belirtilmediği için 10 adet sipariş verildiği veya teslim alındığı varsayılmadı.
+- Güncel hedef: **tek ESP32 üzerinde 3 ADS1115 ile 6 SCT kanalını okumak**.
+- Her ADS1115 için ayrı SDA/SCL çifti kullanılması tercih ediliyor.
+
+### TEST PLANI
+- Üç ADS modülü ayrı ayrı bilinen güvenli DC girişle doğrulanacak.
+- Aynı ESP32 üzerinde üç bağımsız I²C hattı kurulacak. Klasik ESP32'de iki donanımsal I²C kontrolcüsü bulunduğundan üçüncü hat için önce yazılımsal I²C desteği, gerçek kart/framework ve ESPHome/SDK sürümünde derleme ve fiziksel testle incelenecek.
+- Üç bus birlikte doğrulandıktan sonra her ADS'den iki kanal alınarak altı kanal DC testi yapılacak.
+- Güvenlik kapısı geçilmeden SCT sekonderi/şebeke bağlantısı yapılmayacak; ADS ortak-mod ve giriş ray sınırları, CT sekonder/burden koşulu ve bias seviyesi doğrulanacak.
+- Zamanlama ölçümleri: kanal başına efektif SPS, altı kanal çevrim süresi, dönüşüm ve I²C okuma gecikmesi, jitter, timeout/I²C hata, kayıp/tekrar örnek.
+- ADS1115 860 SPS değeri ADC başına toplam dönüşüm hızıdır; iki MUX kanalının eşzamanlı 860 SPS çalıştığı varsayılmayacak.
+- İlk doğrulama aşamasında RS485 kullanılmayacak. İkinci ESP32/12 SCT genişlemesi, tek düğüm altı kanal doğrulandıktan sonra ele alınacak.
+
+### SINIR
+Bu oturumda yalnız test planı ve depo dokümantasyonu güncellendi. Sipariş teslimi, firmware, pin planı, derleme, fiziksel bağlantı ve ölçüm testi yapılmadı.
+- Ayrıntı: [E24 protokolü](../experiments/E24-ads1115-multi-bus-expansion/README.md).
