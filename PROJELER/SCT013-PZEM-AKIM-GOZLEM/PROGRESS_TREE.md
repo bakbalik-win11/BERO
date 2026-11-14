@@ -1,3 +1,9 @@
+## 2026-11-14 — E21 ilk tam çamaşır makinesi kaydı ayrıldı
+- Bugün bir tam programın baştan sona kaydı planlandı; makinenin başlatılacağı haber bekleniyor, kayıt henüz başlamadı.
+- RECORD_ID: **WM-20261114-01**; geçici etiket **UZUN**. Panel programı ve ayarlar henüz bildirilmedi.
+- Kalıcı PROGRAM_ID (`WMP-NNN`) program adı ve ayarlar doğrulandıktan sonra atanacak. Tekrar çekimleri ayrı RECORD_ID ile aynı PROGRAM_ID altında gruplanabilir.
+- [Kayıt metadata şablonu](logs/washing-machine/WM-20261114-01/README.md) · [E21 protokolü](experiments/E21-washing-machine-program-analysis/README.md).
+
 ## 2026-11-14 — E23 ADS1115 sıçrama araştırması yeni modülle devam edecek
 - E19 enerjili-hat/yüksüz-iletken uzun kayıt analizi kapalı; fiziksel sıçrama nedeni açık.
 - Kullanıcı kararı: aç/kapa mekanizması/kodları çıkarılmış yeni modül yapısıyla uzun kayıt alınacak ve E19 baseline'ıyla istatistiksel karşılaştırma yapılacak.
