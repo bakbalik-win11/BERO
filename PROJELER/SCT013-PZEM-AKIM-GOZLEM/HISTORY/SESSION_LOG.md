@@ -1,3 +1,21 @@
+## 2026-11-14 — E24 test basamağı / nihai tek ESP32 hedefi düzeltmesi
+
+### KULLANICI DÜZELTMESİ
+- Nihai hedef **tek ESP32 üzerinde 6 SCT kanalını okumak**.
+- İlk test, eldeki iki ADS1115 ile tek ESP32 üzerinde **4 SCT kanalını** birlikte okumaktır.
+- Dört kanal yalnızca ilk doğrulama basamağıdır. Sonraki hedef aynı ESP32'ye üçüncü ADS1115 erişimini çözerek altı SCT kanalına çıkmaktır.
+- İki aynı altı kanallı düğümün tekrarıyla toplam 12 SCT planlanır.
+- Altı kanallı fiziksel modül henüz hazır değildir; bu nedenle ilk test mevcut iki ADS1115 ile sınırlıdır.
+
+### SONRAKİ İŞ
+1. İki ADS1115'i ayrı ayrı kontrol et; şüpheli kartı yeniden dene.
+2. Tek ESP32 + iki ADS1115 + dört SCT kanalını birlikte çalıştır.
+3. Gecikme, çevrim süresi, kanal başına güncelleme, timeout ve veri kaybını logla.
+4. Üçüncü ADS için I²C yöntemini doğrula; tek ESP32 + altı SCT hedefini test et.
+
+### DURUM
+E24 **PLANLANDI**; fiziksel test henüz yapılmadı. E24 README ilk test ve nihai hedef ayrımına göre güncellendi.
+
 ## 2026-11-14 — E24 çoklu ADS1115 test ve tedarik kararı
 
 ### HEDEF
