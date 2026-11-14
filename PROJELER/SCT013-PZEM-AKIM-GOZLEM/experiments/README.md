@@ -1,3 +1,8 @@
+## 2026-11-14 — E21 ilk tam program kaydı
+- **[WM-20261114-01](../logs/washing-machine/WM-20261114-01/README.md): PLANLANDI.** Gün içinde bir tam çamaşır makinesi programı baştan sona kaydedilecek; başlatma haberi bekleniyor.
+- Kayıt kimliği biçimi `WM-YYYYMMDD-NN`; program sınıfı kimliği `WMP-NNN` ve gerçek panel programı/ayarları öğrenildikten sonra atanacak. Geçici “UZUN” etiketi sınıf kimliği değildir.
+- Ham HA CSV, metadata, analiz ve segment tablosu ayrı dosyalar olarak tutulacak.
+
 ## E23 — ADS1115 yüksüz sıçrama araştırması: yeni modül karşılaştırması
 - **[E23 protokolü](E23-ads1115-spike-new-module-comparison/README.md): PLANLANDI.** E19'da görülen sıçramaların, aç/kapa mekanizması/kodları çıkarılmış yeni modül yapısında sürüp sürmediği araştırılacak. Yeni uzun kayıt, E19 2026-11-14 istatistiksel baseline'ıyla aynı metrikler üzerinden karşılaştırılacak.
 - Ölçülen hatta aç/kapa yapılmadığı ve rölenin bu hatta bağlı olmadığı kullanıcı tarafından netleştirildi. Ayrı ESP'deki anahtarlama ile zaman yakınlığı nedensellik kanıtı değildir.
