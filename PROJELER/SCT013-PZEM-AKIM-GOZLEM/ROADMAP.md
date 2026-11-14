@@ -1,3 +1,11 @@
+## E23 — ADS1115 sıçrama araştırmasının yeni modülle sürdürülmesi (PLANLANDI)
+- E19'un 2026-11-14 enerjili-hat/yüksüz-iletken uzun kayıt istatistikleri kapanmıştır; ancak sıçramaların fiziksel nedeni çözülmüş değildir.
+- Kullanıcı kararı: Aç/kapa mekanizması ve ilgili kodlar mevcut düzenden çıkarılıp yeni modül yapısı kurulduktan sonra uzun süreli yüksüz kayıt alınacak; sonuçlar E19 baseline'ıyla karşılaştırılacaktır.
+- Kullanıcı fiziksel koşulu: gözlenen hatta aç/kapa yapılmıyor ve röle bu hatta bağlı değil; anahtarlama başka bir ESP üzerinden gerçekleşiyor. Bu nedenle önceki HA switch state zaman yakınlığı fiziksel röle etkisi/ölçülen hattın anahtarlanması kanıtı olarak yorumlanmayacaktır.
+- Yeni modülün gerçek bağlantı ve yazılım ayarları test öncesi kaydedilecek. Önceki ve yeni düzenek farklıysa farklar karşılaştırmada açık tutulacak.
+- Durum: **E23 PLANLANDI**; modül, kayıt, analiz ve sonuç henüz yok. E21 çamaşır makinesi analizi gibi mevcut hedefleri kendiliğinden iptal etmez; ayrı teknik araştırma olarak izlenir.
+- [E23 protokolü](experiments/E23-ads1115-spike-new-module-comparison/README.md).
+
 ## Sonraki donanım tasarımı — tek ESP32 ölçüm düğümü (PLANLANDI)
 
 Kullanıcının 2026-11-13 tarihli kararı:
