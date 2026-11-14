@@ -1,3 +1,10 @@
+## 2026-11-14 — E21 ilk tam çamaşır makinesi program kaydı planlandı
+- Kullanıcı bugün gün içinde bir tam programı baştan sona kaydetmeyi planlıyor; makinenin başlatılacağı zaman için evden haber bekleniyor. Kayıt henüz başlamadı.
+- İlk çekim kimliği: **WM-20261114-01**. Geçici açıklama etiketi: **UZUN**; paneldeki gerçek program adı henüz bilinmiyor.
+- Kalıcı sınıflandırma kuralı: her çekim ayrı RECORD_ID alır (`WM-YYYYMMDD-NN)); aynı program adı ve anlamlı ayar kombinasyonları doğrulanınca PROGRAM_ID (`WMP-NNN`) atanır. PROGRAM_ID şimdilik atanmadı.
+- Ham CSV korunacak; metadata, analiz ve segment tablosu ayrı dosyalar olacak. İlk kayıt önce baştan sona alınacak, ardından tarafsız akım bölümleri çıkarılacak.
+- Kayıt şablonu: [WM-20261114-01](logs/washing-machine/WM-20261114-01/README.md). E21 standardı: [E21 README](experiments/E21-washing-machine-program-analysis/README.md).
+
 ## 2026-11-14 — E23 yeni modülle ADS1115 sıçrama araştırmasının devamı
 - Kullanıcı kararı: Önceki E19 enerjili-hat/yüksüz-iletken gözleminde görülen sıçramalar, aç/kapa mekanizması/kodları aktif düzenden çıkarıldıktan ve yeni modül kurulduktan sonra yeniden uzun kayıt alınarak araştırılacak.
 - Fiziksel koşul kullanıcı tarafından netleştirildi: gözlenen hatta aç/kapa yapılmıyor, röle bu hatta bağlı değil; anahtarlama başka ESP üzerinden yürütülüyor. Önceki HA switch state geçişleriyle zaman yakınlığı nedensellik veya ölçülen hattın röleyle anahtarlanması kanıtı değildir.
