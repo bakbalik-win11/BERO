@@ -1,3 +1,16 @@
+## 2026-11-14 — E19 ADS1115 enerjili-yüksüz gözlem CSV analizi ve test kapanışı
+
+- Kullanıcının `uzun 1115 boşta .csv` dosyası analiz edildi: 16.260 toplam satır; ADS1115 akım entity'sinde 1.679 kayıt, 1.669 sayısal state ve 10 `unavailable`.
+- ADS1115 sayısal kayıtlarının 1.592'si (%95,39) 0,005 A veya altındadır. Bu grubun ortalaması 0,00122955 A, medyanı 0,00128425 A, örnek SD'si 0,00028426 A'dır. 76 adet tam sıfır state vardır.
+- 0,040 A ve üzerindeki 72 state (%4,31) ayrı sapma grubu oluşturur; medyan 0,046599 A, ortalama 0,051456 A. En yüksek değer 0,353055 A'dır.
+- Bu 72 örneğin 57'si (%79,17) en yakın HA switch entity state geçişinden 10 saniye içinde görülmüştür. Bu yalnızca zamansal yakınlıktır; fiziksel SSR hareketi veya nedensellik kanıtı değildir.
+- PZEM akım entity'sinde yalnızca 3 state vardır: 0,0 A → unavailable → 0,0 A. Bu nedenle PZEM'in tüm kayıt boyunca sürekli sıfır gösterdiği ileri sürülmez.
+- **Bu test kapatıldı:** enerjili hat / ölçülen iletkende yüksüz durumun uzun dönem gözlemi analiz edilip raporlandı. Sapmaların fiziksel nedeni teşhis edilmiş değildir.
+- Ayrı enerjisiz hat taban testi yapılmış veya kapanmış sayılmaz. ADS1115 A0/A1 ortak-mod ve giriş ray güvenliği doğrulaması açık kalır; bu rapor yeni enerjili test için güvenlik onayı değildir.
+- Ham CSV'nin dosya boyutu ve SHA-256 değeri rapora işlendi. Ham 1,4 MB CSV Git'e eklenmedi; rapor, özet istatistik CSV'si ve 0,005 A üzerindeki 77 örneklik olay dökümü depoya eklendi.
+- [İstatistiksel rapor](logs/ads1115/2026-11-14-E19-energized-no-load-statistical-report.md) · [Özet istatistikler](logs/ads1115/2026-11-14-E19-energized-no-load-statistics.csv) · [Olay örnekleri](logs/ads1115/2026-11-14-E19-energized-no-load-event-samples.csv).
+
+
 ## 2026-11-13 — Modül envanteri yeniden düzenlendi: Modül 4 planı
 
 - **Modül 1:** bağımsız bias trafosu / taşınabilir bias güç kutusu korunacak. Envanterde mevcut fiziksel varlık olarak kalır.
