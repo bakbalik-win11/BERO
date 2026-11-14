@@ -1,3 +1,10 @@
+## 2026-11-14 — E24 test basamağı ve 6 SCT tek ESP hedefi netleştirildi
+- Nihai hedef: **tek ESP32 üzerinde 6 SCT kanalı** (3 ADS1115 planı; üçüncü I²C erişim yöntemi doğrulanacak).
+- İlk test: eldeki 2 ADS1115 + 1 ESP32 ile **4 SCT kanalını** birlikte okuma; gecikme, çevrim süresi, hata/timeout ve veri kaybını kaydetme.
+- İki aynı altı kanallı düğümün tekrarıyla toplam 12 SCT hedefleniyor.
+- Altı kanallı fiziksel modül şu anda hazır değil; ilk aşama dört kanal doğrulaması.
+- [E24 protokolü](experiments/E24-ads1115-multi-bus-expansion/README.md).
+
 ## 2026-11-14 — E24 çoklu ADS1115 testi ve 12 SCT mimari adayı
 - **E24 PLANLANDI:** Yeni modül imalatından önce eldeki iki ADS1115 ayrı ayrı kontrol edilecek; daha önce çalışmadığı düşünülen kart özellikle yeniden denenecek.
 - İlk ortak test: tek ESP32 üzerinde iki ayrı donanımsal I²C bus ile iki ADS1115'i yönetmek; okuma gecikmesi, çevrim süresi, hata ve veri kaybını ölçmek.
