@@ -1,3 +1,30 @@
+## 8. Kayıt kimliği ve program sınıflandırma standardı
+
+Kayıt kimliği ile program sınıfı birbirinden ayrılır:
+
+- **RECORD_ID:** Her fiziksel çekime özgüdür. Biçim: `WM-YYYYMMDD-NN`. Örnek: `WM-20261114-01`.
+- **PROGRAM_ID:** Aynı program adı ve aynı anlamlı seçenek kombinasyonuyla yapılan tekrar kayıtlarını gruplamak için kalıcı sınıf kimliğidir. Biçim: `WMP-NNN` (ör. `WMP-001`). Gerçek panel program adı ve ayarlar öğrenilmeden atanmaz.
+- **PROGRAM_NAME:** Makine panelinde görünen tam program adı; kullanıcıdan aynen alınır.
+- **PROGRAM_TAG:** “UZUN” gibi kısa, kolay okunur açıklama etiketi olabilir. Paneldeki gerçek program adı veya PROGRAM_ID yerine geçmez.
+
+Sıcaklık, sıkma devri veya ek seçenekler değiştiğinde aynı PROGRAM_ID altında birleştirme otomatik yapılmaz. Önce aynı sınıfın varyantı mı, ayrı program sınıfı mı olduğu kararlaştırılır. Böylece ileride eğitimde kayıt çekimleri (RECORD_ID) ile öğrenilecek program sınıfları (PROGRAM_ID) karıştırılmaz.
+
+Dosya standardı:
+- `WM-YYYYMMDD-NN_raw-ha-history.csv`
+- `WM-YYYYMMDD-NN_metadata.md`
+- `WM-YYYYMMDD-NN_analysis.md`
+- `WM-YYYYMMDD-NN_segments.csv`
+
+Ham HA CSV değişmeden saklanır; analiz ve segmentasyon ayrı türetilmiş çıktılardır.
+
+### 2026-11-14 ilk tam program kaydı
+- **RECORD_ID:** `WM-20261114-01`
+- **PROGRAM_TAG:** geçici olarak `UZUN` (kullanıcının tanımı)
+- **PROGRAM_NAME / PROGRAM_ID:** makine paneli ve ayarlar öğrenilince doldurulacak.
+- **Durum:** PLANLANDI; makinenin başlatılacağı haber bekleniyor.
+- Kayıt şablonu: [WM-20261114-01](../../logs/washing-machine/WM-20261114-01/README.md).
+
+
 # E21 — Çamaşır makinesi program davranışı analizi
 
 - **Durum:** PLANLANDI
