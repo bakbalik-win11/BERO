@@ -720,3 +720,9 @@
 - E20 dinamik geçiş testi olduğundan geçiş örneklerine ±%4 uygulanmaz; kararlı ON/OFF seviyeleri ve çevrimler ayrı analiz edilir.
 - **Durum:** PLANLANDI; fiziksel test ve CSV henüz yok.
 - [E20 deney protokolü](experiments/E20-ads1115-18w-on-off-response/README.md); [sonuç defteri](experiments/E20-ads1115-18w-on-off-response/results.md).
+
+
+## 2026-11-15 — RT-209 ana modül kutusu fikri kaydedildi
+- Ayrı imalat/modül dosyası açıldı: [BERO 12 Kanallı Ölçüm Modülü — RT-209](manufacturing/BERO-12CH-RT209/README.md).
+- RT-209 yalnızca **kutu adayıdır**. İki ESP32 terminal shield, altı ADS1115, 12 SCT dişi jack, iki RS485 ve iki bağımsız reset butonu yerleşimi fikir düzeyindedir.
+- Delikli board/pertinaks taşıyıcı, sökülebilir ESP32 soketleri ve panel jack bağlantısı düşünülüyor. Ölçülü yerleşim, elektriksel tasarım, imalat veya test yapılmadı.
