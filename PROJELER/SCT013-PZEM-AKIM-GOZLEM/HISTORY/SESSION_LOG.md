@@ -1,3 +1,45 @@
+## 2026-11-14 — ADS1115 enerjili-yüksüz uzun gözlem CSV analizi ve test kapanışı
+
+### HEDEF
+Kullanıcının sağladığı uzun Home Assistant History CSV'sini istatistiksel olarak incelemek; ADS1115 yüksüz taban dağılımını, sapma örneklerini ve SSR kontrol entity'siyle zamansal yakınlığını kaydetmek; enerjili-hat/yüksüz-iletken gözlem oturumunu kapatmak.
+
+### KAYNAK VE BÜTÜNLÜK
+- Kaynak: `uzun 1115 boşta .csv`
+- Boyut: 1.414.838 bayt
+- SHA-256: `3494db19c69a54b6488389b9cac89bd970a9b37ca72c2ad61a4d5ddbebc31202`
+- 16.260 satır; 3 sütun (`entity_id`, `state`, `last_changed`).
+- ADS1115 akım entity'si 1.679 state; 1.669 sayısal, 10 unavailable; 10 saat 31 dakika 39,713 saniyelik ilk-son aralığı.
+- Kaynak timestamp UTC idi; analiz raporunda yerel saat UTC+03:00 olarak gösterildi.
+
+### İSTATİSTİKSEL SONUÇ
+- Tüm sayısal ADS1115 state'leri: ortalama 0,003427 A; medyan 0,0012877 A; örnek SD 0,012668 A; P95 0,0015657 A; P97,5 0,0463483 A; P99 0,0483364 A; maksimum 0,3530546 A.
+- 0,005 A ve altı taban grubu: n=1.592 (%95,39); ortalama 0,00122955 A; medyan 0,00128425 A; örnek SD 0,00028426 A; CV %23,12; tam sıfır state sayısı 76.
+- 0,005 A üzeri 77 state: 3 adet 0,005–0,010 A; 2 adet 0,010–0,040 A; 70 adet 0,040–0,060 A; 1 adet 0,060–0,100 A; 1 adet 0,100 A üzeri.
+- 0,040 A ve üzeri 72 örneğin medyanı 0,046599 A, ortalaması 0,051456 A. En yüksek tek örnek 0,353055 A; 0,072691 A ikinci belirgin yüksek örnektir.
+
+### SSR ENTITY İLE ZAMANSAL KARŞILAŞTIRMA
+- HA switch entity: 633 on, 633 off, 1 unavailable state.
+- 0,040 A ve üzerindeki 72 ADS1115 örneğinin 20'si en yakın switch state geçişine ≤1 s, 35'i ≤5 s, 57'si ≤10 s uzaklıktadır.
+- Bu zamansal yakınlık bir ilişki bulgusudur; fiziksel SSR kontak hareketi, girişe elektriksel kuplaj veya nedensellik kanıtı değildir.
+
+### PZEM VE KAYIT SINIRI
+- PZEM akım entity'si yalnızca üç state içerir: başlangıçta 0,0 A; 2026-11-14 00:53:19.139 (+03:00) unavailable; 00:53:19.333 (+03:00) yeniden 0,0 A. PZEM'in tüm oturum boyunca kesintisiz 0,0 A gösterdiği söylenemez.
+- Ardışık ADS1115 state zaman farkı medyanı 1 s; uzun state boşlukları ve unavailable kayıtları bulunduğundan 1 Hz kesintisiz örnekleme iddiası yapılmadı.
+- Gerçek darbe genişliği ve sapmaların fiziksel nedeni bu CSV'den çıkarılamaz.
+
+### DEPOYA EKLENENLER
+- `logs/ads1115/2026-11-14-E19-energized-no-load-statistical-report.md`
+- `logs/ads1115/2026-11-14-E19-energized-no-load-statistics.csv`
+- `logs/ads1115/2026-11-14-E19-energized-no-load-event-samples.csv` (0,005 A üzerindeki 77 state)
+- Ham CSV Git'e eklenmedi; kaynak dosya adı, boyutu ve SHA-256 raporda sabitlendi.
+
+### SONUÇ / DURUM
+- **KAPATILDI:** enerjili hat / ölçülen iletkende yüksüz uzun dönem gözlemi analiz edildi ve istatistiksel olarak raporlandı.
+- Alt eşik, ortalama veya spike filtresi eklenmedi; firmware/katsayı değiştirilmedi.
+- Ayrı enerjisiz hat taban testi bu kapanışa dahil değildir.
+- ADS1115 A0/A1 ortak-mod ve GND–VDD giriş sınırı fiziksel güvenlik doğrulaması açık kalır. Bu rapor yeni enerjili test için güvenlik onayı değildir.
+
+
 ## 2026-11-13 — ADS1115 filtresiz enerjili-yüksüz hat gözlemi ve yeni tek-modül planı
 
 - Kullanıcı bildirimi/grafik gözlemi: ESP32D2 + ADS1115 + SCT, 200 ms ct_clamp penceresi ve 1 s yayınla çalıştırıldı; yazılımsal alt eşik ve spike filtresi kaldırılmış durumda.
