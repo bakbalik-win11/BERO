@@ -1,3 +1,11 @@
+## 2026-11-14 — E19 ADS1115 sıçrama yorumuna kullanıcı düzeltmesi ve yeni modül karşılaştırması
+- Kullanıcı fiziksel koşulu netleştirdi: ADS1115'in ölçtüğü hatta aç/kapa yapılmıyor; röle bu hatta bağlı değil. Anahtarlama başka bir ESP tarafından yürütülüyor; ADS1115 ESP'siyle aynı cihaz değil.
+- Önceki rapordaki 72 sapma örneğinin 57'sinin HA switch state geçişine 10 saniye içinde denk gelmesi yalnızca zamansal yakınlıktır. Bu ilişki artık ölçülen hatta anahtarlama veya doğrudan röle etkisi olarak yorumlanmayacak.
+- Güncel hipotez: ayrı ESP'deki anahtarlama sırasında oluşan olası parazit/kuplaj ADS1115 ölçüm zincirini etkiliyor olabilir. Mekanizma ve nedensellik kanıtlanmadı.
+- Kullanıcı bugün aç/kapa mekanizmasını/kodlarını çıkaracağını, kodları yenileyip yeni modül oluşturacağını ve akşam uzun kayıt alacağını bildirdi. Yeni kayıt önceki E19 istatistikleriyle aynı metrikler üzerinden karşılaştırılacak.
+- Önceki E19 yüksüz gözlem raporu sayısal temel olarak korunur; sıçrama nedeni açık kalır. Yeni kayıt henüz alınmadı.
+- Ayrıntı: [E19 sıçrama nedeni yeniden değerlendirme ve karşılaştırma planı](logs/ads1115/2026-11-14-E19-spike-cause-reassessment.md).
+
 ## 2026-11-14 — E19 ADS1115 enerjili-yüksüz gözlem CSV analizi ve test kapanışı
 
 - Kullanıcının `uzun 1115 boşta .csv` dosyası analiz edildi: 16.260 toplam satır; ADS1115 akım entity'sinde 1.679 kayıt, 1.669 sayısal state ve 10 `unavailable`.
