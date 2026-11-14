@@ -1,3 +1,12 @@
+## 2026-11-14 — ADS1115 enerjili-yüksüz uzun gözlem kapatıldı
+
+- Uzun HA History CSV istatistiksel olarak analiz edildi; ADS1115 taban grubu (n=1.592, ort. 0,00122955 A, SD 0,00028426 A) ve 0,040 A üzeri 72 sapma örneği raporlandı.
+- 72 sapmanın 57'si en yakın HA switch state geçişinden 10 saniye içinde; zamansal ilişki nedensellik/gerçek SSR kontak kanıtı değildir.
+- PZEM akım entity'si yalnızca 0,0 A → unavailable → 0,0 A state'leri içerir; tüm kayıt boyunca sürekli sıfır olduğu iddia edilmez.
+- Bu enerjili-hat/yüksüz-iletken gözlem testi **KAPATILDI**. Ayrı enerjisiz hat testi ve ADS1115 giriş güvenliği doğrulaması açık kalır.
+- [İstatistiksel rapor](logs/ads1115/2026-11-14-E19-energized-no-load-statistical-report.md).
+
+
 ## 2026-11-13 — Modül 1–4 yaşam döngüsü ve E22 Modül 4 olarak güncellendi
 
 - Modül 1 bağımsız bias trafosu/güç kutusu korunacak.
