@@ -706,3 +706,12 @@ Bu, şu aşamada **aday yazılımsal aralık seçimi mimarisidir**; fiziksel ana
 - Bu karar seri satın alma veya nihai kutu onayı değildir. Sipariş henüz verilmedi; fiziksel numune, yerleşim ve ölçüm yapılmadı.
 - Deneme kapsamı: iki ESP32 terminal shield, ADS1115 modülleri, RS485 kartları, kablo/servis payı ve ön paneldeki SCT jack/reset butonlarının gerçek yerleşimi.
 - Sonuç görülmeden kutuda delik açılmayacak ve imalat kararı verilmeyecek. Ayrıntı: [RT-209 imalat fikir dosyası](manufacturing/BERO-12CH-RT209/README.md).
+
+
+## 2026-11-15 — RT-209 kâğıt prova ve ısıl tasarım kontrolü
+- Numune kutu satın almadan önce PDF'deki taşıyıcı tabanın %100 ölçekte yazdırılıp cetvelle doğrulanması ve gerçek kart ölçülerinde kâğıt şablonlarla yerleşim denenmesi önerildi.
+- Yazdırma ölçeği doğrulanmadan kâğıt yerleşim ölçüleri kabul edilmeyecek. Kâğıt prova yalnız taban/kaba çakışma kontrolüdür; iç yükseklik, kapak çakışması ve termal davranışı kanıtlamaz.
+- Termal tasarımda ESP32/regülatör, ADS1115 analog bölüm ve RS485 modüllerinin ısı kaynakları/ısıya duyarlılığı dikkate alınacak; güç bölümü ile düşük seviyeli analog bölüm ayrılacak, kart üst üste bindirilmeyecek ve hava dolaşımı engellenmeyecek.
+- Sayısal sıcaklık kabul sınırı üretici verileri ve gerçek ölçüm olmadan belirlenmeyecek. Numune aşamasında kapak kapalı gerçek çalışma koşulunda sıcaklık ölçümü planlanacak.
+- **Henüz yapılmadı:** PDF çıktısı, kâğıt prova, kutu satın alma, termal ölçüm.
+- Ayrıntı: [RT-209 imalat fikir dosyası](manufacturing/BERO-12CH-RT209/README.md).
