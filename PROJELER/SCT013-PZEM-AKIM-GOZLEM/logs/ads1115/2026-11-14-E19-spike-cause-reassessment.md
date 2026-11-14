@@ -34,8 +34,11 @@
 6. Önceki ve yeni kayıt farklı donanım/firmware veya ADS ayarları kullanıyorsa bu farklar açıkça belirtilmeli; ham ortalamalar doğrudan eşdeğer koşul gibi kıyaslanmamalı.
 7. Yeni modülde sıçramalar belirgin azalırsa bu, eski kurulumla ilişkili bir farkı destekler; tek başına sebebi kesinleştirmez. Sıçramalar sürerse ortak çevre/tesisat, güç, toprak, kablo ve giriş devresi gibi olasılıklar sonraki kontrollü testlerle ayrıştırılır.
 
-## Durum
-- Önceki E19 yüksüz gözlem testi: istatistiksel rapor olarak kapalı.
+## Karar ve devam eden araştırma
+Kullanıcı kararıyla bu konu yeni modül yapısıyla araştırılmaya devam edecektir. Aç/kapa mekanizması/kodları mevcut düzenden çıkarılacak, yeni modül ve yenilenmiş kod oluşturulacak; yeni uzun kayıt önceki E19 baseline'ıyla karşılaştırılacaktır.
+
+- **E19:** Önceki enerjili-hat/yüksüz-iletken gözlem oturumu istatistiksel rapor olarak kapalıdır.
+- **E23:** Yeni modülle sıçrama araştırması **PLANLANDI**. [E23 deney protokolü](../../experiments/E23-ads1115-spike-new-module-comparison/README.md).
 - Sıçramaların fiziksel nedeni: AÇIK / TEŞHİS EDİLMEDİ.
-- Yeni modül uzun kayıt karşılaştırması: PLANLANDI; kayıt ve analiz henüz yapılmadı.
-- Bu belge dokümantasyon düzeltmesidir; firmware/YAML değişikliği veya fiziksel test yapıldığı anlamına gelmez.
+- Yeni modülün kesin donanım/firmware/ADS ayarları, uzun kayıt ve analiz henüz yapılmadı.
+- Bu belge dokümantasyon güncellemesidir; firmware/YAML değişikliği veya fiziksel test yapıldığı anlamına gelmez.
