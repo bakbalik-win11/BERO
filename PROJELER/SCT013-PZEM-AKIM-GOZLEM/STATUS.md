@@ -1,3 +1,13 @@
+
+
+## 2026-11-14 — E24 güncellemesi: 3 ADS1115 + 1 ESP32 / 6 SCT test hedefi
+- Kullanıcı netleştirmesi: eldeki iki ADS1115'ten **biri çalışıyor, diğeri arızalı**.
+- Yeni siparişlerin teslimi bekleniyor; sipariş adedi ve teslim içeriği bu kayıtta varsayılmadı.
+- Güncel test hedefi: **tek ESP32 + 3 ADS1115 + 6 SCT**. Her ADS için ayrı SDA/SCL çifti tercih ediliyor; klasik ESP32'de yalnız iki donanımsal I²C kontrolcüsü olduğundan üçüncü hat (öncelikle yazılımsal I²C) gerçek kart/framework üzerinde doğrulanmalı.
+- Üç ADS modülü tek tek doğrulandıktan sonra üç bus birlikte çalıştırılacak; altı kanal önce güvenli DC seviyelerle, ardından analog giriş güvenliği doğrulanırsa SCT ile test edilecek.
+- Kayıt metrikleri: kanal başına efektif SPS, altı kanal çevrim süresi, dönüşüm/okuma gecikmesi, jitter, I²C hata/timeout, eksik/tekrar örnek.
+- İlk testte RS485 yok. Firmware, pin planı ve fiziksel test henüz yapılmadı. Ayrıntı: [E24 protokolü](experiments/E24-ads1115-multi-bus-expansion/README.md).
+
 ## 2026-11-14 — E24 ilk test kapsamı ve nihai tek ESP hedefi netleştirildi
 - Kullanıcı düzeltmesi: **nihai hedef tek ESP32 üzerinde 6 SCT kanalını okumak**; 12 kanal hedefi iki aynı 6 kanallı düğümün tekrarıdır.
 - İlk aşama nihai tasarım değildir: eldeki 2 ADS1115 + 1 ESP32 ile **4 SCT kanalını birlikte okuma** testi yapılacak.
