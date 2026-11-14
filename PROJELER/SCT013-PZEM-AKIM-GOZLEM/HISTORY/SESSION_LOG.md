@@ -1,3 +1,31 @@
+## 2026-11-14 — E24 çoklu ADS1115 test ve tedarik kararı
+
+### HEDEF
+12 SCT kanallı simetrik sistem için iki aynı ESP32 ölçüm düğümü fikrini test edilebilir plana çevirmek; yeni modül imalatından önce eldeki iki ADS1115 ile çoklu ADC okuma denemesi yapmak.
+
+### KULLANICI KARARLARI / BİLDİRİMLERİ
+- İlk etapta 12 SCT gibi ölçeklenebilir ve simetrik yapı değerlendirilecek.
+- Taslak: iki ESP32; her ESP başına üç ADS1115, altı SCT kanalı ve bir RS485 dönüştürücü.
+- Her ADS1115 için ayrı SDA/SCL çifti kullanılması isteniyor.
+- Modül imalatından önce eldeki iki ADS1115 test edilecek. İki karttan biri önceki denemede çalışmamış olabilir; yeniden kontrol edilecek.
+- Test başarılı olursa gümrük/tedarik gecikmelerine karşı 10 adet ADS1115 yedek stok siparişi planlanıyor. Henüz sipariş verilmedi.
+
+### TEKNİK DOĞRULAMA / MİMARİ SINIR
+- Espressif ESP-IDF resmi belgesi klasik ESP32'de iki donanımsal I²C kontrolcüsü bulunduğunu belirtir.
+- Bu nedenle iki ayrı donanımsal I²C bus ile iki ADS1115 testi doğrudan yapılabilir; tek ESP32 üzerinde üç ayrı donanımsal I²C bus varmış gibi tasarım yapılamaz.
+- Üçüncü ayrı SDA/SCL çifti için yazılımsal I²C desteği, TCA9548A gibi çoklayıcı veya farklı bus topolojisi seçenekleri ayrıca test edilmelidir.
+- 3 ADS/ESP ve 12 SCT toplam mimarisi bu teknik karar kapısı geçilmeden kesin tasarım değildir.
+
+### SONRAKİ İŞ
+1. Eldeki iki ADS1115'i tek tek test et; şüpheli kartın durumunu ayrı kaydet.
+2. İki ADS'yi tek ESP32'ye iki bağımsız donanımsal I²C hattıyla bağla.
+3. Dönüşüm başlatma/okuma çevrim süreleri, zamanlama, timeout ve hata sayısını kaydet.
+4. Sonuca göre üçüncü ADS için yöntem seç; sonra modül imalatı ve 10 adet yedek ADS1115 siparişini değerlendir.
+
+### DURUM
+**E24 PLANLANDI.** Fiziksel test, kod, derleme, bağlantı şeması, sipariş veya teslimat yapılmış değildir.
+
+Ayrıntı: [E24 protokolü](../experiments/E24-ads1115-multi-bus-expansion/README.md).
 ## 2026-11-14 — ADS1115 enerjili-yüksüz uzun gözlem CSV analizi ve test kapanışı
 
 ### HEDEF
