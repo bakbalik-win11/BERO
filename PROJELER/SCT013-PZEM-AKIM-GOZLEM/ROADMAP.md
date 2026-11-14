@@ -260,3 +260,11 @@ Araştırma şu soruları cevaplamalı:
 5. Bulgulara göre SCT'nin kullanım alanını tanımla; gerekirse farklı sensörlerle karşılaştırmayı ayrı karar olarak aç.
 
 Bu çalışma, Faz 2'nin Python/veri/öğrenme odağıdır. E16/E17/E18 yeniden açılmamıştır.
+
+
+## 2026-11-15 — BERO ana modül kutusu adayı: RT-209
+- RT-209, 12 kanallı BERO ana modülünün muhafaza adayı olarak seçildi; kesinleşmiş ürün/satın alma kararı değil.
+- Mekanik tasarım fikirleri E24 elektronik haberleşme testinden ayrı bir modül dosyasında tutulacak.
+- Hedef yerleşim fikri: 2 ESP32 terminal shield, 6 ADS1115, 12 SCT dişi jack, 2 RS485 modülü, RESET-A/B ve delikli board taşıyıcı.
+- Önce kutu/panel geometrisi esas alınacak; jack delikleri ve iç taşıyıcı buna göre tasarlanacak. Kutuya delik açılmadan önce 1:1 prova yapılacak.
+- [İmalat fikir dosyası](manufacturing/BERO-12CH-RT209/README.md).
