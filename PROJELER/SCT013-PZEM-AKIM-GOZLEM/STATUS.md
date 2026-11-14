@@ -1,3 +1,11 @@
+## 2026-11-14 — E23 yeni modülle ADS1115 sıçrama araştırmasının devamı
+- Kullanıcı kararı: Önceki E19 enerjili-hat/yüksüz-iletken gözleminde görülen sıçramalar, aç/kapa mekanizması/kodları aktif düzenden çıkarıldıktan ve yeni modül kurulduktan sonra yeniden uzun kayıt alınarak araştırılacak.
+- Fiziksel koşul kullanıcı tarafından netleştirildi: gözlenen hatta aç/kapa yapılmıyor, röle bu hatta bağlı değil; anahtarlama başka ESP üzerinden yürütülüyor. Önceki HA switch state geçişleriyle zaman yakınlığı nedensellik veya ölçülen hattın röleyle anahtarlanması kanıtı değildir.
+- Önceki E19 istatistikleri karşılaştırma baseline'ı olarak korunur; E19 oturumu kapanmıştır. Sıçramaların fiziksel nedeni açık kalır.
+- Yeni modülün donanım/firmware/ADS ayarları henüz kesinleştirilmedi. Akşam uzun kayıt ve karşılaştırma henüz yapılmadı.
+- **E23: PLANLANDI — yeni modül ile ADS1115 yüksüz sıçrama karşılaştırması.** Yeni kayıt önceki E19 raporuyla aynı istatistikler üzerinden kıyaslanacak; koşul farkları açıkça kaydedilecek.
+- Ayrıntı: [E23 deney protokolü](experiments/E23-ads1115-spike-new-module-comparison/README.md).
+
 ## 2026-11-14 — E19 ADS1115 sıçrama yorumuna kullanıcı düzeltmesi ve yeni modül karşılaştırması
 - Kullanıcı fiziksel koşulu netleştirdi: ADS1115'in ölçtüğü hatta aç/kapa yapılmıyor; röle bu hatta bağlı değil. Anahtarlama başka bir ESP tarafından yürütülüyor; ADS1115 ESP'siyle aynı cihaz değil.
 - Önceki rapordaki 72 sapma örneğinin 57'sinin HA switch state geçişine 10 saniye içinde denk gelmesi yalnızca zamansal yakınlıktır. Bu ilişki artık ölçülen hatta anahtarlama veya doğrudan röle etkisi olarak yorumlanmayacak.
