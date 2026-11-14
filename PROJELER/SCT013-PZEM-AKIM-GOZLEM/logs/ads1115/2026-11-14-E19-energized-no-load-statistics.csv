@@ -1,0 +1,35 @@
+metric,value,unit,notes
+csv_rows,16260,rows,Total source rows
+csv_bytes,1414838,bytes,Original uploaded CSV size
+ads_current_rows,1679,rows,Current entity rows including unavailable
+ads_numeric_rows,1669,rows,Numeric current states
+ads_unavailable,10,rows,Unavailable current states
+ads_unique_numeric_values,1379,values,Distinct numeric values
+record_duration,10.527698,hours,ADS current entity first-to-last timestamp
+all_mean,0.003427,A,All numeric current states
+all_median,0.001287725,A,All numeric current states
+all_sample_sd,0.012668,A,All numeric current states
+all_p95,0.001565659,A,All numeric current states
+all_p97_5,0.046348317,A,All numeric current states
+all_p99,0.048336366,A,All numeric current states
+all_max,0.353054553,A,All numeric current states
+baseline_le_0_005_n,1592,rows,Statistical grouping only; no firmware threshold
+baseline_le_0_005_mean,0.001229552,A,Statistical grouping only
+baseline_le_0_005_median,0.001284255,A,Statistical grouping only
+baseline_le_0_005_sample_sd,0.000284261,A,Statistical grouping only
+baseline_le_0_005_cv,23.12,percent,Relative SD
+baseline_zero_count,76,rows,Exact zero states
+above_0_005_count,77,rows,All values greater than 0.005 A
+above_0_04_count,72,rows,4.31 percent of numeric values
+above_0_04_median,0.046598573,A,High-value group
+above_0_04_mean,0.051455659,A,High-value group
+switch_nearest_le_1s,20,rows,Among 72 values at or above 0.04 A
+switch_nearest_le_5s,35,rows,Among 72 values at or above 0.04 A
+switch_nearest_le_10s,57,rows,Among 72 values at or above 0.04 A
+switch_on_states,633,rows,HA switch entity state count
+switch_off_states,633,rows,HA switch entity state count
+pzem_current_states,3,rows,0.0 A then unavailable then 0.0 A
+pzem_voltage_mean,231.970098,V,5508 numeric states
+pzem_voltage_min,223.1,V,5508 numeric states
+pzem_voltage_max,234.6,V,5508 numeric states
+pzem_frequency_mean,49.95006,Hz,849 numeric states
