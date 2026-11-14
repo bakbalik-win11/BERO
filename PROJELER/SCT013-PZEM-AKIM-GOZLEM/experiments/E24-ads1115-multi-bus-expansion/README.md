@@ -91,3 +91,49 @@ Bu seçeneklerden biri gerçek donanım ve yazılım testiyle doğrulanmadan tek
 - Espressif ESP-IDF I²C belgesi: ESP32'de iki I²C kontrolcüsü bulunduğunu belirtir: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/i2c.html
 - ESPHome I²C belgesi: birden fazla I²C bus tanımlama ve cihazın birden fazla bus desteklemesi koşulunu açıklar: https://esphome.io/components/i2c/
 - Bu E24 kaydı, 2026-11-14 tarihli kullanıcı mimari/test/tedarik kararlarını ve resmi dokümanlardan doğrulanan I²C kontrolcü sınırını bir arada tutar.
+
+
+
+## 2026-11-14 — E24 güncellemesi: 3 ADS1115 + 1 ESP32 / 6 SCT test hedefi
+
+### GÜNCEL DONANIM DURUMU — KULLANICI BİLDİRİMİ
+- Eldeki iki ADS1115'ten **biri çalışıyor, diğeri arızalı**. Önceki “arızalı olabilir” belirsizliği kullanıcı tarafından netleştirildi.
+- Yeni siparişlerin teslimi bekleniyor. Siparişlerin adet/model/teslim bilgisi bu kayıtta varsayılmıyor.
+- Üç ADS1115 ile test düzeneği kurulmadan firmware veya fiziksel test başlamayacak.
+- Hedef, **tek ESP32 + 3 ADS1115 + 6 SCT** düzenini doğrulamaktır. İki ADS'li/dört SCT'li ara test zorunlu bir nihai basamak olarak tutulmayacak; siparişlerle üç çalışan ADS elde edildiğinde doğrudan üçlü test planı yürütülecek.
+
+### TEST HEDEFİ VE TASARIM TERCİHİ
+- Her ADS1115 iki SCT kanalını okuyacak; toplam altı SCT kanalı tek ESP32 tarafından yönetilecek.
+- Kullanıcının tercih ettiği topoloji: **her ADS1115 için ayrı SDA/SCL çifti** (üç ayrı I²C hattı).
+- İlk tercih, uygun ESP32 kartında iki donanımsal I²C kontrolcüsü ve üçüncü hat için yazılımsal I²C olanağını incelemek ve gerçek derleme/cihaz testiyle doğrulamaktır.
+- Klasik ESP32'de iki donanımsal I²C kontrolcüsü bulunduğundan üçüncü bağımsız donanımsal I²C hattı varsayılmayacaktır. Yazılımsal I²C, kullanılan kart/framework/ESPHome sürümünde desteklenmiyorsa bu tasarım başarısız/uygunsuz olarak kaydedilecek; kullanıcı onayı olmadan ortak bus veya I²C çoklayıcıya geçilmeyecektir.
+- ESP32 kartının tam modeli, pin kullanılabilirliği ve framework kararı test öncesinde kaydedilecek.
+
+### TEST AŞAMALARI
+1. **Parça kabulü:** Üç ADS1115'in her biri ayrı ayrı ESP32'ye bağlanır. I²C adresi/hat yanıtı, besleme ve bilinen güvenli DC giriş seviyesine verdiği dönüşüm kontrol edilir. Her modüle ADS-A / ADS-B / ADS-C test kimliği verilir. Çalışmayan modülün yeri değiştirilerek arıza modülde mi, kablo/pin/bus tarafında mı ayrıştırılır.
+2. **Üç bağımsız hat doğrulaması:** ADS-A, ADS-B ve ADS-C sırasıyla Bus-1, Bus-2 ve Bus-3'e bağlanır. Bus-1 ve Bus-2 donanımsal I²C; Bus-3 için desteklenen yazılımsal I²C seçeneği denenir. Üç bus'ın aynı ESP32'de aynı anda başlatılabildiği, taranabildiği ve dönüşüm okuyabildiği kanıtlanır.
+3. **Altı kanal DC testi:** Her ADS'de iki giriş kanalı kullanılarak toplam altı mantıksal kanal tanımlanır. Önce güvenli ve bilinen DC seviyelerle kanal eşlemesi, polarite, ölçek, çapraz kanal etkisi ve okuma tutarlılığı doğrulanır. Giriş eşlemesi (ör. diferansiyel çiftler) gerçek devreye göre çizimle kesinleştirilir.
+4. **Zamanlama testi:** Üç ADS'nin dönüşümleri planlı biçimde başlatılır; tamamlanma/okuma sırası, her kanalın etkin güncelleme hızı, altı kanalın tam çevrim süresi, örnek sayısı, zaman damgası, gecikme/jitter, I²C hata/timeout ve eksik örnek sayısı kaydedilir. ADS1115'in 860 SPS değeri **ADC başına toplam dönüşüm hızıdır**; iki girişin aynı anda 860 SPS verdiği varsayılmaz. MUX kanalları sırayla dönüştürülür.
+5. **SCT entegrasyonu:** DC testleri ve giriş güvenliği kapısı geçildikten sonra iki SCT/ADS düzeniyle altı SCT kanalı bağlanır. CT sekonder yük/burden koşulu, bias/common-mode seviyesi, ADS girişlerinin GND–VDD sınırları ve diferansiyel giriş gerilimleri fiziksel olarak doğrulanmadan enerjili iletken testi yapılmaz.
+6. **Uzun süreli kararlılık:** Altı kanal aynı anda çalışırken belirlenmiş bir test süresince kanal başına örnek sayısı, yayın aralığı, çevrim süresi, zaman damgası sırası, timeout, bus recovery ve veri kaybı izlenir. Ham ADC dalga verisi sürekli arşivlenmez; test için gerekli sayaçlar/özetler ve örnek log saklanır.
+
+### KAYIT EDİLECEK METRİKLER
+- ESP32 kart modeli, framework, ESPHome/SDK sürümü ve pin/bus eşlemesi.
+- Her ADS'nin kimliği, I²C adresi, data rate, gain ve giriş MUX yapılandırması.
+- Kanal başına efektif SPS ve güncelleme aralığı.
+- Altı kanal tam çevrim süresi; dönüşüm bekleme ve I²C okuma süreleri.
+- Timestamp sırası, jitter, timeout/I²C hata sayısı, yeniden deneme ve kayıp/tekrar örnek sayısı.
+- Gerçek derleme çıktısı, açılış/I²C tarama logu, çalışma logu ve bunların yorumu.
+
+### KABUL / KARAR KAPISI
+- Üç ADS modülü tek tek kararlı biçimde tanınmalı ve bilinen DC girişe doğru/tekrarlanabilir yanıt vermeli.
+- Üç SDA/SCL hattı aynı ESP32 üzerinde bağımsız olarak çalışmalı; üçüncü hat yöntemi gerçek derleme ve cihaz loguyla kanıtlanmalı.
+- Altı kanalın tamamı aynı çalışma döngüsünde veri üretmeli; kanal kimlikleri karışmamalı.
+- Çevrim süresi, efektif kanal hızı, hata/timeout ve kayıp örnek sayısı ölçülmüş olmalı. Ölçüm yapılmadan keyfî bir hız veya sıfır hata iddiası konulmayacak.
+- Kabul koşulları sağlanmazsa sonuç başarısız/kararsız olarak kaydedilir; alternatif topolojiye geçiş ayrı karar olur.
+
+### KAPSAM DIŞI / SONRAKİ ADIM
+- Bu ilk üçlü ADS testinde RS485 kullanılmayacak; önce yerel ADC okuma zinciri doğrulanacak.
+- RS485, altı kanallı düğüm doğrulandıktan sonra düğümler arası veri taşıma aşamasında eklenecek.
+- İkinci ESP32 ve toplam 12 SCT, ilk altı kanallı düğüm doğrulanmadan kurulmuş/çalışıyor sayılmayacak.
+- Firmware, YAML, pin eşlemesi ve kod henüz hazırlanmadı; sipariş teslimi ve donanım modeli bekleniyor.
