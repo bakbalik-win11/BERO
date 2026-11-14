@@ -1,3 +1,11 @@
+## E24 — Çoklu ADS1115 / tek ESP32 üzerinde 6 SCT hedefi (PLANLANDI)
+- **Nihai tek düğüm:** 1 ESP32 + 3 ADS1115 + 6 SCT.
+- **İlk test basamağı:** eldeki 2 ADS1115 + 1 ESP32 ile 4 SCT kanalını birlikte okuma; gecikme, çevrim süresi, hata ve veri kaybı gözlemi.
+- **Toplam sistem hedefi:** iki aynı altı kanallı düğümle 2 ESP32 + 6 ADS1115 + 12 SCT.
+- Altı kanallı modül henüz fiziksel olarak hazır değil. İlk dört kanal testi başarıyla geçmeden üç ADS düzenine geçilmeyecek.
+- Klasik ESP32'de iki donanımsal I²C kontrolcüsü vardır; üçüncü ADS bağlantı yöntemi ayrıca test edilmelidir.
+- [E24 deney ve mimari planı](experiments/E24-ads1115-multi-bus-expansion/README.md).
+
 ## E24 — Çoklu ADS1115 / 12 SCT simetrik düğüm mimarisi (PLANLANDI)
 - Hedef taslak: iki aynı ESP32 ölçüm düğümü; her birinde 3 ADS1115, 6 SCT kanalı ve bir RS485 dönüştürücü; toplam 12 SCT.
 - Kullanıcı, her ADS1115 için ayrı SDA/SCL çifti istiyor. İlk fiziksel test modül imalatından önce eldeki iki ADS1115 ile yapılacak; birinin önceki testte çalışmamış olabileceği yeniden kontrol edilecek.
