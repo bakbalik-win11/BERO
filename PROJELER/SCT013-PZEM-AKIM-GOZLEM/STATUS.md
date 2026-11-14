@@ -1,3 +1,10 @@
+## 2026-11-14 — E24 çoklu ADS1115 test planı ve 12 SCT simetrik mimari adayı
+- Kullanıcı kararı: yeni modül imalatından önce eldeki **2 ADS1115** ile ilk test yapılacak. Modüllerden biri önceki denemede çalışmamış olabilir; arızalı olduğu kesin değil, yeniden kontrol edilecek.
+- İlk test: iki ADS1115'i ayrı ayrı doğrulamak; ardından tek ESP32 üzerinde iki ayrı donanımsal I²C bus/SDA-SCL çiftiyle birlikte okuma, dönüşüm/okuma süresi ve hata davranışını ölçmek.
+- Kullanıcı mimari adayı: **2 aynı ESP32 ölçüm düğümü; her ESP başına 3 ADS1115 ve 6 SCT kanalı; her ADS için ayrı SDA/SCL çifti; her ölçüm ESP'sinde 1 RS485 dönüştürücü; toplam 12 SCT**.
+- **Önemli doğrulama:** klasik ESP32'de iki donanımsal I²C kontrolcüsü vardır. Üçüncü ayrı donanımsal I²C hattı doğrudan varsayılamaz. Üç ADS/ESP hedefi için üçüncü yazılımsal I²C, I²C çoklayıcı veya ortak bus/ayrı adres seçeneği test edilip kararlaştırılacak. Bu nedenle 12 kanal mimarisi kesinleşmiş değildir.
+- Kullanıcı, ilk iki ADS testi başarılı olursa tedarik/gümrük gecikmelerine karşı **10 adet ADS1115 yedek stok siparişi** vermeyi planlıyor. Sipariş henüz verilmedi; mevcut eldeki iki modül ayrı envanter kalemi.
+- **E24: PLANLANDI.** Kod, bağlantı şeması, derleme ve donanım testi henüz yapılmadı. Ayrıntı: [E24 protokolü](experiments/E24-ads1115-multi-bus-expansion/README.md).
 ## 2026-11-14 — E21 ilk tam çamaşır makinesi program kaydı planlandı
 - Kullanıcı bugün gün içinde bir tam programı baştan sona kaydetmeyi planlıyor; makinenin başlatılacağı zaman için evden haber bekleniyor. Kayıt henüz başlamadı.
 - İlk çekim kimliği: **WM-20261114-01**. Geçici açıklama etiketi: **UZUN**; paneldeki gerçek program adı henüz bilinmiyor.
