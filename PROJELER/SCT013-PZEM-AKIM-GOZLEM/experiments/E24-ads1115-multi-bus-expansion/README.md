@@ -137,3 +137,13 @@ Bu seçeneklerden biri gerçek donanım ve yazılım testiyle doğrulanmadan tek
 - RS485, altı kanallı düğüm doğrulandıktan sonra düğümler arası veri taşıma aşamasında eklenecek.
 - İkinci ESP32 ve toplam 12 SCT, ilk altı kanallı düğüm doğrulanmadan kurulmuş/çalışıyor sayılmayacak.
 - Firmware, YAML, pin eşlemesi ve kod henüz hazırlanmadı; sipariş teslimi ve donanım modeli bekleniyor.
+
+## 2026-11-14 — İleride değerlendirilecek RS485 dijital I/O modülü
+
+- Kullanıcının işaret ettiği ürün: [Motorobit — eletechsup 23IOE48 48-Kanallı NPN RS485 PLC I/O Genişletme Modülü](https://www.motorobit.com/23ioe48-48-kanalli-npn-cok-fonksiyonlu-rs485-plc-io-genisletme-modulu-ray-tipi).
+- Satıcı ürün sayfasında belirtilen özellikler: 48 dijital giriş (DI), 48 dijital çıkış (DO), NPN giriş, NPN transistor/solid-state çıkış, kanal başına azami 0,3 A çıkış, RS485 / Modbus RTU ve DC 7–25 V çalışma gerilimi.
+- Olası gelecek kullanım: BERO'nun RS485 saha omurgasında çok sayıda dijital saha girişini ve uygun yükleri merkezi kontrol sistemine bağlamak.
+- **Kapsam ayrımı:** Bu ürün ADS1115 veya SCT analog ölçüm genişletmesi değildir. Altı SCT kanalının ADC okuma görevini üstlenmez; yalnız dijital I/O genişletme adayıdır. E24'ün ilk ADC doğrulama testine dahil değildir.
+- **Durum: İZLEME / ADAY.** Satın alma veya mimariye dahil etme kararı verilmedi.
+- Tasarıma alınmadan önce üretici veri sayfası ve Modbus register haritası, DI elektriksel seviyeleri/ortak uç yapısı, DO gerilim-akım sınırları ve koruma davranışı, kanal gruplarının eşzamanlı çalışma sınırları, RS485 adresleme/baud/parite ayarları ve galvanik izolasyon durumu doğrulanmalıdır.
+- Kaynak türü: satıcı ürün sayfası; üretici teknik dokümanı ve gerçek donanım testi henüz incelenmedi.
