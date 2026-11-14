@@ -1,3 +1,10 @@
+## E24 — Çoklu ADS1115 / 12 SCT simetrik düğüm mimarisi (PLANLANDI)
+- Hedef taslak: iki aynı ESP32 ölçüm düğümü; her birinde 3 ADS1115, 6 SCT kanalı ve bir RS485 dönüştürücü; toplam 12 SCT.
+- Kullanıcı, her ADS1115 için ayrı SDA/SCL çifti istiyor. İlk fiziksel test modül imalatından önce eldeki iki ADS1115 ile yapılacak; birinin önceki testte çalışmamış olabileceği yeniden kontrol edilecek.
+- Klasik ESP32'de iki donanımsal I²C kontrolcüsü vardır. Üç ADS için üçüncü bağımsız hat gereksinimi; yazılımsal I²C, I²C çoklayıcı veya farklı bağlantı mimarisi seçenekleriyle test edilmeden kesinleşmiş değildir.
+- İlk iki ADS testi; ayrı modül kontrolü, iki I²C bus üzerinden aynı ESP'de okuma, dönüşüm/okuma süresi, hata ve veri kaybı kaydı içerir.
+- Test sonrası kullanıcı 10 ADS1115 yedek stok siparişi planlıyor; sipariş/teslim henüz gerçekleşmedi.
+- [E24 deney ve mimari planı](experiments/E24-ads1115-multi-bus-expansion/README.md).
 ## E23 — ADS1115 sıçrama araştırmasının yeni modülle sürdürülmesi (PLANLANDI)
 - E19'un 2026-11-14 enerjili-hat/yüksüz-iletken uzun kayıt istatistikleri kapanmıştır; ancak sıçramaların fiziksel nedeni çözülmüş değildir.
 - Kullanıcı kararı: Aç/kapa mekanizması ve ilgili kodlar mevcut düzenden çıkarılıp yeni modül yapısı kurulduktan sonra uzun süreli yüksüz kayıt alınacak; sonuçlar E19 baseline'ıyla karşılaştırılacaktır.
