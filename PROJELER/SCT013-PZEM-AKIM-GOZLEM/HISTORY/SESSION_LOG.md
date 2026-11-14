@@ -2245,3 +2245,27 @@ Ayrıntı: [E19 sıçrama nedeni yeniden değerlendirme](../logs/ads1115/2026-11
 
 ### DURUM / SINIR
 E23 PLANLANDI. Yeni modülün fiziksel kurulumu, firmware, uzun kayıt, CSV analizi ve sonuç henüz yapılmadı. Sıçrama kaynağı teşhis edilmedi.
+
+## 2026-11-14 — E21 ilk tam çamaşır makinesi program kaydı planlandı
+
+### HEDEF
+Çamaşır makinesinin bir tam programını baştan sona kaydetmek; ham akım zaman serisini daha sonra tarafsız biçimde bölümlere ayırmak ve ileride aynı programın tekrar kayıtlarını sınıflandırabilmek.
+
+### KULLANICI BİLDİRİMİ
+- Kullanıcı bugün gün içinde tam program kaydı almayı planlıyor.
+- Makinenin başlatılacağı zaman için evden haber bekleniyor.
+- Kullanıcı ilk kaydı geçici olarak “uzun program” diye tanımladı; paneldeki gerçek program adı ve seçenekler henüz bilinmiyor.
+
+### ADLANDIRMA KARARI
+- Her çekim için ayrı **RECORD_ID**: `WM-YYYYMMDD-NN`.
+- Bugünkü ilk çekim: **`WM-20261114-01`**.
+- Aynı programın tekrar kayıtlarını gruplayacak kalıcı **PROGRAM_ID**: `WMP-NNN`; paneldeki tam ad ve anlamlı ayarlar öğrenilince atanacak.
+- “UZUN” yalnızca geçici PROGRAM_TAG'dir; gerçek program adı veya sınıf kimliği değildir.
+- Ham CSV, metadata, analiz ve segment tablosu ayrı dosyalarda tutulacak.
+
+### DEPO KAYDI
+- [WM-20261114-01 metadata ve kayıt şablonu](../logs/washing-machine/WM-20261114-01/README.md).
+- E21 protokolü, STATUS.md, PROGRESS_TREE.md ve experiments/README.md güncellendi.
+
+### DURUM
+PLANLANDI / başlatma haberi bekleniyor. Makine çalıştırılmadı; kayıt, CSV ve analiz henüz yok.
