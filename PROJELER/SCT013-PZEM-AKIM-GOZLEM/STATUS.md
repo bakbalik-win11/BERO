@@ -698,3 +698,11 @@ Bu, şu aşamada **aday yazılımsal aralık seçimi mimarisidir**; fiziksel ana
 - SCT bağlantılarında mevcut dişi jack stoğu kullanılabilir; jack'lar panelde, iç kablolama sabit ve etiketli olacak. İki ayrı dış reset butonu (RESET-A/B) düşünülüyor; ortak reset yok.
 - Bu maddelerin tamamı **FİKİR/TASLAK** düzeyindedir. Ölçülü yerleşim, jack/panel ölçüleri, analog giriş güvenliği, güç dağıtımı, RS485, imalat ve test yapılmadı.
 - Ayrıntı: [BERO 12 Kanallı Ölçüm Modülü — RT-209 Mekanik Adayı](manufacturing/BERO-12CH-RT209/README.md).
+
+
+## 2026-11-15 — RT-209 kutu numunesiyle fiziksel prova planı
+- RT-209'in yaklaşık 150 × 85,5 mm taşıyıcı alanının 12 kanallı hedef yerleşim için dar kalabileceği değerlendirildi.
+- Kullanıcı, karar vermeden önce **1 adet RT-209 satın alıp fiziksel yerleşim denemesi yapmayı** önerdi; bu yaklaşım uygun sonraki adım olarak kaydedildi.
+- Bu karar seri satın alma veya nihai kutu onayı değildir. Sipariş henüz verilmedi; fiziksel numune, yerleşim ve ölçüm yapılmadı.
+- Deneme kapsamı: iki ESP32 terminal shield, ADS1115 modülleri, RS485 kartları, kablo/servis payı ve ön paneldeki SCT jack/reset butonlarının gerçek yerleşimi.
+- Sonuç görülmeden kutuda delik açılmayacak ve imalat kararı verilmeyecek. Ayrıntı: [RT-209 imalat fikir dosyası](manufacturing/BERO-12CH-RT209/README.md).
