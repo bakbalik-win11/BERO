@@ -688,3 +688,13 @@ Bu, şu aşamada **aday yazılımsal aralık seçimi mimarisidir**; fiziksel ana
 - Kullanıcı fiziksel düzeni teyidi: aynı SCT; ADS1115 yolunda bias devresi ve harici transformatör yok. Bu, girişlerin elektriksel güvenliğini kanıtlamaz; A0/A1 ortak-mod ve giriş ray doğrulaması açık kalır.
 - Katsayı ve ayarlar değiştirilmedi; deney düşük akım çalışma davranışı karakterizasyonudur, kalibrasyon değildir.
 - Ayrıntı: [42 W test raporu](logs/ads1115/2026-11-13-E19-42w-test.md), [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md).
+
+
+## 2026-11-15 — BERO 12 kanallı ana modül kutusu fikri (RT-209)
+- Kullanıcı, imalat fikirlerinin E24 ADC haberleşme deneyinden ayrı bir modül başlığı altında tutulmasını istedi.
+- Altınkaya RT-209, BERO ana modül kutusu olmaya **aday** seçildi; kesin satın alma/imalat kararı değildir.
+- Fikir: tek kutuda 2 ESP32-WROOM-32D + 2 mevcut vidalı terminal shield + 6 ADS1115 + 12 SCT jack + 2 RS485 dönüştürücü.
+- Yeşil klemensli hazır taşıyıcı yapı kullanılmayacak; iç taşıyıcı delikli board/pertinaks ile hazırlanacak. ESP32'ler shield soketlerinden sökülebilir olacak.
+- SCT bağlantılarında mevcut dişi jack stoğu kullanılabilir; jack'lar panelde, iç kablolama sabit ve etiketli olacak. İki ayrı dış reset butonu (RESET-A/B) düşünülüyor; ortak reset yok.
+- Bu maddelerin tamamı **FİKİR/TASLAK** düzeyindedir. Ölçülü yerleşim, jack/panel ölçüleri, analog giriş güvenliği, güç dağıtımı, RS485, imalat ve test yapılmadı.
+- Ayrıntı: [BERO 12 Kanallı Ölçüm Modülü — RT-209 Mekanik Adayı](manufacturing/BERO-12CH-RT209/README.md).
