@@ -2223,3 +2223,25 @@ Yalnız test başlangıcı kullanıcı bildirimi kaydedildi. Cihaz logu/CSV, ort
 Önceki E19 istatistiksel test kapanışı korunur. Sıçramaların fiziksel nedeni açık/teşhis edilmedi. Yeni modül kaydı ve karşılaştırması planlandı; henüz yapılmadı.
 Ayrıntı: [E19 sıçrama nedeni yeniden değerlendirme](../logs/ads1115/2026-11-14-E19-spike-cause-reassessment.md).
 
+
+## 2026-11-14 — E23 kararı: ADS1115 sıçrama araştırması yeni modülle sürecek
+
+### KULLANICI KARARI VE FİZİKSEL KOŞUL
+- E19 uzun yüksüz kayıt analizinde görülen sıçramalar önemsiz kabul edilmeyecek; BERO ölçüm güvenilirliği açısından araştırılmaya devam edecek.
+- Kullanıcı, gözlenen hatta aç/kapa yapılmadığını ve rölenin bu hatta bağlı olmadığını açıkladı. Anahtarlama başka ESP üzerinden yürütülüyor; ADS1115 ESP'siyle aynı cihaz değil.
+- Önceki HA switch state geçişleriyle zamansal yakınlık fiziksel röle etkisi veya nedensellik kanıtı sayılmayacak.
+
+### KARAR
+- Aç/kapa mekanizması ve ilgili kodlar mevcut düzenden çıkarılacak.
+- Yeni modül yapısı ve yenilenmiş kod oluşturulacak.
+- Yeni modülle uzun süreli yüksüz kayıt alınacak.
+- Yeni kayıt, E19 2026-11-14 istatistiksel raporundaki baseline ile aynı metrikler üzerinden karşılaştırılacak.
+- Donanım/firmware/ADS ayarı farklılıkları kayıt altına alınacak; farklı koşullar eşdeğer varsayılmayacak.
+
+### DEPOYA EKLENENLER
+- [E23 deney protokolü](../experiments/E23-ads1115-spike-new-module-comparison/README.md).
+- STATUS.md, ROADMAP.md, PROGRESS_TREE.md ve experiments/README.md E23 ile güncellendi.
+- E19 önceki istatistik oturumu kapalı kalır; E23 yeni modülle devam eden araştırmadır.
+
+### DURUM / SINIR
+E23 PLANLANDI. Yeni modülün fiziksel kurulumu, firmware, uzun kayıt, CSV analizi ve sonuç henüz yapılmadı. Sıçrama kaynağı teşhis edilmedi.
