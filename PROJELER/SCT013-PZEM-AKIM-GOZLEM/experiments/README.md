@@ -1,3 +1,12 @@
+## E19 alt gözlem — ADS1115 enerjili hat / yüksüz iletken (2026-11-14)
+
+- **KAPATILDI — CSV istatistiksel analizi tamamlandı.** 13–14 Kasım gecesi alınan uzun HA History kaydı için ADS1115 taban dağılımı, 0,040 A üzeri sapmalar, PZEM state sürekliliği ve HA switch state geçişlerine zamansal yakınlık raporlandı.
+- Bu kapanış E19'un tüm düşük akım/ADS1115 çalışmalarını kapatmaz; yalnız enerjili-hat/yüksüz-iletken uzun gözlem oturumuna aittir.
+- Ham CSV'nin SHA-256 özeti, kaynak boyutu, istatistiksel özet ve 0,005 A üzerindeki 77 örnek depoda kayıtlıdır. Ham CSV dosyası Git'e eklenmedi.
+- Ayrı enerjisiz hat taban testi yapılmış sayılmaz; ADS1115 giriş ortak-mod/rail güvenlik doğrulaması açık kalır.
+- [İstatistiksel rapor](../logs/ads1115/2026-11-14-E19-energized-no-load-statistical-report.md).
+
+
 
 
 ## Yeni hedef — E21 Çamaşır makinesi program davranışı analizi
