@@ -62,3 +62,10 @@ BERO için iki aynı ölçüm düğümünü tek, servis edilebilir bir ana modü
 - **KULLANICI SAĞLADIĞI ÇİZİM:** RT-209 teknik PDF'si; alt taşıyıcı PCB alanı çizimde yaklaşık 150 × 85,5 mm gösteriliyor.
 - **FİKİR:** Tek RT-209 kutuda 2 ESP32 + 6 ADS1115 + 12 SCT + 2 RS485 yerleşimi.
 - **HENÜZ YAPILMADI:** Kutu satın alma, ölçülü CAD yerleşimi, delikli board imalatı, jack paneli, kablolama, devre/firmware, derleme, donanım testi ve RS485 testi.
+
+
+## 2026-11-15 — İlk numune satın alma / fiziksel prova kararı
+- Kullanıcı değerlendirmesi: RT-209'in çizimde görülen yaklaşık 150 × 85,5 mm taşıyıcı alanı, planlanan bileşenler için dar kalabilir.
+- Sonraki adım olarak **1 adet RT-209 numune alıp fiziksel yerleşim denemesi yapmak** uygun görüldü. Bu, seri alım veya nihai kutu onayı değildir.
+- Numune üzerinde önce iki terminal shield'ın gerçek ölçüleriyle yerleşim, ADS1115/RS485 alanı, kablo payı ve panel jack/buton geometrisi kontrol edilecek. Uymayan yerleşim zorlanmayacak; sonuçlara göre kutu adayı yeniden değerlendirilecek.
+- **Satın alma henüz yapılmadı;** bu kayıt kullanıcı niyetini/planını gösterir, sipariş veya fiziksel test kanıtı değildir.
