@@ -2197,3 +2197,29 @@ Bu oturum dokümantasyon güncellemesidir. Firmware/YAML değiştirilmedi, derle
 
 ### DURUM
 Yalnız test başlangıcı kullanıcı bildirimi kaydedildi. Cihaz logu/CSV, ortak kararlı pencere, istatistik, PZEM farkı veya kalibrasyon sonucu yoktur.
+
+
+## 2026-11-14 — E19 ADS1115 sıçrama kaynağına ilişkin kullanıcı açıklaması ve yeni modül planı
+
+### KULLANICI AÇIKLAMASI
+- ADS1115'in gözlem yaptığı hatta aç/kapa yapılmıyor.
+- Röle bu ölçüm hattına bağlı değil.
+- Aç/kapa başka bir ESP üzerinden yürütülüyor; ADS1115'in bulunduğu ESP ile aynı cihaz değil.
+- Buna rağmen ADS1115 ölçümünde sıçramalar görülüyor. Kullanıcı aç/kapa sesini duyduğunu ve parazit olasılığından şüphelendiğini belirtti.
+
+### ÖNCEKİ İSTATİSTİKLERİN YENİDEN YORUMU
+- Önceki raporda 0.040 A ve üzeri 72 örneğin 57'si HA switch state geçişine 10 saniye içinde yakındı.
+- Bu yalnızca zamansal korelasyondur. Ölçülen hattın röleyle anahtarlanmadığı bilgisi nedeniyle fiziksel yük geçişi veya doğrudan röle etkisi olarak yorumlanmayacak.
+- Ayrı ESP'deki anahtarlama kaynaklı olası parazit/kuplaj hipotezi açık tutulacak; neden kanıtlanmış değildir.
+
+### BUGÜNKÜ PLAN
+- Kullanıcı mevcut aç/kapa mekanizmasını ve ilgili kodları kaldıracak.
+- Kodlar yenilenecek, yeni modül oluşturulacak.
+- Akşam yeni modülle uzun süreli yüksüz kayıt alınacak.
+- Yeni kayıt önceki E19 istatistikleriyle aynı metrikler kullanılarak karşılaştırılacak.
+- Donanım/firmware/ADC ayar farkları kayıt altına alınacak; farklı koşullar eşdeğer kabul edilmeyecek.
+
+### DURUM
+Önceki E19 istatistiksel test kapanışı korunur. Sıçramaların fiziksel nedeni açık/teşhis edilmedi. Yeni modül kaydı ve karşılaştırması planlandı; henüz yapılmadı.
+Ayrıntı: [E19 sıçrama nedeni yeniden değerlendirme](../logs/ads1115/2026-11-14-E19-spike-cause-reassessment.md).
+
