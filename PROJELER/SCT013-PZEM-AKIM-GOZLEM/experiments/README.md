@@ -1,3 +1,9 @@
+## E23 — ADS1115 yüksüz sıçrama araştırması: yeni modül karşılaştırması
+- **[E23 protokolü](E23-ads1115-spike-new-module-comparison/README.md): PLANLANDI.** E19'da görülen sıçramaların, aç/kapa mekanizması/kodları çıkarılmış yeni modül yapısında sürüp sürmediği araştırılacak. Yeni uzun kayıt, E19 2026-11-14 istatistiksel baseline'ıyla aynı metrikler üzerinden karşılaştırılacak.
+- Ölçülen hatta aç/kapa yapılmadığı ve rölenin bu hatta bağlı olmadığı kullanıcı tarafından netleştirildi. Ayrı ESP'deki anahtarlama ile zaman yakınlığı nedensellik kanıtı değildir.
+- Yeni modülün kesin donanım/firmware/ADS ayarları, kayıt ve sonuç henüz yoktur. E19 önceki oturum olarak kapalı kalır; sıçrama nedeni açık araştırma konusudur.
+
+
 ## E19 alt gözlem — ADS1115 enerjili hat / yüksüz iletken (2026-11-14)
 
 - **KAPATILDI — CSV istatistiksel analizi tamamlandı.** 13–14 Kasım gecesi alınan uzun HA History kaydı için ADS1115 taban dağılımı, 0,040 A üzeri sapmalar, PZEM state sürekliliği ve HA switch state geçişlerine zamansal yakınlık raporlandı.
