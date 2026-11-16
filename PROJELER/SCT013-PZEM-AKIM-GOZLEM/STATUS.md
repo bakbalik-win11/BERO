@@ -1,3 +1,12 @@
+## 2026-11-16 — E21 çamaşır makinesi kısa/uzun tam program kayıtları ve ilk nitel gözlem
+- Kullanıcı düzeltmesi: **kısa ve uzun kayıtların ikisi de baştan sona tam programdır**. Kısa kayıt yalnızca ısınma evresi değildir.
+- Kısa kayıt dosyası: `wm-kısa-prg-2026-11-14.csv` (önceki sohbet kaydında bildirilen ad); uzun kayıt dosyası: `wm-uzun pamuklu 60 - 2026-11-14.csv` (kullanıcı kitaplığı ekran görüntüsünde görülen ad).
+- Uzun kayıt program etiketi dosya adına göre **Pamuklu 60°**; paneldeki gerçek program adı/ayarların tam teyidi ayrı tutulur.
+- Kullanıcının daha önce paylaştığı görsel ve sohbetten gelen ilk nitel yorum: **ısıtma, tamburun sağa-sola dönüşleri ve sıkma davranışları gözlenebiliyor**. Bu, ön gözlem notudur; kesin evre sınıflandırması veya zaman ölçümü değildir.
+- Her iki kayıt için ayrı RECORD_ID kullanılır: `WM-20261114-02` kısa, `WM-20261114-01` uzun. PROGRAM_ID henüz atanmadı.
+- Ham CSV'lerin kullanıcı kitaplığında bulunması, bunların repo arşivine kopyalandığı veya Python ile analiz edildiği anlamına gelmez. İçerik analizi, zaman serisi korelasyonu ve daha fazla program kaydı sonraki aşamadır.
+- E21 durumu: **ön kayıt/gözlem mevcut; veri toplama ve analiz devam edecek**. Çalışma yapılmamış gibi PLANLANDI durumunda bırakılmayacak; analiz tamamlandı da denmeyecek.
+
 
 
 ## 2026-11-14 — E24 güncellemesi: 3 ADS1115 + 1 ESP32 / 6 SCT test hedefi
