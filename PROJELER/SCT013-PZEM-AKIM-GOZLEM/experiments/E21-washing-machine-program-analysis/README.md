@@ -27,15 +27,15 @@ Ham HA CSV değişmeden saklanır; analiz ve segmentasyon ayrı türetilmiş ç�
 
 # E21 — Çamaşır makinesi program davranışı analizi
 
-- **Durum:** PLANLANDI
+- **Durum:** ÖN GÖZLEM KAYITLARI MEVCUT / VERİ TOPLAMA VE ANALİZ DEVAM EDECEK
 - **Açılış tarihi:** 2026-11-13
-- **Hedef:** İlk etapta çamaşır makinesinin yalnızca bir programını kaba/keşif amaçlı olarak baştan sona kaydetmek. İlk kayıt ayrıntılı program çözümlemesi veya sınıflandırma projesi değildir.
+- **Hedef:** Çamaşır makinesinin kısa ve uzun programlarını baştan sona akım zaman serisiyle kaydetmek; ilk görsel ve kayıt gözlemlerini korumak; daha fazla tam program kaydı biriktirerek Python ile zaman serisi korelasyonu ve uygun diğer analizleri daha sonra yapmak. İlk gözlemler nihai evre sınıflandırması değildir.
 - **İlerideki yön:** İlk akım kaydından sonra farklı sensörler sisteme aşamalı olarak eklenip birlikte değerlendirilebilir. Sensör türleri ve bağlantıları henüz belirlenmedi; bu aşamada varsayılmayacak.
 - **Önceki hedef:** PZEM kararlı-alan eşleştirmesiyle eğitim/kalibrasyon verisi üretme iş akışı ADR-026 ile kapatıldı. Bu işin eski kayıtları silinmez.
 
 ## 1. İlk testin amacı ve sınırı
 
-İlk test yalnızca **bir programın kaba kaydıdır**. Amaç, programın başından sonuna kadar akımın genel davranışını görmek ve ilerideki sensör entegrasyonu için başlangıç verisi oluşturmaktır. Bu ilk oturumda tüm evreleri kesin tanımlamak, makine durumlarını sınıflandırmak, aynı programı tekrarlamak veya eğitim modeli oluşturmak zorunlu değildir.
+İlk kayıtlar kısa ve uzun programların **tam program çekimleridir**. Amaç, programların baştan sona akım davranışını gözlemek ve ilerideki karşılaştırma/analizler için başlangıç verisi oluşturmaktır. Bu aşamada tüm evreleri kesin tanımlamak, makine durumlarını sınıflandırmak veya eğitim modeli oluşturmak hedeflenmez.
 
 İlk kayıt sonrasında hangi ek sensörlerin anlamlı olacağı değerlendirilecektir. Farklı sensörlerle kombinasyon, ayrı bir sonraki aşamadır; ilk testin ön koşulu değildir.
 
@@ -43,7 +43,7 @@ Bu çalışma enerji tüketimi veya güç kalitesi analizi değildir. SCT zincir
 
 ## 2. İlk kayıt kapsamı
 
-İlk oturumda yalnızca **bir tam program** kaydedilir. Program adı ve makine panelindeki seçenekler kullanıcı tarafından bildirilecektir; makine modeli, program, sıcaklık, sıkma devri, ek seçenekler veya çamaşır yükü varsayılmaz.
+İlk veri grubunda iki ayrı tam program kaydı bulunur: kısa program ve uzun program (dosya adında Pamuklu 60° olarak belirtilmiştir). Program adı ve makine panelindeki seçenekler kullanıcı tarafından bildirilecektir; makine modeli, program, sıcaklık, sıkma devri, ek seçenekler veya çamaşır yükü varsayılmaz.
 
 Kayıt öncesi not edilecekler:
 - Makine marka/modeli (biliniyorsa).
@@ -64,9 +64,18 @@ Kayıt öncesi not edilecekler:
 - Makinenin program evreleri yalnız akım değerinden kesin adlandırılmaz. Akım örüntüsü önce tarafsız biçimde bölümlenir; isimler panel bilgisi ve kullanıcı gözlemiyle ilişkilendirilir.
 - OFF/yüksüz alanlar eğitim etiketi değildir; ancak tam program davranışını anlamak için ham zaman serisinde korunur.
 
-## 4. İlk kaba kayıttan beklenen çıktı
+## 4. İlk görsel ve kayıt gözlemleri
 
-İlk tek program kaydından sonra:
+Kullanıcının daha önce paylaştığı görsel ve sohbet üzerinden yapılan ilk nitel gözlemde program davranışı içinde aşağıdaki örüntülerin ayırt edilebilir olduğu değerlendirilmiştir:
+- Isıtma davranışı.
+- Tamburun sağa-sola dönüşleri.
+- Sıkma davranışı.
+
+Bunlar görsel/ilk gözlem düzeyinde yorumlardır; kesin evre sınırları, süreler veya makinenin iç kontrol mantığı olarak kabul edilmez. İlk gözlemin kayda geçirilmesi, çalışmanın hiç yapılmamış gibi görünmesini önler; ancak Python analizi veya evre sınıflandırması tamamlandığı anlamına gelmez.
+
+## 5. İlk kayıtların sonraki incelemesi
+
+İki tam program kaydı için ileride:
 1. CSV bütünlüğü, zaman aralığı ve akım entity'si doğrulanır.
 2. Program boyunca akımın genel grafiği çıkarılır.
 3. Belirgin yükselme, düşme, bekleme ve tekrar eden hareketler kabaca işaretlenir.
@@ -75,18 +84,18 @@ Kayıt öncesi not edilecekler:
 
 Bu aşamada ayrıntılı evre sınıflandırması, tekrar testi veya ek sensör entegrasyonu yapılması beklenmez.
 
-## 5. Sonraki aşamalar
+## 6. Sonraki aşamalar
 
 İlk kayıt değerlendirildikten sonra kullanıcıyla birlikte uygun farklı sensörler seçilecek ve aşamalı biçimde sisteme eklenerek kombinasyonları incelenecektir. Sensör seçimi, bağlantı ve kayıt yöntemi ayrı karar/protokolle belirlenecektir. Aynı programı tekrar etme veya başka programları kaydetme ihtiyacı ilk kaba testin sonucuna göre kararlaştırılır. Tek programdan bütün makine davranışı hakkında genelleme yapılmaz.
 
-## 6. Güvenlik ve sınırlar
+## 7. Güvenlik ve sınırlar
 
 - ADS1115 A0/A1 ortak-mod ve GND–VDD giriş sınırlarının fiziksel doğrulaması açık ön koşuldur; iyi görünen ölçüm grafiği giriş güvenliğini kanıtlamaz.
 - Şebeke ve CT kurulumu uygun muhafaza/koruma ve yetkin uygulamayla yapılmalıdır.
 - Bu çalışma enerji tüketimi, gerçek güç, PF, harmonik veya arıza teşhisi iddiası taşımaz.
 - Makine kapağı/interlock veya güvenlik mekanizmalarına müdahale edilmez.
 
-## 7. Kabul ölçütü
+## 8. Kabul ölçütü
 
 E21 ilk oturumu ancak aşağıdakiler tamamlandığında “ilk kayıt analiz edildi” sayılır:
 - Tam program CSV'si mevcut ve kaynak bütünlüğü kontrol edilmiş.
@@ -95,4 +104,4 @@ E21 ilk oturumu ancak aşağıdakiler tamamlandığında “ilk kayıt analiz ed
 - Gözlem, kullanıcı bildirimi ve hipotezler birbirinden ayrılmış.
 - Ham veri ve analiz özeti depoda birbirine bağlanmış.
 
-**Mevcut durum:** İlk kaba tek-program kaydı bekleniyor. Ek sensörler ve çoklu sensör analizi sonraki aşamadır.
+**Mevcut durum:** Kısa ve uzun programlara ait tam kayıt dosyaları kullanıcı kitaplığında mevcut olarak gösterilmiştir; kısa kayıt adı `wm-kısa-prg-2026-11-14.csv`, uzun kayıt adı `wm-uzun pamuklu 60 - 2026-11-14.csv` olarak bildirilmiştir. Bu ham CSV dosyaları henüz bu repo yoluna alınmış ve içerikleri burada analiz edilmiş değildir. İlk nitel gözlemler (ısıtma, sağ-sol tambur dönüşü, sıkma) kaydedilmiştir. Daha fazla tam program kaydı toplanacak; Python korelasyonu ve diğer analizler sonraki aşamadır. E21 bu nedenle yapılmamış değil, ön gözlem/kayıt aşamasında ve analizi beklemektedir.
