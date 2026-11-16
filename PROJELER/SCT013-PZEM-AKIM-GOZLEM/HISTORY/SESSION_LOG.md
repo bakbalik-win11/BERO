@@ -2339,3 +2339,21 @@ PLANLANDI / başlatma haberi bekleniyor. Makine çalıştırılmadı; kayıt, CS
 Bu oturumda yalnız test planı ve depo dokümantasyonu güncellendi. Sipariş teslimi, firmware, pin planı, derleme, fiziksel bağlantı ve ölçüm testi yapılmadı.
 - Ayrıntı: [E24 protokolü](../experiments/E24-ads1115-multi-bus-expansion/README.md).
 undefined
+
+## 2026-11-16 — E21 kısa ve uzun program kayıtları düzeltildi; ilk gözlemler kaydedildi
+
+### KULLANICI DÜZELTMESİ
+- Kısa ve uzun çamaşır makinesi kayıtlarının **ikisi de tam programdır**. Kısa kayıt yalnızca ısınma evresi değildir.
+- Uzun kayıt dosya adı kullanıcı kitaplığı ekran görüntüsünde `wm-uzun pamuklu 60 - 2026-11-14.csv` olarak görüldü.
+- Kısa kayıt dosya adı önceki sohbet kaydında `wm-kısa-prg-2026-11-14.csv` olarak yer alıyor.
+
+### İLK NİTEL GÖZLEM
+Kullanıcının daha önce paylaştığı görsel ve sohbet üzerinden genel olarak ısıtma, tamburun sağa-sola dönüşleri ve sıkma davranışlarının gözlenebildiği not edildi. Bu bir ön yorumdur; kesin evre adlandırması/sınırı veya süre analizi değildir.
+
+### DEPO DÜZENİ
+- Uzun kayıt şablonu `WM-20261114-01` tam kayıt mevcut / analiz bekliyor olarak düzeltildi.
+- Kısa kayıt için `WM-20261114-02` ayrı metadata kaydı oluşturuldu.
+- E21 README ve STATUS.md, iki tam kayıt + ön gözlem + sonraki Python korelasyonu yaklaşımına göre güncellendi.
+
+### SINIR / SONRAKİ İŞ
+Ham CSV'lerin kullanıcı kitaplığında görünmesi repo arşivine alındıkları veya analiz edildikleri anlamına gelmez. CSV içeriklerinin bütünlük kontrolü, Python zaman serisi analizi, tekrar kayıtlarının karşılaştırılması ve daha fazla tam program kaydı sonraki işlerdir. E21 tamamlanmış sayılmamıştır; ancak hiç yapılmamış gibi PLANLANDI durumunda da bırakılmamıştır.
