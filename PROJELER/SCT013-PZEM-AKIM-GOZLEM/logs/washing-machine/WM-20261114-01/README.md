@@ -3,11 +3,11 @@
 ## Kayıt kimliği
 - **RECORD_ID:** WM-20261114-01
 - **Kayıt tarihi:** 2026-11-14
-- **Kayıt durumu:** PLANLANDI / makinenin başlatılacağı haber bekleniyor
+- **Kayıt durumu:** TAM PROGRAM KAYDI MEVCUT (kullanıcı kitaplığında) / içerik analizi bekliyor
 - **Deney:** E21 — Çamaşır makinesi program davranışı analizi
-- **Program adı:** Henüz bildirilmedi; panelde görünen tam ad kaydedilecek
+- **Program adı:** Uzun program — dosya adında Pamuklu 60° olarak belirtilmiş; paneldeki tam ad/ayar teyidi ayrıca alınabilir
 - **PROGRAM_ID:** Henüz atanmadı; program adı ve seçenekler doğrulandıktan sonra verilecek
-- **Geçici açıklama:** Kullanıcı bu çekimi “uzun program” olarak tanımladı. Bu ifade şimdilik açıklama/etikettir; paneldeki program adı veya kalıcı sınıf kimliği yerine geçmez.
+- **Program etiketi:** UZUN / PAMUKLU 60°. Kaynak dosya adı: `wm-uzun pamuklu 60 - 2026-11-14.csv` (kullanıcı kitaplığındaki dosya listesi ekran görüntüsünden).
 
 ## HEDEF
 Çamaşır makinesinin seçilen bir tam programını baştan sona akım zaman serisiyle kaydetmek. İlk analizde genel davranış ve gözle görülen bölümler çıkarılacak. Evre adları, yalnızca akım grafiğine bakılarak kesinleştirilmeyecek.
@@ -60,4 +60,4 @@ Her çekim için RECORD_ID farklıdır. Aynı programın tekrar kayıtları ayn�
 5. Kullanıcı gözlemleriyle ilişkilendirme; doğrulanmamış makine içi işlem yorumları HİPOTEZ olarak etiketlenir.
 
 ## Durum
-Kayıt kimliği ayrıldı ve kayıt şablonu hazırlandı. Makine henüz başlatılmadı; başlangıç/bitiş zamanı, program seçenekleri ve CSV henüz mevcut değil. Bu nedenle kayıt alınmış veya analiz edilmiş sayılmaz.
+Tam program CSV'si kullanıcı kitaplığında mevcuttur. Kullanıcının doğrulaması: bu kayıt baştan sona tam programdır. İlk nitel gözlemde ısıtma, sağ-sol tambur dönüşleri ve sıkma davranışları ayırt edilebilir bulunmuştur. CSV'nin repo kopyası, bütünlük kontrolü, Python analizi ve ayrıntılı zaman aralıkları henüz yapılmamıştır.
