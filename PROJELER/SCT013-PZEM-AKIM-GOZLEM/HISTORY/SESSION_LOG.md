@@ -2357,3 +2357,13 @@ Kullanıcının daha önce paylaştığı görsel ve sohbet üzerinden genel ola
 
 ### SINIR / SONRAKİ İŞ
 Ham CSV'lerin kullanıcı kitaplığında görünmesi repo arşivine alındıkları veya analiz edildikleri anlamına gelmez. CSV içeriklerinin bütünlük kontrolü, Python zaman serisi analizi, tekrar kayıtlarının karşılaştırılması ve daha fazla tam program kaydı sonraki işlerdir. E21 tamamlanmış sayılmamıştır; ancak hiç yapılmamış gibi PLANLANDI durumunda da bırakılmamıştır.
+
+
+## 2026-11-16 — ADS1115 teslimatı sonrası yeni ölçüm modülü kararı
+- Kullanıcı değerlendirmesi: mevcut ölçüm zincirinin ölçüm kalitesinden genel olarak memnun; mevcut yapı BERO'nun şu anki gözlem amacına hizmet ediyor.
+- Plan: yeni ADS1115 sensör/modülleri teslim edildiğinde mevcut modül sökülecek ve yeni modül yapısı kurulacak.
+- Bu ifade kullanıcı değerlendirmesi ve gelecek çalışma planıdır; yeni modül henüz kurulmuş, derlenmiş veya test edilmiş değildir. Mevcut ölçüm kalitesine ilişkin yeni bir sayısal doğrulama bu notla yapılmış sayılmaz.
+- Yeni modül kurulurken mevcut çalışan ölçüm zincirinin ayarları ve sonuçları korunacak; değişiklikler yeni modül/deney kaydı altında izlenecek.
+
+### SINIR
+ADS1115 teslimatı bekleniyor. Söküm, yeni modül montajı, firmware değişikliği, derleme ve fiziksel doğrulama henüz yapılmadı.
