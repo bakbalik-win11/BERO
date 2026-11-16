@@ -1,3 +1,9 @@
+## 2026-11-16 — ADS1115 teslimatı sonrası yeni ölçüm modülü kararı
+- Kullanıcı değerlendirmesi: mevcut ölçüm zincirinin ölçüm kalitesinden genel olarak memnun; mevcut yapı BERO'nun şu anki gözlem amacına hizmet ediyor.
+- Plan: yeni ADS1115 sensör/modülleri teslim edildiğinde mevcut modül sökülecek ve yeni modül yapısı kurulacak.
+- Bu ifade kullanıcı değerlendirmesi ve gelecek çalışma planıdır; yeni modül henüz kurulmuş, derlenmiş veya test edilmiş değildir. Mevcut ölçüm kalitesine ilişkin yeni bir sayısal doğrulama bu notla yapılmış sayılmaz.
+- Yeni modül kurulurken mevcut çalışan ölçüm zincirinin ayarları ve sonuçları korunacak; değişiklikler yeni modül/deney kaydı altında izlenecek.
+
 ## 2026-11-16 — E21 çamaşır makinesi kısa/uzun tam program kayıtları ve ilk nitel gözlem
 - Kullanıcı düzeltmesi: **kısa ve uzun kayıtların ikisi de baştan sona tam programdır**. Kısa kayıt yalnızca ısınma evresi değildir.
 - Kısa kayıt dosyası: `wm-kısa-prg-2026-11-14.csv` (önceki sohbet kaydında bildirilen ad); uzun kayıt dosyası: `wm-uzun pamuklu 60 - 2026-11-14.csv` (kullanıcı kitaplığı ekran görüntüsünde görülen ad).
