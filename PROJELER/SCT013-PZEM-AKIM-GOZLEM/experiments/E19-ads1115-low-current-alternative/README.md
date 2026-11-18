@@ -298,3 +298,16 @@ Kullanıcı bildirimi:
 - Bu not stok ve kalibrasyon izlenebilirliği içindir; yeni 10'lu grubun kesin katsayısı bu kayıtta belirlenmemiştir.
 
 **Kaynak türü:** Kullanıcı bildirimi ve kullanıcı tarafından yapılan ilk akım okuma kontrolleri. Bağımsız ölçüm raporu değildir.
+
+
+## 2026-11-18 — Yüksüz NaN davranışı ve modül bazlı katsayı kontrolü
+
+ESP32D2 çalışma logunda ampul kapalıyken `BERO Akim Sensoru` sürekli `nan A` yayınladı. Ampul takıldığında ct_clamp debug satırları görünür oldu: 133–139 farklı örnek (665–695 SPS), Raw AC Value 0.003–0.004 A ve kalibrasyon sonrası yayınlanan akım yaklaşık 0.094–0.100 A. Ampul çıkarılınca tekrar `nan A` görüldü. Aynı oturumda PZEM yüksüzken 0.000 A gösteriyordu.
+
+- Bu kayıt yüksüz davranış gözlemidir; `NaN` sıfır akım veya sıfır gürültü anlamına gelmez. Nedeni henüz belirlenmemiştir.
+- Paylaşılan YAML'da 5 mA altını sıfırlayan filtre bulunuyor; ancak `NaN < 0.005` karşılaştırması false olduğundan bu filtre NaN değerini sıfıra dönüştürmez.
+- Eski farklı marka ADS1115'in yüksüzken sürekli sayısal değer verdiği kullanıcı gözlemidir. Marka/parti farkının bu davranışa neden olduğu henüz kanıtlanmamıştır.
+- Her yeni ADS1115 modülünün ayrı katsayı kontrolü için **[E24 — ADS1115 modül parti bazlı katsayı kontrolü](../E24-ads1115-module-batch-coefficient-check/README.md)** açıldı. ADS01–ADS10 ayrı ayrı ölçülecek; ADS-OLD farklı marka olduğu için ayrı tutulacak.
+- E24'te yüksüz NaN davranışı katsayı hesabından ayrı izlenecek. İlk 10 modülün benzer okuması, katsayılarının eşit olduğunu kanıtlamaz.
+
+**Kaynak:** Kullanıcı tarafından paylaşılan 2026-11-18 ESP32D2 logu ve aynı tarihli Home Assistant ekran görüntüsü; ayrıca kullanıcı bildirimi. Bu bölüm gözlem kaydıdır, neden analizi veya kalibrasyon sonucu değildir.
