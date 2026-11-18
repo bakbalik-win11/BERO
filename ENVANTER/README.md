@@ -119,3 +119,13 @@ Aşağıdaki adetler kullanıcı tarafından bildirilen fiziksel envanterdir. Ta
 - Önceki farklı marka ADS1115 kartı yeni 10'lu gruptan ayrı tutulur.
 - MAX4466 kaydı entegreyi değil, MAX4466 entegresi kullandığı belirtilen mikrofon breakout modülünü ifade eder. Kesin kart özellikleri fiziksel incelemeden sonra tamamlanacaktır.
 - Üretici veri sayfası entegre özelliklerini açıklar; breakout kartındaki mikrofon kapsülü, potansiyometre, bağlantı sırası ve yardımcı devreleri tek başına doğrulamaz.
+
+
+## I²C çoklayıcı modülleri — 18.11.2026
+
+| Donanım | Model / tanım | Adet | Kullanım amacı | Durum / kayıt sınırı |
+|---|---|---:|---|---|
+| I²C multiplexer | TCA9548A, 8 kanallı I²C switch breakout | **2** | Aynı I²C hattında aynı adrese sahip ADS1115 gibi cihazları ayrı kanallardan seçerek kullanma | **2 adet sipariş edildi; teslimat bekleniyor.** Kart üreticisi, PCB revizyonu, pin sırası ve pull-up yapısı teslimatta doğrulanacak. [Donanım belgesi](../DONANIM/TCA9548A/README.md) |
+
+- İki TCA9548A kartının her biri sekiz kanal sunar; toplam kanal sayısı teorik olarak 16'dır. Gerçek sistem topolojisi ve aynı hatta birlikte kullanım henüz test edilmemiştir.
+- TCA9548A, I²C kanal anahtarıdır; I²C master veya ADC değildir.
