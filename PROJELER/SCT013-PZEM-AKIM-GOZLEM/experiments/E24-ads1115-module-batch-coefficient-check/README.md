@@ -35,14 +35,32 @@ Test başlamadan önce gerçek cihazda çalışan YAML/firmware ayarları log il
 
 ## Ölçüm yöntemi
 
-1. ADS01 ile sabit ve kararlı bir yükte PZEM ve ADS akım serilerini birlikte kaydet.
-2. Başlangıç/ısınma-geçiş bölümünü kararlı karşılaştırma penceresinden ayır.
-3. Aynı ortak kararlı pencerede ADS ortalaması ve PZEM ortalamasını hesapla.
-4. Kullanılan mevcut katsayı ve katsayı uygulanmadan önceki ham ct_clamp değeri kaydedilebiliyorsa ikisi de saklanır.
-5. Aynı hesap ve koşulları ADS02–ADS10 için tekrarla.
-6. Her modül için ayrı katsayı sonucu üret; katsayı hesabında kullanılan formül, ham değerler, PZEM değeri ve birimler açıkça yazılır.
-7. Modül sırası mümkünse tekrar ölçümle kontrol edilir. İlk modül tekrar ölçülerek yük/kurulum zamanla değişmiş mi görülür.
-8. ADS-OLD aynı düzenekte ayrı oturum olarak ölçülür ve yeni partiden ayrı raporlanır.
+**Temel kural:** Her ADS modülü, her test yükünde PZEM ile eşleştirilmiş en az 5, tercihen 10 ayrı kararlı kayıt üzerinden değerlendirilecektir. Tek bir anlık ekran değeriyle katsayı belirlenmeyecektir.
+
+1. Birkaç farklı ve kararlı yük seviyesi seçilir. Yüklerin gerçek akım aralığı PZEM ölçümüyle belirlenir; testte kullanılan ampul/cihaz adı ve nominal gücü de yazılır. Mümkünse düşük, orta ve daha yüksek akım seviyeleri kapsanır.
+2. Her yük seviyesinde yükün kararlı hale gelmesi beklenir. Geçiş/ilk kalkış örnekleri katsayı hesabına alınmaz.
+3. Aynı zaman penceresinde ADS ve PZEM kayıtları eşleştirilir. Her eşleşme için zaman damgası, PZEM akımı, ADS akımı ve varsa ham ct_clamp değeri tek satırda saklanır.
+4. Her modül + her yük kombinasyonu için 5–10 geçerli eşleşmiş kayıt toplanır. Veri akışı elveriyorsa 10 kayıt hedeflenir. Eksik/NaN/bozuk eşleşmeler geçerli kayıt sayısına dahil edilmez; nedenleri ayrıca not edilir.
+5. ADS01 için tüm yük seviyeleri tamamlanır; aynı protokol ADS02–ADS10 için tekrarlanır. Modül değişimlerinde ölçüm zincirinin diğer bileşenleri ve ayarları sabit tutulur.
+6. Her modül ve yük seviyesi için eşleşmiş kayıtların sayısı, ortalaması, medyanı, standart sapması, min–maks değeri ve PZEM'e göre sapması raporlanır. Tek tek kayıtlar da korunur; yalnız ortalama tabloya yazılıp ham eşleşmeler atılmaz.
+7. Katsayı hesabında kullanılan formül açıkça belirtilir. Her modül için katsayı önce ayrı hesaplanır; birden fazla yük seviyesindeki sonuçlar karşılaştırılmadan tek bir genel katsayı kabul edilmez.
+8. İlk modül (ADS01) ölçüm dizisinin sonunda en az bir yük seviyesinde tekrar ölçülür. Böylece zaman içinde yük/kurulum kayması olup olmadığı kontrol edilir.
+9. ADS-OLD aynı yük seviyeleri ve aynı 5–10 eşleşmiş kayıt kuralıyla ayrı oturumda ölçülür; yeni parti sonuçlarıyla aynı gruba katılmaz.
+10. Ölçüm sırası, kullanılan yük, modül kimliği, gerçek PZEM değerleri, YAML/firmware sürümü ve tüm ayarlar oturum günlüğüne yazılır.
+
+### Eşleşmiş kayıt tablosu
+
+Her satır tek bir zaman eşleşmesini temsil eder. Her modül ve yük seviyesi için bu tabloya 5–10 satır girilir.
+
+| Modül | Yük kimliği | Kayıt no | Zaman damgası | PZEM A | ADS A | Ham ct_clamp A | Geçerli mi / not |
+|---|---|---:|---|---:|---:|---:|---|
+| ADS01 | L1 | 1 | Bekliyor | | | | |
+| ADS01 | L1 | 2 | Bekliyor | | | | |
+| ADS01 | L1 | … | Bekliyor | | | | |
+| ADS01 | L2 | 1 | Bekliyor | | | | |
+| ADS-OLD | L1 | 1 | Bekliyor | | | | |
+
+Yük kimlikleri (L1, L2, L3…) gerçek test yükleri belirlendiğinde adlandırılır. Bu tablo örnek şablondur; henüz ölçüm sonucu içermez.
 
 ## Katsayı değerlendirmesi
 
