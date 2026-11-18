@@ -1,0 +1,51 @@
+╔════════════════════════════╗
+           FNIRSI Firmware Changelog
+╚════════════════════════════╝
+----------------------------------------
+
+V2.7.0.7 | 2026-08-26
+----------------------------------------
+
+[ FIXED ]
+- Fixed a bug where a watchdog reset would occur when taking a screenshot on the multimeter or signal source interface after taking one on the oscilloscope interface.
+- Fixed a bug causing display anomalies on certain screens during SFC writing.
+
+----------------------------------------
+
+V2.6.0.7 | 2026-03-20
+----------------------------------------
+
+[ FIXED ]
+- - Fixed a bug where the cursor did not follow the probe ratio.
+
+----------------------------------------
+
+V2.0.0.7 | 2025-11-18
+----------------------------------------
+
+[ OPTIMIZED ]
+- The waveform display effect has been optimized.
+
+----------------------------------------
+
+V1.2.0.6 | 2025-09-10
+----------------------------------------
+
+[ ADDED ]
+- Added language selection interface on first power-on
+
+[ OPTIMIZED ]
+- Shortened power-on press duration
+- Multimeter capacitance measurement no longer clears the waveform
+- Swapped functions of the two knobs
+
+[ FIXED ]
+- Fixed multimeter buzzer sounding when measuring AC mains
+- Fixed pop-up issue on CH1 when pressing the knob
+- Fixed low-frequency trigger failure bug
+- Fixed inaccurate low-frequency duty cycle measurement bug
+- Corrected half-wave and full-wave signals being reversed in the signal generator
+
+----------------------------------------
+
+© FNIRSI All Rights Reserved.

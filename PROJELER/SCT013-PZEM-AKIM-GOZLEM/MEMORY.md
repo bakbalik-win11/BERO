@@ -3,23 +3,28 @@
 **BERO (Burak'ın Rumelikavağı Emeklilik Otomasyonu):**
 - **Saha:** Rumeli Kavağı hobi evi.
 - **Altyapı:** Dual CAT kablolama (RS485 + 24V Power + Ethernet).
+- **Su Yönetimi & Korelasyon:**
+    - Ana su hattı basınç sensörü (Kesinti/Arıza tespiti).
+    - Cihaz-Su İlişkisi: Su kesintisi nedeniyle makinenin su alamayıp beklemede kalmasını ayırt eden zeka (Basınç yok + Akım düşük + Ses yok -> Su Kesintisi Bildirimi).
 - **Gelecek Modüller:** 
-    - Su kuyusu deneyleri (Seviye/Kalite).
-    - Gri su geri kazanımı (Tuvalet rezervuarı).
-    - Fancoil ile pasif soğutma (Kuyu suyu kullanımı).
+    - **Akıllı Havalandırma:** CO2, Toz (PM2.5/10) ve HEPA filtre sağlığı (basınç farkı ile).
+    - **Isı Geri Kazanımı:** Seramik serpantinli ısı geri kazanımlı havalandırma (Heat Recovery Ventilation).
+    - **Enerji Yönetimi:** Oda bazlı klape kontrolü (boş odaları ısıtma/soğutma dışı bırakma).
+    - **Güvenlik:** Mutfak özelinde vana ve tehlikeli gaz yönetimi.
+    - **Su Dünyası:** Su kuyusu deneyleri, gri su geri kazanımı ve fancoil ile pasif soğutma.
 - **Bilgi Mirası:** Kod ve dökümantasyonun gelecekte kızına veya bir tamirciye rehberlik edecek düzeyde açık ve sürdürülebilir olması.
 
 ## Mevcut Teknik Durum (16 Kasım 2026)
 ...
+## Mevcut Teknik Durum (16 Kasım 2026)
+- **Donanım:** ADS1115 geçişi ile ölçüm hassasiyeti ulaşıldı. 
+- **Aktif Görev:** ADS1115 modül bacaklarının lehimlenmesi (Modül 4-5-6 hazırlığı).
+- **PREBERO Fazı (Yeni):** Gerçek BERO öncesi saha veri toplama ve test aşaması.
+    - Modül 4 (Çamaşır) & Modül 5 (Bulaşık): Akım + Ses + Titreşim (WiFi üzerinden HA'ya).
+    - Modül 6 (Ana Giriş): SCT + ADS1115 + PZEM (WiFi üzerinden HA'ya).
+- **Düğüm Otonomisi:** Uç birimlerin (ESP32) HA veya ekran bağımsız çalışabilmesi, yerel veri kaydı ve kesinti sonrası senkronizasyon yeteneği.
+- **PREBERO Laboratuvarı:** ESP32-S3 Ekranlı kart + Raspberry Pi 4 (HA) + Çift RS485 hattı (Master/Slave rolleri) ile masaüstü test düzeneği.
 
-- **Donanım:** ADS1115 geçişi ile ölçüm hassasiyeti istenen seviyeye ulaştı (Eski 1.65V bias denemeleri başarısızlık sonrası terk edildi).
-- **Modül 4 (Evrensel Test Modülü):** 
-    - ESP32 + 3 ADS1115 (Kargoda) + SCT013.
-    - Ek sensörler: Ses (Kargoda), Hareket (Envanterden), Titreşim.
-    - Amaç: Cihazların yanına taşınabilir, çok modlu veri toplama.
-- **Kritik Araçlar:** 
-    - FNIRSI 2D15P Osiloskop (Kargoda): Pik/gürültü analizi için.
-    - Waveshare Modbus Modülleri: Otomasyon omurgası için hazırda.
 
 ## Takip Edilen Dosyalar
 - `STATUS.md`: Projenin genel tarihsel özeti.

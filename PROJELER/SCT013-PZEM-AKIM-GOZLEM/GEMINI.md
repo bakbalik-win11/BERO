@@ -5,11 +5,14 @@ Bu dosya, Gemini CLI ajanları için projenin yapısını, donanım bileşenleri
 ## 🚀 Proje Genel Bakış
 **Proje Adı:** BERO (Burak'ın Rumelikavağı Emeklilik Otomasyonu)
 **Lokasyon:** Rumeli Kavağı, Sarıyer, İstanbul.
-**Temel Hedef:** Tam bağımsız, öğrenen ve gelişen bir ev otomasyonu ekosistemi.
-**Felsefe:** Ticari kapalı ekosistemlerden (Apple/Aqara vb.) bağımsız, tamiri ve geliştirilmesi gelecekte (ör. aile bireyleri veya teknik personel) dökümantasyonla mümkün olan evrensel bir yapı.
+**Fazlar:** 
+1. **PREBERO (Saha Deney & Veri):** WiFi/HA üzerinden hızlı veri toplama, cihaz karakterizasyonu ve masaüstü laboratuvar testleri.
+2. **BERO (Nihai Sistem):** Tam bağımsız RS485 omurgalı dağıtık zeka mimarisi.
 
 ## 🏗 Altyapı ve Haberleşme Stratejisi
-- **Haberleşme Önceliği:** RS485 (Modbus) ana omurgadır. WiFi sadece OTA (güncelleme) için RS485 üzerinden gelen komutla geçici olarak açılır.
+- **Haberleşme:** RS485 (Modbus) ana omurgadır. PREBERO fazında WiFi/HA geçici olarak kullanılır.
+- **Uç Birim Zekası (Edge Intelligence):** Düğümler (ESP32), HA veya ekran bağlantısı kopsa dahi görevlerini bağımsız sürdürür ve yerel veri kaydı yapar.
+- **Ekran Düğümleri:** ESP32-S3 tabanlı (4.3" / 7") merkezi ve bölgesel gösterim üniteleri.
 - **Kablolama (Dual CAT Yapısı):**
     - **CAT-1 (Mavi/Standart):** Odalar için yüksek hızlı internet/WiFi.
     - **CAT-2 (Farklı Renk):** RS485 (A-B), Ekranlar için Ethernet ve **24V DC Dağıtımı** (Bölgesel olarak 5V'a düşürülür).
