@@ -150,3 +150,46 @@ Ekran tasarımı ayrı bir deneyim alanı olarak ele alınacaktır. LVGL veya uy
 - Hat sonlandırma, bias dirençleri, ortak referans/topraklama ve kablo düzeni gerçek modüllere göre belirlenecek.
 - HA tarafında Modbus entegrasyonunun register okuma/yazma biçimi ve ekranın Slave register haritası ayrıca tasarlanacak.
 - Bu bölüm bir deney fikridir; bağlantı şeması, kod, cihaz modeli veya başarılı çalışma sonucu henüz kesinleşmiş değildir.
+
+
+## Fikir — Bağımsız düğümler, yerel Data Logger ve bağlantı kesintisi deneyleri
+
+**Durum:** Olgunlaşmış deney ilkesi ve senaryo grubu. Veri saklama yöntemi, aktarım protokolü ve donanım henüz seçilmemiştir.
+
+Bu laboratuvarın temel yaklaşımı, merkezi sistemlerin yardımcı olması ancak düğümlerin çalışmasının HA, ekran veya BLE bağlantısına bağımlı olmamasıdır. Mikro ESP'ler kendi görevlerini bağımsız sürdürür. Gerekirse her mikro ESP'ye küçük bir yerel Data Logger eklenir. Bağlantı olmadığında olay/veri yerelde saklanır; bağlantı geldiğinde bir üst düğüme aktarılır.
+
+### Temel ilkeler
+
+- Home Assistant bulunmadığında sistemin düğüm tarafındaki temel işlevleri durmamalıdır.
+- Ekran veya üst düğüm devre dışı kaldığında mikro ESP kendi görevini sürdürmelidir.
+- BLE bağlantısının olmaması da düğümün temel görevini durdurmamalıdır.
+- Sensörün gerçek uygulamaya uygun veya hassas olması bu haberleşme deneyleri için şart değildir. Sabit test verisi, sayaç, buton veya LED kullanılabilir.
+- Deneyin odağı sensör doğruluğu değil; düğümler arası veri aktarımı, komut iletimi, yerel kayıt, bağlantı kesintisine dayanıklılık ve yeniden bağlantı davranışıdır.
+
+### Deney senaryoları
+
+1. **Buton ve sayaç:** Bir butona her basıldığında mikro ESP yerel sayacı bir artırır. Ekran düğümü devreye alındığında sayacı okur; veriyi HA'ya aktarır.
+2. **HA bağlantısını kesme:** HA bağlantısı kesilirken mikro ESP çalışmayı sürdürür ve buton olaylarını yerel kayda alır. HA yeniden bağlandığında biriken kayıtların üst katmana aktarılması gözlenir.
+3. **Üst düğümü devreden çıkarma:** Ekran/aktarıcı düğüm kapatılır. Mikro ESP bağımsız çalışır ve veri kaydeder. Üst düğüm tekrar açıldığında bekleyen kayıtlar aktarılır.
+4. **Yeniden başlatma ve kalıcılık:** Mikro ESP yeniden başlatılır. Sayaç ve kayıtların korunup korunmadığı, kaldığı yerden devam edip etmediği test edilir.
+5. **Tekrarlı veya kayıp veri:** Bağlantı kesilmesi ve yeniden deneme sırasında kayıtların kaybolması ya da iki kez işlenmesi kontrol edilir.
+6. **CO₂ sensörü ve dijital Modbus çıkışı:** CO₂ sensörü eşik koşulunu sağladığında mikro ESP yerel karar verir ve Modbus üzerinden örneğin 14 numaralı röleyi tetikler. HA yalnızca izleme veya ek kontrol amacıyla bulunabilir; yerel kararın çalışması HA'ya bağlı olmamalıdır.
+7. **Bağlantı geri geldiğinde aktarım:** Düğümün biriktirdiği veriler bir üst düğüme, oradan HA'ya aktarılır; kayıtların sırası ve bütünlüğü incelenir.
+
+### Gözlenecek sonuçlar
+
+- Düğüm kendi işini merkezi sistem olmadan sürdürüyor mu?
+- Yerel sayaç ve kayıt yeniden başlatma sonrasında korunuyor mu?
+- Bağlantı kesikken olaylar kaydediliyor mu?
+- Bağlantı geri geldiğinde kayıtlar eksiksiz ve doğru sırayla aktarılıyor mu?
+- Aynı kayıt iki kez işleniyor mu?
+- Komut doğru düğüme ve doğru çıkışa ulaşıyor mu?
+- Üst düğüm, HA veya BLE yokluğu alt düğümün temel işlevini etkiliyor mu?
+
+Kayıtların güvenilir aktarımı için ileride sıra numarası/olay kimliği, alındı onayı, yeniden deneme ve yinelenen kayıtların ayıklanması gibi yöntemler değerlendirilecektir. Bunlar henüz seçilmiş bir protokol veya uygulanmış çözüm değildir.
+
+Bu deneylerde mekanik bir klape ya da gerçek bir yükün açılıp kapanması zorunlu değildir. Sayaç, LED veya düşük gerilimli dijital çıkışlar haberleşme ve kontrol zincirini doğrulamak için yeterlidir. Röle/aktüatör deneyleri uygun elektriksel güvenlik ve yük koşullarıyla ayrıca yapılmalıdır.
+
+### Genel amaç
+
+Gerçek ev modüllerini tavan arasına veya nihai konumlarına yerleştirmeden önce haberleşme, bağımsız çalışma, yerel veri kaydı, kesinti ve toparlanma davranışlarını masa üzerinde ilgisiz/test sensörleriyle sınamak. Böylece saha montajından sonra ortaya çıkabilecek temel haberleşme sorunlarını önceden görmek ve çözmek.
