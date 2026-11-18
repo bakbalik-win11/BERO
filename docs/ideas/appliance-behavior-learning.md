@@ -93,3 +93,60 @@ PREBERO/BERO modüllerinin Home Assistant'a gönderdiği akım değerlerini, ayr
 - İleride ekran düzeni, bağlantı durumu, toplam yük veya grafik gibi ek bilgiler değerlendirilebilir; bunlar şimdilik kesin kapsam değildir.
 
 Fikir aşamasındadır. Ekran modeli, arayüz, veri alışverişi ve uygulama ayrıntıları henüz seçilmemiştir.
+
+
+## Fikir — PREBERO masaüstü haberleşme ve ekran laboratuvarı
+
+**Durum:** Olgunlaşmış deney fikri. Mimari yaklaşım belirginleşmiştir; donanım bağlantıları, yazılım ve deney sonuçları henüz doğrulanmamıştır.
+
+PREBERO saha modülleri evde kendi görevlerini yürütürken, masa üzerinde ihtiyaç oldukça kurulup kaldırılabilecek bağımsız bir deney düzeneği hazırlanması düşünülmektedir. Düzenek sürekli çalışmak zorunda değildir. Deney konusu önceden belirlenir, bağlantılar kurulur, kod ve haberleşme sınanır; başarılı kod, örnek log ve sonuç yorumu depoda saklanır.
+
+### Deney düzeneğinin ana bileşenleri
+
+- Raspberry Pi 4 (8 GB): Home Assistant çalışma ortamı.
+- Raspberry Pi'ye USB üzerinden bağlanan RS485 adaptörü.
+- ESP32-S3, 4,3 inç ekranlı kart: ekran arayüzü ve iki bağımsız RS485 hattının yönetimi.
+- Mikro ESP: basit sensörler, düğmeler ve dijital giriş/çıkış deneyleri.
+- Bir veya daha fazla Modbus sensör / dijital giriş-çıkış modülü.
+- ESP32-S3 kartının mevcut RS485 A/B bağlantısı: birinci hat.
+- ESP32-S3 üzerindeki boş UART'a eklenecek ikinci RS485 transceiver: ikinci hat.
+
+### İki bağımsız RS485 hattı ve roller
+
+**Hat A — Ekran Master**
+- ESP32-S3 ekran bu hatta Modbus Master olarak çalışır.
+- Mikro ESP ve Modbus sensör / giriş-çıkış cihazları Slave olarak bağlanır.
+- Ekran cihazları sorgular, register verilerini okur ve uygun komutları yazar.
+
+**Hat B — Ekran Slave**
+- Raspberry Pi 4 üzerindeki Home Assistant, USB-RS485 adaptörü üzerinden bu hattın Master'ı olur.
+- ESP32-S3 ekran bu hatta Modbus Slave olarak çalışır.
+- Ekran, kendi topladığı veya arayüzünde tuttuğu uygun verileri register haritası üzerinden HA'ya sunabilir; HA'dan gelen yazma komutlarını da deney kapsamında işleyebilir.
+
+İki rol aynı RS485 hattında paylaşılmayacaktır. Ekran kartı iki ayrı fiziksel RS485 bağlantısı ve iki ayrı UART üzerinden bir hatta Master, diğer hatta Slave olarak görev yapacaktır. Böylece aynı hatta iki Master'ın çakışması önlenir.
+
+### Deney senaryoları
+
+1. Mikro ESP'den sıcaklık gibi basit sensör verisi okumak ve ekranda göstermek.
+2. Modbus sensör register'larını ekranda göstermek.
+3. Ekran dokunmatiğindeki bir düğmeyle Hat A üzerinden dijital Modbus çıkışını veya röleyi tetiklemek.
+4. HA'nın Hat B üzerinden ekranın Slave register'larını okuması.
+5. HA'dan ekrana register yazılması ve ekran arayüzünde karşılığının gösterilmesi.
+6. Ekranın Hat A'dan topladığı veriyi Hat B üzerinden HA'ya sunması.
+7. Birden fazla Modbus cihazında adresleme, sorgulama sırası, zaman aşımı ve haberleşme hatası davranışlarını denemek.
+8. Ekran arayüzünde akan oklar, birden fazla değerin toplamı, grafikler, sayfa geçişleri, dokunmatik kontroller, parlaklık ve backlight yönetimini öğrenmek.
+
+### Öğrenme amacı
+
+Bu laboratuvarın temel amacı yalnızca akım değerlerini ekranda göstermek değildir. ESP32-S3 üzerinde ekran tasarımı ve kullanıcı etkileşimi geliştirmek; Modbus Master/Slave rollerini, iki bağımsız RS485 hattını, mikro ESP ile sensör haberleşmesini ve Home Assistant entegrasyonunu deneyerek öğrenmektir.
+
+Ekran tasarımı ayrı bir deneyim alanı olarak ele alınacaktır. LVGL veya uygun başka bir ekran kütüphanesi, kartın gerçek donanımına ve mevcut örnek koduna bakılarak değerlendirilebilir.
+
+### Açık teknik doğrulamalar
+
+- ESP32-S3 ekran kartının tam modeli, mevcut RS485 devresinin UART bağlantısı ve pinleri belirlenecek.
+- İkinci RS485 transceiver'ın lojik gerilim uyumluluğu doğrulanacak; ESP32-S3 GPIO'larına uygun 3,3 V lojik seviyeli bir çözüm seçilecek.
+- İki UART'ın aynı anda çalışması, DE/RE yön kontrolü, baud/parite ayarları ve Modbus zamanlamaları test edilecek.
+- Hat sonlandırma, bias dirençleri, ortak referans/topraklama ve kablo düzeni gerçek modüllere göre belirlenecek.
+- HA tarafında Modbus entegrasyonunun register okuma/yazma biçimi ve ekranın Slave register haritası ayrıca tasarlanacak.
+- Bu bölüm bir deney fikridir; bağlantı şeması, kod, cihaz modeli veya başarılı çalışma sonucu henüz kesinleşmiş değildir.
