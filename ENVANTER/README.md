@@ -104,3 +104,18 @@ Aşağıdaki adetler kullanıcı tarafından bildirilen fiziksel envanterdir. Ta
 - Bu donanımların envanterde bulunması, aynı RS485 hattında birlikte çalıştıklarının veya register haritalarının doğrulandığının kanıtı değildir. Slave adresleri, baud/parity/stop bit ayarları, register adresleri, izolasyon ve hat sonlandırması saha testinde doğrulanacaktır.
 - Bu bölümdeki adetler kullanıcı bildirimi esaslıdır; fiziksel etiket/fotoğraf doğrulaması tamamlandıkça model ayrıntıları güncellenecektir.
 
+
+
+## Analog sinyal ve ses modülleri — 18.11.2026
+
+| Donanım | Model / tanım | Adet | Kullanım amacı | Durum / kayıt sınırı |
+|---|---|---:|---|---|
+| Harici ADC modülü | ADS1115 tabanlı breakout | **10** | SCT013 analog sinyal okuma, ADC karakterizasyonu ve BERO ölçüm modülleri | Mevcut; kullanıcı bildirimi. Kart üreticisi/SKU/PCB revizyonu henüz doğrulanmadı. Her kart ayrı ADS1115-01…10 kimliğiyle test edilecek. [Donanım belgesi](../DONANIM/ADS1115/README.md) |
+| Mikrofon yükselteç modülü | MAX4466 tabanlı | **Adet teyit edilecek** | Analog ses sinyali alma; PREBERO/BERO ses tabanlı deneyler | Mevcut; kullanıcı teslim aldığını bildirdi. Kesin adet, kart revizyonu, kapsül ve SKU fiziksel kontrolde kaydedilecek. [Donanım belgesi](../DONANIM/MAX4466/README.md) |
+
+### Envanter kayıt ilkesi
+
+- ADS1115 için 10 adet, kullanıcı bildirimi esaslı stok miktarıdır; on kartın aynı revizyon veya aynı performansta olduğu anlamına gelmez.
+- Önceki farklı marka ADS1115 kartı yeni 10'lu gruptan ayrı tutulur.
+- MAX4466 kaydı entegreyi değil, MAX4466 entegresi kullandığı belirtilen mikrofon breakout modülünü ifade eder. Kesin kart özellikleri fiziksel incelemeden sonra tamamlanacaktır.
+- Üretici veri sayfası entegre özelliklerini açıklar; breakout kartındaki mikrofon kapsülü, potansiyometre, bağlantı sırası ve yardımcı devreleri tek başına doğrulamaz.
