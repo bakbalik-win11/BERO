@@ -79,3 +79,17 @@ Modül 4 ve 5'te ses, titreşim ve akım verilerinden cihaz davranış örüntü
 - Elektrik panosuna montaj ve şebeke bağlantıları, güvenli izolasyon ve uygun koruma koşulları gerektirir.
 
 Bu belge PREBERO'nun kavramını ve saha deneyi yönünü kaydetmek için hazırlanmıştır; uygulama ayrıntıları ve sonuçlar testlerle ayrıca belgelenecektir.
+
+
+## Fikir — Merkezi canlı akım ekranı
+
+PREBERO/BERO modüllerinin Home Assistant'a gönderdiği akım değerlerini, ayrı bir ekranlı ESP üzerinden tek noktada göstermek fikri.
+
+- Ölçüm yapan üç ESP kendi ölçümünü yapmaya ve Home Assistant'a veri göndermeye devam eder.
+- Ekranlı ESP ölçüm görevi üstlenmez; merkezi gösterim terminali olarak Home Assistant'taki değerleri alıp yayınlar.
+- İlk hedef, üç modülün akım değerlerini tek ekranda canlı ve kolay okunur biçimde göstermektir.
+- Bu ekran için ESP32-S3 ve 4,3 inç veya 7 inç ekran seçenekleri düşünülmektedir.
+- Ekran ve arayüz çalışması acil bir uygulama değil; hobi kapsamında yavaş yavaş ele alınabilecek ayrı bir çalışma.
+- İleride ekran düzeni, bağlantı durumu, toplam yük veya grafik gibi ek bilgiler değerlendirilebilir; bunlar şimdilik kesin kapsam değildir.
+
+Fikir aşamasındadır. Ekran modeli, arayüz, veri alışverişi ve uygulama ayrıntıları henüz seçilmemiştir.
