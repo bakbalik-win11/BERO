@@ -66,3 +66,58 @@ TCA9548A, aynı I²C adresinde çalışan birden fazla ADS1115'in kanal seçimiy
 - Deney 2, çok kanallı ölçüm, tarama, zamanlama ve Home Assistant veri aktarım mimarisini belirlemeye yardım eder.
 
 Bu deneyler tamamlanmadan 16 kanallı ana pano için nihai imalat kararı verilmez. Son karar; deney kayıtları, ölçüm kalitesi, zaman çözünürlüğü, kararlılık ve uygulama kolaylığı üzerinden verilecektir.
+
+
+## Ana pano için alternatif mimari fikirler
+
+Bu bölüm, TCA9548A araştırmasıyla ortaya çıkan alternatif yapıları final imalat kararı öncesinde karşılaştırmak üzere eklenmiştir. Bunlar aday mimarilerdir; henüz doğrulanmış tasarım veya imalat kararı değildir.
+
+### Alternatif A — Önceden düşünülen dağıtık yapı: 2 ESP × 3 ADS1115 = 12 SCT
+
+- 2 ESP32 kullanılır.
+- Her ESP 3 ADS1115 yönetir.
+- Her ADS1115'in iki diferansiyel ölçüm çiftiyle 2 SCT ölçülmesi hedeflenir.
+- Toplam: 6 ADS1115 ve 12 SCT ölçüm kanalı.
+- Ölçüm ve haberleşme yükü iki ESP'ye dağıtılır.
+
+**Değerlendirme:** Dağıtık işlem ve olası yük paylaşımı avantajı; iki ayrı ESP, Wi-Fi bağlantısı, firmware ve cihaz yönetimi gerektirir.
+
+### Alternatif B — Tek ESP + TCA9548A + 6 ADS1115 = 12 SCT
+
+- Tek ESP32 kullanılır.
+- Bir TCA9548A üzerinden 6 ADS1115, ayrı mux kanallarına yerleştirilerek yönetilir.
+- Her ADS1115 ile 2 SCT ölçümü hedeflenir.
+- Toplam: 6 ADS1115 ve 12 SCT ölçüm kanalı.
+- Tek firmware, tek Wi-Fi bağlantısı ve tek Home Assistant bağlantısı.
+
+**Değerlendirme:** Dağıtık yapıdaki iki ESP'yi tek kontrolcüde birleştirerek cihaz, kablolama ve yönetim düzenini sadeleştirme potansiyeli taşır. Toplam tarama süresi, kanal başına hız ve ölçüm kalitesi deneyle doğrulanmalıdır.
+
+### Alternatif C — Tek ESP + TCA9548A + 8 ADS1115 = 16 SCT
+
+- Tek ESP32 ve bir TCA9548A kullanılır.
+- TCA'nın 8 kanalına 8 ADS1115 yerleştirilmesi planlanır.
+- Her ADS1115 ile 2 SCT ölçümü hedeflenir.
+- Teorik toplam: 16 SCT ölçüm kanalı.
+
+**Değerlendirme:** En az ESP sayısıyla 16 kanala ulaşma olasılığı sunar. Ancak tarama süresi, kanal başına örnekleme hızı, I²C ve ADC zamanlaması, ESP32 yükü, Wi-Fi/HA aktarımı ve ölçüm kalitesi prototip üzerinde test edilmeden uygulanabilir final tasarım olarak kabul edilmez.
+
+### Alternatiflerin karşılaştırmalı karar ölçütleri
+
+| Ölçüt | A: 2 ESP / 12 kanal | B: 1 ESP / 12 kanal | C: 1 ESP / 16 kanal |
+|---|---|---|---|
+| ESP sayısı | 2 | 1 | 1 |
+| ADS1115 sayısı | 6 | 6 | 8 |
+| TCA9548A | Yok (ilk tasarım) | 1 | 1 |
+| SCT kanalı | 12 | 12 | 16 |
+| Kontrol ve HA bağlantısı | 2 cihaz | 1 cihaz | 1 cihaz |
+| Mimari karmaşıklık | Dağıtık | Merkezi | Merkezi, daha fazla kanal |
+| Ölçüm hızı/kalitesi | Test edilecek | Test edilecek | Test edilecek |
+| Final kararı | Deney sonrası | Deney sonrası | Deney sonrası |
+
+### TCA9548A ile sadeleşme hipotezi
+
+TCA9548A, aynı I²C adresindeki ADS1115'leri mux kanallarında ayırarak adres yönetimini kolaylaştırabilir ve ana pano bağlantılarını daha düzenli hale getirebilir. Bu nedenle yalnızca kanal çoğaltma komponenti olarak değil, modülün kablolama, montaj, firmware ve bakım düzenini sadeleştirme adayı olarak değerlendirilecektir.
+
+### Karar ilkesi
+
+Ana pano final imalatı; kanal sayısı tek başına esas alınarak seçilmeyecektir. Üç aday yapı, deneylerden elde edilen gerçek tarama hızı, zaman çözünürlüğü, ölçüm kararlılığı, haberleşme etkisi, kablolama/kurulum kolaylığı ve bakım edilebilirlik birlikte değerlendirilerek karşılaştırılacaktır. Tek ESP'li 12 kanal yapısı, TCA9548A ile sadeleşme sağlayıp performans hedeflerini karşılayabiliyorsa güçlü bir adaydır.
