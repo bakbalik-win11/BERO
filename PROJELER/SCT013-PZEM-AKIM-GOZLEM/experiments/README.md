@@ -104,3 +104,6 @@ Her yeni deney için amaç/HEDEF, gerçek bağlantı ve ayarlar, LOG, SONUÇ, ka
 
 
 - **[E19 — ADS1115 ile düşük akım ölçüm alternatifi](E19-ads1115-low-current-alternative/README.md): AÇIK.** Aşama 1'de ADS1115 I2C 0x48 ve A0-A1 diferansiyel okumaları logla desteklendi; önceki 7 SPS kayıtları RMS/katsayı doğrulaması değildir. Aşama 2 olarak 100 W akkor sabit yükte ESP32D1 + ESP32D2 ADS1115 + PZEM ortak kararlı alan karşılaştırması ve ADS1115 katsayı testi açıldı. Ölçüm/katsayı beklemede. [Protokol](E19-ads1115-low-current-alternative/protocol.md) · [Sonuç](E19-ads1115-low-current-alternative/results.md) · [ilk log](../logs/ads1115/2026-11-13-E19-ads1115-first-bringup.md) · [YAML](../firmware/experiments/esp32d2-ads1115-ct-clamp.yaml).
+
+
+- **[E24 — ADS1115 modül parti bazlı katsayı kontrolü](E24-ads1115-module-batch-coefficient-check/README.md): AÇILDI / PLANLANDI (2026-11-18).** Yeni aynı marka/parti ADS01–ADS10 modüllerinin her biri aynı kararlı yükte PZEM karşılaştırmasıyla ayrı ayrı kontrol edilecek; bireysel katsayılar hesaplanıp parti içi ortak katsayı uygunluğu değerlendirilecek. Eski farklı marka ADS-OLD ayrı tutulacak. Yüksüz `NaN` davranışı katsayı hesabından ayrı gözlenecek. Ölçüm ve katsayı sonucu henüz yok.
