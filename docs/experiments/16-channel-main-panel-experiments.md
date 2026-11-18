@@ -32,20 +32,20 @@ Deney bağlantısı kurulmadan önce ADS1115 girişlerinin mutlak ve diferansiye
 ## Deney 2 — TCA9548A ile çoklu ADS1115 okuma ve veri toplama mimarisi
 
 ### Amaç
-16 kanallı ana pano için mümkün olan en hızlı, en kaliteli ve en kararlı çoklu okuma mimarisini bulmak. Çoklu ADC'lerin tarama/okuma yapısı, mümkün olan eş zamanlı veya zaman örtüşmeli dönüşüm yaklaşımları, ESP32 işlem yükü ve Home Assistant'a veri aktarımı birlikte değerlendirilir.
+12/16 kanallı ana pano için yeterli hızda, kaliteli ve kararlı okuma mimarisini bulmak. Kanalların aynı anda okunması veya birbirleriyle zaman karşılaştırması yapılması şart değildir. Ardışık tarama kabul edilebilir; önemli olan kanal başına ölçüm hızı, kararlılık, veri kaybı, ESP32 işlem yükü ve Home Assistant aktarımının ölçüm döngüsüne etkisidir.
 
 ### Araştırma kapsamı
 - TCA9548A üzerinden birden fazla ADS1115'i yönetmek.
 - I²C kanal seçimi ve ADC okuma sırasının toplam tarama süresine etkisi.
 - ADS1115 dönüşümlerini sırayla başlatma/okuma ve dönüşümleri zaman örtüşmeli yürütme (pipelining) olasılığını incelemek.
-- Gerçek eş zamanlı ölçüm ile hızlı ardışık taramayı ayırt etmek; eş zamanlılık iddiasını ölçmeden kullanmamak.
+- Ana pano için eş zamanlı okuma zorunluluğu yoktur; hızlı ve kararlı ardışık tarama yeterli olabilir.
 - Ölçüm/işleme döngüsünü Home Assistant haberleşmesinden mümkün olduğunca ayırmak.
 - ESP32 üzerinden ölçüm verisini Home Assistant'a iletmek ve haberleşmenin ölçüm döngüsüne etkisini test etmek.
 
 ### Ölçülecek performans
 - Tüm kanallar için toplam tarama süresi
 - Kanal başına örnekleme hızı
-- Kanallar arası zaman farkı / gecikme
+- Tarama sırası ve kanal başına okuma aralığı (kanallar arası karşılaştırma amacıyla değil, performans ölçütü olarak)
 - Okuma kararlılığı ve veri kaybı
 - ESP32 işlem yükü
 - Wi-Fi ve Home Assistant gönderim gecikmesinin ölçüm döngüsüne etkisi
@@ -70,7 +70,7 @@ Bu deneyler tamamlanmadan 16 kanallı ana pano için nihai imalat kararı verilm
 
 ## Ana pano için alternatif mimari fikirler
 
-Bu bölüm, TCA9548A araştırmasıyla ortaya çıkan alternatif yapıları final imalat kararı öncesinde karşılaştırmak üzere eklenmiştir. Bunlar aday mimarilerdir; henüz doğrulanmış tasarım veya imalat kararı değildir.
+Bu bölüm, TCA9548A araştırmasıyla ortaya çıkan alternatif yapıları final imalat kararı öncesinde karşılaştırmak üzere eklenmiştir. Ana pano kanalları arasında eşzamanlı ölçüm veya birbirleriyle karşılaştırma gereksinimi yoktur; ardışık okuma yeterlidir. Bunlar aday mimarilerdir; henüz doğrulanmış tasarım veya imalat kararı değildir.
 
 ### Alternatif A — Önceden düşünülen dağıtık yapı: 2 ESP × 3 ADS1115 = 12 SCT
 
