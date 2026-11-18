@@ -279,3 +279,22 @@ Kullanıcı bildirimi: PZEM 0,265 A, ADS1115 + SCT 0,270 A. Mevcut katsayı kaba
 ## Sonraki deney — E20 fiziksel aç/kapa tepki testi
 
 18 W sabit yük baz gözlemi tamamlandı. Aynı sensör ve ADS1115 ayarları korunarak fiziksel ON/OFF geçişi, OFF sonrası sıfıra/yüksüz tabana dönüş ve çevrimler arası tekrarlanabilirlik E20 altında incelenecek. [E20 protokolü](../E20-ads1115-18w-on-off-response/README.md) ve [E20 sonuç defteri](../E20-ads1115-18w-on-off-response/results.md).
+
+
+## 2026-11-18 — ADS1115 yeni parti / marka-katsayı notu
+
+Kullanıcı bildirimi:
+- Yeni alınan ADS1115 modüllerinden **10 adet** bulunuyor.
+- Bu 10 modül aynı markadan/aynı ürün grubundan alındı; her birinde akım okuma denemesi yapıldı.
+- Kullanıcının gözlemine göre yeni 10'lu grup kendi içinde aynı davranışı gösteriyor.
+- Daha önce çalışılmış, elde bulunan **bir adet eski ADS1115** farklı markadan. Bu modül farklı gösterim verdiği için katsayısı yeni 10'lu gruptan farklı.
+- Dolayısıyla eski farklı marka modülün katsayısı yeni 10'lu gruba doğrudan uygulanmamalı; yeni grup için eski katsayı otomatik olarak varsayılmamalı.
+
+### Uygulama notu
+- Yeni 10'lu grup, kullanıcı tarafından ADS01–ADS10 şeklinde fiziksel olarak numaralandırılacak.
+- Marka/parti farkı ölçüm kayıtlarında korunacak.
+- Kalibrasyon katsayısı en azından marka/parti ve ölçüm zinciriyle ilişkilendirilecek; farklı marka modüller aynı katsayı altında birleştirilmeyecek.
+- Aynı parti içindeki modüllerin birbirine yakın davranması kullanıcı gözlemidir; her bir modülün ölçüm eşdeğerliği ve uzun süreli kararlılığı ayrıca doğrulanmış sayılmaz.
+- Bu not stok ve kalibrasyon izlenebilirliği içindir; yeni 10'lu grubun kesin katsayısı bu kayıtta belirlenmemiştir.
+
+**Kaynak türü:** Kullanıcı bildirimi ve kullanıcı tarafından yapılan ilk akım okuma kontrolleri. Bağımsız ölçüm raporu değildir.
