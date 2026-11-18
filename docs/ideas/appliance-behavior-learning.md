@@ -1,40 +1,81 @@
-# BERO — Cihaz Davranışını Öğrenme ve Akım Tabanlı Tahmin Fikri
+# BERO — PREBERO Saha Deney Ortamı ve Cihaz Davranışını Öğrenme Fikri
 
-**Durum:** Fikir / araştırma yönü. Henüz deney planı, doğrulanmış yöntem veya ürün kararı değildir.
+**Durum:** Fikir / saha veri toplama ortamı. Henüz doğrulanmış deney sonuçları, kesin tasarım veya ürün kararı değildir.
 
-## Fikir
+## PREBERO kavramı
 
-İki eş donanımlı veri toplama modülüyle farklı ev cihazlarının uzun süreli ses ve titreşim kayıtları alınması; bu kayıtların harici PC'de Python kullanılarak işlenmesi, öğrenme ve tahmin deneylerinde kullanılması.
+PREBERO, gerçek BERO sistemine geçmeden önce modüllerin gerçek ev ortamında yerleştirilip çalıştırılacağı, uzun süreli saha verisi ve deneyim kazanılacağı ilk ortamdır. Masaüstü testlerinden gerçek kullanım koşullarına geçişi temsil eder: cihazlar kendi ortamlarında çalışırken sensör verileri toplanır, sistemin sürekliliği ve davranışı gözlenir.
 
-## Modüller
+PREBERO'nun ilk saha çalışmasında üç modül bulunur. Üçü de verilerini Wi-Fi üzerinden Home Assistant'a aktarır. Bu, deney ve gözlem aşamasında kurulumu kolaylaştıran iletişim tercihidir. Gerçek BERO mimarisinde modüller arası haberleşme RS485 olarak planlanmaktadır.
 
-- **Modül 4 — Çamaşır makinesi:** Mikrofon ve titreşim verisiyle uzun süreli kayıt.
-- **Modül 5 — Bulaşık makinesi:** Modül 4'ün ikizi; mikrofon ve titreşimle uzun süreli kayıt.
-- ESP'ler veri toplama, zaman damgası ve dosyaya yazma görevlerini yürütür. Home Assistant geçmişi kayıt kaynağı olarak kullanılmak zorunda değildir.
-- Öğrenme, veri analizi, model geliştirme, tahmin ve doğrulama harici PC'de Python ile yapılır.
+## PREBERO modülleri
+
+### Modül 4 — Çamaşır makinesi
+
+Çamaşır makinesine sabitlenecek veri toplama modülü. Sensör yaklaşımı:
+- SCT ile akım davranışı
+- Mikrofon ile ses gözlemi
+- Titreşim sensörü ile mekanik davranış gözlemi
+
+PZEM kullanılmayacaktır. Bu modülün hedefi elektrik ölçümünü referansla karşılaştırmak değil, çamaşır makinesinin gerçek çalışma döngülerinde akım, ses ve titreşim örüntülerini uzun süreli gözlemlemektir.
+
+### Modül 5 — Bulaşık makinesi
+
+Modül 4 ile aynı sensör yaklaşımına sahip ikiz modül:
+- SCT ile akım davranışı
+- Mikrofon ile ses gözlemi
+- Titreşim sensörü ile mekanik davranış gözlemi
+
+PZEM kullanılmayacaktır. Bulaşık makinesinin kendi çalışma döngüleri ve davranış örüntüleri gerçek ortamda uzun süre gözlenecektir.
+
+Modül 4 ve 5'ten alınan daha zengin (akım + ses + titreşim) veriler, cihaz davranışının incelenmesi ve öğrenme çalışmaları için kullanılacaktır.
+
+### Modül 6 — Evin tek faz ana girişi
+
+Ana panoda, tek fazlı evin toplam yükünü gözlemlemek üzere düşünülen modül:
+- SCT akım sensörü
+- ADS1115 analog-dijital dönüştürücü
+- ESP32 mini
+- PZEM ölçüm modülü
+
+SCT tarafında BERO deneylerinde kullanılan 1,65 V orta nokta bias yaklaşımı ESP'nin 3,3 V hattından oluşturulabilir; mevcut bias devresi temel alınacaktır. Bu henüz saha testinde doğrulanmış bağlantı veya tasarım kararı değildir.
+
+Modül 6'nın amaçları:
+- Evin ana giriş toplam akımını gözlemlemek
+- PZEM ile SCT ölçümlerini aynı ortamda karşılaştırmak
+- PZEM üzerinden gerilim, güç ve enerji gibi ölçümleri izlemek
+- SCT/ADS1115 tarafının yük değişimlerine ve akım davranışına verdiği yanıtı karşılaştırma verisi olarak toplamak
+
+Modül 6, ana giriş yükünü gözlemleyen saha modülü olarak BERO ana ev panosu uygulamasına yönelik bir çalışma alanıdır.
+
+## PREBERO haberleşmesi
+
+- Modül 4, Modül 5 ve Modül 6: Wi-Fi üzerinden Home Assistant'a veri aktarımı.
+- PREBERO'da Wi-Fi, saha deneylerini kurmak, izlemek ve geliştirmek için kullanılır.
+- Gerçek BERO'da modüller arası haberleşme RS485 olarak planlanmaktadır.
 
 ## Araştırma hedefi
 
-Ses ve titreşim gibi daha zengin sensör verilerinden cihaz davranış örüntülerini öğrenmek; daha sonra yalnızca SCT/akım verisinin bu davranışları tanımaya veya durum tahmin etmeye ne ölçüde yeterli olduğunu araştırmak.
+Modül 4 ve 5'te ses, titreşim ve akım verilerinden cihaz davranış örüntülerini öğrenmek; daha sonra yalnızca SCT/akım verisinin bu davranışları tanıma veya durum tahmini için ne ölçüde yeterli olabileceğini araştırmak.
 
-## Modül 6 — BERO ana ev panosu fikri
+## Araştırma ve veri çalışma yönü
 
-Modül 6, yalnızca SCT/akım verisi kullanarak davranış gözlemi, öğrenilmiş örüntülerden sapma tespiti veya durum tahmini yapabilecek bir ESP tabanlı saha uygulaması adayıdır.
+1. Modül 4 ve 5'i cihazlara sabitleyerek gerçek çalışma koşullarında uzun süreli veri toplamak.
+2. Modül 6 ile evin ana giriş toplam yükünü ve SCT/PZEM karşılaştırmasını gözlemek.
+3. Verileri incelemek, düzenlemek ve analiz etmek için harici PC/Python kullanmak.
+4. Cihaz çalışma davranışlarını ve olası aşamalarını veriler üzerinden incelemek.
+5. Öğrenme ve tahmin yöntemlerini toplanan verilerle denemek.
+6. Akım verisinin tek başına davranış tanıma veya durum tahminine ne kadar katkı sağlayabileceğini araştırmak.
+7. Sonuçları doğrulamadan öğrenilmiş davranışların Modül 6 veya gerçek BERO'ya aktarılabilir olduğunu varsaymamak.
 
-Modül 4 ve 5'teki ses/titreşim kayıtları eğitim ve araştırma verisi olarak düşünülür. Modül 6'nın doğrudan mikrofon veya titreşim sensörüne sahip olması öngörülmüyor; hedef akım verisiyle çalışmaktır.
+## Sınırlar ve açık noktalar
 
-## Önerilen araştırma akışı
+- PREBERO bir saha deney ortamıdır; henüz doğrulanmış sonuç veya ürün değildir.
+- Modül 4 ve 5'te PZEM yoktur; SCT, ses ve titreşim davranış gözlemi içindir.
+- Modül 6'da PZEM, SCT ölçümünü karşılaştırmak ve ana giriş yükünü izlemek için bulunur.
+- Wi-Fi/HA PREBERO'nun deney iletişim yoludur; gerçek BERO iletişim yapısı RS485 olarak planlanmaktadır.
+- Bu fikir arıza teşhisi veya güvenilir arıza tahmini iddiası içermez.
+- Modüllerin sensör bağlantıları, örnekleme hızları, dosya/veri biçimleri, model türü ve alarm mantığı henüz kesinleşmemiştir.
+- Elektrik panosuna montaj ve şebeke bağlantıları, güvenli izolasyon ve uygun koruma koşulları gerektirir.
 
-1. Modül 4 ve 5 ile uzun süreli ses/titreşim verisi toplamak.
-2. Kayıtları PC/Python ortamında düzenlemek ve incelemek.
-3. Cihaz çalışma davranışlarını ve olası aşamaları tanımlamak.
-4. Öğrenme ve tahmin yöntemlerini veriler üzerinde denemek.
-5. Akım verisinin tek başına ne kadar bilgi taşıyabileceğini araştırmak.
-6. Sonuçları doğrulamadan Modül 6'ya aktarılabilir kabul etmemek.
-
-## Sınırlar
-
-- Bu fikir henüz arıza teşhisi veya güvenilir arıza tahmini iddiası değildir.
-- Modül 4/5 ve Modül 6 arasında veri/öğrenme aktarımının mümkün olup olmadığı deneylerle gösterilmelidir.
-- Sensör seçimi, örnekleme hızı, dosya biçimi, model türü ve alarm mantığı henüz belirlenmemiştir.
-- Bu kayıt bir fikir notudur; kesin mimari veya uygulama kararı içermez.
+Bu belge PREBERO'nun kavramını ve saha deneyi yönünü kaydetmek için hazırlanmıştır; uygulama ayrıntıları ve sonuçlar testlerle ayrıca belgelenecektir.
