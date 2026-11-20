@@ -2440,3 +2440,11 @@ ADS1115 teslimatı bekleniyor. Söküm, yeni modül montajı, firmware değişik
 
 ### SINIR
 Bu kayıt mimari/hedef netleştirmesidir. Sensör modelleri, montaj, bağlantı, firmware, örnekleme, Python analizi, karar ağacı veya bildirim sistemi bu oturumda uygulanmadı.
+
+
+## 2026-11-20 — Modül 4/5 I²C ve bulaşık modülü besleme netleştirmesi
+
+- Kullanıcı kararı: MPU6050 ve ADS1115 aynı I²C hattını paylaşmayacak. Fiziksel bağlantı kolaylığı nedeniyle MPU6050 birinci, ADS1115 ikinci ve fiziksel olarak ayrı I²C bus'ında kullanılacak. GPIO/SDA/SCL numaraları gerçek ESP32-D kartı ve shield incelendikten sonra seçilecek.
+- Kullanıcı açıklaması: bulaşık makinesi kendi mevcut elektrik hattından beslenecek; makineyi üçlü priz üzerinden besleme planı yok. Görüşülen 5 V konusu yalnızca gözlem modülünün beslemesidir.
+- Modül 5 için değerlendirilen seçenekler: sıva üstü 5 V DC çıkışlı priz veya makine beslemesinden bağımsız ayrı bir hattan adaptör. Kesin besleme yöntemi henüz seçilmedi.
+- Bu güncelleme yalnızca karar/dokümantasyon kaydıdır. Fiziksel kablolama, pin ataması, firmware, derleme veya sensör testi yapılmadı.
