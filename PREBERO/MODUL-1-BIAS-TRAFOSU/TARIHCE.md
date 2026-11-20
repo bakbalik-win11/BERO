@@ -38,3 +38,11 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Edinilen tecrübe:** Bias orta nokta yapısı Modül 1'in trafosuna özgü değildir. İki eşit direnç, uygun bir DC kaynağın yaklaşık yarı gerilimini orta noktada üretir. Kaynak gerilimi değişirse orta nokta gerilimi de değişir; 1,65 V sabit ve kaynaktan bağımsız bir çıktı değildir.
 - **Teknik karar:** Bu yapı PREBERO README içinde genel bias orta nokta standardı olarak tanımlanacaktır. Modül 1 imalat dosyasında ise mevcut kurulumun ölçülmüş örneği olarak tutulacaktır. İki direnç 9,82 kΩ ölçülmüş değerleriyle kaydedildi; 10 kΩ nominal sınıfıyla uyumlu kabul edildi. 104 seramik kondansatör 100 nF olarak kaydedildi. Elektrolitik kondansatörün “10 50V” işaretlemesinin tam kapasite değeri ve kondansatörlerin bağlantı biçimleri henüz doğrulanmadı. Devrenin şebeke karakterini koruduğu veya galvanik izolasyon sağladığı bu ölçümlerle kanıtlanmış değildir.
 - **İlgili kayıtlar:** `PREBERO/README.md`; `PREBERO/MODUL-1-BIAS-TRAFOSU/IMALAT/IMALAT.md`; 2026-11-20 oturum fotoğrafları ve kullanıcı tarafından bildirilen multimetre ölçümleri. Ayrı görev/YAML/LOG/RAPOR henüz oluşturulmadı.
+
+
+### 2026-11-21 – Modül 1 imalat amacının netleştirilmesi
+
+- **Görev kimliği:** Henüz atanmadı.
+- **Çalışma / karar:** Kullanıcı, Modül 1'in imalat amacını açıkça tanımladı: şebeke karakterini SCT013'e yansıtmak.
+- **Teknik karar:** Modül 1'in ana amacı, şebeke karakterini SCT013 akım trafosunun ölçüm sinyaline yansıtacak bias yapısını imal etmektir. Bias yapısının SCT013 sinyaline etkisi ve karakteri koruyup korumadığı deneyle incelenecektir. Bu ifade tasarım/imalat hedefidir; başarı veya doğrulama iddiası değildir.
+- **İlgili kayıtlar:** `PREBERO/MODUL-1-BIAS-TRAFOSU/IMALAT/IMALAT.md`; `PREBERO/DURUM.md`.
