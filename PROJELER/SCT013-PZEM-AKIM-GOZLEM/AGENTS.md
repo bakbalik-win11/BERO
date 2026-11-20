@@ -3,6 +3,7 @@
 ## En yüksek öncelik: depo sürekliliği
 
 - Her oturumun başında bu dosyayı, STATUS.md, ROADMAP.md ve ilgili görev/deney dosyalarını oku.
+- BERO deposunun tamamı için haftalık bütünlük kontrolü uygula; kontrol kapsamı ve rapor biçimi [Depo Bütünlüğü Prosedürü](../../docs/DEPOT-BUTUNLUK-KONTROLU.md) içinde tanımlıdır.
 - Yeni karar, kod, deney koşulu, sonuç ve iş sırası değişikliğini aynı çalışma akışında uygun dosyaya kaydet.
 - Geçmiş kayıtları silme; karar değişirse yeni ADR ile tarihçeyi koru.
 - Depo yazımından sonra dosyayı yeniden oku ve bağlantıları doğrula.
