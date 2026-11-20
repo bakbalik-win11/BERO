@@ -30,14 +30,14 @@ Ham HA CSV değişmeden saklanır; analiz ve segmentasyon ayrı türetilmiş ç�
 - **Durum:** AKIMLA İLK KEŞİF KAYITLARI MEVCUT / SES-TİTREŞİM MODÜLÜNDEN ANA VERİ TOPLAMA BEKLENİYOR
 - **Açılış tarihi:** 2026-11-13
 - **Hedef:** Çamaşır makinesinin çalışma davranışını öncelikle ses ve titreşim kayıtlarıyla gözlemlemek; Python'da zaman serilerini ve çıkarılan özellikleri inceleyerek davranış örüntülerini belirlemek. Akım, gerektiğinde yardımcı bağlam kanalıdır. 14 Kasım 2026 tarihli akım kayıtları yalnızca ilk keşif/deneme niteliğindedir; ana veri toplama yöntemi ve nihai davranış sınıflandırması değildir.
-- **İlerideki yön:** Modül 4 (çamaşır) ve Modül 5 (bulaşık) taşınabilir düğümleriyle ses ve titreşim ana kanalları toplanacaktır. Python tarafında önce ham kayıt bütünlüğü, zaman serisi, özellik çıkarımı ve kanallar arası karşılaştırma yapılır. Yeterli ve tekrarlanabilir veri oluştuğunda davranış sınıfları/karar ağacı tasarlanabilir. Bildirim üretimi bundan da sonraki aşamadır; şu anki kapsamda değildir. Sensör modelleri, montaj, örnekleme ve kayıt parametreleri fiziksel kurulumla kesinleştirilecektir.
+- **İlerideki yön:** Modül 5 (çamaşır) ve Modül 6 (bulaşık) taşınabilir düğümleriyle ses ve titreşim ana kanalları toplanacaktır. Python tarafında önce ham kayıt bütünlüğü, zaman serisi, özellik çıkarımı ve kanallar arası karşılaştırma yapılır. Yeterli ve tekrarlanabilir veri oluştuğunda davranış sınıfları/karar ağacı tasarlanabilir. Bildirim üretimi bundan da sonraki aşamadır; şu anki kapsamda değildir. Sensör modelleri, montaj, örnekleme ve kayıt parametreleri fiziksel kurulumla kesinleştirilecektir.
 - **Önceki hedef:** PZEM kararlı-alan eşleştirmesiyle eğitim/kalibrasyon verisi üretme iş akışı ADR-026 ile kapatıldı. Bu işin eski kayıtları silinmez.
 
 ## 1. İlk testin amacı ve sınırı
 
 İlk kayıtlar kısa ve uzun programların **tam program çekimleridir**. Amaç, programların baştan sona akım davranışını gözlemek ve ilerideki karşılaştırma/analizler için başlangıç verisi oluşturmaktır. Bu aşamada tüm evreleri kesin tanımlamak, makine durumlarını sınıflandırmak veya eğitim modeli oluşturmak hedeflenmez. İlk akım kayıtları ses/titreşim tabanlı ana veri toplama başlamadan önce yapılmış keşif denemesidir.
 
-İlk akım kayıtları keşif amaçlıdır. Asıl çoklu sensör gözlemi, Modül 4 ve Modül 5 ile ses ve titreşimden yapılacaktır; akım kanalı yardımcı veri olarak değerlendirilebilir.
+İlk akım kayıtları keşif amaçlıdır. Asıl çoklu sensör gözlemi, Modül 5 ve Modül 6 ile ses ve titreşimden yapılacaktır; akım kanalı yardımcı veri olarak değerlendirilebilir.
 
 Bu çalışma enerji tüketimi veya güç kalitesi analizi değildir. SCT zincirinin ürettiği akım gözlemi, cihazın çalışma karakterini incelemek için kullanılacaktır.
 
@@ -86,7 +86,7 @@ Bu aşamada ayrıntılı evre sınıflandırması, tekrar testi veya ek sensör 
 
 ## 6. Sonraki aşamalar
 
-Ses ve titreşim sensörleri Modül 4 ve Modül 5 üzerinde fiziksel olarak devreye alındıktan sonra ham kayıtlar toplanacaktır. Python'da önce sinyal kalitesi ve özellikler incelenecek, ardından ses/titreşim örüntüleri ve varsa yardımcı akım bilgisi birlikte değerlendirilecektir. Karar ağacı/karar mantığı ancak yeterli kayıt ve tekrarlarla doğrulandıktan sonra ele alınır. Bildirim üretimi uzun vadeli sonraki aşamadır. Aynı programı tekrar etme veya başka programları kaydetme ihtiyacı ilk kaba testin sonucuna göre kararlaştırılır. Tek programdan bütün makine davranışı hakkında genelleme yapılmaz.
+Ses ve titreşim sensörleri Modül 5 ve Modül 6 üzerinde fiziksel olarak devreye alındıktan sonra ham kayıtlar toplanacaktır. Python'da önce sinyal kalitesi ve özellikler incelenecek, ardından ses/titreşim örüntüleri ve varsa yardımcı akım bilgisi birlikte değerlendirilecektir. Karar ağacı/karar mantığı ancak yeterli kayıt ve tekrarlarla doğrulandıktan sonra ele alınır. Bildirim üretimi uzun vadeli sonraki aşamadır. Aynı programı tekrar etme veya başka programları kaydetme ihtiyacı ilk kaba testin sonucuna göre kararlaştırılır. Tek programdan bütün makine davranışı hakkında genelleme yapılmaz.
 
 ## 7. Güvenlik ve sınırlar
 
