@@ -178,4 +178,4 @@ SCT013 + PZEM alt projesi bu geniş sistemin ilk ve teknik açıdan zor başlang
 
 Her iki modül için planlanan gözlem kanalları akım, ses ve titreşimdir. Sensörlerin kesin modelleri, ESP32 kartı, analog ön uç, pin bağlantıları ve kayıt parametreleri fiziksel montajda doğrulanacaktır. Klasörlerin açılması modüllerin imal edildiği veya çalıştığı anlamına gelmez.
 
-**Modül numaraları henüz kesinleştirilmedi:** MEMORY.md içinde Modül 4/5 olarak anılıyorlar; ancak E22 deneyi Modül 4 kimliğini ESP32 + ADS1115 + 100 A / 1 V SCT + PZEM tasarımı için daha önce kullanmış. Bu kimlik çakışması kullanıcı kararıyla çözülecek.
+**Modül kimlikleri (2026-11-20 kullanıcı onayı):** Modül 4 = Çamaşır Makinesi; Modül 5 = Bulaşık Makinesi. E22, bu iki cihaz modülünden bağımsız 100 A / 1 V SCT karakterizasyon deneyidir ve cihaz modül numarası kullanmaz.
