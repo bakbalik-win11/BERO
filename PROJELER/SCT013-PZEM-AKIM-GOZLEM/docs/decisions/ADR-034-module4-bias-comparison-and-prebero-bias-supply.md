@@ -4,6 +4,8 @@
 - **Durum:** KABUL EDİLDİ — çalışma sırası; bias mimarisi kararı açık
 - **Karar sahibi:** Kullanıcı
 
+> **Güncel sıra notu:** Bu ADR bias karşılaştırması ve bias besleme kararının teknik içeriğini korur. ADS1115 teknik raporuyla başlayan, Modül 4 tasarım/imalat kapısını ve PREBERO bağımlılığını tanımlayan güncel üst sıra [ADR-035](ADR-035-module4-design-gate-before-prebero.md) ile genişletilmiştir. Sıra çelişkisinde ADR-035 esastır.
+
 ## Amaç
 
 Modül 4'teki mevcut ESP32D2 + ADS1115 + SCT masaüstü ölçüm zincirinde bias kullanımının gerekliliğini deney ve osiloskop gözlemiyle belirlemek. PREBERO Modül 5, 6 ve 7'nin bias besleme/mimari seçimini bu sonuçtan sonraya bırakmak.
