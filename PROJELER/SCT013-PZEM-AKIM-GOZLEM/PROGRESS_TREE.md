@@ -1,3 +1,16 @@
+## 2026-11-20 — PREBERO'nun gerçek kapsamı ve Modül 1–7 yaşam döngüsü
+
+- **PREBERO:** BERO'nun kurulacağı eve henüz taşınılamadığı, o evdeki kiracı çıkana kadar Sarıyer'deki mevcut evde yürütülen gözlem, deney ve veri toplama dönemidir. Amaç mevcut evdeki çamaşır makinesi, bulaşık makinesi ve ana hattı izlemek; veri toplayarak BERO'ya geçmeden önce ilerleme sağlamaktır.
+- PREBERO nihai BERO kurulumu değildir. **Modül 5, 6 ve 7'nin tamamı PREBERO kapsamındadır.**
+- **Modül 1:** Mevcut bias trafosu/güç kutusu korunuyor; Modül 4'te biaslı/bias'sız deneylerde kullanılacak.
+- **Modül 2/3:** Eski fiziksel modüller imha edildi. ADS1115 ile istenen sınırlar içinde akım okunabildiği için eski fiziksel düzeneğe ihtiyaç kalmadı. Kod ve kayıtlar tarihsel arşiv.
+- **Modül 4:** Mevcut günlük masaüstü ESP32D2 + ADS1115 + SCT deney düzeneği.
+- **Modül 5:** PREBERO çamaşır makinesi gözlem modülü.
+- **Modül 6:** PREBERO bulaşık makinesi gözlem modülü.
+- **Modül 7:** PREBERO ana hat + PZEM gözlem modülü.
+- E22 modül değildir; Modül 4'te 30 A / 1 V ve 100 A / 1 V SCT karşılaştırma fikridir; henüz ölçüm yoktur.
+- Bağlayıcı karar: [ADR-033](docs/decisions/ADR-033-module-identities-desktop-and-prebero.md).
+
 ## 2026-11-20 — Modül 4–7 envanteri düzeltildi; E22 deney olarak ayrıldı
 
 - Kullanıcı düzeltmesi ve [ADR-033](docs/decisions/ADR-033-module-identities-desktop-and-prebero.md) esas alınır:
