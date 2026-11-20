@@ -57,7 +57,19 @@ Bu dosya, Gemini CLI ajanları için projenin yapısını, donanım bileşenleri
 4. **Documentation:** Yapılan her önemli analiz veya deney, ilgili klasöre `README.md` veya `report.md` olarak işlenmelidir.
 5. **Context Efficiency:** Bilgi aramada `grep_search` ve `glob` araçları önceliklidir.
 
+## Modül Kimlikleri — Güncel Kullanıcı Kararı
+
+- **Modül 4:** Günlük kullanılan mevcut masaüstü ESP32D2 + ADS1115 + SCT ölçüm düzeneği.
+- **Modül 5:** İmal edilecek çamaşır makinesi gözlem modülü.
+- **Modül 6:** İmal edilecek bulaşık makinesi gözlem modülü.
+- **Modül 7 / PreBERO:** Ana hattı PZEM ile birlikte okumaya yönelik hedef düzenek; tasarım ve test bekliyor.
+- **E22:** Modül değildir. Modül 4'ün ölçüm zinciri kararlı çalıştıktan sonra bir kanalda 30 A / 1 V, diğerinde 100 A / 1 V SCT karşılaştırması yapılması fikridir. Henüz ölçüm alınmadı.
+- **E24:** Çoklu ADS1115 / çok kanallı SCT erişimi için ayrı deney/araştırma kaydıdır; modül numarası değildir.
+
 ## 🎯 Aktif Odak Alanları
-1. **Modül 4 Kurulumu:** Tek ESP32 + 3 ADS1115 + 6 SCT hedefi (E24).
-2. **Yük Karakterizasyonu:** Çamaşır makinesi tam program analizi (E21).
-3. **Gürültü Analizi:** ADS1115 üzerindeki anlık sıçramaların (spikes) osiloskop ile incelenmesi.
+1. **Modül 4:** Mevcut günlük masaüstü ölçüm zincirini korumak ve çalışmasını sürdürmek.
+2. **Modül 5/6:** Çamaşır ve bulaşık gözlem modüllerinin imalat hazırlığı.
+3. **E22:** Modül 4 başarılı/kararlı olduktan sonra 30 A ve 100 A SCT karşılaştırma fikrini deney koşullarına dönüştürmek.
+4. **Modül 7 / PreBERO:** Ana hat + PZEM gözlem hedefini daha sonra tasarlamak.
+5. **E21:** Çamaşır makinesi tam program kayıtlarının zaman serisi analizi.
+6. **Gürültü Analizi:** ADS1115 üzerindeki anlık sıçramaların (spikes) osiloskop ile incelenmesi.
