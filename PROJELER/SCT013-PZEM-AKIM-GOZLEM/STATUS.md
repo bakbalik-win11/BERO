@@ -1,3 +1,17 @@
+## 2026-11-20 — Modül 4 bias deneyi ve PREBERO bias kararı çalışma sırası
+
+**Kullanıcı tarafından onaylanan güncel sıra:**
+1. Modül 4 masaüstü ESP32D2 + ADS1115 + SCT düzeneğinde Modül 1 kullanılarak biaslı/bias'sız karşılaştırma.
+2. Ardından osiloskopla iki yapının sinyal biçimini ve çalışma davranışını birlikte inceleme.
+3. Ölçüm ve osiloskop kanıtına göre bias gerekli mi kararını verme.
+4. Ancak bu karardan sonra PREBERO Modül 5 (çamaşır), Modül 6 (bulaşık) ve Modül 7 (ana hat + PZEM) için bias besleme yaklaşımını tartışma: bias'ı ESP beslemesinden üretmek veya Modül 1'in ikiz bias devrelerini imal etmek.
+
+**Açık karar:** Bias gerekli mi sorusu henüz cevaplanmadı. PREBERO modüllerinin bias besleme yöntemi de seçilmedi.
+
+**Sınır:** Bu kayıt plan/sıra kararıdır; bias karşılaştırma deneyi, osiloskop incelemesi veya PREBERO donanım tasarımı yapılmış olduğu anlamına gelmez. Deney kayıtları ve sonuçları elde edildikçe eklenecek.
+
+Ayrıntı: [ADR-034](docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md).
+
 ## 2026-11-20 — PREBERO kapsamı ve Modül 1–7 yaşam döngüsü düzeltildi
 
 **PREBERO tanımı:** BERO'nun kurulacağı eve henüz taşınılamadığı, o evdeki kiracı çıkana kadar Sarıyer'deki mevcut evde yürütülen gözlem, deney ve veri toplama dönemi. Amaç mevcut evdeki çamaşır makinesi, bulaşık makinesi ve ana elektrik hattını izleyerek veri toplamak ve BERO'ya geçmeden önce ilerleme sağlamaktır. PREBERO nihai BERO kurulumu değildir.
