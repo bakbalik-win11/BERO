@@ -44,3 +44,7 @@ Kullanıcı beyanı, doküman bilgisi, hesaplama, varsayım ve doğrudan ölçü
 Bir iş yalnızca sohbet içinde kalmamalıdır. Sonraki oturumda başka biri veya aynı kullanıcı; ne yapıldığını, hangi kodun kullanıldığını, testin çalışıp çalışmadığını, sonucu ve ilgili log/veriyi depo içinden bulabilmelidir. Her oturumda tek bir oturum günlüğü kaydı ve ilgili kalıcı dosyalara yollar bırakılması tercih edilir.
 
 Bu protokol, projeye özgü talimatların yerine geçmez; onlarla birlikte uygulanır.
+
+## Haftalık depo bütünlüğü kontrolü
+
+BERO deposunun tamamı haftada en az bir kez kontrol edilir. Kontrol; Git nesne bütünlüğü, yerel çalışma ağacı, dosya/klasör yapısı, dokümantasyon bağlantıları, proje durum tutarlılığı, ham veri izlenebilirliği ve GitHub Actions sonuçlarını kapsar. Komut çıktıları ve bulgular tarihli raporla saklanır. Kontrol prosedürü: [docs/DEPOT-BUTUNLUK-KONTROLU.md](docs/DEPOT-BUTUNLUK-KONTROLU.md).
