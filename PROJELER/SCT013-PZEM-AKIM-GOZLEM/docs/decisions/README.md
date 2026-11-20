@@ -31,3 +31,4 @@ Dosya slug'ları farklıdır ve bağlantılar bu dosya adları üzerinden çalı
 
 - [ADR-031 — CH1 yüksüz kapalı alan eşiği](ADR-031-ch1-idle-closed-area-threshold.md)
 - [ADR-032 — Çamaşır ve bulaşık için ikiz sensör modülleri](ADR-032-washing-dishwasher-twin-sensor-modules.md)
+- [ADR-033 — BERO modül kimlikleri: masaüstü ölçüm, cihaz gözlem ve PreBERO ana hat](ADR-033-module-identities-desktop-and-prebero.md)
