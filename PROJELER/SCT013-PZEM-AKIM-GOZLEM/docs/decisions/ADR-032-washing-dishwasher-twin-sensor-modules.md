@@ -6,7 +6,7 @@
 
 ## Bağlam ve amaç
 
-Çamaşır makinesi (Modül 4) ve bulaşık makinesi (Modül 5) için taşınabilir gözlem modülleri üretilecek. İki modül aynı elektronik donanım tasarımını ve ortak firmware temelini kullanacak; cihaz adı, modül kimliği ve veri kayıt etiketleri farklı olacak.
+Çamaşır makinesi (Modül 5) ve bulaşık makinesi (Modül 6) için taşınabilir gözlem modülleri üretilecek. İki modül aynı elektronik donanım tasarımını ve ortak firmware temelini kullanacak; cihaz adı, modül kimliği ve veri kayıt etiketleri farklı olacak.
 
 Makine davranışını incelemede ses ve titreşim birincil kanallardır. Akım, bu kanalları yorumlamaya yardımcı ikincil/bağlamsal kanaldır. Bulaşık makinesinde özellikle su alma ve su boşaltma evrelerinin ses/titreşim kayıtlarında gözlenmesi hedeflenir; bunlar henüz doğrulanmış sınıflar değildir.
 
@@ -34,8 +34,8 @@ Her modülde birer adet:
 
 ## İmalat sırası ve güç beslemesi
 
-1. **Önce Modül 4 — Çamaşır makinesi** oluşturulacak. Kullanıcı bildirimi: kurulum noktasındaki prizde 5 V besleme mevcut.
-2. **Modül 5 — Bulaşık makinesi** aynı donanım tasarımının ikinci kopyası olacak; ancak güç beslemesi çözülene kadar imalatı ertelenecek.
+1. **Önce Modül 5 — Çamaşır makinesi** oluşturulacak. Kullanıcı bildirimi: kurulum noktasındaki prizde 5 V besleme mevcut.
+2. **Modül 6 — Bulaşık makinesi** aynı donanım tasarımının ikinci kopyası olacak; ancak güç beslemesi çözülene kadar imalatı ertelenecek.
 3. Bulaşık makinesi kendi mevcut elektrik hattından beslenecek; makineyi üçlü priz üzerinden besleme planı yoktur. Burada çözülecek konu yalnızca gözlem modülünün 5 V DC beslemesidir. Kullanıcı, modül için sıva üstü 5 V çıkışlı priz veya makine beslemesinden bağımsız ayrı bir hattan adaptör seçeneğini değerlendirecek; kesin çözüm henüz belirlenmedi.
 4. İki modülün elektriksel tasarımı aynı kalır; kurulum ve besleme altyapısı cihaz konumuna göre farklı olabilir.
 
@@ -51,11 +51,11 @@ Her modülde birer adet:
 
 ## Kanıt ve durum
 
-- Sensör modelleri, ESP32-D ve vidalı shield adedi, iki ayrı I²C hattının fiziksel bağlantı kolaylığı nedeniyle kesinleştirilmesi, Modül 4'ün önce yapılması ve Modül 5'in güç çözümüne kadar bekletilmesi **KULLANICI KARARI / KULLANICI BİLDİRİMİ** olarak kaydedilmiştir.
+- Sensör modelleri, ESP32-D ve vidalı shield adedi, iki ayrı I²C hattının fiziksel bağlantı kolaylığı nedeniyle kesinleştirilmesi, Modül 5'ün önce yapılması ve Modül 6'in güç çözümüne kadar bekletilmesi **KULLANICI KARARI / KULLANICI BİLDİRİMİ** olarak kaydedilmiştir.
 - Bu kayıt donanımın satın alındığı, bağlandığı, firmware'in yazıldığı/derlendiği veya ölçüm yapıldığı anlamına gelmez.
 - Her iki modül de fiziksel montaj, elektriksel kontrol, firmware doğrulaması ve gerçek sensör logları tamamlanana kadar **PLANLANDI** durumundadır.
 
 ## İlgili dosyalar
 
-- [Modül 4 — Çamaşır makinesi](../../devices/washing-machine/README.md)
-- [Modül 5 — Bulaşık makinesi](../../devices/dishwasher/README.md)
+- [Modül 5 — Çamaşır makinesi](../../devices/washing-machine/README.md)
+- [Modül 6 — Bulaşık makinesi](../../devices/dishwasher/README.md)
