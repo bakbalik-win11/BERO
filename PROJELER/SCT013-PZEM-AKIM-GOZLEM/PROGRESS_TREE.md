@@ -1,3 +1,14 @@
+## 2026-11-20 — Modül 4–7 envanteri düzeltildi; E22 deney olarak ayrıldı
+
+- Kullanıcı düzeltmesi ve [ADR-033](docs/decisions/ADR-033-module-identities-desktop-and-prebero.md) esas alınır:
+  - **Modül 4:** mevcut günlük masaüstü ESP32D2 + ADS1115 + SCT ölçüm düzeneği.
+  - **Modül 5:** imal edilecek çamaşır makinesi gözlem modülü.
+  - **Modül 6:** imal edilecek bulaşık makinesi gözlem modülü.
+  - **Modül 7 / PreBERO:** ana hattı PZEM ile birlikte okumaya yönelik hedef düzenek.
+- E22 modül değildir. Modül 4 kararlı çalıştıktan sonra bir kanalda 30 A / 1 V, diğer kanalda 100 A / 1 V SCT karşılaştırması yapılması fikridir. E22 kapsamında ölçüm alınmadı; ayrı 100 A modülü imal edilmedi.
+- Modül 5/6 cihaz klasörleri ve ikiz donanım kararı korunur; numaraları 5/6 olarak güncellendi.
+- Önceki 2026-11-13 ve 2026-11-20 modül numarası kayıtları tarihçe olarak durur; güncel kimlikler ADR-033'e göre okunur.
+
 ## 2026-11-14 — E24 üç ADS1115 / tek ESP32 / altı SCT test planı güncellendi
 - Kullanıcı bildirimi: mevcut iki ADS1115'ten biri çalışıyor, biri arızalı; yeni siparişlerin teslimi bekleniyor.
 - Güncel test hedefi doğrudan **1 ESP32 + 3 ADS1115 + 6 SCT**; önceki iki ADS/dört SCT ara test planı güncellendi.
