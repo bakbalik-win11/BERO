@@ -10,6 +10,7 @@ PREBERO bir modül ve görev yapısıdır. Her modülün hedefi, görevleri ve �
 
 - Modül hedefleri birbirinden bağımsız ve açıktır.
 - Her modülün altında görevler bulunur.
+- Her modülün kökünde, o modülde edinilen tecrübeyi ve gelişim sürecini izleyen bir `TARIHCE.md` bulunur.
 - Her görev kendi kodunu, verisini, loglarını, analizini ve raporunu barındırır.
 - Görev tamamlandıkça aynı modülde sonraki görev açılır.
 - Ortak donanım bilgileri ve envanter PREBERO içinde kopyalanmaz; ana dizindeki DONANIM ve ENVANTER kullanılır.
@@ -127,8 +128,10 @@ MOD2-GRV001/
 
 - `README.md` kalıcı ilkeleri ve standartları anlatır: proje yapısı, modül/görev kimlikleri, kod sürümleme, ESP kimliği, YAML teslimi ve dosyalama kuralları. Güncel iş akışını veya ilerleme durumunu takip etmez.
 - `DURUM.md` projenin güncel akışını gösteren tek takip dosyasıdır: hangi modülde ve görevde olduğumuz, mevcut çalışma aşaması, ilerleme, bekleyen işler ve sıradaki adım burada tutulur.
-- Göreve özgü teknik ayrıntılar, kod, veri, log ve raporlar yalnızca ilgili görev klasöründe tutulur.
-- Yeni bir oturumda önce bu README ile `DURUM.md` okunur; ardından aktif görevin klasörü incelenir.
+- Her modülün kökündeki `TARIHCE.md`, o modülde görevler boyunca edinilen tecrübeyi, önemli denemeleri, sonuçları ve teknik kararların gerekçelerini kronolojik olarak kaydeder. Logların veya raporların yerine geçmez; onlardan öğrenilenleri özetler ve ilgili görev/sürüm kayıtlarına referans verir.
+- Yeni bir oturumda sırasıyla: (1) bu README okunur, (2) `DURUM.md` üzerinden aktif modül ve görev belirlenir, (3) aktif görevin bulunduğu modülün `TARIHCE.md` dosyası okunur, (4) aktif görev klasörü ve ilgili sürüm kayıtları incelenir.
+- Bir görevdeki çalışma tamamlanıp görev/çalışma oturumu kapatılırken önce ilgili modülün `TARIHCE.md` dosyası güncellenir. Ardından gerekiyorsa görev kayıtları ve en son `DURUM.md` güncellenir. Tarihçe güncellemesi yapılmadan çalışma tamamlanmış kabul edilmez.
+- Tarihçe kaydında tarih, görev kimliği, yapılan çalışma/deneme, gözlenen sonuç, edinilen tecrübe ve alınan karar bulunur. İlgili YAML sürümü, LOG ve RAPOR yolları eklenir. Sonuç doğrulanmadıysa doğrulanmış gibi yazılmaz.
 - Ana dizindeki `DONANIM/` ve `ENVANTER/` ortak donanım ve envanter bilgilerinin tek kaynağıdır. Bu bilgiler PREBERO altında kopyalanmaz.
 
 ### Fiziksel ESP kimliği ve görev kimliği ayrımı
