@@ -129,9 +129,27 @@ MOD2-GRV001/
 - `README.md` kalıcı ilkeleri ve standartları anlatır: proje yapısı, modül/görev kimlikleri, kod sürümleme, ESP kimliği, YAML teslimi ve dosyalama kuralları. Güncel iş akışını veya ilerleme durumunu takip etmez.
 - `DURUM.md` projenin güncel akışını gösteren tek takip dosyasıdır: hangi modülde ve görevde olduğumuz, mevcut çalışma aşaması, ilerleme, bekleyen işler ve sıradaki adım burada tutulur.
 - Her modülün kökündeki `TARIHCE.md`, o modülde görevler boyunca edinilen tecrübeyi, önemli denemeleri, sonuçları ve teknik kararların gerekçelerini kronolojik olarak kaydeder. **Test loglarının veya raporların kopyası değildir.** Log ve raporların ne gösterdiğini, bunlardan ne öğrendiğimizi ve hangi teknik sonuca/karara ulaştığımızı özetler; ayrıntılı kanıtın bulunduğu görev ve sürüm kayıtlarına referans verir.
-- Yeni bir oturumda sırasıyla: (1) bu README okunur, (2) `DURUM.md` üzerinden aktif modül ve görev belirlenir, (3) aktif görevin bulunduğu modülün `TARIHCE.md` dosyası okunur, (4) aktif görev klasörü ve ilgili sürüm kayıtları incelenir.
-- Bir görevdeki çalışma tamamlanıp görev/çalışma oturumu kapatılırken önce ilgili modülün `TARIHCE.md` dosyası güncellenir. Ardından gerekiyorsa görev kayıtları ve en son `DURUM.md` güncellenir. Tarihçe güncellemesi yapılmadan çalışma tamamlanmış kabul edilmez.
-- Tarihçe kaydında tarih, görev kimliği, yapılan çalışma/deneme, gözlenen sonuç, edinilen tecrübe ve alınan karar bulunur. İlgili YAML sürümü, LOG ve RAPOR yolları eklenir. Sonuç doğrulanmadıysa doğrulanmış gibi yazılmaz.
+#### Oturum açılış sırası
+
+Çalışmaya her yeniden başlandığında sıra değişmez:
+
+1. `DURUM.md` okunur; aktif modül ve en son üzerinde çalışılan görev buradan belirlenir.
+2. Belirlenen modülün `TARIHCE.md` dosyası okunur; o modülde daha önce edinilen tecrübe ve teknik kararlar hatırlanır.
+3. `DURUM.md` içinde belirtilen son görev klasörüne girilir; `GOREV.md`, son kod sürümü ve ilgili LOG/RAPOR kayıtları incelenir.
+4. Çalışmaya bu bağlam üzerinden devam edilir. Başka modüllerin dosyaları gereksiz yere açılmaz.
+
+#### Oturum kapatış sırası
+
+Bir görevden çıkarken, başka modüle geçerken veya çalışma oturumunu bitirirken:
+
+1. Önce ilgili modülün `TARIHCE.md` dosyasına o oturumda edinilen tecrübe aktarılır.
+2. Tarihçe, log ve raporların kopyası olarak değil; ne yapıldığını, ne gözlendiğini, ne öğrenildiğini ve hangi kararın alındığını özetleyecek şekilde yazılır. Ayrıntılı kanıtlara görev/sürüm yollarıyla referans verilir.
+3. Ardından `DURUM.md` güncellenir: aktif modül, son çalışılan görev, mevcut aşama, bekleyen işler ve bir sonraki somut adım açıkça belirtilir.
+4. Böylece başka bir modüle geçilse veya aynı göreve aylar sonra dönülse bile çalışma kaldığı yerden sürdürülebilir.
+
+Tarihçe ve durum güncellemesi yapılmadan oturum kapatılmış veya başka göreve geçilmiş sayılmaz.
+
+Tarihçe kaydında tarih, görev kimliği, yapılan çalışma/deneme, gözlenen sonuç, edinilen tecrübe ve alınan karar bulunur. İlgili YAML sürümü, LOG ve RAPOR yolları eklenir. Sonuç doğrulanmadıysa doğrulanmış gibi yazılmaz.
 - Ana dizindeki `DONANIM/` ve `ENVANTER/` ortak donanım ve envanter bilgilerinin tek kaynağıdır. Bu bilgiler PREBERO altında kopyalanmaz.
 
 ### Fiziksel ESP kimliği ve görev kimliği ayrımı
