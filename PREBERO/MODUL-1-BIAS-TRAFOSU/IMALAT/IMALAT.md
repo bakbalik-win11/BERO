@@ -22,17 +22,24 @@
 | 2 | KBU610 / kullanıcı yazımı: KBU610VETH | Belirtilmedi | Köprü doğrultucu olduğu bildirildi; tam model ve bağlantı doğrulanmadı | Kullanıcı bildirimi |
 | 3 | 2200 / 35 V kondansatör | Belirtilmedi | Kapasite birimi µF olarak anlaşılmıştır; üzerindeki işaretleme doğrulanmalı | Kullanıcı bildirimi |
 | 4 | L78L33, TO-92 | Belirtilmedi | 3,3 V regülatör; devredeki kullanım ve bağlantı doğrulanmadı | Kullanıcı bildirimi |
-| 5 | Bias direnç(ler)i ve kondansatörü | Belirtilmedi | Bias yapısının standart bileşenleri olacak; değerler ve bağlantı kaydedilmedi | Fiziksel inceleme bekliyor |
-| 6 | Breadboard | Belirtilmedi | Kurulumun breadboard üzerinde yapıldığı bildirildi | Kullanıcı bildirimi |
-| 7 | ESP | Belirtilmedi | ESP kaynaklı bias karşılaştırmasında kullanılıyor; model/pin/bağlantı kaydedilmedi | Kullanıcı bildirimi |
+| 5 | İki adet direnç | 2 | Genel bias orta nokta yapısında seri gerilim bölücü | Her iki direnç devreden ayrılarak 9,82 kΩ ölçüldü; nominal 10 kΩ sınıfıyla uyumlu |
+| 6 | Seramik kondansatör, işaretleme: 104 | 1 | Bias devresinde kullanılıyor; kesin bağlantı işlevi henüz doğrulanmadı | 104 kodu 100 nF (0,1 µF) anlamına gelir |
+| 7 | Elektrolitik kondansatör, kullanıcı bildirimi: “10 50V” | 1 | Bias devresinde kullanılıyor; kesin bağlantı işlevi henüz doğrulanmadı | 10 µF / 50 V olduğu henüz teyit edilmedi |
+| 8 | Breadboard | Belirtilmedi | Kurulumun breadboard üzerinde yapıldığı bildirildi | Kullanıcı bildirimi |
+| 9 | ESP | Belirtilmedi | ESP kaynaklı bias karşılaştırmasında kullanılıyor; model/pin/bağlantı kaydedilmedi | Kullanıcı bildirimi |
+
 
 Ortak donanım ve envanter kayıtları ana depodaki `DONANIM/` ve `ENVANTER/` altında tutulur; burada yalnızca bu modülde fiilen kullanılan parçalar ve ilgili envanter referansları belirtilir.
 
 ## 3. Elektriksel bağlantılar
 
-- **Bağlantı şeması:** Henüz eklenmedi.
+- **Bağlantı şeması:** Henüz eklenmedi. Breadboard fotoğrafları dirençlerin orta nokta düzenini gösteriyor; delik/satır bazında kesin bağlantı şeması henüz çıkarılmadı.
 - **Trafo sekonderi, doğrultucu, filtre ve L78L33 bağlantıları:** Henüz doğrulanmadı.
-- **Bias direnç/kondansatör ağı:** Değerler ve bağlantı biçimi henüz kaydedilmedi.
+- **Genel bias orta nokta yapısı:** İki eşit direnç seri gerilim bölücü olarak kullanılır; bias çıkışı iki direncin birleşim noktasından alınır. Yapı belirli bir trafoya özgü değildir ve uygun DC kaynakla uygulanabilir. İdeal/yüksüz durumda orta nokta kaynak geriliminin yaklaşık yarısıdır; kaynak gerilimi değişirse bias gerilimi de değişir.
+- **Bu modülde ölçülen dirençler:** Her iki direnç devreden ayrılarak 9,82 kΩ ölçüldü. İki ölçüm de aynı değerdedir; 10 kΩ nominal sınıfıyla uyumludur.
+- **Bu modülde gözlenen gerilimler:** Kullanıcı ölçümüne göre kaynak/trafo çıkışı 3,31 V; iki direnç arasındaki bias orta noktası 1,65 V.
+- **Kondansatörler:** 104 işaretli seramik kondansatör (100 nF / 0,1 µF) ve üzerinde “10 50V” olarak bildirilen elektrolitik kondansatör devrede bulunuyor. Elektrolitik kondansatörün 10 µF olduğu henüz teyit edilmedi. Her iki kondansatörün kesin bağlantı noktaları ve işlevleri şemayla doğrulanmadı.
+- **Önemli sınır:** 1,65 V değeri, 3,3 V civarındaki bir kaynağın iki eşit dirençle bölünmesinden elde edilir. Bu orta nokta yapısı kaynaktan/trafo modelinden bağımsız bir genel yöntemdir; ancak çıkış gerilimi kaynak geriliminin yarısına bağlıdır.
 - **ESP bias bağlantısı:** ESP modeli, çıkış pini, direnç ağı ve ortak referans henüz kaydedilmedi.
 - **Besleme gerilimi ve akım gereksinimi:** Henüz doğrulanmadı.
 - **GND / ortak referans:** Henüz doğrulanmadı.
@@ -86,6 +93,7 @@ Henüz modüle özgü doğrulanmış güvenlik bilgisi kaydedilmedi. Şebeke ger
 |---|---|---|---|
 | 2026-11-20 | Modül adı ve amacı “Şebeke Karakterini Koruyan Bias” olarak tanımlandı; 1,65 V üretiminin ayrı ara süreç olduğu kaydedildi | Bias yapısı ile 1,65 V elde etme yöntemini ayırmak | PREBERO karar kaydı |
 | 2026-11-20 | Trafo, doğrultucu, kondansatör, regülatör, breadboard ve ESP bias karşılaştırması ön envantere işlendi | Kullanıcı tarafından bildirilen mevcut parçaları kaybetmemek | Fiziksel inceleme bekliyor |
+| 2026-11-20 | Genel bias orta nokta yapısı iki eşit dirençli gerilim bölücü olarak kaydedildi. İki direnç ayrı ayrı 9,82 kΩ ölçüldü; 3,31 V kaynakta orta nokta 1,65 V gözlendi | Bias yapısının Modül 1 trafosundan bağımsız genel yöntem olduğunun ayrıştırılması | Kullanıcı ölçümleri ve breadboard fotoğrafları; kondansatör bağlantıları henüz doğrulanmadı |
 
 ## 10. Yeniden kurulum kontrolü
 
