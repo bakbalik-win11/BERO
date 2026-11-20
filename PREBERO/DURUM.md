@@ -6,7 +6,7 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 
 | Modül | Hedef | Durum |
 |---|---|---|
-| Modül 1 – Şebeke Karakterini Koruyan Bias | Şebeke ile ilişkili AC sinyalin karakterini korumayı hedefleyen bias yapısını geliştirmek ve ESP kaynaklı bias yaklaşımından ayrı değerlendirmek | Yardımcı modül |
+| Modül 1 – Şebeke Karakterini Koruyan Bias | Şebeke karakterini SCT013 akım trafosunun sinyaline yansıtacak bias yapısını imal etmek ve sinyal üzerindeki etkisini deneyle incelemek | Yardımcı modül |
 | Modül 2 – Akım Testleri | Akım davranışını anlamak, testleri sürdürmek ve ölçüm katsayılarını belirlemek | **Aktif** |
 | Modül 3 – Çamaşır Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | Bekliyor |
 | Modül 4 – Bulaşık Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | Bekliyor |
