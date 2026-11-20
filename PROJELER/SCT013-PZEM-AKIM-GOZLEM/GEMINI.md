@@ -29,7 +29,7 @@ Bu dosya, Gemini CLI ajanları için projenin yapısını, donanım bileşenleri
 ### Sensörler ve ADC
 - **ADS1115:** 16-bit hassas ADC (I2C üzerinden bağlanır). Ana ölçüm zincirinin kalbi.
 - **SCT013-030 (30A / 1V):** Temel akım trafosu.
-- **SCT013-100 (100A / 1V):** Ana hat veya yüksek akım izleme için yedek stok.
+- **SCT013-100 (100A / 1V):** E22 kapsamında Modül 4 üzerinde ileride 30 A / 1 V ile karşılaştırılması düşünülen sensör; henüz bu deneyde kullanılmadı.
 - **PZEM-004T V3.0:** Referans ölçüm cihazı (UART üzerinden bağlanır).
 
 ### Diğer Donanımlar
