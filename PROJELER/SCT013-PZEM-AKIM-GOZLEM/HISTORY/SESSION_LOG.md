@@ -2367,3 +2367,25 @@ Ham CSV'lerin kullanıcı kitaplığında görünmesi repo arşivine alındıkla
 
 ### SINIR
 ADS1115 teslimatı bekleniyor. Söküm, yeni modül montajı, firmware değişikliği, derleme ve fiziksel doğrulama henüz yapılmadı.
+
+
+## 2026-11-20 — Çamaşır ve bulaşık modülleri için depo yapısı
+
+### HEDEF
+İmal edilecek iki taşınabilir cihaz gözlem modülü için GitHub deposunda ayrı klasör alanları açmak; ileride ham kayıtları, Python analizini ve raporları cihaz bazında tutmak.
+
+### DEPO OKUMASI
+- AGENTS.md, STATUS.md, PROGRESS_TREE.md, proje README, MEMORY.md, GEMINI.md, E21 README ve E22 README incelendi.
+- MEMORY.md çamaşır/bulaşık cihazlarını Modül 4/5 olarak anıyor.
+- E22 README ise Modül 4 kimliğini ESP32 + ADS1115 + 100 A / 1 V SCT + PZEM tasarımı için kullanıyor. Bu nedenle modül numarası çakışması mevcut.
+
+### UYGULANAN
+- devices/washing-machine/ ve devices/dishwasher/ klasörleri oluşturuldu.
+- Her cihaz için hardware/, firmware/, data/raw/, data/processed/, analysis/python/, analysis/results/, analysis/reports/ ve experiments/ alanları açıldı.
+- Her iki README'ye veri bütünlüğü, RECORD_ID, ham veriyi değiştirmeme ve analiz kaynaklarını izleme kuralları eklendi.
+- Planlanan kanallar akım, ses ve titreşim olarak yazıldı; kesin sensör modelleri, ESP32 kartı, pinler, I²C çoklayıcı ve örnekleme parametreleri doğrulanmamış olarak bırakıldı.
+- Proje README, STATUS ve PROGRESS_TREE yeni klasörleri ve açık numara kararını indeksleyecek şekilde güncellendi.
+
+### SINIR / AÇIK KARAR
+- Bu işlem klasör ve dokümantasyon hazırlığıdır; modüller fiziksel olarak imal edilmedi, firmware yazılmadı/derlenmedi ve ölçüm yapılmadı.
+- Modül numaraları kullanıcı onayına kadar kesinleştirilmedi. E22'deki eski Modül 4 kimliğiyle çakışma giderilmelidir.
