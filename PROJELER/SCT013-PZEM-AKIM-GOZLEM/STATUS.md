@@ -1,3 +1,24 @@
+## 2026-11-20 — Modül numaralandırması düzeltildi: masaüstü Modül 4, PreBERO Modül 7
+
+- **Modül 4:** Günlük kullanılan mevcut masaüstü ölçüm düzeneği: ESP32D2 + ADS1115 + SCT. Bu, 30 A / 1 V SCT ile yürütülen mevcut ölçüm baseline'ıdır.
+- **Modül 5:** İmal edilecek çamaşır makinesi gözlem modülü.
+- **Modül 6:** İmal edilecek bulaşık makinesi gözlem modülü. Modül 5 ve 6 aynı elektronik tasarımın ikiz kopyalarıdır.
+- **Modül 7 / PreBERO:** Ana hattı PZEM ile birlikte okumaya yönelik saha gözlem düzeneği. Donanım, bağlantı ve firmware tasarımı henüz yapılmadı.
+- **E22 modül değildir.** Modül 4'ün mevcut ölçüm zinciri başarılı/kararlı çalıştıktan sonra bir kanalda 30 A / 1 V, diğer kanalda 100 A / 1 V SCT ile karşılaştırma yapılması fikridir. E22 kapsamında 100 A SCT ile ölçüm alınmadı; ayrı modül imal edilmedi.
+- Eski Modül 2 ve Modül 3 fiziksel olarak imha edilmiştir; eski kod ve kayıtları tarihsel arşiv olarak korunur.
+
+### Modül 5/6 donanım planı
+- Her modül için: 1 ESP32-D + 1 vidalı terminal shield, 1 MAX4466, 1 MPU6050, 1 SCT013 30 A / 1 V ve 1 ADS1115.
+- Ses ve titreşim birincil; akım yardımcı/bağlamsal kanaldır.
+- MPU6050 birinci I²C hattında, ADS1115 ikinci ve fiziksel olarak ayrı I²C hattında olacak. GPIO/SDA/SCL pinleri gerçek kart ve shield incelendikten sonra seçilecek.
+- Modül 5 önce imal edilecek. Modül 6'nın gözlem elektroniği 5 V besleme yöntemi henüz belirlenmedi; bulaşık makinesi kendi mevcut elektrik hattından beslenecek.
+
+### Durum ve sınır
+- Modül 4 mevcut masaüstü çalışma düzeneğidir; bu kayıt yeni bir fiziksel kurulum veya yeniden test yapıldığı anlamına gelmez.
+- Modül 5/6 henüz imal edilmedi; firmware, derleme ve sensör kayıtları bekliyor.
+- Modül 7 / PreBERO hedef aşamasındadır; uygulama ve test yoktur.
+- E22 henüz yalnızca deney fikridir; bağlantı, firmware, derleme, ölçüm ve analiz yoktur.
+
 ## 2026-11-20 — Çamaşır/bulaşık ikiz modül donanımı ve imalat sırası
 
 - Kullanıcı kararı: **Modül 4 (Çamaşır Makinesi)** ve **Modül 5 (Bulaşık Makinesi)** aynı elektronik tasarımın iki fiziksel kopyası olacak; cihaz adı, modül kimliği ve kayıt etiketleri değişecek.
