@@ -1,14 +1,14 @@
 # Görev kartları
 
-Faz 1 kapanmıştır. Faz 2'nin ilk aktif görevi T009'dur: modül ve ESP düğümlerinin pratik yeniden devreye alınması. PZEM referanslı veri aktarımı ve öğrenme görevleri bundan sonra gelir.
+Faz 1 kapanmıştır. Faz 2'nin güncel aktif işi, mevcut Modül 4 masaüstü düzeneğinde bias gerekliliğini deneysel olarak belirlemektir. Modül 2/3'ün eski fiziksel düzenekleri imha edilmiştir; T010 tarihsel görev olarak kapalıdır. Güncel modül kimlikleri için [ADR-033](../docs/decisions/ADR-033-module-identities-desktop-and-prebero.md) esas alınır.
 
 ## Çalışma kuralı
-- Her oturumda önce STATUS.md okunur; yalnız aktif görev üzerinde çalışılır.
-- Yeni fikirler aktif görevin kapsamını dağıtmaz; gerekirse sonraki karar sorusu olarak kaydedilir.
-- Bir kartın durumu, gerçek uygulama ve kanıtın gösterdiği seviyeyi aşamaz.
+- Her oturumda önce STATUS.md, AGENTS.md ve ilgili deney/karar dosyaları okunur.
+- Yalnız aktif aşama yürütülür; sonraki aşamanın mimari kararı erkenden verilmez.
+- Bir kartın durumu gerçek uygulama ve kanıtın gösterdiği seviyeyi aşamaz.
 - Fiziksel olarak görülmeyen bileşen doğrulanmış sayılmaz; bilinmeyen alanlar tahmin edilmez.
-- Önce çalışan örnek/kod/kütüphane araştırılır; gereksiz mimari yeniden tasarımı yapılmaz.
 - 220–240 V AC tarafındaki güvenlik sorumluluğu yetkin kişidedir.
+- Başarılı kod, gerçek çıktı/log ve teknik yorum birlikte saklanır.
 
 ## Durum sözlüğü
 - **KAPATILDI — HEDEFE ULAŞILDI:** Faz hedefi başka bir yolla sağlandığı için kalan iş yapılmadan kapatıldı.
@@ -17,33 +17,42 @@ Faz 1 kapanmıştır. Faz 2'nin ilk aktif görevi T009'dur: modül ve ESP düğ�
 - **PLANLANDI:** Hedef ve kabul koşulu tanımlandı.
 - **BEKLEMEDE:** Aktif değil; bağımlılığı veya sırası bekleniyor.
 
-## Görev sırası
+## Güncel çalışma sırası
 
-| ID | Görev | Faz | Durum | Sıra |
-|---|---|---|---|---|
-| T001 | Donanım envanteri | Faz 1 | KAPATILDI / tarihsel kayıt | Faz 1 |
-| T002 | Güvenlik kontrol kaydı | Faz 1 | KAPATILDI / tarihsel kayıt | Faz 1 |
-| T003 | PZEM referansı ve ±%4 hedefi | Faz 1 | HEDEF SAĞLANDI | Faz 1 kapanış ölçütü |
-| T004 | Analog ön uç belgelemesi | Faz 1 | KAPATILDI / tarihsel kayıt | Faz 1 |
-| T005 | Eski ADC/gürültü tabanı işleri | Faz 1 | KAPATILDI — HEDEFE ULAŞILDI | Eski iş; yeniden açılmayacak |
-| E00A–E08, E00F alt adımları | Eski deney kayıtları | Faz 1 | KAPATILDI — HEDEFE ULAŞILDI | Deney kanıtları arşivde |
-| T009 | Pratik modül ve ESP düğümlerini devreye alma (üst görev) | Faz 2 | DEVAM EDİYOR / üst görev | Genel çerçeve |
-| **T010** | **Modül 2 — ESP32D1 üçlü SCT okuma modülü** | **Faz 2** | **KAPATILDI — mevcut kapsam** | **Üçlü SCT temel işlevi doğrulandı; sonraki veri hattı T007/T008'de** |
-| T007 | Home Assistant → PC veri aktarımı | Faz 2 | DEVAM EDİYOR | Manuel HA History CSV dışa aktarımı gösterildi; tekrarlanabilir Python hattı bekliyor |
-| T008 | PZEM/SCT kararlı alan eşleştirme ve etiketleme | Faz 2 | BEKLEMEDE | T007 aktarımından sonra |
-| T006 | K=24.22 katsayısı/model değerlendirmesi | Faz 2 | BEKLEMEDE | T008 etiketli veri ürettikten sonra |
+| Sıra | İş | Kapsam | Durum |
+|---|---|---|---|
+| 1 | Modül 4 biaslı/bias'sız karşılaştırması | ESP32D2 + ADS1115 + SCT masaüstü düzeneği; Modül 1 bias kutusu kullanılır | **AKTİF SIRADAKİ İŞ** |
+| 2 | Osiloskopla sinyal incelemesi | Biaslı/bias'sız sinyal biçimi ve devre davranışını birlikte gözlemleme | BEKLEMEDE — 1. aşamadan sonra |
+| 3 | Bias gerekliliği kararı | Deney + osiloskop kanıtıyla bias gerekli mi sorusunu cevaplama | BEKLEMEDE — 2. aşamadan sonra |
+| 4 | PREBERO Modül 5/6/7 bias besleme mimarisi | ESP beslemesinden bias üretme veya Modül 1'in ikiz bias devrelerini imal etme seçeneklerini karşılaştırma | BEKLEMEDE — bias kararından sonra |
 
-## Faz 2 görev bağımlılığı
+## Modül ve görev tarihçesi
 
-1. **T009/T010:** T009 genel devreye alma çerçevesidir. İlk somut modül işi T010 — Modül 2 ESP32D1 üçlü SCT okuma modülüdür. Gerçek bağlantıları belirle; çalışan kod/örnek seç; en az uyarlamayla derle ve tekil modül işlevini gerçek donanımda doğrula.
-2. **T007:** PZEM/SCT HA entity akışları çalıştığında geçmişi PC'ye al; kaynak alanları koru; aktarımı tekrar çalıştırılabilir yap.
-3. **T008:** PC'deki kayıtta PZEM ve SCT kararlılığını ayrı hesapla; örtüşen alanları eşleştir ve PZEM referansıyla etiketle.
-4. **T006:** Etiketli alanlarda K=24.22'yi değerlendir; veri gerekçelendirirse yeni calibration_id ile iyileştir.
+| ID | Görev / modül | Durum | Not |
+|---|---|---|---|
+| T009 | Pratik modül ve ESP düğümlerini devreye alma üst görevi | DEVAM EDİYOR / üst görev | Güncel sıra ADR-034'e göre yürütülür |
+| T010 | Eski Modül 2 — ESP32D1 üçlü SCT okuma | KAPATILDI — mevcut kapsam | Eski fiziksel modül imha edildi; kod ve loglar tarihsel arşiv |
+| T007 | HA → PC veri aktarımı | Tarihsel görev kaydı | Önceki veri hattı planının parçası; şu an aktif sırayı belirlemiyor |
+| T008 | Kararlı alan eşleştirme/etiketleme | Tarihsel görev kaydı | Önceki PZEM referanslı öğrenme akışı; güncel bias deneyinin ön koşulu değil |
+| T006 | Katsayı/model değerlendirmesi | Tarihsel görev kaydı | Önceki veri hattı planının parçası |
 
-## Fikir havuzu
+## Bias kararı için kabul koşulları
 
-Göreve dönüşmemiş fikirler [IDEA_BACKLOG.md](../IDEA_BACKLOG.md) içinde tutulur. Fikirler aktif görev değildir.
+- Biaslı ve bias'sız koşulların gerçek bağlantı şeması ve besleme koşulları kaydedilmiş olmalı.
+- Karşılaştırma aynı SCT/ADS1115 ölçüm zinciri ve mümkün olduğunca aynı test yükü/koşullarıyla yapılmalı.
+- Ölçüm logları, osiloskop ekran görüntüleri ve osiloskop ayarları saklanmalı.
+- Sinyal seviyesi, DC çalışma noktası, dalga biçimi, kararlılık ve ADS1115 giriş sınırları birlikte değerlendirilmeli.
+- Bias gerekli/gereksiz kararı ancak kanıtlar incelendikten sonra verilmelidir.
 
-## İlgili karar
+## PREBERO bias mimarisi — açık karar
 
-Faz 2 çalışma biçimi ve kapsamı [ADR-014](../docs/decisions/ADR-014-phase2-practical-restart.md) ile; Modül 2'nin somut donanım tanımı [ADR-015](../docs/decisions/ADR-015-module2-esp32d1-triple-sct.md) ile tanımlanmıştır. İlk modül kartı: [T010](T010-module2-triple-sct-bringup.md).
+Bias gerekliliği belirlendikten sonra Modül 5 (çamaşır), Modül 6 (bulaşık) ve Modül 7 (ana hat + PZEM) için:
+1. Bias'ı ESP'nin uygun beslemesinden üretme.
+2. Modül 1'in ikiz bias devrelerini/kutularını imal etme.
+
+Seçenekler elektriksel güvenlik, izolasyon, gürültü, besleme kapasitesi, fiziksel yerleşim ve modül bağımsızlığı açısından karşılaştırılacaktır. Bu aşamada tercih yapılmış değildir.
+
+## İlgili kararlar
+- [ADR-033 — Modül kimlikleri ve PREBERO](../docs/decisions/ADR-033-module-identities-desktop-and-prebero.md)
+- [ADR-034 — Modül 4 bias karşılaştırması ve PREBERO bias sırası](../docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md)
+- [T009 — Pratik sistem devreye alma](T009-practical-system-bringup.md)
