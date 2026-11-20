@@ -1,3 +1,35 @@
+## 2026-11-20 — Modül 4 tasarım/imalat kapısı ve PREBERO ön koşulu
+
+### KULLANICI KARARI
+- Modül 5/6/7'ye geçmeden önce Modül 4 imal edilecek.
+- Masaüstünde çalışan ESP32D2 + ADS1115 + SCT düzenek geçici prototiptir; nihai imal edilmiş Modül 4 değildir.
+- Modül 4'ün fiziksel yapısı, ADS1115 teknik incelemesi ve biaslı/bias'sız sinyal gözlemi sonucunda kararlaştırılacak.
+- Çalışma hobi düzeyinde tutulacak; laboratuvar seviyesinde kapsamlı karakterizasyon yapılmayacak.
+
+### KABUL EDİLEN SIRA
+1. ADS1115 hobi düzeyinde donanım raporu.
+2. Masaüstü Modül 4 bağlantı ve yazılım ayarlarını doğrulama.
+3. Biaslı/bias'sız ölçüm karşılaştırması.
+4. Osiloskopla sinyal gözlemi.
+5. Kanıta dayalı Modül 4 tasarım kararı.
+6. Modül 4'ün imalatı ve gerçek donanım doğrulaması.
+7. Modül 4 kabulünden sonra PREBERO Modül 5 (çamaşır), Modül 6 (bulaşık), Modül 7 (ana hat + PZEM).
+
+### DEPOYA EKLENENLER
+- [ADR-035 — Modül 4 tasarım kapısı](../docs/decisions/ADR-035-module4-design-gate-before-prebero.md)
+- [T011 — Modül 4 teknik inceleme ve imalat görevi](../tasks/T011-module4-characterization-and-build.md)
+- README, STATUS, ROADMAP, AGENTS, görev indeksi ve karar indeksi güncellendi.
+
+### AÇIK KARARLAR / SINIR
+- Bias gerekli mi sorusu cevaplanmadı.
+- Bias gerekiyorsa PREBERO modüllerinde ESP beslemesinden üretme veya Modül 1'in ikiz bias kutularını kullanma seçimi yapılmadı.
+- Bu oturumda ADS1115 teknik raporu, masaüstü bağlantı doğrulaması, bias deneyi, osiloskop incelemesi veya fiziksel Modül 4 imalatı yapılmadı.
+- Modül 5/6/7 imalatına geçilmedi.
+
+### SONUÇ
+Çalışma sırası ve bağımlılık mimarisi dokümante edildi. Teknik ve fiziksel aşamalar henüz yürütülmedi.
+
+
 ## 2026-11-20 — Çamaşır/bulaşık ikiz modül donanımı ve imalat sırası
 
 - Kullanıcı kararı: **Modül 4 (Çamaşır Makinesi)** ve **Modül 5 (Bulaşık Makinesi)** aynı elektronik tasarımın iki fiziksel kopyası olacak; cihaz adı, modül kimliği ve kayıt etiketleri değişecek.
