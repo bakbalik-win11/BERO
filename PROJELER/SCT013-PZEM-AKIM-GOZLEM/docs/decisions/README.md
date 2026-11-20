@@ -30,3 +30,4 @@ Dosya slug'ları farklıdır ve bağlantılar bu dosya adları üzerinden çalı
 - [ADR-024 — Python tarafında ON/OFF paket bütünlüğü doğrulaması](ADR-024-python-packet-completeness-validation.md)
 
 - [ADR-031 — CH1 yüksüz kapalı alan eşiği](ADR-031-ch1-idle-closed-area-threshold.md)
+- [ADR-032 — Çamaşır ve bulaşık için ikiz sensör modülleri](ADR-032-washing-dishwasher-twin-sensor-modules.md)
