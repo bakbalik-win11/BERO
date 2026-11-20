@@ -60,14 +60,22 @@ Bu bölüm, kullanıcının sağladığı mevcut yapılandırma bilgisini kayded
 
 ADS1115 üzerinden SCT013 akım trafosunun diferansiyel çıkışı okunur; ct_clamp ile 200 ms RMS akım hesabı yapılır. Bu sürümde 5 mA altındaki ölçümler sıfırlanır. Amaç, yüksüz durumda gözlenen yaklaşık 1–2 mA taban değerlerinin Home Assistant'a gereksiz veri üretmesini önlemektir.
 
-### Kalibrasyon katsayısı notu
+### ADS1115 birim kimliği ve kalibrasyon kuralı
+
+- Kullanımdaki ADS1115 modülleri fiziksel olarak **1–10** şeklinde numaralandırılmıştır.
+- Her ADS1115 kendi birim numarasıyla izlenir ve **her modül için ayrı kalibrasyon yapılır**.
+- Bir ADS1115 için bulunan kalibrasyon katsayısı diğer ADS1115 modüllerine aktarılmaz; bütün ADS1115'ler için ortak katsayı kabul edilmez.
+- Bu görevde yapılacak testlerde kullanılacak ADS1115: **No. 1**.
+- Test kayıtlarında ADS1115 birim numarası açıkça yazılır; katsayı yalnızca o numaralı modülün kalibrasyon kaydına bağlanır.
+
+### Önceki kalibrasyon gözlemi
 
 - Önceki katsayı: 30.00
 - ADS1115 gözlemi: yaklaşık 0.513 A
 - PZEM gözlemi: yaklaşık 0.472 A
-- Yeni katsayı hesabı: 30.00 × (0.472 / 0.513) = 27.60
+- Hesaplanan katsayı: 30.00 × (0.472 / 0.513) = 27.60
 
-Bu katsayı tek karşılaştırmadan türetilmiştir; farklı akım seviyelerinde tekrar doğrulanmalıdır. PZEM karşılaştırma referansıdır, kusursuz ground truth olarak kabul edilmez.
+27.60 değeri önceki tek karşılaştırmadan elde edilmiş gözlem katsayısıdır; tüm ADS1115 modülleri için geçerli değildir. Bu değerin ADS1115 No. 1'e ait olduğu ayrıca doğrulanmadıkça No. 1'in kalibrasyon katsayısı olarak atanmaz. Her birim farklı akım seviyelerinde ayrıca kalibre edilip doğrulanmalıdır. PZEM karşılaştırma referansıdır, kusursuz ground truth olarak kabul edilmez.
 
 ### Elektriksel sınır notu
 
