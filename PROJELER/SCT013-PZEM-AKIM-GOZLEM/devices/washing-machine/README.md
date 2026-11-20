@@ -4,7 +4,7 @@
 Bu klasör, çamaşır makinesi için üretilecek taşınabilir gözlem modülünün donanım, firmware, ham kayıt, Python analiz ve rapor dosyalarını bir arada tutar.
 
 ## Modül kimliği
-- **Modül:** MODUL-04 — Çamaşır Makinesi
+- **Modül numarası:** ONAY BEKLİYOR. Proje geçmişinde MODUL-04 numarası başka bir donanım tasarımı için de kullanılmış; numara çakışması kullanıcı kararıyla çözülecek.
 - **Aşama:** PLANLANDI / fiziksel imalat ve doğrulama bekliyor
 - **Planlanan gözlem kanalları:** akım, ses ve titreşim
 - **Kesinleşmeyenler:** ESP32 kart varyantı, ses/titreşim sensörlerinin kesin modelleri, analog ön uç, I²C çoklayıcı bağlantısı, pin eşlemesi, örnekleme ve kayıt parametreleri.
