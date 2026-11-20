@@ -77,10 +77,16 @@ T009, yalnız tasarım belgesi yazıldığı için tamamlanmış sayılmaz. Her 
 
 ## Güncel yürütme sırası
 
-T009 üst görevi altındaki güncel aktif çalışma sırası, eski Modül 2/T010 sırasının yerine geçmiştir:
-1. Modül 4'te biaslı/bias'sız karşılaştırma.
-2. Osiloskopla biaslı/bias'sız sinyal yapısını inceleme.
-3. Kanıta dayalı bias gerekliliği kararı.
-4. Bu karardan sonra PREBERO Modül 5/6/7 için ESP beslemesinden bias üretme veya Modül 1'in ikiz bias devrelerini imal etme seçeneklerini değerlendirme.
+T009 üst görevi altındaki güncel aktif sıra, eski Modül 2/T010 sırasının yerine geçmiştir:
 
-Ayrıntı [ADR-034](../docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md) içindedir. T010 eski Modül 2 görevi olarak kapalı ve tarihsel kayıttır; güncel Modül 4 ile karıştırılmaz.
+1. ADS1115 hobi düzeyinde teknik raporu.
+2. Masaüstü Modül 4 bağlantı ve yazılım ayarlarının doğrulanması.
+3. Bias'lı/bias'sız ölçüm karşılaştırması.
+4. Osiloskopla iki yapının sinyal gözlemi.
+5. Kanıta dayalı Modül 4 tasarım kararı.
+6. Modül 4'ün sabit fiziksel donanım olarak imalatı ve gerçek donanım doğrulaması.
+7. Modül 4 kabulünden sonra PREBERO Modül 5 (çamaşır), Modül 6 (bulaşık) ve Modül 7 (ana hat + PZEM) çalışmalarına geçiş.
+
+Bu çalışma hobi düzeyinde tutulur; ADS1115'in BERO kullanımına gereken teknik özellikleri ve güvenli sınırları incelenir, laboratuvar seviyesinde kapsamlı karakterizasyon yapılmaz. Bias gerekliliği ve PREBERO bias besleme yöntemi deney öncesinde seçilmez.
+
+Bağlayıcı sıra ve kabul kapıları [ADR-035](../docs/decisions/ADR-035-module4-design-gate-before-prebero.md) ve [T011](T011-module4-characterization-and-build.md) içindedir. Bias karşılaştırması ve bias besleme seçeneklerinin teknik kararı [ADR-034](../docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md) içinde korunur. T010 eski Modül 2 görevi olarak kapalı ve tarihsel kayıttır; güncel Modül 4 ile karıştırılmaz.
