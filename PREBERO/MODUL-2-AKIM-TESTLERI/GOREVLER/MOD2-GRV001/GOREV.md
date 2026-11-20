@@ -1,4 +1,4 @@
-# G01 – Akım davranışı ve katsayı çalışmaları
+# MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
 
 ## Amaç
 

@@ -15,7 +15,7 @@ Bu dosya aktif modülü, açık görevi ve modüllerin genel ilerlemesini göste
 ## Şu anki çalışma
 
 - **Aktif modül:** Modül 2 – Masaüstü 4 Kanal / Akım Testleri
-- **Aktif görev:** G01 – Akım davranışı ve katsayı çalışmaları
+- **Aktif görev:** MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
 - **Çalışma odağı:** Sinyali gözlemlemek, testleri sürdürmek, bias ihtiyacını değerlendirmek ve katsayıları deney sonuçlarına göre belirlemek.
 
 ## İlerleme kuralı
