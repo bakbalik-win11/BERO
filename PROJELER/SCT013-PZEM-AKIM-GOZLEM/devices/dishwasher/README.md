@@ -1,14 +1,20 @@
-# MODUL-05 — Bulaşık Makinesi İzleme Modülü
+# Modül 5 — Bulaşık Makinesi İzleme Modülü
 
 ## Amaç
 Bu klasör, bulaşık makinesi için üretilecek taşınabilir gözlem modülünün donanım, firmware, ham kayıt, Python analiz ve rapor dosyalarını bir arada tutar.
 
 ## Modül kimliği
-- **Modül numarası:** ONAY BEKLİYOR. Proje geçmişindeki modül kimlikleriyle tutarlılık sağlandıktan sonra atanacak.
+- **Modül numarası:** MODÜL 5 — kullanıcı tarafından 2026-11-20 tarihinde onaylandı.
 - **Aşama:** PLANLANDI / fiziksel imalat ve doğrulama bekliyor
-- **Planlanan gözlem kanalları:** akım, ses ve titreşim
+- **Birincil gözlem kanalları:** ses ve titreşim. **Akım kanalı:** yardımcı/ikincil gözlem olarak değerlendirilecek; donanım bağlantısı ve kapsamı montaj öncesi kesinleştirilecek.
 - **Kesinleşmeyenler:** ESP32 kart varyantı, ses/titreşim sensörlerinin kesin modelleri, analog ön uç, I²C çoklayıcı bağlantısı, pin eşlemesi, örnekleme ve kayıt parametreleri.
 - Donanım ve bağlantı bilgileri fiziksel montaj ve test sonrasında doğrulanacaktır. Varsayılan pin, sensör veya çalışma değeri kullanılmayacaktır.
+
+## Gözlem ve analiz yaklaşımı
+
+Bu modülün ana veri kaynağı ses ve titreşim kayıtları olacaktır. Akım verisi, makine davranışını yorumlamaya yardımcı olabilecek ikincil bir kanal olarak ele alınır; kesin sensör, bağlantı ve örnekleme kararı henüz verilmemiştir.
+
+Veri akışı aşamalıdır: sensörlerden ham kayıt → Python ile zaman serisi/özellik çıkarımı ve karşılaştırma → yeterli tekrar ve doğrulama sonrasında davranış sınıfları/karar ağacı → daha ileri aşamada bildirim üretimi. Karar ağacı ve bildirim sistemi şu anki imalat kapsamı değildir; eşikler ve sınıflar veriyle doğrulanmadan otomatik karar verilmeyecektir.
 
 ## Klasör yapısı
 - `hardware/`: gerçek parça listesi, bağlantılar, şemalar ve güvenlik notları.
