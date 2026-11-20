@@ -6,7 +6,7 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 
 | Modül | Hedef | Durum |
 |---|---|---|
-| Modül 1 – Şebeke Karakterini Koruyan Bias | Şebeke karakterini bias yoluyla SCT013 akım trafosuna aktarmak; aktarımı yeni ölçümlerle incelemek | Yardımcı modül |
+| Modül 1 – Şebeke Karakterini Koruyan Bias | Şebeke karakterini bias yoluyla SCT013 akım trafosuna aktarmak; aktarımı yeni ölçümlerle incelemek | **Fiziksel imalat tamamlandı; elektriksel işlev ve güvenlik doğrulaması bekliyor** |
 | Modül 2 – Akım Testleri | Akım davranışını anlamak, testleri sürdürmek ve ölçüm katsayılarını belirlemek | **Aktif** |
 | Modül 3 – Çamaşır Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | Bekliyor |
 | Modül 4 – Bulaşık Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | Bekliyor |
@@ -30,4 +30,5 @@ Bir görev tamamlandığında sonucu kendi görev klasörüne kaydedilir. Ardın
 - 1,65 V seviyesinin elde edilme yöntemi, bias devresinin tanımı değil; ayrı bir ara süreçtir.
 - Bias yapısının kendisi, gerçek direnç ve kondansatör değerleri ile bağlantı biçimi belirlenerek yeniden kurulabilir bir standart olarak tarif edilecektir.
 - ESP beslemesinden oluşturulan bias, şebeke karakterini taşımayan ayrı bir karşılaştırma yaklaşımıdır.
-- Bu karar, devrenin elektriksel davranışının veya izolasyonunun doğrulandığı anlamına gelmez.
+- Fiziksel durum (2026-11-21, kullanıcı bildirimi): Modül kapalı kutu içinde imal edildi; bağlantılar soketli.
+- Fiziksel imalatın tamamlanması, devrenin elektriksel davranışının, şebeke karakterini SCT013'e aktardığının veya izolasyon/güvenliğinin doğrulandığı anlamına gelmez.
