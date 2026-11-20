@@ -1,113 +1,67 @@
-# Modül 1 – Şebeke Karakterini Koruyan Bias – İmalat Dosyası
+# Modül 1 – Şebeke Karakterinde Bias Gerilim Aktarımı – İmalat Kaydı
 
-> **Kayıt durumu: FİZİKSEL İMALAT TAMAMLANDI – ELEKTRİKSEL İŞLEV VE GÜVENLİK DOĞRULAMASI AYRI**
+> **Durum: FİZİKSEL İMALAT TAMAMLANDI**
 >
-> Kullanıcı bildirimi: Modül kapalı bir kutu içine alınarak imal edildi; bağlantılar soketli yapıldı. Bu kayıt fiziksel imalatın tamamlandığını belirtir. Devrenin elektriksel işlevi, izolasyonu ve güvenlik uygunluğu ölçüm/kontrol kayıtlarıyla ayrıca doğrulanacaktır.
+> Modül mevcut fiziksel yapısıyla imal edilmiştir. Kapalı kutu içindedir ve bağlantıları soketlidir. Bu dosya yeni imalat yapılacak bir şablon değil, mevcut donanımın imalat ve ölçüm kaydıdır.
 
-## 1. Modülün amacı ve kapsamı
+## 1. Amaç
 
-- **İmalat amacı:** Şebeke karakterini bias yoluyla SCT013 akım trafosuna aktarmak. Bias yapısı, şebekeye ait karakterin SCT013 sinyaline taşınması amacıyla tasarlanır. Bu aktarımın nasıl gerçekleştiği ve sinyal karakterinin korunup korunmadığı yeni ölçümlerle incelenecektir; hedef henüz doğrulanmış sonuç değildir.
-- **Ana yaklaşım:** Şebeke karakteri → bias yapısı → SCT013 sinyali. Modülün başarısı, bu aktarımın osiloskop ve uygun ölçüm düzeniyle gözlenmesine dayanacaktır. Bu ifade hedefi tanımlar; aktarımın gerçekleştiğine dair ön kabul değildir.
-- **Karşılaştırma yaklaşımı:** ESP'nin 3,3 V beslemesinden oluşturulan bias ayrı bir yöntemdir. Bu yöntem şebeke sinyalini taşımaz; ADC için DC çalışma noktası/referansı oluşturur.
-- **1,65 V seviyesi:** Bias yapısının tanımı değildir. 1,65 V seviyesinin hangi ara işlemle elde edildiği, devrenin bileşen standardından ayrı bir uygulama süreci olarak açıklanacaktır.
-- **Bias yapısı standardı:** Gerçek devrede kullanılan dirençler ve kondansatör(ler), değerleri, toleransları ve bağlantı biçimleri doğrulandıktan sonra yeniden kurulabilir bir standart olarak tanımlanacaktır.
-- **Fiziksel kapsam:** Modülün kapalı kutu içine alınarak imal edildiği ve bağlantıların soketli olduğu kullanıcı tarafından bildirildi. Breadboard üzerindeki önceki kurulum bilgisi tarihsel kayıttır; güncel fiziksel montajın ayrıntılı yerleşimi ayrıca fotoğraf/şema ile kaydedilmelidir.
-- **ESP kullanımı:** ESP kaynaklı bias karşılaştırma yaklaşımıdır. ESP'nin modüle kalıcı atanması henüz belirlenmedi.
+Modülün basit yaklaşımı, şebeke karakterini taşıyan gerilimi bias girişine aktarmaktır. Modül 1 bu aktarım için kullanılan fiziksel donanımdır. Masaüstü ESP ile yapılan akım/sinyal deneyleri Modül 2 kapsamındadır; Modül 1 bu deneylerde bias gerilimi sağlayan donanım olarak kullanılabilir.
 
-## 2. Donanım ve malzeme listesi
+## 2. Fiziksel imalat durumu
 
-| Sıra | Parça / model | Adet | Görevi | Kayıt / doğrulama |
-|---|---|---:|---|---|
-| 1 | RN130421, 6 V / 2.0 VA PCB tipi trafo | Belirtilmedi | Modülde bulunduğu kullanıcı tarafından bildirildi; devredeki görevi/bağlantısı doğrulanmadı | [Ürün sayfası](https://www.motorobit.com/rn130421-6v-20va-pcb-tipi-trafo-transformator) |
-| 2 | KBU610 / kullanıcı yazımı: KBU610VETH | Belirtilmedi | Köprü doğrultucu olduğu bildirildi; tam model ve bağlantı doğrulanmadı | Kullanıcı bildirimi |
-| 3 | 2200 / 35 V kondansatör | Belirtilmedi | Kapasite birimi µF olarak anlaşılmıştır; üzerindeki işaretleme doğrulanmalı | Kullanıcı bildirimi |
-| 4 | L78L33, TO-92 | Belirtilmedi | 3,3 V regülatör; devredeki kullanım ve bağlantı doğrulanmadı | Kullanıcı bildirimi |
-| 5 | İki adet direnç | 2 | Genel bias orta nokta yapısında seri gerilim bölücü | Her iki direnç devreden ayrılarak 9,82 kΩ ölçüldü; nominal 10 kΩ sınıfıyla uyumlu |
-| 6 | Seramik kondansatör, işaretleme: 104 | 1 | Bias devresinde kullanılıyor; kesin bağlantı işlevi henüz doğrulanmadı | 104 kodu 100 nF (0,1 µF) anlamına gelir |
-| 7 | Elektrolitik kondansatör, kullanıcı bildirimi: “10 50V” | 1 | Bias devresinde kullanılıyor; kesin bağlantı işlevi henüz doğrulanmadı | 10 µF / 50 V olduğu henüz teyit edilmedi |
-| 8 | Breadboard | Belirtilmedi | Kurulumun breadboard üzerinde yapıldığı bildirildi | Kullanıcı bildirimi |
-| 9 | ESP | Belirtilmedi | ESP kaynaklı bias karşılaştırmasında kullanılıyor; model/pin/bağlantı kaydedilmedi | Kullanıcı bildirimi |
+- İmalat: Tamamlandı.
+- Muhafaza: Kapalı kutu.
+- Bağlantı biçimi: Soketli.
+- Modül yeniden imalat beklemiyor.
+- Mevcut fiziksel düzen, eski kurulumun devamı niteliğindedir.
 
+## 3. İmalat sırasında kaydedilmiş donanım bilgileri
 
-Ortak donanım ve envanter kayıtları ana depodaki `DONANIM/` ve `ENVANTER/` altında tutulur; burada yalnızca bu modülde fiilen kullanılan parçalar ve ilgili envanter referansları belirtilir.
+Aşağıdaki parça ve yapı bilgileri önceki imalat kayıtlarından korunmuştur. Bu liste yeni bir envanter sayımı değildir.
 
-## 3. Elektriksel bağlantılar
+| Parça / model | Önceki kayıttaki bilgi |
+|---|---|
+| RN130421, 6 V / 2.0 VA PCB tipi trafo | Kullanıldığı bildirilmiş |
+| KBU610 / kullanıcı yazımı KBU610VETH | Köprü doğrultucu olarak kaydedilmiş |
+| 2200 / 35 V kondansatör | Önceki kayıtta yer alıyor |
+| L78L33, TO-92 | 3,3 V regülatör olarak kaydedilmiş |
+| İki adet direnç | Ayrı ayrı 9,82 kΩ ölçülmüş |
+| Seramik kondansatör, 104 | Önceki kayıtta 100 nF olarak tanımlanmış |
+| Elektrolitik kondansatör, “10 50V” | Önceki kayıtta işaretleme bu şekilde aktarılmış |
+| ESP | Önceki kayıtta bias karşılaştırması bağlamında anılmış |
 
-- **Bağlantı şeması:** Soketli bağlantı yapısı kullanıcı tarafından bildirildi. Soketlerin pin dizilimi, karşılıklı bağlantıları ve devre üzerindeki görevleri henüz şema ile kayıt altına alınmadı.
-- **Trafo sekonderi, doğrultucu, filtre ve L78L33 bağlantıları:** Henüz doğrulanmadı.
-- **Genel bias orta nokta yapısı:** İki eşit direnç seri gerilim bölücü olarak kullanılır; bias çıkışı iki direncin birleşim noktasından alınır. Yapı belirli bir trafoya özgü değildir ve uygun DC kaynakla uygulanabilir. İdeal/yüksüz durumda orta nokta kaynak geriliminin yaklaşık yarısıdır; kaynak gerilimi değişirse bias gerilimi de değişir.
-- **Bu modülde ölçülen dirençler:** Her iki direnç devreden ayrılarak 9,82 kΩ ölçüldü. İki ölçüm de aynı değerdedir; 10 kΩ nominal sınıfıyla uyumludur.
-- **Bu modülde gözlenen bağlantı ve gerilimler:** Modül 1 çıkışı (3,31 V), genel bias orta nokta yapısının girişine bağlandı. Genel bias devresindeki iki eşit dirençli bölücünün birleşim noktasından 1,65 V bias alındı. Yani Modül 1, 3,31 V kaynağı sağlar; 1,65 V orta nokta ise Modül 1'in kendi başına sabit çıkışı değil, ona bağlanan genel bias yapısının sonucudur.
-- **Kondansatörler:** 104 işaretli seramik kondansatör (100 nF / 0,1 µF) ve üzerinde “10 50V” olarak bildirilen elektrolitik kondansatör devrede bulunuyor. Elektrolitik kondansatörün 10 µF olduğu henüz teyit edilmedi. Her iki kondansatörün kesin bağlantı noktaları ve işlevleri şemayla doğrulanmadı.
-- **Önemli sınır:** 1,65 V değeri, 3,3 V civarındaki bir kaynağın iki eşit dirençle bölünmesinden elde edilir. Bu orta nokta yapısı kaynaktan/trafo modelinden bağımsız bir genel yöntemdir; ancak çıkış gerilimi kaynak geriliminin yarısına bağlıdır.
-- **ESP bias bağlantısı:** ESP modeli, çıkış pini, direnç ağı ve ortak referans henüz kaydedilmedi.
-- **Besleme gerilimi ve akım gereksinimi:** Henüz doğrulanmadı.
-- **GND / ortak referans:** Henüz doğrulanmadı.
-- **İzolasyon ve koruma:** Henüz doğrulanmadı. Trafo kullanılması tek başına tüm devrenin galvanik izolasyonunu kanıtlamaz; izolasyon, sinyal karakterinin korunmasından ayrı değerlendirilir.
+## 4. Multimetre ölçüm kayıtları
 
-### Bağlantı tablosu
+Bu ölçümler önceki imalat sırasında alınmış ve kayda geçirilmiştir:
 
-| Kaynak / pin | Hedef / pin | Sinyal veya işlev | Kablo bilgisi | Doğrulama |
-|---|---|---|---|---|
-| Henüz kaydedilmedi | Henüz kaydedilmedi | — | — | — |
+| Ölçüm noktası | Kaydedilen değer | Açıklama |
+|---|---:|---|
+| Modül çıkışı | 3,31 V | Bias yapısına uygulanan gerilim |
+| Birinci direnç | 9,82 kΩ | Direnç devreden ayrılarak ölçüldü |
+| İkinci direnç | 9,82 kΩ | Direnç devreden ayrılarak ölçüldü |
+| İki direncin birleşim noktası | 1,65 V | Bias orta nokta gerilimi |
 
-## 4. Fiziksel yerleşim ve montaj
+Bu değerler mevcut imalatın geçmiş ölçüm kayıtlarıdır. Yeni deney ölçümleriyle karıştırılmaz.
 
-- **Kartların ve bileşenlerin yerleşimi:** Henüz kaydedilmedi.
-- **Kutu / montaj biçimi:** Kapalı kutu içinde montaj yapıldığı kullanıcı tarafından bildirildi. Kutu modeli, malzemesi, ölçüleri ve iç yerleşim fotoğrafla henüz belgelenmedi.
-- **Bağlantı biçimi:** Bağlantılar soketli. Soket tipi, pin numaraları ve kablo eşleşmeleri henüz kaydedilmedi.
-- **Kablo güzergâhı ve sabitleme:** Ayrıntı ve fotoğraf kaydı bekleniyor.
-- **Sökme / yeniden kurma notları:** Soketli yapı sökme/yeniden bağlama imkânı sağlar; doğru pin eşleşmesi ve enerjisiz bağlantı prosedürü ayrıca belgelenmelidir.
+## 5. Bağlantı ve muhafaza
 
-## 5. ESP ve yazılım eşleştirmesi
+- Modül kapalı kutu içindedir.
+- Modül bağlantıları soketlidir.
+- Soketli yapı, modülün deney düzenine bağlanmasını ve gerektiğinde ayrılmasını sağlar.
+- Bu dosyada soketlerin pin numaraları veya kablo eşleşmeleri hakkında yeni bir bilgi üretilmemiştir.
+- Modülün fiziksel imalatı tamamlanmıştır; bu nedenle aşağıdaki kayıtlar yeni imalat işi olarak değil, mevcut donanımın tanımı olarak okunmalıdır.
 
-- **Fiziksel ESP envanter kimliği:** Atanmadı / doğrulanmadı.
-- **Sabit ESPHome cihaz adı:** Atanmadı / doğrulanmadı.
-- **İlgili görev ve kod sürümü:** İlgili görev kayıtlarından eklenecek.
-- **Not:** Fiziksel ESP kimliği, görev kimliği ve kod sürümü birbirinden bağımsızdır.
+## 6. Modül 2 ile ilişki
 
-## 6. Fotoğraflar ve şemalar
+Masaüstü ESP üzerinde yürütülen akım/sinyal deneyleri Modül 2 – Masaüstü 4 Kanal / Akım Testleri kapsamındadır. Modül 1, bu deney düzeninde bias gerilimi sağlayan mevcut donanım olarak kullanılabilir. Deney kodu, ESP bağlantıları, loglar, ham veriler ve deney yorumları Modül 2'nin ilgili görevinde tutulur.
 
-Gerçek montaj ve bağlantı fotoğrafları `FOTOGRAFLAR/`, çizimler ve şemalar `SEMALAR/` altında saklanır. Dosyalar burada açıklayıcı adları ve revizyon/tarih bilgileriyle referanslanır.
+## 7. İmalat revizyon kaydı
 
-| Dosya | Açıklama | Revizyon / tarih | Durum |
-|---|---|---|---|
-| Henüz eklenmedi | — | — | — |
+| Tarih | Kayıt |
+|---|---|
+| 2026-11-20 | Önceki imalat ve multimetre ölçüm bilgileri kayda geçirildi. |
+| 2026-11-21 | Fiziksel imalatın tamamlandığı; kapalı kutu ve soketli bağlantı yapısı bildirildi. |
+| 2026-11-21 | Modülün kapsamı, şebeke karakterinde bias girişine gerilim aktarımı sağlayan mevcut donanım olarak netleştirildi. Masaüstü ESP deneylerinin Modül 2 kapsamında tutulması kararlaştırıldı. |
 
-## 7. Montaj ve devreye alma sırası
-
-1. Malzeme ve fiziksel ESP kimliğini envanterden doğrula.
-2. Bağlantı şemasını ve parça modellerini kontrol et.
-3. Enerjisiz durumda kablolamayı yap.
-4. Besleme, polarite, ortak referans ve izolasyon kontrollerini gerçekleştir.
-5. İlgili görevde kayıtlı kod sürümünü ve cihaz eşleştirmesini doğrula.
-6. İlk enerjilendirme ve işlev testini ilgili görev test prosedürüne göre yap.
-7. Sonuçları ilgili sürümün LOG/RAPOR klasörüne kaydet; imalat dosyasındaki gerçekleşmiş yapıyı güncelle.
-
-## 8. Güvenlik ve sınırlamalar
-
-Kullanıcı bildirimi: Modül kapalı kutu içinde ve bağlantıları soketlidir; kullanıcı fiziksel düzeni güvenli olarak tanımlamıştır. Bu fiziksel özellikler tek başına elektriksel güvenlik, galvanik izolasyon, dokunma koruması veya şebeke tarafı uygunluğunu kanıtlamaz. Bu başlıklar uygun ölçüm ve incelemeyle ayrıca doğrulanmalı; şebeke gerilimi içeren bağlantılarda enerjisiz çalışma ve uygun koruma/izolasyon koşulları sağlanmalıdır.
-
-## 9. İmalat revizyon kayıtları
-
-| Tarih | Değişiklik | Gerekçe | İlgili görev / kanıt |
-|---|---|---|---|
-| 2026-11-20 | Modül adı ve amacı “Şebeke Karakterini Koruyan Bias” olarak tanımlandı; 1,65 V üretiminin ayrı ara süreç olduğu kaydedildi | Bias yapısı ile 1,65 V elde etme yöntemini ayırmak | PREBERO karar kaydı |
-| 2026-11-20 | Trafo, doğrultucu, kondansatör, regülatör, breadboard ve ESP bias karşılaştırması ön envantere işlendi | Kullanıcı tarafından bildirilen mevcut parçaları kaybetmemek | Fiziksel inceleme bekliyor |
-| 2026-11-20 | Genel bias orta nokta yapısı iki eşit dirençli gerilim bölücü olarak kaydedildi. İki direnç ayrı ayrı 9,82 kΩ ölçüldü; 3,31 V kaynakta orta nokta 1,65 V gözlendi | Bias yapısının Modül 1 trafosundan bağımsız genel yöntem olduğunun ayrıştırılması | Kullanıcı ölçümleri ve breadboard fotoğrafları; kondansatör bağlantıları henüz doğrulanmadı |
-| 2026-11-21 | Fiziksel imalatın tamamlandığı; modülün kapalı kutu içine alındığı ve bağlantıların soketli olduğu kaydedildi | İmalat durumunu mevcut fiziksel yapıyla eşleştirmek | Kullanıcı bildirimi; kutu içi yerleşim fotoğrafı, soket pin şeması ve elektriksel güvenlik doğrulaması bekleniyor |
-
-## 10. Yeniden kurulum kontrolü
-
-- [ ] Parça modelleri ve adetleri doğrulandı.
-- [ ] Fiziksel ESP envanter kimliği doğrulandı.
-- [ ] Bağlantı şeması gerçek montajla eşleşiyor.
-- [ ] Kablolar ve pin eşleşmeleri kontrol edildi.
-- [ ] Besleme ve güvenlik kontrolleri yapıldı.
-- [ ] İlgili kod sürümü ve test durumu kontrol edildi.
-- [ ] İlk çalıştırma logu ve sonuç raporu kaydedildi.
-- [ ] Fotoğraf ve şemalar güncel.
-
-**Durum notu:** Fiziksel imalat tamamlanmıştır. Bu ifade işlev testi, şebeke karakterinin SCT013'e aktarılması veya elektriksel güvenlik doğrulamasının tamamlandığı anlamına gelmez.
-
-**Not:** Bu kontrol listesi tamamlanmadan modülün yeniden imalatı veya doğrulanmış devreye alımı tamamlandı kabul edilmez.
+**Not:** Modül 1'in fiziksel imalatı tamamlanmıştır. Yeni masaüstü ESP deneylerinin tamamlanması veya ölçüm katsayılarının belirlenmesi Modül 1'in imalat durumunu değiştirmez.
