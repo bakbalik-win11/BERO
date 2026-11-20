@@ -166,7 +166,7 @@ BERO, tek bir akım ölçer değil, farklı fiziksel değişkenleri izleyen sens
 
 SCT013 + PZEM alt projesi bu geniş sistemin ilk ve teknik açıdan zor başlangıç uygulamasıdır. Buradan başlanmasının nedeni BERO'nun akım ölçümünden ibaret olması değil; akımı güvenilir biçimde ölçmek, canlı okumak ve zaman içinde başka programların/algoritmaların çıktılarıyla ilişkilendirmek zor bir mühendislik problemi olduğu için önce bu temel hattın hazırlanmasının tercih edilmesidir.
 
-**Geliştirme ortamı / canlı sistem ayrımı:** Bu SCT013-PZEM çalışması kullanıcının diğer evinde yürüttüğü hazırlık ve geliştirme ortamıdır. Şu anda canlı BERO sisteminde çoklu sensörlü bir uygulama çalıştırılmamaktadır. Bu depodaki çoklu sensör vizyonu hedeflenen genel mimariyi anlatır; mevcut canlı kurulumda sensörlerin entegre ve birlikte çalışır olduğu iddiası değildir. Bu alt projenin mevcut görevi SCT akım ölçüm yolunu, veri toplama ve analiz altyapısını hazırlamaktır.
+**PREBERO saha ortamı / nihai BERO ayrımı:** BERO'nun kurulacağı evdeki kiracı çıkıp taşınma gerçekleşene kadar, hazırlık ve saha veri toplama çalışmaları Sarıyer'deki mevcut evde yürütülür. Bu geçici dönem PREBERO'dur. Modül 5 çamaşır makinesini, Modül 6 bulaşık makinesini, Modül 7 ise mevcut evin ana elektrik hattını PZEM ile birlikte izlemek için planlanır. Amaç veri toplamak ve nihai BERO kurulumundan önce proje ilerlemesi sağlamaktır. Bu modüllerin imal edilmiş veya çalışır durumda olduğu iddia edilmez.
 
 
 ## PREBERO tanımı ve modül envanteri
