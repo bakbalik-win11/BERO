@@ -40,6 +40,24 @@ Standart biçim:
 - Görev kimliği görev boyunca sabit kalır; görev veya kod geliştikçe değiştirilmez.
 - Başka görevlerde, raporlarda, kodlarda ve kayıtlarda atıf yapılırken tam görev kimliği kullanılır.
 
+### Kod test durumu
+
+Kod sürümü ile test durumu birbirinden bağımsız alanlardır. Her kod dosyasının başlığında ikisi ayrı ayrı yazılır:
+
+```yaml
+# KOD SÜRÜMÜ  : V1.0
+# TEST DURUMU : GELİŞTİRME
+```
+
+Test durumu aşağıdaki sırayla ilerler:
+
+1. `GELİŞTİRME`: Henüz gerçek donanımda test edilmedi.
+2. `TEST EDİLDİ`: Gerçek donanımda çalıştırılarak denendi; bu ifade tek başına başarılı olduğu anlamına gelmez.
+3. `DOĞRULANDI`: Tanımlanan test koşullarında beklenen sonuç alındı ve sonuç kayıt altına alındı.
+4. `KARARLI`: Doğrulanmış sürüm, belirtilen kullanım amacı için kullanıma hazır kabul edildi.
+
+Test durumu yalnızca ilgili aşamanın kanıtı elde edildiğinde değiştirilir. Her durum değişikliğinde test koşulu, gerçek log ve sonuç yorumu ilgili görevin `LOG/` ve `RAPOR/` klasörlerinde saklanır. Kod sürümü, test durumu değişti diye otomatik olarak artırılmaz; kodda değişiklik yapıldığında sürümleme kuralına göre ayrıca artırılır.
+
 ### Kod sürümleme
 
 Görev kimliği ile kod sürümü birbirinden bağımsızdır.
