@@ -29,7 +29,7 @@ Bu klasör, çamaşır makinesi için üretilecek taşınabilir gözlem modülü
 
 - MAX4466 OUT → ESP32 ADC: doğrudan analog okuma hedefleniyor. ADC pini, ses örnekleme hızı, çözünürlük ve kayıt biçimi belirlenmedi.
 - MPU6050 → I²C-1: SDA/SCL pinleri fiziksel kart ve shield üzerinden teyit edilecek.
-- ADS1115 → I²C-2: MPU6050 hattından ayrı SDA/SCL çifti kullanılacak. Bu ayrım kullanıcı tercihidir; kart/framework üzerinde gerçek bağlantı ve firmware ile doğrulanacak.
+- ADS1115 → I²C-2: MPU6050 hattından ayrı SDA/SCL çifti kullanılacak. Bu ayrım kullanıcı tarafından kesinleştirilmiştir; fiziksel bağlantı kolaylığı nedeniyle iki ayrı bus kullanılacaktır. Kart/framework üzerinde gerçek bağlantı ve firmware ile doğrulanması yine gereklidir.
 - SCT013 → ADS1115 analog giriş: giriş bias/ölçekleme/koruma, ADS1115 gain ve data rate, CT sekonder koşulları ve kalibrasyon henüz belirlenmedi.
 - Besleme gerilimi, toprak referansı, kablo düzeni ve muhafaza fiziksel montaj öncesi kontrol edilecek.
 - Bu doküman pin şeması veya enerjili şebeke bağlantısı talimatı değildir. Şebeke tarafı bağlantılar uygun koruma ve muhafaza ile yetkin kişi tarafından yapılmalıdır.
