@@ -202,6 +202,18 @@ Bu açıklama, kodu tek başına inceleyen bir kişinin temel amacı, donanım b
 
 Bir modülde kullanılacak bias devresinin direnç ve kondansatör bileşenleri, gerçek devre ve ölçümle belirlendikten sonra değerleri, toleransları ve bağlantı biçimleriyle tarif edilir. Böylece “bias şu dirençlerden ve şu kondansatörden oluşur” şeklinde yeniden kurulabilir bir standart oluşturulur. 1,65 V seviyesinin elde edilmesi, genel orta nokta yapısının belirli bir kaynakla uygulanmasıdır; kaynak ve uygulama ayrıntıları ilgili modülün imalat dosyasında ayrıca belgelenir. Doğrulanmamış değerler standart olarak yayımlanmaz.
 
+### Şebeke ve osiloskop ölçüm düzeni
+
+Modül 1 bias/SCT deneylerinde ölçüm düzeni şu şekilde uygulanır:
+
+- Şebeke gerilimi, her deneyde uygun AC gerilim ölçüm kademesindeki multimetre ile izlenir. Multimetre şebeke gerilimi ölçümünü yapar; bu ölçüm, osiloskop ölçümünden ayrı bir ölçüm kanalıdır.
+- Bias ve SCT sinyalinin dalga şekli, pil ile çalışan osiloskopla gözlemlenir.
+- Osiloskopun pil ile çalışması, ölçüm girişinin her koşulda galvanik olarak izole olduğu anlamına gelmez. USB, şarj cihazı, bilgisayar veya başka bir kablo bağlantısı ölçüm sırasında elektriksel referansı değiştirebilir. Ölçüm öncesinde bu bağlantıların durumu kontrol edilir.
+- Multimetrenin ve ölçü uçlarının şebeke gerilimine uygun CAT sınıfı, gerilim sınırı ve sağlamlığı doğrulanmadan şebeke ölçümü yapılmaz. Multimetre giriş soketi ve kademe seçimi ölçümden önce kontrol edilir.
+- Osiloskop probunun GND klipsi, devrenin şebekeye göre izolasyonu ve referans noktası kesin olarak doğrulanmadan hiçbir noktaya bağlanmaz. Pil ile çalışan osiloskop kullanılması bu kontrolün yerine geçmez.
+- Şebeke tarafındaki bağlantıların kurulması/değiştirilmesi enerji kesilerek yapılır. Açıkta enerjili şebeke bağlantısı üzerinde deney veya bağlantı değişikliği yapılmaz.
+- Bu düzen bir çalışma kuralıdır; tek başına devrenin galvanik izolasyonunu veya ölçüm güvenliğini kanıtlamaz. Gerçek bağlantı topolojisi ve kullanılan ölçü aletlerinin sınıfı ayrıca kaydedilir.
+
 ### Modül imalat dosyası
 
 Her modülün kökünde, görevlerden ve kod sürümlerinden bağımsız bir `IMALAT/` klasörü ve bunun içinde `IMALAT.md` bulunur. Bu dosya, modül fiziksel olarak sökülse bile aynı donanımın yeniden imal edilmesini ve kurulmasını sağlayacak ana teknik kayıttır.
