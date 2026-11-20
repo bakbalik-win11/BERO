@@ -18,6 +18,15 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 - **Aktif görev:** MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
 - **Çalışma odağı:** ESP32-D geliştirme kartı + ESP32 shield, SCT013 30A/1V akım sensörü ve ADS1115 ara entegresiyle masaüstü deney düzeneğinin imalatı; ardından sinyal/akım davranışını gözlemlemek ve test kayıtlarını MOD2-GRV001 altında tutmak. Paylaşılan ESP32/shield görseli temsildir; kesin kart modeli ve pinout değildir. Modül 1, gerektiğinde bu deney düzenine bias gerilimi sağlayan mevcut donanımdır.
 
+## Modül 2 – sıradaki deney
+
+- Mevcut sadeleştirilmiş akım okuma koduyla önceki ADS1115 modülünde okuma yapılmıştır; kullanıcı bu sürümü **Kod 0** olarak ayırmıştır.
+- Yeni katsayı çalışması ADS1115 **No. 1** üzerinde yapılacaktır; önceki modülün katsayısı aktarılmayacaktır.
+- Katsayı çalışmasından önce bias gerekliliği deneyi yapılacaktır: tek ADS1115 No. 1 üzerinde A0–A1 biaslı, A2–A3 biassız karşılaştırma.
+- İlk aşama: SCT bağlı değilken bias hattını multimetre ve osiloskopla incelemek; ardından SCT bağlı ve akım yokken girişleri ölçmek.
+- Bu karşılaştırma henüz plan aşamasındadır; ölçüm sonucu veya bias kararı verilmemiştir.
+- Teknik deney planı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`.
+
 ## İlerleme kuralı
 
 Bir görev tamamlandığında sonucu kendi görev klasörüne kaydedilir. Ardından aynı modülün altında bir sonraki görev açılır ve bu dosyadaki durum güncellenir. Modüller arası geçiş, ilgili modülün hedefi ve hazır olma durumuna göre yapılır.
