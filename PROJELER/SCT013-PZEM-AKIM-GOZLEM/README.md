@@ -4,6 +4,14 @@
 
 Bu klasör, BERO'nun akım gözlem alt projesidir. BERO'nun tamamı değildir.
 
+## Güncel imalat mimarisi — Modül 4 ön koşulu
+
+**PREBERO Modül 5/6/7'den önce Modül 4 tasarlanacak, imal edilecek ve doğrulanacaktır.** Şu an masaüstünde çalışan ESP32D2 + ADS1115 + SCT düzeneği geçici deney prototipidir; nihai imal edilmiş Modül 4 değildir.
+
+İmalattan önce ADS1115'i BERO kullanımına yetecek hobi düzeyinde tanıyacağız, masaüstü bağlantısını doğrulayacağız, bias'lı/bias'sız yapıyı karşılaştırıp osiloskopla gözlemleyeceğiz. Bu kanıtlardan sonra Modül 4'ün giriş, bias, besleme, kablolama ve fiziksel yerleşim kararları verilecek. Modül 4'ün imalat ve donanım kabulü tamamlanmadan PREBERO Modül 5 (çamaşır), Modül 6 (bulaşık) ve Modül 7 (ana hat + PZEM) imalatına geçilmeyecek.
+
+Çalışma laboratuvar karakterizasyonu değildir; BERO için gereken temel teknik bilgi ve güvenli kullanım sınırlarıyla sınırlıdır. Ayrıntılı sıra ve kabul kapıları: [ADR-035](docs/decisions/ADR-035-module4-design-gate-before-prebero.md) ve [T011](tasks/T011-module4-characterization-and-build.md).
+
 ## Şu anki amaç
 
 Önce masaüstündeki **Modül 4 (ESP32D2 + ADS1115 + SCT)** ile hedeflediğimiz akım aralığında ölçüm alabildiğimizi gözlemliyoruz. ADS1115 + SCT düzeniyle istenen aralıkta akım okunabildiğine dair mevcut deney kayıtları vardır. Şimdi aynı masaüstü düzeneğinde bias'lı ve bias'sız bağlantıyı karşılaştıracağız.
