@@ -304,3 +304,11 @@ BERO hobi/araştırma projesidir. Anomali uyarıları otomatik servis veya ekono
 - **E19 KAPATILDI — test edilen koşullarda hedef aşıldı.** Bu sonuç tüm akım aralığına genellenmez; yaklaşık 2 A ikincil hedefi yapılmadı.
 - ADS1115 A0/A1 common-mode ve GND–VDD giriş güvenliği fiziksel olarak doğrulanmış sayılmaz; bu güvenlik kapısı yeni donanım çalışmalarında ayrıca ele alınacaktır.
 - Ayrıntılar: [E19 README](experiments/E19-ads1115-low-current-alternative/README.md) · [E19 sonuç defteri](experiments/E19-ads1115-low-current-alternative/results.md).
+
+
+## 2026-11-20 — E20 yapılmadan kapatıldı: ölçüm kriterine ulaşılması
+- E19'da 18 W, 42 W ve 57 W düşük akım noktalarında ADS1115 + SCT ölçümü PZEM karşılaştırma ortalamasına sırasıyla −%0,99, +%0,125 ve +%0,647 farkla sonuçlandı. Kayıtlı 18–150 W koşullarının tamamı ±%4 proje kriterinin içindedir.
+- Bu nedenle E20'nin planlanan 18 W fiziksel ON/OFF çevrimleri, temel akım ölçümü hedefi karşılandığından proje açısından gerekli görülmedi ve **KAPATILDI — YAPILMADAN**.
+- E20 kapsamında fiziksel çevrim, gecikme, OFF sonrası tabana dönüş veya tekrarlanabilirlik ölçümü yapılmadı; sonuç/CSV yoktur. E19 sabit yük sonuçları E20 dinamik performans kanıtı değildir.
+- Kapanışın nedeni hedeflenen kriterlerde akım ölçümünün elde edilmesidir; güvenlik doğrulaması veya tüm akım aralığı onayı değildir.
+- Ayrıntılar: [E20 deney kaydı](experiments/E20-ads1115-18w-on-off-response/README.md) · [E20 sonuç defteri](experiments/E20-ads1115-18w-on-off-response/results.md).
