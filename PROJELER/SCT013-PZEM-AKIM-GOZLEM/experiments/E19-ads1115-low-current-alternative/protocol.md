@@ -216,3 +216,8 @@ Kullanıcının netleştirdiği yöntem, yalnız ADS1115'e özgü değil, karş�
 - **Yorum sınırı:** 18:35–18:40 ADS1115 serisi bu oturumda dar dağılımlı/kararlı gözüküyor ve PZEM ortalamasına yakın. Bu, 100 W'ta yapılan kaba referans ayarından sonra düşük akımda çalışma davranışına ilişkin gözlemdir; bağımsız kalibrasyon, ±%4 genel doğrulaması veya alt çalışma sınırının kesin belirlenmesi değildir. Daha düşük basamaklar ve tekrarlar gerekir.
 - Bu aşamanın yöntemi: her ölçüm yapısı PZEM'e karşı yaklaşık 100 W noktasında kaba kalibre edilir; ardından katsayı değiştirilmeden daha düşük akım basamaklarında davranışı tanınır. Düşük akım aşamasında amaç yeniden kalibrasyon değil, kararlılık ve kullanılabilir alt sınırı bulmaktır. Kullanıcı bu yöntemi her ölçüm yapısı için geçerli olarak netleştirdi.
 - Güvenlik ön koşulu (ADS1115 A0/A1 ortak-mod/bias ve giriş ray sınırlarının fiziksel doğrulaması) ayrıca açık kalır.
+
+
+## 2026-11-20 — Protokol kapanış notu
+
+Bu protokolde tarif edilen E19 düşük akım ölçüm karakterizasyonu ve sabit yük karşılaştırmaları tamamlandı. Sonuçlar, ölçüm istatistikleri ve sınırlar için [E19 sonuç defteri](results.md) ile [deney ana kaydına](README.md) bakın. Test edilen 18 W, 42 W, 57 W, 100 W ve 150 W noktalarında ADS1115/PZEM ortalama farkı ±%4 hedefinin içindedir; bağımsız karşılaştırma oturumlarında en yüksek mutlak fark %1,23'tür. Yaklaşık 2 A ikincil hedefi yapılmadı ve ADS1115 giriş güvenliği ayrıca fiziksel doğrulama gerektirir. Bu nedenle protokol **KAPATILDI — test edilen koşullarda hedefe ulaşıldı** olarak işaretlenir; açık kalan konular yeni deneylerde ele alınır.
