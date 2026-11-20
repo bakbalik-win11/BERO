@@ -1,6 +1,6 @@
 # E20 — ADS1115 + SCT 18 W fiziksel aç/kapa tepki deneyi
 
-- **Durum:** PLANLANDI — fiziksel çevrim kaydı henüz alınmadı.
+- **Durum:** KAPATILDI — YAPILMADAN (2026-11-20). E19'da istenen ölçüm kriterlerinde akım ölçümü elde edildiği için fiziksel aç/kapa deneyi proje hedefi açısından gerekli görülmedi.
 - **Tarih:** 2026-11-13 tarihinde E19 18 W sabit yük gözlemi sonrasında açıldı.
 - **İlişki:** E19 ADS1115 düşük akım karakterizasyonu; E20 bu ölçüm zincirinin fiziksel yük açma/kapatma tepkisini inceler.
 - **Yük:** E19'da kullanılan 18 W nominal yük. PZEM'in ölçtüğü gerçek W/A değerleri esas kayıt olacaktır.
@@ -82,4 +82,21 @@ ADS1115 A0/A1 giriş ortak-mod seviyesi ve GND–VDD giriş ray sınırlarının
 
 ## Sonuç
 
-Henüz test yapılmadı. Bu dosya yalnız E20 deney tasarımını ve önceden belirlenmiş analiz/karar kurallarını tanımlar.
+## Kapanış kararı — 2026-11-20
+
+**E20: KAPATILDI — YAPILMADAN.**
+
+E19 kapsamında ADS1115 + SCT-013 30A/1V ölçüm zinciriyle 18 W, 42 W ve 57 W dahil düşük akım bölgesinde ölçümler alındı. Bu karşılaştırmalarda ADS1115 akım ortalaması PZEM karşılaştırma ortalamasına göre sırasıyla −%0,99, +%0,125 ve +%0,647 fark gösterdi; kayıtlı 18–150 W test koşullarının tamamı proje için belirlenen ±%4 ölçüm kriterinin içinde kaldı.
+
+Böylece BERO'nun o aşamadaki temel ihtiyacı olan hedeflenen düşük akım bölgesinde kullanılabilir ve kriteri karşılayan akım ölçümü elde edildi. E20'nin planlanan fiziksel ON/OFF çevrimleri, bu ölçüm yeterliliğine ulaşmak için artık gerekli görülmedi. Proje odağı da E21 ile çamaşır makinesi program davranışının uzun süreli gözlemine kaydırıldı. Bu nedenle E20 için ayrıca fiziksel çevrim kaydı alınmadı ve deney **yapılmadan kapatıldı**.
+
+### Kapanışın sınırları
+
+- E20'nin beş fiziksel ON/OFF çevrimi gerçekleştirilmedi; açılma/kapanma gecikmesi, OFF sonrası tabana dönüş ve çevrim tekrarlanabilirliği ölçülmedi.
+- E20'ye ait fiziksel test sonucu, CSV veya çevrim istatistiği yoktur.
+- E19'un ±%4 sonucu yalnız kaydedilmiş sabit yük ve ölçüm koşulları için geçerlidir; E20 dinamik geçiş performansının kanıtı değildir.
+- Bu karar ADS1115 A0/A1 ortak-mod ve GND–VDD giriş güvenliği doğrulamasını tamamlamaz.
+- İleride dinamik geçiş davranışı yeni proje hedefi için gerekli olursa, E20 tarihçesi korunarak yeni ve güncel koşulları tanımlanmış bir deney açılabilir.
+
+**Karar gerekçesi:** İstenen kriterlerde akım ölçümü elde edildiği için E20'nin ilave fiziksel aç/kapa deneyi proje hedefi açısından gereksiz kaldı. Deney, yapılmış veya başarılı dinamik test olarak değil, hedefe ulaşıldığı için yapılmadan kapatılmış plan olarak arşivlenir.
+
