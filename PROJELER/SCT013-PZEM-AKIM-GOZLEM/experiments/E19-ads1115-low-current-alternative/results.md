@@ -14,7 +14,7 @@
 - Alternatif: SCT-013 30A/1V + ADS1115.
 - Referans: PZEM-004T V3.0.
 - Bias'sız bağlantı: araştırılacak; henüz doğrulanmadı.
-- Kart fotoğrafı, pin/komponent incelemesi, kod, derleme ve ölçüm logu henüz yok.
+- Deney başlangıcında kart fotoğrafı, pin/komponent incelemesi, kod, derleme ve ölçüm logu henüz yoktu; sonraki tarihli bölümlerde donanım bağlantısı, firmware gözlemleri ve ölçüm kayıtları eklendi.
 
 ## Ölçüm kayıtları
 
