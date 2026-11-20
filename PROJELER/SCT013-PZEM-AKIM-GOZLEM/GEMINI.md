@@ -6,8 +6,8 @@ Bu dosya, Gemini CLI ajanları için projenin yapısını, donanım bileşenleri
 **Proje Adı:** BERO (Burak'ın Rumelikavağı Emeklilik Otomasyonu)
 **Lokasyon:** Rumeli Kavağı, Sarıyer, İstanbul.
 **Fazlar:** 
-1. **PREBERO (Saha Deney & Veri):** WiFi/HA üzerinden hızlı veri toplama, cihaz karakterizasyonu ve masaüstü laboratuvar testleri.
-2. **BERO (Nihai Sistem):** Tam bağımsız RS485 omurgalı dağıtık zeka mimarisi.
+1. **PREBERO:** BERO'nun kurulacağı eve henüz taşınılamadığı, o evdeki kiracı çıkana kadar Sarıyer'deki mevcut evde yürütülen gözlem, deney ve veri toplama dönemi. Mevcut evdeki çamaşır makinesi, bulaşık makinesi ve ana hat izlenerek BERO'ya geçmeden önce ilerleme sağlanır.
+2. **BERO (Nihai Sistem):** Taşınılacak/kurulacak evde devreye alınacak nihai sistem; PREBERO ile aynı şey değildir.
 
 ## 🏗 Altyapı ve Haberleşme Stratejisi
 - **Haberleşme:** RS485 (Modbus) ana omurgadır. PREBERO fazında WiFi/HA geçici olarak kullanılır.
@@ -59,17 +59,21 @@ Bu dosya, Gemini CLI ajanları için projenin yapısını, donanım bileşenleri
 
 ## Modül Kimlikleri — Güncel Kullanıcı Kararı
 
-- **Modül 4:** Günlük kullanılan mevcut masaüstü ESP32D2 + ADS1115 + SCT ölçüm düzeneği.
-- **Modül 5:** İmal edilecek çamaşır makinesi gözlem modülü.
-- **Modül 6:** İmal edilecek bulaşık makinesi gözlem modülü.
-- **Modül 7 / PreBERO:** Ana hattı PZEM ile birlikte okumaya yönelik hedef düzenek; tasarım ve test bekliyor.
-- **E22:** Modül değildir. Modül 4'ün ölçüm zinciri kararlı çalıştıktan sonra bir kanalda 30 A / 1 V, diğerinde 100 A / 1 V SCT karşılaştırması yapılması fikridir. Henüz ölçüm alınmadı.
+- **Modül 1:** Mevcut bias trafosu/güç kutusu; korunuyor ve Modül 4 masaüstü biaslı/bias'sız deneylerinde kullanılacak.
+- **Modül 2:** Eski üç kanallı biaslı SCT fiziksel modülü imha edildi. ADS1115 ile istenen akım ölçüm sınırları sağlandığından eski fiziksel düzeneğe ihtiyaç kalmadı. Kod/log arşiv.
+- **Modül 3:** Eski PZEM + SSR olay fiziksel modülü imha edildi. Kod/log arşiv.
+- **Modül 4:** Günlük masaüstü ESP32D2 + ADS1115 + SCT deney düzeneği; biaslı/bias'sız karşılaştırmalar burada.
+- **Modül 5 — PREBERO:** Sarıyer'deki mevcut evin çamaşır makinesini gözlemler.
+- **Modül 6 — PREBERO:** Sarıyer'deki mevcut evin bulaşık makinesini gözlemler.
+- **Modül 7 — PREBERO:** Sarıyer'deki mevcut evin ana hattını PZEM ile birlikte gözlemler.
+- **PREBERO:** BERO'nun kurulacağı eve henüz taşınılamadığı ve o evdeki kiracı çıkana kadar mevcut Sarıyer evinde yürütülen saha gözlem/deney/veri toplama dönemidir. Modül 5, 6 ve 7'nin tamamı PREBERO'dur.
+- **E22:** Modül değildir; Modül 4'te 30 A / 1 V ve 100 A / 1 V SCT karşılaştırma fikri. Henüz 100 A SCT ölçümü alınmadı.
 - **E24:** Çoklu ADS1115 / çok kanallı SCT erişimi için ayrı deney/araştırma kaydıdır; modül numarası değildir.
 
 ## 🎯 Aktif Odak Alanları
-1. **Modül 4:** Mevcut günlük masaüstü ölçüm zincirini korumak ve çalışmasını sürdürmek.
-2. **Modül 5/6:** Çamaşır ve bulaşık gözlem modüllerinin imalat hazırlığı.
-3. **E22:** Modül 4 başarılı/kararlı olduktan sonra 30 A ve 100 A SCT karşılaştırma fikrini deney koşullarına dönüştürmek.
-4. **Modül 7 / PreBERO:** Ana hat + PZEM gözlem hedefini daha sonra tasarlamak.
+1. **Modül 4:** Masaüstü ölçüm düzeneğini kullanmak; biaslı/bias'sız deneyleri Modül 1 bias trafosunu koruyarak yürütmek.
+2. **PREBERO Modül 5/6:** Sarıyer'deki mevcut evde çamaşır ve bulaşık makinesi gözlem modüllerini imal edip veri toplamak.
+3. **PREBERO Modül 7:** Aynı evin ana hattını PZEM ile birlikte izlemek ve veri toplamak.
+4. **E22:** Modül 4 ölçüm zinciri kararlı olduktan sonra 30 A ve 100 A SCT karşılaştırma fikrini deney koşullarına dönüştürmek.
 5. **E21:** Çamaşır makinesi tam program kayıtlarının zaman serisi analizi.
 6. **Gürültü Analizi:** ADS1115 üzerindeki anlık sıçramaların (spikes) osiloskop ile incelenmesi.
