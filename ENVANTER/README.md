@@ -129,3 +129,13 @@ Aşağıdaki adetler kullanıcı tarafından bildirilen fiziksel envanterdir. Ta
 
 - İki TCA9548A kartının her biri sekiz kanal sunar; toplam kanal sayısı teorik olarak 16'dır. Gerçek sistem topolojisi ve aynı hatta birlikte kullanım henüz test edilmemiştir.
 - TCA9548A, I²C kanal anahtarıdır; I²C master veya ADC değildir.
+
+## Fiziksel ESP cihaz envanteri
+
+ESP kartları modüllerden ve görevlerden bağımsız fiziksel varlıklardır. Her fiziksel karta kalıcı ve benzersiz bir envanter kimliği atanır. Aynı kart farklı modüllerde veya görevlerde kullanılsa da bu kimlik değişmez.
+
+| Envanter kimliği | Kart modeli | Fiziksel ayırt edici bilgi | Sabit ESPHome / HA cihaz adı | Mevcut atama | Durum |
+|---|---|---|---|---|---|
+| Henüz kayıt yok | Fiziksel cihazlar tek tek doğrulanınca eklenecek | Kart üzerindeki model ve mümkünse MAC/seri bilgisiyle eşleştirilecek | Cihaz ataması sırasında belirlenecek | Modül/görev ataması ayrıca kaydedilecek | Atama bekliyor |
+
+**Kayıt kuralı:** Kimlikler fiziksel kartlar tek tek doğrulanınca atanır. Kart modeli, MAC/seri bilgisi veya kullanıcı tarafından doğrulanmış başka bir ayırt edici bilgi olmadan cihaz kaydı uydurulmaz. Modül ve görev kimliği ESP'nin fiziksel envanter kimliği değildir.
