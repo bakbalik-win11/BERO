@@ -6,6 +6,12 @@ Masaüstü 4 kanal düzeninde akımın ölçüm sisteminde nasıl temsil edildi�
 
 Akım okuma hedefi bu modülde elde edilmiştir. Çalışma, elde edilen okumayı anlamlandırma ve ölçüm yöntemini geliştirme aşamasında sürmektedir.
 
+## Ana donanım yaklaşımı
+
+- Deney düzeneği ESP32-D geliştirme kartı ve bu karta takılacak ESP32 shield kullanılarak imal edilecektir.
+- Paylaşılan görsel, ESP32-D ve shield yerleşimini anlatan temsili görseldir; kullanılacak kartın kesin modeli, pin eşleşmeleri veya bağlantı şeması olarak kabul edilmez.
+- Fiziksel imalat ve gerçek bağlantılar doğrulandıkça `IMALAT/IMALAT.md` dosyasına kaydedilecektir.
+
 ## Çalışma başlıkları
 
 - Sinyalin osiloskopta gözlenmesi.
@@ -16,4 +22,4 @@ Akım okuma hedefi bu modülde elde edilmiştir. Çalışma, elde edilen okumay�
 
 ## Görevler
 
-İlk aktif görev: G01 – Akım davranışı ve katsayı çalışmaları.
+İlk aktif görev: `MOD2-GRV001` – Akım davranışı ve katsayı çalışmaları.
