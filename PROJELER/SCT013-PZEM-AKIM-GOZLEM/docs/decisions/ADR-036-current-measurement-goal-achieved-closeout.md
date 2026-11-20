@@ -13,4 +13,4 @@
 - ADS1115 analog giriş common-mode/GND–VDD güvenliği ve bias gerekliliği bu kapanışın kabul kapsamı değildir.
 - Eski PZEM eğitim hattı, çok kanallı SCT, SSR/UDP olay mimarisi, 12 kanal genişleme ve eski Modül 5/6/7 tasarımları yeni aşamanın aktif hedefi değildir.
 
-Eski deney, kod, log ve kararlar silinmez. Yeni geliştirme [PREBERO](../../PREBERO/README.md) altında baştan başlar.
+Eski deney, kod, log ve kararlar silinmez. Yeni geliştirme [PREBERO](../../../PREBERO/README.md) altında baştan başlar.
