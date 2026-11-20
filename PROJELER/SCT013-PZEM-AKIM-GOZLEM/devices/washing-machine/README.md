@@ -1,29 +1,53 @@
-# Modül 4 — Çamaşır Makinesi İzleme Modülü
+# MODÜL 4 — Çamaşır Makinesi İzleme Modülü
 
 ## Amaç
 Bu klasör, çamaşır makinesi için üretilecek taşınabilir gözlem modülünün donanım, firmware, ham kayıt, Python analiz ve rapor dosyalarını bir arada tutar.
 
-## Modül kimliği
+## Modül kimliği ve aşama
 - **Modül numarası:** MODÜL 4 — kullanıcı tarafından 2026-11-20 tarihinde onaylandı.
-- **Aşama:** PLANLANDI / fiziksel imalat ve doğrulama bekliyor
-- **Birincil gözlem kanalları:** ses ve titreşim. **Akım kanalı:** yardımcı/ikincil gözlem olarak değerlendirilecek; donanım bağlantısı ve kapsamı montaj öncesi kesinleştirilecek.
-- **Kesinleşmeyenler:** ESP32 kart varyantı, ses/titreşim sensörlerinin kesin modelleri, analog ön uç, I²C çoklayıcı bağlantısı, pin eşlemesi, örnekleme ve kayıt parametreleri.
-- Donanım ve bağlantı bilgileri fiziksel montaj ve test sonrasında doğrulanacaktır. Varsayılan pin, sensör veya çalışma değeri kullanılmayacaktır.
+- **Aşama:** PLANLANDI / fiziksel imalat ve doğrulama bekliyor.
+- **Mimari:** Modül 4 ve Modül 5 aynı elektronik tasarımın ikiz kopyalarıdır. Donanım ve firmware temeli ortak; cihaz adı, modül kimliği ve kayıt etiketleri farklıdır.
+- **Güç durumu:** Kullanıcı bildirimi: kurulum noktasındaki prizde 5 V besleme mevcut. Beslemenin kaynağı/akım kapasitesi ve bağlantı güvenliği montaj öncesinde kontrol edilecek.
+- **İmalat sırası:** İlk yapılacak modül.
+- **Birincil gözlem kanalları:** ses ve titreşim.
+- **Yardımcı kanal:** akım; makine çalışma evrelerini yorumlamak için bağlamsal veri olarak kullanılacak.
+- Ayrıntılı ortak karar: [ADR-032 — İkiz sensör modülleri](../../docs/decisions/ADR-032-washing-dishwasher-twin-sensor-modules.md).
+
+## Ortak donanım listesi — bu modülden birer adet
+| Bileşen | Adet | Görev / bağlantı yaklaşımı |
+|---|---:|---|
+| ESP32-D | 1 | Ana kontrolcü; tam kart/revizyon teyidi bekliyor |
+| Vidalı terminal shield | 1 | ESP32-D için fiziksel bağlantı/dağıtım |
+| MAX4466 | 1 | Ses; analog çıkış ESP32 ADC girişine |
+| MPU6050 | 1 | İvme/titreşim; birinci ve ayrı I²C hattına |
+| SCT013 30 A / 1 V | 1 | Yardımcı akım algılayıcısı |
+| ADS1115 | 1 | SCT013 analog sinyalini okuyan harici ADC; ikinci ve ayrı I²C hattına |
+
+İki modülün toplam planlanan miktarı her bileşenden ikişer adettir.
+
+## Bağlantı mimarisi — karar verilen / bekleyen
+
+- MAX4466 OUT → ESP32 ADC: doğrudan analog okuma hedefleniyor. ADC pini, ses örnekleme hızı, çözünürlük ve kayıt biçimi belirlenmedi.
+- MPU6050 → I²C-1: SDA/SCL pinleri fiziksel kart ve shield üzerinden teyit edilecek.
+- ADS1115 → I²C-2: MPU6050 hattından ayrı SDA/SCL çifti kullanılacak. Bu ayrım kullanıcı tercihidir; kart/framework üzerinde gerçek bağlantı ve firmware ile doğrulanacak.
+- SCT013 → ADS1115 analog giriş: giriş bias/ölçekleme/koruma, ADS1115 gain ve data rate, CT sekonder koşulları ve kalibrasyon henüz belirlenmedi.
+- Besleme gerilimi, toprak referansı, kablo düzeni ve muhafaza fiziksel montaj öncesi kontrol edilecek.
+- Bu doküman pin şeması veya enerjili şebeke bağlantısı talimatı değildir. Şebeke tarafı bağlantılar uygun koruma ve muhafaza ile yetkin kişi tarafından yapılmalıdır.
 
 ## Gözlem ve analiz yaklaşımı
 
-Bu modülün ana veri kaynağı ses ve titreşim kayıtları olacaktır. Akım verisi, makine davranışını yorumlamaya yardımcı olabilecek ikincil bir kanal olarak ele alınır; kesin sensör, bağlantı ve örnekleme kararı henüz verilmemiştir.
+Ses ve titreşim ana veri kanallarıdır. Akım, ses/titreşim olaylarının yorumlanmasına yardımcı olacak ikincil kanaldır. Bulaşık makinesi için su alma ve boşaltma evrelerinin ses/titreşim izlerinde görünmesi araştırılacak; evre imzaları ölçüm ve tekrarlarla doğrulanmadan sabit kabul edilmeyecektir.
 
-Veri akışı aşamalıdır: sensörlerden ham kayıt → Python ile zaman serisi/özellik çıkarımı ve karşılaştırma → yeterli tekrar ve doğrulama sonrasında davranış sınıfları/karar ağacı → daha ileri aşamada bildirim üretimi. Karar ağacı ve bildirim sistemi şu anki imalat kapsamı değildir; eşikler ve sınıflar veriyle doğrulanmadan otomatik karar verilmeyecektir.
+Veri akışı: sensörlerden ham kayıt → Python ile zaman serisi/özellik çıkarımı ve karşılaştırma → yeterli tekrar ve doğrulama sonrasında davranış örüntüleri/sınıfları → daha ileri aşamada karar mantığı ve bildirim. Karar ağacı ve bildirim şu anki imalat kapsamı değildir.
 
-14 Kasım 2026 tarihli çamaşır makinesi akım kayıtları ilk keşif/deneme kayıtlarıdır. Bunlar yeni ses-titreşim modülünün ana veri seti veya multimodal doğrulaması sayılmaz.
+14 Kasım 2026 tarihli eski çamaşır makinesi akım kayıtları keşif/ön kayıt niteliğindedir; yeni ses-titreşim modülünün ana veri seti veya multimodal doğrulaması değildir.
 
 ## Klasör yapısı
 - `hardware/`: gerçek parça listesi, bağlantılar, şemalar ve güvenlik notları.
-- `firmware/`: kullanılan ESPHome YAML/kod, sürüm ve derleme/çalışma logları.
+- `firmware/`: kullanılan kod/YAML, sürüm ve derleme/çalışma logları.
 - `data/raw/`: kaynaktan alınan değiştirilmemiş ham kayıtlar.
 - `data/processed/`: doğrulanmış ve analize hazırlanmış türetilmiş veriler.
-- `analysis/python/`: bu modüle ait analiz betikleri ve parametreler.
+- `analysis/python/`: analiz betikleri ve parametreler.
 - `analysis/results/`: CSV/JSON/istatistik ve grafik kaynak çıktıları.
 - `analysis/reports/`: yorumlanmış analiz raporları.
 - `experiments/`: deney protokolleri, koşullar ve sonuç kayıtları.
@@ -41,8 +65,4 @@ Veri akışı aşamalıdır: sensörlerden ham kayıt → Python ile zaman seris
 - Bulaşık makinesi: `DW-YYYYMMDD-NN`
 - Her fiziksel kayıt ayrı RECORD_ID alır. Program sınıfı/ayar gruplaması metadata ile ayrıca yapılır.
 
-## İlgili tarihsel kayıtlar
-- Çamaşır makinesi E21 ilk program kayıtları: [E21](../../experiments/E21-washing-machine-program-analysis/README.md)
-- Eski çamaşır makinesi kayıt şablonları: [washing-machine logs](../../logs/washing-machine/)
-
-**Not:** Bu klasör yapısının oluşturulması donanımın imal edildiği, bağlandığı veya ölçüm yaptığı anlamına gelmez.
+**Durum notu:** Bu README, kullanıcı kararlarını ve planlanan bağlantı mimarisini kaydeder. Donanımın imal edildiği, bağlandığı, firmware'in derlendiği veya ölçüm yaptığı anlamına gelmez.
