@@ -320,3 +320,11 @@ BERO hobi/araştırma projesidir. Anomali uyarıları otomatik servis veya ekono
 - Planlanan gözlem kanalları kullanıcıyla konuşulan kapsam doğrultusunda akım, ses ve titreşimdir. Kesin sensör modelleri, ESP32 kart varyantı, pinler, I²C çoklayıcı bağlantısı ve kayıt parametreleri henüz doğrulanmadı.
 - Klasörler hazırlandı; fiziksel imalat, firmware, bağlantı, derleme ve ölçüm yapılmış sayılmaz.
 - **Modül numarası kararı açık:** MEMORY.md Modül 4/5'i çamaşır/bulaşık olarak anıyor; E22 README ise Modül 4'ü ESP32 + ADS1115 + 100 A / 1 V SCT + PZEM olarak tanımlıyor. Çakışma kullanıcı onayı olmadan çözülmeyecek.
+
+
+## 2026-11-20 — Modül 4/5 kimlikleri onaylandı; ses-titreşim ana veri yaklaşımı netleşti
+- Kullanıcı onayı: **Modül 4 = Çamaşır Makinesi**, **Modül 5 = Bulaşık Makinesi**. E22, 100 A / 1 V SCT karakterizasyon deneyidir; bu cihaz modüllerinin numaralandırmasına dahil değildir.
+- Kullanıcı açıklaması: 14 Kasım 2026 çamaşır makinesi akım kayıtları ilk deneme/keşif kayıtlarıdır. Asıl makine davranışı verisi yeni modüllerle öncelikle **ses ve titreşim** üzerinden toplanacaktır. Akım verisi yardımcı/ikincil bağlam kanalı olarak değerlendirilebilir.
+- Sonraki teknik sıra: fiziksel modüllerin kurulması → ham ses/titreşim kayıtlarının korunması → Python ile zaman serisi ve özellik analizi → tekrarlarla davranış örüntülerinin doğrulanması → daha ileride karar ağacı/karar mantığı → bundan sonra bildirim üretimi.
+- Karar ağacı ve bildirim üretimi mevcut imalat adımının kapsamı değildir. Sensör modelleri, montaj, pinler ve örnekleme parametreleri fiziksel kurulumda netleştirilecek.
+- İlgili belgeler: [Modül 4](devices/washing-machine/README.md), [Modül 5](devices/dishwasher/README.md), [E21](experiments/E21-washing-machine-program-analysis/README.md), [E22 karakterizasyon deneyi](experiments/E22-sct100a-1v-ads1115-characterization/README.md).
