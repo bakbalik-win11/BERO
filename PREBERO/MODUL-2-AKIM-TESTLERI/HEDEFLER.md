@@ -8,12 +8,19 @@ Akım okuma hedefi bu modülde elde edilmiştir. Çalışma, elde edilen okumay�
 
 ## Ana donanım yaklaşımı
 
-- Deney düzeneği ESP32-D geliştirme kartı ve bu karta takılacak ESP32 shield kullanılarak imal edilecektir.
-- Paylaşılan görsel, ESP32-D ve shield yerleşimini anlatan temsili görseldir; kullanılacak kartın kesin modeli, pin eşleşmeleri veya bağlantı şeması olarak kabul edilmez.
+- Ana kart: ESP32-D geliştirme kartı.
+- Taşıyıcı kart: ESP32 shield.
+- Akım sensörü: SCT013 30A/1V.
+- Ara entegre / harici ADC: ADS1115.
+- ESP32-D geliştirme kartı shield üzerine takılarak masaüstü deney düzeneği imal edilecektir.
+- SCT013 30A/1V sensör sinyali ADS1115 üzerinden okunacak; ADS1115 ile ESP32 arasındaki haberleşme ve pin bağlantıları gerçek donanım üzerinde doğrulanacaktır.
+- Paylaşılan ESP32 + shield görseli temsili yerleşim görselidir; kullanılacak kartın kesin modeli, pin eşleşmeleri veya bağlantı şeması olarak kabul edilmez.
 - Fiziksel imalat ve gerçek bağlantılar doğrulandıkça `IMALAT/IMALAT.md` dosyasına kaydedilecektir.
 
 ## Çalışma başlıkları
 
+- SCT013 30A/1V sensör sinyalinin ADS1115 üzerinden okunması.
+- ADS1115 ile ESP32-D arasındaki haberleşmenin doğrulanması.
 - Sinyalin osiloskopta gözlenmesi.
 - Biaslı ve biassız durumların gerektiğinde karşılaştırılması.
 - Test koşullarının ve ölçüm davranışının incelenmesi.
