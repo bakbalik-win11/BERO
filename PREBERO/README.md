@@ -169,3 +169,72 @@ Tarihçe kaydında tarih, görev kimliği, yapılan çalışma/deneme, gözlenen
 - Verilen YAML eksiksiz, doğrudan kopyalanıp kullanılabilir tek bir kod bloğu içinde sunulur. Kullanıcı özellikle istemedikçe parçalı YAML veya "... mevcut ayarları koruyun" gibi eksik bırakılmış bölümler verilmez.
 - Her YAML'ın başında amacı, ilgili modül ve görev kimliği, kod sürümü, donanım bağlantıları ve beklenen çalışma davranışı açıklanır.
 - YAML verilmeden önce mevcut yapı ve bağlantılarla çelişki olup olmadığı kontrol edilir. Bilinmeyen bağlantı veya değerler varsayılmaz; gerekiyorsa kullanıcıdan netleştirilir.
+
+
+### Kendi kendini açıklayan kod / YAML başlığı
+
+Her ESPHome YAML veya başka bir gömülü yazılım dosyası, yalnızca kodu yazan kişinin değil; dosyayı daha sonra inceleyen başka bir mühendis veya yapay zekâ aracının da çalışmayı anlayabileceği teknik açıklamayı kendi içinde taşımalıdır. Kod dosyası, ilgili yazılım sürümünün teknik kimlik kartıdır.
+
+Başlık, kullanılan teknolojiye göre aşağıdaki bilgileri içermelidir:
+
+- Proje, modül ve tam görev kimliği.
+- Fiziksel ESP envanter kimliği ve sabit ESPHome cihaz adı.
+- Kod sürümü ve o sürüme ait test durumu.
+- Modülün/kodun amacı ve ölçtüğü veya kontrol ettiği iş.
+- Donanım modeli ve gerçek bağlantılar: GPIO, I²C/SPI/UART, sensör uçları, besleme ve ortak GND gibi bağlantılar.
+- Ölçüm ve çalışma parametreleri: örnekleme, kazanç, pencere süresi, güncelleme aralığı, eşikler, katsayılar ve filtreler.
+- Kalibrasyon/katsayı notları: hesap yöntemi, kullanılan gözlem ve doğrulama sınırı.
+- Haberleşme protokolleri: mesaj biçimi, port, kaynak/hedef, zaman aşımı ve ilgili davranışlar.
+- Home Assistant entity'leri veya dışarıya sunulan arayüzler.
+- Beklenen çalışma davranışı; maddeler halinde ve gözlenebilir şekilde.
+- Güvenlik uyarıları ve donanımın güvenli kullanım sınırları.
+- Bilinen sorunlar, sınırlamalar ve henüz doğrulanmamış noktalar.
+
+Her bilgi kendi kanıt seviyesine uygun ifade edilir: doğrulanmış, ölçülmüş/gözlenmiş, üretici dokümanından alınmış, kullanıcı bildirimi veya henüz denenmemiş varsayım. Tek ölçümden türetilen katsayı kesin kalibrasyon gibi sunulmaz. Bilinmeyen pin, bağlantı veya parametre uydurulmaz.
+
+Kod değiştiğinde yeni sürüm dosyasının başlığı da o sürümün gerçek içeriğine göre güncellenir. Eski sürümün başlığı ve dosyası geriye dönük değiştirilmez. Test durumu yalnızca gerçek derleme, yükleme ve donanım test kanıtına göre yazılır. Hazırlandı, derlendi, cihaza yüklendi ve fiziksel olarak doğrulandı ifadeleri birbirinin yerine kullanılmaz.
+
+Bu açıklama, kodu tek başına inceleyen bir kişinin temel amacı, donanım bağlantılarını, çalışma parametrelerini, beklenen davranışı ve test sınırlarını anlayabilmesini sağlamalıdır. Ancak fiziksel modülün tüm imalat ayrıntıları kod başlığına bırakılmaz; modülün `IMALAT/` dosyası esas alınır.
+
+### Modül imalat dosyası
+
+Her modülün kökünde, görevlerden ve kod sürümlerinden bağımsız bir `IMALAT/` klasörü ve bunun içinde `IMALAT.md` bulunur. Bu dosya, modül fiziksel olarak sökülse bile aynı donanımın yeniden imal edilmesini ve kurulmasını sağlayacak ana teknik kayıttır.
+
+Önerilen düzen:
+
+```text
+MODUL-X-.../
+├── IMALAT/
+│   ├── IMALAT.md
+│   ├── SEMALAR/
+│   ├── FOTOGRAFLAR/
+│   └── EKLER/
+├── TARIHCE.md
+└── ... görev klasörleri ...
+```
+
+İmalat dosyası ve ekleri gerektiğinde şu bilgileri kapsar:
+
+- Modülün fiziksel amacı, kapsamı ve genel çalışma düzeni.
+- Gerçekleşmiş fiziksel yerleşim, montaj ve kutulama.
+- Elektrik/elektronik bağlantı şemaları ve bağlantı noktaları.
+- Kablo listesi: renk, kesit/tip biliniyorsa, başlangıç ve bitiş noktası.
+- Malzeme/komponent listesi: gerçek model ve kullanılan adet.
+- Besleme gereksinimleri, gerilimler, ortak referans ve izolasyon bilgileri.
+- Kullanılan ESP'nin envanter kimliği ve sabit cihaz adı.
+- Montaj, sökme ve yeniden kurulum adımları.
+- Gerçek montaj fotoğrafları ve şema dosyalarına referanslar.
+- Güvenlik uyarıları, bilinen fiziksel sınırlamalar ve kontrol listesi.
+
+İmalat dosyası modülün fiziksel yapısını bütün olarak anlatır. YAML başlığı ise belirli bir yazılım sürümünün kullandığı pinleri, bağlantıları ve parametreleri açıklar. İkisi birbirinin yerine geçmez; aralarında çelişki varsa çelişki giderilmeden modül yeniden kurulmuş veya doğrulanmış sayılmaz.
+
+**Doğruluk kuralı:** Yalnızca gerçekten kurulmuş, gözlenmiş veya ölçülmüş bilgiler gerçekleşmiş imalat bilgisi olarak yazılır. Taslak, öneri ve henüz denenmemiş bağlantılar açıkça bu şekilde etiketlenir. Bilinmeyen alanlar boş/atanmadı/ doğrulanmadı olarak bırakılır; tahminle doldurulmaz. İmalat değişiklikleri tarihçeye ve ilgili görevin kayıtlarına bağlanır.
+
+### Kod, imalat ve tarihçe birlikte nasıl kullanılır?
+
+- `IMALAT/IMALAT.md`: Modül fiziksel olarak nasıl yapılır, bağlanır, sökülür ve yeniden kurulur?
+- YAML/kod başlığı: Bu belirli yazılım sürümü hangi donanımı ve bağlantıları kullanır, nasıl çalışır?
+- Görev ve sürüm klasörleri: Bu sürümle hangi geliştirme ve testler yapıldı; gerçek kanıt ve sonuç nedir?
+- `TARIHCE.md`: Süreçte ne öğrenildi, hangi teknik kararlar neden alındı?
+
+Amaç, modül fiziksel olarak sökülse veya başka bir ESP'ye taşınsa bile imalat bilgisi, teknik tecrübe, test kanıtı ve son kod sürümü üzerinden yeniden üretilebilir olmasıdır. ESP değişirse fiziksel ESP kimliği ve cihaz adı yeni donanıma göre envanterden atanır; görev ve yazılım sürümü bilgileri ayrı tutulur.
