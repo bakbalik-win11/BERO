@@ -207,6 +207,7 @@ Bir modülde kullanılacak bias devresinin direnç ve kondansatör bileşenleri,
 Modül 1 bias/SCT deneylerinde ölçüm düzeni şu şekilde uygulanır:
 
 - Şebeke gerilimi, her deneyde uygun AC gerilim ölçüm kademesindeki multimetre ile izlenir. Multimetre şebeke gerilimi ölçümünü yapar; bu ölçüm, osiloskop ölçümünden ayrı bir ölçüm kanalıdır.
+- Şebeke gerilimi ve PZEM'in ölçtüğü elektriksel büyüklükler, PZEM üzerinden de Home Assistant/ilgili izleme arayüzünde takip edilebilir. PZEM bu çalışmada şebeke davranışını izlemek ve SCT gözlemleriyle karşılaştırmak için kullanılır; multimetre ölçümü ve osiloskop dalga şekli gözleminin yerine geçmez.
 - Bias ve SCT sinyalinin dalga şekli, pil ile çalışan osiloskopla gözlemlenir.
 - Osiloskopun pil ile çalışması, ölçüm girişinin her koşulda galvanik olarak izole olduğu anlamına gelmez. USB, şarj cihazı, bilgisayar veya başka bir kablo bağlantısı ölçüm sırasında elektriksel referansı değiştirebilir. Ölçüm öncesinde bu bağlantıların durumu kontrol edilir.
 - Multimetrenin ve ölçü uçlarının şebeke gerilimine uygun CAT sınıfı, gerilim sınırı ve sağlamlığı doğrulanmadan şebeke ölçümü yapılmaz. Multimetre giriş soketi ve kademe seçimi ölçümden önce kontrol edilir.
