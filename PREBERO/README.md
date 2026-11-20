@@ -84,3 +84,12 @@ Başarılı bir kod sürümü, o sürümle alınmış gerçek test logu ve logun
 - Göreve özgü teknik ayrıntılar, kod, veri, log ve raporlar ilgili görev klasöründe tutulur.
 - Yeni bir oturumda çalışmaya başlamadan önce bu README ve `DURUM.md` okunur; ardından üzerinde çalışılacak görevin kendi klasörü incelenir.
 - Ana dizindeki `DONANIM/` ve `ENVANTER/` ortak donanım ve envanter bilgilerinin tek kaynağıdır. Bu bilgiler PREBERO altında kopyalanmaz.
+
+### ESP cihaz adı ve YAML teslim standardı
+
+- Her modülde kullanılan ESP cihazına verilen ad/kimlik sabittir. Kod sürümü veya YAML güncellendiğinde ESP cihaz adı değiştirilmez.
+- ESP cihaz adı, ilgili modülün donanım ve ağ kimliğiyle tutarlı tutulur. Zorunlu bir değişiklik gerekirse önce gerekçesi açıklanır ve kayıt altına alınır; kendiliğinden yeniden adlandırma yapılmaz.
+- Home Assistant / ESPHome için YAML istendiğinde yalnızca değişen bölüm değil, yapılandırmanın tamamı verilir.
+- Verilen YAML eksiksiz, doğrudan kopyalanıp kullanılabilir tek bir kod bloğu içinde sunulur. Kullanıcı özellikle istemedikçe parçalı YAML veya "... mevcut ayarları koruyun" gibi eksik bırakılmış bölümler verilmez.
+- Her YAML'ın başında amacı, ilgili modül ve görev kimliği, kod sürümü, donanım bağlantıları ve beklenen çalışma davranışı açıklanır.
+- YAML verilmeden önce mevcut yapı ve bağlantılarla çelişki olup olmadığı kontrol edilir. Bilinmeyen bağlantı veya değerler varsayılmaz; gerekiyorsa kullanıcıdan netleştirilir.
