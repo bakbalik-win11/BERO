@@ -176,6 +176,6 @@ SCT013 + PZEM alt projesi bu geniş sistemin ilk ve teknik açıdan zor başlang
 - [Çamaşır makinesi modülü](devices/washing-machine/README.md)
 - [Bulaşık makinesi modülü](devices/dishwasher/README.md)
 
-Her iki modül için planlanan gözlem kanalları akım, ses ve titreşimdir. Sensörlerin kesin modelleri, ESP32 kartı, analog ön uç, pin bağlantıları ve kayıt parametreleri fiziksel montajda doğrulanacaktır. Klasörlerin açılması modüllerin imal edildiği veya çalıştığı anlamına gelmez.
+Her iki modülün birincil gözlem kanalları ses ve titreşimdir. Akım kanalı yardımcı/ikincil gözlem olarak değerlendirilecektir; kullanımı ve donanım bağlantısı fiziksel montaj öncesinde kesinleştirilecektir. Sensörlerin kesin modelleri, ESP32 kartı, analog ön uç, pin bağlantıları ve kayıt parametreleri fiziksel montajda doğrulanacaktır. Klasörlerin açılması modüllerin imal edildiği veya çalıştığı anlamına gelmez.
 
 **Modül kimlikleri (2026-11-20 kullanıcı onayı):** Modül 4 = Çamaşır Makinesi; Modül 5 = Bulaşık Makinesi. E22, bu iki cihaz modülünden bağımsız 100 A / 1 V SCT karakterizasyon deneyidir ve cihaz modül numarası kullanmaz.
