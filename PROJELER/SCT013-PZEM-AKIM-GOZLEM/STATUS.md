@@ -312,3 +312,11 @@ BERO hobi/araştırma projesidir. Anomali uyarıları otomatik servis veya ekono
 - E20 kapsamında fiziksel çevrim, gecikme, OFF sonrası tabana dönüş veya tekrarlanabilirlik ölçümü yapılmadı; sonuç/CSV yoktur. E19 sabit yük sonuçları E20 dinamik performans kanıtı değildir.
 - Kapanışın nedeni hedeflenen kriterlerde akım ölçümünün elde edilmesidir; güvenlik doğrulaması veya tüm akım aralığı onayı değildir.
 - Ayrıntılar: [E20 deney kaydı](experiments/E20-ads1115-18w-on-off-response/README.md) · [E20 sonuç defteri](experiments/E20-ads1115-18w-on-off-response/results.md).
+
+
+## 2026-11-20 — Çamaşır ve bulaşık gözlem modülü klasörleri oluşturuldu
+- GitHub deposunda iki ayrı cihaz alanı açıldı: [Çamaşır makinesi](devices/washing-machine/README.md) ve [Bulaşık makinesi](devices/dishwasher/README.md).
+- Her cihaz için hardware, firmware, data/raw, data/processed, analysis/python, analysis/results, analysis/reports ve experiments klasörleri oluşturuldu.
+- Planlanan gözlem kanalları kullanıcıyla konuşulan kapsam doğrultusunda akım, ses ve titreşimdir. Kesin sensör modelleri, ESP32 kart varyantı, pinler, I²C çoklayıcı bağlantısı ve kayıt parametreleri henüz doğrulanmadı.
+- Klasörler hazırlandı; fiziksel imalat, firmware, bağlantı, derleme ve ölçüm yapılmış sayılmaz.
+- **Modül numarası kararı açık:** MEMORY.md Modül 4/5'i çamaşır/bulaşık olarak anıyor; E22 README ise Modül 4'ü ESP32 + ADS1115 + 100 A / 1 V SCT + PZEM olarak tanımlıyor. Çakışma kullanıcı onayı olmadan çözülmeyecek.
