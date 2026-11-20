@@ -6,7 +6,7 @@ Bu klasör, çamaşır makinesi için üretilecek taşınabilir gözlem modülü
 ## Modül kimliği ve aşama
 - **Modül numarası:** MODÜL 5 — kullanıcı tarafından 2026-11-20 tarihinde onaylandı.
 - **Aşama:** PLANLANDI / fiziksel imalat ve doğrulama bekliyor.
-- **Mimari:** Modül 6 ve Modül 6 aynı elektronik tasarımın ikiz kopyalarıdır. Donanım ve firmware temeli ortak; cihaz adı, modül kimliği ve kayıt etiketleri farklıdır.
+- **Mimari:** Modül 5 ve Modül 6 aynı elektronik tasarımın ikiz kopyalarıdır. Donanım ve firmware temeli ortak; cihaz adı, modül kimliği ve kayıt etiketleri farklıdır.
 - **Güç durumu:** Kullanıcı bildirimi: kurulum noktasındaki prizde 5 V besleme mevcut. Beslemenin kaynağı/akım kapasitesi ve bağlantı güvenliği montaj öncesinde kontrol edilecek.
 - **İmalat sırası:** İlk yapılacak modül.
 - **Birincil gözlem kanalları:** ses ve titreşim.
