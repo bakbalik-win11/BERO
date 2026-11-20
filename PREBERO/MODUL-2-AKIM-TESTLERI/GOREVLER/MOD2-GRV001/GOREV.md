@@ -2,25 +2,30 @@
 
 ## Amaç
 
-Masaüstü 4 kanal düzeninde elde edilen akım okumasının sinyal davranışını anlamak, testleri sürdürmek ve ölçüm katsayılarını deneysel gözlemlerle belirlemek.
+SCT013 30A/1V akım sensöründen gelen sinyali ADS1115 ara entegresi üzerinden okuyarak ESP32-D tabanlı masaüstü düzende akım davranışını incelemek ve ölçüm katsayılarını deneysel gözlemlerle belirlemek.
 
 ## Çalışma donanımı
 
 - Ana kontrol kartı: ESP32-D geliştirme kartı.
 - Taşıyıcı/bağlantı kartı: ESP32 shield.
+- Akım sensörü: SCT013 30A/1V.
+- Ara entegre / harici ADC: ADS1115.
+- Planlanan sinyal zinciri: SCT013 30A/1V → ADS1115 → ESP32-D.
 - ESP32-D kartı shield üzerine takılarak masaüstü deney düzeneği imal edilecektir.
 - Paylaşılan ürün görseli temsili yerleşim görselidir. Görsel, kullanılacak ESP32-D kartının kesin varyantını, GPIO eşleşmelerini veya shield üzerindeki terminal bağlantılarını doğrulamaz.
-- Fiziksel kartın tam modeli, shield modeli, pin bağlantıları, besleme ve çevre modülleri gerçek donanım üzerinden doğrulanınca imalat kaydına işlenecektir.
+- Fiziksel kartın tam modeli, shield modeli, ADS1115 kartı, sensör bağlantısı, pinler ve besleme gerçek donanım üzerinden doğrulanınca imalat kaydına işlenecektir.
 
 ## Çalışma kapsamı
 
 1. ESP32-D ve shield masaüstü düzeneğini imal etmek.
-2. Gerçek kart ve shield üzerindeki pinleri doğrulayıp bağlantı şemasını hazırlamak.
-3. Üretilen/ölçülen sinyali osiloskopta gözlemlemek.
-4. Gerekli görülen koşullarda biaslı ve biassız sinyali karşılaştırmak.
-5. Test koşullarını ve ölçüm sonuçlarını kaydetmek.
-6. Katsayıları ancak test sonuçları yeterli olduğunda belirlemek.
-7. Her testin logunu ve yorumunu bu görev altında saklamak.
+2. SCT013 30A/1V sensör çıkışını ADS1115 analog girişine uygun şekilde bağlamak.
+3. ADS1115 ile ESP32-D arasındaki haberleşmeyi doğrulamak.
+4. Gerçek kart ve shield üzerindeki pinleri doğrulayıp bağlantı şemasını hazırlamak.
+5. Üretilen/ölçülen sinyali osiloskopta gözlemlemek.
+6. Gerekli görülen koşullarda biaslı ve biassız sinyali karşılaştırmak.
+7. Test koşullarını ve ölçüm sonuçlarını kaydetmek.
+8. Katsayıları ancak test sonuçları yeterli olduğunda belirlemek.
+9. Her testin logunu ve yorumunu bu görev altında saklamak.
 
 ## Çıktılar
 
@@ -38,6 +43,8 @@ Bu görev henüz tamamlanmış değildir.
 
 - **Kart ailesi / çalışma tanımı:** ESP32-D.
 - **Shield:** ESP32 shield.
+- **Akım sensörü:** SCT013 30A/1V.
+- **Ara entegre / harici ADC:** ADS1115.
 - **Fiziksel ESP envanter kimliği:** İmal edilecek/kullanılacak fiziksel kart seçilip envantere eşleştirildiğinde yazılacak.
 - **ESPHome / Home Assistant cihaz adı:** Gerçek cihaz ve sabit ad doğrulandığında yazılacak.
 - **Not:** Paylaşılan görsel temsildir; kesin kart modeli veya pinout kanıtı değildir. Kimlik veya cihaz adı tahmin edilmeyecektir.
