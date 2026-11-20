@@ -12,7 +12,7 @@ Eldeki 100 A / 1 V akım trafosunun ADS1115 tabanlı ölçüm zinciriyle hangi a
 
 - **Modül 1:** bağımsız bias trafosu/güç kutusu — KALACAK.
 - **Modül 2:** üç kanallı biaslı SCT okuma; Modül 1'in bias yapısını da içeren eski modül — kullanıcı bildirimiyle İMHA EDİLDİ.
-- **Modül 3:** PZEM + aç/kapa rölesi içeren eski modül — kullanıcı bildirimiyle İMHA EDİLDİ. Eski röle/kontrol yapısı Modül 4'e taşınmayacak.
+- **Modül 3:** PZEM + aç/kapa rölesi içeren eski modül — kullanıcı bildirimiyle İMHA EDİLDİ. Eski röle/kontrol yapısı bu karakterizasyon düzeneğine taşınmayacak.
 
 Modül 2/3 firmware ve dokümanları depodan silinmez; tarihsel arşiv olarak korunur. Modül 3'ün eski modül olarak imha edilmesi tarihsel kayıttır. PZEM-004T V3'ün bu karakterizasyon düzeneğinde kullanılması düşünülürse fiziksel durumu ve yeniden bağlantısı test öncesinde teyit edilecektir.
 
@@ -43,7 +43,7 @@ Bu adlandırma taslak yoludur; ESP32 kart modeli ve cihaz adı donanım kontrol�
 - 30 A / 1 V canlı YAML'ı değiştirilmeyecek.
 - Sensör modeli ve katsayı açıkça 100 A / 1 V olarak adlandırılacak.
 - 30 A / 1 V kalibrasyon katsayısı kopyalanmayacak.
-- PZEM-004T V3, Modül 4 içinde aynı ESP32 tarafından okunacak şekilde planlanır. PZEM UART pinleri/baud ve ADS1115 I²C pinleri kart üzerinde doğrulanmadan YAML sabitlenmeyecek.
+- PZEM-004T V3'ün aynı ESP32 tarafından okunması planlanır. PZEM UART pinleri/baud ve ADS1115 I²C pinleri kart üzerinde doğrulanmadan YAML sabitlenmeyecek.
 - Test öncesi YAML'da ADS1115 gain, sample rate, ct_clamp penceresi, update interval, analog giriş bağlantısı, PZEM seri haberleşmesi ve güvenlik sınırları yeniden kontrol edilecek.
 - Kod, derleme çıktısı, OTA logu, gerçek ölçüm logu ve sonuç yorumu aynı deney klasörü/ilgili log klasöründe birbirine bağlanacak.
 
@@ -51,7 +51,7 @@ Bu adlandırma taslak yoludur; ESP32 kart modeli ve cihaz adı donanım kontrol�
 
 - İlk sürüm tek ESP32 üzerinde ADS1115 ve PZEM-004T V3 okumayı hedefler.
 - Harici bias trafosu karakterizasyon düzeneğine otomatik olarak dahil edilmeyecek; Modül 1 bağımsız ve korunmuş donanım olarak kalır. ADS1115 girişinin gerekli ortak-mod/bias düzeni devre tasarımı ve ölçümle ayrıca doğrulanır.
-- Eski Modül 2'nin üç kanal okuma düzeni ve Modül 3'ün aç/kapa röle/UDP olay mantığı yeni Modül 4 kapsamına taşınmaz.
+- Eski Modül 2'nin üç kanal okuma düzeni ve Modül 3'ün aç/kapa röle/UDP olay mantığı bu karakterizasyon düzeneğinin kapsamına taşınmaz.
 - İlk testte kanal sayısı, pinler ve yayın aralığı ancak fiziksel kart/bağlantı doğrulamasından sonra kesinleştirilir.
 
 ## Deney tasarımı
