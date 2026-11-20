@@ -1,0 +1,23 @@
+# PREBERO – Durum ve çalışma akışı
+
+Bu dosya aktif modülü, açık görevi ve modüllerin genel ilerlemesini gösterir.
+
+## Genel durum
+
+| Modül | Hedef | Durum |
+|---|---|---|
+| Modül 1 – Bias Trafosu | Modül 2 testlerinde kullanılacak bias donanımını hazırlamak ve gerektiğinde destek sağlamak | Yardımcı modül |
+| Modül 2 – Akım Testleri | Akım davranışını anlamak, testleri sürdürmek ve ölçüm katsayılarını belirlemek | **Aktif** |
+| Modül 3 – Çamaşır Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | Bekliyor |
+| Modül 4 – Bulaşık Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | Bekliyor |
+| Modül 5 – Ana Pano | Evde gün boyunca gerçekleşen elektriksel faaliyetleri gözlemlemek | Bekliyor |
+
+## Şu anki çalışma
+
+- **Aktif modül:** Modül 2 – Masaüstü 4 Kanal / Akım Testleri
+- **Aktif görev:** G01 – Akım davranışı ve katsayı çalışmaları
+- **Çalışma odağı:** Sinyali gözlemlemek, testleri sürdürmek, bias ihtiyacını değerlendirmek ve katsayıları deney sonuçlarına göre belirlemek.
+
+## İlerleme kuralı
+
+Bir görev tamamlandığında sonucu kendi görev klasörüne kaydedilir. Ardından aynı modülün altında bir sonraki görev açılır ve bu dosyadaki durum güncellenir. Modüller arası geçiş, ilgili modülün hedefi ve hazır olma durumuna göre yapılır.
