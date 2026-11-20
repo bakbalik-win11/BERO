@@ -27,6 +27,56 @@ SCT013 30A/1V akım sensöründen gelen sinyali ADS1115 ara entegresi üzerinden
 8. Katsayıları ancak test sonuçları yeterli olduğunda belirlemek.
 9. Her testin logunu ve yorumunu bu görev altında saklamak.
 
+## Kullanıcı tarafından verilen pin yapısı ve ölçüm ayarları
+
+Bu bölüm, kullanıcının sağladığı mevcut yapılandırma bilgisini kaydeder. Buradaki ayarlar deney sürümüne ait tanımdır; fiziksel bağlantı ve tüm elektriksel sınırlar ayrıca doğrulanmalıdır.
+
+### Bağlantılar
+
+| Kaynak | Hedef | İşlev |
+|---|---|---|
+| ESP32D2 GPIO21 | ADS1115 SDA | I²C veri |
+| ESP32D2 GPIO22 | ADS1115 SCL | I²C saat |
+| ESP32D2 3.3V | ADS1115 VDD | Besleme |
+| ESP32D2 GND | ADS1115 GND | Ortak referans |
+| ADS1115 ADDR | GND | I²C adresi 0x48 |
+| SCT013 iki çıkış ucu | ADS1115 A0 ve A1 | Diferansiyel akım sinyali |
+
+### Ölçüm ve yazılım ayarları
+
+| Parametre | Değer |
+|---|---|
+| ADS1115 ölçüm modu | Diferansiyel A0-A1 |
+| PGA gain | 2.048 V |
+| Örnekleme hızı | 860 SPS |
+| Çalışma modu | Continuous |
+| ct_clamp RMS penceresi | 200 ms |
+| Sensör güncelleme aralığı | 1 saniye |
+| Kalibrasyon katsayısı | 27.60 |
+| Alt akım eşiği | 0.005 A (5 mA) |
+| Alt eşik davranışı | 5 mA altındaki ölçüm sıfırlanır |
+
+### Ölçüm amacı ve eşik gerekçesi
+
+ADS1115 üzerinden SCT013 akım trafosunun diferansiyel çıkışı okunur; ct_clamp ile 200 ms RMS akım hesabı yapılır. Bu sürümde 5 mA altındaki ölçümler sıfırlanır. Amaç, yüksüz durumda gözlenen yaklaşık 1–2 mA taban değerlerinin Home Assistant'a gereksiz veri üretmesini önlemektir.
+
+### Kalibrasyon katsayısı notu
+
+- Önceki katsayı: 30.00
+- ADS1115 gözlemi: yaklaşık 0.513 A
+- PZEM gözlemi: yaklaşık 0.472 A
+- Yeni katsayı hesabı: 30.00 × (0.472 / 0.513) = 27.60
+
+Bu katsayı tek karşılaştırmadan türetilmiştir; farklı akım seviyelerinde tekrar doğrulanmalıdır. PZEM karşılaştırma referansıdır, kusursuz ground truth olarak kabul edilmez.
+
+### Elektriksel sınır notu
+
+ADS1115 girişleri GND − 0.3 V ile VDD + 0.3 V sınırları içinde kalmalıdır. PGA kazanç ayarı bu giriş sınırlarını değiştirmez. Diferansiyel okuma seçilmiş olması, her bir giriş pininin mutlak gerilim sınırlarını ortadan kaldırmaz.
+
+### Doğrulama durumu
+
+Bu bölüm kullanıcının verdiği bağlantı ve ayar tanımını kaydeder. Gerçek kablo uçları, A0/A1 üzerindeki mutlak gerilimlerin sınırlar içinde kalması ve sistemin bu ayarlarla çalıştığına ilişkin log henüz bu kayıtla tek başına kanıtlanmış sayılmaz.
+
 ## Çıktılar
 
 - Her kod sürümünün YAML dosyası, logları ve raporları aynı görev klasörünün altındaki kendi sürüm klasöründe tutulur.
