@@ -92,6 +92,28 @@ ADS1115 girişleri GND − 0.3 V ile VDD + 0.3 V sınırları içinde kalmalıd�
 
 **Kayıt notu:** Yukarıdaki pin ve ayarlar kullanıcı tarafından bildirilen yapılandırmadır. Kabloların fiziksel uçtan uca doğrulaması, A0/A1 mutlak gerilimlerinin sınırlar içinde olduğunun ölçümü ve çalışma logu ayrıca kaydedilecektir.
 
+## 3.2. Bias gerekliliği karşılaştırma deneyi – ADS1115 No. 1
+
+Bu deneyde iki ADC kullanılmaz. Tek ADS1115 No. 1 ve tek SCT013 sensörüyle, aynı ADC üzerindeki iki diferansiyel giriş çifti karşılaştırılır:
+
+| ADS1115 No. 1 giriş çifti | Deney koşulu |
+|---|---|
+| A0–A1 | Bias uygulanmış SCT sinyal yolu |
+| A2–A3 | Bias uygulanmamış SCT sinyal yolu |
+
+Amaç, katsayı çalışmasından önce bias kullanımının bu düzen için gerekli olup olmadığını ölçümle değerlendirmektir. Kanal dönüşümleri ADS1115 üzerinde sırayla gerçekleşir; eşzamanlı ölçüm varsayılmayacaktır.
+
+### Deney öncesi kontroller
+
+1. SCT bağlı değilken bias çıkışı multimetre ve osiloskopla kontrol edilir.
+2. SCT bağlandıktan sonra akım yokken giriş seviyeleri ve dalga şekilleri gözlenir.
+3. A0, A1, A2 ve A3 pinlerinin GND'ye göre mutlak gerilimleri ayrı ayrı ölçülür.
+4. Her pinin ADS1115 izin verilen GND − 0.3 V ile VDD + 0.3 V aralığında kaldığı doğrulanır.
+5. SCT çıkışının iki giriş çiftine aktarılmasının yükleme etkisi ve bias devrelerinin birbirini etkileme ihtimali bağlantı kurulmadan önce değerlendirilir.
+6. Osiloskop toprak klipsinin koruma toprağı bağlantısı dikkate alınır; şebeke bağlantılı devrede güvenli ölçüm düzeni kurulmadan prob bağlanmaz.
+
+Bu deney henüz yapılmış değildir. Sonuç, fotoğraf, multimetre değeri veya osiloskop görüntüsü varmış gibi kayıt oluşturulmayacaktır. Deney sonuçları alındığında ilgili görev altına tarihli log ve rapor olarak eklenecektir.
+
 ## 4. Fiziksel yerleşim ve montaj
 
 - **Ana yerleşim:** ESP32-D geliştirme kartı shield üzerine takılmıştır.
