@@ -1,3 +1,10 @@
+## 2026-11-20 — BERO genel depo bütünlüğü için haftalık kontrol kararı
+- Kullanıcı kararı: BERO deposunun bütünlüğü haftada bir kontrol edilecek.
+- Kontrol kapsamı tüm depo: Git nesne/çalışma ağacı durumu, dosya ve klasör yapısı, dokümantasyon bağlantıları, proje durumlarının tutarlılığı, kod/deney kayıtlarının izlenebilirliği ve GitHub Actions sonuçları.
+- Prosedür: [Haftalık Depo Bütünlüğü Kontrolü](../../docs/DEPOT-BUTUNLUK-KONTROLU.md).
+- Her kontrol tarihli raporla kaydedilecek. Yapılmayan kontroller başarılı gösterilmeyecek.
+- Bu karar prosedürü depoya ekler; **bugün tam kapsamlı bütünlük kontrolü yapıldığı anlamına gelmez.** İlk haftalık kontrol ayrıca yürütülüp raporlanmalıdır.
+
 ## 2026-11-16 — ADS1115 teslimatı sonrası yeni ölçüm modülü kararı
 - Kullanıcı değerlendirmesi: mevcut ölçüm zincirinin ölçüm kalitesinden genel olarak memnun; mevcut yapı BERO'nun şu anki gözlem amacına hizmet ediyor.
 - Plan: yeni ADS1115 sensör/modülleri teslim edildiğinde mevcut modül sökülecek ve yeni modül yapısı kurulacak.
