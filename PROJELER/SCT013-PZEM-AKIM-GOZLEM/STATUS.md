@@ -1,3 +1,24 @@
+## 2026-11-20 — Modül 4 tasarım ve imalatı PREBERO ön koşulu olarak netleştirildi
+
+**Kullanıcı tarafından onaylanan mimari:** PREBERO Modül 5/6/7'den önce Modül 4'ün teknik yapısı belirlenecek, imal edilecek ve gerçek donanımda doğrulanacak. Masaüstündeki ESP32D2 + ADS1115 + SCT düzenek geçici prototiptir; nihai imal edilmiş Modül 4 değildir.
+
+**Yeni çalışma sırası:**
+1. ADS1115 hobi düzeyinde donanım raporu.
+2. Masaüstü Modül 4 bağlantı ve yazılım ayarlarının doğrulanması.
+3. Bias'lı/bias'sız ölçüm karşılaştırması.
+4. Osiloskopla iki yapının sinyal gözlemi.
+5. Kanıta dayalı Modül 4 tasarım kararı.
+6. Modül 4'ün fiziksel imalatı ve gerçek donanım doğrulaması.
+7. Ancak bundan sonra PREBERO Modül 5 (çamaşır), Modül 6 (bulaşık) ve Modül 7 (ana hat + PZEM) çalışmalarına geçiş.
+
+**Kapsam:** Hobi düzeyinde; ADS1115'in BERO'da doğru ve güvenli kullanımına yetecek veri sayfası bilgisi ve osiloskop gözlemi. Laboratuvar seviyesinde kapsamlı karakterizasyon hedeflenmiyor. Üretici elektriksel sınırları ve güvenlik şartları atlanmayacak.
+
+**Açık kararlar:** Bias gerekli mi; gerekiyorsa PREBERO modüllerinde bias ESP beslemesinden mi üretilecek yoksa Modül 1'in ikiz bias kutuları mı yapılacak? Bu kararlar deney öncesinde verilmiş değildir.
+
+Bu kayıt plan ve bağımlılık mimarisidir. ADS1115 raporu, masaüstü bağlantı incelemesi, bias deneyi, osiloskop incelemesi, Modül 4 imalatı veya PREBERO imalatı tamamlandı anlamına gelmez.
+
+Ayrıntı: [ADR-035](docs/decisions/ADR-035-module4-design-gate-before-prebero.md) · [T011](tasks/T011-module4-characterization-and-build.md).
+
 ## 2026-11-20 — Modül 4 bias deneyi ve PREBERO bias kararı çalışma sırası
 
 **Kullanıcı tarafından onaylanan güncel sıra:**
