@@ -102,12 +102,12 @@ ESP üzerinde çalışan kodda bu bilgiler kaynak kod başlığında bulunur. Uy
 - Bir kod sürümünün test durumu yalnızca o sürümün gerçek test kanıtına göre güncellenir. Yeni sürüm önceki sürümün loglarını veya raporlarını devralmış sayılmaz.
 - Başarısız, eksik veya başarılı testlerin tüm kayıtları ilgili sürümün altında korunur. Yeni yama yeni sürüm olarak açılır; önceki sürüm aynen kalır.
 
-## Takip ve dokümantasyon sorumluluğu
+## Dokümantasyon ayrımı
 
-- `README.md`: Projenin yapısını, adlandırma ve çalışma kurallarını açıklar. Güncel ilerleme takibi yapmaz.
-- `DURUM.md`: Aktif modülü, aktif görevi ve genel ilerlemeyi gösteren tek güncel takip dosyasıdır.
-- Göreve özgü teknik ayrıntılar, kod, veri, log ve raporlar ilgili görev klasöründe tutulur.
-- Yeni bir oturumda çalışmaya başlamadan önce bu README ve `DURUM.md` okunur; ardından üzerinde çalışılacak görevin kendi klasörü incelenir.
+- `README.md` kalıcı ilkeleri ve standartları anlatır: proje yapısı, modül/görev kimlikleri, kod sürümleme, ESP kimliği, YAML teslimi ve dosyalama kuralları. Güncel iş akışını veya ilerleme durumunu takip etmez.
+- `DURUM.md` projenin güncel akışını gösteren tek takip dosyasıdır: hangi modülde ve görevde olduğumuz, mevcut çalışma aşaması, ilerleme, bekleyen işler ve sıradaki adım burada tutulur.
+- Göreve özgü teknik ayrıntılar, kod, veri, log ve raporlar yalnızca ilgili görev klasöründe tutulur.
+- Yeni bir oturumda önce bu README ile `DURUM.md` okunur; ardından aktif görevin klasörü incelenir.
 - Ana dizindeki `DONANIM/` ve `ENVANTER/` ortak donanım ve envanter bilgilerinin tek kaynağıdır. Bu bilgiler PREBERO altında kopyalanmaz.
 
 ### Fiziksel ESP kimliği ve görev kimliği ayrımı
