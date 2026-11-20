@@ -40,7 +40,7 @@ Bu bölüm, kullanıcının sağladığı mevcut yapılandırma bilgisini kayded
 | ESP32D2 3.3V | ADS1115 VDD | Besleme |
 | ESP32D2 GND | ADS1115 GND | Ortak referans |
 | ADS1115 ADDR | GND | I²C adresi 0x48 |
-| SCT013 iki çıkış ucu | ADS1115 A0 ve A1 | Diferansiyel akım sinyali |
+| SCT013 iki çıkış ucu | ADS1115 A0–A1 (mevcut tek-kanal okuma düzeni) | Diferansiyel akım sinyali; bias karşılaştırma deneyi ayrıca tanımlanmıştır |
 
 ### Ölçüm ve yazılım ayarları
 
@@ -60,6 +60,14 @@ Bu bölüm, kullanıcının sağladığı mevcut yapılandırma bilgisini kayded
 
 ADS1115 üzerinden SCT013 akım trafosunun diferansiyel çıkışı okunur; ct_clamp ile 200 ms RMS akım hesabı yapılır. Bu sürümde 5 mA altındaki ölçümler sıfırlanır. Amaç, yüksüz durumda gözlenen yaklaşık 1–2 mA taban değerlerinin Home Assistant'a gereksiz veri üretmesini önlemektir.
 
+### Kod 0 – önceki ADS1115 ile akım okuma
+
+- Kullanıcı, mevcut sadeleştirilmiş ESPHome koduyla akım okuması yapıldığını ve bu çalışmanın **Kod 0** olarak ayrıldığını bildirmiştir.
+- Kod 0, ADS1115 No. 1 dışındaki önceki bir ADS1115 modülüyle çalıştırılmıştır.
+- Kod 0'ın başarılı okuma geçmişi korunacaktır; bu kayıt ADS1115 No. 1'in katsayısını veya bias gerekliliğini doğrulamaz.
+- ADS1115 modülü değiştiği için No. 1 üzerinde yeniden katsayı çalışması yapılacaktır. Önce biaslı/biassız karşılaştırma deneyi tamamlanacaktır.
+- Kod 0'ın YAML ve gerçek çalışma logu, depoda mevcut dosya yolu ve kanıtı doğrulandığında kendi kayıt konumuyla ilişkilendirilecektir; burada yeni bir log veya dosya yolu varsayılmamıştır.
+
 ### ADS1115 birim kimliği ve kalibrasyon kuralı
 
 - Kullanımdaki ADS1115 modülleri fiziksel olarak **1–10** şeklinde numaralandırılmıştır.
@@ -76,6 +84,50 @@ ADS1115 üzerinden SCT013 akım trafosunun diferansiyel çıkışı okunur; ct_c
 - Hesaplanan katsayı: 30.00 × (0.472 / 0.513) = 27.60
 
 27.60 değeri önceki tek karşılaştırmadan elde edilmiş gözlem katsayısıdır; tüm ADS1115 modülleri için geçerli değildir. Bu değerin ADS1115 No. 1'e ait olduğu ayrıca doğrulanmadıkça No. 1'in kalibrasyon katsayısı olarak atanmaz. Her birim farklı akım seviyelerinde ayrıca kalibre edilip doğrulanmalıdır. PZEM karşılaştırma referansıdır, kusursuz ground truth olarak kabul edilmez.
+
+
+
+## Bias gerekliliği karşılaştırma deneyi – ADS1115 No. 1
+
+### Deney amacı
+
+Akım katsayısı çalışmasına başlamadan önce, SCT013 sinyalinin ADS1115 No. 1 üzerinde bias uygulanarak ve bias uygulanmadan okunmasını karşılaştırmak. Deneyin çıktısı, bu ölçüm düzeninde bias kullanımının gerekli olup olmadığına ilişkin ölçüm temelli karar olacaktır.
+
+### Deney donanımı ve kanal düzeni
+
+- Tek ADC kullanılacaktır: **ADS1115 No. 1**.
+- Tek SCT013 sensörünün çıkış sinyali, deney bağlantısı doğrulandıktan sonra aynı ADS1115 üzerindeki iki diferansiyel giriş çiftine karşılaştırma amacıyla aktarılacaktır.
+- **A0–A1:** bias uygulanmış ölçüm kolu.
+- **A2–A3:** bias uygulanmamış ölçüm kolu.
+- İki ayrı ADS1115 kullanılmayacaktır.
+- Her iki ölçüm aynı ADS1115 üzerinde yapılır. ADS1115 kanal dönüşümleri sırayla gerçekleştiğinden sonuçlar eşzamanlı örnekleme olarak tanımlanmayacaktır.
+
+### Ön kontroller ve deney sırası
+
+1. SCT bağlı değilken bias hattının DC seviyesini multimetreyle ölç; osiloskopta çizgi kararlılığını ve gürültüyü gözle.
+2. SCT013 bağlandıktan sonra, akım yokken biaslı ve biassız giriş çiftlerinin DC seviyelerini ve dalga şekillerini ayrı ayrı incele.
+3. A0, A1, A2 ve A3 pinlerinin her birinin GND'ye göre mutlak gerilimlerini ölç. Diferansiyel gerilim tek başına yeterli güvenlik doğrulaması değildir.
+4. Osiloskop probunun toprak bağlantısını ve ölçüm referansını doğrulamadan şebeke bağlantılı devreye bağlama. Masa tipi osiloskop toprak klipsi koruma toprağına bağlı olabilir.
+5. Güvenli giriş gerilimleri ve bağlantı topolojisi doğrulandıktan sonra yüksüz ölçüm karşılaştırmasını yap.
+6. Kontrollü akım koşullarında iki kanal çiftinin okumalarını karşılaştır; her koşulda kanal dönüşüm sırasını ve ölçüm zamanını kaydet.
+7. Osiloskop görüntülerini, multimetre değerlerini, ADS1115 ham/işlenmiş okumalarını ve test koşullarını deney kaydına ekle.
+
+### Değerlendirme ölçütleri
+
+- Biaslı ve biassız durumda yüksüz DC seviye.
+- Her giriş çiftinin yüksüz gürültüsü ve dalgalanması.
+- Akım uygulandığında sinyalin dalga şekli ve ölçüm kararlılığı.
+- Akım kaldırıldığında sıfıra dönüş davranışı.
+- Her AIN pininin mutlak gerilim sınırları.
+- Aynı ADC üzerindeki ardışık kanal dönüşümlerinin karşılaştırmaya etkisi.
+
+### Yorum sınırı
+
+Bu deney henüz plan aşamasındadır; ölçüm sonucu veya bias gerekliliği kararı verilmiş değildir. A0–A1 ve A2–A3 girişlerine bağlantı yapılmadan önce SCT çıkışının iki kola bağlanmasının elektriksel etkisi ve bias ağlarının birbirini etkileme olasılığı kontrol edilmelidir. ADS1115 girişleri GND − 0.3 V ile VDD + 0.3 V sınırlarında kalmalıdır. PGA ayarı bu mutlak giriş sınırlarını değiştirmez.
+
+### Katsayı çalışmasına geçiş
+
+Biaslı/biassız karşılaştırma tamamlanıp kullanılacak bağlantı yöntemi belirlendikten sonra ADS1115 No. 1 için ayrı katsayı çalışması yapılacaktır. Önceki ADS1115 ile elde edilmiş katsayı No. 1'e aktarılmayacaktır.
 
 ### Elektriksel sınır notu
 
