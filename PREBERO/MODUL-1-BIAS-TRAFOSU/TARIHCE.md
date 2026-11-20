@@ -55,3 +55,9 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Edinilen tecrübe:** Soketli bağlantı yapısı modülün sökülüp yeniden bağlanmasını kolaylaştırır; yeniden bağlantı için soket-pin eşleşmelerinin açıkça belgelenmesi gerekir.
 - **Teknik karar:** Modül 1'in fiziksel imalat durumu tamamlandı olarak işaretlendi. İşlev testi, şebeke karakterinin SCT013'e aktarılması, izolasyon ve elektriksel güvenlik doğrulaması ayrı aşamalar olarak açık tutuldu. Kapalı kutu ve soketli bağlantı bilgisi tek başına elektriksel güvenlik doğrulaması sayılmaz.
 - **İlgili kayıtlar:** `PREBERO/MODUL-1-BIAS-TRAFOSU/IMALAT/IMALAT.md`; `PREBERO/DURUM.md`. Fotoğraf, soket pin şeması ve test kayıtları henüz eklenmedi.
+
+### 2026-11-21 – Modül 1 ve masaüstü ESP deney kapsamlarının ayrılması
+
+- **Çalışma / karar:** Kullanıcı, Modül 1'in basit yaklaşımını şebeke karakterinde bias girişine gerilim aktarımı olarak netleştirdi. Modül 1'in eski fiziksel yapısı tamamlanmış durumdadır; kapalı kutu içindedir ve bağlantıları soketlidir.
+- **Teknik karar:** Modül 1, mevcut bias gerilimi aktarım donanımı olarak tanımlanacaktır. Masaüstü ESP ile yürütülen sinyal/akım deneyleri Modül 2 kapsamında tutulacaktır. Modül 1'in imalatı yeniden açılmayacak; önceki multimetre ölçümleri mevcut imalat kaydı olarak korunacaktır.
+- **İlgili kayıtlar:** `PREBERO/MODUL-1-BIAS-TRAFOSU/HEDEFLER.md`; `PREBERO/MODUL-1-BIAS-TRAFOSU/IMALAT/IMALAT.md`; `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`.
