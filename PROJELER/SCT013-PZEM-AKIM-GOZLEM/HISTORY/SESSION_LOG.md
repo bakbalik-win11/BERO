@@ -2448,3 +2448,22 @@ Bu kayıt mimari/hedef netleştirmesidir. Sensör modelleri, montaj, bağlantı,
 - Kullanıcı açıklaması: bulaşık makinesi kendi mevcut elektrik hattından beslenecek; makineyi üçlü priz üzerinden besleme planı yok. Görüşülen 5 V konusu yalnızca gözlem modülünün beslemesidir.
 - Modül 5 için değerlendirilen seçenekler: sıva üstü 5 V DC çıkışlı priz veya makine beslemesinden bağımsız ayrı bir hattan adaptör. Kesin besleme yöntemi henüz seçilmedi.
 - Bu güncelleme yalnızca karar/dokümantasyon kaydıdır. Fiziksel kablolama, pin ataması, firmware, derleme veya sensör testi yapılmadı.
+
+## 2026-11-20 — Modül 4–7 numaralandırması kullanıcı düzeltmesi
+
+### KULLANICI DÜZELTMESİ
+- **Modül 4:** Günlük kullanılan mevcut masaüstü ESP32D2 + ADS1115 + SCT ölçüm düzeneği.
+- **Modül 5:** İmal edilecek çamaşır makinesi gözlem modülü.
+- **Modül 6:** İmal edilecek bulaşık makinesi gözlem modülü.
+- **Modül 7 / PreBERO:** Ana hattı PZEM ile birlikte okumaya yönelik hedef düzenek.
+- **E22 modül değildir.** Modül 4'ün mevcut ölçüm zinciri başarılı/kararlı çalıştıktan sonra bir kanalda 30 A / 1 V, diğer kanalda 100 A / 1 V SCT ile karşılaştırma yapılması fikridir. E22 kapsamında 100 A SCT ile henüz ölçüm alınmadı; ayrı modül imal edilmedi.
+
+### DEPO DÜZELTMELERİ
+- ADR-033 oluşturularak güncel modül kimlikleri ve kapsamları kaydedildi.
+- Çamaşır/bulaşık cihaz README'leri ve ADR-032, Modül 5/6 olarak güncellendi.
+- E22 README, ayrı modül/kurulmuş test düzeneği anlatımından çıkarılıp gelecekteki karşılaştırma deneyi olarak düzeltildi.
+- Proje README, STATUS ve PROGRESS_TREE güncel modül envanterine göre güncellendi.
+- MEMORY.md ve GEMINI.md içindeki eski Modül 4/5/6 ve E24 atamaları da tutarlı hâle getirilecek/yeniden kontrol edilecek.
+
+### SINIR
+Bu oturumda yalnızca kullanıcı düzeltmesi ve dokümantasyon işlendi. Yeni donanım kurulmadı; E22 ölçümü yapılmadı; Modül 5/6 imal edilmedi; Modül 7 / PreBERO tasarlanmadı veya test edilmedi.
