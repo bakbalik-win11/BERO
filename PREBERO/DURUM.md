@@ -1,6 +1,6 @@
 # PREBERO – Durum ve çalışma akışı
 
-Bu dosya aktif modülü, açık görevi ve modüllerin genel ilerlemesini gösterir.
+Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif modül ve görev, mevcut çalışma aşaması, ilerleme, bekleyen işler ve sıradaki adım burada tutulur. Kalıcı ilkeler README.md dosyasındadır; görev teknik ayrıntıları ilgili görev klasöründedir.
 
 ## Genel durum
 
