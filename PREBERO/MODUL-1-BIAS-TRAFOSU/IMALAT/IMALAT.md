@@ -6,8 +6,8 @@
 
 ## 1. Modülün amacı ve kapsamı
 
-- **İmalat amacı:** Şebeke karakterini SCT013 akım trafosunun ölçüm sinyaline yansıtacak bias yapısını oluşturmak. Amaç, SCT013'ten gelen şebeke ile ilişkili AC sinyalin karakterinin bias uygulaması sonrasında korunup korunmadığını deneysel olarak incelemektir. Bu, tasarım hedefidir; henüz doğrulanmış sonuç değildir.
-- **Ana yaklaşım:** Modül 1'in imal amacı, şebeke karakterini SCT013 akım trafosunun sinyaline yansıtmaktır. Bias yapısının SCT013 sinyaline etkisi ve sinyal karakterini koruyup korumadığı deneyle incelenecektir. Bu aşamada hedef tanımlanmıştır; sonuç henüz doğrulanmamıştır.
+- **İmalat amacı:** Şebeke karakterini bias yoluyla SCT013 akım trafosuna aktarmak. Bias yapısı, şebekeye ait karakterin SCT013 sinyaline taşınması amacıyla tasarlanır. Bu aktarımın nasıl gerçekleştiği ve sinyal karakterinin korunup korunmadığı yeni ölçümlerle incelenecektir; hedef henüz doğrulanmış sonuç değildir.
+- **Ana yaklaşım:** Şebeke karakteri → bias yapısı → SCT013 sinyali. Modülün başarısı, bu aktarımın osiloskop ve uygun ölçüm düzeniyle gözlenmesine dayanacaktır. Bu ifade hedefi tanımlar; aktarımın gerçekleştiğine dair ön kabul değildir.
 - **Karşılaştırma yaklaşımı:** ESP'nin 3,3 V beslemesinden oluşturulan bias ayrı bir yöntemdir. Bu yöntem şebeke sinyalini taşımaz; ADC için DC çalışma noktası/referansı oluşturur.
 - **1,65 V seviyesi:** Bias yapısının tanımı değildir. 1,65 V seviyesinin hangi ara işlemle elde edildiği, devrenin bileşen standardından ayrı bir uygulama süreci olarak açıklanacaktır.
 - **Bias yapısı standardı:** Gerçek devrede kullanılan dirençler ve kondansatör(ler), değerleri, toleransları ve bağlantı biçimleri doğrulandıktan sonra yeniden kurulabilir bir standart olarak tanımlanacaktır.
