@@ -75,6 +75,12 @@ T009, yalnız tasarım belgesi yazıldığı için tamamlanmış sayılmaz. Her 
 - **SONUÇ:** T009 AKTİF. İlk modül ve bağlantı ayrıntıları kullanıcıyla belirlenecek.
 
 
-## İlk somut alt görev
+## Güncel yürütme sırası
 
-Modül 2 — ESP32D1 üçlü SCT okuma modülü ayrı görev kartıyla açılmıştır: [T010](T010-module2-triple-sct-bringup.md). T009 üst görevi, sonraki modüllerin de aynı pratik devreye alma standardıyla yönetilmesini sağlar.
+T009 üst görevi altındaki güncel aktif çalışma sırası, eski Modül 2/T010 sırasının yerine geçmiştir:
+1. Modül 4'te biaslı/bias'sız karşılaştırma.
+2. Osiloskopla biaslı/bias'sız sinyal yapısını inceleme.
+3. Kanıta dayalı bias gerekliliği kararı.
+4. Bu karardan sonra PREBERO Modül 5/6/7 için ESP beslemesinden bias üretme veya Modül 1'in ikiz bias devrelerini imal etme seçeneklerini değerlendirme.
+
+Ayrıntı [ADR-034](../docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md) içindedir. T010 eski Modül 2 görevi olarak kapalı ve tarihsel kayıttır; güncel Modül 4 ile karıştırılmaz.
