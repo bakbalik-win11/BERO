@@ -18,7 +18,7 @@ PREBERO bir modül ve görev yapısıdır. Her modülün hedefi, görevleri ve �
 
 ## Modüller
 
-1. Modül 1 – Bias Trafosu
+1. Modül 1 – Şebeke Karakterini Koruyan Bias
 2. Modül 2 – Masaüstü 4 Kanal / Akım Testleri
 3. Modül 3 – Çamaşır Makinesi
 4. Modül 4 – Bulaşık Makinesi
@@ -195,6 +195,10 @@ Her bilgi kendi kanıt seviyesine uygun ifade edilir: doğrulanmış, ölçülm�
 Kod değiştiğinde yeni sürüm dosyasının başlığı da o sürümün gerçek içeriğine göre güncellenir. Eski sürümün başlığı ve dosyası geriye dönük değiştirilmez. Test durumu yalnızca gerçek derleme, yükleme ve donanım test kanıtına göre yazılır. Hazırlandı, derlendi, cihaza yüklendi ve fiziksel olarak doğrulandı ifadeleri birbirinin yerine kullanılmaz.
 
 Bu açıklama, kodu tek başına inceleyen bir kişinin temel amacı, donanım bağlantılarını, çalışma parametrelerini, beklenen davranışı ve test sınırlarını anlayabilmesini sağlamalıdır. Ancak fiziksel modülün tüm imalat ayrıntıları kod başlığına bırakılmaz; modülün `IMALAT/` dosyası esas alınır.
+
+
+
+**Bias yapısı standardı:** Bir modülde kullanılacak bias devresinin direnç ve kondansatör bileşenleri, gerçek devre ve ölçümle belirlendikten sonra değerleri, toleransları ve bağlantı biçimleriyle tarif edilir. Böylece “bias şu dirençlerden ve şu kondansatörden oluşur” şeklinde yeniden kurulabilir bir standart oluşturulur. 1,65 V seviyesinin nasıl elde edildiği bu standardın kendisi değildir; ayrı bir ara süreç/uygulama adımı olarak belgelenir. Doğrulanmamış değerler standart olarak yayımlanmaz.
 
 ### Modül imalat dosyası
 
