@@ -65,9 +65,12 @@ Görev kimliği ile kod sürümü birbirinden bağımsızdır. Kod sürümü, ko
 **Her türlü kod değişikliği yeni bir sürüm dosyası oluşturur.** Değişikliğin küçük veya büyük olması, iyileştirme ya da hata düzeltmesi olması, yeni özellik eklemesi, donanım/pin bağlantısı değiştirmesi veya kodun tamamen farklı bir mimariye taşınması bu kuralı değiştirmez.
 
 - İlk kod dosyası `V1.0` olarak başlatılır.
-- Kodda yapılan her yeni değişiklikte sürüm numarası artırılır. Örneğin `V1.0` → `V1.1` → `V1.2`.
+- Aynı teknik yaklaşım ve geliştirme çizgisinde yapılan her kod değişikliğinde ana sürüm sabit kalır, sıra numarası artırılır. Örnek: `V1.0` → `V1.1` → `V1.2` → `V1.123`. Sıra numarası için üst sınır yoktur.
+- Yeni bir teknik yaklaşım veya farklı bir mimariye geçildiğinde ana sürüm artırılır ve sıra numarası sıfırlanır. Örnek: `V1.123` → `V2.0`.
+- Bir testin başarısız olması tek başına ana sürümü artırmaz. Aynı teknik yaklaşımda düzeltme ve denemelere devam ediliyorsa mevcut ana sürümün sıra numarası artırılır. Başarısızlık sonrasında farklı bir teknik yola veya mimariye geçilirse yeni ana sürüm açılır.
+- Ana sürüm değişikliğinin gerekçesi, neden önceki teknik yaklaşımın bırakıldığıyla birlikte ilgili görev kayıtlarında açıklanır.
 - Her yeni sürüm ayrı dosya olarak kaydedilir; önceki sürümün içeriği değiştirilmez, üzerine yazılmaz veya silinmez.
-- Sürüm numarası değişikliğin kapsamını veya önemini değil, kod revizyonunun sırasını gösterir.
+- Sürüm numarası değişikliğin kapsamını veya önemini değil, kod revizyonunun sırasını ve teknik yaklaşım çizgisini gösterir.
 - Kod değişikliği yapılmadan yalnızca test durumu güncelleniyorsa yeni kod sürümü oluşturulmaz.
 - Her sürümün kendi test durumu, logları ve raporları bulunur. Yeni sürüm önceki sürümün test sonucunu devralmaz.
 - Sürüm artışının nedeni ilgili sürümün görev kayıtlarında belirtilir.
