@@ -726,3 +726,11 @@
 - Ayrı imalat/modül dosyası açıldı: [BERO 12 Kanallı Ölçüm Modülü — RT-209](manufacturing/BERO-12CH-RT209/README.md).
 - RT-209 yalnızca **kutu adayıdır**. İki ESP32 terminal shield, altı ADS1115, 12 SCT dişi jack, iki RS485 ve iki bağımsız reset butonu yerleşimi fikir düzeyindedir.
 - Delikli board/pertinaks taşıyıcı, sökülebilir ESP32 soketleri ve panel jack bağlantısı düşünülüyor. Ölçülü yerleşim, elektriksel tasarım, imalat veya test yapılmadı.
+
+
+## 2026-11-20 — Çamaşır ve bulaşık cihaz modülleri için depo alanı hazırlandı
+- [Çamaşır makinesi cihaz alanı](devices/washing-machine/README.md) ve [bulaşık makinesi cihaz alanı](devices/dishwasher/README.md) oluşturuldu.
+- Her iki alanda donanım, firmware, RAW/işlenmiş veri, Python, sonuç, rapor ve deney klasörleri mevcut.
+- Planlanan algılama kanalları: akım + ses + titreşim. Sensör modelleri, bağlantı ve çalışma parametreleri fiziksel montajda doğrulanacak.
+- Durum: **KLASÖR YAPISI HAZIR / MODÜL İMALATI BEKLİYOR**.
+- Modül numarası çakışması açık: E22 mevcut kayıtta Modül 4'ü 100 A SCT karakterizasyon düğümü için kullanıyor; MEMORY.md çamaşır/bulaşık için Modül 4/5 diyor. Kullanıcı kararı bekleniyor.
