@@ -60,14 +60,19 @@ Test durumu yalnızca ilgili aşamanın kanıtı elde edildiğinde değiştirili
 
 ### Kod sürümleme
 
-Görev kimliği ile kod sürümü birbirinden bağımsızdır.
+Görev kimliği ile kod sürümü birbirinden bağımsızdır. Kod sürümü, kodun her yeni revizyonunu tanımlar.
 
-Örnek:
+**Her türlü kod değişikliği yeni bir sürüm dosyası oluşturur.** Değişikliğin küçük veya büyük olması, iyileştirme ya da hata düzeltmesi olması, yeni özellik eklemesi, donanım/pin bağlantısı değiştirmesi veya kodun tamamen farklı bir mimariye taşınması bu kuralı değiştirmez.
 
-- Görev: `MOD2-GRV001`
-- Kod sürümü: `V1.0`
+- İlk kod dosyası `V1.0` olarak başlatılır.
+- Kodda yapılan her yeni değişiklikte sürüm numarası artırılır. Örneğin `V1.0` → `V1.1` → `V1.2`.
+- Her yeni sürüm ayrı dosya olarak kaydedilir; önceki sürümün içeriği değiştirilmez, üzerine yazılmaz veya silinmez.
+- Sürüm numarası değişikliğin kapsamını veya önemini değil, kod revizyonunun sırasını gösterir.
+- Kod değişikliği yapılmadan yalnızca test durumu güncelleniyorsa yeni kod sürümü oluşturulmaz.
+- Her sürümün kendi test durumu, logları ve raporları bulunur. Yeni sürüm önceki sürümün test sonucunu devralmaz.
+- Sürüm artışının nedeni ilgili sürümün görev kayıtlarında belirtilir.
 
-Aynı görevde kod geliştirildiğinde görev kimliği değişmez; kod sürümü ilerletilir. İlk sürüm `V1.0` olarak başlatılır. Küçük geliştirmeler `V1.1`, `V1.2` gibi; kapsamlı değişiklikler `V2.0` gibi yeni bir ana sürümle gösterilir. Sürüm artışının gerekçesi görev kayıtlarında açıklanır.
+Örnek: Tek satırlık hata düzeltmesi de yeni sürümdür; kapsamlı bir kod mimarisi değişikliği de yeni sürümdür. Her ikisi de bir sonraki sürüm numarasını alır.
 
 ### Kod içinde kimlik bilgisi
 
