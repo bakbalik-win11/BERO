@@ -18,7 +18,7 @@
 | 1 | ESP32-D geliştirme kartı | 1 | Ana kontrol ve ölçüm kartı | Kullanıcı fotoğrafında shield üzerine takılı görülüyor; kartın tam ürün varyantı ayrıca doğrulanacak |
 | 2 | ESP32 shield | 1 | Kart pinlerini bağlantı terminallerine taşımak | Kullanıcı fotoğrafında ESP32-D kartıyla birlikte görülüyor; shield'ın tam modeli ayrıca doğrulanacak |
 | 3 | ADS1115 modülü | 1 | Harici ADC / ara entegre | Kullanıcı fotoğrafında kablolarla düzeneğe bağlanmış görülüyor; pin eşleşmeleri henüz doğrulanmadı |
-| 4 | SCT013 30A/1V | 1 | Akım algılama ve analog sinyal üretimi | Kullanıcı tarafından model olarak bildirildi; bu fotoğrafta görünmüyor |
+| 4 | SCT013 30A/1V | 2 | Aynı faz iletkenindeki akımı iki ayrı ölçüm kolunda algılamak | İki sensörlü karşılaştırma düzeni kullanıcı tarafından belirlendi; fiziksel montaj ve model etiketleri test öncesinde doğrulanacak |
 
 Ortak donanım ve envanter kayıtları ana depodaki `DONANIM/` ve `ENVANTER/` altında tutulur; burada yalnızca bu modülde fiilen kullanılan parçalar ve ilgili envanter referansları belirtilir.
 
@@ -53,7 +53,8 @@ Bu bağlantı/ayar tanımı MOD2-GRV001 çalışmasına aittir. Fiziksel pinleri
 | ESP32D2 3.3V | ADS1115 VDD | Besleme |
 | ESP32D2 GND | ADS1115 GND | Ortak referans |
 | ADS1115 ADDR | GND | I²C adresi 0x48 |
-| SCT013 iki çıkış ucu | ADS1115 A0 ve A1 | Diferansiyel ölçüm girişi |
+| SCT013 No. 1 çıkışı | ADS1115 A0 ve A1 | Biaslı diferansiyel ölçüm girişi |
+| SCT013 No. 2 çıkışı | ADS1115 A2 ve A3 | Biassız diferansiyel ölçüm girişi |
 
 ### Ölçüm ayarları
 
@@ -92,27 +93,35 @@ ADS1115 girişleri GND − 0.3 V ile VDD + 0.3 V sınırları içinde kalmalıd�
 
 **Kayıt notu:** Yukarıdaki pin ve ayarlar kullanıcı tarafından bildirilen yapılandırmadır. Kabloların fiziksel uçtan uca doğrulaması, A0/A1 mutlak gerilimlerinin sınırlar içinde olduğunun ölçümü ve çalışma logu ayrıca kaydedilecektir.
 
-## 3.2. Bias gerekliliği karşılaştırma deneyi – ADS1115 No. 1
+## 3.2. Bias, sıfır düzeltmesi ve katsayı gerekliliği deneyi – ADS1115 No. 1
 
-Bu deneyde iki ADC kullanılmaz. Tek ADS1115 No. 1 ve tek SCT013 sensörüyle, aynı ADC üzerindeki iki diferansiyel giriş çifti karşılaştırılır:
+Bu deneyde tek ADS1115 No. 1 ve iki ayrı SCT013 30A/1V kullanılacaktır. İki SCT aynı faz iletkenini ölçecek, ancak sensör çıkışları elektriksel olarak birbirinden ayrı kalacaktır.
 
-| ADS1115 No. 1 giriş çifti | Deney koşulu |
-|---|---|
-| A0–A1 | Bias uygulanmış SCT sinyal yolu |
-| A2–A3 | Bias uygulanmamış SCT sinyal yolu |
+| Sensör | ADS1115 No. 1 giriş çifti | Deney koşulu |
+|---|---|---|
+| SCT013 No. 1 | A0–A1 | Bias uygulanmış ölçüm |
+| SCT013 No. 2 | A2–A3 | Bias uygulanmamış ölçüm |
 
-Amaç, katsayı çalışmasından önce bias kullanımının bu düzen için gerekli olup olmadığını ölçümle değerlendirmektir. Kanal dönüşümleri ADS1115 üzerinde sırayla gerçekleşir; eşzamanlı ölçüm varsayılmayacaktır.
+Tek SCT çıkışı iki giriş çiftine paralel dağıtılmayacaktır. İki sensörün aynı iletkeni ölçmesi, aynı akım koşulunda biaslı ve biassız ölçümün karşılaştırılmasını sağlar. Sensörlerin kendi hassasiyet farkları ayrıca dikkate alınacaktır.
 
-### Deney öncesi kontroller
+### Deney sırası
 
-1. SCT bağlı değilken bias çıkışı multimetre ve osiloskopla kontrol edilir.
-2. SCT bağlandıktan sonra akım yokken giriş seviyeleri ve dalga şekilleri gözlenir.
-3. A0, A1, A2 ve A3 pinlerinin GND'ye göre mutlak gerilimleri ayrı ayrı ölçülür.
-4. Her pinin ADS1115 izin verilen GND − 0.3 V ile VDD + 0.3 V aralığında kaldığı doğrulanır.
-5. SCT çıkışının iki giriş çiftine aktarılmasının yükleme etkisi ve bias devrelerinin birbirini etkileme ihtimali bağlantı kurulmadan önce değerlendirilir.
-6. Osiloskop toprak klipsinin koruma toprağı bağlantısı dikkate alınır; şebeke bağlantılı devrede güvenli ölçüm düzeni kurulmadan prob bağlanmaz.
+1. SCT'ler bağlı değilken bias çıkışını multimetre ve osiloskopla incele.
+2. İki SCT'yi aynı faz iletkenine aynı yönde yerleştir; çıkışları ayrı ayrı kendi ADS1115 giriş çiftlerine bağla.
+3. Akım yokken iki kolun DC seviyesini ve gürültüsünü multimetre/osiloskopla kaydet.
+4. A0, A1, A2 ve A3 pinlerinin GND'ye göre mutlak gerilimlerini ayrı ayrı ölç.
+5. Güvenli giriş gerilimleri ve osiloskop referansı doğrulandıktan sonra kontrollü akım koşullarında karşılaştırma yap.
+6. İlk ham karşılaştırmada sıfır düzeltmesi ve kalibrasyon katsayısı uygulama.
+7. Yüksüz dağılıma göre sıfır basma/alt eşik ihtiyacını; katsayısız akım okumalarına göre katsayı ihtiyacını ayrı ayrı değerlendir.
 
-Bu deney henüz yapılmış değildir. Sonuç, fotoğraf, multimetre değeri veya osiloskop görüntüsü varmış gibi kayıt oluşturulmayacaktır. Deney sonuçları alındığında ilgili görev altına tarihli log ve rapor olarak eklenecektir.
+### Güvenlik ve ölçüm notları
+
+- ADS1115 girişleri GND − 0.3 V ile VDD + 0.3 V sınırları içinde kalmalıdır; PGA ayarı bu sınırları değiştirmez.
+- Osiloskop toprak klipsi koruma toprağına bağlı olabileceğinden şebeke bağlantılı devrede güvenli ölçüm düzeni kurulmadan prob bağlanmaz.
+- İki sensör aynı iletken üzerinde aynı yönde yerleştirilir; faz ve nötr birlikte aynı SCT içinden geçirilmez.
+- ADS1115 kanalları sırayla dönüştürülür; ölçümler eşzamanlı olarak tanımlanmaz.
+
+Bu düzen henüz deney planıdır. Fiziksel test, ölçüm, fotoğraf veya sonuç kaydı henüz mevcut değildir.
 
 ## 4. Fiziksel yerleşim ve montaj
 
