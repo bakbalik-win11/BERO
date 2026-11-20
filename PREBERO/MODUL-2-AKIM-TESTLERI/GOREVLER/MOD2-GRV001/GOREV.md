@@ -10,19 +10,19 @@ SCT013 30A/1V akım sensöründen gelen sinyali ADS1115 ara entegresi üzerinden
 - Taşıyıcı/bağlantı kartı: ESP32 shield.
 - Akım sensörü: SCT013 30A/1V.
 - Ara entegre / harici ADC: ADS1115.
-- Planlanan sinyal zinciri: SCT013 30A/1V → ADS1115 → ESP32-D.
-- ESP32-D kartı shield üzerine takılarak masaüstü deney düzeneği imal edilecektir.
-- Paylaşılan ürün görseli temsili yerleşim görselidir. Görsel, kullanılacak ESP32-D kartının kesin varyantını, GPIO eşleşmelerini veya shield üzerindeki terminal bağlantılarını doğrulamaz.
-- Fiziksel kartın tam modeli, shield modeli, ADS1115 kartı, sensör bağlantısı, pinler ve besleme gerçek donanım üzerinden doğrulanınca imalat kaydına işlenecektir.
+- Sinyal zinciri: SCT013 30A/1V → ADS1115 → ESP32-D.
+- Kullanıcının paylaştığı fiziksel fotoğrafta ESP32-D kartının shield üzerine takılı olduğu ve ADS1115 modülünün kablolarla düzeneğe bağlandığı görülmektedir.
+- SCT013 30A/1V sensör fotoğrafta görünmemektedir; model kullanıcı tarafından bildirilmiştir.
+- Fotoğraf fiziksel yerleşimi gösterir; kabloların pin eşleşmelerini, elektriksel değerleri veya sistemin çalıştığını kanıtlamaz.
 
 ## Çalışma kapsamı
 
 1. ESP32-D ve shield masaüstü düzeneğini imal etmek.
-2. SCT013 30A/1V sensör çıkışını ADS1115 analog girişine uygun şekilde bağlamak.
-3. ADS1115 ile ESP32-D arasındaki haberleşmeyi doğrulamak.
-4. Gerçek kart ve shield üzerindeki pinleri doğrulayıp bağlantı şemasını hazırlamak.
-5. Üretilen/ölçülen sinyali osiloskopta gözlemlemek.
-6. Gerekli görülen koşullarda biaslı ve biassız sinyali karşılaştırmak.
+2. ADS1115 modülü ile ESP32-D arasındaki mevcut kabloların pin eşleşmelerini doğrulamak.
+3. ADS1115 ile ESP32-D arasındaki I²C haberleşmesini doğrulamak.
+4. SCT013 30A/1V sensör çıkışını ADS1115 analog girişine uygun şekilde bağlamak.
+5. Bias, besleme ve ortak referans düzenini gerçek bağlantı üzerinden doğrulamak.
+6. Üretilen/ölçülen sinyali osiloskopta gözlemlemek.
 7. Test koşullarını ve ölçüm sonuçlarını kaydetmek.
 8. Katsayıları ancak test sonuçları yeterli olduğunda belirlemek.
 9. Her testin logunu ve yorumunu bu görev altında saklamak.
@@ -45,9 +45,10 @@ Bu görev henüz tamamlanmış değildir.
 - **Shield:** ESP32 shield.
 - **Akım sensörü:** SCT013 30A/1V.
 - **Ara entegre / harici ADC:** ADS1115.
-- **Fiziksel ESP envanter kimliği:** İmal edilecek/kullanılacak fiziksel kart seçilip envantere eşleştirildiğinde yazılacak.
+- **Fiziksel kurulum kanıtı:** 2026-11-21 tarihli kullanıcı fotoğrafında ESP32-D + shield yerleşimi ve ADS1115 modülünün kabloları görülmektedir.
+- **Fiziksel ESP envanter kimliği:** İlgili fiziksel kart envantere eşleştirildiğinde yazılacak.
 - **ESPHome / Home Assistant cihaz adı:** Gerçek cihaz ve sabit ad doğrulandığında yazılacak.
-- **Not:** Paylaşılan görsel temsildir; kesin kart modeli veya pinout kanıtı değildir. Kimlik veya cihaz adı tahmin edilmeyecektir.
+- **Not:** Fotoğraf pinout veya çalışan sistem kanıtı değildir. Kimlik, pin ve elektriksel değer tahmin edilmeyecektir.
 
 ## Bu görevin sürümlü çıktı düzeni
 
