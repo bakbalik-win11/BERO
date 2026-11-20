@@ -2463,7 +2463,7 @@ Bu kayıt mimari/hedef netleştirmesidir. Sensör modelleri, montaj, bağlantı,
 - Çamaşır/bulaşık cihaz README'leri ve ADR-032, Modül 5/6 olarak güncellendi.
 - E22 README, ayrı modül/kurulmuş test düzeneği anlatımından çıkarılıp gelecekteki karşılaştırma deneyi olarak düzeltildi.
 - Proje README, STATUS ve PROGRESS_TREE güncel modül envanterine göre güncellendi.
-- MEMORY.md ve GEMINI.md içindeki eski Modül 4/5/6 ve E24 atamaları da tutarlı hâle getirilecek/yeniden kontrol edilecek.
+- MEMORY.md ve GEMINI.md içindeki eski Modül 4/5/6 ve E24 atamaları güncel envantere göre düzeltildi ve geri okunarak kontrol edildi.
 
 ### SINIR
 Bu oturumda yalnızca kullanıcı düzeltmesi ve dokümantasyon işlendi. Yeni donanım kurulmadı; E22 ölçümü yapılmadı; Modül 5/6 imal edilmedi; Modül 7 / PreBERO tasarlanmadı veya test edilmedi.
