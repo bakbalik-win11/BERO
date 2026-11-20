@@ -14,21 +14,21 @@ Bu klasör, BERO'nun akım gözlem alt projesidir. BERO'nun tamamı değildir.
 
 ## Şu anki amaç
 
-Önce masaüstündeki **Modül 4 (ESP32D2 + ADS1115 + SCT)** ile hedeflediğimiz akım aralığında ölçüm alabildiğimizi gözlemliyoruz. ADS1115 + SCT düzeniyle istenen aralıkta akım okunabildiğine dair mevcut deney kayıtları vardır. Şimdi aynı masaüstü düzeneğinde bias'lı ve bias'sız bağlantıyı karşılaştıracağız.
+Önce mevcut masaüstü ESP32D2 + ADS1115 + SCT düzeneğini anlamak ve ADS1115'i BERO'da kullanacağımız ölçüde tanımak. Bias'sız ölçümde olumlu gözlemler ve iki tam çamaşır makinesi program kaydı kullanıcı tarafından bildirildi; bunlar teknik rapor, giriş güvenliği doğrulaması veya nihai tasarım kararı yerine geçmez.
 
-Bu karşılaştırmanın amacı bias'ın ölçüme gerçekten gerekli bir katkı sağlayıp sağlamadığını anlamaktır. Ardından iki yapının sinyalini osiloskopta birlikte inceleyeceğiz. **Bias gerekli mi sorusunun cevabı henüz verilmedi.**
+## Modül 4 için güncel çalışma sırası
 
-Bias gerekli bulunursa, PREBERO Modül 5/6/7 için bias'ın ESP beslemesinden üretilmesi mi yoksa Modül 1'deki trafo/güç kutusu yapısının ikizlerinin yapılması mı gerektiğini ayrıca değerlendireceğiz. Bu besleme mimarisi de henüz seçilmedi.
+1. ADS1115 hobi düzeyinde donanım raporu.
+2. Masaüstü bağlantıların ve mevcut yazılım ayarlarının gerçek düzenek üzerinden doğrulanması.
+3. Bias'lı/bias'sız ölçüm karşılaştırması.
+4. Osiloskopla iki yapının sinyal gözlemi.
+5. Kanıta dayalı Modül 4 tasarım kararı.
+6. Modül 4'ün sabit fiziksel donanım olarak imalatı ve gerçek donanımda doğrulanması.
+7. Bu kabul kapısından sonra PREBERO Modül 5/6/7 imalatına geçiş.
 
-## Çalışma sırası
+Bias gerekliliği henüz karara bağlanmadı. Bias gerekiyorsa PREBERO modüllerinin bias besleme yöntemi de ayrıca seçilecek. Hobi projesi kapsamında gereksiz laboratuvar karakterizasyonu yapılmayacak; ancak ADS1115'in üretici elektriksel sınırları ve güvenlik koşulları mutlaka dikkate alınacak.
 
-1. Modül 4'te aynı ölçüm zinciriyle bias'lı ve bias'sız gözlem.
-2. Bias'lı ve bias'sız sinyalleri osiloskopta inceleme.
-3. Ölçüm ve sinyal gözlemlerine dayanarak bias gerekliliğine karar verme.
-4. Bias gerekiyorsa PREBERO Modül 5/6/7 için bias besleme yöntemini seçme.
-5. Ölçüm zinciri hedeflenen kullanım için yeterliyse PREBERO saha gözlemlerine geçme.
-
-Bu sıra dışında yeni bir ölçüm mimarisi, çok kanallı sistem veya eğitim/veri hattı şu anki işin ön koşulu değildir. Önce elimizdeki masaüstü ölçüm düzeneğinin yeterliliğini ve bias ihtiyacını netleştiriyoruz.
+Bu sıra dışında yeni bir çok kanallı sistem veya eski PZEM eğitim/veri hattı bu aşamanın ön koşulu değildir. Önce Modül 4'ün ölçüm yapısını anlayıp tasarlayacağız.
 
 ## PREBERO
 
@@ -43,7 +43,7 @@ Modül 5, 6 ve 7'nin tamamı PREBERO kapsamındadır. Bu modüller henüz imal e
 
 Önceki SCT/ADC denemeleri, ADS1115 düşük akım karşılaştırmaları, PZEM gözlemleri ve eski Modül 2/3 çalışmaları tarihsel teknik kayıt olarak korunur. Bunlar bugünkü çalışma sırasını belirleyen aktif görevler değildir. Önceki ölçüm sonuçları, yalnızca gerçekten test edilmiş koşullarla sınırlı kanıt olarak değerlendirilir.
 
-Ayrıntılı bias karar sırası: [ADR-034](docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md).
+Güncel Modül 4 tasarım/imalat kapısı: [ADR-035](docs/decisions/ADR-035-module4-design-gate-before-prebero.md). Bias karşılaştırması ve PREBERO bias besleme seçenekleri: [ADR-034](docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md).
 Modül kimlikleri ve PREBERO tanımı: [ADR-033](docs/decisions/ADR-033-module-identities-desktop-and-prebero.md).
 
 ## Çalışan ölçüm baseline'ı
