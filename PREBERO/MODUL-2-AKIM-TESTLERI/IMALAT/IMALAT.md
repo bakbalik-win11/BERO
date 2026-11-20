@@ -40,6 +40,51 @@ Ortak donanım ve envanter kayıtları ana depodaki `DONANIM/` ve `ENVANTER/` al
 | ADS1115 modülü | ESP32 shield | Besleme ve I²C bağlantıları | Fotoğrafta kırmızı, siyah, mavi ve yeşil kablolar görülüyor | Pin eşleşmeleri henüz doğrulanmadı; renklerden işlev çıkarılmadı |
 | SCT013 30A/1V | ADS1115 analog giriş | Akım sensörü analog sinyali | Henüz kaydedilmedi | Henüz doğrulanmadı |
 
+## 3.1. Kullanıcı tarafından bildirilen pin yapısı ve ölçüm ayarları
+
+Bu bağlantı/ayar tanımı MOD2-GRV001 çalışmasına aittir. Fiziksel pinlerin ve elektriksel sınırların doğrulanması ayrıca yapılacaktır.
+
+### Bağlantılar
+
+| Kaynak | Hedef | İşlev |
+|---|---|---|
+| ESP32D2 GPIO21 | ADS1115 SDA | I²C veri |
+| ESP32D2 GPIO22 | ADS1115 SCL | I²C saat |
+| ESP32D2 3.3V | ADS1115 VDD | Besleme |
+| ESP32D2 GND | ADS1115 GND | Ortak referans |
+| ADS1115 ADDR | GND | I²C adresi 0x48 |
+| SCT013 iki çıkış ucu | ADS1115 A0 ve A1 | Diferansiyel ölçüm girişi |
+
+### Ölçüm ayarları
+
+| Parametre | Değer |
+|---|---|
+| ADS1115 modu | Diferansiyel A0-A1 |
+| PGA gain | 2.048 V |
+| Sample rate | 860 SPS |
+| Continuous mode | true |
+| ct_clamp örnekleme penceresi | 200 ms |
+| Sensör güncelleme aralığı | 1 saniye |
+| Kalibrasyon katsayısı | 27.60 |
+| Alt eşik | 0.005 A (5 mA) |
+
+5 mA altındaki ölçümler bu sürümde sıfırlanır. Amaç, yüksüz durumda gözlenen yaklaşık 1–2 mA taban değerlerinin Home Assistant'a gereksiz veri üretmesini önlemektir.
+
+### Kalibrasyon kaydı
+
+- Önceki katsayı: 30.00
+- ADS1115 gözlemi: yaklaşık 0.513 A
+- PZEM gözlemi: yaklaşık 0.472 A
+- Hesap: 30.00 × (0.472 / 0.513) = 27.60
+
+Katsayı tek karşılaştırmadan türetilmiştir ve farklı akım seviyelerinde tekrar doğrulanmalıdır. PZEM referans karşılaştırma aracıdır; kusursuz ground truth değildir.
+
+### ADS1115 giriş sınırı
+
+ADS1115 girişleri GND − 0.3 V ile VDD + 0.3 V sınırları içinde kalmalıdır. PGA kazanç ayarı bu mutlak giriş sınırlarını değiştirmez. Diferansiyel ölçüm, A0 ve A1 pinlerinin mutlak giriş sınırlarını ortadan kaldırmaz.
+
+**Kayıt notu:** Yukarıdaki pin ve ayarlar kullanıcı tarafından bildirilen yapılandırmadır. Kabloların fiziksel uçtan uca doğrulaması, A0/A1 mutlak gerilimlerinin sınırlar içinde olduğunun ölçümü ve çalışma logu ayrıca kaydedilecektir.
+
 ## 4. Fiziksel yerleşim ve montaj
 
 - **Ana yerleşim:** ESP32-D geliştirme kartı shield üzerine takılmıştır.
