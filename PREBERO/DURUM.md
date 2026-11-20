@@ -6,7 +6,7 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 
 | Modül | Hedef | Durum |
 |---|---|---|
-| Modül 1 – Bias Trafosu | Modül 2 testlerinde kullanılacak bias donanımını hazırlamak ve gerektiğinde destek sağlamak | Yardımcı modül |
+| Modül 1 – Şebeke Karakterini Koruyan Bias | Şebeke ile ilişkili AC sinyalin karakterini korumayı hedefleyen bias yapısını geliştirmek ve ESP kaynaklı bias yaklaşımından ayrı değerlendirmek | Yardımcı modül |
 | Modül 2 – Akım Testleri | Akım davranışını anlamak, testleri sürdürmek ve ölçüm katsayılarını belirlemek | **Aktif** |
 | Modül 3 – Çamaşır Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | Bekliyor |
 | Modül 4 – Bulaşık Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | Bekliyor |
@@ -21,3 +21,12 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 ## İlerleme kuralı
 
 Bir görev tamamlandığında sonucu kendi görev klasörüne kaydedilir. Ardından aynı modülün altında bir sonraki görev açılır ve bu dosyadaki durum güncellenir. Modüller arası geçiş, ilgili modülün hedefi ve hazır olma durumuna göre yapılır.
+
+
+## Modül 1 için kaydedilen karar
+
+- Modül adı: **Şebeke Karakterini Koruyan Bias**.
+- 1,65 V seviyesinin elde edilme yöntemi, bias devresinin tanımı değil; ayrı bir ara süreçtir.
+- Bias yapısının kendisi, gerçek direnç ve kondansatör değerleri ile bağlantı biçimi belirlenerek yeniden kurulabilir bir standart olarak tarif edilecektir.
+- ESP beslemesinden oluşturulan bias, şebeke karakterini taşımayan ayrı bir karşılaştırma yaklaşımıdır.
+- Bu karar, devrenin elektriksel davranışının veya izolasyonunun doğrulandığı anlamına gelmez.
