@@ -7,8 +7,8 @@ Bu klasör, bulaşık makinesi için üretilecek taşınabilir gözlem modülün
 - **Modül numarası:** MODÜL 5 — kullanıcı tarafından 2026-11-20 tarihinde onaylandı.
 - **Aşama:** PLANLANDI / fiziksel imalat ve doğrulama bekliyor.
 - **Mimari:** Modül 4 ve Modül 5 aynı elektronik tasarımın ikiz kopyalarıdır. Donanım ve firmware temeli ortak; cihaz adı, modül kimliği ve kayıt etiketleri farklıdır.
-- **Güç durumu:** Üçlü priz kullanılmayacak. Sıva üstü montaja uygun, güvenli 5 V DC çıkışlı priz/enerji çözümü seçilmesi gerekiyor; ürün ve tesisat henüz belirlenmedi.
-- **İmalat sırası:** Modül 4'ten sonra; güç beslemesi çözümüne kadar beklemede.
+- **Güç durumu:** Bulaşık makinesi kendi mevcut elektrik hattından beslenecek; makineyi üçlü prizle besleme planı yoktur. Yalnızca gözlem modülünün 5 V DC beslemesi çözülecek. Kullanıcı, modül için sıva üstü 5 V çıkışlı priz veya makine beslemesinden bağımsız ayrı bir hattan adaptör seçeneğini değerlendirecek; kesin yöntem henüz belirlenmedi.
+- **İmalat sırası:** Modül 4'ten sonra; modülün 5 V besleme yöntemi seçilene kadar beklemede.
 - **Birincil gözlem kanalları:** ses ve titreşim.
 - **Yardımcı kanal:** akım; makine çalışma evrelerini yorumlamak için bağlamsal veri olarak kullanılacak.
 - Ayrıntılı ortak karar: [ADR-032 — İkiz sensör modülleri](../../docs/decisions/ADR-032-washing-dishwasher-twin-sensor-modules.md).
@@ -29,7 +29,7 @@ Bu klasör, bulaşık makinesi için üretilecek taşınabilir gözlem modülün
 
 - MAX4466 OUT → ESP32 ADC: doğrudan analog okuma hedefleniyor. ADC pini, ses örnekleme hızı, çözünürlük ve kayıt biçimi belirlenmedi.
 - MPU6050 → I²C-1: SDA/SCL pinleri fiziksel kart ve shield üzerinden teyit edilecek.
-- ADS1115 → I²C-2: MPU6050 hattından ayrı SDA/SCL çifti kullanılacak. Bu ayrım kullanıcı tercihidir; kart/framework üzerinde gerçek bağlantı ve firmware ile doğrulanacak.
+- ADS1115 → I²C-2: MPU6050 hattından ayrı SDA/SCL çifti kullanılacak. Bu ayrım kullanıcı tarafından kesinleştirilmiştir; fiziksel bağlantı kolaylığı nedeniyle iki ayrı bus kullanılacaktır. Kart/framework üzerinde gerçek bağlantı ve firmware ile doğrulanması yine gereklidir.
 - SCT013 → ADS1115 analog giriş: giriş bias/ölçekleme/koruma, ADS1115 gain ve data rate, CT sekonder koşulları ve kalibrasyon henüz belirlenmedi.
 - Besleme gerilimi, toprak referansı, kablo düzeni ve muhafaza fiziksel montaj öncesi kontrol edilecek.
 - Bu doküman pin şeması veya enerjili şebeke bağlantısı talimatı değildir. Şebeke tarafı bağlantılar uygun koruma ve muhafaza ile yetkin kişi tarafından yapılmalıdır.
