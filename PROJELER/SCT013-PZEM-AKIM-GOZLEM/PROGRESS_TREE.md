@@ -734,3 +734,12 @@
 - Planlanan algılama kanalları: akım + ses + titreşim. Sensör modelleri, bağlantı ve çalışma parametreleri fiziksel montajda doğrulanacak.
 - Durum: **KLASÖR YAPISI HAZIR / MODÜL İMALATI BEKLİYOR**.
 - Modül numarası çakışması açık: E22 mevcut kayıtta Modül 4'ü 100 A SCT karakterizasyon düğümü için kullanıyor; MEMORY.md çamaşır/bulaşık için Modül 4/5 diyor. Kullanıcı kararı bekleniyor.
+
+
+## 2026-11-20 — Cihaz modül kimlikleri ve ana sensör yaklaşımı kararı
+- **Modül 4:** Çamaşır Makinesi — ses ve titreşim birincil; akım yardımcı kanal.
+- **Modül 5:** Bulaşık Makinesi — ses ve titreşim birincil; akım yardımcı kanal.
+- E22, cihaz modül numarası değil, 100 A / 1 V SCT karakterizasyon deneyidir.
+- 14 Kasım çamaşır akım kayıtları ilk keşif/deneme kayıtlarıdır; yeni modüllerin ses-titreşim ana veri seti değildir.
+- Planlanan veri zinciri: fiziksel toplama → RAW koruma → Python özellik/zaman serisi analizi → davranış örüntüsü doğrulama → daha ileride karar ağacı → en son bildirim üretimi.
+- Bu zincirin sonraki aşamaları henüz uygulanmadı; bugünkü kayıt yalnızca hedef ve sıra kararını sabitler.
