@@ -20,7 +20,7 @@ SCT013 30A/1V akım sensöründen gelen sinyali ADS1115 ara entegresi üzerinden
 1. ESP32-D ve shield masaüstü düzeneğini imal etmek.
 2. ADS1115 modülü ile ESP32-D arasındaki mevcut kabloların pin eşleşmelerini doğrulamak.
 3. ADS1115 ile ESP32-D arasındaki I²C haberleşmesini doğrulamak.
-4. SCT013 30A/1V sensör çıkışını ADS1115 analog girişine uygun şekilde bağlamak.
+4. İki SCT013 30A/1V sensörünü aynı faz iletkenini ölçecek şekilde yerleştirip ayrı ADS1115 diferansiyel giriş çiftlerine bağlamak.
 5. Bias, besleme ve ortak referans düzenini gerçek bağlantı üzerinden doğrulamak.
 6. Üretilen/ölçülen sinyali osiloskopta gözlemlemek.
 7. Test koşullarını ve ölçüm sonuçlarını kaydetmek.
@@ -40,7 +40,8 @@ Bu bölüm, kullanıcının sağladığı mevcut yapılandırma bilgisini kayded
 | ESP32D2 3.3V | ADS1115 VDD | Besleme |
 | ESP32D2 GND | ADS1115 GND | Ortak referans |
 | ADS1115 ADDR | GND | I²C adresi 0x48 |
-| SCT013 iki çıkış ucu | ADS1115 A0–A1 (mevcut tek-kanal okuma düzeni) | Diferansiyel akım sinyali; bias karşılaştırma deneyi ayrıca tanımlanmıştır |
+| SCT013 No. 1 çıkışı | ADS1115 A0–A1 | Biaslı diferansiyel ölçüm kolu |
+| SCT013 No. 2 çıkışı | ADS1115 A2–A3 | Biassız diferansiyel ölçüm kolu |
 
 ### Ölçüm ve yazılım ayarları
 
@@ -87,47 +88,55 @@ ADS1115 üzerinden SCT013 akım trafosunun diferansiyel çıkışı okunur; ct_c
 
 
 
-## Bias gerekliliği karşılaştırma deneyi – ADS1115 No. 1
+## Bias, sıfır düzeltmesi ve katsayı gerekliliği deneyi – ADS1115 No. 1
 
 ### Deney amacı
 
-Akım katsayısı çalışmasına başlamadan önce, SCT013 sinyalinin ADS1115 No. 1 üzerinde bias uygulanarak ve bias uygulanmadan okunmasını karşılaştırmak. Deneyin çıktısı, bu ölçüm düzeninde bias kullanımının gerekli olup olmadığına ilişkin ölçüm temelli karar olacaktır.
+Aynı akım koşulunda biaslı ve biassız SCT ölçümünü karşılaştırmak; yüksüz durumda sıfır düzeltmesine ihtiyaç olup olmadığını ve akım ölçümünde kalibrasyon katsayısının gerekliliğini deneysel olarak değerlendirmek.
 
 ### Deney donanımı ve kanal düzeni
 
 - Tek ADC kullanılacaktır: **ADS1115 No. 1**.
-- Tek SCT013 sensörünün çıkış sinyali, deney bağlantısı doğrulandıktan sonra aynı ADS1115 üzerindeki iki diferansiyel giriş çiftine karşılaştırma amacıyla aktarılacaktır.
-- **A0–A1:** bias uygulanmış ölçüm kolu.
-- **A2–A3:** bias uygulanmamış ölçüm kolu.
+- İki ayrı SCT013 30A/1V sensörü kullanılacaktır.
+- Her iki SCT aynı faz iletkenini ölçecektir. Sensörler aynı tek iletkenin çevresine, birbirleriyle aynı yönde yerleştirilecektir.
+- **SCT013 No. 1 → A0–A1:** bias uygulanmış ölçüm kolu.
+- **SCT013 No. 2 → A2–A3:** bias uygulanmamış ölçüm kolu.
+- İki SCT'nin elektriksel çıkışları birbirinden ayrı kalacaktır; tek bir SCT çıkışı iki ADC giriş çiftine paralel bağlanmayacaktır.
 - İki ayrı ADS1115 kullanılmayacaktır.
-- Her iki ölçüm aynı ADS1115 üzerinde yapılır. ADS1115 kanal dönüşümleri sırayla gerçekleştiğinden sonuçlar eşzamanlı örnekleme olarak tanımlanmayacaktır.
+- ADS1115 kanal dönüşümleri sırayla gerçekleştiğinden sonuçlar eşzamanlı örnekleme olarak tanımlanmayacaktır.
 
-### Ön kontroller ve deney sırası
+### Deney öncesi kontroller ve sıra
 
-1. SCT bağlı değilken bias hattının DC seviyesini multimetreyle ölç; osiloskopta çizgi kararlılığını ve gürültüyü gözle.
-2. SCT013 bağlandıktan sonra, akım yokken biaslı ve biassız giriş çiftlerinin DC seviyelerini ve dalga şekillerini ayrı ayrı incele.
-3. A0, A1, A2 ve A3 pinlerinin her birinin GND'ye göre mutlak gerilimlerini ölç. Diferansiyel gerilim tek başına yeterli güvenlik doğrulaması değildir.
-4. Osiloskop probunun toprak bağlantısını ve ölçüm referansını doğrulamadan şebeke bağlantılı devreye bağlama. Masa tipi osiloskop toprak klipsi koruma toprağına bağlı olabilir.
-5. Güvenli giriş gerilimleri ve bağlantı topolojisi doğrulandıktan sonra yüksüz ölçüm karşılaştırmasını yap.
-6. Kontrollü akım koşullarında iki kanal çiftinin okumalarını karşılaştır; her koşulda kanal dönüşüm sırasını ve ölçüm zamanını kaydet.
-7. Osiloskop görüntülerini, multimetre değerlerini, ADS1115 ham/işlenmiş okumalarını ve test koşullarını deney kaydına ekle.
+1. SCT'ler bağlı değilken bias hattının DC seviyesini multimetreyle ölç; osiloskopta çizgi kararlılığını ve gürültüyü gözle.
+2. İki SCT'yi aynı faz iletkenine, aynı yönde yerleştir; her sensörün çıkışını yalnızca kendi diferansiyel giriş çiftine bağla.
+3. Akım yokken iki sensörün çıkışlarını multimetre ve osiloskopla ayrı ayrı incele.
+4. A0, A1, A2 ve A3 pinlerinin her birinin GND'ye göre mutlak gerilimlerini ölç. Diferansiyel gerilim tek başına yeterli güvenlik doğrulaması değildir.
+5. Osiloskop probunun toprak bağlantısını ve ölçüm referansını doğrulamadan şebeke bağlantılı devreye bağlama. Masa tipi osiloskop toprak klipsi koruma toprağına bağlı olabilir.
+6. İlk yüksüz ve akımlı karşılaştırmaları mümkün olduğunca **sıfır düzeltmesi ve kalibrasyon katsayısı uygulamadan** kaydet.
+7. Kontrollü akım koşullarında iki kanal çiftinin ham ve işlenmiş okumalarını karşılaştır; kanal dönüşüm sırasını ve ölçüm zamanını kaydet.
+8. Yüksüz okumaların dağılımına bakarak sıfır basma/alt eşik gerekliliğini değerlendir.
+9. Katsayı uygulanmamış ölçümlerin karşılaştırma referansına göre davranışını inceleyerek kalibrasyon katsayısına ihtiyaç olup olmadığını değerlendir.
+10. Osiloskop görüntülerini, multimetre değerlerini, ADS1115 ham okumalarını, test koşullarını ve yorumları kaydet.
 
 ### Değerlendirme ölçütleri
 
 - Biaslı ve biassız durumda yüksüz DC seviye.
-- Her giriş çiftinin yüksüz gürültüsü ve dalgalanması.
+- Her SCT kanalının yüksüz gürültüsü ve dalgalanması.
+- Aynı akım koşulunda iki sensörün ham ölçüm farkı.
 - Akım uygulandığında sinyalin dalga şekli ve ölçüm kararlılığı.
 - Akım kaldırıldığında sıfıra dönüş davranışı.
+- Sıfır düzeltmesi veya alt eşik uygulanmasının gerekli olup olmadığı.
+- Kalibrasyon katsayısı uygulanmadan ölçümün karşılaştırma referansına göre davranışı.
 - Her AIN pininin mutlak gerilim sınırları.
 - Aynı ADC üzerindeki ardışık kanal dönüşümlerinin karşılaştırmaya etkisi.
 
 ### Yorum sınırı
 
-Bu deney henüz plan aşamasındadır; ölçüm sonucu veya bias gerekliliği kararı verilmiş değildir. A0–A1 ve A2–A3 girişlerine bağlantı yapılmadan önce SCT çıkışının iki kola bağlanmasının elektriksel etkisi ve bias ağlarının birbirini etkileme olasılığı kontrol edilmelidir. ADS1115 girişleri GND − 0.3 V ile VDD + 0.3 V sınırlarında kalmalıdır. PGA ayarı bu mutlak giriş sınırlarını değiştirmez.
+Bu deney henüz plan aşamasındadır; ölçüm sonucu veya bias, sıfırlama ve katsayı gerekliliği kararı verilmiş değildir. İki SCT aynı iletkeni ölçse de sensörlerin kendi hassasiyet farkları olabilir; bu fark sonuçlarda ayrı değerlendirilmelidir. ADS1115 girişleri GND − 0.3 V ile VDD + 0.3 V sınırlarında kalmalıdır. PGA ayarı bu mutlak giriş sınırlarını değiştirmez.
 
 ### Katsayı çalışmasına geçiş
 
-Biaslı/biassız karşılaştırma tamamlanıp kullanılacak bağlantı yöntemi belirlendikten sonra ADS1115 No. 1 için ayrı katsayı çalışması yapılacaktır. Önceki ADS1115 ile elde edilmiş katsayı No. 1'e aktarılmayacaktır.
+Önce biaslı/biassız ve sıfır düzeltmeli/düzeltmesiz ham davranış incelenecektir. Sonuçlar uygun ölçüm yöntemini belirledikten sonra ADS1115 No. 1 ve ilgili SCT kanalları için katsayı ihtiyacı ayrıca değerlendirilecektir. Önceki ADS1115 ile elde edilmiş katsayı No. 1'e aktarılmayacaktır.
 
 ### Elektriksel sınır notu
 
@@ -135,7 +144,7 @@ ADS1115 girişleri GND − 0.3 V ile VDD + 0.3 V sınırları içinde kalmalıd�
 
 ### Doğrulama durumu
 
-Bu bölüm kullanıcının verdiği bağlantı ve ayar tanımını kaydeder. Gerçek kablo uçları, A0/A1 üzerindeki mutlak gerilimlerin sınırlar içinde kalması ve sistemin bu ayarlarla çalıştığına ilişkin log henüz bu kayıtla tek başına kanıtlanmış sayılmaz.
+Bu bölüm mevcut tek-kanal Kod 0 bağlantı ve ayar tanımını kaydeder. İki SCT'li bias karşılaştırması ayrı bir deney düzenidir; henüz fiziksel olarak kurulmuş veya doğrulanmış sayılmaz.
 
 ## Çıktılar
 
