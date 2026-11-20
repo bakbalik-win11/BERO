@@ -2389,3 +2389,20 @@ ADS1115 teslimatı bekleniyor. Söküm, yeni modül montajı, firmware değişik
 ### SINIR / AÇIK KARAR
 - Bu işlem klasör ve dokümantasyon hazırlığıdır; modüller fiziksel olarak imal edilmedi, firmware yazılmadı/derlenmedi ve ölçüm yapılmadı.
 - Modül numaraları kullanıcı onayına kadar kesinleştirilmedi. E22'deki eski Modül 4 kimliğiyle çakışma giderilmelidir.
+
+
+## 2026-11-20 — Modül 4/5 onayı ve ses-titreşim odaklı makine davranışı analizi
+
+### KULLANICI KARARI
+- **Modül 4: Çamaşır Makinesi.**
+- **Modül 5: Bulaşık Makinesi.**
+- E22, 100 A / 1 V SCT karakterizasyon deneyidir; cihaz modül numarası değildir.
+
+### VERİ TOPLAMA YAKLAŞIMI
+- 14 Kasım 2026 tarihli çamaşır makinesi akım kayıtları ilk deneme/keşif kayıtlarıdır.
+- Asıl makine davranışı verisi yeni taşınabilir modüllerle öncelikle ses ve titreşim üzerinden toplanacaktır. Akım yardımcı/ikincil kanal olarak değerlendirilebilir.
+- Kayıtlar ham hâliyle korunacak; Python'da zaman serisi ve özellik analizi yapılacak, tekrarlarla davranış örüntüleri değerlendirilecektir.
+- Karar ağacı/karar mantığı, yeterli ve doğrulanmış veri biriktikten sonra ele alınacak; bildirim üretimi daha sonraki aşamadır.
+
+### SINIR
+Bu kayıt mimari/hedef netleştirmesidir. Sensör modelleri, montaj, bağlantı, firmware, örnekleme, Python analizi, karar ağacı veya bildirim sistemi bu oturumda uygulanmadı.
