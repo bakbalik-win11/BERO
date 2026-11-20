@@ -18,12 +18,14 @@
 ...
 ## Mevcut Teknik Durum (16 Kasım 2026)
 - **Donanım:** ADS1115 geçişi ile ölçüm hassasiyeti ulaşıldı. 
-- **Aktif masaüstü düzenek:** Modül 4 = mevcut günlük ESP32D2 + ADS1115 + SCT ölçüm düzeneği.
-- **PREBERO Fazı (Yeni):** Gerçek BERO öncesi saha veri toplama ve test aşaması.
+- **Modül 1:** Bias trafosu/güç kutusu mevcut ve korunuyor; Modül 4'te biaslı/bias'sız deneylerde kullanılacak.
+- **Modül 2 ve 3:** Fiziksel olarak imha edildi; ADS1115 ile hedeflenen akım ölçüm sınırlarına ulaşıldığından eski donanıma ihtiyaç kalmadı. Yazılım/kayıtlar arşiv.
+- **Modül 4:** Mevcut günlük masaüstü ESP32D2 + ADS1115 + SCT ölçüm düzeneği; biaslı/bias'sız deneyler burada.
+- **PREBERO:** BERO'nun kurulacağı eve henüz taşınılamadığı, o evdeki kiracı çıkana kadar Sarıyer'deki mevcut evde yürütülen gözlem, deney ve veri toplama dönemi. Amaç BERO'ya geçmeden önce ilerleme sağlamak; nihai BERO kurulumu değildir.
     - Modül 5 (Çamaşır) & Modül 6 (Bulaşık): imal edilecek; akım + ses + titreşim (WiFi üzerinden HA'ya).
     - Modül 7 (Ana Hat): PreBERO kapsamında ana hattı PZEM ile birlikte okuma hedefi; tasarım/uygulama bekliyor.
 - **Düğüm Otonomisi:** Uç birimlerin (ESP32) HA veya ekran bağımsız çalışabilmesi, yerel veri kaydı ve kesinti sonrası senkronizasyon yeteneği.
-- **PREBERO Laboratuvarı:** ESP32-S3 Ekranlı kart + Raspberry Pi 4 (HA) + Çift RS485 hattı (Master/Slave rolleri) ile masaüstü test düzeneği.
+- PREBERO, Sarıyer'deki mevcut evde Modül 5/6/7 ile veri toplama dönemidir; BERO'nun kurulacağı eve taşınılana kadar sürer.
 
 
 ## Takip Edilen Dosyalar
