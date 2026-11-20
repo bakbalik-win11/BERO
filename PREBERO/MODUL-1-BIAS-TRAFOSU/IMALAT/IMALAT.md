@@ -1,8 +1,8 @@
 # Modül 1 – Şebeke Karakterini Koruyan Bias – İmalat Dosyası
 
-> **Kayıt durumu: ŞABLON / FİZİKSEL İMALAT BİLGİLERİ HENÜZ DOLDURULMADI**
+> **Kayıt durumu: FİZİKSEL İMALAT TAMAMLANDI – ELEKTRİKSEL İŞLEV VE GÜVENLİK DOĞRULAMASI AYRI**
 >
-> Bu dosya, modülün fiziksel kurulumu gerçek donanım üzerinde incelenip doğrulandıkça doldurulur. Aşağıdaki başlıklar bir kontrol listesidir; boş alanlar hakkında tahmin yürütülmez.
+> Kullanıcı bildirimi: Modül kapalı bir kutu içine alınarak imal edildi; bağlantılar soketli yapıldı. Bu kayıt fiziksel imalatın tamamlandığını belirtir. Devrenin elektriksel işlevi, izolasyonu ve güvenlik uygunluğu ölçüm/kontrol kayıtlarıyla ayrıca doğrulanacaktır.
 
 ## 1. Modülün amacı ve kapsamı
 
@@ -11,7 +11,7 @@
 - **Karşılaştırma yaklaşımı:** ESP'nin 3,3 V beslemesinden oluşturulan bias ayrı bir yöntemdir. Bu yöntem şebeke sinyalini taşımaz; ADC için DC çalışma noktası/referansı oluşturur.
 - **1,65 V seviyesi:** Bias yapısının tanımı değildir. 1,65 V seviyesinin hangi ara işlemle elde edildiği, devrenin bileşen standardından ayrı bir uygulama süreci olarak açıklanacaktır.
 - **Bias yapısı standardı:** Gerçek devrede kullanılan dirençler ve kondansatör(ler), değerleri, toleransları ve bağlantı biçimleri doğrulandıktan sonra yeniden kurulabilir bir standart olarak tanımlanacaktır.
-- **Fiziksel kapsam:** Kullanıcı breadboard üzerinde kurulduğunu bildirdi; gerçek yerleşim ve bağlantılar henüz kaydedilmedi.
+- **Fiziksel kapsam:** Modülün kapalı kutu içine alınarak imal edildiği ve bağlantıların soketli olduğu kullanıcı tarafından bildirildi. Breadboard üzerindeki önceki kurulum bilgisi tarihsel kayıttır; güncel fiziksel montajın ayrıntılı yerleşimi ayrıca fotoğraf/şema ile kaydedilmelidir.
 - **ESP kullanımı:** ESP kaynaklı bias karşılaştırma yaklaşımıdır. ESP'nin modüle kalıcı atanması henüz belirlenmedi.
 
 ## 2. Donanım ve malzeme listesi
@@ -33,7 +33,7 @@ Ortak donanım ve envanter kayıtları ana depodaki `DONANIM/` ve `ENVANTER/` al
 
 ## 3. Elektriksel bağlantılar
 
-- **Bağlantı şeması:** Henüz eklenmedi. Breadboard fotoğrafları dirençlerin orta nokta düzenini gösteriyor; delik/satır bazında kesin bağlantı şeması henüz çıkarılmadı.
+- **Bağlantı şeması:** Soketli bağlantı yapısı kullanıcı tarafından bildirildi. Soketlerin pin dizilimi, karşılıklı bağlantıları ve devre üzerindeki görevleri henüz şema ile kayıt altına alınmadı.
 - **Trafo sekonderi, doğrultucu, filtre ve L78L33 bağlantıları:** Henüz doğrulanmadı.
 - **Genel bias orta nokta yapısı:** İki eşit direnç seri gerilim bölücü olarak kullanılır; bias çıkışı iki direncin birleşim noktasından alınır. Yapı belirli bir trafoya özgü değildir ve uygun DC kaynakla uygulanabilir. İdeal/yüksüz durumda orta nokta kaynak geriliminin yaklaşık yarısıdır; kaynak gerilimi değişirse bias gerilimi de değişir.
 - **Bu modülde ölçülen dirençler:** Her iki direnç devreden ayrılarak 9,82 kΩ ölçüldü. İki ölçüm de aynı değerdedir; 10 kΩ nominal sınıfıyla uyumludur.
@@ -54,9 +54,10 @@ Ortak donanım ve envanter kayıtları ana depodaki `DONANIM/` ve `ENVANTER/` al
 ## 4. Fiziksel yerleşim ve montaj
 
 - **Kartların ve bileşenlerin yerleşimi:** Henüz kaydedilmedi.
-- **Kutu / montaj biçimi:** Henüz kaydedilmedi.
-- **Kablo güzergâhı ve sabitleme:** Henüz kaydedilmedi.
-- **Sökme / yeniden kurma notları:** Henüz kaydedilmedi.
+- **Kutu / montaj biçimi:** Kapalı kutu içinde montaj yapıldığı kullanıcı tarafından bildirildi. Kutu modeli, malzemesi, ölçüleri ve iç yerleşim fotoğrafla henüz belgelenmedi.
+- **Bağlantı biçimi:** Bağlantılar soketli. Soket tipi, pin numaraları ve kablo eşleşmeleri henüz kaydedilmedi.
+- **Kablo güzergâhı ve sabitleme:** Ayrıntı ve fotoğraf kaydı bekleniyor.
+- **Sökme / yeniden kurma notları:** Soketli yapı sökme/yeniden bağlama imkânı sağlar; doğru pin eşleşmesi ve enerjisiz bağlantı prosedürü ayrıca belgelenmelidir.
 
 ## 5. ESP ve yazılım eşleştirmesi
 
@@ -85,7 +86,7 @@ Gerçek montaj ve bağlantı fotoğrafları `FOTOGRAFLAR/`, çizimler ve şemala
 
 ## 8. Güvenlik ve sınırlamalar
 
-Henüz modüle özgü doğrulanmış güvenlik bilgisi kaydedilmedi. Şebeke gerilimi veya tehlikeli enerji içeren bağlantılar için uygun izolasyon, koruma ve enerjisiz çalışma prosedürü belirlenmeden montaj yapılmaz.
+Kullanıcı bildirimi: Modül kapalı kutu içinde ve bağlantıları soketlidir; kullanıcı fiziksel düzeni güvenli olarak tanımlamıştır. Bu fiziksel özellikler tek başına elektriksel güvenlik, galvanik izolasyon, dokunma koruması veya şebeke tarafı uygunluğunu kanıtlamaz. Bu başlıklar uygun ölçüm ve incelemeyle ayrıca doğrulanmalı; şebeke gerilimi içeren bağlantılarda enerjisiz çalışma ve uygun koruma/izolasyon koşulları sağlanmalıdır.
 
 ## 9. İmalat revizyon kayıtları
 
@@ -94,6 +95,7 @@ Henüz modüle özgü doğrulanmış güvenlik bilgisi kaydedilmedi. Şebeke ger
 | 2026-11-20 | Modül adı ve amacı “Şebeke Karakterini Koruyan Bias” olarak tanımlandı; 1,65 V üretiminin ayrı ara süreç olduğu kaydedildi | Bias yapısı ile 1,65 V elde etme yöntemini ayırmak | PREBERO karar kaydı |
 | 2026-11-20 | Trafo, doğrultucu, kondansatör, regülatör, breadboard ve ESP bias karşılaştırması ön envantere işlendi | Kullanıcı tarafından bildirilen mevcut parçaları kaybetmemek | Fiziksel inceleme bekliyor |
 | 2026-11-20 | Genel bias orta nokta yapısı iki eşit dirençli gerilim bölücü olarak kaydedildi. İki direnç ayrı ayrı 9,82 kΩ ölçüldü; 3,31 V kaynakta orta nokta 1,65 V gözlendi | Bias yapısının Modül 1 trafosundan bağımsız genel yöntem olduğunun ayrıştırılması | Kullanıcı ölçümleri ve breadboard fotoğrafları; kondansatör bağlantıları henüz doğrulanmadı |
+| 2026-11-21 | Fiziksel imalatın tamamlandığı; modülün kapalı kutu içine alındığı ve bağlantıların soketli olduğu kaydedildi | İmalat durumunu mevcut fiziksel yapıyla eşleştirmek | Kullanıcı bildirimi; kutu içi yerleşim fotoğrafı, soket pin şeması ve elektriksel güvenlik doğrulaması bekleniyor |
 
 ## 10. Yeniden kurulum kontrolü
 
@@ -105,5 +107,7 @@ Henüz modüle özgü doğrulanmış güvenlik bilgisi kaydedilmedi. Şebeke ger
 - [ ] İlgili kod sürümü ve test durumu kontrol edildi.
 - [ ] İlk çalıştırma logu ve sonuç raporu kaydedildi.
 - [ ] Fotoğraf ve şemalar güncel.
+
+**Durum notu:** Fiziksel imalat tamamlanmıştır. Bu ifade işlev testi, şebeke karakterinin SCT013'e aktarılması veya elektriksel güvenlik doğrulamasının tamamlandığı anlamına gelmez.
 
 **Not:** Bu kontrol listesi tamamlanmadan modülün yeniden imalatı veya doğrulanmış devreye alımı tamamlandı kabul edilmez.
