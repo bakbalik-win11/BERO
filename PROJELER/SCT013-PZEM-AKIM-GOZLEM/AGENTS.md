@@ -22,7 +22,7 @@ Projede yalnızca iki ana faz vardır:
 1. **Faz 1 — Çalışan kodu bulmak ve ±%4 hedefine ulaşmak: TAMAMLANDI.** Dış kaynaklı kodla hedef sağlandı. Faz 1 kapsamındaki yapılmamış işler hedefe ulaşıldığı için kapatılmıştır; eski deney dosyaları tarihsel arşivdir.
 2. **Faz 2 — Pratik yeniden kurulum ve sistem geliştirme: AKTİF.** Faz 2, yalnız mevcut kodu PZEM ile eğitme aşaması değildir. Kayıtlı kodlar ve çalışan örneklerden yararlanarak modüller/ESP düğümleri yeniden devreye alınır, temel işlevleri gerçek donanımda doğrulanır ve sistem geliştirilir. PZEM referanslı veri aktarımı/etiketleme bu işleyen sistemin sonraki alt aşamasıdır.
 
-T009, Faz 2'nin genel modül/ESP devreye alma üst görevidir. İlk somut modül görevi T010 — Modül 2 ESP32D1 üçlü SCT okuma modülüdür. T010 tamamlandıkça diğer modül işleri açılır; PZEM/SCT düğümleri çalışınca T007 → T008 → T006 veri/öğrenme alt aşaması yürütülür. Her oturumda STATUS.md içindeki tek aktif görev üzerinde çalış. Faz 1 deneylerini yeniden açma. Yeni deneyler ancak gerçek bir uygulama/ölçüm sorusu ortaya çıktığında yeni numaralarla planlanır.
+T009, Faz 2'nin pratik devreye alma üst görevidir. T010 eski Modül 2 görevidir ve kapatılmıştır; güncel fiziksel modül kimlikleri için ADR-033 esastır. Güncel aktif sıra: önce Modül 4'te biaslı/bias'sız karşılaştırma, ardından osiloskopla sinyal incelemesi ve bias gerekliliği kararı; bundan sonra PREBERO Modül 5/6/7 için bias besleme mimarisinin (ESP'den besleme veya Modül 1'in ikiz bias devreleri) değerlendirilmesi. Bu sıra ADR-034'te tanımlıdır. Bias kararı deneyden önce verilmez. Her oturumda STATUS.md içindeki aktif aşamada çalış. Faz 1 deneylerini yeniden açma; yeni deneyler somut uygulama/ölçüm sorularına göre planlanır.
 
 ## Pratik geliştirme ilkesi
 
@@ -70,13 +70,14 @@ Etiketsiz teknik iddia yazma.
 - **KAPATILDI — HEDEFE ULAŞILDI:** Faz hedefi başka bir yolla sağlandığı için kalan iş yapılmadan kapatıldı.
 - **ENGELLENDİ:** gereken erişim, donanım, karar veya test eksik.
 
-## Faz 2 görev sırası
+## Faz 2 güncel çalışma sırası
 
-1. T009 — Modül/ESP devreye alma üst görevi; ilk somut modül işi T010.
-2. T010 — Modül 2: ESP32D1 üçlü SCT + tek ortak bias okuma modülü.
-3. T007 — Çalışan PZEM/SCT düğümlerinin HA geçmişini PC'ye aktarma.
-4. T008 — PZEM/SCT kararlı alanlarını ayrı bulma, örtüşen alanları eşleştirme ve PZEM ile etiketleme.
-5. T006 — K=24.22 katsayısını değerlendirme; veri gerekçelendirirse model iyileştirme.
+1. **Modül 4 biaslı/bias'sız karşılaştırması.** Mevcut ESP32D2 + ADS1115 + SCT masaüstü düzeneğinde Modül 1 kullanılarak iki koşul karşılaştırılır.
+2. **Osiloskopla inceleme.** Biaslı ve bias'sız sinyal yapısı birlikte gözlenir; gerçek dalga biçimleri ve ayarlar kaydedilir.
+3. **Bias gerekliliği kararı.** Ölçüm ve osiloskop bulgularına göre karar verilir; önceden bias zorunlu veya gereksiz kabul edilmez.
+4. **PREBERO Modül 5/6/7 bias mimarisi.** Bias gerekiyorsa ESP beslemesinden üretme ve Modül 1'in ikiz devrelerini imal etme seçenekleri karşılaştırılır. Henüz seçim yoktur.
+
+Bu aktif sıra, eski T010/T007/T008/T006 görev tarihçesini silmez; önceki eğitim/veri hattı görevleri yalnızca güncel aktif iş sırasını belirlemez. Ayrıntı: [ADR-034](docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md).
 
 ## HEDEF / LOG / SONUÇ standardı
 
