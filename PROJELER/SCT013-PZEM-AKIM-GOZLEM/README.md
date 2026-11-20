@@ -47,7 +47,7 @@ Modül kimlikleri ve PREBERO tanımı: [ADR-033](docs/decisions/ADR-033-module-i
 - update_interval: 2s.
 - Mevcut katsayı K=24.22.
 
-Bu ayarlar Faz 1'deki çalışan yolun tarihsel referansıdır. Faz 2'de yeni modül/ESP kurulumuna başlangıç noktası olabilir; yeni donanım ve işlev gerektirirse kontrollü biçimde uyarlanabilir. Her değişiklik ayrı kaydedilir ve derleme/gerçek donanım testiyle doğrulanır. [Firmware kaydı](firmware/esp32d2.yaml).
+Bu ayarlar önceki çalışan ölçüm yolunun tarihsel referansıdır. Güncel Modül 4 bias karşılaştırmasında kullanılan ayarlar ayrıca deney kaydında sabitlenecek; bu tarihsel baseline otomatik olarak yeni deneyin ayarı kabul edilmeyecektir. Her değişiklik ayrı kaydedilir ve derleme/gerçek donanım testiyle doğrulanır. [Firmware kaydı](firmware/esp32d2.yaml).
 
 ## Donanım referansları
 
