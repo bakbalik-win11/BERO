@@ -1,3 +1,20 @@
+## 2026-11-20 — BERO deposu için haftalık bütünlük kontrolü kararı
+
+### KARAR
+- Kullanıcı, BERO deposunun bütünlüğünün her hafta kontrol edilmesini istedi.
+- Kontrol tüm depoyu kapsayacak; yalnızca SCT013-PZEM alt projesine indirgenmeyecek.
+- Kontrol; Git çalışma ağacı ve nesneleri, dosya/klasör yapısı, yerel dokümantasyon bağlantıları, durum/indeks tutarlılığı, kod ve deney kayıtlarının izlenebilirliği, GitHub Actions sonuçlarını kapsayacak.
+
+### DEPOYA EKLENENLER
+- Genel prosedür: [docs/DEPOT-BUTUNLUK-KONTROLU.md](../../docs/DEPOT-BUTUNLUK-KONTROLU.md)
+- Global çalışma protokolüne haftalık kontrol şartı eklendi: [CALISMA_KAYDI_PROTOKOLU.md](../../CALISMA_KAYDI_PROTOKOLU.md)
+- Proje AGENTS dosyasına haftalık kontrol bağlantısı eklendi.
+
+### SINIR / DURUM
+- Prosedür ve kayıt kuralı depoya eklendi.
+- Bu oturumda yerel klonda `git fsck --full`, `git diff --check` ve tüm bağlantıların uçtan uca denetimi çalıştırılmadı.
+- Bu nedenle bugünkü tam depo bütünlük kontrolü **yapılmış veya temiz olarak raporlanmış değildir**. İlk haftalık kontrol ayrı bir raporla yürütülecek.
+
 ## 2026-11-14 — E24 test basamağı / nihai tek ESP32 hedefi düzeltmesi
 
 ### KULLANICI DÜZELTMESİ
