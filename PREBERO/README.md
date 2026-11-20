@@ -198,7 +198,9 @@ Bu açıklama, kodu tek başına inceleyen bir kişinin temel amacı, donanım b
 
 
 
-**Bias yapısı standardı:** Bir modülde kullanılacak bias devresinin direnç ve kondansatör bileşenleri, gerçek devre ve ölçümle belirlendikten sonra değerleri, toleransları ve bağlantı biçimleriyle tarif edilir. Böylece “bias şu dirençlerden ve şu kondansatörden oluşur” şeklinde yeniden kurulabilir bir standart oluşturulur. 1,65 V seviyesinin nasıl elde edildiği bu standardın kendisi değildir; ayrı bir ara süreç/uygulama adımı olarak belgelenir. Doğrulanmamış değerler standart olarak yayımlanmaz.
+**Genel bias orta nokta standardı:** Bias orta noktası, uygun bir DC kaynağın iki eşit değerli dirençle seri bölünmesi ve iki direncin birleşim noktasından alınır. Orta nokta gerilimi, ideal ve yüksüz durumda kaynak geriliminin yaklaşık yarısıdır. Örneğin 3,3 V kaynak ve iki adet 10 kΩ direnç kullanıldığında orta nokta yaklaşık 1,65 V olur. Bu yapı belirli bir trafoya özgü değildir; uygun DC kaynakla uygulanabilen genel bir gerilim bölücü yaklaşımıdır. Ancak kaynak gerilimi değişirse orta nokta da değişir; 1,65 V her kaynakta sabit kalmaz. Kaynağın uygunluğu, yük etkisi, direnç güç/tolerans değerleri ve kondansatör bağlantıları uygulama bazında değerlendirilir.
+
+Bir modülde kullanılacak bias devresinin direnç ve kondansatör bileşenleri, gerçek devre ve ölçümle belirlendikten sonra değerleri, toleransları ve bağlantı biçimleriyle tarif edilir. Böylece “bias şu dirençlerden ve şu kondansatörden oluşur” şeklinde yeniden kurulabilir bir standart oluşturulur. 1,65 V seviyesinin elde edilmesi, genel orta nokta yapısının belirli bir kaynakla uygulanmasıdır; kaynak ve uygulama ayrıntıları ilgili modülün imalat dosyasında ayrıca belgelenir. Doğrulanmamış değerler standart olarak yayımlanmaz.
 
 ### Modül imalat dosyası
 
