@@ -34,4 +34,4 @@ Her aşamada HEDEF / LOG / SONUÇ kaydı tutulur. Osiloskop ekran görüntüsü,
 ## İlgili kayıtlar
 
 - [ADR-033 — Modül kimlikleri ve PREBERO](ADR-033-module-identities-desktop-and-prebero.md)
-- [Modül 4 masaüstü düzenek ve deney kayıtları](../devices/README.md)
+- [ADR-033 — Modül kimlikleri ve PREBERO](ADR-033-module-identities-desktop-and-prebero.md)
