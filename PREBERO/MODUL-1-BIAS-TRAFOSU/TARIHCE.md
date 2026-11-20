@@ -46,3 +46,12 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Çalışma / karar:** Kullanıcı, Modül 1'in imalat amacını açıkça tanımladı: şebeke karakterini SCT013'e yansıtmak.
 - **Teknik karar:** Modül 1'in ana amacı, şebeke karakterini SCT013 akım trafosunun ölçüm sinyaline yansıtacak bias yapısını imal etmektir. Bias yapısının SCT013 sinyaline etkisi ve karakteri koruyup korumadığı deneyle incelenecektir. Bu ifade tasarım/imalat hedefidir; başarı veya doğrulama iddiası değildir.
 - **İlgili kayıtlar:** `PREBERO/MODUL-1-BIAS-TRAFOSU/IMALAT/IMALAT.md`; `PREBERO/DURUM.md`.
+
+### 2026-11-21 – Fiziksel imalatın tamamlanması
+
+- **Görev kimliği:** Henüz atanmadı.
+- **Çalışma / durum bildirimi:** Kullanıcı, Modül 1'in fiziksel olarak imal edildiğini bildirdi. Modül kapalı kutu içine alındı ve bağlantılar soketli olarak düzenlendi.
+- **Gözlenen sonuç:** Bu kayıt kullanıcı beyanına dayanır. Kutu içi yerleşim, soket tipleri ve pin eşleşmeleri henüz fotoğraf/şema ile belgelenmedi.
+- **Edinilen tecrübe:** Soketli bağlantı yapısı modülün sökülüp yeniden bağlanmasını kolaylaştırır; yeniden bağlantı için soket-pin eşleşmelerinin açıkça belgelenmesi gerekir.
+- **Teknik karar:** Modül 1'in fiziksel imalat durumu tamamlandı olarak işaretlendi. İşlev testi, şebeke karakterinin SCT013'e aktarılması, izolasyon ve elektriksel güvenlik doğrulaması ayrı aşamalar olarak açık tutuldu. Kapalı kutu ve soketli bağlantı bilgisi tek başına elektriksel güvenlik doğrulaması sayılmaz.
+- **İlgili kayıtlar:** `PREBERO/MODUL-1-BIAS-TRAFOSU/IMALAT/IMALAT.md`; `PREBERO/DURUM.md`. Fotoğraf, soket pin şeması ve test kayıtları henüz eklenmedi.
