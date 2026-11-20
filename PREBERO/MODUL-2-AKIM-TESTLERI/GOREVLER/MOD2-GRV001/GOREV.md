@@ -14,10 +14,9 @@ Masaüstü 4 kanal düzeninde elde edilen akım okumasının sinyal davranışı
 
 ## Çıktılar
 
-- Kullanılan kodlar: KOD/
-- Test verileri: VERI/
-- Ham çalışma logları: LOG/
-- Analiz ve sonuç raporları: RAPOR/
+- Her kod sürümünün YAML dosyası, logları ve raporları aynı görev klasörünün altındaki kendi sürüm klasöründe tutulur.
+- Test verileri görev klasöründeki ortak `VERI/` alanında saklanır.
+- Bir sürümün test kanıtları başka bir sürümün kayıtlarıyla karıştırılmaz.
 
 ## Tamamlanma ölçütü
 
@@ -34,19 +33,26 @@ Bu görev henüz tamamlanmış değildir.
 
 ## Bu görevin sürümlü çıktı düzeni
 
-Her kod sürümünün kodu, logları ve raporları birbirine açıkça bağlanır. Örnek düzen:
+YAML, LOG ve RAPOR her kod sürümü için tekrarlanan sürüm klasörlerinde birlikte tutulur:
 
 ```text
-KOD/
-└── MOD2-GRV001_V1.0.yaml
-
-LOG/
-└── MOD2-GRV001_V1.0/
-    └── [bu sürümün gerçek çalışma logları]
-
-RAPOR/
-└── MOD2-GRV001_V1.0/
-    └── [bu sürümün test sonucu ve teknik yorumu]
+MOD2-GRV001/
+├── GOREV.md
+├── VERI/
+├── V1.0/
+│   ├── MOD2-GRV001_V1.0.yaml
+│   ├── LOG/
+│   │   └── [bu sürümün gerçek çalışma logları]
+│   └── RAPOR/
+│       └── [bu sürümün test sonucu ve teknik yorumu]
+└── V1.1/
+    ├── MOD2-GRV001_V1.1.yaml
+    ├── LOG/
+    └── RAPOR/
 ```
 
-Yeni bir yama `V1.1` gibi yeni bir kod sürümü oluşturur. Önceki sürümün kodu, logları ve raporları değiştirilmeden korunur. Yeni sürümün test kayıtları kendi sürüm klasörüne yazılır.
+- Her yeni kod sürümü için görev klasörünün altında yeni bir sürüm klasörü açılır.
+- YAML dosyası doğrudan sürüm klasöründe bulunur; LOG ve RAPOR alt klasörleri aynı sürüm klasörünün içindedir.
+- `VERI/` görev genelindeki test verileri için ortak alandır.
+- Önceki sürümün kodu, logları ve raporları değiştirilmeden korunur.
+- Yeni sürümün test kayıtları yalnızca kendi sürüm klasörüne yazılır.
