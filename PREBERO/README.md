@@ -90,17 +90,38 @@ Her kod dosyasının başında en az şu bilgiler bulunur:
 
 ESP üzerinde çalışan kodda bu bilgiler kaynak kod başlığında bulunur. Uygun olduğunda açılış loguna da modül, görev ve sürüm bilgisi yazdırılır. Böylece kod dosyasına veya ESP loguna bakıldığında hangi modülün hangi görev sürümünün çalıştığı anlaşılır.
 
-### Sürümlü dosya, log ve rapor düzeni
+### Sürümlü görev çıktı düzeni
 
-- Her kod değişikliği yeni bir sürüm dosyası oluşturur. Eski sürüm dosyaları değiştirilmez, üzerine yazılmaz ve silinmez.
-- Kod dosyası adı: `MOD2-GRV001_V1.0.yaml` biçimindedir.
-- Her sürümün logları ve raporları aynı görev klasöründe, o sürümün kimliğiyle ayrılmış alt klasörlerde tutulur:
-  - `KOD/MOD2-GRV001_V1.0.yaml`
-  - `LOG/MOD2-GRV001_V1.0/`
-  - `RAPOR/MOD2-GRV001_V1.0/`
-- Log ve rapor dosyaları da ait oldukları görev kimliği ve kod sürümüyle adlandırılır. Gerekirse dosya adına tarih ve test sıra numarası eklenir.
-- Bir kod sürümünün test durumu yalnızca o sürümün gerçek test kanıtına göre güncellenir. Yeni sürüm önceki sürümün loglarını veya raporlarını devralmış sayılmaz.
-- Başarısız, eksik veya başarılı testlerin tüm kayıtları ilgili sürümün altında korunur. Yeni yama yeni sürüm olarak açılır; önceki sürüm aynen kalır.
+Her görev klasöründe YAML, LOG ve RAPOR çıktıları kod sürümüne göre tekrarlanan sürüm klasörlerinde tutulur. Her sürüm kendi kodunu ve yalnızca o sürüme ait test kanıtlarını birlikte barındırır.
+
+Örnek görev yapısı:
+
+```text
+MOD2-GRV001/
+├── GOREV.md
+├── VERI/
+├── V1.0/
+│   ├── MOD2-GRV001_V1.0.yaml
+│   ├── LOG/
+│   └── RAPOR/
+├── V1.1/
+│   ├── MOD2-GRV001_V1.1.yaml
+│   ├── LOG/
+│   └── RAPOR/
+└── V2.0/
+    ├── MOD2-GRV001_V2.0.yaml
+    ├── LOG/
+    └── RAPOR/
+```
+
+- Sürüm klasörü doğrudan görev klasörünün altında açılır: `V1.0/`, `V1.1/`, `V2.0/` gibi.
+- YAML dosyası sürüm klasöründe ve `MOD2-GRV001_V1.0.yaml` biçiminde adlandırılır.
+- Her sürüm klasörünün kendi `LOG/` ve `RAPOR/` alt klasörleri bulunur.
+- Log ve rapor dosyaları görev kimliği ve kod sürümüyle adlandırılır. Gerekirse dosya adına tarih ve test sıra numarası eklenir.
+- `VERI/` görev klasöründe ortak veri alanı olarak kalır; sürümle ilişkili test logları ve sonuç raporları ise ilgili sürüm klasöründedir.
+- Bir kod sürümünün test durumu yalnızca o sürümün gerçek test kanıtına göre güncellenir. Yeni sürüm önceki sürümün loglarını veya raporlarını devralmaz.
+- Başarısız, eksik veya başarılı testlerin tüm kayıtları ilgili sürümün altında korunur. Yeni yama yeni sürüm klasöründe açılır; önceki sürüm aynen kalır.
+- Kod değişmeden yalnızca test durumu güncellenirse yeni sürüm klasörü açılmaz; mevcut sürümün ilgili kayıtları tamamlanır.
 
 ## Dokümantasyon ayrımı
 
