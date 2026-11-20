@@ -82,18 +82,17 @@ Her kod dosyasının başında en az şu bilgiler bulunur:
 
 ESP üzerinde çalışan kodda bu bilgiler kaynak kod başlığında bulunur. Uygun olduğunda açılış loguna da modül, görev ve sürüm bilgisi yazdırılır. Böylece kod dosyasına veya ESP loguna bakıldığında hangi modülün hangi görev sürümünün çalıştığı anlaşılır.
 
-### Dosya ve çıktı düzeni
+### Sürümlü dosya, log ve rapor düzeni
 
-Her görevin kendi klasörü bulunur. Göreve ait tüm çalışmalar bu klasörde tutulur:
-
-- `KOD/`: Kaynak kodlar ve sürümlü kod dosyaları.
-- `VERI/`: Deney verileri ve ham/işlenmiş veri çıktıları.
-- `LOG/`: Gerçek çalışma logları ve test kayıtları.
-- `RAPOR/`: Analizler, sonuç yorumları ve deney raporları.
-
-Dosya adlarında gerektiğinde görev kimliği ve kod sürümü birlikte kullanılır. Örnek: `MOD2-GRV001_V1.0.yaml`.
-
-Başarılı bir kod sürümü, o sürümle alınmış gerçek test logu ve logun teknik yorumu aynı görev klasöründe saklanır. Test edilmemiş veya doğrulanmamış kod başarılı/kararlı sürüm olarak işaretlenmez.
+- Her kod değişikliği yeni bir sürüm dosyası oluşturur. Eski sürüm dosyaları değiştirilmez, üzerine yazılmaz ve silinmez.
+- Kod dosyası adı: `MOD2-GRV001_V1.0.yaml` biçimindedir.
+- Her sürümün logları ve raporları aynı görev klasöründe, o sürümün kimliğiyle ayrılmış alt klasörlerde tutulur:
+  - `KOD/MOD2-GRV001_V1.0.yaml`
+  - `LOG/MOD2-GRV001_V1.0/`
+  - `RAPOR/MOD2-GRV001_V1.0/`
+- Log ve rapor dosyaları da ait oldukları görev kimliği ve kod sürümüyle adlandırılır. Gerekirse dosya adına tarih ve test sıra numarası eklenir.
+- Bir kod sürümünün test durumu yalnızca o sürümün gerçek test kanıtına göre güncellenir. Yeni sürüm önceki sürümün loglarını veya raporlarını devralmış sayılmaz.
+- Başarısız, eksik veya başarılı testlerin tüm kayıtları ilgili sürümün altında korunur. Yeni yama yeni sürüm olarak açılır; önceki sürüm aynen kalır.
 
 ## Takip ve dokümantasyon sorumluluğu
 
@@ -102,6 +101,15 @@ Başarılı bir kod sürümü, o sürümle alınmış gerçek test logu ve logun
 - Göreve özgü teknik ayrıntılar, kod, veri, log ve raporlar ilgili görev klasöründe tutulur.
 - Yeni bir oturumda çalışmaya başlamadan önce bu README ve `DURUM.md` okunur; ardından üzerinde çalışılacak görevin kendi klasörü incelenir.
 - Ana dizindeki `DONANIM/` ve `ENVANTER/` ortak donanım ve envanter bilgilerinin tek kaynağıdır. Bu bilgiler PREBERO altında kopyalanmaz.
+
+### Fiziksel ESP kimliği ve görev kimliği ayrımı
+
+- Her fiziksel ESP cihazı, ortak `ENVANTER/` içinde kendisine ait kalıcı ve benzersiz envanter kimliğiyle izlenir. Kimlik cihaza aittir; modül, görev veya kod sürümü değişince değişmez.
+- ESP cihaz adı (ESPHome node adı / Home Assistant cihaz kimliği) fiziksel cihazın sabit adıdır. Kod sürümü veya görev değiştiğinde kendiliğinden değiştirilmez.
+- Modül ve görev kimliği yazılımın hangi çalışmaya ait olduğunu belirtir; fiziksel ESP kimliğinin yerine geçmez.
+- Bir ESP başka modülde veya görevde yeniden kullanılırsa fiziksel kimliği aynı kalır; yalnızca o sürümün görev bilgisi değişir.
+- Görev dosyasında kullanılan fiziksel ESP envanter kimliği ve ESPHome cihaz adı açıkça belirtilir. Cihaz henüz seçilmediyse kimlik uydurulmaz; atama yapılana kadar bu durum belirtilir.
+- ESP kaynak kodu/YAML başlığında en az fiziksel ESP envanter kimliği, sabit ESPHome cihaz adı, modül, görev, kod sürümü ve test durumu bulunur. Açılış logunda da mümkün olduğunda bu kimlikler gösterilir.
 
 ### ESP cihaz adı ve YAML teslim standardı
 
