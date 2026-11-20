@@ -16,7 +16,7 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 
 - **Aktif modül:** Modül 2 – Masaüstü 4 Kanal / Akım Testleri
 - **Aktif görev:** MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
-- **Çalışma odağı:** ESP32-D geliştirme kartı ve ESP32 shield ile masaüstü deney düzeneğinin imalatı; ardından sinyal/akım davranışını gözlemlemek ve test kayıtlarını MOD2-GRV001 altında tutmak. Paylaşılan görsel temsildir; kesin kart modeli ve pinout değildir. Modül 1, gerektiğinde bu deney düzenine bias gerilimi sağlayan mevcut donanımdır.
+- **Çalışma odağı:** ESP32-D geliştirme kartı + ESP32 shield, SCT013 30A/1V akım sensörü ve ADS1115 ara entegresiyle masaüstü deney düzeneğinin imalatı; ardından sinyal/akım davranışını gözlemlemek ve test kayıtlarını MOD2-GRV001 altında tutmak. Paylaşılan ESP32/shield görseli temsildir; kesin kart modeli ve pinout değildir. Modül 1, gerektiğinde bu deney düzenine bias gerilimi sağlayan mevcut donanımdır.
 
 ## İlerleme kuralı
 
