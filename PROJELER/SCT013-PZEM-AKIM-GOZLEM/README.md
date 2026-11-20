@@ -1,45 +1,42 @@
 # SCT013 – PZEM Akım Gözlem
 
-## BERO üst mimarisi
+## Bu çalışmanın yeri
 
-Bu klasör BERO'nun sensörden bağımsız mimarisinin kendisi değil, ilk SCT013 + PZEM uygulamasıdır. Ortak üç katmanlı yapı (veri toplama → özellik çıkarma → davranış çıkarımı) ve sensörler arası tasarım ilkeleri [BERO Mimari](../../MIMARI/README.md) altında tutulur. Bu projedeki SCT/CT'ye özgü ayarlar ve kanıtlar burada kalır.
+Bu klasör, BERO'nun akım gözlem alt projesidir. BERO'nun tamamı değildir.
 
-## Projenin amacı
+## Şu anki amaç
 
-BERO'nun bu alt projesi, SCT013 akım sensöründen elde edilen ölçüm çıktısını çalışan bir kod yolu üzerinden izlemek ve PZEM-004T V3.0 referans akışıyla karşılaştırarak zaman içinde geliştirmektir.
+Önce masaüstündeki **Modül 4 (ESP32D2 + ADS1115 + SCT)** ile hedeflediğimiz akım aralığında ölçüm alabildiğimizi gözlemliyoruz. ADS1115 + SCT düzeniyle istenen aralıkta akım okunabildiğine dair mevcut deney kayıtları vardır. Şimdi aynı masaüstü düzeneğinde bias'lı ve bias'sız bağlantıyı karşılaştıracağız.
 
-Proje iki ana fazdan oluşur:
+Bu karşılaştırmanın amacı bias'ın ölçüme gerçekten gerekli bir katkı sağlayıp sağlamadığını anlamaktır. Ardından iki yapının sinyalini osiloskopta birlikte inceleyeceğiz. **Bias gerekli mi sorusunun cevabı henüz verilmedi.**
 
-- **Faz 1 — Çalışan kodu bulmak ve ±%4 hedefine ulaşmak: TAMAMLANDI.** Dış kaynaklı ESPHome ct_clamp koduyla hedef sağlandı.
-- **Faz 2 — Pratik yeniden kurulum ve sistem geliştirme: AKTİF.** Kayıtlı kod ve çalışan örneklerden yararlanarak modüller ve ESP düğümleri tek tek devreye alınacak; ardından PZEM referanslı veri aktarımı, kararlı alan eşleştirme ve model iyileştirmesi yapılacak.
+Bias gerekli bulunursa, PREBERO Modül 5/6/7 için bias'ın ESP beslemesinden üretilmesi mi yoksa Modül 1'deki trafo/güç kutusu yapısının ikizlerinin yapılması mı gerektiğini ayrıca değerlendireceğiz. Bu besleme mimarisi de henüz seçilmedi.
 
-Bu proje enerji analizörü, güç kalitesi analizörü veya harmonik analiz sistemi değildir.
+## Çalışma sırası
 
-## Faz 1 — kapanış sonucu
+1. Modül 4'te aynı ölçüm zinciriyle bias'lı ve bias'sız gözlem.
+2. Bias'lı ve bias'sız sinyalleri osiloskopta inceleme.
+3. Ölçüm ve sinyal gözlemlerine dayanarak bias gerekliliğine karar verme.
+4. Bias gerekiyorsa PREBERO Modül 5/6/7 için bias besleme yöntemini seçme.
+5. Ölçüm zinciri hedeflenen kullanım için yeterliyse PREBERO saha gözlemlerine geçme.
 
-Dış kaynaklı çalışan kodla yapılan karşılaştırmalar:
+Bu sıra dışında yeni bir ölçüm mimarisi, çok kanallı sistem veya eğitim/veri hattı şu anki işin ön koşulu değildir. Önce elimizdeki masaüstü ölçüm düzeneğinin yeterliliğini ve bias ihtiyacını netleştiriyoruz.
 
-| Yük koşulu | Referans | Kod sonucu | Sapma |
-|---|---:|---:|---:|
-| 100 W akkor | 0,446–0,447 A | 0,4471 A | yaklaşık %0 |
-| 150 W akkor | 0,616 A | 0,615 A | −%0,2 |
-| Kettle düşük/kararlı | 0,637 A | 0,656 A | +%3,0 |
-| Kettle kaynama | 6,39 A | 6,15 A | −%3,8 |
+## PREBERO
 
-Dört karşılaştırmanın tamamı ±%4 sınırındadır. Faz 1 hedefi sağlandığı için bu fazın yapılmamış deney ve işleri de kapatılmıştır. Eski deney kayıtları silinmez; [Faz 1 deney arşivinde](experiments/README.md) tutulur. Kapatılan bir planın fiziksel olarak yapılmış olduğu iddia edilmez. Karar: [ADR-009](docs/decisions/ADR-009-measurement-target-met-close-raw-capture.md).
+PREBERO, BERO'nun kurulacağı eve taşınma gerçekleşene kadar Sarıyer'deki mevcut evde yürütülecek hazırlık, gözlem ve veri toplama dönemidir. Bu kapsamda:
+- **Modül 5:** Çamaşır makinesi gözlemi.
+- **Modül 6:** Bulaşık makinesi gözlemi.
+- **Modül 7:** Ana elektrik hattı + PZEM gözlemi.
 
-## Faz 2 — güncel çalışma
+Modül 5, 6 ve 7'nin tamamı PREBERO kapsamındadır. Bu modüller henüz imal edilmiş veya çalışır durumda kabul edilmez.
 
-Faz 2, yeni bir pratik başlangıçtır: önce çalışan kod/örnek bulunur, kayıtlı YAML ve donanım bilgileri başlangıç referansı olarak kullanılır, modüller ve ESP düğümleri tek tek devreye alınır. Her modül için derleme, bağlantı ve gerçek donanım çıktısı ayrı doğrulanır. Başarılı kod, gerçek log/çıktı ve yorum depoda saklanır.
+## Önceki çalışmaların yeri
 
-Genel üst görev **T009 — modülleri ve ESP düğümlerini pratik olarak yeniden devreye alma**. İlk somut modül görevi **T010 — Modül 2 ESP32D1 üçlü SCT okuma modülü**. Manyetik teori veya ESP32 ADC iç mimarisi, somut bir sorun veya uygulama kararı gerektirmediği sürece çalışma odağı yapılmaz. Önceki araştırmalar tarihsel teknik referans olarak korunur.
+Önceki SCT/ADC denemeleri, ADS1115 düşük akım karşılaştırmaları, PZEM gözlemleri ve eski Modül 2/3 çalışmaları tarihsel teknik kayıt olarak korunur. Bunlar bugünkü çalışma sırasını belirleyen aktif görevler değildir. Önceki ölçüm sonuçları, yalnızca gerçekten test edilmiş koşullarla sınırlı kanıt olarak değerlendirilir.
 
-Modüller çalışır ve gerçek Home Assistant entity akışları oluşur hâle geldikten sonra:
-1. T007 — HA → PC veri aktarımı.
-2. T008 — PZEM ve SCT kararlı alanlarını ayrı bulma, örtüşen alanları eşleştirme ve PZEM ile etiketleme.
-3. T006 — mevcut K=24.22 katsayısını değerlendirme; yalnız veri gerekçelendirirse iyileştirme.
-
-Faz 2 kapsamı: [ADR-014](docs/decisions/ADR-014-phase2-practical-restart.md). Üst görev: [T009](tasks/T009-practical-system-bringup.md). İlk modül görevi: [T010](tasks/T010-module2-triple-sct-bringup.md).
+Ayrıntılı bias karar sırası: [ADR-034](docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md).
+Modül kimlikleri ve PREBERO tanımı: [ADR-033](docs/decisions/ADR-033-module-identities-desktop-and-prebero.md).
 
 ## Çalışan ölçüm baseline'ı
 
@@ -67,12 +64,9 @@ Bu ayarlar Faz 1'deki çalışan yolun tarihsel referansıdır. Faz 2'de yeni mo
 2. [STATUS.md](STATUS.md) — güncel aktif görev.
 3. [ROADMAP.md](ROADMAP.md) — yalnız iki ana faz.
 4. [PROGRESS_TREE.md](PROGRESS_TREE.md) — genel görünüm.
-5. [tasks/README.md](tasks/README.md) — Faz 2 görev sırası.
-6. [T009](tasks/T009-practical-system-bringup.md) — genel devreye alma üst görevi.
-7. [T010](tasks/T010-module2-triple-sct-bringup.md) — ilk somut modül görevi.
-8. [T007](tasks/T007-python-architecture.md) — sonraki veri aktarımı adımı.
-9. [Python veri hattı mimarisi](docs/architecture/python-program-architecture.md).
-10. [Deney arşivi](experiments/README.md) — Faz 1 tarihçesi.
+5. [ADR-034](docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md) — güncel bias deney sırası.
+6. [Modül envanteri ve PREBERO](README.md#prebero).
+7. [Deney arşivi](experiments/README.md) — önceki teknik çalışmalar.
 11. [Karar kayıtları](docs/decisions/).
 
 ## Kapsam dışı
