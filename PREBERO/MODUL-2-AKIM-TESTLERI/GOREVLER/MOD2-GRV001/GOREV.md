@@ -4,13 +4,23 @@
 
 Masaüstü 4 kanal düzeninde elde edilen akım okumasının sinyal davranışını anlamak, testleri sürdürmek ve ölçüm katsayılarını deneysel gözlemlerle belirlemek.
 
+## Çalışma donanımı
+
+- Ana kontrol kartı: ESP32-D geliştirme kartı.
+- Taşıyıcı/bağlantı kartı: ESP32 shield.
+- ESP32-D kartı shield üzerine takılarak masaüstü deney düzeneği imal edilecektir.
+- Paylaşılan ürün görseli temsili yerleşim görselidir. Görsel, kullanılacak ESP32-D kartının kesin varyantını, GPIO eşleşmelerini veya shield üzerindeki terminal bağlantılarını doğrulamaz.
+- Fiziksel kartın tam modeli, shield modeli, pin bağlantıları, besleme ve çevre modülleri gerçek donanım üzerinden doğrulanınca imalat kaydına işlenecektir.
+
 ## Çalışma kapsamı
 
-1. Üretilen/ölçülen sinyali osiloskopta gözlemlemek.
-2. Gerekli görülen koşullarda biaslı ve biassız sinyali karşılaştırmak.
-3. Test koşullarını ve ölçüm sonuçlarını kaydetmek.
-4. Katsayıları ancak test sonuçları yeterli olduğunda belirlemek.
-5. Her testin logunu ve yorumunu bu görev altında saklamak.
+1. ESP32-D ve shield masaüstü düzeneğini imal etmek.
+2. Gerçek kart ve shield üzerindeki pinleri doğrulayıp bağlantı şemasını hazırlamak.
+3. Üretilen/ölçülen sinyali osiloskopta gözlemlemek.
+4. Gerekli görülen koşullarda biaslı ve biassız sinyali karşılaştırmak.
+5. Test koşullarını ve ölçüm sonuçlarını kaydetmek.
+6. Katsayıları ancak test sonuçları yeterli olduğunda belirlemek.
+7. Her testin logunu ve yorumunu bu görev altında saklamak.
 
 ## Çıktılar
 
@@ -26,10 +36,11 @@ Bu görev henüz tamamlanmış değildir.
 
 ## Kullanılan fiziksel ESP
 
-- **Fiziksel ESP envanter kimliği:** Henüz bu görev için atanmadı.
-- **ESPHome / Home Assistant cihaz adı:** Fiziksel cihaz seçilip envanter kaydıyla eşleştirildiğinde buraya yazılacak.
-- **Kimlik kuralı:** ESP kimliği cihaza aittir ve görev/kod sürümünden bağımsızdır. Aynı ESP başka görevde kullanılırsa fiziksel kimliği ve sabit cihaz adı değişmez.
-- **Atama notu:** Gerçek cihaz seçilmeden ESP kimliği veya cihaz adı tahmin edilerek yazılmayacak.
+- **Kart ailesi / çalışma tanımı:** ESP32-D.
+- **Shield:** ESP32 shield.
+- **Fiziksel ESP envanter kimliği:** İmal edilecek/kullanılacak fiziksel kart seçilip envantere eşleştirildiğinde yazılacak.
+- **ESPHome / Home Assistant cihaz adı:** Gerçek cihaz ve sabit ad doğrulandığında yazılacak.
+- **Not:** Paylaşılan görsel temsildir; kesin kart modeli veya pinout kanıtı değildir. Kimlik veya cihaz adı tahmin edilmeyecektir.
 
 ## Bu görevin sürümlü çıktı düzeni
 
