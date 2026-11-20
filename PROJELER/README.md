@@ -1,11 +1,9 @@
 # BERO projeleri
 
-Bu klasör, birden fazla donanım bileşenini ve deneyi birlikte kullanan çalışmaları tutar.
+## Aktif aşama
+- [PREBERO](PREBERO/README.md) — yeni çalışma aşaması. İlk iş ADS1115 teknik raporu; ardından masaüstü prototip, bias karşılaştırması, osiloskop ve Modül 4 tasarımı/imalatı.
 
-## Mimari
-- [BERO üst mimarisi](../MIMARI/README.md) — sensörden bağımsız tasarım ilkeleri ve pencereli sensör analizi.
+## Tarihsel arşiv
+- [SCT013 + PZEM akım okuma](SCT013-PZEM-AKIM-GOZLEM/README.md) — pratik akım okuma hedefine ulaşıldığı için kapatıldı. Eski kod, deney ve loglar korunur.
 
-## Projeler
-- [SCT-013 + PZEM akım gözlem sistemi](SCT013-PZEM-AKIM-GOZLEM/README.md) — SCT ham ADC örneklerinden özet özellikler çıkarır ve bunları PZEM ölçüm akışıyla zaman bakımından karşılaştırır.
-
-Proje klasörleri, BERO içindeki mevcut donanım kayıtlarının yerine geçmez; ilgili kayıtlara referans verir.
+Eski planlar yeni aşamaya otomatik taşınmaz.
