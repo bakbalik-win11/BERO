@@ -18,7 +18,7 @@
 ...
 ## Mevcut Teknik Durum (16 Kasım 2026)
 - **Donanım:** ADS1115 geçişi ile ölçüm hassasiyeti ulaşıldı. 
-- **Aktif Görev:** ADS1115 modül bacaklarının lehimlenmesi (Modül 4-5-6 hazırlığı).
+- **Aktif masaüstü düzenek:** Modül 4 = mevcut günlük ESP32D2 + ADS1115 + SCT ölçüm düzeneği.
 - **PREBERO Fazı (Yeni):** Gerçek BERO öncesi saha veri toplama ve test aşaması.
     - Modül 4 (Çamaşır) & Modül 5 (Bulaşık): Akım + Ses + Titreşim (WiFi üzerinden HA'ya).
     - Modül 6 (Ana Giriş): SCT + ADS1115 + PZEM (WiFi üzerinden HA'ya).
