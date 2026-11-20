@@ -1,3 +1,15 @@
+# 2026-11-20 — Güncel aktif çalışma sırası: Modül 4 bias incelemesi → PREBERO
+
+Kullanıcı tarafından onaylanan sıra:
+1. **Modül 4 biaslı/bias'sız karşılaştırması:** Mevcut ESP32D2 + ADS1115 + SCT masaüstü düzeneği; Modül 1 bias kutusu karşılaştırmada kullanılacak.
+2. **Osiloskop incelemesi:** Biaslı ve bias'sız sinyal yapısını birlikte gözlemleme; dalga biçimi ve devre davranışını anlama.
+3. **Bias gerekliliği kararı:** Ölçüm ve osiloskop kanıtına göre bias kullanılıp kullanılmayacağını belirleme.
+4. **PREBERO Modül 5/6/7 bias besleme tartışması:** Bias'ı ESP beslemesinden üretmek veya Modül 1'in ikiz bias devrelerini imal etmek seçeneklerini karşılaştırma.
+
+Bias kullanımı ve PREBERO besleme mimarisi henüz karara bağlanmamıştır. Deney ve osiloskop incelemesi yapılmış gibi sonuç yazılmayacaktır. Ayrıntı: [ADR-034](docs/decisions/ADR-034-module4-bias-comparison-and-prebero-bias-supply.md).
+
+---
+
 
 
 ## 2026-11-14 — E24 güncellemesi: 3 ADS1115 + 1 ESP32 / 6 SCT test hedefi
