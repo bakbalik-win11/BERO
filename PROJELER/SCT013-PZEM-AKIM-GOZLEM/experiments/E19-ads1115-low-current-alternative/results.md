@@ -2,13 +2,13 @@
 
 ## Durum
 
-**AÇIK — Aşama 1 loglandı; Aşama 2 (100 W ortak alan/katsayı) PLANLANDI.**
+**KAPATILDI — 2026-11-20.** Düşük akım ve sabit yük karşılaştırmaları tamamlandı; nihai sonuç aşağıdaki kapanış bölümündedir.
 
 İlk donanım gözlemleri 2026-11-13 tarihli kayıt altında eklendi. Önceki sipariş bilgisi tarihsel nottur.
 
 ## Deney öncesi kayıt
 
-- Sipariş: 1 adet ADS1115 kartı (kullanıcı bildirimi).
+- İlk deney başlangıcındaki sipariş: 1 adet ADS1115 kartı (kullanıcı bildirimi; tarihsel tedarik notu).
 - Hedef kullanım: BERO'da düşük akım, özellikle 0,5 A altı için alternatif ölçüm yolu araştırması.
 - Mevcut mimari korunacak: SCT-013 + bias + ESP32 ADC.
 - Alternatif: SCT-013 30A/1V + ADS1115.
@@ -18,11 +18,11 @@
 
 ## Ölçüm kayıtları
 
-Henüz ölçüm yapılmadı. Her deney oturumu için tarih/saat, gerçek bağlantı, firmware/kod sürümü, ADS1115 gain/data rate, örnek sayısı, pencere süresi, PZEM değeri, ham ADC ve istatistikler eklenecek.
+Gerçek ölçümler 2026-11-13 tarihli oturumlarda alındı. 18 W, 42 W, 57 W, 100 W ve 150 W karşılaştırmaları ile 2026-11-14 enerjili-hat/yüksüz-iletken uzun gözlemi aşağıdaki tarihli bölümlerde ve bağlantılı log raporlarında kayıtlıdır.
 
 ## Sonuç / yorum
 
-Henüz sonuç yok. Sipariş verilmesi veya deney planının hazırlanması, donanımın çalıştığı ya da bias'sız ölçümün mümkün olduğu anlamına gelmez.
+Sonuç: Test edilen sabit yük koşullarında ADS1115 + SCT ölçüm ortalamaları PZEM karşılaştırma değerlerine ±%4 hedefinden daha yakın çıktı. Bu sonuç yalnız kaydedilen test koşulları için geçerlidir; giriş güvenliği, tüm akım aralığı ve başka modüller için genel onay değildir.
 
 ## 2026-11-09 — Yeni hedef notu: yaklaşık 2 A civarı
 
@@ -97,7 +97,6 @@ Gerçek log özeti ve sınırları [ilk log kaydında](../../logs/ads1115/2026-1
 - **Kayıt:** ADS1115, PZEM ve mevcutsa Modül 2 logları; ortak zaman aralığı, ortalama/SD/min-maks, örnek sayısı/SPS, gerilim/akım/güç, I2C uyarıları ve UDP olayları.
 - **Kabul sınırı:** Bu tek nokta çok noktalı kalibrasyon veya ±%4 başarısı değildir. 100 W ile birlikte iki gözlem noktası sağlar.
 - **Güvenlik:** A0/A1 giriş common-mode/bias ve gerilim sınırları doğrulanmadan enerjili ölçüme geçilmez; şebeke bağlantısı uygun koruma/muhafaza altında yapılır.
-
 
 
 ## 2026-11-13 — Aşama 4: 150 W sabit yük karşılaştırması (CSV sonucu)
@@ -197,9 +196,35 @@ Ayrıntılı rapor: [E19 18 W test raporu](../../logs/ads1115/2026-11-13-E19-18w
 - ADS1115 + SCT: n=173, ortalama 0.078715 A, örnek SD=0.000373 A, min–maks 0.077580–0.079561 A.
 - PZEM akım: n=18, ortalama 0.079500 A, örnek SD=0.000514 A, min–maks 0.079–0.080 A. PZEM aktif güç n=32, ortalama 18.269 W, SD=0.074 W.
 - ADS1115 ortalaması PZEM'den −0.000785 A / yaklaşık −%0.99 farklıdır (HESAP); bu oturumda ±%4 beklentisinin içindedir. PZEM örnek sayısı ADS'den düşüktür; sonuç tek oturumluk karşılaştırmadır.
-- ADS1115 akım entity'sinde 4 adet 0.00 A kaydı vardır; 18W ortak kararlı pencerede sıfır yoktur. Yük öncesi 0.00 A'dan yük altında yaklaşık 0.0787 A'ya geçiş görülmüştür.
-- Aynı SCT-013 30A/1V sensör kullanıldı; kullanıcı teyidine göre ADS1115 yolunda harici bias ve harici transformatör yoktur.
+- ADS1115 akım entity'sinde 4 adet 0.00 A kaydı vardır; 18W ortak kararlı pencerede sıfır yoktur. Yük öncesi 0.00 A'dan yük altında yaklaşık 0.0787 A'ya geçiş görülmüştür.- Aynı SCT-013 30A/1V sensör kullanıldı; kullanıcı teyidine göre ADS1115 yolunda harici bias ve harici transformatör yoktur.
 - Eski Modül 2 CH1-1T aynı pencerede n=346, ortalama 0.185460 A, SD=0.042098 A; ADS1115 zinciri bu oturumda çok daha dar dağılım göstermiştir. Bu betimleyici mimari karşılaştırmadır.
 - **Karar:** 18 W sabit yük verisi kapatıldı ve ADS1115 yolu BERO için umut verici ana ölçüm adayı olarak işaretlendi. Nihai donanım/kalibrasyon onayı verilmedi. Katsayı ve ayarlar değiştirilmedi.
 - **Sonraki deney:** aç/kapa tepki davranışı; sıfıra dönüş, açılma/kapanma gecikmesi, sıçrama ve tekrarlanabilirlik. SSR/UDP olayları fiziksel yük durumunun tek kanıtı sayılmayacak; CSV'de OFF olaylarından sonra PZEM yaklaşık 18 W göstermeye devam etmiştir.
 - ADS1115 A0/A1 common-mode ve GND–VDD giriş sınırlarının fiziksel doğrulaması açık kalır.
+
+## 2026-11-20 — E19 nihai sonuç ve kapanış
+
+### Karşılaştırmalı sonuç tablosu
+
+| Nominal yük | PZEM ortalama akım | ADS1115 + SCT ortalama akım | Ortalama fark (PZEM'e göre) | Not |
+|---:|---:|---:|---:|---|
+| 18 W | 0,079500 A | 0,078715 A | −%0,99 | CSV ortak kararlı pencere |
+| 42 W | 0,189000 A | 0,189236 A | +%0,125 | CSV ortak pencere |
+| 57 W | 0,264500 A | 0,266212 A | +%0,647 | CSV ortak kararlı pencere |
+| 100 W | 0,469882 A | 0,469881 A | yaklaşık %0,00 | Aynı çalışma noktasındaki uyum; bağımsız doğrulama değil |
+| 150 W | 0,65472 A | 0,66279 A | +%1,23 | CSV ortak kararlı pencere |
+
+Fark hesabı: (ADS1115 ortalaması − PZEM ortalaması) / PZEM ortalaması × 100. PZEM, BERO'nun karşılaştırma referansıdır; mutlak ground truth değildir.
+
+### Nihai değerlendirme
+
+- Beş kayıtlı yük noktasının tamamında ortalama fark ±%4 hedefinin içindedir. Bağımsız oturum karşılaştırması olarak değerlendirilen 18 W, 42 W, 57 W ve 150 W sonuçlarında mutlak fark en fazla %1,23'tür.
+- 18 W, 42 W ve 57 W noktaları 0,5 A altındaki bölgeyi kapsar; bu bölgede farklar sırasıyla −%0,99, +%0,125 ve +%0,647'dir.
+- 100 W sonucu aynı çalışma noktasında ayar/katsayı yakınlığı bulunduğundan bağımsız doğrulama olarak kullanılmaz.
+- **E19: KAPATILDI — TEST EDİLEN KOŞULLARDA ±%4 HEDEFİ AŞILDI.** Bu kapanış, kaydedilmiş ölçüm karakterizasyonu içindir; tüm akım aralığı için laboratuvar doğruluğu, kalibrasyonun genellenebilirliği veya donanım güvenlik onayı değildir.
+- Yaklaşık 2 A ikincil doğrulama hedefi E19 içinde yapılmadı; gerekirse ayrı deney olarak açılacaktır.
+- ADS1115 A0/A1 ortak-mod ve GND–VDD giriş sınırlarının fiziksel güvenlik doğrulaması açık kalır.
+- 2026-11-14 enerjili-hat/yüksüz-iletken gözlemi kendi raporuyla kapatılmıştır; sıçrama nedeni belirlenmemiştir. Yeni modül karşılaştırması E23 kapsamındadır.
+- 18 W aç/kapa tepki deneyi E20 olarak planlanmış, daha sonra yapılmadan kapatılmıştır; E19 kapanışı E20'nin gerçekleştirildiği anlamına gelmez.
+
+Bağlantılı oturum raporları ve kaynak CSV SHA-256 değerleri önceki bölümlerde korunur. Ham HA CSV dosyaları Git'e eklenmemiştir; bu nedenle raporlardaki özet ve hash bilgileri ham dosyanın depoda bulunduğu anlamına gelmez.
