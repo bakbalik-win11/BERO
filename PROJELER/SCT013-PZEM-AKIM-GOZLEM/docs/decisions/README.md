@@ -34,3 +34,4 @@ Dosya slug'ları farklıdır ve bağlantılar bu dosya adları üzerinden çalı
 - [ADR-033 — BERO modül kimlikleri: masaüstü ölçüm, cihaz gözlem ve PreBERO ana hat](ADR-033-module-identities-desktop-and-prebero.md)
 
 - [ADR-034 — Modül 4 bias karşılaştırması ve PREBERO bias besleme sırası](ADR-034-module4-bias-comparison-and-prebero-bias-supply.md)
+- [ADR-035 — Modül 4 tasarım kapısı ve PREBERO ön koşulu](ADR-035-module4-design-gate-before-prebero.md)
