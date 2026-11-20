@@ -167,3 +167,15 @@ BERO, tek bir akım ölçer değil, farklı fiziksel değişkenleri izleyen sens
 SCT013 + PZEM alt projesi bu geniş sistemin ilk ve teknik açıdan zor başlangıç uygulamasıdır. Buradan başlanmasının nedeni BERO'nun akım ölçümünden ibaret olması değil; akımı güvenilir biçimde ölçmek, canlı okumak ve zaman içinde başka programların/algoritmaların çıktılarıyla ilişkilendirmek zor bir mühendislik problemi olduğu için önce bu temel hattın hazırlanmasının tercih edilmesidir.
 
 **Geliştirme ortamı / canlı sistem ayrımı:** Bu SCT013-PZEM çalışması kullanıcının diğer evinde yürüttüğü hazırlık ve geliştirme ortamıdır. Şu anda canlı BERO sisteminde çoklu sensörlü bir uygulama çalıştırılmamaktadır. Bu depodaki çoklu sensör vizyonu hedeflenen genel mimariyi anlatır; mevcut canlı kurulumda sensörlerin entegre ve birlikte çalışır olduğu iddiası değildir. Bu alt projenin mevcut görevi SCT akım ölçüm yolunu, veri toplama ve analiz altyapısını hazırlamaktır.
+
+
+## Cihaz gözlem modülleri
+
+Çamaşır ve bulaşık makineleri için taşınabilir gözlem modüllerinin donanım, firmware, ham veri, Python analiz ve rapor alanları ayrı tutulur:
+
+- [Çamaşır makinesi modülü](devices/washing-machine/README.md)
+- [Bulaşık makinesi modülü](devices/dishwasher/README.md)
+
+Her iki modül için planlanan gözlem kanalları akım, ses ve titreşimdir. Sensörlerin kesin modelleri, ESP32 kartı, analog ön uç, pin bağlantıları ve kayıt parametreleri fiziksel montajda doğrulanacaktır. Klasörlerin açılması modüllerin imal edildiği veya çalıştığı anlamına gelmez.
+
+**Modül numaraları henüz kesinleştirilmedi:** MEMORY.md içinde Modül 4/5 olarak anılıyorlar; ancak E22 deneyi Modül 4 kimliğini ESP32 + ADS1115 + 100 A / 1 V SCT + PZEM tasarımı için daha önce kullanmış. Bu kimlik çakışması kullanıcı kararıyla çözülecek.
