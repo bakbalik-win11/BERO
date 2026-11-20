@@ -1,6 +1,8 @@
 # E19 — ADS1115 ile düşük akım ölçüm alternatifi
 
-- **Durum:** AÇIK — 100/150/57/42/18 W gözlemleri kaydedildi. 18 W sabit yük basamağı umut verici sonuçla tamamlandı; sıradaki aşama aç/kapa tepki testi. Nihai donanım, kalibrasyon ve ADS1115 giriş güvenliği onayı bekliyor.
+- **Durum:** KAPATILDI — düşük akım ADS1115 karakterizasyonu ve karşılaştırmalı sabit yük ölçümleri tamamlandı. Test edilen 18–150 W nominal yük koşullarında ADS1115/PZEM ortalama farkı en fazla %1,23 oldu. Bu sonuç test edilen koşullarla sınırlıdır; tüm aralık doğruluğu veya elektriksel güvenlik onayı değildir.
+- **Kapanış tarihi:** 2026-11-20.
+- **Açık kalanlar:** Yaklaşık 2 A ikincil doğrulama hedefi bu deney kapsamında yapılmadı; ADS1115 A0/A1 ortak-mod ve giriş ray güvenliği ayrıca fiziksel doğrulama gerektirir. Yeni modül/parti testleri ayrı deney kimlikleriyle yürütülecektir.
 - **Öncelik:** Düşük akım ölçüm zinciri için sınırlı bütçeli alternatif araştırması.
 - **Bütçe:** Kullanıcı bildirimi yaklaşık 250 TL.
 - **Zamanlama:** Kullanıcının hedefi hafta sonu ilk denemeleri yapmak; kesin tarih teslimat ve hazırlığa bağlı.
@@ -61,7 +63,7 @@ Mümkün olduğunda aynı fiziksel yük ve aynı hat koşulu kullanılacaktır. 
 - Bias'sız çalışmanın güvenli/kararlı olup olmadığına dair kanıt ve sınırları.
 - Deney sonunda: düşük akım alternatifi olarak kabul, kısmi kabul veya reddetme kararı.
 
-**Sonuç durumu:** Henüz ölçüm yok. Bu kayıt yalnızca sipariş ve deney planını belgeliyor.
+**Tarihsel plan notu:** Bu ifade ilk deney taslağının açıldığı döneme aittir; sonraki donanım testleri ve ölçüm sonuçları aşağıdaki tarihli kayıtlarla eklenmiştir. Güncel kapanış kararı bu dosyanın başındaki durum ve en sondaki 2026-11-20 kapanış kaydıdır.
 
 
 ## ESPHome ADS1115 + ct_clamp YAML incelemesi (2026-11-09)
@@ -97,8 +99,7 @@ sensor:
   - platform: ct_clamp
     name: "BERO ADS1115 SCT Akım"
     sensor: ads1115_diferansiyel_giris
-    sample_duration: 200ms
-    update_interval: 2s
+    sample_duration: 200ms    update_interval: 2s
     filters:
       # Kalibrasyon noktaları PZEM karşılaştırmasıyla ölçülerek belirlenecek.
       # Örnek 0.1 -> 0.4 değerleri deneysel veri olmadan kullanılmayacak.
@@ -197,7 +198,6 @@ Ayrıntı: [E19 üç modül karşılaştırma kaydı](../../logs/ads1115/2026-11
 - **Yorum sınırı:** 150 W tek başına çok noktalı kalibrasyon veya ±%4 başarısı değildir. 100 W ve 150 W birlikte iki yük noktasında gözlemsel karşılaştırma sağlar; bağımsız tekrar ve daha fazla yük noktası gerekir.
 - **SSR:** Fiziksel anahtarlama doğrulanana kadar olaylar yük durumunu temsil etmez. Mümkünse test boyunca yük sürekli bağlı tutulur; SSR'ın mantıksal durumu veri etiketine dönüştürülmez.
 - **Güvenlik ön koşulu:** A0/A1 girişlerinin bias/common-mode ve gerilim sınırları doğrulanmamışsa ADS1115 bağlantısı enerjili deneye alınmaz. Şebeke bağlantısı uygun muhafaza ve koruma altında yapılır.
-
 **Bu kayıt yalnızca test planının açıldığını gösterir. 150 W ölçümü, log, derleme/OTA veya cihaz doğrulaması henüz yoktur.**
 
 
@@ -299,7 +299,6 @@ Kullanıcı bildirimi:
 
 **Kaynak türü:** Kullanıcı bildirimi ve kullanıcı tarafından yapılan ilk akım okuma kontrolleri. Bağımsız ölçüm raporu değildir.
 
-
 ## 2026-11-18 — Yüksüz NaN davranışı ve modül bazlı katsayı kontrolü
 
 ESP32D2 çalışma logunda ampul kapalıyken `BERO Akim Sensoru` sürekli `nan A` yayınladı. Ampul takıldığında ct_clamp debug satırları görünür oldu: 133–139 farklı örnek (665–695 SPS), Raw AC Value 0.003–0.004 A ve kalibrasyon sonrası yayınlanan akım yaklaşık 0.094–0.100 A. Ampul çıkarılınca tekrar `nan A` görüldü. Aynı oturumda PZEM yüksüzken 0.000 A gösteriyordu.
@@ -311,3 +310,32 @@ ESP32D2 çalışma logunda ampul kapalıyken `BERO Akim Sensoru` sürekli `nan A
 - E24'te yüksüz NaN davranışı katsayı hesabından ayrı izlenecek. İlk 10 modülün benzer okuması, katsayılarının eşit olduğunu kanıtlamaz.
 
 **Kaynak:** Kullanıcı tarafından paylaşılan 2026-11-18 ESP32D2 logu ve aynı tarihli Home Assistant ekran görüntüsü; ayrıca kullanıcı bildirimi. Bu bölüm gözlem kaydıdır, neden analizi veya kalibrasyon sonucu değildir.
+
+## 2026-11-20 — E19 nihai sonuç ve kapanış
+
+### Karşılaştırmalı sonuç özeti
+
+Aşağıdaki yüzdeler, aynı oturumdaki kararlı ortak zaman pencerelerinde ADS1115 + SCT ortalama akımının PZEM ortalama akımına göre farkıdır. PZEM burada karşılaştırma referansıdır; mutlak ground truth olarak kabul edilmez.
+
+| Nominal yük | PZEM ortalama | ADS1115 + SCT ortalama | PZEM'e göre fark | Veri niteliği |
+|---:|---:|---:|---:|---|
+| 18 W | 0,079500 A | 0,078715 A | −%0,99 | CSV ortak pencere analizi |
+| 42 W | 0,189000 A | 0,189236 A | +%0,125 | CSV ortak pencere analizi |
+| 57 W | 0,264500 A | 0,266212 A | +%0,647 | CSV ortak kararlı pencere analizi |
+| 100 W | 0,469882 A | 0,469881 A | yaklaşık %0,00 | Ortak oturum; katsayı/çalışan binary eşleşmesi bağımsız doğrulama sayılmaz |
+| 150 W | 0,65472 A | 0,66279 A | +%1,23 | CSV ortak kararlı pencere analizi |
+
+**Özet:** Kaydı bulunan beş karşılaştırma noktasının tamamında ADS1115 ile PZEM arasındaki ortalama fark ±%4 kabul hedefinin içindedir. Bağımsız olarak değerlendirilebilen 18 W, 42 W, 57 W ve 150 W oturumlarında mutlak fark %1,23'ü aşmamıştır. 100 W noktası aynı çalışma noktasındaki ayar/katsayı yakınlığı nedeniyle bağımsız doğrulama olarak sunulmaz.
+
+### Sonuç ve karar
+
+- E19'un ana sorusu olan ADS1115 + SCT-013 30A/1V ölçüm yolunun özellikle 0,5 A altındaki davranışı için gerçek ölçüm alınmıştır. 18 W, 42 W ve 57 W koşullarında PZEM karşılaştırma ortalamasına göre fark sırasıyla −%0,99, +%0,125 ve +%0,647'dir.
+- 150 W koşulunda fark +%1,23'tür. Böylece ölçülen yük koşullarının tamamı başlangıçtaki ±%4 hedefinin içindedir.
+- Bu sonuçlar test edilen düzenek, ayarlar, sensör ve oturumlar için geçerlidir. Tüm akım aralığına, başka ADS1115 kartlarına, başka SCT modellerine veya uzun dönem kararlılığına genellenmez.
+- E19 bir ölçüm karakterizasyonu olarak **KAPATILDI — TEST EDİLEN KOŞULLARDA HEDEFE ULAŞILDI**. Kalibrasyon katsayısının tüm aralıkta geçerliliği veya laboratuvar düzeyinde doğruluk iddiası oluşturulmamıştır.
+- Yaklaşık 2 A ikincil hedefi E19 içinde gerçekleştirilmedi; gerekirse ayrı deney olarak açılmalıdır.
+- ADS1115 analog girişlerinin common-mode ve GND–VDD sınırları için fiziksel güvenlik doğrulaması bu deneyin kapanışıyla tamamlanmış sayılmaz.
+- 2026-11-14 enerjili hat/yüksüz iletken uzun gözlemi ayrı alt gözlem olarak kapatılmıştır; sıçramaların nedeni teşhis edilmemiştir. Yeni modül sıçrama karşılaştırması E23 kapsamındadır.
+- 18 W fiziksel aç/kapa tepki deneyi E20 olarak ayrı planlanmış, daha sonra ADR-026 ile yapılmadan kapatılmıştır. E19 kapanışı E20'nin yapıldığı anlamına gelmez.
+
+Ayrıntılı oturum raporları ve kaynak hash'leri bu deney klasöründeki sonuç defterinde ve logs/ads1115/ altındaki raporlarda korunur. Ham Home Assistant CSV dosyalarının Git'e eklenmemiş olması, özet analiz ve kaynak bütünlük kayıtlarının korunmasıyla karıştırılmamalıdır.
