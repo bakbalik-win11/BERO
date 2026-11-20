@@ -2467,3 +2467,28 @@ Bu kayıt mimari/hedef netleştirmesidir. Sensör modelleri, montaj, bağlantı,
 
 ### SINIR
 Bu oturumda yalnızca kullanıcı düzeltmesi ve dokümantasyon işlendi. Yeni donanım kurulmadı; E22 ölçümü yapılmadı; Modül 5/6 imal edilmedi; Modül 7 / PreBERO tasarlanmadı veya test edilmedi.
+
+## 2026-11-20 — Kullanıcı açıklaması: PREBERO'nun saha bağlamı ve Modül 1–7
+
+### PREBERO'NUN ANLAMI
+- PREBERO, BERO'nun kurulacağı eve henüz taşınılamadığı, o evdeki kiracı çıkana kadar Sarıyer'deki mevcut evde yürütülen gözlem, deney ve veri toplama dönemidir.
+- Bu geçici saha döneminde mevcut evin çamaşır makinesi, bulaşık makinesi ve ana elektrik hattı izlenecek; veri toplanarak BERO'ya geçmeden önce proje ilerletilecektir.
+- **Modül 5, Modül 6 ve Modül 7'nin tamamı PREBERO kapsamındadır.** PREBERO yalnız Modül 7'nin adı değildir ve nihai BERO kurulumu değildir.
+
+### MODÜL YAŞAM DÖNGÜSÜ
+- **Modül 1:** Bias trafosu/güç kutusu mevcut ve korunuyor. Modül 4 masaüstü düzeneğinde biaslı/bias'sız ölçüm karşılaştırmalarında kullanılacak; imha edilmedi.
+- **Modül 2:** Eski üç kanallı biaslı SCT fiziksel modülü imha edildi. ADS1115 ile istenen sınırlar içinde akım okunabildiği için eski fiziksel düzeneğe ihtiyaç kalmadı.
+- **Modül 3:** Eski PZEM + SSR olay fiziksel modülü imha edildi.
+- Modül 2/3'ün eski kod, log ve deney kayıtları tarihsel arşiv olarak korunur.
+- **Modül 4:** Günlük masaüstü ESP32D2 + ADS1115 + SCT ölçüm/deney düzeneği. Biaslı/bias'sız deneyler burada, Modül 1 bias trafosu kullanılarak yürütülecek.
+- **Modül 5 — PREBERO:** Sarıyer'deki mevcut evin çamaşır makinesi gözlemi ve veri toplama.
+- **Modül 6 — PREBERO:** Sarıyer'deki mevcut evin bulaşık makinesi gözlemi ve veri toplama.
+- **Modül 7 — PREBERO:** Sarıyer'deki mevcut evin ana hattını PZEM ile birlikte izleme ve veri toplama.
+
+### DEPO DÜZELTMESİ
+- ADR-033, STATUS, proje README, PROGRESS_TREE, MEMORY ve GEMINI güncel PREBERO tanımına göre düzenlendi.
+- Önceki ADR-033 sürümünde PREBERO'nun yalnız Modül 7 ile ilişkilendirilmesi ve Modül 1–3 yaşam döngüsünün eksik açıklanması bu kayıtla geçersiz kılındı.
+- Eski tarihli günlük kayıtlar silinmedi; güncel kimlik ve anlam ADR-033'te esas alınır.
+
+### SINIR
+Bu oturumda dokümantasyon düzeltildi. Modül 5/6/7 imalatı, yeni firmware, kurulum veya ölçüm yapıldığı iddia edilmez.
