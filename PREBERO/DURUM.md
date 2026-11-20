@@ -22,9 +22,13 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 
 - Mevcut sadeleştirilmiş akım okuma koduyla önceki ADS1115 modülünde okuma yapılmıştır; kullanıcı bu sürümü **Kod 0** olarak ayırmıştır.
 - Yeni katsayı çalışması ADS1115 **No. 1** üzerinde yapılacaktır; önceki modülün katsayısı aktarılmayacaktır.
-- Katsayı çalışmasından önce bias gerekliliği deneyi yapılacaktır: tek ADS1115 No. 1 üzerinde A0–A1 biaslı, A2–A3 biassız karşılaştırma.
-- İlk aşama: SCT bağlı değilken bias hattını multimetre ve osiloskopla incelemek; ardından SCT bağlı ve akım yokken girişleri ölçmek.
-- Bu karşılaştırma henüz plan aşamasındadır; ölçüm sonucu veya bias kararı verilmemiştir.
+- Katsayı çalışmasından önce bias ve sıfır düzeltmesi gerekliliği deneyi yapılacaktır. Tek ADS1115 No. 1 ve aynı faz iletkenini ölçen iki ayrı SCT013 kullanılacaktır.
+- **SCT013 No. 1 → A0–A1:** biaslı ölçüm kolu.
+- **SCT013 No. 2 → A2–A3:** biassız ölçüm kolu.
+- İki SCT aynı tek faz iletkenini ölçecek; sensörlerin çıkışları birbirinden ayrı kalacaktır. Böylece aynı akım koşulunda biaslı ve biassız ölçüm karşılaştırılacaktır.
+- Önce bias hattı SCT bağlı değilken multimetre ve osiloskopla incelenecek; ardından iki SCT yüksüz durumda kontrol edilecektir.
+- İlk karşılaştırmalarda sıfır düzeltmesi ve kalibrasyon katsayısı uygulanmadan ham davranış incelenecek. Yüksüz taban değerinin sıfırlanmasının gerekip gerekmediği ve katsayı ihtiyacı ayrıca değerlendirilecektir.
+- Deney henüz yapılmadı; bu kayıt deney düzenini ve planını tanımlar, ölçüm sonucu veya bias/sıfırlama/katsayı kararı içermez.
 - Teknik deney planı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`.
 
 ## İlerleme kuralı
