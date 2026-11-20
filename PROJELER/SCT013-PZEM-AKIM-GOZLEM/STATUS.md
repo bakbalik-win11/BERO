@@ -1,23 +1,34 @@
-## 2026-11-20 — Modül numaralandırması düzeltildi: masaüstü Modül 4, PreBERO Modül 7
+## 2026-11-20 — PREBERO kapsamı ve Modül 1–7 yaşam döngüsü düzeltildi
 
-- **Modül 4:** Günlük kullanılan mevcut masaüstü ölçüm düzeneği: ESP32D2 + ADS1115 + SCT. Bu, 30 A / 1 V SCT ile yürütülen mevcut ölçüm baseline'ıdır.
-- **Modül 5:** İmal edilecek çamaşır makinesi gözlem modülü.
-- **Modül 6:** İmal edilecek bulaşık makinesi gözlem modülü. Modül 5 ve 6 aynı elektronik tasarımın ikiz kopyalarıdır.
-- **Modül 7 / PreBERO:** Ana hattı PZEM ile birlikte okumaya yönelik saha gözlem düzeneği. Donanım, bağlantı ve firmware tasarımı henüz yapılmadı.
-- **E22 modül değildir.** Modül 4'ün mevcut ölçüm zinciri başarılı/kararlı çalıştıktan sonra bir kanalda 30 A / 1 V, diğer kanalda 100 A / 1 V SCT ile karşılaştırma yapılması fikridir. E22 kapsamında 100 A SCT ile ölçüm alınmadı; ayrı modül imal edilmedi.
-- Eski Modül 2 ve Modül 3 fiziksel olarak imha edilmiştir; eski kod ve kayıtları tarihsel arşiv olarak korunur.
+**PREBERO tanımı:** BERO'nun kurulacağı eve henüz taşınılamadığı, o evdeki kiracı çıkana kadar Sarıyer'deki mevcut evde yürütülen gözlem, deney ve veri toplama dönemi. Amaç mevcut evdeki çamaşır makinesi, bulaşık makinesi ve ana elektrik hattını izleyerek veri toplamak ve BERO'ya geçmeden önce ilerleme sağlamaktır. PREBERO nihai BERO kurulumu değildir.
+
+### Güncel modül envanteri
+- **Modül 1:** Mevcut bias trafosu/güç kutusu. İmha edilmedi; korunacak. Modül 4 masaüstü düzeneğinde biaslı ve bias'sız ölçüm karşılaştırmasında kullanılacak.
+- **Modül 2:** Eski üç kanallı biaslı SCT fiziksel modülü imha edildi. ADS1115 ile istenen sınırlar içinde akım okunabildiği için eski fiziksel düzeneğe ihtiyaç kalmadı. Kod ve kayıtlar tarihsel arşivdir.
+- **Modül 3:** Eski PZEM + SSR olay fiziksel modülü imha edildi. Eski kod ve kayıtlar tarihsel arşivdir.
+- **Modül 4:** Mevcut günlük masaüstü ESP32D2 + ADS1115 + SCT deney düzeneği. Biaslı/bias'sız karşılaştırma ve masaüstü ölçümler burada yapılır.
+- **Modül 5 — PREBERO:** Sarıyer'deki mevcut evin çamaşır makinesini izler; imal edilecek.
+- **Modül 6 — PREBERO:** Sarıyer'deki mevcut evin bulaşık makinesini izler; imal edilecek.
+- **Modül 7 — PREBERO:** Sarıyer'deki mevcut evin ana hattını PZEM ile birlikte izler; geliştirilecek.
+
+**Önemli:** Modül 5, 6 ve 7'nin tamamı PREBERO kapsamındadır. Modül 7 tek başına PREBERO değildir. Üç modülün ortak hedefi mevcut evde veri toplamak ve cihaz/ana hat davranışlarını incelemektir.
 
 ### Modül 5/6 donanım planı
 - Her modül için: 1 ESP32-D + 1 vidalı terminal shield, 1 MAX4466, 1 MPU6050, 1 SCT013 30 A / 1 V ve 1 ADS1115.
 - Ses ve titreşim birincil; akım yardımcı/bağlamsal kanaldır.
 - MPU6050 birinci I²C hattında, ADS1115 ikinci ve fiziksel olarak ayrı I²C hattında olacak. GPIO/SDA/SCL pinleri gerçek kart ve shield incelendikten sonra seçilecek.
-- Modül 5 önce imal edilecek. Modül 6'nın gözlem elektroniği 5 V besleme yöntemi henüz belirlenmedi; bulaşık makinesi kendi mevcut elektrik hattından beslenecek.
+- Modül 5 önce imal edilecek. Modül 6'nın gözlem elektroniği 5 V besleme yöntemi henüz belirlenmedi; bulaşık makinesi kendi mevcut elektrik hattında kalacak.
 
-### Durum ve sınır
-- Modül 4 mevcut masaüstü çalışma düzeneğidir; bu kayıt yeni bir fiziksel kurulum veya yeniden test yapıldığı anlamına gelmez.
-- Modül 5/6 henüz imal edilmedi; firmware, derleme ve sensör kayıtları bekliyor.
-- Modül 7 / PreBERO hedef aşamasındadır; uygulama ve test yoktur.
-- E22 henüz yalnızca deney fikridir; bağlantı, firmware, derleme, ölçüm ve analiz yoktur.
+### E22
+- E22 modül değildir; Modül 4'te 30 A / 1 V ve 100 A / 1 V SCT karşılaştırması için düşünülen, henüz yapılmamış deney fikridir.
+- 100 A / 1 V SCT ile E22 kapsamında henüz ölçüm alınmadı.
+
+### Durum
+- Modül 1 mevcut ve korunuyor; Modül 4'te biaslı/bias'sız deney için kullanılacak.
+- Modül 2/3 fiziksel olarak imha edildi; tarihsel yazılım ve kayıtları korunuyor.
+- Modül 4 mevcut masaüstü düzeneğidir.
+- Modül 5/6/7 PREBERO kapsamında planlama/imalat aşamasındadır; fiziksel test durumu ilgili modül kayıtlarında ayrıca tutulur.
+- Ayrıntılı karar: [ADR-033 — Modül kimlikleri ve PREBERO](docs/decisions/ADR-033-module-identities-desktop-and-prebero.md).
 
 ## 2026-11-20 — Çamaşır/bulaşık ikiz modül donanımı ve imalat sırası
 
