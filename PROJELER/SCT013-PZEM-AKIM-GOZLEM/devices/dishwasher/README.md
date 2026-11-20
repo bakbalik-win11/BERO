@@ -8,7 +8,7 @@ Bu klasör, bulaşık makinesi için üretilecek taşınabilir gözlem modülün
 - **Aşama:** PLANLANDI / fiziksel imalat ve doğrulama bekliyor.
 - **Mimari:** Modül 5 ve Modül 6 aynı elektronik tasarımın ikiz kopyalarıdır. Donanım ve firmware temeli ortak; cihaz adı, modül kimliği ve kayıt etiketleri farklıdır.
 - **Güç durumu:** Bulaşık makinesi kendi mevcut elektrik hattından beslenecek; makineyi üçlü prizle besleme planı yoktur. Yalnızca gözlem modülünün 5 V DC beslemesi çözülecek. Kullanıcı, modül için sıva üstü 5 V çıkışlı priz veya makine beslemesinden bağımsız ayrı bir hattan adaptör seçeneğini değerlendirecek; kesin yöntem henüz belirlenmedi.
-- **İmalat sırası:** Modül 4'ten sonra; modülün 5 V besleme yöntemi seçilene kadar beklemede.
+- **İmalat sırası:** Modül 5'ten sonra; modülün 5 V besleme yöntemi seçilene kadar beklemede.
 - **Birincil gözlem kanalları:** ses ve titreşim.
 - **Yardımcı kanal:** akım; makine çalışma evrelerini yorumlamak için bağlamsal veri olarak kullanılacak.
 - Ayrıntılı ortak karar: [ADR-032 — İkiz sensör modülleri](../../docs/decisions/ADR-032-washing-dishwasher-twin-sensor-modules.md).
