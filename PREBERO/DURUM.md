@@ -25,7 +25,7 @@ Bir görev tamamlandığında sonucu kendi görev klasörüne kaydedilir. Ardın
 
 ## Modül 1 için kaydedilen karar
 
-- Modül 1'in basit yaklaşımı: **Şebeke karakterinde gerilimi bias girişine aktarmak.**
+- Modül 1, PREBERO/README.md içinde tanımlanmış genel bias orta nokta yapısının fiziksel olarak uygulanmış örneğidir; şebeke karakterinde gerilimi bias girişine aktarmak için kullanılır. Bias standardının kaynağı README.md'dir.
 - Modül 1 mevcut, eski fiziksel yapıdır; imalatı tamamlanmıştır. Kapalı kutu içindedir ve bağlantıları soketlidir.
 - Modül 1'in önceki imalat multimetre ölçümleri kendi imalat kaydında korunur.
 - Masaüstü ESP ile yürütülen sinyal/akım deneyleri Modül 2 kapsamındadır. Modül 1 bu deneylerde bias gerilimi sağlayan donanım olarak kullanılabilir.
