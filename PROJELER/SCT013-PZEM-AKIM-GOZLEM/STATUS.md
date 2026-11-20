@@ -1,3 +1,19 @@
+## 2026-11-20 — Çamaşır/bulaşık ikiz modül donanımı ve imalat sırası
+
+- Kullanıcı kararı: **Modül 4 (Çamaşır Makinesi)** ve **Modül 5 (Bulaşık Makinesi)** aynı elektronik tasarımın iki fiziksel kopyası olacak; cihaz adı, modül kimliği ve kayıt etiketleri değişecek.
+- Her modül için parça listesi: 1 ESP32-D + 1 vidalı terminal shield, 1 MAX4466, 1 MPU6050, 1 SCT013 30 A / 1 V ve 1 ADS1115. Toplam iki modül için her parçadan ikişer adet planlanıyor.
+- Kullanıcı bağlantı tercihi: MPU6050 birinci I²C hattında, ADS1115 ikinci ve ayrı I²C hattında olacak. GPIO/SDA/SCL pinleri kart ve shield üzerindeki gerçek etiketler görüldükten sonra belirlenecek.
+- MAX4466 analog çıkışı ESP32 ADC girişinden okunacak; ses örnekleme ve kayıt parametreleri henüz belirlenmedi. SCT013, ADS1115 üzerinden okunacak.
+- **İmalat sırası:** önce Modül 4 çamaşır makinesi yapılacak. Kullanıcı bildirimi: bu kurulum noktasında prizde 5 V besleme mevcut.
+- Modül 5 bulaşık makinesi, güç beslemesi çözülene kadar ertelendi. Üçlü priz yerine sıva üstü montaja uygun, güvenli 5 V DC çıkışlı bir priz/enerji çözümü seçilecek; ürün ve tesisat henüz belirlenmedi.
+- İki modülün elektronik tasarımı ikiz kalacak; Modül 5'in montaj tarihi/başlangıcı güç çözümüne bağlı.
+- Ayrıntılı karar: [ADR-032 — İkiz sensör modülleri](docs/decisions/ADR-032-washing-dishwasher-twin-sensor-modules.md).
+
+### Durum ve sınır
+- Bu oturumda kararlar ve dokümantasyon kaydedildi.
+- Donanım fiziksel olarak bağlanmadı; pin planı, firmware, derleme, elektriksel test, sensör kaydı ve analiz yapılmadı.
+- Modül 4: **PLANLANDI — ilk imalat sırası**. Modül 5: **PLANLANDI / GÜÇ BESLEMESİ ÇÖZÜMÜ BEKLİYOR**.
+
 ## 2026-11-20 — BERO genel depo bütünlüğü için haftalık kontrol kararı
 - Kullanıcı kararı: BERO deposunun bütünlüğü haftada bir kontrol edilecek.
 - Kontrol kapsamı tüm depo: Git nesne/çalışma ağacı durumu, dosya ve klasör yapısı, dokümantasyon bağlantıları, proje durumlarının tutarlılığı, kod/deney kayıtlarının izlenebilirliği ve GitHub Actions sonuçları.
