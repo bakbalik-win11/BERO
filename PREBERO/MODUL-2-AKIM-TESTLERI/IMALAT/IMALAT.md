@@ -70,14 +70,21 @@ Bu bağlantı/ayar tanımı MOD2-GRV001 çalışmasına aittir. Fiziksel pinleri
 
 5 mA altındaki ölçümler bu sürümde sıfırlanır. Amaç, yüksüz durumda gözlenen yaklaşık 1–2 mA taban değerlerinin Home Assistant'a gereksiz veri üretmesini önlemektir.
 
-### Kalibrasyon kaydı
+### ADS1115 numaralandırma ve birim bazlı kalibrasyon
+
+- ADS1115 modülleri fiziksel olarak **1–10** şeklinde numaralandırılmıştır.
+- Her ADS1115 için ayrı kalibrasyon yapılır; bir modülün katsayısı diğerine kopyalanmaz.
+- Bu görevdeki testlerde kullanılacak modül: **ADS1115 No. 1**.
+- Test logu ve raporunda ADS1115 birim numarası mutlaka belirtilir.
+
+### Önceki kalibrasyon gözlemi
 
 - Önceki katsayı: 30.00
 - ADS1115 gözlemi: yaklaşık 0.513 A
 - PZEM gözlemi: yaklaşık 0.472 A
-- Hesap: 30.00 × (0.472 / 0.513) = 27.60
+- Hesaplanan katsayı: 30.00 × (0.472 / 0.513) = 27.60
 
-Katsayı tek karşılaştırmadan türetilmiştir ve farklı akım seviyelerinde tekrar doğrulanmalıdır. PZEM referans karşılaştırma aracıdır; kusursuz ground truth değildir.
+27.60 önceki tek karşılaştırmadan elde edilmiş gözlem katsayısıdır; bütün ADS1115 modüllerinin ortak katsayısı değildir. ADS1115 No. 1'e ait olduğu ayrıca doğrulanmadıkça bu modülün kalibrasyon değeri olarak atanmaz. Her modül kendi numarası altında farklı akım seviyelerinde kalibre edilip doğrulanmalıdır. PZEM karşılaştırma referansıdır; kusursuz ground truth değildir.
 
 ### ADS1115 giriş sınırı
 
