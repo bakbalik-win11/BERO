@@ -1,3 +1,12 @@
+## 2026-11-20 — Modül 4 tasarım ve imalatı PREBERO ön koşulu
+
+- Masaüstü ESP32D2 + ADS1115 + SCT düzenek geçici prototip olarak tanımlandı; imal edilmiş Modül 4 değildir.
+- PREBERO Modül 5/6/7'den önce ADS1115 hobi düzeyinde teknik raporu, masaüstü bağlantı incelemesi, biaslı/bias'sız karşılaştırma, osiloskop gözlemi ve Modül 4 tasarım kararı tamamlanacak.
+- Ardından Modül 4 imal edilip gerçek donanımda doğrulanacak. Bu kabul kapısı geçilmeden PREBERO modüllerine başlanmayacak.
+- Çalışma laboratuvar karakterizasyonu değil; BERO kullanımına gereken teknik bilgi ve güvenli sınırlarla sınırlı.
+- Bias gerekliliği ve PREBERO bias besleme yöntemi açık karardır.
+- Ayrıntı: [ADR-035](docs/decisions/ADR-035-module4-design-gate-before-prebero.md) · [T011](tasks/T011-module4-characterization-and-build.md).
+
 ## 2026-11-20 — PREBERO'nun gerçek kapsamı ve Modül 1–7 yaşam döngüsü
 
 - **PREBERO:** BERO'nun kurulacağı eve henüz taşınılamadığı, o evdeki kiracı çıkana kadar Sarıyer'deki mevcut evde yürütülen gözlem, deney ve veri toplama dönemidir. Amaç mevcut evdeki çamaşır makinesi, bulaşık makinesi ve ana hattı izlemek; veri toplayarak BERO'ya geçmeden önce ilerleme sağlamaktır.
