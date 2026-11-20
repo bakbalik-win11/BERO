@@ -169,15 +169,20 @@ SCT013 + PZEM alt projesi bu geniş sistemin ilk ve teknik açıdan zor başlang
 **Geliştirme ortamı / canlı sistem ayrımı:** Bu SCT013-PZEM çalışması kullanıcının diğer evinde yürüttüğü hazırlık ve geliştirme ortamıdır. Şu anda canlı BERO sisteminde çoklu sensörlü bir uygulama çalıştırılmamaktadır. Bu depodaki çoklu sensör vizyonu hedeflenen genel mimariyi anlatır; mevcut canlı kurulumda sensörlerin entegre ve birlikte çalışır olduğu iddiası değildir. Bu alt projenin mevcut görevi SCT akım ölçüm yolunu, veri toplama ve analiz altyapısını hazırlamaktır.
 
 
-## Cihaz gözlem modülleri
+## Modül envanteri ve geliştirme sırası
 
-Çamaşır ve bulaşık makineleri için taşınabilir gözlem modüllerinin donanım, firmware, ham veri, Python analiz ve rapor alanları ayrı tutulur:
+| Modül | Tanım | Durum |
+|---|---|---|
+| **1** | Bağımsız bias trafosu / güç kutusu | Korunacak mevcut donanım |
+| **2** | Eski üçlü SCT okuma modülü | Kullanıcı bildirimiyle imha edildi; kod ve kayıtlar tarihsel arşiv |
+| **3** | Eski PZEM + SSR olay modülü | Kullanıcı bildirimiyle imha edildi; kod ve kayıtlar tarihsel arşiv |
+| **4** | Günlük masaüstü ESP32D2 + ADS1115 + SCT ölçüm düzeneği | Mevcut çalışma düzeneği; günlük ölçüm baseline'ı |
+| **5** | Çamaşır makinesi gözlem modülü | İmal edilecek |
+| **6** | Bulaşık makinesi gözlem modülü | İmal edilecek; gözlem modülü 5 V besleme yöntemi ayrıca çözülecek |
+| **7** | PreBERO ana hat gözlem düzeneği | Ana hattı PZEM ile birlikte okumaya yönelik hedef; tasarım ve uygulama henüz yapılmadı |
 
-- [Çamaşır makinesi modülü](devices/washing-machine/README.md)
-- [Bulaşık makinesi modülü](devices/dishwasher/README.md)
+Modül 5 ve Modül 6 aynı elektronik tasarımın iki fiziksel kopyasıdır. Birincil gözlem kanalları ses ve titreşim, akım kanalı yardımcı/bağlamsal veridir. Her modül için ESP32-D + vidalı terminal shield, MAX4466, MPU6050, SCT013 30 A / 1 V ve ADS1115 planlanır. MPU6050 ve ADS1115 ayrı I²C bus'larında tutulacaktır; pinler fiziksel kart/shield kontrolünden sonra belirlenecektir. Ayrıntılar: [Modül 5 — Çamaşır makinesi](devices/washing-machine/README.md), [Modül 6 — Bulaşık makinesi](devices/dishwasher/README.md), [ADR-032](docs/decisions/ADR-032-washing-dishwasher-twin-sensor-modules.md).
 
-Her iki modülün birincil gözlem kanalları ses ve titreşimdir; akım kanalı yardımcı/ikincil bağlam verisidir. Kullanıcı kararıyla iki cihaz modülü aynı elektronik tasarımın ikiz kopyalarıdır. Her modülde ESP32-D + vidalı terminal shield, MAX4466, MPU6050, SCT013 30 A / 1 V ve ADS1115 bulunması planlanır. MAX4466 ESP32 ADC girişinden, MPU6050 birinci I²C hattından, ADS1115 ikinci ve fiziksel olarak ayrı I²C hattından okunacaktır (iki bus kullanımı kullanıcı tarafından kesinleştirilmiştir); SCT013 ADS1115'e bağlanacaktır. GPIO/pin planı, analog ön uç, örnekleme ve kayıt parametreleri henüz doğrulanmamıştır.
+**E22 bir modül değildir.** Modül 4'ün mevcut ölçüm zinciri kararlı çalıştıktan sonra, bir kanalda 30 A / 1 V ve diğer kanalda 100 A / 1 V SCT ile karşılaştırma yapılması fikrini kaydeden, henüz uygulanmamış deneydir. E22 kapsamında bugüne kadar ölçüm alınmamıştır: [E22 deney kaydı](experiments/E22-sct100a-1v-ads1115-characterization/README.md).
 
-**İmalat sırası ve güç:** Önce Modül 4 (çamaşır makinesi) oluşturulacak; kullanıcı bildirimiyle kurulum noktasında 5 V priz beslemesi mevcuttur. Modül 5 (bulaşık makinesi) aynı elektronik tasarımın ikinci kopyasıdır. Makine kendi mevcut hattından beslenecek; üçlü priz makine beslemesi için kullanılmayacaktır. Yalnızca gözlem modülünün 5 V DC beslemesi için sıva üstü 5 V çıkışlı priz veya makine beslemesinden bağımsız ayrı hattan adaptör seçenekleri değerlendirilmektedir; kesin yöntem henüz belirlenmemiştir.
-
-**Modül kimlikleri (2026-11-20 kullanıcı onayı):** Modül 4 = Çamaşır Makinesi; Modül 5 = Bulaşık Makinesi. E22, bu iki cihaz modülünden bağımsız 100 A / 1 V SCT karakterizasyon deneyidir ve cihaz modül numarası kullanmaz. Ayrıntı: [ADR-032 — İkiz sensör modülleri](docs/decisions/ADR-032-washing-dishwasher-twin-sensor-modules.md).
+Modül 7 / PreBERO hedefi, ana hattın PZEM ile birlikte gözlenmesidir. Bu hedef için henüz donanım topolojisi, bağlantı, firmware veya test sonucu varsayılmaz.
