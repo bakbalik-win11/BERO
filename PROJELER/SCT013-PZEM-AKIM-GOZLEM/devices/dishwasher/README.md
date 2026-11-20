@@ -1,12 +1,12 @@
-# MODÜL 5 — Bulaşık Makinesi İzleme Modülü
+# MODÜL 6 — Bulaşık Makinesi İzleme Modülü
 
 ## Amaç
 Bu klasör, bulaşık makinesi için üretilecek taşınabilir gözlem modülünün donanım, firmware, ham kayıt, Python analiz ve rapor dosyalarını bir arada tutar.
 
 ## Modül kimliği ve aşama
-- **Modül numarası:** MODÜL 5 — kullanıcı tarafından 2026-11-20 tarihinde onaylandı.
+- **Modül numarası:** MODÜL 6 — kullanıcı tarafından 2026-11-20 tarihinde onaylandı.
 - **Aşama:** PLANLANDI / fiziksel imalat ve doğrulama bekliyor.
-- **Mimari:** Modül 4 ve Modül 5 aynı elektronik tasarımın ikiz kopyalarıdır. Donanım ve firmware temeli ortak; cihaz adı, modül kimliği ve kayıt etiketleri farklıdır.
+- **Mimari:** Modül 5 ve Modül 6 aynı elektronik tasarımın ikiz kopyalarıdır. Donanım ve firmware temeli ortak; cihaz adı, modül kimliği ve kayıt etiketleri farklıdır.
 - **Güç durumu:** Bulaşık makinesi kendi mevcut elektrik hattından beslenecek; makineyi üçlü prizle besleme planı yoktur. Yalnızca gözlem modülünün 5 V DC beslemesi çözülecek. Kullanıcı, modül için sıva üstü 5 V çıkışlı priz veya makine beslemesinden bağımsız ayrı bir hattan adaptör seçeneğini değerlendirecek; kesin yöntem henüz belirlenmedi.
 - **İmalat sırası:** Modül 4'ten sonra; modülün 5 V besleme yöntemi seçilene kadar beklemede.
 - **Birincil gözlem kanalları:** ses ve titreşim.
