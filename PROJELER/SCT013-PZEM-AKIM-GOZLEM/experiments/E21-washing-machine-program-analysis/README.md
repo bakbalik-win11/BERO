@@ -27,23 +27,23 @@ Ham HA CSV değişmeden saklanır; analiz ve segmentasyon ayrı türetilmiş ç�
 
 # E21 — Çamaşır makinesi program davranışı analizi
 
-- **Durum:** ÖN GÖZLEM KAYITLARI MEVCUT / VERİ TOPLAMA VE ANALİZ DEVAM EDECEK
+- **Durum:** AKIMLA İLK KEŞİF KAYITLARI MEVCUT / SES-TİTREŞİM MODÜLÜNDEN ANA VERİ TOPLAMA BEKLENİYOR
 - **Açılış tarihi:** 2026-11-13
-- **Hedef:** Çamaşır makinesinin kısa ve uzun programlarını baştan sona akım zaman serisiyle kaydetmek; ilk görsel ve kayıt gözlemlerini korumak; daha fazla tam program kaydı biriktirerek Python ile zaman serisi korelasyonu ve uygun diğer analizleri daha sonra yapmak. İlk gözlemler nihai evre sınıflandırması değildir.
-- **İlerideki yön:** İlk akım kaydından sonra farklı sensörler sisteme aşamalı olarak eklenip birlikte değerlendirilebilir. Sensör türleri ve bağlantıları henüz belirlenmedi; bu aşamada varsayılmayacak.
+- **Hedef:** Çamaşır makinesinin çalışma davranışını öncelikle ses ve titreşim kayıtlarıyla gözlemlemek; Python'da zaman serilerini ve çıkarılan özellikleri inceleyerek davranış örüntülerini belirlemek. Akım, gerektiğinde yardımcı bağlam kanalıdır. 14 Kasım 2026 tarihli akım kayıtları yalnızca ilk keşif/deneme niteliğindedir; ana veri toplama yöntemi ve nihai davranış sınıflandırması değildir.
+- **İlerideki yön:** Modül 4 (çamaşır) ve Modül 5 (bulaşık) taşınabilir düğümleriyle ses ve titreşim ana kanalları toplanacaktır. Python tarafında önce ham kayıt bütünlüğü, zaman serisi, özellik çıkarımı ve kanallar arası karşılaştırma yapılır. Yeterli ve tekrarlanabilir veri oluştuğunda davranış sınıfları/karar ağacı tasarlanabilir. Bildirim üretimi bundan da sonraki aşamadır; şu anki kapsamda değildir. Sensör modelleri, montaj, örnekleme ve kayıt parametreleri fiziksel kurulumla kesinleştirilecektir.
 - **Önceki hedef:** PZEM kararlı-alan eşleştirmesiyle eğitim/kalibrasyon verisi üretme iş akışı ADR-026 ile kapatıldı. Bu işin eski kayıtları silinmez.
 
 ## 1. İlk testin amacı ve sınırı
 
-İlk kayıtlar kısa ve uzun programların **tam program çekimleridir**. Amaç, programların baştan sona akım davranışını gözlemek ve ilerideki karşılaştırma/analizler için başlangıç verisi oluşturmaktır. Bu aşamada tüm evreleri kesin tanımlamak, makine durumlarını sınıflandırmak veya eğitim modeli oluşturmak hedeflenmez.
+İlk kayıtlar kısa ve uzun programların **tam program çekimleridir**. Amaç, programların baştan sona akım davranışını gözlemek ve ilerideki karşılaştırma/analizler için başlangıç verisi oluşturmaktır. Bu aşamada tüm evreleri kesin tanımlamak, makine durumlarını sınıflandırmak veya eğitim modeli oluşturmak hedeflenmez. İlk akım kayıtları ses/titreşim tabanlı ana veri toplama başlamadan önce yapılmış keşif denemesidir.
 
-İlk kayıt sonrasında hangi ek sensörlerin anlamlı olacağı değerlendirilecektir. Farklı sensörlerle kombinasyon, ayrı bir sonraki aşamadır; ilk testin ön koşulu değildir.
+İlk akım kayıtları keşif amaçlıdır. Asıl çoklu sensör gözlemi, Modül 4 ve Modül 5 ile ses ve titreşimden yapılacaktır; akım kanalı yardımcı veri olarak değerlendirilebilir.
 
 Bu çalışma enerji tüketimi veya güç kalitesi analizi değildir. SCT zincirinin ürettiği akım gözlemi, cihazın çalışma karakterini incelemek için kullanılacaktır.
 
 ## 2. İlk kayıt kapsamı
 
-İlk veri grubunda iki ayrı tam program kaydı bulunur: kısa program ve uzun program (dosya adında Pamuklu 60° olarak belirtilmiştir). Program adı ve makine panelindeki seçenekler kullanıcı tarafından bildirilecektir; makine modeli, program, sıcaklık, sıkma devri, ek seçenekler veya çamaşır yükü varsayılmaz.
+İlk keşif grubunda iki ayrı tam program akım kaydı bulunur: kısa program ve uzun program (dosya adında Pamuklu 60° olarak belirtilmiştir). Bu kayıtlar ses/titreşim içermediğinden yeni modüllerin ana veri setiyle karıştırılmayacaktır. Program adı ve makine panelindeki seçenekler kullanıcı tarafından bildirilecektir; makine modeli, program, sıcaklık, sıkma devri, ek seçenekler veya çamaşır yükü varsayılmaz.
 
 Kayıt öncesi not edilecekler:
 - Makine marka/modeli (biliniyorsa).
@@ -86,7 +86,7 @@ Bu aşamada ayrıntılı evre sınıflandırması, tekrar testi veya ek sensör 
 
 ## 6. Sonraki aşamalar
 
-İlk kayıt değerlendirildikten sonra kullanıcıyla birlikte uygun farklı sensörler seçilecek ve aşamalı biçimde sisteme eklenerek kombinasyonları incelenecektir. Sensör seçimi, bağlantı ve kayıt yöntemi ayrı karar/protokolle belirlenecektir. Aynı programı tekrar etme veya başka programları kaydetme ihtiyacı ilk kaba testin sonucuna göre kararlaştırılır. Tek programdan bütün makine davranışı hakkında genelleme yapılmaz.
+Ses ve titreşim sensörleri Modül 4 ve Modül 5 üzerinde fiziksel olarak devreye alındıktan sonra ham kayıtlar toplanacaktır. Python'da önce sinyal kalitesi ve özellikler incelenecek, ardından ses/titreşim örüntüleri ve varsa yardımcı akım bilgisi birlikte değerlendirilecektir. Karar ağacı/karar mantığı ancak yeterli kayıt ve tekrarlarla doğrulandıktan sonra ele alınır. Bildirim üretimi uzun vadeli sonraki aşamadır. Aynı programı tekrar etme veya başka programları kaydetme ihtiyacı ilk kaba testin sonucuna göre kararlaştırılır. Tek programdan bütün makine davranışı hakkında genelleme yapılmaz.
 
 ## 7. Güvenlik ve sınırlar
 
@@ -104,4 +104,4 @@ E21 ilk oturumu ancak aşağıdakiler tamamlandığında “ilk kayıt analiz ed
 - Gözlem, kullanıcı bildirimi ve hipotezler birbirinden ayrılmış.
 - Ham veri ve analiz özeti depoda birbirine bağlanmış.
 
-**Mevcut durum:** Kısa ve uzun programlara ait tam kayıt dosyaları kullanıcı kitaplığında mevcut olarak gösterilmiştir; kısa kayıt adı `wm-kısa-prg-2026-11-14.csv`, uzun kayıt adı `wm-uzun pamuklu 60 - 2026-11-14.csv` olarak bildirilmiştir. Bu ham CSV dosyaları henüz bu repo yoluna alınmış ve içerikleri burada analiz edilmiş değildir. İlk nitel gözlemler (ısıtma, sağ-sol tambur dönüşü, sıkma) kaydedilmiştir. Daha fazla tam program kaydı toplanacak; Python korelasyonu ve diğer analizler sonraki aşamadır. E21 bu nedenle yapılmamış değil, ön gözlem/kayıt aşamasında ve analizi beklemektedir.
+**Mevcut durum:** Kısa ve uzun programlara ait tam kayıt dosyaları kullanıcı kitaplığında mevcut olarak gösterilmiştir; kısa kayıt adı `wm-kısa-prg-2026-11-14.csv`, uzun kayıt adı `wm-uzun pamuklu 60 - 2026-11-14.csv` olarak bildirilmiştir. Bu ham CSV dosyaları henüz bu repo yoluna alınmış ve içerikleri burada analiz edilmiş değildir. İlk nitel gözlemler (ısıtma, sağ-sol tambur dönüşü, sıkma) kaydedilmiştir. Daha fazla tam program kaydı toplanacak; Python korelasyonu ve diğer analizler sonraki aşamadır. E21'in ilk keşif/akım kaydı adımı yapılmıştır. Ana ses-titreşim veri toplama, Python analizi, davranış sınıflandırması ve daha sonraki karar ağacı/bildirim aşamaları henüz yapılmamıştır.
