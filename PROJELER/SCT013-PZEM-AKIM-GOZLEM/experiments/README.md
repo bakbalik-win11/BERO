@@ -23,7 +23,7 @@
 ## Yeni hedef — E21 Çamaşır makinesi program davranışı analizi
 
 - **[E21 — Çamaşır makinesi program davranışı analizi](E21-washing-machine-program-analysis/README.md): AKTİF / PLANLANDI.** Bir tam programın SCT-013 + ADS1115 akım zaman serisi kaydedilecek; gözlenen evre adayları, süreleri, geçişleri ve tekrar eden örüntüleri çıkarılacak. Program adı/ayar/yük bilgileri kullanıcıdan alınacak; yalnız akım grafiğinden makine içi durum kesin varsayılmayacak.
-- PZEM kararlı-alan eşleştirmesiyle eğitim/kalibrasyon iş akışı kullanıcı kararıyla kapatıldı. E20 aç/kapa deneyi plan aşamasında kaldığı için yapılmadan kapatıldı. Eski protokoller ve sonuçlar tarihsel arşiv olarak korunur.
+- PZEM kararlı-alan eşleştirmesiyle eğitim/kalibrasyon iş akışı kullanıcı kararıyla kapatıldı. **E20 — 18 W fiziksel aç/kapa tepki deneyi: KAPATILDI — YAPILMADAN (2026-11-20).** E19'da istenen düşük akım ölçüm kriterlerinde sonuç alındığı ve kayıtlı 18–150 W koşullarının ±%4 hedefini karşıladığı için ek ON/OFF çevrimleri proje hedefi açısından gerekli görülmedi. E20 dinamik tepki ölçümü yapılmış değildir. Eski protokoller ve sonuçlar tarihsel arşiv olarak korunur.
 - Karar: [ADR-026](../docs/decisions/ADR-026-close-stable-window-training-open-washer-analysis.md).
 # Deney arşivi
 
