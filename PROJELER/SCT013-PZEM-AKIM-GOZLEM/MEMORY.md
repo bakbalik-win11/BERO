@@ -21,7 +21,7 @@
 - **Aktif masaüstü düzenek:** Modül 4 = mevcut günlük ESP32D2 + ADS1115 + SCT ölçüm düzeneği.
 - **PREBERO Fazı (Yeni):** Gerçek BERO öncesi saha veri toplama ve test aşaması.
     - Modül 5 (Çamaşır) & Modül 6 (Bulaşık): imal edilecek; akım + ses + titreşim (WiFi üzerinden HA'ya).
-    - Modül 7 (Ana Hat): PreBERO kapsamında ana hattı PZEM ile birlikte okuma hedefi; tasarım/uygulama bekliyor (WiFi üzerinden HA'ya).
+    - Modül 7 (Ana Hat): PreBERO kapsamında ana hattı PZEM ile birlikte okuma hedefi; tasarım/uygulama bekliyor.
 - **Düğüm Otonomisi:** Uç birimlerin (ESP32) HA veya ekran bağımsız çalışabilmesi, yerel veri kaydı ve kesinti sonrası senkronizasyon yeteneği.
 - **PREBERO Laboratuvarı:** ESP32-S3 Ekranlı kart + Raspberry Pi 4 (HA) + Çift RS485 hattı (Master/Slave rolleri) ile masaüstü test düzeneği.
 
