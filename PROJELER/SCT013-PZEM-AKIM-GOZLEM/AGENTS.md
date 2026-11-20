@@ -14,7 +14,7 @@
 - Sensörden bağımsız mimari ilkeler `../../MIMARI/README.md` altında tutulur. Mimari/ortak altyapı işi yapılırken [pencereli sensör analizi belgesi](../../MIMARI/PENCERELI-SENSOR-ANALIZI/README.md) okunur.
 - Bu proje SCT013 + PZEM uygulama alanıdır. Buradaki pin, katsayı, CT/AC RMS yöntemi ve deney sonuçları diğer sensörlere evrensel kural olarak aktarılmaz.
 - Yeni sensör uygulamaları kendi donanım, firmware, deney ve log kanıtlarıyla ayrı kaydedilir; ortak ilkeler MIMARI altında güncellenir.
-- Bu mimari kayıt, bu projenin iki fazını ve aktif görev sırasını değiştirmez.
+- Bu mimari kayıt, iki ana faz tanımını değiştirmez; ancak Faz 2 içindeki aktif alt görev sırası ADR-035 ile güncellenmiştir.
 
 ## İki fazlı proje yapısı
 
@@ -22,7 +22,7 @@ Projede yalnızca iki ana faz vardır:
 1. **Faz 1 — Çalışan kodu bulmak ve ±%4 hedefine ulaşmak: TAMAMLANDI.** Dış kaynaklı kodla hedef sağlandı. Faz 1 kapsamındaki yapılmamış işler hedefe ulaşıldığı için kapatılmıştır; eski deney dosyaları tarihsel arşivdir.
 2. **Faz 2 — Pratik yeniden kurulum ve sistem geliştirme: AKTİF.** Faz 2, yalnız mevcut kodu PZEM ile eğitme aşaması değildir. Kayıtlı kodlar ve çalışan örneklerden yararlanarak modüller/ESP düğümleri yeniden devreye alınır, temel işlevleri gerçek donanımda doğrulanır ve sistem geliştirilir. PZEM referanslı veri aktarımı/etiketleme bu işleyen sistemin sonraki alt aşamasıdır.
 
-T009, Faz 2'nin pratik devreye alma üst görevidir. T010 eski Modül 2 görevidir ve kapatılmıştır; güncel fiziksel modül kimlikleri için ADR-033 esastır. Güncel aktif sıra: önce Modül 4'te biaslı/bias'sız karşılaştırma, ardından osiloskopla sinyal incelemesi ve bias gerekliliği kararı; bundan sonra PREBERO Modül 5/6/7 için bias besleme mimarisinin (ESP'den besleme veya Modül 1'in ikiz bias devreleri) değerlendirilmesi. Bu sıra ADR-034'te tanımlıdır. Bias kararı deneyden önce verilmez. Her oturumda STATUS.md içindeki aktif aşamada çalış. Faz 1 deneylerini yeniden açma; yeni deneyler somut uygulama/ölçüm sorularına göre planlanır.
+T009, Faz 2'nin pratik devreye alma üst görevidir. T010 eski Modül 2 görevidir ve kapatılmıştır; güncel fiziksel modül kimlikleri için ADR-033 esastır. Faz 2 içindeki güncel sıra ADR-035 ve T011 ile belirlenir: ADS1115 hobi düzeyinde teknik raporu → masaüstü Modül 4 bağlantı incelemesi → biaslı/bias'sız karşılaştırma → osiloskop gözlemi → kanıta dayalı Modül 4 tasarım kararı → Modül 4 imalatı ve doğrulaması → PREBERO Modül 5/6/7. Modül 4 imalatı ve kabulü tamamlanmadan PREBERO modüllerine geçilmez. Bias gerekliliği ve PREBERO bias besleme mimarisi önceden karara bağlanmaz; bias besleme seçenekleri ADR-034 uyarınca ancak bias kararı sonrasında değerlendirilir. Çalışma hobi düzeyinde tutulur; laboratuvar seviyesinde kapsamlı karakterizasyon hedeflenmez, ancak üretici elektriksel sınırları ve güvenlik koşulları atlanmaz. Her oturumda STATUS.md içindeki aktif aşamada çalış. Faz 1 deneylerini yeniden açma; yeni deneyler somut uygulama/ölçüm sorularına göre planlanır.
 
 ## Pratik geliştirme ilkesi
 
