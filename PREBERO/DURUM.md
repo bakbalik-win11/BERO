@@ -152,3 +152,15 @@ Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı ha
 - **Kaynak sınırı:** Ayrı ESPHome logu bu veri paketinde yoktur; analiz HA CSV'ye dayanır.
 - **Dosyalar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-HA-KAYNAK-2026-11-21.csv`, `.../V1.1-BIAS-KANAL-TEKRAR-PZEM-ESLESTIRME-2026-11-21.csv`, `.../V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md`.
 - **Görev:** MOD2-GRV001 açık; tamamlanmadı.
+
+
+## 2026-11-21 – 100 W bias kanal çapraz testi: üç tekrar sonunda kapanış
+
+- **Durum:** 100 W nominal yük / yaklaşık 0.47 A çalışma noktasındaki üç çapraz test tamamlandı ve kapatıldı.
+- **Tespit:** Üç testin tamamında biaslı kanal, biassız kanala göre daha başarılı sonuç verdi; biaslı kolun ortalaması daha yüksek ve PZEM karşılaştırmasına göre MAPE değeri daha düşüktür.
+- **Biaslı / biassiz MAPE:** 1. test %1.016 / %3.262; 2. test %1.275 / %3.168; 3. test %1.819 / %2.508.
+- **Kanal çaprazlaması:** 1. ve 3. testte bias A2–A3; 2. testte bias A0–A1 kanalındaydı. İlk iki çaprazlamada yüksek ortalamanın biasla birlikte kanal değiştirmesi bias katkısını destekler.
+- **Karar:** Yaklaşık 0.47 A çalışma noktasında biasın ölçüm sonucuna olumlu katkısı tespit olarak kaydedildi.
+- **Sınırlar:** PZEM karşılaştırma referansıdır, ground truth değildir. Biasın gürültüyü azalttığı gösterilmedi; tüm akım aralığına genelleme yapılmaz. K=27.59 korunmuştur.
+- **Görev:** Bu 100 W bias çapraz test serisi kapatıldı; MOD2-GRV001'in tamamı açık kalır.
+- **Rapor:** PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md.
