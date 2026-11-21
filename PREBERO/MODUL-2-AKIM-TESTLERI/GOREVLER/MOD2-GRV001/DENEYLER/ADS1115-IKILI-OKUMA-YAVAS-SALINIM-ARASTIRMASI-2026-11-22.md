@@ -1,7 +1,7 @@
 # ADS1115 İkili Okuma – Yavaş Salınım Araştırması
 **Tarih:** 2026-11-22  
 **Görev:** MOD2-GRV001  
-**Durum:** AÇILDI – TEST BEKLİYOR  
+**Durum:** KAPATILDI – RESET SONRASI BELİRTİ DURDU, KÖK NEDEN BELİRLENMEDİ  
 **Kod durumu:** Mevcut çalışan YAML değiştirilmeyecek
 
 ## 1. Amaç
