@@ -152,3 +152,15 @@ Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı ha
 - **Kaynak sınırı:** Ayrı ESPHome logu bu veri paketinde yoktur; analiz HA CSV'ye dayanır.
 - **Dosyalar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-HA-KAYNAK-2026-11-21.csv`, `.../V1.1-BIAS-KANAL-TEKRAR-PZEM-ESLESTIRME-2026-11-21.csv`, `.../V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md`.
 - **Görev:** MOD2-GRV001 açık; tamamlanmadı.
+
+
+## 2026-11-21 – Sıradaki test: bias sabit kanal 42 W
+
+- **Durum:** Deney planı açıldı; ölçüm bekleniyor.
+- **Kanal düzeni değişmeyecek:** A0–A1 biassız, A2–A3 biaslı.
+- **Amaç:** Yaklaşık 42 W yükte düşük akım davranışını ve biasın PZEM karşılaştırmasına etkisini incelemek.
+- **Sabitler:** Aynı iki SCT ve fiziksel konum/yön; Bias Modül 1; ESP32D2; ADS1115 No.10; mevcut iki kanallı YAML; K=27.59.
+- **Yazılım:** Değişiklik yok.
+- **Ölçüm:** Gerçek PZEM W/A, iki SCT kanalı, örnek sayısı, ortalama, standart sapma, CV ve ±2 saniye eşleştirilmiş MAPE kaydedilecek. PZEM ground truth değildir.
+- **Önemli sınır:** 42 W tek bir düşük yük noktasıdır; tüm akım aralığı için genelleme yapılmayacak.
+- **Deney planı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-SABIT-KANAL-42W-TESTI-2026-11-21.md`.
