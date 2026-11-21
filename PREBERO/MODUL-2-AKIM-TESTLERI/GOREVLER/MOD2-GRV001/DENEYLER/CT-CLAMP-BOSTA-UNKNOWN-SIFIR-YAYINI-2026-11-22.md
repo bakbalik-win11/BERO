@@ -141,3 +141,20 @@ Bu kayıt V1.2'nin ilk sıfır yayın gözlemidir. Görüntü yaklaşık 01:46:0
 Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/RAPOR/V1.2-UNKNOWN-ZERO-ILK-DOGRULAMA-2026-11-22.md`
 
 **Durum:** İlk çalışma/sıfır yayın gözlemi doğrulandı; uzun süreli ve yük/cihaz kesintisi testleri bekliyor.
+
+
+## 2026-11-22 – ESP32D2 OTA logu ve sıfır yayını doğrulaması
+
+Kullanıcının paylaştığı ESPHome 2026.11.0 OTA logu:
+- ESP32D2 Wi-Fi ve API bağlantısı başarılı.
+- I²C recovery başarılı; 0x48 ADS1115 bulundu.
+- Template sensör 1 saniye, ct_clamp 200 ms pencere / 1 saniye update_interval ile başlatıldı.
+- 01:48:12.491–01:48:40.508 arasında her saniye `BERO Akim Sensoru >> 0.000 A` yayınlandı.
+
+Bu log, çevrimiçi cihazda periyodik sıfır yayınını doğrular. ADS1115'in I²C taramasında bulunması, analog örneklerin geçerliliğini tek başına kanıtlamaz; template sensör NaN'ı da sıfıra dönüştürmektedir.
+
+Log kaydı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/LOG/V1.2-UNKNOWN-ZERO-ESP32-LOG-2026-11-22.md`
+
+### Kullanıcı tasarım kararı
+
+Biasın getirebileceği sınırlı doğruluk artışı, ek donanım ve bağlantı karmaşıklığına değmez. Yüksüz durumda 0.000 A görülmesi temel işletim beklentisidir. Yeni tasarımda basit biassız ölçüm yolu tercih edilir. Bu tercih, kalibrasyon ve yük altı doğruluğun ayrıca doğrulanması gereğini ortadan kaldırmaz.
