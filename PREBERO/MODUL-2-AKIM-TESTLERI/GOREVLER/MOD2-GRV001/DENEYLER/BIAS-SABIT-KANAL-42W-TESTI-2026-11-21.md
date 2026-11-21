@@ -56,3 +56,12 @@ PZEM/SCT örnekleri ±2 saniye içinde eşleştirilerek biaslı ve biassız koll
 - Fiziksel bağlantı ve yük fotoğrafı/teyidi.
 
 **Mevcut durum:** Deney planı açıldı. 42 W ölçümü henüz alınmadı; sonuç veya doğrulama iddiası yoktur.
+
+
+## Kapanış kaydı (2026-11-21)
+
+**Durum: KAPATILDI – uygulanmadı / iptal edildi.**
+
+Üç çapraz deneyin ortak sonucu kullanıcı tarafından biasın yaklaşık 0.47 A çalışma noktasında faydalı olduğuna dair yeterli bulgu olarak değerlendirildi. Bu nedenle planlanan 42 W sabit kanal deneyi bu aşamada yapılmayacak. Bu dosya deney sonucu içermez; yalnızca açılmış ancak uygulanmadan kapatılmış planın iz kaydıdır.
+
+Yeni bir düşük akım testi ileride gerekli görülürse ayrı bir deney olarak, yeni karar ve koşullarla açılacaktır.
