@@ -6,7 +6,7 @@
 **Yük:** 100 W akkor ampul  
 **Yük kontrolü:** SANEC AC 220 V dimmer  
 **Başlangıç firmware'i:** V1.1 – katsayı 27.59 (değiştirilmeyecek)  
-**Durum:** Deney açıldı; ilk grafik gözlemi mevcut, sayısal kararlı pencere analizi bekleniyor.
+**Durum:** KAPATILDI – 2026-11-21 tarihinde dimmer altında üçlü ölçüm gözlemi yapıldı. Sonuç raporu: `../RAPOR/DIMMER-UC-METRE-GOZLEM-RAPORU-2026-11-21.md`. Dimmerle katsayı alanı taraması sürdürülmeyecek.
 
 ## 1. Amaç
 
@@ -128,3 +128,14 @@ Katsayı alanları ancak birden fazla kararlı pencere ve tekrar ile desteklenir
 
 
 **Açılış kararı:** Deney protokolü oluşturuldu. İlk grafik gözlemi not edildi. Henüz sayısal sapma analizi yapılmadı ve deney tamamlanmadı.
+
+
+## 11. Kapanış kararı – 2026-11-21
+
+- Deney, tost makinesi yükü ve SANEC dimmer ile üçlü ölçüm gözlemine dönüştürüldü: PZEM, SCT/ADS1115 ve UNI-T UT200B+.
+- Home Assistant `history (5).csv` dosyasındaki kararlı pencereler analiz edildi; pens okumaları kullanıcı tarafından bildirildi ve CSV içinde otomatik zaman damgalı değildi.
+- PF 1.00, 0.85 ve 0.47 gözlemlerinde PZEM–SCT farkının büyüdüğü görüldü. Bu ilişki gözlemdir; PF'nin tek başına neden olduğu kanıtlanmadı.
+- Dimmer, akım seviyesini değiştirirken dalga biçimini de değiştirdiği için bu düzenekle katsayı alanı taraması güvenilir biçimde sürdürülemedi.
+- **Deney kapatıldı. Dimmerle katsayı alanı taraması yapılmayacak.**
+- V1.1 YAML ve 27.59 katsayısı değiştirilmedi.
+- Ayrıntılı sonuçlar: `../RAPOR/DIMMER-UC-METRE-GOZLEM-RAPORU-2026-11-21.md`.
