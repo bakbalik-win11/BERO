@@ -99,3 +99,22 @@ Bu deney yeni bir görev olarak açılacak; bugünkü üç tespit ve mevcut kats
 - Dimmer PF raporu: `DIMMER-100W-PF-ETKISI-2026-11-21.md`
 - 8.5 W LED deney kaydı: `../DENEYLER/8_5W-LED-DUSUK-PF-TEKRAR-2026-11-21.md`
 - Önceki V1.1 düşük akım raporu: `../V1.1/RAPOR/V1.1-KATSAYI-DOGRULAMA-VE-DUSUK-AKIM-ANALIZI-2026-11-21.md`
+
+
+## 6. Günün dördüncü teknik tespiti – Bias, yaklaşık 0.47 A çalışma noktasında faydalı
+
+Üç ayrı bias kanal çapraz deneyinin ortak sonucu değerlendirildi. Her üç deneyde de biaslı kanalın ortalama akımı daha yüksek ve PZEM karşılaştırmasına göre MAPE değeri daha düşük çıktı.
+
+| Deney | Biaslı kanal | Biassiz kanal | Biaslı kol ortalama avantajı | MAPE biaslı / biassiz |
+|---|---|---|---:|---:|
+| 1 | A2–A3 | A0–A1 | +0.015169 A | %1.016 / %3.262 |
+| 2 | A0–A1 | A2–A3 | +0.012737 A | %1.275 / %3.168 |
+| 3 | A2–A3 | A0–A1 | +0.012852 A | %1.819 / %2.508 |
+
+İlk iki deneyde bias kanalı değiştirildiğinde yüksek ortalamanın biaslı kanalı takip etmesi, kanal etkisi yerine bias katkısı yorumunu destekler. Üçüncü deneyin fiziksel bağlantı eşlemesi kullanıcı tarafından teyit edilmiştir.
+
+**Günün tespiti:** Yaklaşık 0.47 A / 107–108 W çalışma bölgesinde biasın ölçüm sonucuna pozitif katkısı olduğu kabul edildi. Bu, PZEM karşılaştırma referansına göre daha yakın sonuç örüntüsüdür; PZEM ground truth değildir ve mutlak doğruluk iddiası yapılmamaktadır.
+
+**Sınırlar:** Biasın gürültüyü azalttığı gösterilmedi; tüm akım aralığına genelleme yapılmayacak. K=27.59 korundu. Bias çapraz deney serisi kapatıldı. Açılmış 42 W sabit kanal planı uygulanmadan kapatıldı.
+
+İlgili ayrıntılı kayıt: ../DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md ve ../V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md.
