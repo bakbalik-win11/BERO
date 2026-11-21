@@ -1,0 +1,9 @@
+metric,n,mean,std_dev,min,max,unit
+PZEM_power_nonzero,36,150.980556,0.893730,149.6,152.5,W
+PZEM_current_nonzero,15,0.649133,0.001767,0.647,0.652,A
+A0_A1_current,236,0.598765,0.008755,0.575190,0.620075,A
+A2_A3_current,235,0.601565,0.005633,0.589056,0.615575,A
+A0_A1_CV,236,1.462250,,,,"%"
+A2_A3_CV,235,0.936421,,,,"%"
+A0_A1_PZEM_nearest_MAE_percent,15,8.060897,,,,"%"
+A2_A3_PZEM_nearest_MAE_percent,15,7.065388,,,,"%"
