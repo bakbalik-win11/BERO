@@ -279,3 +279,60 @@ sensor:
           if (x < 0.005) return 0.0;
           return x;
 ```
+
+
+## 11. Uzatılmış grafik değerlendirmesi ve ek deney planı (2026-11-22)
+
+Kullanıcının paylaştığı yaklaşık 00:18–00:26 UTC grafiği, önceki 00:18–00:22 kesitini uzatmaktadır. Görselde:
+- PZEM yaklaşık 1.16 A çevresinde düz görünmektedir.
+- A0–A1 yaklaşık 0.97–1.22 A aralığında hareket etmektedir.
+- A2–A3 yaklaşık 1.03–1.20 A aralığında hareket etmektedir.
+- İki SCT kanalının dalga biçimleri aynı değildir; bazı bölümlerde benzer yönde geniş hareketler, bazı bölümlerde farklılaşan kısa hareketler görülmektedir.
+
+Gemini tarafından önerilen kısa (yaklaşık 15–25 s) ve uzun (yaklaşık 60–90 s) salınım bileşenlerinin birleşerek modüle bir zarf oluşturduğu yorumu, **test edilecek bir hipotez** olarak kaydedilmiştir. Bu süreler ekran görüntüsünden çıkarılmış yaklaşık tahminlerdir; kesin periyot veya frekans olarak kabul edilmez. Ham CSV üzerinde zaman serisi analizi yapılmalıdır.
+
+PZEM çizgisinin düz görünmesi gerçek yük akımının kesinlikle sabit olduğunu kanıtlamaz; PZEM'in örnekleme ve güncelleme karakteristiği bu karşılaştırmada dikkate alınacaktır.
+
+### 11.1 Yükleri birbirinden ayırma
+
+Mevcut birleşik yük koşulu Kettle 1 + 100 W ampuldür. Yük bileşenlerinin etkisini ayırmak için, aynı SCT yerleşimi ve aynı ölçüm ayarları korunarak aşağıdaki kayıtlar alınacaktır:
+
+1. **Yalnız Kettle 1:** En az 3–5 dakika.
+2. **Yalnız 100 W ampul:** En az 3–5 dakika.
+3. **Kettle 1 + 100 W ampul:** En az 5 dakika; önceki birleşik yük kaydının tekrarı.
+
+Her kayıtta PZEM, A0–A1 ve A2–A3 birlikte kaydedilecektir. Açılış ve kapanış geçişleri kararlı pencere istatistiklerinden ayrı tutulacaktır. Yüklerin gerçek çalışma gücü/akımı her kayıt için PZEM verisinden raporlanacaktır.
+
+Bu karşılaştırma, salınımın yük kombinasyonuna bağlı olup olmadığını araştırır; tek başına ölçüm zincirinin hatalı olduğunu kanıtlamaz.
+
+### 11.2 Besleme ve bias gözlemi
+
+Ölçüm zincirinin besleme/bias kaynaklı etkisini araştırmak için aşağıdaki noktalar kontrol edilecektir:
+- ADS1115 VDD: nominal 3.3 V.
+- ESP32D2 beslemesi.
+- A2–A3 hattında kullanılan bias düğümü: nominal yaklaşık 1.66 V.
+- ESP32D2 ve ADS1115 arasındaki ortak GND bağlantısı.
+- SDA/SCL bağlantılarının fiziksel sağlamlığı.
+
+Multimetreyle bir dakikalık gözlem, yalnızca yavaş ve belirgin gerilim değişimlerini gösterebilir; küçük veya hızlı dalgalanmaları dışlayamaz. Daha hassas dalgalanma incelemesi için uygun ve güvenli prob bağlantısıyla osiloskop kullanılabilir. ADS1115 girişlerinin her birinin GND'ye göre mutlak gerilim sınırları korunacaktır.
+
+### 11.3 Filtre denemesinin yeri
+
+10 saniye civarında hareketli ortalama veya EMA, yalnızca teşhis kayıtları tamamlandıktan sonra ayrı bir deney kopyasında değerlendirilebilir. İlk referans ve tek-kanal/yük ayrıştırma kayıtlarında filtre eklenmeyecektir.
+
+Filtreli deneme yapılırsa:
+- Orijinal ham ölçüm ve filtresiz kayıt korunacak.
+- Filtreli sonuç ham verinin yerine geçirilmeyecek.
+- Tepe-çukur genliği, ortalama hata ve gecikme birlikte raporlanacak.
+- Dalgalanmanın azalması, kaynağın giderildiği şeklinde yorumlanmayacak.
+
+### 11.4 Ek başarı ölçütleri
+
+Yük ayrıştırma ve besleme gözlemleri sonrasında:
+- Her yük koşulunda iki SCT kanalının salınım genliği ve periyodu karşılaştırılmalı.
+- Kısa ve uzun zaman ölçekleri ham zaman serisinde ayrı ayrı doğrulanmalı veya reddedilmeli.
+- Yük tekilleştirildiğinde salınımın sürüp sürmediği raporlanmalı.
+- Besleme/bias değişimleri ile SCT salınımları arasında zaman ilişkisi aranmalı.
+- Filtre uygulanmadan önce olası fiziksel ve zamanlama kaynakları değerlendirilmiş olmalı.
+
+**Sıra kararı:** Önce yükleri ayırma (Kettle 1, 100 W ampul, birleşik yük); ardından besleme/bias gözlemi; sonra YAML/ADS1115 zamanlama analizi; en son gerekirse ayrı filtre denemesi. Mevcut V1.1 YAML ve kalibrasyon katsayısı değiştirilmez.
