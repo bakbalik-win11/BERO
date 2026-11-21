@@ -210,3 +210,14 @@ Yeni deneyde bias ESP32 kartının 3.3 V hattından sağlanacak; ESP32 GND, ADS1
 Fiziksel bağlantı, direnç değerleri ve bias DC seviyesi henüz teyit edilmedi. Enerji verilmeden önce bağlantı ve ADS1115 mutlak giriş gerilimleri kontrol edilecek. K=27.59 ve çalışan YAML korunacak. Deney açık; henüz ölçüm sonucu yoktur.
 
 Deney kaydı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ESP32-KAYNAKLI-BIAS-ORTAK-GND-2026-11-21.md`.
+
+## 2026-11-21 – ESP32 kaynaklı bias / ortak GND: Kettle 2 kapatıldı
+
+- ESP32 3.3 V kaynaklı yaklaşık 1.66 V bias ve ortak GND düzeniyle Kettle 2 (kaynatma modu) ölçümü analiz edildi.
+- Analiz raporu: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-ESP32-BIAS-KETTLE2-2026-11-21.md`.
+- Sayısal özet CSV: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/LOG/V1.1-ESP32-BIAS-KETTLE2-OZET-2026-11-21.csv`.
+- Kettle 2 analizinde A2–A3 ortalaması 6.83096 A, PZEM ortalaması 6.80079 A; ±2 saniye eşleştirmeli MAPE A2–A3 için %2.550, diğer SCT serisi için %2.801.
+- Her iki SCT kanalında da belirgin dalgalanma gözlendi; dalgalanmanın kaynağı belirlenmedi. Biasın gürültüyü azalttığı iddia edilmez.
+- **Karar:** ESP32 bias + ortak GND Kettle 2 deneyi kapatıldı. Basitleştirme kararını tamamlamak için aynı düzenle 100 W ve 15 W deneyleri sıradadır.
+- K=27.59 ve firmware/YAML değiştirilmedi. PZEM karşılaştırma referansıdır, ground truth değildir.
+- Ham kaynak `history (17)(1).csv` 430 satırdır; GitHub'a birebir ham kopyası yüklenmedi, sayısal özet CSV kaydedildi.
