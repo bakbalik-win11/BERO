@@ -113,4 +113,18 @@ Katsayı alanları ancak birden fazla kararlı pencere ve tekrar ile desteklenir
 - Kararlı pencere özeti: LOG/DIMMER-KARARLI-PENCERE-OZETI-2026-11-21.csv
 - Sonuç raporu: RAPOR/DIMMER-KATSAYI-ALANLARI-2026-11-21.md
 
+
+## 10. Kullanıcı tarafından netleştirilen uygulama planı
+
+- **Firmware/kod değişikliği yapılmayacak.** ESP32D2 üzerinde V1.1 aynen kalacak; katsayı 27.59 korunacak.
+- Deney boyunca değişecek unsur dimmer ayarı ve buna bağlı ölçüm loglarıdır.
+- **Başlangıç saati:** 17:45 (Türkiye yerel saati).
+- **Başlangıç ayarı:** Dimmer maksimum konum.
+- **Tarama yönü:** Maksimum dimmer ayarından başlanarak akım kademeli biçimde düşürülecek.
+- Her kademe değişiminde yeni ayar sonrası kararlı pencere beklenecek; ham loglar daha sonra PZEM-SCT eşleştirmesi ve sapma hesabı için kullanılacak.
+- Saat 17:45 başlangıç noktasıdır; bu kayıt, ölçümlerin o saatte gerçekten başladığını tek başına kanıtlamaz. Gerçek başlangıç ve kademe zamanları CSV zaman damgalarından doğrulanacaktır.
+
+**Önemli:** Kod sabit olduğundan bu deney bir firmware/katsayı değişikliği deneyi değil, dimmer ayarıyla yük akımını değiştirerek ölçüm alanı tarama deneyidir.
+
+
 **Açılış kararı:** Deney protokolü oluşturuldu. İlk grafik gözlemi not edildi. Henüz sayısal sapma analizi yapılmadı ve deney tamamlanmadı.
