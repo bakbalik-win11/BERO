@@ -406,3 +406,24 @@ Deney planı:
 - **Kaynak ESPHome logu:** Bu veri paketinde ayrıca sunulmadı; rapor HA CSV'ye dayanır.
 - **Arşiv:** Ham CSV `V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-HA-KAYNAK-2026-11-21.csv`; eşleştirme `V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-PZEM-ESLESTIRME-2026-11-21.csv`; rapor `V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md`.
 - **Durum:** Üçüncü deneyin HA verisi arşivlendi ve analiz edildi. Fiziksel bağlantı eşlemesi teyidi bekleniyor. MOD2-GRV001 tamamlanmadı.
+
+
+## 2026-11-21 – Bias sabit kanal 42 W testi açıldı
+
+**Durum: AÇILDI – ölçüm bekleniyor.**
+
+Üç çapraz deneyde biaslı kanalın ortalama ölçümü daha yüksek çıktı; üçüncü deneyde planlanan biaslı kanalın PZEM'e göre MAPE değeri de daha düşüktü. Kullanıcı biasın faydalı olduğu yönündeki bulguyu kabul ederek kanal değiştirmeden 42 W testine geçilmesini belirtti.
+
+- A0–A1 biassız kalacak.
+- A2–A3 biaslı kalacak.
+- Sensör, kablo, yön, konum ve bias kaynağı değiştirilmeyecek.
+- Yük hedefi yaklaşık 42 W; gerçek W ve A PZEM'den kaydedilecek.
+- ESP32D2, ADS1115 No.10 ve mevcut iki kanallı YAML korunacak.
+- K=27.59 değişmeyecek; firmware düzenlemesi yapılmayacak.
+
+Amaç, yaklaşık 42 W düşük yük noktasında biaslı/biassız ölçümü, PZEM referansına göre farkı ve kanal kararlılığını karşılaştırmaktır. Önceki düşük akım gözlemleri nedeniyle sonuç peşinen varsayılmayacak. PZEM ground truth değildir; yalnızca karşılaştırma referansıdır.
+
+Deney planı:
+`PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-SABIT-KANAL-42W-TESTI-2026-11-21.md`
+
+**Henüz ölçüm alınmadı.**
