@@ -234,3 +234,17 @@ Deney kaydı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ESP32
 - Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-ESP32-BIAS-KETTLE2-TRAFOLU-KARSILASTIRMA-VE-100W-DEGERLENDIRME-2026-11-21.md`.
 - Kaynak sınırı: Kettle 2 history (16)/(17) karşılaştırma metrikleri kullanıcı tarafından sağlandı; CSV'ler bu kayıt sırasında yeniden işlenmedi. 100 W istatistikleri mevcut 100 W raporundan alındı.
 - K=27.59 ve çalışan YAML/firmware korunmuştur.
+
+
+## 2026-11-21 – ESP32 bias 15 W deneyi
+
+- Kaynak: kullanıcı yüklemesi `history (19)(1).csv`, 604 satır.
+- Kararlı SCT özeti için ilk 3 saniye çıkarıldı. Diğer SCT kanalı: ortalama 0.058321 A, medyan 0.058056 A, CV %3.611. A2–A3 ESP32 bias: ortalama 0.060924 A, medyan 0.060054 A, CV %6.276.
+- PZEM akımında yalnızca 3 örnek vardır; ortalama 0.064333 A. ±2 saniye eşleştirmeli MAPE diğer SCT kanalı %8.900, A2–A3 %8.157. Örnek sayısı kesin doğruluk kararı için yetersizdir.
+- A2–A3 maksimumu 0.080796 A; önceki 15 W oturumundaki 0.516451 A tekil spike tekrarlanmamıştır. Buna rağmen A2–A3 değişkenliği daha yüksektir.
+- Önceki 15 W A2–A3 medyanı 0.060014 A, yeni ESP32 bias medyanı 0.060054 A; ölçüm seviyesi birbirine çok yakındır.
+- Ortalama bazlı kaba katsayı yaklaşık 29.13 çıkar; PZEM akım örneği yalnızca üç olduğu için yeni katsayı kabul edilmemiştir.
+- **Karar:** K=27.59 ve çalışan YAML/firmware korunur. Yeni katsayı uygulanmaz. ESP32 bias düşük akımda benzer medyan ölçüm seviyesini vermiş, ancak kararlılık iyileşmesi göstermemiştir.
+- Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-ESP32-BIAS-15W-2026-11-21.md`.
+- Sayısal özet: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/LOG/V1.1-ESP32-BIAS-15W-OZET-2026-11-21.csv`.
+- Ham kaynak CSV bu commit kapsamında GitHub'a yüklenmedi; konuşmadaki kullanıcı dosyası kaynak olarak korunur.
