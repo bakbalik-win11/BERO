@@ -396,7 +396,7 @@ Deney planı:
 
 - **Kaynak:** Kullanıcı tarafından yüklenen `history (10).csv`; 509 satır. 199 A0–A1 akım, 199 A2–A3 akım ve 15 PZEM akım kaydı.
 - **Zaman:** 21:51:00–21:54:17 Türkiye saati.
-- **Bağlantı etiketleri:** Deney planına göre A0–A1 biassız, A2–A3 biaslı kabul edildi. Bu dosya ile fiziksel kablo eşlemesi ayrıca teyit edilmedi; sonuç yorumu bu koşula bağlıdır.
+- **Bağlantı etiketleri:** Deney planındaki eşleme A0–A1 biassız, A2–A3 biaslıdır. Kullanıcı üç deneyin tamamında biaslı kanalın başarılı olduğunu teyit ederek test serisini kapattı.
 - **Ortalama:** A0–A1 0.459638 A; A2–A3 0.472490 A; PZEM 0.469267 A.
 - **±2 saniye PZEM eşleştirme MAPE:** A0–A1 %2.508; A2–A3 %1.819. 15 PZEM örneğinin tamamı iki kanalla da eşleştirildi.
 - **Kararlılık:** CV A0–A1 %1.871; A2–A3 %2.138. Üçüncü deney biasın gürültüyü azalttığını göstermiyor.
@@ -405,7 +405,7 @@ Deney planı:
 - **Kalibrasyon:** K=27.59 korundu; yeni katsayı hesaplanmadı.
 - **Kaynak ESPHome logu:** Bu veri paketinde ayrıca sunulmadı; rapor HA CSV'ye dayanır.
 - **Arşiv:** Ham CSV `V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-HA-KAYNAK-2026-11-21.csv`; eşleştirme `V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-PZEM-ESLESTIRME-2026-11-21.csv`; rapor `V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md`.
-- **Durum:** Üçüncü deneyin HA verisi arşivlendi ve analiz edildi. Fiziksel bağlantı eşlemesi teyidi bekleniyor. MOD2-GRV001 tamamlanmadı.
+- **Durum:** Üçüncü 100 W çapraz deneyin HA verisi arşivlendi ve analiz edildi. Kullanıcı üç testte biaslı kanalın başarılı olduğunu teyit etti; bias çapraz deney serisi kapatıldı. MOD2-GRV001'in diğer çalışmaları açık.
 
 
 ## 2026-11-21 – Bias çapraz deneyi nihai kararı ve kapanış
