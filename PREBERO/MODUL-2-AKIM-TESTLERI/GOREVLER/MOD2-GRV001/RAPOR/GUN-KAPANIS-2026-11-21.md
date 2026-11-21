@@ -133,3 +133,24 @@ Kullanıcının paylaştığı Home Assistant zaman grafiği (21:51–21:59, 202
 **Kanıt sınırı:** Bu kayıt grafik ekran görüntüsüne dayalı nitel gözlemdir; ham zaman serisi CSV'si ve spike sayısı/genliği istatistiği bu ekle birlikte sunulmamıştır. Bu nedenle boşta spike farkı henüz nicel olarak ölçülmüş kabul edilmez. Yeni bir test sonucu veya kalibrasyon değişikliği değildir.
 
 **Takip önerisi:** Boşta uzun süreli iki kanal kaydı alınıp spike sayısı, tepe genliği, medyan, standart sapma ve eşik üstü olay sıklığı karşılaştırılmalıdır. Yük altı karşılaştırması ve boşta davranış ayrı metrikler olarak raporlanmalıdır.
+
+## 8. 15 W tek ampul bias karşılaştırma deneyi – KAPATILDI
+
+**Kaynak:** Kullanıcının paylaştığı `history (12).csv`; 559 satır; 22:16:00–22:19:45 Türkiye saati. Tek nominal 15 W ampul bağlıdır. Kanal eşlemesi A0–A1 biassız, A2–A3 biaslıdır.
+
+| Ölçüm | A0–A1 biassız | A2–A3 biaslı |
+|---|---:|---:|
+| Örnek | 225 | 227 |
+| Ortalama | 0.058746 A | 0.063017 A |
+| Medyan | 0.058814 A | 0.060014 A |
+| Standart sapma | 0.002175 A | 0.030700 A |
+| Maksimum | 0.066375 A | 0.516451 A |
+
+- PZEM güç ortalaması 14.839 W; nominal 15 W yükle uyumludur.
+- PZEM akımında yalnızca tek örnek vardır: 0.065 A. Bu nedenle akım MAPE/hata hesabı yapılmamıştır.
+- A2–A3 biaslı kanalda 0.516451 A tekil spike görülmüştür. Spike hariç A2–A3 ortalaması yaklaşık 0.061011 A'dır.
+- **Yorum:** Biaslı kanalın medyanı ve genel ölçüm seviyesi PZEM'in tek akım örneğine biassız kanaldan daha yakındır. Kullanıcının gözlemi doğrultusunda biaslı kanalın ölçüm seviyesi bakımından daha yakın olduğu tespiti kaydedildi. Bununla birlikte spike belirgindir ve standart sapma yüksektir; biasın kararlılığı artırdığı söylenemez.
+- **Karar:** 15 W oturumu kapatıldı. Sonuç düşük akım bölgesinde bias lehine ek gözlemdir; tek deneyden genelleme yapılmaz.
+- K=27.59 ve YAML korunmuştur. PZEM ground truth değildir. SSR fiziksel bağlı değildir; switch olayları fiziksel yük kontrolü sayılmamıştır.
+- Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-15W-BIAS-KANAL-TESTI-2026-11-21.md`.
+- Ham CSV konuşma ekinde incelendi; GitHub'a ham CSV yüklenmedi.
