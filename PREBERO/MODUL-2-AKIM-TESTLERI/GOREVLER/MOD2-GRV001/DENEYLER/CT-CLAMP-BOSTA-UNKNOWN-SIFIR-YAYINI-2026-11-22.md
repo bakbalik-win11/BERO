@@ -98,3 +98,35 @@ Bu davranışın uygulanabilirliği ESPHome bileşeninin gerçek davranışı ve
 ## İlk durum
 
 Deney açıldı. Henüz kök neden belirlenmedi, yeni YAML hazırlanmadı ve yazılım değişikliği uygulanmadı.
+
+
+## 2026-11-22 – Kullanıcı işletim tercihi ve V1.2 deney YAML'i
+
+Kullanıcı kararı: ESP32 çalışırken sensörün `unknown` üretmesi yerine `0.000 A` yayınlaması tercih edilir. ESP32 kapalı/bağlantısız olduğunda Home Assistant'ın `unknown` veya `unavailable` göstermesi beklenir. Böylece normal yüksüz durum sıfırla, cihaz/iletişim kesintisi ise bilinmeyen durumla izlenebilir; yük varken sıfır görülmesi dikkat gerektiren anomali olur.
+
+### Kod incelemesi bulgusu
+
+ESPHome `ct_clamp` kaynak kodunda örnekleme penceresi sonunda `num_samples_ == 0` ise `NAN` yayınlanır. Örnek varsa RMS hesabı yapılır; RMS kare değeri pozitif değilse 0.0 sonucu yayınlanır. Örnekleme döngüsü ayrıca aynı ardışık ADC değerlerini tekrar saymaz. Bu nedenle mevcut YAML'deki 5 mA altı lambda filtresi, kaynak bileşenin `NAN` yayınlaması durumunda tek başına sıfır üretemez. Kaynak incelemesi: ESPHome ct_clamp_sensor.cpp (2026.11 API dokümantasyonu).
+
+### V1.2 deney yaklaşımı
+
+Yeni, ayrı YAML oluşturuldu:
+
+`PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/V1.2-TEST-A0A1-UNKNOWN-ZERO.yaml`
+
+- V1.1 ölçüm zinciri, ADS1115 ayarları, 200 ms pencere, 1 s aralık ve K=27.59 korunur.
+- ct_clamp sensörü internal yapılır.
+- Ayrı template sensör, ct_clamp durumu NaN ise 0.000 A; sayısal ise ölçülen akımı yayınlar.
+- ESP32 kapanması veya API bağlantısının kesilmesi hâlinde HA'nın entity'yi unavailable yapması beklenir.
+- Bu çözüm ESP32 açıkken ADS1115/I²C kaynaklı NaN'ı da sıfıra dönüştürebilir; bu sürüm arıza teşhis sensörü değildir.
+
+### Sabah test sırası
+
+1. ESP32 açık ve SCT yüksüz: HA'da düzenli 0.000 A görülüyor mu?
+2. Kontrollü yük ver: akım değeri yükseliyor mu?
+3. Yükü kaldır: değer yeniden 0.000 A oluyor mu?
+4. ESP32'yi kapat: HA entity'si unavailable/unknown oluyor mu?
+5. ESP32'yi yeniden aç: entity tekrar çevrimiçi olup sıfır/akım yayınlıyor mu?
+6. ESPHome DEBUG logu ve HA geçmişi birlikte saklanır.
+
+**Durum:** V1.2 YAML depoya eklendi ve dosya geri okunarak doğrulandı. Derleme, cihaza yükleme ve fiziksel test henüz yapılmadı. Deney açık durumdadır.
