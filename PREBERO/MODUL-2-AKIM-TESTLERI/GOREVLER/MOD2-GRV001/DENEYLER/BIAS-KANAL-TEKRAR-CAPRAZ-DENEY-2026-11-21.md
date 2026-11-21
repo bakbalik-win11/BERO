@@ -81,14 +81,14 @@ kanıtlamaz. İki ayrı SCT sensörünün tolerans farkı ve ADS1115 kanalların
 - Sonuç yorumu ve karar.
 - Kaynak verinin birebir arşivlenip arşivlenmediği açıkça belirtilecek; kaynak dosya yoksa varmış gibi yol yazılmayacak.
 
-**Durum güncellemesi (2026-11-21):** HA kaynak verisi alındı, analiz edildi ve arşivlendi. Fiziksel kanal-bias eşlemesi kullanıcı tarafından ayrıca teyit edilmelidir. Sonuçlar ve yorum için V1.1 raporuna bakınız.
+**Durum güncellemesi (2026-11-21):** HA kaynak verisi alındı, analiz edildi ve arşivlendi. Kullanıcı, üç çapraz testin tamamında biaslı kanalın başarılı olduğunu teyit ederek 100 W bias test serisini kapattı. Sonuçlar ve yorum için V1.1 raporuna bakınız.
 
 
 ## 9. Üçüncü deney veri sonucu (2026-11-21)
 
 HA dışa aktarımı `history (10).csv` üzerinden 199 A0–A1, 199 A2–A3 ve 15 PZEM akım kaydı analiz edildi. Planlanan eşlemeye göre A0–A1 biassız ortalama 0.459638 A, A2–A3 biaslı ortalama 0.472490 A oldu. PZEM ortalaması 0.469267 A. ±2 saniye eşleştirmede MAPE A0–A1 için %2.508, A2–A3 için %1.819 bulundu.
 
-Üçüncü deneyde de planlanan biaslı kolun ortalaması daha yüksek ve PZEM referansına göre MAPE daha düşüktür. Ancak fiziksel bağlantı eşlemesi ayrıca teyit edilmelidir. Biaslı kolun CV değeri %2.138, biassız kolun %1.871 olduğundan bu veri gürültü azalmasını desteklemez. PZEM ground truth değildir; K=27.59 korunmuş, yeni K hesaplanmamıştır.
+Üçüncü deneyde de planlanan biaslı kolun ortalaması daha yüksek ve PZEM referansına göre MAPE daha düşüktür. Kullanıcı, üç çapraz testin tamamında biaslı kanalın başarılı olduğunu teyit ederek seriyi kapattı. Biaslı kolun CV değeri %2.138, biassız kolun %1.871 olduğundan bu veri gürültü azalmasını desteklemez. PZEM ground truth değildir; K=27.59 korunmuş, yeni K hesaplanmamıştır.
 
 **Arşiv:**
 - Ham HA CSV: `V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-HA-KAYNAK-2026-11-21.csv`
@@ -114,4 +114,4 @@ Kullanıcı üçüncü deneydeki fiziksel eşlemenin planlandığı gibi olduğu
 
 **Sınırlar:** PZEM karşılaştırma referansıdır, ground truth değildir. Bu sonuç mutlak doğruluk kanıtı değildir ve tüm akım aralığına genellenemez. CV sonuçları biasın gürültüyü azalttığını göstermemiştir. K=27.59 korunmuştur; yeni katsayı üretilmemiştir.
 
-**Karar:** Biaslı/biassız çapraz karşılaştırma deneyi kapatıldı. 42 W sabit kanal testi bu karar nedeniyle uygulanmadan kapatıldı. ESP32 kartından bias besleme deneyi ve farklı akım bölgelerinin incelenmesi ayrı, henüz açılmamış çalışma başlıklarıdır.
+**Karar:** 100 W çalışma noktasındaki üçlü biaslı/biassız kanal çapraz karşılaştırması kapatıldı. ESP32 kartından bias besleme deneyi ve farklı akım bölgelerinin incelenmesi ayrı, henüz açılmamış çalışma başlıklarıdır.
