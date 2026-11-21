@@ -627,3 +627,13 @@ Bir sonraki çalışma oturumunda iki bölgesel katsayının **nasıl bulunacağ
 - **Başarı koşulu:** Geçerli yüksüz örnekleme 0.000 A yayınlamalı; ADS1115/I²C veya ölçüm geçersizliğinde sahte sıfır üretilmemeli.
 - **Ayrıntılı deney planı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/CT-CLAMP-BOSTA-UNKNOWN-SIFIR-YAYINI-2026-11-22.md`.
 - **Henüz yapılmayanlar:** Kök neden analizi, yeni YAML, fiziksel/yazılımsal doğrulama ve sonuç raporu.
+
+
+## 2026-11-22 – V1.2 unknown-to-zero ilk çalışma gözlemi
+
+Kullanıcı V1.2 YAML'in derlendiğini ve ESP32D2 üzerinde çalıştığını bildirdi. Home Assistant ekran görüntüsünde BERO Akim Sensoru **0,000 A** gösterdi. Bu, ilk sıfır yayın gözlemidir; uzun süreli test, kontrollü yük testi ve ESP32 kapalıyken unavailable davranışı henüz doğrulanmadı.
+
+YAML: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/V1.2-TEST-A0A1-UNKNOWN-ZERO.yaml`  
+İlk rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/RAPOR/V1.2-UNKNOWN-ZERO-ILK-DOGRULAMA-2026-11-22.md`
+
+**Durum:** V1.2 derlendi ve ilk sıfır yayın gözlemi alındı (kullanıcı bildirimi + ekran görüntüsü). Deneyin diğer kabul kontrolleri açık.
