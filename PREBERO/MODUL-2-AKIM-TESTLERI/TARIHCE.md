@@ -104,3 +104,7 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Tecrübe:** Biasın yük altındaki olumlu ölçüm katkısı, boşta spike davranışından ayrı değerlendirilmelidir.
 - **Sınır:** Görsel nitel kanıttır; ham CSV ile spike sayısı/genliği henüz hesaplanmamıştır.
 - **Takip:** Uzun süreli boşta kayıtta spike sıklığı ve genliği iki kanalda karşılaştırılacaktır.
+
+### 2026-11-21 – Kettle 1 / Kettle 2 ve bias kullanım kararı
+
+Kettle 1 sıcaklık koruma modu ve Kettle 2 kaynatma modu ayrı sabit çalışma koşulları olarak değerlendirildi. Kullanıcı daha fazla kettle testine gerek olmadığına ve biasın gerekli olduğuna karar verdi. Biaslı kanalın PZEM'e yakınlığı lehine gözlemler korunurken boşta spike ve 15 W tekil spike bulguları da kararın sınırları olarak kaydedildi. Biasın gürültüyü azalttığı iddia edilmez. K=27.59, çalışan YAML ve 0.020 A eşiğinin uygulanmaması kararı korunur.
