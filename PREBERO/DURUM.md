@@ -164,3 +164,17 @@ Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı ha
 - **Ölçüm:** Gerçek PZEM W/A, iki SCT kanalı, örnek sayısı, ortalama, standart sapma, CV ve ±2 saniye eşleştirilmiş MAPE kaydedilecek. PZEM ground truth değildir.
 - **Önemli sınır:** 42 W tek bir düşük yük noktasıdır; tüm akım aralığı için genelleme yapılmayacak.
 - **Deney planı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-SABIT-KANAL-42W-TESTI-2026-11-21.md`.
+
+
+## 2026-11-21 – Bias çapraz deney serisi: nihai tespit ve kapanış
+
+- **Durum:** Üç çapraz deney tamamlandı ve ortak değerlendirme ile kapatıldı.
+- **Nihai tespit:** Yaklaşık 0.47 A çalışma noktasında üç deneyin tamamında biaslı kanalın ortalama akımı daha yüksek, PZEM karşılaştırmasına göre MAPE değeri daha düşüktür.
+- **Kanal çaprazlaması:** Deney 1 bias A2–A3; deney 2 bias A0–A1; deney 3 bias A2–A3. İlk iki çaprazlamada bias kanalı değiştiğinde yüksek ortalama biaslı kanalı takip etti.
+- **MAPE (biaslı / biassiz):** Deney 1 %1.016 / %3.262; deney 2 %1.275 / %3.168; deney 3 %1.819 / %2.508.
+- **Karar:** Biasın bu çalışma noktasında ölçüm sonucuna pozitif katkısı olduğu kabul edildi. PZEM ground truth değildir; mutlak doğruluk iddiası yoktur.
+- **Sınırlar:** Biasın gürültüyü azalttığı gösterilmedi; tüm akım aralığına genelleme yapılmayacak.
+- **Kalibrasyon:** K=27.59 korundu; yeni katsayı hesaplanmadı.
+- **42 W testi:** Açılmış plan uygulanmadan kapatıldı; bu aşamada yapılmayacak.
+- **Sonraki ayrı araştırma başlıkları:** ESP32 kartından bias besleme ve farklı akım seviyelerinin incelenmesi. Henüz deney açılmadı.
+- **Kayıt:** PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md.
