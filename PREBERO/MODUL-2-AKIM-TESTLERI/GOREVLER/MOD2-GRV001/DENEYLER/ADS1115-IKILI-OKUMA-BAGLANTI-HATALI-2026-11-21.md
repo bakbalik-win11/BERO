@@ -59,3 +59,12 @@ A0-A1 ve A2-A3 diferansiyel girişlerinde yapılan iki kanallı okumayı gözlem
 - Korunan tek kanallı kod: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/MOD2-GRV001_V1.1.yaml`
 - Görev: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`
 - Modül tarihçesi: `PREBERO/MODUL-2-AKIM-TESTLERI/TARIHCE.md`
+
+
+## 7. Kaynak YAML sonradan arşivlendi
+
+Kullanıcı 2026-11-21 tarihinde iki kanallı denemede kullanılan gerçek YAML içeriğini sağladı. Kod, içeriği değiştirilmeden ayrı dosya olarak depoya eklendi:
+
+`PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/MOD2-GRV001_V1.1_IKI-KANAL-DENEY.yaml`
+
+Bu dosya, önceki tek kanallı V1.1 dosyasının üzerine yazılmamıştır. İki dosya aynı etiketli deneme döneminde farklı yapılandırmaları belgelediğinden dosya adlarıyla ayrılmıştır. Bu YAML henüz yeniden derlenmiş veya yeniden test edilmiş değildir; logdaki geçersiz denemenin kullandığı kaynak artık arşivlenmiştir.
