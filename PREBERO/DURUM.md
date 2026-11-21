@@ -248,3 +248,13 @@ Deney kaydı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ESP32
 - Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-ESP32-BIAS-15W-2026-11-21.md`.
 - Sayısal özet: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/LOG/V1.1-ESP32-BIAS-15W-OZET-2026-11-21.csv`.
 - Ham kaynak CSV bu commit kapsamında GitHub'a yüklenmedi; konuşmadaki kullanıcı dosyası kaynak olarak korunur.
+
+
+## 2026-11-22 – İki aşamalı katsayı çarpımı önerisi kapatıldı
+
+Kullanıcının mevcut katsayıyı iki sabit katsayıya ayırıp çarpma önerisi matematiksel olarak değerlendirildi. K1 × K2 = K olduğunda iki aşamalı çarpım mevcut tek katsayıyla aynıdır; tek başına biasın yerine geçmez ve ölçüm davranışını değiştirmez. Ayrı fiziksel/kalibrasyon anlamları tanımlanmadan iki katsayılı uygulama yapılmayacak.
+
+- **Durum:** Önerinin matematiksel değerlendirmesi kapatıldı; fiziksel deney yapılmadı.
+- **Korunanlar:** K=27.59, çalışan YAML/firmware ve mevcut bias bağlantısı değişmedi.
+- **Kapsam:** Bu kapanış MOD2-GRV001 görevinin tamamlandığı anlamına gelmez.
+- **Rapor:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/KATSAYI-IKI-ASAMALI-CARPIM-DEGERLENDIRMESI-2026-11-22.md`.
