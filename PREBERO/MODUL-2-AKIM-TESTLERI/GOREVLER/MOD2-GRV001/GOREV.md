@@ -429,3 +429,10 @@ Kullanıcı üç deneyin tamamında biaslı kanalın başarılı olduğunu teyit
 **100 W üçüncü çapraz testi:** Üçüncü tekrarın verisi değerlendirildi; biaslı kanalın üç testte de başarılı olması nedeniyle test serisi kapatıldı.
 
 Bias çapraz deneyi serisi tamamlandı. Bu kapanış, MOD2-GRV001 görevinin tamamının kapandığı anlamına gelmez; görev kapsamındaki diğer donanım/ölçüm çalışmaları ayrı olarak devam edebilir.
+
+
+## 15 W bias karşılaştırma deneyi – KAPATILDI (2026-11-21)
+
+Tek nominal 15 W ampul ile A0–A1 biassız ve A2–A3 biaslı kanallar karşılaştırıldı. Biaslı kanalın medyanı 0.060014 A, biassız kanalın medyanı 0.058814 A; PZEM'in tek akım örneği 0.065 A'dır. Biaslı kanal PZEM örneğine daha yakın görünmektedir. Ancak biaslı kanalda 0.516451 A tekil spike ve yüksek standart sapma gözlenmiştir. Bu nedenle ölçüm seviyesi lehine bulgu kaydedilmiş, kararlılık/gürültü avantajı iddia edilmemiştir. PZEM güç ortalaması 14.839 W'tır; PZEM akım örneği tek olduğundan MAPE hesaplanmamıştır. PZEM ground truth değildir. K=27.59 ve YAML korunmuştur. Deney kapatıldı; MOD2-GRV001 görevinin tamamı açık kalır.
+
+Ayrıntılı rapor: `V1.1/RAPOR/V1.1-15W-BIAS-KANAL-TESTI-2026-11-21.md`.
