@@ -1,59 +1,74 @@
 # ESP32 Kaynaklı Bias ve Ortak GND Deneyi
 
 **Tarih:** 2026-11-21  
-**Durum:** AÇILDI – fiziksel uygulama ve ölçüm bekleniyor  
+**Durum:** KAPATILDI – Kettle 2 ölçümü analiz edildi  
 **Görev:** MOD2-GRV001  
 **Donanım:** ESP32D2 + ADS1115 No.10 (I²C 0x48) + SCT013 ölçüm kanalı  
-**Deney türü:** Bias besleme kaynağı / referans bağlantısı karşılaştırması
+**Deney türü:** ESP32 kaynaklı bias / ortak GND
 
 ## 1. Amaç
 
-Önceki bias deneylerinde bias gerilimi harici Bias Modül 1'den sağlanmıştı. Bu yeni deneyde bias ESP32 kartının 3.3 V beslemesinden üretilecek ve **ESP32 GND ile ADS1115/bias devresi GND ortaklanacaktır**.
+Önceki bias deneylerinde bias gerilimi harici Bias Modül 1'den sağlanmıştı. Bu deneyde bias ESP32 kartının 3.3 V beslemesinden üretildi ve ESP32 GND ile ADS1115/bias devresi GND ortaklandı.
 
-Amaç, ESP32 kaynaklı bias ve ortak toprak referansı ile ölçümün davranışını gözlemlemek; önceki Modül 1 bias sonuçlarıyla karşılaştırılabilir veri toplamaktır.
+Amaç, doğru ve yeterli ölçüm davranışı elde edilebiliyorsa harici bias yapısını kaldırarak devreyi basitleştirmektir.
 
-## 2. Bu deneyde açıkça değiştirilen koşullar
+## 2. Deney koşulları
 
-- **Bias kaynağı:** Harici Bias Modül 1 yerine ESP32 kartının 3.3 V hattı.
-- **Toprak referansı:** ESP32 GND, ADS1115 GND ve bias bölücü devresinin GND noktası ortak olacak.
-- **Bias orta noktası:** ESP32 3.3 V ve GND arasında kurulacak bias ağı üzerinden üretilecek. Direnç değerleri ve tam bağlantı, enerji verilmeden önce fiziksel devre teyidiyle ayrıca kaydedilecek.
-
-Bu deneyin temel farkı yalnızca bias kaynağının ESP32 olması değil; **GND'nin de ortak referans olarak bağlanmasıdır**. Önceki Modül 1 deneyleriyle karşılaştırırken bu iki değişken birlikte dikkate alınmalıdır.
-
-## 3. Korunacak koşullar
-
-- ESP32D2 ve ADS1115 No.10 kullanılacak.
-- Mevcut SCT sensörleri, iletken, yön ve fiziksel konum mümkün olduğunca korunacak.
-- K=27.59 değiştirilmeyecek.
-- Çalışan YAML/firmware değiştirilmeyecek.
-- Mevcut Modül 1 bias deneyi kayıtları değiştirilmeden korunacak.
+- Bias kaynağı: ESP32 kartının 3.3 V hattı.
+- Bias orta noktası: kullanıcı ölçümü/bildirimi 1.66 V.
+- Toprak referansı: ESP32 GND, ADS1115 GND ve bias devresi GND ortak.
+- ESP32D2 ve ADS1115 No.10 (I²C 0x48).
+- K=27.59 korunmuştur.
+- Çalışan YAML/firmware değiştirilmemiştir.
 - PZEM karşılaştırma referansıdır; ground truth değildir.
 
-## 4. Enerji vermeden önce bağlantı ve güvenlik kontrolleri
+## 3. Güvenlik ve bağlantı kaydı
 
-1. Tüm bağlantılar enerji kesikken yapılacak.
-2. ESP32 GND, ADS1115 GND ve bias devresi GND sürekliliği kontrol edilecek.
-3. Bias orta noktası ölçülerek DC seviyesi kaydedilecek.
-4. ADS1115 A girişlerinin her birinin GND'ye göre mutlak gerilimi kontrol edilecek.
-5. ADS1115 girişleri, kartın besleme sınırlarının dışına çıkarılmayacak. Diferansiyel ölçüm seçimi mutlak giriş gerilimi sınırlarını kaldırmaz.
-6. SCT013 sekonder devresi ve ADC giriş bağlantıları doğrulanmadan ölçüme başlanmayacak.
-7. Direnç değerleri, bağlantı fotoğrafı ve ölçülen bias gerilimi deney kaydına eklenecek.
+Deney öncesinde bağlantılar enerji kesikken yapılmalı; ortak GND sürekliliği, bias orta noktası ve ADS1115 A girişlerinin GND'ye göre mutlak gerilimleri kontrol edilmelidir. ADS1115 girişleri besleme raylarının mutlak sınırları içinde kalmalıdır. Diferansiyel ölçüm seçimi bu sınırları kaldırmaz.
 
-**Önemli:** ESP32 3.3 V hattı, bias bölücüsü ve ADS1115 giriş bağlantısı için kesin direnç değerleri bu kayıt açılırken henüz teyit edilmedi. Bu nedenle burada direnç değeri veya kesin pin bağlantısı varsayılmamıştır.
+**Kayıt sınırı:** Bu deney kaydında direnç değerleri ve her ADC pininin ayrı ayrı GND'ye göre ölçülmüş gerilimleri sayısal olarak verilmemiştir. 1.66 V bias bilgisi kullanıcı tarafından bildirilmiştir.
 
-## 5. Değerlendirme
+## 4. Kettle 2 – kaynatma modu sonucu
 
-- Boşta davranış: taban, medyan, standart sapma, maksimum ve eşik üstü spike sayısı.
-- Yük altında davranış: ortalama, medyan, standart sapma ve CV.
-- PZEM ile aynı zaman aralığında akım karşılaştırması; mümkünse ±2 saniye eşleştirme.
-- Biaslı ölçümün PZEM'e yakınlığı ve boşta spike davranışı ayrı ayrı değerlendirilecek.
-- Önceki Modül 1 bias kayıtlarıyla karşılaştırma yapılırken ortak GND farkı açıkça belirtilecek.
-- PZEM'in yetersiz örnek verdiği alanlarda MAPE hesaplanmayacak.
+Kaynak: kullanıcı yüklemesi `history (17)(1).csv` (430 satır). İlk açılış/geçiş örnekleri dışarıda bırakılarak 23:03:15–23:05:21.486 Türkiye saati aralığı analiz edildi.
 
-## 6. Açılış kararı
+| Seri | n | Ortalama (A) | Std. sapma (A) | Min (A) | Maks (A) | CV |
+|---|---:|---:|---:|---:|---:|---:|
+| ESP32 akım sensörü | 127 | 6.71357 | 0.19456 | 6.36434 | 7.04518 | %2.898 |
+| ESP32 A2–A3 | 127 | 6.83096 | 0.18910 | 6.41020 | 7.12883 | %2.768 |
+| PZEM akım | 24 | 6.80079 | 0.01178 | 6.78700 | 6.82400 | %0.173 |
 
-Kullanıcı, yeni deneyde biasın ESP32 kartından sağlanacağını ve GND'nin ortaklanacağını açıkça belirtti. Deney bu bağlantı koşullarıyla açıldı.
+PZEM'in 24 örneği için ±2 saniye içindeki en yakın SCT örnekleri eşleştirildi:
 
-**Henüz yapılmadı:** Fiziksel bağlantı, direnç değerlerinin teyidi, bias DC ölçümü, ESPHome/HA veri kaydı ve sonuç analizi.
+| Seri | Eşleşme | MAPE |
+|---|---:|---:|
+| ESP32 akım sensörü | 24/24 | %2.801 |
+| ESP32 A2–A3 | 24/24 | %2.550 |
 
-**Durum:** Deney açık; tamamlandı olarak işaretlenmedi.
+### Gözlem
+
+- Her iki SCT serisinde de yaklaşık 6.4–7.1 A aralığında belirgin dalgalanma görülmüştür.
+- PZEM serisi aynı aralıkta çok daha az değişmiştir.
+- A2–A3 ortalaması PZEM ortalamasına yakındır ve eşleştirmeli MAPE değeri diğer SCT serisinden düşüktür.
+- İki SCT kanalındaki ortak dalgalanmanın kaynağı bu deneyle belirlenememiştir. RMS akım trendi, 50 Hz dalga şeklinin kendisi değildir.
+- PZEM ground truth değildir; daha düşük örnekleme hızı hızlı değişimleri aynı ayrıntıda göstermez.
+
+## 5. Deney kararı
+
+Kullanıcı kararıyla ESP32 kaynaklı bias + ortak GND deneyi KAPATILDI. Kettle 2 verisi, ESP32 bias yapısının bu çalışma koşulunda işe yaradığını ve A2–A3 sonucunun PZEM karşılaştırmasına yakın olduğunu desteklemektedir.
+
+Bu tek deney, tüm yüklerde doğruluk veya gürültü iyileşmesi kanıtı değildir. K=27.59 ve firmware/YAML değiştirilmemiştir.
+
+## 6. Sonraki deneyler
+
+Aynı ESP32 kaynaklı bias ve ortak GND düzeni korunarak:
+1. 100 W yükte karşılaştırma.
+2. 15 W yükte karşılaştırma.
+
+Bu iki deney tamamlanmadan ESP32 bias yapısı tüm yükler için nihai ilan edilmeyecektir.
+
+## 7. Veri ve rapor konumları
+
+- Analiz raporu: `../V1.1/RAPOR/V1.1-ESP32-BIAS-KETTLE2-2026-11-21.md`
+- Sayısal özet CSV: `../V1.1/LOG/V1.1-ESP32-BIAS-KETTLE2-OZET-2026-11-21.csv`
+- Kaynak HA dışa aktarımı: `history (17)(1).csv`, 430 satır. Ham dosyanın GitHub'a birebir kopyası bu kayıtla birlikte yüklenmemiştir; kaynak dosya konuşmadaki yüklemedir.
