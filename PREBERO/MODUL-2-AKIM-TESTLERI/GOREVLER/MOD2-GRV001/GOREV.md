@@ -427,3 +427,26 @@ Deney planı:
 `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-SABIT-KANAL-42W-TESTI-2026-11-21.md`
 
 **Henüz ölçüm alınmadı.**
+
+
+## 2026-11-21 – Bias çapraz deneyi nihai kararı ve kapanış
+
+**Durum: Bias katkısı çapraz deney serisi KAPATILDI.**
+
+Üç deneyin bağlantı eşlemesi ve sonuçları birlikte değerlendirildi. Üç durumda da biaslı kanal:
+- Daha yüksek ortalama akım gösterdi.
+- PZEM karşılaştırmasında daha düşük MAPE verdi.
+
+| Deney | Biaslı kanal | Biassiz kanal | Biaslı kolun ortalama avantajı | MAPE biaslı / biassiz |
+|---|---|---|---:|---:|
+| 1 | A2–A3 | A0–A1 | +0.015169 A | 1.016% / 3.262% |
+| 2 | A0–A1 | A2–A3 | +0.012737 A | 1.275% / 3.168% |
+| 3 | A2–A3 | A0–A1 | +0.012852 A | 1.819% / 2.508% |
+
+Üçüncü deneyin fiziksel eşlemesi kullanıcı tarafından teyit edildi. Üç deneyde biaslı kanalın MAPE değeri daha düşüktür. Bu sonuç yaklaşık 0.47 A çalışma bölgesinde biasın ölçüm sonucuna pozitif katkısını destekleyen tekrarlı deneysel bulgu olarak kaydedildi.
+
+**Sınırlar:** PZEM ground truth değildir. Mutlak doğruluk iddiası yoktur. CV sonuçları biasın gürültüyü azalttığını göstermemiştir. Tüm akım aralığına genelleme yapılmayacaktır. K=27.59 korunmuştur.
+
+**42 W sabit kanal testi:** Açılmış plan uygulanmadan kapatıldı; üç çapraz deney sonucu mevcut aşama için yeterli kabul edildi.
+
+Bias çapraz deneyi serisi tamamlandı. Bu kapanış, MOD2-GRV001 görevinin tamamının kapandığı anlamına gelmez; görev kapsamındaki diğer donanım/ölçüm çalışmaları ayrı olarak devam edebilir.
