@@ -72,3 +72,18 @@ Bu iki deney tamamlanmadan ESP32 bias yapısı tüm yükler için nihai ilan edi
 - Analiz raporu: `../V1.1/RAPOR/V1.1-ESP32-BIAS-KETTLE2-2026-11-21.md`
 - Sayısal özet CSV: `../V1.1/LOG/V1.1-ESP32-BIAS-KETTLE2-OZET-2026-11-21.csv`
 - Kaynak HA dışa aktarımı: `history (17)(1).csv`, 430 satır. Ham dosyanın GitHub'a birebir kopyası bu kayıtla birlikte yüklenmemiştir; kaynak dosya konuşmadaki yüklemedir.
+
+
+## 2026-11-21 – 100 W sınıfı yük deneyi
+
+- **Durum:** Veri analizi tamamlandı; 100 W sınıfı oturum kapatıldı.
+- **Kaynak:** Kullanıcı yüklemesi `history (18)(1).csv` (431 satır). Ham CSV'nin birebir GitHub kopyası yüklenmedi.
+- **Analiz:** SCT kararlı penceresi 23:13:20–23:15:47 Türkiye saati; iki SCT kolunda 148'er örnek. PZEM'de ilk 0 A geçiş örneği hariç 9 akım örneği kullanıldı.
+- **Diğer ESP32 akım kolu:** Ortalama 0.425253 A; CV %2.086; PZEM eşleştirmeli MAPE %9.597.
+- **A2–A3 ESP32 biaslı kol:** Ortalama 0.441694 A; CV %2.066; PZEM eşleştirmeli MAPE %5.184.
+- **PZEM:** Ortalama 0.469889 A; güç kayıtları yaklaşık 106.8–108.8 W.
+- **Yorum:** ESP32 biaslı A2–A3 kolu diğer SCT kolundan daha yüksek ve PZEM'e daha yakın sonuç verdi. Ancak MAPE %5.184 ve PZEM örnek sayısı 9 olduğundan sonuç tek başına harici biası kaldırmak için yeterli doğruluk kanıtı değildir. Biasın gürültüyü azalttığı gösterilmedi.
+- **Kod:** K=27.59 ve çalışan YAML/firmware değiştirilmedi.
+- **Rapor:** `../V1.1/RAPOR/V1.1-ESP32-BIAS-100W-2026-11-21.md`
+- **Sayısal özet:** `../V1.1/LOG/V1.1-ESP32-BIAS-100W-OZET-2026-11-21.csv`
+- **Sıradaki adım:** Aynı ESP32 bias + ortak GND düzeniyle 15 W deneyi.
