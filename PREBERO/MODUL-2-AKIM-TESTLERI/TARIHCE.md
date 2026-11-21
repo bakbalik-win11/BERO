@@ -108,3 +108,7 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 ### 2026-11-21 – Kettle 1 / Kettle 2 ve bias kullanım kararı
 
 Kettle 1 sıcaklık koruma modu ve Kettle 2 kaynatma modu ayrı sabit çalışma koşulları olarak değerlendirildi. Kullanıcı daha fazla kettle testine gerek olmadığına ve biasın gerekli olduğuna karar verdi. Biaslı kanalın PZEM'e yakınlığı lehine gözlemler korunurken boşta spike ve 15 W tekil spike bulguları da kararın sınırları olarak kaydedildi. Biasın gürültüyü azalttığı iddia edilmez. K=27.59, çalışan YAML ve 0.020 A eşiğinin uygulanmaması kararı korunur.
+
+### 2026-11-21 – ESP32 kaynaklı bias ve ortak GND deneyi açıldı
+
+Bias ESP32 3.3 V hattından sağlanacak; ESP32 GND, ADS1115 GND ve bias devresi GND ortaklanacak. Önceki Modül 1 bias deneylerinde bu ortak GND koşulu kullanılmamıştı. Bu nedenle yeni deneyde bias kaynağı ve ortak toprak referansı farkı birlikte not edilecek. Direnç değerleri, fiziksel bağlantı ve bias DC seviyesi henüz teyit edilmedi. K=27.59 ve çalışan YAML korunacak. Deney henüz ölçüm aşamasına geçmedi. Ayrıntı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ESP32-KAYNAKLI-BIAS-ORTAK-GND-2026-11-21.md`.
