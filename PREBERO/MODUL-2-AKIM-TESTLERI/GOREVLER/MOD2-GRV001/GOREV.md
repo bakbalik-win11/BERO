@@ -550,3 +550,21 @@ K=27.59, 860 SPS, 200 ms pencere ve 1 s güncelleme korunmuştur. Filtre veya fi
 Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150W-TEK-KANAL-A0A1-2026-11-22.md`  
 YAML: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/V1.1-TEST-A0A1.yaml`  
 Özet CSV: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/LOG/150W-TEK-KANAL-A0A1-OZET-2026-11-22.csv`
+
+
+## 2026-11-22 – 150 W tek kanal A2–A3 deney YAML'ı hazırlandı
+
+A0–A1 tek kanal testinden sonra aynı ölçüm ayarlarıyla A2–A3'ü tek başına çalıştırmak üzere ayrı YAML kopyası oluşturuldu.
+
+- Multiplexer: A2_A3
+- PGA: 2.048 V
+- Sample rate: 860 SPS
+- ct_clamp penceresi: 200 ms
+- Güncelleme: 1 s
+- K: 27.59
+- A0–A1 bu YAML içinde tanımlı değildir.
+- A2–A3 bias devresi ve fiziksel bağlantısı değiştirilmez.
+
+Bu dosya yalnızca hazırlanıp depoya kaydedilmiştir; derleme, cihaza yükleme ve ölçüm henüz doğrulanmamıştır. A0–A1 deneyiyle karşılaştırmada aynı yük, sensör konumu, bias bağlantısı ve kayıt süresi korunmalıdır.
+
+YAML: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/V1.1-TEST-A2A3.yaml`
