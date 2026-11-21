@@ -568,3 +568,20 @@ A0–A1 tek kanal testinden sonra aynı ölçüm ayarlarıyla A2–A3'ü tek ba�
 Bu dosya yalnızca hazırlanıp depoya kaydedilmiştir; derleme, cihaza yükleme ve ölçüm henüz doğrulanmamıştır. A0–A1 deneyiyle karşılaştırmada aynı yük, sensör konumu, bias bağlantısı ve kayıt süresi korunmalıdır.
 
 YAML: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/V1.1-TEST-A2A3.yaml`
+
+
+## 2026-11-22 – 150 W tek kanal A2–A3 deneyi analiz edildi
+
+Kullanıcının sağladığı `history (30).csv` (315 satır) analiz edildi. Kayıt 01:11:00–01:14:11.709 Türkiye saati aralığındadır. İlk 10 saniye çıkarıldıktan sonra A2–A3 için 182 örnek kaldı: ortalama 0.589707 A, medyan 0.589793 A, standart sapma 0.006573 A, CV %1.1146, min–max 0.571915–0.602744 A.
+
+PZEM güç: 32 örnekte ortalama 147.403 W; PZEM akım: 13 örnekte ortalama 0.643615 A; PZEM gerilim: 31 örnekte ortalama 229.010 V. A2–A3/PZEM akım ±2 saniye en yakın zaman eşleştirmesinde 52 çift, MAPE %8.510 ve ortalama fark −0.05477 A bulundu. PZEM ground truth değildir.
+
+CSV'de SSR ve BERO_EVT geçişleri 01:11:00 ON, 01:11:22 OFF, 01:11:42 ON, 01:12:22 OFF, 01:12:42 ON, 01:13:22 OFF, 01:13:42 ON olarak kaydedilmiştir. SSR'nin deney yükünü kontrol edip etmediği dosyadan kesinleşmediğinden yükün kesintisiz sabit kaldığı varsayılmadı.
+
+A0–A1 tek kanal kaydının CV'si %0.9343; bu A2–A3 tek kanal kaydının CV'si %1.1146'dır. Ayrı oturumlar arasında A0–A1 daha az değişken görünmüştür; bu fark kök neden veya genel kanal üstünlüğü kanıtı değildir. Önceki çift kanal A2–A3 referansındaki CV %0.936 idi; bu tek kanal oturumunda daha yüksek CV gözlenmiştir.
+
+K=27.59, 860 SPS, 200 ms pencere ve 1 s güncelleme korunmuştur. Filtre veya firmware değişikliği yapılmadı.
+
+Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150W-TEK-KANAL-A2A3-2026-11-22.md`  
+Özet CSV: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/LOG/150W-TEK-KANAL-A2A3-OZET-2026-11-22.csv`  
+Orijinal `history (30).csv` konuşma eki olarak korunur; bu işlemde GitHub'a birebir kopyalanmamıştır.
