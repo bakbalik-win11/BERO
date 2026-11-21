@@ -23,11 +23,12 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 - **Aktif modül:** Modül 2 – Masaüstü 4 Kanal / Akım Testleri
 - **Aktif görev:** MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
 - **Fiziksel ADC:** ADS1115 **No.10**, I²C 0x48.
-- **Son deneme durumu:** 2026-11-21 tarihli iki kanallı deneme, kullanıcının bildirdiği bağlantı sorunu nedeniyle geçersiz kabul edildi. Deney baştan kurulacak.
-- **Ölçüm kaydı:** A2-A3 çıktısı yaklaşık 0.494 A seviyesinden 1.357 A'ya yükseldi; bu değerler bias/biassız karşılaştırma veya kalibrasyon verisi olarak kullanılmayacak.
-- **Kod koruma:** Mevcut çalışan tek kanallı V1.1 YAML değiştirilmeyecek. İki kanallı denemede kullanılan tam YAML kaynak dosyası henüz depoda yok; logdan tahmin edilerek oluşturulmayacak.
-- **Sonraki adım:** Bağlantı düzenini baştan doğrulayıp deneyi yeniden kurmak. Yeni denemede kullanılacak gerçek YAML ayrı sürüm olarak kaydedilecek; ardından log ve yorum aynı sürümün altında tutulacak.
-- **Ayrıntılı kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ADS1115-IKILI-OKUMA-BAGLANTI-HATALI-2026-11-21.md`.
+- **Önceki geçersiz deneme:** 2026-11-21 tarihli ilk iki kanallı denemede bağlantı sorunu nedeniyle A2-A3'ün 0.494 A'dan 1.357 A'ya yükseldiği log geçersiz kabul edildi; bu değerler bias karşılaştırması veya kalibrasyon verisi değildir.
+- **Sonraki geçerli çalışmalar:** Aynı iki kanallı YAML ve K=27.59 ile iki bias/biassız karşılaştırma yapıldı. İlk deneyde A0-A1 biassız / A2-A3 biaslı; ikinci çapraz deneyde A0-A1 biaslı / A2-A3 biassızdı. Her iki deneyde de yüksek ortalama biaslı kola geçti.
+- **Kod koruma:** Mevcut tek kanallı V1.1 ve kullanılan iki kanallı YAML değiştirilmeyecek; üçüncü tekrar aynı iki kanallı YAML ile yapılacak.
+- **Kaynak veri:** İkinci deneyin 27 satırlık PZEM/SCT eşleştirme CSV'si ve raporu depoda bulunur. Kullanıcının sağladığı 900 satırlık `history (9).csv` ham kaynak dosyasının birebir kopyası GitHub'a yüklenmemiştir.
+- **Güncel sonraki adım:** Üçüncü çapraz tekrar: A0-A1 biassız, A2-A3 biaslı; bias beslemesi Modül 1'de kalacak. Aynı SCT'ler, konum/yön, yük, ESP32D2, ADS1115 No.10, YAML ve K=27.59 korunacak.
+- **Ayrıntılı kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md`.
 
 ## İlerleme kuralı
 
