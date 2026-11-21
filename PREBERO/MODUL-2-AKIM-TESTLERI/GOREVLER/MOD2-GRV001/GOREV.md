@@ -340,3 +340,14 @@ Bu eşleme, yukarıdaki eski plan metinlerinde geçen ters kanal açıklamaları
 Bias bağlantısı kanallar arasında değiştirilecek: ikinci deneyde A0–A1 biaslı, A2–A3 biassız olacak. Aynı iki SCT'nin fiziksel konumu ve yönü, yük, ADS1115 No.10 ve yazılım ayarları korunacak; yalnızca bias bağlantısının kanalı değişecek. Böylece farkın bias bağlantısını mı yoksa kanal/sensör yolunu mu izlediği sınanacak.
 
 **Durum:** İlk karşılaştırma verisi arşivlendi. Çapraz deney bekliyor. MOD2-GRV001 tamamlanmadı.
+
+
+## 2026-11-21 – Yeni deney açıldı: bias kanal çapraz deneyi
+
+İlk karşılaştırmadan sonra kullanıcı kanal bağlantılarını çaprazladı. Yeni deneyde **A0–A1 biaslı**, **A2–A3 biassız** olarak kullanılacaktır. Önceki deneydeki eşleme A0–A1 biassız, A2–A3 biaslıydı.
+
+- Fiziksel ADC: ADS1115 No.10, I²C 0x48; kontrol kartı ESP32D2.
+- Aynı iki SCT013 sensörü, aynı faz iletkeni, aynı yön ve konum korunacaktır.
+- Mevcut iki kanallı YAML kullanılacak; bu deney için YAML/firmware değiştirilmedi. Tek kanallı çalışan V1.1 korunur.
+- Yeni deney dosyası: `DENEYLER/BIAS-KANAL-CAPRAZ-DENEY-2026-11-21.md`.
+- Deney açılmıştır; bağlantı kontrolü ve yeni ölçüm henüz yapılmamıştır. Sonuç veya kalibrasyon kararı yoktur.
