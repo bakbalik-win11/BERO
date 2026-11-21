@@ -1,7 +1,7 @@
 # MOD2-GRV001 – Bias kanal tekrar çapraz deneyi (3. deney)
 
 **Tarih:** 2026-11-21  
-**Durum:** HA verisi analiz edildi ve arşivlendi; fiziksel bağlantı eşlemesi teyidi bekliyor.  
+**Durum:** TAMAMLANDI – üç çapraz deneyin nihai değerlendirmesi yapıldı.  
 **Amaç:** İlk iki çapraz deneyde gözlenen ortalama ölçüm farkının bias bağlantısını takip ettiği bulgusunu üçüncü bir tersleme ile tekrar etmek; biasın ölçüm sonucuna pozitif katkısı olduğu hipotezini teyit etmeye çalışmak.
 
 ## 1. Önceki iki deneyin özeti
