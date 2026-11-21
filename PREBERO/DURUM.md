@@ -269,3 +269,6 @@ Kullanıcı kararı: 1,5 A altı ve üstü için ayrı katsayılar çalışılac
 - **Sıradaki iş:** Bias kullanılmayan bağlantıyı güvenli şekilde doğrulamak; 1,5 A altı ve üstünde birden fazla ölçüm noktası toplamak; sınır çevresini ayrıca test etmek.
 - **Açık noktalar:** Tam 1,5 A sınırında katsayı seçimi ve bölge geçiş yöntemi.
 - **Rapor:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/IKI-BOLGELI-KALIBRASYON-VE-BIAS-KARARI-2026-11-22.md`.
+
+
+**Bir sonraki oturum:** Önce katsayıları bulma yöntemi planlanacak; test yükleri/noktaları, ölçüm ve eşleştirme süresi, tekrar sayısı, katsayı hesabı ve 1,5 A geçişi netleştirilecek. Bu planlama tamamlanmadan fiziksel bağlantı değişikliği veya ölçüm başlatılmayacak.
