@@ -175,3 +175,13 @@ Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı ha
 - **Kanıt sınırı:** Bu, ekran görüntüsünden yapılan nitel gözlemdir. Ham CSV ve nicel spike istatistiği yoktur; spike oranı/genliği henüz ölçülmüş değildir.
 - **Takip:** Boşta uzun süreli kayıtla iki kanalın spike sayısı, tepe genliği, standart sapması ve eşik üstü olay sıklığı ayrı karşılaştırılmalıdır.
 - Günlük ayrıntı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/RAPOR/GUN-KAPANIS-2026-11-21.md`.
+
+## 2026-11-21 – 15 W biaslı / biassız ADS1115 karşılaştırması
+
+- Tek nominal 15 W ampul ile yapılan oturum kapatıldı.
+- A0–A1 biassız medyan 0.058814 A; A2–A3 biaslı medyan 0.060014 A.
+- PZEM akımı yalnızca tek örnek (0.065 A); biaslı kanalın medyanı bu örneğe daha yakındır. PZEM güç ortalaması 14.839 W.
+- Biaslı A2–A3 kanalında 0.516451 A tekil spike ve yüksek standart sapma (0.030700 A) görüldü. Spike kararlılık açısından olumsuz bulgudur.
+- **Tespit:** Biaslı kanalın ölçüm seviyesi PZEM'e daha yakın görünmektedir; buna karşılık spike davranışı vardır. Gürültü/kararlılık iyileşmesi iddia edilmez.
+- Sonuç tek deneyle sınırlıdır. PZEM ground truth değildir; K=27.59 ve YAML değişmedi.
+- Ayrıntı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-15W-BIAS-KANAL-TESTI-2026-11-21.md`.
