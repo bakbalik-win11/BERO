@@ -63,3 +63,22 @@ Bias etkisi kanallar arasında taşındığında ölçüm farkı da bias ile bir
 - Bu nedenle bias besleme kaynağı, deneyler arasında değişebilen ayrı bir değişken olarak kaydedilecektir. Bu çapraz deneyin sonuçları yorumlanırken Modül 1 beslemesi esas alınacaktır.
 - ESP'den beslemeli sonraki deneylerde besleme noktası ve bias orta noktasının gerçek DC gerilimi ayrıca ölçülüp kaydedilmeden önceki deneyle doğrudan eşdeğer kabul edilmeyecektir.
 
+## 10. Çapraz deney ölçüm sonucu – 2026-11-21
+
+**Durum:** PZEM içeren Home Assistant CSV alındı ve analiz edildi.
+
+- Kaynak: kullanıcı tarafından sağlanan `history (9).csv` (900 satır). Kaynak dosyanın birebir tam kopyası bu commit ile depoya yüklenmedi; analizden üretilen 27 satırlık PZEM/SCT eşleştirme CSV'si ve teknik rapor depolandı.
+- A0–A1 (biaslı): 356 kayıt, ortalama 0.470006 A, std. sapma 0.007828 A, CV %1.666.
+- A2–A3 (biassız): 355 kayıt, ortalama 0.457269 A, std. sapma 0.008881 A, CV %1.942.
+- PZEM: 27 akım kaydı, ortalama 0.469667 A (0.469–0.471 A).
+- ±2 saniye en yakın zaman eşleştirmesinde A0–A1 biaslı kolun MAPE değeri %1.275; A2–A3 biassız kolun MAPE değeri %3.168.
+- İlk deneyde bias A2–A3 üzerindeydi ve yüksek ortalama bu kanalda görülmüştü. Çapraz deneyde bias A0–A1'e taşındı ve yüksek ortalama A0–A1'e taşındı. Bu, ortalama farkın bias bağlantısını takip ettiği yönünde güçlü bulgudur.
+- Bu deneyde biaslı kolun CV'si daha düşük çıktı; ancak ilk deneyde iki kolun CV'si hemen hemen aynıydı. Biasın gürültüyü her koşulda azalttığı henüz kanıtlanmadı.
+- PZEM akımı 0.469–0.471 A ve gücü 107.4–108.5 W aralığında kaldı. Tek akım bölgesi olduğundan farklı akım seviyelerinde doğrusallık veya tek katsayının yeterliliği değerlendirilemez.
+- Bias bu deneyde **Modül 1'den** beslendi. Kod değiştirilmedi, K=27.59 korundu.
+
+Rapor: `V1.1/RAPOR/V1.1-BIAS-KANAL-CAPRAZ-2026-11-21.md`  
+Eşleştirilmiş veri: `V1.1/LOG/V1.1-BIAS-KANAL-CAPRAZ-PZEM-ESLESTIRME-2026-11-21.csv`
+
+**Sonraki adım:** Aynı bağlantı ve kodla biası ESP kartından besleyerek tekrar; ardından düşük/orta/yüksek akım seviyelerinde test. MOD2-GRV001 tamamlanmış değildir.
+
