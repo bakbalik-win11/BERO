@@ -20,16 +20,15 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 
 ## Modül 2 – sıradaki deney
 
-- Mevcut sadeleştirilmiş akım okuma koduyla önceki ADS1115 modülünde okuma yapılmıştır; kullanıcı bu sürümü **Kod 0** olarak ayırmıştır.
-- Yeni katsayı çalışması ADS1115 **No. 1** üzerinde yapılacaktır; önceki modülün katsayısı aktarılmayacaktır.
-- Katsayı çalışmasından önce bias ve sıfır düzeltmesi gerekliliği incelenmektedir. Osiloskopla bias bağlı yüksüz SCT ölçümünün altı Single kaydı alındı; Vrms ortalaması 3.40 mV. Bu kayıt, ADS1115 üzerinde planlanan iki SCT'li biaslı/biassız karşılaştırmanın tamamlandığı anlamına gelmez. Ayrıntı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/TESTLER/OSILOSKOP-YUKSUZ-BIAS-2026-11-21.md`. Tek ADS1115 No. 1 ve aynı faz iletkenini ölçen iki ayrı SCT013 ile planlanan karşılaştırma ayrıca beklemektedir.
-- **SCT013 No. 1 → A0–A1:** biaslı ölçüm kolu.
-- **SCT013 No. 2 → A2–A3:** biassız ölçüm kolu.
-- İki SCT aynı tek faz iletkenini ölçecek; sensörlerin çıkışları birbirinden ayrı kalacaktır. Böylece aynı akım koşulunda biaslı ve biassız ölçüm karşılaştırılacaktır.
-- Önce bias hattı SCT bağlı değilken multimetre ve osiloskopla incelenecek; ardından iki SCT yüksüz durumda kontrol edilecektir.
-- İlk karşılaştırmalarda sıfır düzeltmesi ve kalibrasyon katsayısı uygulanmadan ham davranış incelenecek. Yüksüz taban değerinin sıfırlanmasının gerekip gerekmediği ve katsayı ihtiyacı ayrıca değerlendirilecektir.
-- ADS1115 üzerinde planlanan iki SCT'li biaslı/biassız karşılaştırma henüz yapılmadı; bu kayıt deney düzenini ve planını tanımlar. Osiloskopla alınan yüksüz biaslı ölçüm ayrı test kaydındadır ve bias/sıfırlama/katsayı kararı içermez.
-- Teknik deney planı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`.
+- Mevcut çalışan akım ölçüm kodu korunacaktır; bu kod değiştirilmeyecek.
+- Güncel deney hedefi, **ADS1115 No. 1 ile biaslı/biassız ham okuma davranışını karşılaştırmaktır**. SCT doğruluğu, dalga biçimi ve akım katsayısı bu deneyin hedefi değildir.
+- Planlanan kanal düzeni: **SCT013 No. 1 → A0–A1 (biaslı)**; **SCT013 No. 2 → A2–A3 (biassız)**.
+- İki SCT aynı faz iletkenini aynı yönde ölçecek; çıkışları birbirinden ayrı kalacaktır.
+- İlk karşılaştırmada RMS/akım dönüşümü, kalibrasyon katsayısı, sıfır düzeltmesi ve filtre uygulanmayacaktır.
+- Osiloskopla SCT sinyalini karşılaştırma çalışması durdurulmuştur. Osiloskop bu deneyin devamı için gerekmeyecektir.
+- Biassız kolun bağlantısı, A2 ve A3 pinlerinin GND'ye göre mutlak gerilimleri ve ADS1115 giriş sınırları doğrulanmadan yapılmayacaktır. Diferansiyel ölçüm mutlak giriş sınırlarını ortadan kaldırmaz.
+- Deney henüz yapılmamıştır. Kullanıcı hazır olduğunda önce bağlantı topolojisi doğrulanacak, ardından ayrı deney YAML'i hazırlanacaktır.
+- Teknik kayıt: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`.
 
 ## İlerleme kuralı
 
@@ -53,3 +52,8 @@ Bir görev tamamlandığında sonucu kendi görev klasörüne kaydedilir. Ardın
 - Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/TESTLER/OSILOSKOP-YUK-KADEMELERI-BIAS-2026-11-21.md`.
 - **Sıradaki adım:** ADS1115 No. 1 ile A0-A1 ham diferansiyel gerilim okuması. Aynı SCT, bias ve yük koşulları korunarak ADS1115 verisi osiloskopla karşılaştırılacak. İlk testte RMS/akım dönüşümü, katsayı, sıfır düzeltmesi ve filtre uygulanmayacak.
 - ADS1115 ham okuma ve karşılaştırma henüz yapılmadı; osiloskop sonuçları ADS1115 performansını doğrulamaz.
+
+
+## 2026-11-21 – Kullanıcı kararı: osiloskop karşılaştırması durduruldu
+
+Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı hazır olduğunda ADS1115 No. 1 üzerinde A0–A1 biaslı ve A2–A3 biassız kolların ham okuma davranışını karşılaştırmak olacak. Osiloskop kullanılmayacak. Deney henüz başlamadı; biassız giriş bağlantısı mutlak pin gerilimleri ve ADS1115 sınırları doğrulanmadan yapılmayacak. Ayrıntı MOD2-GRV001 görev kaydına işlendi.
