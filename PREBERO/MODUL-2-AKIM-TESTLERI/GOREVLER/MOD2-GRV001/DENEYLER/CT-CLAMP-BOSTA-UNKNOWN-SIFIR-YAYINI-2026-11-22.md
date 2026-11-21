@@ -158,3 +158,18 @@ Log kaydı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/LOG/V1.2-UN
 ### Kullanıcı tasarım kararı
 
 Biasın getirebileceği sınırlı doğruluk artışı, ek donanım ve bağlantı karmaşıklığına değmez. Yüksüz durumda 0.000 A görülmesi temel işletim beklentisidir. Yeni tasarımda basit biassız ölçüm yolu tercih edilir. Bu tercih, kalibrasyon ve yük altı doğruluğun ayrıca doğrulanması gereğini ortadan kaldırmaz.
+
+
+## 2026-11-22 – V1.2 yüksüz / yük / yeniden yüksüz testi
+
+Kullanıcının test bildirimi ve ESPHome OTA logu ile şu geçiş gözlendi:
+- Yüksüz: 0.000 A
+- Yük uygulanınca: 0.604 A, 0.602 A, 0.600 A
+- Yük kaldırılınca: yeniden 0.000 A
+- ct_clamp debug: 0.022 A ham AC, 504–508 farklı örnek, 2520–2540 SPS raporlanan hız.
+
+Bu kayıt V1.2'nin yüksüz-yüklü-yeniden yüksüz yayın davranışını doğrular. PZEM karşılaştırması olmadığından akımın mutlak doğruluğunu kanıtlamaz.
+
+Log: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/LOG/V1.2-UNKNOWN-ZERO-YUK-TESTI-2026-11-22.md`
+
+**Durum:** Sıfır/akım geçiş testi başarılı. Uzun süreli çalışma ve ESP32 kapalı/bağlantısız testi açık.
