@@ -647,3 +647,15 @@ Log/yorum: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/LOG/V1.2-UNK
 Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/RAPOR/V1.2-UNKNOWN-ZERO-ILK-DOGRULAMA-2026-11-22.md`
 
 Kullanıcı tasarım tercihi: Biasın sağlayacağı sınırlı doğruluk artışı ek donanım/karmaşıklığa değmez; yüksüz durumda sıfır görünmelidir. Yeni tasarımda biassız ve basit ölçüm yolu tercih edilir. Yük altı doğruluk ve cihaz/iletişim kesintisi davranışı testleri henüz açık.
+
+
+## 2026-11-22 – V1.2 yüksüz / yük / yeniden yüksüz testi başarılı
+
+Kullanıcı testi yaptığını bildirdi. Paylaşılan ESPHome OTA logunda yüksüzde 0.000 A, yük altında 0.604 / 0.602 / 0.600 A ve yük kaldırıldıktan sonra yeniden 0.000 A görüldü. ct_clamp debug logu 0.022 A ham AC ve 504–508 farklı örnek (2520–2540 SPS raporlanan hız) bildirdi.
+
+Bu kayıt V1.2'nin sıfır/akım geçiş davranışını doğrular; PZEM karşılaştırması olmadığı için mutlak kalibrasyon doğruluğunu kanıtlamaz.
+
+Log: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/LOG/V1.2-UNKNOWN-ZERO-YUK-TESTI-2026-11-22.md`  
+Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/RAPOR/V1.2-UNKNOWN-ZERO-ILK-DOGRULAMA-2026-11-22.md`
+
+**Durum:** V1.2 yüksüz-yüklü-yeniden yüksüz işlevsel testi başarılı. Uzun süreli test ve ESP32 kapalıyken unavailable davranışı ayrıca doğrulanacak.
