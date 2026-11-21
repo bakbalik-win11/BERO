@@ -108,3 +108,18 @@ Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı ha
 - **Kod:** Mevcut iki kanallı YAML aynen kullanılacak; kod değişikliği yapılmadı. Tek kanallı V1.1 korunuyor.
 - **Deney kaydı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-CAPRAZ-DENEY-2026-11-21.md`.
 - Fiziksel bağlantı/gerilim kontrolleri ve yeni log/CSV henüz yok; deney sonucu çıkarılmadı.
+
+## 2026-11-21 – Bias kanal çapraz deneyi: PZEM verisi alındı
+
+- **Durum:** Çapraz deneyin PZEM içeren HA CSV analizi tamamlandı.
+- **Fiziksel ADC:** ADS1115 No.10, I²C 0x48; ESP32D2.
+- **Bağlantı:** A0–A1 biaslı, A2–A3 biassız.
+- **Bias beslemesi:** Modül 1.
+- **Kod:** Mevcut iki kanallı V1.1 YAML değişmedi; K=27.59 korundu.
+- **Sonuç özeti:** A0–A1 biaslı 0.470006 A; A2–A3 biassız 0.457269 A; PZEM 0.469667 A. ±2 saniye eşleştirilmiş MAPE biaslı kanalda %1.275, biassız kanalda %3.168.
+- İlk deneyde bias A2–A3'teyken yüksek ortalama A2–A3'teydi; çapraz deneyde bias A0–A1'e taşınınca yüksek ortalama A0–A1'e geçti. Biasın ölçüm sonucunu etkilediği hipotezi destekleniyor.
+- Bu veri tek bir çalışma bölgesini (~0.47 A / 108 W) kapsar; akım arttıkça davranış ve tek katsayının yeterliliği henüz belirlenmedi. Gürültü azalması da iki deneyle kesinleşmedi.
+- **Sıradaki adım:** Aynı düzen ve kodla biası ESP kartından besleyerek denemek; ardından düşük/orta/yüksek akım seviyelerini karşılaştırmak.
+- **Rapor:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-BIAS-KANAL-CAPRAZ-2026-11-21.md`.
+- **Görev durumu:** MOD2-GRV001 açık; tamamlanmadı.
+
