@@ -57,3 +57,15 @@ Bir görev tamamlandığında sonucu kendi görev klasörüne kaydedilir. Ardın
 ## 2026-11-21 – Kullanıcı kararı: osiloskop karşılaştırması durduruldu
 
 Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı hazır olduğunda ADS1115 No. 1 üzerinde A0–A1 biaslı ve A2–A3 biassız kolların ham okuma davranışını karşılaştırmak olacak. Osiloskop kullanılmayacak. Deney henüz başlamadı; biassız giriş bağlantısı mutlak pin gerilimleri ve ADS1115 sınırları doğrulanmadan yapılmayacak. Ayrıntı MOD2-GRV001 görev kaydına işlendi.
+
+
+## 2026-11-21 – Aktif deney açıldı: ADS1115 biaslı / biassız ham okuma
+
+- **Görev:** MOD2-GRV001.
+- **Durum:** Deney açıldı; fiziksel bağlantı ve ölçüm henüz yapılmadı.
+- **Düzen:** ADS1115 No. 1; SCT No. 1 A0-A1 biaslı, SCT No. 2 A2-A3 biassız. İki SCT aynı faz iletkenini aynı yönde ölçecek.
+- **Tek değişken:** Biaslı kolda SCT dönüş ucu 1,65 V bias orta noktasına ve A1'e bağlı; biassız kolda SCT uçları doğrudan A2-A3 arasında.
+- **Koruma:** Mevcut çalışan akım ölçüm kodu değişmeyecek. İlk karşılaştırmada RMS/akım dönüşümü, katsayı, sıfır düzeltmesi ve filtre yok.
+- **Güvenlik kapısı:** Biassız A2/A3 girişleri bağlanmadan önce her pinin GND'ye göre mutlak gerilimi ve ADS1115 giriş sınırları doğrulanacak.
+- **Başlangıç koşulu:** Kullanıcı yaklaşık iki saat ara verecek. Döndüğünde önce fiziksel bağlantı ve gerilim kontrolleri yapılacak; ardından deney başlatılacak.
+- **Teknik ayrıntı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md` içindeki 2026-11-21 deney açılış kaydı.
