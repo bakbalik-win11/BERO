@@ -1,7 +1,7 @@
 # MOD2-GRV001 – Bias sabit kanal 42 W testi
 
 **Tarih:** 2026-11-21  
-**Durum:** AÇILDI – 42 W yükte ölçüm bekleniyor.  
+**Durum:** KAPATILDI – uygulanmadı / iptal edildi.  
 **Amaç:** Üç çapraz deneyde bias lehine oluşan bulgudan sonra, bias bağlantısını ve kanal eşlemesini hiç değiştirmeden yaklaşık 42 W yükte davranışı incelemek. Özellikle düşük akım bölgesinde biaslı ve biassız kanalın ölçüm farkını, PZEM karşılaştırmasını ve kararlılığını gözlemek.
 
 ## 1. Sabit fiziksel bağlantı
