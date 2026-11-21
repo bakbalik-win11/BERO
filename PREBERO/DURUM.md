@@ -123,3 +123,16 @@ Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı ha
 - **Rapor:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-BIAS-KANAL-CAPRAZ-2026-11-21.md`.
 - **Görev durumu:** MOD2-GRV001 açık; tamamlanmadı.
 
+
+
+## 2026-11-21 – Aktif çalışma: bias katkısı üçüncü çapraz tekrar
+
+- **Aktif görev:** MOD2-GRV001.
+- **Durum:** Üçüncü çapraz deney açıldı; fiziksel bağlantı ve ölçüm bekleniyor.
+- **Amaç:** İlk iki deneyde ölçüm ortalaması farkının bias bağlantısını takip ettiği bulgusunu üçüncü bir tersleme ile tekrar etmek.
+- **Bağlantı:** A0–A1 biassız; A2–A3 biaslı (ilk deneydeki eşleme).
+- **Sabitler:** ADS1115 No.10, ESP32D2, aynı iki SCT, aynı faz/yön/konum, mevcut iki kanallı YAML ve K=27.59. Kod değişmeyecek.
+- **Bias kaynağı:** Modül 1 olarak kalacak. ESP32 kartından bias beslemesi ayrı bir sonraki deneydir; bu deneyle karıştırılmayacak.
+- **Değerlendirme:** Biaslı kolun ölçüm ortalaması, PZEM'e göre fark/MAPE, standart sapma ve CV birlikte incelenecek. PZEM ground truth değildir.
+- **Deney planı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md`.
+- **Sonuç:** Henüz veri yok; bias katkısı teyit edilmiş değildir.
