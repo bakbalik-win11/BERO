@@ -1,0 +1,114 @@
+# ============================================================
+# BERO – MOD2-GRV001 – 150 W TEK KANAL DENEYİ
+# ESP32D2 / ADS1115 No.10 / SCT013 30A-1V
+# Sürüm: V1.1-TEST-A0A1
+# ============================================================
+#
+# AMAÇ:
+# Yalnızca ADS1115 A0-A1 diferansiyel kanalını okuyarak
+# yaklaşık 150 W yükte ölçüm dalgalanmasını incelemek.
+#
+# DENEY HİPOTEZİ:
+# İki ADS1115 kanalının birlikte okunması ölçüm
+# davranışına katkıda bulunuyor olabilir.
+# Bu kopyada yalnızca A0-A1 aktiftir.
+#
+# DONANIM / BAĞLANTILAR:
+# ESP32D2 GPIO21 -> ADS1115 SDA
+# ESP32D2 GPIO22 -> ADS1115 SCL
+# ESP32D2 3.3V   -> ADS1115 VDD
+# ESP32D2 GND    -> ADS1115 GND
+# ADS1115 ADDR   -> GND (I2C 0x48)
+# SCT013        -> ADS1115 A0-A1 (diferansiyel)
+#
+# A2-A3 bu firmware içinde tanımlanmamıştır.
+# Fiziksel bağlantı değiştirilmeden yazılımsal olarak
+# devre dışı bırakılmıştır.
+#
+# ÖLÇÜM AYARLARI:
+# ADS1115 modu       : Continuous
+# Multiplexer        : A0_A1
+# PGA                : 2.048 V
+# Sample rate        : 860 SPS
+# ct_clamp penceresi : 200 ms
+# HA güncelleme      : 1 saniye
+# Kalibrasyon K      : 27.59 (değiştirilmedi)
+#
+# BEKLENEN ÇIKTI:
+# Home Assistant entity: BERO Akim Sensoru
+#
+# TEST PROTOKOLÜ:
+# 1. Aynı yükte en az 3 dakika kayıt.
+# 2. İlk 10 saniye kararlılık süreci olarak ayrı tutulur.
+# 3. PZEM ile birlikte değerlendirilir.
+# 4. Ortalama, standart sapma, min-max ve CV hesaplanır.
+#
+# GÜVENLİK:
+# ADS1115 A0 ve A1 pinlerinin her biri GND'ye göre
+# GND-0.3 V ile VDD+0.3 V sınırları içinde kalmalıdır.
+# SCT yalnızca yalıtılmış tek iletkeni kavramalıdır.
+# ESP32 GND şebekeye bağlanmamalıdır.
+#
+# DURUM:
+# Bu YAML deney kopyasıdır. Kullanıcının paylaştığı
+# history (28).csv bu kodun cihaza yüklendiğini tek başına
+# kanıtlamaz; kod ile veri eşleşmesi kullanıcı beyanı
+# ve oturum bilgisiyle ilişkilendirilir.
+# ============================================================
+
+esphome:
+  name: esp32d2
+  friendly_name: ESP32D2
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+  frequency: 400kHz
+
+ads1115:
+  - address: 0x48
+    continuous_mode: true
+
+sensor:
+  # TEK AKTİF KANAL: A0-A1
+  - platform: ads1115
+    multiplexer: A0_A1
+    gain: 2.048
+    sample_rate: 860
+    id: ads_sct_a0_a1_raw
+    internal: true
+
+  - platform: ct_clamp
+    sensor: ads_sct_a0_a1_raw
+    name: "BERO Akim Sensoru"
+    id: bero_akim_a0_a1
+    sample_duration: 200ms
+    update_interval: 1s
+    accuracy_decimals: 3
+    filters:
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 1.0 -> 27.59
+      - lambda: |-
+          if (x < 0.005) return 0.0;
+          return x;
