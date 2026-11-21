@@ -45,3 +45,12 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Edinilen tecrübe:** Vrms yükle düzenli artış gösterdi. 57 W serisinde 9.71 mV tekil okuma diğer beş değerden ayrıştı; ham veri korunmuştur. Nominal güç hesabı ile yapılan karşılaştırma yaklaşık bir ön kontroldür.
 - **Teknik karar:** Osiloskop yük kademeleri tamamlandı. Bu sonuçlar ADS1115 başarısını kanıtlamaz ve PZEM ile doğrulanmış kalibrasyon değildir. Sıradaki deney aynı SCT/bias/yük koşullarında ADS1115 No. 1 A0-A1 ham diferansiyel gerilim okumasıdır; ilk aşamada RMS, akım katsayısı, sıfır düzeltmesi ve filtre uygulanmayacaktır.
 - **İlgili kayıtlar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/TESTLER/OSILOSKOP-YUK-KADEMELERI-BIAS-2026-11-21.md`; `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`.
+
+
+### 2026-11-21 – MOD2-GRV001 – ADS1115 biaslı/biassız ham okuma deneyi açıldı
+
+- **Çalışma / deneme:** Aynı faz iletkenini aynı yönde ölçecek iki ayrı SCT013 30A/1V sensörüyle, tek ADS1115 No. 1 üzerinde biaslı ve biassız iki diferansiyel kolun ham okuma karşılaştırması için deney açıldı.
+- **Gözlenen sonuç:** Henüz ölçüm yapılmadı. Bu kayıt yalnızca deney planının açıldığını gösterir.
+- **Edinilen tecrübe:** Önceki konuşmada A2-A3 kolunun tek SCT ile biaslı bağlantı gibi yorumlanması yanlıştı. Depodaki görev tanımı ve güncel karar esas alınarak doğru deney düzeni netleştirildi: SCT No. 1 A0-A1 biaslı; SCT No. 2 A2-A3 biassız. Fark, yalnızca bir kolda SCT dönüş ucunun 1,65 V bias orta noktasına bağlanmasıdır.
+- **Teknik karar:** Mevcut çalışan akım ölçüm kodu korunacak. İlk deneyde ham ADS1115 okumaları karşılaştırılacak; RMS/akım dönüşümü, katsayı, sıfır düzeltmesi ve filtre uygulanmayacak. A2/A3 mutlak giriş gerilimleri ve ADS1115 sınırları doğrulanmadan biassız kol bağlanmayacak.
+- **İlgili kayıtlar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`; `PREBERO/DURUM.md`.
