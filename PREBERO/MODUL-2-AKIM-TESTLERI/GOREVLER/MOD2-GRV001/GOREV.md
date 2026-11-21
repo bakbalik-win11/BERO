@@ -371,7 +371,7 @@ Bias bağlantısı kanallar arasında değiştirilecek: ikinci deneyde A0–A1 b
 
 ## 2026-11-21 – Bias katkısını teyit için üçüncü çapraz deney açıldı
 
-**Durum: AÇILDI – fiziksel bağlantı ve ölçüm bekleniyor.**
+**Durum: KAPATILDI – üçüncü 100 W çapraz test verisi analiz edildi.**
 
 İlk deneyde A0–A1 biassız / A2–A3 biaslı iken yüksek ortalama A2–A3'te; ikinci deneyde A0–A1 biaslı / A2–A3 biassız iken yüksek ortalama A0–A1'de görüldü. Bu iki sonuç ortalama farkın bias bağlantısını takip ettiği yönünde bulgudur.
 
@@ -389,7 +389,7 @@ Amaç, biaslı kolun tekrar daha yüksek ölçüm vermesini ve PZEM karşılaşt
 Deney planı:
 `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md`
 
-**Henüz ölçüm alınmadı; sonuç veya doğrulama iddiası yoktur.**
+**Kapanış:** Üçüncü 100 W tekrarın HA verisi analiz edildi. Üç çapraz deneyin tamamında biaslı kanal başarılı bulundu; biaslı kolun ortalaması daha yüksek ve PZEM'e göre MAPE değeri daha düşüktür. Bu çalışma noktası için bias katkısı tespit olarak kaydedildi. Gürültü azalması veya tüm akım aralığı için genelleme yapılmadı.
 
 
 ## 2026-11-21 – Bias katkısı üçüncü çapraz tekrar: HA verisi analiz edildi
@@ -422,7 +422,7 @@ Deney planı:
 | 2 | A0–A1 | A2–A3 | +0.012737 A | 1.275% / 3.168% |
 | 3 | A2–A3 | A0–A1 | +0.012852 A | 1.819% / 2.508% |
 
-Üçüncü deneyin fiziksel eşlemesi kullanıcı tarafından teyit edildi. Üç deneyde biaslı kanalın MAPE değeri daha düşüktür. Bu sonuç yaklaşık 0.47 A çalışma bölgesinde biasın ölçüm sonucuna pozitif katkısını destekleyen tekrarlı deneysel bulgu olarak kaydedildi.
+Kullanıcı üç deneyin tamamında biaslı kanalın başarılı olduğunu teyit etti. Üç deneyde biaslı kanalın MAPE değeri daha düşüktür. Bu sonuç yaklaşık 0.47 A çalışma bölgesinde biasın ölçüm sonucuna pozitif katkısını destekleyen tekrarlı deneysel bulgu olarak kaydedildi.
 
 **Sınırlar:** PZEM ground truth değildir. Mutlak doğruluk iddiası yoktur. CV sonuçları biasın gürültüyü azalttığını göstermemiştir. Tüm akım aralığına genelleme yapılmayacaktır. K=27.59 korunmuştur.
 
