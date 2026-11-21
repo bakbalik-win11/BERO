@@ -130,3 +130,14 @@ Yeni, ayrı YAML oluşturuldu:
 6. ESPHome DEBUG logu ve HA geçmişi birlikte saklanır.
 
 **Durum:** V1.2 YAML depoya eklendi ve dosya geri okunarak doğrulandı. Derleme, cihaza yükleme ve fiziksel test henüz yapılmadı. Deney açık durumdadır.
+
+
+## 2026-11-22 – V1.2 ilk çalışma doğrulaması
+
+Kullanıcı V1.2 YAML'in derlendiğini ve ESP32D2 üzerinde çalıştığını bildirdi. Paylaşılan Home Assistant ekran görüntüsünde ESP32D2 > BERO Akim Sensoru değeri **0,000 A** görünmektedir; sarı çizgi görüntünün son bölümünde sıfır seviyesindedir. PZEM gerilim entity'si ekranda kullanım dışıdır.
+
+Bu kayıt V1.2'nin ilk sıfır yayın gözlemidir. Görüntü yaklaşık 01:46:00–01:47:05 aralığını kapsar; gece boyu süreklilik, kontrollü yükte akım üretimi ve ESP32 kapatıldığında unavailable davranışı henüz kanıtlanmamıştır.
+
+Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/RAPOR/V1.2-UNKNOWN-ZERO-ILK-DOGRULAMA-2026-11-22.md`
+
+**Durum:** İlk çalışma/sıfır yayın gözlemi doğrulandı; uzun süreli ve yük/cihaz kesintisi testleri bekliyor.
