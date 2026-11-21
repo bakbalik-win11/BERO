@@ -121,3 +121,14 @@ Bias ESP32 3.3 V hattından sağlanacak; ESP32 GND, ADS1115 GND ve bias devresi 
 - **Teknik karar:** Öneri, biasın yerine geçen yöntem olarak kabul edilmedi ve bu haliyle kapatıldı. K=27.59, YAML, firmware ve bias bağlantısı değiştirilmedi.
 - **Kanıt sınırı:** Fiziksel test yapılmadı; yeni ölçüm, ham log veya kalibrasyon sonucu yoktur. Bu kayıt matematiksel yöntem değerlendirmesidir.
 - **İlgili kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/KATSAYI-IKI-ASAMALI-CARPIM-DEGERLENDIRMESI-2026-11-22.md`.
+
+
+### 2026-11-22 – İki bölgeli kalibrasyon ve bias kullanmama kararı
+
+- **Çalışma / karar:** Kullanıcı, 1,5 A altı ve üstü için ayrı kalibrasyon katsayıları çalışılmasını; bias devresinin getirdiği zahmet nedeniyle yeni tasarımda bias tercih edilmemesini kararlaştırdı.
+- **Gözlenen sonuç:** Bu aşamada yeni ölçüm yapılmadı. İki katsayının değeri henüz bilinmiyor.
+- **Edinilen tecrübe:** Önceki bias deneylerinde bazı çalışma noktalarında ölçüm ortalamasına katkı gözlense de boşta spike ve değişkenlik sorunları da kaydedilmişti. Kullanıcı, bu katkıyı ek devre karmaşıklığına değer bulmadı.
+- **Teknik karar:** Sade analog bağlantı ve iki bölgeli kalibrasyon yaklaşımı izlenecek. K=27.59, çalışan YAML ve firmware şimdilik korunacak. Yeni katsayılar yalnızca ölçümle belirlenecek.
+- **Açık noktalar:** Tam 1,5 A sınırının hangi bölgeye dahil olacağı, bölge seçiminin nasıl yapılacağı ve geçişte çıktı sürekliliği testle/yazılım tasarımıyla belirlenecek.
+- **Kanıt sınırı:** Bu bir tasarım kararıdır; biasın fiziksel olarak söküldüğü veya iki bölgeli kalibrasyonun doğrulandığı anlamına gelmez.
+- **İlgili kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/IKI-BOLGELI-KALIBRASYON-VE-BIAS-KARARI-2026-11-22.md`.
