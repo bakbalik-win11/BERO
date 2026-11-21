@@ -336,3 +336,58 @@ Yük ayrıştırma ve besleme gözlemleri sonrasında:
 - Filtre uygulanmadan önce olası fiziksel ve zamanlama kaynakları değerlendirilmiş olmalı.
 
 **Sıra kararı:** Önce yükleri ayırma (Kettle 1, 100 W ampul, birleşik yük); ardından besleme/bias gözlemi; sonra YAML/ADS1115 zamanlama analizi; en son gerekirse ayrı filtre denemesi. Mevcut V1.1 YAML ve kalibrasyon katsayısı değiştirilmez.
+
+
+## 12. Sonuç, ESP32 reset gözlemi ve deney kapanışı (2026-11-22)
+
+**Kapanış durumu: KAPATILDI – belirti reset sonrasında kayboldu; kök neden doğrulanmadı.**
+
+Kullanıcı, ESP32D2'yi resetledikten sonra daha önce A0–A1 ve A2–A3 akım okumalarında gözlenen yavaş salınımın durduğunu bildirdi. Bu, deneyin en önemli saha gözlemidir.
+
+### 12.1 Gözlem ve yorum sınırı
+
+- Reset öncesinde iki SCT kanalında PZEM'e kıyasla belirgin, birbirleriyle aynı periyotta olmayan yavaş salınımlar gözlenmişti.
+- Kullanıcının bildirimine göre ESP32 resetinden sonra salınım durdu.
+- Bu durum, sorunun en azından o çalışma oturumunda ESP32/ADS1115/ESPHome çalışma durumuyla ilişkili olabileceğini düşündürür.
+- Ancak reset tek başına kök nedeni kanıtlamaz. Yeniden başlatma; yazılım durumunu, ADS1115 yapılandırmasını, I²C haberleşmesini ve ölçüm zamanlamasını yeniden başlatır. Hangi unsurun salınımı durdurduğu bu deneyde ayrıştırılmadı.
+- Bu nedenle sonuç **“reset salınımı durdurdu”** olarak kaydedilir; **“ADS1115 hatası”, “I²C kilitlenmesi” veya “yazılım hatası bulundu”** şeklinde kesin hüküm verilmez.
+
+### 12.2 Karma 1 – history (25).csv kaydı
+
+Dosya: `history (25).csv`  
+Kayıt aralığı: 2026-11-21 21:35:00–21:37:59 UTC  
+Toplam satır: 510  
+Yük: Karma 1 (kullanıcının yük tanımı; bu dosyada yük bileşenlerinin fiziksel ayrıntısı ayrıca doğrulanmadı).
+
+CSV'den yeniden hesaplanan tüm kayıt istatistikleri:
+| Entity | n | Ortalama | Std. sapma | Min–Max |
+|---|---:|---:|---:|---:|
+| PZEM akım | 35 | 1.3205 A | 0.0872 A | 0.842–1.413 A |
+| A0–A1 | 181 | 1.2731 A | 0.0698 A | 1.1337–1.3968 A |
+| A2–A3 | 181 | 1.3502 A | 0.0562 A | 1.2244–1.4652 A |
+| PZEM güç | 36 | 303.95 W | 19.95 W | 192.9–324.9 W |
+| PZEM gerilim | 32 | 230.11 V | 0.32 V | 229.5–230.7 V |
+
+Bu kayıt kısa ve PZEM akım/güç değerleri değişken olduğundan, sabit yükte kalibrasyon noktası olarak kullanılmaz. Önceki hızlı değerlendirmelerde verilen eşleştirilmiş MAPE/katsayı değerleri bu kapanış raporunda yeni ve bağımsız kalibrasyon sonucu olarak kabul edilmemiştir.
+
+CSV'deki BERO_EVT satırlarında BOOT_ID `90841376C63EB630E4979C465881880E` görünür. Bu, dosyanın olay protokolünde görülen kimliktir; tek başına resetin tam zamanını veya reset öncesi/sonrası salınım genliğini kanıtlamaz. Reset sonrası durma bilgisi kullanıcının saha gözlemidir.
+
+### 12.3 Deneyden çıkarılan kalıcı işletim dersi
+
+1. İki SCT kanalında açıklanamayan yavaş salınım görüldüğünde ilk müdahale olarak filtre eklenmeyecek ve örnekleme ayarları değiştirilmeden önce mevcut durum kaydedilecek.
+2. Zaman damgalı ham CSV, PZEM ve iki SCT kanalı birlikte saklanacak.
+3. Mevcut durum kaydedildikten sonra ESP32D2 kontrollü biçimde yeniden başlatılabilir.
+4. Reset sonrası salınımın kaybolup kaybolmadığı aynı yük ve aynı bağlantı koşullarında yeniden gözlenecek.
+5. Reset sonrası düzelme, kök neden analizi yerine geçmez. Tekrarlanabilirlik için reset öncesi/sonrası karşılaştırmalı kayıt alınmalıdır.
+6. V1.1 YAML, 860 SPS, 200 ms pencere, 1 s güncelleme, K=27.59 ve mevcut filtreler bu deney kapsamında değiştirilmedi.
+
+### 12.4 Son karar
+
+- Deney kapatıldı.
+- Gözlenen salınım ESP32 reseti sonrasında kullanıcı tarafından durmuş olarak bildirildi.
+- Kök neden belirlenmedi; yazılım/ADC/I²C/besleme/ölçüm zamanlaması hipotezleri kanıtlanmış sayılmıyor.
+- Yükleri ayırma ve filtre denemeleri bu deneyin kapsamında yapılmadı; belirti resetle kaybolduğu için bu deneyde devam ettirilmeyecek.
+- Aynı belirti yeniden oluşursa bu kayıt referans alınarak yeni bir tekrar/arıza incelemesi açılacak.
+- Kalibrasyon katsayıları ve çalışan YAML değiştirilmedi.
+
+**Deney sonucu:** Reset, salınımı durdurmak için işe yarayan saha müdahalesi olarak kaydedildi. Bu tecrübe BERO için işletim/teşhis notudur; teknik kök neden sonucu değildir.
