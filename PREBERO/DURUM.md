@@ -202,3 +202,11 @@ Kettle 1 (sıcaklık koruma modu) ve Kettle 2 (kaynatma modu) ayrı sabit çalı
 - Bu karar mevcut deneylerin kapsamındadır; tüm akım aralığı için mutlak doğruluk veya nihai devre tasarımı iddiası değildir.
 
 **Kullanıcı kararı:** Daha fazla kettle testi gerekmiyor; bias kullanılmalı.
+
+## 2026-11-21 – ESP32 kaynaklı bias + ortak GND deneyi AÇILDI
+
+Yeni deneyde bias ESP32 kartının 3.3 V hattından sağlanacak; ESP32 GND, ADS1115 GND ve bias devresi GND ortaklanacak. Önceki Modül 1 bias deneylerinde bu ortak GND koşulu kullanılmamıştı; dolayısıyla bu yeni deneyde besleme kaynağı ve toprak referansı farkı birlikte değerlendirilecek.
+
+Fiziksel bağlantı, direnç değerleri ve bias DC seviyesi henüz teyit edilmedi. Enerji verilmeden önce bağlantı ve ADS1115 mutlak giriş gerilimleri kontrol edilecek. K=27.59 ve çalışan YAML korunacak. Deney açık; henüz ölçüm sonucu yoktur.
+
+Deney kaydı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ESP32-KAYNAKLI-BIAS-ORTAK-GND-2026-11-21.md`.
