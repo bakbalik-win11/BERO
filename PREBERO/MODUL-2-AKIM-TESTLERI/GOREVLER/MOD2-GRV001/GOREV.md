@@ -516,3 +516,22 @@ history (25).csv kısa Karma 1 kaydı deney raporuna eklendi. PZEM akımı ve g�
 Deney raporu: PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ADS1115-IKILI-OKUMA-YAVAS-SALINIM-ARASTIRMASI-2026-11-22.md.
 
 Bu deney kapatılmıştır; MOD2-GRV001 görevinin tamamı kapatılmamıştır.
+
+## 2026-11-22 – 150 W sabit yük / iki kanallı referans kaydı
+
+Kullanıcının sağladığı `history (27).csv` analiz edildi ve 150 W sabit yük deneyi referans kaydı olarak arşivlendi. Kayıt 00:55:00–00:58:54 Türkiye saati aralığındadır; PZEM sıfır/geçiş örnekleri karşılaştırma istatistiklerinden çıkarılmıştır.
+
+- PZEM güç: 150.981 W ortalama (36 sıfır dışı örnek).
+- PZEM akım: 0.64913 A ortalama (15 sıfır dışı örnek).
+- A0–A1: 0.59877 A ortalama, CV %1.462 (236 örnek).
+- A2–A3: 0.60157 A ortalama, CV %0.936 (235 örnek).
+- Kanalların ortalama farkı: 0.00280 A.
+- PZEM'e ±2 saniye en yakın örnek eşleştirmesinde 15 eşleşme: A0–A1 MAPE %8.061; A2–A3 MAPE %7.065.
+
+**Yorum sınırı:** İki kanal aynı oturumda aktifti. Bu kayıt çift kanal referansıdır; tek kanal okuma hipotezini sınamaz. A2–A3 CV değeri bu oturumda daha düşük görünse de tek kayıt kalıcı üstünlük kanıtı değildir. PZEM ground truth değildir. K=27.59, firmware ve YAML değiştirilmedi.
+
+**Sonraki adım:** Aynı sabit yükte yalnız A0–A1, ardından yalnız A2–A3 aktif olacak şekilde ayrı deney kopyalarıyla en az 3'er dakikalık kayıt alınması. Mevcut çalışan iki kanallı YAML korunacak.
+
+Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150W-SABIT-YUK-IKILI-KANAL-REFERANS-2026-11-22.md`  
+Özet CSV: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/LOG/150W-SABIT-YUK-IKILI-KANAL-OZET-2026-11-22.csv`  
+Ham kaynak `history (27).csv` bu konuşmadaki ek dosya olarak korunmaktadır; GitHub'a birebir kopyalanmamıştır.
