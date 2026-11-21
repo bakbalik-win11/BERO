@@ -84,3 +84,13 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Teknik karar:** K=27.59 korunmuştur; yeni kalibrasyon katsayısı hesaplanmamıştır. Daha geniş akım aralığı için test gereklidir. Üçüncü deneyde fiziksel kablo eşlemesi ayrıca teyit edilmelidir.
 - **Kaynak sınırı:** Ham HA CSV arşivlendi; ayrı ESPHome logu bu veri paketinde sunulmadı.
 - **İlgili kayıtlar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-HA-KAYNAK-2026-11-21.csv`; eşleştirme CSV'si `V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-PZEM-ESLESTIRME-2026-11-21.csv`; rapor `V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md`.
+
+
+### 2026-11-21 – MOD2-GRV001 – Bias çapraz deney serisi nihai tespit
+
+- **Çalışma / deneme:** Aynı iki SCT013 sensörü ve ADS1115 No.10 üzerinde bias A0–A1 ve A2–A3 kanalları arasında çaprazlanarak üç tekrar değerlendirildi.
+- **Gözlenen sonuç:** Üç deneyin tamamında biaslı kanalın ortalaması daha yüksek, PZEM karşılaştırmasına göre MAPE değeri daha düşüktür. Biaslı/biassiz MAPE sırasıyla deney 1: %1.016/%3.262; deney 2: %1.275/%3.168; deney 3: %1.819/%2.508.
+- **Edinilen tecrübe:** İlk iki çaprazlamada bias kanalı değiştiğinde yüksek ortalamanın biaslı kanalı takip etmesi, kanal etkisi ile bias etkisini ayırmaya yardımcı oldu. Üçüncü deneyde A0–A1 biassız / A2–A3 biaslı bağlantısı kullanıcı tarafından teyit edildi.
+- **Teknik karar:** Yaklaşık 0.47 A çalışma noktasında biasın ölçüm sonucuna pozitif katkısı kabul edildi. PZEM ground truth değildir; mutlak doğruluk iddiası yoktur. Gürültü azalması gösterilmemiştir. K=27.59 korunmuştur.
+- **Kapanış:** Bias çapraz deney serisi tamamlandı. 42 W sabit kanal testi açılmış ancak uygulanmadan kapatılmıştır. ESP32'den bias besleme ve diğer akım bölgeleri ayrı araştırma konularıdır.
+- **İlgili kayıtlar:** Üçüncü deney raporu PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md; çapraz deney kaydı PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md.
