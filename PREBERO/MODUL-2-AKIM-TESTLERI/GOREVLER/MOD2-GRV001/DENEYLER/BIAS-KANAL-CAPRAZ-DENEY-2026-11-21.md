@@ -55,3 +55,11 @@ Bias etkisi kanallar arasında taşındığında ölçüm farkı da bias ile bir
 
 ## 8. Mevcut durum
 **Deney açıldı; fiziksel ölçüm henüz yapılmadı.** Bu dosya yalnızca yeni bağlantı düzenini ve test planını kaydeder. Sonuç, log veya başarı iddiası içermez. İlk deneyin verileri değiştirilmemiştir.
+
+## 9. Bias besleme kaynağı – kullanıcı notu
+
+- **Bu çapraz deneyde:** Bias gerilimi Modül 1'den beslenmektedir.
+- **Sonraki deneylerde:** Bias beslemesi ESP kartından alınacaktır.
+- Bu nedenle bias besleme kaynağı, deneyler arasında değişebilen ayrı bir değişken olarak kaydedilecektir. Bu çapraz deneyin sonuçları yorumlanırken Modül 1 beslemesi esas alınacaktır.
+- ESP'den beslemeli sonraki deneylerde besleme noktası ve bias orta noktasının gerçek DC gerilimi ayrıca ölçülüp kaydedilmeden önceki deneyle doğrudan eşdeğer kabul edilmeyecektir.
+
