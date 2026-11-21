@@ -235,3 +235,45 @@ Biassız kolun ADS1115 girişlerine bağlantısı, A2 ve A3 pinlerinin GND'ye g�
 ### Durum
 
 Bu karar deney hedefini günceller; fiziksel bağlantının kurulduğu, yeni YAML'in hazırlandığı veya testin yapıldığı anlamına gelmez. Kullanıcı deneye hazır olduğunda bağlantı doğrulamasıyla devam edilecektir. Mevcut akım ölçüm kodu korunacaktır.
+
+
+## 2026-11-21 – Deney açıldı: aynı yükte biaslı / biassız ADS1115 ham okuma karşılaştırması
+
+**Durum: AÇILDI – fiziksel uygulama ve ölçüm bekliyor.** Kullanıcı yaklaşık iki saat ara verecek; kullanıcı döndüğünde bağlantı kontrolü ve deney yürütülecek. Bu kayıt deneyin açıldığını gösterir, testin yapıldığını göstermez.
+
+### Deney sorusu
+Aynı faz akımını izleyen iki ayrı SCT013 30A/1V sensöründen birinin dönüş ucuna 1,65 V bias referansı verildiğinde, ADS1115 ham diferansiyel okuması bias uygulanmayan kola göre nasıl değişiyor?
+
+### Sabit deney düzeni
+- Tek ADC: ADS1115 No. 1, I²C adresi 0x48.
+- İki ayrı SCT013 30A/1V sensörü aynı faz iletkenini aynı yönde izleyecek.
+- SCT No. 1 biaslı kol: A0–A1. SCT'nin bir ucu A0'a; dönüş ucu bias orta noktasına ve A1'e bağlanacak.
+- SCT No. 2 biassız kol: A2–A3. SCT'nin iki ucu doğrudan A2 ve A3'e bağlanacak; bu kola bias bağlanmayacak.
+- İki SCT'nin çıkışları birbirine veya ortak giriş çiftine paralellenmeyecek.
+- I²C: ESP32D2 GPIO21 SDA, GPIO22 SCL. ADS1115 VDD 3,3 V, GND ortak.
+- Mevcut bias kaynağı: 3,3 V üzerinden iki adet 10 kΩ ile yaklaşık 1,65 V orta nokta; 104 (100 nF) filtre kondansatörü. Deney öncesinde gerçek devre ve DC seviyesi ölçülecek.
+- SCT013 30A/1V dahili burden'lı modeldir; harici 33 Ω burden eklenmeyecek.
+
+### Tek değişken
+İki ölçüm kolu arasındaki amaçlanan fark, **SCT'nin dönüş ucunun bias orta noktasına bağlanmasıdır**. Sensörler ayrı fiziksel SCT'ler olduğundan sensörler arası tolerans/yerleşim farkı olası karıştırıcı değişkendir; sensörler aynı iletken üzerinde aynı yönde ve mümkün olduğunca yakın yerleştirilecek, fiziksel konumları kaydedilecektir.
+
+### Yazılım ve ölçüm sınırları
+- Mevcut çalışan akım ölçüm kodu değiştirilmeyecek.
+- Deney için ayrı ham okuma yapılandırması gerekirse yeni YAML sürümü hazırlanacak; mevcut kodun üzerine yazılmayacak.
+- İlk karşılaştırmada RMS/akım dönüşümü, K katsayısı, sıfır düzeltmesi ve filtre uygulanmayacak.
+- A0-A1 ve A2-A3 diferansiyel ham okumaları ardışık dönüşümlerdir; eşzamanlı örnekleme oldukları iddia edilmeyecek. Kanal sırası ve zaman bilgisi kaydedilecek.
+- Sabit yükler mevcut testlerde kullanılan yüklerden seçilecek. Her yükte aynı kararlı zaman penceresi iki kanal için karşılaştırılacak.
+
+### Deney öncesi güvenlik kapısı
+Biassız kolu bağlamadan önce A2 ve A3 pinlerinin her birinin GND'ye göre mutlak gerilimi, ADS1115 beslemesi ve giriş sınırları doğrulanacak. Diferansiyel okuma ayarı bu mutlak giriş sınırlarını ortadan kaldırmaz. Ölçüm sırasında hiçbir giriş GND−0,3 V altına veya VDD+0,3 V üstüne taşmamalıdır. Bu kontrol yapılmadan biassız SCT kolu ADS1115'e bağlanmayacak. Şebeke tarafında kablo/CT konum değişikliği enerji kesilerek ve kapalı güvenli düzenekte yapılacak.
+
+### Beklenen kayıt
+- ADS1115 No. 1 kimliği ve yazılım yapılandırması.
+- Bias orta noktasının ölçülen DC değeri.
+- A0, A1, A2, A3 mutlak DC gerilimleri.
+- Her yük için ham A0-A1 ve A2-A3 örnekleri, zaman damgaları ve örnek sayıları.
+- Yük bilgisi ve PZEM akım/PF gözlemi (bağlam bilgisi; bu deneyin ana ölçüm hedefi değil).
+- Kararlı pencere ortalaması, standart sapma ve biaslı/biassız farkı.
+- Gerçek log ve sonuç yorumu.
+
+**Başarı ölçütü:** Aynı yük koşullarında biaslı ve biassız kolların ham okuma seviyeleri/kararlılıkları karşılaştırılabilir biçimde kaydedilmiş olmalı. Bu deney tek başına katsayı veya PF düzeltmesi belirlemez.
