@@ -303,3 +303,40 @@ Ayrıntılı log örnekleri ve yorum: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MO
 ## 2026-11-21 – İki kanallı V1.1 kaynak kodu arşivlendi
 
 Kullanıcı, bağlantı sorunu yaşanan denemede kullanılan gerçek iki kanallı YAML içeriğini sağladı. Kod, değiştirilmeden `V1.1/MOD2-GRV001_V1.1_IKI-KANAL-DENEY.yaml` adıyla kaydedildi. Önceden depoda bulunan tek kanallı `V1.1/MOD2-GRV001_V1.1.yaml` dosyası korunmuştur; üzerine yazılmamıştır. İki kanallı YAML henüz yeniden derlenmiş veya doğrulanmış değildir. Deney baştan kurulurken hangi YAML'in yükleneceği açıkça seçilecek ve yeni sürüm/test kaydı ayrı tutulacaktır.
+
+
+---
+
+## 2026-11-21 – Biaslı / biassız kanal karşılaştırması (ilk veri kaydı)
+
+**Gerçek bağlantı eşlemesi – kullanıcı tarafından açıkça teyit edildi:**
+- **A0–A1: bias yok**
+- **A2–A3: bias var**
+
+Bu eşleme, yukarıdaki eski plan metinlerinde geçen ters kanal açıklamalarını bu deney için geçersiz kılar. İki kanallı YAML'de A2–A3'ün biaslı hat olarak tanımlanmasıyla uyumludur.
+
+### Kaynak ve veri
+- Fiziksel ADC: ADS1115 No.10, I²C 0x48; ESP32D2.
+- ESPHome logu: 109'ar yayın örneği, 21:27:48–21:29:36 yerel saat.
+- HA CSV: A0–A1 183 kayıt, A2–A3 183 kayıt, PZEM akımı 13 kayıt.
+- ESPHome logunda PZEM bulunmaz. PZEM karşılaştırması HA CSV zaman eşleştirmesinden yapılmıştır.
+- Kaynakların zaman aralıkları birebir aynı değildir; ESPHome logu ile HA CSV tek bir eşzamanlı veri tablosu gibi birleştirilmemiştir.
+
+### Özet sonuç
+- ESPHome log ortalaması: A0–A1 0.45744 A; A2–A3 0.47101 A.
+- HA CSV ortalaması: A0–A1 0.457052 A; A2–A3 0.472221 A; PZEM 0.467462 A.
+- PZEM'e en yakın zamanlı 13 SCT örneğiyle eşleştirme: A0–A1 ortalaması 0.452213 A (PZEM'e göre -%3.262); A2–A3 ortalaması 0.464836 A (PZEM'e göre -%0.562).
+- A2–A3 bu veri setinde PZEM'e daha yakındır. Bu sonuç PZEM'in ground truth olduğu anlamına gelmez.
+- İki SCT kolunun değişim katsayıları yaklaşık %1.865 ve %1.863'tür; bu veri bias'ın gürültüyü azalttığını göstermemektedir.
+- İki ayrı SCT kullanıldığından sensör toleransı ve fiziksel yerleşim farkı karıştırıcı değişkendir. Bias tek başına neden olarak kanıtlanmış değildir.
+- Kalibrasyon katsayısı değiştirilmedi; bu deneyden yeni K türetilmedi.
+
+### Arşiv
+- Örnek akım verisi: `V1.1/LOG/V1.1-BIAS-KARSILASTIRMA-ESP32D2-2026-11-21.csv`
+- PZEM eşleştirmesi: `V1.1/LOG/V1.1-BIAS-KARSILASTIRMA-PZEM-ESLESTIRME-2026-11-21.csv`
+- Teknik rapor: `V1.1/RAPOR/V1.1-BIAS-KARSILASTIRMA-2026-11-21.md`
+
+### Sonraki adım
+Bias bağlantısı kanallar arasında değiştirilecek: ikinci deneyde A0–A1 biaslı, A2–A3 biassız olacak. Aynı iki SCT'nin fiziksel konumu ve yönü, yük, ADS1115 No.10 ve yazılım ayarları korunacak; yalnızca bias bağlantısının kanalı değişecek. Böylece farkın bias bağlantısını mı yoksa kanal/sensör yolunu mu izlediği sınanacak.
+
+**Durum:** İlk karşılaştırma verisi arşivlendi. Çapraz deney bekliyor. MOD2-GRV001 tamamlanmadı.
