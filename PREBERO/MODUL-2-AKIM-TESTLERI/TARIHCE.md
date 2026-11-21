@@ -73,3 +73,14 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Edinilen tecrübe:** İki çapraz gözlem biasın ölçüm sonucunu etkilediği hipotezini destekliyor; üçüncü tekrar aynı örüntünün tekrarlanabilirliğini değerlendirecek. Gürültü azalması henüz tutarlı biçimde gösterilmiş değil.
 - **Teknik karar:** Üçüncü deneyde A0–A1 biassız, A2–A3 biaslı olacak. Bias beslemesi Modül 1'de kalacak; ESP32'den besleme ayrı deney olacak. Aynı SCT'ler, konum/yön, yük, ESP32D2, ADS1115 No.10, YAML ve K=27.59 korunacak.
 - **İlgili kayıtlar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md`; önceki çapraz deney raporu `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-BIAS-KANAL-CAPRAZ-2026-11-21.md`.
+
+
+### 2026-11-21 – MOD2-GRV001 – Bias kanal tekrar çapraz deneyi (3. tekrar)
+
+- **Çalışma / deneme:** İlk iki bias kanal çaprazlamasının ardından üçüncü tekrarın HA geçmiş verisi `history (10).csv` analiz edildi.
+- **Gözlenen sonuç:** 199 A0–A1 örneğinin ortalaması 0.459638 A; 199 A2–A3 örneğinin ortalaması 0.472490 A; 15 PZEM akım örneğinin ortalaması 0.469267 A oldu. ±2 saniye zaman eşleştirmesinde MAPE A0–A1 için %2.508, A2–A3 için %1.819 bulundu.
+- **Edinilen tecrübe:** Deney planındaki A0–A1 biassız / A2–A3 biaslı eşlemesi doğruysa üçüncü tekrar da biaslı kolda daha yüksek ortalama ve daha düşük PZEM MAPE örüntüsünü göstermektedir. Üç deney birlikte biasın yaklaşık 0.47 A bölgesindeki ölçüm ortalamasına pozitif katkı yaptığı hipotezini güçlendirir. PZEM ground truth değildir.
+- **Gürültü yorumu:** Üçüncü deneyde CV A0–A1 için %1.871, A2–A3 için %2.138 oldu. Biaslı kol daha değişkendir; biasın gürültüyü azalttığı sonucu çıkarılamaz.
+- **Teknik karar:** K=27.59 korunmuştur; yeni kalibrasyon katsayısı hesaplanmamıştır. Daha geniş akım aralığı için test gereklidir. Üçüncü deneyde fiziksel kablo eşlemesi ayrıca teyit edilmelidir.
+- **Kaynak sınırı:** Ham HA CSV arşivlendi; ayrı ESPHome logu bu veri paketinde sunulmadı.
+- **İlgili kayıtlar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-HA-KAYNAK-2026-11-21.csv`; eşleştirme CSV'si `V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-PZEM-ESLESTIRME-2026-11-21.csv`; rapor `V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md`.
