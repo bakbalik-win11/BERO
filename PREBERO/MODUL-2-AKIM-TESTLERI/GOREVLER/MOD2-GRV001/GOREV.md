@@ -461,3 +461,17 @@ Yeni deneyde bias ESP32 kartının 3.3 V hattından sağlanacak; ESP32 GND, ADS1
 Fiziksel bağlantı, direnç değerleri ve bias DC seviyesi henüz teyit edilmedi. Enerji verilmeden önce bağlantı ve ADS1115 mutlak giriş gerilimleri kontrol edilecek. K=27.59 ve çalışan YAML korunacak. Deney açık; henüz ölçüm sonucu yoktur.
 
 Deney kaydı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ESP32-KAYNAKLI-BIAS-ORTAK-GND-2026-11-21.md`.
+
+## 2026-11-21 – ESP32 bias + ortak GND / Kettle 2
+
+Kettle 2 (kaynatma modu) ESP32 3.3 V kaynaklı yaklaşık 1.66 V bias ve ortak GND düzeniyle test edildi. Analiz aralığı 23:03:15–23:05:21.486 Türkiye saati; 127 örnek/kanal ve 24 PZEM akım örneği kullanıldı.
+
+- ESP32 akım sensörü ortalaması: 6.71357 A; CV %2.898; PZEM eşleştirmeli MAPE %2.801.
+- A2–A3 ortalaması: 6.83096 A; CV %2.768; PZEM eşleştirmeli MAPE %2.550.
+- PZEM ortalaması: 6.80079 A.
+- İki SCT kanalında da belirgin dalgalanma görüldü. Kaynağı belirlenmedi; biasın gürültüyü azalttığı sonucu çıkarılmadı.
+- Kullanıcı kararıyla ESP32 bias + ortak GND Kettle 2 deneyi kapatıldı. Bu çalışma noktasında ESP32 bias yapısı işe yarar sonuç verdi; genel nihai karar için 100 W ve 15 W deneyleri yapılacak.
+- K=27.59 ve firmware/YAML korunmuştur. PZEM ground truth değildir.
+
+Rapor: `V1.1/RAPOR/V1.1-ESP32-BIAS-KETTLE2-2026-11-21.md`  
+Özet CSV: `V1.1/LOG/V1.1-ESP32-BIAS-KETTLE2-OZET-2026-11-21.csv`
