@@ -5,7 +5,7 @@
 **Firmware:** V1.1 – K=27.59  
 **Gün durumu:** KAPATILDI
 
-## 1. Günün üç teknik tespiti
+## 1. Günün teknik tespitleri
 
 ### Tespit 1 – PF ile SCT/PZEM ölçüm farkı birlikte değişiyor
 
