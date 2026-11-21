@@ -637,3 +637,13 @@ YAML: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/V1.2-TEST-A0A1-UN
 İlk rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/RAPOR/V1.2-UNKNOWN-ZERO-ILK-DOGRULAMA-2026-11-22.md`
 
 **Durum:** V1.2 derlendi ve ilk sıfır yayın gözlemi alındı (kullanıcı bildirimi + ekran görüntüsü). Deneyin diğer kabul kontrolleri açık.
+
+
+## 2026-11-22 – V1.2 OTA logu ve sıfır yayını
+
+Kullanıcının paylaştığı ESPHome 2026.11.0 logunda ESP32D2'nin çevrimiçi olduğu, I²C taramasında ADS1115 0x48'in bulunduğu ve 01:48:12.491–01:48:40.508 arasında BERO Akim Sensoru'nun her saniye 0.000 A yayınladığı doğrulandı.
+
+Log/yorum: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/LOG/V1.2-UNKNOWN-ZERO-ESP32-LOG-2026-11-22.md`  
+Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/RAPOR/V1.2-UNKNOWN-ZERO-ILK-DOGRULAMA-2026-11-22.md`
+
+Kullanıcı tasarım tercihi: Biasın sağlayacağı sınırlı doğruluk artışı ek donanım/karmaşıklığa değmez; yüksüz durumda sıfır görünmelidir. Yeni tasarımda biassız ve basit ölçüm yolu tercih edilir. Yük altı doğruluk ve cihaz/iletişim kesintisi davranışı testleri henüz açık.
