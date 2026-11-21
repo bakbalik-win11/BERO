@@ -609,3 +609,8 @@ Kullanıcı kararıyla kalibrasyon çalışması iki akım bölgesine ayrılacak
 Eski bias deneyleri tarihsel kanıt olarak korunur; yeni tasarım tercihi geçmiş sonuçları silmez. Bu karar MOD2-GRV001 görevinin tamamlandığı anlamına gelmez.
 
 Ayrıntılı karar ve deney planı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/IKI-BOLGELI-KALIBRASYON-VE-BIAS-KARARI-2026-11-22.md`.
+
+
+### 2026-11-22 – Sonraki oturum planı
+
+Bir sonraki çalışma oturumunda iki bölgesel katsayının **nasıl bulunacağına ilişkin deney yöntemi ayrıntılandırılacaktır**. Yarın doğrudan ölçüme veya bias bağlantısını sökmeye başlanmayacak. Önce düşük/yüksek akım test noktaları, yüklerin nasıl oluşturulacağı, PZEM ve SCT verilerinin nasıl eşleştirileceği, her noktada kaç kayıt alınacağı, katsayı hesabı ve 1,5 A sınırının nasıl ele alınacağı kararlaştırılacaktır. Yöntem netleşip kullanıcı onayladıktan sonra fiziksel deney başlatılacaktır.
