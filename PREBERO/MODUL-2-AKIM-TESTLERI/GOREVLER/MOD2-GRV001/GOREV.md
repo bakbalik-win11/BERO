@@ -367,3 +367,26 @@ Bias bağlantısı kanallar arasında değiştirilecek: ikinci deneyde A0–A1 b
 
 **Sıradaki deney:** Bias beslemesini Modül 1 yerine ESP kartından sağlamak; sonra birden fazla akım seviyesinde aynı karşılaştırmayı tekrarlamak. Görev açık kalır.
 
+
+
+## 2026-11-21 – Bias katkısını teyit için üçüncü çapraz deney açıldı
+
+**Durum: AÇILDI – fiziksel bağlantı ve ölçüm bekleniyor.**
+
+İlk deneyde A0–A1 biassız / A2–A3 biaslı iken yüksek ortalama A2–A3'te; ikinci deneyde A0–A1 biaslı / A2–A3 biassız iken yüksek ortalama A0–A1'de görüldü. Bu iki sonuç ortalama farkın bias bağlantısını takip ettiği yönünde bulgudur.
+
+Üçüncü deneyde ilk deneyin fiziksel eşlemesi tekrar edilecek:
+- A0–A1: bias yok.
+- A2–A3: bias var.
+- Bias beslemesi yine Modül 1 olacak.
+- Aynı iki SCT, aynı faz iletkeni, aynı yön ve fiziksel konum korunacak.
+- Aynı ESP32D2, ADS1115 No.10 ve mevcut iki kanallı YAML kullanılacak.
+- Kod, K=27.59 ve diğer yazılım ayarları değiştirilmeyecek.
+- Bu deneyde bias kaynağı ESP32'ye çevrilmeyecek; besleme kaynağı değişimi ayrı deney olarak tutulacak.
+
+Amaç, biaslı kolun tekrar daha yüksek ölçüm vermesini ve PZEM karşılaştırmasında daha yakın sonuç üretmesini gözleyerek biasın pozitif katkısı hipotezini teyit etmeye çalışmaktır. Yalnızca yüksek ortalama pozitif doğruluk kanıtı sayılmayacak; PZEM karşılaştırması ve kanal istatistikleri birlikte değerlendirilecektir. PZEM referanstır, ground truth değildir.
+
+Deney planı:
+`PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md`
+
+**Henüz ölçüm alınmadı; sonuç veya doğrulama iddiası yoktur.**
