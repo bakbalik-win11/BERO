@@ -111,7 +111,7 @@ Bu deney yeni bir görev olarak açılacak; bugünkü üç tespit ve mevcut kats
 | 2 | A0–A1 | A2–A3 | +0.012737 A | %1.275 / %3.168 |
 | 3 | A2–A3 | A0–A1 | +0.012852 A | %1.819 / %2.508 |
 
-İlk iki deneyde bias kanalı değiştirildiğinde yüksek ortalamanın biaslı kanalı takip etmesi, kanal etkisi yerine bias katkısı yorumunu destekler. Üçüncü deneyin fiziksel bağlantı eşlemesi kullanıcı tarafından teyit edilmiştir.
+İlk iki deneyde bias kanalı değiştirildiğinde yüksek ortalamanın biaslı kanalı takip etmesi, kanal etkisi yerine bias katkısı yorumunu destekler. Kullanıcı, üç deneyin tamamında biaslı kanalın başarılı olduğunu teyit ederek test serisini kapatmıştır.
 
 **Günün tespiti:** Yaklaşık 0.47 A / 107–108 W çalışma bölgesinde biasın ölçüm sonucuna pozitif katkısı olduğu kabul edildi. Bu, PZEM karşılaştırma referansına göre daha yakın sonuç örüntüsüdür; PZEM ground truth değildir ve mutlak doğruluk iddiası yapılmamaktadır.
 
