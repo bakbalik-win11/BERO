@@ -105,3 +105,42 @@ Yeterli farklı PF noktası ve bağımsız doğrulama olmadan PF düzeltmesi fir
 - 27.59 katsayısı korunuyor.
 - Korelasyon veya düzeltme katsayısı sonucu henüz yok.
 - Sonuçlar, kullanıcı tarafından sağlanacak yeni CSV/log üzerinden kararlı pencerelerle analiz edilecek.
+
+
+## 10. 2026-11-21 ölçüm sonuçları ve gün sonu durumu
+
+**Ölçüm oturumu:** Gün için kapatıldı. Araştırma konusu tamamen sonuçlandırılmış değildir.
+
+### Çevrim 1 – kullanıcı ekran görüntüleri
+
+- SCT/PZEM akım grafiği: yaklaşık 18:36:09–18:36:18.
+- PZEM akım: 0.052 A.
+- SCT/ADS1115 akım: 0.095 A.
+- PZEM PF grafiği: yaklaşık 18:37:25–18:37:34; görünen değer 0.67.
+- UT200B+ pens: kullanıcı tarafından 0.044 A olarak bildirildi.
+- SCT/PZEM oranı: 0.095 / 0.052 = 1.827.
+- SCT'nin PZEM'e göre farkı: +82.7%.
+- Pens/PZEM oranı: 0.846 (pens düşük akımda bağımsız doğrulanmış referans değildir).
+
+### Çevrim 2 – kullanıcı ekran görüntüleri
+
+- Akım grafiği: yaklaşık 18:38:10–18:39:35.
+- PZEM akım göstergesi: 0.053 A.
+- SCT/ADS1115 göstergesi: 0.096 A.
+- PZEM gerilimi: 227.0 V.
+- PZEM PF grafiği: yaklaşık 18:38:45–18:40:05; görünen değer 0.66.
+- SCT/PZEM oranı: 0.096 / 0.053 = 1.811.
+- SCT'nin PZEM'e göre farkı: +81.1%.
+- Grafikte PZEM akımının bir bölümde sıfıra düştüğü veri boşluğu/geçersiz alan görülüyor; bu bölüm kararlı pencere kabul edilmedi.
+- Bu çevrimde pens değeri ayrıca bildirilmedi.
+
+### Değerlendirme ve sınırlamalar
+
+- İki çevrimde PZEM PF 0.66–0.67, PZEM akımı 0.052–0.053 A ve SCT akımı 0.095–0.096 A seviyelerinde birbirine yakın sonuçlar verdi.
+- İki çevrimin SCT/PZEM oranları 1.827 ve 1.811; fark yaklaşık %0.9. Bu, bu çalışma noktasında ilk tekrar edilebilirlik işaretidir.
+- İki çevrim, protokolde hedeflenen üç çevrimi tamamlamaz. Üçüncü çevrim alınmadı.
+- Ekran görüntüleri, tam zaman serisi CSV'sinin yerini tutmaz. Bu nedenle ortalama, standart sapma ve örnek sayısı hesapları yapılmış gibi sunulmamıştır. Görseldeki gösterge değerleri raporlanmıştır.
+- Tek doğal PF noktası ve tek yük ile PF-katsayı korelasyonu veya genel düzeltme fonksiyonu çıkarılamaz.
+- 27.59 katsayısı ve V1.1 firmware değişmedi.
+
+**Oturum kararı:** 8.5 W LED düşük PF tekrar ölçüm oturumu, iki gözlem çevrimiyle gün sonunda durduruldu. Deneysel bulgu korunacak; üçüncü tekrar ve farklı PF/akım noktaları daha sonraki çalışmada yapılabilir.
