@@ -18,17 +18,16 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 - **Aktif görev:** MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
 - **Çalışma odağı:** ESP32-D geliştirme kartı + ESP32 shield, SCT013 30A/1V akım sensörü ve ADS1115 ara entegresiyle masaüstü deney düzeneğinin imalatı; ardından sinyal/akım davranışını gözlemlemek ve test kayıtlarını MOD2-GRV001 altında tutmak. Paylaşılan ESP32/shield görseli temsildir; kesin kart modeli ve pinout değildir. Modül 1, gerektiğinde bu deney düzenine bias gerilimi sağlayan mevcut donanımdır.
 
-## Modül 2 – sıradaki deney
+## Modül 2 – güncel çalışma
 
-- Mevcut çalışan akım ölçüm kodu korunacaktır; bu kod değiştirilmeyecek.
-- Güncel deney hedefi, **ADS1115 No. 1 ile biaslı/biassız ham okuma davranışını karşılaştırmaktır**. SCT doğruluğu, dalga biçimi ve akım katsayısı bu deneyin hedefi değildir.
-- Planlanan kanal düzeni: **SCT013 No. 1 → A0–A1 (biaslı)**; **SCT013 No. 2 → A2–A3 (biassız)**.
-- İki SCT aynı faz iletkenini aynı yönde ölçecek; çıkışları birbirinden ayrı kalacaktır.
-- İlk karşılaştırmada RMS/akım dönüşümü, kalibrasyon katsayısı, sıfır düzeltmesi ve filtre uygulanmayacaktır.
-- Osiloskopla SCT sinyalini karşılaştırma çalışması durdurulmuştur. Osiloskop bu deneyin devamı için gerekmeyecektir.
-- Biassız kolun bağlantısı, A2 ve A3 pinlerinin GND'ye göre mutlak gerilimleri ve ADS1115 giriş sınırları doğrulanmadan yapılmayacaktır. Diferansiyel ölçüm mutlak giriş sınırlarını ortadan kaldırmaz.
-- Deney henüz yapılmamıştır. Kullanıcı hazır olduğunda önce bağlantı topolojisi doğrulanacak, ardından ayrı deney YAML'i hazırlanacaktır.
-- Teknik kayıt: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`.
+- **Aktif modül:** Modül 2 – Masaüstü 4 Kanal / Akım Testleri
+- **Aktif görev:** MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
+- **Fiziksel ADC:** ADS1115 **No.10**, I²C 0x48.
+- **Son deneme durumu:** 2026-11-21 tarihli iki kanallı deneme, kullanıcının bildirdiği bağlantı sorunu nedeniyle geçersiz kabul edildi. Deney baştan kurulacak.
+- **Ölçüm kaydı:** A2-A3 çıktısı yaklaşık 0.494 A seviyesinden 1.357 A'ya yükseldi; bu değerler bias/biassız karşılaştırma veya kalibrasyon verisi olarak kullanılmayacak.
+- **Kod koruma:** Mevcut çalışan tek kanallı V1.1 YAML değiştirilmeyecek. İki kanallı denemede kullanılan tam YAML kaynak dosyası henüz depoda yok; logdan tahmin edilerek oluşturulmayacak.
+- **Sonraki adım:** Bağlantı düzenini baştan doğrulayıp deneyi yeniden kurmak. Yeni denemede kullanılacak gerçek YAML ayrı sürüm olarak kaydedilecek; ardından log ve yorum aynı sürümün altında tutulacak.
+- **Ayrıntılı kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ADS1115-IKILI-OKUMA-BAGLANTI-HATALI-2026-11-21.md`.
 
 ## İlerleme kuralı
 
