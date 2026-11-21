@@ -64,8 +64,9 @@
 # ESP32 GND şebekeye bağlanmamalıdır.
 #
 # DURUM:
-# Deney YAML'i oluşturuldu. Derleme ve fiziksel cihaz testi
-# henüz yapılmadı; çalışma başarısı doğrulanmış değildir.
+# Kullanıcı bildirimi: YAML derlendi ve ESP32D2 üzerinde çalıştı.
+# HA ekran görüntüsünde 0.000 A ilk kez gözlendi.
+# Uzun süreli, yük ve ESP kapalı testleri henüz tamamlanmadı.
 # V1.1 dosyasına dokunulmamıştır.
 # ============================================================
 
