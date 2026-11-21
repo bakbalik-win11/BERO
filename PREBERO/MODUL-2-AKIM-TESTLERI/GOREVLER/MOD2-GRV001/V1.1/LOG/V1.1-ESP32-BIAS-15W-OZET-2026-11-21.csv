@@ -1,0 +1,13 @@
+metric,other_sct,a2_a3_esp32_bias,pzem,unit,notes
+sample_count,235,247,3,count,First 3 seconds excluded from SCT summary
+mean,0.058321344,0.060923883,0.064333335,A,PZEM current n=3
+median,0.058055520,0.060053512,0.064000003,A,
+std_dev,0.002106082,0.003823422,0.000577347,A,
+cv,3.6112,6.2757,0.8974,percent,
+minimum,0.054138411,0.055313475,0.064000003,A,
+maximum,0.064005442,0.080795869,0.065000000,A,
+pzem_mape,8.9001,8.1567,,percent,3 nearest matches within 2 seconds
+pzem_power_mean,,,14.759091,W,n=22
+pzem_voltage_mean,,,231.330434,V,n=46
+pzem_pf_mean,,,0.994762,ratio,n=21
+k_new_coarse,,29.13,,coefficient,Not adopted; PZEM current n=3
