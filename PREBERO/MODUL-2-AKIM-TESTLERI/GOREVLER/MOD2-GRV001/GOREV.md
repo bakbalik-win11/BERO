@@ -614,3 +614,16 @@ Ayrıntılı karar ve deney planı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2
 ### 2026-11-22 – Sonraki oturum planı
 
 Bir sonraki çalışma oturumunda iki bölgesel katsayının **nasıl bulunacağına ilişkin deney yöntemi ayrıntılandırılacaktır**. Yarın doğrudan ölçüme veya bias bağlantısını sökmeye başlanmayacak. Önce düşük/yüksek akım test noktaları, yüklerin nasıl oluşturulacağı, PZEM ve SCT verilerinin nasıl eşleştirileceği, her noktada kaç kayıt alınacağı, katsayı hesabı ve 1,5 A sınırının nasıl ele alınacağı kararlaştırılacaktır. Yöntem netleşip kullanıcı onayladıktan sonra fiziksel deney başlatılacaktır.
+
+
+## 2026-11-22 – ct_clamp yüksüz unknown / sıfır yayınlama deneyi AÇILDI
+
+- **Durum:** AÇILDI – kod incelemesi ve kontrollü doğrulama bekliyor.
+- **Amaç:** Biassız A0-A1 yolunda yüksüz durumda HA sensörünün neden `unknown` olduğunu belirlemek; geçerli ölçüm penceresinde akım yoksa 0.000 A yayınlanmasını, ölçüm yapılamadığında ise geçersizliğin korunmasını araştırmak.
+- **Donanım:** ESP32D2, ADS1115 No.10, I²C 0x48, GPIO21 SDA, GPIO22 SCL, SCT013 30A/1V, biassız A0-A1.
+- **Mevcut yazılım:** V1.1 A0-A1; continuous, PGA 2.048 V, 860 SPS, ct_clamp 200 ms, update_interval 1 s, K=27.59, 5 mA altı lambda ile 0.0.
+- **Önemli ilk tespit:** Mevcut YAML'de 5 mA altı için sıfır döndüren lambda zaten var. Buna rağmen `unknown` görülmesi, kaynak sensörün NaN/invalid üretmesi veya güncelleme yayınlamaması ihtimalinin incelenmesini gerektiriyor; kök neden henüz bilinmiyor.
+- **Koruma:** V1.1 YAML ve K=27.59 değiştirilmeyecek. Bias eklenmeyecek. Gerekirse ayrı deney sürümü hazırlanacak.
+- **Başarı koşulu:** Geçerli yüksüz örnekleme 0.000 A yayınlamalı; ADS1115/I²C veya ölçüm geçersizliğinde sahte sıfır üretilmemeli.
+- **Ayrıntılı deney planı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/CT-CLAMP-BOSTA-UNKNOWN-SIFIR-YAYINI-2026-11-22.md`.
+- **Henüz yapılmayanlar:** Kök neden analizi, yeni YAML, fiziksel/yazılımsal doğrulama ve sonuç raporu.
