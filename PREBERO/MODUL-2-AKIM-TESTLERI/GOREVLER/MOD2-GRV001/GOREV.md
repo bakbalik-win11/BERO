@@ -277,3 +277,24 @@ Biassız kolu bağlamadan önce A2 ve A3 pinlerinin her birinin GND'ye göre mut
 - Gerçek log ve sonuç yorumu.
 
 **Başarı ölçütü:** Aynı yük koşullarında biaslı ve biassız kolların ham okuma seviyeleri/kararlılıkları karşılaştırılabilir biçimde kaydedilmiş olmalı. Bu deney tek başına katsayı veya PF düzeltmesi belirlemez.
+
+
+---
+
+## 2026-11-21 – ADS1115 iki kanal denemesi: bağlantı nedeniyle geçersiz / yeniden başlatılacak
+
+**Durum: GEÇERSİZ DENEME – deney baştan kurulacak.**
+
+Kullanıcı bu denemede bağlantı sorunu bulunduğunu bildirdi ve deneyi baştan başlatma kararı aldı. Bu log bias/biassız karşılaştırma sonucu veya kalibrasyon verisi değildir.
+
+- ESP32D2, ESPHome 2026.11.0 ile çalıştı; ADS1115 I²C 0x48 bulundu.
+- Logda A0-A1 ve A2-A3 için iki ayrı ADS1115 sensör tanımı ve iki ayrı `ct_clamp` bileşeni görülüyor.
+- İlk açılışta 0.447 A ve 0.897 A yayınlandı. Sonraki kararlı pencerelerde A0-A1 yaklaşık 0.45–0.50 A çevresindeyken A2-A3 yükselerek 1.357 A'ya ulaştı.
+- Her kanal için 200 ms pencerede çoğunlukla yaklaşık 25 örnek (125 SPS) raporlandı.
+- Log kök nedeni kanıtlamıyor. Biasın tek başına hatalı olduğu veya iki `ct_clamp` bileşeninin kesin neden olduğu söylenemez.
+- K=27.59 bu logla güncellenmeyecek; ölçümler kalibrasyon için kullanılmayacak.
+- Mevcut çalışan tek kanallı V1.1 YAML korunmuştur.
+- İki kanallı denemede kullanılan tam YAML kaynak dosyası bu logda bulunmuyor. Eksik bilgilerden kod yeniden oluşturulmadı; gerçek YAML temin edildiğinde ayrı sürüm olarak arşivlenecek.
+- Bu fiziksel kurulumdaki ADC, kullanıcı bilgisine göre **ADS1115 No.10**'dur. Bu kayıt No.10 üzerinden izlenecektir.
+
+Ayrıntılı log örnekleri ve yorum: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ADS1115-IKILI-OKUMA-BAGLANTI-HATALI-2026-11-21.md`.
