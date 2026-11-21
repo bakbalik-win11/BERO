@@ -1,0 +1,106 @@
+# ============================================================
+# BERO – ESP32D2 / ADS1115 No.10 / SCT013 30A-1V
+# MOD2-GRV001 – V1.0 – Kalibrasyon deneme sürümü
+# ============================================================
+#
+# AMAÇ:
+# SCT013 30A/1V sinyalini ADS1115 No.10 üzerinden A0-A1
+# diferansiyel girişte okuyup ct_clamp ile RMS akıma çevirmek
+# ve Home Assistant'a aktarmak.
+#
+# DONANIM / BAĞLANTILAR:
+# ESP32D2 GPIO21 -> ADS1115 SDA
+# ESP32D2 GPIO22 -> ADS1115 SCL
+# ESP32D2 3.3V   -> ADS1115 VDD
+# ESP32D2 GND    -> ADS1115 GND
+# ADS1115 ADDR   -> GND (I2C 0x48)
+# SCT013 çıkışı  -> ADS1115 A0-A1 (diferansiyel)
+#
+# ÖLÇÜM AYARLARI:
+# ADS1115 modu       : Continuous
+# Multiplexer        : A0_A1
+# PGA                : 2.048 V
+# Sample rate        : 860 SPS
+# ct_clamp penceresi : 200 ms
+# HA güncelleme      : 1 saniye
+#
+# KALİBRASYON:
+# ADS1115 fiziksel modül numarası: 10
+# Deneysel katsayı: 30.66
+# Katsayı, 2026-11-21 tarihli 100 W ve 150 W kararlı
+# PZEM/SCT karşılaştırmalarından türetilmiş geçici değerdir.
+# Bu katsayı yalnızca ADS1115 No.10 için geçerlidir.
+# Başka ADS1115 modüllerine aktarılmayacaktır.
+#
+# ALT EŞİK:
+# Kalibre edilmiş akım 5 mA altındaysa 0 A yayınlanır.
+#
+# BEKLENEN ÇIKTI:
+# Home Assistant entity: BERO Akim Sensoru (A)
+#
+# NOT:
+# Bu sürüm Kod 0'ın üzerine yazmaz. Kod 0 değişmeden korunur.
+# Bu YAML'in fiziksel cihazda derleme/OTA ve ölçüm doğrulaması
+# kullanıcı testi sonrasında yapılacaktır.
+#
+# GÜVENLİK:
+# ADS1115 A0 ve A1 pinlerinin her biri GND-0.3 V ile
+# VDD+0.3 V sınırları içinde kalmalıdır. Diferansiyel ölçüm
+# bu mutlak pin gerilimi sınırlarını değiştirmez.
+# ============================================================
+
+esphome:
+  name: esp32d2
+  friendly_name: ESP32D2
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+  frequency: 400kHz
+
+ads1115:
+  - address: 0x48
+    continuous_mode: true
+
+sensor:
+  - platform: ads1115
+    multiplexer: A0_A1
+    gain: 2.048
+    sample_rate: 860
+    id: ads_sct_raw
+    internal: true
+
+  - platform: ct_clamp
+    sensor: ads_sct_raw
+    name: "BERO Akim Sensoru"
+    id: bero_akim
+    sample_duration: 200ms
+    update_interval: 1s
+    accuracy_decimals: 3
+    filters:
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 1.0 -> 30.66
+      - lambda: |-
+          if (x < 0.005) return 0.0;
+          return x;
