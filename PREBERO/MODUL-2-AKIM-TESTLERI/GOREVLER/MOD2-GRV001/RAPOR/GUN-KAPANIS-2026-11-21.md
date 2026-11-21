@@ -176,3 +176,42 @@ Kettle 1 (sıcaklık koruma modu) ve Kettle 2 (kaynatma modu) ayrı sabit çalı
 **Kullanıcı kararı:** Daha fazla kettle testi gerekmiyor; bias kullanılmalı.
 
 Kettle 1 ve Kettle 2 oturumları için açılış geçişleri değerlendirme dışı tutuldu; PZEM'in kararlı çalışma alanları esas alındı. Kettle 1 sıcaklık koruma, Kettle 2 kaynatma modudur. Kullanıcı ek teste devam etmeme kararı verdi.
+
+## 10. 2026-11-21 – Alt/üst akım bandı katsayı dağılımı: ilk değerlendirme
+
+Bugünkü farklı yüklerde elde edilmiş mevcut ölçüm noktaları, K=27.59 baz alınarak birlikte değerlendirildi. Amaç yeni bir deney açmak değil; gün içinde oluşan katsayı dağılımı gözlemini ve sonraki çalışma yönünü günlük kayda eklemektir.
+
+### Mevcut veri dağılımı
+
+| Test yükü | PZEM referans akımı | A2–A3 mevcut (K=27.59) | PZEM'i tutturan ideal K | Geçici rejim sınıfı |
+|---|---:|---:|---:|---|
+| 15 W | 0.0643 A | 0.0609 A (-%5.33) | 29.14 | Alt bant adayı |
+| 108 W | 0.4699 A | 0.4429 A (-%5.75) | 29.27 | Alt bant adayı |
+| Kettle 1, yaklaşık 157 W | 0.6849 A | 0.6373 A (-%6.95) | 29.65 | Alt bant adayı |
+| Kettle 2, yaklaşık 1524 W | 6.8028 A | 6.8237 A (+%0.31) | 27.51 | Üst bant adayı |
+| Ütü, yaklaşık 2317 W | 10.5467 A | 10.5546 A (+%0.07) | 27.57 | Üst bant adayı |
+
+Alt banttaki üç ideal katsayının aritmetik ortalaması yaklaşık **29.35**'tir. Üst banttaki iki nokta mevcut **K=27.59** ile uyumludur.
+
+### Geçici iki bant hipotezi
+
+- **Alt bant adayı:** 1.5 A altı için K_alt ≈ 29.35.
+- **Üst bant adayı:** 1.5 A ve üzeri için K_üst = 27.59.
+- Bu dağılım mevcut beş çalışma noktasına dayalı bir hipotezdir; kalibrasyon kararı veya firmware uygulaması değildir.
+- K_alt=29.35 kullanıldığında tablodaki alt bant noktalarının teorik sapmaları yaklaşık +%0.7, +%0.3 ve -%1.0 olur. Bu hesap, ideal K değerlerinden türetilmiştir; yeni ölçüm sonucu değildir.
+- Üst bantta K=27.59 ile mevcut sapmalar yaklaşık +%0.31 ve +%0.07 düzeyindedir.
+
+### Açık kalan eşik sorusu
+
+1.5 A geçiş eşiği henüz deneysel olarak doğrulanmamıştır. Mevcut veri 0.6849 A ile 6.8028 A arasında geniş bir boşluk bırakmaktadır. Bu nedenle 1.5 A yalnızca başlangıç eşiği önerisidir; kesin sınır olarak kabul edilmeyecektir.
+
+**Devam yönü:** Orta akım bölgesinde, tercihen yaklaşık 1.3–4.5 A (kabaca 300–1000 W koşullarında) ölçüm alınarak K=27.59 ve K_alt=29.35 sonuçları karşılaştırılacak. Ölçüm sonuçlarına göre alt/üst bant sınırı aranacak; gerekirse 1.5 A yerine daha yüksek bir geçiş noktası değerlendirilecek. Tek bir orta-yük ölçümü tek başına kesin eşik ilan etmek için yeterli sayılmayacak.
+
+### Günlük karar ve koruma
+
+- K=27.59 çalışan katsayı olarak korunuyor.
+- K_alt=29.35 yalnızca aday katsayıdır; kabul edilmedi.
+- 1.5 A eşiği kesinleşmedi; aranmaya devam edilecek.
+- Firmware, ESPHome YAML ve çalışan ölçüm zincirinde değişiklik yapılmadı.
+- PZEM karşılaştırma referansıdır; ground truth değildir.
+- Bu kayıt günlük değerlendirmedir; ayrı bir deney dosyası veya deney kapanışı değildir.
