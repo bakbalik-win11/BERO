@@ -118,3 +118,18 @@ Bu deney yeni bir görev olarak açılacak; bugünkü üç tespit ve mevcut kats
 **Sınırlar:** Biasın gürültüyü azalttığı gösterilmedi; tüm akım aralığına genelleme yapılmayacak. K=27.59 korundu. 100 W bias kanal çapraz deney serisi (üç tekrar) kapatıldı.
 
 İlgili ayrıntılı kayıt: ../DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md ve ../V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md.
+
+
+## 7. Ek tespit – Biaslı ADS1115 kanalında yük altı uyum ve boşta spike gözlemi
+
+Kullanıcının paylaştığı Home Assistant zaman grafiği (21:51–21:59, 2026-11-21) nitel olarak incelendi. Grafikte PZEM akımı mavi, ESP32D2 A0–A1 akımı sarı, A2–A3 akımı kırmızı izdir. Bu oturumun bağlantı düzeninde A0–A1 biassız, A2–A3 biaslıdır.
+
+- **Yük altında ilk bölüm (~0.46–0.48 A):** İki ADS1115 kanalının akım izleri PZEM çevresinde birbirine yakın seyrediyor.
+- **Yük kesildiğinde (~21:56–21:59):** PZEM sıfıra iner. A0–A1 biassız iz sıfıra yakın ve daha sakin görünürken A2–A3 biaslı izde tekil ve tekrarlayan pozitif spike'lar görülür.
+- **Yük yeniden geldiğinde (~0.19 A):** İki ADS1115 kanalının son değerleri yaklaşık 0.189–0.190 A, PZEM yaklaşık 0.188 A olarak grafikte gösterilmektedir.
+
+**Yeni teknik tespit:** Biaslı ADS1115 kanalı yük altında PZEM karşılaştırmasına yakın sonuç verirken sistem boşta daha fazla spike üretebilmektedir. Bu iki davranış birlikte değerlendirilmelidir; biasın ölçüm katkısı boşta gürültü/spike davranışını ortadan kaldırmamaktadır.
+
+**Kanıt sınırı:** Bu kayıt grafik ekran görüntüsüne dayalı nitel gözlemdir; ham zaman serisi CSV'si ve spike sayısı/genliği istatistiği bu ekle birlikte sunulmamıştır. Bu nedenle boşta spike farkı henüz nicel olarak ölçülmüş kabul edilmez. Yeni bir test sonucu veya kalibrasyon değişikliği değildir.
+
+**Takip önerisi:** Boşta uzun süreli iki kanal kaydı alınıp spike sayısı, tepe genliği, medyan, standart sapma ve eşik üstü olay sıklığı karşılaştırılmalıdır. Yük altı karşılaştırması ve boşta davranış ayrı metrikler olarak raporlanmalıdır.
