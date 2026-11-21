@@ -137,3 +137,18 @@ Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı ha
 - **Değerlendirme:** Biaslı kolun ölçüm ortalaması, PZEM'e göre fark/MAPE, standart sapma ve CV birlikte incelenecek. PZEM ground truth değildir.
 - **Deney planı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md`.
 - **Sonuç:** Henüz veri yok; bias katkısı teyit edilmiş değildir.
+
+
+## 2026-11-21 – Bias katkısı üçüncü çapraz tekrar: HA verisi analiz edildi
+
+- **Durum:** Üçüncü deneyin HA CSV verisi alındı, ham hali ve PZEM eşleştirmesi depoya kaydedildi; rapor hazırlandı.
+- **Veri:** 199 A0–A1, 199 A2–A3, 15 PZEM akım örneği; Türkiye saatiyle 21:51:00–21:54:17.
+- **Planlanan bağlantı eşlemesi:** A0–A1 biassız, A2–A3 biaslı. Fiziksel kablo eşlemesi ayrıca teyit edilmelidir.
+- **Ortalama akımlar:** A0–A1 0.459638 A; A2–A3 0.472490 A; PZEM 0.469267 A.
+- **PZEM ±2 s MAPE:** A0–A1 %2.508; A2–A3 %1.819.
+- **CV:** A0–A1 %1.871; A2–A3 %2.138. Biaslı kolun değişkenliği bu deneyde daha yüksek; biasın gürültüyü azalttığı sonucuna varılamaz.
+- **Üç deneyin özeti:** Her üçünde de planlanan biaslı kolun ortalaması daha yüksek çıktı. Kanal çaprazlamalarıyla birlikte bu örüntü biasın yaklaşık 0.47 A bölgesindeki ölçüm ortalamasına pozitif katkı yaptığı hipotezini güçlendiriyor. Üçüncü deney bağlantı eşlemesi teyidi bekliyor. PZEM ground truth değildir; mutlak doğruluk iddiası yoktur.
+- **Kalibrasyon:** K=27.59 değişmedi; yeni katsayı üretilmedi.
+- **Kaynak sınırı:** Ayrı ESPHome logu bu veri paketinde yoktur; analiz HA CSV'ye dayanır.
+- **Dosyalar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/LOG/V1.1-BIAS-KANAL-TEKRAR-HA-KAYNAK-2026-11-21.csv`, `.../V1.1-BIAS-KANAL-TEKRAR-PZEM-ESLESTIRME-2026-11-21.csv`, `.../V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md`.
+- **Görev:** MOD2-GRV001 açık; tamamlanmadı.
