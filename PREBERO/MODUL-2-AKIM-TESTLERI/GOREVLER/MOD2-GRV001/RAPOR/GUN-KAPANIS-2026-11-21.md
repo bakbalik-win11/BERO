@@ -115,6 +115,6 @@ Bu deney yeni bir görev olarak açılacak; bugünkü üç tespit ve mevcut kats
 
 **Günün tespiti:** Yaklaşık 0.47 A / 107–108 W çalışma bölgesinde biasın ölçüm sonucuna pozitif katkısı olduğu kabul edildi. Bu, PZEM karşılaştırma referansına göre daha yakın sonuç örüntüsüdür; PZEM ground truth değildir ve mutlak doğruluk iddiası yapılmamaktadır.
 
-**Sınırlar:** Biasın gürültüyü azalttığı gösterilmedi; tüm akım aralığına genelleme yapılmayacak. K=27.59 korundu. Bias çapraz deney serisi kapatıldı. Açılmış 42 W sabit kanal planı uygulanmadan kapatıldı.
+**Sınırlar:** Biasın gürültüyü azalttığı gösterilmedi; tüm akım aralığına genelleme yapılmayacak. K=27.59 korundu. 100 W bias kanal çapraz deney serisi (üç tekrar) kapatıldı.
 
 İlgili ayrıntılı kayıt: ../DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md ve ../V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md.
