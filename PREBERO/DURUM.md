@@ -84,3 +84,16 @@ Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı ha
 - Kullanıcının sağladığı iki kanallı deneme YAML'i, değiştirilmeden `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/MOD2-GRV001_V1.1_IKI-KANAL-DENEY.yaml` yoluna arşivlendi.
 - Önceden bulunan tek kanallı V1.1 YAML dosyası korunmuştur; üzerine yazılmamıştır.
 - İki kanallı YAML henüz yeniden derlenmiş veya test edilmiş değildir. Yeniden başlatmada kullanılacak yapılandırma açıkça seçilecek ve yeni test kaydı ayrı tutulacaktır.
+
+
+## 2026-11-21 – MOD2-GRV001 bias karşılaştırması: ilk veri kaydedildi
+
+- Kullanıcının teyit ettiği gerçek bağlantı: **A0–A1 bias yok; A2–A3 bias var.**
+- ESP32D2 / ADS1115 No.10 iki kanallı logundan 109'ar yayın örneği çıkarılarak CSV'ye kaydedildi.
+- HA history CSV'den 183'er SCT kaydı ve 13 PZEM akım kaydı analiz edildi; 13 PZEM örneği iki SCT kanalıyla ±2 saniye içinde eşleştirildi.
+- İlk veri setinde A2–A3 biaslı kolun ortalaması daha yüksek ve PZEM'e daha yakındır. Ancak iki ayrı SCT sensörü kullanıldığı için bu fark yalnızca bias etkisine bağlanamaz.
+- Değişim katsayıları iki kanalda yaklaşık %1.86; bu kayıt bias'ın gürültüyü azalttığını göstermiyor.
+- Yeni kalibrasyon katsayısı çıkarılmadı; mevcut katsayı değiştirilmedi.
+- **Sıradaki adım:** Bias bağlantısını A0–A1'e taşıyıp A2–A3'ü biassız bırakmak; SCT'lerin konumunu/yönünü, yükü ve yazılımı sabit tutarak çapraz deney yapmak.
+- Veriler ve teknik yorum: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/LOG/` ve `V1.1/RAPOR/V1.1-BIAS-KARSILASTIRMA-2026-11-21.md`.
+- Bu kayıt ilk karşılaştırma aşamasının arşivlendiğini gösterir; çapraz deney ve görev tamamlanmış değildir.
