@@ -164,3 +164,14 @@ Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı ha
 - **Sınırlar:** PZEM karşılaştırma referansıdır, ground truth değildir. Biasın gürültüyü azalttığı gösterilmedi; tüm akım aralığına genelleme yapılmaz. K=27.59 korunmuştur.
 - **Görev:** Bu 100 W bias çapraz test serisi kapatıldı; MOD2-GRV001'in tamamı açık kalır.
 - **Rapor:** PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md.
+
+
+## 2026-11-21 – Ek tespit: Biaslı kanalın boşta spike davranışı
+
+- Kullanıcının Home Assistant grafiğinde yük altında (~0.46–0.48 A) A0–A1 ve A2–A3 okumaları PZEM'e yakın seyretmektedir.
+- Yük kesildiğinde PZEM sıfıra iner; A0–A1 biassız kanal sıfıra yakın ve daha sakin görünürken A2–A3 biaslı kanalda pozitif spike'lar görülür.
+- Yük yeniden geldiğinde (~0.19 A) iki ADS1115 kanalı yaklaşık 0.189–0.190 A, PZEM yaklaşık 0.188 A gösterir.
+- **Tespit:** Bias yük altında PZEM karşılaştırmasına olumlu katkı sağlayabilir; ancak sistem boşta biaslı kanalda daha fazla spike gözlenmiştir.
+- **Kanıt sınırı:** Bu, ekran görüntüsünden yapılan nitel gözlemdir. Ham CSV ve nicel spike istatistiği yoktur; spike oranı/genliği henüz ölçülmüş değildir.
+- **Takip:** Boşta uzun süreli kayıtla iki kanalın spike sayısı, tepe genliği, standart sapması ve eşik üstü olay sıklığı ayrı karşılaştırılmalıdır.
+- Günlük ayrıntı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/RAPOR/GUN-KAPANIS-2026-11-21.md`.
