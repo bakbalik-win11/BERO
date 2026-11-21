@@ -1,0 +1,8 @@
+metric,n,mean,std_dev,min,max,unit
+A0_A1_after_first_10s,186,0.583896,0.005455,0.574581,0.598334,A
+A0_A1_median_after_first_10s,186,0.582551,,,,A
+A0_A1_CV_after_first_10s,186,0.934263,,,,%
+PZEM_power,31,149.551614,0.573800,148.300003,150.500000,W
+PZEM_current,11,0.647182,0.001328,0.645000,0.649000,A
+A0_A1_PZEM_nearest_match_MAPE,40,9.540681,,,,%
+A0_A1_PZEM_nearest_match_mean_difference,40,-0.061729,,,,A
