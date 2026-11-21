@@ -351,3 +351,19 @@ Bias bağlantısı kanallar arasında değiştirilecek: ikinci deneyde A0–A1 b
 - Mevcut iki kanallı YAML kullanılacak; bu deney için YAML/firmware değiştirilmedi. Tek kanallı çalışan V1.1 korunur.
 - Yeni deney dosyası: `DENEYLER/BIAS-KANAL-CAPRAZ-DENEY-2026-11-21.md`.
 - Deney açılmıştır; bağlantı kontrolü ve yeni ölçüm henüz yapılmamıştır. Sonuç veya kalibrasyon kararı yoktur.
+
+## 2026-11-21 – Bias kanal çapraz deneyi PZEM verisiyle analiz edildi
+
+- Fiziksel bağlantı: A0–A1 biaslı, A2–A3 biassız; bias beslemesi Modül 1.
+- Yazılım: Mevcut iki kanallı V1.1 YAML aynen kullanıldı; kod değişmedi.
+- HA CSV: 356 A0–A1, 355 A2–A3 ve 27 PZEM akım örneği.
+- Tüm kayıt ortalamaları: A0–A1 0.470006 A; A2–A3 0.457269 A; PZEM 0.469667 A.
+- PZEM'e ±2 saniye eşleştirilmiş MAPE: biaslı A0–A1 %1.275; biassız A2–A3 %3.168.
+- İlk deneyde bias A2–A3'teyken yüksek okuma A2–A3'teydi; çapraz deneyde bias A0–A1'e taşındığında yüksek okuma A0–A1'e geçti. Ortalama fark bias bağlantısını takip ediyor görünmektedir.
+- Gürültü/kararlılık konusunda kesin karar yok: yeni deneyde biaslı CV %1.666, biassız %1.942; ilk deneyde CV'ler yaklaşık %1.86 ile eşitti.
+- Bu veri yalnızca yaklaşık 0.47 A / 108 W çalışma bölgesini kapsar. Çoklu akım seviyesinde tek katsayı yeterliliği henüz sınanmadı.
+- K=27.59 değiştirilmedi. PZEM yalnızca karşılaştırma referansıdır.
+- Kaynak dosya: kullanıcı ekindeki `history (9).csv`; türetilmiş eşleştirme ve rapor V1.1 altında arşivlendi.
+
+**Sıradaki deney:** Bias beslemesini Modül 1 yerine ESP kartından sağlamak; sonra birden fazla akım seviyesinde aynı karşılaştırmayı tekrarlamak. Görev açık kalır.
+
