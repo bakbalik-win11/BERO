@@ -112,3 +112,12 @@ Kettle 1 sıcaklık koruma modu ve Kettle 2 kaynatma modu ayrı sabit çalışma
 ### 2026-11-21 – ESP32 kaynaklı bias ve ortak GND deneyi açıldı
 
 Bias ESP32 3.3 V hattından sağlanacak; ESP32 GND, ADS1115 GND ve bias devresi GND ortaklanacak. Önceki Modül 1 bias deneylerinde bu ortak GND koşulu kullanılmamıştı. Bu nedenle yeni deneyde bias kaynağı ve ortak toprak referansı farkı birlikte not edilecek. Direnç değerleri, fiziksel bağlantı ve bias DC seviyesi henüz teyit edilmedi. K=27.59 ve çalışan YAML korunacak. Deney henüz ölçüm aşamasına geçmedi. Ayrıntı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ESP32-KAYNAKLI-BIAS-ORTAK-GND-2026-11-21.md`.
+
+### 2026-11-22 – İki aşamalı katsayı çarpımı önerisi değerlendirildi ve kapatıldı
+
+- **Çalışma / deneme:** Mevcut kalibrasyon katsayısını iki sabit katsayıya ayırıp çarpmanın bias yerine geçip geçemeyeceği matematiksel olarak değerlendirildi.
+- **Gözlenen sonuç:** RMS(ADC) × K1 × K2, K1 × K2 = K ise RMS(ADC) × K ile aynıdır. Katsayının iki parçaya ayrılması tek başına yeni ölçüm bilgisi veya düzeltme sağlamaz.
+- **Edinilen tecrübe:** Bias analog sinyalin ADC giriş referansını/çalışma noktasını etkiler; sabit katsayı çarpımı yalnızca sonucu ölçekler. İki katsayı ancak ayrı fiziksel veya kalibrasyon anlamları ve bağımsız belirleme yöntemleri varsa anlamlıdır.
+- **Teknik karar:** Öneri, biasın yerine geçen yöntem olarak kabul edilmedi ve bu haliyle kapatıldı. K=27.59, YAML, firmware ve bias bağlantısı değiştirilmedi.
+- **Kanıt sınırı:** Fiziksel test yapılmadı; yeni ölçüm, ham log veya kalibrasyon sonucu yoktur. Bu kayıt matematiksel yöntem değerlendirmesidir.
+- **İlgili kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/KATSAYI-IKI-ASAMALI-CARPIM-DEGERLENDIRMESI-2026-11-22.md`.
