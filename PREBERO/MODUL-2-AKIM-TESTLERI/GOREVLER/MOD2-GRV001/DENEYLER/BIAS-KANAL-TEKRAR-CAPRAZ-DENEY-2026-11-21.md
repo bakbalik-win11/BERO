@@ -102,7 +102,7 @@ Ayrı ESPHome logu bu veri paketinde bulunmamaktadır. MOD2-GRV001 görevi açı
 
 **Durum: TAMAMLANDI – üç çapraz tekrarın ortak değerlendirmesi.**
 
-Kullanıcı üçüncü deneydeki fiziksel eşlemenin planlandığı gibi olduğunu ve üç durumda da biaslı kanalın başarılı olduğunu teyit etti. Böylece üçüncü deney için önceki fiziksel eşleme belirsizliği giderildi.
+Kullanıcı, üçüncü tekrar dahil üç deneyin tamamında biaslı kanalın başarılı olduğunu teyit ederek 100 W bias çapraz test serisini kapattı.
 
 | Deney | Biaslı kanal | Biassiz kanal | Biaslı kolun ortalama avantajı | PZEM MAPE: biaslı / biassiz |
 |---|---|---|---:|---:|
