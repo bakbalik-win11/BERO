@@ -96,3 +96,22 @@ HA dışa aktarımı `history (10).csv` üzerinden 199 A0–A1, 199 A2–A3 ve 1
 - Rapor: `V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md`
 
 Ayrı ESPHome logu bu veri paketinde bulunmamaktadır. MOD2-GRV001 görevi açık kalır.
+
+
+## Nihai sonuç ve kapanış (2026-11-21)
+
+**Durum: TAMAMLANDI – üç çapraz tekrarın ortak değerlendirmesi.**
+
+Kullanıcı üçüncü deneydeki fiziksel eşlemenin planlandığı gibi olduğunu ve üç durumda da biaslı kanalın başarılı olduğunu teyit etti. Böylece üçüncü deney için önceki fiziksel eşleme belirsizliği giderildi.
+
+| Deney | Biaslı kanal | Biassiz kanal | Biaslı kolun ortalama avantajı | PZEM MAPE: biaslı / biassiz |
+|---|---|---|---:|---:|
+| 1 | A2–A3 | A0–A1 | +0.015169 A | 1.016% / 3.262% |
+| 2 | A0–A1 | A2–A3 | +0.012737 A | 1.275% / 3.168% |
+| 3 | A2–A3 | A0–A1 | +0.012852 A | 1.819% / 2.508% |
+
+**Tespit:** Üç çapraz deneyin tamamında biaslı kanalın ortalaması daha yüksek, PZEM karşılaştırmasına göre MAPE değeri daha düşüktür. İlk iki deneyde bias kanalı değiştirildiğinde yüksek ortalamanın biası takip etmesi, sonucun yalnızca ADS1115 kanalına bağlı olma ihtimalini azaltır. Bu nedenle biasın yaklaşık 0.47 A çalışma noktasında ölçüm sonucuna tekrarlanabilir pozitif katkı yaptığı kabul edilmiştir.
+
+**Sınırlar:** PZEM karşılaştırma referansıdır, ground truth değildir. Bu sonuç mutlak doğruluk kanıtı değildir ve tüm akım aralığına genellenemez. CV sonuçları biasın gürültüyü azalttığını göstermemiştir. K=27.59 korunmuştur; yeni katsayı üretilmemiştir.
+
+**Karar:** Biaslı/biassız çapraz karşılaştırma deneyi kapatıldı. 42 W sabit kanal testi bu karar nedeniyle uygulanmadan kapatıldı. ESP32 kartından bias besleme deneyi ve farklı akım bölgelerinin incelenmesi ayrı, henüz açılmamış çalışma başlıklarıdır.
