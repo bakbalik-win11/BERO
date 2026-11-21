@@ -535,3 +535,18 @@ Kullanıcının sağladığı `history (27).csv` analiz edildi ve 150 W sabit y�
 Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150W-SABIT-YUK-IKILI-KANAL-REFERANS-2026-11-22.md`  
 Özet CSV: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/LOG/150W-SABIT-YUK-IKILI-KANAL-OZET-2026-11-22.csv`  
 Ham kaynak `history (27).csv` bu konuşmadaki ek dosya olarak korunmaktadır; GitHub'a birebir kopyalanmamıştır.
+
+
+## 2026-11-22 – 150 W tek kanal A0–A1 deneyi analiz edildi
+
+Kullanıcının sağladığı `history (28).csv` kaydı analiz edildi. ESP32D2 A0–A1 akım sensöründe 197 örnek, PZEM güçte 31 örnek ve PZEM akımda 11 örnek vardır. Kayıt 195.26 saniyedir. İlk 10 saniye çıkarıldıktan sonra A0–A1 ortalaması 0.583896 A, standart sapması 0.005455 A, CV %0.9343, min–max 0.574581–0.598334 A'dır. PZEM güç ortalaması 149.552 W; PZEM akım ortalaması 0.647182 A'dır. ±2 saniye zaman eşleştirmesinde 40 çift ve MAPE %9.54 elde edilmiştir.
+
+Önceki 150 W çift kanal referansında A0–A1 ortalaması 0.598765 A ve CV %1.462 idi. Tek kanal oturumunda ortalama daha düşük, CV daha küçüktür. Farkın nedeni belirlenmemiştir; bu iki ayrı oturum tek başına çift kanal zamanlamasını kök neden olarak kanıtlamaz.
+
+Kaynak CSV'de Modül 3 SSR durum geçişleri ve BERO_EVT kayıtları da bulunur. SSR ON/OFF geçişleri kayıt süresince tekrarlanmıştır. PZEM güç 148.3–150.5 W aralığında kalmıştır; SSR'nin bu deney yükünü kontrol edip etmediği CSV'den kesin olarak çıkarılamaz. Bu nedenle yükün kesintisiz sabit kaldığı varsayılmamıştır.
+
+K=27.59, 860 SPS, 200 ms pencere ve 1 s güncelleme korunmuştur. Filtre veya firmware ayarı değiştirilmedi. Rapor ve A0–A1 tek kanal deney YAML kopyası depoya kaydedildi. Özet CSV de kaydedildi; orijinal 311 satırlık `history (28).csv` konuşma eki olarak korunmaktadır. Depoya orijinal dosyanın birebir kopyası değil, seçilmiş ölçüm/olay alt kümesi ayrıca kaydedilmesi planlanmıştır.
+
+Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150W-TEK-KANAL-A0A1-2026-11-22.md`  
+YAML: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/V1.1-TEST-A0A1.yaml`  
+Özet CSV: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/LOG/150W-TEK-KANAL-A0A1-OZET-2026-11-22.csv`
