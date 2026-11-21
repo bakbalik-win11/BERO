@@ -221,3 +221,16 @@ Deney kaydı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ESP32
 - **Karar:** ESP32 bias + ortak GND Kettle 2 deneyi kapatıldı. Basitleştirme kararını tamamlamak için aynı düzenle 100 W ve 15 W deneyleri sıradadır.
 - K=27.59 ve firmware/YAML değiştirilmedi. PZEM karşılaştırma referansıdır, ground truth değildir.
 - Ham kaynak `history (17)(1).csv` 430 satırdır; GitHub'a birebir ham kopyası yüklenmedi, sayısal özet CSV kaydedildi.
+
+
+## 2026-11-21 – ESP32 bias / trafolu bias Kettle 2 karşılaştırması ve 100 W birlikte değerlendirme
+
+- Kullanıcının sağladığı `history (16).csv` (trafolu 1,65 V bias) ve `history (17).csv` (ESP32 1,66 V bias) karşılaştırması ayrı rapor olarak kaydedildi.
+- Kettle 2 A2–A3 PZEM sapması trafolu bias ile -%0,18 (-12,6 mA), ESP32 bias ile +%0,31 (+21,0 mA). Her iki sonuç da PZEM'e yakındır; ESP32 bias geçişinde ortalama doğruluk açısından olumsuz etki görülmemiştir.
+- A2–A3 standart sapması 0,1323 A'dan 0,1906 A'ya yükselmiştir; anlık dalgalanma artmıştır. Kanal farkı 61,9 mA'dan 117,3 mA'ya çıkarken farkın standart sapması 142,3 mA'dan 88,9 mA'ya düşmüştür. Bu, kanal davranışının değiştiğini gösterir; gürültü iyileşmesi olarak genellenmez.
+- Boşta pik aralıkları iki bias kaynağında benzerdir (0,014–0,101 A ve 0,014–0,110 A); bias kaynağını değiştirmek pikleri ortadan kaldırmamıştır.
+- 100 W sınıfı ESP32 bias deneyinde A2–A3 MAPE %5,184, diğer SCT kolu %9,597 olmuştur. ESP32 biaslı kol daha yakın olsa da bu deneyde aynı yükte trafolu bias A/B karşılaştırması yoktur.
+- **Genel değerlendirme:** Kettle 2 ve 100 W sonuçları ESP32 biasın bu iki çalışma noktasında kullanılabilir olduğunu ve ölçüm ortalamasında belirgin olumsuz etki göstermediğini destekler. Dalgalanma ve boşta pik sorunu çözülmüş değildir.
+- Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-ESP32-BIAS-KETTLE2-TRAFOLU-KARSILASTIRMA-VE-100W-DEGERLENDIRME-2026-11-21.md`.
+- Kaynak sınırı: Kettle 2 history (16)/(17) karşılaştırma metrikleri kullanıcı tarafından sağlandı; CSV'ler bu kayıt sırasında yeniden işlenmedi. 100 W istatistikleri mevcut 100 W raporundan alındı.
+- K=27.59 ve çalışan YAML/firmware korunmuştur.
