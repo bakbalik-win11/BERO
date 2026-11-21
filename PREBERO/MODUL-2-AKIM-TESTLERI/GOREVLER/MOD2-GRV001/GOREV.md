@@ -194,3 +194,17 @@ MOD2-GRV001/
 - `VERI/` görev genelindeki test verileri için ortak alandır.
 - Önceki sürümün kodu, logları ve raporları değiştirilmeden korunur.
 - Yeni sürümün test kayıtları yalnızca kendi sürüm klasörüne yazılır.
+
+
+## 2026-11-21 – Osiloskop yük kademeleri tamamlandı / ADS1115 ham okuma sıradaki adım
+
+Bias bağlı olarak yüksüz, 42 W, 57 W, 100 W ve 150 W kademelerinde altışar Single yakalama alındı. Yük kademelerinin Vrms ortalamaları sırasıyla 42 W: 6.5417 mV, 57 W: 9.2983 mV, 100 W: 16.5700 mV ve 150 W: 22.8383 mV oldu. 100 W ve 150 W için Vrms, Avg, Vp-p, Vmax ve Vmin değerleri ayrı ayrı raporlandı. 42 W ve 57 W için yapılandırılmış olarak yalnızca Vrms değerleri mevcuttur.
+
+Ayrıntılı ham veriler ve nominal beklenti karşılaştırması:
+`PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/TESTLER/OSILOSKOP-YUK-KADEMELERI-BIAS-2026-11-21.md`
+
+**Teknik yorum:** Ölçülen Vrms ortalamaları yükle düzenli artmıştır. 220 V ve PF=1 varsayımına dayanan nominal karşılaştırma yalnızca ilk değerlendirmedir; PZEM akımıyla doğrulanmış kalibrasyon sonucu değildir. Osiloskop testi ADS1115 performansını kanıtlamaz.
+
+**Sıradaki çalışma:** ADS1115 No. 1 ile A0-A1 diferansiyel ham gerilim okuması. Aynı SCT, bias ve yük koşulları korunarak ADS1115 verisi osiloskop ölçümüyle karşılaştırılacaktır. İlk sürümde RMS, akım dönüşümü, katsayı, sıfır düzeltmesi ve filtre uygulanmayacaktır. I²C 0x48, GPIO21 SDA, GPIO22 SCL bağlantıları ve A0/A1 pinlerinin GND'ye göre mutlak gerilim sınırları test öncesinde doğrulanacaktır. ADS1115 ham örnekleri doğrudan osiloskop Vrms değeriyle eşdeğer sayılmayacak; uygun RMS işleme yöntemi ayrı değerlendirilecektir.
+
+**Durum:** Osiloskop yük kademeleri tamamlandı. ADS1115 ham okuma/karşılaştırma bekliyor.
