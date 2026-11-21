@@ -154,3 +154,25 @@ Kullanıcının paylaştığı Home Assistant zaman grafiği (21:51–21:59, 202
 - K=27.59 ve YAML korunmuştur. PZEM ground truth değildir. SSR fiziksel bağlı değildir; switch olayları fiziksel yük kontrolü sayılmamıştır.
 - Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-15W-BIAS-KANAL-TESTI-2026-11-21.md`.
 - Ham CSV konuşma ekinde incelendi; GitHub'a ham CSV yüklenmedi.
+
+
+## 9. Kettle testleri – kapanış ve bias kararı
+
+## 2026-11-21 – Kettle testleri ve bias kararı
+
+Kettle 1 (sıcaklık koruma modu) ve Kettle 2 (kaynatma modu) ayrı sabit çalışma koşulları olarak değerlendirildi. Kullanıcının kararıyla ek kettle testine devam edilmeyecek.
+
+**Karar:** Mevcut deney dizisi kapsamında ADS1115 ölçüm yolunda bias gerekli kabul edildi. Kettle karşılaştırmalarında biaslı A2–A3 kanalının PZEM akım ortalamasına daha yakın sonuç verdiği değerlendirildi. Bu karar, biasın tüm çalışma koşullarında gürültüyü azalttığı anlamına gelmez.
+
+**Sınırlar ve açık bulgular:**
+- Boşta alınan CSV'de biaslı kanalda 0.030 A üzeri 128 örnek ve 0.10114 A maksimum görülmüştür; biassız kanalda 0.030 A üzeri örnek görülmemiştir.
+- 15 W deneyinde biaslı kanalda 0.516451 A tekil spike kaydedilmiştir.
+- Kettle sonuçlarında ölçüm yakınlığı bias lehine değerlendirilmiş olsa da değişkenlik/kararlılık her deneyde aynı yönde değildir.
+- PZEM karşılaştırma referansıdır, ground truth değildir.
+- 0.020 A altını sıfırlama yalnızca ileride tartışılacak aday eşiktir; uygulanmadı.
+- K=27.59 ve çalışan YAML değiştirilmedi.
+- Bu karar mevcut deneylerin kapsamındadır; tüm akım aralığı için mutlak doğruluk veya nihai devre tasarımı iddiası değildir.
+
+**Kullanıcı kararı:** Daha fazla kettle testi gerekmiyor; bias kullanılmalı.
+
+Kettle 1 ve Kettle 2 oturumları için açılış geçişleri değerlendirme dışı tutuldu; PZEM'in kararlı çalışma alanları esas alındı. Kettle 1 sıcaklık koruma, Kettle 2 kaynatma modudur. Kullanıcı ek teste devam etmeme kararı verdi.
