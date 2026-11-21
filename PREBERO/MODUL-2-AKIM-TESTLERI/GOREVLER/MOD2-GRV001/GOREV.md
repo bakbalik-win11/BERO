@@ -488,3 +488,17 @@ Bununla birlikte A2–A3 standart sapması 0,1323 A'dan 0,1906 A'ya yükselmişt
 **Sonuç:** Kettle 2 ve 100 W verileri ESP32 biasın bu çalışma noktalarında kullanılabilir olduğunu ve ortalama ölçüm doğruluğunda belirgin olumsuz etki göstermediğini destekler. Anlık dalgalanma ve boşta pik davranışı açık konudur. PZEM ground truth değildir. K=27.59 ve çalışan YAML/firmware korunmuştur.
 
 Ayrıntılı rapor: `V1.1/RAPOR/V1.1-ESP32-BIAS-KETTLE2-TRAFOLU-KARSILASTIRMA-VE-100W-DEGERLENDIRME-2026-11-21.md`.
+
+
+## 2026-11-21 – ESP32 bias 15 W deneyi sonucu
+
+`history (19)(1).csv` analiz edildi. İlk 3 saniye çıkarıldıktan sonra A2–A3 ESP32 bias kanalının ortalaması 0.060924 A, medyanı 0.060054 A, CV değeri %6.276'dır. Diğer SCT kanalının ortalaması 0.058321 A, medyanı 0.058056 A, CV değeri %3.611'dir.
+
+PZEM akımında yalnızca 3 örnek (ortalama 0.064333 A) bulundu. ±2 saniye eşleştirmeli MAPE A2–A3 için %8.157, diğer kanal için %8.900'dür; örnek sayısı düşük olduğundan bu fark kesin doğruluk kanıtı değildir.
+
+Önceki 15 W deneyindeki A2–A3 medyanı 0.060014 A iken yeni oturumda 0.060054 A bulunmuştur. Önceki 0.516451 A spike tekrarlanmamış; yeni maksimum 0.080796 A olmuştur. Buna rağmen A2–A3 CV değeri diğer kanaldan yüksektir.
+
+Ortalama bazlı kaba katsayı 29.13 hesaplanabilse de PZEM akım örneği yalnızca üç olduğu için kabul edilmemiştir. **K=27.59, firmware ve YAML korunmuştur.** Biaslı kanalın ölçüm seviyesi tekrarlanmış; kararlılık iyileşmesi gösterilmemiştir.
+
+Rapor: `V1.1/RAPOR/V1.1-ESP32-BIAS-15W-2026-11-21.md`  
+Özet: `V1.1/LOG/V1.1-ESP32-BIAS-15W-OZET-2026-11-21.csv`
