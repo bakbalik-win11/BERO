@@ -94,3 +94,13 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Teknik karar:** Yaklaşık 0.47 A çalışma noktasında biasın ölçüm sonucuna pozitif katkısı kabul edildi. PZEM ground truth değildir; mutlak doğruluk iddiası yoktur. Gürültü azalması gösterilmemiştir. K=27.59 korunmuştur.
 - **Kapanış:** 100 W bias kanal çapraz deney serisi üç tekrar sonunda tamamlandı ve kapatıldı. ESP32'den bias besleme ve diğer akım bölgeleri ayrı araştırma konularıdır.
 - **İlgili kayıtlar:** Üçüncü deney raporu PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.1/RAPOR/V1.1-BIAS-KANAL-TEKRAR-2026-11-21.md; çapraz deney kaydı PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md.
+
+
+### 2026-11-21 – Biaslı kanal boşta spike gözlemi
+
+- **Kaynak:** Home Assistant zaman grafiği ekran görüntüsü; 21:51–21:59.
+- **Yük altında:** Yaklaşık 0.46–0.48 A ve yükün yeniden geldiği yaklaşık 0.19 A bölümünde iki ADS1115 kanalı PZEM'e yakın görünmektedir.
+- **Yüksüz durumda:** PZEM sıfıra inerken A0–A1 biassız kanal sıfıra yakın ve daha sakin; A2–A3 biaslı kanalda pozitif spike'lar görülür.
+- **Tecrübe:** Biasın yük altındaki olumlu ölçüm katkısı, boşta spike davranışından ayrı değerlendirilmelidir.
+- **Sınır:** Görsel nitel kanıttır; ham CSV ile spike sayısı/genliği henüz hesaplanmamıştır.
+- **Takip:** Uzun süreli boşta kayıtta spike sıklığı ve genliği iki kanalda karşılaştırılacaktır.
