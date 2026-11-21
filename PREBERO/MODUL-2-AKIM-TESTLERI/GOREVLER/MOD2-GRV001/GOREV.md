@@ -475,3 +475,16 @@ Kettle 2 (kaynatma modu) ESP32 3.3 V kaynaklı yaklaşık 1.66 V bias ve ortak G
 
 Rapor: `V1.1/RAPOR/V1.1-ESP32-BIAS-KETTLE2-2026-11-21.md`  
 Özet CSV: `V1.1/LOG/V1.1-ESP32-BIAS-KETTLE2-OZET-2026-11-21.csv`
+
+
+## 2026-11-21 – ESP32 bias / trafolu bias Kettle 2 karşılaştırması ve 100 W değerlendirmesi
+
+Kullanıcının sağladığı Kettle 2 karşılaştırmasına göre A2–A3 PZEM sapması trafolu 1,65 V bias ile -%0,18, ESP32 kaynaklı 1,66 V bias ile +%0,31'dir. Ortalama ölçüm yakınlığı korunmuştur; ESP32 bias geçişinin bu yükte doğruluk açısından olumsuz etkisi görülmemiştir.
+
+Bununla birlikte A2–A3 standart sapması 0,1323 A'dan 0,1906 A'ya yükselmiştir. Kanal farkı büyümüş, kanal farkı standart sapması düşmüştür. Boşta pik aralıkları da benzer kalmıştır. Dolayısıyla ortalama doğruluk korunurken dalgalanma karakteri değişmiştir; biasın gürültüyü azalttığı söylenemez.
+
+100 W sınıfı ESP32 bias testinde A2–A3 MAPE %5,184, diğer SCT kolu %9,597 bulunmuştur. ESP32 biaslı kol PZEM'e daha yakındır; ancak bu 100 W testinde aynı yükte trafolu bias karşılaştırması yapılmadığından bias kaynağının değişim etkisi izole edilmemiştir.
+
+**Sonuç:** Kettle 2 ve 100 W verileri ESP32 biasın bu çalışma noktalarında kullanılabilir olduğunu ve ortalama ölçüm doğruluğunda belirgin olumsuz etki göstermediğini destekler. Anlık dalgalanma ve boşta pik davranışı açık konudur. PZEM ground truth değildir. K=27.59 ve çalışan YAML/firmware korunmuştur.
+
+Ayrıntılı rapor: `V1.1/RAPOR/V1.1-ESP32-BIAS-KETTLE2-TRAFOLU-KARSILASTIRMA-VE-100W-DEGERLENDIRME-2026-11-21.md`.
