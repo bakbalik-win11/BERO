@@ -27,3 +27,12 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Edinilen tecrübe:** Fiziksel yerleşim fotoğrafla belgelenebilir; ancak fotoğraf tek başına ADS1115 pin eşleşmelerini, besleme değerlerini, analog giriş bağlantısını veya sistemin çalıştığını doğrulamaz.
 - **Teknik karar:** Sinyal zinciri SCT013 30A/1V → ADS1115 → ESP32-D olarak kaydedildi. Gerçek pin eşleşmeleri ve elektriksel bağlantılar ayrı ayrı doğrulanmadan şema veya çalışan sistem olarak ilan edilmeyecek.
 - **İlgili kayıtlar:** `PREBERO/MODUL-2-AKIM-TESTLERI/IMALAT/IMALAT.md`; `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`.
+
+
+### 2026-11-21 – MOD2-GRV001 – Osiloskopla yüksüz biaslı SCT ölçümü
+
+- **Çalışma / deneme:** Bias bağlı ve yük kapalı durumdayken osiloskop CH1 üzerinden altı ayrı Single yakalama alındı. Her yakalamanın Vrms değeri kaydedildi.
+- **Gözlenen sonuç:** Vrms değerleri sırasıyla 1.60, 5.39, 5.01, 5.07, 1.05 ve 2.29 mV oldu. Altı ölçümün aritmetik ortalaması 3.4017 mV (yaklaşık 3.40 mV), aralık 1.05–5.39 mV olarak hesaplandı.
+- **Edinilen tecrübe:** Yüksüz biaslı durumda altı Single yakalamasının Vrms değerleri belirgin saçılım gösterdi. 3.40 mV yalnızca bu altı yakalamanın ortalamasıdır; kalıcı gürültü tabanı veya sıfır düzeltme değeri olarak kabul edilmedi.
+- **Teknik karar:** Aynı osiloskop ayarları ve bias bağlantısı korunarak yük kademelerinde de altışar Single ölçüm alınacak. PZEM akımı aynı yük koşulunda kaydedilecek. Akım hesabı, sıfır düzeltmesi veya katsayı kararı bu yüksüz veriyle tek başına verilmeyecek.
+- **İlgili kayıtlar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/TESTLER/OSILOSKOP-YUKSUZ-BIAS-2026-11-21.md`.
