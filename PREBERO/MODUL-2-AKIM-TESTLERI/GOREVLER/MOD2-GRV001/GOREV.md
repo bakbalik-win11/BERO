@@ -298,3 +298,8 @@ Kullanıcı bu denemede bağlantı sorunu bulunduğunu bildirdi ve deneyi başta
 - Bu fiziksel kurulumdaki ADC, kullanıcı bilgisine göre **ADS1115 No.10**'dur. Bu kayıt No.10 üzerinden izlenecektir.
 
 Ayrıntılı log örnekleri ve yorum: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ADS1115-IKILI-OKUMA-BAGLANTI-HATALI-2026-11-21.md`.
+
+
+## 2026-11-21 – İki kanallı V1.1 kaynak kodu arşivlendi
+
+Kullanıcı, bağlantı sorunu yaşanan denemede kullanılan gerçek iki kanallı YAML içeriğini sağladı. Kod, değiştirilmeden `V1.1/MOD2-GRV001_V1.1_IKI-KANAL-DENEY.yaml` adıyla kaydedildi. Önceden depoda bulunan tek kanallı `V1.1/MOD2-GRV001_V1.1.yaml` dosyası korunmuştur; üzerine yazılmamıştır. İki kanallı YAML henüz yeniden derlenmiş veya doğrulanmış değildir. Deney baştan kurulurken hangi YAML'in yükleneceği açıkça seçilecek ve yeni sürüm/test kaydı ayrı tutulacaktır.
