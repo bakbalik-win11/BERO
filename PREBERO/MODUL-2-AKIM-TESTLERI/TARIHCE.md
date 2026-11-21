@@ -54,3 +54,13 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Edinilen tecrübe:** Önceki konuşmada A2-A3 kolunun tek SCT ile biaslı bağlantı gibi yorumlanması yanlıştı. Depodaki görev tanımı ve güncel karar esas alınarak doğru deney düzeni netleştirildi: SCT No. 1 A0-A1 biaslı; SCT No. 2 A2-A3 biassız. Fark, yalnızca bir kolda SCT dönüş ucunun 1,65 V bias orta noktasına bağlanmasıdır.
 - **Teknik karar:** Mevcut çalışan akım ölçüm kodu korunacak. İlk deneyde ham ADS1115 okumaları karşılaştırılacak; RMS/akım dönüşümü, katsayı, sıfır düzeltmesi ve filtre uygulanmayacak. A2/A3 mutlak giriş gerilimleri ve ADS1115 sınırları doğrulanmadan biassız kol bağlanmayacak.
 - **İlgili kayıtlar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`; `PREBERO/DURUM.md`.
+
+
+### 2026-11-21 – MOD2-GRV001 – ADS1115 iki kanal denemesi bağlantı sorunu nedeniyle geçersiz
+
+- **Çalışma / deneme:** ADS1115 No.10 üzerinde A0-A1 ve A2-A3 kanallarını iki ayrı `ct_clamp` bileşeniyle okuyan deneme çalıştırıldı; kullanıcı bağlantı sorunu bildirdi.
+- **Gözlenen sonuç:** A0-A1 yaklaşık 0.45–0.50 A civarında seyrederken A2-A3 yaklaşık 0.494 A'dan 1.357 A'ya yükseldi. 200 ms pencerede çoğunlukla kanal başına 25 örnek raporlandı.
+- **Edinilen tecrübe:** Kayıt geçerli bias/biassız karşılaştırma veya kalibrasyon verisi değildir. Log kök nedeni tek başına açıklamaz.
+- **Teknik karar:** Deney baştan kurulacak. Katsayı çıkarılmayacak. Çalışan tek kanallı V1.1 YAML korunacak. İki kanallı denemenin tam YAML kaynak dosyası logda bulunmadığından tahmin edilerek oluşturulmayacak.
+- **Donanım kimliği:** Bu kurulum ADS1115 No.10 olarak kaydedilecek; görevdeki eski No.1 atıfları bu denemeye uygulanmayacak.
+- **İlgili kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ADS1115-IKILI-OKUMA-BAGLANTI-HATALI-2026-11-21.md`.
