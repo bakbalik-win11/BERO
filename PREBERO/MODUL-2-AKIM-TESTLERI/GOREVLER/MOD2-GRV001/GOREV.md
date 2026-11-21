@@ -596,3 +596,16 @@ Bias analog sinyalin ADC giriş referans/çalışma noktasını etkiler; sabit �
 **Karar:** Bu önerinin matematiksel değerlendirmesi kapatıldı. Fiziksel deney yapılmadı ve yeni ölçüm/log üretilmedi. K=27.59, çalışan YAML, firmware ve mevcut bias bağlantısı değiştirilmedi. Bu kapanış MOD2-GRV001 görevinin tamamlandığı anlamına gelmez.
 
 Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/KATSAYI-IKI-ASAMALI-CARPIM-DEGERLENDIRMESI-2026-11-22.md`.
+
+
+## 2026-11-22 – İki bölgeli katsayı ve bias kullanmama kararı
+
+Kullanıcı kararıyla kalibrasyon çalışması iki akım bölgesine ayrılacaktır: 1,5 A altı için ayrı katsayı, 1,5 A üstü için ayrı katsayı belirlenecektir. Bias devresinin sağladığı katkı, getirdiği donanım/bağlantı zahmetine değmediğinden yeni tasarım yaklaşımında bias tercih edilmeyecektir; daha basit analog ölçüm yolu esas alınacaktır.
+
+**Durum:** Bu bir tasarım kararıdır; katsayı deneyleri henüz yapılmamıştır. K=27.59 şimdilik korunur. Ölçüm verisi olmadan düşük/yüksek bölge katsayıları atanmayacak, çalışan YAML ve firmware değiştirilmeyecektir. Önce bias kullanılmayan bağlantının güvenliği ve ADS1115 girişlerinin mutlak gerilim sınırları doğrulanmalıdır.
+
+**Deney planı:** 1,5 A altı ve üstünde birden fazla yük noktası ölçülecek; 1,5 A çevresi ayrıca incelenecek. Her iki katsayı PZEM karşılaştırma referansıyla hesaplanıp farklı yük noktalarında doğrulanacaktır. PZEM ground truth değildir. Tam 1,5 A sınırında katsayı seçimi, bölge seçimini yapacak ölçüm ve geçişte çıktı sürekliliği henüz kararlaştırılmamıştır.
+
+Eski bias deneyleri tarihsel kanıt olarak korunur; yeni tasarım tercihi geçmiş sonuçları silmez. Bu karar MOD2-GRV001 görevinin tamamlandığı anlamına gelmez.
+
+Ayrıntılı karar ve deney planı: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/IKI-BOLGELI-KALIBRASYON-VE-BIAS-KARARI-2026-11-22.md`.
