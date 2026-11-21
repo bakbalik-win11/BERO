@@ -258,3 +258,14 @@ Kullanıcının mevcut katsayıyı iki sabit katsayıya ayırıp çarpma öneris
 - **Korunanlar:** K=27.59, çalışan YAML/firmware ve mevcut bias bağlantısı değişmedi.
 - **Kapsam:** Bu kapanış MOD2-GRV001 görevinin tamamlandığı anlamına gelmez.
 - **Rapor:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/KATSAYI-IKI-ASAMALI-CARPIM-DEGERLENDIRMESI-2026-11-22.md`.
+
+
+## 2026-11-22 – MOD2-GRV001: iki bölgeli kalibrasyon / bias tasarım kararı
+
+Kullanıcı kararı: 1,5 A altı ve üstü için ayrı katsayılar çalışılacak. Yeni tasarımda bias devresi tercih edilmeyecek; daha sade analog ölçüm yolu izlenecek.
+
+- **Durum:** Tasarım kararı kaydedildi; ölçüm ve katsayı kalibrasyonu henüz yapılmadı.
+- **Korunanlar:** K=27.59, çalışan YAML ve firmware değişmedi.
+- **Sıradaki iş:** Bias kullanılmayan bağlantıyı güvenli şekilde doğrulamak; 1,5 A altı ve üstünde birden fazla ölçüm noktası toplamak; sınır çevresini ayrıca test etmek.
+- **Açık noktalar:** Tam 1,5 A sınırında katsayı seçimi ve bölge geçiş yöntemi.
+- **Rapor:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/IKI-BOLGELI-KALIBRASYON-VE-BIAS-KARARI-2026-11-22.md`.
