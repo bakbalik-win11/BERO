@@ -502,3 +502,17 @@ Ortalama bazlı kaba katsayı 29.13 hesaplanabilse de PZEM akım örneği yalnı
 
 Rapor: `V1.1/RAPOR/V1.1-ESP32-BIAS-15W-2026-11-21.md`  
 Özet: `V1.1/LOG/V1.1-ESP32-BIAS-15W-OZET-2026-11-21.csv`
+
+## 2026-11-22 – ADS1115 ikili okuma yavaş salınım araştırması KAPATILDI
+
+A0–A1 ve A2–A3 kanallarında gözlenen, PZEM çizgisine kıyasla belirgin yavaş salınım için ayrı deney açıldı. Kullanıcının saha bildirimine göre ESP32D2 resetlendikten sonra salınım durdu.
+
+**Sonuç ve sınır:** Reset sonrasında belirtinin kaybolması kaydedildi; bu durum ESP32/ADS1115/ESPHome çalışma oturumuyla ilişkili olasılığı güçlendirir, ancak kök nedeni kanıtlamaz. I²C, ADS1115 dönüşüm sırası, yazılım zamanlaması veya besleme kaynaklarından hiçbiri doğrulanmış neden olarak ilan edilmedi. Filtre veya örnekleme ayarı değiştirilmedi; K=27.59 ve V1.1 YAML korundu.
+
+history (25).csv kısa Karma 1 kaydı deney raporuna eklendi. PZEM akımı ve gücü kayıt boyunca değişken olduğundan kalibrasyon noktası olarak kullanılmadı.
+
+**Kalıcı işletim dersi:** Açıklanamayan çok kanallı salınımda önce ham veri/log ve mevcut ayarlar korunur; sonra kontrollü ESP32 reseti uygulanabilir. Reset sonrası belirti kaybolursa bu müdahale ve gözlem kaydedilir; kök neden bulunduğu iddia edilmez. Belirti tekrarlarsa reset öncesi/sonrası karşılaştırmalı yeni inceleme açılır.
+
+Deney raporu: PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ADS1115-IKILI-OKUMA-YAVAS-SALINIM-ARASTIRMASI-2026-11-22.md.
+
+Bu deney kapatılmıştır; MOD2-GRV001 görevinin tamamı kapatılmamıştır.
