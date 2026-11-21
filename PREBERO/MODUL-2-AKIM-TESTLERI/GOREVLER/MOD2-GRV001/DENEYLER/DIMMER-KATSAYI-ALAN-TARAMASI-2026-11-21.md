@@ -139,3 +139,14 @@ Katsayı alanları ancak birden fazla kararlı pencere ve tekrar ile desteklenir
 - **Deney kapatıldı. Dimmerle katsayı alanı taraması yapılmayacak.**
 - V1.1 YAML ve 27.59 katsayısı değiştirilmedi.
 - Ayrıntılı sonuçlar: `../RAPOR/DIMMER-UC-METRE-GOZLEM-RAPORU-2026-11-21.md`.
+
+
+## 12. Son karar ve 100 W PF gözlemi – 2026-11-21
+
+- Kullanıcı kararıyla dimmer deneyi kapatıldı; dimmerle katsayı alanı taraması yapılmayacak.
+- 100 W akkor ampul ile alınan `history (7).csv` verisinde PF 1.00, 0.89, 0.73 ve 0.61 pencereleri incelendi.
+- SCT/PZEM oranı sırasıyla 0.921, 1.036, 1.191 ve 1.507 bulundu. PF düşerken oran belirgin biçimde yükseldi.
+- Bu, PF ile ölçüm farkı arasında güçlü deneysel ilişki gözlemidir; PF'nin tek başına nedensel etkisi kanıtlanmış değildir. Dimmerin dalga biçimi/çalışma koşulu ortak etkendir.
+- Kablo yerleşimi hatalıyken alınan UT200B+ pens okumaları geçersiz sayıldı ve PF analizine dahil edilmedi.
+- V1.1 YAML ve K=27.59 değişmedi. Dimmer verileri normal kalibrasyon grubuna katılmayacak.
+- Ayrıntılı rapor: `../RAPOR/DIMMER-100W-PF-ETKISI-2026-11-21.md`.
