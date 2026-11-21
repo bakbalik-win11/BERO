@@ -69,3 +69,14 @@ Mevcut çalışan akım ölçüm kodu korunacak. Yeni çalışma, kullanıcı ha
 - **Güvenlik kapısı:** Biassız A2/A3 girişleri bağlanmadan önce her pinin GND'ye göre mutlak gerilimi ve ADS1115 giriş sınırları doğrulanacak.
 - **Başlangıç koşulu:** Kullanıcı yaklaşık iki saat ara verecek. Döndüğünde önce fiziksel bağlantı ve gerilim kontrolleri yapılacak; ardından deney başlatılacak.
 - **Teknik ayrıntı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md` içindeki 2026-11-21 deney açılış kaydı.
+
+
+## 2026-11-21 – MOD2-GRV001: ADS1115 deneyi yeniden başlatılacak
+
+- Önceki iki kanallı okuma denemesi bağlantı sorunu nedeniyle geçersiz kabul edildi.
+- A2-A3 yükselen akım değerleri karşılaştırma veya kalibrasyon verisi olarak kullanılmayacak.
+- Bu kurulumdaki fiziksel ADC **ADS1115 No.10** olarak izlenecek.
+- Mevcut çalışan tek kanallı V1.1 YAML korunmuştur; üzerine yazılmamıştır.
+- İki kanallı denemede kullanılan tam YAML kaynak dosyası mevcut kayıtta bulunmadığından logdan tahmin edilerek üretilmeyecek. Gerçek YAML temin edildiğinde ayrı sürüm olarak kaydedilecek.
+- **Sonraki adım:** Bağlantı düzeni baştan kontrol edilerek deney yeniden kurulacak. Yeni deneme kodu gerçek kullanılan YAML üzerinden arşivlenecek.
+- Ayrıntılı kayıt: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ADS1115-IKILI-OKUMA-BAGLANTI-HATALI-2026-11-21.md`.
