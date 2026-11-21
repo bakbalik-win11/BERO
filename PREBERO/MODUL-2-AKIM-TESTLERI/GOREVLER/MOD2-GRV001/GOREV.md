@@ -208,3 +208,30 @@ Ayrıntılı ham veriler ve nominal beklenti karşılaştırması:
 **Sıradaki çalışma:** ADS1115 No. 1 ile A0-A1 diferansiyel ham gerilim okuması. Aynı SCT, bias ve yük koşulları korunarak ADS1115 verisi osiloskop ölçümüyle karşılaştırılacaktır. İlk sürümde RMS, akım dönüşümü, katsayı, sıfır düzeltmesi ve filtre uygulanmayacaktır. I²C 0x48, GPIO21 SDA, GPIO22 SCL bağlantıları ve A0/A1 pinlerinin GND'ye göre mutlak gerilim sınırları test öncesinde doğrulanacaktır. ADS1115 ham örnekleri doğrudan osiloskop Vrms değeriyle eşdeğer sayılmayacak; uygun RMS işleme yöntemi ayrı değerlendirilecektir.
 
 **Durum:** Osiloskop yük kademeleri tamamlandı. ADS1115 ham okuma/karşılaştırma bekliyor.
+
+
+## 2026-11-21 – Çalışma hedefi güncellemesi: ADS1115 biaslı/biassız karşılaştırması
+
+Kullanıcı kararıyla osiloskopla SCT sinyal genliği karşılaştırması şimdilik durdurulmuştur. Osiloskop mevcut testten sonra kaldırılacak; bu deneyin devamı için osiloskop kullanımı beklenmeyecektir.
+
+### Güncel deney amacı
+
+SCT013 sensörünün doğruluğunu, dalga biçimini veya akım katsayısını belirlemek bu deneyin hedefi değildir. Yalnızca ADS1115 No. 1 üzerinden biaslı ve biassız ölçüm kollarının ham okuma davranışı karşılaştırılacaktır.
+
+### Korunacak mevcut yapı
+
+- Mevcut çalışan akım ölçüm kodu korunacaktır; değiştirilmeyecek ve üzerine yazılmayacaktır.
+- Yeni deney için gerektiğinde ayrı YAML sürümü hazırlanacaktır.
+- Test ADS1115 No. 1 ile yürütülecektir.
+- Planlanan kanal düzeni: SCT013 No. 1 → A0–A1 (biaslı); SCT013 No. 2 → A2–A3 (biassız).
+- İki SCT aynı faz iletkenini aynı yönde ölçecek; sensör çıkışları birbirinden ayrı kalacaktır.
+- İlk karşılaştırmada RMS/akım dönüşümü, kalibrasyon katsayısı, sıfır düzeltmesi ve filtre kullanılmayacaktır.
+- Osiloskopla ölçülen 150 W Vrms değerleri bu deneyin kabul ölçütü olmayacaktır.
+
+### Güvenlik ve doğrulama sınırı
+
+Biassız kolun ADS1115 girişlerine bağlantısı, A2 ve A3 pinlerinin GND'ye göre mutlak gerilimleri ile ADS1115 besleme sınırları doğrulanmadan yapılmayacaktır. Diferansiyel ölçüm seçimi giriş pinlerinin mutlak gerilim sınırlarını ortadan kaldırmaz. Bağlantı topolojisi deney başlamadan önce ayrıca netleştirilecektir.
+
+### Durum
+
+Bu karar deney hedefini günceller; fiziksel bağlantının kurulduğu, yeni YAML'in hazırlandığı veya testin yapıldığı anlamına gelmez. Kullanıcı deneye hazır olduğunda bağlantı doğrulamasıyla devam edilecektir. Mevcut akım ölçüm kodu korunacaktır.
