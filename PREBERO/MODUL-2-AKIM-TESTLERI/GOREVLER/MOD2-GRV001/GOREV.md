@@ -585,3 +585,14 @@ K=27.59, 860 SPS, 200 ms pencere ve 1 s güncelleme korunmuştur. Filtre veya fi
 Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150W-TEK-KANAL-A2A3-2026-11-22.md`  
 Özet CSV: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/LOG/150W-TEK-KANAL-A2A3-OZET-2026-11-22.csv`  
 Orijinal `history (30).csv` konuşma eki olarak korunur; bu işlemde GitHub'a birebir kopyalanmamıştır.
+
+
+## 2026-11-22 – İki aşamalı katsayı çarpımı değerlendirmesi KAPATILDI
+
+Kullanıcının önerisi, bias devresiyle uğraşmak yerine mevcut katsayının iki parçaya ayrılarak ardışık çarpılmasıydı. Değerlendirme sonucunda, K1 ve K2 sabit çarpanlar olup yalnızca K1 × K2 = K koşulunu sağlıyorsa RMS(ADC) × K1 × K2 ifadesinin mevcut RMS(ADC) × K hesabıyla matematiksel olarak aynı olduğu belirlendi. Bu işlem tek başına ölçüm hatasını, gürültüyü veya bias ihtiyacını değiştirmez.
+
+Bias analog sinyalin ADC giriş referans/çalışma noktasını etkiler; sabit çarpanlar ise ölçüm sonucunu ölçekler. Dolayısıyla iki sabit katsayı biasın yerine geçen çözüm olarak kabul edilmedi. İki katsayılı yapı ancak her katsayının ayrı ve ölçülebilir bir fiziksel/kalibrasyon anlamı tanımlanırsa ileride değerlendirilebilir.
+
+**Karar:** Bu önerinin matematiksel değerlendirmesi kapatıldı. Fiziksel deney yapılmadı ve yeni ölçüm/log üretilmedi. K=27.59, çalışan YAML, firmware ve mevcut bias bağlantısı değiştirilmedi. Bu kapanış MOD2-GRV001 görevinin tamamlandığı anlamına gelmez.
+
+Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/KATSAYI-IKI-ASAMALI-CARPIM-DEGERLENDIRMESI-2026-11-22.md`.
