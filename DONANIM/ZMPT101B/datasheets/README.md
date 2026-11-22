@@ -8,3 +8,10 @@ Aranan parça, potansiyometreli ZMPT101B Arduino modülü değil; dört bacaklı
 - [Üreticinin ZMPT101B ürün sayfası](https://www.micro-transformer.com/2ma-2ma-voltage-transformer-ZMPT101B.html)
 
 Bu PDF bileşenin mekanik ölçülerini, dört pin bağlantısını/polaritesini ve elektriksel karakteristiklerini içerir. Kart/modül şeması değildir.
+
+
+## Ek kullanım kılavuzu
+Kullanıcı tarafından sağlanan `ZMPT101B.PDF` dosyası, **ZMPT101B (ZMPT107) voltage transformer operating guide** başlıklı 4 sayfalık belgedir. Çıplak transformatör/ön uç bağlantı yaklaşımlarını, ADC çıkış sınırlarını ve direnç seçim yöntemlerini açıklar. Bu belge hazır potansiyometreli PCB modülünün tam şeması değildir.
+
+- İnceleme ve BERO deney notları: [ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md](ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md)
+- Orijinal kullanıcı PDF'si bu commit işleminde ikili dosya olarak depoya yüklenmemiştir; teknik içeriği ve kaynak kapsamı inceleme kaydına aktarılmıştır.
