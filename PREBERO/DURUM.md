@@ -328,3 +328,15 @@ Kullanıcı kararı: 1,5 A altı ve üstü için ayrı katsayılar çalışılac
 - 57 W CSV'si bias, kanal ve YAML bilgisini doğrudan içermez. 42 W oturumundaki bias yok / 0,02 A filtreli YAML teyidinin devam ettiği varsayılmıştır; 57 W için ayrıca doğrulanmalıdır.
 - **Karar:** K=27.59 ve YAML korunur. K≈33.34 ön sonuçtur; ortak katsayı henüz belirlenmez.
 - Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/57W-ADS1115-NO10-2026-11-22.md`.
+
+
+## 2026-11-22 – 100 W dosyası: ADS1115 No.10 ön analizi
+
+- Kaynak: kullanıcı CSV'si `100w ads-10.csv`, 445 satır.
+- SCT n=289, ortalama 0.418344 A, std. sapma 0.003318 A, CV %0.793.
+- PZEM akım n=15, ortalama 0.469667 A; PZEM güç n=50, ortalama 107.472 W (106.7–108.3 W).
+- ±2 saniye eşleştirme: 15 çift; eşleşmiş SCT ortalaması 0.419415 A; MAPE %10.70; ön katsayı K≈30.90.
+- 42 W ve 57 W ön katsayıları sırasıyla ≈33.46 ve ≈33.34 iken 100 W ön katsayısı ≈30.90'dır. Tek ortak düşük bölge katsayısı henüz desteklenmiyor.
+- 100 W CSV'si bias, kanal ve YAML dosya/sürümünü doğrudan tanımlamaz; bunlar ayrıca teyit edilmelidir. PZEM güç ortalaması nominal 100 W etiketinden yüksek, 107.47 W'tır.
+- **Karar:** K=27.59 korunur; YAML değiştirilmez. K≈30.90 ön sonuçtur; ortak katsayı belirlenmez.
+- Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/100W-ADS1115-NO10-2026-11-22.md`.
