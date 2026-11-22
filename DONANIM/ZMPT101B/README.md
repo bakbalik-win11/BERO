@@ -110,3 +110,9 @@ Bu kaynak LM358'li hazır kartın blok yapısını, L/N ve VCC/OUT/GND pinlerini
 - [Home Assistant Community – Measure mains voltage with ZMPT101B and ADS1115, mesaj #12](https://community.home-assistant.io/t/measure-mains-voltage-with-zmpt101b-and-ads1115/360162/12)
 - Mesaj #12'deki ESP32 dahili ADC denemesi, ADC1/ADC2 pin seçimi, kararsız AC okumaları, DC testinin sınırı, RMS/ofset ve kalibrasyon değerlendirmesi: [Home Assistant Community ZMPT101B ESP32 ADC Deney Notu](datasheets/HOME-ASSISTANT-COMMUNITY-ZMPT101B-ESP32-ADC-DENEY-NOTU.md)
 - Mesaj başlığı ADS1115 olsa da #12'deki bu kullanıcı denemesi ESP32 dahili ADC'siyle yapılmıştır; ADS1115 performans kanıtı değildir.
+
+
+## Sayısal PF hesaplama ve istatistik metodolojisi
+PF araştırmasının amacı dalgayı yalnızca çizmek değil, SCT013 akım ve ZMPT101B gerilim örneklerinden sayısal olarak P, Vrms, Irms, S ve gerçek PF hesaplamak; pencere bazında istatistiksel dağılımı incelemektir.
+- [PF Sayısal Hesaplama ve İstatistik Metodolojisi](PF-SAYISAL-HESAPLAMA-VE-ISTATISTIK-METODOLOJISI.md)
+- Bu metodoloji deney planıdır; ADS1115'in yeterliliği, kanal zaman hizası, sensör faz gecikmesi ve PF doğruluğu henüz doğrulanmamıştır.
