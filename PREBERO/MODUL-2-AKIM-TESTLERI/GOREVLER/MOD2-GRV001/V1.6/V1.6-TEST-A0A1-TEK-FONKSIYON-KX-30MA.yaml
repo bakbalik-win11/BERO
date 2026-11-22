@@ -1,0 +1,121 @@
+# ============================================================
+# BERO – MOD2-GRV001 – TAM ARALIK TEK FONKSİYON K(x) + 30 mA EŞİK
+# ESP32D2 / ADS1115 No.10 / SCT013 30A-1V
+# Sürüm: V1.6
+# ============================================================
+#
+# AMAÇ:
+# - 0.067 A - 17.54 A arası 21 kademeli testten elde edilen tek
+#   üstel K(x) = 26.89 + 5.39 * exp(-x / 0.882) fonksiyonunu
+#   tüm ölçüm aralığında (parçalı geçiş olmadan) uygulamak.
+# - 30 mA (0.030 A) ve altındaki akımları HA'da 0.000 A yayınlamak.
+#
+# BAĞLANTILAR:
+# GPIO21 -> ADS1115 SDA
+# GPIO22 -> ADS1115 SCL
+# 3.3V   -> ADS1115 VDD
+# GND    -> ADS1115 GND
+# ADDR   -> GND (0x48)
+# SCT013 -> ADS1115 A0-A1 diferansiyel
+#
+# BEKLENEN:
+# NaN veya düzeltilmiş akım <= 0.030 A -> 0.000 A
+# Düzeltilmiş akım > 0.030 A            -> K(x) / 27.59 ile ölçekli değer
+# ESP32/API bağlantısı kesilirse        -> unavailable
+#
+# SINIR:
+# 30 mA altındaki çok küçük akımlar da 0.000 A olarak yayınlanır.
+# ADS1115 girişleri GND-0.3 V ile VDD+0.3 V mutlak sınırları içinde kalmalıdır.
+# SCT yalnızca yalıtılmış tek iletkeni kavramalıdır.
+# ESP32 GND şebekeye bağlanmamalıdır.
+# ============================================================
+
+esphome:
+  name: esp32d2
+  friendly_name: ESP32D2
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+  frequency: 400kHz
+
+ads1115:
+  - address: 0x48
+    continuous_mode: true
+
+sensor:
+  # ADS1115 A0-A1 ham diferansiyel voltaj okuma (2.048 V PGA, 860 SPS)
+  - platform: ads1115
+    multiplexer: A0_A1
+    gain: 2.048
+    sample_rate: 860
+    id: ads_sct_a0_a1_raw
+    internal: true
+
+  # 200 ms RMS penceresi + 27.59 baz kalibrasyon + tek fonksiyon K(x) düzeltmesi
+  - platform: ct_clamp
+    sensor: ads_sct_a0_a1_raw
+    id: bero_akim_a0_a1_internal
+    internal: true
+    sample_duration: 200ms
+    update_interval: 1s
+    accuracy_decimals: 3
+    filters:
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 1.0 -> 27.59
+      - lambda: |-
+          if (isnan(x) || x <= 0.0f) {
+            return 0.0f;
+          }
+
+          // Tek fonksiyonlu katsayı modeli: K(x) = 26.89 + 5.39 * exp(-x / 0.882)
+          const float k_base = 27.59f;
+          const float k_eff = 26.89f + 5.39f * expf(-x / 0.882f);
+
+          return x * (k_eff / k_base);
+
+  # Home Assistant yayın sensörü (NaN ve <= 30 mA sıfırlama)
+  - platform: template
+    name: "BERO Akim Sensoru"
+    id: bero_akim_yayin
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 3
+    update_interval: 1s
+    lambda: |-
+      const float current = id(bero_akim_a0_a1_internal).state;
+
+      // NaN -> 0.000 A
+      if (isnan(current)) {
+        return 0.0f;
+      }
+
+      // 30 mA ve altı -> 0.000 A
+      if (current <= 0.030f) {
+        return 0.0f;
+      }
+
+      // 30 mA üzeri -> düzeltilmiş akım değeri
+      return current;
