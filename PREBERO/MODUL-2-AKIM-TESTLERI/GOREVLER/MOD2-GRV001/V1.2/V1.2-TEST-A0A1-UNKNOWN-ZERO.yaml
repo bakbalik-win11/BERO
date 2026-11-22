@@ -64,10 +64,11 @@
 # ESP32 GND şebekeye bağlanmamalıdır.
 #
 # DURUM:
-# Kullanıcı bildirimi: YAML derlendi ve ESP32D2 üzerinde çalıştı.
-# HA ekran görüntüsünde 0.000 A ilk kez gözlendi.
-# Uzun süreli, yük ve ESP kapalı testleri henüz tamamlanmadı.
-# V1.1 dosyasına dokunulmamıştır.
+# Kullanıcı bildirimi ve ESPHome OTA loguyla V1.2 derleme/çalışması doğrulandı.
+# Yüksüz -> yük -> yeniden yüksüz akışı: 0.000 A -> 0.604/0.602/0.600 A -> 0.000 A.
+# Bu test işlevsel sıfır/akım geçişini doğrular; PZEM karşılaştırması ve mutlak kalibrasyon doğrulaması değildir.
+# Kısa ESP32 güç kesintisi testinde HA unavailable yaklaşık 71 ms görüldü; uzun offline davranışı ayrıca doğrulanmış sayılmaz.
+# Ayrıntılı log ve yorum V1.2/LOG ile V1.2/RAPOR altındadır. V1.1 dosyasına dokunulmamıştır.
 # ============================================================
 
 esphome:
