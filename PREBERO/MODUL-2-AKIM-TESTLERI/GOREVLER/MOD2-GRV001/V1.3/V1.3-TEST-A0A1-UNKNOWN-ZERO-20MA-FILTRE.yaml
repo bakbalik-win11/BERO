@@ -1,0 +1,151 @@
+# ============================================================
+# BERO – MOD2-GRV001 – UNKNOWN -> ZERO + 20 mA ALT EŞİK DENEYİ
+# ESP32D2 / ADS1115 No.10 / SCT013 30A-1V
+# Sürüm: V1.3-TEST-A0A1-UNKNOWN-ZERO-20MA-FILTRE
+# ============================================================
+#
+# AMAÇ:
+# V1.2'nin çalışan UNKNOWN -> ZERO davranışını korumak ve
+# 0.020 A dahil olmak üzere 20 mA ve altındaki akım değerlerini
+# Home Assistant'a 0.000 A olarak yayınlamak.
+#
+# TASARIM MANTIĞI:
+# - ct_clamp RMS + K=27.59 + mevcut 5 mA alt eşik hesabını yapar.
+# - ct_clamp sensörü internal olduğu için doğrudan HA'ya sunulmaz.
+# - Şablon sensörü her 1 saniyede ct_clamp durumunu kontrol eder.
+# - NaN ise 0.000 A yayınlar.
+# - Geçerli akım 0.020 A veya altındaysa 0.000 A yayınlar.
+# - Geçerli akım 0.020 A üzerindeyse ölçülen değeri aynen yayınlar.
+# - ESP32 kapanır/ağdan koparsa API bağlantısı kesilir ve HA'da
+#   unavailable olması beklenir.
+#
+# ÖNEMLİ SINIR:
+# 20 mA eşiği altındaki gerçek akımlar da sıfır gösterilir.
+# Bu nedenle bu sürüm 20 mA altındaki akımları gözlemleyemez.
+# NaN değerinin sıfıra çevrilmesi V1.2'deki gibi devam eder;
+# ESP32 açıkken ADC/I2C kaynaklı NaN ayrıca teşhis edilmez.
+#
+# DONANIM / BAĞLANTILAR:
+# ESP32D2 GPIO21 -> ADS1115 SDA
+# ESP32D2 GPIO22 -> ADS1115 SCL
+# ESP32D2 3.3V   -> ADS1115 VDD
+# ESP32D2 GND    -> ADS1115 GND
+# ADS1115 ADDR   -> GND (I2C 0x48)
+# SCT013        -> ADS1115 A0-A1 (diferansiyel)
+# Fiziksel bağlantı V1.2 ile aynı tutulur; bias eklenmez.
+#
+# ÖLÇÜM AYARLARI:
+# ADS1115 modu        : Continuous
+# Multiplexer         : A0_A1
+# PGA                 : 2.048 V
+# Sample rate         : 860 SPS
+# ct_clamp penceresi  : 200 ms
+# ct_clamp güncelleme : 1 saniye
+# HA şablon güncelleme: 1 saniye
+# Kalibrasyon K       : 27.59 (değiştirilmedi)
+# ct_clamp alt eşiği  : 0.005 A
+# HA yayın eşiği      : 0.020 A
+#
+# BEKLENEN ÇIKTI:
+# HA entity: BERO Akim Sensoru
+# ESP açık + NaN / 0–0.020 A -> 0.000 A
+# ESP açık + 0.020 A üzeri    -> ölçülen akım
+# ESP kapalı / API bağlantısı yok -> unavailable beklenir
+#
+# TEST:
+# 1. Yüksüz durumda 0.000 A yayınını doğrula.
+# 2. 0.020 A altındaki gözlemleri 0.000 A olarak doğrula.
+# 3. 0.020 A üzerindeki kontrollü yükte ölçümün yayınlandığını doğrula.
+# 4. Yük kaldırıldığında tekrar 0.000 A olduğunu doğrula.
+# 5. ESP32 kapatıldığında HA entity unavailable davranışını ayrıca izle.
+# 6. ESPHome DEBUG logunu ve HA geçmişini sakla.
+#
+# GÜVENLİK:
+# ADS1115 A0 ve A1 pinlerinin her biri GND'ye göre
+# GND-0.3 V ile VDD+0.3 V sınırları içinde kalmalıdır.
+# SCT yalnızca yalıtılmış tek iletkeni kavramalıdır.
+# ESP32 GND şebekeye bağlanmamalıdır.
+#
+# DURUM:
+# V1.3 kodu hazırlandı; derleme ve fiziksel test yapılmadı.
+# V1.2 dosyası değiştirilmedi ve referans sürüm olarak korunur.
+# ============================================================
+
+esphome:
+  name: esp32d2
+  friendly_name: ESP32D2
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+  frequency: 400kHz
+
+ads1115:
+  - address: 0x48
+    continuous_mode: true
+
+sensor:
+  # ADS1115 A0-A1 ham diferansiyel okuma
+  - platform: ads1115
+    multiplexer: A0_A1
+    gain: 2.048
+    sample_rate: 860
+    id: ads_sct_a0_a1_raw
+    internal: true
+
+  # İç ölçüm sensörü: RMS, K=27.59 ve 5 mA alt eşik.
+  - platform: ct_clamp
+    sensor: ads_sct_a0_a1_raw
+    id: bero_akim_a0_a1_internal
+    internal: true
+    sample_duration: 200ms
+    update_interval: 1s
+    accuracy_decimals: 3
+    filters:
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 1.0 -> 27.59
+      - lambda: |-
+          if (x < 0.005) return 0.0;
+          return x;
+
+  # HA yayın katmanı:
+  # NaN veya 20 mA ve altı -> 0.000 A
+  # 20 mA üzeri -> ölçülen değer
+  - platform: template
+    name: "BERO Akim Sensoru"
+    id: bero_akim_yayin
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 3
+    update_interval: 1s
+    lambda: |-
+      const float current = id(bero_akim_a0_a1_internal).state;
+      if (isnan(current)) {
+        return 0.0f;
+      }
+      if (current <= 0.020f) {
+        return 0.0f;
+      }
+      return current;
