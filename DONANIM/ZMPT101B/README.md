@@ -19,7 +19,7 @@ Bu donanım kaydı bir imalat/onay belgesi değildir. Önce sensör, analog ön 
 
 ## Üretici belgeleri
 - [Üretici ürün sayfası](https://www.micro-transformer.com/2ma-2ma-voltage-transformer-ZMPT101B.html)
-- [Üretici PDF veri sayfası](https://makerselectronics.com/wp-content/uploads/2020/11/ZMPT101B-specification.pdf)
+- [Üretici sunucusundaki orijinal ZMPT101B PDF veri sayfası](https://5nrorwxhmqqijik.leadongcdn.com/attachment/kjilKBmoioSRqlkqjoipSR7ww7fgzb73m/ZMPT101B-specification.pdf)
 
 ## Bağlantı ve analog ön uç – henüz tasarım kararı değil
 ZMPT101B çıplak transformatör elemanıdır. Primerde akım sınırlama direnci, sekonderde uygun örnekleme direnci ve ADC girişine uygun analog koşullandırma gerekir. Yaygın potansiyometreli ZMPT101B modülü ile çıplak transformatör aynı donanım değildir; kart üzerindeki op-amp ve ayar devresi ayrıca değerlendirilmelidir.
