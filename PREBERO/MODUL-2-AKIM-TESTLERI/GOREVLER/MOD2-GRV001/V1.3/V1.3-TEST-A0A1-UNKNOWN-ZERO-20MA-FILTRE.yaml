@@ -67,8 +67,13 @@
 # ESP32 GND şebekeye bağlanmamalıdır.
 #
 # DURUM:
-# V1.3 kodu hazırlandı; derleme ve fiziksel test yapılmadı.
+# Kullanıcı bildirimi: V1.3 derlendi ve çalıştırıldı.
+# 20 mA yayın filtresi gece boyu gözlemlendi; kullanıcı filtreyi yeterli
+# buldu ve bu filtre çalışmasını kapattı.
+# Sayısal gece logu/CSV bu kapanış kaydına eklenmedi; ölçüm metrikleri
+# veya uzun dönem güvenilirlik istatistiği iddia edilmez.
 # V1.2 dosyası değiştirilmedi ve referans sürüm olarak korunur.
+# MOD2-GRV001 görevinin tamamı açık kalır; iki bölgeli katsayı çalışması sürer.
 # ============================================================
 
 esphome:
