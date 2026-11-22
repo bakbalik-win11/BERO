@@ -82,3 +82,21 @@ Bunun için ZMPT101B gerilim örnekleri ile SCT013 akım örnekleri aynı zaman 
 - MOD3-AKM001 uzun pamuklu saha görevi kapalı kalır; bu testin olumlu sonucu korunur.
 - PF çalışması ZMPT101B + SCT013 zaman hizalı dalga biçimi araştırması olarak ayrı yürütülür.
 - Düşük PF gözlemleri araştırma gerekçesidir; henüz PF'ye bağlı düzeltme katsayısı veya algoritma kararı değildir.
+
+
+## 8. Kullanıcının proje başarısı ve PF araştırması ayrımı – 2026-11-22
+
+Kullanıcı, bugüne kadarki akım ölçüm çalışmasının ana sonucunu şöyle netleştirdi:
+
+1. İlk fazda SCT013 + ADS1115 ölçüm zinciri sağlıklı ve tekrarlanabilir bir çalışma motifi verdi; yüksek PF / PF≈1 koşullarında PZEM referansıyla uyum sağlandı.
+2. Tek fonksiyonlu K(x) modeli, PF≈1 ideal çalışma koşullarında geniş akım aralığında PZEM referansına yakın sonuç verdi. Bu, V1.6'nın temel başarısı ve korunacak kalibrasyon kararıdır.
+3. Açık kalan ana araştırma alanı düşük PF koşullarında ortaya çıkan akım sapmasıdır. Bu durum henüz PF'nin tek başına nedensel etkisi olarak kanıtlanmış değildir; gerçek PF için ZMPT101B gerilim ve SCT013 akım dalga biçimleri zaman hizalı ölçülmelidir.
+4. Yaklaşık 15 W altındaki çok düşük güç/akım bölgesi kullanıcı tarafından mevcut uygulama açısından önemsiz / önceliksiz kabul edilmiştir. Bu alt bölgeyi iyileştirmek için mevcut K(x) modelini yeniden şekillendirmek planlanmamaktadır.
+
+Referans rapordaki sayılar ve sınırlamalar:
+- V1.6 genel ortalama bağıl hata -%0.17, medyan -%0.32 (raporda grafik üzerinden aktarılan karşılaştırmalı metrikler).
+- 14.6 W noktasında -%10.28; 20.4 W / PF=0.76 noktasında +%12.25.
+- 60.5 W noktasında -%4.89 tekil sonuç raporda korunmuştur; sebebi çözülmüş sayılmaz.
+- PZEM referans olarak kullanılmıştır, mutlak ground truth değildir.
+
+**Araştırma yönü:** V1.6'nın geniş aralıklı, PF≈1 koşullarındaki başarısını tekrar kalibrasyonla bozmak yerine koru. PF sapmasını ayrı gerçek-PF ölçüm araştırmasında ele al. Yaklaşık 15 W altını bu aşamada kapsam dışı/önceliksiz tut.
