@@ -1,8 +1,10 @@
 # Katsayı Raporu – ADS1115 No.10 / SCT013
 
+> **Tarihsel kayıt uyarısı:** Bu raporun eski 1,5 A altı/üstü iki katsayılı planı, V1.6 tek fonksiyon modeliyle 2026-11-22 tarihinde kapatılmıştır. Eski katsayı tabloları silinmeden tarihsel referans olarak tutulur.
+
 **Görev:** MOD2-GRV001  
 **Rapor türü:** Birim ve ölçüm zinciri kalibrasyon geçmişi  
-**Durum:** TARİHSEL RAPOR – başlangıçtaki iki bölgeli kalibrasyon planı V1.6 tek fonksiyon modeliyle kapatıldı. Eski katsayı tabloları ve ön analizler tarihsel kayıt olarak korunur.  
+**Durum:** TARİHSEL KATSAYI GEÇMİŞİ – eski iki bölgeli plan V1.6 tek fonksiyon modeliyle kapatılmıştır. Aşağıdaki planlar ve yük bazlı katsayılar tarihsel izlenebilirlik içindir; aktif kalibrasyon yöntemi değildir.  
 **Son güncelleme:** 2026-11-22
 
 ## 1. Raporun amacı
@@ -17,7 +19,7 @@ Bu kayıt sayesinde ileride:
 
 **Önemli:** Katsayı tek başına ADS1115 entegresinin evrensel özelliği değildir. Kayıt, ADS1115 birim kimliğiyle birlikte SCT sensörü, kanal, analog bağlantı ve yazılım ölçüm zincirini de tanımlar. Başka ADC veya SCT'ye otomatik aktarılmaz.
 
-## 2. Güncel kalibrasyon kararı
+## 2. Tarihsel kalibrasyon planı (KAPATILDI – V1.6 ile değiştirildi)
 
 - 1.5 A altı çalışma bölgesi için ampullerle (150 W'a kadar) ölçüm yapılacak; sonuçta bu bölge için **tek ortak katsayı** belirlenecek.
 - 1.5 A üstü bölge ayrı olarak ütü, tost makinesi ve kettle kaynatma moduyla çalışılacak.
@@ -112,7 +114,7 @@ Kaynak deney raporları:
 
 Yeni testler geldikçe her satır ayrı oturum/konfigürasyon olarak eklenir. Sensör değişimi, ADS1115 değişimi, kanal değişimi veya analog bağlantı değişimi açıkça işaretlenir.
 
-## 8. Genel düşük bölge katsayısı – henüz belirlenmedi
+## 8. Tarihsel düşük bölge katsayısı planı – KAPATILDI, uygulanmayacak
 
 | Alan | Sonuç |
 |---|---|
@@ -123,7 +125,7 @@ Yeni testler geldikçe her satır ayrı oturum/konfigürasyon olarak eklenir. Se
 | Birleştirme yöntemi | Veriler görüldükten sonra kararlaştırılacak |
 | YAML'a uygulanma | Katsayı ve yöntem onaylandıktan sonra ayrı sürümle |
 
-## 9. Yüksek bölge katsayısı – henüz belirlenmedi
+## 9. Tarihsel yüksek bölge katsayısı planı – KAPATILDI, uygulanmayacak
 
 | Alan | Sonuç |
 |---|---|
