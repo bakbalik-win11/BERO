@@ -1,0 +1,178 @@
+# ============================================================
+# BERO – MOD2-GRV001 – V1.6-DIAG1 HAM RMS IZLEME
+# ESP32D2 / ADS1115 No.10 / SCT013 30A-1V
+# Taban: V1.6 K(x) + 30 mA yayın eşiği
+# ============================================================
+#
+# AMAÇ:
+# - Mevcut V1.6 kalibrasyon ve akım yayın davranışını değiştirmeden
+#   ct_clamp ölçümünün kalibrasyon öncesi RMS gerilimini ayrıca yayınlamak.
+# - Boşta (yük kapalıyken) SCT/bağlantı/ADC kaynaklı toplam AC gürültüyü
+#   zaman içinde gözlemlemek.
+# - Ham RMS gerilimi ile mevcut düzeltilmiş akım değerini karşılaştırmak.
+#
+# HAM DEĞERİN TANIMI:
+# - sct_raw_rms_v, ADS1115'ten gelen anlık ADC örneği değildir.
+# - ct_clamp tarafından 200 ms pencerede hesaplanan RMS gerilimidir.
+# - DC ortalama ct_clamp RMS hesabında çıkarılır.
+# - on_raw_value bu RMS değerini calibrate_linear ve K(x)
+#   filtrelerinden ÖNCE yakalar.
+# - Bu nedenle sütunun birimi V RMS'tir; amper değildir.
+#
+# BAĞLANTILAR (V1.6 İLE AYNI):
+# GPIO21 -> ADS1115 SDA
+# GPIO22 -> ADS1115 SCL
+# 3.3V   -> ADS1115 VDD
+# GND    -> ADS1115 GND
+# ADDR   -> GND (I2C adresi 0x48)
+# SCT013 -> ADS1115 A0-A1 diferansiyel
+#
+# BEKLENEN:
+# - "BERO SCT Ham RMS Gerilimi" her ct_clamp güncellemesinde yayınlanır.
+# - ct_clamp update_interval 1s olduğundan ham RMS yaklaşık 1 Hz kaydedilir.
+# - "BERO Akim Sensoru" mevcut V1.6 kurallarıyla yayınlanmaya devam eder.
+# - Düzeltilmiş akım <= 0.030 A ise mevcut akım sensörü 0.000 A gösterir.
+# - Ham RMS sütunu, 30 mA eşiğinden bağımsız olarak küçük sinyalleri gösterir.
+#
+# KAYIT UYARISI:
+# force_update: true, aynı değer tekrar etse de HA durum olayı üretir.
+# 1 Hz sürekli kayıt yaklaşık 86.400 kayıt/gün oluşturabilir.
+# İlk boşta denemeyi sınırlı bir süre (ör. 20-30 dakika) yapın;
+# uzun süre açık bırakmadan önce HA Recorder/veritabanı yükünü değerlendirin.
+#
+# GÜVENLİK:
+# - ADS1115 girişleri GND-0.3 V ile VDD+0.3 V mutlak sınırları
+#   içinde kalmalıdır.
+# - SCT yalnızca yalıtılmış tek iletkeni kavramalıdır.
+# - ESP32/ADS1115 GND şebeke gerilimine bağlanmamalıdır.
+#
+# DURUM:
+# Yeni teşhis YAML'ı. V1.6 ana dosyası değiştirilmemiştir.
+# Bu dosya henüz ESPHome üzerinde derlenmedi veya donanımda denenmedi.
+# ============================================================
+
+esphome:
+  name: esp32d2
+  friendly_name: ESP32D2
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+  frequency: 400kHz
+
+ads1115:
+  - address: 0x48
+    continuous_mode: true
+
+sensor:
+  # ----------------------------------------------------------
+  # 1) ADS1115 A0-A1 diferansiyel giriş
+  # ----------------------------------------------------------
+  - platform: ads1115
+    multiplexer: A0_A1
+    gain: 2.048
+    sample_rate: 860
+    id: ads_sct_a0_a1_raw
+    internal: true
+
+  # ----------------------------------------------------------
+  # 2) Teşhis sensörü: kalibrasyon öncesi ct_clamp RMS gerilimi
+  # update_interval: never -> kendi başına hesaplama yapmaz.
+  # ct_clamp on_raw_value tetikleyicisi bu sensöre değer gönderir.
+  # force_update: true -> aynı değerler de HA geçmişine olay olarak gider.
+  # ----------------------------------------------------------
+  - platform: template
+    name: "BERO SCT Ham RMS Gerilimi"
+    id: bero_sct_raw_rms_v
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    entity_category: diagnostic
+    accuracy_decimals: 6
+    force_update: true
+    update_interval: never
+
+  # ----------------------------------------------------------
+  # 3) ct_clamp: 200 ms RMS + V1.6 kalibrasyon ve K(x)
+  # ----------------------------------------------------------
+  - platform: ct_clamp
+    sensor: ads_sct_a0_a1_raw
+    id: bero_akim_a0_a1_internal
+    internal: true
+    sample_duration: 200ms
+    update_interval: 1s
+    accuracy_decimals: 3
+
+    # Bu tetik, ct_clamp RMS değerini filtrelerden önce yakalar.
+    # Buradaki x = V RMS; henüz A cinsinden kalibre edilmemiştir.
+    on_raw_value:
+      then:
+        - sensor.template.publish:
+            id: bero_sct_raw_rms_v
+            state: !lambda |-
+              return x;
+
+    filters:
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 1.0 -> 27.59
+
+      - lambda: |-
+          if (isnan(x) || x <= 0.0f) {
+            return 0.0f;
+          }
+
+          // V1.6 tek fonksiyonlu katsayı modeli:
+          // K(x) = 26.89 + 5.39 * exp(-x / 0.882)
+          const float k_base = 27.59f;
+          const float k_eff = 26.89f + 5.39f * expf(-x / 0.882f);
+
+          return x * (k_eff / k_base);
+
+  # ----------------------------------------------------------
+  # 4) V1.6 ana Home Assistant akım sensörü
+  # Davranış korunmuştur: NaN ve <=30 mA -> 0.000 A
+  # ----------------------------------------------------------
+  - platform: template
+    name: "BERO Akim Sensoru"
+    id: bero_akim_yayin
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 3
+    update_interval: 1s
+    lambda: |-
+      const float current = id(bero_akim_a0_a1_internal).state;
+
+      // NaN -> 0.000 A
+      if (isnan(current)) {
+        return 0.0f;
+      }
+
+      // 30 mA ve altı -> 0.000 A
+      if (current <= 0.030f) {
+        return 0.0f;
+      }
+
+      // 30 mA üzeri -> V1.6 düzeltilmiş akım
+      return current;
