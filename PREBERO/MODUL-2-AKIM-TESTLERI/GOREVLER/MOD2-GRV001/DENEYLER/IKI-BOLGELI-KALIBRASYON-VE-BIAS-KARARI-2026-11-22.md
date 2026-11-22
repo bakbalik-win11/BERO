@@ -48,3 +48,28 @@ Bu ifade yöntem taslağıdır; henüz uygulanabilir bir algoritma olarak doğru
 
 ## Kapanış / sonraki adım
 Biasın yeni tasarımda tercih edilmemesi ve iki bölgeli katsayı yaklaşımı **tasarım kararı olarak kaydedildi**. Kalibrasyon deneyi açık iş olarak kalır. Sonraki adım, bias kullanılmayan güvenli bağlantıyı doğrulamak ve düşük akım bölgesinden başlayarak ölçüm serisini oluşturmaktır.
+
+
+## 2026-11-22 – İki bölgeli katsayı belirleme yöntemi: kullanıcı nihai kararı
+
+Kullanıcı, iki katsayıyı pratik ev yükleriyle belirleme yöntemini kesinleştirdi. Mükemmel/laboratuvar düzeyinde kalibrasyon hedeflenmeyecek; seçilen yüklerle elde edilen yeterli ve tutarlı veri üzerinden katsayılar belirlenecek.
+
+### Bölge 1 – 1,5 A altı
+- 150 W'a kadar ampullerle ölçüm verisi toplanacak.
+- Ampul yükleri düşük bölge katsayısını belirlemek için kullanılacak.
+- Bu bölgedeki ölçüm noktaları ve gerçek akım değerleri deney sırasında kaydedilecek; nominal watt değeri tek başına akım ölçümü sayılmayacak.
+
+### Bölge 2 – 1,5 A üstü
+- Ütü, tost makinesi ve kettle'ın kaynatma modu kullanılacak.
+- Bu yüklerle yüksek bölge katsayısı belirlenecek.
+- Cihazların çalışma durumu ve ölçüm sırasındaki akım kararlılığı kaydedilecek.
+
+### Ortak kurallar
+- Bias kullanılmayan sade ölçüm yolu esas alınacak; fiziksel bağlantı değişikliği öncesinde ADS1115 girişlerinin mutlak gerilim sınırları doğrulanacak.
+- PZEM karşılaştırma referansıdır; ground truth kabul edilmeyecek.
+- K=27.59 yeni katsayılar hesaplanıp kontrol edilene kadar korunacak.
+- Önceki biaslı deney verileri tarihsel kayıt olarak kalacak; yeni biassız kalibrasyon serisiyle karıştırılmayacak.
+- Mükemmel doğruluk veya ±% belirli bir hedef şartı aranmayacak. Amaç, iki bölgede pratik kullanım için yeterli katsayı elde etmektir.
+- 1,5 A sınırının tam seçimi ve yazılımda bölge belirleme yöntemi, iki katsayı elde edildikten sonra uygulama aşamasında ele alınacak; bu aşamada henüz çözülmüş kabul edilmeyecek.
+
+**Sıradaki iş:** Biassız ölçüm bağlantısını güvenli şekilde doğrulamak ve önce 150 W'a kadar ampullerle düşük akım veri serisini toplamak. Düşük bölge katsayısı belirlendikten sonra ütü, tost makinesi ve kettle kaynatma moduyla yüksek bölgeye geçilecek.
