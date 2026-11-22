@@ -673,3 +673,18 @@ Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/RAPOR/V1.2-UNKNO
 - **Rapor:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.3/RAPOR/V1.3-20MA-FILTRE-DERLEME-VE-GECE-GOZLEMI-2026-11-22.md`
 
 **Sıradaki aktif çalışma:** 1.5 A altı ve üstü için iki bölgeli katsayı yönteminin planlanması ve ardından kontrollü ölçüm.
+
+
+## 2026-11-22 – İki bölgeli kalibrasyon: kullanıcı nihai yük seçimi ve yöntem
+
+Kullanıcı kararıyla kalibrasyon verisi pratik yüklerden toplanacaktır; mükemmel/laboratuvar düzeyinde doğruluk hedeflenmeyecektir.
+
+1. **1,5 A altı katsayı:** 150 W'a kadar ampullerle veri alınacak. Ölçüm sırasında nominal ampul gücü, PZEM akımı ve SCT/ADS1115 akımı kaydedilecek.
+2. **1,5 A üstü katsayı:** Ütü, tost makinesi ve kettle kaynatma modu kullanılacak. Her cihazın çalışma modu ve kararlı ölçüm aralığı kaydedilecek.
+3. PZEM yalnızca karşılaştırma referansıdır; ground truth değildir.
+4. Yeni tasarımda bias kullanılmayacak. Fiziksel bağlantıdan önce ADS1115 AIN pinlerinin her birinin GND'ye göre mutlak gerilimi güvenli sınırlar içinde doğrulanacak.
+5. K=27.59 yeni katsayılar hesaplanıp kontrol edilene kadar korunacak. Eski biaslı test verileri yeni biassız seriyle karıştırılmayacak.
+6. Mükemmel doğruluk hedefi yoktur; pratik kullanım için yeterli ve tutarlı iki katsayı hedeflenir.
+7. 1,5 A sınırındaki katsayı seçimi ve yazılımsal bölge belirleme yöntemi, iki katsayı belirlendikten sonra çözülecek; şimdilik açık konudur.
+
+**İş sırası:** Önce biassız bağlantı güvenlik kontrolü → ampullerle düşük bölge verisi ve katsayısı → ütü/tost/kettle kaynatma ile yüksek bölge verisi ve katsayısı.
