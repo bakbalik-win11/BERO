@@ -92,3 +92,9 @@ Bu kaynak LM358'li hazır kartın blok yapısını, L/N ve VCC/OUT/GND pinlerini
 - Konu, eski ZMPT101B kütüphanesinin `analogRead()`/GPIO pin arayüzünün ADS1115 ile doğrudan uyumlu olmadığını; ham ADS1115 örnekleriyle ayrı RMS hesabı yapılabileceğini tartışır.
 - ADS1115 örnekleme hızı, çoklu kanal taraması, kanal zaman farkı ve ZMPT101B faz kayması hakkındaki kullanıcı gözlemleri üretici garantisi veya BERO ölçümü değildir.
 - BERO için kaynak incelemesi ve deney planı: [Arduino Forum ZMPT101B + ADS1115 Deney Notu](datasheets/ARDUINO-FORUM-ZMPT101B-ADS1115-DENEY-NOTU.md)
+
+
+## Ek teknik kaynak – Arduino Forum / analog çıkış ve osiloskop
+- [Arduino Forum – Problem with translate the values of voltage sensor ZMPT101B](https://forum.arduino.cc/t/problem-with-translate-the-values-of-voltage-sensor-zmpt101b/491534)
+- Kaynaktaki kod hataları, DC ofsetin osiloskopta görülmesi, potansiyometreyle genlik ayarı, kırpılma ve örnekleme zamanlaması değerlendirmesi: [Arduino Forum ZMPT101B Analog Çıkış Ölçüm Deney Notu](datasheets/ARDUINO-FORUM-ZMPT101B-ANALOG-CIKIS-OLCUM-DENEY-NOTU.md)
+- Forumdaki ölçümler ve devre yorumları BERO kartında doğrulanmış sonuç değildir. İlk test güvenli, galvanik olarak izole düşük gerilimli AC kaynakla yapılacaktır.
