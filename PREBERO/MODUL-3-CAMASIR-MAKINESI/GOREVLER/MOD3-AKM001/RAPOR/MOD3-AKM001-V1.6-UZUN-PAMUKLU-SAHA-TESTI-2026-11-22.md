@@ -74,16 +74,17 @@ Bu görev PF ölçüm sistemi geliştirmemiştir. ZMPT101B + SCT013 ile ayrı PF
 - Kullanıcının 1 saniyelik hizalanmış analiz grafiği ve ekran görüntüsü: 2026-11-22 tarihli konuşma ekleri.
 - Bu rapordaki bağımsız eşleştirme: CSV'deki zaman damgaları Europe/Istanbul saatine çevrildi; her ESP32D2 akım örneği için en yakın PZEM akım örneği ±2,5 saniye içinde eşleştirildi.
 
-## 9. Ek doğrulama için ısıtma bloğunun seçilmesi – 2026-11-22
+## 9. Ek pratik kontrol: ısıtma evresinde pens ampermetre – 2026-11-22
 
-Mevcut saha kaydındaki 17:24:12–17:38:56 ısıtma bloğu, SCT013 30A/1V üretici nominal eğrisi ile BERO V1.6/ADS1115 zincirini bağımsız kontrol etmek için aday zaman aralığı olarak belirlendi.
-
-- PZEM akımı: yaklaşık 8.28 A.
-- Raporlanan BERO − PZEM ortalama farkı: yaklaşık -0.109 A; farktan türetilen BERO değeri yaklaşık 8.17 A.
+Bu görev kapalı kalır. Mevcut kayıttaki ısıtma bloğu, daha sonra yapılacak basit bir bağımsız akım kontrolü için referans alınmıştır:
+- Zaman: 17:24:12–17:38:56.
+- PZEM: yaklaşık 8.28 A.
+- BERO V1.6: raporlanan ortalama farktan türetilen yaklaşık 8.17 A.
 - Güç: yaklaşık 1.81 kW.
 
-Ek saha kontrolünde aynı/benzer kararlı ısıtma yükünde AC True-RMS pens ampermetre ile tek iletken üzerinden akım alınması; pens, PZEM ve BERO değerlerinin aynı zaman aralığında karşılaştırılması planlanır. Pensin marka/modeli, AC akım aralığı ve doğruluk bilgisi kaydedilmelidir. Mevcut veri dosyasında bu ek pens ölçümü bulunmamaktadır; geçmiş kayda ölçülmüş bir pens değeri eklenmemiştir.
+Benzer bir uzun pamuklu programda ısıtma evresinin kararlı bölümünde pens ampermetreyle tek iletken üzerinden akım okunması yeterlidir. Pens sonucu mevcut PZEM ve BERO değerleriyle karşılaştırılır. Bu, ticari cihaz doğrulaması veya laboratuvar kalibrasyonu değil; yaklaşık 8 A çalışma noktasında pratik çapraz kontroldür.
 
-YHDC grafiğinde 6 A/0.1994 V ve 12 A/0.3995 V noktaları arasından 8.28 A için yaklaşık 0.2754 V RMS ara değeri hesaplanır. BERO zincirindeki ham ct_clamp RMS gerilimi eşzamanlı alınabilirse doğrudan karşılaştırma yapılabilir. Pens ≈ PZEM ≈ BERO uyumu, bu saha çalışma noktasında BERO akım sonucunu destekler; üretici nominal gerilim eğrisinden fark ise sensör örneği ve/veya analog zincirin etkin hassasiyet farkına işaret edebilir. Tek nokta tüm aralığı doğrulamaz.
+Pens yaklaşık 8 A civarında sonuç verirse PZEM ve BERO saha okumalarını destekler. Belirgin fark varsa aynı kararlı evrede tekrar kontrol edilir. Tek nokta tüm akım aralığını doğrulamaz ve üretici eğrisinden farkın sensör örneğinden mi yoksa analog ölçüm zincirinden mi kaynaklandığını tek başına belirlemez.
 
-Bu ek plan, MOD3-AKM001'in kapanış kararını değiştirmez; ayrı doğrulama notudur. V1.6 K(x) katsayıları için değişiklik kararı alınmamıştır.
+Mevcut CSV'de pens değeri yoktur; sonuç eklenmiş gibi gösterilmemiştir. Ölçüm henüz yapılmadı. V1.6 K(x) değiştirilmez.
+
