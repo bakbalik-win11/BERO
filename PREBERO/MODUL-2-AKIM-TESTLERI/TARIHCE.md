@@ -183,3 +183,13 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - Katsayı geçmişi raporunun başına iki bölgeli planın V1.6 ile kapandığı uyarısı eklendi; eski katsayılar tarihsel kayıt olarak bırakıldı.
 - V1.6 raporunda 23 (ana kademeli zaman serisi), 21 (ideal K noktaları) ve 22 (1:1 karşılaştırma grafiği lejantı) sayımları ayrı analiz görünümleri olarak tanımlandı. Ham CSV yeniden eşleştirilmediği için bu sayımlar arasında birebir eşleme doğrulanmış değildir.
 - Ham CSV ve PNG'lerin GitHub'a fiziksel dosya olarak eklenmesi hâlâ açık arşiv işidir; rapor bunların depoda olduğunu iddia etmez.
+
+
+### 2026-11-22 – MOD2-GRV001 masaüstü prototip görevi kapatıldı
+
+- **Çalışma / deneme:** ESP32D2 + ADS1115 No.10 + SCT013 30A/1V masaüstü prototipinde geniş akım aralığında farklı ev yükleri ve yük kombinasyonları denendi; V1.6 tek fonksiyon kalibrasyon modeli referans olarak kabul edildi.
+- **Gözlenen sonuç:** Masaüstü prototip, akım ölçüm zincirinin geliştirilmesi ve gerçek cihaz modüllerine aktarılması için belirlenen amacını yerine getirdi.
+- **Edinilen tecrübe:** Yükleri masaüstünde kontrollü ve kombinasyonlu biçimde denemek, gerçek cihazlarda izleme mantığına geçmeden önce ölçüm zinciri ve kalibrasyon yaklaşımını hazırladı.
+- **Teknik karar:** MOD2-GRV001 kapatıldı. 60 W tekrar testi, yeni yük kombinasyonu ve uzun süreli masaüstü gerçek kullanım gözlemi iptal edildi.
+- **Sonraki aşama:** Gerçek kullanım denemeleri Modül 3 çamaşır makinesi ve Modül 4 bulaşık makinesi görevlerinde yapılacak. Bunlar Modül 2'nin açık işleri değildir.
+- **İlgili kayıtlar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`; V1.6 YAML ve doğrulama raporu kendi sürüm klasöründedir.
