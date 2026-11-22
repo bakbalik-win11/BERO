@@ -29,7 +29,9 @@
 #
 # BEKLENEN:
 # - "BERO SCT Ham RMS Gerilimi" her ct_clamp güncellemesinde yayınlanır.
-# - ct_clamp update_interval 1s olduğundan ham RMS yaklaşık 1 Hz kaydedilir.
+# - ct_clamp on_raw_value yaklaşık 1 Hz yayın tetikler.
+# - HA history CSV last_changed alanı aynı durum tekrarlarını ayrı ayrı
+#   göstermeyebilir; tam örnek sıklığı için last_updated/event kayıtları gerekir.
 # - "BERO Akim Sensoru" mevcut V1.6 kurallarıyla yayınlanmaya devam eder.
 # - Düzeltilmiş akım <= 0.030 A ise mevcut akım sensörü 0.000 A gösterir.
 # - Ham RMS sütunu, 30 mA eşiğinden bağımsız olarak küçük sinyalleri gösterir.
@@ -46,9 +48,17 @@
 # - SCT yalnızca yalıtılmış tek iletkeni kavramalıdır.
 # - ESP32/ADS1115 GND şebeke gerilimine bağlanmamalıdır.
 #
-# DURUM:
-# Yeni teşhis YAML'ı. V1.6 ana dosyası değiştirilmemiştir.
-# Bu dosya henüz ESPHome üzerinde derlenmedi veya donanımda denenmedi.
+# DURUM / SAHA TESTİ – 2026-11-22:
+# - ESPHome 2026.11.0 ile derlenmiş ve ESP32D2 üzerinde çalıştırılmıştır.
+# - API bağlantısı ve ADS1115 0x48 I2C taraması başarılıdır.
+# - history (39)(1).csv içinde yük sırasında 0.00342–0.00363 V
+#   ham RMS değerleri ve bunlarla matematiksel olarak eşleşen 0.1086–0.1150 A
+#   akım yayınları görülmüştür.
+# - Boşta 0.000500 V kaydı yaklaşık 0.01610 A'ya karşılık gelir;
+#   30 mA eşiği nedeniyle ana akım sensörü 0.000 A yayınlar.
+# - Ham RMS -> V1.6 akım matematiği 13 eşleşmede doğrulanmıştır.
+# - Fiziksel ölçüm doğruluğu ve PZEM ile farkın nedeni henüz doğrulanmamıştır.
+# V1.6 ana YAML dosyası değiştirilmemiştir. Ayrıntılı analiz LOGS altındadır.
 # ============================================================
 
 esphome:
