@@ -347,6 +347,21 @@ Pens ampermetre kontrolü **öneri aşamasındadır; henüz gerçekleştirilmiş
 - [YHDC 30A/1V – V1.6 K(x) karşılaştırma raporu](YHDC-30A-1V-GRAFIGI-V1.6-KX-KARSILASTIRMA-2026-11-22.md)
 - [Karşılaştırma grafiği (SVG)](YHDC-30A-1V-GRAFIGI-V1.6-KX-KARSILASTIRMA-2026-11-22.svg)
 
+## 10.9.1 Laboratuvar ve saha koşullarının farkı – 2026-11-22
+
+Üretici karakteristik eğrisi kontrollü laboratuvar koşullarında oluşturulmuş referans veri olarak değerlendirilir. Kullanıcının paylaştığı test yöntemi bağlamına göre üretici tarafında primer akımı bir akım üreteciyle oluşturulmaktadır. Ancak erişilebilen YHDC SCT013-030 ürün spesifikasyonu; nominal giriş/çıkış, doğruluk, doğrusallık ve frekans aralığını listelerken karakteristik eğrinin test kaynağını, uygulanan dalga şeklinin bozulma seviyesini, test frekansını ve diğer ayrıntılı laboratuvar koşullarını açıkça tarif etmemektedir. Bu nedenle akım üreteci bilgisi proje notunda kullanıcı tarafından aktarılan test yöntemi bağlamı olarak tutulur; veri sayfasından bağımsız olarak doğrulanmış ayrıntı gibi sunulmaz.
+
+BERO saha koşulları farklıdır:
+- Gerçek şebeke gerilimi, laboratuvar kaynağının geriliminden farklı olabilir.
+- Yükün türü, güç elektroniği ve çalışma modu primer akımının sinüs biçimini ve harmonik içeriğini değiştirebilir.
+- Akım trafosunun gördüğü asıl büyüklük primer akımdır. Şebeke gerilimi farkı tek başına CT oranının değiştiğini kanıtlamaz; ancak bağlı yükün çektiği akımı ve dalga şeklini etkileyebilir.
+- Gerçek dalga şekli, frekans bileşenleri ve ölçüm cihazlarının RMS hesap yöntemi farklıysa üretici laboratuvar eğrisiyle saha sonucu birebir aynı olmak zorunda değildir.
+
+Bu nedenle üretici grafiğindeki yaklaşık %10,4 eğim/ölçek farkı tek başına BERO kalibrasyon hatası veya sensör kusuru olarak yorumlanmaz. Üretici verisi nominal/laboratuvar karakteristiğini; BERO K(x) ise kendi SCT013 örneği, ADS1115 ve yazılım zincirinin gerçek saha koşullarındaki ampirik davranışını temsil eder.
+
+Planlanan basit pens ampermetre kontrolünün amacı laboratuvar deneyini yeniden üretmek değildir. Çamaşır makinesinin ısıtma evresinde, gerçek şebeke koşullarında yaklaşık 8 A için PZEM ve BERO sonucunu bağımsız akım okumasıyla kontrol etmektir. Pens sonucu PZEM ve BERO'yu desteklerse bu gerçek kullanım koşulunda yeterli pratik güven sağlar; üretici laboratuvar eğrisiyle farkın tek başına nedenini belirlemez.
+
+
 ## 10.10 MOD3 çamaşır makinesi ısıtma bloğunda basit pens kontrolü – 2026-11-22
 
 MOD3-AKM001 uzun pamuklu saha kaydındaki ısıtma bloğu, BERO ölçümünü pratik biçimde bağımsız kontrol etmek için seçilmiştir:
