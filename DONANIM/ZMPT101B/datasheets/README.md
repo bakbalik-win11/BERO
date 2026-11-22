@@ -21,3 +21,9 @@ Kullanıcı tarafından sağlanan `ZMPT101B.PDF` dosyası, **ZMPT101B (ZMPT107) 
 - [DataCaptureControl – ZMPT101B AC Voltage Transformer Sensor Module](https://datacapturecontrol.com/articles/io-components/sensors/voltage/zmpt101b-ac-voltage-transformer-sensor-module)
 - Makale, LM358'li hazır modülün pinlerini, kart devresini ve RMS kalibrasyon yöntemini açıklar.
 - Teknik değerlendirme: [ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md](ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md)
+
+
+## Arduino Forum – ZMPT101B + ADS1115 deney tartışması
+- [Kaynak başlık](https://forum.arduino.cc/t/using-zmpt101b-with-ads1115/1434976)
+- Kütüphane arayüzü, ham ADS1115 örnekleme, örnekleme hızı ve faz kayması tartışmasının BERO açısından özeti: [ARDUINO-FORUM-ZMPT101B-ADS1115-DENEY-NOTU.md](ARDUINO-FORUM-ZMPT101B-ADS1115-DENEY-NOTU.md)
+- Forum mesajlarındaki test sonuçları ve teknik yorumlar kullanıcıya/kuruluma özgüdür; BERO donanımında doğrulanmış sonuç olarak kabul edilmez.
