@@ -659,3 +659,17 @@ Log: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/LOG/V1.2-UNKNOWN-Z
 Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/RAPOR/V1.2-UNKNOWN-ZERO-ILK-DOGRULAMA-2026-11-22.md`
 
 **Durum:** V1.2 yüksüz-yüklü-yeniden yüksüz işlevsel testi başarılı. Uzun süreli test ve ESP32 kapalıyken unavailable davranışı ayrıca doğrulanacak.
+
+
+## 2026-11-22 – V1.3 20 mA yayın filtresi: derleme ve gece gözlemiyle kapatıldı
+
+- **Kod:** `V1.3-TEST-A0A1-UNKNOWN-ZERO-20MA-FILTRE`.
+- **Derleme/çalışma:** Kullanıcı V1.3 kodunun derlendiğini ve çalıştığını bildirdi.
+- **Gözlem:** Filtre gece boyu gözlemlendi. Kullanıcı, 20 mA yayın filtresinin ihtiyacı karşıladığını belirterek bu çalışmayı kapattı.
+- **Filtre davranışı:** ESP32 çevrimiçi iken NaN veya 0.020 A ve altındaki değerler HA'ya 0.000 A; 0.020 A üzerindeki değerler ölçülen değer olarak yayınlanır.
+- **Sınır:** Bu kapanışta sayısal gece logu/CSV paylaşılmadı. Sayısal kararlılık, eşik çevresi davranışı veya uzun dönem güvenilirlik metriği eklenmemiştir.
+- **Korunanlar:** V1.2 ve önceki çalışan YAML'ler değiştirilmedi. K=27.59 ve ct_clamp 5 mA alt eşiği korundu.
+- **Durum:** V1.3 20 mA filtre işi kapatıldı. Bu, MOD2-GRV001 görevinin tamamlandığı anlamına gelmez.
+- **Rapor:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.3/RAPOR/V1.3-20MA-FILTRE-DERLEME-VE-GECE-GOZLEMI-2026-11-22.md`
+
+**Sıradaki aktif çalışma:** 1.5 A altı ve üstü için iki bölgeli katsayı yönteminin planlanması ve ardından kontrollü ölçüm.
