@@ -304,3 +304,15 @@ Kullanıcı kararı: 1,5 A altı ve üstü için ayrı katsayılar çalışılac
 
 
 **Bir sonraki oturum:** Önce katsayıları bulma yöntemi planlanacak; test yükleri/noktaları, ölçüm ve eşleştirme süresi, tekrar sayısı, katsayı hesabı ve 1,5 A geçişi netleştirilecek. Bu planlama tamamlanmadan fiziksel bağlantı değişikliği veya ölçüm başlatılmayacak.
+
+
+## 2026-11-22 – 42 W biassız ADS1115 No.10 deneyi
+
+- Kaynak: kullanıcı CSV'si `42w ads-10.csv`, 501 satır.
+- Kullanıcı teyidi: bias yok; 0,02 A filtreli son YAML kullanıldı (dosya adı/sürümü henüz kayda alınmadı).
+- SCT (n=320) ortalama 0.153884 A, std. sapma 0.002587 A, CV %1.68.
+- PZEM akım (n=14) ortalama 0.187714 A; PZEM güç (n=49) ortalama 42.4245 W.
+- ±2 saniye zaman eşleştirmesi: 14 çift; eşleşmiş SCT ortalaması 0.154787 A; ön katsayı K≈33.46; eşleşmiş çift MAPE %17.55.
+- PZEM güç kayıtları 42.0–42.9 W aralığında kalmıştır. SSR/BERO dijital OFF/ON kayıtları fiziksel yükün kesildiğini göstermediğinden veri dışlama nedeni yapılmadı.
+- **Karar:** K=27.59 korunur; YAML değiştirilmez. K≈33.46 yalnızca ön sonuçtur; düşük bölge ortak katsayısı için diğer yüklerle birlikte değerlendirilecek.
+- Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/42W-ADS1115-NO10-2026-11-22.md`.
