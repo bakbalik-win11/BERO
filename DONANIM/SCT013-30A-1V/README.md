@@ -116,3 +116,49 @@ Bağlantı yenilendikten sonra gürültünün görünmesi, ilk gözlemin sensör
 - **Kullanıcı gözlemi:** Pinlerin tam oturmaması ve bağlantı yenilenince gürültünün görülmesi.
 - **Doğrulanmamış:** Gürültünün genliği, spektrumu, sürekliliği ve fiziksel kaynağı.
 - **Karar:** Önceki sessiz bağlantı gözlemi, SCT013 gürültü tabanı veya ADC noise-floor kanıtı olarak kullanılmayacaktır.
+
+
+## 10.2 V1.6 kodundaki filtrelerin kapsamı – 2026-11-22 açıklaması
+
+Kullanıcı, bağlantı yenilemesi sonrasında gürültü göründüğünü belirtirken mevcut kodda filtre bulunduğunu hatırlattı. Depodaki MOD2-GRV001/V1.6/V1.6-TEST-A0A1-TEK-FONKSIYON-KX-30MA.yaml dosyası incelendi.
+
+V1.6 içindeki ilgili işlemlerin gerçek kapsamı:
+
+1. ct_clamp:
+   - ADS1115 ham diferansiyel okumasından 200 ms sample_duration penceresinde RMS akım büyüklüğü üretir.
+   - Bu bir RMS pencereleme/ölçüm işlemidir; genel amaçlı düşük geçiren veya hareketli ortalama gürültü filtresi olarak değerlendirilmemelidir.
+2. calibrate_linear:
+   - Ölçüm değerine baz ölçek uygular (1.0 -> 27.59).
+   - Gürültü bastırma filtresi değildir.
+3. Lambda:
+   - Üstel K(x) düzeltmesini uygular.
+   - NaN veya negatif/değersiz akımı sıfırlar.
+   - Gürültüyü zamana göre yumuşatmaz.
+4. Template yayın sensörü:
+   - Düzeltilmiş akım <= 0.030 A ise Home Assistant'a 0.000 A yayınlar.
+   - Bu, 30 mA altı yayın eşiğidir; 30 mA üzerindeki dalgalanmaları süzmez.
+5. update_interval: 1s:
+   - Sonucun güncellenme aralığıdır; tek başına filtreleme yapmaz.
+
+Dolayısıyla “kodda filtre var” ifadesi doğrudur; fakat V1.6'daki filtre bloğu esas olarak kalibrasyon/ölçekleme ve 30 mA altını sıfıra alma mantığıdır. Gürültü bastırma veya zaman serisi yumuşatma garantisi vermez. Bağlantı teması düzeltildikten sonra ölçümün görünür hale gelmesi, önceki sessiz okumanın güvenilir noise-floor ölçümü olmadığını destekler; ancak yeni görülen gürültünün kaynağını tek başına belirlemez.
+
+### Ekli Home Assistant geçmiş CSV'sinin sınırı
+
+Kullanıcının 2026-11-22 tarihinde paylaştığı history (37)(1).csv dosyası incelendi:
+- Toplam 680 satır / 3 sütun.
+- PZEM gerilim sensörü: 633 kayıt.
+- PZEM frekans sensörü: 41 kayıt.
+- sensor.esp32d2_bero_akim_sensoru: yalnızca bir kayıt, 0.0 A (2026-11-22 17:00:00 UTC).
+- Akım sensörü için zaman serisi veya gürültü dağılımı bulunmuyor.
+
+Bu CSV, bağlantı yenilemesi sonrası SCT gürültüsünün büyüklüğünü/kararlılığını hesaplamak için yeterli değildir. Bu nedenle bu dosyadan akım gürültüsü metriği çıkarılmamıştır.
+
+### Sonraki ölçümde kaydedilecekler
+
+- Bağlantı ve pinlerin tam oturduğu fiziksel olarak kontrol edilsin.
+- Akım sensörünün yüksüz ham/işlenmiş verisi yeterli süre boyunca kaydedilsin.
+- 30 mA yayın eşiği nedeniyle HA'ya sıfırlanan bölge ile iç ölçüm değeri birbirinden ayrılsın.
+- Mümkünse V1.6 iç sensör değeri (bero_akim_a0_a1_internal) ve yayın sensörü birlikte kaydedilsin.
+- Gürültü kaynağına karar vermeden önce SCT fişi/kablosu, ADC girişleri, bias/topoloji ve ölçüm yazılımı ayrı ayrı kontrol edilsin.
+
+Durum: Kod kapsamı incelendi; CSV akım zaman serisi sağlamıyor; yeni gürültü için nicel sonuç henüz yok.
