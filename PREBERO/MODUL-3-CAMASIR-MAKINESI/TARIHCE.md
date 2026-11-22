@@ -45,3 +45,11 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Teknik karar:** Sensörler kendi uygun örnekleme hızlarında çalışacak; pencere bazlı özetler ortak zaman damgası/tick ile tek veri kaydında birleştirilecek. Örnek özellikler akım RMS, ses RMS/peak/ZCR ve üç eksenli titreşim RMS değerleridir.
 - **Durum:** Taslak mimari; örnekleme hızları, ADC/pin planı, kaynak yükü, veri şeması ve aktarım henüz kesin değil. Fikirler netleşmeden Modül 3 imalatına geçilmeyecek.
 - **İlgili kayıt:** `PREBERO/ORTAK-MIMARI/MODUL-3-4-ORTAK-ZAMAN-PENCERELI-VERI-TOPLAMA-MIMARISI.md`.
+
+
+## 2026-11-22 – Modül 3 Step 1: masaüstünden uzatma kablosuyla akım okuma
+
+- **Çalışma:** Çamaşır makinesi uzatma kablosu üzerinden beslendi; akım ölçüm düzeneği masa üzerinde/uzatma hattı üzerinden makinenin çektiği akımı okudu.
+- **Gözlenen sonuç:** Kullanıcı bu ilk akım okuma adımını başarılı olarak onayladı (Step 1 OK).
+- **Kapsam:** Bu adım akım ölçüm yolunun makine çalışırken kullanılabildiğini gösteren ilk kurulum/doğrulama adımıdır. Ses ve titreşim entegrasyonu, ortak zaman pencereli çoklu sensör mimarisi ve nihai modül imalatı bu adımda tamamlanmış değildir.
+- **Teknik karar:** Step 1 tamamlandı olarak işaretlendi. Modül 3/4'ün nihai imalatına geçiş için ortak mimari tasarım kapısı geçerliliğini korur.
