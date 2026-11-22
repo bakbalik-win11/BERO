@@ -2,7 +2,7 @@
 
 - Tarih: 2026-11-22
 - Kapsam: SCT013 akım ölçümü, ZMPT101B gerilim dalga biçimi, gerçek PF hesabı
-- Durum: Araştırma açık; sayısal PF hesaplayan donanım zinciri henüz doğrulanmadı.
+- Durum: Uzun vadeli / isteğe bağlı araştırma. Ana proje önceliği değildir; sayısal PF hesaplayan donanım zinciri henüz doğrulanmadı.
 - Bu not, bugünkü V1.6 grafiğini, düşük PF deneylerini ve çamaşır makinesi saha kaydını birlikte konumlandırır. Farklı deney amaçları birbirine karıştırılmamalıdır.
 
 ## 1. Bugün depoya eklenen V1.6 kalibrasyon/doğrusallık grafiği
@@ -115,3 +115,17 @@ Bu nedenle +12.25% sonucu yüksek akım ölçüm zinciri sorunu gibi ele alınma
 Çamaşır makinesi uzun pamuklu programında ısıtma bloğunda yaklaşık 8.28 A ve PF≈1.00; düşük/orta akımlı motor/yıkama bölümlerinde PF yaklaşık 0.53–0.73 gözlenmiştir. Bu, farklı PF çalışma koşullarının gerçek saha örneğidir; ancak akım seviyesi ve yük modu da değiştiğinden bağımsız PF nedenselliği kanıtı değildir.
 
 **Araştırma yönü:** V1.6'nın yüksek PF koşullarındaki geniş aralık uyumunu koru. Yaklaşık 15 W altını mevcut uygulama için önceliksiz tut. PF çalışması, aynı/benzer akım seviyesinde farklı PF veya kontrollü akım dalga biçimleriyle düşük PF davranışını ayırmaya odaklansın. Genel yüksek akım kalibrasyonunu yeniden açma.
+
+
+## 10. PF araştırmasının proje önceliği – kullanıcı kararı (2026-11-22)
+
+Kullanıcı, PF çalışmasının proje içindeki önceliğini netleştirdi:
+
+- Günün ana başarısı, sabah değerlendirilen bölgesel katsayı yaklaşımından aynı gün içinde pratik çalışma aralığı için tek K(x) fonksiyonuna ulaşılmasıdır. Kullanıcı bu sonuçtan memnundur.
+- V1.6'nın PF≈1 koşullarındaki geniş aralıklı uyumu ve sağlıklı akım motifi ana çıktı olarak korunacaktır.
+- PF araştırması BERO'nun şu anki ana hedefi değildir. ZMPT101B + SCT013 ile gerçek PF araştırması ancak yeterince uzun zaman ve uygun kaynak olduğunda sürdürülebilecek uzun vadeli/isteğe bağlı bir çalışmadır.
+- PF konusu, Modül 3/4'ün ana akım, ses, titreşim ve ortak zamanlı veri toplama hedeflerini geciktirmemelidir.
+- Bu araştırma, V1.6'nın tek fonksiyonlu başarısını yeniden tartışmaya açmaz; MOD2-GRV001 kapalı kalır.
+- Yaklaşık 15 W altı kullanıcı tarafından mevcut uygulama hedefi bakımından önceliksiz kabul edilmiştir. Bu bölge için K(x) tekrar parçalı/bölgesel hale getirilmeyecektir.
+
+**Çalışma ilkesi:** Önce çalışan ve kabul edilmiş tek fonksiyonlu sistemi koru. PF araştırmasını zaman ve kaynak elverirse, güvenli ve ölçülebilir deneylerle yavaşça sürdür; ana proje yolunun önüne geçirme.
