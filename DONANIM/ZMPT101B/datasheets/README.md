@@ -39,3 +39,9 @@ Kullanıcı tarafından sağlanan `ZMPT101B.PDF` dosyası, **ZMPT101B (ZMPT107) 
 - [Kaynak başlık](https://forum.arduino.cc/t/zmpt101b-problem-with-measure-ac-voltage/1219148)
 - Düşük girişte 4,8 V civarında takılma, hassasiyet katsayısı, kütüphane kalibrasyonu ve Arduino ADC kalibrasyonu ayrımı: [ARDUINO-FORUM-ZMPT101B-DUSUK-GERILIM-OLCUM-DENEY-NOTU.md](ARDUINO-FORUM-ZMPT101B-DUSUK-GERILIM-OLCUM-DENEY-NOTU.md)
 - Forum sonucu BERO kartının alt ölçüm sınırı değildir; düşük gerilim davranışı deneyle belirlenecektir.
+
+
+## Home Assistant Community – ZMPT101B, ESP32 ADC ve ADS1115 bağlamı
+- [Kaynak mesaj #12](https://community.home-assistant.io/t/measure-mains-voltage-with-zmpt101b-and-ads1115/360162/12)
+- ESP32 GPIO33/ADC1 denemesi, ADC2/Wi-Fi gerekçesi, AC'de kararsız ham okumalar, DC testinin sınırlılığı, RMS filtresi ve kalibrasyon katsayısının BERO açısından değerlendirmesi: [HOME-ASSISTANT-COMMUNITY-ZMPT101B-ESP32-ADC-DENEY-NOTU.md](HOME-ASSISTANT-COMMUNITY-ZMPT101B-ESP32-ADC-DENEY-NOTU.md)
+- Bu mesajdaki deney ADS1115 ile yapılmamıştır; kullanıcı ESP32 dahili ADC'sini denemektedir.
