@@ -1,5 +1,8 @@
 # MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
 
+> **Güncel durum – 2026-11-22:** Aşağıdaki ilk kurulum/pin/katsayı açıklamalarının bir bölümü önceki ADS1115 No.1 ve bias deney planından kalmadır; güncel aktif düzen için bu not ve `PREBERO/DURUM.md` esas alınır. Aktif ölçüm düzeneği ESP32D2 + ADS1115 No.10 (0x48), SCT013 30A/1V, A0–A1 diferansiyel, GPIO21 SDA/GPIO22 SCL ve K=27.59'dur. V1.2 sıfır-yük-sıfır geçişi logla doğrulandı; V1.3 20 mA filtresi kullanıcı bildirimiyle derlenip gece gözlemlendi ve kapatıldı. Yeni tasarımda bias kullanılmayacak; 1.5 A altı ampullerle, üstü ütü/tost/kettle kaynatma moduyla kalibre edilecek. Yeni kalibrasyon verisi ve katsayılar henüz yok; görev açık, K=27.59 korunuyor.
+
+
 ## Amaç
 
 SCT013 30A/1V akım sensöründen gelen sinyali ADS1115 ara entegresi üzerinden okuyarak ESP32-D tabanlı masaüstü düzende akım davranışını incelemek ve ölçüm katsayılarını deneysel gözlemlerle belirlemek.
