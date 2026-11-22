@@ -312,3 +312,18 @@ fonksiyonu, bu deney düzeneğinin (SCT013-030, fiziksel bağlantı, ADS1115 No.
 Bölgesel katsayı geçişleri yerine tek ve sürekli fonksiyonun kabul edilmesi, test edilen pratik aralıkta daha tutarlı bir model sağlamıştır. Düşük uçtaki sınırlı hassasiyet bu kararın bilinen kullanım sınırı olarak korunur.
 
 Durum: Üretici belgesi ve BERO saha/kalibrasyon sonuçlarıyla yorumlandı; burada verilen mV/A alt seviye değerleri nominal oran hesabıdır, yeni donanım testi değildir.
+
+
+## 10.8 YHDC 30A/1V üretici grafiğinin BERO V1.6 K(x) ile karşılaştırılması – 2026-11-22
+
+Kullanıcının paylaştığı YHDC SCT013 aile grafik sayfasındaki SCT013(30A/1V) panelinin işaretli noktaları V1.6 ölçeği ve tek K(x) fonksiyonundan geçirildi. Nominal 6–30 A aralığında ortalama hesaplanan sapma -10.46% (aralık -10.60% ... -10.40%) çıktı. 36 A işaretli noktası üretici grafiğinde gösterildiği için tabloda/çizimde tutuldu, ancak 30 A nominal aralığın dışında olduğundan ortalamaya alınmadı.
+
+Bu sonuç, üreticinin yaklaşık 30 A/V nominal transfer oranı ile BERO V1.6'nın ampirik yüksek akım katsayısı 26.89 A/V arasında yaklaşık %10.4 ölçek farkı olduğunu gösterir. Bu, V1.6'nın kendi sensör/ADC zincirinde aynı hata bulunduğunu kanıtlamaz; üretici eğrisi ile BERO sisteminin kalibrasyon ölçeği farklı dayanaklara sahiptir. Bu karşılaştırma K(x) fonksiyonunu değiştirme gerekçesi değildir.
+
+Üretici grafiği 30A/1V için 6 A'dan başladığından 6 A altındaki davranış bu görselle karşılaştırılamaz. Grafik başlangıcının 6 A olması sensörün kesin alt sınırının 6 A olduğu anlamına gelmez. Düşük akımda sinyalin küçülmesi ve toplam ölçüm zincirinin göreli gürültü etkisi ayrı konudur.
+
+Hesap yöntemi, yedi noktanın tablosu, 6–30 A istatistiği ve yorum sınırları:
+- [Ayrıntılı karşılaştırma raporu](YHDC-30A-1V-GRAFIGI-V1.6-KX-KARSILASTIRMA-2026-11-22.md)
+- [Karşılaştırma grafiği (SVG)](YHDC-30A-1V-GRAFIGI-V1.6-KX-KARSILASTIRMA-2026-11-22.svg)
+
+Durum: Üretici grafik değerleri üzerinden matematiksel karşılaştırma yapıldı; yeni fiziksel BERO donanım testi yapılmadı.
