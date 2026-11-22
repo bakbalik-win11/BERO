@@ -18,7 +18,11 @@ SCT013 30A/1V akım sensöründen gelen sinyali ADS1115 ara entegresi üzerinden
 - SCT013 30A/1V sensör fotoğrafta görünmemektedir; model kullanıcı tarafından bildirilmiştir.
 - Fotoğraf fiziksel yerleşimi gösterir; kabloların pin eşleşmelerini, elektriksel değerleri veya sistemin çalıştığını kanıtlamaz.
 
-## Çalışma kapsamı
+## Güncel çalışma kapsamı
+
+Görevin başlangıçtaki donanım inceleme ve katsayı arayışı geçmişi korunur. Güncel kalibrasyon referansı V1.6 tek fonksiyon modelidir. İki bölgeli katsayı ve 1,5 A geçiş yaklaşımı kapatılmıştır. Bundan sonraki işler V1.6'yı değiştirmeden farklı yüklerde ve uzun süreli kullanımda doğrulamak ve ölçüm zincirini geliştirmektir.
+
+## Tarihsel başlangıç kapsamı
 
 1. ESP32-D ve shield masaüstü düzeneğini imal etmek.
 2. ADS1115 modülü ile ESP32-D arasındaki mevcut kabloların pin eşleşmelerini doğrulamak.
@@ -149,11 +153,12 @@ ADS1115 girişleri GND − 0.3 V ile VDD + 0.3 V sınırları içinde kalmalıd�
 
 Bu bölüm mevcut tek-kanal Kod 0 bağlantı ve ayar tanımını kaydeder. İki SCT'li bias karşılaştırması ayrı bir deney düzenidir; henüz fiziksel olarak kurulmuş veya doğrulanmış sayılmaz.
 
-## Çıktılar
+## Yetkili çıktı düzeni ve kaynak ayrımı
 
-- Her kod sürümünün YAML dosyası, logları ve raporları aynı görev klasörünün altındaki kendi sürüm klasöründe tutulur.
-- Test verileri görev klasöründeki ortak `VERI/` alanında saklanır.
-- Bir sürümün test kanıtları başka bir sürümün kayıtlarıyla karıştırılmaz.
+- V1.0–V1.6 klasörleri sürüm bazlı kaynaklardır; her sürümün YAML dosyası ve kendi LOG/RAPOR kanıtları burada tutulur.
+- Görev kökündeki RAPOR/, RAPORLAR/ ve KOD/ klasörleri tarihsel/ortak kayıtları barındırır; V1.6 için yetkili YAML ve doğrulama raporunun yerine geçmez.
+- Görev kökündeki VERI/ görev genelindeki ham kaynak verilerin ortak alanıdır. Belirli sürüm doğrulamasına ait veri, raporda sürümle açıkça ilişkilendirilir.
+- Bir sürümün test kanıtları başka sürümün sonucu olarak sunulmaz.
 
 ## Tamamlanma ölçütü
 
