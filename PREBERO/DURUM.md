@@ -340,3 +340,11 @@ Kullanıcı kararı: 1,5 A altı ve üstü için ayrı katsayılar çalışılac
 - 100 W CSV'si bias, kanal ve YAML dosya/sürümünü doğrudan tanımlamaz; bunlar ayrıca teyit edilmelidir. PZEM güç ortalaması nominal 100 W etiketinden yüksek, 107.47 W'tır.
 - **Karar:** K=27.59 korunur; YAML değiştirilmez. K≈30.90 ön sonuçtur; ortak katsayı belirlenmez.
 - Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/100W-ADS1115-NO10-2026-11-22.md`.
+
+
+## 2026-11-22 – Son birleşik CSV analizi
+
+- Kullanıcının sağladığı `150-42-57-100.csv` içindeki kararlı pencereler yeniden değerlendirildi: 42 W K≈33.58, 57 W K≈33.30, 100 W K≈30.65, 150 W K≈30.00.
+- 100 W penceresinde A0–A1 ilk yaklaşık 230 saniyede ~0.4309 A, devamında ~0.4183 A seviyesinde; PZEM her iki bölümde ~0.470 A. Tek pencere K≈30.65 bu iki alt seviyeyi birleştiriyor.
+- Bu sonuçlar yük bazlı ön katsayılardır. Bias ve YAML sürümü birleşik CSV'den teyit edilemedi. Tek ortak düşük bölge katsayısı seçilmedi; K=27.59 ve mevcut YAML korunuyor.
+- Ayrıntı: `MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150-42-57-100-BIRLESIK-KADEME-ANALIZI-2026-11-22.md`.
