@@ -123,3 +123,34 @@ Güvenlik: Pens, yalıtımı sağlam ve erişilebilir tek iletken üzerinde kull
 
 **Durum:** Basit pens kontrolü önerilmiştir; henüz yapılmış bir ölçüm değildir. V1.6 K(x) değiştirilmez. MOD3-AKM001'in kapalı görevi yeniden açılmaz; kontrol ayrı ek doğrulamadır.
 
+## 8. PowerUC ürün sayfası ve YHDC aile PDF'si – belge sınırları
+
+Kullanıcının sağladığı üretici ürün sayfası:
+- https://www.poweruc.pl/products/split-core-current-transformer-sct013-rated-input-5a-100a
+
+Sayfanın bağladığı YHDC markalı SCT013 aile PDF'si:
+- https://poweruc.com/wp-content/uploads/2023/07/2025040819322782.pdf
+
+İncelenen PDF'nin ilk sayfasında ve grafik sayfasında görülen açık bilgiler:
+- Çekirdek malzemesi ferrit.
+- Frekans aralığı 50 Hz–1 kHz olarak yazılmıştır.
+- SCT013-030 için rated input 30 A ve rated output 1 V verilmiştir.
+- Accuracy satırında `0.5/1%` yazmaktadır; bu gösterimin hangi doğruluk sınıfına, koşula veya model varyantına karşılık geldiği PDF'de açıklanmamıştır.
+- Elektriksel parametreler için açıkça “typical values” (tipik değerler) denmekte ve gerçek değerlerin ürünün fiilî ölçümüne tabi olduğu belirtilmektedir.
+- Grafiklerde SCT013 30A/1V için 6 A → 0.1994 V, 12 A → 0.3995 V, 15 A → 0.4997 V, 18 A → 0.5996 V, 24 A → 0.7997 V ve 30 A → 0.9994 V noktaları yer alır.
+
+### Test düzeneği konusunda ne açıklanmış?
+
+Bu ürün sayfası ve PDF; ölçümde kullanılan akım kaynağının tipini, primer akım dalga şeklinin sinüs saflığını/harmonik içeriğini, test yükünü, test sıcaklığını veya grafik noktalarının nasıl üretildiğini açıklamamaktadır. Kullanıcının üreticinin akım üreteciyle kontrollü test yaptığı yönündeki değerlendirmesi proje bağlamında not edilmiştir; ancak bağlantılı açık teknik belgeler bu cihazı ve test dalga şeklini açıkça tarif etmediğinden bağımsız olarak belgelenmiş bir şart gibi gösterilmemelidir.
+
+### Eski ve yeni belge değerleri birbirine karıştırılmamalı
+
+Daha önce incelenen 2015 tarihli SCT013-030 ürün spesifikasyonunun dağıtılmış kopyasında accuracy ±1% ve linearity ≤0.2% ifadeleri bulunuyordu. PowerUC'nin burada incelenen aile PDF'sinde ise Accuracy satırı `0.5/1%` şeklindedir ve ayrı bir linearity değeri verilmemiştir. PDF, `0.5/1%` ifadesinin anlamını açıklamaz. Bu nedenle belgelerden biri diğerine çevrilerek tek ve kesin bir doğruluk sınırı üretilemez; kaynak ve belge sürümleri ayrı tutulmalıdır.
+
+### BERO karşılaştırmasına etkisi
+
+Üreticinin kendi PDF'si elektriksel değerleri tipik değer olarak tanımladığı ve gerçek ürün değerini fiilî ölçüme bağladığı için, grafikteki yaklaşık 30 A/V karakteristiği her bir SCT örneği ve her gerçek şebeke/yük koşulu için değişmez bir saha transferi garantisi olarak okunmamalıdır. Gerçek şebeke gerilimi ve yük tipi primer akım dalga şeklini etkileyebilir; SCT doğrudan gerilim değil, kelepçelendiği iletkendeki akımı algılar. Bu nedenle kıyaslamada CT'nin gördüğü akım dalga şekli önemlidir.
+
+Yaklaşık -10.46% fark, yalnızca yayımlanan tipik karakteristik grafiği ile BERO'nun ampirik ADS1115/K(x) ölçeğinin matematiksel karşılaştırmasıdır. Bu farkın nedenini (sensör örneği, analog bağlantı/ölçek, dalga şekli veya diğer koşullar) bu belgeler tek başına belirlemez. MOD3 ısıtma evresinde planlanan basit pens kontrolü, gerçek kullanım koşulunda BERO ve PZEM'in akımını pratik olarak çapraz kontrol etmek içindir; üretici laboratuvar deneyini tekrar etmek değildir.
+
+Durum: PowerUC ürün sayfası ve YHDC aile PDF'si incelendi; PDF'nin ilk sayfası görüntü üzerinden kontrol edildi. PDF'de test kaynağı/dalga şekli açıklaması bulunamadı. BERO üzerinde yeni fiziksel ölçüm yapılmadı.
