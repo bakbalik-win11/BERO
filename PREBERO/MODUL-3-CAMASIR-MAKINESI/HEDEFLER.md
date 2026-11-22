@@ -33,3 +33,13 @@ Modül 3, Modül 4 ile ortak zaman pencereli çoklu sensör veri toplama mimaris
 - Bu aşamada nihai Modül 3 imalatı yapılmayacaktır. Deneyler sonucunda ses/titreşim ve akım tarafı birlikte çalışacak olgunluğa geldiğinde doğrulanmış yapı tek modülde toplanacaktır.
 
 **Step 2'nin hedefi:** Ses/titreşim verisinin bağımsız ESP üzerinden alınması, zaman/dilim bilgisiyle yayınlanması ve akım kayıtlarıyla eşleştirilebilirliğinin deneysel olarak gösterilmesidir. Nihai modül imalatı bu adımın kapsamında değildir.
+
+
+## PF ve dalga biçimi araştırmasına katkı – koşullu tasarım bileşeni
+
+Modül 3/4 saha deneyleri, cihazların farklı çalışma evrelerinde akım davranışı ve mevcutsa PF verisi sağlayarak Modül 2'nin dalga biçimi/PF etkisi araştırmasına katkıda bulunacaktır. Bu ilişki araştırma hedefidir; PF'nin ölçüm sapmasına neden olduğu henüz kanıtlanmış değildir.
+
+- ZMPT101B başlangıçta zorunlu sensör değildir. Modül 2 araştırmasında yararlı ve tekrarlanabilir sonuç verirse, Modül 3/4 deneylerinde doğrulanırsa ve işlemci/kaynak yükü uygun bulunursa nihai modüle eklenebilir.
+- PF için gerilim ve akım dalga biçimlerinin uygun zaman eşlemeli örneklenmesi gerekir; ZMPT101B tek başına PF üretmez.
+- Mevcut ESP32'nin CPU/RAM/örnekleme/yayın yükü deneyle ölçülür. Yetersiz kalırsa ESP32-P4 değerlendirilir; işlemci seçimi şimdilik açık karardır.
+- Nihai imalat, ses, titreşim, akımla senkronizasyon ve seçilirse PF katmanı deneylerle olgunlaştıktan sonra yapılacaktır.
