@@ -12,6 +12,7 @@
 - **Güncel kalibrasyon kararı:** 1.5 A altı katsayısı 150 W'a kadar ampullerle; 1.5 A üstü katsayısı ütü, tost makinesi ve kettle kaynatma moduyla belirlenecek. Laboratuvar hassasiyeti hedeflenmiyor; pratik ve tutarlı katsayı amaçlanıyor. PZEM yalnızca karşılaştırma referansıdır.
 - **Yeni kalibrasyon serisi:** Bias kullanılmayan bağlantı için ADS1115 AIN pinlerinin GND'ye göre mutlak gerilim sınırları önce doğrulanacak. Eski biaslı veri yeni seriyle karıştırılmayacak. Henüz yeni katsayı yok; K=27.59 değişmedi.
 - **Açık tasarım konusu:** 1.5 A tam sınırında katsayı seçimi ve yazılımsal bölge belirleme yöntemi, iki katsayı elde edildikten sonra çözülecek.
+- **Katsayı geçmişi raporu:** ADS1115 No.10 + SCT013 ölçüm zinciri için ayrı rapor açıldı. 100 W/150 W gibi her referans yükün katsayısı, hesap girdileri, YAML/kanal/sensör kimliği ve ileride donanım değişince karşılaştırma bilgisi burada tutulacak. Eski 150 W kayıtları yalnız tarihsel referans olarak ayrıldı; yeni biassız kalibrasyon verisi henüz yok. Rapor: `MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/RAPORLAR/KATSAYI-RAPORU-ADS1115-NO10-SCT013.md`.
 
 ## Deney geçmişi – kısa durum dizini
 
