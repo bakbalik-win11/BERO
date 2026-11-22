@@ -133,3 +133,17 @@ Claude'un Python analiz betiği sözdizimi kontrolünden ve sentetik g/h çalı�
 - [Faz 1 kod inceleme ve deney kararı](FAZ1/FAZ1-CLAUDE-KODU-GEMINI-INCELEMESI-2026-11-22.md)
 
 Arduino derlemesi, ESP32D2 yüklemesi ve ADS1115 fiziksel ölçümü henüz yapılmamıştır.
+
+
+## 2026-11-22 – PF araştırma durumu ve bugünkü V1.6 grafiği
+
+Bugün depoya eklenen [V1.6 kalibrasyon ve doğrusallık grafiği](../../PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/VERI/V1.6/v1.6-kalibrasyon-ve-dogrusallik.jpg), PF ≥0.90 ideal PF kalibrasyon noktaları ile PF=0.76 / 20.4 W düşük PF noktasını ayrı gösterir. Bu görsel PF düzeltme modeli değildir; düşük PF noktasının normal kalibrasyon grubundan ayrı tutulması gerektiğini gösteren deney görselleştirmesidir.
+
+Çamaşır makinesi uzun pamuklu saha kaydında PZEM PF, ısıtma bloğunda yaklaşık 1.00; düşük/orta akım motor/yıkama bölümlerinde yaklaşık 0.53–0.73 bandında gözlendi. Bu saha kaydı PF araştırması için anlamlı farklı çalışma durumları sunar, ancak PZEM PF değerleri ZMPT101B tabanlı gerçek PF ölçümü değildir ve SCT sapmasının nedenini tek başına kanıtlamaz.
+
+Ayrıca tek 8.5 W LED düşük PF tekrar deneyinde PZEM PF yaklaşık 0.66–0.67 ve SCT/PZEM oranı yaklaşık 1.81–1.83 bulundu; bu tek yük/PF çalışma noktası genel model için yeterli değildir. 100 W dimmer deneyinde PF düşerken SCT/PZEM farkı artmıştır, ancak dimmer dalga biçimini ve akım seviyesini de birlikte değiştirmiştir.
+
+Bütün saha bulguları ve ayrı deney kapsamları:
+[PF Araştırması – Güncel Durum ve Saha Verileri](PF-ARASTIRMA-GUNCEL-DURUM-2026-11-22.md)
+
+Teknik hedef değişmemiştir: PZEM PF'ye göre katsayı uydurmak değil, ZMPT101B gerilim ve SCT013 akım dalga biçimlerini güvenli ve zaman hizalı toplayıp P, Vrms, Irms, S ve gerçek PF hesaplamaktır. ADS1115'in örnekleme/zamanlama yeterliliği henüz onaylanmadı.
