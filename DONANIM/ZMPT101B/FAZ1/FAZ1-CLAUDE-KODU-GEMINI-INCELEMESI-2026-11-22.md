@@ -202,7 +202,7 @@ Python analiz dosyasında:
 - Gerçek ADC kaydı alınmadı.
 
 Sentetik testin tam özet logu ve yorumları:
-- [Faz 1 sentetik test logu – g/h ve frekans taraması](LOGS/SENTETIK-FAZ1-TEST-GVEH-2026-11-22.txt)
+- [Faz 1 sentetik test logu – g/h ve frekans taraması](LOGS/SENTETIK-FAZ1-TEST-G-H-2026-11-22.txt)
 
 ## 13. Arduino yakalama sketch'i – somut inceleme
 
