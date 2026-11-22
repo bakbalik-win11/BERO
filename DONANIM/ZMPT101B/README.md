@@ -120,3 +120,9 @@ PF araştırmasının amacı dalgayı yalnızca çizmek değil, SCT013 akım ve 
 ## Beş AI teknik değerlendirme yanıtının karşılaştırması
 Copilot, Google, Gemini ve Claude'un PF araştırması hakkındaki teknik yanıtları karşılaştırıldı; tahminler, teknik düzeltmeler, güvenlik notları ve birleştirilmiş ilk deney sırası:
 - [Dört AI Teknik Değerlendirmesi – Karşılaştırmalı BERO Notu](AI-TEKNIK-DEGERLENDIRME-KARSILASTIRMASI-2026-11-22.md)
+
+## Faz 1 – Claude yakalama/analiz kodu incelemesi
+Claude'un ESP32 yakalama sketch'i ve Python analiz betiği, Gemini'nin son uygulama senteziyle birlikte incelendi. Kodların mevcut durumu, sentetik test bulguları, donanım öncesi düzeltmeler ve güvenli deney sırası:
+- [Faz 1 Claude Kodu ve Gemini Sentezi İncelemesi](FAZ1/FAZ1-CLAUDE-KODU-GEMINI-INCELEMESI-2026-11-22.md)
+
+Bu taslaklar henüz Arduino derlemesinden veya gerçek ADS1115 donanım testinden geçmedi. Başarılı/kararlı firmware olarak kullanılmamalıdır.
