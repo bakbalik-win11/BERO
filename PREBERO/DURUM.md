@@ -4,14 +4,14 @@
 
 ## Yetkili güncel durum – 2026-11-22
 
-- **Aktif görev:** Modül 2 / MOD2-GRV001 – akım davranışı ve katsayı çalışmaları. Görev bütünü açık; V1.6 tek fonksiyon kalibrasyon modeli bu ölçüm zinciri için referans sürüm olarak kabul edildi.
+- **Modül 2 / MOD2-GRV001:** KAPANDI. Masaüstü prototipin geliştirme, geniş yük aralığı ve kombinasyon testleri tamamlandı; V1.6 tek fonksiyon kalibrasyon modeli referans olarak kabul edildi. Prototip, Modül 3 ve Modül 4'teki gerçek cihaz çalışmalarına teknik zemin oluşturdu.
 - **Mevcut referans ölçüm yolu:** ESP32D2 + ADS1115 No.10 (I²C 0x48) + SCT013 30A/1V, A0–A1 diferansiyel; GPIO21 SDA, GPIO22 SCL; 3.3 V besleme ve ortak GND.
 - **Referans kalibrasyon modeli:** K(x)=26.89+5.39·exp(-x/0.882); YAML'da K=27.59 baz ölçeği kullanılır ve Home Assistant yayın eşiği 30 mA'dir. V1.6 YAML ve doğrulama raporu kendi sürüm klasöründedir.
 - **Sıfır yayınlama:** V1.2 yüksüz → yük → yeniden yüksüz geçişi logla doğrulandı (0.000 A → yaklaşık 0.600–0.604 A → 0.000 A). Bu, kalibrasyon doğruluğu kanıtı değildir.
 - **20 mA filtre:** V1.3 derlendi/çalıştırıldı; kullanıcı gece boyu gözlemleyip yeterli buldu ve işi kapattı. Sayısal gece CSV/logu yok; performans metriği iddia edilmiyor. Rapor: `V1.3/RAPOR/V1.3-20MA-FILTRE-DERLEME-VE-GECE-GOZLEMI-2026-11-22.md`.
 - **Bias deneyleri:** Önceki biaslı/biassız testler tarihsel veri olarak korunuyor. Yaklaşık 0.47 A ve bazı yüklerde biaslı kolun PZEM'e daha yakın olduğu görüldü; yüksüz spike ve kararlılık sorunları da kaydedildi. Yeni tasarımda bias tercih edilmeyecek.
 - **Kalibrasyon kararı:** Önceki 1.5 A altı/üstü iki katsayılı ve parçalı geçiş planı V1.6 tam aralık tek fonksiyon modeliyle kapatıldı. Eski plan tarihsel kayıt olarak korunur; aktif gereksinim değildir. PZEM yalnızca karşılaştırma referansıdır.
-- **Açık doğrulama konuları:** Farklı yük karakterlerinde ve uzun süreli kullanımda V1.6 davranışı. Yaklaşık 60 W seviyesindeki -%4,89 sapma için tekrar test yapılması kullanıcı kararıyla iptal edildi; bu konu aktif hedef değildir. Yaklaşık 15 W noktası SCT013'ün pratik alt ölçüm sınırına yakın kabul edilir; formül bu nokta için yeniden şekillendirilmeyecektir. Düşük PF noktası ayrı araştırma konusudur.
+- **Açık iş:** MOD2-GRV001 kapsamında ek yük karakteri, 60 W tekrar testi veya uzun süreli masaüstü kullanım doğrulaması yoktur. 60 W tekrar testi iptal edilmiştir. Yaklaşık 15 W noktası SCT013'ün pratik alt ölçüm sınırına yakın gözlem olarak tarihsel kayıttır. PF araştırması ayrı ve isteğe bağlı bir çalışma olarak kalır.
 - **Katsayı geçmişi raporu:** ADS1115 No.10 + SCT013 ölçüm zinciri için ayrı rapor açıldı. 2026-11-22 tarihli `150w ads-10.csv` kaydında PZEM'e göre yükün kesintisiz açık olduğu kullanıcı tarafından teyit edildi; SSR/BERO dijital ON/OFF olayları fiziksel yük kesintisi sayılmadı ve veri dışlama nedeni yapılmadı. 24 eşleşmiş PZEM/SCT örneğinden 150 W katsayı adayı K≈30.01 hesaplandı. Bias bağlantısı ve YAML sürümü hâlâ teyit bekliyor; K=27.59 korunuyor, 100 W verisi bekleniyor. Katsayı raporu: `MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/RAPORLAR/KATSAYI-RAPORU-ADS1115-NO10-SCT013.md`; deney raporu: `MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150W-ADS1115-NO10-2026-11-22.md`.
 
 ## Deney geçmişi – kısa durum dizini
@@ -384,3 +384,8 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 ## 2026-11-22 – 60 W sapma tekrar testi iptal edildi
 
 Kullanıcı kararıyla V1.6 doğrulama raporunda belirtilen yaklaşık 60 W / -%4,89 sapma için tekrar test yapılması hedefi iptal edildi. Bu sapmanın nedeni araştırılmayacak ve konu MOD2-GRV001'in açık iş listesinde tutulmayacaktır. Mevcut V1.6 kalibrasyon modeli değiştirilmez; tarihsel doğrulama raporundaki ölçüm ve o tarihteki değerlendirme silinmez. Diğer yük karakterlerinde ve uzun süreli kullanımda V1.6 davranışının gözlemlenmesi ayrı açık doğrulama konuları olarak kalır.
+
+
+## 2026-11-22 – MOD2-GRV001 kapatıldı; Modül 3 ve 4 için zemin oluşturuldu
+
+Kullanıcı kararıyla masaüstü prototip görevi tamamlandı ve kapatıldı. Prototip üzerinde SCT013 + ADS1115 + ESP32D2 ölçüm zinciri geliştirildi; geniş akım aralığında farklı ev yükleri ve yük kombinasyonları denendi; V1.6 tek fonksiyon kalibrasyon modeli referans olarak kabul edildi. 60 W sapma tekrar testi ve uzun süreli masaüstü gerçek kullanım gözlemi iptal edildi. Yeni yük kombinasyonu testi açılmayacak. Masaüstü prototipin görevi, Modül 3 (çamaşır makinesi) ve Modül 4 (bulaşık makinesi) gerçek cihaz izleme çalışmalarına teknik zemin hazırlamaktı; bu hazırlık görevi yerine getirdi. Çamaşır makinesi ve bulaşık makinesi üzerindeki uygulama/testler kendi modüllerinde yürütülecek; MOD2-GRV001'in açık işi olarak sayılmayacaktır.
