@@ -98,3 +98,27 @@ Bu karşılaştırma belgedeki genel tasarım açıklamasıdır; satın alınan 
 
 ## Kaynak dosya durumu
 Bu kayıt, konuşmada kullanıcı tarafından yüklenen `ZMPT101B.PDF` dosyasının incelenmesiyle hazırlanmıştır. GitHub metin dosyası olarak kılavuzun teknik özeti ve deney notları kaydedilmiştir; orijinal PDF ikili dosyası bu işlemde GitHub deposuna yüklenmemiştir.
+
+
+## Ek kaynak – Hazır ZMPT101B modül kartı teknik incelemesi
+
+Kaynak: [DataCaptureControl – ZMPT101B AC Voltage Transformer Sensor Module](https://datacapturecontrol.com/articles/io-components/sensors/voltage/zmpt101b-ac-voltage-transformer-sensor-module)
+- Sayfa oluşturulma tarihi 23.04.2023, güncelleme tarihi 21.08.2024.
+- Hazır kart için ±250 V RMS, 50/60 Hz, 5–30 V DC besleme ve VCC/2 DC ofsetli, 0–VCC aralığında ayarlanabilir analog OUT bilgileri verilir.
+- Kart açıklamasında ZMPT101B trafosu ve LM358 çift op-amp bulunur; trafo çıkışının iki kademeli bant geçiren yükselteçte işlendiği belirtilir.
+- Pinler: L/N AC giriş; VCC besleme; OUT analog çıkış; GND besleme/çıkış ortak toprağı. Kaynak, düşük gerilim GND'sinin L/N girişlerine ortak olmadığını belirtir.
+- Trimpot OUT dalgasının genliğini değiştirir; DC orta noktayı değiştirmez.
+- Kalibrasyon: giriş RMS gerilimini tercihen True RMS multimetreyle referans al; ADC örneklerinden DC ofseti çıkarıp RMS hesapla; giriş RMS / çıkış RMS oranından hassasiyet katsayısı elde et.
+- Makale hazır kartın ölçülmüş faz gecikmesini veya gerçek PF doğruluğunu vermemektedir.
+
+### Kaynaklar arası kapsam ayrımı
+- Kullanıcı PDF'si aktif/pasif çıkış yaklaşımlarını ve çıplak trafo/ön uç tasarımındaki ADC ve direnç seçimini anlatır.
+- DataCaptureControl makalesi yaygın LM358'li hazır kartın düzenini, pinlerini, şemasını ve RMS kalibrasyonunu anlatır.
+- İki kaynak da bizim fiziksel kartımızın PCB revizyonunu, faz hatasını veya gerçek PF performansını kanıtlamaz. Bunlar kart geldikten sonra ölçülecektir.
+
+### PF deney planına eklenen kontrol noktaları
+- [ ] OUT DC ofseti gerçek kartta ölçülecek; VCC/2 varsayılmayacak.
+- [ ] Trimpotun genliği değiştirdiği ve DC ofseti değiştirmediği doğrulanacak.
+- [ ] Giriş RMS / OUT RMS hassasiyet katsayısı True RMS referansla belirlenecek.
+- [ ] Makaledeki izolasyon açıklaması tek başına güvenlik onayı sayılmayacak.
+- [ ] LM358/bant geçiren katın 50 Hz faz etkisi PF hesabından önce ölçülecek.
