@@ -68,6 +68,7 @@ Aşağıdaki tablo yalnızca yeni ve aynı bağlantı yaklaşımıyla toplanacak
 
 | Referans yük | PZEM akım ort. (A) | SCT akım ort. (A) | Eşleşmiş örnek sayısı | SCT std. sapma (A) | Hesaplanan yük katsayısı | Kararlı aralık / not |
 |---|---:|---:|---:|---:|---:|---|
+| 42 W ampul – 2026-11-22 CSV | 0.187714 | 0.154787 (14 eşleşmiş SCT örneği) | 14 | 0.002587 (tam SCT serisi, n=320) | **≈33.46 (ön sonuç)** | Bias yok; 0,02 A filtreli YAML kullanıcı teyidi; SSR dijital OFF/ON olaylarına rağmen PZEM gücü 42 W civarında; ayrıntı: `DENEYLER/42W-ADS1115-NO10-2026-11-22.md` |
 | 100 W ampul | — | — | — | — | — | Yeni test bekleniyor |
 | 150 W ampul – 2026-11-22 CSV | 0.641125 | 0.589506 (24 eşleşmiş SCT örneği) | 24 | 0.003404 (tam SCT serisi, n=193) | **≈30.01 (ön sonuç)** | Yük sürekli açık; SSR olayları dışlama nedeni değil. Bias ve YAML teyidi bekliyor; ayrıntı: `DENEYLER/150W-ADS1115-NO10-2026-11-22.md` |
 | Diğer ampul yükleri | — | — | — | — | — | Gerektikçe eklenecek |
