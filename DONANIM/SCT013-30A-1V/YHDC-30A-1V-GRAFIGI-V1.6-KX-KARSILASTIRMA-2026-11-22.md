@@ -86,85 +86,26 @@ Bu karşılaştırma, nominal 30 A/V üretici transferini V1.6'nın 27.59 taban 
 
 Grafik: `YHDC-30A-1V-GRAFIGI-V1.6-KX-KARSILASTIRMA-2026-11-22.svg`
 
-## 7. Ölçüm dayanakları ve bağımsız yüksek akım doğrulaması
+## 7. Basit saha kontrolü: pens ampermetre – MOD3 ısıtma bloğu
 
-Bu karşılaştırmada üç ayrı kanıt kaynağı birbirine karıştırılmamalıdır:
+Bu kontrolün amacı ticari/sertifikalı bir akım ölçer geliştirmek veya laboratuvar kalibrasyonu yapmak değildir. Amaç, BERO V1.6 sonucunun gerçek yük akımıyla uyumunu pratik bir bağımsız ölçümle kontrol etmektir.
 
-1. **YHDC üretici karakteristik grafiği:** Üreticinin kendi test koşullarında yayımladığı SCT013 30A/1V giriş-akım / çıkış-gerilimi karakteristiğidir. Bu grafik üretici laboratuvar verisidir; BERO donanımında yapılmış bir ölçüm değildir.
-2. **BERO ADS1115 ölçüm zinciri:** V1.6'daki tek ve sürekli K(x) fonksiyonu, gerçek BERO kurulumunda ADS1115 diferansiyel ölçümünden elde edilen RMS verileri ve kalibrasyon deneyleri üzerinden geliştirilmiştir. Bu fonksiyon yalnızca SCT çekirdeğini değil, kullanılan sensör örneği, bağlantı/analog koşullar, ADS1115 ve yazılım zincirinin toplam ampirik davranışını temsil eder. Bu grafikte üretici eğrisindeki gerilim noktaları BERO ölçeği ve K(x) fonksiyonundan geçirilmiştir; bu işlem yeni bir fiziksel ADS1115 ölçümü değildir.
-3. **PZEM ile saha karşılaştırması:** V1.6 deneylerinde BERO akım sonuçları PZEM ölçümleriyle karşılaştırılmış ve pratik çalışma aralığında fonksiyonun kabul edilmesini destekleyen sonuçlar elde edilmiştir. PZEM bu projede karşılaştırma referansıdır; izlenebilir bir laboratuvar akım standardı olduğu varsayılmamaktadır. Ayrıca mevcut V1.6 karşılaştırması yaklaşık 17.5 A seviyesine kadar veri içerir; bu sonuç tek başına 30 A tam ölçeğin tamamını doğrulamaz.
-
-Bu nedenle üretici grafiğinde görülen yaklaşık -10.46% ölçek farkı, BERO'nun kendi ADS1115 ölçüm zincirindeki saha hatası olarak yorumlanamaz. PZEM karşılaştırması BERO'nun deneysel kalibrasyonunu destekler; ancak yüksek akım bölgesinde bağımsız bir pens ampermetre kontrolü ek kanıt sağlayabilir.
-
-### Önerilen sonraki deney: yüksek akımda pens ampermetre kontrolü
-
-**Amaç:** Üretici grafiği ile BERO'nun ampirik ADS1115/K(x) zinciri arasındaki ölçek farkını fiziksel sahada, PZEM'den bağımsız ikinci bir ölçüm cihazıyla kontrol etmek.
-
-**Ölçüm düzeni:**
-- Mümkünse AC True-RMS özellikli ve ölçüm aralığı/doğruluğu bilinen bir pens ampermetre kullanılmalıdır.
-- Pens yalnızca tek bir iletkeni (faz veya nötrden biri) çevrelemelidir; faz ve nötr birlikte ölçülmemelidir.
-- SCT013, pens ampermetre ve PZEM aynı yük akımını ve mümkün olduğunca aynı kararlı zaman aralığını gözlemlemelidir.
-- Akımı yüksek ama devredeki priz, kablo, yük, SCT ve ölçü aletlerinin izin verilen sınırları içinde tutan kararlı bir yük kullanılmalıdır. Ölçüm için devre veya ekipman nominal sınırları aşılmamalıdır.
-- Kararlı yük bölümünde BERO akımı, PZEM akımı ve pens ampermetre akımı aynı zaman aralığı için kaydedilmelidir. Tek bir anlık okumaya dayanmak yerine birkaç kararlı ölçüm tekrarı alınmalıdır.
-
-**Kaydedilecek alanlar:**
-
-| Alan | Birim | Açıklama |
-|---|---|---|
-| test_timestamp | tarih/saat | Ölçüm aralığının zamanı |
-| load_description | metin | Kullanılan yük ve çalışma durumu |
-| clamp_model | metin | Pens ampermetrenin marka/modeli |
-| clamp_accuracy_range | metin | AC akım aralığı ve üretici doğruluk bilgisi |
-| clamp_current_a | A | Pens ampermetrenin okuması |
-| pzem_current_a | A | Aynı aralıktaki PZEM akımı |
-| bero_current_a | A | V1.6 ADS1115/K(x) akımı |
-| bero_raw_rms_v | V RMS | Elde edilebiliyorsa kalibrasyon öncesi ct_clamp RMS gerilimi |
-| notes | metin | Yük kararlılığı, ölçüm koşulları ve gözlemler |
-
-**Yorum yöntemi:**
-- Öncelikle pens ampermetre ile PZEM'in birbirine ne kadar yakın olduğu incelenir.
-- Ardından BERO sonucu pens ampermetreye göre değerlendirilir.
-- Pens ile PZEM yakın, BERO farklıysa BERO ölçüm zinciri/kalibrasyon farkı araştırılır.
-- Pens ile BERO yakın, PZEM farklıysa PZEM'in o çalışma noktasındaki ölçümü ayrıca incelenir.
-- Üç cihaz da farklı sonuç verirse tek ölçümle katsayı değiştirilmez; bağlantı, ölçüm aralığı, True-RMS özelliği, yük kararlılığı ve zaman eşleşmesi kontrol edilerek deney tekrarlanır.
-
-**Güvenlik:** Şebeke devresinde çalışma yalnızca uygun ekipman ve yetkinlikle yapılmalıdır. Pens ampermetre, yalıtımı sağlam ve güvenli biçimde erişilebilir tek iletken üzerinde kullanılmalı; açıkta canlı iletken oluşturulmamalı veya devre nominal sınırlarının üzerine çıkarılmamalıdır.
-
-**Durum:** Pens ampermetre ile yüksek akım doğrulaması önerilmiştir; henüz yapılmış bir deney veya ölçüm sonucu değildir. Bu öneri V1.6 K(x) katsayılarını değiştirme kararı değildir.
-
-## 8. MOD3 çamaşır makinesi ısıtma bloğunda pens doğrulaması – 2026-11-22 planı
-
-MOD3-AKM001 uzun pamuklu program kaydındaki ısıtma bloğu, üretici grafiği karşılaştırmasını sahada kontrol etmek için uygun bir aday çalışma noktasıdır:
-
+MOD3-AKM001 uzun pamuklu programındaki ısıtma bloğu bunun için uygun adaydır:
 - Zaman aralığı: 17:24:12–17:38:56 (Europe/Istanbul).
 - PZEM akımı: yaklaşık 8.28 A.
-- BERO V1.6 akımı: PZEM farkı yaklaşık -0.109 A olduğundan yaklaşık 8.17 A (bu değer raporlanan ortalama farktan türetilmiş yaklaşık değerdir).
+- BERO V1.6 akımı: raporlanan ortalama farktan türetilen yaklaşık 8.17 A.
 - Isıtma gücü: yaklaşık 1.81 kW.
-- Yükün ısıtma bloğu boyunca görece kararlı olduğu raporlanmıştır.
 
-### Üretici eğrisi için aynı noktadaki teorik çıkış
+**Yapılacak basit kontrol:** Çamaşır makinesinin benzer bir uzun programında ısıtma evresinin kararlı bölümünde pens ampermetreyle tek bir akım kontrolü (tercihen birkaç kısa tekrar) alınır. Pens yalnızca tek iletkeni çevrelemelidir; faz ve nötr birlikte ölçülmez. Okunan yaklaşık değer, mevcut PZEM 8.28 A ve BERO 8.17 A saha sonuçlarıyla karşılaştırılır.
 
-YHDC grafiğindeki 6 A (0.1994 V) ve 12 A (0.3995 V) noktaları arasında doğrusal ara değerleme yapılırsa 8.28 A için üretici eğrisinin yaklaşık çıkışı:
+**Yorum:**
+- Pens de yaklaşık 8 A civarında sonuç verirse, PZEM ve BERO ölçümlerini bu çalışma noktasında bağımsız olarak destekler.
+- Pens belirgin biçimde farklı sonuç verirse, önce yükün aynı çalışma evresinde ve kararlı olduğundan emin olunur; sonra ölçüm tekrar edilir.
+- Bu tek nokta tüm 0–30 A aralığının doğruluğunu veya üretici toleransını kanıtlamaz. Sadece yaklaşık 8 A saha noktasında iç rahatlatan bir çapraz kontroldür.
 
-`Vout_üretici ≈ 0.2754 V RMS`
+Üretici grafiği laboratuvar karakteristiğidir; BERO ise kendi ADS1115 ölçüm zincirinin çıktısını ve PZEM ile saha karşılaştırmasını kullanır. Pens sonucu PZEM ve BERO ile uyuşursa, BERO kurulumunun bu noktadaki gerçek akımı doğru izlediği yönünde ek kanıt elde edilir. Üretici eğrisinden görülen ölçek farkının sensör örneğinden mi yoksa analog/ölçüm zincirinden mi kaynaklandığını yalnızca pens ölçümü tek başına ayıramaz.
 
-Bu, grafik değerlerinden ara değerlemedir; doğrudan üretici tarafından ayrıca listelenmiş bir 8.28 A ölçümü değildir.
+Güvenlik: Pens, yalıtımı sağlam ve erişilebilir tek iletken üzerinde kullanılmalı; açıkta canlı iletken oluşturulmamalı ve devre/ekipman sınırları aşılmamalıdır.
 
-BERO'nun aynı akım seviyesini V1.6 etkin katsayısı yaklaşık 26.89 A/V ile üretmesi için gereken gerilim yaklaşık 0.30 V RMS mertebesindedir. Kesin karşılaştırma, ham RMS sütunu aynı zaman aralığı için elde edilirse yapılmalıdır. Yalnızca kalibre edilmiş BERO akımından geriye hesaplanan gerilim, bağımsız ham ADC kaydının yerine geçmez.
+**Durum:** Basit pens kontrolü önerilmiştir; henüz yapılmış bir ölçüm değildir. V1.6 K(x) değiştirilmez. MOD3-AKM001'in kapalı görevi yeniden açılmaz; kontrol ayrı ek doğrulamadır.
 
-### Deney düzeni ve karar mantığı
-
-Aynı ısıtma bloğunda mümkün olduğunca eşzamanlı ve birkaç kararlı tekrar ile şu değerler alınmalıdır:
-- PZEM akımı (mevcut kayıtla eşleştirilmiş),
-- BERO V1.6 akımı ve mümkünse ct_clamp kalibrasyon öncesi RMS gerilimi,
-- AC True-RMS pens ampermetre akımı (tek iletken üzerinden).
-
-**Beklenen yorum:**
-- Pens ≈ PZEM ≈ BERO ise, bu fiziksel SCT013/ADS1115/yazılım zincirinin bu yaklaşık 8 A çalışma noktasında gerçek akımı doğru izlediğini destekler. Buna rağmen üretici grafiğinden farklı çıkış gerilimi, kullanılan sensör örneğinin ve/veya analog ölçüm zincirinin üretici nominal transfer eğrisinden farklı etkin hassasiyette olduğunu düşündürür.
-- Pens ≈ PZEM, BERO farklı ise BERO zincirinin bu noktadaki kalibrasyonu sorgulanır.
-- Pens ≈ BERO, PZEM farklı ise PZEM okuması ve ölçüm koşulları incelenir.
-- Pens/PZEM/BERO uyumu tek bir çalışma noktası için kanıttır; sensör ailesinin tüm toleransını, 0–30 A aralığını veya bütün dalga şekillerindeki doğruluğu ispatlamaz.
-
-PZEM mevcut saha bazıdır; pens ampermetre bağımsız ikinci kontroldür. Pensin modeli, True-RMS özelliği, AC akım aralığı ve doğruluk sınıfı kayıt altına alınmalıdır. Pens sadece faz veya nötrden birini ölçmelidir.
-
-**Durum:** MOD3-AKM001'in mevcut kaydı değişmeden korunur. Isıtma bloğu, ayrı/ek doğrulama için aday zaman aralığı olarak belirlenmiştir; bu ek pens ölçümü henüz yapılmış ve kaydedilmiş değildir. Bu plan MOD3-AKM001'i yeniden açmaz ve V1.6 K(x) katsayısını değiştirme kararı değildir.
