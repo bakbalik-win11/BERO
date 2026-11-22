@@ -100,3 +100,18 @@ Referans rapordaki sayılar ve sınırlamalar:
 - PZEM referans olarak kullanılmıştır, mutlak ground truth değildir.
 
 **Araştırma yönü:** V1.6'nın geniş aralıklı, PF≈1 koşullarındaki başarısını tekrar kalibrasyonla bozmak yerine koru. PF sapmasını ayrı gerçek-PF ölçüm araştırmasında ele al. Yaklaşık 15 W altını bu aşamada kapsam dışı/önceliksiz tut.
+
+
+## 9. +12.25% sapmanın düşük akım bölgesine ait olduğunun netleştirilmesi – 2026-11-22
+
+Kullanıcı, V1.6 grafiğindeki +12.25% farkın yüksek akımda değil çok düşük akımda görüldüğünü netleştirdi. V1.6 doğrulama raporundaki ölçümler:
+
+- 20.4 W / PZEM 0.117 A / BERO 0.131 A / PF=0.76: +12.25%.
+- Yüksek akım seçilmiş noktaları 3.623–17.518 A aralığında yaklaşık +0.16% ile -1.69% arasında kalmıştır. Bu bölgede +12.25% düzeyinde bir sapma raporlanmamıştır.
+- 14.6 W / 0.066 A noktasındaki -10.28% fark da çok düşük akım/alt sınır bölgesindedir.
+
+Bu nedenle +12.25% sonucu yüksek akım ölçüm zinciri sorunu gibi ele alınmayacaktır. Düşük akım ve düşük PF aynı noktada birlikte bulunduğu için mevcut veri bu iki etkinin hangisinin ne ölçüde sorumlu olduğunu ayıramaz.
+
+Çamaşır makinesi uzun pamuklu programında ısıtma bloğunda yaklaşık 8.28 A ve PF≈1.00; düşük/orta akımlı motor/yıkama bölümlerinde PF yaklaşık 0.53–0.73 gözlenmiştir. Bu, farklı PF çalışma koşullarının gerçek saha örneğidir; ancak akım seviyesi ve yük modu da değiştiğinden bağımsız PF nedenselliği kanıtı değildir.
+
+**Araştırma yönü:** V1.6'nın yüksek PF koşullarındaki geniş aralık uyumunu koru. Yaklaşık 15 W altını mevcut uygulama için önceliksiz tut. PF çalışması, aynı/benzer akım seviyesinde farklı PF veya kontrollü akım dalga biçimleriyle düşük PF davranışını ayırmaya odaklansın. Genel yüksek akım kalibrasyonunu yeniden açma.
