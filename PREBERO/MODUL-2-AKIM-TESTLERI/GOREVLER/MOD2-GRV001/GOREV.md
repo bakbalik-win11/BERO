@@ -1,6 +1,6 @@
 # MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
 
-> **Güncel durum – 2026-11-22:** Aşağıdaki ilk kurulum/pin/katsayı açıklamalarının bir bölümü önceki ADS1115 No.1 ve bias deney planından kalmadır; güncel aktif düzen için bu not ve `PREBERO/DURUM.md` esas alınır. Aktif ölçüm düzeneği ESP32D2 + ADS1115 No.10 (0x48), SCT013 30A/1V, A0–A1 diferansiyel, GPIO21 SDA/GPIO22 SCL ve K=27.59'dur. V1.2 sıfır-yük-sıfır geçişi logla doğrulandı; V1.3 20 mA filtresi kullanıcı bildirimiyle derlenip gece gözlemlendi ve kapatıldı. Yeni tasarımda bias kullanılmayacak; 1.5 A altı ampullerle, üstü ütü/tost/kettle kaynatma moduyla kalibre edilecek. Yeni kalibrasyon verisi ve katsayılar henüz yok; görev açık, K=27.59 korunuyor.
+> **Güncel durum – 2026-11-22:** Aktif ölçüm zinciri ESP32D2 + ADS1115 No.10 (0x48) + SCT013 30A/1V, A0–A1 diferansiyel, GPIO21 SDA/GPIO22 SCL'dir. Referans kalibrasyon modeli V1.6 tek fonksiyonudur: `K(x)=26.89+5.39·exp(-x/0.882)`; Home Assistant yayın eşiği 30 mA'dir. Önceki 1,5 A altı/üstü parçalı kalibrasyon planı V1.6 tam aralık sonuçlarıyla kapatılmıştır. V1.6 YAML ve doğrulama raporu kendi sürüm klasöründedir. Yaklaşık 60 W sapması ayrı tekrar kontrolü, yaklaşık 15 W ise SCT013'ün pratik alt ölçüm sınırına yakın gözlem olarak tutulur. PZEM karşılaştırma referansıdır; ground truth değildir.
 
 
 ## Amaç
@@ -675,7 +675,7 @@ Rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.2/RAPOR/V1.2-UNKNO
 - **Durum:** V1.3 20 mA filtre işi kapatıldı. Bu, MOD2-GRV001 görevinin tamamlandığı anlamına gelmez.
 - **Rapor:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.3/RAPOR/V1.3-20MA-FILTRE-DERLEME-VE-GECE-GOZLEMI-2026-11-22.md`
 
-**Sıradaki aktif çalışma:** 1.5 A altı ve üstü için iki bölgeli katsayı yönteminin planlanması ve ardından kontrollü ölçüm.
+**Önceki aktif çalışma (kapatıldı):** 1,5 A altı/üstü için iki bölgeli katsayı yöntemi V1.6 tek fonksiyon modeliyle ikame edildi. Ayrıntı ve karar: `V1.6/RAPOR/V1.6-TAM-ARALIK-TEK-FONKSIYON-DOGRULAMA-2026-11-22.md` ve `DENEYLER/IKI-BOLGELI-KALIBRASYON-VE-BIAS-KARARI-2026-11-22.md`.
 
 
 ## 2026-11-22 – İki bölgeli kalibrasyon: kullanıcı nihai yük seçimi ve yöntem
@@ -691,3 +691,25 @@ Kullanıcı kararıyla kalibrasyon verisi pratik yüklerden toplanacaktır; mük
 7. 1,5 A sınırındaki katsayı seçimi ve yazılımsal bölge belirleme yöntemi, iki katsayı belirlendikten sonra çözülecek; şimdilik açık konudur.
 
 **İş sırası:** Önce biassız bağlantı güvenlik kontrolü → ampullerle düşük bölge verisi ve katsayısı → ütü/tost/kettle kaynatma ile yüksek bölge verisi ve katsayısı.
+
+ 
+## 2026-11-22 – İki bölgeli/parçalı kalibrasyon yaklaşımı kapatıldı; V1.6 tek fonksiyon referans alındı
+
+Önceki tasarım planında 1,5 A altı ve üstü için ayrı katsayılar ve arada bölge geçişi öngörülmüştü. Bu yaklaşım, V1.6 tam aralık testleri sonrasında **uygulama adayı olmaktan çıkarıldı ve kapatıldı**.
+
+Yerine, aynı ölçüm zincirinde 0,065–17,52 A aralığındaki karma yük verileriyle geliştirilen tek fonksiyon kabul edildi:
+
+`K(x) = 26.89 + 5.39 × exp(-x / 0.882)`
+
+V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altını Home Assistant'ta 0.000 A yayımlar. V1.6 doğrulama raporu, seçilmiş kademe sonuçları, 23 kademelik genel grafik ve 1:1 karşılaştırma grafiği için esas kayıttır:
+`PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.6/RAPOR/V1.6-TAM-ARALIK-TEK-FONKSIYON-DOGRULAMA-2026-11-22.md`.
+
+**Kapanış kararı ve sınırlar**
+- İki bölgeli katsayı yöntemi, V1.6 tek fonksiyon modeliyle ikame edildiği için kapatıldı; eski plan ve deney kayıtları silinmedi.
+- 1,5 A bölge sınırı ve parçalı geçiş mantığı artık aktif tasarım gereksinimi değildir.
+- V1.6, ADS1115 No.10 + SCT013 30A/1V + ESP32D2 + A0–A1 ölçüm zinciri için referans kalibrasyon modeli olarak korunur.
+- Yaklaşık 15 W noktası SCT013'ün pratik alt ölçüm sınırına yakın kabul edilir; bu nokta için eğri yeniden şekillendirilmeyecektir.
+- Yaklaşık 60 W noktasındaki -%4,89 sapmanın nedeni kanıtlanmış değildir; yük/çalışma koşulu kontrol edilerek ayrıca tekrar edilebilir. Bu istisna formülün yeniden açılması için tek başına gerekçe değildir.
+- PF=0,76 olan 20,4 W noktası ayrı PF araştırma konusudur; V1.6'ya PF düzeltmesi eklenmez.
+- PZEM karşılaştırma referansıdır, ground truth değildir.
+- Bu kapanış MOD2-GRV001 görevinin tamamlandığı anlamına gelmez. Modülün diğer donanım, bağlantı, güvenilirlik ve gerçek yük gözlemleri ayrı iş olarak sürebilir.
