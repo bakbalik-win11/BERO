@@ -98,3 +98,9 @@ Bu kaynak LM358'li hazır kartın blok yapısını, L/N ve VCC/OUT/GND pinlerini
 - [Arduino Forum – Problem with translate the values of voltage sensor ZMPT101B](https://forum.arduino.cc/t/problem-with-translate-the-values-of-voltage-sensor-zmpt101b/491534)
 - Kaynaktaki kod hataları, DC ofsetin osiloskopta görülmesi, potansiyometreyle genlik ayarı, kırpılma ve örnekleme zamanlaması değerlendirmesi: [Arduino Forum ZMPT101B Analog Çıkış Ölçüm Deney Notu](datasheets/ARDUINO-FORUM-ZMPT101B-ANALOG-CIKIS-OLCUM-DENEY-NOTU.md)
 - Forumdaki ölçümler ve devre yorumları BERO kartında doğrulanmış sonuç değildir. İlk test güvenli, galvanik olarak izole düşük gerilimli AC kaynakla yapılacaktır.
+
+
+## Ek teknik kaynak – Arduino Forum / düşük AC gerilim ölçümü
+- [Arduino Forum – ZMPT101B problem with measure AC voltage](https://forum.arduino.cc/t/zmpt101b-problem-with-measure-ac-voltage/1219148)
+- 4,8 V civarında takılma bildiren kullanıcı deneyimi, kalibrasyon ve ADC ayrımı, düşük gerilim test planı: [Arduino Forum ZMPT101B Düşük Gerilim Ölçüm Deney Notu](datasheets/ARDUINO-FORUM-ZMPT101B-DUSUK-GERILIM-OLCUM-DENEY-NOTU.md)
+- 4,8 V değeri BERO için ölçülmüş alt sınır değildir; yalnızca forum kullanıcısının sistemine ait gözlemdir.
