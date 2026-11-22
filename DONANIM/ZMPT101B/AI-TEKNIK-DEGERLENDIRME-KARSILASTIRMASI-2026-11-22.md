@@ -316,3 +316,22 @@ Copilot ek yanıtı ana araştırma yaklaşımını değiştirmiyor. Ancak 2,32 
 
 **İlk deney hâlâ şebekesiz ADS1115 zamanlama karakterizasyonudur.** PF firmware'i veya nihai ADC kararı bu aşamada yazılmayacaktır.
 
+
+
+## 17. Claude Faz 1 kodları ve Gemini'nin son sentezi
+
+Claude, Faz 1 için iki taslak dosya sağladı:
+- ESP32 + ADS1115 single-shot / ALERT-RDY RAM yakalama sketch'i: kullanıcı yüklemesi `bero_phase1_capture.ino`
+- Zamanlama, sıra takası, sinüs uyumu, interpolasyon ve PF hata bütçesi Python betiği: kullanıcı yüklemesi `bero_phase1_analysis.py`
+
+Gemini, RAM tamponu, g/h sıra takası, joint_fit ile artık gecikme ve 50/75/100/125 Hz taraması önerilerini destekledi. Kod incelemesi ve sentetik test sonuçları ayrı kayıtta tutuldu:
+- [Faz 1 Claude Kodu ve Gemini Sentezi İncelemesi](FAZ1/FAZ1-CLAUDE-KODU-GEMINI-INCELEMESI-2026-11-22.md)
+
+Önemli sonuçlar:
+- Python sözdizimi kontrol edildi ve sentetik `--simulate` çalıştırıldı; bu donanım testi değildir.
+- Sentetik 20 µs artık gecikme yaklaşık 20,07 µs olarak bulundu; aynı simülasyonda 125 Hz testi gecikmeyi güvenilir geri bulamadı (yaklaşık 12,68 µs ortalama ve 32,85 µs blok std). 125 Hz doğruluk kalibrasyonu olarak kabul edilmedi.
+- M2'nin sentetik sapması trapez kuralının genel hatası değildir; iki lineer interpolasyonun ürününü birleşik ızgarada trapezle entegre etme uygulamasının sayısal hatası olabilir.
+- Arduino sketch'i henüz derlenmedi, karta yüklenmedi ve ADS1115 ile denenmedi.
+- FNIRSI 2D15P sinyal jeneratörünün dokümanında bağımsız DC offset ayarı açıkça gösterilmedi. +0,9 V offset bulunduğu varsayılmayacak; çıkış ölçülecek veya ayrı biaslı AC-kuplaj ağı tasarlanacaktır.
+- Gemini'nin şebekeye bağlı 10 µF kapasitör ve R||C testleri bu aşamaya alınmadı. İlk analog testler izole düşük gerilimle yapılacaktır.
+- İlk deney kararı değişmedi: şebekesiz DC zamanlama testi, ardından aynı düşük gerilimli 50 Hz sinyalin iki ADS1115 diferansiyel kanalında karşılaştırılması.
