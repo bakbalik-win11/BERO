@@ -316,3 +316,15 @@ Kullanıcı kararı: 1,5 A altı ve üstü için ayrı katsayılar çalışılac
 - PZEM güç kayıtları 42.0–42.9 W aralığında kalmıştır. SSR/BERO dijital OFF/ON kayıtları fiziksel yükün kesildiğini göstermediğinden veri dışlama nedeni yapılmadı.
 - **Karar:** K=27.59 korunur; YAML değiştirilmez. K≈33.46 yalnızca ön sonuçtur; düşük bölge ortak katsayısı için diğer yüklerle birlikte değerlendirilecek.
 - Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/42W-ADS1115-NO10-2026-11-22.md`.
+
+
+## 2026-11-22 – 57 W dosyası: ADS1115 No.10 ön analizi
+
+- Kaynak: kullanıcı CSV'si `57w ads-10.csv`, 378 satır.
+- SCT n=246, ortalama 0.219276 A, std. sapma 0.001670 A, CV %0.762.
+- PZEM akım n=17, ortalama 0.264588 A; PZEM güç n=40, ortalama 60.4575 W (59.9–60.9 W).
+- ±2 saniye eşleştirme: 17 çift; eşleşmiş SCT ortalaması 0.218940 A; MAPE %17.25; ön katsayı K≈33.34.
+- 42 W dosyasındaki ön katsayı K≈33.46; fark yaklaşık 0.12 (%0.36). Aynı bias/YAML/kanal koşulları teyit edilirse düşük akım bölgesi tutarlılığı lehine bulgudur.
+- 57 W CSV'si bias, kanal ve YAML bilgisini doğrudan içermez. 42 W oturumundaki bias yok / 0,02 A filtreli YAML teyidinin devam ettiği varsayılmıştır; 57 W için ayrıca doğrulanmalıdır.
+- **Karar:** K=27.59 ve YAML korunur. K≈33.34 ön sonuçtur; ortak katsayı henüz belirlenmez.
+- Ayrıntılı rapor: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/57W-ADS1115-NO10-2026-11-22.md`.
