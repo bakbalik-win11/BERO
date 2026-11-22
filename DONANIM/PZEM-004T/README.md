@@ -68,6 +68,17 @@ PZEM 80–260 V AC şebeke ölçümü yapar; şebeke terminalleri ölümcül ger
 6. Bilinen bir yükle değerleri uygun referans ölçüm cihazlarıyla karşılaştır.
 7. Home Assistant aktarımından önce veri yenileme ve haberleşme hatalarını kontrol et.
 
+## Arşivlenmiş BERO örnek kodu
+
+Sökülecek Modül 3'ten kalan, yalnızca PZEM ölçümlerini Home Assistant'a aktaran ESPHome yapılandırması donanım arşivine eklendi:
+
+- **Dosya:** [BERO-MODUL3-WROOM-PZEM-ONLY-ARSIV.yaml](KOD/BERO-MODUL3-WROOM-PZEM-ONLY-ARSIV.yaml)
+- **Kart:** ESP32-WROOM (ESPHome yapılandırmasında `variant: esp32`)
+- **UART:** ESP32 GPIO19 TX, GPIO18 RX; 9600 baud, 8N1
+- **Yayın:** Gerilim, akım, güç, enerji, frekans ve güç faktörü; 5 saniye aralıkla
+- **Kontrol:** Aç/kapa kontrolü içermez; yalnızca ölçüm ve yayın yapar.
+- **Kayıt durumu:** Eski modülden kalan arşiv kodudur; aktif firmware değildir. Bu arşiv kaydı tek başına derleme veya fiziksel test doğrulaması anlamına gelmez.
+
 ## BERO test kaydı
 
 ESP32D1 üzerinde ESPHome `pzemac` bileşeniyle başarılı okuma logu alınmıştır. Örnek ölçüm: 230,2 V, 0,028 A, 1,50 W, 10386 Wh, 50,0 Hz ve güç faktörü 0,23. Sonraki örneklerde de değerler tekrar okunmuştur. Bu, UART/Modbus haberleşmesinin çalıştığını gösterir; ölçüm doğruluğu bağımsız referansla henüz kalibre edilmiş değildir.
