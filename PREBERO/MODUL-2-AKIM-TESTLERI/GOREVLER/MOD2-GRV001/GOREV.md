@@ -1,6 +1,8 @@
 # MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
 
-> **Güncel durum – 2026-11-22:** Aktif ölçüm zinciri ESP32D2 + ADS1115 No.10 (0x48) + SCT013 30A/1V, A0–A1 diferansiyel, GPIO21 SDA/GPIO22 SCL'dir. Referans kalibrasyon modeli V1.6 tek fonksiyonudur: `K(x)=26.89+5.39·exp(-x/0.882)`; Home Assistant yayın eşiği 30 mA'dir. Önceki 1,5 A altı/üstü parçalı kalibrasyon planı V1.6 tam aralık sonuçlarıyla kapatılmıştır. V1.6 YAML ve doğrulama raporu kendi sürüm klasöründedir. Yaklaşık 60 W sapması ayrı tekrar kontrolü, yaklaşık 15 W ise SCT013'ün pratik alt ölçüm sınırına yakın gözlem olarak tutulur. PZEM karşılaştırma referansıdır; ground truth değildir.
+> **KAPALI – 2026-11-22 kullanıcı kararı:** Masaüstü prototip görevi tamamlandı. Farklı ev yükleri ve kombinasyonları geniş aralıkta test edildi; V1.6 tek fonksiyon kalibrasyon modeli referans olarak kabul edildi. 60 W tekrar testi, yeni yük kombinasyonu testi ve uzun süreli masaüstü gerçek kullanım gözlemi iptal edildi. Prototip, Modül 3 (çamaşır makinesi) ve Modül 4 (bulaşık makinesi) gerçek cihaz çalışmalarına teknik zemin oluşturdu. Bu iki modülün saha testleri kendi görevlerinde yürütülecektir. PZEM karşılaştırma referansıdır; ground truth değildir.
+
+> **Tarihsel güncel durum kaydı – 2026-11-22:** Aktif ölçüm zinciri ESP32D2 + ADS1115 No.10 (0x48) + SCT013 30A/1V, A0–A1 diferansiyel, GPIO21 SDA/GPIO22 SCL'dir. Referans kalibrasyon modeli V1.6 tek fonksiyonudur: `K(x)=26.89+5.39·exp(-x/0.882)`; Home Assistant yayın eşiği 30 mA'dir. Önceki 1,5 A altı/üstü parçalı kalibrasyon planı V1.6 tam aralık sonuçlarıyla kapatılmıştır. V1.6 YAML ve doğrulama raporu kendi sürüm klasöründedir. Yaklaşık 60 W sapması ayrı tekrar kontrolü, yaklaşık 15 W ise SCT013'ün pratik alt ölçüm sınırına yakın gözlem olarak tutulur. PZEM karşılaştırma referansıdır; ground truth değildir.
 
 
 ## Amaç
@@ -18,9 +20,9 @@ SCT013 30A/1V akım sensöründen gelen sinyali ADS1115 ara entegresi üzerinden
 - SCT013 30A/1V sensör fotoğrafta görünmemektedir; model kullanıcı tarafından bildirilmiştir.
 - Fotoğraf fiziksel yerleşimi gösterir; kabloların pin eşleşmelerini, elektriksel değerleri veya sistemin çalıştığını kanıtlamaz.
 
-## Güncel çalışma kapsamı
+## Son çalışma kapsamı ve kapanış
 
-Görevin başlangıçtaki donanım inceleme ve katsayı arayışı geçmişi korunur. Güncel kalibrasyon referansı V1.6 tek fonksiyon modelidir. İki bölgeli katsayı ve 1,5 A geçiş yaklaşımı kapatılmıştır. Bundan sonraki işler V1.6'yı değiştirmeden farklı yüklerde ve uzun süreli kullanımda doğrulamak ve ölçüm zincirini geliştirmektir.
+Görevin başlangıçtaki donanım inceleme, sinyal davranışı ve katsayı arayışı masaüstü prototip üzerinde yürütüldü. Farklı ev yükleri ve bunların kombinasyonları geniş akım aralığında denendi. V1.6 tek fonksiyon kalibrasyon modeli bu ölçüm zinciri için referans olarak kabul edildi. Yeni yük kombinasyonu, 60 W tekrar testi veya uzun süreli masaüstü kullanım doğrulaması gerekmiyor. Gerçek cihaz uygulaması Modül 3 çamaşır makinesi ve Modül 4 bulaşık makinesi görevlerine devredildi. Bu görev, söz konusu modüllere teknik zemin oluşturma amacını yerine getirdiği için kapatılmıştır.
 
 ## Tarihsel başlangıç kapsamı
 
@@ -718,3 +720,12 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - PF=0,76 olan 20,4 W noktası ayrı PF araştırma konusudur; V1.6'ya PF düzeltmesi eklenmez.
 - PZEM karşılaştırma referansıdır, ground truth değildir.
 - Bu kapanış MOD2-GRV001 görevinin tamamlandığı anlamına gelmez. Modülün diğer donanım, bağlantı, güvenilirlik ve gerçek yük gözlemleri ayrı iş olarak sürebilir.
+
+
+## 2026-11-22 – Görev kapanışı: masaüstü prototip amacını yerine getirdi
+
+- **Çalışma:** ESP32D2 + ADS1115 No.10 + SCT013 30A/1V ölçüm zinciri masaüstü prototip üzerinde geliştirildi ve farklı ev yükleri ile yük kombinasyonlarında geniş aralıkta denendi.
+- **Sonuç:** V1.6 tek fonksiyon kalibrasyon modeli referans sürüm olarak kabul edildi. Masaüstü prototip, ölçüm zincirini ve yazılım yaklaşımını gerçek cihaz uygulamasına taşımak için yeterli teknik zemini sağladı.
+- **Kapanış kararı:** MOD2-GRV001 tamamlandı ve kapatıldı. 60 W tekrar testi, yeni yük karakteri/kombinasyonu testleri ve uzun süreli masaüstü gerçek kullanım gözlemi yapılmayacak.
+- **Sonraki aşama:** Çamaşır makinesi üzerinde gerçek kullanım Modül 3'te; bulaşık makinesi üzerinde gerçek kullanım Modül 4'te kendi görev ve kayıtlarıyla yürütülecek. Bu çalışmalar MOD2-GRV001'in devamı değil, ayrı modül uygulamalarıdır.
+- **Kapsam sınırı:** Kapanış, V1.6'nın her olası yükte mutlak doğruluğunu veya saha koşullarında önceden kanıtlandığını iddia etmez. Yalnızca masaüstü prototip görevinin belirlenen amacını yerine getirdiğini kaydeder.
