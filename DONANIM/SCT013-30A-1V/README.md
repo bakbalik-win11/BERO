@@ -327,3 +327,22 @@ Hesap yöntemi, yedi noktanın tablosu, 6–30 A istatistiği ve yorum sınırla
 - [Karşılaştırma grafiği (SVG)](YHDC-30A-1V-GRAFIGI-V1.6-KX-KARSILASTIRMA-2026-11-22.svg)
 
 Durum: Üretici grafik değerleri üzerinden matematiksel karşılaştırma yapıldı; yeni fiziksel BERO donanım testi yapılmadı.
+
+## 10.9 Üretici grafiği – BERO ADS1115/K(x) – PZEM kanıtlarının ayrılması ve pens ampermetre önerisi – 2026-11-22
+
+YHDC 30A/1V üretici grafiği, üreticinin laboratuvar/karakterizasyon verisidir. BERO V1.6 K(x) fonksiyonu ise gerçek BERO kurulumunda ADS1115 diferansiyel RMS ölçümleri, kalibrasyon deneyleri, fiziksel bağlantı ve yazılım zincirinin toplam ampirik davranışından elde edilmiştir. Üretici grafik noktalarının K(x)'ten geçirilmesi matematiksel bir karşılaştırmadır; BERO donanımında yeni ölçüm yapılmış anlamına gelmez.
+
+V1.6 saha deneylerinde BERO akım sonuçlarının PZEM ile karşılaştırılması, BERO'nun kendi pratik çalışma aralığındaki kalibrasyonunu desteklemiştir. Bununla birlikte PZEM burada karşılaştırma referansıdır; izlenebilir laboratuvar standardı olarak kabul edilmemelidir. Mevcut V1.6 veri karşılaştırmasının yaklaşık 17.5 A seviyesine kadar uzanması, 30 A tam ölçeğin tamamının doğrulandığı anlamına gelmez.
+
+### Önerilen bağımsız kontrol
+
+Yüksek akımda, mümkünse AC True-RMS pens ampermetreyle ek saha karşılaştırması yapılması önerilir. Aynı kararlı yük aralığında üç değer kaydedilmelidir:
+- BERO: SCT013 + ADS1115 + V1.6 K(x)
+- PZEM: aynı devredeki akım ölçümü
+- Pens ampermetre: tek bir faz veya nötr iletkeninden alınan bağımsız akım ölçümü
+
+Pens yalnızca tek iletkeni çevrelemelidir; faz ve nötr birlikte ölçülmemelidir. Yük, priz, kablo, SCT ve ölçü aletlerinin nominal sınırları aşılmamalıdır. Marka/model, AC ölçüm aralığı ve doğruluk bilgisi; yük tanımı, zaman aralığı ve üç akım değeri birlikte kaydedilmelidir. Birden çok kararlı tekrar alınmadan ve ölçüm koşulları eşleştirilmeden K(x) katsayısı değiştirilmemelidir.
+
+Pens ampermetre kontrolü **öneri aşamasındadır; henüz gerçekleştirilmiş değildir**. Üretici grafiği karşılaştırmasının hesap ayrıntısı ve grafik:
+- [YHDC 30A/1V – V1.6 K(x) karşılaştırma raporu](YHDC-30A-1V-GRAFIGI-V1.6-KX-KARSILASTIRMA-2026-11-22.md)
+- [Karşılaştırma grafiği (SVG)](YHDC-30A-1V-GRAFIGI-V1.6-KX-KARSILASTIRMA-2026-11-22.svg)
