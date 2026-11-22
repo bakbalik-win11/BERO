@@ -117,6 +117,6 @@ PF araştırmasının amacı dalgayı yalnızca çizmek değil, SCT013 akım ve 
 - [PF Sayısal Hesaplama ve İstatistik Metodolojisi](PF-SAYISAL-HESAPLAMA-VE-ISTATISTIK-METODOLOJISI.md)
 - Bu metodoloji deney planıdır; ADS1115'in yeterliliği, kanal zaman hizası, sensör faz gecikmesi ve PF doğruluğu henüz doğrulanmamıştır.
 
-## Dört AI teknik değerlendirmesinin karşılaştırması
+## Beş AI teknik değerlendirme yanıtının karşılaştırması
 Copilot, Google, Gemini ve Claude'un PF araştırması hakkındaki teknik yanıtları karşılaştırıldı; tahminler, teknik düzeltmeler, güvenlik notları ve birleştirilmiş ilk deney sırası:
 - [Dört AI Teknik Değerlendirmesi – Karşılaştırmalı BERO Notu](AI-TEKNIK-DEGERLENDIRME-KARSILASTIRMASI-2026-11-22.md)
