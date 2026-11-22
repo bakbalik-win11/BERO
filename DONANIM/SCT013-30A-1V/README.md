@@ -88,3 +88,31 @@ Kaynaklar: kullanıcı tarafından sağlanan SCT013_30A_1V_ESP32_Raporu.docx (14
 - YHDC ürün ailesi: https://en.yhdc.com/product/SCT013-401.html
 - SCT013-030 veri sayfası kopyası: https://naylampmechatronics.com/img/cms/000154/SCT013-030-0-30A-0-1V.pdf
 - Seeed Studio SCT013 veri sayfası: https://files.seeedstudio.com/wiki/AC_Current_Sensor/Datasheet_of_SCT013.pdf
+
+
+## 10.1 Bağlantı teması kaynaklı gürültü gözlemi – 2026-11-22
+
+### Kullanıcı gözlemi
+
+- **Önceki gün (2026-11-21):** Gürültü okunmadığı düşünülen SCT bağlantısında pinlerin tam oturmadığı/temasın yeterli olmadığı sonradan fark edildi.
+- **Bugün (2026-11-22):** Bağlantı yenilendi. Yenilemeden sonra SCT okumasında gürültü görüldü.
+- Bu gözlem kullanıcı tarafından bildirildi; sayısal ham kayıt, gürültü genliği, örnekleme süresi veya CSV henüz paylaşılmadı.
+
+### Teknik yorum
+
+Önceki gün gürültü görülmemesi, SCT013 sensörünün veya ölçüm zincirinin gerçekten düşük gürültülü olduğunu kanıtlamıyordu. Yetersiz mekanik oturma/elektriksel temas, sinyalin ADC'ye eksik veya kesintili ulaşmasına ve gürültünün görünmemesine neden olmuş olabilir.
+
+Bağlantı yenilendikten sonra gürültünün görünmesi, ilk gözlemin sensör gürültü karakterizasyonu olarak kullanılamayacağını gösterir. Bununla birlikte yalnızca bu olay, görülen gürültünün kaynağının sensör, kablo, konnektör, bias devresi veya ADC olduğunu tek başına belirlemez.
+
+### BERO için çıkarılan ders
+
+1. Gürültü tabanı veya yüksüz sinyal kararlılığı değerlendirilmeden önce SCT fiş/pin bağlantısının tam oturduğu ve mekanik olarak sabit olduğu kontrol edilmelidir.
+2. Sessiz/0'a yakın okuma doğrudan “sensör gürültüsüz” veya “ADC gürültüsü düşük” şeklinde yorumlanmamalıdır.
+3. Sensör, kablo, fiş ve ADC girişi ayrı ayrı kontrol edilmeden gürültü kaynağına ilişkin kök neden kararı verilmemelidir.
+4. Bağlantı yenilemesi/yeniden oturtma yapıldıysa bu değişiklik deney günlüğüne yazılmalı; önceki ve sonraki kayıtlar aynı fiziksel bağlantı koşuluymuş gibi karşılaştırılmamalıdır.
+
+### Durum ve kanıt sınırı
+
+- **Kullanıcı gözlemi:** Pinlerin tam oturmaması ve bağlantı yenilenince gürültünün görülmesi.
+- **Doğrulanmamış:** Gürültünün genliği, spektrumu, sürekliliği ve fiziksel kaynağı.
+- **Karar:** Önceki sessiz bağlantı gözlemi, SCT013 gürültü tabanı veya ADC noise-floor kanıtı olarak kullanılmayacaktır.
