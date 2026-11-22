@@ -179,3 +179,159 @@ Alınan yararlı öneriler:
 - FNIRSI 2D15P üretici ürün sayfası: https://www.fnirsi.com/products/2d15p
 - Arduino-ESP32 I²C API: https://docs.espressif.com/projects/arduino-esp32/en/latest/api/i2c.html
 - Arduino-ESP32 GPIO API: https://docs.espressif.com/projects/arduino-esp32/en/latest/api/gpio.html
+
+
+## 11. Kaynak dosyaların kimliği ve çalışma durumu
+
+Claude'un kullanıcı tarafından sağlanan kaynak dosyaları:
+- `bero_phase1_capture.ino` – SHA-256: `028823f4a14a093533a8602489ca083fe8fb3a18c6081c7921cf2f35aa468b50`
+- `bero_phase1_analysis.py` – SHA-256: `d46425f51b187a0e4956f34b62ffb2c6eb9e5bae23d23bb3099e22569094de06`
+- Claude teknik açıklama/plan metni – SHA-256: `5ac134de40532be07f12085ff1adcffb2db4d0f2270b368da3ba62bffdd79542`
+
+Bu kaynaklar incelenen taslaklardır. Arduino sketch'i başarılı/kararlı firmware olarak sınıflandırılmadı. Kaynak dosyalar henüz Arduino-ESP32 ile derlenmedi, ESP32D2'ye yüklenmedi ve gerçek ADS1115'te denenmedi.
+
+## 12. Gerçekleştirilen yazılım kontrolleri
+
+Python analiz dosyasında:
+- `python -m py_compile` sözdizimi kontrolü başarılı.
+- `--simulate --cmd g` çalıştı.
+- `--simulate --cmd h --compare ...` çalıştı.
+- 50, 75, 100 ve 125 Hz sentetik sinüs frekans taraması doğrudan Python fonksiyonlarıyla çalıştırıldı.
+- Gerçek seri port açma/yakalama testi yapılmadı.
+- Arduino derlemesi yapılmadı (bu çalışma ortamında Arduino CLI/ESP32 derleme zinciri bulunmuyordu).
+- Gerçek ADC kaydı alınmadı.
+
+Sentetik testin tam özet logu ve yorumları:
+- [Faz 1 sentetik test logu – g/h ve frekans taraması](LOGS/SENTETIK-FAZ1-TEST-GVEH-2026-11-22.txt)
+
+## 13. Arduino yakalama sketch'i – somut inceleme
+
+### Doğru/yararlı yapı
+- ADS1115 adresi 0x48, SDA GPIO21, SCL GPIO22 ve RDY GPIO4 olarak tanımlanmış.
+- A0-A1 ve A2-A3 diferansiyel MUX kodları doğru register alanlarına yerleştirilmiş.
+- PGA ±2,048 V, MODE single-shot, DR=860 SPS ve conversion-ready comparator ayarları kullanılmış.
+- `Hi_thresh=0x8000`, `Lo_thresh=0x0000` ve COMP_QUE != 11 ayarı TI'nin RDY yapılandırma tarifine uyumludur.
+- ALERT/RDY açık drençli çıkış olduğu için 3,3 V'a pull-up gerekir.
+- 8000 adet packed 12 baytlık `Rec` kaydı 96.000 bayt bellek tüketir.
+- Yakalama sırasında Serial'e yazmayıp kayıtlar tamamlandıktan sonra dökmek, seri aktarımın ölçüm döngüsünü etkilemesini azaltır.
+- `t_rdy` dönüşüm hazır olayının zamanı olarak ele alınmış; efektif analog örnekleme anı olduğu iddia edilmemiştir.
+
+### Derleme/yükleme öncesinde düzeltilecekler
+1. `g_run`, `g_done`, `g_first` ve ISR ile paylaşılan `g_tRdy` değişkenlerinde `volatile` tek başına görevler arası senkronizasyon garantisi değildir. FreeRTOS task notification, queue/event veya kritik bölüm/atomik erişim yaklaşımı kullanılmalıdır.
+2. `xTaskCreatePinnedToCore()` dönüş değeri kontrol edilmemiştir. Görev oluşturulamazsa `g_acq` geçersiz kalabilir.
+3. ADS1115 threshold register başlangıç yazımı başarısız olduğunda yalnızca hata yazdırılıyor; yine de “Hazır” mesajı ve yakalama yolu etkin kalıyor. Init başarısızsa yakalama engellenmelidir.
+4. RDY'nin ilk conversion öncesi yüksek olduğu ve her single-shot başlangıcında yeniden uygun kenar oluşturduğu gerçek kartta doğrulanmalıdır. Açık drençli hatta harici pull-up gerekir.
+5. ISR'nin kesin olarak task'in sabitlendiği çekirdekte çalıştığı kod yorumundan çıkarılamaz; kullanılan Arduino-ESP32 core sürümünde doğrulanmalıdır.
+6. Her I²C hatası, timeout, başarısız kayıt ve toplam yakalama süresi raporlanmalı. Görev sonlanamazsa ana döngünün sonsuz beklemesi engellenmelidir.
+7. Hatalı kayıtta kanal değişmiyor; bu, hata sonrası kanal sırasının ve örnek aralıklarının analizde açıkça korunmasını gerektirir.
+8. `dtcmd_us`, config yazma komutundan dönüşüm hazır anına kadar geçen süredir; yalnızca ADC conversion time değildir. I²C yazma zamanı da içerir.
+9. `t_rdy` 32-bit mikrosaniye sayacına dönüştürülmüştür; yaklaşık 71,6 dakikada sarar. Bu testin 8000 kayıtlık süresinde beklenmez, fakat parser wrap durumunu doğru ele almalıdır.
+10. Kodun kullandığı `Wire.begin(..., 400000)`, `Wire.setTimeOut()`, task API ve ISR davranışı seçilen Arduino-ESP32 sürümünde derlenerek doğrulanmalıdır.
+
+TI veri sayfası RDY modunda single-shot çıkışın OS durumunu izlediğini ve dönüşüm sonunda düşük aktif sinyal verdiğini açıklar. Continuous mode'da ise yaklaşık 8 µs'lik conversion-ready darbesi vardır. İki modun elektriksel davranışı birbirine karıştırılmamalıdır.
+
+## 14. Python analiz betiği – somut inceleme
+
+### Yararlı işlevler
+- 32-bit mikrosaniye zaman damgası sarımını açma.
+- Kanal başına örnek aralığı ve hız hesabı.
+- İki dönüşüm sırasını (g/h) karşılaştırma.
+- Ortak sinyalde sinüs uyumuyla zaman damgası sonrası artık gecikme tahmini.
+- M0/M1/M2/M3 yöntemlerinin yan yana raporlanması.
+- Pencere sayısı arttıkça PF sapması ve dağılım davranışının incelenmesi.
+- JSON özet ve grafik çıktısı.
+
+### Düzeltilecek veya yorumlanacak noktalar
+1. Seri port açıldığında ESP32 otomatik resetlenirse betik komutu “Hazır” mesajını beklemeden gönderdiği için komut boot sırasında kaybolabilir. El sıkışma/READY kontrolü eklenmeli. COM5 örneği Windows'a özgüdür; macOS portu kullanıcı sisteminden tespit edilmelidir.
+2. Boş veri, tek kanallı kayıt, sıfır/çok küçük genlik, sıfır geçiş bulunmaması ve yetersiz pencere için açık hata kontrolleri eksiktir.
+3. `CubicSpline` tekrarlı veya monoton olmayan zaman damgalarında hata verebilir; ön işleme bu koşulları kontrol etmelidir.
+4. `np.interp` pencere sınırlarında kanal verisi olmayan noktaları uç değerle doldurur; `CubicSpline` da varsayılan olarak uçların dışına ekstrapolasyon yapar. Pencereler iki kanalın ortak geçerli zaman aralığına kırpılmalıdır.
+5. `M1` eşit aralıklı olmayan ch0 zamanlarında düz aritmetik ortalama alır; bu tam zaman-ağırlıklı ortalama değildir.
+6. `M2` her iki lineer interpolasyonun çarpımını trapezle entegre eder. Lineer iki fonksiyonun çarpımı her alt aralıkta ikinci dereceden olduğundan trapez kuralı tam integrali vermez. Lineer parçalar için çarpımın analitik integrali veya daha kontrollü yeniden örnekleme kullanılabilir.
+7. `M3` kübik spline gürültü ve keskin kenarlı sinyallerde overshoot üretebilir. Saf sinüs testinde iyi çıkması, harmonikli akım darbelerinde üstün olduğunu kanıtlamaz.
+8. `miss_frac` hesabı hem ch=255 hatalı kayıtları hem de zaman aralığı boşluklarını sayabilir; tek hatalı kayıt hem `n_bad` hem bir gap olarak iki kez sayılabilir. Ayrıca gap tespitinde kullanılan eşikler (`1.5 × median`, `3 × median`) farklıdır. Kayıp örnek oranı tanımı netleştirilmelidir.
+9. Frekans önce sıfır geçiş medyanından kestiriliyor, sonra `joint_fit` yalnızca bu tahminin ±0,3 Hz çevresinde arıyor. Kaba örneklemede ilk tahmin bu aralığın dışına çıkarsa fit doğru frekansı bulamaz. 125 Hz sentetik test bunun somut örneğidir.
+10. `fs_ch` ölçülen örnekleme zamanlarından hesaplanır; ancak `H_max` hesabında `MAINS_F=50` sabit kullanılır. 75/100/125 Hz algoritma stres testlerinde bu alan gerçek test frekansına göre hesaplanmadığı için şebeke harmonik kapasitesi diye okunmamalıdır.
+11. M0 indeks eşleştirme bilinçli naif referans yöntemdir; gerçek hesap yöntemi olarak kabul edilmemelidir.
+12. PF hesabında sıfıra yakın RMS/payda için geçerlilik kontrolü eklenmelidir.
+
+## 15. Sentetik testin yorumu ve sınırları
+
+Sentetik veri modelinde her dönüşüm çevrimi için yaklaşık 1,44 ms zaman adımı oluşturulmuştur. Böylece iki kanallı taramada kanal başına yaklaşık 347,3 SPS elde edilmiştir. Bu simülatör tasarım parametresidir; ADS1115'in gerçek hızı değildir.
+
+50 Hz g/h testlerinde:
+- Simüle edilen 20 µs artık gecikme, 20,07 µs ve 19,93 µs olarak bulundu.
+- Sıra takası iki tahmin arasında yaklaşık 0,14 µs fark üretti.
+- Naif indeks eşleştirme yaklaşık 0,1005 mutlak 1-PF sapması verdi.
+- M1 ve M3 yaklaşık 0,00002 sapma verdi.
+- M2 yaklaşık 0,00562 sapma verdi.
+
+Frekans taramasında:
+- 50 Hz: gecikme yaklaşık 20,07 µs; blok std 0,22 µs.
+- 75 Hz: gecikme yaklaşık 20,04 µs; blok std 0,18 µs.
+- 100 Hz: gecikme yaklaşık 20,03 µs; blok std 0,10 µs.
+- 125 Hz: ilk frekans tahmini 122,8967 Hz; artık gecikme 12,68 µs; blok std 32,85 µs.
+
+125 Hz'de ilk frekans tahmini gerçek 125 Hz'den yaklaşık 2,10 Hz uzaklaşmış; `joint_fit` arama penceresi ±0,3 Hz ile sınırlı olduğundan doğru frekansı tarayamamıştır. Bu yüzden 125 Hz mevcut yöntem için doğruluk kalibrasyonu kabul edilmeyecek, en fazla algoritma sınır testi olarak kullanılacaktır.
+
+## 16. Gemini'nin son uygulama sentezinden alınan kararlar
+
+Kabul edilen veya deney taslağına alınan noktalar:
+- 96 kB RAM tamponuyla yakala, sonra seri aktar.
+- g/h sıra takasıyla kanal sırasına bağlı farkı araştır.
+- RDY zaman damgası ile zaman damgası düzeltmesinden sonraki artık gecikmeyi ayrı tut.
+- Dirençli yük PF≈1 testinin tek başına faz doğrulaması olmadığını kabul et.
+- Zamanlama, DC offset, RMS, P/S/PF, crest factor, clipping, kayıp örnek ve pencere geçerlilik verilerini sakla.
+
+Düzeltilen/ertelenen noktalar:
+- RAM tamponu Serial aktarımını yakalama sırasında devreden çıkarır; I²C/RTOS/interrupt jitter'ını tamamen ortadan kaldırmaz.
+- 125 Hz doğruluk kalibrasyonu olarak kullanılmayacak.
+- 10 µF kapasitör ve 100 W lamba paralelinde R||C deneyi bu Faz 1'e dahil edilmeyecek; özellikle şebeke bağlantılı kapasitif test şu an yapılmayacak.
+- GND–PE geriliminin multimetreyle ölçülmesi izolasyon güvenliği sertifikası veya kanıtı değildir.
+- Kettle/230 V üzerinde osiloskop ground bağlantısı önerisi, osiloskop girişlerinin izolasyonu ve toprak referansı doğrulanmadan uygulanmayacak.
+- MCP3208 BERO için yeniden önerilmeyecek; kullanıcı bu parçayla ilgili önceki olumsuz deney nedeniyle onu tekrar gündeme almak istemiyor.
+
+## 17. FNIRSI 2D15P jeneratör ayarı
+
+FNIRSI'nin resmi 2D15P ürün sayfası sinyal jeneratörünü tek kanallı, 0–10 MHz ve 0,1–3,0 Vpp genlik aralığında tanımlıyor. Açık ürün parametreleri tablosunda bağımsız DC offset aralığı belirtilmiyor.
+
+Bu nedenle Claude/Gemini şemasındaki “1,6 Vpp +0,9 V DC offset” değerleri cihaz menüsünde gerçekten offset ayarı bulunduğu görülmeden kullanılmayacaktır. İlk önce cihazın gerçek çıkışı osiloskop veya güvenli ölçümle doğrulanmalı. Offset yoksa ayrı 1,65 V biaslı AC kuplaj ağı tasarlanıp test edilmelidir.
+
+## 18. Güncel deney kararı
+
+İlk deney sırası:
+
+1. FNIRSI 2D15P jeneratörünün offset özelliğini ve çıkışını teyit et.
+2. Gerekirse güvenli, çift kanala eşit uygulanmış DC biaslı düşük gerilim sinyal ağı tasarla.
+3. Arduino sketch'inde görev senkronizasyonunu, init hata yönetimini, READY kontrolünü ve global timeout'u düzelt.
+4. Python seri port el sıkışmasını ve veri doğrulamasını düzelt.
+5. Kullanılacak Arduino-ESP32 sürümü ve ESP32D2 kartıyla derle.
+6. Aynı DC seviyesiyle şebekesiz RDY/zamanlama testi yap.
+7. Aynı düşük gerilimli 50 Hz sinyali iki diferansiyel kanala ver; g/h kayıtları al.
+8. Ham CSV, JSON özet, grafik ve açıklama kaydet.
+9. Bu aşamalardan sonra sensör karakterizasyonuna geçişi değerlendir.
+
+Bu deneyde True PF doğruluğu veya ADC'nin nihai yeterliliği ilan edilmeyecektir.
+
+## 19. Durum tablosu
+
+| İş | Durum |
+|---|---|
+| Python sözdizimi kontrolü | Geçti |
+| Python sentetik g/h çalıştırma | Geçti |
+| Sentetik 50/75/100/125 Hz taraması | Çalıştırıldı; 125 Hz sonuç kararsız |
+| Python gerçek seri port yakalaması | Yapılmadı |
+| Arduino-ESP32 derlemesi | Yapılmadı |
+| ESP32D2'ye yükleme | Yapılmadı |
+| ADS1115 gerçek zamanlama kaydı | Yapılmadı |
+| FNIRSI DC offset özelliği doğrulaması | Bekliyor |
+| Şebekesiz Faz 1 fiziksel deney | Bekliyor |
+| PF firmware'i | Yazılmadı/doğrulanmadı |
+
+## 20. Kaynaklar
+
+- TI ADS1115 güncel veri sayfası (SBAS444E, Aralık 2024 revizyonu): https://www.ti.com/lit/ds/symlink/ads1115.pdf
+- TI ADS1115 ürün sayfası: https://www.ti.com/product/ADS1115
+- FNIRSI 2D15P resmi ürün sayfası: https://www.fnirsi.com/products/2d15p
+
+Üretici veri sayfasındaki teknik özellikler, sentetik yazılım testi ve gerçek BERO donanım testi ayrı kanıt sınıflarıdır.
