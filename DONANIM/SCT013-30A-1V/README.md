@@ -214,3 +214,24 @@ Ham RMS sütunu V cinsinden açıkça adlandırılmalıdır; doğrudan amper ola
 - Bu öneri henüz YAML'a uygulanmadı, derlenmedi veya donanımda test edilmedi.
 
 Durum: Tasarım önerisi; mevcut V1.6 davranışına değişiklik yapılmadı.
+
+
+## 10.4 V1.6-DIAG1 boşta logu ve ct_clamp NaN davranışı – 2026-11-22
+
+Kullanıcının yüksüz/enerjisiz koşulda paylaştığı ilk DIAG1 cihaz logu analiz edildi.
+
+- Yaklaşık iki dakikalık kayıtta akım yayın sensörü 119 kez 0.000 A verdi.
+- Ham RMS sensörü 116 kez NaN, dört kez 0.000500 V verdi.
+- Dört ct_clamp debug kaydında `Raw AC Value: 0.001A after 2 different samples (10 SPS)` görüldü.
+- İki ADS1115 debug kaydında `Got Voltage=0.000000V` görüldü.
+
+ESPHome ct_clamp kaynak kodu incelendi: örnekleme penceresi başında örnek sayacı sıfırlanır; aynı ADC değeri yeni örnek olarak sayılmaz; pencere sonunda hiç farklı örnek yoksa ct_clamp `publish_state(NAN)` çağırır. Bu nedenle sabit 0 V / değişmeyen ADC değerlerinde NaN oluşması mümkündür. Ana V1.6 akım yayın lambda'sındaki NaN -> 0 dönüşümü ayrı bir işlemdir ve Home Assistant akım sensörünün 0.000 A göstermesini açıklar; ham RMS sensöründeki NaN'ın nedeni bu dönüşüm değildir.
+
+`2 different samples (10 SPS)` ifadesi, 200 ms pencerede kabul edilen iki farklı örnek sayısından hesaplanır; ADS1115'in fiziksel örnekleme hızının 10 SPS olduğunu kanıtlamaz.
+
+Dört adet 0.000500 V ham RMS kaydının kaynağı belirlenemedi. Bu ilk yüksüz log, SCT gürültü tabanı hesabı için yeterli değildir. Yük altında kısa bir kontrol ve ardından kontrollü yüksüz tekrar gerekir.
+
+Ayrıntılı sayım, seçilmiş ham log satırları ve kaynak kodu yorumu:
+`PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.6/LOGS/2026-11-22-V1.6-DIAG1-ILK-BOS-OLCU-LOG-ANALIZI.md`
+
+Durum: Firmware derlenmiş ve cihazda çalışır durumda; DIAG1 ham RMS ölçümü yüksüz testte henüz doğrulanmış bir noise-floor kaydı üretmedi.
