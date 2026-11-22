@@ -2,7 +2,7 @@
 
 **Görev:** MOD2-GRV001  
 **Rapor türü:** Birim ve ölçüm zinciri kalibrasyon geçmişi  
-**Durum:** AÇIK – yeni biassız kalibrasyon verisi bekleniyor  
+**Durum:** AÇIK – 150 W ön analizi kaydedildi; bias/YAML teyidi ve 100 W verisi bekleniyor  
 **Son güncelleme:** 2026-11-22
 
 ## 1. Raporun amacı
@@ -69,7 +69,7 @@ Aşağıdaki tablo yalnızca yeni ve aynı bağlantı yaklaşımıyla toplanacak
 | Referans yük | PZEM akım ort. (A) | SCT akım ort. (A) | Eşleşmiş örnek sayısı | SCT std. sapma (A) | Hesaplanan yük katsayısı | Kararlı aralık / not |
 |---|---:|---:|---:|---:|---:|---|
 | 100 W ampul | — | — | — | — | — | Yeni test bekleniyor |
-| 150 W ampul | — | — | — | — | — | Yeni test bekleniyor |
+| 150 W ampul – 2026-11-22 CSV | 0.640950 | 0.589071 (20 eşleşmiş SCT örneği) | 20 | 0.003609 (kararlı SCT serisi, n=151) | **≈30.02 (ön sonuç)** | Bias ve YAML teyidi bekliyor; ayrıntı: `DENEYLER/150W-ADS1115-NO10-2026-11-22.md` |
 | Diğer ampul yükleri | — | — | — | — | — | Gerektikçe eklenecek |
 
 ### Her yeni test için zorunlu kayıt
