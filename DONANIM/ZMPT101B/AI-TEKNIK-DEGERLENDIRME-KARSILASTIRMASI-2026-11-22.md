@@ -1,14 +1,14 @@
-# BERO – Gerçek PF Araştırması / Dört AI Teknik Değerlendirmesinin Karşılaştırılması
+# BERO – Gerçek PF Araştırması / Beş AI Teknik Değerlendirme Yanıtının Karşılaştırılması
 
 - Tarih: 2026-11-22
-- Kaynak görüşler: Copilot, Google, Gemini ve Claude
+- Kaynak görüşler: Copilot (ilk yanıt), Google, Gemini, Claude ve Copilot (ek yanıt)
 - Kapsam: SCT013 + ZMPT101B + ADS1115 ile sayısal gerçek güç faktörü (True PF) araştırması
 - Durum: Teknik sentez ve deney planı; donanım sonucu değildir
 - İlgili metodoloji: [PF Sayısal Hesaplama ve İstatistik Metodolojisi](PF-SAYISAL-HESAPLAMA-VE-ISTATISTIK-METODOLOJISI.md)
 
 ## 1. Yönetici sonucu
 
-Dört değerlendirme de temel PF matematiğinin doğru olduğu ve mevcut donanımla araştırmaya başlanabileceği konusunda birleşiyor. En isabetli ortak uyarı şudur:
+Beş değerlendirme yanıtı da temel PF matematiğinin doğru olduğu ve mevcut donanımla araştırmaya başlanabileceği konusunda birleşiyor. En isabetli ortak uyarı şudur:
 
 **Önce ADS1115 ölçüm zincirinin gerçek zamanlama, örnekleme ve kanal yanıtı karakterize edilmeli; ADS1115'in nihai True PF ölçümüne yeterli olduğu henüz kabul edilmemelidir.**
 
@@ -16,7 +16,7 @@ Claude'un değerlendirmesi ölçülmemiş değerleri tahmin olarak işaretlemesi
 
 Bu not bir model oylaması değildir. Teknik karar, ölçüm ve deney sonuçlarına dayanacaktır.
 
-## 2. Dört görüşün ortaklaştığı noktalar
+## 2. Beş değerlendirme yanıtının ortaklaştığı noktalar
 
 1. Gerçek PF için temel hesap:
    - P = ortalama(v_ac × i_ac)
@@ -202,3 +202,117 @@ SMPS, LED, dimmer ve inverter yüklerde dalga biçimi, crest factor, PF ve refer
 - FNIRSI 2D15P kullanım kılavuzu: https://www.manualslib.com/manual/4108609/Fnirsi-2d15p.html
 
 Kaynaklardaki üretici özellikleri ile BERO'da henüz ölçülmemiş uygulama performansı birbirinden ayrı tutulmalıdır.
+
+
+## 16. Copilot ek değerlendirmesi – teknik inceleme ve düzeltmeler
+
+Kullanıcı tarafından 2026-11-22 tarihinde ek bir Copilot yanıtı sağlandı. Bu yanıt, önceki dört görüşün ortak sonucu olan “önce zamanlama ve senkronizasyonu karakterize et” yaklaşımını destekliyor. Ancak ADS1115 zaman hesabında önemli bir iç tutarsızlık ve benimsenmemesi gereken bazı sabit eşikler içeriyor.
+
+### 16.1 Önemli zaman hesabı düzeltmesi
+
+Copilot ek yanıtında:
+- Bir kanalın yaklaşık 2,32 ms aralıkla,
+- İki kanal dönüş sırasının yaklaşık 4,65 ms'de tamamlandığı,
+- 2,32 ms kanal kaymasının 50 Hz'de yaklaşık 41,8° oluşturduğu
+
+ifade ediliyor.
+
+Bu üç sayı 860 SPS ayarıyla doğrudan tutarlı değildir.
+
+TI veri sayfasına göre seçilen data rate 860 SPS olduğunda nominal tek dönüşüm süresi:
+- 1 / 860 = 1,163 ms
+
+İki kanal ideal olarak dönüşümlü ve her kanal için bir dönüşüm kullanılarak taranırsa örnek sıra yaklaşık şöyledir:
+
+- A dönüşümü: t = 0
+- B dönüşümü: t ≈ 1,163 ms
+- A dönüşümü: t ≈ 2,326 ms
+- B dönüşümü: t ≈ 3,489 ms
+
+Bu ideal hız varsayımında:
+- Her kanalın kendi tekrar aralığı yaklaşık 2,326 ms, yani yaklaşık 430 SPS olur.
+- Ardışık A ve B dönüşüm tamamlanmaları arasındaki nominal aralık yaklaşık 1,163 ms olur.
+- 50 Hz için 1,163 ms yaklaşık 20,9°'dir.
+- 2,326 ms ise 50 Hz'de yaklaşık 41,9°'dir; fakat bu ideal dönüşümlü dizide aynı kanalın ardışık örnekleri arasındaki süredir, A-B kanal farkı değildir.
+
+Gerçek I²C/sürücü çevrimi 1,163 ms'den uzun olabilir. Dolayısıyla bu nominal zaman hesabı BERO'nun gerçek gecikmesi olarak kabul edilmez. Copilot'un 2,32 ms değerini “kanallar arası kayma” olarak kullanması hatalıdır; gerçek t_A, t_B, dönüşüm hazır ve okuma zamanları deneyle kaydedilmelidir.
+
+Kaynak: TI ADS1115 ürün sayfası ve ADS111x veri sayfası. Ürün sayfası 8–860 SPS, MUX ve single-cycle settling özelliklerini belirtir: https://www.ti.com/product/ADS1115
+
+### 16.2 8,6 örnek/periyot ve “gerçek PF için yetersiz” hükmü
+
+430 SPS/kanal varsayımı altında 50 Hz için:
+- 430 / 50 = 8,6 örnek/periyot
+- Nyquist sınırı 430 / 2 = 215 Hz
+
+400 SPS/kanal varsayımı için Nyquist sınırı 200 Hz olur. Dolayısıyla “ADS1115 iki kanalda kesin 200 Hz üstünü ölçemez” ifadesi, 400 SPS varsayımı açıkça belirtilmeden genel değer olarak yazılmamalıdır.
+
+8,6 örnek/periyot temel 50 Hz sinüsü üzerinde deney yapmayı tamamen anlamsız kılmaz. Saf veya düşük harmonikli dalgalarda zaman hizalama ve doğru kanal modeli ile sınırlı deneyler yapılabilir. Ancak bu örnekleme hızı 5. harmonik olan 250 Hz'i dahi Nyquist sınırı altında tutmaz; dar akım darbeleri ve yüksek harmoniklerin toplam RMS/aktif güç üzerindeki katkısı güvenilir biçimde yakalanmayabilir.
+
+Bu nedenle:
+- “ADS1115 gerçek PF için kesinlikle yetersizdir” hükmü henüz BERO ölçümüyle kanıtlanmış değildir.
+- “ADS1115 True PF için yeterlidir” hükmü de kanıtlanmış değildir.
+- Doğru karar, ölçülen örnekleme hızı ve hedeflenen harmonik bant genişliği üzerinden hata bütçesi oluşturarak verilecektir.
+
+### 16.3 Önerilen alternatif ADC'ler ve kullanıcı proje kararı
+
+Copilot MCP3208, MCP3202, ADS7868/ADS7865, STM32 ADC/DMA ve ESP32-S3 ADC/DMA seçeneklerini listeliyor.
+
+BERO için:
+- **MCP3208 yeniden öneri listesine alınmayacaktır.** Kullanıcı bu entegreyle daha önce uzun ve verimsiz bir deney süreci yaşamış, yeniden ele almak istemediğini açıkça belirtmiştir.
+- Yeni ADC satın alma kararı şimdilik ertelenmiştir.
+- İleride yükseltme gerekirse eşzamanlı örnekleme, kanal sayısı, etkin örnekleme hızı, analog giriş aralığı, anti-alias filtre, sürücü karmaşıklığı ve veri aktarım yükü birlikte değerlendirilecektir.
+- Sadece “yüksek SPS” ifadesi ADC seçmek için yeterli kriter değildir.
+
+### 16.4 Sabit geçerlilik eşikleri kabul edilmiyor
+
+Copilot'un aşağıdaki başlangıç değerleri BERO tarafından ölçülmüş değildir:
+- S < 1 VA
+- N < 8 periyot
+- clipping oranı > 0,1%
+- jitter > 1% periyot
+- eksik örnek oranı > 0,1%
+- Vrms < 20 V
+- Irms < 0,05 A
+
+Bunlar doğrudan firmware veya kabul testi kriteri yapılmayacaktır. Eşikler yüksüz gürültü kayıtları, kanal kalibrasyonu, hata bütçesi ve tekrarlı yük deneyleriyle belirlenecektir.
+
+PF işaretinin geçerlilik kontrolü de uygulama yönüne göre tanımlanmalıdır. Tek yönlü tüketim senaryosunda pozitif PF beklenebilir; çift yönlü güç akışında negatif aktif güç/PF işaret bilgisi taşıyabilir. Genel matematiksel sınır, kullanılan işaret tanımına göre |PF| ≤ 1 olup negatif işaret otomatik olarak ölçüm hatası sayılmamalıdır.
+
+### 16.5 Dirençli 100 W yük ve PZEM önerisinin yeri
+
+100 W dirençli yükte PZEM karşılaştırması, sensörler ve ADC zamanlama testleri tamamlandıktan sonraki kontrollü doğrulama aşamasına aittir. Bu, ilk deney değildir.
+
+İlk deney sırası değişmiyor:
+1. ADS1115 ile şebekesiz DC zamanlama testi.
+2. İki ADC kanalına aynı izole, düşük gerilimli 50 Hz sinyali vererek kanal aralığı ve göreli faz yanıtını inceleme.
+3. Ham veriyi bilgisayarda analiz etme.
+4. Sensörleri ayrı karakterize etme.
+5. Güvenli koşullar ve ölçüm zinciri doğrulandıktan sonra dirençli yük deneyine geçme.
+
+Osiloskopla doğrudan şebeke üzerinde ölçüm önerisi bu plana alınmamıştır. İlk analog testler galvanik olarak izole düşük gerilimli kaynakla yapılacaktır. Ototransformatör tek başına izolasyon sağlamaz.
+
+### 16.6 İstatistik önerilerinin değerlendirilmesi
+
+Yararlı alanlar:
+- zaman damgası, örnek sayısı, gerçek etkin SPS
+- jitter, kayıp örnek, clipping
+- Vrms, Irms, P, S, PF ve geçerlilik
+- DC offset, crest factor ve yeterli bant genişliği sağlanırsa THD
+- pencere bazında medyan, IQR, standart sapma ve güven aralığı
+
+Daha sonra değerlendirilecekler:
+- yüzde 95 güven aralığı için bootstrap; ardışık pencerelerde zaman bağımlılığı varsa blok bootstrap
+- pencere dışı PF kararlılığı ve autocorrelation
+- P, S ve PF arasındaki korelasyonlar
+
+P, S ve PF matematiksel olarak birbirine bağlı değişkenler olduğundan korelasyon katsayıları tek başına ölçüm doğruluğunu göstermez. İlk aşama için öncelik değildir.
+
+Copilot'un metninde RMS denklemleri biçimlendirme sırasında karekök işareti olmadan görünmektedir. Gerçek RMS tanımında karekök zorunludur: Vrms = sqrt(mean(v²)), Irms = sqrt(mean(i²)). Bu bir içerik hatası değil, metin aktarım/biçimlendirme kaybı olabilir; özgün yanıtın matematik görünümü ayrıca teyit edilmemiştir.
+
+### 16.7 Bu ek yanıt sonrası nihai karar
+
+Copilot ek yanıtı ana araştırma yaklaşımını değiştirmiyor. Ancak 2,32 ms ve 41,8° hesabı düzeltilmelidir; bu değerler ölçülmüş kanal kayması olarak kullanılmayacaktır.
+
+**İlk deney hâlâ şebekesiz ADS1115 zamanlama karakterizasyonudur.** PF firmware'i veya nihai ADC kararı bu aşamada yazılmayacaktır.
+
