@@ -79,3 +79,9 @@ Kullanıcının sağladığı 4 sayfalık `ZMPT101B.PDF` işletim kılavuzu ince
 - [ZMPT101B/ZMPT107 Kullanım Kılavuzu İnceleme Kaydı](datasheets/ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md)
 
 Kılavuzun aktif çıkış için küçük faz hatası, pasif çıkış için yük direnci arttıkça faz farkı artışı yönündeki nitel açıklamaları hazır PCB modülünün doğrulanmış performansı sayılmaz. Kartın gerçek faz gecikmesi ve çıkış genliği fiziksel ölçümle belirlenecektir. Orijinal PDF ikili dosyası henüz GitHub'a eklenmemiştir.
+
+
+## Hazır modül kartı için ek teknik kaynak
+- [DataCaptureControl – ZMPT101B AC Voltage Transformer Sensor Module](https://datacapturecontrol.com/articles/io-components/sensors/voltage/zmpt101b-ac-voltage-transformer-sensor-module)
+
+Bu kaynak LM358'li hazır kartın blok yapısını, L/N ve VCC/OUT/GND pinlerini ve ADC üzerinden RMS kalibrasyon yaklaşımını açıklar. Kaynak incelemesi, [kullanım kılavuzu inceleme kaydına](datasheets/ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md) eklendi. Hazır kartın faz gecikmesi ve PF doğruluğu ölçülmüş kabul edilmemektedir.
