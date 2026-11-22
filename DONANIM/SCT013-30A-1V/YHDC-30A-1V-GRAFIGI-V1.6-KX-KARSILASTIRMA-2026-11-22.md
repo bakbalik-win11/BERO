@@ -85,3 +85,49 @@ Bu karşılaştırma, nominal 30 A/V üretici transferini V1.6'nın 27.59 taban 
 6. Bu hesap, gerçek donanımda ölçülmüş yeni bir sonuç olarak sunulmayacaktır.
 
 Grafik: `YHDC-30A-1V-GRAFIGI-V1.6-KX-KARSILASTIRMA-2026-11-22.svg`
+
+## 7. Ölçüm dayanakları ve bağımsız yüksek akım doğrulaması
+
+Bu karşılaştırmada üç ayrı kanıt kaynağı birbirine karıştırılmamalıdır:
+
+1. **YHDC üretici karakteristik grafiği:** Üreticinin kendi test koşullarında yayımladığı SCT013 30A/1V giriş-akım / çıkış-gerilimi karakteristiğidir. Bu grafik üretici laboratuvar verisidir; BERO donanımında yapılmış bir ölçüm değildir.
+2. **BERO ADS1115 ölçüm zinciri:** V1.6'daki tek ve sürekli K(x) fonksiyonu, gerçek BERO kurulumunda ADS1115 diferansiyel ölçümünden elde edilen RMS verileri ve kalibrasyon deneyleri üzerinden geliştirilmiştir. Bu fonksiyon yalnızca SCT çekirdeğini değil, kullanılan sensör örneği, bağlantı/analog koşullar, ADS1115 ve yazılım zincirinin toplam ampirik davranışını temsil eder. Bu grafikte üretici eğrisindeki gerilim noktaları BERO ölçeği ve K(x) fonksiyonundan geçirilmiştir; bu işlem yeni bir fiziksel ADS1115 ölçümü değildir.
+3. **PZEM ile saha karşılaştırması:** V1.6 deneylerinde BERO akım sonuçları PZEM ölçümleriyle karşılaştırılmış ve pratik çalışma aralığında fonksiyonun kabul edilmesini destekleyen sonuçlar elde edilmiştir. PZEM bu projede karşılaştırma referansıdır; izlenebilir bir laboratuvar akım standardı olduğu varsayılmamaktadır. Ayrıca mevcut V1.6 karşılaştırması yaklaşık 17.5 A seviyesine kadar veri içerir; bu sonuç tek başına 30 A tam ölçeğin tamamını doğrulamaz.
+
+Bu nedenle üretici grafiğinde görülen yaklaşık -10.46% ölçek farkı, BERO'nun kendi ADS1115 ölçüm zincirindeki saha hatası olarak yorumlanamaz. PZEM karşılaştırması BERO'nun deneysel kalibrasyonunu destekler; ancak yüksek akım bölgesinde bağımsız bir pens ampermetre kontrolü ek kanıt sağlayabilir.
+
+### Önerilen sonraki deney: yüksek akımda pens ampermetre kontrolü
+
+**Amaç:** Üretici grafiği ile BERO'nun ampirik ADS1115/K(x) zinciri arasındaki ölçek farkını fiziksel sahada, PZEM'den bağımsız ikinci bir ölçüm cihazıyla kontrol etmek.
+
+**Ölçüm düzeni:**
+- Mümkünse AC True-RMS özellikli ve ölçüm aralığı/doğruluğu bilinen bir pens ampermetre kullanılmalıdır.
+- Pens yalnızca tek bir iletkeni (faz veya nötrden biri) çevrelemelidir; faz ve nötr birlikte ölçülmemelidir.
+- SCT013, pens ampermetre ve PZEM aynı yük akımını ve mümkün olduğunca aynı kararlı zaman aralığını gözlemlemelidir.
+- Akımı yüksek ama devredeki priz, kablo, yük, SCT ve ölçü aletlerinin izin verilen sınırları içinde tutan kararlı bir yük kullanılmalıdır. Ölçüm için devre veya ekipman nominal sınırları aşılmamalıdır.
+- Kararlı yük bölümünde BERO akımı, PZEM akımı ve pens ampermetre akımı aynı zaman aralığı için kaydedilmelidir. Tek bir anlık okumaya dayanmak yerine birkaç kararlı ölçüm tekrarı alınmalıdır.
+
+**Kaydedilecek alanlar:**
+
+| Alan | Birim | Açıklama |
+|---|---|---|
+| test_timestamp | tarih/saat | Ölçüm aralığının zamanı |
+| load_description | metin | Kullanılan yük ve çalışma durumu |
+| clamp_model | metin | Pens ampermetrenin marka/modeli |
+| clamp_accuracy_range | metin | AC akım aralığı ve üretici doğruluk bilgisi |
+| clamp_current_a | A | Pens ampermetrenin okuması |
+| pzem_current_a | A | Aynı aralıktaki PZEM akımı |
+| bero_current_a | A | V1.6 ADS1115/K(x) akımı |
+| bero_raw_rms_v | V RMS | Elde edilebiliyorsa kalibrasyon öncesi ct_clamp RMS gerilimi |
+| notes | metin | Yük kararlılığı, ölçüm koşulları ve gözlemler |
+
+**Yorum yöntemi:**
+- Öncelikle pens ampermetre ile PZEM'in birbirine ne kadar yakın olduğu incelenir.
+- Ardından BERO sonucu pens ampermetreye göre değerlendirilir.
+- Pens ile PZEM yakın, BERO farklıysa BERO ölçüm zinciri/kalibrasyon farkı araştırılır.
+- Pens ile BERO yakın, PZEM farklıysa PZEM'in o çalışma noktasındaki ölçümü ayrıca incelenir.
+- Üç cihaz da farklı sonuç verirse tek ölçümle katsayı değiştirilmez; bağlantı, ölçüm aralığı, True-RMS özelliği, yük kararlılığı ve zaman eşleşmesi kontrol edilerek deney tekrarlanır.
+
+**Güvenlik:** Şebeke devresinde çalışma yalnızca uygun ekipman ve yetkinlikle yapılmalıdır. Pens ampermetre, yalıtımı sağlam ve güvenli biçimde erişilebilir tek iletken üzerinde kullanılmalı; açıkta canlı iletken oluşturulmamalı veya devre nominal sınırlarının üzerine çıkarılmamalıdır.
+
+**Durum:** Pens ampermetre ile yüksek akım doğrulaması önerilmiştir; henüz yapılmış bir deney veya ölçüm sonucu değildir. Bu öneri V1.6 K(x) katsayılarını değiştirme kararı değildir.
