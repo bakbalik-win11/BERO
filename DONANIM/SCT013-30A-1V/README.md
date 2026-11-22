@@ -164,3 +164,53 @@ Bu CSV, bağlantı yenilemesi sonrası SCT gürültüsünün büyüklüğünü/k
 - Gürültü kaynağına karar vermeden önce SCT fişi/kablosu, ADC girişleri, bias/topoloji ve ölçüm yazılımı ayrı ayrı kontrol edilsin.
 
 Durum: Kod kapsamı incelendi; CSV akım zaman serisi sağlamıyor; yeni gürültü için nicel sonuç henüz yok.
+
+
+## 10.3 Ham RMS değerini ayrı veri sütununda saklama önerisi – 2026-11-22
+
+### Öneri
+
+V1.6'nın mevcut kalibre edilmiş akım yayınını değiştirmeden, aynı ct_clamp ölçümünün filtreler öncesi ham RMS değerini ayrıca kaydetmek önerildi.
+
+Amaç:
+- Bağlantı/temas sorunu sonrası sinyalin gerçekten ortaya çıkıp çıkmadığını görmek.
+- Kalibrasyon düzeltmesinin ham ölçüme etkisini ayırmak.
+- 30 mA yayın eşiğinin altında kalan ölçümü ayrıca inceleyebilmek.
+- Filtrelenmiş/kalibre edilmiş ana değer ile teşhis amaçlı ham değeri aynı zaman penceresinde karşılaştırmak.
+
+### Önemli terminoloji
+
+Önerilen “ham” sütun, anlık ADS1115 ADC örneği değildir.
+
+V1.6 zincirinde ct_clamp:
+- Kaynak analog örnekleri 200 ms boyunca toplar.
+- DC ortalamayı çıkarır.
+- AC RMS değerini hesaplar.
+
+Dolayısıyla filtreler öncesi değer, **200 ms pencereyle hesaplanmış kalibrasyon öncesi RMS gerilimidir (V RMS)**. Bu değer ham dalga biçimi veya tekil ADC kodları değildir.
+
+### Düşük müdahaleli uygulama fikri
+
+ESPHome sensör otomasyonundaki on_raw_value tetikleyicisi, sensör değeri filtreleri uygulanmadan önce çağrılır. Mevcut ct_clamp sensörünün bu tetikleyicisinden alınan değer ayrı bir teşhis sensörüne/CSV sütununa aktarılabilir.
+
+Bu yaklaşım, aynı ADS1115 girişini ikinci bir ct_clamp bileşeniyle yeniden örnekletmekten daha az müdahalelidir. Böylece ikinci örnekleme yolunun zamanlama ve kaynak yükü oluşturması önlenir.
+
+### Önerilen veri sütunları
+
+| Alan | Birim | Açıklama |
+|---|---|---|
+| sct_raw_rms_v | V RMS | ct_clamp 200 ms RMS sonucu; calibrate_linear ve K(x) öncesi |
+| sct_calibrated_current_a | A | Baz ölçek ve K(x) düzeltmesi sonrası, 30 mA yayın eşiği öncesi |
+| sct_published_current_a | A | Mevcut V1.6 Home Assistant değeri; 30 mA ve altı sıfırlanır |
+
+Ham RMS sütunu V cinsinden açıkça adlandırılmalıdır; doğrudan amper olarak sunulmamalıdır. Amper cinsinden karşılaştırma için ayrıca baz ölçekli ve kalibre edilmiş sütun gerekir.
+
+### Değişmezler ve doğrulama
+
+- Mevcut V1.6 akım hesaplama ve yayın davranışı değiştirilmemelidir.
+- Yeni teşhis alanı ilk aşamada yalnızca veri toplama amacıyla kullanılmalıdır.
+- Ham RMS değerinin on_raw_value üzerinden geldiği, zaman damgasının aynı ct_clamp güncellemesine ait olduğu doğrulanmalıdır.
+- Yeni alanın Home Assistant recorder/veri tabanı yükü gözlenmelidir.
+- Bu öneri henüz YAML'a uygulanmadı, derlenmedi veya donanımda test edilmedi.
+
+Durum: Tasarım önerisi; mevcut V1.6 davranışına değişiklik yapılmadı.
