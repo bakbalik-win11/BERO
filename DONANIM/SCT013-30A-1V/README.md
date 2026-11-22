@@ -266,3 +266,49 @@ Bu karar, mutlak akım doğruluğu, güç/enerji ölçümü veya tüm 30 A ölç
 
 Ayrıntılı analiz ve kullanıcı tarafından netleştirilen kabul ölçütü:
 `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.6/LOGS/2026-11-22-V1.6-DIAG1-HISTORY-39-CSV-ANALIZI.md`
+
+
+## 10.7 Üretici karakteristik aralığı ve düşük akımda ölçüm hassasiyeti – 2026-11-22
+
+### Üretici belgelerinden doğrulananlar
+
+İki farklı üretici belgesi birbirinden ayrılarak değerlendirilmelidir:
+
+1. YHDC'nin 2015 tarihli SCT013-030 ürün spesifikasyonu, 30A/1V model için rated input 0–30 A, rated output 0–1 V, accuracy ±1% ve linearity ≤0.2% ifadelerini verir. Bu tabloda ayrıca 1 A gibi açık bir minimum akım sınırı yazılmamıştır.
+   - Dağıtılmış PDF kopyası: https://www.mouser.com/datasheet/2/744/101990028_SCT_013_030_Datasheet-2487857.pdf
+2. PowerUC/YHDC SCT013 ürün ailesinin karakteristik grafiklerinde 5A/1V modelinin ilk işaretli akım noktası 1 A; 30A/1V modelinin ilk işaretli akım noktası 6 A'dır. 30A/1V grafiğinde 6 A için yaklaşık 0.1994 V, 12 A için 0.3995 V, 30 A için 0.9994 V gösterilir.
+   - Üretici aile PDF'si: https://poweruc.com/wp-content/uploads/2023/07/2025040819322782.pdf
+
+**Yorum sınırı:** Grafiklerdeki ilk nokta, sensörün bunun altında çalışmadığı veya kesin alt sınırın 6 A olduğu anlamına gelmez. Yalnızca yayımlanmış karakteristik grafiğin o model için 6 A'dan başladığını gösterir. Aynı şekilde 0–30 A tablo ifadesi de SCT + kablo + ADS1115 + yazılım zincirinin 0.1 A seviyesinde ±1% doğruluk sağlayacağını tek başına kanıtlamaz. Üretici belgelerindeki genel doğruluk/doğrusallık ifadesi ile düşük akımda ayrıntılı test verisinin bulunması aynı şey değildir.
+
+### Nominal çıkışın düşük akımda küçülmesi
+
+30A/1V nominal oranından teorik hassasiyet:
+
+- 1 V / 30 A = 33.33 mV/A RMS
+- 1.0 A → yaklaşık 33.3 mV RMS
+- 0.5 A → yaklaşık 16.7 mV RMS
+- 0.1 A → yaklaşık 3.33 mV RMS
+- 0.065 A → yaklaşık 2.17 mV RMS
+
+Bunlar ideal nominal oran üzerinden hesap değerleridir; gerçek sensör/ADC ölçümü değildir.
+
+Akım küçüldükçe sensör çıkış gerilimi de küçülür. Kablo/konnektör, ADC giriş gürültüsü, bias kararlılığı, örnekleme zamanlaması, kuantalama ve RMS algoritmasının toplam etkisi ölçülen AC sinyaline göre daha belirgin hale gelir. Bu, tüm ölçüm zincirinin düşük seviyede sinyal/gürültü oranını zorlar.
+
+### BERO deneyinden çıkarılan sonuç
+
+- BERO'nun 30A/1V örneğinde yaklaşık 0.1 A mertebesinde yük varlığının algılanması, üretici karakteristik grafiğindeki en düşük 6 A noktasından çok aşağıda işlevsel algılama yapılabildiğini gösterir.
+- Bu başarı, 0.1 A civarında mutlak akım doğruluğu veya üreticinin yayımladığı ±1% toleransın sağlandığı anlamına gelmez.
+- Yaklaşık 15 W altındaki ölçüm doğruluğu, kullanıcının mevcut uygulama hedefi için öncelikli değildir. Ana tasarım kararı bu nedenle düşük akım ucunu zorlayarak kalibrasyon eğrisini tekrar parçalamak değildir.
+
+### Tek K(x) fonksiyonunun fiziksel yorumu
+
+BERO'da bulunan:
+
+`K(x)=26.89+5.39\,e^{-x/0.882}`
+
+fonksiyonu, bu deney düzeneğinin (SCT013-030, fiziksel bağlantı, ADS1115 No.10, analog giriş koşulları, örnekleme ve RMS/yazılım zinciri) pratik aralıktaki toplam davranışını düzelten ampirik bir modeldir. Bu ifade CT çekirdeğinin evrensel fizik denklemi veya farklı SCT/ADC kurulumlarına aktarılabilecek üretici modeli değildir.
+
+Bölgesel katsayı geçişleri yerine tek ve sürekli fonksiyonun kabul edilmesi, test edilen pratik aralıkta daha tutarlı bir model sağlamıştır. Düşük uçtaki sınırlı hassasiyet bu kararın bilinen kullanım sınırı olarak korunur.
+
+Durum: Üretici belgesi ve BERO saha/kalibrasyon sonuçlarıyla yorumlandı; burada verilen mV/A alt seviye değerleri nominal oran hesabıdır, yeni donanım testi değildir.
