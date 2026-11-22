@@ -10,7 +10,20 @@ Akım, ses ve titreşim gibi farklı fiziksel büyüklükleri, sensörlerin kend
 
 **Önemli sıra kararı:** Mimari fikirler, sensör seçimi, örnekleme gereksinimleri, bağlantılar, işlem yükü ve veri şeması yeterince netleşmeden donanım imalatına geçilmeyecektir. Bu belge tek başına imalat izni değildir.
 
-## 2. Önerilen mimari
+## 2. Çalışma sırası – geçici deney düzeneği ve sonradan modülleşme
+
+Kullanıcı kararı (2026-11-22): Modül 3 Step 1 akım okuma tamamlandı. Step 2'de ses ve titreşim verileri, çamaşır makinesinin yanına yerleştirilecek **ayrı/geçici bir ESP** ile toplanacaktır. Bu aşamada ses ve titreşim donanımı nihai Modül 3 kartına entegre edilmeyecek; Modül 3 fiziksel olarak imal edilmeyecektir.
+
+- Geçici ESP, ses ve titreşim ölçümlerini kendi örnekleme gereksinimlerine göre alacaktır.
+- Veriler, PZEM uygulamasında kullanılan yayın yaklaşımına benzer biçimde dışarı aktarılacaktır.
+- Her yayın/kayıt zaman bilgisi ve ortak zaman dilimi/slice numarası taşıyacaktır. Alan adları ve zaman diliminin kesin tanımı deney tasarımında belirlenecektir.
+- Akım ölçümünden gelen kayıtlarla ses/titreşim kayıtları zaman damgası ve dilim numarası üzerinden eşleştirilecektir.
+- Deneylerle örnekleme, yayın sürekliliği, zaman hizası ve özelliklerin makine davranışını ayırt etme yeterliliği gözlemlenecektir.
+- Ses/titreşim ve akım tarafı deneylerle kararlı ve birleştirilebilir hale geldiğinde, doğrulanmış donanım/yazılım tek Modül 3 yapısında toplanacaktır. Modül 4 için de ortak mimari ilkeleri korunacak; cihaz özelindeki doğrulamalar ayrıca yapılacaktır.
+
+Bu nedenle Step 2'nin çıktısı nihai modül değil, **bağımsız ses/titreşim veri toplama ve yayın deney düzeneği** olacaktır.
+
+## 3. Önerilen mimari
 
 Her sensör kendi fiziksel ölçüm ihtiyacına uygun hızda örnekleme yapar. Sensörlerin ham örnekleme hızlarının aynı olması zorunlu değildir. Her sensör, ortak 1 saniyelik zaman penceresine ait özellikleri/özetleri üretir. Pencere kimliği ve zaman damgası ortak zaman tabanından alınır.
 
@@ -18,7 +31,7 @@ Her sensör kendi fiziksel ölçüm ihtiyacına uygun hızda örnekleme yapar. S
 - **Ses – MAX4466 (öneri):** Analog ses örneklemesi kendi uygun örnekleme hızıyla yapılır. DC orta nokta/bias bileşeni ayrıldıktan sonra pencere bazında ses RMS ve peak; uygun görülürse ZCR hesaplanabilir. MAX4466 kalibreli dB ölçer olarak kabul edilmeyecek; ilk hedef göreceli akustik özellikleri kaydetmektir.
 - **Titreşim – MPU6050 (öneri):** Sensör kendi ODR/örnekleme hızında üç eksenli ivme verisi sağlar. Yerçekimi/statik bileşeni uygun filtreyle ayırma yaklaşımı tasarımda belirlenecek. Pencere bazında eksen RMS/peak özellikleri değerlendirilebilir. Sadece vektör büyüklüğünden sabit 1 g çıkarmanın her durumda yeterli olduğu varsayılmayacaktır.
 
-## 3. Zaman senkronizasyonu
+## 4. Zaman senkronizasyonu
 
 - Tek bir ortak monoton zaman tabanı ve 1 saniyelik slot kimliği (ör. `tick_id` / `epoch_s`) kullanılacaktır.
 - Sensörlerin örnekleme döngüleri birbirini bloke etmeyecek; her biri kendi hızında çalışacaktır.
@@ -26,7 +39,7 @@ Her sensör kendi fiziksel ölçüm ihtiyacına uygun hızda örnekleme yapar. S
 - Zaman damgası üretimi, slot sınırları, sensör gecikmeleri, eksik pencere davranışı ve yeniden başlatma sonrası zaman eşlemesi tasarım aşamasında tanımlanacaktır.
 - Ortak slot kullanımı tek başına donanım seviyesinde eşzamanlı örnekleme veya sıfır zaman kayması garantisi vermez. Gerekirse gecikme ve hizalama ölçülüp raporlanacaktır.
 
-## 4. Önerilen veri şeması
+## 5. Önerilen veri şeması
 
 İlk taslak alanlar:
 
@@ -34,7 +47,7 @@ Her sensör kendi fiziksel ölçüm ihtiyacına uygun hızda örnekleme yapar. S
 
 Gerekirse tepe ivme, sensör durum bayrakları, pencere örnek sayıları, veri geçerlilik bayrakları ve cihaz/modül kimliği eklenir. Alan adları ve birimler imalat/yazılım tasarımında kesinleştirilecektir.
 
-## 5. İmalat öncesi netleştirilecekler
+## 6. Nihai modül imalatı öncesinde netleştirilecekler
 
 1. ESP32 kart modeli, ADC/I²C kaynakları ve pin planı.
 2. SCT013/ADS1115 ölçüm yolunun diğer sensörlerle kaynak paylaşımı.
@@ -46,11 +59,11 @@ Gerekirse tepe ivme, sensör durum bayrakları, pencere örnek sayıları, veri 
 8. Besleme, topraklama, analog gürültü, kablo ve sensör montaj konumları.
 9. Modül 3 ve 4'te ortak tutulacak alanlar ile cihaza özgü alanlar.
 
-## 6. İmalata geçiş kapısı
+## 7. Nihai modül imalatına geçiş kapısı
 
-İmalat başlamadan önce yukarıdaki kararlar bir bağlantı/pin planı, sensör listesi, veri şeması, örnekleme/zamanlama planı ve yazılım iş akışı halinde gözden geçirilip onaylanmalıdır. Açık teknik sorular varken imalat başlatılmaz.
+Geçici deney düzeneği, nihai modül imalatı anlamına gelmez. Nihai imalat başlamadan önce bağlantı/pin planı, sensör listesi, veri şeması, örnekleme/zamanlama planı, yayın/taşıma yöntemi ve yazılım iş akışı deney sonuçlarıyla gözden geçirilip onaylanmalıdır. Açık teknik sorular varken nihai modül imalatı başlatılmaz.
 
-## 7. Kapsam dışı / henüz karar verilmemiş
+## 8. Kapsam dışı / henüz karar verilmemiş
 
 - Otomatik program/aşama sınıflandırma algoritması bu mimari notla tanımlanmış değildir.
 - Ses için desibel kalibrasyonu taahhüt edilmemiştir.
