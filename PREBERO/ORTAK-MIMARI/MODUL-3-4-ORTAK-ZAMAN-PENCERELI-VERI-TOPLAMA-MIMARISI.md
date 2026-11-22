@@ -78,3 +78,24 @@ Geçici deney düzeneği, nihai modül imalatı anlamına gelmez. Nihai imalat b
 - Ses için desibel kalibrasyonu taahhüt edilmemiştir.
 - Örnekleme hızları ve özellik hesaplama parametreleri henüz kesinleştirilmemiştir.
 - PF kanalı ve ZMPT101B'nin kesin devre/örnekleme entegrasyonu deney sonuçlarına bağlıdır.
+
+
+## Dağıtık ESP düzeni ve paket yayınlama yaklaşımı
+
+Kullanıcı kararı (2026-11-22): Nihai Modül 3/4 donanımı oluşana kadar sensörler tek kartta toplanmayacaktır. Deney aşamasında birden fazla bağımsız/geçici ESP, kendi sensör kanalını okuyup ölçüm özetlerini paket halinde yayınlayabilir. Bu dağıtık düzende PZEM ile kurulan paket yayınlama tecrübesi temel alınacaktır.
+
+- Her ESP kendi ölçümünü ve sensör özelliklerini üretir; yayın paketinde cihaz/kanal kimliği, zaman damgası ve ortak zaman dilimi numarası bulunması tasarım gereğidir.
+- Paket biçimi, yayın aralığı, taşıma protokolü, alıcı tarafın eşleştirmesi ve kayıp/tekrar davranışı PZEM uygulamasındaki mevcut kod ve loglar incelenerek netleştirilecektir; mevcut protokol ayrıntıları görülmeden alan adları veya paket yapısı varsayılmayacaktır.
+- Ayrı ESP'lerden gelen paketler merkezi alıcıda zaman damgası ve ortak dilim numarasıyla bir araya getirilecektir. Aynı dilim numarası tek başına örneklerin fiziksel olarak eşzamanlı alındığını kanıtlamaz; pencere başlangıç/bitişleri ve saat hizası ayrıca doğrulanacaktır.
+- Dağıtık yapı geçici deney mimarisidir. Sensörler, örnekleme ve yayın davranışı deneylerle doğrulanınca gerekli kanallar nihai Modül 3/4 donanımında birleştirilecektir.
+- Bu yaklaşım, nihai modül imalatını öne çekmez; tersine, imalat öncesi yazılım ve veri akışını gerçek koşullarda sınamak için kullanılır.
+
+## Paket yayınlama için doğrulama başlıkları
+
+1. PZEM'de kullanılan mevcut paket/mesaj yapısını ve yayın kodunu depodaki kaynaklardan tespit etmek.
+2. Sensör ESP'leri için ortak zorunlu alanları belirlemek: cihaz kimliği, sensör/kanal kimliği, timestamp, tick_id/slice_no, pencere başlangıç-bitiş bilgisi ve veri geçerlilik durumu.
+3. PZEM'den gelen ölçüm paketleriyle ses/titreşim ESP paketlerinin aynı zaman/dilim sözleşmesine nasıl uyacağını tanımlamak.
+4. Alıcıda eksik paket, yinelenen paket, sıra dışı geliş, ESP yeniden başlatma ve saat eşitleme davranışlarını test etmek.
+5. Paket kaybı ve gecikme ölçümlerini loglamak; yalnızca başarılı yayın örneklerini değil, hata/eksik veri durumlarını da raporlamak.
+
+Bu maddeler tasarım ve test gereksinimidir; henüz doğrulanmış uygulama sonucu değildir.
