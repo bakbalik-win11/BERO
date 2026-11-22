@@ -16,8 +16,11 @@ Her akşam yaklaşık 20 dakikalık çalışmayı buraya ekle. Uygulanmayan ders
 - Prob oranı:
 - VOLTS/DIV:
 - TIME/DIV:
-- Trigger:
+- Trigger / Single:
+- Öğrenilen kavram:
 - Gözlem:
+- Ekrandan okunan değerler:
+- Hesaplanan değer:
 - Öğrendiğim:
 - Takıldığım nokta:
 - Ekran fotoğrafı/log dosyası:
@@ -31,4 +34,6 @@ Her akşam yaklaşık 20 dakikalık çalışmayı buraya ekle. Uygulanmayan ders
 - Ekipman: FNIRSI 2D15P ve dahili DDS jeneratör.
 - Harici kaynak: SANEC NE555 kare dalga jeneratörü, ileriki derslere bırakıldı.
 - İlk ders: 1 kHz, 1 Vpp, %50 duty kare dalga.
+- Derslerde Vp, Vpp, Vavg, Vrms, periyot, frekans, duty cycle, offset, faz, gürültü ve örnekleme kavramları teker teker işlenecek.
+- İleri fikir: ESP32 tabanlı sayısal dalga verisi toplayıcı; henüz tasarım/komponent seçimi yapılmadı.
 - Durum: DERS-001 hazır; uygulama bekliyor.
