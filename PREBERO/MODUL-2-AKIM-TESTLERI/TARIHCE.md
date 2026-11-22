@@ -173,3 +173,13 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - PF=0,76 olan 20,4 W noktası ayrı PF araştırma konusudur; V1.6'ya PF düzeltmesi eklenmez.
 - PZEM karşılaştırma referansıdır, ground truth değildir.
 - Bu kapanış MOD2-GRV001 görevinin tamamlandığı anlamına gelmez. Modülün diğer donanım, bağlantı, güvenilirlik ve gerçek yük gözlemleri ayrı iş olarak sürebilir.
+
+
+## 2026-11-22 – Copilot incelemesi sonrası depo tutarlılığı düzeltmeleri
+
+- Copilot incelemesinde işaret edilen tarih/güncel durum çelişkileri kaynak dosyalar üzerinden yeniden kontrol edildi.
+- `DURUM.md` başındaki yetkili durum V1.6 tek fonksiyon kalibrasyon referansına hizalandı; eski iki bölgeli plan artık güncel sıradaki iş olarak görünmüyor.
+- `GOREV.md` güncel çalışma kapsamını ve yetkili sürüm klasörlerini belirtiyor. Görev kökündeki `RAPOR/`, `RAPORLAR/` ve `KOD/` klasörleri tarihsel/ortak kayıt olarak ayrıştırıldı.
+- Katsayı geçmişi raporunun başına iki bölgeli planın V1.6 ile kapandığı uyarısı eklendi; eski katsayılar tarihsel kayıt olarak bırakıldı.
+- V1.6 raporunda 23 (ana kademeli zaman serisi), 21 (ideal K noktaları) ve 22 (1:1 karşılaştırma grafiği lejantı) sayımları ayrı analiz görünümleri olarak tanımlandı. Ham CSV yeniden eşleştirilmediği için bu sayımlar arasında birebir eşleme doğrulanmış değildir.
+- Ham CSV ve PNG'lerin GitHub'a fiziksel dosya olarak eklenmesi hâlâ açık arşiv işidir; rapor bunların depoda olduğunu iddia etmez.
