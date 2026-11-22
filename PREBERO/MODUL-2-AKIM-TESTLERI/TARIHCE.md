@@ -193,3 +193,12 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Teknik karar:** MOD2-GRV001 kapatıldı. 60 W tekrar testi, yeni yük kombinasyonu ve uzun süreli masaüstü gerçek kullanım gözlemi iptal edildi.
 - **Sonraki aşama:** Gerçek kullanım denemeleri Modül 3 çamaşır makinesi ve Modül 4 bulaşık makinesi görevlerinde yapılacak. Bunlar Modül 2'nin açık işleri değildir.
 - **İlgili kayıtlar:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/GOREV.md`; V1.6 YAML ve doğrulama raporu kendi sürüm klasöründedir.
+
+
+### 2026-11-22 – Modül 2'nin ileri araştırma rolü: dalga biçimi ve PF etkisi
+
+- **Çalışma / karar:** Kullanıcı, Modül 2'nin akım ölçümünden sonra dalga biçimini anlamaya ve PF etkisini araştırmaya odaklanmasını netleştirdi.
+- **Araştırma yönü:** SCT013 akım dalga biçimi ve ZMPT101B gerilim dalga biçimi üzerinden dalga istatistikleri çıkarılması; farklı PF koşullarında akım ölçüm sapmasının incelenmesi.
+- **Modül 3/4 ile ilişki:** Çamaşır ve bulaşık makinesi tasarım/saha deneyleri, farklı çalışma evreleri ve PF koşullarına ilişkin veriler sağlayarak Modül 2 araştırmasına katkıda bulunabilir.
+- **Teknik sınır:** PF etkisi henüz kanıtlanmış değildir. ZMPT101B tek başına PF ölçmez; gerilim ve akım dalga biçimlerinin uygun zaman eşlemeli örneklenmesi gerekir. V1.6 kalibrasyonuna doğrulama olmadan PF düzeltmesi eklenmeyecektir.
+- **Görev sınırı:** MOD2-GRV001 kapalı kalır. PF/dalga biçimi çalışması ayrı araştırma görevi olarak açılacaktır; mevcut kapanış ve referans YAML değiştirilmeyecektir.
