@@ -72,3 +72,10 @@ Kartın op-amp ve filtreleme katı, gerilim dalgasına frekansa bağlı genlik/f
 4. Akım ve gerilim kanallarının örnekleme zaman farkı ayrıca ölçülecek.
 
 Modülün analog çıkışı tek başına PF vermez. Gerçek PF için aynı zaman tabanında örneklenmiş gerilim ve akım dalgaları gerekir.
+
+
+## Ek belge – ZMPT101B/ZMPT107 kullanım kılavuzu
+Kullanıcının sağladığı 4 sayfalık `ZMPT101B.PDF` işletim kılavuzu incelendi. Aktif/pasif çıkış şemaları, ADC maksimum RMS sınırları, primer akım sınırlama direnci ve sekonder örnekleme direnci seçim açıklamaları ile PF araştırmasına etkileri şu kayda işlendi:
+- [ZMPT101B/ZMPT107 Kullanım Kılavuzu İnceleme Kaydı](datasheets/ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md)
+
+Kılavuzun aktif çıkış için küçük faz hatası, pasif çıkış için yük direnci arttıkça faz farkı artışı yönündeki nitel açıklamaları hazır PCB modülünün doğrulanmış performansı sayılmaz. Kartın gerçek faz gecikmesi ve çıkış genliği fiziksel ölçümle belirlenecektir. Orijinal PDF ikili dosyası henüz GitHub'a eklenmemiştir.
