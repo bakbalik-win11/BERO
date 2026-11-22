@@ -335,3 +335,21 @@ Gemini, RAM tamponu, g/h sıra takası, joint_fit ile artık gecikme ve 50/75/10
 - FNIRSI 2D15P sinyal jeneratörünün dokümanında bağımsız DC offset ayarı açıkça gösterilmedi. +0,9 V offset bulunduğu varsayılmayacak; çıkış ölçülecek veya ayrı biaslı AC-kuplaj ağı tasarlanacaktır.
 - Gemini'nin şebekeye bağlı 10 µF kapasitör ve R||C testleri bu aşamaya alınmadı. İlk analog testler izole düşük gerilimle yapılacaktır.
 - İlk deney kararı değişmedi: şebekesiz DC zamanlama testi, ardından aynı düşük gerilimli 50 Hz sinyalin iki ADS1115 diferansiyel kanalında karşılaştırılması.
+
+
+## 18. Claude Faz 1 taslağı ve Gemini'nin son sentezi – ortak karar
+
+Claude'un son yanıtında iki uygulama dosyası sağlandı: ESP32/ADS1115 yakalama sketch'i ve Python analiz betiği. Gemini bu tasarımı RAM tamponu, g/h sıra takası, artık gecikme analizi ve frekans taraması yönünden destekledi.
+
+Kodlar ayrıca incelendi ve Python tarafında sözdizimi + sentetik simülasyon çalıştırıldı. Ayrıntılı kod incelemesi, gerçek test durumu ve açık kusurlar:
+- [Faz 1 Claude Kodu ve Gemini Sentezi İncelemesi](FAZ1/FAZ1-CLAUDE-KODU-GEMINI-INCELEMESI-2026-11-22.md)
+- [Sentetik g/h test logu ve yorumları](FAZ1/LOGS/SENTETIK-FAZ1-TEST-G-H-2026-11-22.txt)
+
+Özet karar:
+- RAM'e yakalayıp sonra seri aktarmak, yakalama sırasında Serial yazımından doğan müdahaleyi azaltır; I²C/RTOS/interrupt jitter'ını sıfırlamaz.
+- g/h kanal sırası takası yararlı bir testtir; gerçek donanımda tekrar edilmeden MUX asimetrisi sonuçlandırılmaz.
+- t_rdy, dönüşüm verisinin hazır olduğu andır; ADC'nin analog girişe karşılık gelen etkin örnek zamanı değildir.
+- Python `--simulate` g/h çalıştı. Simüle edilen 20 µs artık gecikme yaklaşık 20,07 µs ve 19,93 µs bulundu. Bunlar sentetik değerlerdir.
+- 125 Hz sentetik testte frekans kestirimi 122,8967 Hz'e kaydı; `joint_fit` arama penceresi ±0,3 Hz olduğundan gerçek 125 Hz'i aramadı ve gecikme tahmini bozuldu. 125 Hz doğruluk kalibrasyonuna alınmadı.
+- Arduino sketch'i henüz derlenmedi/yüklenmedi; ADS1115 ile gerçek kayıt yok. Başarılı firmware olarak tanımlanmadı.
+- İlk fiziksel deney kararı değişmedi: şebekesiz DC zamanlama testi, ardından aynı düşük gerilimli 50 Hz sinyalin iki diferansiyel kanalda incelenmesi.
