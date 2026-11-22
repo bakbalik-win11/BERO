@@ -4,14 +4,14 @@
 
 ## Yetkili güncel durum – 2026-11-22
 
-- **Aktif görev:** Modül 2 / MOD2-GRV001 – akım davranışı ve katsayı çalışmaları. Görev bütünü açık; iki bölgeli kalibrasyon verisi henüz toplanmadı.
-- **Mevcut çalışan ölçüm yolu:** ESP32D2 + ADS1115 No.10 (I²C 0x48) + SCT013 30A/1V, A0–A1 diferansiyel; GPIO21 SDA, GPIO22 SCL; 3.3 V besleme ve ortak GND. Mevcut K=27.59 korunuyor.
+- **Aktif görev:** Modül 2 / MOD2-GRV001 – akım davranışı ve katsayı çalışmaları. Görev bütünü açık; V1.6 tek fonksiyon kalibrasyon modeli bu ölçüm zinciri için referans sürüm olarak kabul edildi.
+- **Mevcut referans ölçüm yolu:** ESP32D2 + ADS1115 No.10 (I²C 0x48) + SCT013 30A/1V, A0–A1 diferansiyel; GPIO21 SDA, GPIO22 SCL; 3.3 V besleme ve ortak GND.
+- **Referans kalibrasyon modeli:** K(x)=26.89+5.39·exp(-x/0.882); YAML'da K=27.59 baz ölçeği kullanılır ve Home Assistant yayın eşiği 30 mA'dir. V1.6 YAML ve doğrulama raporu kendi sürüm klasöründedir.
 - **Sıfır yayınlama:** V1.2 yüksüz → yük → yeniden yüksüz geçişi logla doğrulandı (0.000 A → yaklaşık 0.600–0.604 A → 0.000 A). Bu, kalibrasyon doğruluğu kanıtı değildir.
 - **20 mA filtre:** V1.3 derlendi/çalıştırıldı; kullanıcı gece boyu gözlemleyip yeterli buldu ve işi kapattı. Sayısal gece CSV/logu yok; performans metriği iddia edilmiyor. Rapor: `V1.3/RAPOR/V1.3-20MA-FILTRE-DERLEME-VE-GECE-GOZLEMI-2026-11-22.md`.
 - **Bias deneyleri:** Önceki biaslı/biassız testler tarihsel veri olarak korunuyor. Yaklaşık 0.47 A ve bazı yüklerde biaslı kolun PZEM'e daha yakın olduğu görüldü; yüksüz spike ve kararlılık sorunları da kaydedildi. Yeni tasarımda bias tercih edilmeyecek.
-- **Güncel kalibrasyon kararı:** 1.5 A altı katsayısı 150 W'a kadar ampullerle; 1.5 A üstü katsayısı ütü, tost makinesi ve kettle kaynatma moduyla belirlenecek. Laboratuvar hassasiyeti hedeflenmiyor; pratik ve tutarlı katsayı amaçlanıyor. PZEM yalnızca karşılaştırma referansıdır.
-- **Yeni kalibrasyon serisi:** Bias kullanılmayan bağlantı için ADS1115 AIN pinlerinin GND'ye göre mutlak gerilim sınırları önce doğrulanacak. Eski biaslı veri yeni seriyle karıştırılmayacak. Henüz yeni katsayı yok; K=27.59 değişmedi.
-- **Açık tasarım konusu:** 1.5 A tam sınırında katsayı seçimi ve yazılımsal bölge belirleme yöntemi, iki katsayı elde edildikten sonra çözülecek.
+- **Kalibrasyon kararı:** Önceki 1.5 A altı/üstü iki katsayılı ve parçalı geçiş planı V1.6 tam aralık tek fonksiyon modeliyle kapatıldı. Eski plan tarihsel kayıt olarak korunur; aktif gereksinim değildir. PZEM yalnızca karşılaştırma referansıdır.
+- **Açık doğrulama konuları:** Yaklaşık 60 W seviyesindeki -%4,89 sapmanın tekrarı ve nedeni; farklı yük karakterlerinde ve uzun süreli kullanımda V1.6 davranışı. Yaklaşık 15 W noktası SCT013'ün pratik alt ölçüm sınırına yakın kabul edilir; formül bu nokta için yeniden şekillendirilmeyecektir. Düşük PF noktası ayrı araştırma konusudur.
 - **Katsayı geçmişi raporu:** ADS1115 No.10 + SCT013 ölçüm zinciri için ayrı rapor açıldı. 2026-11-22 tarihli `150w ads-10.csv` kaydında PZEM'e göre yükün kesintisiz açık olduğu kullanıcı tarafından teyit edildi; SSR/BERO dijital ON/OFF olayları fiziksel yük kesintisi sayılmadı ve veri dışlama nedeni yapılmadı. 24 eşleşmiş PZEM/SCT örneğinden 150 W katsayı adayı K≈30.01 hesaplandı. Bias bağlantısı ve YAML sürümü hâlâ teyit bekliyor; K=27.59 korunuyor, 100 W verisi bekleniyor. Katsayı raporu: `MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/RAPORLAR/KATSAYI-RAPORU-ADS1115-NO10-SCT013.md`; deney raporu: `MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150W-ADS1115-NO10-2026-11-22.md`.
 
 ## Deney geçmişi – kısa durum dizini
