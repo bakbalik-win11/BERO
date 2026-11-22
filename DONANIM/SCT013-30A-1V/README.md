@@ -378,3 +378,24 @@ Pens kontrolü tek başına üretici eğrisinden farkın CT örneğinde mi yoksa
 
 Durum: Pens kontrolü öneri aşamasında; henüz ölçülmedi. V1.6 K(x) değiştirilmez. MOD3-AKM001 kapalı kalır.
 
+## 10.11 PowerUC ürün sayfası ve YHDC SCT013 aile PDF'sinin belge notu – 2026-11-22
+
+Kullanıcının sağladığı üretici ürün sayfası:
+https://www.poweruc.pl/products/split-core-current-transformer-sct013-rated-input-5a-100a
+
+Sayfaya bağlı YHDC markalı aile PDF'si:
+https://poweruc.com/wp-content/uploads/2023/07/2025040819322782.pdf
+
+PDF'de SCT013-030 için 30 A rated input, 1 V rated output, ferrit çekirdek ve 50 Hz–1 kHz frekans aralığı verilmiştir. Elektriksel parametre tablosundaki Accuracy alanı `0.5/1%` şeklindedir; belgenin içinde bu gösterimin hangi sınıfa veya test şartına karşılık geldiği açıklanmamıştır. Aynı tabloda değerlerin tipik olduğu, gerçek değerlerin ürünün fiilî ölçümüne tabi olduğu özellikle belirtilir.
+
+Aile grafiğindeki SCT013 30A/1V noktaları 6 A → 0.1994 V, 12 A → 0.3995 V, 15 A → 0.4997 V, 18 A → 0.5996 V, 24 A → 0.7997 V ve 30 A → 0.9994 V'tur.
+
+**Test şartı sınırı:** PDF test akım kaynağının tipini, akım dalga şeklinin sinüs/harmonik niteliğini veya diğer ayrıntılı laboratuvar koşullarını tarif etmez. Kullanıcının üreticinin kontrollü akım üreteci kullandığı yönündeki teknik değerlendirmesi kullanıcı bağlamı olarak korunur; açık PDF içeriğiyle bağımsız doğrulandı şeklinde yazılmaz.
+
+**Belge sürümleri:** 2015 tarihli başka bir SCT013-030 spesifikasyonu accuracy ±1% ve linearity ≤0.2% ifadelerini içerirken bu aile PDF'si Accuracy `0.5/1%` yazar ve linearity değeri vermez. `0.5/1%` tanımı açıklanmadığından iki belge tek bir doğruluk/linearity değeriymiş gibi birleştirilmemelidir.
+
+Üretici grafiği tipik/laboratuvar referansıdır. BERO'nun K(x) fonksiyonu gerçek SCT örneği + ADS1115 + bağlantı/analog koşullar + yazılımın saha davranışına ait ampirik modeldir. Şebeke ve yük koşulları CT'nin gördüğü primer akım dalga şeklini etkileyebilir; CT doğrudan şebeke gerilimini değil kelepçelendiği iletkendeki akımı algılar. Bu nedenle üretici eğrisi ile gerçek saha sonucunun birebir aynı olması beklenmemeli, ancak farkın nedeni yalnızca bu açıklamayla kesinleştirilmemelidir.
+
+MOD3 çamaşır makinesi ısıtma evresindeki yaklaşık 8 A pens kontrolü, üretici laboratuvarını tekrar etmek için değil; BERO ve PZEM'in gerçek kullanım koşulundaki akım değerlerini basitçe çapraz kontrol etmek içindir.
+
+Durum: Ürün sayfası ve PDF incelendi; test kaynağı/dalga şekli PDF'de belirtilmiyor. Yeni fiziksel ölçüm yok.
