@@ -254,3 +254,15 @@ Detaylı eşleştirme, hesaplar ve sınırlamalar:
 `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.6/LOGS/2026-11-22-V1.6-DIAG1-HISTORY-39-CSV-ANALIZI.md`
 
 Durum: DIAG1 ham RMS veri yolu ve V1.6 yazılım dönüşüm eşleşmesi doğrulandı. Fiziksel akım doğruluğu/PZEM farkı henüz çözülmedi.
+
+
+## 10.6 DIAG1 deney hedefi ve başarı kararı – 2026-11-22
+
+Kullanıcı, DIAG1 deneyinin kabul ölçütünü netleştirdi: hedef yaklaşık 8.5 W seviyesinde SCT013-030 (30 A / 1 V) ile **akım var/yok ayrımını** yapabilmektir. PZEM ile amper değerlerinin birebir eşleşmesi bu deneyin hedefi değildir.
+
+history (39)(1).csv'de yüksüz durumda ana akım sensörü 0.000 A; yük etkin durumdayken ham RMS sayısal ve akım sensörü yaklaşık 0.11 A; yük kapandığında ana akım sensörü yeniden 0.000 A görünmektedir. Bu nedenle test, kullanıcının belirlediği düşük güçte var/yok algılama kriterine göre **BAŞARILI** kabul edilir.
+
+Bu karar, mutlak akım doğruluğu, güç/enerji ölçümü veya tüm 30 A ölçüm aralığının kalibrasyonu için başarı beyanı değildir. PZEM ile sayısal amper farkı ayrı çalışma konusudur; DIAG1'in akım var/yok algılama sonucunu başarısız yapmaz. CSV'deki PZEM ham ölçümleri korunur ve ayrı gözlem olarak yorumlanır.
+
+Ayrıntılı analiz ve kullanıcı tarafından netleştirilen kabul ölçütü:
+`PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.6/LOGS/2026-11-22-V1.6-DIAG1-HISTORY-39-CSV-ANALIZI.md`
