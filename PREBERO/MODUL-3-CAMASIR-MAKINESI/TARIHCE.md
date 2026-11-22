@@ -28,3 +28,12 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Edinilen tecrübe:** PZEM ölçüm/yayın yapılandırması, modül söküldükten sonra da yeniden kullanılabilmesi için modül görev klasöründen bağımsız donanım kaydında tutulmalı.
 - **Teknik karar:** Kod, aktif firmware değil eski modülden kalan arşiv örneği olarak saklanacak. Derleme ve fiziksel test başarısı bu kayıtla iddia edilmiyor.
 - **İlgili kayıtlar:** `DONANIM/PZEM-004T/KOD/BERO-MODUL3-WROOM-PZEM-ONLY-ARSIV.yaml`; donanım açıklaması `DONANIM/PZEM-004T/README.md`.
+
+
+## 2026-11-22 – MOD3-AKM001: V1.6 uzun pamuklu program saha testi kapatıldı
+
+- **Çalışma:** ESP32D2/SCT013 V1.6 koduyla çamaşır makinesinin uzun pamuklu programı baştan sona kaydedildi; yaklaşık 78 dakikalık CSV elde edildi.
+- **Gözlenen sonuç:** Isıtma bloğunda PZEM akımıyla yakın takip; ısıtma sonrası düşük akım/motor çalışma bölümlerinde ESP32D2'nin daha yüksek okuma eğilimi görüldü. Ara sıkma rampaları ve final sıkma izi kayıtta seçilebildi.
+- **Edinilen tecrübe:** V1.6 gerçek cihazda uzun program boyunca çalıştı. Çalışma koşuluna göre PZEM ile farkın yönü değişebiliyor; bu deney farkın PF kaynaklı olduğunu kanıtlamıyor.
+- **Teknik karar:** Ana hedef yeni kodu gerçek makinede test etmekti; hedef yerine geldiği için MOD3-AKM001 kapatıldı. V1.6 değiştirilmedi. PF/ZMPT101B araştırması ayrı ve geleceğe dönük; bu testin kapsamı değil. Ses/titreşim kanalları kullanılmadı.
+- **İlgili kayıt:** `GOREVLER/MOD3-AKM001/RAPOR/MOD3-AKM001-V1.6-UZUN-PAMUKLU-SAHA-TESTI-2026-11-22.md`.
