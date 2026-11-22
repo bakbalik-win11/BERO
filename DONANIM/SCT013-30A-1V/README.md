@@ -235,3 +235,6 @@ Ayrıntılı sayım, seçilmiş ham log satırları ve kaynak kodu yorumu:
 `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.6/LOGS/2026-11-22-V1.6-DIAG1-ILK-BOS-OLCU-LOG-ANALIZI.md`
 
 Durum: Firmware derlenmiş ve cihazda çalışır durumda; DIAG1 ham RMS ölçümü yüksüz testte henüz doğrulanmış bir noise-floor kaydı üretmedi.
+
+
+Ayrıca DIAG1'de görülen 0.000500 V ham RMS değeri V1.6 zincirinden geçirilirse yaklaşık 0.01610 A verir; bu 30 mA eşiğinin altında olduğundan ana akım sensörünün 0.000 A göstermesi beklenir. Bu hesap, ham gerilim ile yayın akımı arasındaki farkı açıklar; ham değerin fiziksel kaynağını belirlemez.
