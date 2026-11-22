@@ -11,7 +11,9 @@
 - **20 mA filtre:** V1.3 derlendi/çalıştırıldı; kullanıcı gece boyu gözlemleyip yeterli buldu ve işi kapattı. Sayısal gece CSV/logu yok; performans metriği iddia edilmiyor. Rapor: `V1.3/RAPOR/V1.3-20MA-FILTRE-DERLEME-VE-GECE-GOZLEMI-2026-11-22.md`.
 - **Bias deneyleri:** Önceki biaslı/biassız testler tarihsel veri olarak korunuyor. Yaklaşık 0.47 A ve bazı yüklerde biaslı kolun PZEM'e daha yakın olduğu görüldü; yüksüz spike ve kararlılık sorunları da kaydedildi. Yeni tasarımda bias tercih edilmeyecek.
 - **Kalibrasyon kararı:** Önceki 1.5 A altı/üstü iki katsayılı ve parçalı geçiş planı V1.6 tam aralık tek fonksiyon modeliyle kapatıldı. Eski plan tarihsel kayıt olarak korunur; aktif gereksinim değildir. PZEM yalnızca karşılaştırma referansıdır.
-- **Açık iş:** MOD2-GRV001 kapalıdır; ek masaüstü yük testi veya uzun süreli gözlem yapılmayacaktır. Modül 3 ve 4'te gerçek cihaz uygulamasına geçilecektir. PF araştırması ayrı ve isteğe bağlıdır.
+- **Mevcut proje önceliği:** Modül 3 (çamaşır makinesi) ve Modül 4 (bulaşık makinesi) donanımlarını imal etmek, kaba yazılım taslaklarını geliştirmek ve gerçek cihazlardan veri toplamaya başlamak. Akım ölçüm altyapısı Modül 2'den hazır temel olarak devralınır; ses ve titreşim kanalları eklenecektir.
+- **İleriye dönük fikir – aktif hedef değil:** İleride Modül 2'nin masaüstü akım ölçüm yaklaşımı, ana panoda PZEM ile birlikte kullanılabilir. Bu fikir şimdiki çalışma kapsamına alınmamıştır; Modül 3 ve 4'ün imalatı ve veri toplama hedeflerini etkilemez.
+- **Modül 2 açık işi:** MOD2-GRV001 kapalıdır; ek masaüstü yük testi veya uzun süreli gözlem yapılmayacaktır. PF araştırması ayrı ve isteğe bağlıdır.
 - **Modül 2'nin modül 3–4'e devrettiği akım altyapısı:** Masaüstü prototipte SCT013 + ADS1115 + ESP32D2 ölçüm yolu geliştirildi; katsayı çalışması iyileştirilip V1.6 tek fonksiyon modeli referans olarak belirlendi. Farklı ev yükleri ve kombinasyonlarıyla geniş aralıkta denendi. Bu çalışma MOD2-GRV001'in kapanış çıktısıdır; gerçek cihaz uygulaması Modül 3 ve 4'te yapılacaktır. PZEM karşılaştırma referansıdır, ground truth değildir.
 
 ## Deney geçmişi – kısa durum dizini
@@ -396,3 +398,10 @@ Kullanıcı kararıyla masaüstü prototip görevi tamamlandı ve kapatıldı. P
 Modül 2'nin masaüstü prototip çalışmasının hedefi, akım ölçüm yolunu geliştirmek ve katsayıyı iyileştirerek kullanılabilir bir referans modele ulaştırmaktı. Bu hedef yerine getirildi: SCT013 + ADS1115 + ESP32D2 ölçüm zinciri farklı ev yükleri ve kombinasyonlarıyla geniş aralıkta denendi; V1.6 tek fonksiyon kalibrasyon modeli referans kabul edildi. Böylece Modül 3 (çamaşır makinesi) ve Modül 4 (bulaşık makinesi) için akım ölçüm tarafının teknik zemini hazırlandı.
 
 Modül 3 ve 4'te mevcut kaba yazılım taslakları geliştirilecek; akım verisine ek olarak ses ve titreşim gözlemleri sisteme dahil edilecek. Bu sensörlerin entegrasyonu ve gerçek cihaz üzerindeki davranışları henüz tamamlanmış/doğrulanmış kabul edilmez; kendi modül görevlerinde ele alınır. Akım ölçüm altyapısının hazırlanması Modül 2'nin tamamlanmış çıktısıdır.
+
+
+## 2026-11-22 – Öncelik netleştirmesi: Modül 3 ve 4 imalatı ve veri toplama
+
+Kullanıcı kararıyla mevcut ana hedef, Modül 3 çamaşır makinesi ve Modül 4 bulaşık makinesi donanımlarını imal etmek, mevcut kaba yazılım taslaklarını geliştirmek ve gerçek cihazlardan veri toplamaktır. Akım ölçüm tarafı Modül 2 tarafından hazırlanmış ve bu iki modüle temel olarak devredilmiştir. Modül 3 ve 4'te akım verisine ses ve titreşim gözlemleri eklenecektir.
+
+Ana panoda PZEM ile birlikte akım ölçümü yapılması, Modül 2 yaklaşımının ileride değerlendirilebilecek olası kullanım alanıdır. Bu yalnızca gelecek fikridir; mevcut hedef, açık görev veya sıradaki iş değildir. Şimdiki çalışma odağı Modül 3 ve 4'ün imalatı ve veri toplamasıdır.
