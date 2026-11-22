@@ -14,7 +14,7 @@
 - **Resmî kılavuz:** https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html
 - **What You Need:** https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html#what-you-need
 - **Pin layout (pinout) görselinin bulunduğu bölüm:** https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html#pin-layout
-- **Resmî PDF kılavuzu:** https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp-dev-kits-en-master-esp32.pdf
+- **Resmî PDF kılavuzu:** https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-dev-kits-en-master-esp32.pdf
 
 Kullanıcının gönderdiği görsel, ESP32-DevKitC pin yerleşimini ve GPIO işlevlerini gösterir. Bu görseli karşılaştırmak için üreticinin yukarıdaki **Pin Layout** bölümünü kullan. Bu belge geliştirme kartının pinout'udur; modülün kendi pin dizilimi için modül veri sayfasındaki “ESP32-WROOM-32D Pin Layout (Top View)” şekline bak.
 
@@ -29,6 +29,14 @@ Kullanıcının gönderdiği görsel, ESP32-DevKitC pin yerleşimini ve GPIO iş
 ## 4. Geliştirme kartı güç uyarısı
 
 DevKitC V4 kılavuzuna göre kart üç alternatiften yalnızca biriyle beslenmelidir: Micro-USB, 5V-GND pinleri veya 3V3-GND pinleri. Birden fazla besleme seçeneğini aynı anda kullanmak karta veya güç kaynağına zarar verebilir. Bu uyarı geliştirme kartı içindir; farklı kartlarda şemayı ayrıca kontrol et.
+
+## 5. BERO örnek yapılandırma arşivi
+
+PZEM-004T V3.0 ile kullanılan ESP32-WROOM tabanlı Modül 3'ün yalnızca ölçüm yapan ESPHome yapılandırması PZEM donanım klasöründe saklanır:
+
+- [PZEM-004T / arşivlenmiş Modül 3 YAML](../PZEM-004T/KOD/BERO-MODUL3-WROOM-PZEM-ONLY-ARSIV.yaml)
+
+Bu YAML'de UART TX GPIO19, RX GPIO18 ve haberleşme hızı 9600 baud'dur. Dosya, sökülecek eski modülden kalan arşiv kodudur; bu kayıt kart revizyonunu veya derleme/test başarısını ayrıca doğrulamaz.
 
 ## Kaynakları kullanırken
 
