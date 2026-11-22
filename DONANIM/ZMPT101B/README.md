@@ -48,3 +48,27 @@ Bu eleman şebeke gerilimi ölçümünde kullanılacaktır. Primer tarafında ö
 - Donanım klasörü açıldı.
 - Elektriksel bağlantı ve ADC seçimi: araştırma aşamasında.
 - PF ölçümü: henüz uygulanmadı ve doğrulanmadı.
+
+
+## BERO envanter notu – satın alınan donanım
+Kullanıcının doğruladığı satın alınan parça, çıplak transformatör değil; ZMPT101B AC Voltage Sensor Module (potansiyometreli PCB modülü) kartıdır.
+
+Kart tipik olarak şu bölümleri içerir:
+- ZMPT101B ölçüm transformatörü
+- LM358 veya kart revizyonuna göre farklı olabilen op-amp sinyal koşullandırma katı
+- Çıkış genliğini ayarlayan trimpot
+- Şebeke tarafı L/N klemensi
+- Düşük gerilim tarafı VCC, OUT ve GND bağlantıları
+
+Tipik kartlarda 5V besleme, VCC/2 civarında DC ofsetli analog OUT sinyali ve ayarlanabilir AC genliği bulunur. Ancak üretici/PCB revizyonları farklı olabildiğinden pin sırası, op-amp modeli, besleme aralığı ve çıkış salınımı satın alınan kartın üzerindeki baskı ve ölçümle doğrulanmadan kesin kabul edilmeyecektir.
+
+Çıplak ZMPT101B transformatör datasheet'i yalnızca kart üzerindeki transformatör elemanını tanımlar; komple PCB modülünün şeması veya performans garantisi değildir.
+
+## PF araştırması için özel not
+Kartın op-amp ve filtreleme katı, gerilim dalgasına frekansa bağlı genlik/faz etkisi ve distorsiyon ekleyebilir. Bu nedenle SCT013 akım dalgasıyla PF hesabına geçmeden önce:
+1. Kart çıkışının DC ofseti ve kırpılma payı ölçülecek.
+2. Gerilim dalgası bilinen, güvenli ve izole bir AC kaynakla gözlenecek.
+3. Modülün 50 Hz faz gecikmesi ölçülerek yazılımda düzeltme gerekip gerekmediği değerlendirilecek.
+4. Akım ve gerilim kanallarının örnekleme zaman farkı ayrıca ölçülecek.
+
+Modülün analog çıkışı tek başına PF vermez. Gerçek PF için aynı zaman tabanında örneklenmiş gerilim ve akım dalgaları gerekir.
