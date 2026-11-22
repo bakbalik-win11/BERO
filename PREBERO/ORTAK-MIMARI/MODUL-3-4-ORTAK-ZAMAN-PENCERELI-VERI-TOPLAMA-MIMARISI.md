@@ -2,11 +2,11 @@
 
 - **Karar tarihi:** 2026-11-22
 - **Durum:** TASLAK MİMARİ KARAR / İMALAT ÖNCESİ TASARIM
-- **Kapsam:** PREBERO Modül 3 (çamaşır makinesi) ve Modül 4 (bulaşık makinesi)
+- **Kapsam:** PREBERO Modül 3 (çamaşır makinesi), Modül 4 (bulaşık makinesi) ve Modül 2 ile araştırma veri alışverişi
 
 ## 1. Amaç
 
-Akım, ses ve titreşim gibi farklı fiziksel büyüklükleri, sensörlerin kendi uygun örnekleme hızlarını koruyarak ortak bir zaman ekseninde karşılaştırılabilir hale getirmek. Modül 3 ve Modül 4'te mümkün olduğunca aynı veri şeması ve zamanlama yaklaşımı kullanılacaktır.
+Akım, ses, titreşim ve deneyle doğrulanırsa gerilim/PF gibi farklı fiziksel büyüklükleri, sensörlerin kendi uygun örnekleme hızlarını koruyarak ortak bir zaman ekseninde karşılaştırılabilir hale getirmek. Modül 3 ve Modül 4'te mümkün olduğunca aynı veri şeması ve zamanlama yaklaşımı kullanılacaktır.
 
 **Önemli sıra kararı:** Mimari fikirler, sensör seçimi, örnekleme gereksinimleri, bağlantılar, işlem yükü ve veri şeması yeterince netleşmeden donanım imalatına geçilmeyecektir. Bu belge tek başına imalat izni değildir.
 
@@ -63,10 +63,18 @@ Gerekirse tepe ivme, sensör durum bayrakları, pencere örnek sayıları, veri 
 
 Geçici deney düzeneği, nihai modül imalatı anlamına gelmez. Nihai imalat başlamadan önce bağlantı/pin planı, sensör listesi, veri şeması, örnekleme/zamanlama planı, yayın/taşıma yöntemi ve yazılım iş akışı deney sonuçlarıyla gözden geçirilip onaylanmalıdır. Açık teknik sorular varken nihai modül imalatı başlatılmaz.
 
-## 8. Kapsam dışı / henüz karar verilmemiş
+## 8. Modül 2 ile PF/dalga biçimi araştırma ilişkisi
+
+- Modül 2'nin MOD2-GRV001 masaüstü akım ölçüm görevi kapanmıştır. V1.6 akım ölçüm yolu referans olarak korunur.
+- Modül 2'nin ayrı ileri araştırma yönü, SCT013 akım dalga biçimi ile ZMPT101B gerilim dalga biçimini incelemek; dalga istatistikleri ve PF koşullarının akım ölçüm sapmasıyla ilişkisini araştırmaktır.
+- Modül 3 ve 4'ün saha deneyleri, farklı cihaz evreleri ve yük davranışlarından veri sağlayarak bu araştırmaya katkıda bulunabilir. PF'nin ölçüm sapmasına neden olduğu henüz kanıtlanmış değildir.
+- ZMPT101B nihai Modül 3/4 donanımında koşullu bileşendir: Modül 2 araştırmasında yararlı sonuç üretir, Modül 3/4 saha deneyleriyle doğrulanır ve kaynak yükü uygun bulunursa eklenir. Başlangıçta zorunlu değildir.
+- ZMPT101B tek başına PF ölçmez. PF incelemesi için gerilim ve akım dalga biçimleri uygun zaman eşlemesiyle örneklenmelidir.
+- Mevcut ESP32 üzerinde işlemci, bellek, örnekleme ve yayın yükü ölçülür. Yetersiz kalırsa ESP32-P4 değerlendirilir; kesin kart seçimi daha sonra yapılır.
+
+## 9. Açık tasarım kararları
 
 - Otomatik program/aşama sınıflandırma algoritması bu mimari notla tanımlanmış değildir.
 - Ses için desibel kalibrasyonu taahhüt edilmemiştir.
-- PF ölçümü bu mimarinin zorunlu parçası değildir.
-- ZMPT101B eklenmesi yalnızca kullanıcı tarafından dile getirilmiş ileriye dönük bir fikir/araştırma seçeneğidir; sensör listesine veya imalat kapsamına alınmamıştır.
 - Örnekleme hızları ve özellik hesaplama parametreleri henüz kesinleştirilmemiştir.
+- PF kanalı ve ZMPT101B'nin kesin devre/örnekleme entegrasyonu deney sonuçlarına bağlıdır.
