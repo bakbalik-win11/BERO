@@ -85,3 +85,10 @@ Kılavuzun aktif çıkış için küçük faz hatası, pasif çıkış için yü
 - [DataCaptureControl – ZMPT101B AC Voltage Transformer Sensor Module](https://datacapturecontrol.com/articles/io-components/sensors/voltage/zmpt101b-ac-voltage-transformer-sensor-module)
 
 Bu kaynak LM358'li hazır kartın blok yapısını, L/N ve VCC/OUT/GND pinlerini ve ADC üzerinden RMS kalibrasyon yaklaşımını açıklar. Kaynak incelemesi, [kullanım kılavuzu inceleme kaydına](datasheets/ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md) eklendi. Hazır kartın faz gecikmesi ve PF doğruluğu ölçülmüş kabul edilmemektedir.
+
+
+## Ek teknik kaynak – Arduino Forum / ADS1115
+- [Arduino Forum – Using ZMPT101B with ADS1115](https://forum.arduino.cc/t/using-zmpt101b-with-ads1115/1434976)
+- Konu, eski ZMPT101B kütüphanesinin `analogRead()`/GPIO pin arayüzünün ADS1115 ile doğrudan uyumlu olmadığını; ham ADS1115 örnekleriyle ayrı RMS hesabı yapılabileceğini tartışır.
+- ADS1115 örnekleme hızı, çoklu kanal taraması, kanal zaman farkı ve ZMPT101B faz kayması hakkındaki kullanıcı gözlemleri üretici garantisi veya BERO ölçümü değildir.
+- BERO için kaynak incelemesi ve deney planı: [Arduino Forum ZMPT101B + ADS1115 Deney Notu](datasheets/ARDUINO-FORUM-ZMPT101B-ADS1115-DENEY-NOTU.md)
