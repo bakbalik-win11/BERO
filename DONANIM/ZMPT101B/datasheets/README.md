@@ -33,3 +33,9 @@ Kullanıcı tarafından sağlanan `ZMPT101B.PDF` dosyası, **ZMPT101B (ZMPT107) 
 - [Kaynak başlık](https://forum.arduino.cc/t/problem-with-translate-the-values-of-voltage-sensor-zmpt101b/491534)
 - Kodda maksimum/minimum takibi, `delay()` parametresi, seri portun örnekleme zamanlamasına etkisi, DC coupling ile ofseti görme ve potansiyometre kaynaklı kırpılma konularının BERO değerlendirmesi: [ARDUINO-FORUM-ZMPT101B-ANALOG-CIKIS-OLCUM-DENEY-NOTU.md](ARDUINO-FORUM-ZMPT101B-ANALOG-CIKIS-OLCUM-DENEY-NOTU.md)
 - Forumdaki kart şeması ve ölçüm gözlemleri satın alınan BERO kartının doğrulanmış özellikleri değildir.
+
+
+## Arduino Forum – ZMPT101B düşük AC gerilim ölçümü
+- [Kaynak başlık](https://forum.arduino.cc/t/zmpt101b-problem-with-measure-ac-voltage/1219148)
+- Düşük girişte 4,8 V civarında takılma, hassasiyet katsayısı, kütüphane kalibrasyonu ve Arduino ADC kalibrasyonu ayrımı: [ARDUINO-FORUM-ZMPT101B-DUSUK-GERILIM-OLCUM-DENEY-NOTU.md](ARDUINO-FORUM-ZMPT101B-DUSUK-GERILIM-OLCUM-DENEY-NOTU.md)
+- Forum sonucu BERO kartının alt ölçüm sınırı değildir; düşük gerilim davranışı deneyle belirlenecektir.
