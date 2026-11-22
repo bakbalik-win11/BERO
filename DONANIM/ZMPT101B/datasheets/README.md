@@ -27,3 +27,9 @@ Kullanıcı tarafından sağlanan `ZMPT101B.PDF` dosyası, **ZMPT101B (ZMPT107) 
 - [Kaynak başlık](https://forum.arduino.cc/t/using-zmpt101b-with-ads1115/1434976)
 - Kütüphane arayüzü, ham ADS1115 örnekleme, örnekleme hızı ve faz kayması tartışmasının BERO açısından özeti: [ARDUINO-FORUM-ZMPT101B-ADS1115-DENEY-NOTU.md](ARDUINO-FORUM-ZMPT101B-ADS1115-DENEY-NOTU.md)
 - Forum mesajlarındaki test sonuçları ve teknik yorumlar kullanıcıya/kuruluma özgüdür; BERO donanımında doğrulanmış sonuç olarak kabul edilmez.
+
+
+## Arduino Forum – ZMPT101B analog çıkış ve osiloskop
+- [Kaynak başlık](https://forum.arduino.cc/t/problem-with-translate-the-values-of-voltage-sensor-zmpt101b/491534)
+- Kodda maksimum/minimum takibi, `delay()` parametresi, seri portun örnekleme zamanlamasına etkisi, DC coupling ile ofseti görme ve potansiyometre kaynaklı kırpılma konularının BERO değerlendirmesi: [ARDUINO-FORUM-ZMPT101B-ANALOG-CIKIS-OLCUM-DENEY-NOTU.md](ARDUINO-FORUM-ZMPT101B-ANALOG-CIKIS-OLCUM-DENEY-NOTU.md)
+- Forumdaki kart şeması ve ölçüm gözlemleri satın alınan BERO kartının doğrulanmış özellikleri değildir.
