@@ -139,3 +139,22 @@ Yeni testler geldikçe her satır ayrı oturum/konfigürasyon olarak eklenir. Se
 - K=27.59 yeni testler tamamlanıp sonuçlar değerlendirilene kadar korunur.
 - Her yeni katsayı, hangi ADS1115, SCT, kanal, YAML ve referans yükten üretildiği belirtilmeden geçerli kabul edilmez.
 - Eski deneyler silinmez veya yeni seriyle birleştirilmez; yalnızca açıkça tanımlanmış karşılaştırma amacıyla kullanılır.
+
+
+## 11. 2026-11-22 – Birleşik CSV kararlı kademe yeniden değerlendirmesi
+
+Kullanıcının sağladığı `150-42-57-100.csv` dosyasında dört kararlı pencere birlikte yeniden hesaplandı. Bu sonuçlar, daha önce ayrı CSV'ler üzerinden kaydedilen ön hesaplardan farklı pencere kapsamı ve örnek sayıları kullanır; aşağıdaki birleşik pencere sonuçları ayrı bir analiz kaydıdır.
+
+| Yük | UTC pencere | PZEM ort. (A) | A0–A1 ort. (A) | A0–A1 n / std (A) | K (K=27.59 bazında) |
+|---|---|---:|---:|---:|---:|
+| 42 W | 08:15:03–08:21:00 | 0.18725 | 0.153832 | 357 / 0.002482 | **33.58** |
+| 57 W | 08:21:58–08:27:30 | 0.264316 | 0.219024 | 332 / 0.001659 | **33.30** |
+| 100 W | 08:28:38–08:38:40 | 0.470103 | 0.423135 | 602 / 0.006738 | **30.65** |
+| 150 W | 08:06:38–08:10:45 | 0.641114 | 0.589613 | 247 / 0.003392 | **30.00** |
+
+- 42/57 W katsayıları birbirine yakın; 100/150 W katsayıları da birbirine yakındır. Bu dört kararlı pencere tek sabit katsayının tüm yük seviyelerinde aynı uyumu vermediğini gösterir.
+- 100 W penceresi kendi içinde iki A0–A1 seviyesine ayrılır: ilk yaklaşık 230 saniyede ortalama 0.430886 A (K≈30.13), sonraki bölümde 0.418343 A (K≈30.97). PZEM iki alt aralıkta yaklaşık 0.470 A seviyesindedir. Bu nedenle tüm pencere K=30.65 değeri iki alt seviyenin birleşik sonucudur.
+- Bias durumu ve YAML dosya/sürümü birleşik CSV'den kesin doğrulanamadı. Katsayılar ön sonuçtur; tek ortak düşük bölge katsayısı seçilmedi.
+- K=27.59 ve çalışan YAML korunur; bu analiz firmware değişikliği talimatı değildir.
+
+Ayrıntılı yöntem, pencere istatistikleri ve yorum: `../DENEYLER/150-42-57-100-BIRLESIK-KADEME-ANALIZI-2026-11-22.md`.
