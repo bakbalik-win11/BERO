@@ -1,5 +1,36 @@
 # PREBERO – Durum ve çalışma akışı
 
+> **Güncellik notu (2026-11-22):** Bu dosyanın aşağıdaki eski tarihli kayıtları deney geçmişidir. Birbiriyle çelişen eski “sıradaki adım” ve “aktif bağlantı” ifadeleri yerine, bu bölümdeki güncel durum esas alınır.
+
+## Yetkili güncel durum – 2026-11-22
+
+- **Aktif görev:** Modül 2 / MOD2-GRV001 – akım davranışı ve katsayı çalışmaları. Görev bütünü açık; iki bölgeli kalibrasyon verisi henüz toplanmadı.
+- **Mevcut çalışan ölçüm yolu:** ESP32D2 + ADS1115 No.10 (I²C 0x48) + SCT013 30A/1V, A0–A1 diferansiyel; GPIO21 SDA, GPIO22 SCL; 3.3 V besleme ve ortak GND. Mevcut K=27.59 korunuyor.
+- **Sıfır yayınlama:** V1.2 yüksüz → yük → yeniden yüksüz geçişi logla doğrulandı (0.000 A → yaklaşık 0.600–0.604 A → 0.000 A). Bu, kalibrasyon doğruluğu kanıtı değildir.
+- **20 mA filtre:** V1.3 derlendi/çalıştırıldı; kullanıcı gece boyu gözlemleyip yeterli buldu ve işi kapattı. Sayısal gece CSV/logu yok; performans metriği iddia edilmiyor. Rapor: `V1.3/RAPOR/V1.3-20MA-FILTRE-DERLEME-VE-GECE-GOZLEMI-2026-11-22.md`.
+- **Bias deneyleri:** Önceki biaslı/biassız testler tarihsel veri olarak korunuyor. Yaklaşık 0.47 A ve bazı yüklerde biaslı kolun PZEM'e daha yakın olduğu görüldü; yüksüz spike ve kararlılık sorunları da kaydedildi. Yeni tasarımda bias tercih edilmeyecek.
+- **Güncel kalibrasyon kararı:** 1.5 A altı katsayısı 150 W'a kadar ampullerle; 1.5 A üstü katsayısı ütü, tost makinesi ve kettle kaynatma moduyla belirlenecek. Laboratuvar hassasiyeti hedeflenmiyor; pratik ve tutarlı katsayı amaçlanıyor. PZEM yalnızca karşılaştırma referansıdır.
+- **Yeni kalibrasyon serisi:** Bias kullanılmayan bağlantı için ADS1115 AIN pinlerinin GND'ye göre mutlak gerilim sınırları önce doğrulanacak. Eski biaslı veri yeni seriyle karıştırılmayacak. Henüz yeni katsayı yok; K=27.59 değişmedi.
+- **Açık tasarım konusu:** 1.5 A tam sınırında katsayı seçimi ve yazılımsal bölge belirleme yöntemi, iki katsayı elde edildikten sonra çözülecek.
+
+## Deney geçmişi – kısa durum dizini
+
+Her madde deneyin sonucunu bir-iki cümlede özetler; ayrıntılı veri ve yorum ilgili rapor/CSV/YAML yolundadır.
+
+- **2026-11-21 – Osiloskop yük kademeleri:** Biaslı SCT sinyalinde yüksüz, 42, 57, 100 ve 150 W kademelerinde ölçüm alındı; Vrms yükle arttı. Bu çalışma ADS1115 akım ölçümünü veya kalibrasyonu doğrulamadı. Ayrıntı: `TESTLER/OSILOSKOP-YUK-KADEMELERI-BIAS-2026-11-21.md`.
+- **2026-11-21 – İlk iki kanallı ADS1115 denemesi:** Bağlantı sorunu nedeniyle geçersiz sayıldı; yükselen A2–A3 değerleri veri/katsayı hesabında kullanılmadı. Ayrıntı: `DENEYLER/ADS1115-IKILI-OKUMA-BAGLANTI-HATALI-2026-11-21.md`.
+- **2026-11-21 – Bias kanal karşılaştırmaları:** A0–A1/A2–A3 bias eşlemesi çaprazlandı; üç 100 W tekrarında biaslı kolun ortalaması daha yüksek ve PZEM'e göre MAPE'si daha düşük çıktı. Bu sonuç yaklaşık 0.47 A çalışma noktasıyla sınırlı; biasın gürültüyü azalttığı gösterilmedi.
+- **2026-11-21 – Boşta bias spike gözlemi:** Biaslı kanalda yüksüz pozitif spike'lar ve 15 W deneyinde tekil yüksek spike kaydedildi. Ham uzun süreli nicel analiz bulunmadığından spike davranışının genel istatistiği çıkarılmadı.
+- **2026-11-21 – Kettle / ESP32 kaynaklı bias denemeleri:** Farklı bias besleme ve kettle çalışma koşulları incelendi; ölçüm yakınlığı ile yüksüz kararlılık aynı yönde sonuç vermedi. Ayrıntılar ilgili tarihli deney raporlarında korunur.
+- **2026-11-22 – 150 W A0–A1 tek kanal:** HA kaydı analiz edildi; ortalama 0.583896 A, CV %0.9343 ve PZEM akımıyla 40 eşleşmede MAPE %9.54 bulundu. Ayrı oturum olduğundan önceki çift kanal sonuçlarıyla farkın nedeni kesinleştirilmedi.
+- **2026-11-22 – 150 W A2–A3 tek kanal:** Ortalama 0.589707 A, CV %1.1146 ve PZEM akımıyla 52 eşleşmede MAPE %8.510 bulundu. A0–A1 ile fark kanal üstünlüğü veya kök neden kanıtı değildir.
+- **2026-11-22 – İki sabit katsayıyı ardışık çarpma önerisi:** K1×K2=K ise sonuç tek katsayıyla matematiksel olarak aynıdır; biasın yerine geçmez. Değerlendirme fiziksel deney yapılmadan kapatıldı.
+- **2026-11-22 – V1.2 UNKNOWN→ZERO:** ESPHome logunda çevrimiçi sıfır yayını; kontrollü yükte 0.604/0.602/0.600 A ve yük kalkınca 0.000 A görüldü. İşlevsel geçiş doğrulandı; mutlak doğruluk doğrulanmadı.
+- **2026-11-22 – V1.3 20 mA filtresi:** Kullanıcı derleme ve gece gözlemini doğruladı, filtreyi yeterli bularak kapattı. Sayısal gece verisi olmadığı için eşik çevresi/uzun dönem istatistiği yoktur.
+- **2026-11-22 – İki bölgeli kalibrasyon kararı:** Ampuller (≤150 W) düşük bölge; ütü, tost makinesi ve kettle kaynatma modu yüksek bölge için seçildi. Veri toplama ve katsayı hesabı henüz yapılmadı.
+
+---
+
 Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif modül ve görev, mevcut çalışma aşaması, ilerleme, bekleyen işler ve sıradaki adım burada tutulur. Kalıcı ilkeler README.md dosyasındadır; görev teknik ayrıntıları ilgili görev klasöründedir.
 
 ## Genel durum
