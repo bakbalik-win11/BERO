@@ -132,3 +132,13 @@ Bias ESP32 3.3 V hattından sağlanacak; ESP32 GND, ADS1115 GND ve bias devresi 
 - **Açık noktalar:** Tam 1,5 A sınırının hangi bölgeye dahil olacağı, bölge seçiminin nasıl yapılacağı ve geçişte çıktı sürekliliği testle/yazılım tasarımıyla belirlenecek.
 - **Kanıt sınırı:** Bu bir tasarım kararıdır; biasın fiziksel olarak söküldüğü veya iki bölgeli kalibrasyonun doğrulandığı anlamına gelmez.
 - **İlgili kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/IKI-BOLGELI-KALIBRASYON-VE-BIAS-KARARI-2026-11-22.md`.
+
+
+### 2026-11-22 – MOD2-GRV001 – Birleşik 42/57/100/150 W kararlı kademe analizi
+
+- **Çalışma / deneme:** Kullanıcının sağladığı `150-42-57-100.csv` dosyasında PZEM akımının sıfır olmadığı ve açılış/kapanış geçişleri dışında kalan dört kararlı pencere yeniden hesaplandı.
+- **Gözlenen sonuç:** A0–A1 için K değerleri 42 W'da 33.58, 57 W'da 33.30, 100 W'da 30.65 ve 150 W'da 30.00 bulundu. 42/57 W ile 100/150 W grupları arasında belirgin katsayı ayrışması var.
+- **Ek gözlem:** 100 W penceresi homojen değil. İlk yaklaşık 230 saniyede A0–A1 ortalaması 0.430886 A (K≈30.13), sonraki bölümde 0.418343 A (K≈30.97); PZEM iki bölümde de yaklaşık 0.470 A. Tüm pencerenin K=30.65 değeri iki alt seviyeyi birleştiriyor.
+- **Edinilen tecrübe:** Kararlı PZEM akımı, A0–A1 ölçümünün pencere boyunca sabit kaldığını garanti etmiyor. 100 W içindeki seviye değişimi ayrıca açıklanmadan tek katsayı yorumuna dahil edilmemeli.
+- **Teknik karar:** Katsayılar ön sonuç olarak tutuldu. Bias ve YAML sürümü birleşik CSV'den kesin doğrulanamadığı için seri biassız/aynı konfigürasyonla doğrulanmış ilan edilmedi. K=27.59 ve mevcut YAML değişmedi; tek ortak düşük bölge katsayısı seçilmedi.
+- **İlgili kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150-42-57-100-BIRLESIK-KADEME-ANALIZI-2026-11-22.md`; katsayı geçmişi `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/RAPORLAR/KATSAYI-RAPORU-ADS1115-NO10-SCT013.md`.
