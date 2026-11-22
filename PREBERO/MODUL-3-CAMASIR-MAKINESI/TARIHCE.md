@@ -37,3 +37,11 @@ Başarısız, sonuçsuz veya henüz doğrulanmamış çalışmalar da kaydedilir
 - **Edinilen tecrübe:** V1.6 gerçek cihazda uzun program boyunca çalıştı. Çalışma koşuluna göre PZEM ile farkın yönü değişebiliyor; bu deney farkın PF kaynaklı olduğunu kanıtlamıyor.
 - **Teknik karar:** Ana hedef yeni kodu gerçek makinede test etmekti; hedef yerine geldiği için MOD3-AKM001 kapatıldı. V1.6 değiştirilmedi. PF/ZMPT101B araştırması ayrı ve geleceğe dönük; bu testin kapsamı değil. Ses/titreşim kanalları kullanılmadı.
 - **İlgili kayıt:** `GOREVLER/MOD3-AKM001/RAPOR/MOD3-AKM001-V1.6-UZUN-PAMUKLU-SAHA-TESTI-2026-11-22.md`.
+
+
+## 2026-11-22 – Modül 3/4 ortak zaman pencereli sensör mimarisi taslak olarak kaydedildi
+
+- **Çalışma:** Akım (SCT013), ses (MAX4466) ve titreşim (MPU6050) verilerini ortak 1 saniyelik zaman slotlarında birleştirme fikri değerlendirildi.
+- **Teknik karar:** Sensörler kendi uygun örnekleme hızlarında çalışacak; pencere bazlı özetler ortak zaman damgası/tick ile tek veri kaydında birleştirilecek. Örnek özellikler akım RMS, ses RMS/peak/ZCR ve üç eksenli titreşim RMS değerleridir.
+- **Durum:** Taslak mimari; örnekleme hızları, ADC/pin planı, kaynak yükü, veri şeması ve aktarım henüz kesin değil. Fikirler netleşmeden Modül 3 imalatına geçilmeyecek.
+- **İlgili kayıt:** `PREBERO/ORTAK-MIMARI/MODUL-3-4-ORTAK-ZAMAN-PENCERELI-VERI-TOPLAMA-MIMARISI.md`.
