@@ -125,8 +125,10 @@ Kullanıcı, bağlantı yenilemesi sonrasında gürültü göründüğünü beli
 V1.6 içindeki ilgili işlemlerin gerçek kapsamı:
 
 1. ct_clamp:
-   - ADS1115 ham diferansiyel okumasından 200 ms sample_duration penceresinde RMS akım büyüklüğü üretir.
-   - Bu bir RMS pencereleme/ölçüm işlemidir; genel amaçlı düşük geçiren veya hareketli ortalama gürültü filtresi olarak değerlendirilmemelidir.
+   - ADS1115 ham diferansiyel okumalarını 200 ms sample_duration penceresinde biriktirerek RMS akım büyüklüğü üretir.
+   - ESPHome ct_clamp RMS hesabı DC ortalamayı varyans yaklaşımıyla çıkarır: RMS = sqrt(E[x²] - E[x]²). Bu, DC biası bastıran ve pencere içinde ölçüm yapan bir işleme/filtreleme adımıdır.
+   - Ancak pencere içindeki AC gürültü enerjisini ayıklamaz; AC gürültü de RMS hesabına katkı yapar. Dolayısıyla bu işlem, yüksüz AC gürültüsünü otomatik olarak yok eden bir düşük geçiren veya hareketli ortalama filtresi değildir.
+   - 200 ms pencere tek bir RMS istatistiği üretir; update_interval: 1s bu sonucun yayın/güncelleme aralığıdır. Bu ayar tek başına ardışık RMS sonuçlarını yumuşatmaz.
 2. calibrate_linear:
    - Ölçüm değerine baz ölçek uygular (1.0 -> 27.59).
    - Gürültü bastırma filtresi değildir.
@@ -140,7 +142,7 @@ V1.6 içindeki ilgili işlemlerin gerçek kapsamı:
 5. update_interval: 1s:
    - Sonucun güncellenme aralığıdır; tek başına filtreleme yapmaz.
 
-Dolayısıyla “kodda filtre var” ifadesi doğrudur; fakat V1.6'daki filtre bloğu esas olarak kalibrasyon/ölçekleme ve 30 mA altını sıfıra alma mantığıdır. Gürültü bastırma veya zaman serisi yumuşatma garantisi vermez. Bağlantı teması düzeltildikten sonra ölçümün görünür hale gelmesi, önceki sessiz okumanın güvenilir noise-floor ölçümü olmadığını destekler; ancak yeni görülen gürültünün kaynağını tek başına belirlemez.
+Düzeltme ve netleştirme: “Kodda filtre var” ifadesi doğrudur. V1.6'da ct_clamp'in 200 ms RMS penceresi DC ortalamayı çıkarır ve pencere içi AC enerjiyi RMS olarak ölçer; calibrate_linear ve K(x) fiziksel ölçeği/katsayıyı düzeltir; template sensörü 30 mA ve altını sıfırlar. Ancak ct_clamp AC gürültüyü ayıklamaz: bu gürültünün RMS karşılığı 30 mA eşiğini aşarsa yayın sensöründe akım gibi görünür. Bu yüzden bağlantı yenilendikten sonra gürültünün görünmesi kodda hiçbir filtre olmadığı anlamına gelmez; mevcut filtre zincirinin AC gürültüyü bastırmak üzere tasarlanmadığı anlamına gelir. Bağlantı teması düzeltildikten sonra ölçümün görünür hale gelmesi, önceki sessiz okumanın güvenilir noise-floor ölçümü olmadığını destekler; ancak yeni görülen gürültünün kaynağını tek başına belirlemez.
 
 ### Ekli Home Assistant geçmiş CSV'sinin sınırı
 
