@@ -30,3 +30,8 @@ Modül 3/4 saha deneyleri, cihazların farklı çalışma evrelerinde akım davr
 - PF için gerilim ve akım dalga biçimlerinin uygun zaman eşlemeli örneklenmesi gerekir; ZMPT101B tek başına PF üretmez.
 - Mevcut ESP32'nin CPU/RAM/örnekleme/yayın yükü deneyle ölçülür. Yetersiz kalırsa ESP32-P4 değerlendirilir; işlemci seçimi şimdilik açık karardır.
 - Nihai imalat, ses, titreşim, akımla senkronizasyon ve seçilirse PF katmanı deneylerle olgunlaştıktan sonra yapılacaktır.
+
+
+## Dağıtık ESP ve PZEM paket yayınlama tecrübesi
+
+Nihai Modül 4 donanımı oluşana kadar sensör kanalları ayrı/geçici ESP'lerde çalıştırılabilir. Her ESP kendi ölçüm özetini paket halinde yayınlayacak; PZEM ile kurulan paket yayınlama tecrübesi temel alınacaktır. Paketlerde cihaz/kanal kimliği, zaman damgası ve ortak zaman dilimi numarası bulunması hedeflenir. Paket alanları ve yayın davranışı, mevcut PZEM kaynak kodu/logları incelenerek kesinleştirilecektir; henüz görülmemiş protokol ayrıntıları varsayılmayacaktır. Merkezi alıcı paketleri zaman ve dilim bilgisiyle eşleştirecek; kayıp, tekrar, gecikme ve saat hizası test edilecektir. Deneyler tamamlandığında doğrulanan kanallar tek modülde birleştirilecektir.
