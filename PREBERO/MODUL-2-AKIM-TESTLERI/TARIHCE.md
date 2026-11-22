@@ -142,3 +142,12 @@ Bias ESP32 3.3 V hattından sağlanacak; ESP32 GND, ADS1115 GND ve bias devresi 
 - **Edinilen tecrübe:** Kararlı PZEM akımı, A0–A1 ölçümünün pencere boyunca sabit kaldığını garanti etmiyor. 100 W içindeki seviye değişimi ayrıca açıklanmadan tek katsayı yorumuna dahil edilmemeli.
 - **Teknik karar:** Katsayılar ön sonuç olarak tutuldu. Bias ve YAML sürümü birleşik CSV'den kesin doğrulanamadığı için seri biassız/aynı konfigürasyonla doğrulanmış ilan edilmedi. K=27.59 ve mevcut YAML değişmedi; tek ortak düşük bölge katsayısı seçilmedi.
 - **İlgili kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/150-42-57-100-BIRLESIK-KADEME-ANALIZI-2026-11-22.md`; katsayı geçmişi `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/RAPORLAR/KATSAYI-RAPORU-ADS1115-NO10-SCT013.md`.
+
+
+## 2026-11-22 – İleride PF etkisi araştırması: trimpotlu faz kaydırma düzeneği
+
+Kullanıcı, mevcut akım kalibrasyonu ve negatif eğimli K fonksiyonu çalışmasından ayrı olarak, elindeki trimpotlu düzeneği ileride PF etkisini incelemek için kullanma fikrini kaydetti. Mevcut kalibrasyonun başarı ölçütü PZEM karşılaştırmasına göre ±%4 hata zarfıdır; PF düzeltmesi şimdilik fonksiyona eklenmeyecek. Ampul/birleşik ampul ve vantilatör doğrulamaları mevcut çalışma kapsamında kalacak; PF araştırması ayrı deney serisi olacaktır.
+
+Trimpotun gerçek devre topolojisi, oluşturduğu faz kayması ve PF ayar aralığı henüz doğrulanmadı. Gelecekte şema/bağlantı incelenmeli, osiloskopla faz ilişkisi ve dalga şekli gözlenmeli; PZEM gerilim, akım, aktif güç ve PF değerleri SCT/ADS1115 ile birlikte kaydedilmelidir. Faz kaydırma devresi gerçek motorlu yük PF davranışıyla otomatik olarak eşdeğer sayılmayacaktır. Fiziksel deney yapılmadı; sonuç veya PF katsayısı üretilmedi.
+
+Ayrıntılı plan: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/ILERIDE-PF-ETKISI-TRIMPOT-DENEY-PLANI.md`.
