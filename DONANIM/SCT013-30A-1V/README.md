@@ -238,3 +238,19 @@ Durum: Firmware derlenmiş ve cihazda çalışır durumda; DIAG1 ham RMS ölçü
 
 
 Ayrıca DIAG1'de görülen 0.000500 V ham RMS değeri V1.6 zincirinden geçirilirse yaklaşık 0.01610 A verir; bu 30 mA eşiğinin altında olduğundan ana akım sensörünün 0.000 A göstermesi beklenir. Bu hesap, ham gerilim ile yayın akımı arasındaki farkı açıklar; ham değerin fiziksel kaynağını belirlemez.
+
+
+## 10.5 DIAG1 – history (39)(1).csv etkin ölçüm bulguları – 2026-11-22
+
+Kullanıcının paylaştığı 456 satırlı Home Assistant history CSV'sinde:
+- ESP32D2 ham RMS sensöründe 21:29:05 TSİ sonrasında yük/akım mevcutken düzenli sayısal değerler gözlendi.
+- Etkin kararlı bölümde 11 ham RMS değeri 0.003421–0.003627 V; ortalama 0.003526 V.
+- Bu 11 değerin V1.6 kalibrasyon zincirinden hesaplanan karşılığı 0.108564–0.114981 A; ortalama 0.111825 A.
+- Ham RMS ve HA akım sensörünün toplam 13 ardışık eşleştirmesinde hesaplanan akım, yayınlanan akımla eşleşti. Ham RMS zamanından akım template sensörü zamanına ortalama 0.6868 s fark bulundu. Bu, ct_clamp tetik zamanı ile 1 saniyelik template update zamanlamasına uygundur; analog faz gecikmesi değildir.
+- Boşta 0.000500 V, V1.6 zincirinde yaklaşık 0.01610 A verir; 30 mA eşiğinin altında olduğu için HA akım sensörü 0.000 A yayınlar.
+- Etkin bölümde PZEM 0.054 A gösterirken SCT zinciri yaklaşık 0.112 A göstermiştir. PZEM kendi V×I×PF sonuçlarıyla uyumludur; ancak aynı iletken/yük/ölçüm anı koşulları bağımsız olarak kanıtlanmadığından farkın sebebi belirlenememiştir. PZEM 0.030–0.054 A ölçümleri V1.6 kalibrasyon serisinin 0.067 A alt sınırının altındadır; bu CSV ile K(x) değiştirilmemelidir.
+
+Detaylı eşleştirme, hesaplar ve sınırlamalar:
+`PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/V1.6/LOGS/2026-11-22-V1.6-DIAG1-HISTORY-39-CSV-ANALIZI.md`
+
+Durum: DIAG1 ham RMS veri yolu ve V1.6 yazılım dönüşüm eşleşmesi doğrulandı. Fiziksel akım doğruluğu/PZEM farkı henüz çözülmedi.
