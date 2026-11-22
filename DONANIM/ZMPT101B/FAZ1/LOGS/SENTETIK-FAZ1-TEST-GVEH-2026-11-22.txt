@@ -1,0 +1,65 @@
+BERO FAZ 1 – PYTHON SENTETIK TEST KAYDI
+Tarih: 2026-11-22
+Kaynak: Kullanıcının sağladığı bero_phase1_analysis.py
+Test tipi: --simulate (sentetik veri; ADS1115 donanım ölçümü değildir)
+Ortam: Python sözdizimi kontrolü + numpy/scipy/matplotlib ile simülasyon
+Komutlar:
+  python bero_phase1_analysis.py --simulate --cmd g --out sim_g
+  python bero_phase1_analysis.py --simulate --cmd h --out sim_h --compare sim_g_summary.json
+
+Not: Aşağıdaki 347,3 SPS, 21,8 µs jitter ve gecikme değerleri simülatörün parametrelerinden üretilmiştir. Bunlar ESP32D2/ADS1115 gerçek çalışma sonuçları değildir.
+
+[SIM G]
+Kayıt: 8000 satır, geçerli 8000, hatalı/timeout 0, kopukluk 0
+Toplam etkin hız (iki kanal): 694,6 Hz | f tahmini: 49,9976 Hz
+ch0: fs=347,3 Hz; dt_mean=2879,6 us; jitter=21,8 us; min/max=2795/2959 us; p99=2930 us
+ch1: fs=347,3 Hz; dt_mean=2879,6 us; jitter=22,1 us; min/max=2798/2964 us; p99=2933 us
+Damga farkı ch0->ch1: 1419,5 +/- 15,4 us
+Damga farkı ch1->ch0: 1460,0 +/- 15,6 us
+Artık gecikme (11 adet 1 s blok): +20,07 us; blok std=0,22 us; genlik oranı=0,99999
+10 çevrimlik pencereler (n=57), 1-PF ortalama / std:
+  M0 naif indeks:          +0,10054 / 0,00132
+  M1 lineer + ortalama:    +0,00002 / 0,00000
+  M2 lineer + trapez:      +0,00562 / 0,00003
+  M3 kübik + trapez:       +0,00002 / 0,00000
+Sıra takası: ikinci kayıt yok; değerlendirme N/A.
+Karar kapısı: fs_ch=347,28 -> WARN; diğer sentetik eşikler PASS. Bu PASS değerleri yalnızca simülasyon davranışıdır.
+
+[SIM H]
+Kayıt: 8000 satır, geçerli 8000, hatalı/timeout 0, kopukluk 0
+Toplam etkin hız (iki kanal): 694,5 Hz | f tahmini: 49,9968 Hz
+ch0: fs=347,3 Hz; dt_mean=2879,6 us; jitter=22,1 us; min/max=2798/2964 us; p99=2933 us
+ch1: fs=347,3 Hz; dt_mean=2879,6 us; jitter=21,8 us; min/max=2795/2959 us; p99=2930 us
+Damga farkı ch0->ch1: 1420,0 +/- 15,6 us
+Damga farkı ch1->ch0: 1459,5 +/- 15,4 us
+Artık gecikme (11 adet 1 s blok): +19,93 us; blok std=0,22 us; genlik oranı=1,00001
+10 çevrimlik pencereler (n=57), 1-PF ortalama / std:
+  M0 naif indeks:          +0,10059 / 0,00131
+  M1 lineer + ortalama:    +0,00002 / 0,00000
+  M2 lineer + trapez:      +0,00562 / 0,00003
+  M3 kübik + trapez:       +0,00002 / 0,00000
+g/h artık gecikme farkı: 0,14 us (sentetik sıra takası)
+Karar kapısı: fs_ch=347,28 -> WARN; diğer sentetik eşikler PASS. Bu PASS değerleri yalnızca simülasyon davranışıdır.
+
+[FREKANS TARAMASI – PROGRAMATIK SENTETIK TEST]
+50 Hz:  tahmini f=49,9942 Hz; artık gecikme=20,07 us; std=0,22 us
+75 Hz:  tahmini f=74,8469 Hz; artık gecikme=20,04 us; std=0,18 us
+100 Hz: tahmini f=100,1505 Hz; artık gecikme=20,03 us; std=0,10 us
+125 Hz: tahmini f=122,8967 Hz; artık gecikme=12,68 us; std=32,85 us
+Yorum: 125 Hz'de sıfır geçişten türetilen ilk frekans tahmini gerçek 125 Hz'den yaklaşık 2,10 Hz sapıyor. joint_fit arama aralığı ilk tahminin yalnızca +/-0,3 Hz çevresinde olduğu için doğru frekansı kapsayamıyor; artık gecikme sonucu bozuluyor. 125 Hz doğruluk kalibrasyon frekansı yapılmayacak. Bu, mevcut sentetik modelde görülen analiz sınırıdır; gerçek donanım ölçümü değildir.
+
+[PYTHON KONTROLÜ]
+- python -m py_compile: BAŞARILI.
+- --simulate g: BAŞARILI.
+- --simulate h + --compare: BAŞARILI.
+- Gerçek seri port yakalaması: YAPILMADI.
+- Arduino derlemesi: YAPILMADI.
+- ESP32D2 yüklemesi ve ADS1115 ölçümü: YAPILMADI.
+
+Yorum:
+1. Simülatör bilinen 20 us timestamp-relative kaymayı yaklaşık 20 us olarak geri bulabiliyor.
+2. Naif indeks eşleştirmesi bu sentetik düzenekte ciddi hata üretiyor.
+3. M1 ve M3 bu sentetik saf sinüste küçük sapma gösteriyor; bu sonuç gerçek/dalga bozukluğu içeren veri için genellenemez.
+4. M2 sonucu trapez kuralının genel olarak yanlış olduğunu kanıtlamaz. Ayrı ayrı lineer enterpole edilen iki kanalın çarpımı alt aralıklarda ikinci dereceden olur; ürünün trapezle entegrasyonu tam integral değildir.
+5. M1 eşit ağırlıklı ortalama kullanır; düzensiz örnekleme varsa bu zaman ağırlıklı ortalama değildir.
+6. Bütün PASS/WARN eşikleri tasarım hedefidir; gerçek donanımın geçiş sonucu değildir.
