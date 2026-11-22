@@ -2,7 +2,7 @@
 
 **Görev:** MOD2-GRV001  
 **Rapor türü:** Birim ve ölçüm zinciri kalibrasyon geçmişi  
-**Durum:** AÇIK – 150 W ön analizi (24 eşleşme, K≈30.01) kaydedildi; bias/YAML teyidi ve 100 W verisi bekleniyor  
+**Durum:** TARİHSEL RAPOR – başlangıçtaki iki bölgeli kalibrasyon planı V1.6 tek fonksiyon modeliyle kapatıldı. Eski katsayı tabloları ve ön analizler tarihsel kayıt olarak korunur.  
 **Son güncelleme:** 2026-11-22
 
 ## 1. Raporun amacı
@@ -158,3 +158,16 @@ Kullanıcının sağladığı `150-42-57-100.csv` dosyasında dört kararlı pen
 - K=27.59 ve çalışan YAML korunur; bu analiz firmware değişikliği talimatı değildir.
 
 Ayrıntılı yöntem, pencere istatistikleri ve yorum: `../DENEYLER/150-42-57-100-BIRLESIK-KADEME-ANALIZI-2026-11-22.md`.
+
+ 
+## 12. 2026-11-22 – İki bölgeli kalibrasyon planının kapanışı
+
+Bu raporun 2, 8 ve 9. bölümlerinde yer alan 1,5 A altı/üstü iki ayrı katsayı belirleme planı, daha sonra yapılan tam aralık karma yük testleri sonucunda **aktif kalibrasyon yöntemi olmaktan çıkarılmıştır**. Bu tarihsel tablolar silinmemiştir; önceki karar ve ara sonuçların izlenebilirliği için korunur.
+
+Nihai referans model V1.6 tek fonksiyondur:
+`K(x)=26.89+5.39\,e^{-x/0.882}`.
+V1.6 YAML ve doğrulama raporu:
+- `../V1.6/V1.6-TEST-A0A1-TEK-FONKSIYON-KX-30MA.yaml`
+- `../V1.6/RAPOR/V1.6-TAM-ARALIK-TEK-FONKSIYON-DOGRULAMA-2026-11-22.md`
+
+**Karar:** 1,5 A sınırı, ayrı düşük/yüksek katsayılar ve parçalı geçiş uygulaması geliştirilmez. V1.6 katsayıları korunur. Yaklaşık 60 W sapması ayrı tekrar kontrolüdür; yaklaşık 15 W noktası pratik alt ölçüm sınırına yakın kabul edilir. Bu karar yalnızca ADS1115 No.10 / SCT013 30A-1V / ESP32D2 / A0–A1 ölçüm zinciri içindir. PZEM karşılaştırma referansıdır, mutlak doğru değildir.
