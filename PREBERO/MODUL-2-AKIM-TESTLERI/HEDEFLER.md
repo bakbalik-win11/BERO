@@ -30,3 +30,16 @@ Akım okuma hedefi bu modülde elde edilmiştir. Çalışma, elde edilen okumay�
 ## Görevler
 
 İlk aktif görev: `MOD2-GRV001` – Akım davranışı ve katsayı çalışmaları.
+
+
+## İleri araştırma yönü – dalga biçimi ve PF etkisi
+
+MOD2-GRV001 masaüstü akım ölçüm görevi kapatılmıştır; V1.6 akım kalibrasyon referansı korunur. Bu kapanış, Modül 2'nin ileride ayrı bir araştırma kolu yürütmesini engellemez.
+
+Araştırma hedefi:
+- SCT013 akım dalga biçimini ve ZMPT101B ile gerilim dalga biçimini gözlemlemek.
+- Dalga istatistiklerini çıkarmak ve farklı yük/PF koşullarında ölçüm sapmasıyla ilişkilerini incelemek.
+- PF kaynaklı bir etki tekrarlanabilir biçimde gösterilirse düzeltme yaklaşımını araştırmak; kanıt oluşmadan V1.6 kalibrasyonuna PF düzeltmesi eklememek.
+- Modül 3 ve 4 saha kayıtlarından gelen uygun verileri bu araştırmaya geri beslemek.
+
+Bu araştırma MOD2-GRV001'i yeniden açmaz; ayrı deney/görev olarak planlanır. ZMPT101B'nin kullanımı ve örnekleme düzeni deney tasarımında doğrulanacaktır.
