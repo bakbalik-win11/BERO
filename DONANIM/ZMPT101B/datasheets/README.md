@@ -15,3 +15,9 @@ Kullanıcı tarafından sağlanan `ZMPT101B.PDF` dosyası, **ZMPT101B (ZMPT107) 
 
 - İnceleme ve BERO deney notları: [ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md](ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md)
 - Orijinal kullanıcı PDF'si bu commit işleminde ikili dosya olarak depoya yüklenmemiştir; teknik içeriği ve kaynak kapsamı inceleme kaydına aktarılmıştır.
+
+
+## Hazır modül kartı teknik makalesi
+- [DataCaptureControl – ZMPT101B AC Voltage Transformer Sensor Module](https://datacapturecontrol.com/articles/io-components/sensors/voltage/zmpt101b-ac-voltage-transformer-sensor-module)
+- Makale, LM358'li hazır modülün pinlerini, kart devresini ve RMS kalibrasyon yöntemini açıklar.
+- Teknik değerlendirme: [ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md](ZMPT101B-ZMPT107-KULLANIM-KILAVUZU-INCELEME.md)
