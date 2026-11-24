@@ -1,6 +1,6 @@
 # PREBERO – Durum ve çalışma akışı
 
-> **Güncellik notu (2026-11-22):** Bu dosyanın aşağıdaki eski tarihli kayıtları deney geçmişidir. Birbiriyle çelişen eski “sıradaki adım” ve “aktif bağlantı” ifadeleri yerine, bu bölümdeki güncel durum esas alınır.
+> **Güncellik notu (2026-11-24):** Dosyanın aşağıdaki tarihli eski kayıtları deney geçmişidir. Güncel görev, öncelik ve sıradaki adım için bu dosyanın başındaki yetkili durum esas alınır.
 
 ## Yetkili güncel durum – 2026-11-24
 
@@ -40,29 +40,28 @@ Bu dosya PREBERO'nun güncel iş akışını gösteren tek takip yeridir. Aktif 
 
 | Modül | Hedef | Durum |
 |---|---|---|
-| Modül 1 – Bias Gerilim Aktarımı | Şebeke karakterinde gerilimi mevcut bias girişine aktarmak | **Fiziksel imalat tamamlandı; mevcut donanım** |
-| Modül 2 – Masaüstü ESP / Akım Testleri | Masaüstü ESP düzeninde sinyal ve akım davranışını incelemek, deney verilerini ve katsayı çalışmalarını yürütmek | **Aktif** |
-| Modül 3 – Çamaşır Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | Bekliyor |
+| Modül 1 – Bias Gerilim Aktarımı | Şebeke karakterinde gerilimi mevcut bias girişine aktarmak | Fiziksel imalat tamamlandı; mevcut donanım |
+| Modül 2 – Akım / PF Araştırması | BERO'ya özel hızlı akım ölçümü ve bağımsız PF hesabı | **Aktif – MOD2-GRV002** |
+| Modül 3 – Çamaşır Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | MOD3-AKM001 saha kaydı tamamlandı; sonraki işler ayrı takip edilir |
 | Modül 4 – Bulaşık Makinesi | Program aşamalarını gözlemleyip tahmin etmek ve bildirim üretmek | Bekliyor |
 | Modül 5 – Ana Pano | Evde gün boyunca gerçekleşen elektriksel faaliyetleri gözlemlemek | Bekliyor |
 
 ## Şu anki çalışma
 
-- **Aktif modül:** Modül 2 – Masaüstü 4 Kanal / Akım Testleri
-- **Aktif görev:** MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
-- **Çalışma odağı:** ESP32-D geliştirme kartı + ESP32 shield, SCT013 30A/1V akım sensörü ve ADS1115 ara entegresiyle masaüstü deney düzeneğinin imalatı; ardından sinyal/akım davranışını gözlemlemek ve test kayıtlarını MOD2-GRV001 altında tutmak. Paylaşılan ESP32/shield görseli temsildir; kesin kart modeli ve pinout değildir. Modül 1, gerektiğinde bu deney düzenine bias gerilimi sağlayan mevcut donanımdır.
+- **Aktif modül:** Modül 2 – Akım / PF Araştırması
+- **Aktif görev:** MOD2-GRV002 – BERO bağımsız PF ve PF etkili akım ölçümü
+- **Korunan referans:** MOD2-GRV001 V1.6 EXP/K(x) modeli; mevcut YAML değiştirilmez.
+- **Çalışma sırası:** Önce PZEM akım/PF ve EXP akımını aynı zaman pencerelerinde grafiklemek; ardından yeni pratik yük kayıtları toplamak; grafiklerden basit fonksiyon adayı çıkarmak ve ayrı verilerle doğrulamak; sonraki aşamada ZMPT101B + SCT013 ile BERO'nun kendi PF hesabını geliştirmek.
+- **İlk somut iş:** Çamaşır makinesi uzun pamuklu kaydı ve mevcut düşük PF deney verilerinin ham CSV erişimini kontrol edip grafiklerini hazırlamak.
+- **Görev ayrıntısı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.
 
-## Modül 2 – güncel çalışma
+## Modül 2 – donanım ve teknik sınırlar
 
-- **Aktif modül:** Modül 2 – Masaüstü 4 Kanal / Akım Testleri
-- **Aktif görev:** MOD2-GRV001 – Akım davranışı ve katsayı çalışmaları
-- **Fiziksel ADC:** ADS1115 **No.10**, I²C 0x48.
-- **Önceki geçersiz deneme:** 2026-11-21 tarihli ilk iki kanallı denemede bağlantı sorunu nedeniyle A2-A3'ün 0.494 A'dan 1.357 A'ya yükseldiği log geçersiz kabul edildi; bu değerler bias karşılaştırması veya kalibrasyon verisi değildir.
-- **Sonraki geçerli çalışmalar:** Aynı iki kanallı YAML ve K=27.59 ile iki bias/biassız karşılaştırma yapıldı. İlk deneyde A0-A1 biassız / A2-A3 biaslı; ikinci çapraz deneyde A0-A1 biaslı / A2-A3 biassızdı. Her iki deneyde de yüksek ortalama biaslı kola geçti.
-- **Kod koruma:** Mevcut tek kanallı V1.1 ve kullanılan iki kanallı YAML değiştirilmeyecek; üçüncü tekrar aynı iki kanallı YAML ile yapılacak.
-- **Kaynak veri:** İkinci deneyin 27 satırlık PZEM/SCT eşleştirme CSV'si ve raporu depoda bulunur. Kullanıcının sağladığı 900 satırlık `history (9).csv` ham kaynak dosyasının birebir kopyası GitHub'a yüklenmemiştir.
-- **Güncel sonraki adım:** Üçüncü çapraz tekrar: A0-A1 biassız, A2-A3 biaslı; bias beslemesi Modül 1'de kalacak. Aynı SCT'ler, konum/yön, yük, ESP32D2, ADS1115 No.10, YAML ve K=27.59 korunacak.
-- **Ayrıntılı kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/BIAS-KANAL-TEKRAR-CAPRAZ-DENEY-2026-11-21.md`.
+- **Mevcut referans zinciri:** ESP32D2 + ADS1115 No.10 (I²C 0x48) + SCT013 30A/1V, A0–A1 diferansiyel; GPIO21 SDA, GPIO22 SCL.
+- **V1.6 koruması:** `K(x)=26.89+5.39×exp(-x/0.882)`; baz ölçek K=27.59. Bu model yalnızca mevcut referans zincirine aittir ve PF düzeltmesiyle karıştırılmaz.
+- **PZEM rolü:** Deney/eğitim/karşılaştırma referansı; nihai BERO ölçüm hattında zorunlu değildir ve mutlak ground truth sayılmaz.
+- **PF sınırı:** ADS1115 kanal zamanlaması ve ZMPT101B analog faz/genlik davranışı doğrulanmadan gerçek PF hesabı başarılı ilan edilmeyecektir.
+- **Güvenlik:** İlk analog deneyler galvanik izole düşük gerilimli AC ile yapılır. FNIRSI 2D15P ground klipsleri şebeke faz/nötrüne bağlanmaz; ototransformatör izolasyon sağlamaz.
 
 ## İlerleme kuralı
 
