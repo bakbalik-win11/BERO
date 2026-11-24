@@ -1,20 +1,20 @@
 # PREBERO – Durum ve çalışma akışı
 
-> **Güncellik notu (2026-11-24):** Dosyanın aşağıdaki tarihli eski kayıtları deney geçmişidir. Güncel görev, öncelik ve sıradaki adım için bu dosyanın başındaki yetkili durum esas alınır.
+> **Güncellik notu (2026-11-25):** En üstteki yetkili durum günceldir. Aşağıdaki 2026-11-24 ve daha eski kayıtlar deney geçmişi olarak korunur.
 
-## Yetkili güncel durum – 2026-11-24
+## Yetkili güncel durum – 2026-11-25
 
-- **Modül 2 / MOD2-GRV001:** KAPANDI. Masaüstü prototip ve V1.6 EXP/K(x) tek fonksiyon kalibrasyonu referans olarak korunur. Bu görev yeniden açılmayacaktır.
-- **Modül 2 / MOD2-GRV002:** AÇIK. BERO için PZEM gerektirmeyen, SCT013 tabanlı hızlı tepki veren, akımda PZEM referansına yaklaşan ve kendi PF değerini hesaplayan ölçüm yolu araştırılacaktır. Görev: `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.
-- **Mevcut referans ölçüm yolu:** ESP32D2 + ADS1115 No.10 (I²C 0x48) + SCT013 30A/1V, A0–A1 diferansiyel; GPIO21 SDA, GPIO22 SCL; 3.3 V besleme ve ortak GND. Bu yolun PF için yeterliliği henüz onaylanmış değildir.
-- **Referans kalibrasyon modeli:** `K(x)=26.89+5.39·exp(-x/0.882)`; YAML'da K=27.59 baz ölçeği kullanılır ve Home Assistant yayın eşiği 30 mA'dir. V1.6/EXP korunur; PF düzeltmesi mevcut YAML'a eklenmez.
-- **MOD2-GRV002 Aşama A:** PZEM akım ve PF yayınları deney/eğitim referansı olarak kullanılacak; EXP akımıyla aynı zaman pencerelerinde karşılaştırılıp hata/oran grafikleri oluşturulacak. Grafiklerden basit bir düzeltme fonksiyonu aranacak. PF düştükçe akımı küçültme başlangıç hipotezidir, henüz kanıtlanmış değildir.
-- **MOD2-GRV002 Aşama B:** ZMPT101B gerilim dalgası ve SCT013 akım dalgasından BERO'nun kendi gerçek PF hesabı geliştirilecek. Uzun vadeli çalışma hedefinde PZEM normal ölçüm hattında zorunlu değildir.
-- **MOD2-GRV002 ilk iş:** Mevcut çamaşır makinesi ve düşük PF kayıtlarını grafiklemek; ham CSV erişilebilirliğini doğrulamak. Yeni fiziksel deney veya yeni fonksiyon henüz yapılmadı/bulunmadı.
-- **PZEM rolü:** Deney ve karşılaştırma referansıdır; mutlak ground truth değildir. PZEM'in ortalama/yayın gecikmesi BERO'nun tepki performansı hedefi olarak alınmaz.
-- **PF ölçüm güvenliği/teknik kapılar:** ZMPT101B kart revizyonu, besleme, OUT ofseti/genliği ve ADC zamanlaması henüz fiziksel olarak doğrulanmadı. İlk analog testler galvanik izole düşük gerilimli AC ile yapılır; osiloskop ground klipsleri şebeke faz/nötrüne bağlanmaz.
-- **Modül 3 / MOD3-AKM001:** 2026-11-22 tarihinde kapatıldı. Yaklaşık 78 dakikalık uzun pamuklu kayıt ve rapor korunur; V1.6 değiştirilmedi. Kayıttaki PF/akım korelasyonu tek başına nedensellik kanıtı değildir.
-- **Modül 3/4:** Kendi ses, titreşim ve ortak zamanlı veri toplama işleri ayrı görevlerinde sürer. MOD2-GRV002 bu modüllerin tamamlandığı anlamına gelmez.
+- **Modül 2 / MOD2-GRV001:** KAPANDI. V1.6 EXP/K(x) modeli korunur; değiştirilmez.
+- **Modül 2 / MOD2-GRV002:** AÇIK. PZEM referanslı akım sapması araştırması ve SCT–ZMPT ile BERO PF ölçümü ayrı başlıklar olarak sürer.
+- **Yeni netleşen SCT–ZMPT PF deneyi:** Amaç, SCT akım ve ZMPT gerilim ölçümlerinden BERO PF çıktısı üretmek; ilk denemede karmaşık osiloskop/faz analizi yerine temel bir hesaplama yaklaşımı ve ayarlanabilir `PHASE_CORRECTION` parametresi kullanmaktır. PZEM PF karşılaştırma referansıdır. Önce tek katsayı elle denenir; yetmezse deney verisine göre basit bir düzeltme fonksiyonu değerlendirilir.
+- **Çıktı:** Home Assistant/BERO tarafında yayınlanacak değer düzeltme katsayısı değil, hesaplanan BERO PF değeridir. Düzeltme parametresi hesaplamanın içinde kalır.
+- **İlk küçük deney:** Yarın mevcut donanımla kısa bir işlev/karşılaştırma deneyi planlanıyor. Henüz yapılmadı; başarı veya katsayı sonucu yok.
+- **Deney yükleri:** Dirençli yük başlangıç kontrolü; potansiyometreli trimmer/dimmer her ayarda PZEM PF kaydıyla; 8.5 W LED yalnızca düşük SCT akım sınırı gözlemi; çamaşır makinesi kaydı daha sonra değişken çalışma koşullarında doğrulama için.
+- **Düşük akım ayrımı:** 8.5 W LED'de SCT'nin düşük akım performansı faz düzeltme hatasıyla karıştırılmayacak; bu yük ana faz kalibrasyon referansı olmayacak.
+- **Osiloskop:** İlk küçük deney için zorunlu değil. İhtiyaç doğarsa yalnızca güvenli ve uygunluğu doğrulanmış düşük gerilimli sinyallerde yardımcı araç olarak kullanılabilir.
+- **Şebeke güvenliği:** Kullanıcı 220–230 V çalışma koşulunu hedefliyor; ancak ZMPT modülünün giriş dirençleri, PCB yalıtımı ve korumalı test düzeneği henüz doğrulanmadı. Bu doğrulama olmadan şebeke bağlantısı yapılmış veya güvenli kabul edilmeyecek. Osiloskop şebeke girişine bağlanmaz. RN130424 trafonun primeri de 230 V AC olduğundan primer tarafı şebeke güvenliği gerektirir.
+- **PZEM rolü:** Deney/kalibrasyon/karşılaştırma referansı; mutlak ground truth değildir ve nihai BERO hattında zorunlu değildir.
+- **Görev ayrıntısı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.
 
 ## Deney geçmişi – kısa durum dizini
 
