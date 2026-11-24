@@ -129,3 +129,18 @@ Kullanıcı, PF çalışmasının proje içindeki önceliğini netleştirdi:
 - Yaklaşık 15 W altı kullanıcı tarafından mevcut uygulama hedefi bakımından önceliksiz kabul edilmiştir. Bu bölge için K(x) tekrar parçalı/bölgesel hale getirilmeyecektir.
 
 **Çalışma ilkesi:** Önce çalışan ve kabul edilmiş tek fonksiyonlu sistemi koru. PF araştırmasını zaman ve kaynak elverirse, güvenli ve ölçülebilir deneylerle yavaşça sürdür; ana proje yolunun önüne geçirme.
+
+
+## 2026-11-24 – PF araştırma hedefi güncellendi: PZEM referanslı grafiklerden bağımsız BERO PF'ye
+
+Kullanıcı, PF çalışmasının pratik hedefini netleştirdi: ticari bir multimetre üretmek değil, her hatta PZEM gerektirmeyen, SCT013 hassasiyetinde hızlı tepki veren ve akım değerinde PZEM'e mümkün olduğunca yaklaşan BERO'ya özel bir akım/PF ölçüm yolu geliştirmek.
+
+Önceki notlarda yer alan “PZEM PF'ye göre katsayı uydurmak hedef değildir” ifadesi bu yeni karar doğrultusunda güncellenmiştir. PZEM'in PF ve akım yayınları ilk aşamada eğitim/karşılaştırma etiketi olarak kullanılacaktır. EXP akımının PZEM akımına göre hatası ve oranı grafiklenecek; EXP formülünün geliştirilmesindeki gibi grafik eğiliminden uygun basit fonksiyon aranacaktır. PF düştüğünde akımı aşağı yönde düzeltme yalnızca başlangıç hipotezidir; veriyle doğrulanmadan model kararı değildir.
+
+İkinci aşamada ZMPT101B gerilim dalgası ve SCT013 akım dalgasından BERO'nun kendi gerçek PF hesabı geliştirilecektir. Uzun vadeli hedef, normal çalışma sırasında PZEM olmadan akım ve PF üretebilmektir. PZEM yalnızca deney ve doğrulama referansı olarak kalır; mutlak ground truth değildir.
+
+**Açılan görev:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`
+
+**İlk adım:** Mevcut çamaşır makinesi ve düşük PF kayıtlarını grafiklemek. Ardından zaman hizalı PZEM akım/PF ve EXP verileriyle pratik yük kayıtları toplanacak; grafiklerden basit fonksiyon adayı çıkarılıp ayrı verilerle doğrulanacak. Sonraki aşamada ZMPT101B ve SCT013 örnekleme/zamanlama davranışı incelenecek.
+
+**Koruma ve sınırlar:** MOD2-GRV001 V1.6 ve EXP/K(x) modeli değiştirilmeyecek. Yeni düzeltme ayrı model/sürüm olacaktır. PZEM ile korelasyon tek başına PF'nin nedensel etkisini kanıtlamaz; akım seviyesi ve yük türü de incelenecektir. ZMPT101B kartı, ADC zamanlaması ve gerçek PF hesabı henüz fiziksel olarak doğrulanmış değildir. Bu kayıt bir proje hedefi ve deney planı açılışıdır; deney yapılmış veya fonksiyon bulunmuş anlamına gelmez.
