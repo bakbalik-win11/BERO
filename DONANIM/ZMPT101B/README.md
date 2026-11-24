@@ -146,4 +146,15 @@ Ayrıca tek 8.5 W LED düşük PF tekrar deneyinde PZEM PF yaklaşık 0.66–0.6
 Bütün saha bulguları ve ayrı deney kapsamları:
 [PF Araştırması – Güncel Durum ve Saha Verileri](PF-ARASTIRMA-GUNCEL-DURUM-2026-11-22.md)
 
-Teknik hedef değişmemiştir: PZEM PF'ye göre katsayı uydurmak değil, ZMPT101B gerilim ve SCT013 akım dalga biçimlerini güvenli ve zaman hizalı toplayıp P, Vrms, Irms, S ve gerçek PF hesaplamaktır. ADS1115'in örnekleme/zamanlama yeterliliği henüz onaylanmadı.
+## Güncel proje hedefi – MOD2-GRV002 (2026-11-24)
+
+BERO için hedef, her hatta PZEM gerektirmeyen; SCT013 tabanlı akım ölçümü hızlı tepki verirken PZEM referansına mümkün olduğunca yakın sonuç üreten ve kendi PF değerini hesaplayabilen pratik bir ölçüm yolu geliştirmektir. Ticari/laboratuvar sınıfı multimetre hedeflenmez; başarı BERO'nun tanımlı donanım ve yük aralığında değerlendirilir.
+
+Çalışma iki aşamalıdır:
+1. **PZEM referansıyla grafik tabanlı akım düzeltmesi:** PZEM'in akım ve PF yayınları ile EXP akımı aynı zaman pencerelerinde karşılaştırılır. Hata ve oran grafikleri incelenir; EXP geliştirme sürecindeki gibi veriye uygun basit bir fonksiyon aranır. PF düştüğünde akımı küçültme fikri başlangıç hipotezidir, kanıtlanmış sonuç değildir.
+2. **ZMPT101B ile BERO'nun kendi PF hesabı:** ZMPT101B gerilim ve SCT013 akım dalgaları zaman hizalı örneklenerek gerçek PF hesaplanır. Sonraki aşamada akım düzeltmesi BERO'nun kendi PF değeriyle çalıştırılır.
+
+PZEM deney ve karşılaştırma referansıdır; normal BERO çalışma hattında bulunması zorunlu değildir. PZEM'in yayın/ortalama gecikmesi BERO'nun tepki hedefini belirlemez. MOD2-GRV001 V1.6 ve EXP/K(x) modeli korunur; yeni PF düzeltmesi ayrı görev/model olarak geliştirilir. Mevcut görev ve adımlar:
+[MOD2-GRV002 – BERO bağımsız PF ve PF etkili akım ölçümü](../../PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md).
+
+ADS1115'in zamanlama yeterliliği ve ZMPT101B kartının gerçek performansı henüz doğrulanmamıştır.
