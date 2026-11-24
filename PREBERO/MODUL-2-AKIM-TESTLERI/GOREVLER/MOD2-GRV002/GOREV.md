@@ -1,7 +1,7 @@
 # MOD2-GRV002 – BERO bağımsız PF ve PF etkili akım ölçümü
 
 - **Açılış tarihi:** 2026-11-24
-- **Durum:** AÇIK – çerçeve ve deney adımları tanımlandı; bu kayıtta yeni fiziksel deney yapılmadı.
+- **Durum:** AÇIK – deney yaklaşımı 2026-11-25 tarihinde kullanıcıyla sadeleştirildi; fiziksel deney ve katsayı doğrulaması henüz yapılmadı.
 - **İlgili donanım:** SCT013 akım ölçüm zinciri; satın alınmış ZMPT101B hazır modül; mevcut ESP32/ADS1115 deney altyapısı; FNIRSI 2D15P osiloskop.
 - **Referans:** MOD2-GRV001 V1.6 akım ölçüm modeli. V1.6 dosyaları değiştirilmez.
 
@@ -126,3 +126,53 @@ Başarı tek bir mükemmel doğruluk sayısına indirgenmez. Raporlarda ayrı ay
 5. Sınırlar: hangi yük/akım/PF aralıklarında güvenilir olduğu ve nerede belirsiz kaldığı.
 
 Bu görevde henüz yeni fonksiyon, firmware veya donanım doğrulaması üretilmemiştir. İlk sıradaki iş mevcut verilerin grafiklenmesidir.
+
+
+## 9. Kullanıcıyla netleştirilen pratik SCT–ZMPT faz iyileştirme deneyi – 2026-11-25
+
+Bu bölüm, 2026-11-25 tarihli beyin fırtınasında netleşen deney yaklaşımını kaydeder. Henüz fiziksel deney yapılmamış, katsayı bulunmamış ve yazılım doğrulanmamıştır.
+
+### Hedef
+
+SCT013 akım ölçümü ile ZMPT101B gerilim ölçümünü birlikte kullanarak PF hesabını iyileştirmek; bunu ilk aşamada osiloskopta dalga inceleme ve karmaşık faz çıkarma döngülerine girmeden, basit bir hesaplama formülü ve ayarlanabilir düzeltme parametresiyle denemek.
+
+- PZEM'in PF değeri deney sırasında referans/karşılaştırma değeri olacaktır.
+- SCT ve ZMPT sinyallerinden elde edilen BERO PF çıktısı PZEM PF ile karşılaştırılacaktır.
+- Yazılımda başlangıçta tek bir `PHASE_CORRECTION` parametresi denenebilir.
+- Tek parametre farklı yüklerde yeterli olmazsa, ölçüm sonuçlarına göre bu parametreyi kullanan basit bir `PHASE_CORRECTION(PF/çalışma noktası)` fonksiyonu değerlendirilebilir.
+- Fonksiyonun biçimi ve katsayıları önceden belirlenmeyecek; deneyle bulunacak.
+- Kullanıcıya yayınlanacak çıktı düzeltme katsayısı değil, BERO'nun hesapladığı PF değeridir. Düzeltme parametresi hesaplamanın içinde kalır.
+- Bu yaklaşımın farklı yüklerde işe yaradığı henüz kanıtlanmış değildir. PZEM'e tek bir noktada eşitlemek başarı sayılmaz; başka yüklerde de kontrol gerekir.
+
+### Basit deney düzeni ve yükler
+
+1. **İlk küçük deney:** Yarın mevcut donanımla yapılabilecek, bağlantıları ve sinyal seviyeleri önceden kontrol edilmiş kısa bir deneme. İlk hedef sistemi çalıştırmak ve PZEM ile aynı koşuldaki PF değerlerini karşılaştırmaktır.
+2. **Dirençli yük:** PF≈1 başlangıç kontrolü ve ölçüm zincirinin temel referansı.
+3. **Potansiyometreli trimmer/dimmer yükü:** Ayar değiştikçe PZEM PF ve BERO PF davranışını karşılaştırma. PF'nin sabit olduğu varsayılmayacak; her ayarda PZEM değeri kaydedilecek.
+4. **8.5 W LED:** Düşük akım sınırını ayrıca gözlemleme. Önceki deneyde SCT akımı düşük bölgede güvenilirlik sorunu gösterdiğinden bu yük faz kalibrasyonunun ana referansı yapılmayacak.
+5. **Çamaşır makinesi kaydı:** Farklı çalışma evreleri ve değişken PF koşullarında sonradan doğrulama kaynağı. Değişken yük olduğu için ilk katsayı ayarının tek kaynağı olmayacak.
+
+### Uygulama yaklaşımı
+
+- İlk adımda hazır/temel SCT–ZMPT PF hesaplama yaklaşımı kullanılacak; gereksiz algoritma geliştirme yapılmayacak.
+- Gerilim ve akım ölçek katsayıları ile faz düzeltme parametresi birbirinden ayrı tutulacak. Böylece genlik kalibrasyonu faz düzeltmesiyle karıştırılmayacak.
+- PZEM PF referansı, aynı yük ve mümkün olduğunca aynı zaman penceresindeki BERO PF çıktısıyla karşılaştırılacak.
+- Önce sabit `PHASE_CORRECTION` değeri elle değiştirilerek sonuç gözlenecek. Gerekirse basit bir fonksiyona geçilecek.
+- Osiloskop ilk küçük deney için zorunlu araç değildir. Gerekli görülürse yalnızca güvenli ve uygunluğu doğrulanmış düşük gerilimli sinyallerin incelenmesinde yardımcı araç olarak kullanılabilir.
+- 8.5 W LED'deki düşük SCT akım performansı, faz düzeltme başarısızlığıyla karıştırılmayacak.
+- PZEM'in yayın/ortalama gecikmesi dikkate alınacak; karşılaştırma eş zamanlı olmayan tekil örnekler üzerinden yapılmayacak.
+
+### Güvenlik ve doğrulama sınırı
+
+Kullanıcı nihai sensör kalibrasyonunu 220–230 V AC çalışma koşuluna göre planlamak istemektedir. Ancak fotoğraftaki hazır modülün giriş dirençleri, PCB yalıtım mesafeleri ve şebeke tarafı güvenliği henüz fiziksel olarak doğrulanmamıştır. Bu nedenle şebeke bağlantısına geçiş, kart ve korumalı test düzeneği uygunluğu doğrulanmadan yapılmış kabul edilmeyecektir. Modülün OUT tarafının düşük gerilimli olması tek başına bütün kartın/ölçüm düzeninin güvenli olduğunu kanıtlamaz. Osiloskop şebeke girişine bağlanmayacaktır; osiloskopun izolasyonu varsayılmayacaktır.
+
+RN130424 12 V / 2 VA transformatör mevcut deney donanımıdır; ancak primeri 230 V AC ile beslendiğinden primer tarafı şebeke güvenliği gerektirir. Bu transformatörün varlığı tek başına güvenli test düzeneği oluşturmaz.
+
+### Başarı ölçütü
+
+- BERO PF çıktısının PZEM PF referansına yakınlaşması.
+- Aynı ayarların tekrarlandığında benzer sonuç vermesi.
+- Bulunan düzeltmenin yalnızca tek yükte değil, farklı yüklerde de makul davranması.
+- Düzeltme parametresinin kullanıcıya PF çıktısı olarak sunulmaması; son çıktının BERO PF olması.
+
+Bu bölüm bir deney kararıdır; deney sonucu, doğrulanmış katsayı, güvenli şebeke bağlantısı veya tamamlanmış PF algoritması anlamına gelmez.
