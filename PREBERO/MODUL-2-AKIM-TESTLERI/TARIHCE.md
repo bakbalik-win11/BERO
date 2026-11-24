@@ -202,3 +202,14 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Modül 3/4 ile ilişki:** Çamaşır ve bulaşık makinesi tasarım/saha deneyleri, farklı çalışma evreleri ve PF koşullarına ilişkin veriler sağlayarak Modül 2 araştırmasına katkıda bulunabilir.
 - **Teknik sınır:** PF etkisi henüz kanıtlanmış değildir. ZMPT101B tek başına PF ölçmez; gerilim ve akım dalga biçimlerinin uygun zaman eşlemeli örneklenmesi gerekir. V1.6 kalibrasyonuna doğrulama olmadan PF düzeltmesi eklenmeyecektir.
 - **Görev sınırı:** MOD2-GRV001 kapalı kalır. PF/dalga biçimi çalışması ayrı araştırma görevi olarak açılacaktır; mevcut kapanış ve referans YAML değiştirilmeyecektir.
+
+
+## 2026-11-24 – MOD2-GRV002 açıldı: BERO'ya özel bağımsız PF ve akım ölçümü
+
+- **Çalışma / karar:** Kullanıcı, PF araştırmasının hedefini pratik BERO ölçüm sistemi olarak netleştirdi. Her hatta PZEM kullanmadan, SCT013 tabanlı hızlı tepki veren, akım değerinde PZEM referansına yaklaşan ve kendi PF'sini hesaplayan bir yapı hedefleniyor.
+- **Yöntem:** İlk adımda PZEM'in akım ve PF yayınları eğitim/karşılaştırma referansı olacak. EXP akımıyla aynı zaman pencerelerinde karşılaştırılacak; hata ve oran grafiklerinden EXP formülünün geliştirilmesindeki gibi basit fonksiyon aranacak. PF düştükçe akımı küçültme hipotezi henüz doğrulanmadı.
+- **İkinci aşama:** ZMPT101B gerilim ve SCT013 akım dalgaları ortak zaman tabanında örneklenerek BERO'nun kendi gerçek PF hesabı geliştirilecek. PZEM normal çalışma sırasında zorunlu sensör olmayacak.
+- **Korunan karar:** MOD2-GRV001 V1.6 ve EXP/K(x) modeli değiştirilmez. Yeni düzeltme ayrı görev/model olarak geliştirilir. PZEM referanstır, mutlak ground truth değildir.
+- **İlk iş:** Mevcut çamaşır makinesi ve düşük PF kayıtlarını grafiklemek. Sonraki adımlar zaman hizalı yeni kayıt, grafiklerden fonksiyon adayı, bağımsız doğrulama, ZMPT101B analog/zamanlama testleri ve BERO PF hesabıdır.
+- **Durum:** Görev ve deney planı açıldı; yeni fiziksel deney yapılmadı, yeni fonksiyon bulunmadı, firmware doğrulanmadı.
+- **Görev kaydı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.
