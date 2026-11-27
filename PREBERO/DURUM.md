@@ -2,13 +2,12 @@
 
 > Bu dosya PREBERO için tek güncel çalışma noktasıdır. Oturuma yeniden başlarken önce burayı oku; ayrıntılı deney verilerini ilgili görev veya donanım kaydından aç. Bu dosyada yalnızca son karar, mevcut aşama, kısa geçmiş ve bir sonraki somut adım tutulur.
 
-## Güncel durum — 2026-11-27
+## Güncel durum — 2026-11-28
 
 - **Aktif modül/görev:** Modül 2 / MOD2-GRV002 — BERO için pratik PF ölçümü ve PF etkili akım düzeltmesi.
 - **MOD2-GRV001:** Kapalı. V1.6 EXP/K(x) modeli ve YAML korunur.
-- **Kullanıcının seçtiği ilk yöntem:** ZMPT101B hazır kartını tanı; güvenlik ön kontrolünden sonra trimpotla yaklaşık 220–230 V AC gerilim okumasını PZEM'e yaklaştır; ardından SCT013 ile faz/PF ilişkisini dene.
-- **PF deneyi:** Sabit ampul yükünü dimmerin farklı ayarlarında çalıştır; her kararlı pencerede PZEM V/I/P/PF değerlerini BERO'nun ham ve hesaplanan sonuçlarıyla karşılaştır. Dimmer ayarı PF yanında akımı ve dalga şeklini de değiştirebilir.
-- **Akım formülü:** BERO PF bilgisiyle yeni PF etkili akım düzeltme adayı geliştirilebilir. Gerilim genlik ayarı, PHASE_CORRECTION ve akım düzeltmesi birbirinden ayrı tutulur. V1.6'ya dokunulmaz; yeni model MOD2-GRV002'de tutulur.
+- **Kullanıcının seçtiği ilk yöntem:** Hobi/prototip ölçeğinde kolay, pratik deneyi öne al. Güvenlik ön kontrolünden sonra ZMPT101B gerilim okumasını trimpotla PZEM'e yaklaştır; sabit lamba ve dimmer ayarlarında PZEM PF'yi referans alarak SCT013 + ZMPT101B PF okumasını dene.
+- **PF ve akım düzeltmesi:** Çamaşır makinesi saha kaydının sonraki değerlendirmesinde akım sapmasının PF koşullarıyla ilişkili olduğu teyit edildi. Önce sabit yük/dimmer/PZEM karşılaştırmalarından pratik bir PF okuma ve akım düzeltme eğrisi, EXP/K(x) geliştirme yaklaşımına benzer biçimde aranacak. BERO'nun kendi SCT+gerilim sensörü PF'si girdiye dönüşecek. Kolay deney yeterli olmazsa daha ayrıntılı faz/zamanlama yöntemlerine geçilecek. V1.6'ya dokunulmaz; yeni model MOD2-GRV002'de tutulur.
 - **PZEM:** Geliştirme/karşılaştırma referansıdır; mutlak doğru kabul edilmez ve son BERO hattı için zorunlu değildir.
 - **Araştırma notları:** Diğer yapay zekâların karşılaştırmalı özeti, metodoloji ve dış kaynak incelemeleri isteğe bağlı başvurudur. Güncel deney sırasının yerine geçmez.
 - **Kanıt durumu:** Bu yeni yöntem için fiziksel deney, PF katsayısı ve firmware doğrulaması henüz yoktur.
@@ -25,13 +24,13 @@ ZMPT101B kartının ön/arka yüzünü ve revizyon/pin işaretlerini kaydet; tri
 
 ### Modül 2 — Masaüstü akım ve PF geliştirme
 
-İlk masaüstü çalışmalarında SCT013 biaslı/biassız karşılaştırmaları ve farklı yük denemeleri yapıldı; bu sırada çamaşır makinesi saha kayıtları da alındı. Bias ölçüm ortalamasını bazı çalışma noktalarında etkiledi, ancak genel veri kalitesindeki iyileşme ek donanım ve bağlantı karmaşıklığını haklı çıkaracak kadar büyük görülmedi. Bu nedenle basit biassız ölçüm yolu tercih edildi. V1.6 EXP/K(x) akım modeli mevcut akım hedefi için referans kabul edildi; MOD2-GRV001 kapatıldı ve modeli değiştirmeme kararı alındı. Bias deneyi geçmişi ve teknik sonuçlar [Modül 2 tarihçesinde](MODUL-2-AKIM-TESTLERI/TARIHCE.md), akım modeli kanıtı GRV001 kayıtlarında; saha kaydı ise [Modül 3 tarihçesinde](MODUL-3-CAMASIR-MAKINESI/TARIHCE.md) bulunur.
+İlk masaüstü çalışmalarında SCT013 biaslı/biassız karşılaştırmaları ve farklı yük denemeleri yapıldı; bu sırada çamaşır makinesi saha kayıtları da alındı. Bias ölçüm ortalamasını bazı çalışma noktalarında etkiledi, ancak genel veri kalitesindeki iyileşme ek donanım ve bağlantı karmaşıklığını haklı çıkaracak kadar büyük görülmedi. Bu nedenle basit biassız ölçüm yolu tercih edildi. V1.6 EXP/K(x) akım modeli sabit yük deneylerinden geliştirildi ve mevcut akım hedefi için referans kabul edilerek MOD2-GRV001 kapatıldı. Çamaşır makinesi kaydının sonraki değerlendirmesinde PF koşullarının akım sapmasıyla ilişkisi teyit edildi; bu gözlem PF'yi yeni düzeltme denklemine katma gerekçesi oldu. Bias geçmişi [Modül 2 tarihçesinde](MODUL-2-AKIM-TESTLERI/TARIHCE.md), akım modeli kanıtı GRV001 kayıtlarında; saha kaydı ve PF bağlamı [Modül 3 tarihçesinde](MODUL-3-CAMASIR-MAKINESI/TARIHCE.md) ve [PF araştırma notunda](../DONANIM/ZMPT101B/PF-ARASTIRMA-GUNCEL-DURUM-2026-11-22.md) bulunur.
 
-Şimdi MOD2-GRV002’de ZMPT101B’yi tanıma, trimpotla gerilim okumasını PZEM’e yaklaştırma, SCT013 ile PF denemesi yapma ve işe yararsa PF bilgisini yeni akım düzeltmesine katma planı var. İlk pratik sıra ve sonraki adım yukarıdaki güncel durum bölümündedir. Bu aşamada fiziksel PF deneyi veya yeni katsayı yoktur. V1.6 korunur; ayrıntılar [MOD2-GRV002 görevinde](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md).
+Şimdi MOD2-GRV002’de önce basit sabit yük/dimmer deneyleriyle PZEM referanslı PF ve akım noktaları toplanacak; yeni ZMPT101B + SCT013 zincirinin PF okumasından pratik bir f(X) düzeltmesi aranacak. Bu yolla sonuç alınamazsa ayrıntılı faz/zamanlama yöntemleri yedek plandır. Henüz yeni katsayı bulunmadı veya fiziksel doğrulanmadı. V1.6 korunur; ayrıntılar [MOD2-GRV002 görevinde](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md).
 
 ### Modül 3 — Çamaşır makinesi
 
-Modül 2’den gelen V1.6 akım ölçüm yolu ile çamaşır makinesinin uzun pamuklu programında yaklaşık 78 dakikalık saha kaydı alındı. Isıtma bölümünde PZEM akımıyla yakın takip; sonraki düşük akım bölümlerinde pozitif fark gözlendi. Farkın PF kaynaklı olduğu kanıtlanmadı. MOD3-AKM001 saha kaydı hedefini tamamlayıp kapandı; ses/titreşim ve nihai modül mimarisi bu görevde tamamlanmadı. Tarihçe [burada](MODUL-3-CAMASIR-MAKINESI/TARIHCE.md), görev [burada](MODUL-3-CAMASIR-MAKINESI/GOREVLER/MOD3-AKM001/GOREV.md).
+Modül 2’den gelen V1.6 akım ölçüm yolu ile çamaşır makinesinin uzun pamuklu programında yaklaşık 78 dakikalık saha kaydı alındı. Isıtma bölümünde PZEM akımıyla yakın takip; sonraki düşük akım bölümlerinde pozitif fark görüldü. Kullanıcının kayıt üzerindeki sonraki değerlendirmesi, bu farkın PF koşullarıyla ilişkisini teyit etti ve PF'yi akım denklemine katma araştırmasını başlattı. MOD3-AKM001 saha kaydı hedefini tamamlayıp kapandı; ses/titreşim ve nihai modül mimarisi bu görevde tamamlanmadı. Tarihçe [burada](MODUL-3-CAMASIR-MAKINESI/TARIHCE.md), görev [burada](MODUL-3-CAMASIR-MAKINESI/GOREVLER/MOD3-AKM001/GOREV.md).
 
 ### Modül 4 — Bulaşık makinesi
 
@@ -51,5 +50,6 @@ Sensör tecrübesi ve tekrar kullanılabilir küçük kodlar sensörün DONANIM 
 - **2026-11-22:** MOD2-GRV001 için V1.6 tek fonksiyonlu EXP/K(x) modeli kabul edildi; görev kapatıldı ve referans korunuyor.
 - **2026-11-24:** PF ve PF etkili akım araştırması için MOD2-GRV002 açıldı.
 - **2026-11-27:** Kullanıcı, pratik ZMPT trimpot + PZEM gerilim karşılaştırmasıyla başlayıp SCT013/PF denemesine ve yeni akım düzeltme adayına ilerleme sırasını seçti. Henüz deney yapılmadı.
+- **2026-11-28:** Kullanıcı, çamaşır makinesi kaydındaki PF/akım ilişkisini teyit etti ve hobi projesi için önce basit, sabit yükle yapılabilir deneylerden EXP/K(x) benzeri PF etkili f(X) aramayı; işe yaramazsa daha ayrıntılı yönteme geçmeyi seçti.
 
 Ayrıntılı teknik geçmiş Modül 2 [TARIHCE.md](MODUL-2-AKIM-TESTLERI/TARIHCE.md), MOD2-GRV002 [görev kaydı](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md) ve ilgili donanım kayıtlarındadır. Oturum sonunda önce ilgili tarihçe/görev kanıtını, sonra bu dosyadaki güncel durum ve sıradaki adımı yenile.
