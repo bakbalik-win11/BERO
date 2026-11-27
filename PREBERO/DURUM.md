@@ -17,15 +17,33 @@
 
 ZMPT101B kartının ön/arka yüzünü ve revizyon/pin işaretlerini kaydet; trimpotun etkisini ve güvenli ön test düzenini belirle. Kartın giriş devresi, yalıtım/mesafe, terminal koruması ve kapalı test düzeneği kontrol edilmeden 220–230 V bağlantısına geçme. Osiloskop ground klipslerini şebekeye bağlama.
 
-## Modül durumu
+## Modül gelişim hikâyesi ve mevcut aşamalar
 
-| Modül | Çalışma | Durum |
-|---|---|---|
-| 1 — Bias trafosu | Fiziksel bias güç kutusu | Mevcut; imalat kaydı [burada](MODUL-1-BIAS-TRAFOSU/IMALAT/IMALAT.md) |
-| 2 — Akım/PF | MOD2-GRV001 kapalı; MOD2-GRV002 açık | Aktif |
-| 3 — Çamaşır makinesi | MOD3-AKM001 saha kaydı | Kayıt tamamlandı; ileri çalışmalar kendi görevinde |
-| 4 — Bulaşık makinesi | Program aşaması gözlemi | Bekliyor |
-| 5 — Ana pano | Ev içi elektriksel faaliyetleri izleme | Bekliyor |
+### Modül 1 — Şebeke karakterini koruyan bias
+
+Önce genel bias orta nokta yapısı tanımlandı; 3,30 V kutu çıkışından iki eşit dirençle yaklaşık 1,65 V orta nokta ölçüldü. Taşınabilir bias güç kutusu fiziksel olarak üretildi, kapalı kutu ve soketli bağlantı olarak kaydedildi. Şebeke karakterinin SCT013 ölçüm sinyaline aktarılması, izolasyon ve güvenlik doğrulaması tamamlanmış sayılmaz. Modül 1 kayıtları [burada](MODUL-1-BIAS-TRAFOSU/TARIHCE.md); imalat bilgisi [burada](MODUL-1-BIAS-TRAFOSU/IMALAT/IMALAT.md).
+
+### Modül 2 — Masaüstü akım ve PF geliştirme
+
+İlk masaüstü çalışmalarında SCT013 biaslı/biassız karşılaştırmaları ve farklı yük denemeleri yapıldı. Bu çalışmaların ardından tek fonksiyonlu V1.6 EXP/K(x) akım modeli mevcut akım hedefi için referans kabul edildi; MOD2-GRV001 kapatıldı ve modeli değiştirmeme kararı alındı. Bias deneyi geçmişi ve teknik sonuçlar [Modül 2 tarihçesinde](MODUL-2-AKIM-TESTLERI/TARIHCE.md), akım modelinin kanıtı GRV001 kayıtlarında bulunur.
+
+Şimdi MOD2-GRV002’de ZMPT101B’yi tanıma, trimpotla gerilim okumasını PZEM’e yaklaştırma, SCT013 ile PF denemesi yapma ve işe yararsa PF bilgisini yeni akım düzeltmesine katma planı var. İlk pratik sıra ve sonraki adım yukarıdaki güncel durum bölümündedir. Bu aşamada fiziksel PF deneyi veya yeni katsayı yoktur. V1.6 korunur; ayrıntılar [MOD2-GRV002 görevinde](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md).
+
+### Modül 3 — Çamaşır makinesi
+
+Modül 2’den gelen V1.6 akım ölçüm yolu ile çamaşır makinesinin uzun pamuklu programında yaklaşık 78 dakikalık saha kaydı alındı. Isıtma bölümünde PZEM akımıyla yakın takip; sonraki düşük akım bölümlerinde pozitif fark gözlendi. Farkın PF kaynaklı olduğu kanıtlanmadı. MOD3-AKM001 saha kaydı hedefini tamamlayıp kapandı; ses/titreşim ve nihai modül mimarisi bu görevde tamamlanmadı. Tarihçe [burada](MODUL-3-CAMASIR-MAKINESI/TARIHCE.md), görev [burada](MODUL-3-CAMASIR-MAKINESI/GOREVLER/MOD3-AKM001/GOREV.md).
+
+### Modül 4 — Bulaşık makinesi
+
+Modül 4 saha çalışması henüz başlamadı. Modül 3 ile ortak zaman pencereli akım, ses ve titreşim veri toplama fikri taslak olarak belirlendi; örnekleme, bağlantı ve veri birleştirme koşulları doğrulanmadan nihai imalata geçilmeyecek. Ortak taslak [burada](ORTAK-MIMARI/MODUL-3-4-ORTAK-ZAMAN-PENCERELI-VERI-TOPLAMA-MIMARISI.md), Modül 4 tarihçesi [burada](MODUL-4-BULASIK-MAKINESI/TARIHCE.md).
+
+### Modül 5 — Ana pano
+
+Ana pano izleme modülü bekliyor; görev ve saha çalışması henüz açılmadı. Amaç ve modül geçmişi netleştikçe kayıtlar [Modül 5 klasörüne](MODUL-5-ANA-PANO/) eklenecek.
+
+## Bilginin modüller arasında ilerlemesi
+
+Sensör tecrübesi ve tekrar kullanılabilir küçük kodlar sensörün DONANIM kaydında tutulur. Deney, kanıt ve olgunlaşma aktif PREBERO görevi içinde ilerler. Olgunlaşan sonuç uygun nihai modüle aktarılır ve kaynak kaydına bağlantı verilir. Fiziksel modül devreden çıksa veya imha edilse bile modülün amacı ve geçmiş kayıtları korunur; fiziksel durum ENVANTER'de güncellenir. Bu çalışma düzeninin kalıcı kuralı [ana README’de](../README.md) açıklanır.
 
 ## Kısa geçmiş
 
