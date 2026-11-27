@@ -26,62 +26,36 @@ Bu hedef hobi/prototip ölçeğindedir. Sonuçlar BERO'nun belirlenen sensör, y
 - Yeni bir düzeltme bulunursa ayrı deney sonucu ve ayrı model/sürüm olarak tutulur.
 - PZEM karşılaştırma referansıdır; mutlak ground truth kabul edilmez.
 
-## 3. İki aşamalı yaklaşım
+## 3. Pratik deney sırası — kullanıcı kararı, 2026-11-27
 
-### Aşama A – PZEM referansıyla grafik ve ampirik akım düzeltmesi
+Bu görevde ilk yöntem pratik BERO uygulamasıdır. Önce ZMPT101B gerilim okuması hazırlanır; ardından SCT013 ile birlikte PF ölçümü denenir. PZEM geliştirme sırasında karşılaştırma/kalibrasyon referansıdır; mutlak ground truth veya nihai sistem bağımlılığı değildir.
 
-İlk aşamada ZMPT101B ile PF hesaplamayı beklemeden, PZEM'in yayınladığı akım ve PF değerleri eğitim/referans etiketi olarak kullanılacaktır. EXP akımının PZEM akımına göre sapması grafiklerle incelenecektir. EXP formülünün geliştirilmesinde izlenen pratik yol tekrar edilecektir: veri toplama → grafikleme → eğilimi gözleme → uygun basit fonksiyonu deneme → bağımsız kayıtla kontrol.
+1. **Kartı tanıma ve güvenlik ön testi:** ZMPT101B hazır kartının PCB revizyonu, pinleri, beslemesi, op-amp bilgisi ve çıkış/bias aralığı kaydedilir. 220–230 V uygulamasından önce giriş devresi, izolasyon/mesafeler, terminal koruması ve kapalı test düzeneği gözden geçirilir. Gerekirse ilk elektriksel ön test güvenli, izole düşük gerilimli AC ile yapılır.
+2. **Gerilim okuma:** Güvenlik kapısı geçildikten sonra hedef çalışma gerilimi yaklaşık 220–230 V AC iken trimpotla çıkış genliği fiziksel olarak ayarlanır; ZMPT/ESP32 ölçümü PZEM gerilim değeriyle aynı kararlı pencerede karşılaştırılır. Trimpot ayarı, faz telafisi sayılmaz. Kalan ölçek farkı varsa ayrı kaydedilir.
+3. **Kısa ADC zamanlama kontrolü:** Mevcut ESP32/ADS1115 zincirinde gerilim ve akım kanallarının gerçek örnek aralığı, kanal geçiş zamanı ve kayıp örnek davranışı kısa ham kayıtla kontrol edilir. Uzun akademik karakterizasyon ilk denemeyi geciktirmez; PF hesabının sınırı açıkça kaydedilir.
+4. **SCT013–ZMPT101B PF denemesi:** Zaman bilgili gerilim ve akım örneklerinden Vrms, Irms, aktif güç ve PF için basit hesap yapılır. Başlangıçta elle ayarlanabilir PHASE_CORRECTION parametresi denenir; değeri ve birimi ölçüm/algoritma görüldükten sonra belirlenir.
+5. **Ampul + dimmer karşılaştırması:** Sabit akkor ampul yükü, kullanıcının verdiği dimmerle farklı ayarlarda denenir. Her ayarda PZEM V/I/P/PF ve BERO ham/hesaplanan sonuçları aynı kararlı zaman pencerelerinde kaydedilir. Dimmer ayarının PF yanında akım ve dalga şeklini de değiştirdiği not edilir. Kullanıcı tarafından verilen ürün bağlantısı: https://www.amazon.com.tr/dp/B09RNBDXK2
+6. **PF düzeltmesini belirleme:** Birden çok dimmer ayarı ve tekrardan PZEM PF ile BERO PF farkı incelenir. Gerekirse PHASE_CORRECTION için basit ayar/eğri denenir. Tek noktaya eşitleme genellenmiş başarı sayılmaz.
+7. **Akım formülüne aktarma:** BERO PF ile PZEM referanslı akım farkının ilişkisi incelenir. PF etkili aday yeni model, mevcut V1.6 sonucunu temel alabilir; biçim/katsayı veriden çıkarılır. MOD2-GRV001 V1.6 YAML ve K(x) modeli değiştirilmez. PF düzeltmesi ayrı MOD2-GRV002 sürümünde tutulur.
+8. **Bağımsız kontrol ve sentez:** Ayar sırasında kullanılmamış dimmer tekrarı veya farklı yükle aday model kontrol edilir. Yıkama/bulaşık makinesi verisi daha sonra saha sentezi için kullanılır; ilk katsayıyı tek başına belirlemez.
 
-İlk karşılaştırma değişkenleri:
-- PZEM akımı (`I_PZEM`)
-- PZEM PF (`PF_PZEM`)
-- EXP akımı (`I_EXP`)
-- Hata: `error_A = I_PZEM - I_EXP`
-- Oran: `ratio = I_PZEM / I_EXP` (yalnızca oran için uygun, sıfıra yakın olmayan akım değerlerinde)
-- Zaman damgası ve kararlı pencere kimliği
-- Varsa PZEM gerilimi/aktif gücü ve yük/çalışma modu notu
-
-İlk grafikler:
-1. X=PF_PZEM, Y=I_PZEM/I_EXP.
-2. X=PF_PZEM, Y=I_PZEM-I_EXP.
-3. X=I_EXP, Y=I_PZEM/I_EXP.
-4. PF ve akım seviyesini birlikte gösteren hata grafiği.
-
-Başlangıç hipotezi: PF 1'den uzaklaştıkça EXP akımını aşağı yönde düzeltmek gerekebilir. Bu yalnızca hipotezdir; grafikler tersini veya akım/yük türüne bağlı daha karmaşık bir davranışı gösterirse veri esas alınır.
-
-İlk aday ifade, yalnızca grafikler böyle bir eğriyi desteklerse kullanılmak üzere:
-`I_corr = I_EXP × C(PF)`.
-Gerekirse akım seviyesini de içeren `C(PF, I_EXP)` değerlendirilir. İlk aşamada karmaşık model veya makine öğrenmesi zorunlu değildir.
-
-### Aşama B – ZMPT101B ile BERO'nun kendi PF hesabı
-
-İkinci aşamada ZMPT101B gerilim dalga biçimi, SCT013 akım dalga biçimiyle ortak zaman tabanında örneklenerek BERO'nun kendi gerçek PF hesabı geliştirilir:
-
-- `P = mean(v_ac[n] × i_ac[n])`
-- `Vrms = sqrt(mean(v_ac[n]^2))`
-- `Irms = sqrt(mean(i_ac[n]^2))`
-- `S = Vrms × Irms`
-- `PF = P / S`
-
-Yalnızca faz açısı ve cos(phi) hesabı, sinüzoidal olmayan yüklerde gerçek PF yerine kullanılmaz. Zaman hizası, sensör/analog ön uç faz etkisi, ADC örnekleme aralığı ve jitter ölçülmeden PF sonucu doğrulanmış sayılmaz.
-
-Aşama A'da PZEM PF ile bulunan ampirik düzeltme, Aşama B'de BERO'nun kendi PF ölçümüyle denenebilir. PZEM'e göre kalibrasyon ile bağımsız PF ölçümü ayrı doğrulama başlıkları olarak raporlanacaktır.
+Bu sıra, önceki geniş ADS1115 karakterizasyon önerisini tamamen silmez; o öneriler isteğe bağlı teknik başvurudur. Pratik ilk denemede zamanlama yetersizliği görülürse ölçüm mimarisi yeniden değerlendirilir.
 
 ## 4. Deney adımları ve ilerleme
 
 | Adım | İş | Durum |
 |---|---|---|
-| 0 | Proje hedefini ve V1.6'yı koruma kararını tanımlama | TAMAMLANDI – kullanıcı kararı, 2026-11-24 |
-| 1 | Mevcut çamaşır makinesi ve düşük PF kayıtlarını yeniden grafikleme; PF-akım-hata eğilimini görme | BEKLİYOR |
-| 2 | Aynı zaman penceresinde PZEM I/PF ve EXP akımı içeren yeni pratik yük kayıtları toplama | BEKLİYOR |
-| 3 | Grafiklerden basit düzeltme fonksiyonu adayı çıkarma; gerekirse farklı akım bantlarını ayırma | BEKLİYOR |
-| 4 | Fonksiyonu eğitimde kullanılmayan tekrar/yük kaydıyla kontrol etme | BEKLİYOR |
-| 5 | ZMPT101B kartını güvenli düşük gerilimli izole AC ile tanıma: kart revizyonu, besleme, OUT ofseti, genlik ve kırpılma | BEKLİYOR |
-| 6 | SCT ve ZMPT örnekleme zamanlamasını ve faz davranışını ölçme; BERO PF hesabını geliştirme | BEKLİYOR |
-| 7 | BERO PF değeriyle akım düzeltmesini deneme; PZEM olmadan çalışma davranışını doğrulama | BEKLİYOR |
-| 8 | Sonuç, hata aralığı, tepki davranışı ve kullanım sınırlarını raporlama; gerekirse yeni sürüm açma | BEKLİYOR |
+| 0 | MOD2-GRV001 V1.6'yı koruma ve yeni işi MOD2-GRV002 altında yürütme | TAMAMLANDI |
+| 1 | ZMPT101B kart kimliği, pinleri, trimpotu ve güvenli test düzeni ön kontrolü | BEKLİYOR |
+| 2 | Güvenlik koşulları sağlandıktan sonra trimpotla ZMPT gerilim okumasını PZEM'e göre ayarlama | BEKLİYOR |
+| 3 | ESP32/ADS1115 kanallarının kısa gerçek zamanlama kontrolü ve ham kayıt | BEKLİYOR |
+| 4 | SCT013 + ZMPT101B ile PF hesaplama ve PHASE_CORRECTION denemesi | BEKLİYOR |
+| 5 | Sabit ampul + dimmer ayarlarında çoklu PZEM/BERO karşılaştırması | BEKLİYOR |
+| 6 | PF etkili akım düzeltmesi için aday model çıkarma | BEKLİYOR |
+| 7 | Ayrı tekrar/yük ile kontrol; sonra Modül 3/4 verileriyle sentez | BEKLİYOR |
 
-Adım sırası deneyde elde edilen sonuca göre güncellenebilir. Her adımın sonucu, kullanılan ham veri, grafik, log ve kısa yorumuyla kaydedilir. Başarısız veya sonuçsuz deneyler de korunur.
+Sıra, fiziksel güvenlik ve deney bulgularına göre güncellenebilir. Her adımda ham veri, ayar, yük, zaman penceresi ve yorum saklanır. Başarısız/sonuçsuz denemeler de korunur.
+
 
 ## 5. Veri toplama ve karşılaştırma kuralları
 
@@ -95,7 +69,7 @@ Adım sırası deneyde elde edilen sonuca göre güncellenebilir. Her adımın s
 - PZEM verisi BERO'yu PZEM'e göre kalibre eder; PZEM'in kendi algoritmasından bağımsız mutlak doğruluğu kanıtlamaz.
 
 Önerilen CSV alanları:
-`timestamp,window_id,I_pzem,PF_pzem,V_pzem,P_pzem,I_raw,I_EXP,error_A,ratio,load_state,notes`
+`timestamp,window_id,load_state,dimmer_setting,V_pzem,I_pzem,P_pzem,PF_pzem,zmpt_raw,zmpt_v_rms,sct_raw,sct_i_rms,P_bero,PF_bero,phase_correction,I_v1_6,error_A,ratio,sample_timing,notes`
 
 Kullanılmayan/elde olmayan alanlar uydurulmaz; boş bırakılır.
 
@@ -125,10 +99,10 @@ Başarı tek bir mükemmel doğruluk sayısına indirgenmez. Raporlarda ayrı ay
 4. Bağımsız çalışma: normal ölçüm sırasında PZEM olmadan akım ve PF üretilebilmesi.
 5. Sınırlar: hangi yük/akım/PF aralıklarında güvenilir olduğu ve nerede belirsiz kaldığı.
 
-Bu görevde henüz yeni fonksiyon, firmware veya donanım doğrulaması üretilmemiştir. İlk sıradaki iş mevcut verilerin grafiklenmesidir.
+Bu plan için henüz fiziksel test, PF katsayısı veya firmware doğrulaması yapılmamıştır. İlk iş ZMPT101B kartını tanımak ve güvenli ön kontrolü tamamlamaktır.
 
 
-## 9. Kullanıcıyla netleştirilen pratik SCT–ZMPT faz iyileştirme deneyi – 2026-11-25
+## 9. Önceki pratik SCT–ZMPT faz deneyi tartışması – 2026-11-25
 
 Bu bölüm, 2026-11-25 tarihli beyin fırtınasında netleşen deney yaklaşımını kaydeder. Henüz fiziksel deney yapılmamış, katsayı bulunmamış ve yazılım doğrulanmamıştır.
 
@@ -164,7 +138,7 @@ SCT013 akım ölçümü ile ZMPT101B gerilim ölçümünü birlikte kullanarak P
 
 ### Güvenlik ve doğrulama sınırı
 
-Kullanıcı nihai sensör kalibrasyonunu 220–230 V AC çalışma koşuluna göre planlamak istemektedir. Ancak fotoğraftaki hazır modülün giriş dirençleri, PCB yalıtım mesafeleri ve şebeke tarafı güvenliği henüz fiziksel olarak doğrulanmamıştır. Bu nedenle şebeke bağlantısına geçiş, kart ve korumalı test düzeneği uygunluğu doğrulanmadan yapılmış kabul edilmeyecektir. Modülün OUT tarafının düşük gerilimli olması tek başına bütün kartın/ölçüm düzeninin güvenli olduğunu kanıtlamaz. Osiloskop şebeke girişine bağlanmayacaktır; osiloskopun izolasyonu varsayılmayacaktır.
+Kullanıcı nihai sensör kalibrasyonunu 220–230 V AC çalışma koşuluna göre planlamak istemektedir. Ancak fotoğraftaki hazır modülün giriş dirençleri, PCB yalıtım mesafeleri ve şebeke tarafı güvenliği henüz fiziksel olarak doğrulanmamıştır. Bu nedenle 220–230 V AC bağlantısına yalnızca kart ve kapalı/korumalı test düzeneği uygunluğu önceden gözden geçirildikten sonra geçilir. Modülün OUT tarafının düşük gerilimli olması tek başına bütün kartın/ölçüm düzeninin güvenli olduğunu kanıtlamaz. Osiloskop şebeke girişine bağlanmayacaktır; osiloskopun izolasyonu varsayılmayacaktır.
 
 RN130424 12 V / 2 VA transformatör mevcut deney donanımıdır; ancak primeri 230 V AC ile beslendiğinden primer tarafı şebeke güvenliği gerektirir. Bu transformatörün varlığı tek başına güvenli test düzeneği oluşturmaz.
 
@@ -176,3 +150,14 @@ RN130424 12 V / 2 VA transformatör mevcut deney donanımıdır; ancak primeri 2
 - Düzeltme parametresinin kullanıcıya PF çıktısı olarak sunulmaması; son çıktının BERO PF olması.
 
 Bu bölüm bir deney kararıdır; deney sonucu, doğrulanmış katsayı, güvenli şebeke bağlantısı veya tamamlanmış PF algoritması anlamına gelmez.
+
+
+## 10. Kullanıcı kararı — pratik ilk yöntem, 2026-11-27
+
+- İlk hedef, ZMPT101B hazır kartının gerilim okumasını PZEM'e yaklaştırmaktır; fiziksel trimpot çıkış genliğini ayarlamak için kullanılacaktır.
+- Ardından SCT013 ve ZMPT101B ile faz/PF ilişkisi pratik biçimde denenir. PZEM aynı pencere için karşılaştırma referansıdır.
+- Sabit ampul ve dimmer ayarları farklı yük koşulları sağlar. Her ayarda gerçek PZEM PF ölçülür; nominal PF varsayılmaz.
+- Ölçülen gerilim genliği ayarı, PHASE_CORRECTION ve PF'ye bağlı akım düzeltmesi ayrı tutulur.
+- BERO PF'si akım düzeltme adayına girdi olabilir. Yeni aday MOD2-GRV002 kapsamında değerlendirilir; V1.6 korunur.
+- Beş yapay zekâ yanıtının önceki teknik sentezi ve kapsamlı ADS1115 test önerileri başvuru notudur; mevcut pratik ilk yöntemin zorunlu ön koşulu değildir.
+- Bu bir deney planı kararıdır. Donanım testi, katsayı, güvenli şebeke bağlantısı veya başarılı PF sonucu değildir.

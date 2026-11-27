@@ -213,3 +213,13 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **İlk iş:** Mevcut çamaşır makinesi ve düşük PF kayıtlarını grafiklemek. Sonraki adımlar zaman hizalı yeni kayıt, grafiklerden fonksiyon adayı, bağımsız doğrulama, ZMPT101B analog/zamanlama testleri ve BERO PF hesabıdır.
 - **Durum:** Görev ve deney planı açıldı; yeni fiziksel deney yapılmadı, yeni fonksiyon bulunmadı, firmware doğrulanmadı.
 - **Görev kaydı:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.
+
+
+### 2026-11-27 — MOD2-GRV002 pratik PF yöntemi seçildi
+
+- **Kullanıcı kararı:** İlk yöntem, ZMPT101B hazır kartını tanıyıp güvenli ön testlerden sonra trimpotla gerilim okumasını PZEM'e yaklaştırmaktır; ardından SCT013 ile faz/PF ilişkisi pratik şekilde ölçülecektir.
+- **Deney yaklaşımı:** Sabit ampul yükü, kullanıcının sağladığı dimmerin farklı ayarlarında denenir. Her ayardaki PZEM V/I/P/PF değeri BERO ham ve hesaplanan değerleriyle aynı kararlı pencerede karşılaştırılır.
+- **Model kararı:** Gerilim genlik ayarı, PHASE_CORRECTION ve PF'ye bağlı akım düzeltmesi ayrı tutulur. V1.6 korunur; yeni PF etkili model MOD2-GRV002 altında çıkarılır.
+- **Araştırma notlarının rolü:** Diğer yapay zekâların sentezi, genel metodoloji ve dış kaynak notları içeriği korunarak isteğe bağlı başvuruya ayrılır; güncel uygulamayı zorunlu kılmaz.
+- **Güvenlik/kanıt sınırı:** Kart ve korumalı test düzeni gözden geçirilmeden şebeke bağlantısı yapılmaz. Bu kayıt plan kararını gösterir; henüz fiziksel test veya katsayı yoktur.
+- **Ayrıntılı plan:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.

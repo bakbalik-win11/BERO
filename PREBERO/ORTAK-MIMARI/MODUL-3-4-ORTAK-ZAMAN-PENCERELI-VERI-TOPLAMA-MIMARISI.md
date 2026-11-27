@@ -103,7 +103,7 @@ Bu maddeler tasarım ve test gereksinimidir; henüz doğrulanmış uygulama sonu
 
 ## PF araştırması – sayısal hesaplama ve istatistik
 PF/dalga biçimi araştırmasında amaç yalnızca analog dalgayı görselleştirmek değildir. SCT013 akım ve ZMPT101B gerilim örneklerinden pencere bazında aktif güç, RMS, görünür güç ve gerçek PF hesaplanacak; pencere geçerliliği ve istatistiksel dağılım da saklanacaktır.
-- Metodoloji: [DONANIM/ZMPT101B/PF-SAYISAL-HESAPLAMA-VE-ISTATISTIK-METODOLOJISI.md](../../DONANIM/ZMPT101B/PF-SAYISAL-HESAPLAMA-VE-ISTATISTIK-METODOLOJISI.md)
+- Metodoloji: [DONANIM/ZMPT101B/PF-SAYISAL-HESAPLAMA-VE-ISTATISTIK-METODOLOJISI.md](../../DONANIM/ZMPT101B/REFERANS/PF-ARASTIRMA/PF-SAYISAL-HESAPLAMA-VE-ISTATISTIK-METODOLOJISI.md)
 - Örneklerin ortak zaman tabanında eşleştirilmesi zorunludur; ortak slot numarası tek başına eşzamanlı örnekleme garantisi vermez.
 - ADS1115'in kanal gecikmesi ve gerçek dönüşüm zamanları ölçülmeden PF hesaplaması doğrulanmış kabul edilmeyecektir.
 - Düşük akım/görünür güç, eksik örnek, kırpılma ve zamanlama hatası içeren pencereler geçerlilik bayraklarıyla işaretlenecektir.
