@@ -47,14 +47,14 @@ Bu bölüm, BERO geliştirme ve genel elektronik deneylerinde kullanılan mevcut
 | SCT013 | 30 A / 1 V | Mevcut SCT ölçüm zincirinde kullanılan akım trafosu; düşük akım bölgesindeki davranışı inceleniyor | Mevcut |
 
 | SCT013 | 100 A / 1 V | İleride ana hat gibi daha yüksek akım aralığı beklenen noktalarda değerlendirme; 30 A / 1 V ile ayrı ADS1115 karakterizasyonu | **8 adet mevcut (kullanıcı bildirimi; fiziksel model/etiket teyidi bekliyor)** |
-| SCT013 | 5 A sınıfı; sipariş edilen ürünün tam model/çıkış etiketi teslimatta doğrulanacak | 30 A / 1 V sensörle düşük akım bölgesinde karşılaştırmalı deney; aynı yük koşulunda duyarlılık ve kararlılık gözlemi | **5 adet sipariş edildi; uluslararası taşımada (13.11.2026)** |
+| SCT013 | 5 A sınıfı; sipariş edilen ürünün tam model/çıkış etiketi fiziksel teslim olmadığı için doğrulanamadı | 30 A / 1 V sensörle düşük akım bölgesinde karşılaştırmalı deney için planlanmıştı | **Teslim alınmayacak (kullanıcı bildirimi, 27.11.2026; gümrükte takıldı)** |
 
 ### 5 A SCT sevkiyat kaydı
 
 - **Sipariş miktarı:** 5 adet (kullanıcı bildirimi).
-- **Takip ekranı:** 13.11.2026 tarihinde China Post / uluslararası taşıma durumunda.
-- **Son görülen olay:** Guangzhou Uluslararası Takas Bürosu'na ulaştı; Türkiye'ye giriş veya Türkiye gümrük işlemi henüz görünmüyor.
-- **Teslimat durumu:** Teslim alınmadı; ürün etiketi, tam model, çıkış tipi, fiziksel durum ve adet teslimatta kontrol edilecek.
+- **Önceki takip kaydı:** 13.11.2026 tarihinde China Post / uluslararası taşıma durumundaydı; Guangzhou Uluslararası Takas Bürosu'na ulaştığı kaydedilmişti.
+- **Güncel teslimat durumu:** Kullanıcı bildirimi (27.11.2026): gönderi gümrükte takıldı ve teslim gelmeyecek. Bu sipariş mevcut fiziksel stok olarak sayılmaz.
+- **Ürün bilgisi:** Teslimat gerçekleşmeyeceği için tam model, çıkış tipi, fiziksel durum ve ürün etiketi doğrulanamadı. Sipariş iptali veya ücret iadesi hakkında kayıt bulunmuyor.
 - **Gizlilik:** Takip numarası kamuya açık envanter dosyasına yazılmadı.
 
 ## Deney yükleri ve kullanım notları
