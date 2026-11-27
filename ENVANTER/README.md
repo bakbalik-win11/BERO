@@ -20,11 +20,20 @@
 | Modül | Önceki işlev / donanım | Güncel durum | Not |
 |---|---|---|---|
 | **Modül 1** | Bağımsız bias trafosu / taşınabilir bias güç kutusu | **KALACAK** | Fiziksel envanter varlığı korunuyor. Modül 2'nin içine entegre edilmiş bias devresiyle aynı kayıt değildir; Modül 1 bağımsız donanım olarak tutulur. |
-| **Modül 2** | Üç kanallı biaslı SCT okuma; Modül 1'in bias yapısını da içeren eski kurulum/kod | **İMHA EDİLDİ (kullanıcı bildirimi)** | Eski üç kanallı firmware yeni Modül 4'e taşınmayacak. Kod, YAML, log ve deney kayıtları tarihsel arşiv olarak korunur; fiziksel modülün imha bildirimi kaynaklı durumdur. |
-| **Modül 3** | PZEM ve aç/kapa rölesi içeren eski modül | **İMHA EDİLDİ (kullanıcı bildirimi)** | Eski modül/kod düzeni devreden çıkarıldı. PZEM-004T V3 ölçüm cihazı Modül 4 tasarımında yeniden kullanılacak bileşen olarak planlanmıştır; Modül 3'ün eski kontrol/röle yapısı taşınmayacaktır. |
+| **Modül 2** | Üç kanallı biaslı SCT okuma; Modül 1'in bias yapısını da içeren eski fiziksel kurulum | **ESKİ DÜZENEK İMHA EDİLDİ; masaüstü test düzeneği ayrı ve mevcut** | Eski üç kanallı firmware yeni Modül 4'e taşınmayacak. Güncel masaüstü ESP32-D + ADS1115 + SCT013 düzeneği, eski fiziksel Modül 2 ile aynı cihaz değildir; aşağıda ayrı test varlığı olarak kayıtlıdır. Kod, YAML, log ve deney kayıtları tarihsel arşiv olarak korunur. |
+| **Eski elektronik Modül 3 düzeni** | PZEM ve aç/kapa rölesi içeren eski donanım düzeni | **ESKİ RÖLELİ DÜZENEK DEVREDEN ÇIKTI; PZEM yayıncı WROOM ESP YAŞIYOR** | Kullanıcının 2026-11-28 tarihli teyidine göre PZEM ölçümlerini yayınlayan ESP32-WROOM fiziksel olarak mevcut ve bağımsız referans/test cihazı olarak tutulacak; eski `BERO Modul 3 WROOM` adı firmware geçmişi olarak korunur. Bu eski elektronik ad, güncel PREBERO Modül 3 (çamaşır makinesi) ile aynı kimlik değildir. Ayrıntı aşağıdaki cihaz kaydında. |
 | **Modül 4** | Yeni ESP32 tabanlı ölçüm modülü: ADS1115 + 100 A / 1 V SCT + PZEM-004T V3 | **OLUŞTURULACAK** | Yeni ve bağımsız YAML/firmware hazırlanacak. 30 A / 1 V çalışan kodu ve eski Modül 2/3 kodları üzerine yazılmayacak. Pinler, UART/I²C, PZEM haberleşmesi ve giriş güvenliği test öncesi doğrulanacak. |
 
-**Kod ve arşiv ilkesi:** Modül 2 ve Modül 3'ün eski kodları fiziksel modüllerin imha edilmesi nedeniyle depodan silinmez. Eski YAML, log, deney ve karar kayıtları tarihsel izlenebilirlik için korunur; yeni geliştirme Modül 4 adıyla ayrı dosyalarda yürütülür.
+**Kod ve arşiv ilkesi:** Devreden çıkan eski Modül 2 ve Modül 3 düzenlerinin kodları depodan silinmez. Eski YAML, log, deney ve karar kayıtları tarihsel izlenebilirlik için korunur; yeni geliştirme Modül 4 adıyla ayrı dosyalarda yürütülür. PZEM yayıncısı WROOM ESP'nin fiziksel varlığı ayrıca korunur ve deney referansı olarak envanterde izlenir.
+
+### Aktif masaüstü test varlıkları
+
+Bu test varlıkları PREBERO çalışma modüllerinin kimliğiyle karıştırılmaz. Eski fiziksel bir modülün devreden çıkması, başka bir deneyde kullanılan geliştirme kartının da imha edildiği anlamına gelmez.
+
+| Geçici işlev etiketi | Fiziksel düzen / işlev | Durum ve kayıt |
+|---|---|---|
+| **MOD2-BENCH-01** | ESP32-D2 + ADS1115 No.10 + SCT013 30 A / 1 V masaüstü akım ölçüm düzeneği | **Mevcut; Modül 2 deneylerinde kullanılıyor.** MOD2-GRV001 V1.6 EXP/K(x) bu düzende edinilmiş ve korunmuş akım referansıdır. ZMPT101B, MOD2-GRV002 için ayrıca eklenecek aday sensördür; bağlantı/güvenlik ve kart revizyonu henüz doğrulanmadı. Bu masaüstü düzeneği eski imha edilmiş üç kanallı Modül 2 değildir. |
+| **PZEM-REF-WROOM-01** (geçici işlev etiketi) | ESP32-WROOM + PZEM-004T V3.0; yalnızca PZEM ölçümlerini Home Assistant'a 5 saniyede bir yayınlar | **Fiziksel ESP mevcut; kullanıcı 2026-11-28'de teyit etti.** UART: TX GPIO19, RX GPIO18, 9600 baud, 8N1. Arşiv yapılandırmasındaki ESPHome adı `bero-modul3-wroom`, görünen ad `BERO Modul 3 WROOM`; bunlar tarihsel yazılım adlarıdır, güncel modül numarası değildir. Fiziksel kart modeli/revizyonu ve MAC/seri eşlemesi yapılınca kalıcı ESP envanter kimliği atanacak; yüklenmiş yapılandırma da ayrıca kontrol edilecek. Bu cihaz MOD2 deneyleri için PZEM referansı sağlar; Modül 5 veya aktif BERO modülü değildir. |
 
 ## Ölçüm ve deney ekipmanları
 
@@ -79,7 +88,7 @@ Bu bölüm, BERO geliştirme ve genel elektronik deneylerinde kullanılan mevcut
 | Cihaz | Model / tanım | Haberleşme | Durum | Not |
 |---|---|---|---|---|
 | AC güç/enerji ölçer | **PZEM-014 AC RS485 Modbus Güç Tüketim Ölçer + USB** | RS485 / Modbus RTU; USB arayüzü/adaptörü ürün seti kapsamında; **10 A sınıfı (kullanıcı bildirimi, etiketle teyit edilecek)** | **Mevcut — kullanıcı bildirimi; henüz kullanılmadı** | BERO'da doğrudan kontrol/aktüatör işlevi yok; bağımsız veri kaynağıdır. Kullanıcının değerlendirdiği olası görevler (henüz kesin karar yok): (1) yalnızca havalandırma hattının ana gözetmeni olmak veya (2) klima gibi yüksek akımlı yükleri ayrı tutarak genel ev akımının kalan bölümünü izlemek. 10 A sınıfının bilinçli tercih edilmiş olabileceği kullanıcı tarafından belirtildi; cihaz etiketi/ölçüm sınırları ve gerçek tesisat akımları doğrulanmadan bağlantı/topoloji kararı verilmeyecek. Bu görevler aday kullanım senaryolarıdır. Modül 4'ün PZEM-004T V3 akışından ayrı tutulacak. 10 A sınırı, havalandırma toplam akımı ve motor kalkış akımıyla birlikte cihaz etiketi/kılavuzundan doğrulanmadan bağlantı yapılmayacak. Koruma veya kontrol elemanı yerine geçmez. Haberleşme, register haritası, örnekleme/güncelleme hızı ve ölçüm davranışı henüz test edilmedi; slave adresi, baud/parity/stop bit ve USB arayüzünün işlevi ilk bağlantıda doğrulanacak. |
-| AC güç/enerji ölçer | PZEM-004T V3 | UART / TTL seri haberleşme | Modül 4 için planlanan bileşen | PZEM-014 ile aynı cihaz değildir; Modül 4 ESP32 + ADS1115 + 100 A / 1 V SCT tasarımında ayrı bileşen olarak ele alınır. |
+| AC güç/enerji ölçer | PZEM-004T V3 | UART / TTL seri haberleşme | En az bir PZEM-004T V3, PZEM-REF-WROOM-01 yayın düzeneğinde mevcut (kullanıcı bildirimi); Modül 4'te yeniden kullanım veya ayrı ünite kararı açık | PZEM-014 ile aynı cihaz değildir. Modül 4 ESP32 + ADS1115 + 100 A / 1 V SCT tasarımında PZEM'in hangi fiziksel ünitesinin kullanılacağı ayrıca kaydedilecek. |
 
 ## Modbus ve saha haberleşme donanımları
 
@@ -132,10 +141,10 @@ Aşağıdaki adetler kullanıcı tarafından bildirilen fiziksel envanterdir. Ta
 
 ## Fiziksel ESP cihaz envanteri
 
-ESP kartları modüllerden ve görevlerden bağımsız fiziksel varlıklardır. Her fiziksel karta kalıcı ve benzersiz bir envanter kimliği atanır. Aynı kart farklı modüllerde veya görevlerde kullanılsa da bu kimlik değişmez.
+ESP kartları modüllerden ve görevlerden bağımsız fiziksel varlıklardır. Her fiziksel karta kart modeli ve mümkünse MAC/seri gibi ayırt edici bilgi doğrulandıktan sonra kalıcı ve benzersiz envanter kimliği atanır. Eşleme yapılana kadar işlevi anlatan geçici bir etiket kullanılabilir. Aynı kart farklı modüllerde veya görevlerde kullanılsa da kalıcı kimlik değişmez.
 
 | Envanter kimliği | Kart modeli | Fiziksel ayırt edici bilgi | Sabit ESPHome / HA cihaz adı | Mevcut atama | Durum |
 |---|---|---|---|---|---|
-| Henüz kayıt yok | Fiziksel cihazlar tek tek doğrulanınca eklenecek | Kart üzerindeki model ve mümkünse MAC/seri bilgisiyle eşleştirilecek | Cihaz ataması sırasında belirlenecek | Modül/görev ataması ayrıca kaydedilecek | Atama bekliyor |
+| Kalıcı ESP ID bekliyor; geçici işlev etiketi **PZEM-REF-WROOM-01** | ESP32-WROOM ailesi; geliştirme kartının tam modeli/revizyonu bekliyor | Kullanıcı mevcut PZEM yayıncısı olarak teyit etti; MAC/seri etiketi görülünce eşleştirilecek | `bero-modul3-wroom` (eski yapılandırma adı; cihaza yüklü sürüm ayrıca doğrulanacak) | PZEM karşılaştırma yayımlayıcısı; MOD2 masaüstü deneylerinde referans | Fiziksel kart mevcut; kalıcı kimlik ve kurulu firmware teyidi bekliyor |
 
-**Kayıt kuralı:** Kimlikler fiziksel kartlar tek tek doğrulanınca atanır. Kart modeli, MAC/seri bilgisi veya kullanıcı tarafından doğrulanmış başka bir ayırt edici bilgi olmadan cihaz kaydı uydurulmaz. Modül ve görev kimliği ESP'nin fiziksel envanter kimliği değildir.
+**Kayıt kuralı:** Kalıcı kimlik fiziksel kart tek tek doğrulanınca atanır. Kart modeli ve MAC/seri bilgisi teyit edilene kadar işlev etiketi kullanılır; bu geçici etiket kalıcı fiziksel ID gibi sunulmaz. Modül ve görev kimliği ESP'nin fiziksel envanter kimliği değildir.
