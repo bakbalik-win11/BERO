@@ -2,6 +2,13 @@
 
 Bu dosya modülün görevleri boyunca edinilen tecrübeyi ve gelişim sürecini kronolojik olarak kaydeder.
 
+## 2026-11-28 – Saha kaydının PF bağlamında sonraki değerlendirmesi
+
+- Kullanıcı, uzun pamuklu programındaki akım farkını PF kayıtlarıyla birlikte yeniden değerlendirerek sapmanın PF koşullarıyla ilişkisini teyit etti.
+- Bu sonuç, PF bilgisini yeni akım düzeltme denklemine katma gerekçesini oluşturdu. İlk pratik yaklaşım, sabit lamba/dimmer noktalarında PZEM PF ve akımını yeni ZMPT101B + SCT013 ölçümleriyle karşılaştırıp EXP/K(x) geliştirme tarzında basit bir f(X) aramaktır.
+- Bu ek değerlendirme, MOD3-AKM001'in o günkü raporundaki “tek başına nedensellik kanıtlanmadı” kapsam notunu geriye dönük değiştirmez; sonradan yapılan kullanıcı değerlendirmesini ve yeni araştırma kararını tarihler.
+- Ayrıntılı PF/akım modeli MOD2-GRV002'de ilerletilir; mevcut V1.6 modeli korunur.
+
 ## Kayıt standardı
 
 Her kayıt aşağıdaki bilgileri içermelidir:
