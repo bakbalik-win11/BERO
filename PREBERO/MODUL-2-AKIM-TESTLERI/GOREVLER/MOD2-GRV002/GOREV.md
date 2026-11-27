@@ -26,6 +26,13 @@ Bu hedef hobi/prototip ölçeğindedir. Sonuçlar BERO'nun belirlenen sensör, y
 - Yeni bir düzeltme bulunursa ayrı deney sonucu ve ayrı model/sürüm olarak tutulur.
 - PZEM karşılaştırma referansıdır; mutlak ground truth kabul edilmez.
 
+## 2.1. Deney düzeneği ve cihaz kimlikleri
+
+- **Ölçüm düzeneği:** MOD2-BENCH-01 — ESP32-D2 + ADS1115 No.10 + SCT013 30 A / 1 V. Bu, eski imha edilmiş üç kanallı fiziksel Modül 2 değildir; aktif masaüstü deney aracıdır.
+- **PZEM referans yayımlayıcı:** PZEM-REF-WROOM-01 — kullanıcının mevcut olduğunu bildirdiği ESP32-WROOM + PZEM-004T V3.0. Arşiv ESPHome adı `bero-modul3-wroom`; UART TX GPIO19 / RX GPIO18, 9600 baud, 8N1 ve 5 saniyelik yayın. Eski firmware adı fiziksel BERO Modül 3 kimliği olarak kullanılmaz.
+- **Yeni PF algılayıcı adayı:** ZMPT101B, MOD2-BENCH-01'e eklenecek; sensör kartı, pinler, sinyal seviyesi ve güvenlik uygunluğu fiziksel olarak kontrol edilmeden bağlanmış sayılmaz.
+- **Mevcut referans kod:** MOD2-GRV001 V1.6 EXP/K(x) korunur; PF deneyi için kopya/ayrı model kullanılır. PZEM yayımlayıcıyı veya mevcut V1.6 YAML'i değiştirmek bu görevin parçası değildir.
+
 ## 3. Pratik deney sırası — kullanıcı kararı, 2026-11-28
 
 Kullanıcı, çamaşır makinesi saha kaydının sonraki değerlendirmesinde akım sapmasının PF koşullarıyla ilişkisini teyit etti. Bu, PF'yi yeni akım denklemine katma gerekçesidir. Proje hobi/prototip ölçeğinde olduğundan önce kolay ve pratik deney yapılır; akademik veya ayrıntılı ölçüm yaklaşımı ilk kapı değildir.
