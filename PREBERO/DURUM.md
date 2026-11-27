@@ -25,7 +25,7 @@ ZMPT101B kartının ön/arka yüzünü ve revizyon/pin işaretlerini kaydet; tri
 
 ### Modül 2 — Masaüstü akım ve PF geliştirme
 
-İlk masaüstü çalışmalarında SCT013 biaslı/biassız karşılaştırmaları ve farklı yük denemeleri yapıldı. Bu çalışmaların ardından tek fonksiyonlu V1.6 EXP/K(x) akım modeli mevcut akım hedefi için referans kabul edildi; MOD2-GRV001 kapatıldı ve modeli değiştirmeme kararı alındı. Bias deneyi geçmişi ve teknik sonuçlar [Modül 2 tarihçesinde](MODUL-2-AKIM-TESTLERI/TARIHCE.md), akım modelinin kanıtı GRV001 kayıtlarında bulunur.
+İlk masaüstü çalışmalarında SCT013 biaslı/biassız karşılaştırmaları ve farklı yük denemeleri yapıldı; bu sırada çamaşır makinesi saha kayıtları da alındı. Bias ölçüm ortalamasını bazı çalışma noktalarında etkiledi, ancak genel veri kalitesindeki iyileşme ek donanım ve bağlantı karmaşıklığını haklı çıkaracak kadar büyük görülmedi. Bu nedenle basit biassız ölçüm yolu tercih edildi. V1.6 EXP/K(x) akım modeli mevcut akım hedefi için referans kabul edildi; MOD2-GRV001 kapatıldı ve modeli değiştirmeme kararı alındı. Bias deneyi geçmişi ve teknik sonuçlar [Modül 2 tarihçesinde](MODUL-2-AKIM-TESTLERI/TARIHCE.md), akım modeli kanıtı GRV001 kayıtlarında; saha kaydı ise [Modül 3 tarihçesinde](MODUL-3-CAMASIR-MAKINESI/TARIHCE.md) bulunur.
 
 Şimdi MOD2-GRV002’de ZMPT101B’yi tanıma, trimpotla gerilim okumasını PZEM’e yaklaştırma, SCT013 ile PF denemesi yapma ve işe yararsa PF bilgisini yeni akım düzeltmesine katma planı var. İlk pratik sıra ve sonraki adım yukarıdaki güncel durum bölümündedir. Bu aşamada fiziksel PF deneyi veya yeni katsayı yoktur. V1.6 korunur; ayrıntılar [MOD2-GRV002 görevinde](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md).
 
@@ -47,7 +47,7 @@ Sensör tecrübesi ve tekrar kullanılabilir küçük kodlar sensörün DONANIM 
 
 ## Kısa geçmiş
 
-- **2026-11-21:** Biaslı/biassız SCT karşılaştırmaları yapıldı. Biaslı kolun ölçüm ortalamasına etkisi yaklaşık 0,47 A çalışma noktasında gözlendi; gürültü azalması kanıtlanmadı.
+- **2026-11-21:** Biaslı/biassız SCT karşılaştırmaları yapıldı. Biaslı kolun ölçüm ortalamasına etkisi yaklaşık 0,47 A çalışma noktasında gözlendi; genel veri kalitesi kazancı ek donanım karmaşıklığını haklı çıkarmadığından biassız yol tercih edildi. Çamaşır makinesi kayıtları da bu masaüstü geliştirme dönemi boyunca ayrıca alındı; kontrollü bias karşılaştırmasıyla karıştırılmamalı.
 - **2026-11-22:** MOD2-GRV001 için V1.6 tek fonksiyonlu EXP/K(x) modeli kabul edildi; görev kapatıldı ve referans korunuyor.
 - **2026-11-24:** PF ve PF etkili akım araştırması için MOD2-GRV002 açıldı.
 - **2026-11-27:** Kullanıcı, pratik ZMPT trimpot + PZEM gerilim karşılaştırmasıyla başlayıp SCT013/PF denemesine ve yeni akım düzeltme adayına ilerleme sırasını seçti. Henüz deney yapılmadı.
