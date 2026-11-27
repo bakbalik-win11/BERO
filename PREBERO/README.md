@@ -14,6 +14,8 @@ PREBERO bir modül ve görev yapısıdır. Her modülün hedefi, görevleri ve �
 - Her görev kendi kodunu, verisini, loglarını, analizini ve raporunu barındırır.
 - Görev tamamlandıkça aynı modülde sonraki görev açılır.
 - Ortak donanım bilgileri ve envanter PREBERO içinde kopyalanmaz; ana dizindeki DONANIM ve ENVANTER kullanılır.
+- Sensör başına kalıcı tecrübe ve yeniden kullanılabilir kod parçacıkları ortak DONANIM/sensör kaydında tutulur; deney ve olgunlaşma kanıtı ilgili PREBERO modül/görevinde kalır.
+- Olgunlaşan bilgi nihai cihaz modülüne aktarılır ve kaynak kaydıyla bağlantılanır. Fiziksel modül devreden çıksa veya imha edilse de modülün adı, amacı, görevleri ve geçmişi silinmez; fiziksel durum ENVANTER'de güncellenir.
 - Bu başlangıç yapısı yalnızca PREBERO'nun yeniden tanımlandığı bu sohbet kararlarına dayanır.
 
 ## Modüller
