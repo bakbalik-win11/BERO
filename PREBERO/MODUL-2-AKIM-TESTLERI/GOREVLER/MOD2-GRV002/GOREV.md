@@ -286,3 +286,80 @@ Bu nedenle “SCT akımı fazla gösteriyor” gözlemi tek başına PF'nin de y
 - MOD2-GRV001 V1.6 ve PF≈1 akım kalibrasyonu korunur. Yeni PF/akım düzeltme adayı yalnız MOD2-GRV002 altında geliştirilir.
 - İlk aşamada ayrıntılı osiloskop faz açısı analizi zorunlu değildir. Pratik deney ve PZEM karşılaştırması sonuç vermezse faz/zamanlama incelemesi yedek yöntem olarak açılır.
 - **Kanıt durumu:** Bu bölüm matematiksel gerekçe ve deney planıdır. ZMPT101B trimpot ayarı, PF≈0,50 deneyi, ADC zaman eşlemesi ve PF hesabı henüz fiziksel olarak doğrulanmamıştır.
+
+
+## 17. PF düzeltmesinde çok değişkenli deney matrisi ve zaman penceresi — 2026-11-28
+
+Bu bölüm, kullanıcının önerdiği üç ayrımı deney protokolüne dönüştürür. Amaç PF ile SCT/PZEM sapması arasındaki ilişkiyi tek değişkenliymiş gibi yorumlamamak; akım seviyesi, dalga biçimi, yük türü ve örnekleme zamanlamasını ayrı izlemektir. **Bu kayıt deney tasarımıdır; yeni ölçüm veya doğrulanmış fonksiyon sonucu değildir.**
+
+### 17.1 Aynı PF, farklı fiziksel akım dalgaları
+
+Aynı gerçek PF değerine farklı yükler ve dalga biçimleriyle ulaşılabilir. Örnekler:
+- Faz kesmeli dimmerle çalışan akkor lamba: kesilmiş/darbeli akım ve artmış harmonik içerik ihtimali.
+- LED sürücüsü: doğrultucu/kondansatör giriş yapısına bağlı darbe karakterli akım ihtimali.
+- Motor/indüktif yük: farklı faz, akım seviyesi ve geçiş davranışı.
+
+Bu yüzden tek bir PF sütunu SCT hata davranışını açıklamak için yeterli değildir. Her çalışma noktasında mümkün olduğunca şu bağımsız değişkenler kaydedilir:
+
+| Değişken | Kayıt / amaç |
+|---|---|
+| Yük etiketi ve yük tipi | 100 W akkor, dimmerli akkor, LED sürücü, motor vb.; fiziksel yük sınıfını ayırır |
+| Dimmer/ayar konumu | Deney tekrarında aynı koşulu kurmak için; mümkünse işaretli konum veya yüzde |
+| PZEM PF | Kararlı çalışma noktasının karşılaştırma etiketi |
+| PZEM V_RMS, I_RMS, P | Gerilim, akım ve aktif güç bağlamı |
+| BERO V_RMS, I_RMS | Kendi ölçüm zincirinin büyüklükleri |
+| Akım tepe değeri I_peak | Ham örnekleme yeterliyse tepe davranışı |
+| Crest factor | I_peak / I_RMS; tepe karakterini akım seviyesinden bağımsız karşılaştırmaya yardımcı olur |
+| Dalga biçimi notu | Osiloskop/gözlem; sinüzoidal, faz kesilmiş, darbe karakterli, kırpılmış vb. |
+| Örnekleme ve kalibrasyon kimliği | ADC kimliği, MUX, SPS, PGA, YAML, akım modeli/katsayısı, kayıt sürümü |
+
+Harmonik/THD sütunu yalnızca örnekleme bant genişliği ve analog zincir bu ölçümü destekliyorsa doldurulur. Yeterli örnekleme olmadan harmonik veya crest factor kesin ölçülmüş gibi raporlanmaz.
+
+**Mevcut kayıtların söylediği ve söylemediği:**
+- 2026-11-21 tarihli 100 W dimmer denemesinde PZEM PF 1,00'dan 0,61'e inerken SCT/PZEM akım oranı 0,921'den 1,507'ye çıktı. Ancak PZEM akımı da yaklaşık 0,463 A'dan 0,338 A'ya değişti; ham dalga biçimi/harmonik kaydı bulunmadığından PF, akım seviyesi ve dimmer dalga biçimi etkileri tek başına ayrıştırılamaz. Ayrıntı: PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/RAPOR/DIMMER-100W-PF-ETKISI-2026-11-21.md.
+- 8,5 W LED tekrarında iki çevrimde PZEM PF 0,66–0,67, PZEM akımı 0,052–0,053 A, SCT akımı 0,095–0,096 A görüldü; SCT/PZEM oranı 1,811–1,827 idi. Bu düşük akım + LED sürücüsü + düşük PF koşulunun birlikte bulunduğu bir gözlemdir; tek başına nüve doğrusal olmaması veya PF nedenselliği kanıtı değildir. Ayrıntı: PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/8_5W-LED-DUSUK-PF-TEKRAR-2026-11-21.md.
+- Bu iki deney birbirinin yerine geçmez; ayrı yük/akım/dalga biçimi koşulları olarak tutulur.
+
+**Katsayı adlandırma notu:** K=27.59, ADS1115 No.10 / SCT013 30A-1V için eski V1.1 zincirinde kullanılan baz ölçek katsayısıdır; tek başına “güncel alt bant katsayısı” diye adlandırılmaz. Aktif V1.6 referans modeli K(x)=26.89+5.39e^(-x/0.882) biçimindedir. PF araştırması V1.6 modelini değiştirmez; yeni model ayrı görev/sürümde tutulur.
+
+### 17.2 PZEM kararlılığı ve BERO örneklerinin zaman penceresi
+
+- Yük veya dimmer ayarı değiştirildiğinde geçiş/settling bölgesi analiz penceresine alınmaz.
+- PZEM-REF-WROOM-01 arşiv yapılandırmasında değerleri 5 saniyede bir yayınlar. Bu nedenle kararlılık kararı tek PZEM örneğine göre verilmez; ardışık yayınlarda V/I/P/PF değerlerinin seçilen tolerans içinde plato oluşturması beklenir. Tolerans ve minimum kararlı örnek sayısı her test protokolünde önceden belirtilir.
+- Kararlı pencere belirlendikten sonra PZEM ve BERO verileri aynı yerel başlangıç/bitiş zamanlarıyla eşleştirilir. PZEM örnekleri seyrek olduğundan PZEM serisine sahte ara örnek üretmek için interpolasyon yapılmaz; PZEM pencere özeti/örnek sayısı karşılaştırma etiketi olarak saklanır.
+- BERO'nun ham gerilim ve akım örnekleri gerçekten zaman damgalıysa, ADC kanalları arasındaki ölçülmüş dönüşüm farkı Δt kaydedilir. Gerekli olduğunda iki ADC serisi ortak zaman ızgarasına enterpole edilebilir. Bu yalnızca bilinen küçük zaman kaymasını azaltır; kayıp harmonikleri, yetersiz örnek sayısını veya aliasing'i geri getirmez.
+- Her pencere için başlangıç/bitiş, PZEM örnek sayısı, BERO örnek sayısı, ortalama/medyan, standart sapma ve dışlanan geçişlerin nedeni kaydedilir. Yetersiz PZEM örneği olan pencereler düşük güvenli olarak işaretlenir.
+
+### 17.3 ADS1115 ham örneklemenin mevcut sınırı
+
+Mevcut MOD2-GRV001 YAML kayıtlarında ADS1115 No.10 için 860 SPS, ct_clamp için 200 ms sample_duration ve 1 s update_interval kullanılmıştır. Bu yapı Home Assistant'a RMS akım sonuçları yayımlar; mevcut CSV/HA akım varlıkları tek başına gerilim ve akımın ham dalga örneklerini vermez. Gerçek v[n] ve i[n] kaydı için ayrıca ham örnek toplama/yazma yolu gerekir.
+
+ADS1115 tek ADC ve paylaşılan giriş MUX'u kullanır; kanal dönüşümleri eşzamanlı değildir. İki analog kanal sırayla okunursa 860 SPS toplam dönüşüm hızının teorik olarak kanal başına yaklaşık 430 SPS'ye bölünmesi beklenir; gerçek hız ve zaman farkı donanım/yazılım üzerinden ölçülerek kaydedilmelidir. 430 örnek/s, 50 Hz'de kanal başına yaklaşık 8,6 örnek/periyot eder. Bu hız temel dalga hakkında ilk gözlem sağlayabilir; faz kesmeli akımdaki yüksek harmonikleri ve tepe değerini güvenilir biçimde karakterize etmek için yeterli kabul edilmez.
+
+Bu nedenle:
+- Önce gerçek ham örnek zaman damgalarını ve efektif örnek hızını ölç.
+- Gerilim ve akım kanallarının MUX sırasını ve Δt'yi kaydet.
+- Enterpolasyonu yalnızca ölçülmüş zaman farkı düzeltmesi olarak kullan; örnekleme yetersizliğinin çözümü sayma.
+- Eğer amaç gerçek PF'yi bozulmuş dalga biçiminde hesaplamaksa, ADC'nin bant genişliği/örnekleme yeterliliği ayrıca geçiş kapısıdır. ADS1115 verisi bu koşulu sağlayamazsa daha hızlı eşzamanlı/çok kanallı bir örnekleme yolu ayrı değerlendirilir.
+- Mevcut ct_clamp RMS sensörleriyle elde edilen değerlerden akım sapması korelasyonu kurulabilir; fakat bunlar tek başına P=mean(v[n]i[n]) gerçek güç hesabının veya PF_BERO ham dalga hesabının yerine geçmez.
+
+### 17.4 Ampirik düzeltmenin geçerlilik alanı
+
+- Yeni ampirik fonksiyon yalnızca ölçülmüş ve etiketlenmiş yük tipi, akım aralığı, PF ve dalga biçimi alanında geçerli aday sayılır.
+- PF, akım seviyesi ve yük tipi etkileri mümkün olduğunca çapraz noktalarla ayrılır: benzer I_RMS seviyesinde farklı PF; benzer PF seviyesinde farklı I_RMS; aynı PF/akım civarında farklı yük tipi.
+- Fonksiyonun kurulduğu verilerden ayrı doğrulama kayıtları tutulur.
+- Motor kalkışı, çamaşır makinesi evre geçişi veya yeni bir sürücü/dalga biçimi, modelin otomatik olarak kapsadığı kabul edilmez; ayrı doğrulama gerektirir.
+- PZEM karşılaştırma/etiketleme aracıdır; mutlak ground truth olarak sunulmaz.
+
+### 17.5 Her deney noktasında tutulacak kayıt paketi
+
+Her sabit çalışma noktası için tek kimlikli veri bloğu oluştur:
+- Deney ID, tarih, yük etiketi/türü, dimmer konumu ve kararlı pencere başlangıç/bitişi.
+- PZEM V/I/P/PF örnekleri, yayın zamanları, örnek sayısı ve pencere istatistikleri.
+- BERO ham ADS1115 gerilim ve akım dizileri, her örneğin zaman damgası, MUX, PGA, SPS ve ADC kimliği.
+- Kullanılan YAML/firmware sürümü, SCT kimliği ve kalibrasyon modeli/katsayısı.
+- BERO V_RMS, I_RMS, aktif güç, PF, I_peak ve crest factor; örnekleme yetersizse ilgili alan “hesaplanmadı/güvenilmez” olarak işaretlenir.
+- PZEM-BERO farkı, SCT/PZEM oranı, veri kalitesi ve teknik yorum.
+- Ham CSV/LOG dosyası ile analiz raporu ayrı saklanır; yalnızca özet tablo ham verinin yerine geçmez.
+
+**Kanıt durumu:** Önceki 100 W dimmer ve 8,5 W LED verileri bu çok değişkenli tasarımın gerekçesidir. Ham gerilim/akım dalga dizileri, zaman eşlemesi ve ADS1115'in PF için yeterliliği henüz doğrulanmadı.
