@@ -43,9 +43,9 @@ Bu bölüm, BERO geliştirme ve genel elektronik deneylerinde kullanılan mevcut
 |---|---|---|---|
 | Dijital multimetre | UNI-T UT33D+ | Temel DC/AC gerilim, direnç ve süreklilik kontrolleri | Mevcut |
 | Pens ampermetre | UNI-T UT200B+ | Temassız akım ölçümü ve yük akımını kontrol etme | Mevcut |
-| Osiloskop | FNIRSI 2D15P, 2 kanal, 100 MHz | Analog dalga biçimi, genlik, zamanlama ve iki kanal karşılaştırması; ilk kullanım düşük gerilimli deneylerle yapılacak | **Satın alındı; teslimat bekleniyor (13.11.2026)** |
+| Osiloskop / DMM / DDS | FNIRSI 2D15P, 2 kanal, 100 MHz; dahili True RMS multimetre ve 1 kanallı DDS jeneratör | Analog dalga biçimi, genlik, zamanlama ve iki kanal karşılaştırması; DMM ile temel AC/DC ölçümler; DDS ile 0,1–3,0 Vpp dalga üretimi. Düşük mV AC için pasif zayıflatıcıyla yardımcı test kaynağı olabilir; kalibrasyon standardı değildir. **Mevcut / teslim alındı (22.11.2026 teyidi).** | Mevcut |
 | Sinyal jeneratörü | SANEC; tam model henüz kaydedilmedi | Düşük gerilimli test sinyalleri üretme | Mevcut |
-| Akım/gerilim simülatörü | FNIRSI SG-002, 4–20 mA / 0–10 V | Endüstriyel akım ve gerilim girişlerini simüle etme; çıkış sınırları ve bağlantı biçimi cihaz kılavuzundan doğrulanacak | Mevcut |
+| Akım/gerilim simülatörü | FNIRSI SG-002, ayarlanabilir DC gerilim / DC akım simülatörü | 0–10 V sınıfı DC gerilim ve 4–20 mA dahil DC akım döngülerini simüle etme; fiziksel cihazın menü aralıkları ve terminal şeması kılavuzla teyit edilecek. Kılavuzdaki “50HZ” ifadesi ekran gösterim modudur; AC sinüs çıkışı değildir. Kalibrasyon standardı değildir; gerçek çıkış ayrıca ölçülmelidir. | Mevcut |
 | USB lojik analizör | SANEC, 24 MHz, 8 kanal | UART, I²C, SPI ve diğer dijital lojik sinyallerin zamanlama/protokol incelemesi; analog dalga biçimi ölçmez | Mevcut |
 | AC güç kontrolü / dimmer | SANEC, SCR, 220 V AC, ilan edilen 4000 W, manuel ve dokunmatik kontrol | Uyumlu rezistif yüklerde ayarlanabilir deney yükü oluşturma. Faz kontrolü nedeniyle akım dalga biçimini kesebilir; dimmerli kayıtlar normal sinüs beslemeli temel deney verilerinden ayrı tutulmalı | Mevcut |
 
