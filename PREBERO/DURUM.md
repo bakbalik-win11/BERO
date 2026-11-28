@@ -8,6 +8,7 @@
 - **Satın alma:** Tek planlanan yeni ölçüm cihazı UNI-T UT61E+'tır. AD9833, AD9850, FYE050 veya XR2206 için şu aşamada yeni satın alma yapılmayacak. Mevcut FNIRSI 2D15P DDS, SG-002 DC simülatörü ve SANEC sinyal jeneratörü/lojik analizör mevcut görevleri için kullanılacak; doğrulanmayan işlevler deney öncesi teyit edilecek.
 
 - **Aktif modül/görev:** Modül 2 / MOD2-GRV002 — BERO için pratik PF ölçümü ve PF etkili akım düzeltmesi.
+- **Ana PF deney planı:** [MOD2-GRV002 — PF-DENEY-PLANI-V1.0](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/PF-DENEY-PLANI-V1.0.md) artık tek uygulama sırasıdır: ZMPT gerilim ölçeğini PZEM'e yaklaştır, PF≈1 SCT kalibrasyonunu koru, 1/2/3 LED → vantilatör → telefon şarjı → dimmerli akkor yükleri dene; PZEM kararlılığı ve veri kalite etiketlerini uygula. BERO bağımsız PF hesabı için ham zaman eşlemeli v[n]/i[n] ve ADC yeterliliği ayrıca doğrulanacak.
 - **MOD2-GRV001:** Kapalı. V1.6 EXP/K(x) modeli ve YAML korunur.
 - **Kullanıcının seçtiği ilk yöntem:** Hobi/prototip ölçeğinde kolay, pratik deneyi öne al. Güvenlik ön kontrolünden sonra ZMPT101B gerilim okumasını trimpotla PZEM'e yaklaştır; sabit lamba ve dimmer ayarlarında PZEM PF'yi referans alarak SCT013 + ZMPT101B PF okumasını dene.
 
@@ -35,9 +36,11 @@
 
 ## Bir sonraki somut adım
 
-Önce FNIRSI 2D15P'yi DMM modunda kullanarak SCT013-030 (30 A / 1 V) sensör çıkışını doğrudan ölç. İlk hedef, 0,05 A RMS primer akımına karşılık gelen yaklaşık 1,67 mV RMS AC değerin yüksüz tabandan ayırt edilip edilemediğini ve tekrarlandığında kararlı görünüp görünmediğini kontrol etmektir. Bu ilk deneyde ESP32, ADS1115, MCP3208, bias, harici burden veya yükselteç kullanma. Akımın gerçekten 0,05 A olduğu bağımsız ve güvenilir biçimde doğrulanamıyorsa sonucu yaklaşık yük denemesi olarak kaydet; kesin 0,05 A sonucu ilan etme. Ayrıntı: [FNIRSI 2D15P DMM – SCT013-030 deney planı](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md).
+Ana uygulama kaynağı [MOD2-GRV002 PF Deney Planı V1.0](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/PF-DENEY-PLANI-V1.0.md).
 
-Bu ön testten sonra MOD2-GRV002'nin ZMPT101B kartını tanıma ve PF deneyi adımlarına devam et. Analog ölçü aleti kontrolünde 2D15P DDS + pasif 1/21 zayıflatıcı düşük AC mV yardımcı kaynağı olabilir; 2D15P DDS/DMM eşzamanlılığı doğrulanmadan varsayılmaz. FNIRSI SG-002 ise ayrı DC V ve DC mA simülatörüdür, AC sinüs kaynağı değildir. FYE050, AD9833 veya XR2206 satın alma kararı şimdilik yoktur. Şebeke bağlantısı için kartın giriş devresi, yalıtım/mesafeler, terminal koruması ve kapalı test düzeneği ayrıca kontrol edilir. Osiloskop ground klipslerini şebekeye bağlama.
+İlk olarak ZMPT101B kartının PCB/pin/besleme/OUT bilgilerini ve kapalı test düzeninin güvenliğini kontrol et. SCT013-030'un ham çıkışını FNIRSI 2D15P DMM ile kısa doğrudan ön gözlemden geçir; bu testin 0,05 A için hedefi yalnızca yaklaşık 1,67 mV RMS sinyalin görünürlüğü/kararlılığıdır. Ardından sabit dirençli yükte ZMPT gerilim RMS ölçeğini PZEM'e yaklaştır ve trimpot ayarını sabitle. Güvenlik kapısı tamamlanmadan şebeke tarafına bağlanma.
+
+Sonraki gerçek yük serisi 1 → 2 → 3 LED, ardından vantilatör, telefon şarjı ve son olarak dimmerli akkor olacaktır. Her değişimde settling/steady/dynamic/invalid etiketlerini uygula; ham kayıtları koru. UT61E+ siparişi teslim edilip cihaz kontrolü yapılınca envanter durumu güncellenecek.
 
 ## Modül gelişim hikâyesi ve mevcut aşamalar
 
