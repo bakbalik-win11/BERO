@@ -409,3 +409,51 @@ Bu şema yalnızca veri düzeni değildir; kararlı/kararsız ölçümleri, sens
 6. **Modelin korunması:** Ham kayıtların sonradan farklı yöntemlerle analiz edilmesi MOD2-GRV001 V1.6 modelini otomatik olarak değiştirmez. V1.6'nın (K(x)=26.89+5.39e^{-x/0.882}) fonksiyonu korunur; PF/dalga biçimi kaynaklı yeni bir düzeltme ayrı model/sürüm ve bağımsız doğrulama ister.
 
 **Kanıt durumu:** Bu maddeler veri yönetimi ve deney metodolojisi kararıdır. PZEM/BERO pencere çakışması, gerçek örnek sayısı ve ham çift kanal veri yolu yarınki testte mevcut log imkânlarıyla doğrulanacaktır.
+
+
+### 17.8 Gerçek hayat yükleriyle PF doğrulaması — 2026-11-28
+
+PF deneyi yalnızca ZMPT101B trimpotunun veya dimmerin dalga üzerindeki etkisine indirgenmeyecektir. Amaç, evde gerçekten karşılaşılan farklı yük tiplerinde SCT013 ölçüm sapmasının PF, akım büyüklüğü ve dalga biçimiyle nasıl değiştiğini görmektir. Dimmerli akkor deneyleri kontrollü karşılaştırma grubu olarak tutulur; gerçek hayat yüklerinin yerine geçmez.
+
+#### Öncelikli LED ampul serisi: 1 / 2 / 3 ampul
+
+Kullanıcının elinde üç adede kadar LED ampul bulunduğu bildirildi. Bu, aynı yük ailesinde toplam akım seviyesini basamaklandırmak için ilk tercih edilecek gerçek hayat deneyidir:
+
+1. Tek LED ampul ile kararlı çalışma noktası kaydedilir.
+2. İki LED ampul birlikte çalıştırılır; yeni çalışma noktası için PZEM kararlılığı yeniden beklenir ve kayıt alınır.
+3. Üç LED ampul birlikte çalıştırılır; aynı kararlılık ve kayıt adımları tekrarlanır.
+
+Bu seri, özellikle aynı marka/model/watt değerindeki ampullerle yapılırsa LED yük ailesini mümkün olduğunca sabit tutarak toplam akımın etkisini incelemeye yardım eder. Ampuller aynı değilse her ampulün marka/modeli ve nominal gücü ayrı yazılır; kombinasyonlar açıkça etiketlenir ve aynı yük tipi/aynı dalga biçimi kabul edilmez. PF'nin üç ampul sayısında aynı kalacağı varsayılmaz; her noktadaki PZEM PF, V, I ve P ayrı kaydedilir. Birden fazla anahtarlamalı sürücünün birlikte çalışması toplam akım dalga biçimini değiştirebilir.
+
+#### Diğer gerçek hayat yükleri
+
+| Yük | Deney amacı | Kayıt / dikkat |
+|---|---|---|
+| Vantilatör | Motorlu yükte akım dalgası ve PF davranışını gözlemek | Sabit hız kademesinde çalıştır; her hız kademesi ayrı çalışma noktasıdır. İlk kalkış geçişi ayrı tutulur. Hız kontrol tipini biliniyorsa kaydet; bilinmiyorsa varsayma. |
+| Telefon şarjı | Anahtarlamalı adaptör ve değişen şarj talebini gerçek kullanımda gözlemek | Adaptör modeli, telefonun yaklaşık şarj durumu ve kullanım durumu kaydedilebiliyorsa yaz. Uzun süre kararlı kalması beklenmez; kısa kararlı segmentler aranır, kalan zaman serisi dinamik veri olarak saklanır. |
+| Daha güçlü LED aydınlatma | LED sürücü davranışının daha yüksek toplam akımda sürüp sürmediğini görmek | Ampul adedi, tekil nominal güç ve model bilgisi kaydedilir. |
+| Dimmerli 100 W akkor | Kontrollü faz kesme/dalga biçimi karşılaştırması | Gerçek hayat yükleriyle aynı veri sınıfına konmaz; ayrı kontrollü deney grubu olarak tutulur. |
+
+Yüklerin akım seviyesi ve PF'si önceden varsayılmaz. Vantilatörün belirli bir PF veya akım değerinde olacağı kabul edilmez; gerçek PZEM ve BERO ölçümleri kaydedilir.
+
+#### Kararlı ve dinamik yükleri ayır
+
+Deney kayıt durumları şu şekilde kullanılır:
+
+- settling: Açma/kapama, dimmer/hız ayarı veya belirgin yük değişiminden sonraki bekleme bölümü.
+- steady: PZEM'in ardışık yayınları ve BERO ölçümü önceden belirlenmiş toleranslarda kararlı plato oluşturmuştur.
+- dynamic: Veri geçerlidir fakat akım/güç/PF zaman içinde değişmektedir. Telefon şarjı gibi yüklerde bu veri silinmez veya invalid sayılmaz; kararlı nokta kalibrasyonuna katılmadan ayrı dinamik analiz olarak saklanır.
+- invalid: Veri boşluğu, bozuk/NaN değer, bağlantı/ölçüm hatası veya güvenilir zaman damgası kaybı vardır.
+
+Dinamik yükte kısa bir aralık gerçekten kararlı hale gelirse o alt aralık ayrı steady pencere kimliği alabilir. Aksi durumda seri dynamic olarak korunur. Böylece telefon şarjının uzun süre sabit kalması beklenmez.
+
+#### Deney önceliği
+
+1. Tek LED, iki LED, üç LED serisi (ampul kimlikleri ve güçleri kaydedilerek).
+2. Vantilatörün sabit hız kademeleri.
+3. Telefon şarjı; kısa steady aralıklar bulunursa ayrı pencereler, bulunamazsa dynamic kayıt.
+4. Dimmerli akkor; kontrollü dalga biçimi karşılaştırması olarak ayrı grup.
+
+Her yükte PZEM kararlı yayınları beklenir; geçiş satırları silinmez, settling/dynamic olarak etiketlenir. Yalnızca steady pencereler kararlı nokta katsayısı üretiminde kullanılır. Dynamic kayıtlar kendi zaman bağlamında analiz edilir.
+
+**Kapsam sınırı:** Bulunan ampirik ilişki yalnızca test edilmiş yük, akım, PF, dalga biçimi ve çalışma aralığında geçerli adaydır. Motor kalkışı, çamaşır makinesi veya yeni yük evresi ayrıca doğrulanmalıdır. Bu bölüm deney planıdır; LED ampuller, vantilatör veya şarj cihazıyla yeni fiziksel test yapılmış sonucu değildir.
