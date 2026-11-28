@@ -4,6 +4,9 @@
 
 ## Güncel durum — 2026-11-28
 
+- **Ölçüm altyapısı kararı:** Sensör doğrulama sırası ve cihaz görevleri [Ölçüm Altyapısı Stratejisi V1.0](OLCUM-ALTYAPISI/OLCUM-STRATEJISI-V1.0.md) içinde sabitlendi. Önce sensörün ham çıkışı bağımsız DMM ile tanınacak; sonra dalga biçimi, ADC ve yazılım doğrulanacak.
+- **Satın alma:** Tek planlanan yeni ölçüm cihazı UNI-T UT61E+'tır. AD9833, AD9850, FYE050 veya XR2206 için şu aşamada yeni satın alma yapılmayacak. Mevcut FNIRSI 2D15P DDS, SG-002 DC simülatörü ve SANEC sinyal jeneratörü/lojik analizör mevcut görevleri için kullanılacak; doğrulanmayan işlevler deney öncesi teyit edilecek.
+
 - **Aktif modül/görev:** Modül 2 / MOD2-GRV002 — BERO için pratik PF ölçümü ve PF etkili akım düzeltmesi.
 - **MOD2-GRV001:** Kapalı. V1.6 EXP/K(x) modeli ve YAML korunur.
 - **Kullanıcının seçtiği ilk yöntem:** Hobi/prototip ölçeğinde kolay, pratik deneyi öne al. Güvenlik ön kontrolünden sonra ZMPT101B gerilim okumasını trimpotla PZEM'e yaklaştır; sabit lamba ve dimmer ayarlarında PZEM PF'yi referans alarak SCT013 + ZMPT101B PF okumasını dene.
