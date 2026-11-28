@@ -223,3 +223,16 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Araştırma notlarının rolü:** Diğer yapay zekâların sentezi, genel metodoloji ve dış kaynak notları içeriği korunarak isteğe bağlı başvuruya ayrılır; güncel uygulamayı zorunlu kılmaz.
 - **Güvenlik/kanıt sınırı:** Kart ve korumalı test düzeni gözden geçirilmeden şebeke bağlantısı yapılmaz. Bu kayıt plan kararını gösterir; henüz fiziksel test veya katsayı yoktur.
 - **Ayrıntılı plan:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.
+
+
+### 2026-11-28 – MOD2-GRV002 – SCT013-030 çıkışını FNIRSI 2D15P DMM ile doğrudan gözlemleme deneyi planlandı
+
+- **Çalışma / karar:** Kullanıcı, sensörleri ADC/ESP32/ADS1115/MCP3208 katmanlarından bağımsız tanımak için sensörün kendi elektriksel çıkışını doğrudan ölçme yaklaşımını seçti. İlk kısa deney, FNIRSI 2D15P'nin DMM moduyla SCT013-030'un düşük AC mV çıkışını okumaktır.
+- **Hedef:** SCT013-030 (30 A / 1 V) nominal oranında 0,05 A RMS primer akımına karşılık gelen yaklaşık 1,67 mV RMS AC çıkışın DMM'de yüksüz tabandan ayırt edilip edilemediğini ve tekrarlandığında kararlı olup olmadığını görmek.
+- **Teknik hesap:** 1 V / 30 A = 33,333 mV/A; 0,05 A × 33,333 mV/A ≈ 1,667 mV RMS.
+- **Ölçü aleti bilgisi:** FNIRSI üretici ürün sayfasında DMM için 19.999 count ve en düşük 1,9999 V ACV kademesi belirtilir; teorik ekran basamağı 0,1 mV'dir. Düşük AC mV bölgesinde doğruluk/minimum güvenilir giriş seviyesi açık teknik tabloda belirtilmediğinden, ekranda değer görünmesi doğruluk kanıtı sayılmayacaktır.
+- **Edinilen yaklaşım:** İlk karakterizasyon doğrudan sensör çıkışında yapılır. Bu ilk deneyde ADC, ESP, bias, harici burden ve yükselteç eklenmez. Sonraki aşamada ADC zincirinin sensörü ne kadar iyi okuduğu ayrıca kıyaslanır.
+- **Kanıt durumu:** Fiziksel deney henüz yapılmadı. Ölçüm, log, ekran görüntüsü veya başarılı/başarısız sonuç yoktur. 0,05 A akım bağımsız ve güvenilir biçimde doğrulanamazsa deney yaklaşık yük gözlemi olarak etiketlenecektir.
+- **Teknik karar:** Deney, MOD2-GRV002'de ZMPT101B/PF adımlarından önce yapılacak ilk kısa kontrol olarak sıralandı. Bu karar MOD2-GRV001 V1.6 modelini veya YAML'ini değiştirmez.
+- **İlgili kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md`; görev `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.
+- **Üretici teknik sayfası:** https://www.fnirsi.com/products/2d15p
