@@ -21,6 +21,9 @@
 - **Araştırma notları:** Diğer yapay zekâların karşılaştırmalı özeti, metodoloji ve dış kaynak incelemeleri isteğe bağlı başvurudur. Güncel deney sırasının yerine geçmez.
 - **Kanıt durumu:** Bu yeni yöntem için fiziksel deney, PF katsayısı ve firmware doğrulaması henüz yoktur.
 
+
+- **Deney logu pratik alanları (2026-11-28):** Her veri bloğunda `window_status=settling/steady/invalid`, yük değişim zamanı, PZEM yayın zamanı, gerçek ölçüm penceresi başlangıç/bitişi ve süresi, `ct_clamp_sample_duration_ms=200`, `ct_clamp_update_interval_ms=1000` ve logdan elde edilebiliyorsa gerçek kaynak örnek sayısı/efektif SPS ayrı tutulacak. ESPHome ct_clamp, her güncellemede bir 200 ms örnekleme fazı yürütür; 1 s update_interval saniyede beş adet 200 ms pencerenin birleştirildiği anlamına gelmez. PZEM'in 5 s yayın aralığı için geçişler `settling` olarak işaretlenir; önceden belirlenen ardışık yayın kararlılığı sağlanınca `steady` olur. Ayrıntı: [MOD2-GRV002 §17.6](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md).
+
 ## Bir sonraki somut adım
 
 Önce FNIRSI 2D15P'yi DMM modunda kullanarak SCT013-030 (30 A / 1 V) sensör çıkışını doğrudan ölç. İlk hedef, 0,05 A RMS primer akımına karşılık gelen yaklaşık 1,67 mV RMS AC değerin yüksüz tabandan ayırt edilip edilemediğini ve tekrarlandığında kararlı görünüp görünmediğini kontrol etmektir. Bu ilk deneyde ESP32, ADS1115, MCP3208, bias, harici burden veya yükselteç kullanma. Akımın gerçekten 0,05 A olduğu bağımsız ve güvenilir biçimde doğrulanamıyorsa sonucu yaklaşık yük denemesi olarak kaydet; kesin 0,05 A sonucu ilan etme. Ayrıntı: [FNIRSI 2D15P DMM – SCT013-030 deney planı](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md).
