@@ -236,3 +236,14 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Teknik karar:** Deney, MOD2-GRV002'de ZMPT101B/PF adımlarından önce yapılacak ilk kısa kontrol olarak sıralandı. Bu karar MOD2-GRV001 V1.6 modelini veya YAML'ini değiştirmez.
 - **İlgili kayıt:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md`; görev `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.
 - **Üretici teknik sayfası:** https://www.fnirsi.com/products/2d15p
+
+
+### 2026-11-28 – MOD2-GRV002 – Mevcut jeneratörlerle analog ölçü aleti ön testi planlandı
+
+- **Çalışma / karar:** Kullanıcının mevcut FNIRSI SG-002 ve FNIRSI 2D15P cihazları bulunduğu teyit edildi. Küçük FYE050/AD9833/XR2206 jeneratörü satın almadan önce mevcut kaynaklarla deney yapma kararı alındı.
+- **Kaynak ayrımı:** SG-002 DC gerilim ve DC akım simülatörüdür; kılavuzdaki “50HZ” ibaresi ekran gösterim seçeneği olup AC sinüs çıkışı değildir. 2D15P DDS 0,1–3,0 Vpp aralığında AC dalga şekli üretebilir; minimum 0,1 Vpp seviyesi 20 kΩ seri / 1 kΩ şönt bölücüyle yaklaşık 1,68 mV RMS'e indirilebilir.
+- **Deney amacı:** UT61E+ gibi bağımsız DMM'nin düşük AC mV seviyesindeki görünürlük, tepki ve yaklaşık seviye doğrusallığını incelemek. 1,68 mV noktası doğruluk garantisi dışında olduğundan yalnızca görünürlük/kararlılık noktasıdır; 3,37 mV ve üzeri noktalar UT61E+ 220 mV AC kademesinin üretici doğruluk başlangıcının üzerindedir.
+- **Sınırlar:** 2D15P'nin DDS ve DMM modlarının eşzamanlı çalıştığı doğrulanmamıştır. Aynı cihazın kaynağıyla kendi DMM girişinin eşzamanlı ölçüm yapabildiği varsayılmaz. 2D15P DDS + bölücü kalibrasyon standardı değildir ve SCT'nin manyetik/primer akım davranışını simüle etmez.
+- **Alternatifler:** FYE050 yüksek minimum çıkış nedeniyle yine zayıflatıcı ister; AD9833 ESP32/SPI otomasyonu için değerlidir ancak modül çıkış genliği devreye bağlıdır; XR2206 kitlerinin özellikleri kart revizyonuna göre değişir. Bunlardan hiçbiri şimdilik satın alınmayacaktır.
+- **İlgili kayıtlar:** [2D15P DMM/SCT/DDS deney planı](GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md); [SG-002 DC deney planı](GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-SG002-DC-ANALOG-SIMULATOR-TESTI-2026-11-28.md); görev kaydı `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.
+- **Kanıt durumu:** Yalnızca deney planı ve teknik ayrım kaydedildi; fiziksel test, log veya doğrulanmış ölçüm sonucu yoktur.
