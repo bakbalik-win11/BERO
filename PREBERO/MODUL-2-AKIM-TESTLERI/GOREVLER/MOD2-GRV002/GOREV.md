@@ -363,3 +363,35 @@ Her sabit çalışma noktası için tek kimlikli veri bloğu oluştur:
 - Ham CSV/LOG dosyası ile analiz raporu ayrı saklanır; yalnızca özet tablo ham verinin yerine geçmez.
 
 **Kanıt durumu:** Önceki 100 W dimmer ve 8,5 W LED verileri bu çok değişkenli tasarımın gerekçesidir. Ham gerilim/akım dalga dizileri, zaman eşlemesi ve ADS1115'in PF için yeterliliği henüz doğrulanmadı.
+
+
+### 17.6 Yarınki kayıt için pratik etiketler ve ölçüm penceresi alanları — 2026-11-28
+
+Her log satırı veya kararlı pencere bloğu bir durum etiketi taşımalıdır:
+
+- `settling`: Yük/dimmer ayarı yeni değişti; PZEM'in yeni yayını ve kararlı plato koşulu henüz oluşmadı. Analiz ve fonksiyon eğitimi için kullanılmaz.
+- `steady`: Önceden belirlenmiş kararlılık şartı sağlandı; bu satır/blok kararlı pencere analizine alınabilir.
+- Gerekirse `invalid`: veri boşluğu, geçersiz/NaN okuma, bağlantı kesilmesi veya pencere bozulması var; hesaplamaya alınmaz.
+
+PZEM-REF-WROOM-01'in 5 saniyelik değeri yayınlama aralığı, PZEM'in kendi iç ölçüm/ortalama algoritmasının tam süresiyle aynı şey olarak kabul edilmez. Ayar değişiminden sonra en az bir tam 5 saniyelik yayın aralığı geçmesini bekle; ardından ardışık PZEM yayınlarının önceden belirlenmiş toleranslarda kararlı kaldığını görmeden pencereyi `steady` olarak işaretleme. Kararlılık toleransı ve gereken ardışık yayın sayısı deney başlamadan tanımlanır. Geçişe ait tüm satırlar `settling` olarak saklanır; silinmez, fakat kararlı analizden dışlanır.
+
+#### 200 ms örnekleme penceresi ile 1 s yayın aralığını ayır
+
+Mevcut ESPHome `ct_clamp` davranışında:
+- `sample_duration: 200ms`: Her `ct_clamp` ölçüm güncellemesinde örneklerin toplandığı tek ölçüm penceresinin süresidir.
+- `update_interval: 1s`: Yeni ölçüm/örnekleme çevriminin başlatılma aralığıdır.
+- Bu iki değer, saniyede beş adet 200 ms pencerenin biriktirildiği anlamına gelmez. Mevcut yapı için her güncellemenin kendi 200 ms örnekleme fazı ve ayrı 1 s güncelleme ritmi vardır.
+- ESPHome `ct_clamp` debug çıktısı, 200 ms fazında alınan gerçek kaynak örnek sayısını (`num_samples`) ve buradan hesaplanan efektif SPS değerini yazabilir. Bu sayı gerçek logdan alınmalı; ADC ayarındaki 860 SPS değeri doğrudan gerçek örnek sayısı kabul edilmemelidir.
+
+Her ölçüm bloğunda şu zaman alanlarını ayrı tut:
+- `load_change_timestamp`: yük/dimmer değişiminin zamanı.
+- `pzem_publish_timestamp`: PZEM değerinin WROOM/HA tarafında yayınlandığı zaman.
+- `measurement_window_start` ve `measurement_window_end`: BERO'nun gerçek örnekleme penceresinin başlangıç/bitişi; zaman damgası alınamıyorsa `estimated` diye işaretle.
+- `measurement_window_duration_ms`: gerçekleşen ölçüm penceresi süresi.
+- `ct_clamp_sample_duration_ms`: yapılandırılmış değer (mevcut referans YAML'de 200 ms).
+- `ct_clamp_update_interval_ms`: yapılandırılmış değer (mevcut referans YAML'de 1000 ms).
+- `source_sample_count`: 200 ms sırasında gerçekten okunan ADC kaynak örnek sayısı; debug/ham logdan alınamıyorsa boş bırak.
+- `effective_sample_rate_sps`: gerçek örnek sayısı / gerçek pencere süresi ile hesaplanır.
+- `window_status`: `settling`, `steady` veya `invalid`.
+
+**Uygulama sınırı:** Mevcut Home Assistant `ct_clamp` RMS varlığı tek başına örnek başına zaman damgası, kaynak örnek sayısı veya ham dalga örneklerini taşımaz. Bu alanları doldurmak için debug log veya ayrı zaman damgalı ham veri kaydı gerekir. Alanları elde etmeden tahmini değer yazılmaz. Deneyin kısa veri kaydı için bu metadata ayrı bir CSV/JSON yan dosyasında tutulabilir ve özet satırındaki `window_id` ile birleştirilebilir.
