@@ -57,6 +57,8 @@ Bu sıra, önceki geniş ADS1115 karakterizasyon önerisini tamamen silmez; o ö
 |---|---|---|
 | 0 | MOD2-GRV001 V1.6'yı koruma ve yeni işi MOD2-GRV002 altında yürütme | TAMAMLANDI |
 | 0A | FNIRSI 2D15P DMM ile SCT013-030 çıkışında 0,05 A karşılığı yaklaşık 1,67 mV RMS değerini doğrudan gözlemle | PLANLANDI — 2026-11-28; fiziksel sonuç yok |
+| 0B | 2D15P DDS + pasif bölücü ile düşük seviyeli 50 Hz AC uyarı oluşturup UT61E+ ölçüm tepkisini ön incele | PLANLANDI — DMM/DDS eşzamanlılığı doğrulanacak |
+| 0C | Mevcut FNIRSI SG-002 ile UT61E+ DC gerilim ve 4–20 mA döngü ölçümünü kontrol et | PLANLANDI — SG-002 DC kaynak; AC sinüs kaynağı değil |
 | 1 | ZMPT101B kartı ve kapalı/güvenli test düzeni ön kontrolü | BEKLİYOR |
 | 2 | Sabit lamba yükünde ZMPT trimpotuyla gerilim okumasını PZEM'e yaklaştırma | BEKLİYOR |
 | 3 | Sabit lamba + dimmer ayarlarında PZEM ve BERO PF/akım noktalarını kaydetme | BEKLİYOR |
@@ -201,3 +203,20 @@ Kullanıcı, ADC/ESP32/ADS1115/MCP3208 katmanlarına geçmeden önce sensörün 
 Ayrıntılı deney planı: [FNIRSI 2D15P DMM – SCT013-030 – 0,05 A testi](DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md).
 
 Bu ön test sensör çıkışının gözlenebilirliğini değerlendirir; SCT013-030'un 0,05 A seviyesindeki mutlak doğruluğunu kanıtlamaz.
+
+
+## 14. Analog ölçü aletleri için mevcut kaynaklarla test planı — 2026-11-28
+
+Kullanıcı envanterinde FNIRSI SG-002 ve FNIRSI 2D15P bulunduğu doğrulandı. Yeni bir küçük DDS modülü satın almadan önce mevcut cihazların yetenekleri kullanılacak:
+
+1. **Gerçek sensör ön testi:** SCT013-030 30 A / 1 V çıkışı, FNIRSI 2D15P DMM modunda doğrudan ölçülecek. 0,05 A karşılığı 1,67 mV RMS hedefi görünürlük/kararlılık testidir; sensör doğruluğu iddiası değildir.
+2. **Düşük AC seviyede DMM karakterizasyonu:** 2D15P DDS 50 Hz sinüs çıkışının 0,1 Vpp minimum seviyesi, 20 kΩ seri / 1 kΩ şönt direnç ile nominal 1/21 oranında zayıflatılabilir. 100 mVpp kaynak yaklaşık 1,68 mV RMS; 0,2/0,5/1,0 Vpp kaynak ayarları yaklaşık 3,37/8,42/16,84 mV RMS üretir. Bu yardımcı test gerçek CT davranışını simüle etmez ve kalibrasyon standardı değildir.
+3. **Eşzamanlılık sınırı:** 2D15P'nin DDS ve DMM işlevlerinin aynı anda çalıştığı belgelenmemiştir. Aynı cihazın kendi DDS çıkışını DMM ile aynı anda ölçtüğü varsayılmaz. İki cihazın aynı sinyalle eşzamanlı karşılaştırılması gerekiyorsa mevcut SANEC jeneratörünün modeli/çıkışı önce tanımlanır.
+4. **DC testleri:** FNIRSI SG-002, 0–10 V sınıfı DC gerilim ve 4–20 mA dahil DC akım döngüsü için kullanılır. Kılavuzdaki 50HZ ibaresi ekran gösterim modudur; AC sinüs üretim modu değildir.
+5. **Alternatif jeneratörler:** FYE050, AD9833 ve XR2206 şimdilik satın alma listesine alınmaz. Mevcut kaynaklarla deney yapılamadığı veya otomatik frekans taraması gerektiği kanıtlanırsa yeniden değerlendirilir.
+
+Ayrıntılı kayıtlar:
+- [2D15P DMM / SCT013-030 / DDS yardımcı deneyi](DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md)
+- [SG-002 DC analog gerilim ve akım döngüsü testi](DENEYLER/FNIRSI-SG002-DC-ANALOG-SIMULATOR-TESTI-2026-11-28.md)
+
+Bu ekler plan kaydıdır; henüz fiziksel test, ölçüm logu veya doğrulanmış sonuç yoktur.
