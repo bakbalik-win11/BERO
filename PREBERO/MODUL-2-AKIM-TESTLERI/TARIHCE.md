@@ -258,3 +258,15 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Kaynak sınırı:** FNIRSI SG-002 DC V/DC mA simülatörüdür; AC sinüs jeneratörü olarak kullanılmaz. FNIRSI 2D15P DDS, zayıflatıcıyla düşük mV yardımcı test seviyesi oluşturabilir; kaynak kalibrasyon standardı değildir. DDS ve DMM işlevlerinin aynı anda çalıştığı varsayılmaz.
 - **Kanıt/sonuç durumu:** Ölçüm altyapısı stratejisi ve test sırası dokümante edildi. Bu karar cihazların kalibrasyonunu veya deneylerin fiziksel olarak tamamlandığını göstermez.
 - **İlgili kayıt:** `PREBERO/OLCUM-ALTYAPISI/OLCUM-STRATEJISI-V1.0.md`; güncel durum `PREBERO/DURUM.md`; planlanan cihaz envanteri `ENVANTER/README.md`.
+
+
+### 2026-11-28 – MOD2-GRV002 – SCT akım genlik hatası ile PF hesabının ayrılması
+
+- **Çalışma / karar:** Kullanıcı, PF≈1 koşulunda SCT013 akım kalibrasyonunun daha önce başarıldığını teyit etti. Bu kalibrasyon ve MOD2-GRV001 V1.6 korunacak; PF<1 deneyi için SCT amper katsayısı baştan ayarlanmayacak.
+- **Gerilim/PF ayar ayrımı:** ZMPT101B trimpotu yalnızca BERO gerilim RMS ölçeğini PZEM gerilimine yaklaştırır. PF≈0,50 gibi deney noktası dimmerle oluşturulur; dimmer konumu ve PZEM PF değeri kaydedilerek sabitlenir. Trimpot PF ayar elemanı değildir.
+- **Matematiksel sonuç:** PF yalnızca (V_{RMS}) ve (I_{RMS}) üzerinden bulunamaz. Zaman eşlemeli örneklerden (P=\operatorname{mean}(v[n]i[n])) ve (PF=P/(V_{RMS}I_{RMS})) hesaplanmalıdır. SCT akım örnekleri gerçek dalganın yalnızca sabit doğrusal bir kazançla çarpılmış hali ise akımdaki genlik katsayısı hem P hem (I_{RMS}) içinde bulunduğundan PF oranında sadeleşir. Bu nedenle amper ölçeği henüz PZEM'le eşleşmese bile, dalga biçimi ve zaman ilişkisi korunuyorsa PF hesaplanabilir.
+- **Sınırlar:** Faz/frekans cevabı hatası, dalga biçimi bozulması, doyum/kırpılma, doğrusal olmayanlık, ofset/gürültü ve ADC kanalları arasındaki örnek zaman farkı PF sonucunu bozabilir. Sadece RMS gerilim ve RMS akım okumak PF için yeterli değildir.
+- **Deney sırası:** Önce ZMPT gerilim RMS ölçeğini PZEM'e yaklaştır; dimmerle sabit PF noktası oluştur; daha önce elde edilen SCT PF≈1 akım kalibrasyonuna dokunmadan iki kanaldan aynı pencereye ait örnek al; BERO PF ve akımını PZEM ile karşılaştır; tekrarlanabilir veri oluşursa ayrı PF'ye bağlı akım düzeltme fonksiyonu araştır.
+- **Koruma:** MOD2-GRV001 V1.6 değiştirilmez. ZMPT gerilim ayarı, SCT akım ölçeği, PF hesabı ve PF'ye bağlı akım düzeltmesi ayrı kavramlar olarak tutulur.
+- **Kanıt durumu:** Matematiksel gerekçe ve deney kararı kaydedildi; fiziksel ZMPT/PF deneyi, zaman eşlemeli ADC doğrulaması veya yeni fonksiyon henüz yoktur.
+- **Ayrıntılı kayıt:** [MOD2-GRV002 görev kaydı, §16](GOREVLER/MOD2-GRV002/GOREV.md).
