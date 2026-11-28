@@ -247,3 +247,14 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Alternatifler:** FYE050 yüksek minimum çıkış nedeniyle yine zayıflatıcı ister; AD9833 ESP32/SPI otomasyonu için değerlidir ancak modül çıkış genliği devreye bağlıdır; XR2206 kitlerinin özellikleri kart revizyonuna göre değişir. Bunlardan hiçbiri şimdilik satın alınmayacaktır.
 - **İlgili kayıtlar:** [2D15P DMM/SCT/DDS deney planı](GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md); [SG-002 DC deney planı](GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-SG002-DC-ANALOG-SIMULATOR-TESTI-2026-11-28.md); görev kaydı `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md`.
 - **Kanıt durumu:** Yalnızca deney planı ve teknik ayrım kaydedildi; fiziksel test, log veya doğrulanmış ölçüm sonucu yoktur.
+
+
+### 2026-11-28 – BERO ölçüm altyapısı hedefleri sabitlendi — Ölçüm Stratejisi V1.0
+
+- **Çalışma / karar:** Kullanıcı, BERO'da ölçüm kaynaklı gecikmeleri önlemek için tezgâh cihazlarının görevlerinin ve sensör doğrulama sırasının sabitlenmesini istedi.
+- **Ana yaklaşım:** Önce sensörün ham elektriksel çıkışı bağımsız ölçülür; sonra dalga biçimi 2D15P ile incelenir; ardından analog ön uç/ADC ham kodu ve en son yazılım/kalibrasyon doğrulanır. ADC sayısı sensörün ham çıkışı yerine kullanılmaz.
+- **Cihaz görevleri:** SANEC lojik analizör dijital protokol/zamanlama; FNIRSI 2D15P analog dalga biçimi ve DDS; FNIRSI SG-002 DC gerilim/akım simülasyonu; UT200B+ yardımcı pens akımı; UT33D+ günlük süreklilik/temel kontroller; planlanan UT61E+ bağımsız analog sensör DMM'si.
+- **Satın alma kararı:** Yalnızca UNI-T UT61E+ planlanan yeni ölçüm cihazıdır. AD9833/AD9850 DDS modülleri, FYE050 veya XR2206 yeni satın alma gereksinimi olarak açılmayacaktır; mevcut cihazlarla karşılanamayan somut deney ihtiyacı gösterilirse tekrar değerlendirilir.
+- **Kaynak sınırı:** FNIRSI SG-002 DC V/DC mA simülatörüdür; AC sinüs jeneratörü olarak kullanılmaz. FNIRSI 2D15P DDS, zayıflatıcıyla düşük mV yardımcı test seviyesi oluşturabilir; kaynak kalibrasyon standardı değildir. DDS ve DMM işlevlerinin aynı anda çalıştığı varsayılmaz.
+- **Kanıt/sonuç durumu:** Ölçüm altyapısı stratejisi ve test sırası dokümante edildi. Bu karar cihazların kalibrasyonunu veya deneylerin fiziksel olarak tamamlandığını göstermez.
+- **İlgili kayıt:** `PREBERO/OLCUM-ALTYAPISI/OLCUM-STRATEJISI-V1.0.md`; güncel durum `PREBERO/DURUM.md`; planlanan cihaz envanteri `ENVANTER/README.md`.
