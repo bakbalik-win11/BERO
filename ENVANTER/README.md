@@ -42,7 +42,7 @@ Bu bölüm, BERO geliştirme ve genel elektronik deneylerinde kullanılan mevcut
 | Ekipman | Model / tanım | Kullanım amacı ve sınırlar | Durum |
 |---|---|---|---|
 | Dijital multimetre | UNI-T UT33D+ | Temel DC/AC gerilim, direnç ve süreklilik kontrolleri | Mevcut |
-| Bağımsız analog referans multimetre | UNI-T UT61E+ | Planlanan tezgâh DMM'si: düşük AC mV, DC mV/V, AC/DC akım ve direnç ölçümleri; sensörün ham çıkışını ADC'den bağımsız karakterize etme. Üretici spesifikasyonlu ölçü aletidir, kalibrasyon standardı değildir. | **Satın alma kararı verildi; henüz mevcut değil / teslim beklenmiyor** |
+| Bağımsız analog referans multimetre | UNI-T UT61E+ | Tezgâh DMM'si: düşük AC mV, DC mV/V, AC/DC akım ve direnç ölçümleri; sensörün ham çıkışını ADC'den bağımsız karakterize etme. Üretici spesifikasyonlu ölçü aletidir, kalibrasyon standardı değildir. | **Sipariş verildi (28.11.2026); teslim ve cihaz kontrolü bekleniyor** |
 | Pens ampermetre | UNI-T UT200B+ | Temassız akım ölçümü ve yük akımını kontrol etme | Mevcut |
 | Osiloskop / DMM / DDS | FNIRSI 2D15P, 2 kanal, 100 MHz; dahili True RMS multimetre ve 1 kanallı DDS jeneratör | Analog dalga biçimi, genlik, zamanlama ve iki kanal karşılaştırması; DMM ile temel AC/DC ölçümler; DDS ile 0,1–3,0 Vpp dalga üretimi. Düşük mV AC için pasif zayıflatıcıyla yardımcı test kaynağı olabilir; kalibrasyon standardı değildir. **Mevcut / teslim alındı (22.11.2026 teyidi).** | Mevcut |
 | Sinyal jeneratörü | SANEC; tam model henüz kaydedilmedi | Düşük gerilimli test sinyalleri üretme | Mevcut |
