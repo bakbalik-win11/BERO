@@ -325,3 +325,14 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Zamanlama sınırı:** `load_change_timestamp` ile `pzem_publish_timestamp` farkı olay ile yeni yayının gözlenen aralığıdır; PZEM'in iç ölçüm gecikmesini tek başına kanıtlamaz.
 - **Kanıt durumu:** Deney protokolü netleştirildi; 1/2/3 LED fiziksel ölçümleri henüz yapılmadı.
 - **Ayrıntılı kayıt:** MOD2-GRV002 görev kaydı, Bölüm 17.9.
+
+
+### 2026-11-28 – MOD2-GRV002 – Birleşik PF Deney Planı V1.0 oluşturuldu
+
+- **Çalışma / karar:** Dağınık PF görüşmeleri, çok değişkenli deney matrisi, veri penceresi kuralları ve gerçek hayat yük sırası tek bir uygulanabilir ana belgede birleştirildi.
+- **Ana plan:** `PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/PF-DENEY-PLANI-V1.0.md`.
+- **Sıra:** ZMPT101B güvenlik/kart ön kontrolü → SCT ham çıkışı kısa DMM ön gözlemi → sabit dirençli yükte ZMPT gerilim RMS ölçeğini PZEM'e yaklaştırma → PF≈1 SCT kalibrasyonunu koruma → 1/2/3 LED → vantilatör → telefon şarjı → 100 W dimmerli akkor → ham zaman eşlemeli PF/ADC yeterlilik kapısı → ayrı düzeltme modeli ve doğrulama.
+- **Önemli ayrım:** Mevcut ct_clamp RMS ve PZEM PF ile SCT akım sapması incelenebilir; bu, BERO'nun bağımsız PF hesapladığını göstermez. Bağımsız gerçek PF hesabı için ham ve zaman eşlemeli gerilim/akım örnekleri gerekir.
+- **Model koruması:** MOD2-GRV001 V1.6 ve PF≈1 SCT akım kalibrasyonu değiştirilmez. K=27.59 eski V1.1 baz katsayısı olarak adlandırılır; V1.6 K(x) modelinin yerine konmaz.
+- **Kanıt durumu:** V1.0 deney planıdır; güvenlik kontrolü, ZMPT ayarı, gerçek yük testleri, ham örnekleme ve yeni PF/düzeltme algoritması henüz tamamlanmamıştır.
+- **Bağlantılar:** Ana plan `GOREVLER/MOD2-GRV002/PF-DENEY-PLANI-V1.0.md`; görev `GOREVLER/MOD2-GRV002/GOREV.md`; güncel durum `PREBERO/DURUM.md`.
