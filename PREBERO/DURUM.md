@@ -16,7 +16,7 @@
 
 Önce FNIRSI 2D15P'yi DMM modunda kullanarak SCT013-030 (30 A / 1 V) sensör çıkışını doğrudan ölç. İlk hedef, 0,05 A RMS primer akımına karşılık gelen yaklaşık 1,67 mV RMS AC değerin yüksüz tabandan ayırt edilip edilemediğini ve tekrarlandığında kararlı görünüp görünmediğini kontrol etmektir. Bu ilk deneyde ESP32, ADS1115, MCP3208, bias, harici burden veya yükselteç kullanma. Akımın gerçekten 0,05 A olduğu bağımsız ve güvenilir biçimde doğrulanamıyorsa sonucu yaklaşık yük denemesi olarak kaydet; kesin 0,05 A sonucu ilan etme. Ayrıntı: [FNIRSI 2D15P DMM – SCT013-030 deney planı](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md).
 
-Bu ön testten sonra MOD2-GRV002'nin ZMPT101B kartını tanıma ve PF deneyi adımlarına devam et. Şebeke bağlantısı için kartın giriş devresi, yalıtım/mesafeler, terminal koruması ve kapalı test düzeneği ayrıca kontrol edilir. Osiloskop ground klipslerini şebekeye bağlama.
+Bu ön testten sonra MOD2-GRV002'nin ZMPT101B kartını tanıma ve PF deneyi adımlarına devam et. Analog ölçü aleti kontrolünde 2D15P DDS + pasif 1/21 zayıflatıcı düşük AC mV yardımcı kaynağı olabilir; 2D15P DDS/DMM eşzamanlılığı doğrulanmadan varsayılmaz. FNIRSI SG-002 ise ayrı DC V ve DC mA simülatörüdür, AC sinüs kaynağı değildir. FYE050, AD9833 veya XR2206 satın alma kararı şimdilik yoktur. Şebeke bağlantısı için kartın giriş devresi, yalıtım/mesafeler, terminal koruması ve kapalı test düzeneği ayrıca kontrol edilir. Osiloskop ground klipslerini şebekeye bağlama.
 
 ## Modül gelişim hikâyesi ve mevcut aşamalar
 
