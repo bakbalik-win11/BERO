@@ -14,7 +14,9 @@
 
 ## Bir sonraki somut adım
 
-ZMPT101B kartının ön/arka yüzünü ve revizyon/pin işaretlerini kaydet; trimpotun etkisini ve güvenli ön test düzenini belirle. Kartın giriş devresi, yalıtım/mesafe, terminal koruması ve kapalı test düzeneği kontrol edilmeden 220–230 V bağlantısına geçme. Osiloskop ground klipslerini şebekeye bağlama.
+Önce FNIRSI 2D15P'yi DMM modunda kullanarak SCT013-030 (30 A / 1 V) sensör çıkışını doğrudan ölç. İlk hedef, 0,05 A RMS primer akımına karşılık gelen yaklaşık 1,67 mV RMS AC değerin yüksüz tabandan ayırt edilip edilemediğini ve tekrarlandığında kararlı görünüp görünmediğini kontrol etmektir. Bu ilk deneyde ESP32, ADS1115, MCP3208, bias, harici burden veya yükselteç kullanma. Akımın gerçekten 0,05 A olduğu bağımsız ve güvenilir biçimde doğrulanamıyorsa sonucu yaklaşık yük denemesi olarak kaydet; kesin 0,05 A sonucu ilan etme. Ayrıntı: [FNIRSI 2D15P DMM – SCT013-030 deney planı](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md).
+
+Bu ön testten sonra MOD2-GRV002'nin ZMPT101B kartını tanıma ve PF deneyi adımlarına devam et. Şebeke bağlantısı için kartın giriş devresi, yalıtım/mesafeler, terminal koruması ve kapalı test düzeneği ayrıca kontrol edilir. Osiloskop ground klipslerini şebekeye bağlama.
 
 ## Modül gelişim hikâyesi ve mevcut aşamalar
 
@@ -56,5 +58,6 @@ Sensör tecrübesi ve tekrar kullanılabilir küçük kodlar sensörün DONANIM 
 - **2026-11-27:** Kullanıcı, pratik ZMPT trimpot + PZEM gerilim karşılaştırmasıyla başlayıp SCT013/PF denemesine ve yeni akım düzeltme adayına ilerleme sırasını seçti. Henüz deney yapılmadı.
 - **2026-11-28:** Kullanıcı, çamaşır makinesi kaydındaki PF/akım ilişkisini teyit etti ve hobi projesi için önce basit, sabit yükle yapılabilir deneylerden EXP/K(x) benzeri PF etkili f(X) aramayı; işe yaramazsa daha ayrıntılı yönteme geçmeyi seçti.
 - **2026-11-28:** Donanım kimlikleri ayrıştırıldı: eski imha edilmiş fiziksel Modül 2 ile aktif masaüstü MOD2-BENCH-01 aynı şey değildir; PZEM yayımlayan WROOM ESP'nin de eski `bero-modul3-wroom` firmware adı kalırken bağımsız PZEM-REF-WROOM-01 varlığı olarak yaşadığı kullanıcı tarafından teyit edildi.
+- **2026-11-28:** PF/ZMPT adımlarından önce sensör çıkışını bağımsız gözleme kararı alındı. FNIRSI 2D15P DMM ile SCT013-030'un 0,05 A karşılığı yaklaşık 1,67 mV RMS çıkışının okunabilirliği denenecek. Bu bir deney planıdır; fiziksel ölçüm veya sonuç henüz yoktur.
 
 Ayrıntılı teknik geçmiş Modül 2 [TARIHCE.md](MODUL-2-AKIM-TESTLERI/TARIHCE.md), MOD2-GRV002 [görev kaydı](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md) ve ilgili donanım kayıtlarındadır. Oturum sonunda önce ilgili tarihçe/görev kanıtını, sonra bu dosyadaki güncel durum ve sıradaki adımı yenile.
