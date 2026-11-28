@@ -304,3 +304,14 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Yeniden analiz:** Aynı ham kayıtlar daha sonra farklı PF, dalga biçimi veya kalibrasyon hipotezleriyle yeniden analiz edilebilir. Bu işlem V1.6'yı otomatik değiştirmez; (K(x)=26.89+5.39e^{-x/0.882}) referansı korunur, yeni PF modeli ayrı sürüm ve bağımsız doğrulama gerektirir.
 - **Kanıt durumu:** Veri yönetimi ve deney yöntemi kararıdır; gerçek pencere çakışması, örnek sayısı ve ham çift kanal kaydı fiziksel deneyle doğrulanmayı bekler.
 - **Ayrıntılı kayıt:** MOD2-GRV002 görev kaydı, Bölüm 17.7.
+
+
+### 2026-11-28 – MOD2-GRV002 – Gerçek hayat PF yükleri ve üç LED ile akım basamaklama
+
+- **Kullanıcı bildirimi:** Kullanıcının elinde üç adede kadar LED ampul bulunduğu belirtildi. İlk gerçek hayat yük serisi, LED ampulleri tek tek, ikili ve üçlü kombinasyonla çalıştırarak aynı yük ailesinde toplam akımı basamaklandırmak olarak belirlendi.
+- **Deney amacı:** LED sürücüsü karakteri altında toplam akım değişirken PZEM PF ve SCT/PZEM akım farkının nasıl değiştiğini görmek. Her kombinasyonda PZEM V/I/P/PF yeniden kaydedilecek; PF'nin sabit kalacağı varsayılmayacak.
+- **Yük kimliği:** Ampuller aynı marka/model/watt ise aynı seri içinde bir/iki/üç ampul basamağı olarak karşılaştırılabilir. Farklılarsa her ampulün marka/model/watt bilgisi ve kullanılan kombinasyon açıkça etiketlenecek; aynı yük tipi varsayılmayacak.
+- **Diğer gerçek hayat yükleri:** Vantilatör sabit hız kademeleriyle motorlu yük grubu; telefon şarjı ise kısa kararlı aralıklar yakalanabilirse steady pencere, aksi halde dynamic zaman serisi olarak incelenecek. Dimmerli akkor ayrı kontrollü dalga biçimi deneyidir.
+- **Durum etiketleri:** settling geçişi, steady kararlı platoyu, dynamic geçerli fakat zamanla değişen yükü, invalid bozuk/eksik veriyi belirtir. Dynamic kayıt geçersiz sayılıp silinmez.
+- **Kanıt durumu:** Yükler ve deney sırası planlandı; LED ampul, vantilatör veya telefon şarjıyla bu yeni seri henüz ölçülmedi.
+- **Ayrıntılı kayıt:** MOD2-GRV002 görev kaydı, Bölüm 17.8.
