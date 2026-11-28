@@ -284,3 +284,13 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Model kapsamı:** Ampirik düzeltme yalnız test edilen PF, akım, dalga biçimi ve yük aralığında adaydır. Yeni yük tipi veya motor/çamaşır makinesi geçişi ayrı doğrulama gerektirir.
 - **Kanıt durumu:** Bu kayıt deney tasarımı ve tarihsel verinin yorumudur; yeni fiziksel ölçüm, harmonik analizi, ham ADS örnek kaydı veya doğrulanmış yeni fonksiyon değildir.
 - **Ayrıntılı kayıt:** MOD2-GRV002 görev kaydı, Bölüm 17.
+
+
+### 2026-11-28 – MOD2-GRV002 – Deney logunda settling/steady ve örnekleme penceresi ayrımı
+
+- **Kullanıcı önerisi:** Yük/dimmer geçişlerinde PZEM'in 5 saniyelik yayın ritmi dikkate alınarak `settling` ve `steady` etiketleri kullanılması; örnek sayısı ve Δt yanında gerçek ölçüm penceresi süresi veya ESPHome 200 ms pencere bilgisinin tutulması önerildi.
+- **Teknik doğrulama:** ESPHome ct_clamp belgeleri `sample_duration` değerini her ölçümde örnekleme süresi, `update_interval` değerini sensörün ölçüm kontrol/yeni örnekleme aralığı olarak tanımlar. Kaynak kodunda update çağrısı örnekleme fazını başlatır; sample_duration zaman aşımında faz sona erer, örnek sayısı üzerinden RMS hesaplanıp yayımlanır. Dolayısıyla 200 ms + 1 s ayarı, saniyede beş adet 200 ms pencerenin birleştirilmesi demek değildir.
+- **Kayıt kararı:** `settling/steady/invalid` etiketi; yük değişim zamanı; PZEM yayın zamanı; gerçek BERO pencere başlangıç/bitişi ve süresi; yapılandırılmış 200 ms sample_duration; 1000 ms update_interval; logdan elde edilen gerçek kaynak örnek sayısı ve efektif SPS ayrı alanlarda tutulacak.
+- **PZEM kararlılığı:** Ayar değişiminden sonra en az bir tam 5 saniyelik yayın aralığı geçecek; ardından kararlılık, önceden belirlenmiş tolerans ve ardışık yayın şartlarıyla değerlendirilecek. 5 saniyelik yayın ritmi PZEM'in iç örnekleme penceresinin kesin süresi diye yorumlanmayacak.
+- **Kanıt sınırı:** Mevcut HA ct_clamp RMS varlığı ham örnek zaman damgalarını ve gerçek kaynak örnek sayısını tek başına taşımaz. Bu alanlar debug veya ayrı ham veri kaydıyla elde edilmedikçe boş bırakılacak; tahmin edilmeyecek.
+- **Ayrıntılı kayıt:** MOD2-GRV002 görev kaydı, Bölüm 17.6.
