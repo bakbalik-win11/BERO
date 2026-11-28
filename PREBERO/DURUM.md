@@ -17,7 +17,7 @@
 
 - **PF deney matrisi güncellemesi (2026-11-28):** Düzeltme yalnız PF'ye bağlanmayacak; PF, I_RMS, I_peak/crest factor, yük tipi/dalga biçimi ve örnekleme kimliği ayrı kaydedilecek. Dimmerli 100 W ve 8,5 W LED tarihsel verileri farklı, birbirine karıştırılmayacak çalışma koşullarıdır. PZEM-REF-WROOM-01 5 saniyelik yayın yaptığı için yük/dimmer geçişinden sonra kararlı plato beklenip aynı zaman sınırlarında pencere özeti karşılaştırılacak. Kritik sınır: mevcut ADS1115 ct_clamp kayıtları 200 ms RMS / 1 s yayın değeridir; ham v[n], i[n] örnek dizisi değildir. ADS1115 860 SPS ve MUX nedeniyle iki kanalı eşzamanlı örneklemez; gerçek PF/harmonik hesabından önce ham örnek hızı ve Δt ölçülmelidir. Detay: [MOD2-GRV002 §17](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md).
 
-- **PF ve akım düzeltmesi:** Çamaşır makinesi saha kaydının sonraki değerlendirmesinde akım sapmasının PF koşullarıyla ilişkili olduğu teyit edildi. Önce sabit yük/dimmer/PZEM karşılaştırmalarından pratik bir PF okuma ve akım düzeltme eğrisi, EXP/K(x) geliştirme yaklaşımına benzer biçimde aranacak. BERO'nun kendi SCT+gerilim sensörü PF'si girdiye dönüşecek. Kolay deney yeterli olmazsa daha ayrıntılı faz/zamanlama yöntemlerine geçilecek. V1.6'ya dokunulmaz; yeni model MOD2-GRV002'de tutulur.
+- **PF ve akım düzeltmesi:** Modül 2 masaüstü platformuyla çamaşır makinesi gerçek yükünde alınan kaydın sonraki değerlendirmesinde akım sapmasının PF koşullarıyla ilişkili olduğu kullanıcı tarafından teyit edildi. Önce sabit yük/dimmer/PZEM karşılaştırmalarından pratik bir PF okuma ve akım düzeltme eğrisi, EXP/K(x) geliştirme yaklaşımına benzer biçimde aranacak. BERO'nun kendi SCT+gerilim sensörü PF'si girdiye dönüşecek. Kolay deney yeterli olmazsa daha ayrıntılı faz/zamanlama yöntemlerine geçilecek. V1.6'ya dokunulmaz; yeni model MOD2-GRV002'de tutulur.
 - **PZEM:** Geliştirme/karşılaştırma referansıdır; mutlak doğru kabul edilmez ve son BERO hattı için zorunlu değildir.
 - **Araştırma notları:** Diğer yapay zekâların karşılaştırmalı özeti, metodoloji ve dış kaynak incelemeleri isteğe bağlı başvurudur. Güncel deney sırasının yerine geçmez.
 - **Kanıt durumu:** Bu yeni yöntem için fiziksel deney, PF katsayısı ve firmware doğrulaması henüz yoktur.
@@ -44,27 +44,31 @@ Sonraki gerçek yük serisi 1 → 2 → 3 LED, ardından vantilatör, telefon ş
 
 ## Modül gelişim hikâyesi ve mevcut aşamalar
 
-### Modül 1 — Şebeke karakterini koruyan bias
+### Modül 1 – Ölçüm Destek ve Referans Birimleri
 
-Önce genel bias orta nokta yapısı tanımlandı; 3,30 V kutu çıkışından iki eşit dirençle yaklaşık 1,65 V orta nokta ölçüldü. Taşınabilir bias güç kutusu fiziksel olarak üretildi, kapalı kutu ve soketli bağlantı olarak kaydedildi. Şebeke karakterinin SCT013 ölçüm sinyaline aktarılması, izolasyon ve güvenlik doğrulaması tamamlanmış sayılmaz. Modül 1 kayıtları [burada](MODUL-1-BIAS-TRAFOSU/TARIHCE.md); imalat bilgisi [burada](MODUL-1-BIAS-TRAFOSU/IMALAT/IMALAT.md).
+Modül 1, Modül 2 masaüstü deney platformunun kullandığı iki ayrı destek/referans birimini kapsayan üst gruptur. Tek bir birleşik fiziksel cihaz değildir. Genel indeks: [Modül 1 destek ve referans birimleri](MODUL-1-DESTEK-REFERANS/README.md).
 
-### Modül 2 — Masaüstü akım ve PF geliştirme
+#### Modül 1A – Bias Ünitesi
 
-Modül numarası burada geliştirme/deney alanını belirtir; her zaman tek bir kalıcı fiziksel cihaz demek değildir. Eski üç kanallı biaslı fiziksel Modül 2 imha edilmiştir. Bugünkü masaüstü ölçüm düzeneği ayrı varlık **MOD2-BENCH-01**'dir: ESP32-D2 + ADS1115 No.10 + SCT013 30 A / 1 V. Modül 1'in taşınabilir bias güç kutusu da bu düzeneğin kendisi değildir.
+Önceki projeden devralınan fiziksel bias kaynağıdır. Kapalı kutu ve soketli bağlantılarla fiziksel imalatı tamamlanmıştır. Bu durum biasın işlevini, şebeke karakterini doğru aktardığını, galvanik izolasyonu veya elektriksel güvenliği kanıtlamaz. Ayrıntı: [hedefler](MODUL-1-BIAS-TRAFOSU/HEDEFLER.md), [imalat kaydı](MODUL-1-BIAS-TRAFOSU/IMALAT/IMALAT.md), [tarihçe](MODUL-1-BIAS-TRAFOSU/TARIHCE.md).
 
-Bu masaüstü düzende SCT013 biaslı/biassız karşılaştırmaları ve farklı yük denemeleri yapıldı; bu sırada çamaşır makinesi saha kayıtları da alındı. Bias ölçüm ortalamasını bazı çalışma noktalarında etkiledi, ancak genel veri kalitesi iyileşmesi ek donanım ve bağlantı karmaşıklığını haklı çıkaracak kadar büyük görülmedi. Bu nedenle basit biassız ölçüm yolu tercih edildi. V1.6 EXP/K(x) akım modeli sabit yük deneylerinden geliştirildi ve korunmuş referans olarak MOD2-GRV001 kapatıldı. Çamaşır makinesi kaydının sonraki değerlendirmesinde PF koşullarının akım sapmasıyla ilişkisi teyit edildi; bu gözlem PF'yi yeni düzeltme denklemine katma gerekçesi oldu.
+#### Modül 1B – PZEM Dış Referans Ünitesi
 
-PZEM değerlerini yayınlayan ESP32-WROOM ise ayrı varlık **PZEM-REF-WROOM-01**'dir. Eski firmware adı `bero-modul3-wroom` olsa da güncel PREBERO Modül 3 (çamaşır makinesi) ile aynı kimlik değildir; MOD2 deneylerinde karşılaştırma referansı olarak kullanılabilir. Envanter ve cihaz eşlemesi [burada](../ENVANTER/README.md); bias/model kanıtı [Modül 2 tarihçesi](MODUL-2-AKIM-TESTLERI/TARIHCE.md) ve GRV001 kayıtlarında; çamaşır makinesi saha kaydı [Modül 3 tarihçesinde](MODUL-3-CAMASIR-MAKINESI/TARIHCE.md) bulunur.
+PZEM-004T V3.0 ve ESP32-WROOM yayıncısından oluşan dış karşılaştırma birimidir. Geçici fiziksel işlev etiketi **PZEM-REF-WROOM-01**'dir. Eski firmware adı `bero-modul3-wroom` tarihsel yazılım adıdır; güncel PREBERO Modül 3 ile aynı kimlik değildir. Modül 2 deneylerinde V/I/P/PF karşılaştırma ve etiket kaynağı olarak kullanılır; kalibrasyon standardı veya mutlak ground truth değildir. Ayrıntı: [Modül 1B kaydı](MODUL-1-DESTEK-REFERANS/MODUL-1B-PZEM-REFERANS.md).
 
-Şimdi MOD2-GRV002’de önce basit sabit yük/dimmer deneyleriyle PZEM referanslı PF ve akım noktaları toplanacak; yeni ZMPT101B + SCT013 zincirinin PF okumasından pratik bir f(X) düzeltmesi aranacak. Bu yolla sonuç alınamazsa ayrıntılı faz/zamanlama yöntemleri yedek plandır. Henüz yeni katsayı bulunmadı veya fiziksel doğrulanmadı. V1.6 korunur; ayrıntılar [MOD2-GRV002 görevinde](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md).
+### Modül 2 – Masaüstü Deney ve Altyapı Doğrulama Platformu
 
-### Modül 3 — Çamaşır makinesi
+Modül 2, Modül 3 ve 4'te kullanılacak ölçüm altyapısının geliştirildiği ve denendiği masaüstü platformdur. Aktif düzenek **MOD2-BENCH-01**: ESP32-D2 + ADS1115 No.10 + SCT013 30 A / 1 V. Deney ihtiyacına göre Modül 1A bias ünitesi ve Modül 1B PZEM dış referans birimi kullanılır.
 
-Modül 2’den gelen V1.6 akım ölçüm yolu ile çamaşır makinesinin uzun pamuklu programında yaklaşık 78 dakikalık saha kaydı alındı. Isıtma bölümünde PZEM akımıyla yakın takip; sonraki düşük akım bölümlerinde pozitif fark görüldü. Kullanıcının kayıt üzerindeki sonraki değerlendirmesi, bu farkın PF koşullarıyla ilişkisini teyit etti ve PF'yi akım denklemine katma araştırmasını başlattı. MOD3-AKM001 saha kaydı hedefini tamamlayıp kapandı; ses/titreşim ve nihai modül mimarisi bu görevde tamamlanmadı. Tarihçe [burada](MODUL-3-CAMASIR-MAKINESI/TARIHCE.md), görev [burada](MODUL-3-CAMASIR-MAKINESI/GOREVLER/MOD3-AKM001/GOREV.md).
+Akım okuma, sensör/ADC davranışı, kalibrasyon, örnekleme, veri zamanlaması, ham veri toplama ve PF araştırması Modül 2 kapsamındadır. Çamaşır makinesiyle daha önce alınan yaklaşık 78 dakikalık uzun program kaydı da Modül 2 altyapısının gerçek yükte sınanmasıdır. Makine bu deneyde **test yüküdür**; kayıt Modül 3'ün imal edildiği veya bütünleşik Modül 3 sisteminin çalıştığı anlamına gelmez. Eski `MOD3-AKM001` görev kimliği ve rapor yolu tarihsel çapraz referans olarak korunur; teknik sahiplik Modül 2'dir. Ayrıntı: [Modül 2 hedefleri](MODUL-2-AKIM-TESTLERI/HEDEFLER.md), [tarihçesi](MODUL-2-AKIM-TESTLERI/TARIHCE.md) ve [MOD2-GRV002 PF deney planı](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/PF-DENEY-PLANI-V1.0.md).
 
-### Modül 4 — Bulaşık makinesi
+### Modül 3 – Çamaşır Makinesi Nihai Modülü
 
-Modül 4 saha çalışması henüz başlamadı. Modül 3 ile ortak zaman pencereli akım, ses ve titreşim veri toplama fikri taslak olarak belirlendi; örnekleme, bağlantı ve veri birleştirme koşulları doğrulanmadan nihai imalata geçilmeyecek. Ortak taslak [burada](ORTAK-MIMARI/MODUL-3-4-ORTAK-ZAMAN-PENCERELI-VERI-TOPLAMA-MIMARISI.md), Modül 4 tarihçesi [burada](MODUL-4-BULASIK-MAKINESI/TARIHCE.md).
+**FİZİKSEL İMALAT YAPILMADI.** Modül 3, Modül 2'de geliştirilen ölçüm altyapısının ileride çamaşır makinesi için ses ve titreşim kanallarıyla bütünleştirileceği nihai hedeftir. Bugüne kadarki çamaşır makinesi akım/PZEM kayıtları Modül 2 platformunun gerçek yük testleridir ve Modül 3 tasarımına girdi bırakır. Eski `MOD3-AKM001` kaydı bu geçmişi izlemek için bağlantılı tutulur; Modül 3 imalatı veya bütünleşik sensör başarısı sayılmaz. Ayrıntı: [hedefler](MODUL-3-CAMASIR-MAKINESI/HEDEFLER.md), [tarihçe](MODUL-3-CAMASIR-MAKINESI/TARIHCE.md), [eski görev izi](MODUL-3-CAMASIR-MAKINESI/GOREVLER/MOD3-AKM001/GOREV.md).
+
+### Modül 4 – Bulaşık Makinesi Nihai Modülü
+
+**FİZİKSEL İMALAT YAPILMADI.** Modül 4, Modül 2'de geliştirilecek ve doğrulanacak ölçüm altyapısının ileride bulaşık makinesine uyarlanacağı nihai hedeftir. Bulaşık makinesiyle Modül 2 kapsamında tamamlanmış saha deneyi bulunduğu varsayılmaz. Modül 3/4 ortak zaman pencereli akım, ses ve titreşim mimarisi taslaktır; imalat öncesi karar kapıları geçilmeden fiziksel modül yapılmayacaktır. Ayrıntı: [hedefler](MODUL-4-BULASIK-MAKINESI/HEDEFLER.md), [tarihçe](MODUL-4-BULASIK-MAKINESI/TARIHCE.md), [ortak mimari](ORTAK-MIMARI/MODUL-3-4-ORTAK-ZAMAN-PENCERELI-VERI-TOPLAMA-MIMARISI.md).
 
 ### Modül 5 — Ana pano
 
@@ -76,8 +80,8 @@ Sensör tecrübesi ve tekrar kullanılabilir küçük kodlar sensörün DONANIM 
 
 ## Kısa geçmiş
 
-- **2026-11-21:** Biaslı/biassız SCT karşılaştırmaları yapıldı. Biaslı kolun ölçüm ortalamasına etkisi yaklaşık 0,47 A çalışma noktasında gözlendi; genel veri kalitesi kazancı ek donanım karmaşıklığını haklı çıkarmadığından biassız yol tercih edildi. Çamaşır makinesi kayıtları da bu masaüstü geliştirme dönemi boyunca ayrıca alındı; kontrollü bias karşılaştırmasıyla karıştırılmamalı.
-- **2026-11-22:** MOD2-GRV001 için V1.6 tek fonksiyonlu EXP/K(x) modeli kabul edildi; görev kapatıldı ve referans korunuyor.
+- **2026-11-21:** Biaslı/biassız SCT karşılaştırmaları Modül 2 masaüstü platformunda yapıldı. Biaslı kolun ortalama ölçüme etkisi yaklaşık 0,47 A noktasında gözlendi; genel veri kalitesi kazancı ek karmaşıklığı haklı çıkarmadığından basit biassız yol tercih edildi.
+- **2026-11-22:** MOD2-GRV001 için V1.6 tek fonksiyonlu EXP/K(x) modeli kabul edildi. Aynı dönemde çamaşır makinesi gerçek yük kaydı da Modül 2 altyapı doğrulaması olarak üretildi; eski MOD3-AKM001 bağlantısı tarihsel iz için korundu.
 - **2026-11-24:** PF ve PF etkili akım araştırması için MOD2-GRV002 açıldı.
 - **2026-11-27:** Kullanıcı, pratik ZMPT trimpot + PZEM gerilim karşılaştırmasıyla başlayıp SCT013/PF denemesine ve yeni akım düzeltme adayına ilerleme sırasını seçti. Henüz deney yapılmadı.
 - **2026-11-28:** Kullanıcı, çamaşır makinesi kaydındaki PF/akım ilişkisini teyit etti ve hobi projesi için önce basit, sabit yükle yapılabilir deneylerden EXP/K(x) benzeri PF etkili f(X) aramayı; işe yaramazsa daha ayrıntılı yönteme geçmeyi seçti.
