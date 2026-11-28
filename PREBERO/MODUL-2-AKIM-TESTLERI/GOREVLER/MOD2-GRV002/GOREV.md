@@ -457,3 +457,25 @@ Dinamik yükte kısa bir aralık gerçekten kararlı hale gelirse o alt aralık 
 Her yükte PZEM kararlı yayınları beklenir; geçiş satırları silinmez, settling/dynamic olarak etiketlenir. Yalnızca steady pencereler kararlı nokta katsayısı üretiminde kullanılır. Dynamic kayıtlar kendi zaman bağlamında analiz edilir.
 
 **Kapsam sınırı:** Bulunan ampirik ilişki yalnızca test edilmiş yük, akım, PF, dalga biçimi ve çalışma aralığında geçerli adaydır. Motor kalkışı, çamaşır makinesi veya yeni yük evresi ayrıca doğrulanmalıdır. Bu bölüm deney planıdır; LED ampuller, vantilatör veya şarj cihazıyla yeni fiziksel test yapılmış sonucu değildir.
+
+
+### 17.9 1 → 2 → 3 LED basamaklarının pratik uygulaması — 2026-11-28
+
+Aynı marka/model ve aynı nominal güçteki LED ampullerle 1, 2 ve 3 ampul grupları, aynı LED sürücü ailesini koruyarak toplam akım seviyesini basamaklandırmak için kullanılacaktır. Bu, ilk gerçek hayat deney serisidir.
+
+**Deney adımları:**
+1. Tek LED'i çalıştır; yük değişim zamanını (`load_change_timestamp`) kaydet. PZEM yayınlarını izle. Geçiş boyunca `settling` kullan; PZEM değerleri ve BERO ölçümü kararlı koşulu sağlayınca yeni `window_id` ile `steady` veri penceresi aç.
+2. İkinci LED'i ekle; yeni yük değişim zamanını kaydet. Önceki pencereyi kapat. PZEM'in yeni çalışma noktasına oturmasını bekle ve aynı kayıt adımlarını tekrarla.
+3. Üçüncü LED'i ekle; aynı geçiş ve kararlılık protokolünü yeniden uygula.
+4. Her kademede PZEM V/I/P/PF, BERO akımı ve mevcutsa ham dalga/örnek bilgileri ayrı kaydedilir. Ampul adedi tek başına yük kimliği değildir; ampullerin model ve nominal güçleri de yazılır.
+
+**Bu serinin bilimsel/teknik yorumu:**
+- Aynı model ampuller kullanıldığında sürücü ailesi büyük ölçüde sabit tutulurken toplam akım artar; bu, SCT ölçüm sapmasının sinyal genliğiyle değişip değişmediğini incelemek için yararlı bir başlangıçtır.
+- PF'nin, crest factor'ün ve dalga biçiminin 1/2/3 ampul adımında aynı kalacağı varsayılmaz. Her basamakta PZEM PF ölçülür; (I_{RMS}), (I_{peak}) ve crest factor yalnız ham veri yeterliyse hesaplanır.
+- Aynı model ampullerin paralel toplamı yaklaşık aynı biçimde ölçeklense bile sürücü toleransı, açılış davranışı ve akım darbelerinin faz/zaman ayrıntısı nedeniyle dalga biçimleri kusursuz özdeş kabul edilmez.
+- PF ve crest factor benzer kalırken SCT/PZEM oranı akımla değişirse genlik/düşük seviye etkisi için kanıt güçlenir. PF veya crest factor de değişirse sonuç çok değişkenli olarak yorumlanır; yalnız akım genliğine bağlanmaz.
+- Ampuller farklı marka/model/güçteyse tekli ve çoklu kombinasyonlar ayrı `load_id` ile tutulur; “aynı sürücü karakteri” varsayımı yapılmaz.
+
+**Zamanlama notu:** `load_change_timestamp` yük ekleme anını, `pzem_publish_timestamp` ise yeni PZEM değerinin yayınlandığı anı kaydeder. İki damga arasındaki fark tek başına PZEM'in iç ölçüm gecikmesi değildir; sadece olay ile yayın arasındaki gözlenen süreyi verir. Geçiş örnekleri silinmez, `settling` olarak saklanır. `steady` sınıfı, önceden tanımlanmış ardışık PZEM kararlılığı ve BERO kararlılığı sağlandıktan sonra başlar.
+
+**Kanıt durumu:** Bu bölüm deney protokolüdür; 1/2/3 LED ölçümleri henüz yapılmamıştır.
