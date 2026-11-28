@@ -30,6 +30,9 @@
 
 - **Gerçek hayat PF yükleri (2026-11-28):** İlk ek deney serisi eldeki üç LED ampulle 1/2/3 ampul basamaklarıdır; her kademede PZEM kararlılığı yeniden beklenip V/I/P/PF ayrı kaydedilecek. Ampuller aynı model değilse model ve watt bilgileri tek tek etiketlenecek, kombinasyonlar aynı yük kabul edilmeyecek. Sonra vantilatörün sabit hız kademeleri; telefon şarjı ise uzun kararlı kalması beklenmeyen dinamik yük olarak incelenecek. Veri durumu settling/steady/dynamic/invalid olarak ayrılacak. Ayrıntı: [MOD2-GRV002 §17.8](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md).
 
+
+- **LED basamak deneyi uygulaması (2026-11-28):** Tek LED → iki LED → üç LED adımında her yük ekleme anı `load_change_timestamp` ile kaydedilecek; önceki pencere kapatılıp PZEM'in yeni değerleri kararlı hale gelene kadar `settling`, kararlılık şartı sağlanınca yeni `window_id` altında `steady` kullanılacak. Aynı model ampuller sürücü ailesini büyük ölçüde sabit tutar, ancak PF/crest factor/dalga biçiminin değişmeyeceği varsayılmaz; her basamakta ölçülür. Ayrıntı: [MOD2-GRV002 §17.9](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/GOREV.md).
+
 ## Bir sonraki somut adım
 
 Önce FNIRSI 2D15P'yi DMM modunda kullanarak SCT013-030 (30 A / 1 V) sensör çıkışını doğrudan ölç. İlk hedef, 0,05 A RMS primer akımına karşılık gelen yaklaşık 1,67 mV RMS AC değerin yüksüz tabandan ayırt edilip edilemediğini ve tekrarlandığında kararlı görünüp görünmediğini kontrol etmektir. Bu ilk deneyde ESP32, ADS1115, MCP3208, bias, harici burden veya yükselteç kullanma. Akımın gerçekten 0,05 A olduğu bağımsız ve güvenilir biçimde doğrulanamıyorsa sonucu yaklaşık yük denemesi olarak kaydet; kesin 0,05 A sonucu ilan etme. Ayrıntı: [FNIRSI 2D15P DMM – SCT013-030 deney planı](MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV002/DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md).
