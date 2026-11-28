@@ -294,3 +294,13 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **PZEM kararlılığı:** Ayar değişiminden sonra en az bir tam 5 saniyelik yayın aralığı geçecek; ardından kararlılık, önceden belirlenmiş tolerans ve ardışık yayın şartlarıyla değerlendirilecek. 5 saniyelik yayın ritmi PZEM'in iç örnekleme penceresinin kesin süresi diye yorumlanmayacak.
 - **Kanıt sınırı:** Mevcut HA ct_clamp RMS varlığı ham örnek zaman damgalarını ve gerçek kaynak örnek sayısını tek başına taşımaz. Bu alanlar debug veya ayrı ham veri kaydıyla elde edilmedikçe boş bırakılacak; tahmin edilmeyecek.
 - **Ayrıntılı kayıt:** MOD2-GRV002 görev kaydı, Bölüm 17.6.
+
+
+### 2026-11-28 – MOD2-GRV002 – Veri şemasının kanıt zinciri ve ham veri/analiz ayrımı
+
+- **Kullanıcı açıklaması:** `window_status` etiketlerinin geçiş, kararlı ve bozuk kayıtları ayırdığı; zaman damgalarının PZEM yayını ile BERO'nun gerçek 200 ms penceresini karşılaştırmayı sağladığı; gerçek örnek sayısı/hızının tahmin edilmemesi gerektiği ve ham verinin yorumdan ayrı tutulmasının yeniden analize imkân verdiği vurgulandı.
+- **Teknik sınır:** Zaman damgaları PZEM yayın anı ile BERO pencere başlangıç/bitişini karşılaştırır; PZEM'in iç ölçüm/ortalama penceresinin süresini tek başına göstermez. Bu bilgi ayrıca doğrulanmadıkça varsayılmaz.
+- **Kayıt ilkesi:** Ham ADS1115 ve PZEM verileri değişmeden saklanır. Kararlı pencere seçimi, settling/invalid dışlamaları, filtreleme, kalibrasyon hesabı ve grafikler ayrı analiz çıktısı olarak üretilir ve kaynak ham dosya ile yöntem/sürüm bilgisine bağlanır.
+- **Yeniden analiz:** Aynı ham kayıtlar daha sonra farklı PF, dalga biçimi veya kalibrasyon hipotezleriyle yeniden analiz edilebilir. Bu işlem V1.6'yı otomatik değiştirmez; (K(x)=26.89+5.39e^{-x/0.882}) referansı korunur, yeni PF modeli ayrı sürüm ve bağımsız doğrulama gerektirir.
+- **Kanıt durumu:** Veri yönetimi ve deney yöntemi kararıdır; gerçek pencere çakışması, örnek sayısı ve ham çift kanal kaydı fiziksel deneyle doğrulanmayı bekler.
+- **Ayrıntılı kayıt:** MOD2-GRV002 görev kaydı, Bölüm 17.7.
