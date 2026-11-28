@@ -270,3 +270,17 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Koruma:** MOD2-GRV001 V1.6 değiştirilmez. ZMPT gerilim ayarı, SCT akım ölçeği, PF hesabı ve PF'ye bağlı akım düzeltmesi ayrı kavramlar olarak tutulur.
 - **Kanıt durumu:** Matematiksel gerekçe ve deney kararı kaydedildi; fiziksel ZMPT/PF deneyi, zaman eşlemeli ADC doğrulaması veya yeni fonksiyon henüz yoktur.
 - **Ayrıntılı kayıt:** [MOD2-GRV002 görev kaydı, §16](GOREVLER/MOD2-GRV002/GOREV.md).
+
+
+### 2026-11-28 – MOD2-GRV002 – PF için çok değişkenli deney ve zaman penceresi tasarımı
+
+- **Kullanıcı önerisi:** Aynı PF değerinin dimmerli akkor, düşük akım LED ve motor gibi farklı fiziksel yüklerde farklı akım dalga biçimleriyle oluşabileceği; bu nedenle düzeltmenin yalnız PF sütununa göre kurulamayacağı belirtildi.
+- **Deney değişkenleri:** PF, I_RMS, mümkünse I_peak/crest factor, yük etiketi/türü, dimmer konumu, dalga biçimi gözlemi ve ADC örnekleme kimliği ayrı alanlar olarak kaydedilecek.
+- **Tarihsel kanıt – dimmerli 100 W akkor:** 2026-11-21 kaydında PF 1,00'dan 0,61'e inerken SCT/PZEM oranı 0,921'den 1,507'ye çıktı. Aynı pencerelerde PZEM akımı da 0,463 A'dan 0,338 A'ya değişti; ham dalga/harmonik verisi bulunmadığından PF tek başına neden sayılamaz. Kaynak: PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/RAPOR/DIMMER-100W-PF-ETKISI-2026-11-21.md.
+- **Tarihsel kanıt – 8,5 W LED:** İki çevrimde PF 0,66–0,67, PZEM akımı 0,052–0,053 A ve SCT akımı 0,095–0,096 A görüldü. Bu nokta düşük akım, LED yükü ve düşük PF'yi birlikte içerir; nüve nonlineerliği tek başına kanıtlanmamıştır. Kaynak: PREBERO/MODUL-2-AKIM-TESTLERI/GOREVLER/MOD2-GRV001/DENEYLER/8_5W-LED-DUSUK-PF-TEKRAR-2026-11-21.md.
+- **Katsayı ayrımı:** K=27.59 eski V1.1 zincirinin baz katsayısıdır; güncel V1.6 modelinin yerine geçen veya tek başına “alt bant katsayısı” olan bir değer gibi kullanılmayacaktır. V1.6 K(x)=26.89+5.39e^(-x/0.882) modeli korunur.
+- **PZEM zamanlaması:** PZEM-REF-WROOM-01 değerleri 5 saniyede bir yayımlar. Her yük/dimmer değişiminden sonra geçiş verisi dışlanacak; ardışık PZEM yayınlarında kararlılık görülünce ortak zaman sınırları olan kararlı pencere açılacaktır. Seyrek PZEM örnekleri interpolasyonla yapay biçimde çoğaltılmayacak.
+- **ADS1115 sınırı:** Mevcut YAML'de ADS1115 860 SPS, ct_clamp 200 ms RMS penceresi ve 1 s yayın vardır; bu Home Assistant akım varlığı ham gerilim-akım örnek dizisi değildir. ADS1115 MUX kanalları eşzamanlı değildir. İki kanalın 860 SPS toplam hızda dönüşümlü okunması halinde kanal başına teorik üst sınır yaklaşık 430 SPS (50 Hz'de 8,6 örnek/periyot) olur; gerçek hız ve Δt ölçülmelidir. Enterpolasyon zaman farkını azaltabilir, fakat kayıp harmonikleri/aliasing'i geri getiremez.
+- **Model kapsamı:** Ampirik düzeltme yalnız test edilen PF, akım, dalga biçimi ve yük aralığında adaydır. Yeni yük tipi veya motor/çamaşır makinesi geçişi ayrı doğrulama gerektirir.
+- **Kanıt durumu:** Bu kayıt deney tasarımı ve tarihsel verinin yorumudur; yeni fiziksel ölçüm, harmonik analizi, ham ADS örnek kaydı veya doğrulanmış yeni fonksiyon değildir.
+- **Ayrıntılı kayıt:** MOD2-GRV002 görev kaydı, Bölüm 17.
