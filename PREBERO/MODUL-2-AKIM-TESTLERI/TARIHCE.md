@@ -315,3 +315,13 @@ V1.6 YAML bu fonksiyonu parçalı bölge seçimi olmadan uygular; 30 mA ve altı
 - **Durum etiketleri:** settling geçişi, steady kararlı platoyu, dynamic geçerli fakat zamanla değişen yükü, invalid bozuk/eksik veriyi belirtir. Dynamic kayıt geçersiz sayılıp silinmez.
 - **Kanıt durumu:** Yükler ve deney sırası planlandı; LED ampul, vantilatör veya telefon şarjıyla bu yeni seri henüz ölçülmedi.
 - **Ayrıntılı kayıt:** MOD2-GRV002 görev kaydı, Bölüm 17.8.
+
+
+### 2026-11-28 – MOD2-GRV002 – 1 → 2 → 3 LED basamak deneyinin uygulama kuralı
+
+- **Deney sırası:** Tek LED, iki LED, üç LED. Her yük ekleme anı `load_change_timestamp` olarak kaydedilir; önceki veri penceresi kapatılır, geçiş kayıtları `settling` olarak saklanır ve PZEM/BERO kararlılığı sağlandığında yeni `steady` pencere açılır.
+- **Deney gerekçesi:** Aynı model LED ampuller sürücü ailesini büyük ölçüde sabit tutarken toplam akımı basamaklandırmaya yardım eder. Böylece PF ve crest factor benzer kalırsa SCT/PZEM oranının akım genliğiyle değişip değişmediği daha temiz incelenebilir.
+- **Yorum sınırı:** Ampul sayısı arttığında PF, crest factor veya dalga biçiminin sabit kalacağı varsayılmaz; her basamakta ölçülür. Farklı model/güçteki ampuller ayrı load_id ile etiketlenir. Aynı model ampuller de birebir aynı akım dalgası üretmiş kabul edilmez.
+- **Zamanlama sınırı:** `load_change_timestamp` ile `pzem_publish_timestamp` farkı olay ile yeni yayının gözlenen aralığıdır; PZEM'in iç ölçüm gecikmesini tek başına kanıtlamaz.
+- **Kanıt durumu:** Deney protokolü netleştirildi; 1/2/3 LED fiziksel ölçümleri henüz yapılmadı.
+- **Ayrıntılı kayıt:** MOD2-GRV002 görev kaydı, Bölüm 17.9.
