@@ -233,3 +233,56 @@ MOD2-GRV002 deneyleri ve devam eden BERO analog sensör çalışmaları, [Ölç�
 - Tek planlanan yeni cihaz UT61E+'tır. Başka DDS/jeneratör satın alımı mevcut altyapının somut bir test gereksinimini karşılayamadığı gösterilmeden açılmaz.
 - Kaynak ayarı, bağımsız ölçüm, dalga biçimi, ADC ham kodu ve PZEM karşılaştırması ayrı kanıt sınıflarıdır.
 - Bu kural MOD2-GRV001 V1.6 dosyalarını değiştirmez; yeni deneyler kendi dosyalarında tutulur.
+
+
+## 16. PF hesabında SCT akım genlik hatasının etkisi ve pratik deney sırası — 2026-11-28
+
+Bu bölüm, kullanıcıyla yapılan görüşmede netleşen hesaplama yaklaşımını ve deney kararını kaydeder. **Henüz fiziksel deney yapılmış, PF sonucu alınmış veya yeni düzeltme fonksiyonu doğrulanmış değildir.**
+
+### 16.1 Temel ayrım: gerilim ölçeği, akım ölçeği ve PF
+
+- **ZMPT101B trimpotu:** Gerilim kanalının çıkış genliğini/ölçeğini ayarlamak içindir. BERO'nun hesapladığı gerilim RMS değeri, aynı çalışma koşulunda PZEM gerilim RMS değerine yaklaştırılır. Trimpot PF ayarı yapmaz ve tek başına faz hatasını düzeltmez.
+- **Dimmer:** 100 W akkor lamba deneyinde farklı yük/dalga biçimi ve PF çalışma noktalarını oluşturmak için kullanılır. Örneğin hedef PF≈0,50 noktası dimmerle seçilir; o noktadaki gerçek PF PZEM'den okunur ve ayar sabitlenir. PF değeri ZMPT trimpotuyla ayarlanmaz.
+- **SCT013 akım ölçeği:** Kullanıcının teyidine göre PF≈1 koşulundaki akım kalibrasyonu daha önce başarılmıştır. Bu mevcut kalibrasyon ve MOD2-GRV001 V1.6 referansı korunur; PF<1 deneyine geçerken SCT katsayısı baştan ayarlanmaz.
+
+### 16.2 Akım genlik hatası PF hesabını zorunlu olarak bozmaz
+
+BERO PF hesabı yalnızca (V_{RMS}) ve (I_{RMS}) değerlerinden çıkarılamaz. Aynı zaman penceresine ait gerilim ve akım örnekleriyle gerçek güç de hesaplanmalıdır:
+
+- (V_{RMS}=\sqrt{\operatorname{mean}(v[n]^2)})
+- (I_{RMS}=\sqrt{\operatorname{mean}(i[n]^2)})
+- (P=\operatorname{mean}(v[n]\,i[n]))
+- (PF=P/(V_{RMS}\,I_{RMS})) (yük yönü/işaret kuralı tutarlı uygulanır; tüketim PF'si raporlanırken gerekiyorsa mutlak değer kullanılır).
+
+Bu örnek-çarpım yöntemi sinüs varsayımıyla yalnızca \(\cos(\varphi)\) hesaplamaktan farklıdır; dalga biçimi bozulmasının etkisini de toplam gerçek PF içinde tutar.
+
+**Ölçek hatasının sade matematiksel sonucu:** SCT örnekleri gerçek akım dalgasının yalnızca sabit ve doğrusal bir katsayıyla ölçeklenmiş hali ise, yani (i_{ölçüm}[n]=k_i\,i_{gerçek}[n]), aynı örneklerden hesaplanan aktif güç de (k_i) ile, RMS akım da |(k_i)| ile ölçeklenir. Pozitif bir sabit kazanç hatasında bu katsayı PF oranında sadeleşir. Dolayısıyla SCT'nin amper cinsinden ölçeği PZEM ile henüz eşleşmiyor olsa bile, dalga biçimi ve zaman ilişkisi korunuyorsa PF hesaplanabilir.
+
+Bu sonuç **her SCT hatası için geçerli değildir**. Aşağıdaki durumlarda hata PF'ye de taşınabilir ve genlik katsayısı sadeleşmesi yeterli olmaz:
+
+- SCT/analog ön ucun faz veya frekans cevabı nedeniyle dalga biçimini zamana göre kaydırması,
+- dalga biçiminin bozulması, kırpılması, doyum veya doğrusal olmayan davranış,
+- gürültü ve ofsetin yeterince giderilmemesi,
+- gerilim ve akım örneklerinin aynı zaman penceresine ait olmaması,
+- ADC kanallarının ardışık örneklenmesinden kaynaklanan ve hesaba katılmayan kanal zaman farkı.
+
+Bu nedenle “SCT akımı fazla gösteriyor” gözlemi tek başına PF'nin de yanlış olduğunu kanıtlamaz; aynı şekilde PF'nin doğru çıkacağı da deney öncesinde garanti edilemez.
+
+### 16.3 MOD2-GRV002 için güncel pratik sıra
+
+1. Güvenlik ve kart bağlantı ön kontrolünü tamamla.
+2. Sabit besleme koşulunda ZMPT101B gerilim RMS değerini trimpotla PZEM gerilim RMS değerine yaklaştır; bu ayarın gerilim ölçeği ayarı olduğunu kaydet.
+3. 100 W akkor lamba ve dimmerle hedef çalışma noktası oluştur. Örneğin PZEM PF≈0,50 gösterdiğinde dimmer konumunu sabitle. PZEM'in ölçtüğü PF'yi kaydet; nominal değer varsayma.
+4. Daha önce PF≈1 için elde edilen SCT akım kalibrasyon katsayısını değiştirmeden, SCT ve ZMPT kanallarından aynı pencereye ait ham örnekleri al.
+5. Ofsetleri gidererek (V_{RMS}), (I_{RMS}), (P=\operatorname{mean}(v[n]i[n])) ve BERO PF değerini hesapla. Kanal örnek zaman farkı bilinmiyorsa sonucu doğrulanmış PF olarak etiketleme.
+6. BERO PF'yi aynı kararlı pencerenin PZEM PF değeriyle karşılaştır. Aynı kayıtta BERO akımını PZEM akımıyla da karşılaştır.
+7. Birden fazla PF ve yük noktasında veri biriktir. PF'ye bağlı akım düzeltme fonksiyonu ancak tekrarlanabilir hata eğilimi görülürse ve ayrı verilerle doğrulanırsa aday kabul edilir.
+
+### 16.4 Korunacak kararlar ve kanıt durumu
+
+- PF hesabı için SCT'nin amper ölçeğini önce PZEM'e eşitlemek zorunlu ön koşul değildir; sabit genlik kazancı PF oranında sadeleşebilir.
+- Gerilim/akım RMS değerlerini bilmek tek başına PF hesabına yetmez; örnek bazında eşzamanlı gerçek güç hesabı gerekir.
+- Gerilim trimpot ayarı, SCT akım kalibrasyonu, PF hesabı ve PF'ye bağlı akım düzeltme modeli birbirinden ayrı tutulur.
+- MOD2-GRV001 V1.6 ve PF≈1 akım kalibrasyonu korunur. Yeni PF/akım düzeltme adayı yalnız MOD2-GRV002 altında geliştirilir.
+- İlk aşamada ayrıntılı osiloskop faz açısı analizi zorunlu değildir. Pratik deney ve PZEM karşılaştırması sonuç vermezse faz/zamanlama incelemesi yedek yöntem olarak açılır.
+- **Kanıt durumu:** Bu bölüm matematiksel gerekçe ve deney planıdır. ZMPT101B trimpot ayarı, PF≈0,50 deneyi, ADC zaman eşlemesi ve PF hesabı henüz fiziksel olarak doğrulanmamıştır.
