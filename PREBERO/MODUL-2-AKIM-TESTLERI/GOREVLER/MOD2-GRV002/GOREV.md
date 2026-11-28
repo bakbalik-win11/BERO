@@ -220,3 +220,16 @@ Ayrıntılı kayıtlar:
 - [SG-002 DC analog gerilim ve akım döngüsü testi](DENEYLER/FNIRSI-SG002-DC-ANALOG-SIMULATOR-TESTI-2026-11-28.md)
 
 Bu ekler plan kaydıdır; henüz fiziksel test, ölçüm logu veya doğrulanmış sonuç yoktur.
+
+
+## 15. Ölçüm altyapısı çalışma kuralı — 2026-11-28
+
+MOD2-GRV002 deneyleri ve devam eden BERO analog sensör çalışmaları, [Ölçüm Altyapısı ve Sensör Doğrulama Stratejisi V1.0](../../../OLCUM-ALTYAPISI/OLCUM-STRATEJISI-V1.0.md) sırasına göre yürütülür:
+
+**Sensörün ham çıkışı → bağımsız DMM → osiloskopla dalga biçimi → analog ön uç → ADC ham kodu → yazılım hesabı → kalibrasyon.**
+
+- Sensörün kendi çıkışı bağımsız olarak anlaşılmadan ADC/ESP32 ölçümü sensörün gerçek davranışı diye yorumlanmaz.
+- Mevcut 2D15P, SG-002, SANEC sinyal jeneratörü ve lojik analizör öncelikle kullanılacaktır.
+- Tek planlanan yeni cihaz UT61E+'tır. Başka DDS/jeneratör satın alımı mevcut altyapının somut bir test gereksinimini karşılayamadığı gösterilmeden açılmaz.
+- Kaynak ayarı, bağımsız ölçüm, dalga biçimi, ADC ham kodu ve PZEM karşılaştırması ayrı kanıt sınıflarıdır.
+- Bu kural MOD2-GRV001 V1.6 dosyalarını değiştirmez; yeni deneyler kendi dosyalarında tutulur.
