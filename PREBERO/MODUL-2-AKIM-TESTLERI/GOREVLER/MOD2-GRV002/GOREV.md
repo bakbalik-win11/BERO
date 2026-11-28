@@ -56,6 +56,7 @@ Bu sıra, önceki geniş ADS1115 karakterizasyon önerisini tamamen silmez; o ö
 | Adım | İş | Durum |
 |---|---|---|
 | 0 | MOD2-GRV001 V1.6'yı koruma ve yeni işi MOD2-GRV002 altında yürütme | TAMAMLANDI |
+| 0A | FNIRSI 2D15P DMM ile SCT013-030 çıkışında 0,05 A karşılığı yaklaşık 1,67 mV RMS değerini doğrudan gözlemle | PLANLANDI — 2026-11-28; fiziksel sonuç yok |
 | 1 | ZMPT101B kartı ve kapalı/güvenli test düzeni ön kontrolü | BEKLİYOR |
 | 2 | Sabit lamba yükünde ZMPT trimpotuyla gerilim okumasını PZEM'e yaklaştırma | BEKLİYOR |
 | 3 | Sabit lamba + dimmer ayarlarında PZEM ve BERO PF/akım noktalarını kaydetme | BEKLİYOR |
@@ -181,3 +182,22 @@ Bu bölüm bir deney kararıdır; deney sonucu, doğrulanmış katsayı, güvenl
 - Yeni ZMPT101B + SCT013 zincirinin PF okuması ve PZEM referanslı akım farkı birlikte kaydedilir; EXP/K(x) yöntemine benzer biçimde PF girdili yeni bir f(X) adayına bakılır.
 - Kolay deney işe yaramaz veya tekrarlanmazsa daha ayrıntılı faz/zamanlama araştırması açılır. Akademik ayrıntı başlangıç şartı değildir.
 - Bu öncelik önceki ayrıntılı pratik faz planını silmez; onu yedek/başvuru yaklaşımı olarak konumlandırır.
+
+
+## 12. Sensör çıkışını bağımsız DMM ile tanıma — 2026-11-28
+
+Kullanıcı, ADC/ESP32/ADS1115/MCP3208 katmanlarına geçmeden önce sensörün kendi elektriksel tepkisini doğrudan görmek istedi. Bu nedenle PF/ZMPT deneylerinden önce kısa bir ön karakterizasyon deneyi planlandı.
+
+- **Cihaz:** FNIRSI 2D15P'nin DMM modu.
+- **Sensör:** SCT013-030, 30 A / 1 V.
+- **Deney hedefi:** 0,05 A RMS primer akımına karşılık gelen yaklaşık 1,67 mV RMS AC çıkışın DMM ekranında ayırt edilebilir ve tekrarlanabilir olup olmadığını görmek.
+- **Teorik oran:** 1 V / 30 A = 33,333 mV/A; 0,05 A × 33,333 mV/A ≈ 1,667 mV RMS.
+- **Öncelik:** Bu deney, ZMPT101B kartı ve PF deneyine geçmeden önce yapılacak ilk kısa kontrol olarak belirlendi.
+- **Sınır:** 2D15P üretici teknik bilgisinde en düşük ACV aralığı 1,9999 V ve gösterge 19.999 count olarak listelenir; teorik ekran basamağı 0,1 mV'dir. Düşük mV bölgesindeki AC doğruluğu ve minimum güvenilir giriş seviyesi açıkça verilmediğinden yalnızca ekran çözünürlüğünden ölçüm doğruluğu sonucu çıkarılmaz.
+- **Bağlantı:** Sensörün 1 V gerilim çıkışı DMM'nin VΩ-COM girişleriyle ölçülür. DMM akım girişi kullanılmaz; bias, harici burden, amplifikatör ve ADC eklenmez.
+- **Güvenlik:** Kelepçe tek yalıtılmış primer iletkeni kavrar. DMM yalnızca sensör çıkışına bağlanır. Şebeke yükü kullanılacaksa kapalı/korumalı düzen gerekir; osiloskop girişleri ve ground klipsleri şebekeye bağlanmaz.
+- **Kanıt durumu:** Deney henüz yapılmadı; ölçüm, log, ekran görüntüsü veya sonuç yoktur.
+
+Ayrıntılı deney planı: [FNIRSI 2D15P DMM – SCT013-030 – 0,05 A testi](DENEYLER/FNIRSI-2D15P-DMM-SCT013-030-005A-2026-11-28.md).
+
+Bu ön test sensör çıkışının gözlenebilirliğini değerlendirir; SCT013-030'un 0,05 A seviyesindeki mutlak doğruluğunu kanıtlamaz.
