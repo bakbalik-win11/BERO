@@ -395,3 +395,17 @@ Her ölçüm bloğunda şu zaman alanlarını ayrı tut:
 - `window_status`: `settling`, `steady` veya `invalid`.
 
 **Uygulama sınırı:** Mevcut Home Assistant `ct_clamp` RMS varlığı tek başına örnek başına zaman damgası, kaynak örnek sayısı veya ham dalga örneklerini taşımaz. Bu alanları doldurmak için debug log veya ayrı zaman damgalı ham veri kaydı gerekir. Alanları elde etmeden tahmini değer yazılmaz. Deneyin kısa veri kaydı için bu metadata ayrı bir CSV/JSON yan dosyasında tutulabilir ve özet satırındaki `window_id` ile birleştirilebilir.
+
+
+### 17.7 Veri şemasının analizde sağlayacağı işlev ve ham veri ilkesi — 2026-11-28
+
+Bu şema yalnızca veri düzeni değildir; kararlı/kararsız ölçümleri, sensör davranışını ve örnekleme kaynaklı sapmaları sonradan birbirinden ayırabilmek için deney kanıt zinciridir.
+
+1. **Durum etiketleri:** `window_status` alanı `settling`, `steady` ve `invalid` kayıtlarını ayırır. Yük/dimmer değişiminden sonraki geçiş kayıtları silinmez; `settling` olarak saklanır ve kararlı pencere istatistiklerine katılmaz. Eksik/bozuk okumalar `invalid` olur. Yalnızca tanımlanmış kararlılık koşulunu sağlayan kayıtlar `steady` analiz kümesine girer.
+2. **Zaman ilişkisi:** `load_change_timestamp`, `pzem_publish_timestamp`, `measurement_window_start/end` ve `measurement_window_duration_ms` alanları PZEM'in yayın zamanı ile BERO'nun gerçek 200 ms örnekleme penceresinin örtüşme/gecikme ilişkisini sonradan incelemeyi sağlar. Bu damgalar PZEM'in kendi iç ölçüm veya ortalama penceresini tek başına kanıtlamaz; o davranış ayrıca belgelenmedikçe bilinmiyor olarak kalır.
+3. **Gerçek örnekleme kanıtı:** `source_sample_count` ve `effective_sample_rate_sps` yalnızca debug/ham kayıttan elde edilmişse yazılır. ADC konfigürasyonundaki teorik SPS değeri gerçek örnek sayısının yerine geçmez. Pencere süresi ve sayaç bilgisi yoksa alanlar boş/unknown kalır; tahmin üretilmez.
+4. **200 ms / 1 s ayrımı:** `ct_clamp_sample_duration_ms=200` her RMS ölçüm çevriminin örnek toplama penceresini, `ct_clamp_update_interval_ms=1000` yeni ölçüm çevriminin güncelleme aralığını gösterir. Bu iki değer birleştirilmiş beş adet 200 ms pencere olarak yorumlanmaz.
+5. **Ham veri ve analiz yorumu ayrımı:** Orijinal ADS1115 örnekleri, zaman damgaları ve PZEM yayınları değiştirilmeyen ham kayıt olarak saklanır. Pencere seçimi, dışlama, filtreleme, birim dönüşümü, katsayı hesabı ve grafikler ayrı analiz çıktısı/raporu olur. Her analiz kaydı kullandığı ham veri dosyasını, yazılım/yöntem sürümünü ve parametreleri referans verir. Aynı ham veri daha sonra farklı hipotezlerle tekrar değerlendirilebilir.
+6. **Modelin korunması:** Ham kayıtların sonradan farklı yöntemlerle analiz edilmesi MOD2-GRV001 V1.6 modelini otomatik olarak değiştirmez. V1.6'nın (K(x)=26.89+5.39e^{-x/0.882}) fonksiyonu korunur; PF/dalga biçimi kaynaklı yeni bir düzeltme ayrı model/sürüm ve bağımsız doğrulama ister.
+
+**Kanıt durumu:** Bu maddeler veri yönetimi ve deney metodolojisi kararıdır. PZEM/BERO pencere çakışması, gerçek örnek sayısı ve ham çift kanal veri yolu yarınki testte mevcut log imkânlarıyla doğrulanacaktır.
