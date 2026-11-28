@@ -5,6 +5,8 @@
 - **İlgili donanım:** SCT013 akım ölçüm zinciri; satın alınmış ZMPT101B hazır modül; mevcut ESP32/ADS1115 deney altyapısı; FNIRSI 2D15P osiloskop.
 - **Referans:** MOD2-GRV001 V1.6 akım ölçüm modeli. V1.6 dosyaları değiştirilmez.
 
+> **Ana uygulama planı:** [PF-DENEY-PLANI-V1.0.md](PF-DENEY-PLANI-V1.0.md) MOD2-GRV002'nin güncel ve tek uygulama sırasıdır. Bu görev dosyasındaki sonraki bölümler önceki görüşmeleri, teknik gerekçeleri ve deney kayıt kurallarını korur. Uygulama sırası konusunda ana plan esas alınır.
+
 ## 1. Amaç – BERO için pratik ölçüm
 
 BERO'nun hedefi ticari/laboratuvar sınıfı bir multimetre üretmek değildir. Hedef, evin her hattına ayrı PZEM takmayı gerektirmeyen, BERO'ya özel bir ölçüm yolu geliştirmektir:
@@ -33,42 +35,39 @@ Bu hedef hobi/prototip ölçeğindedir. Sonuçlar BERO'nun belirlenen sensör, y
 - **Yeni PF algılayıcı adayı:** ZMPT101B, MOD2-BENCH-01'e eklenecek; sensör kartı, pinler, sinyal seviyesi ve güvenlik uygunluğu fiziksel olarak kontrol edilmeden bağlanmış sayılmaz.
 - **Mevcut referans kod:** MOD2-GRV001 V1.6 EXP/K(x) korunur; PF deneyi için kopya/ayrı model kullanılır. PZEM yayımlayıcıyı veya mevcut V1.6 YAML'i değiştirmek bu görevin parçası değildir.
 
-## 3. Pratik deney sırası — kullanıcı kararı, 2026-11-28
+## 3. Güncel uygulama planı — PF-DENEY-PLANI-V1.0
 
-Kullanıcı, çamaşır makinesi saha kaydının sonraki değerlendirmesinde akım sapmasının PF koşullarıyla ilişkisini teyit etti. Bu, PF'yi yeni akım denklemine katma gerekçesidir. Proje hobi/prototip ölçeğinde olduğundan önce kolay ve pratik deney yapılır; akademik veya ayrıntılı ölçüm yaklaşımı ilk kapı değildir.
+Uygulama sırası ve deney kapsamı tek belgede birleştirildi:
 
-**Öncelikli kısa yol:** ZMPT101B kartını güvenli biçimde tanı; sabit bir lamba yükünde ZMPT trimpotuyla BERO gerilim okumasını PZEM'e yaklaştır. ZMPT kartındaki trimpot gerilim kanalının genlik/ölçeğini ayarlar; PF koşulunu değiştiren eleman kullanıcının dimmeridir. Aynı lamba+dimmer ayarlarında PZEM V/I/P/PF ile SCT013 + ZMPT101B'den BERO'nun PF ve akımını oku. Bu deney noktalarından, EXP/K(x) bulunurken izlenen pratik grafik yaklaşımına benzer şekilde, PF'yi içeren yeni f(X) akım düzeltme adayı ara. PZEM bu aşamada referans etikettir; mutlak ground truth değildir.
+**[MOD2-GRV002 — BERO PF Deney Planı V1.0](PF-DENEY-PLANI-V1.0.md)**
 
-Kısa yol yeterli sonuç vermezse ADS1115 zamanlaması, örnek eşleme, PHASE_CORRECTION ve daha ayrıntılı sinyal/faz incelemesi adım adım devreye alınır. Bunlar yedek araştırma araçlarıdır; ilk deneyi geciktiren ön koşullar değildir. Yeni katsayı V1.6'ya eklenmez, MOD2-GRV002'de ayrı tutulur.
-
-1. **Kartı tanıma ve güvenlik ön testi:** ZMPT101B hazır kartının PCB revizyonu, pinleri, beslemesi, op-amp bilgisi ve çıkış/bias aralığı kaydedilir. Şebeke uygulamasından önce giriş devresi, izolasyon/mesafeler, terminal koruması ve kapalı test düzeneği gözden geçirilir. İlk elektriksel ön test gerekiyorsa güvenli, izole düşük gerilimli AC ile yapılır.
-2. **Sabit yükte gerilim ayarı:** Güvenlik koşulları sağlanınca sabit lamba yükü altında ZMPT trimpotuyla BERO gerilim okuması PZEM'e yaklaştırılır. Bu yalnızca gerilim genlik/ölçek ayarıdır; PF veya faz telafisi değildir.
-3. **Kolay PF ve akım noktaları:** Aynı lamba ve dimmer düzeninde birkaç sabit dimmer ayarı seçilir. Her kararlı noktada PZEM V/I/P/PF ile BERO gerilim, SCT akım, BERO PF ve V1.6 akımı kaydedilir. Kullanıcının verdiği dimmer: https://www.amazon.com.tr/dp/B09RNBDXK2. Dimmer akım seviyesini ve dalga şeklini de değiştirebilir; bu sınır kayda yazılır.
-4. **Deneysel denklem adayı:** V1.6 EXP/K(x) geliştirme yaklaşımına benzer şekilde deney grafiğinden PF girdili basit f(X) akım düzeltme adayı aranır. Biçim ve katsayı önceden belirlenmez; mevcut V1.6 değiştirilmez. Sonuç PZEM'e göre tek noktada eşleşmekle doğrulanmış sayılmaz.
-5. **Basit kontrol tekrarı:** Seçilen noktaların en az birini yeniden ölç; mümkünse denklem çıkarırken kullanılmamış bir dimmer ayarı/yükle kısa kontrol yap. İlk kolay deneyden anlamlı ve tekrarlanabilir sonuç çıkmazsa sonraki adıma geç.
-6. **Yedek ayrıntılı inceleme:** Gerekirse ADS1115 gerçek zamanlama/kanal aralığı, örnek eşleme, PHASE_CORRECTION ve daha ayrıntılı faz/sinyal yaklaşımını incele. PHASE_CORRECTION gerilim trimpot ayarından ayrı tutulur. Bu çalışmalar ilk kısa deneyin ön koşulu değildir.
-7. **Saha sentezi:** PF'li akım düzeltme adayı laboratuvar/masaüstü verisinden sonra çamaşır makinesi kaydıyla, ardından uygun olduğunda bulaşık makinesiyle karşılaştırılır. V1.6 korunur; yeni model ve sonucu MOD2-GRV002 altında tutulur.
-
-Bu sıra, önceki geniş ADS1115 karakterizasyon önerisini tamamen silmez; o öneriler isteğe bağlı teknik başvurudur. Pratik ilk denemede zamanlama yetersizliği görülürse ölçüm mimarisi yeniden değerlendirilir.
+Bu planın kısa sırası:
+1. ZMPT101B kartı ve kapalı/güvenli düzenin ön kontrolü; SCT çıkışının kısa doğrudan DMM ön gözlemi.
+2. Sabit dirençli yükte ZMPT101B gerilim RMS ölçeğini PZEM'e yaklaştır ve trimpot ayarını sabitle.
+3. Daha önce PF≈1 koşulunda başarılmış SCT akım kalibrasyonunu koru; yeni PF deneyleri için katsayıyı baştan ayarlama.
+4. Gerçek yüklerle 1 → 2 → 3 LED; ardından vantilatör; telefon şarjı; en son ayrı kontrollü grup olarak 100 W dimmerli akkor.
+5. Her yük değişiminde settling/steady/dynamic/invalid pencerelerini ayır; PZEM yayınları kararlı hale gelmeden ölçüm noktası oluşturma.
+6. Mevcut RMS kayıtlarıyla PZEM PF etiketli akım sapması analizini yap. BERO'nun bağımsız PF hesabı için ham, zaman eşlemeli gerilim-akım örneklerinin ve ADC yeterliliğinin ayrıca doğrulanması gerekir.
+7. Yeterli ve tekrarlanabilir veri varsa, test edilen yük/akım/PF aralığıyla sınırlı ayrı bir düzeltme modeli araştır; MOD2-GRV001 V1.6'yı değiştirme.
 
 ## 4. Deney adımları ve ilerleme
 
 | Adım | İş | Durum |
 |---|---|---|
-| 0 | MOD2-GRV001 V1.6'yı koruma ve yeni işi MOD2-GRV002 altında yürütme | TAMAMLANDI |
-| 0A | FNIRSI 2D15P DMM ile SCT013-030 çıkışında 0,05 A karşılığı yaklaşık 1,67 mV RMS değerini doğrudan gözlemle | PLANLANDI — 2026-11-28; fiziksel sonuç yok |
-| 0B | 2D15P DDS + pasif bölücü ile düşük seviyeli 50 Hz AC uyarı oluşturup UT61E+ ölçüm tepkisini ön incele | PLANLANDI — DMM/DDS eşzamanlılığı doğrulanacak |
-| 0C | Mevcut FNIRSI SG-002 ile UT61E+ DC gerilim ve 4–20 mA döngü ölçümünü kontrol et | PLANLANDI — SG-002 DC kaynak; AC sinüs kaynağı değil |
-| 1 | ZMPT101B kartı ve kapalı/güvenli test düzeni ön kontrolü | BEKLİYOR |
-| 2 | Sabit lamba yükünde ZMPT trimpotuyla gerilim okumasını PZEM'e yaklaştırma | BEKLİYOR |
-| 3 | Sabit lamba + dimmer ayarlarında PZEM ve BERO PF/akım noktalarını kaydetme | BEKLİYOR |
-| 4 | Deney verisinden PF girdili pratik f(X) akım düzeltme adayı çıkarma | BEKLİYOR |
-| 5 | Kısa tekrar/kullanılmamış ayar ile kontrol | BEKLİYOR |
-| 6 | Gerekirse ayrıntılı ADC zamanlama/faz/PHASE_CORRECTION incelemesi | KOŞULLU – kısa yol yetersiz kalırsa |
-| 7 | Adayı çamaşır ve uygun olduğunda bulaşık makinesi kayıtlarıyla sentezleme | BEKLİYOR |
+| 0 | MOD2-GRV001 V1.6'yı ve PF≈1 SCT akım kalibrasyonunu koruma | TAMAMLANDI — değiştirilmeyecek |
+| 0A | SCT013-030 çıkışını DMM ile kısa ve doğrudan ön gözlem | PLANLANDI — doğruluk sertifikasyonu değil |
+| 0B | UT61E+ teslimi sonrası bağımsız düşük AC mV kontrolü | SİPARİŞ EDİLDİ — teslim/cihaz kontrolü bekleniyor |
+| 1 | ZMPT101B kart kimliği, bağlantı ve güvenlik ön kontrolü | BEKLİYOR |
+| 2 | Sabit dirençli yükte ZMPT gerilim RMS değerini PZEM'e yaklaştırma | BEKLİYOR |
+| 3 | 1 / 2 / 3 LED gerçek yük basamakları | BEKLİYOR |
+| 4 | Vantilatör sabit hız kademeleri | BEKLİYOR |
+| 5 | Telefon şarjı: kısa steady pencereler ve dynamic kayıt | BEKLİYOR |
+| 6 | 100 W dimmerli akkor kontrollü karşılaştırması | BEKLİYOR |
+| 7 | Ham zaman eşlemeli v[n]/i[n] ve ADC yeterlilik kontrolüyle BERO PF hesabı | KOŞULLU — ham örnekleme yolu gerekir |
+| 8 | Ayrı PF/akım düzeltme adayı ve bağımsız doğrulama | BEKLİYOR |
+| 9 | Çamaşır/bulaşık makinesi evreleriyle saha doğrulaması | SONRAKİ AŞAMA |
 
-Sıra, fiziksel güvenlik ve deney bulgularına göre güncellenebilir. Her adımda ham veri, ayar, yük, zaman penceresi ve yorum saklanır. Başarısız/sonuçsuz denemeler de korunur.
-
+Bu tablo uygulama takibidir; fiziksel deney ve yeni PF algoritması henüz tamamlanmış değildir. Her adımın ayrıntılı bağlantı, veri, güvenlik ve başarı kapıları ana PF Deney Planı V1.0 içindedir.
 
 ## 5. Veri toplama ve karşılaştırma kuralları
 
